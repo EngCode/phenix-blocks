@@ -1,0 +1,31 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/px-wrapper",
+  "version": "0.1.0",
+  "title": "PDS Wrapper",
+  "category": "design",
+  "description": "Layout Wrapper Block for Phenix Elements.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "childTag": {
+      "type": "string",
+      "default": "div"
+    },
+    "flexbox": {
+      "type": "boolean",
+      "default": false
+    },
+    "flex_align": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "file:./index.js"
+}

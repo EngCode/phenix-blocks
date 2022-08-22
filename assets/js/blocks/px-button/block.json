@@ -1,0 +1,83 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/px-button",
+  "version": "0.1.0",
+  "title": "PDS Button",
+  "category": "design",
+  "description": "Phenix Design System Button Component",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "isLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "inNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconEnd": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string",
+      "default": "Button"
+    },
+    "url": {
+      "type": "string",
+      "default": "#none"
+    },
+    "type": {
+      "type": "string",
+      "default": "normal"
+    },
+    "size": {
+      "type": "string",
+      "default": "normal"
+    },
+    "radius": {
+      "type": "string",
+      "default": "radius-none"
+    },
+    "outline": {
+      "type": "boolean",
+      "default": false
+    },
+    "px_bg_type": {
+      "type": "string",
+      "default": "color"
+    },
+    "px_bg_rotate": {
+      "type": "string",
+      "default": ""
+    },
+    "px_bg": {
+      "type": "string",
+      "default": "primary"
+    },
+    "px_color": {
+      "type": "string",
+      "default": ""
+    },
+    "data_id": {
+      "type": "string",
+      "default": ""
+    },
+    "data_modal": {
+      "type": "string",
+      "default": ""
+    },
+    "className": {
+      "type": "string",
+      "default": "btn primary"
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "file:./index.js"
+}

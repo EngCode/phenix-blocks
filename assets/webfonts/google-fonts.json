@@ -1,0 +1,56 @@
+{
+ "kind": "webfonts#webfontList",
+ "items": [
+  {
+   "kind": "webfonts#webfont",
+   "family": "Libre Franklin",
+   "category": "sans-serif",
+   "variants": [
+    "100",
+    "100italic",
+    "200",
+    "200italic",
+    "300",
+    "300italic",
+    "regular",
+    "italic",
+    "500",
+    "500italic",
+    "600",
+    "600italic",
+    "700",
+    "700italic",
+    "800",
+    "800italic",
+    "900",
+    "900italic"
+   ],
+   "subsets": [
+    "latin",
+    "latin-ext"
+   ],
+   "version": "v1",
+   "lastModified": "2016-06-20",
+   "files": {
+    "100": "http://fonts.gstatic.com/s/librefranklin/v1/zrsyK9EytLQ07oRM9IZIsX6Zf0VB_l-7q6pFtcZSRCs.ttf",
+    "100italic": "http://fonts.gstatic.com/s/librefranklin/v1/LHzsuUmxr4UY-IoiG8pRK4gsWNE1DYiT_eIOcNe2Au4.ttf",
+    "200": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yCwKTB4uIbnDXE2hyxZaFPY.ttf",
+    "200italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqho0lu1sSkaQaYEjN61aJ3i1I.ttf",
+    "300": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yMhKJW3W9-339CFS_Lie1us.ttf",
+    "300italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqho14je5cfhxzx5bEvSaoyQQI.ttf",
+    "regular": "http://fonts.gstatic.com/s/librefranklin/v1/PFwjf3aDdAQPvNKUrT3U7_fSnedoLXQQjURyDxluu8g.ttf",
+    "italic": "http://fonts.gstatic.com/s/librefranklin/v1/zrsyK9EytLQ07oRM9IZIsX5kKxjpQfTpnFf2SrDLxlg.ttf",
+    "500": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yMBjwrbmxH6gp8HgxjPD8qo.ttf",
+    "500italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqho5VcuOW5XbZIr02vW37iuvg.ttf",
+    "600": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yORt4MKdIUjA60qLK3wI2m8.ttf",
+    "600italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqhowNPRgU5g4Xymf9hgRWrbNs.ttf",
+    "700": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yEnStGWSv3WdwjmyyI8xc7Q.ttf",
+    "700italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqhow7kn3RFjf4gfwsdsBE-Rf4.ttf",
+    "800": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yKltwG0cydF-uC1kFVv1hts.ttf",
+    "800italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqho80d7u0uHUbaRkK-cNyim1w.ttf",
+    "900": "http://fonts.gstatic.com/s/librefranklin/v1/1_DGDtljMiPWFs5rl_p0yF7duMYIKwoQ5QsTL00fobw.ttf",
+    "900italic": "http://fonts.gstatic.com/s/librefranklin/v1/7_V210XP3LBEtEwiCTqho0THpHUXJVnEwH4tSjkF0wg.ttf"
+   }
+  }
+ ]
+}

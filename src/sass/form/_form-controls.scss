@@ -1,0 +1,299 @@
+/**======> Referance By Comment <======
+ * ===> 01 - CSS Options
+ * ===> 02 - Form Control
+ * ===> 03 - Control Sizes
+ * ===> 04 - Status Colors
+ * ===> 05 - Select Theme
+ * ===> 06 - Textarea Theme
+ * ===> 08 - Control icon
+ * ===> 09 - Options Controls
+ * ===> 10 - Forms [Gray Mode], [Dark Mode]
+*/
+
+/*==== Selectors ====*/
+%select-icon {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgba(0,0,0, 0.5)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
+}
+
+/*==== Make Sizes ====*/
+@mixin make_control_sizes ($infix:'') {
+    /*=== Sizes ===*/
+    &.tiny#{$infix} {
+        --padding   : #{REM(10)};
+        --height    : #{REM(30)};
+        --text-size : #{REM(12)};
+    }
+
+    &.small#{$infix} {
+        --padding   : #{REM(12)};
+        --height    : #{REM(36)};
+        --text-size : #{REM(13)};
+    }
+
+    &.large#{$infix} {
+        --padding   : #{REM(20)};
+        --height    : #{REM(52)};
+        --text-size : #{REM(17)};
+    }
+
+    &.xlarge#{$infix} {
+        --padding   : #{REM(25)};
+        --height    : #{REM(62)};
+        --text-size : #{REM(19)};
+    }
+}
+
+/*==== CSS Options ====*/
+.control-icon, .form-control, .option-control {
+    --padding : #{REM(15)};
+    /*=== Size Options ===*/
+    --height    : #{REM(42)};
+    --text-size : #{REM(15)};
+    /*=== Colors Options ===*/
+    --color : var(--dark-color);
+    --box-shadow   : unset;
+    --background   : #FFFFFF;
+    --border-size  : 1px;
+    --border-color : #{rgba(#000, 0.1)};
+
+    /*=== Status Colors ===*/
+    &.success {
+        --color : var(--success-color);
+        --border-color : var(--success-color);
+    }
+
+    &.error{
+        --color : var(--danger-color);
+        --border-color : var(--danger-color);
+    }
+
+    &.warning {
+        --color : var(--warning-color);
+        --border-color : var(--warning-color);
+    }
+
+    &[disabled], &.disable, &.disabled {
+        --color : var(--gray-color);
+        --background : var(--disable-color);
+    }
+
+    /*=== Sizes ===*/
+    @include make_control_sizes();
+
+    /*==== Small Screen ====*/
+    @include small(){
+        @include make_control_sizes('-sm');
+    };
+
+    /*==== Medium Screen ====*/
+    @include medium(){
+        @include make_control_sizes('-md');
+    };
+
+    /*==== Large Screen ====*/
+    @include large(){
+        @include make_control_sizes('-lg');
+    };
+
+    /*==== xLarge Screen ====*/
+    @include xlarge(){
+        @include make_control_sizes('-xl');
+    };
+}
+
+/*==== Default Validation ====*/
+.was-validated {
+    .form-control, .control-icon, .option-control {
+        /*=== Status Colors ===*/
+        &:valid {
+            --color : var(--success-color);
+            --border-color : var(--success-color);
+        }
+
+        &:invalid{
+            --color : var(--danger-color);
+            --border-color : var(--danger-color);
+        }
+    }
+}
+
+/*==== Form Control ====*/
+.form-control {
+    height : var(--height);
+    border : var(--border-size) solid var(--border-color);
+    background-color : var(--background);
+    /*=== Text ===*/
+    color : var(--color);
+    font-size : var(--text-size);
+    @extend %fast-motion;
+    /*=== Space & Size ===*/
+    @extend %inline-block;
+    @include padding-inline(var(--padding));
+    &:not([class*="col-"]):not(.inline) {width:100%;}
+
+    /*=== Focus Mode ===*/
+    &:focus {outline: var(--border-size) dashed var(--primary-color);}
+}
+
+/*==== Select Theme ====*/
+select.form-control, .reset-appearance {
+    /*==== Reset ====*/
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.px-select, select.form-control {
+    /*==== Arrow Background ====*/
+    background-repeat: no-repeat;
+    background-size: calc(var(--text-size)/1.35);
+    background-position: $direction-end var(--padding) center;
+    @extend %select-icon;
+}
+
+/*==== Textarea Theme ====*/
+textarea.form-control {
+    height : auto;
+    min-height : calc(var(--height)*2);
+    @include padding-block(var(--padding));
+}
+
+/*==== Labels ====*/
+label,legend  {@extend %inline-block;}
+
+/*==== Control icon ====*/
+.control-icon {
+    position: relative;
+    color: var(--color);
+    --white-space : calc(var(--padding)*2.15);
+    /*==== icons ====*/
+    &::before {
+        top: 0;
+        z-index: 3;
+        position: absolute;
+        #{$direction-start}: 0;
+        line-height: var(--height);
+        font-size: var(--text-size);
+        @include padding-inline(var(--padding), 'start');
+    }
+
+    /*==== icon Position ====*/
+    &.icon-end {
+        /*==== White Space Fix ====*/
+        .form-control {@include padding-inline(var(--white-space) ,'end');}
+        .px-select .px-select-toggle {@include padding-inline(var(--white-space)!important ,'end');}
+        /*==== icon position reverse ====*/
+        &::before {
+            #{$direction-start}: auto;
+            #{$direction-end}: 0;
+        }
+    }
+
+    /*==== White Space Fix ====*/
+    &:not(.icon-end) {
+        .form-control {@include padding-inline(var(--white-space) ,'start');}
+        .px-select .px-select-toggle {@include padding-inline(var(--white-space)!important ,'start');}
+    }
+}
+
+/*==== Options Controls ====*/
+.option-control {
+    --color  : var(--gray-color);
+    --color-active : var(--success-color);
+    /*==== ... ====*/
+    cursor: pointer;
+    position : relative;
+    @extend %inline-block;
+    font-size: var(--text-size);
+    line-height: var(--height);
+    /*==== option box ====*/
+    span::before {
+        top: -1px;
+        line-height: 1;
+        position : relative;
+        color: var(--color);
+        @extend %fast-motion;
+        @extend %inline-block;
+    }
+    /*==== ... ====*/
+    input {
+        position: absolute;
+        visibility: hidden;
+    }
+    /*==== Checkbox & Radio ====*/
+    &[data-type="checkbox"], &[data-type="radio"] {
+        span::before {
+            padding: 4px;
+            font-size: 0.8em;
+            --border-color : var(--gray-color);
+            @include margin-inline(5px, 'end');
+            border-radius: var(--radius);
+            background-color: var(--background);
+            border: var(--border-size) solid var(--border-color);
+        }
+    }
+    /*==== Radio Button ====*/
+    &[data-type="radio"] span::before {
+        border-radius: 100%;
+        font-size: .7em;
+    }
+    /*==== Buttons ====*/
+    &[data-type="button"] .btn {
+        color: var(--color);
+        border-color: var(--color);
+    }
+    /*==== Switchs ====*/
+    &[data-type="switch"] .switch {
+        position: relative;
+        @extend %fast-motion;
+        @extend %inline-block;
+        @include margin-inline(5px);
+        background-color: var(--color);
+        width: calc(var(--height) + 10px);
+        height: calc(var(--height) / 3.25);
+        border-radius: calc(var(--height) / 3.25);
+        /*==== Handle ====*/
+        &::before {
+            top: 50%;
+            content: '';
+            border-radius: 50%;
+            position: absolute;
+            #{$direction-start}: 0;
+            @extend %position-center-y;
+            background-color: var(--color);
+            width: calc(var(--height) / 2);
+            height: calc(var(--height) / 2);
+        }
+    }
+    /*==== Checked mode ====*/
+    input:checked ~ {
+        span, .btn, .switch {
+            --color : var(--color-active);
+            --border-color : var(--color-active);
+        }
+
+        .switch::before {
+            #{$direction-start}: 100%;
+            margin-#{$direction-start}: -15px;
+        }
+    }
+}
+
+/*==== Forms [Gray Mode] ====*/
+.gray-form {
+    .form-control,.option-control {
+        --background   : #F5F5F5;
+        --border-color : #f1f1f1;
+    }
+}
+
+/*==== Forms [Dark Mode] ====*/
+.dark-form {
+    .control-icon, .form-control,.option-control {--color : #FFFF;}
+    .form-control,.option-control {--background : var(--dark-color);}
+}
+
+/*==== Forms [No Border] ====*/
+.form-borderless {
+    .form-control,.option-control {--border-size : 0;}
+}

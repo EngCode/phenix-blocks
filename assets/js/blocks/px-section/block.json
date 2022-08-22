@@ -1,0 +1,51 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/px-section",
+  "version": "0.1.0",
+  "title": "Phenix Section",
+  "category": "design",
+  "description": "Main Header Block for Phenix Themes.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "container": {
+      "type": "boolean",
+      "default": true
+    },
+    "container_flex": {
+      "type": "boolean",
+      "default": false
+    },
+    "flex_align": {
+      "type": "string",
+      "default": ""
+    },
+    "size": {
+      "type": "string",
+      "default": "container"
+    },
+    "px_bg_type": {
+      "type": "string",
+      "default": "color"
+    },
+    "px_bg_rotate": {
+      "type": "string",
+      "default": ""
+    },
+    "px_bg": {
+      "type": "string",
+      "default": ""
+    },
+    "px_color": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "file:./index.js"
+}

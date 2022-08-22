@@ -1,0 +1,14 @@
+<svg id="hero-placeholder" xmlns="http://www.w3.org/2000/svg" width="1600" height="621" viewBox="0 0 1600 621">
+  <rect id="base" width="1600" height="621" fill="#e8e8e8"/>
+  <g id="content" transform="translate(861 179.233)">
+    <g id="placeholder">
+      <rect id="Rectangle_247" data-name="Rectangle 247" width="163" height="65" transform="translate(0 -13.233)" fill="rgba(0,0,0,0.15)"/>
+      <rect id="Rectangle_248" data-name="Rectangle 248" width="493" height="42" transform="translate(0 76.767)" fill="rgba(0,0,0,0.15)"/>
+      <rect id="Rectangle_249" data-name="Rectangle 249" width="386" height="42" transform="translate(0 135.767)" fill="rgba(0,0,0,0.15)"/>
+      <rect id="Rectangle_250" data-name="Rectangle 250" width="515" height="18" transform="translate(0 208.767)" fill="rgba(0,0,0,0.15)"/>
+      <rect id="Rectangle_251" data-name="Rectangle 251" width="554" height="18" transform="translate(0 233.767)" fill="rgba(0,0,0,0.15)"/>
+      <rect id="Rectangle_252" data-name="Rectangle 252" width="247" height="18" transform="translate(0 258.767)" fill="rgba(0,0,0,0.15)"/>
+    </g>
+  </g>
+  <path id="image-landscape" d="M528,64H48A48,48,0,0,0,0,112V400a48.006,48.006,0,0,0,48,48H528a48,48,0,0,0,48-48V112A48.006,48.006,0,0,0,528,64ZM68,432,185.6,275.2a8.184,8.184,0,0,1,12.78,0l39.6,52.8L159.1,432Zm112,0L345.6,211.2a8.184,8.184,0,0,1,12.78,0L524,432Zm380-32a31.872,31.872,0,0,1-18.45,28.73L371.2,201.6c-9.125-12.22-29.28-12.22-38.41,0L247.1,314.7l-35.9-49.1c-9.125-12.22-29.28-12.22-38.41,0L47.1,432C30.36,432,16,417.6,16,400V112A32.042,32.042,0,0,1,48,80H528a32.042,32.042,0,0,1,32,32ZM128,144a48,48,0,1,0,48,48A48.012,48.012,0,0,0,128,144Zm0,80a32,32,0,1,1,32-32A32.094,32.094,0,0,1,128,224Z" transform="translate(185 55)" opacity="0.1"/>
+</svg>

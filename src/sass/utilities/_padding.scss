@@ -1,0 +1,95 @@
+/*==== Utlites Repeaters ====*/
+@import '../assets/mixin';
+
+$padding-list : 0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100;
+
+/*==== Padding All ====*/
+@mixin make_padding($infix:'') {
+    @each $size in $padding-list {
+        .pd#{$infix}-#{$size} { padding: #{REM($size)}; }
+    }
+}
+
+/*==== Padding Top ====*/
+@mixin make_padding_top($infix:'') {
+    @each $size in $padding-list {
+        .pdt#{$infix}-#{$size} { @include padding-block(#{REM($size)}, 'start'); }
+    }
+}
+
+/*==== Padding Bottom ====*/
+@mixin make_padding_bottom($infix:'') {
+    @each $size in $padding-list {
+        .pdb#{$infix}-#{$size} { @include padding-block(#{REM($size)}, 'end'); }
+    }
+}
+
+/*==== Padding Start ====*/
+@mixin make_padding_start($infix:'') {
+    @each $size in $padding-list {
+        .pds#{$infix}-#{$size} { @include padding-inline(#{REM($size)}, 'start'); }
+    }
+}
+
+/*==== Padding End ====*/
+@mixin make_padding_end($infix:'') {
+    @each $size in $padding-list {
+        .pde#{$infix}-#{$size} { @include padding-inline(#{REM($size)}, 'end'); }
+    }
+}
+
+/*==== Padding X ====*/
+@mixin make_padding_x($infix:'') {
+    @each $size in $padding-list {
+        .pdx#{$infix}-#{$size} { @include padding-inline(#{REM($size)}); }
+    }
+}
+
+/*==== Padding Y ====*/
+@mixin make_padding_y($infix:'') {
+    @each $size in $padding-list {
+        .pdy#{$infix}-#{$size} { @include padding-block(#{REM($size)}); }
+    }
+}
+
+/*==== Base Screen ====*/
+@include make_padding();
+@include make_padding_top();
+@include make_padding_bottom();
+@include make_padding_start();
+@include make_padding_end();
+@include make_padding_x();
+@include make_padding_y();
+
+/*==== Medium Screen ====*/
+@include medium(){
+    @include make_padding('-md');
+    @include make_padding_top('-md');
+    @include make_padding_bottom('-md');
+    @include make_padding_start('-md');
+    @include make_padding_end('-md');
+    @include make_padding_x('-md');
+    @include make_padding_y('-md');
+};
+
+/*==== Large Screen ====*/
+@include large(){
+    @include make_padding('-lg');
+    @include make_padding_top('-lg');
+    @include make_padding_bottom('-lg');
+    @include make_padding_start('-lg');
+    @include make_padding_end('-lg');
+    @include make_padding_x('-lg');
+    @include make_padding_y('-lg');
+};
+
+/*==== xLarge Screen ====*/
+@include xlarge(){
+    @include make_padding('-xl');
+    @include make_padding_top('-xl');
+    @include make_padding_bottom('-xl');
+    @include make_padding_start('-xl');
+    @include make_padding_end('-xl');
+    @include make_padding_x('-xl');
+    @include make_padding_y('-xl');
+};

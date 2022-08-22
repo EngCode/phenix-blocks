@@ -1,0 +1,118 @@
+/**======> Referance By Comment <======
+ * ===> 01 - UI Resets
+ * ===> 02 - Layouts & Typography
+ * ===> 03 - Transition
+ * ===> 04 - Position Fixes
+ * ===> 05 - UI Helpers
+*/
+
+/*==== UI Resets ====*/
+%reset-space {
+    padding: 0;
+    margin: 0;
+}
+
+%reset-list {
+    list-style: none;
+    padding: 0;
+    @include margin-block(0);
+}
+
+%reset-control {
+    border: 0 none;
+    padding: 0;
+    &:focus {outline-width: 0;}
+}
+
+%select-reset {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+        appearance:none;
+}
+
+/*==== Layouts & Typography ====*/
+%inline-block {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+%flexbox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+%clear-after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+%nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*==== Transition ====*/
+%fast-motion {
+    transition: all 300ms ease-in-out;
+}
+
+%smooth-motion {
+    transition: all 500ms linear;
+}
+
+%slow-motion {
+    transition: all 1s linear;
+}
+
+/*==== Position Fixes ====*/
+%position-center {
+    transform: translateX(-50%) translateY(-50%);
+}
+
+%position-center-x {
+    transform: translateX(-50%);
+}
+
+%position-center-y {
+    transform: translateY(-50%);
+}
+
+%position-default {transform: translate(0);}
+
+/*==== UI Helpers ====*/
+%no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+%select-arrow {
+    background-repeat: no-repeat;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cGF0aCBkPSJNMTAuNSAxNWw3LjUgNy41IDcuNS03LjV6Ii8+PC9zdmc+);
+    background-size: 20px;
+    background-position: $direction-end 15px center;
+}
+
+%overlay {
+    position: relative;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+}
+
+%backface-visibility {
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+}

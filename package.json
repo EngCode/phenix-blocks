@@ -1,0 +1,73 @@
+{
+  "name": "phenix-ui",
+  "version": "0.6.5",
+  "description": "Phenix Design System User Interface / Front-End Framework - Extended From 'Tornado UI v2'.",
+  "author": "Abdullah.Ramadan <elampratorabdallah14@gmail.com> (https://phenixthemes.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EngCode/phenix-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EngCode/phenix-ui/issues"
+  },
+  "homepage": "https://design.phenixthemes.com",
+  "keywords": [
+    "phenix",
+    "phenix ui",
+    "tornado ui",
+    "design system",
+    "bootstrap",
+    "tailwind",
+    "framework",
+    "css",
+    "js",
+    "esNext",
+    "web",
+    "app",
+    "enviroment",
+    "webpack",
+    "sass",
+    "rtl",
+    "typescript"
+  ],
+  "main": "/assets/css/phenix.css",
+  "exports": {
+    "phenix-ts": "./src/typescript/",
+    "phenix-sass": "./src/sass/",
+    "phenix-css": "./assets/css/",
+    "phenix-js": "./assets/js/"
+  },
+  "size-limit": [
+    {
+      "limit": "75 kB",
+      "path": "assets/js/phenix.js"
+    }
+  ],
+  "scripts": {
+    "phenix-start": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"",
+    "phenix-ts": "pnpx webpack --config typescript.webpack.js --watch",
+    "phenix-sass": "pnpx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
+    "phenix-blocks": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@wordpress/scripts": "23.7.0",
+    "@wordpress/server-side-render": "^3.13.0",
+    "babel-loader": "^8.2.5",
+    "concurrently": "^6.5.1",
+    "node-sass": "^7.0.1",
+    "react": "17.0.0",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.10",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "dependencies": {
+    "@wordpress/blocks": "^11.13.0"
+  }
+}

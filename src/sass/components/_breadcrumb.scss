@@ -1,0 +1,38 @@
+/**======> Referance By Comment <======
+ * ===> 01 - Buttons 
+ * ===> 02 - Options
+ * ===> 03 - Standard
+ * ===> 04 - Button Sizes
+ * ===> 05 - Circle & Outline
+ * ===> 06 - Icons for Button
+ * ===> 07 - Prime Colors
+ * ===> 08 - Assets Colors
+*/
+
+/*==== Utlites ====*/
+@import '../assets/mixin';
+
+/*======== Breadcrumb ========*/
+.px-breadcrumb {
+    /*==== Default Divider ====*/
+    @if ($direction == 'ltr') {--divider-icon: '/';}
+    @else {--divider-icon: '\\';}
+
+    /*==== Items ====*/
+    > li {
+        /*==== Links ====*/
+        a {@extend %inline-block;}
+        /*====> Main-Style <====*/
+        &:not(:last-child) {
+            margin-#{$direction-end}: 10px;
+            &::after {
+                content: var(--divider-icon);
+                @extend %inline-block;
+                margin-#{$direction-start}: 10px;
+            }
+        }
+    }
+
+    /*==== Font icon Seprator ====*/
+    &[data-type="font-icon"] > li::after {font-family: var(--icons-font);}
+}

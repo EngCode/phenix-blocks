@@ -1,0 +1,146 @@
+
+/*==== Tools ====*/
+@import '../assets/mixin';
+
+/*==== Margin All ====*/
+@mixin make_margin($infix:'') {
+    .mg#{$infix}-0   { margin: 0; }
+    .mg#{$infix}-5   { margin: #{REM(05)}; }
+    .mg#{$infix}-10  { margin: #{REM(10)}; }
+    .mg#{$infix}-15  { margin: #{REM(15)}; }
+    .mg#{$infix}-20  { margin: #{REM(20)}; }
+    .mg#{$infix}-25  { margin: #{REM(25)}; }
+    .mg#{$infix}-30  { margin: #{REM(30)}; }
+    .mg#{$infix}-40  { margin: #{REM(40)}; }
+    .mg#{$infix}-50  { margin: #{REM(50)}; }
+    /*==== Auto Margins ====*/
+    .mgx#{$infix}-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ms#{$infix}-auto {margin-#{$direction-start}: auto;}
+    .me#{$infix}-auto {margin-#{$direction-end}: auto;}
+}
+
+/*==== Margin Top ====*/
+@mixin make_margin_top($infix:'') {
+    .mt#{$infix}-0   { @include margin-block(0, 'start');}
+    .mt#{$infix}-5   { @include margin-block(#{REM(05)}, 'start');}
+    .mt#{$infix}-10  { @include margin-block(#{REM(10)}, 'start');}
+    .mt#{$infix}-15  { @include margin-block(#{REM(15)}, 'start');}
+    .mt#{$infix}-20  { @include margin-block(#{REM(20)}, 'start');}
+    .mt#{$infix}-25  { @include margin-block(#{REM(25)}, 'start');}
+    .mt#{$infix}-30  { @include margin-block(#{REM(30)}, 'start');}
+    .mt#{$infix}-40  { @include margin-block(#{REM(40)}, 'start');}
+    .mt#{$infix}-50  { @include margin-block(#{REM(50)}, 'start');}
+    .mt#{$infix}-75  { @include margin-block(#{REM(75)}, 'start');}
+    .mt#{$infix}-100  { @include margin-block(#{REM(100)}, 'start');}
+}
+
+/*==== Margin Bottom ====*/
+@mixin make_margin_bottom($infix:'') {
+    .mb#{$infix}-0   { @include margin-block(0, 'end');}
+    .mb#{$infix}-5   { @include margin-block(#{REM(05)}, 'end');}
+    .mb#{$infix}-10  { @include margin-block(#{REM(10)}, 'end');}
+    .mb#{$infix}-15  { @include margin-block(#{REM(15)}, 'end');}
+    .mb#{$infix}-20  { @include margin-block(#{REM(20)}, 'end');}
+    .mb#{$infix}-25  { @include margin-block(#{REM(25)}, 'end');}
+    .mb#{$infix}-30  { @include margin-block(#{REM(30)}, 'end');}
+    .mb#{$infix}-40  { @include margin-block(#{REM(40)}, 'end');}
+    .mb#{$infix}-50  { @include margin-block(#{REM(50)}, 'end');}
+    .mb#{$infix}-75  { @include margin-block(#{REM(75)}, 'end');}
+    .mb#{$infix}-100  { @include margin-block(#{REM(100)}, 'end');}
+}
+
+/*==== Margin Start ====*/
+@mixin make_margin_start($infix:'') {
+    .ms#{$infix}-0   { @include margin-inline(0, 'start');}
+    .ms#{$infix}-5   { @include margin-inline(#{REM(05)}, 'start');}
+    .ms#{$infix}-10  { @include margin-inline(#{REM(10)}, 'start');}
+    .ms#{$infix}-15  { @include margin-inline(#{REM(15)}, 'start');}
+    .ms#{$infix}-20  { @include margin-inline(#{REM(20)}, 'start');}
+    .ms#{$infix}-25  { @include margin-inline(#{REM(25)}, 'start');}
+    .ms#{$infix}-30  { @include margin-inline(#{REM(30)}, 'start');}
+    .ms#{$infix}-40  { @include margin-inline(#{REM(40)}, 'start');}
+    .ms#{$infix}-50  { @include margin-inline(#{REM(50)}, 'start');}
+}
+
+/*==== Margin End ====*/
+@mixin make_margin_end($infix:'') {
+    .me#{$infix}-0   { @include margin-inline(0, 'end');}
+    .me#{$infix}-5   { @include margin-inline(#{REM(05)}, 'end');}
+    .me#{$infix}-10  { @include margin-inline(#{REM(10)}, 'end');}
+    .me#{$infix}-15  { @include margin-inline(#{REM(15)}, 'end');}
+    .me#{$infix}-20  { @include margin-inline(#{REM(20)}, 'end');}
+    .me#{$infix}-25  { @include margin-inline(#{REM(25)}, 'end');}
+    .me#{$infix}-30  { @include margin-inline(#{REM(30)}, 'end');}
+    .me#{$infix}-40  { @include margin-inline(#{REM(40)}, 'end');}
+    .me#{$infix}-50  { @include margin-inline(#{REM(50)}, 'end');}
+}
+
+/*==== Margin X ====*/
+@mixin make_margin_x($infix:'') {
+    .mx#{$infix}-5   { @include margin-inline(#{REM(05)}); }
+    .mx#{$infix}-10  { @include margin-inline(#{REM(10)}); }
+    .mx#{$infix}-15  { @include margin-inline(#{REM(15)}); }
+    .mx#{$infix}-20  { @include margin-inline(#{REM(20)}); }
+    .mx#{$infix}-25  { @include margin-inline(#{REM(25)}); }
+    .mx#{$infix}-30  { @include margin-inline(#{REM(30)}); }
+    .mx#{$infix}-40  { @include margin-inline(#{REM(40)}); }
+    .mx#{$infix}-50  { @include margin-inline(#{REM(50)}); }
+}
+
+/*==== Margin Y ====*/
+@mixin make_margin_y($infix:'') {
+    .my#{$infix}-5   { @include margin-block(#{REM(05)});}
+    .my#{$infix}-10  { @include margin-block(#{REM(10)});}
+    .my#{$infix}-15  { @include margin-block(#{REM(15)});}
+    .my#{$infix}-20  { @include margin-block(#{REM(20)});}
+    .my#{$infix}-25  { @include margin-block(#{REM(25)});}
+    .my#{$infix}-30  { @include margin-block(#{REM(30)});}
+    .my#{$infix}-40  { @include margin-block(#{REM(40)});}
+    .my#{$infix}-50  { @include margin-block(#{REM(50)});}
+}
+
+/*==== Base Screen ====*/
+@include make_margin();
+@include make_margin_top();
+@include make_margin_bottom();
+@include make_margin_start();
+@include make_margin_end();
+@include make_margin_x();
+@include make_margin_y();
+
+/*==== Medium Screen ====*/
+@include medium(){
+    @include make_margin('-md');
+    @include make_margin_top('-md');
+    @include make_margin_bottom('-md');
+    @include make_margin_start('-md');
+    @include make_margin_end('-md');
+    @include make_margin_x('-md');
+    @include make_margin_y('-md');
+};
+
+/*==== Large Screen ====*/
+@include large(){
+    @include make_margin('-lg');
+    @include make_margin_top('-lg');
+    @include make_margin_bottom('-lg');
+    @include make_margin_start('-lg');
+    @include make_margin_end('-lg');
+    @include make_margin_x('-lg');
+    @include make_margin_y('-lg');
+};
+
+/*==== xLarge Screen ====*/
+@include xlarge(){
+    @include make_margin('-xl');
+    @include make_margin_top('-xl');
+    @include make_margin_bottom('-xl');
+    @include make_margin_start('-xl');
+    @include make_margin_end('-xl');
+    @include make_margin_x('-xl');
+    @include make_margin_y('-xl');
+};

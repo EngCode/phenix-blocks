@@ -1,0 +1,175 @@
+/**======> Referance By Comment <======
+ * ===> 01 - Progress
+ * ===> 02 - Sticky
+ * ===> 03 - Multi-Media
+ * ===> 04 - Aspect Ratio
+ * ===> 05 - Lazy Loader
+ * ===> 06 - Background X
+*/
+
+/*==== Progress Bars ====*/
+.px-progress {
+    /*==== Label Basic ====*/
+    &[data-label]::before, .px-progress-bar[data-label]::before {@extend .position-ab;}
+
+    /*==== Label Before ====*/
+    &[data-label]::before {
+        width: 100%;
+        #{$direction-start}: 0;
+        content: attr(data-label);
+        @extend .pos-center-y;
+    }
+
+    /*==== Inverted Label ====*/
+    .px-progress-bar[data-label]::before {
+        color: #FFF;
+        width: var(--width);
+        @extend .pos-center-y;
+        @extend .pos-start-0;
+        content: attr(data-label);
+    }
+
+    /*==== Value Label ====*/
+    &[data-label="value"]::before {content: attr(data-value) "%";}
+    .px-progress-bar[data-label="value"]::before {content: attr(data-value) "%";}
+
+    //====> Circle Mode <====//
+    &[data-type="circle"] svg path {transition: stroke-dasharray 850ms ease-in-out;}
+
+    //====> Radial Mode <====//
+    &[data-type="radial"] {
+        /*==== Label ====*/
+        &[data-label]::before {
+            top: 100%;
+            transform: translateY(-150%);
+        }
+        /*==== SVG ====*/
+        svg path {
+            transition: stroke-dashoffset 850ms ease-in-out;
+            transform: scale(1.19) translateY(-8%) translateX(-8%);
+        }
+    }
+}
+
+/*==== Sticky ====*/
+.is-sticky {
+    z-index: var(--header-index);
+    /*==== Absolute ====*/
+    &[data-sticky="absolute"] {position: fixed;}
+    /*==== Native ====*/
+    [data-sticky="inner"].is-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+/*==== Multi-Media ====*/
+.px-media {
+    /*==== ....====*/
+    display: block;
+    background-size: cover;
+    background-position: center;
+    &:not([class*="position-"]) {position: relative;}
+    /*==== elements ====*/
+    video, iframe, .px-media-img {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: inherit;
+        -o-object-fit: cover;
+           object-fit: cover;
+    }
+
+    /*==== Custom Mode ====*/
+    .px-media-element {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        @extend %position-center;
+    }
+
+    /*==== image type ====*/
+    .px-media-img {opacity: 0;}
+}
+
+/*==== Aspect Ratio ====*/
+[class*="ratio"] {
+    --ratio-size : initial;
+    padding-bottom: var(--ratio-size);
+}
+
+@mixin make_ratio($infix:'') {
+    .ratio#{$infix} {
+        --ratio-size : 60%;
+        /*==== Square 1x1 ====*/
+        &-1x1  {--ratio-size: 100%;}
+        /*==== FHD 16x9 ====*/
+        &-16x9 {--ratio-size: 56.3%;}
+        /*==== Landscape 21x9 ====*/
+        &-21x9 {--ratio-size: 42.9%;}
+        /*==== Classic 4x3 ====*/
+        &-4x3 {--ratio-size: 75%;}
+        &-3x4 {--ratio-size: 125%;}
+        /*==== Wide 3x1 ====*/
+        &-3x1 {--ratio-size: 33.3%;}
+    }
+}
+
+@include make_ratio();
+
+@include medium(){
+    @include make_ratio('-md');
+};
+
+@include large(){
+    @include make_ratio('-lg');
+};
+
+@include xlarge(){
+    @include make_ratio('-xl');
+};
+
+/*==== Lazy Loader ====*/
+.px-loader {
+    -o-object-fit: contain;
+       object-fit: contain;
+    background-size: auto 100%;
+    background-color: #F1F2F3;
+}
+
+/*==== Background X ====*/
+.bg-animated-x {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_x var(--duration) linear infinite;
+            animation: background_x var(--duration) linear infinite;
+}
+
+.bg-animated-y {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_y var(--duration) linear infinite;
+            animation: background_y var(--duration) linear infinite;
+}
+
+@-webkit-keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@-webkit-keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}
+
+@keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}

@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        // "noImplicitAny": true,
+        // "alwaysStrict": true,
+    },
+}

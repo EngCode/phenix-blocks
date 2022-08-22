@@ -1,0 +1,19 @@
+/**======> Referance By Comment <======
+ * ===> 01 - Tabs Panels
+ * ===> 02 - Tabs Menu
+*/
+
+/*======== Tabs Menu ========*/
+.tabs-navigation {
+    /*==== items ====*/
+    li {
+        cursor: pointer;
+        @extend %fast-motion;
+        a {color:inherit;}
+    }
+    /*==== Active Mode ====*/
+    .active {
+        background: #FFFFFF;
+        color: var(--primary-color);
+    }
+}

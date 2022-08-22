@@ -1,0 +1,14 @@
+{
+	"apiVersion": 2,
+	"name": "phenix/px-languages",
+	"version": "0.1.0",
+	"title": "PDS Languages",
+	"category": "design",
+	"description": "Dynamic Dropdown Language Switcher Button",
+	"supports": {
+		"html": false
+	},
+    "attributes"   : {},
+	"textdomain"   : "phenix",
+	"editorScript" : "px-languages"
+}

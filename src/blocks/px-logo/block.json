@@ -1,0 +1,54 @@
+{
+	"apiVersion": 2,
+	"name": "phenix/px-logo",
+	"version": "0.1.0",
+	"title": "Phenix Logo",
+	"category": "design",
+	"description": "Main Logo Block for Phenix Header.",
+	"supports": {
+		"html": false
+	},
+    "attributes" : {
+        "title" : {
+            "type": "string",
+            "default": "Site Title"
+        },
+
+        "logo" : {
+            "type": "string",
+            "default": "https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"
+        },
+
+        "size" : {
+            "type": "string",
+            "default": "42px"
+        },
+
+        "link" : {
+            "type": "string",
+            "default": "javascript:void(0);"
+        },
+
+        "fevicon" : {
+            "type": "string",
+            "default": "https://via.placeholder.com/512x512.webp?text=Fevicon"
+        },
+
+        "responsive" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "use_fevicon" : {
+            "type" : "boolean",
+            "default" : false
+        },
+
+        "mobile_logo" : {
+            "type": "boolean",
+            "default": "https://via.placeholder.com/512x512.webp?text=Logo"
+        }
+    },
+	"textdomain": "phenix",
+	"editorScript": "file:./index.js"
+}

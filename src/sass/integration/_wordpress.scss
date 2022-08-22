@@ -1,0 +1,213 @@
+/*==== Editors Layers PanelDocument ====*/
+.edit-site-editor__list-view-panel {min-width: 250px!important;}
+.interface-interface-skeleton__secondary-sidebar > .edit-site-editor__list-view-panel {
+	max-width: 250px!important;
+}
+
+/*==== Font Family Fix ====*/
+.editor-styles-wrapper {font-family: var(--secondary-font)!important;}
+
+/*==== Editor Page Title ====*/
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	--wp--custom--spacing--outer: 2rem;
+}
+
+/*==== Admin-Bar Fixing ====*/
+body.admin-bar {padding-top: 0!important;}
+@media screen and (max-width: 782px) {
+	#wpadminbar {margin-top: -46px;}
+}
+
+/*==== Fix View-Port Animation ====*/
+.wp-admin .view-status {visibility: visible;}
+
+/*==== Newsletter Fix ====*/
+[name="newsletter[]"] {display:none!important;}
+
+/*==== Honeypot Fix ====*/
+[name*="honeypot"] {
+	left: 100%;
+	visibility:hidden;
+	position: absolute;
+}
+
+/*==== Table Block ====*/
+.wp-block-table {
+	overflow-x: auto;
+	@include margin-inline(0);
+
+	@include medium('down') {
+		table {width:970px;}
+	}
+}
+
+/*==== Hidden Elements ====*/
+.block-editor-block-list__layout .wp-block[class*="hidden"] {
+	display: block;
+	opacity: 0.7;
+}
+
+/*==== Reset Blocks ====*/
+.block-editor-block-list__layout .px-dropdown-list {display: none!important;}
+.block-editor-block-list__layout .wp-block-design-px-section {outline: 1px dashed rgba(#000, 0.15);}
+.rich-text:not(.is-selected) {margin-top: 0;}
+.rich-text:not([class*="lineheight"]) {line-height: var(--line-height);}
+.gpy-fix, .last-row {margin-bottom: -30px;}
+.wp-block-cover {overflow: hidden;}
+[class*="wp-container-"] > * + *,.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
+
+/*==== Reset Typography ====*/
+.rich-content {
+    /*==== Spaces ====*/
+    h1,h2,h3,h4,h5,h6 {margin-bottom: 0.5rem;}
+    p, ul {margin-bottom: REM(25);}
+
+	.wp-block-columns {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+
+	.wp-block-column {padding: 0 15px;}
+    /*==== Headine Sizes ====*/
+    // h1 {font-size: REM(32);}
+    // h2 {font-size: REM(28);}
+    // h3 {font-size: REM(25);}
+    // h4 {font-size: REM(23);}
+    // h5 {font-size: REM(20);}
+    // h6 {font-size: REM(17);}
+}
+
+/*==== Inspector Widgets Title ====*/
+.block-editor-block-inspector .components-panel__body.is-opened .components-panel__body-title {
+	margin-bottom: 15px;
+	border-bottom: 1px solid rgba(#000, 0.10);
+}
+
+.block-editor-block-inspector .block-editor-block-inspector__advanced {border-bottom: 1px solid rgba(#000, 0.10);}
+
+/*==== General Component ====*/
+.px-gb-component {
+	.bg-transparent	{
+		background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;
+	}
+
+	.bg-inherit {
+		background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);
+	}
+	
+	.borderd-group .btn:not(:last-child) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+
+	.options-list .px-active {outline: 1px dashed var(--primary-color);}
+
+	.option-control[data-type="button"] .btn,
+
+	.icon-btns {
+		button i {pointer-events: none;}
+		.px-active {
+			outline: 0 none;
+			color: var(--primary-color);
+		}
+	}
+
+	.option-control[data-type="button"] .btn {width: 100%;}
+
+	.option-control[data-type="button"] input:checked ~ .btn {
+		color: var(--primary-reverse);
+		background-color: var(--primary-color);
+	}
+}
+
+/*==== Inspector Controls ====*/
+.block-editor-block-inspector {
+	/*==== Radius Groups ====*/
+	.components-button-group {
+		display: flex;
+		flex-wrap: wrap;
+		overflow: hidden;
+		border-radius: 5px;
+		border : 1px solid rgba(#000, 0.15);
+		/*==== Childrens ====*/
+		> * {
+			flex-grow: 1;
+			text-align: center;
+		}
+		
+		/*==== Buttons ====*/
+		.components-button {
+			--wp-admin-theme-color : var(--primary-color);
+			height: 32px;
+			font-size: 12px;
+			padding: 0 10px;
+			text-align: center;
+			white-space: normal;
+			display: inline-block;
+			transition: all 0.3s linear;
+			margin-#{$direction-start}: -1px;
+			border-bottom : 1px solid rgba(#000, 0.15);
+			&:not(:first-child) {border-#{$direction-start}: 1px solid rgba(#000, 0.15);}
+			/*==== Primary ====*/
+			&.is-primary {box-shadow: unset;}
+			&.is-primary:hover {background-color: var(--primary-hover);}
+			/*==== Secondary ====*/
+			&.is-secondary, &.is-secondary:hover {
+				box-shadow: none;
+				color: var(--gray-color);
+			}
+		}
+	}
+
+	/*==== Link Input ====*/
+	.block-editor-url-input input[type="text"] {
+		width: 100%;
+		border: 1px solid rgba(#000, 0.2);
+	}
+	
+	.components-base-control__field {margin: 0;}
+}
+
+/*==== Core Block Style ====*/
+.block-editor-block-list__block {
+	/*==== Blocks Placeholder ====*/
+	.components-placeholder {
+		min-height: 0;
+		padding: 20px 30px;
+		border-radius: 6px;
+		margin-bottom: 10px;
+		.components-base-control {width: 100%;}
+		.components-placeholder__label {margin-bottom: 10px;}
+		.components-select-control__input {
+			height: 36px;
+			border-color: rgba(#000, 0.2)!important;
+		}
+	}
+
+	/*==== Post Content ====*/
+	&.wp-block-post-content > p {
+		&:first-child {padding-top: 30px;}
+		&:last-child {padding-bottom: 30px;}
+		padding: 0 30px;
+		margin: auto;
+		max-width: 640px;
+		margin-bottom: 10px;
+		line-height: var(--line-height);
+	}
+}
+
+/*==== Block Icons ====*/
+.pxi {
+	background-size: 1em;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/*==== Align Icons ====*/
+.pxi-align-x-start   {background-image: url('../img/blocks/align-x-start.svg');}
+.pxi-align-x-center  {background-image: url('../img/blocks/align-x-center.svg');}
+.pxi-align-x-between {background-image: url('../img/blocks/align-x-between.svg');}
+.pxi-align-x-around  {background-image: url('../img/blocks/align-x-around.svg');}
+.pxi-align-x-end     {background-image: url('../img/blocks/align-x-end.svg');}
+.pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
+.pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
+.pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}

@@ -1,0 +1,103 @@
+/**======> Referance By Comment <======
+ * ===> 01 - Overflow
+ * ===> 02 - Float Elements
+ * ===> 03 - Overlay Layer
+ * ===> 04 - Position
+ * ===> 05 - Directions
+ * ===> 06 - zIndex
+ * ===> 07 - Sticky Elements
+ * ===> 08 - Phenix Media
+ * ===> 09 - Aspect Ratio
+ * ===> 10 - Lazy Loader
+ * ===> 11 - Assets
+*/
+
+/*==== SASS Selectors ====*/
+@import './../assets/selectors';
+
+/*==== Hidden Overflow ====*/
+.overflow-hidden   { overflow:   hidden; }
+.overflow-y-hidden { overflow-y: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+
+/*==== Scrollable Overflow ====*/
+.overflow-auto   { overflow:   auto; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-auto { overflow-x: auto; }
+
+/*======== Float Elements ========*/
+.float-start { float: $direction-start; }
+.float-end   { float: $direction-end; }
+.clear-after::after,.clear-fix { @extend %clear-after,:after; }
+
+/*==== Overlay Layer ====*/
+.overlay-dark {
+    @extend %overlay;
+    &::before {background-color: #000;}
+}
+
+.overlay-light {
+    @extend %overlay;
+    &::before {background-color: #FFF;}
+}
+
+/*==== Directions ====*/
+.ltr { direction: ltr; }
+.rtl { direction: rtl; }
+
+/*==== zIndex ====*/
+.z-index-header {z-index: var(--header-index);}
+.z-index-modal  {z-index: var(--modal-index);}
+.z-index-dropdown {z-index: var(--dropdown-index);}
+.z-index-1 {z-index: 1;}
+.z-index-2 {z-index: 2;}
+.z-index-3 {z-index: 3;}
+.z-index-4 {z-index: 4;}
+.z-index-5 {z-index: 5;}
+.z-index-6 {z-index: 6;}
+.z-index-7 {z-index: 7;}
+.z-index-8 {z-index: 8;}
+.z-index-9 {z-index: 9;}
+.z-index-10 {z-index: 10;}
+
+/*==== Shadows ====*/
+.bx-shadow-dp-1 {box-shadow: 3px 3px 6px rgba(#000, 0.06);}
+.bx-shadow-dp-2 {box-shadow: 5px 5px 10px rgba(#000, 0.1);}
+.bx-shadow-dp-3 {box-shadow: 0 0 15px rgba(#000, 0.1);}
+.bx-shadow-dp-4 {box-shadow: 10px 10px 20px rgba(#000, 0.1);}
+.bx-shadow-dp-5 {box-shadow: 0 0 30px rgba(#000, 0.1);}
+//====> TailWind Shadows <====//
+.bx-shadow {box-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);}
+.bx-shadow-sm  {box-shadow: 0px 1px 2px rgba(#000, 0.05);}
+.bx-shadow-md  {box-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);}
+.bx-shadow-lg  {box-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);}
+.bx-shadow-xl  {box-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);}
+.bx-shadow-xxl {box-shadow: 0px 25px 50px -12px rgba(#000, 0.25);}
+
+/*==== Text Shadows ====*/
+.tx-shadow-dp1 {text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);}
+.tx-shadow-dp2 {text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);}
+.tx-shadow-dp3 {text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16);}
+
+/*==== Transtions ====*/
+.transtion-fast {@extend %fast-motion;}
+.transtion-smooth {@extend %smooth-motion;}
+.transtion-slow {@extend %slow-motion;}
+
+/*==== Sticky Elements ====*/
+.is-sticky {
+    top:0;
+    z-index: var(--header-index);
+    /*==== Absolute ====*/
+    &[data-sticky="absolute"] {position: fixed;}
+    /*==== Native ====*/
+    [data-sticky="inner"].is-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+/*==== Assets ====*/
+.tx-icon::before {margin-#{$direction-end}: 7px;}
+.mouse-pointer {cursor: pointer;}
+.mouse-normal {cursor: none;}

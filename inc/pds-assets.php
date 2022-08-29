@@ -25,8 +25,8 @@ if (!function_exists('phenix_core')) :
     //=====> Phenix Assets [Head] <=====//
     function phenix_core () {
         //====> define props <====//
-        $assets_path = plugin_dir_path(__FILE__);
-        $assets_url  = plugin_dir_url(__FILE__)."assets/";
+        $assets_path = plugin_dir_path(__DIR__);
+        $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
         //====> Phenix CSS <====//
         if (!is_rtl()) :
@@ -55,14 +55,14 @@ if (!function_exists('phenix_assets')) :
 
     function phenix_assets () {
         //====> define props <====//
-        $assets_path = plugin_dir_path(__FILE__);
-        $assets_url  = plugin_dir_url(__FILE__)."assets/";
+        $assets_path = plugin_dir_path(__DIR__);
+        $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
         //====> Custom Fonts <====//
-        wp_enqueue_style('phenix-fonts', $assets_url. '/css/fonts.css');
+        wp_enqueue_style('phenix-fonts', $assets_url. 'css/fonts.css');
 
         //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. '/css/fontawsome.css');
+        wp_enqueue_style('fontawesome', $assets_url. 'css/fontawsome.5.14.css');
 
         //====> Google Fonts <====//
         if (!is_rtl()) :
@@ -86,7 +86,7 @@ if (!function_exists('pds_admin_style')) :
 
     function pds_admin_style($hook) {
         //===> Global for Admin <===//
-        wp_enqueue_style('pds-admin', plugin_dir_url(__FILE__).'assets/css/admin.css');
+        wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css');
     }
     
     add_action('admin_enqueue_scripts', 'pds_admin_style');

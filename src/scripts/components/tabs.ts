@@ -83,30 +83,32 @@ PhenixElements.prototype.tabs = function (options?:{
         });
 
         //====> Active By URL <====//
-        if (hash_url !== '0' || 'false') window.addEventListener('load', () => {
-            let tab_id = window.location.hash.substr(1);
-            //====> Active the Panel and Get its Siblings <====//
-            Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
-                //====> Fire Event <====//
-                document.querySelector(`#${tab_id}`).dispatchEvent(showed);
-                //====> if the siblign is active <====//
-                if (panel.classList.contains('active')) {
-                    //===> Deactivate the Panel <===//
-                    let the_panel:any = Phenix(panel).removeClass('active').addClass('hidden')[0];
-                    the_panel.style.display = null;
-                    //===> Active the Panel Button <===//
-                    Phenix(`[data-tab="${tab_id}"], [href="#${tab_id}"]`).forEach((button:any) => {
-                        //====> get this button <====//
-                        let target = button;
-                        if (button.hasAttribute('href')) target = button.parentNode;
-                        //====> Active the Button <====//
-                        Phenix(target).addClass('active').siblings()?.forEach(sibling => sibling.classList.remove('active'));
-                    });
+        if (window.location.hash) {
+            if (hash_url !== '0' || 'false') window.addEventListener('load', () => {
+                let tab_id = window.location.hash.substr(1);
+                //====> Active the Panel and Get its Siblings <====//
+                Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
                     //====> Fire Event <====//
-                    panel.dispatchEvent(hidden);
-                }
+                    document.querySelector(`#${tab_id}`).dispatchEvent(showed);
+                    //====> if the siblign is active <====//
+                    if (panel.classList.contains('active')) {
+                        //===> Deactivate the Panel <===//
+                        let the_panel:any = Phenix(panel).removeClass('active').addClass('hidden')[0];
+                        the_panel.style.display = null;
+                        //===> Active the Panel Button <===//
+                        Phenix(`[data-tab="${tab_id}"], [href="#${tab_id}"]`).forEach((button:any) => {
+                            //====> get this button <====//
+                            let target = button;
+                            if (button.hasAttribute('href')) target = button.parentNode;
+                            //====> Active the Button <====//
+                            Phenix(target).addClass('active').siblings()?.forEach(sibling => sibling.classList.remove('active'));
+                        });
+                        //====> Fire Event <====//
+                        panel.dispatchEvent(hidden);
+                    }
+                });
             });
-        });
+        }
     });
 
     //====> Return Phenix Elements <====//

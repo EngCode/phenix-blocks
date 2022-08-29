@@ -14,95 +14,89 @@
  ** 03 - Styles Optimizer
 */
 
-//=====> Head Optimizer <=====//
-if (!function_exists('head_optimize')) :
+//====> Delete "Archive" Prefix <====//
+if (!function_exists('refactor_archive_title')) :
 	/**
-	 * Optimizing the Default Unnecessary Scripts and Styles
+	 * WP Filters.
 	 * @since Phenix WP 1.0
 	 * @return void
+	 * 
+	 ** 01 - Excrept Strip
+	 ** 02 - CF7 Customize
 	*/
-
-	function head_optimize() {
-		//====> Removing (RSD) Link [Remove it if integrate services like flicker exists]
-        remove_action('wp_head', 'rsd_link');
-        
-        //====> Removing "Windows Live Writer" link for Editing Shortcut
-        remove_action('wp_head', 'wlwmanifest_link');
-        
-        //====> Remove "WordPress version" tag
-        remove_action('wp_head', 'wp_generator');
-        
-        //====> hide WordPress version from RSS
-        add_filter('the_generator', '__return_false');
-        
-        //====> Remove RSS Feed for Comments
-        add_filter('feed_links_show_comments_feed', '__return_false');
-
-        //====== Remove Emoji Scripts and Styles ======//
-        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-        remove_action( 'wp_print_styles', 'print_emoji_styles' );
-        remove_action( 'admin_print_styles', 'print_emoji_styles' );	
-        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
-        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-
-        //====> Remove from TinyMCE
-        add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
-
-        //====== Remove WP Embed Scripts ======//
-        remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
-
-        //===> Remove WP Embed <===//
-        wp_deregister_script('wp-embed');
+	function refactor_archive_title( $title ) {
+		if ( is_category() ) {
+			$title = single_cat_title('', false);
+		} elseif ( is_tag() ) {
+			$title = single_tag_title('', false);
+		} elseif ( is_post_type_archive() ) {
+			$title = post_type_archive_title('', false);
+		} elseif ( is_tax() ) {
+			$title = single_term_title('', false);
+		}
+		return $title;
 	}
 
-	if(!is_admin()) : add_action('init', 'head_optimize'); endif;
+	add_filter( 'get_the_archive_title', 'refactor_archive_title' );
 endif;
 
-//=====> jQuery Remover <=====//
-if (!function_exists('scripts_optimize') && !is_admin()) :
-    function scripts_optimize() {
-        //===> Remove jQuery <===//
-        wp_deregister_script('jquery');
-        wp_deregister_script('jquery-core');
-        wp_deregister_script('jquery-migrate');
-    }
-    
-    add_action('wp_enqueue_scripts', 'scripts_optimize');
+/*====> Pagination <====*/
+if (!function_exists('pagination')) :
+	/**
+	 * WP Filters.
+	 * @since Phenix WP 1.0
+	 * @return void
+	 * 
+	 ** 01 - Excrept Strip
+	 ** 02 - CF7 Customize
+	*/
+
+	function pagination($query) {
+		//===> Configration <===//
+		$pages = paginate_links( array(
+			'end_size'     => 2,
+			'mid_size'     => 1,
+			'prev_next'    => true,
+			'show_all'     => false,
+			'type'         => 'array',
+			'format'       => '?page=%#%',
+			'total'        => $query->max_num_pages,
+			'current'      => max(1, get_query_var('paged')),
+			'prev_text'    => sprintf('<i class="fas fa-angle-left"></i>%1$s', px__( '' )),
+			'next_text'    => sprintf('%1$s<i class="fas fa-angle-right"></i>', px__( '' )),
+			'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+		));
+	
+		//===> Generate <===//
+		if(is_array($pages)) {
+			//===> List <===//
+			echo '<ul class="reset-list pagination flexbox align-center col-12 mb-30">';
+			//===> Pages Start <===//
+			foreach ($pages as $page) {
+				//===> if its the Current Page <===//
+				if (strpos($page, 'current') !== false) {
+					$page = str_replace("span", "a", $page);
+					echo "<li class='btn square small weight-medium radius-sm primary active me-10'>$page</li>";
+				}
+				//===> else other pages <===//
+				else {
+					echo "<li class='btn square light small weight-medium radius-sm me-10 border-1 border-solid border-alpha-10'>$page</li>";
+				}
+			}
+			//===> Pages End <===//
+			echo '</ul>';
+			//===> List <===//
+		}
+	}
 endif;
 
-//=====> Styles Optimizer <=====//
-if (!function_exists('styles_optimize')) :
-    function styles_optimize() {
-        //===> Remove in Frontend Only <===//
-        if(!is_admin()) {
-            //===> Gutenberg Library <===//
-            // wp_dequeue_style('wp-block-library');
+//====> Excrept Strip <====//
+remove_filter('the_excerpt', 'wpautop');
 
-            //===> Newsletter Plugin <===//
-            wp_dequeue_style('newsletter');
-        }
+//====> Limited Excerpt <====//
+function px_excerpt_length($length) {return 18;}
+add_filter('excerpt_length', 'px_excerpt_length', 175);
 
-        //===> Remove Comments Default CSS <===//
-        if (!function_exists('comments_styles')) :
-            function comments_styles() {
-                global $wp_widget_factory;
-                remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
-            }
-        
-            add_action('widgets_init', 'remove_recent_comments_style');
-        endif;
-        
-        //===> Remove Admin Bar Inline CSS <===//
-        if (!function_exists('adminbar_style') && !is_admin()) :
-            function adminbar_style() {
-                remove_action('wp_head', '_admin_bar_bump_cb');
-            }
-        
-            add_action('get_header', 'adminbar_style');
-        endif;
-    }
-
-    add_action('wp_print_styles', 'styles_optimize', 100);
-endif;
+//====> Excerpt More <====//
+function wpdocs_excerpt_more($more) {return '...';}
+add_filter('excerpt_more', 'wpdocs_excerpt_more');

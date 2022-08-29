@@ -15,6 +15,23 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
+//====> Multilang Support <====//
+if (!function_exists('px__')) {
+	/**
+	 * Multilangauge Plugins Fallback
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function px__($string) {
+		if(function_exists('pll__')) :
+			return pll__($string, 'phenix');
+		else :
+			return __($string, 'phenix');
+		endif;
+	}
+}
+
 //=====> Phenix Blocks Admin <=====//
 if (!function_exists('pds_menu')) :
 	/**
@@ -42,5 +59,12 @@ endif;
 //=====> Phenix Optimizer <=====//
 include(dirname(__FILE__) . '/inc/pds-optimizer.php');
 
+//=====> Phenix Functions <=====//
+include(dirname(__FILE__) . '/inc/pds-functions.php');
+
 //=====> Phenix Assets <=====//
 include(dirname(__FILE__) . '/inc/pds-assets.php');
+
+//====> Add Phenix Blocks <====//
+include(dirname(__FILE__) . '/src/blocks/blocks.php');
+include(dirname(__FILE__) . '/src/blocks/patterns.php');

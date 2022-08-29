@@ -54,9 +54,9 @@ function px_head_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_head_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = get_template_directory().'/assets/js/blocks/px-head/';
-    $assets_uri = get_template_directory_uri().'/assets/js/blocks/px-head/';
-    $px_assets = include($assets_path.'index.asset.php');
+    $assets_path = plugin_dir_path(__DIR__).'/assets/js/blocks/px-head/';
+    $assets_uri  = plugin_dir_url(__DIR__).'/assets/js/blocks/px-head/';
+    $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//
     wp_register_script('px-head',

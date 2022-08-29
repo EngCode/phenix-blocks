@@ -17,7 +17,7 @@
 //=====> Head Optimizer <=====//
 if (!function_exists('head_optimize')) :
 	/**
-	 * Enqueue styles and scripts of phenix design system.
+	 * Optimizing the Default Unnecessary Scripts and Styles
 	 * @since Phenix WP 1.0
 	 * @return void
 	*/
@@ -52,23 +52,21 @@ if (!function_exists('head_optimize')) :
 
         //====== Remove WP Embed Scripts ======//
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+
+        //===> Remove WP Embed <===//
+        wp_deregister_script('wp-embed');
 	}
 
 	if(!is_admin()) : add_action('init', 'head_optimize'); endif;
 endif;
 
-//=====> Scripts Optimizer <=====//
+//=====> jQuery Remover <=====//
 if (!function_exists('scripts_optimize') && !is_admin()) :
     function scripts_optimize() {
         //===> Remove jQuery <===//
-        // if(!class_exists('QueryMonitor')) {
-            wp_deregister_script('jquery');
-            wp_deregister_script('jquery-core');
-            wp_deregister_script('jquery-migrate');
-        // }
-
-        //===> Remove WP Embed <===//
-        wp_deregister_script('wp-embed');
+        wp_deregister_script('jquery');
+        wp_deregister_script('jquery-core');
+        wp_deregister_script('jquery-migrate');
     }
     
     add_action('wp_enqueue_scripts', 'scripts_optimize');

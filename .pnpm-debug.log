@@ -1,0 +1,20 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "errno": 1,
+    "code": "ELIFECYCLE",
+    "pkgid": "phenix-ui@0.6.5",
+    "stage": "phenix-start",
+    "script": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"",
+    "pkgname": "phenix-ui",
+    "err": {
+      "name": "pnpm",
+      "message": "phenix-ui@0.6.5 phenix-start: `concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"`\nExit status 1",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: phenix-ui@0.6.5 phenix-start: `concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\Phenix\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.32.9\\node_modules\\pnpm\\dist\\pnpm.cjs:105830:20)\n    at EventEmitter.emit (node:events:513:28)\n    at ChildProcess.<anonymous> (C:\\Users\\Phenix\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.32.9\\node_modules\\pnpm\\dist\\pnpm.cjs:92391:18)\n    at ChildProcess.emit (node:events:513:28)\n    at maybeClose (node:internal/child_process:1093:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:302:5)"
+    }
+  },
+  "2 warn pnpm:global": " Local package.json exists, but node_modules missing, did you mean to install?"
+}

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h2 align="center">Phenix Design System</h2>
+<h2 align="center">Phenix WP Blocks</h2>
 
 <p align="center">
   Simple, Effective, and powerful user-interface framework for faster and easier web development.

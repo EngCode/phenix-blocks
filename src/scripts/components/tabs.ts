@@ -62,6 +62,9 @@ PhenixElements.prototype.tabs = function (options?:{
                     button = button.parentNode;
                 }
 
+                //====> Add to URL <====//
+                if (hash_url !== '0' || 'false') window.location.href = `#${tab_id}`;
+
                 //====> Active the Button <====//
                 Phenix(button).addClass('active').siblings()?.forEach(sibling => sibling.classList.remove('active'));
 

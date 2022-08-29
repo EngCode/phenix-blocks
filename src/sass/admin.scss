@@ -1,0 +1,346 @@
+/*==== Other Elements ====*/
+#wpwrap {
+	--links-color: #2354c6;
+	background-color: #e5eff7!important;
+	strong, b {font-weight: var(--medium-weight);}
+}
+
+.community-events, .core-updates {padding: 0;}
+
+/*==== Dashboard ====*/
+#dashboard-widgets {
+	.meta-box-sortables {margin: 0;}
+	.postbox-container  {padding: 0 10px;}
+}
+
+/*==== Admin Menu ====*/
+#adminmenu {
+	/*==== Icons ====*/
+	.wp-menu-image img {
+		top: -2px;
+		opacity: 1;
+		max-width: 100%;
+		max-height: 30px;
+		position: relative;
+		box-sizing: border-box;
+	}
+	
+	/*==== Active Items ====*/
+	.wp-menu-arrow, li.current a.menu-top,
+	li.wp-has-current-submenu a.wp-has-current-submenu,
+	.wp-has-current-submenu .wp-submenu .wp-submenu-head,
+	.wp-menu-arrow div {background-color: var(--primary-color);}
+
+	/*==== Items Hover ====*/
+	li.menu-top:hover, li.opensub > a.menu-top, li > a.menu-top:focus, li.current, li.wp-has-current-submenu {
+		color: var(--primary-color);
+		background-color: #0f1422;
+	}
+
+	a:hover, a:focus, .folded .wp-submenu-head:hover {
+		color: var(--primary-color)!important;
+		box-shadow: inset 4px 0 0 0 var(--primary-color);
+		.wp-menu-image::before {color: inherit;}
+	}
+}
+
+/*==== Admin sidebar ====*/
+#adminmenuback, #adminmenuwrap, #adminmenu, #wpadminbar {
+	background-color: #171D31;
+	.wp-submenu {background-color: inherit;}
+}
+
+/*==== Core Elements ====*/
+.wp-core-ui {
+	/*==== Standard ====*/
+	input:not([type="submit"]):not([type="button"]), select, textarea {
+		padding: 0 12px;
+		font-size: 13px;
+		box-shadow: unset;
+		border-radius: 4px;
+		border-color: #dbdde0;
+		&:not([type="checkbox"]):not([type="radio"]) {
+			height: 34px;
+			margin-bottom: 15px;
+			&:not([type="number"]) {min-width: 150px;}
+		}
+	}
+
+	select {
+		padding: 0 10px;
+		background-size: 1em auto;
+		background-position: right 10px top 50%;
+	}
+
+	/*==== Focuse Mode ====*/
+	select:focus, input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
+		box-shadow: unset;
+		border-style: dashed;
+		border-color: var(--primary-color);
+	}
+
+	/*==== Textarea ====*/
+	textarea:not([type="submit"]):not([type="button"]) {
+		height: 75px;
+		padding: 15px;
+	}
+	
+	/*==== Ceckboxes and Radio Buttons ====*/
+	input[type="radio"]:not([type="submit"]):not([type="button"]),
+	input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
+		box-shadow: unset;
+		border-radius: 50%;
+		text-align: center;
+		position: relative;
+		border: 1px solid rgba(#000, 0.20);
+		/*==== Icons ====*/
+		&::before {
+			top: 50%;
+			left: 50%;
+			margin: 0;
+			position: absolute;
+			transform: translateY(-50%) translateX(-50%);
+		}
+
+		/*==== Focuse Mode ====*/
+		&:focus {outline: 0 none;box-shadow:unset;}
+	}
+
+	/*==== Radio Buttons ====*/
+	input[type="radio"]:not([type="submit"]):not([type="button"]):checked {
+		border-color: var(--success-color);
+		&::before {background-color: var(--success-color);}
+	}
+
+	/*==== Checkboxes ====*/
+	input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
+		&:checked {background-color: var(--success-color);}
+		/*==== Checked Icon ====*/
+		&::before {
+			width: 0.6em;
+			height: auto;
+			content: url('../img/blocks/check.svg');
+		}
+	}
+
+	/*==== Buttons ====*/
+	.button {
+		height: 34px;
+		padding: 2px 15px;
+		border-radius: 4px;
+		margin-bottom: 15px;
+		transition: all 0.3s;
+		color: var(--dark-color);
+		background-color: #f5f5f5;
+		border: 1px solid #d1d3d6;
+		background-image: linear-gradient(#FFF, #f5f5f5);
+		/*==== Hover Mode ====*/
+		&:hover {
+			border-color: #d1d3d6;
+			color: var(--dark-color);
+			background-color: #f5f5f5;
+		}
+	}
+
+	/*==== Primary ====*/
+	.button-primary {
+		height: 34px;
+		padding: 2px 15px;
+		transition: all 0.3s;
+		color: var(--primary-reverse);
+		background: var(--primary-color);
+		border-color: var(--primary-color);
+		&:hover {background-color: var(--primary-hover);}
+	}
+
+	/*==== Alerts ====*/
+	.notice {
+		border: 0 none;
+		border-radius: 4px;
+
+		&.updated {
+			border: 1px solid var(--success-color);
+			background-color: var(--success-light);
+		}
+
+		&.error {
+			border: 1px solid var(--danger-color);
+			background-color: var(--danger-light);
+		}
+
+		.notice-dismiss {color: rgba(#000, 0.15);}
+	}
+
+	/*==== Space Fix ====*/
+	label {
+		input:not([type="submit"]):not([type="button"]), select, textarea {margin-bottom: 0!important;}
+	}
+}
+
+.form-wrap label {margin-bottom: 5px;}
+
+/*===> Post Box <===*/
+.postbox {
+	border: 0 none;
+	border-radius: 4px;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.05);
+	/*==== Form Reset ====*/
+	form {
+		margin: 0!important;
+		padding-bottom: 5px;
+	}
+
+	/*==== Content Wrapper ====*/
+	.inside {
+		padding: 15px 20px!important;
+		/*==== Reset Lists ====*/
+		ul, ol {
+			margin: 0;
+			padding: 0;
+		}
+		/*==== Fullwidth ====*/
+		#major-publishing-actions {
+			padding: 8px 15px;
+			margin-left: -20px;
+			margin-right: -20px;
+			margin-bottom: -15px;
+			background-color: #eef4ff;
+			border-radius: 0 0 4px 4px;
+		}
+
+		#minor-publishing-actions {padding: 0;}
+	}
+	
+	/*==== Widget Title ====*/
+	.postbox-header {
+		padding: 5px;
+		border-bottom-color: rgba(0,0,0,0.1);
+	}
+
+	/*==== Controls Labels ====*/
+	label, #quick-press label {
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+
+	#quick-press textarea#content {
+		margin: 0;
+		padding: 15px;
+		margin-bottom: 15px;
+	}
+}
+
+/*==== Tables ====*/
+.widefat, table.wp-list-table {
+	margin-bottom: 20px;
+	border-color: rgba(0,0,0,0.1);
+
+	thead, tfoot {
+		a {color: inherit;}
+		td, th {border-color: rgba(0,0,0,0.1);}
+	}
+
+	.active {
+		th.check-column, td {
+			background-color: #EAF9F2;
+			border-color: var(--success-color);
+		}
+	}
+}
+
+/*==== Table Navigation ====*/
+.tablenav {
+	height: auto;
+	&::after {content: '';display: block;clear: both;}
+	#doaction, #doaction2, #post-query-submit {margin: 0;margin-bottom: 15px;}
+}
+
+/*==== Borders/Shadows ====*/
+.widget-top, .menu-item-handle, .widget-inside, #menu-settings-column .accordion-container,
+#menu-management .menu-edit, .manage-menus, .stuffbox, p.popular-tags, .widgets-holder-wrap,
+.wp-editor-container, .popular-tags, .feature-filter, .imgedit-group, .comment-ays {
+	border-color: rgba(0,0,0,0.1);
+}
+
+/*==== Head Button ====*/
+.wrap {
+	.add-new-h2, .add-new-h2:active, .page-title-action, .page-title-action:active {
+		padding: 5px 15px;
+		border-radius: 30px;
+		transition: all 0.3s;
+		color: var(--primary-reverse);
+		border-color: var(--primary-color);
+		background-color: var(--primary-color);
+		&:hover {
+			color: var(--primary-reverse);
+			border-color: var(--primary-hover);
+			background-color: var(--primary-hover);
+		}
+	}
+}
+
+/*==== Striped ====*/
+.striped > tbody > :nth-child(2n+1), ul.striped > :nth-child(2n+1), .alternate {background-color: #eef4ff;}
+
+/*==== LTR Only ====*/
+body:not(.rtl) {
+	.tablenav .actions {
+		padding-right: 20px;
+		select,#doaction, #doaction2, #post-query-submit {margin-right: 8px;}
+	}
+
+	.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag {margin-right: 8px;}
+
+	.postbox .inside {
+		ul, ol {padding-left: 20px;}
+	}
+}
+
+/*==== RTL Only ====*/
+body.rtl {
+	.tablenav .actions {
+		padding-left: 20px;
+		select,#doaction, #doaction2, #post-query-submit {margin-left: 8px;}
+	}
+
+	.wp-core-ui select {background-position: left 5px top 50%;}
+
+	.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag {margin-left: 8px;}
+
+	.postbox .inside {
+		ul, ol {padding-right: 20px;}
+	}
+}
+
+/*==== Plugins ====*/
+#wpcf7-contact-form-editor span.shortcode input {
+	color: inherit;
+	margin-bottom: 2px;
+}
+
+.wp-ui-highlight {
+	border: 0 none;
+	border-radius: 4px;
+	color: var(--primary-reverse);
+	background-color: var(--primary-color);
+}
+
+.metabox-holder {
+	#titlediv #title {
+		height: 42px;
+		font-size: 1.15rem;
+		padding: 10px 15px;
+		font-weight: var(--medium-weight);
+	}
+
+	.inside label {margin-bottom: 10px;}
+
+	.stuffbox > h3, .postbox > h3, h3.hndle, h2.hndle {
+		margin-bottom: 0;
+		padding: 10px 15px;
+		border-color: rgba(0,0,0,0.1);
+	}
+}
+
+#poststuff .inside {margin-top: 0;}
+

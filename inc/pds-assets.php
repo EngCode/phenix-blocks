@@ -88,11 +88,16 @@ if (!function_exists('pds_admin_style')) :
         //===> Global for Admin <===//
         wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css');
     }
-    
-    add_action('admin_enqueue_scripts', 'pds_admin_style');
 
     //===> Include Phenix Core in the Plguin Page <===//
     if (isset($_GET["page"]) && $_GET["page"] == 'pds-admin') {
+        add_action('admin_enqueue_scripts', 'pds_admin_style');
         add_action('admin_enqueue_scripts', 'phenix_core');
+        add_action('admin_enqueue_scripts', 'phenix_assets');
+
+    } elseif (get_option('pds_admin_style')) {
+        add_action('admin_enqueue_scripts', 'pds_admin_style');
+        add_action('admin_enqueue_scripts', 'phenix_core');
+        add_action('admin_enqueue_scripts', 'phenix_assets');
     }
 endif;

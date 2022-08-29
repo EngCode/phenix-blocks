@@ -57,16 +57,20 @@ if (!function_exists('head_optimize')) :
         wp_deregister_script('wp-embed');
 	}
 
-	if(!is_admin()) : add_action('init', 'head_optimize'); endif;
+	if(!is_admin() && get_option('head_cleaner')) {
+        add_action('init', 'head_optimize');
+    };
 endif;
 
-//=====> jQuery Remover <=====//
+//=====> Scripts Remover <=====//
 if (!function_exists('scripts_optimize') && !is_admin()) :
     function scripts_optimize() {
         //===> Remove jQuery <===//
-        wp_deregister_script('jquery');
-        wp_deregister_script('jquery-core');
-        wp_deregister_script('jquery-migrate');
+        if (get_option('jquery_remove')) {
+            wp_deregister_script('jquery');
+            wp_deregister_script('jquery-core');
+            wp_deregister_script('jquery-migrate');
+        }
     }
     
     add_action('wp_enqueue_scripts', 'scripts_optimize');
@@ -81,28 +85,41 @@ if (!function_exists('styles_optimize')) :
             // wp_dequeue_style('wp-block-library');
 
             //===> Newsletter Plugin <===//
-            wp_dequeue_style('newsletter');
-        }
+            if (get_option('newsletter_css')) {
+                wp_dequeue_style('newsletter');
+            }
 
-        //===> Remove Comments Default CSS <===//
-        if (!function_exists('comments_styles')) :
-            function comments_styles() {
-                global $wp_widget_factory;
-                remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
-            }
-        
-            add_action('widgets_init', 'remove_recent_comments_style');
-        endif;
-        
-        //===> Remove Admin Bar Inline CSS <===//
-        if (!function_exists('adminbar_style') && !is_admin()) :
-            function adminbar_style() {
-                remove_action('wp_head', '_admin_bar_bump_cb');
-            }
-        
-            add_action('get_header', 'adminbar_style');
-        endif;
+            //===> Remove Comments Default CSS <===//
+            if (!function_exists('comments_styles') && get_option('comments_css')) :
+                function comments_styles() {
+                    global $wp_widget_factory;
+                    remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
+                }
+            
+                add_action('widgets_init', 'remove_recent_comments_style');
+            endif;
+
+            //===> Remove Admin Bar Inline CSS <===//
+            if (!function_exists('adminbar_style') && get_option('adminbar_css')) :
+                function adminbar_style() {
+                    remove_action('wp_head', '_admin_bar_bump_cb');
+                }
+                add_action('get_header', 'adminbar_style');
+            endif;
+    
+        }
     }
 
     add_action('wp_print_styles', 'styles_optimize', 100);
+endif;
+
+//=====> Remove Admin Bar for Users <=====//
+if (!is_admin() && !function_exists('adminbar_disable') && get_option('adminbar_disable')) :
+    function adminbar_disable() {
+        if (!current_user_can('edit_posts')) {
+            show_admin_bar(false);
+        }
+    }
+
+    add_action('get_header', 'adminbar_disable');
 endif;

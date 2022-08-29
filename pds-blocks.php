@@ -32,12 +32,15 @@ if (!function_exists('pds_menu')) :
             'manage_options',
             'pds-admin',
             'pds_admin_page',
-            'https://demo.phenixthemes.com/assets/px-logo/px-blocks-icon.svg', 60
+            plugin_dir_url(__DIR__).'pds-blocks/assets/img/px-logo/px-gray-icon.svg', 60
         );
     }
 
     include(dirname(__FILE__) . '/admin/pds-admin.php');
 endif;
+
+//=====> Phenix Optimizer <=====//
+include(dirname(__FILE__) . '/inc/pds-optimizer.php');
 
 //=====> Phenix Assets <=====//
 include(dirname(__FILE__) . '/inc/pds-assets.php');

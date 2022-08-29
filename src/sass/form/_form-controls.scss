@@ -249,9 +249,9 @@ label,legend  {@extend %inline-block;}
         @extend %inline-block;
         @include margin-inline(5px);
         background-color: var(--color);
-        width: calc(var(--height) + 10px);
-        height: calc(var(--height) / 3.25);
-        border-radius: calc(var(--height) / 3.25);
+        width: var(--height);
+        height: calc(var(--height) / 4.75);
+        border-radius: calc(var(--height) / 4.75);
         /*==== Handle ====*/
         &::before {
             top: 50%;
@@ -260,11 +260,15 @@ label,legend  {@extend %inline-block;}
             position: absolute;
             #{$direction-start}: 0;
             @extend %position-center-y;
+            border: 2px solid var(--color);
             background-color: var(--color);
             width: calc(var(--height) / 2);
             height: calc(var(--height) / 2);
+            box-shadow: inset 0 0 0 3px #FFFFFF;
         }
     }
+
+    &[data-type="switch"] span {color: var(--color);}
     /*==== Checked mode ====*/
     input:checked ~ {
         span, .btn, .switch {

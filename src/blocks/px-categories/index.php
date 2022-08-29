@@ -31,8 +31,12 @@ function px_categories_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_categories_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = plugin_dir_path(__DIR__).'/assets/js/blocks/px-categories/';
-    $assets_uri  = plugin_dir_url(__DIR__).'/assets/js/blocks/px-categories/';
+    $assets_path = plugin_dir_path(__DIR__).'px-categories\\';
+    $assets_uri  = plugin_dir_url(__DIR__).'px-categories/';
+
+    //===> Fix File Paths <===//
+    $assets_path = str_replace('src', 'assets\js', $assets_path);
+    $assets_uri  = str_replace('src', 'assets/js', $assets_uri);
     $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//

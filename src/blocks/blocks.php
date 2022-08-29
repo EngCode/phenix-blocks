@@ -9,8 +9,9 @@
     if (!function_exists('phenix_blocks')) :
         function phenix_blocks() {
             //====> Shared Options <====//
-            $blocksPath = plugin_dir_url(__DIR__).'assets/js/blocks/';
+            $blocksPath = plugin_dir_url(__FILE__);
             $blocksDependencies = array('wp-blocks', 'wp-element', 'wp-editor');
+            $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
             //====> Phenix Section <====//
             wp_enqueue_script('px-section', $blocksPath.'px-section/index.js', $blocksDependencies, NULL , true);
@@ -32,19 +33,19 @@
     endif;
 
     //====> Phenix Navigation <====//
-    // include(dirname(__FILE__) . '/px-navigation/index.php');
+    include(dirname(__FILE__) . '/px-navigation/index.php');
 
     //====> Language Switcher <====//
-    // include(dirname(__FILE__) . '/px-languages/index.php');
+    include(dirname(__FILE__) . '/px-languages/index.php');
 
     //====> Page Head <====//
-    // include(dirname(__FILE__) . '/px-head/index.php');
+    include(dirname(__FILE__) . '/px-head/index.php');
 
     //====> Taxonomies Block <====//
-    // include(dirname(__FILE__) . '/px-taxonomies/index.php');
+    include(dirname(__FILE__) . '/px-taxonomies/index.php');
 
     //====> Query Block <====//
-    // include(dirname(__FILE__) . '/px-query/index.php');
+    include(dirname(__FILE__) . '/px-query/index.php');
 
     //====> Widget Block <====//
-    // include(dirname(__FILE__) . '/px-categories/index.php');
+    include(dirname(__FILE__) . '/px-categories/index.php');

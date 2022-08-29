@@ -47,9 +47,13 @@ function px_languages_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_languages_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = plugin_dir_path(__DIR__).'/assets/js/blocks/px-languages/';
-    $assets_uri  = plugin_dir_url(__DIR__).'/assets/js/blocks/px-languages/';
-    $px_assets = include($assets_path.'index.asset.php');
+    $assets_path = plugin_dir_path(__DIR__).'px-languages\\';
+    $assets_uri  = plugin_dir_url(__DIR__).'px-languages/';
+
+    //===> Fix File Paths <===//
+    $assets_path = str_replace('src', 'assets\js', $assets_path);
+    $assets_uri  = str_replace('src', 'assets/js', $assets_uri);
+    $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//
     wp_register_script('px-languages',

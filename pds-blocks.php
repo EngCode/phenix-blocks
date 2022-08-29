@@ -32,7 +32,7 @@ if (!function_exists('pds_menu')) :
             'manage_options',
             'pds-admin',
             'pds_admin_page',
-            plugin_dir_url(__DIR__).'pds-blocks/assets/img/px-logo/px-gray-icon.svg', 60
+            plugin_dir_url(__DIR__).'pds-blocks/assets/img/px-logo/px-dashicon.svg', 60
         );
     }
 

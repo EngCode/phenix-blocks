@@ -28,7 +28,7 @@
                         <label class="small pds-10 option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="pds_admin_style" <?php if (get_option('pds_admin_style')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Phenix Admin Style</span>
+                            <span>Admin UI Re-Style</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small pds-10 option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">

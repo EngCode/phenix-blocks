@@ -189,8 +189,12 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
+        {attributes.preview ? 
+            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/blocks/preview/section.png" alt="" />
+        :
         <TagName {...blockProps}>
             <div {...innerBlocksProps}></div>
         </TagName>
+        }
     </>);
 }

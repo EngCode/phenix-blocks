@@ -151,6 +151,10 @@ body[class*="block-editor"] {
 		.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
 	}
 
+
+	/*==== Blocks Preview ====*/
+	.block-editor-block-preview__content {transform: scale(1)!important;}
+
 	/*==== Phenix Blocks ====*/
 	.wp-block-phenix-section {
 		padding: min(20px, 150px);

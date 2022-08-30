@@ -190,7 +190,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/* //====> Edit Layout <====// */}
         {attributes.preview ? 
-            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/blocks/section-prev.jpg" alt="" className="fluid" />
+            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/section.jpg" alt="" className="fluid" />
         :
         <TagName {...blockProps}>
             <div {...innerBlocksProps}></div>

@@ -1036,8 +1036,9 @@ function Edit(_ref) {
     type: attributes.px_bg_type,
     value: attributes.px_bg
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
-    src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/blocks/preview/section.jpg",
-    alt: ""
+    src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/blocks/section.jpg",
+    alt: "",
+    className: "fluid"
   }) : /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("div", innerBlocksProps)));
 }
 

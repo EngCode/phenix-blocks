@@ -1,10 +1,11 @@
 {
-	"apiVersion": 2,
-	"name": "phenix/px-section",
+    "apiVersion": 2,
+	"name": "phenix/section",
 	"version": "0.1.0",
-	"title": "Phenix Section",
+	"title": "PDS Section",
+    "keywords": ["pds", "phenix", "section", "group", "wrapper", "container"],
 	"category": "design",
-	"description": "Main Header Block for Phenix Themes.",
+	"description": "Section and Container to Group the Elements Tegother from Phenix Blocks.",
 	"supports": {
 		"html": false
 	},
@@ -13,6 +14,11 @@
 			"type": "string",
 			"default": "div"
 		},
+
+        "preview" : {
+            "type": "boolean",
+            "default": false
+        },
 
         "container" : {
             "type": "boolean",
@@ -52,6 +58,11 @@
         "px_color" : {
             "type" : "string",
             "default" : ""
+        }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
         }
     },
 	"textdomain": "phenix",

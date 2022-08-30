@@ -80,33 +80,34 @@ if (!is_admin()) {
     if (!function_exists('styles_optimize')) :
         function styles_optimize() {
             //===> Gutenberg Library <===//
-            // wp_dequeue_style('wp-block-library');
+            wp_dequeue_style('wp-block-library');
     
             //===> Newsletter Plugin <===//
             if (get_option('newsletter_css')) {
                 wp_dequeue_style('newsletter');
             }
-    
-            //===> Remove Comments Default CSS <===//
-            if (!function_exists('comments_styles') && get_option('comments_css')) :
-                function comments_styles() {
-                    global $wp_widget_factory;
-                    remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
-                }
-    
-                add_action('widgets_init', 'remove_recent_comments_style');
-            endif;
-    
-            //===> Remove Admin Bar Inline CSS <===//
-            if (!function_exists('adminbar_style') && get_option('adminbar_css')) :
-                function adminbar_style() {
-                    remove_action('wp_head', '_admin_bar_bump_cb');
-                }
-                add_action('get_header', 'adminbar_style');
-            endif;
         }
-    
+        
         add_action('wp_print_styles', 'styles_optimize', 100);
+    endif;
+
+    //===> Remove Comments Default CSS <===//
+    if (!function_exists('comments_styles') && get_option('comments_css')) :
+        function comments_styles() {
+            global $wp_widget_factory;
+            remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
+        }
+
+        add_action('widgets_init', 'comments_styles');
+    endif;
+
+    //===> Remove Admin Bar Inline CSS <===//
+    if (!function_exists('remove_adminbar_style') && get_option('adminbar_css')) :
+        function remove_adminbar_style() {
+            remove_action('wp_head', '_admin_bar_bump_cb');
+        }
+
+        add_action('get_header', 'remove_adminbar_style');
     endif;
 
     //=====> Remove Admin Bar for Users <=====//

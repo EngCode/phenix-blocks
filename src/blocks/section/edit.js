@@ -52,7 +52,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Background <===//
     const set_background = background => {
         //===> Original Classes <===//
-        let original = attributes.className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
+        let original = attributes.className?.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
             current  = attributes.px_bg,
             rotate = attributes.px_bg_rotate;
 
@@ -89,7 +89,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_color = color => {
         //===> Get Value <===//
         let current  = attributes.px_color,
-            original = attributes.className.replace(/\s{2,}/g, ' ');
+            original = attributes.className?.replace(/\s{2,}/g, ' ');
 
         //===> Remove Current Value <===//
         if (current) original = original.replace(current, '');
@@ -189,7 +189,7 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        <TagName { ...blockProps }>
+        <TagName {...blockProps}>
             <div {...innerBlocksProps}></div>
         </TagName>
     </>);

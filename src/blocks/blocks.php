@@ -31,16 +31,16 @@
             $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
             //====> Phenix Section <====//
-            wp_enqueue_script('px-section', $blocksPath.'px-section/index.js', $blocksDependencies, NULL , true);
+            wp_enqueue_script('section', $blocksPath.'section/index.js', $blocksDependencies, NULL , true);
 
             //====> Phenix Wrapper <====//
-            wp_enqueue_script('px-wrapper', $blocksPath.'px-wrapper/index.js', $blocksDependencies, NULL , true);
+            // wp_enqueue_script('px-wrapper', $blocksPath.'px-wrapper/index.js', $blocksDependencies, NULL , true);
 
             //====> Phenix Button <====//
-            wp_enqueue_script('px-button', $blocksPath.'px-button/index.js', $blocksDependencies, NULL , true);
+            // wp_enqueue_script('px-button', $blocksPath.'px-button/index.js', $blocksDependencies, NULL , true);
             
             //====> Phenix Logo <====//
-            wp_enqueue_script('px-logo', $blocksPath.'px-logo/index.js', $blocksDependencies, NULL , true);
+            // wp_enqueue_script('px-logo', $blocksPath.'px-logo/index.js', $blocksDependencies, NULL , true);
             
             //====> Phenix Menu <====//
             // wp_enqueue_script('px-menu', $blocksPath.'px-menu/index.js', $blocksDependencies, NULL , true);

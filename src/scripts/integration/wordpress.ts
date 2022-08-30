@@ -43,6 +43,11 @@ Phenix(document).ready(ready => {
 
         //====> Phenix Blocks <====//
         Phenix('.wp-block-design-px-section[data-src]').multimedia();
+
+        //====> Adminbar <====//
+        if (document.querySelector('#wpadminbar')) {
+            Phenix('body').css({"margin-top": "-32px","padding": "0"});
+        }
     }
     /*====> for Admin Panel <====*/
     else {}

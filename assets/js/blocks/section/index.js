@@ -772,10 +772,10 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-section/edit.js":
-/*!***************************************!*\
-  !*** ./src/blocks/px-section/edit.js ***!
-  \***************************************/
+/***/ "./src/blocks/section/edit.js":
+/*!************************************!*\
+  !*** ./src/blocks/section/edit.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -863,8 +863,10 @@ function Edit(_ref) {
 
 
   var set_background = function set_background(background) {
+    var _attributes$className;
+
     //===> Original Classes <===//
-    var original = attributes.className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
+    var original = (_attributes$className = attributes.className) === null || _attributes$className === void 0 ? void 0 : _attributes$className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
         current = attributes.px_bg,
         rotate = attributes.px_bg_rotate; //===> Remove Current Value <===//
 
@@ -900,9 +902,11 @@ function Edit(_ref) {
 
 
   var set_color = function set_color(color) {
+    var _attributes$className2;
+
     //===> Get Value <===//
     var current = attributes.px_color,
-        original = attributes.className.replace(/\s{2,}/g, ' '); //===> Remove Current Value <===//
+        original = (_attributes$className2 = attributes.className) === null || _attributes$className2 === void 0 ? void 0 : _attributes$className2.replace(/\s{2,}/g, ' '); //===> Remove Current Value <===//
 
     if (current) original = original.replace(current, ''); //===> Set New Value <===//
 
@@ -1076,13 +1080,13 @@ module.exports = window["wp"]["element"];
 
 /***/ }),
 
-/***/ "./src/blocks/px-section/block.json":
-/*!******************************************!*\
-  !*** ./src/blocks/px-section/block.json ***!
-  \******************************************/
+/***/ "./src/blocks/section/block.json":
+/*!***************************************!*\
+  !*** ./src/blocks/section/block.json ***!
+  \***************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-section","version":"0.1.0","title":"Phenix Section","category":"design","description":"Main Header Block for Phenix Themes.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/section","version":"0.1.0","title":"PDS Section","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements Tegother from Phenix Blocks.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1157,12 +1161,12 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-section","version
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!****************************************!*\
-  !*** ./src/blocks/px-section/index.js ***!
-  \****************************************/
+/*!*************************************!*\
+  !*** ./src/blocks/section/index.js ***!
+  \*************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/blocks/px-section/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/px-section/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/blocks/section/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/section/block.json");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");

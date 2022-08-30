@@ -31,17 +31,17 @@ export default class FlexAlignment extends Component {
             return (<>
                 <label className='mb-10 fluid weight-medium'>Horizontal Align</label>
                 <div className='px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-start`} data-screen={screen} data-value={`align${screen}-start-x`}></button>
-                    <button onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-center`} data-screen={screen} data-value={`align${screen}-center-x`}></button>
-                    <button onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-end`} data-screen={screen} data-value={`align${screen}-end-x`}></button>
-                    <button onClick={setAlignment} title="Between" className={`btn small ${value.includes(`align${screen}-between`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-between`} data-screen={screen} data-value={`align${screen}-between`}></button>
-                    <button onClick={setAlignment} title="Around" className={`btn small ${value.includes(`align${screen}-around`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-around`} data-screen={screen} data-value={`align${screen}-around`}></button>
+                    <button key={`start-x-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-start`} data-screen={screen} data-value={`align${screen}-start-x`}></button>
+                    <button key={`center-x-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-center`} data-screen={screen} data-value={`align${screen}-center-x`}></button>
+                    <button key={`end-x-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-end`} data-screen={screen} data-value={`align${screen}-end-x`}></button>
+                    <button key={`between-x-${screen}`} onClick={setAlignment} title="Between" className={`btn small ${value.includes(`align${screen}-between`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-between`} data-screen={screen} data-value={`align${screen}-between`}></button>
+                    <button key={`around-x-${screen}`} onClick={setAlignment} title="Around" className={`btn small ${value.includes(`align${screen}-around`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-around`} data-screen={screen} data-value={`align${screen}-around`}></button>
                 </div>
                 <label className='mb-10 fluid weight-medium'>Vertical Align</label>
                 <div className='px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-start`} data-screen={screen} data-value={`align${screen}-start-y`}></button>
-                    <button onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-center`} data-screen={screen} data-value={`align${screen}-center-y`}></button>
-                    <button onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-end`} data-screen={screen} data-value={`align${screen}-end-y`}></button>
+                    <button key={`start-y-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-start`} data-screen={screen} data-value={`align${screen}-start-y`}></button>
+                    <button key={`center-y-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-center`} data-screen={screen} data-value={`align${screen}-center-y`}></button>
+                    <button key={`end-y-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-end`} data-screen={screen} data-value={`align${screen}-end-y`}></button>
                 </div>
             </>)
         }
@@ -121,15 +121,15 @@ export default class FlexAlignment extends Component {
         return (
             <div className='px-gb-component'>
                 {/*=== Flow Reverse ===*/}
-                <ToggleControl label="Flow Reverse ?" checked={isReversed()} onChange={setFlow}/>
+                <ToggleControl key="align-flow" label="Flow Reverse ?" checked={isReversed()} onChange={setFlow}/>
                 {/* Divider */}
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/*===> Responsive Devices <===*/}
                 <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens"  data-options="small"></button>
-                    <button onClick={changeTab} className={`btn square tiny light col far fa-tablet`}   title="Tablet Screens"  data-options="medium"></button>
-                    <button onClick={changeTab} className={`btn square tiny light col far fa-laptop`}   title="Desktop Screens" data-options="large"></button>
-                    <button onClick={changeTab} className={`btn square tiny light col far fa-desktop`}  title="xLarge Screens"  data-options="xlarge"></button>
+                    <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens"  data-options="small"></button>
+                    <button key="tablet" onClick={changeTab} className={`btn square tiny light col far fa-tablet`}   title="Tablet Screens"  data-options="medium"></button>
+                    <button key="laptop" onClick={changeTab} className={`btn square tiny light col far fa-laptop`}   title="Desktop Screens" data-options="large"></button>
+                    <button key="desktop" onClick={changeTab} className={`btn square tiny light col far fa-desktop`}  title="xLarge Screens"  data-options="xlarge"></button>
                 </div>
                 {/*===> Options Tabs <===*/}
                 <div className='options-list'>

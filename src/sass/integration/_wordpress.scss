@@ -1,4 +1,4 @@
-/*==== Editors Layers PanelDocument ====*/
+/*==== Editors Layers Panel Document ====*/
 .edit-site-editor__list-view-panel {min-width: 250px!important;}
 .interface-interface-skeleton__secondary-sidebar > .edit-site-editor__list-view-panel {
 	max-width: 250px!important;
@@ -166,6 +166,10 @@ body.admin-bar {padding-top: 0!important;}
 	}
 	
 	.components-base-control__field {margin: 0;}
+
+	/*==== Sidebar Components ====*/
+	.components-flex {height: auto!important;}
+	.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
 }
 
 /*==== Core Block Style ====*/
@@ -212,4 +216,3 @@ body.admin-bar {padding-top: 0!important;}
 .pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
 .pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
 .pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}
-

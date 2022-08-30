@@ -58,7 +58,7 @@
 		}
 	
 		a:hover, a:focus, .folded .wp-submenu-head:hover {
-			color: var(--primary-color);
+			color: var(--primary-reverse);
 			box-shadow: inset 4px 0 0 0 var(--primary-color);
 			.wp-menu-image::before {color: inherit;}
 		}

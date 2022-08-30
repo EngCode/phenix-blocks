@@ -1,2 +1,1212 @@
-(()=>{"use strict";var e,t,n,a,r={435:(e,t,n)=>{n.d(t,{Z:()=>f});var a=n(307),r=n(609);function o(e){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o(e)}function c(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function l(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}function i(e,t){return i=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},i(e,t)}function s(e,t){if(t&&("object"===o(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function u(e){return u=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},u(e)}var f=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&i(e,t)}(p,e);var t,n,a,o,f=(a=p,o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=u(a);if(o){var n=u(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return s(this,e)});function p(){return c(this,p),f.apply(this,arguments)}return t=p,(n=[{key:"render",value:function(){var e=this.props,t=(e.flow,e.value),n=e.onChange,a=function(e){return e||(e=""),React.createElement(React.Fragment,null,React.createElement("label",{className:"mb-10 fluid weight-medium"},"Horizontal Align"),React.createElement("div",{className:"px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"},React.createElement("button",{onClick:o,title:"Start",className:"btn small ".concat(t.includes("align".concat(e,"-start-x"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-x-start"),"data-screen":e,"data-value":"align".concat(e,"-start-x")}),React.createElement("button",{onClick:o,title:"Center",className:"btn small ".concat(t.includes("align".concat(e,"-center-x"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-x-center"),"data-screen":e,"data-value":"align".concat(e,"-center-x")}),React.createElement("button",{onClick:o,title:"End",className:"btn small ".concat(t.includes("align".concat(e,"-end-x"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-x-end"),"data-screen":e,"data-value":"align".concat(e,"-end-x")}),React.createElement("button",{onClick:o,title:"Between",className:"btn small ".concat(t.includes("align".concat(e,"-between"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-x-between"),"data-screen":e,"data-value":"align".concat(e,"-between")}),React.createElement("button",{onClick:o,title:"Around",className:"btn small ".concat(t.includes("align".concat(e,"-around"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-x-around"),"data-screen":e,"data-value":"align".concat(e,"-around")})),React.createElement("label",{className:"mb-10 fluid weight-medium"},"Vertical Align"),React.createElement("div",{className:"px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"},React.createElement("button",{onClick:o,title:"Start",className:"btn small ".concat(t.includes("align".concat(e,"-start-y"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-y-start"),"data-screen":e,"data-value":"align".concat(e,"-start-y")}),React.createElement("button",{onClick:o,title:"Center",className:"btn small ".concat(t.includes("align".concat(e,"-center-y"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-y-center"),"data-screen":e,"data-value":"align".concat(e,"-center-y")}),React.createElement("button",{onClick:o,title:"End",className:"btn small ".concat(t.includes("align".concat(e,"-end-y"))?"bg-offwhite-smoke":"light"," col pxi pxi-align-y-end"),"data-screen":e,"data-value":"align".concat(e,"-end-y")})))},o=function(e){var a=e.target,r=a.getAttribute("data-value"),o=[],c=a.getAttribute("data-screen")||"";return a.parentNode.querySelectorAll(".btn").forEach((function(e){o.push(e.getAttribute("data-value"))})),t.includes(c)?t.split(" ").forEach((function(e){o.includes(e)?t.replace(e,""):e.length>1&&(r="".concat(e," ").concat(r))})):r="".concat(t," ").concat(r),n("".concat(r))},c=function(){return!!t.includes("flow-reverse")},l=function(e){var t,n=Phenix(e.target),a=n.ancestor(".options-tabs"),r=Phenix(a).next(".options-list"),o=Phenix(a.querySelector(".primary")),c="".concat(n[0].getAttribute("data-options"),"-options"),l=r.querySelector(".".concat(c));o.addClass("light").removeClass("primary"),n.addClass("primary").removeClass("light"),null===(t=r.querySelector(".flexbox:not(.hidden)"))||void 0===t||t.classList.add("hidden"),Phenix(l).removeClass("hidden")};return React.createElement("div",{className:"px-gb-component"},React.createElement(r.ToggleControl,{label:"Flow Reverse ?",checked:c(),onChange:function(e){var a=t;return a=c()?a.replaceAll("flow-reverse"):"".concat(t," flow-reverse"),n(a)}}),React.createElement("span",{className:"display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"}),React.createElement("div",{className:"options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"},React.createElement("button",{onClick:l,className:"btn square tiny primary col far fa-mobile",title:"Mobile Screens","data-options":"small"}),React.createElement("button",{onClick:l,className:"btn square tiny light col far fa-tablet",title:"Tablet Screens","data-options":"medium"}),React.createElement("button",{onClick:l,className:"btn square tiny light col far fa-laptop",title:"Desktop Screens","data-options":"large"}),React.createElement("button",{onClick:l,className:"btn square tiny light col far fa-desktop",title:"xLarge Screens","data-options":"xlarge"})),React.createElement("div",{className:"options-list"},React.createElement("div",{className:"flexbox small-options"},a()),React.createElement("div",{className:"flexbox medium-options hidden"},a("-md")),React.createElement("div",{className:"flexbox large-options hidden"},a("-lg")),React.createElement("div",{className:"flexbox xlarge-options hidden"},a("-xl"))))}}])&&l(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),p}(a.Component)},910:(e,t,n)=>{n.d(t,{Z:()=>u});var a=n(175);function r(e){return r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},r(e)}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function c(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}function l(e,t){return l=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},l(e,t)}function i(e,t){if(t&&("object"===r(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function s(e){return s=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},s(e)}var u=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&l(e,t)}(p,e);var t,n,r,u,f=(r=p,u=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=s(r);if(u){var n=s(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return i(this,e)});function p(){return o(this,p),f.apply(this,arguments)}return t=p,(n=[{key:"render",value:function(){var e=this.props,t=e.label,n=e.value,r=e.size,o=e.setValue;return React.createElement(React.Fragment,null,React.createElement(a.MediaUpload,{onSelect:o,value:n,render:function(e){var a=e.open;return React.createElement("div",{class:"mb-15 cursor-pointer",onClick:a},t?React.createElement("label",{className:"mb-10"},t):"",React.createElement("div",{className:"flexbox align-center-y align-between"},"small"===r?React.createElement(React.Fragment,null,React.createElement("img",{src:n,style:{"max-height":"2.25rem"}}),React.createElement("button",{onClick:a,class:"btn square primary small radius-sm fs-12 fas fa-upload"})):React.createElement(React.Fragment,null,React.createElement("img",{src:n,className:"radius-sm radius-top",style:{"max-width":"100%",display:"block"}}),React.createElement("button",{onClick:a,class:"btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon"},"Select Image"))))}}))}}])&&c(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),p}(n(307).Component)},789:(e,t,n)=>{n.d(t,{Z:()=>b});var a=n(307),r=n(910);function o(e){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o(e)}function c(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function l(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}function i(e,t){return i=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},i(e,t)}function s(e,t){if(t&&("object"===o(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return u(e)}function u(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function f(e){return f=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},f(e)}function p(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var b=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&i(e,t)}(d,e);var t,n,a,o,b=(a=d,o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=f(a);if(o){var n=f(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return s(this,e)});function d(){var e;c(this,d);for(var t=arguments.length,n=new Array(t),a=0;a<t;a++)n[a]=arguments[a];return p(u(e=b.call.apply(b,[this].concat(n))),"state",{main:["bg-transparent","bg-primary","bg-secondary","bg-secondary-dark","bg-gray","bg-dark","bg-white","bg-success","bg-danger","bg-warning","bg-info","bg-alpha-05","bg-alpha-10","bg-alpha-25","bg-alpha-50","bg-alpha-75"],offwhite:["bg-offwhite-primary","bg-offwhite-secondary","bg-offwhite-info","bg-offwhite-success","bg-ffwhite-danger","bg-offwhite-warning","bg-offwhite-smoke","bg-offwhite-smoke","bg-offwhite-gray","bg-offwhite-snow","bg-offwhite-snow","bg-offwhite-honeydew","bg-offwhite-mintcream","bg-offwhite-aliceblue","bg-offwhite-ghost","bg-offwhite-seashell","bg-offwhite-beige","bg-offwhite-oldlace","bg-offwhite-floral","bg-offwhite-ivory","bg-offwhite-antique","bg-offwhite-linen","bg-offwhite-lavenderblush"],brands:["bg-facebook","bg-twitter","bg-youtube","bg-instagram","bg-snapchat","bg-whatsapp","bg-pinterest","bg-linkedin","bg-behance","bg-dribbble","bg-flicker"],gradients:["bg-grade-primary","bg-grade-secondary","bg-grade-warning","bg-grade-danger","bg-grade-success","bg-grade-water","bg-grade-ice","bg-grade-fire","bg-grade-purple"],rotation:["bg-grade-0","bg-grade-45","bg-grade-90","bg-grade-120","bg-grade-120n","bg-grade-90n","bg-grade-45n","bg-grade-180"],placeholder:"https://via.placeholder.com/480x200.webp?text=Example"}),e}return t=d,(n=[{key:"render",value:function(){var e=this,t=this.props,n=t.type,a=t.value,o=t.onChange,c={},l=function(e){return n===e?"primary":"light"},i=function(e){return n===e?"":"hidden"},s=function(t){if(t.target){var n=t.target,r=n.getAttribute("data-type"),l=n.getAttribute("data-value");if("rotate"===r){var i=c.value,s=a.replaceAll("   ","");e.state.rotation.forEach((function(e){e!==l&&(s=s.replaceAll(e,"").replaceAll(" n",""),i&&(c.value=i.replaceAll(e,"").replaceAll(" n","")))})),c.type="gradient",c.value=s,c.rotation=l}else c.type=r,c.value=l,c.rotation=null}else c.type="image",c.value=t.url;return o(c)},u=function(e,t){for(var n=[],r=0;r<e.length;r++){var o=e[r],c=e[r].replace("bg-","");c=(c=(c=c.replace("-"," ")).replace("grade","")).replace(/^\w/,(function(e){return e.toUpperCase()})),n.push(React.createElement("button",{onClick:s,title:c,"data-value":o,"data-type":t,className:"".concat(o," btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(a.includes(o)?"px-active":"")}))}return n},f=function(e){var t,n=Phenix(e.target),a=n.ancestor(".options-tabs"),r=Phenix(a).next(".options-list"),o=Phenix(a.querySelector(".primary")),c="".concat(n[0].getAttribute("data-value"),"-options"),l=r.querySelector(".".concat(c));o.addClass("light").removeClass("primary"),n.addClass("primary").removeClass("light"),null===(t=r.querySelector(".flexbox:not(.hidden)"))||void 0===t||t.classList.add("hidden"),Phenix(l).removeClass("hidden")};return React.createElement("div",{className:"px-gb-component"},React.createElement("div",{className:"options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"},React.createElement("button",{className:"btn tiny col ".concat(l("color")),onClick:f,"data-value":"color"},"Colors"),React.createElement("button",{className:"btn tiny col ".concat(l("gradient")),onClick:f,"data-value":"gradient"},"Gradients"),React.createElement("button",{className:"btn tiny col ".concat(l("image")),onClick:f,"data-value":"image"},"Image"),React.createElement("button",{className:"btn tiny bg-offwhite-smoke col far fa-ellipsis-v",style:{padding:"0 8px"}})),React.createElement("div",{className:"options-list"},React.createElement("div",{className:"flexbox color-options ".concat(i("color"))},u(this.state.main,"color"),React.createElement("span",{className:"display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"}),u(this.state.offwhite,"color"),React.createElement("span",{className:"display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"}),u(this.state.brands,"color")),React.createElement("div",{className:"flexbox gradient-options ".concat(i("gradient"))},u(this.state.gradients,"gradient"),React.createElement("span",{className:"display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"}),React.createElement("label",{className:"mb-10 col-12"},"Gradient Direction"),React.createElement("div",{className:"px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10"},function(e,t){for(var n=[],r=0;r<e.length;r++){var o=e[r],c=o.replace("bg-grade-","");o.endsWith("n")&&(c="-".concat(c.slice(0,-1))),n.push(React.createElement("button",{"data-type":"rotate",onClick:s,"data-value":o,className:"btn square tiny light ".concat(a.includes(o)?"px-active":"")},React.createElement("i",{className:"inline-block fas fa-arrow-to-bottom",style:{transform:"rotate(".concat(c,"deg)")}})))}return n}(this.state.rotation))),React.createElement("div",{className:"flexbox image-options ".concat(i("image"))},React.createElement(r.Z,{value:"image"!==n?this.state.placeholder:a,setValue:s}))))}}])&&l(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),d}(a.Component)},277:(e,t,n)=>{function a(e){return a="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},a(e)}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}function c(e,t){return c=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,t){return e.__proto__=t,e},c(e,t)}function l(e,t){if(t&&("object"===a(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function i(e){return i=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},i(e)}n.d(t,{Z:()=>s});var s=function(e){!function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&c(e,t)}(f,e);var t,n,a,s,u=(a=f,s=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,t=i(a);if(s){var n=i(this).constructor;e=Reflect.construct(t,arguments,n)}else e=t.apply(this,arguments);return l(this,e)});function f(){return r(this,f),u.apply(this,arguments)}return t=f,(n=[{key:"render",value:function(){var e=this.props,t=e.value,n=e.onChange,a=function(e){var t=e.target.getAttribute("data-value");return n(t)},r=function(e){for(var n=[],r=0;r<e.length;r++){var o=e[r],c=e[r].replace("color-","");c=(c=c.replace("-"," ")).replace(/^\w/,(function(e){return e.toUpperCase()})),n.push(React.createElement("button",{onClick:a,title:c,"data-value":o,className:"".concat(o.replace("color-","bg-")," btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(t===o?"px-active":null)}))}return n};return React.createElement("div",{className:"px-gb-component"},React.createElement("label",{className:"mb-10"},"Select Color"),React.createElement("div",{className:"flexbox options-list"},r(["color-inherit","color-primary","color-secondary","color-gray","color-dark","color-white","color-success","color-danger","color-warning","color-info","color-transparent"]),React.createElement("span",{className:"border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"}),r(["color-facebook","color-twitter","color-youtube","color-instagram","color-snapchat","color-whatsapp","color-pinterest","color-linkedin","color-behance","color-dribbble","color-flicker"])))}}])&&o(t.prototype,n),Object.defineProperty(t,"prototype",{writable:!1}),f}(n(307).Component)},66:(e,t,n)=>{n.d(t,{Z:()=>u});var a=n(609),r=n(175),o=n(307),c=n(789),l=n(277),i=n(435);function s(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,a=new Array(t);n<t;n++)a[n]=e[n];return a}function u(e){var t=e.attributes,n=e.setAttributes,u=(0,r.useBlockProps)(),f=(0,r.useInnerBlocksProps)(),p=t.tagName,b=function(){var e,t=window.frames["editor-canvas"],n=".wp-block-design-px-section[data-src]";t&&(e=n=t.document.querySelectorAll(".px-media"),n=function(e){if(Array.isArray(e))return s(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||function(e,t){if(e){if("string"==typeof e)return s(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);return"Object"===n&&e.constructor&&(n=e.constructor.name),"Map"===n||"Set"===n?Array.from(e):"Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?s(e,t):void 0}}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}(),Phenix(n).multimedia()),t||Phenix(n).multimedia()},d={size:t.size,flexbox:t.container_flex?" flexbox":"",alignment:t.flex_align};return"image"===t.px_bg_type&&(u["data-src"]=t.px_bg,b()),(0,o.useEffect)((function(){if(window.frames["editor-canvas"]){var e=document.querySelector("#fontawesome-css");if(e&&!window.frames["editor-canvas"].document.querySelector("#fontawesome-css")&&e){var t=document.importNode(e,!0);window.frames["editor-canvas"].document.head.appendChild(t)}}})),t.container&&(f.className+=" ".concat(d.size).concat(d.flexbox," ").concat(d.alignment)),React.createElement(React.Fragment,null,React.createElement(r.InspectorControls,{key:"inspector"},React.createElement(a.PanelBody,{title:"Section Settings"},React.createElement(a.SelectControl,{key:"tagName",label:"HTML Tag",value:t.tagName,onChange:function(e){return n({tagName:e})},options:[{label:"Default <div>",value:"div"},{label:"Main <main>",value:"main"},{label:"Aside <aside>",value:"aside"},{label:"Section <section>",value:"section"},{label:"Header <header>",value:"header"},{label:"Footer <footer>",value:"footer"}]}),React.createElement(a.ToggleControl,{label:"With Container",checked:t.container,onChange:function(e){return n({container:e})}})),t.container?React.createElement(a.PanelBody,{title:"Container",initialOpen:!1},React.createElement(a.SelectControl,{key:"container_size",label:"Container Size",value:t.size,onChange:function(e){return n({size:e})},options:[{label:"Small",value:"container-sm"},{label:"Medium",value:"container-md"},{label:"Normal",value:"container"},{label:"Large",value:"container-xl"},{label:"Full Width",value:"container-fluid"}]}),React.createElement(a.ToggleControl,{label:"Flex Container",checked:t.container_flex,onChange:function(e){return n({container_flex:e})}}),t.container_flex?React.createElement(i.Z,{value:t.flex_align,onChange:function(e){return n({flex_align:e})}}):""):null,React.createElement(a.PanelBody,{title:"Typography",initialOpen:!1},React.createElement(l.Z,{onChange:function(e){var a=t.px_color,r=t.className.replace(/\s{2,}/g," ");a&&(r=r.replace(a,"")),n({px_color:e,className:"".concat(r," ").concat(e)})},value:t.px_color})),React.createElement(a.PanelBody,{title:"Background",initialOpen:!1},React.createElement(c.Z,{onChange:function(e){var a=t.className.replaceAll(/\s{2,}/g," ").replace(" px-media",""),r=t.px_bg,o=t.px_bg_rotate;t.px_bg&&(a=a.replace(r,"")),o&&(a=a.replace(o,"")),n({px_bg:e.value,px_bg_type:e.type}),e.rotation&&(a=a.replace(o,""),n({px_bg_rotate:e.rotation})),"image"!=e.type?n({className:"".concat(a," ").concat(e.value).concat(e.rotation?" "+e.rotation:"")}):e.value&&(b(),n({className:"".concat(a," px-media")}))},type:t.px_bg_type,value:t.px_bg}))),React.createElement(p,u,React.createElement("div",f)))}},175:e=>{e.exports=window.wp.blockEditor},981:e=>{e.exports=window.wp.blocks},609:e=>{e.exports=window.wp.components},307:e=>{e.exports=window.wp.element},947:e=>{e.exports=JSON.parse('{"apiVersion":2,"name":"phenix/px-section","version":"0.1.0","title":"Phenix Section","category":"design","description":"Main Header Block for Phenix Themes.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"file:./index.js"}')}},o={};function c(e){var t=o[e];if(void 0!==t)return t.exports;var n=o[e]={exports:{}};return r[e](n,n.exports,c),n.exports}c.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return c.d(t,{a:t}),t},c.d=(e,t)=>{for(var n in t)c.o(t,n)&&!c.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},c.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e=c(66),t=c(947),n=c(981),a=c(175),(0,n.registerBlockType)(t,{icon:React.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 640 512"},React.createElement("path",{d:"M96 384h448V128H96V384zM32 96C14.34 96 0 110.3 0 128v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C64 110.3 49.66 96 32 96zM608 96c-17.66 0-32 14.34-32 32v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C640 110.3 625.7 96 608 96z"})),edit:e.Z,save:function(e){var t=e.attributes,n=a.useBlockProps.save(),r=t.tagName;return"image"===t.px_bg_type&&(n["data-src"]=t.px_bg),React.createElement(r,n,t.container?React.createElement("div",{className:"".concat(t.size).concat(t.container_flex?" flexbox":""," ").concat(t.flex_align)},React.createElement(a.InnerBlocks.Content,null)):React.createElement(a.InnerBlocks.Content,null))}})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/blocks/px-components/flex-alignment.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/px-components/flex-alignment.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FlexAlignment)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+ //===> Phenix Background <===//
+
+var FlexAlignment = /*#__PURE__*/function (_Component) {
+  _inherits(FlexAlignment, _Component);
+
+  var _super = _createSuper(FlexAlignment);
+
+  function FlexAlignment() {
+    _classCallCheck(this, FlexAlignment);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(FlexAlignment, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          flow = _this$props.flow,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> Alignment Buttons <===//
+
+      var createAlignment = function createAlignment(screen) {
+        if (!screen) screen = "";
+        {
+          /*===> Responsive Devices <===*/
+        }
+        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
+          className: "mb-10 fluid weight-medium"
+        }, "Horizontal Align"), /*#__PURE__*/React.createElement("div", {
+          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        }, /*#__PURE__*/React.createElement("button", {
+          key: "start-x-".concat(screen),
+          onClick: setAlignment,
+          title: "Start",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-start"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-start-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "center-x-".concat(screen),
+          onClick: setAlignment,
+          title: "Center",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-center"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-center-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "end-x-".concat(screen),
+          onClick: setAlignment,
+          title: "End",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-end"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-end-x")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "between-x-".concat(screen),
+          onClick: setAlignment,
+          title: "Between",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-between"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-between")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "around-x-".concat(screen),
+          onClick: setAlignment,
+          title: "Around",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-around"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-around")
+        })), /*#__PURE__*/React.createElement("label", {
+          className: "mb-10 fluid weight-medium"
+        }, "Vertical Align"), /*#__PURE__*/React.createElement("div", {
+          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        }, /*#__PURE__*/React.createElement("button", {
+          key: "start-y-".concat(screen),
+          onClick: setAlignment,
+          title: "Start",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-start"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-start-y")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "center-y-".concat(screen),
+          onClick: setAlignment,
+          title: "Center",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-center"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-center-y")
+        }), /*#__PURE__*/React.createElement("button", {
+          key: "end-y-".concat(screen),
+          onClick: setAlignment,
+          title: "End",
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-end"),
+          "data-screen": screen,
+          "data-value": "align".concat(screen, "-end-y")
+        })));
+      }; //===> Set Alignment <===//
+
+
+      var setAlignment = function setAlignment(clicked) {
+        //===> Element Data <===//
+        var button = clicked.target,
+            newVal = button.getAttribute('data-value'),
+            other = [],
+            screen = button.getAttribute('data-screen') || ''; //===> Get Sibling Values <===//
+
+        button.parentNode.querySelectorAll('.btn').forEach(function (element) {
+          other.push(element.getAttribute('data-value'));
+        });
+        /*===> if Current Value has Current Screen Point <===*/
+
+        if (value.includes(screen)) value.split(' ').forEach(function (item) {
+          //===> if the siblings has the item in it remove it <===//
+          if (other.includes(item)) value.replace(item, ''); //===> if the item is not in siblings add it <===//
+          else if (item.length > 1) newVal = "".concat(item, " ").concat(newVal);
+        });
+        /*===> else if its New Screen Point <===*/
+        else newVal = "".concat(value, " ").concat(newVal); //===> Return Options <===//
+
+        return onChange("".concat(newVal));
+      }; //===> Default Flow <===//
+
+
+      var isReversed = function isReversed() {
+        if (value.includes('flow-reverse')) return true;else return false;
+      }; //===> Set Flow <===//
+
+
+      var setFlow = function setFlow(toggle) {
+        //===> Get Current Value <===//
+        var current = value; //===> .if already reversed. <===//
+
+        if (isReversed()) {
+          current = current.replaceAll('flow-reverse');
+        } //===> .if not make it. <===//
+        else {
+          current = "".concat(value, " flow-reverse");
+        } //===> Return Options <===//
+
+
+        return onChange(current);
+      }; //===> Options Changer <===//
+
+
+      var changeTab = function changeTab(clicked) {
+        var _optionsList$querySel;
+
+        //===> Option Data <===//
+        var element = Phenix(clicked.target),
+            parent = element.ancestor('.options-tabs'),
+            optionsList = Phenix(parent).next('.options-list'),
+            currentActive = Phenix(parent.querySelector('.primary')),
+            currentType = "".concat(element[0].getAttribute('data-options'), "-options"),
+            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
+
+        currentActive.addClass('light').removeClass('primary');
+        element.addClass('primary').removeClass('light'); //===> Show Options <===//
+
+        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
+        Phenix(targetElement).removeClass('hidden');
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+        key: "align-flow",
+        label: "Flow Reverse ?",
+        checked: isReversed(),
+        onChange: setFlow
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "mobile",
+        onClick: changeTab,
+        className: "btn square tiny primary col far fa-mobile",
+        title: "Mobile Screens",
+        "data-options": "small"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "tablet",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-tablet",
+        title: "Tablet Screens",
+        "data-options": "medium"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "laptop",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-laptop",
+        title: "Desktop Screens",
+        "data-options": "large"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "desktop",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-desktop",
+        title: "xLarge Screens",
+        "data-options": "xlarge"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox small-options"
+      }, createAlignment()), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox medium-options hidden"
+      }, createAlignment('-md')), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox large-options hidden"
+      }, createAlignment('-lg')), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox xlarge-options hidden"
+      }, createAlignment('-xl'))));
+    }
+  }]);
+
+  return FlexAlignment;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-components/media-uploader.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/px-components/media-uploader.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MediaUploader)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
+*/
+//===> WordPress Modules <===//
+
+ //===> Media Uploader <===//
+
+var MediaUploader = /*#__PURE__*/function (_Component) {
+  _inherits(MediaUploader, _Component);
+
+  var _super = _createSuper(MediaUploader);
+
+  function MediaUploader() {
+    _classCallCheck(this, MediaUploader);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(MediaUploader, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          size = _this$props.size,
+          setValue = _this$props.setValue; //===> Output <===//
+
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
+        onSelect: setValue,
+        value: value,
+        render: function render(_ref) {
+          var open = _ref.open;
+          return /*#__PURE__*/React.createElement("div", {
+            className: "mb-15 cursor-pointer",
+            onClick: open
+          }, label ? /*#__PURE__*/React.createElement("label", {
+            "for": "change-media",
+            className: "mb-10"
+          }, label) : '', /*#__PURE__*/React.createElement("div", {
+            className: "flexbox align-center-y align-between"
+          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+            src: value,
+            style: {
+              "max-height": "2.25rem"
+            }
+          }), /*#__PURE__*/React.createElement("button", {
+            key: "change-media",
+            onClick: open,
+            className: "btn square primary small radius-sm fs-12 fas fa-upload"
+          })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+            src: value,
+            className: "radius-sm radius-top",
+            style: {
+              "maxWidth": "100%",
+              "display": "block"
+            }
+          }), /*#__PURE__*/React.createElement("button", {
+            key: "change-media",
+            onClick: open,
+            className: "btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon"
+          }, "Select Image"))));
+        }
+      }));
+    }
+  }]);
+
+  return MediaUploader;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-components/px-background.js":
+/*!***************************************************!*\
+  !*** ./src/blocks/px-components/px-background.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PhenixBackground)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _px_components_media_uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../px-components/media-uploader */ "./src/blocks/px-components/media-uploader.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+ //===> Phenix Background <===//
+
+var PhenixBackground = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixBackground, _Component);
+
+  var _super = _createSuper(PhenixBackground);
+
+  function PhenixBackground() {
+    var _this;
+
+    _classCallCheck(this, PhenixBackground);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      main: ["bg-transparent", "bg-primary", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
+      offwhite: ["bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-ffwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-mintcream", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-ivory", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush"],
+      brands: ["bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
+      gradients: ["bg-grade-primary", "bg-grade-secondary", "bg-grade-warning", "bg-grade-danger", "bg-grade-success", "bg-grade-water", "bg-grade-ice", "bg-grade-fire", "bg-grade-purple"],
+      rotation: ['bg-grade-0', 'bg-grade-45', 'bg-grade-90', 'bg-grade-120', 'bg-grade-120n', 'bg-grade-90n', 'bg-grade-45n', 'bg-grade-180'],
+      placeholder: "https://via.placeholder.com/480x200.webp?text=Example"
+    });
+
+    return _this;
+  }
+
+  _createClass(PhenixBackground, [{
+    key: "render",
+    value: //===> Render <===//
+    function render() {
+      var _this2 = this;
+
+      //===> Properties <===//
+      var _this$props = this.props,
+          type = _this$props.type,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> Returned Value <===//
+
+      var options = {}; //===> Type Activator <===//
+
+      var activeBtn = function activeBtn(current) {
+        return type === current ? 'primary' : 'light';
+      };
+
+      var activeTab = function activeTab(current) {
+        return type === current ? '' : 'hidden';
+      }; //===> Set Background <===//
+
+
+      var setBackground = function setBackground(clicked) {
+        //===> Colors & Gradients <===//
+        if (clicked.target) {
+          //===> Get Value <===//
+          var button = clicked.target,
+              btnType = button.getAttribute('data-type'),
+              btnValue = button.getAttribute('data-value'); //===> Rotate Gradient <===//
+
+          if (btnType === 'rotate') {
+            //===> Clear Exisitng Directions <===//
+            var current = options.value,
+                saved = value.replaceAll('   ', ''); //===> Clear Exisitng Directions <===//
+
+            _this2.state.rotation.forEach(function (name) {
+              if (name !== btnValue) {
+                saved = saved.replaceAll(name, '').replaceAll(' n', '');
+                if (current) options.value = current.replaceAll(name, '').replaceAll(' n', '');
+              }
+
+              ;
+            }); //===> Set New Direction <===//
+
+
+            options.type = 'gradient';
+            options.value = saved;
+            options.rotation = btnValue;
+          } else {
+            //===> Set Background <===//
+            options.type = btnType;
+            options.value = btnValue;
+            options.rotation = null;
+          }
+        } //===> Image Type <===//
+        else {
+          //===> Set New Direction <===//
+          options.type = 'image';
+          options.value = clicked.url;
+        } //===> Return Options <===//
+
+
+        return onChange(options);
+      }; //===> Buttons Creator <===//
+
+
+      var makeButtons = function makeButtons(list, type) {
+        var output = []; //===> for each item <===//
+
+        for (var index = 0; index < list.length; index++) {
+          //===> Get Value <===//
+          var name = list[index]; //===> Convert to Title <===//
+
+          var title = list[index].replace('bg-', '');
+          title = title.replace('-', ' ');
+          title = title.replace('grade', ''); //===> UpperCase Title <===//
+
+          title = title.replace(/^\w/, function (c) {
+            return c.toUpperCase();
+          });
+          output.push( /*#__PURE__*/React.createElement("button", {
+            key: "".concat(name, "-").concat(index),
+            onClick: setBackground,
+            title: title,
+            "data-value": name,
+            "data-type": type,
+            className: "".concat(name, " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(value.includes(name) ? 'px-active' : '')
+          }));
+        } //===> Return Buttons <===//
+
+
+        return output;
+      }; //===> Icons Buttons <===//
+
+
+      var makeRotations = function makeRotations(list, type) {
+        var output = []; //===> for each item <===//
+
+        for (var index = 0; index < list.length; index++) {
+          //===> Get Value <===//
+          var name = list[index]; //===> Rotation <===//
+
+          var rotation = name.replace('bg-grade-', '');
+          if (name.endsWith('n')) rotation = "-".concat(rotation.slice(0, -1)); //===> Get Value <===//
+
+          output.push( /*#__PURE__*/React.createElement("button", {
+            key: "".concat(name, "-").concat(index),
+            "data-type": type,
+            onClick: setBackground,
+            "data-value": name,
+            className: "btn square tiny light ".concat(value.includes(name) ? 'px-active' : '')
+          }, /*#__PURE__*/React.createElement("i", {
+            className: "inline-block fas fa-arrow-to-bottom",
+            style: {
+              transform: "rotate(".concat(rotation, "deg)")
+            }
+          })));
+        } //===> Return Buttons <===//
+
+
+        return output;
+      }; //===> Options Changer <===//
+
+
+      var changeTab = function changeTab(clicked) {
+        var _optionsList$querySel;
+
+        //===> Option Data <===//
+        var element = Phenix(clicked.target),
+            parent = element.ancestor('.options-tabs'),
+            optionsList = Phenix(parent).next('.options-list'),
+            currentActive = Phenix(parent.querySelector('.primary')),
+            currentType = "".concat(element[0].getAttribute('data-value'), "-options"),
+            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
+
+        currentActive.addClass('light').removeClass('primary');
+        element.addClass('primary').removeClass('light'); //===> Show Options <===//
+
+        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
+        Phenix(targetElement).removeClass('hidden');
+      }; //===> Component Design <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "color",
+        className: "btn tiny col ".concat(activeBtn('color')),
+        onClick: changeTab,
+        "data-value": "color"
+      }, "Colors"), /*#__PURE__*/React.createElement("button", {
+        key: "gradient",
+        className: "btn tiny col ".concat(activeBtn('gradient')),
+        onClick: changeTab,
+        "data-value": "gradient"
+      }, "Gradients"), /*#__PURE__*/React.createElement("button", {
+        key: "image",
+        className: "btn tiny col ".concat(activeBtn('image')),
+        onClick: changeTab,
+        "data-value": "image"
+      }, "Image"), /*#__PURE__*/React.createElement("button", {
+        key: "more",
+        className: "btn tiny bg-offwhite-smoke col far fa-ellipsis-v",
+        style: {
+          padding: '0 8px'
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox color-options ".concat(activeTab('color'))
+      }, makeButtons(this.state.main, 'color'), /*#__PURE__*/React.createElement("span", {
+        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), makeButtons(this.state.offwhite, 'color'), /*#__PURE__*/React.createElement("span", {
+        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), makeButtons(this.state.brands, 'color')), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox gradient-options ".concat(activeTab('gradient'))
+      }, makeButtons(this.state.gradients, 'gradient'), /*#__PURE__*/React.createElement("span", {
+        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), /*#__PURE__*/React.createElement("label", {
+        className: "mb-10 col-12"
+      }, "Gradient Direction"), /*#__PURE__*/React.createElement("div", {
+        className: "px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10"
+      }, makeRotations(this.state.rotation, 'rotate'))), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox image-options ".concat(activeTab('image'))
+      }, /*#__PURE__*/React.createElement(_px_components_media_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        key: "image-background",
+        value: type !== 'image' ? this.state.placeholder : value,
+        setValue: setBackground
+      }))));
+    }
+  }]);
+
+  return PhenixBackground;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-components/px-colors.js":
+/*!***********************************************!*\
+  !*** ./src/blocks/px-components/px-colors.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PhenixColors)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+ //===> Phenix Background <===//
+
+var PhenixColors = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixColors, _Component);
+
+  var _super = _createSuper(PhenixColors);
+
+  function PhenixColors() {
+    _classCallCheck(this, PhenixColors);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PhenixColors, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> Colors List <===//
+
+      var pxPallete = {
+        main: ["color-inherit", "color-primary", "color-secondary", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
+        brands: ["color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker"]
+      }; //===> Set Background <===//
+
+      var setColor = function setColor(clicked) {
+        //===> Get Value <===//
+        var button = clicked.target,
+            value = button.getAttribute('data-value'); //===> Return Options <===//
+
+        return onChange(value);
+      }; //===> Buttons Creator <===//
+
+
+      var makeButtons = function makeButtons(list, prefix) {
+        var output = []; //===> for each item <===//
+
+        for (var index = 0; index < list.length; index++) {
+          //===> Get Value <===//
+          var name = list[index]; //===> Convert to Title <===//
+
+          var title = list[index].replace('color-', '');
+          title = title.replace('-', ' '); //===> UpperCase Title <===//
+
+          title = title.replace(/^\w/, function (c) {
+            return c.toUpperCase();
+          });
+          output.push( /*#__PURE__*/React.createElement("button", {
+            key: "".concat(name, "-").concat(prefix),
+            onClick: setColor,
+            title: title,
+            "data-value": name,
+            className: "".concat(name.replace('color-', 'bg-'), " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(value === name ? 'px-active' : null)
+          }));
+        } //===> Return Buttons <===//
+
+
+        return output;
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "mb-10"
+      }, "Select Color"), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox options-list"
+      }, makeButtons(pxPallete.main, 'main'), /*#__PURE__*/React.createElement("span", {
+        className: "border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+      }), makeButtons(pxPallete.brands, 'brands')));
+    }
+  }]);
+
+  return PhenixColors;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-section/edit.js":
+/*!***************************************!*\
+  !*** ./src/blocks/px-section/edit.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _px_components_px_background__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-components/px-background */ "./src/blocks/px-components/px-background.js");
+/* harmony import */ var _px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-components/px-colors */ "./src/blocks/px-components/px-colors.js");
+/* harmony import */ var _px_components_flex_alignment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-components/flex-alignment */ "./src/blocks/px-components/flex-alignment.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//====> WP Modules <====//
+
+
+ //====> Phenix Modules <====//
+
+
+
+ //====> Edit Mode <====//
+
+function Edit(_ref) {
+  var attributes = _ref.attributes,
+      setAttributes = _ref.setAttributes;
+
+  //===> Set Settings <===//
+  var set_size = function set_size(size) {
+    return setAttributes({
+      size: size
+    });
+  };
+
+  var set_tagName = function set_tagName(tagName) {
+    return setAttributes({
+      tagName: tagName
+    });
+  };
+
+  var set_container = function set_container(container) {
+    return setAttributes({
+      container: container
+    });
+  };
+
+  var set_container_flex = function set_container_flex(container_flex) {
+    return setAttributes({
+      container_flex: container_flex
+    });
+  }; //===> Get Block Properties <===//
+
+
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
+  var TagName = attributes.tagName; //===> Set Phenix View <===//
+
+  var setPhenixView = function setPhenixView() {
+    //===> Check Site Editor <===//
+    var siteEditor = window.frames['editor-canvas'],
+        blockElement = '.wp-block-design-px-section[data-src]'; //===> Get the Element from Site Editor <===//
+
+    if (siteEditor) {
+      blockElement = siteEditor.document.querySelectorAll('.px-media');
+      blockElement = _toConsumableArray(blockElement);
+      Phenix(blockElement).multimedia();
+    } //===> Set Background <===//
+
+
+    if (!siteEditor) Phenix(blockElement).multimedia();
+  }; //===> Set Background <===//
+
+
+  var set_background = function set_background(background) {
+    //===> Original Classes <===//
+    var original = attributes.className.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
+        current = attributes.px_bg,
+        rotate = attributes.px_bg_rotate; //===> Remove Current Value <===//
+
+    if (attributes.px_bg) original = original.replace(current, '');
+    if (rotate) original = original.replace(rotate, ''); //===> Update Background <===//
+
+    setAttributes({
+      px_bg: background.value,
+      px_bg_type: background.type
+    }); //===> Update Rotation <===//
+
+    if (background.rotation) {
+      original = original.replace(rotate, '');
+      setAttributes({
+        px_bg_rotate: background.rotation
+      });
+    } //===> Set Background [Colors, Gradients] <===//
+
+
+    if (background.type != 'image') {
+      setAttributes({
+        className: "".concat(original, " ").concat(background.value).concat(background.rotation ? ' ' + background.rotation : '')
+      });
+    } //===> Set Backgeround Image <===//
+    else if (background.value) {
+      //===> Set Background <===//
+      setPhenixView();
+      setAttributes({
+        className: "".concat(original, " px-media")
+      });
+    }
+  }; //===> Set Color <===//
+
+
+  var set_color = function set_color(color) {
+    //===> Get Value <===//
+    var current = attributes.px_color,
+        original = attributes.className.replace(/\s{2,}/g, ' '); //===> Remove Current Value <===//
+
+    if (current) original = original.replace(current, ''); //===> Set New Value <===//
+
+    setAttributes({
+      px_color: color,
+      className: "".concat(original, " ").concat(color)
+    });
+  }; //===> Container Options <===//
+
+
+  var container_options = {
+    size: attributes.size,
+    flexbox: attributes.container_flex ? ' flexbox' : '',
+    alignment: attributes.flex_align
+  }; //===> Set Alignment <===//
+
+  var set_alignment = function set_alignment(alignment) {
+    return setAttributes({
+      flex_align: alignment
+    });
+  }; //===> Background Image <===//
+
+
+  if (attributes.px_bg_type === 'image') {
+    blockProps["data-src"] = attributes.px_bg;
+    setPhenixView();
+  } //===> Component is Ready <===//
+
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    //===> Loading FontAwesome <===//
+    if (window.frames['editor-canvas']) {
+      var fontAwesome = document.querySelector("#fontawesome-css");
+
+      if (fontAwesome) {
+        //===> Check in the Editor <===//
+        var canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"); //===> if Font Awesome not Loaded <===//
+
+        if (!canvasAwesome && fontAwesome) {
+          var newAwesome = document.importNode(fontAwesome, true);
+          window.frames['editor-canvas'].document.head.appendChild(newAwesome);
+        }
+      }
+    }
+  }); //===> Container <===//
+
+  if (attributes.container) innerBlocksProps.className += " ".concat(container_options.size).concat(container_options.flexbox, " ").concat(container_options.alignment); //===> Render <===//
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+    key: "inspector"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Section Settings"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
+    key: "tagName",
+    label: "HTML Tag",
+    value: attributes.tagName,
+    onChange: set_tagName,
+    options: [{
+      label: 'Default <div>',
+      value: 'div'
+    }, {
+      label: 'Main <main>',
+      value: 'main'
+    }, {
+      label: 'Aside <aside>',
+      value: 'aside'
+    }, {
+      label: 'Section <section>',
+      value: 'section'
+    }, {
+      label: 'Header <header>',
+      value: 'header'
+    }, {
+      label: 'Footer <footer>',
+      value: 'footer'
+    }]
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "With Container",
+    checked: attributes.container,
+    onChange: set_container
+  })), attributes.container ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Container",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
+    key: "container_size",
+    label: "Container Size",
+    value: attributes.size,
+    onChange: set_size,
+    options: [{
+      label: 'Small',
+      value: 'container-sm'
+    }, {
+      label: 'Medium',
+      value: 'container-md'
+    }, {
+      label: 'Normal',
+      value: 'container'
+    }, {
+      label: 'Large',
+      value: 'container-xl'
+    }, {
+      label: 'Full Width',
+      value: 'container-fluid'
+    }]
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    key: "container_flex",
+    label: "Flex Container",
+    checked: attributes.container_flex,
+    onChange: set_container_flex
+  }), attributes.container_flex ? /*#__PURE__*/React.createElement(_px_components_flex_alignment__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    key: "flex-align",
+    value: attributes.flex_align,
+    onChange: set_alignment
+  }) : '') : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Typography",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_px_components_px_colors__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    key: "px-color",
+    onChange: set_color,
+    value: attributes.px_color
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Background",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_px_components_px_background__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    key: "px-bg",
+    onChange: set_background,
+    type: attributes.px_bg_type,
+    value: attributes.px_bg
+  }))), /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("div", innerBlocksProps)));
+}
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "./src/blocks/px-section/block.json":
+/*!******************************************!*\
+  !*** ./src/blocks/px-section/block.json ***!
+  \******************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-section","version":"0.1.0","title":"Phenix Section","category":"design","description":"Main Header Block for Phenix Themes.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"container":{"type":"boolean","default":true},"container_flex":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":"container"},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":""},"px_color":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!****************************************!*\
+  !*** ./src/blocks/px-section/index.js ***!
+  \****************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/blocks/px-section/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/px-section/block.json");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/*
+ * ===> 01 - Block Data
+ * ===> 02 - WordPress Modules
+ * ===> 03 - Register Block
+ * ===> 03 - Block Save Mode [Output]
+*/
+//===> Block Data <===//
+
+ //===> WordPress Modules <===//
+
+
+ //===> Register Block <===//
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__, {
+  icon: /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 640 512"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M96 384h448V128H96V384zM32 96C14.34 96 0 110.3 0 128v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C64 110.3 49.66 96 32 96zM608 96c-17.66 0-32 14.34-32 32v256c0 17.66 14.34 32 32 32s32-14.34 32-32V128C640 110.3 625.7 96 608 96z"
+  })),
+
+  /**===> @see ./edit.js <===*/
+  edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
+
+  /**===> Block Output <===*/
+  save: function save(_ref) {
+    var attributes = _ref.attributes;
+    //===> Get Block Properties <===//
+    var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
+    var TagName = attributes.tagName; //===> .Check Background Image. <===//
+
+    if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg; //===> Render <===//
+
+    return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.container ? /*#__PURE__*/React.createElement("div", {
+      className: "".concat(attributes.size).concat(attributes.container_flex ? ' flexbox' : '', " ").concat(attributes.flex_align)
+    }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)) : /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
+  }
+});
+})();
+
+/******/ })()
+;
 //# sourceMappingURL=index.js.map

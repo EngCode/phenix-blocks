@@ -169,21 +169,21 @@ export default function Edit({ attributes, setAttributes }) {
                 ]}/>
 
                 {/*=== Container Size ===*/}
-                <ToggleControl label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
+                <ToggleControl key="container_flex" label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
             
                 {/*=== Flexbox Alignment ===*/}
                 {attributes.container_flex ? 
-                    <FlexAlignment value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
+                    <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
                 :''}
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>
                 {/* Text Color */}
-                <PhenixColor onChange={set_color} value={attributes.px_color} />
+                <PhenixColor key="px-color" onChange={set_color} value={attributes.px_color} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Background" initialOpen={false}>
-                <PhenixBackground onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
+                <PhenixBackground key="px-bg" onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

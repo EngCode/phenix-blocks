@@ -87,7 +87,7 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*=== Flexbox Alignment ===*/}
             {attributes.flexbox ? <PanelBody title="Flexbox Alignment" initialOpen={false}>
-                <FlexAlignment value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
+                <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody> : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

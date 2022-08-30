@@ -171,7 +171,7 @@ export default class PhenixBackground extends Component {
                     return c.toUpperCase();
                 });
 
-                output.push(<button onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value.includes(name) ? 'px-active' : ''}`}></button>);
+                output.push(<button key={`${name}-${index}`} onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value.includes(name) ? 'px-active' : ''}`}></button>);
             }
 
             //===> Return Buttons <===//
@@ -191,7 +191,7 @@ export default class PhenixBackground extends Component {
                 if (name.endsWith('n')) rotation = `-${rotation.slice(0,-1)}`;
 
                 //===> Get Value <===//
-                output.push(<button data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${value.includes(name) ? 'px-active' : ''}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
+                output.push(<button key={`${name}-${index}`} data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${value.includes(name) ? 'px-active' : ''}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
             }
 
             //===> Return Buttons <===//
@@ -222,10 +222,10 @@ export default class PhenixBackground extends Component {
             <div className='px-gb-component'>
                 {/*===> Background Types <===*/}
                 <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
-                    <button className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
-                    <button className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
-                    <button className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
+                    <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
+                    <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
+                    <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
+                    <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
                 </div>
 
                 {/*===> Background <===*/}
@@ -256,7 +256,7 @@ export default class PhenixBackground extends Component {
                     </div>
                     {/*===> Background <====*/}
                     <div className={`flexbox image-options ${activeTab('image')}`}>
-                        <MediaUploader value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
+                        <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
                     </div>
                 </div>
                 {/*===> End Component <===*/}

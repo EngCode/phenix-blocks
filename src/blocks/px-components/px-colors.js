@@ -58,7 +58,7 @@ export default class PhenixColors extends Component {
         }
 
         //===> Buttons Creator <===//
-        const makeButtons = (list) => {
+        const makeButtons = (list, prefix) => {
             let output = [];
             //===> for each item <===//
             for (let index = 0; index < list.length; index++) {
@@ -74,7 +74,7 @@ export default class PhenixColors extends Component {
                     return c.toUpperCase();
                 });
 
-                output.push(<button onClick={setColor} title={title} data-value={name} className={`${name.replace('color-','bg-')} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value === name ? 'px-active' : null}`}></button>);
+                output.push(<button key={`${name}-${prefix}`} onClick={setColor} title={title} data-value={name} className={`${name.replace('color-','bg-')} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value === name ? 'px-active' : null}`}></button>);
             }
 
             //===> Return Buttons <===//
@@ -88,11 +88,11 @@ export default class PhenixColors extends Component {
                 <label className='mb-10'>Select Color</label>
                 {/*===> Background <===*/}
                 <div className='flexbox options-list'>
-                    {makeButtons(pxPallete.main)}
+                    {makeButtons(pxPallete.main, 'main')}
                     {/* Divider */}
                     <span className='border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                     {/* Brands */}
-                    {makeButtons(pxPallete.brands)}
+                    {makeButtons(pxPallete.brands, 'brands')}
                 </div>
                 {/*===> End Component <===*/}
             </div>

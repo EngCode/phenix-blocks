@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
     ...defaultConfig,
-    mode: "production",
+    mode: "development",
     entry: {
         'px-section': './src/blocks/px-section/index.js',
         'px-wrapper': './src/blocks/px-wrapper/index.js',

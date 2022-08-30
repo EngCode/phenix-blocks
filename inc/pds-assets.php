@@ -78,11 +78,11 @@ endif;
 
 //=====> Phenix Admin CSS <=====//
 if (!function_exists('pds_admin_style')) :
-	/**
-	 * Setup WP Phenix Design Assets
-	 * @since Phenix Blocks 1.0
-	 * @return void
-	*/
+    /**
+     * Setup WP Phenix Design Assets
+     * @since Phenix Blocks 1.0
+     * @return void
+    */
 
     function pds_admin_style($hook) {
         //===> Global for Admin <===//

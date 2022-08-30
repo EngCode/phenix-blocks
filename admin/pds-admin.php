@@ -35,8 +35,35 @@
             register_setting('pds-admin', 'comments_css');
             register_setting('pds-admin', 'newsletter_css');
             register_setting('pds-admin', 'jquery_remove');
-            //===> Customization <===//
+            //===> Admin UI <===//
             register_setting('pds-admin', 'pds_admin_style');
+            //===> Core Blocks <===//
+            register_setting('pds-admin', 'pds_core_quote');
+            register_setting('pds-admin', 'pds_core_preformatted');
+            register_setting('pds-admin', 'pds_core_code');
+            register_setting('pds-admin', 'pds_core_pullquote');
+            register_setting('pds-admin', 'pds_core_verse');
+            register_setting('pds-admin', 'pds_core_gallery');
+            register_setting('pds-admin', 'pds_core_file');
+            register_setting('pds-admin', 'pds_core_mediatext');
+            register_setting('pds-admin', 'pds_core_cover');
+            register_setting('pds-admin', 'pds_core_buttons');
+            register_setting('pds-admin', 'pds_core_columns');
+            register_setting('pds-admin', 'pds_core_group');
+            register_setting('pds-admin', 'pds_core_more');
+            register_setting('pds-admin', 'pds_core_nextpage');
+            register_setting('pds-admin', 'pds_core_separator');
+            register_setting('pds-admin', 'pds_core_spacer');
+            register_setting('pds-admin', 'pds_core_embed');
+            register_setting('pds-admin', 'pds_core_logo');
+            register_setting('pds-admin', 'pds_core_title');
+            register_setting('pds-admin', 'pds_core_tagline');
+            register_setting('pds-admin', 'pds_core_query');
+            register_setting('pds-admin', 'pds_core_navigation');
+            register_setting('pds-admin', 'pds_core_avatar');
+            register_setting('pds-admin', 'pds_core_post_elements');
+            register_setting('pds-admin', 'pds_core_tag_cloud');
+            register_setting('pds-admin', 'pds_core_widgets_blocks');
         }
 
         add_action('admin_init', 'create_pds_options');

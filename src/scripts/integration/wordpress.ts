@@ -11,6 +11,7 @@
 
 /*====> Phenix JS <====*/
 import Phenix from "..";
+declare var wp: any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).ready(ready => {

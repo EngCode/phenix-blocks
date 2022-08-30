@@ -549,6 +549,10 @@ body:not(.rtl) {
 	.postbox .inside ul, .postbox .inside ol {padding-left: 20px;}
 	ul.ui-tabs-nav li.ui-tabs-tab a {border-right: 1px solid rgba(#000, 0.1);}
 	.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag {margin-right: 8px;}
+
+	/*==== GB Editor ====*/
+	.components-search-control__icon {right: 10px;}
+	.option-control .icon {margin-right: 5px;}
 }
 
 /*==== RTL Only ====*/
@@ -562,9 +566,63 @@ body.rtl {
 	.postbox .inside ul, .postbox .inside ol {padding-right: 20px;}
 	ul.ui-tabs-nav li.ui-tabs-tab a {border-left: 1px solid rgba(#000, 0.1);}
 	.search-box input[name="s"], .tablenav .search-plugins input[name="s"], .tagsdiv .newtag {margin-left: 8px;}
+
+	/*==== GB Editor ====*/
+	.components-search-control__icon {left: 10px;}
+	.option-control .icon {margin-left: 5px;}
+	.components-input-control__container {flex:none!important;}
 }
 
-.option-control input {
-	margin: 0!important;
-	display: none!important;
+.option-control {
+	.icon {
+		top: -2px;
+		width: 1em;
+		position: relative;
+	}
+
+	input {
+		margin: 0!important;
+		display: none!important;
+		&:checked ~ span .icon {
+			-webkit-filter: invert(50%) sepia(91%) saturate(387%) hue-rotate(96deg) brightness(95%) contrast(88%);
+			        filter: invert(50%) sepia(91%) saturate(387%) hue-rotate(96deg) brightness(95%) contrast(88%);
+		}
+	}
 }
+
+/*==== GB Editor ====*/
+.interface-interface-skeleton__editor {
+	/*==== Search Inputs ====*/
+	.components-search-control__input {
+		height: 42px!important;
+		margin-bottom: 0!important;
+	}
+
+	/*==== Select Inputs ====*/
+	.components-select-control__input {
+		margin-bottom: 0!important;
+		border: 1px solid rgba(#000, 0.15)!important;
+	}
+
+	/*==== Other ====*/
+	.components-tab-panel__tabs-item {
+		justify-content: center;
+		&:focus, &:active {
+			outline: 0 none;
+			border: 0 none;
+			box-shadow: inset 0 -4px 0 0 var(--wp-admin-theme-color);
+		}
+	}
+
+	/*==== Inserter Tabs ====*/
+	.block-editor-inserter__tabs .components-tab-panel__tabs {top: 58px;}
+}
+
+body {
+	--wp-admin-theme-color : var(--primary-color);
+	--wp-admin-theme-color-darker-10 : var(--primary-hover);
+	--wp-admin-theme-color-darker-20 : var(--primary-hover);
+	.components-button, .components-button svg {transition: all 0.3s;}
+}
+
+

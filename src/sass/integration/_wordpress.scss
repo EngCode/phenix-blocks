@@ -153,8 +153,11 @@ body[class*="block-editor"] {
 
 
 	/*==== Blocks Preview ====*/
-	.block-editor-block-preview__content {transform: scale(1)!important;}
-	.block-editor-block-preview__container {height: 100%;}
+	.block-editor-block-preview__container {
+		height: 100%;
+		iframe,.block-editor-block-preview__content {height: 100%!important;}
+		.block-editor-block-preview__content {transform: scale(1)!important;}
+	}
 
 	/*==== Phenix Blocks ====*/
 	.wp-block-phenix-section {

@@ -20,8 +20,8 @@
         <ul class="tabs-navigation reset-list flexbox fs-15 mb-15 border-reset border-bottom-1 border-solid border-alpha-10">
             <li data-tab="pds-settings" class="pdy-10 lineheight-100 me-30 tx-icon far fa-cog">General Settings</li>
             <li data-tab="pds-optimization" class="pdy-10 lineheight-100 me-30 tx-icon far fa-rocket">Optimization</li>
-            <li data-tab="pds-core-blocks" class="pdy-10 lineheight-100 me-30 tx-icon far fa-layer-group">Default Blocks</li>
             <li data-tab="pds-blocks" class="pdy-10 lineheight-100 me-30 tx-icon fas fa-layer-group">Phenix Blocks</li>
+            <li data-tab="pds-core-blocks" class="pdy-10 lineheight-100 me-30 tx-icon far fa-layer-group">Core Blocks</li>
         </ul>
         <!-- Panels Group -->
         <div class="tabs-panels pdb-15 divider-b mb-15">
@@ -100,6 +100,10 @@
                     <!-- // Column -->
                 </div>
                 <!-- // Grid -->
+            </div>
+            <!-- Panel -->
+            <div class="tab-panel" id="pds-blocks">
+                Phenix Blocks
             </div>
             <!-- Panel -->
             <div class="tab-panel" id="pds-core-blocks">
@@ -287,10 +291,6 @@
                     <!-- // Column -->
                 </div>
                 <!-- // Grid -->
-            </div>
-            <!-- Panel -->
-            <div class="tab-panel" id="pds-blocks">
-                Phenix Blocks
             </div>
             <!-- // Panel -->
         </div>

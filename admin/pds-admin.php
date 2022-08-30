@@ -27,6 +27,9 @@
         */
 
         function create_pds_options() {
+            //===> General Settings <===//
+            register_setting('pds-admin', 'pds_admin_style');
+
             //===> Optimization <===//
             register_setting('pds-admin', 'head_cleaner');
             register_setting('pds-admin', 'wpc7_cleaner');
@@ -35,8 +38,7 @@
             register_setting('pds-admin', 'comments_css');
             register_setting('pds-admin', 'newsletter_css');
             register_setting('pds-admin', 'jquery_remove');
-            //===> Admin UI <===//
-            register_setting('pds-admin', 'pds_admin_style');
+
             //===> Core Blocks <===//
             register_setting('pds-admin', 'pds_core_quote');
             register_setting('pds-admin', 'pds_core_preformatted');

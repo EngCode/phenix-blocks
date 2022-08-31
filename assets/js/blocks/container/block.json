@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "phenix/container",
   "version": "0.1.0",
-  "title": "PDS Container",
+  "title": "Container",
   "keywords": [
     "pds",
     "phenix",

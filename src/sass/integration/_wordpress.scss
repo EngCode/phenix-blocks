@@ -207,7 +207,7 @@ body[class*="block-editor"] {
 	.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
 
 	/*==== Borders ====*/
-	.options-list .px-active {outline: 1px dashed var(--primary-color);}
+	.options-list .px-active {outline: 1px dashed var(--primary-color);border-color: var(--primary-color);}
 	.borderd-group .btn:not(:last-child) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
 
 	/*==== Select Buttons ====*/

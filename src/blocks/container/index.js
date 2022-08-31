@@ -29,18 +29,41 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
+        let container_names = '';
 
-        //===> .Check Background Image. <===//
-        if (attributes.px_bg_type === 'image') blockProps["data-src"] = attributes.px_bg;
+        //===> Render Size <===//
+        if (attributes.size) container_names += attributes.size;
+
+        //===> Render Alignment <===//
+        if (attributes.isFlexbox) {
+            container_names += ' flexbox';
+            if (attributes.flex_align) container_names +=` ${attributes.flex_align}`;
+        }
+
+        //===> Render Color <===//
+        if (attributes.color) container_names += ` ${attributes.color}`;
+
+        //===> Render Background <===//
+        if (attributes.background) {
+            //===> Image Background <===//
+            if (attributes.bg_type === 'image') blockProps["data-src"] = attributes.background;
+            //===> Name Background <===//
+            else blockProps.className += ` ${attributes.background}`;
+            //===> Background Rotation <===//
+            if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
+        }
+
+        //===> for Section Convert <===//
+        if (!attributes.isSection) blockProps.className += ` ${container_names}`;
 
         //===> Render <===//
         return (
-            <TagName { ...blockProps }>
-                {attributes.container ? 
-                    <div className={`${attributes.size}${attributes.container_flex ? ' flexbox' : ''} ${attributes.flex_align}`}>
+            <TagName {...blockProps}>
+                {attributes.isSection ?
+                    <div className={container_names}>
                         <InnerBlocks.Content />
                     </div>
-                : 
+                :
                     <InnerBlocks.Content />
                 }
             </TagName>

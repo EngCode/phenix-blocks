@@ -119,27 +119,23 @@ export default class PhenixBackground extends Component {
     
                 //===> Rotate Gradient <===//
                 if (btnType === 'rotate') {
-                    //===> Clear Exisitng Directions <===//
-                    let current = options.value,
-                        saved   = value.replaceAll('   ', '');
-    
-                    //===> Clear Exisitng Directions <===//
-                    this.state.rotation.forEach(name => {
-                        if (name !== btnValue) {
-                            saved = saved.replaceAll(name, '').replaceAll(' n','');
-                            if (current) options.value = current.replaceAll(name, '').replaceAll(' n','');
-                        };
+                    //===> Get Current Value <===//
+                    let current = options.value || value;
+
+                    //===> Clear Current Rotation <===//
+                    this.state.rotation.forEach(rotate => {
+                        if (current.includes(rotate)) current = current.replace(` ${rotate}`, '');
                     });
-    
-                    //===> Set New Direction <===//
-                    options.type     = 'gradient';
-                    options.value    = saved;
-                    options.rotation = btnValue;
-                } else {
-                    //===> Set Background <===//
+
+                    //===> Set Rotation <===//
+                    options.value = `${current} ${btnValue}`;
+                }
+
+                //===> Set Background Name <===//
+                else {
                     options.type  = btnType;
                     options.value = btnValue;
-                    options.rotation = null;
+                    if (btnType !== 'gradient') options.rotation = null;
                 }
             }
             //===> Image Type <===//
@@ -148,7 +144,6 @@ export default class PhenixBackground extends Component {
                 options.type  = 'image';
                 options.value = clicked.url;
             }
-
             //===> Return Options <===//
             return onChange(options);
         }

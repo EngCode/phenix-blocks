@@ -1,8 +1,8 @@
 {
     "apiVersion": 2,
-	"name": "phenix/section",
+	"name": "phenix/container",
 	"version": "0.1.0",
-	"title": "PDS Section",
+	"title": "PDS Container",
     "keywords": ["pds", "phenix", "section", "group", "wrapper", "container"],
 	"category": "design",
 	"description": "Section and Container to Group the Elements Tegother from Phenix Blocks.",
@@ -20,12 +20,12 @@
             "default": false
         },
 
-        "container" : {
+        "isSection" : {
             "type": "boolean",
-            "default": true
+            "default": false
         },
 
-        "container_flex" : {
+        "isFlexbox" : {
             "type": "boolean",
             "default": false
         },
@@ -37,25 +37,25 @@
 
         "size" : {
             "type": "string",
-            "default": "container"
+            "default": ""
         },
 
-        "px_bg_type" : {
+        "bg_type" : {
             "type" : "string",
             "default" : "color"
         },
 
-        "px_bg_rotate" : {
+        "bg_rotate" : {
             "type" : "string",
             "default" : ""
         },
 
-        "px_bg" : {
+        "background" : {
             "type" : "string",
             "default" : ""
         },
 
-        "px_color" : {
+        "color" : {
             "type" : "string",
             "default" : ""
         }

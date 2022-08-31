@@ -103,3 +103,28 @@
 .tx-icon::before {margin-#{$direction-end}: 7px;}
 .mouse-pointer {cursor: pointer;}
 .mouse-normal {cursor: none;}
+
+/*==== Custom Scrollbar ====*/
+.px-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(#000, 0.15) rgba(#000, 0.05);
+    &::-webkit-scrollbar-track {background-color: rgba(#000, 0.05);}
+    &::-webkit-scrollbar-thumb {background-color: rgba(#000, 0.15);}
+    &::-webkit-scrollbar {
+        width: 10px;
+        box-shadow: inset 1px 0 0 0 1px rgba(#000, 0.1);
+    }
+}
+
+/*==== Icons Fix ====*/
+.icon-fix {
+    top: -2px;
+    position: relative;
+}
+
+/*==== Text Cliping ====*/
+.bg-clip-text {
+    @extend .color-transparent;
+    -webkit-background-clip: text;
+        background-clip: text;
+}

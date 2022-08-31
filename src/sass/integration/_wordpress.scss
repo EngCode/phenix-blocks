@@ -100,6 +100,14 @@ body[class*="block-editor"] {
 
 	.block-editor-block-inspector__advanced {border-bottom: 1px solid rgba(#000, 0.10);}
 
+	/*==== Sidebar Fix ====*/
+	.interface-interface-skeleton__sidebar {
+		@extend .px-scrollbar;
+		// overflow-x: hidden!important;
+		// padding-#{$direction-end}: 15px;
+		.components-panel__body.is-opened {margin-#{$direction-end}: 5px;}
+	}
+
 	/*==== Radius Groups ====*/
 	.components-button-group {
 		display: flex;
@@ -160,7 +168,7 @@ body[class*="block-editor"] {
 	}
 
 	/*==== Phenix Blocks ====*/
-	.wp-block-phenix-section {
+	.wp-block-phenix-container {
 		padding: min(20px, 150px);
 		outline: 1px dashed var(--primary-color);
 		/*==== Container ====*/
@@ -235,3 +243,43 @@ body[class*="block-editor"] {
 .pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
 .pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
 .pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}
+
+/*==== Phenix Design System ====*/
+body:not(.wp-admin), #site-editor {
+    /*==== Global ====*/
+    --body-bg : var(--wp--preset--color--background);
+
+    /*==== Primary Color ====*/
+    --primary-color   : var(--wp--preset--color--primary);
+    --primary-hover   : var(--wp--preset--color--primary-hvr);
+    --primary-reverse : var(--wp--preset--color--primary-txt);
+    --primary-offwhite: var(--wp--preset--color--primary-offwhite);
+
+    /*==== Secondary Color ====*/
+    --secondary-color   : var(--wp--preset--color--secondary);
+    --secondary-dark    : var(--wp--preset--color--secondary-dark);
+    --secondary-hover   : var(--wp--preset--color--secondary-hvr);
+    --secondary-reverse : var(--wp--preset--color--secondary-txt);
+    --secondary-offwhite: var(--wp--preset--color--secondary-offwhite);
+
+    /*=== Assets Colors ====*/
+    --links-color   : var(--wp--preset--color--links);
+    --info-color    : var(--wp--preset--color--info);
+    --gray-color    : var(--wp--preset--color--gray);
+    --dark-color    : var(--wp--preset--color--dark);
+    --success-color : var(--wp--preset--color--success);
+    --danger-color  : var(--wp--preset--color--danger);
+    --warning-color : var(--wp--preset--color--warning);
+    --disable-color : var(--wp--preset--color--disable);
+
+    /*=== Assets Lighter ====*/
+    --info-light    : var(--wp-preset-color--info-offwhite);
+    --gray-light    : var(--wp-preset-color--gray-offwhite);
+    --dark-light    : var(--wp-preset-color--dark-offwhite);
+    --success-light : var(--wp-preset-color--success-offwhite);
+    --danger-light  : var(--wp-preset-color--danger-offwhite);
+    --warning-light : var(--wp-preset-color--warning-offwhite);
+
+    /*=== Typography Colors ===*/
+    --typography-color : var(--wp-preset-color--text);
+}

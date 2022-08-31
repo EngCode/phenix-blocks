@@ -6,6 +6,7 @@ import {
 } from '@wordpress/components';
 
 import {
+    RichText,
     InnerBlocks,
     useBlockProps,
     useInnerBlocksProps,
@@ -23,9 +24,18 @@ import FlexAlignment from '../px-components/flex-alignment';
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
     const set_size = size => setAttributes({ size });
+    const set_color = color => setAttributes({ color });
     const set_tagName = tagName => setAttributes({ tagName });
-    const set_container = container => setAttributes({ container });
-    const set_container_flex = container_flex => setAttributes({ container_flex });
+    const set_isSection = isSection => setAttributes({ isSection });
+    const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
+    const set_alignment = alignment => setAttributes({ flex_align : alignment });
+    //===> Set Background <===//
+    const set_background = background => {
+        //=== Set New Value ===//
+        setAttributes({ background : background.value });
+        //===> Update Rotation <===//
+        if (attributes.bg_type === 'gradient' && background.rotation) setAttributes({bg_rotate : background.rotation});
+    }
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -36,7 +46,7 @@ export default function Edit({ attributes, setAttributes }) {
     const setPhenixView = () => {
         //===> Check Site Editor <===//
         let siteEditor = window.frames['editor-canvas'],
-            blockElement = '.wp-block-design-px-section[data-src]';
+            blockElement = '.px-media';
 
         //===> Get the Element from Site Editor <===//
         if (siteEditor) {
@@ -47,74 +57,6 @@ export default function Edit({ attributes, setAttributes }) {
 
         //===> Set Background <===//
         if (!siteEditor) Phenix(blockElement).multimedia();
-    }
-
-    //===> Set Background <===//
-    const set_background = background => {
-        //===> Original Classes <===//
-        let original = attributes.className?.replaceAll(/\s{2,}/g, ' ').replace(' px-media', ''),
-            current  = attributes.px_bg,
-            rotate = attributes.px_bg_rotate;
-
-        //===> Remove Current Value <===//
-        if (attributes.px_bg) original = original.replace(current, '');
-        if (rotate) original = original.replace(rotate, '');
-
-        //===> Update Background <===//
-        setAttributes({
-            px_bg : background.value,
-            px_bg_type : background.type,
-        });
-
-        //===> Update Rotation <===//
-        if (background.rotation) {
-            original = original.replace(rotate, '');
-            setAttributes({px_bg_rotate : background.rotation,})
-        }
-
-        //===> Set Background [Colors, Gradients] <===//
-        if (background.type != 'image') {
-            setAttributes({className : `${original} ${background.value}${background.rotation ? ' '+background.rotation : ''}`});
-        }
-
-        //===> Set Backgeround Image <===//
-        else if (background.value) {
-            //===> Set Background <===//
-            setPhenixView();
-            setAttributes({className : `${original} px-media`});
-        }
-    }
-
-    //===> Set Color <===//
-    const set_color = color => {
-        //===> Get Value <===//
-        let current  = attributes.px_color,
-            original = attributes.className?.replace(/\s{2,}/g, ' ');
-
-        //===> Remove Current Value <===//
-        if (current) original = original.replace(current, '');
-
-        //===> Set New Value <===//
-        setAttributes({
-            px_color  : color,
-            className : `${original} ${color}`,
-        });
-    }
-
-    //===> Container Options <===//
-    const container_options = {
-        size : attributes.size,
-        flexbox : attributes.container_flex ? ' flexbox' : '',
-        alignment : attributes.flex_align
-    }
-
-    //===> Set Alignment <===//
-    const set_alignment = alignment => setAttributes({flex_align : alignment});
-
-    //===> Background Image <===//
-    if (attributes.px_bg_type === 'image') {
-        blockProps["data-src"] = attributes.px_bg;
-        setPhenixView();
     }
 
     //===> Component is Ready <===//
@@ -135,12 +77,36 @@ export default function Edit({ attributes, setAttributes }) {
         }
     });
 
-    //===> Container <===//
-    if (attributes.container) innerBlocksProps.className += ` ${container_options.size}${container_options.flexbox} ${container_options.alignment}`;
+    //===> for Section Convert <===//
+    let container_element = blockProps;
+    if (attributes.isSection) container_element = innerBlocksProps;
+
+    //===> Render Size <===//
+    if (attributes.size) container_element.className += ` ${attributes.size}`;
+
+    //===> Render Alignment <===//
+    if (attributes.isFlexbox) {
+        container_element.className += ' flexbox';
+        if (attributes.flex_align) container_element.className +=` ${attributes.flex_align}`;
+    }
+
+    //===> Render Color <===//
+    if (attributes.color) container_element.className += ` ${attributes.color}`;
+
+    //===> Render Background <===//
+    if (attributes.background) {
+        //===> Image Background <===//
+        if (attributes.bg_type === 'image') {
+            blockProps["data-src"] = attributes.background;
+            setPhenixView();
+        }
+        //===> Name Background <===//
+        else blockProps.className += ` ${attributes.background}`;
+    }
 
     //===> Render <===//
     return (<>
-        {/* //====> Controls Layout <====// */}
+        {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
             <PanelBody title="Section Settings">
@@ -154,13 +120,9 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Footer <footer>', value: 'footer' },
                 ]}/>
 
-                {/*=== Container ===*/}
-                <ToggleControl label="With Container" checked={attributes.container} onChange={set_container}/>
-            </PanelBody>
-            {/*=== Container Options ===*/}
-            {attributes.container ? <PanelBody title="Container" initialOpen={false}>
                 {/*=== Container Size ===*/}
                 <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
+                    { label: 'None',   value: '' },
                     { label: 'Small',  value: 'container-sm' },
                     { label: 'Medium', value: 'container-md' },
                     { label: 'Normal', value: 'container' },
@@ -168,28 +130,31 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Full Width',  value: 'container-fluid' },
                 ]}/>
 
-                {/*=== Container Size ===*/}
-                <ToggleControl key="container_flex" label="Flex Container" checked={attributes.container_flex} onChange={set_container_flex}/>
-            
+                {/*=== isSection ===*/}
+                <ToggleControl label="Section Wrapper" checked={attributes.isSection} onChange={set_isSection}/>
+
+                {/*===  isFlexbox ===*/}
+                <ToggleControl key="isFlexbox" label="Flex Container" checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+            </PanelBody>
+            {/*=== Container Options ===*/}
+            {attributes.isFlexbox ? <PanelBody title="Flexbox" initialOpen={false}>
                 {/*=== Flexbox Alignment ===*/}
-                {attributes.container_flex ? 
-                    <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
-                :''}
+                <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>
                 {/* Text Color */}
-                <PhenixColor key="px-color" onChange={set_color} value={attributes.px_color} />
+                <PhenixColor key="px-color" onChange={set_color} value={attributes.color} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Background" initialOpen={false}>
-                <PhenixBackground key="px-bg" onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
+                <PhenixBackground key="px-bg" onChange={set_background} type={attributes.bg_type} value={attributes.background} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
-        {/* //====> Edit Layout <====// */}
-        {attributes.preview ? 
+        {/*====> Edit Layout <====*/}
+        {attributes.preview ?
             <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/section.jpg" alt="" className="fluid" />
         :
         <TagName {...blockProps}>

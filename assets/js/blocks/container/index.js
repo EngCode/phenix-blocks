@@ -1038,7 +1038,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
         className: "px-gb-component"
       }, /*#__PURE__*/React.createElement("label", {
         className: "mb-10"
-      }, "Select Color"), /*#__PURE__*/React.createElement("div", {
+      }, "Select Text Color"), /*#__PURE__*/React.createElement("div", {
         className: "flexbox options-list"
       }, makeButtons(pxPallete.main, 'main'), /*#__PURE__*/React.createElement("span", {
         className: "border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"

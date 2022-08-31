@@ -73,13 +73,13 @@
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="comments_css" <?php if (get_option('comments_css')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Remove Comments CSS</span>
+                            <span>Clean Comments CSS</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="adminbar_css" <?php if (get_option('adminbar_css')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Remove Admin-Bar CSS</span>
+                            <span>Clean Admin-Bar CSS</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">

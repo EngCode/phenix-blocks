@@ -556,6 +556,9 @@
 		/*==== GB Editor ====*/
 		.components-search-control__icon {right: 10px;}
 		.option-control .icon {margin-right: 5px;}
+
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover::after,
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within::after {border-right-color: #0f1422;}
 	}
 
 	/*==== RTL Only ====*/
@@ -573,6 +576,9 @@
 		/*==== GB Editor ====*/
 		.components-search-control__icon {left: 10px;}
 		.option-control .icon {margin-left: 5px;}
+
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover::after,
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within::after {border-left-color: #0f1422;}
 	}
 
 	.option-control {

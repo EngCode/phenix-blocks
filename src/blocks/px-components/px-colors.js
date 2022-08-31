@@ -85,7 +85,7 @@ export default class PhenixColors extends Component {
         return (
             <div className='px-gb-component'>
                 {/*===> Label <===*/}
-                <label className='mb-10'>Select Color</label>
+                <label className='mb-10'>Select Text Color</label>
                 {/*===> Background <===*/}
                 <div className='flexbox options-list'>
                     {makeButtons(pxPallete.main, 'main')}

@@ -155,6 +155,7 @@ function Edit(_ref) {
   if (attributes.background) {
     //===> Image Background <===//
     if (attributes.bg_type === 'image') {
+      blockProps.className += " px-media";
       blockProps["data-src"] = attributes.background;
       setPhenixView();
     } //===> Name Background <===//
@@ -732,7 +733,8 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
               btnValue = button.getAttribute('data-value'); //===> Rotate Gradient <===//
 
           if (btnType === 'rotate') {
-            //===> Get Current Value <===//
+            if (type !== 'gradient') return; //===> Get Current Value <===//
+
             var current = options.value || value,
                 currentArray = value.split(' '); //===> Clear Current Rotation <===//
 
@@ -1225,8 +1227,12 @@ __webpack_require__.r(__webpack_exports__);
 
     if (attributes.background) {
       //===> Image Background <===//
-      if (attributes.bg_type === 'image') blockProps["data-src"] = attributes.background; //===> Name Background <===//
+      if (attributes.bg_type === 'image') {
+        blockProps.className += " px-media";
+        blockProps["data-src"] = attributes.background;
+      } //===> Name Background <===//
       else blockProps.className += " ".concat(attributes.background); //===> Background Rotation <===//
+
 
       if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
     } //===> for Section Convert <===//

@@ -102,6 +102,7 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.background) {
         //===> Image Background <===//
         if (attributes.bg_type === 'image') {
+            blockProps.className += ` px-media`;
             blockProps["data-src"] = attributes.background;
             setPhenixView();
         }

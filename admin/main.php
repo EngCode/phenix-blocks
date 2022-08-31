@@ -37,6 +37,12 @@
                             <span class="switch"></span>
                             <span>Admin UI Re-Style</span>
                         </label>
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="pds_gfonts" <?php if (get_option('pds_gfonts')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span>Support Google Fonts</span>
+                        </label>
                         <!-- // Option Control -->
                     </div>
                     <!-- // Column -->
@@ -79,15 +85,29 @@
                         <hr />
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-                            <input type="checkbox" name="jquery_remove" <?php if (get_option('jquery_remove')) { echo 'checked'; } ?>>
-                            <span class="switch"></span>
-                            <span>Remove jQuery</span>
-                        </label>
-                        <!-- Option Control -->
-                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="wpc7_cleaner" <?php if (get_option('wpc7_cleaner')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
                             <span>Contact Form 7 Cleaner</span>
+                        </label>
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="wpc7_rm_styles" <?php if (get_option('wpc7_rm_styles')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span>Remove Contact Form 7 CSS</span>
+                        </label>
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="wpc7_rm_scripts" <?php if (get_option('wpc7_rm_scripts')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span>Remove Contact Form 7 JS</span>
+                        </label>
+                        <!-- Divider -->
+                        <hr />
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="jquery_remove" <?php if (get_option('jquery_remove')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span>Remove jQuery</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">

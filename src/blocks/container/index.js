@@ -46,9 +46,14 @@ registerBlockType(metadata, {
         //===> Render Background <===//
         if (attributes.background) {
             //===> Image Background <===//
-            if (attributes.bg_type === 'image') blockProps["data-src"] = attributes.background;
+            if (attributes.bg_type === 'image') {
+                blockProps.className += ` px-media`;
+                blockProps["data-src"] = attributes.background;
+            }
+
             //===> Name Background <===//
             else blockProps.className += ` ${attributes.background}`;
+
             //===> Background Rotation <===//
             if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
         }

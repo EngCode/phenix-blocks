@@ -1,3 +1,8 @@
+/*==== Layouts Fix ====*/
+body:not(.wp-admin) .wp-site-blocks {
+	--wp--style--block-gap: 0;
+}
+
 /*==== Admin-Bar Fix ====*/
 @media screen and (max-width: 782px) {
 	#wpadminbar {margin-top: -46px;}

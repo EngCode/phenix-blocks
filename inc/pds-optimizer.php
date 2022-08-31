@@ -57,6 +57,9 @@ if (!is_admin()) {
     
             //===> Remove WP Embed <===//
             wp_deregister_script('wp-embed');
+
+            //===> Remove Duotone SVG <===//
+            remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
         }
     
         add_action('init', 'head_optimize');
@@ -80,12 +83,17 @@ if (!is_admin()) {
     if (!function_exists('styles_optimize')) :
         function styles_optimize() {
             //===> Gutenberg Library <===//
+            wp_deregister_style('wp-block-library');
             wp_dequeue_style('wp-block-library');
     
             //===> Newsletter Plugin <===//
             if (get_option('newsletter_css')) {
                 wp_dequeue_style('newsletter');
             }
+            
+            //===> Remove Blocks Inline Style <===//
+            // wp_deregister_style('wp-block-template-part-inline');
+            // wp_deregister_style('wp-block-paragraph-inline');
         }
         
         add_action('wp_print_styles', 'styles_optimize', 100);
@@ -122,17 +130,34 @@ if (!is_admin()) {
     endif;
 
     //====> Contact Form 7 Optimizer <====//
-    if (class_exists('WPCF7') && get_option('wpc7_cleaner')) {
+    if (class_exists('WPCF7')) {
         //===== C7 Elements Fix =====//
-        add_filter('wpcf7_form_elements', function($content) {
-            $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
-            return $content;
-        });
+        if (get_option('wpc7_cleaner')) {
+            add_filter('wpcf7_form_elements', function($content) {
+                $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+                return $content;
+            });
+    
+            add_filter('wpcf7_autop_or_not', '__return_false');
+        }
 
-        add_filter('wpcf7_autop_or_not', '__return_false');
+        //===== CSS Remove =====//
+        if (get_option('wpc7_rm_styles') && !function_exists('wpcf7_deregister_styles')) {
+            function wpcf7_deregister_styles() {
+                wp_deregister_style('contact-form-7');
+            }
+    
+            add_action('wp_print_styles', 'wpcf7_deregister_styles', 100);
+        }
 
-        //===== CSS/JS Remove =====//
-        add_filter('wpcf7_load_css', '__return_false');
-        add_filter('wpcf7_load_js', '__return_false');
+        //===== JavaScript Remove =====//
+        if (get_option('wpc7_rm_scripts') && !function_exists('wpcf7_deregister_scripts')) {
+            function wpcf7_deregister_scripts() {
+                wp_deregister_script('contact-form-7');
+            }
+     
+            add_action('wp_enqueue_scripts', 'wpcf7_deregister_scripts', 100);
+        }
+
     }
 }

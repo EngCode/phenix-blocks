@@ -29,10 +29,13 @@
         function create_pds_options() {
             //===> General Settings <===//
             register_setting('pds-admin', 'pds_admin_style');
+            register_setting('pds-admin', 'pds_gfonts');
 
             //===> Optimization <===//
             register_setting('pds-admin', 'head_cleaner');
             register_setting('pds-admin', 'wpc7_cleaner');
+            register_setting('pds-admin', 'wpc7_rm_styles');
+            register_setting('pds-admin', 'wpc7_rm_scripts');
             register_setting('pds-admin', 'adminbar_css');
             register_setting('pds-admin', 'adminbar_disable');
             register_setting('pds-admin', 'comments_css');

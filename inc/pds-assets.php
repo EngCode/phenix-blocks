@@ -101,3 +101,35 @@ if (!function_exists('pds_admin_style')) :
         add_action('admin_enqueue_scripts', 'phenix_assets');
     }
 endif;
+
+//=====> Phenix Scripts <=====//
+if (!function_exists('pds_blocks_script')) :
+    /**
+     * Activate the Javascript Plugins of Phenix
+     * @since Phenix Blocks 1.0
+     * @return void
+    */
+
+    function pds_blocks_script() {
+        include(dirname(__FILE__) . '/pds-scripts.php');
+    }
+
+    //===> Include Phenix Core in the Plguin Page <===//
+    add_action('wp_footer', 'pds_blocks_script');
+endif;
+
+//=====> Phenix Styles <=====//
+if (!function_exists('pds_blocks_styles')) :
+    /**
+     * Include Third-Party Stylesheets of Phenix
+     * @since Phenix Blocks 1.0
+     * @return void
+    */
+
+    function pds_blocks_styles() {
+        include(dirname(__FILE__) . '/pds-styles.php');
+    }
+
+    //===> Include Phenix Core in the Plguin Page <===//
+    add_action('wp_enqueue_scripts', 'pds_blocks_styles');
+endif;

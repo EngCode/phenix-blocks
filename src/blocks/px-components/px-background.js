@@ -119,6 +119,8 @@ export default class PhenixBackground extends Component {
     
                 //===> Rotate Gradient <===//
                 if (btnType === 'rotate') {
+                    if (type !== 'gradient') return;
+
                     //===> Get Current Value <===//
                     let current = options.value || value,
                         currentArray = value.split(' ');

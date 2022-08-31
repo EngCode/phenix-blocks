@@ -19,18 +19,18 @@
         <!-- Tabs Navigation -->
         <ul class="tabs-navigation reset-list flexbox fs-15 mb-15 border-reset border-bottom-1 border-solid border-alpha-10">
             <li data-tab="pds-settings" class="pdy-10 lineheight-100 me-30 tx-icon far fa-cog">General Settings</li>
-            <li data-tab="pds-optimization" class="pdy-10 lineheight-100 me-30 tx-icon far fa-rocket">Optimization</li>
             <li data-tab="pds-blocks" class="pdy-10 lineheight-100 me-30 tx-icon fas fa-layer-group">Phenix Blocks</li>
+            <li data-tab="pds-optimization" class="pdy-10 lineheight-100 me-30 tx-icon far fa-rocket">Optimization</li>
             <li data-tab="pds-core-blocks" class="pdy-10 lineheight-100 me-30 tx-icon far fa-layer-group">Core Blocks</li>
         </ul>
         <!-- Panels Group -->
         <div class="tabs-panels pdb-15 divider-b mb-15">
             <!-- Panel -->
-            <div class="tab-panel" id="pds-settings">
+            <div class="tab-panel pdx-10" id="pds-settings">
                 <!-- Grid -->
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-12 col-md-6 w-max-480 border-reset border-end-1 border-alpha-10 border-solid">
+                    <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="pds_admin_style" <?php if (get_option('pds_admin_style')) { echo 'checked'; } ?>>
@@ -50,16 +50,22 @@
                 <!-- // Grid -->
             </div>
             <!-- Panel -->
-            <div class="tab-panel" id="pds-optimization">
+            <div class="tab-panel pdx-10" id="pds-optimization">
                 <!-- Grid -->
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-12 col-md-6 w-max-480 border-reset border-end-1 border-alpha-10 border-solid">
+                    <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="head_cleaner" <?php if (get_option('head_cleaner')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
                             <span>Header Optimizer</span>
+                        </label>
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="jquery_remove" <?php if (get_option('jquery_remove')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span>Remove jQuery</span>
                         </label>
                         <!-- Divider -->
                         <hr />
@@ -81,34 +87,30 @@
                             <span class="switch"></span>
                             <span>Disable Admin-Bar for Users</span>
                         </label>
-                        <!-- Divider -->
-                        <hr />
+                        <!-- // Option Control -->
+                    </div>
+                    <!-- Column -->
+                    <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-                            <input type="checkbox" name="wpc7_cleaner" <?php if (get_option('wpc7_cleaner')) { echo 'checked'; } ?>>
+                            <input type="checkbox" name="wpc7_rm_scripts" <?php if (get_option('wpc7_rm_scripts')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Contact Form 7 Cleaner</span>
+                            <span>CF7 Remove JS</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="wpc7_rm_styles" <?php if (get_option('wpc7_rm_styles')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Remove Contact Form 7 CSS</span>
+                            <span>CF7 Remove CSS</span>
                         </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-                            <input type="checkbox" name="wpc7_rm_scripts" <?php if (get_option('wpc7_rm_scripts')) { echo 'checked'; } ?>>
+                            <input type="checkbox" name="wpc7_cleaner" <?php if (get_option('wpc7_cleaner')) { echo 'checked'; } ?>>
                             <span class="switch"></span>
-                            <span>Remove Contact Form 7 JS</span>
+                            <span>CF7 HTML Cleaner</span>
                         </label>
                         <!-- Divider -->
                         <hr />
-                        <!-- Option Control -->
-                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-                            <input type="checkbox" name="jquery_remove" <?php if (get_option('jquery_remove')) { echo 'checked'; } ?>>
-                            <span class="switch"></span>
-                            <span>Remove jQuery</span>
-                        </label>
                         <!-- Option Control -->
                         <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
                             <input type="checkbox" name="newsletter_css" <?php if (get_option('newsletter_css')) { echo 'checked'; } ?>>
@@ -122,11 +124,28 @@
                 <!-- // Grid -->
             </div>
             <!-- Panel -->
-            <div class="tab-panel" id="pds-blocks">
-                Phenix Blocks
+            <div class="tab-panel pdx-10" id="pds-blocks">
+                <!-- Notes -->
+                <p class="mb-10 fs-15">by default phenix blocks are enabled to replace the core blocks wthin gutenberg, and in the options below you can choose which "phenix blocks" to enable, be sure to select only the blocks that you need and will use.</p>
+
+                <!-- Grid -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
+                        <!-- Option Control -->
+                        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
+                            <input type="checkbox" name="pds_container_block" <?php if (get_option('pds_container_block')) { echo 'checked'; } ?>>
+                            <span class="switch"></span>
+                            <span><img src="<?php echo $icons_url; ?>container.svg" class="icon x2"> Phenix/Container</span>
+                        </label>
+                        <!-- // Option Control -->
+                    </div>
+                    <!-- // Column -->
+                </div>
+                <!-- // Grid -->
             </div>
             <!-- Panel -->
-            <div class="tab-panel" id="pds-core-blocks">
+            <div class="tab-panel pdx-10" id="pds-core-blocks">
                 <p class="mb-10 fs-15">by default phenix blocks disables the uncessary default core blocks wthin gutenberg to replace it with its own, and in the options below you can choose which core blocks to enable, be sure to select only the blocks that you need and will use.</p>
                 <!-- Grid -->
                 <div class="row">

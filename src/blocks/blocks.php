@@ -31,7 +31,9 @@
             $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
             //====> Phenix Section <====//
-            wp_enqueue_script('section', $blocksPath.'section/index.js', $blocksDependencies, NULL , true);
+            if (get_option('pds_container_block')) {
+                wp_enqueue_script('section', $blocksPath.'container/index.js', $blocksDependencies, NULL , true);
+            }
 
             //====> Phenix Wrapper <====//
             // wp_enqueue_script('px-wrapper', $blocksPath.'px-wrapper/index.js', $blocksDependencies, NULL , true);

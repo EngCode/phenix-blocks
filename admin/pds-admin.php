@@ -42,6 +42,9 @@
             register_setting('pds-admin', 'newsletter_css');
             register_setting('pds-admin', 'jquery_remove');
 
+            //===> Phenix Blocks <===//
+            register_setting('pds-admin', 'pds_container_block');
+
             //===> Core Blocks <===//
             register_setting('pds-admin', 'pds_core_quote');
             register_setting('pds-admin', 'pds_core_preformatted');

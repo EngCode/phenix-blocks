@@ -6,7 +6,7 @@ module.exports = {
     ...defaultConfig,
     mode: "development",
     entry: {
-        'section': './src/blocks/container/index.js',
+        'container': './src/blocks/container/index.js',
         // 'px-wrapper': './src/blocks/px-wrapper/index.js',
         // 'px-button': './src/blocks/px-button/index.js',
         // 'px-logo': './src/blocks/px-logo/index.js',

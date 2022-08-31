@@ -34,7 +34,11 @@ export default function Edit({ attributes, setAttributes }) {
         //=== Set New Value ===//
         setAttributes({ background : background.value });
         //===> Update Rotation <===//
-        if (attributes.bg_type === 'gradient' && background.rotation) setAttributes({bg_rotate : background.rotation});
+        if (attributes.bg_type === 'gradient' && background.rotation) {
+            setAttributes({bg_rotate : background.rotation});
+        } else {
+            setAttributes({ bg_type : background.type });
+        }
     }
 
     //===> Get Block Properties <===//

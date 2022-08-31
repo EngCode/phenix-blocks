@@ -90,9 +90,15 @@ function Edit(_ref) {
       background: background.value
     }); //===> Update Rotation <===//
 
-    if (attributes.bg_type === 'gradient' && background.rotation) setAttributes({
-      bg_rotate: background.rotation
-    });
+    if (attributes.bg_type === 'gradient' && background.rotation) {
+      setAttributes({
+        bg_rotate: background.rotation
+      });
+    } else {
+      setAttributes({
+        bg_type: background.type
+      });
+    }
   }; //===> Get Block Properties <===//
 
 
@@ -727,14 +733,21 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
           if (btnType === 'rotate') {
             //===> Get Current Value <===//
-            var current = options.value || value; //===> Clear Current Rotation <===//
+            var current = options.value || value,
+                currentArray = value.split(' '); //===> Clear Current Rotation <===//
 
-            _this2.state.rotation.forEach(function (rotate) {
-              if (current.includes(rotate)) current = current.replace(" ".concat(rotate), '');
-            }); //===> Set Rotation <===//
+            if (currentArray.length > 0) {
+              _this2.state.rotation.forEach(function (rotate) {
+                //=== for each name in value ===//
+                currentArray.forEach(function (item) {
+                  if (item === rotate) current = current.replace(" ".concat(item), '');
+                });
+              });
+            } //===> Set Rotation <===//
 
 
             options.value = "".concat(current, " ").concat(btnValue);
+            options.type = 'gradient';
           } //===> Set Background Name <===//
           else {
             options.type = btnType;
@@ -756,7 +769,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var makeButtons = function makeButtons(list, type) {
         var output = []; //===> for each item <===//
 
-        for (var index = 0; index < list.length; index++) {
+        var _loop = function _loop(index) {
           //===> Get Value <===//
           var name = list[index]; //===> Convert to Title <===//
 
@@ -766,15 +779,29 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
           title = title.replace(/^\w/, function (c) {
             return c.toUpperCase();
-          });
+          }); //===> Check Active <===//
+
+          var current = value.split(' '),
+              isActive = ''; //=== for each name in value ===//
+
+          if (current.length > 0) {
+            current.forEach(function (item) {
+              if (item === name) isActive = 'px-active';
+            });
+          } else if (item === name) isActive = 'px-active';
+
           output.push( /*#__PURE__*/React.createElement("button", {
             key: "".concat(name, "-").concat(index),
             onClick: setBackground,
             title: title,
             "data-value": name,
             "data-type": type,
-            className: "".concat(name, " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(value.includes(name) ? 'px-active' : '')
+            className: "".concat(name, " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(isActive)
           }));
+        };
+
+        for (var index = 0; index < list.length; index++) {
+          _loop(index);
         } //===> Return Buttons <===//
 
 
@@ -785,25 +812,39 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var makeRotations = function makeRotations(list, type) {
         var output = []; //===> for each item <===//
 
-        for (var index = 0; index < list.length; index++) {
+        var _loop2 = function _loop2(index) {
           //===> Get Value <===//
           var name = list[index]; //===> Rotation <===//
 
           var rotation = name.replace('bg-grade-', '');
-          if (name.endsWith('n')) rotation = "-".concat(rotation.slice(0, -1)); //===> Get Value <===//
+          if (name.endsWith('n')) rotation = "-".concat(rotation.slice(0, -1)); //===> Check Active <===//
+
+          var current = value.split(' '),
+              isActive = ''; //=== for each name in value ===//
+
+          if (current.length > 0) {
+            current.forEach(function (item) {
+              if (item === name) isActive = 'px-active';
+            });
+          } else if (item === name) isActive = 'px-active'; //===> Get Value <===//
+
 
           output.push( /*#__PURE__*/React.createElement("button", {
             key: "".concat(name, "-").concat(index),
             "data-type": type,
             onClick: setBackground,
             "data-value": name,
-            className: "btn square tiny light ".concat(value.includes(name) ? 'px-active' : '')
+            className: "btn square tiny light ".concat(isActive)
           }, /*#__PURE__*/React.createElement("i", {
             className: "inline-block fas fa-arrow-to-bottom",
             style: {
               transform: "rotate(".concat(rotation, "deg)")
             }
           })));
+        };
+
+        for (var index = 0; index < list.length; index++) {
+          _loop2(index);
         } //===> Return Buttons <===//
 
 

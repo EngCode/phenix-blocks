@@ -120,15 +120,22 @@ export default class PhenixBackground extends Component {
                 //===> Rotate Gradient <===//
                 if (btnType === 'rotate') {
                     //===> Get Current Value <===//
-                    let current = options.value || value;
+                    let current = options.value || value,
+                        currentArray = value.split(' ');
 
                     //===> Clear Current Rotation <===//
-                    this.state.rotation.forEach(rotate => {
-                        if (current.includes(rotate)) current = current.replace(` ${rotate}`, '');
-                    });
+                    if (currentArray.length > 0) {
+                        this.state.rotation.forEach(rotate => {
+                            //=== for each name in value ===//
+                            currentArray.forEach(item => {
+                                if (item === rotate) current = current.replace(` ${item}`, '');
+                            });
+                        });
+                    }
 
                     //===> Set Rotation <===//
                     options.value = `${current} ${btnValue}`;
+                    options.type  = 'gradient';
                 }
 
                 //===> Set Background Name <===//
@@ -166,7 +173,18 @@ export default class PhenixBackground extends Component {
                     return c.toUpperCase();
                 });
 
-                output.push(<button key={`${name}-${index}`} onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value.includes(name) ? 'px-active' : ''}`}></button>);
+                //===> Check Active <===//
+                let current = value.split(' '),
+                    isActive = '';
+                
+                //=== for each name in value ===//
+                if (current.length > 0) {
+                    current.forEach(item => {
+                        if (item === name) isActive = 'px-active';
+                    });
+                } else if (item === name) isActive = 'px-active';
+
+                output.push(<button key={`${name}-${index}`} onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${isActive}`}></button>);
             }
 
             //===> Return Buttons <===//
@@ -185,8 +203,19 @@ export default class PhenixBackground extends Component {
                 let rotation = name.replace('bg-grade-', '');
                 if (name.endsWith('n')) rotation = `-${rotation.slice(0,-1)}`;
 
+                //===> Check Active <===//
+                let current = value.split(' '),
+                    isActive = '';
+                
+                //=== for each name in value ===//
+                if (current.length > 0) {
+                    current.forEach(item => {
+                        if (item === name) isActive = 'px-active';
+                    });
+                } else if (item === name) isActive = 'px-active';
+                
                 //===> Get Value <===//
-                output.push(<button key={`${name}-${index}`} data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${value.includes(name) ? 'px-active' : ''}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
+                output.push(<button key={`${name}-${index}`} data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${isActive}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
             }
 
             //===> Return Buttons <===//

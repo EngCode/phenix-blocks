@@ -29,6 +29,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_isSection = isSection => setAttributes({ isSection });
     const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
     const set_alignment = alignment => setAttributes({ flex_align : alignment });
+
     //===> Set Background <===//
     const set_background = background => {
         //=== Set New Value ===//

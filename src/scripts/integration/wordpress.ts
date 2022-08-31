@@ -46,7 +46,7 @@ Phenix(document).ready(ready => {
 
         //====> Adminbar <====//
         if (document.querySelector('#wpadminbar')) {
-            Phenix('body').css({"margin-top": "-32px","padding": "0"});
+            Phenix('body').css({"margin-top": "-24px","padding": "0"});
         }
     }
     /*====> for Admin Panel <====*/

@@ -7,15 +7,15 @@ module.exports = {
     mode: "development",
     entry: {
         'container': './src/blocks/container/index.js',
-        // 'px-wrapper': './src/blocks/px-wrapper/index.js',
-        // 'px-button': './src/blocks/px-button/index.js',
-        // 'px-logo': './src/blocks/px-logo/index.js',
-        // 'px-navigation': './src/blocks/px-navigation/index.js',
-        // 'px-head': './src/blocks/px-head/index.js',
-        // 'px-taxonomies': './src/blocks/px-taxonomies/index.js',
-        // 'px-query': './src/blocks/px-query/index.js',
-        // 'px-categories': './src/blocks/px-categories/index.js',
-        // 'px-languages': './src/blocks/px-languages/index.js'
+        'logo': './src/blocks/logo/index.js',
+        'navigation': './src/blocks/navigation/index.js',
+        // 'wrapper': './src/blocks/wrapper/index.js',
+        // 'button': './src/blocks/button/index.js',
+        // 'head': './src/blocks/head/index.js',
+        // 'taxonomies': './src/blocks/taxonomies/index.js',
+        // 'query': './src/blocks/query/index.js',
+        // 'categories': './src/blocks/categories/index.js',
+        // 'languages': './src/blocks/languages/index.js'
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

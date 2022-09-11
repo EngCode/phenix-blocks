@@ -35,8 +35,6 @@ export default function Edit({ attributes, setAttributes }) {
             method: 'POST',
             path: '/wp/v2/settings',
             data: { site_logo : value.id },
-        }).then(respond => {
-            console.log(respond);
         });
     }
 
@@ -49,8 +47,6 @@ export default function Edit({ attributes, setAttributes }) {
             path: '/wp/v2/settings',
             method: 'POST',
             data: { site_icon : value.id },
-        }).then(respond => {
-            console.log(respond);
         });
     };
 

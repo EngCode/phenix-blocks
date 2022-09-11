@@ -638,7 +638,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _px_components_media_uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../px-components/media-uploader */ "./src/blocks/px-components/media-uploader.js");
+/* harmony import */ var _media_uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./media-uploader */ "./src/blocks/px-components/media-uploader.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -916,7 +916,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         className: "px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10"
       }, makeRotations(this.state.rotation, 'rotate'))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox image-options ".concat(activeTab('image'))
-      }, /*#__PURE__*/React.createElement(_px_components_media_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/React.createElement(_media_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
         key: "image-background",
         value: type !== 'image' ? this.state.placeholder : value,
         setValue: setBackground

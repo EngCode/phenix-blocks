@@ -35,17 +35,14 @@
                 wp_enqueue_script('section', $blocksPath.'container/index.js', $blocksDependencies, NULL , true);
             }
 
-            //====> Phenix Wrapper <====//
-            // wp_enqueue_script('px-wrapper', $blocksPath.'px-wrapper/index.js', $blocksDependencies, NULL , true);
-
             //====> Phenix Button <====//
-            // wp_enqueue_script('px-button', $blocksPath.'px-button/index.js', $blocksDependencies, NULL , true);
-            
+            // wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
+
             //====> Phenix Logo <====//
-            // wp_enqueue_script('px-logo', $blocksPath.'px-logo/index.js', $blocksDependencies, NULL , true);
-            
+            wp_enqueue_script('px-logo', $blocksPath.'logo/index.js', $blocksDependencies, NULL , true);
+
             //====> Phenix Menu <====//
-            // wp_enqueue_script('px-menu', $blocksPath.'px-menu/index.js', $blocksDependencies, NULL , true);
+            wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
         }
 
         add_action('enqueue_block_editor_assets', 'phenix_blocks');

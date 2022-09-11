@@ -11,11 +11,10 @@ body:not(.wp-admin) .wp-site-blocks {
 /*==== Fix View-Port Animation ====*/
 .wp-admin .view-status {visibility: visible;}
 
-/*==== Newsletter Fix ====*/
+/*==== Plugins Fix ====*/
 [name="newsletter[]"] {display:none!important;}
-
-/*==== Honeypot Fix ====*/
 [name*="honeypot"] {left: 100%;visibility:hidden;position: absolute;}
+.wpcf7 .screen-reader-response, .wpcf7-response-output {display: none;}
 
 /*==== Table Block ====*/
 .wp-block-table {
@@ -288,3 +287,4 @@ body:not(.wp-admin), #site-editor {
     /*=== Typography Colors ===*/
     --typography-color : var(--wp-preset-color--text);
 }
+

@@ -70,7 +70,11 @@ PhenixElements.prototype.popup = function (options?:{
         //====> Show and Hide Modal <====//
         let show_modal = () => {
             //=====> Close Other Modals <=====//
-            document.querySelector('.px-popup.active') ? hide_modal('.px-popup.active > *') : '';
+            let current_active = document.querySelector('.px-popup.active');
+            if (current_active && current_active != popup) {
+                hide_modal('.px-popup.active > *');
+            }
+
             //==== Prevent Scroll ====//
             document.body.classList.add('overflow-hidden');
             //==== Open the Modal ====//
@@ -109,10 +113,7 @@ PhenixElements.prototype.popup = function (options?:{
                     media_url = thumbnail.getAttribute('href') || thumbnail.getAttribute('data-src');
 
                 //===> Fix URl <===//
-                if(!media_url) {
-                    thumbnail = Phenix(isClicked.target).ancestor('.px-lightbox');
-                    media_url = thumbnail.getAttribute('href') || thumbnail.getAttribute('data-src');
-                }
+                if(!media_url) media_url = thumbnail.getAttribute('src');
 
                 //===> Check Group <===//
                 let lightbox_group = thumbnail.getAttribute('data-group'),
@@ -156,6 +157,8 @@ PhenixElements.prototype.popup = function (options?:{
 
                 //===> if Single Media <===//
                 if (!lightbox_group) {
+                    //===> Remove Current <===//
+                    lightbox_wrapper.querySelector('.px-lightbox-media')?.remove();
                     //===> Create the Media Element if Not Exist <===//
                     Phenix(lightbox_wrapper).insert('append', media_type(media_url, thumbnail));
                 }

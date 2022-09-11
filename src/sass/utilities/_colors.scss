@@ -119,8 +119,10 @@
 .bg-grade-secondary {background-image: linear-gradient(var(--gradeient-rotation) ,var(--secondary-gradient));}
 
 /*==== Gradients Rotation ====*/
-.bg-grade-primary,.bg-grade-secondary,.bg-grade-warning,.bg-grade-danger,
-.bg-grade-water,.bg-grade-ice,.bg-grade-fire,.bg-grade-purple,.bg-grade-success {--gradeient-rotation : 0;}
+[class*="bg-grade-"] {
+    --gradeient-rotation: 0;
+    background-repeat: no-repeat;
+}
 
 /*==== Gradients Rotations ====*/
 .bg-grade-45   {--gradeient-rotation : 45deg;}

@@ -6,16 +6,16 @@ module.exports = {
     ...defaultConfig,
     mode: "development",
     entry: {
+        'button': './src/blocks/button/index.js',
+        'categories': './src/blocks/categories/index.js',
         'container': './src/blocks/container/index.js',
+        'head': './src/blocks/head/index.js',
+        'languages': './src/blocks/languages/index.js',
         'logo': './src/blocks/logo/index.js',
         'navigation': './src/blocks/navigation/index.js',
-        // 'wrapper': './src/blocks/wrapper/index.js',
-        // 'button': './src/blocks/button/index.js',
-        // 'head': './src/blocks/head/index.js',
-        // 'taxonomies': './src/blocks/taxonomies/index.js',
-        // 'query': './src/blocks/query/index.js',
-        // 'categories': './src/blocks/categories/index.js',
-        // 'languages': './src/blocks/languages/index.js'
+        'query': './src/blocks/query/index.js',
+        'taxonomies': './src/blocks/taxonomies/index.js',
+        // 'template-part': './src/blocks/template-part/index.js',
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

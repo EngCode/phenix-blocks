@@ -16,9 +16,9 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import PhenixBackground from '../px-components/px-background';
-import PhenixColor from '../px-components/px-colors';
-import FlexAlignment from '../px-components/flex-alignment';
+import PhenixBackground from '../_pds/px-background';
+import PhenixColor from '../_pds/px-colors';
+import FlexAlignment from '../_pds/flex-alignment';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

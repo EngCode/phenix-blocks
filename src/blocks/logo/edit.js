@@ -1,28 +1,25 @@
 //====> WP Modules <====//
 import {
     PanelBody,
-    SelectControl,
-    ToggleControl,
-    TextControl
+    TextControl,
+    ToggleControl
 } from '@wordpress/components';
 
 import {
-    InnerBlocks,
     useBlockProps,
     InspectorControls
 } from '@wordpress/block-editor';
 
-import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 //====> Phenix Modules <====//
-import MediaUploader from '../px-components/media-uploader';
+import MediaUploader from '../_pds/media-uploader';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Attributes <===//
-    const set_resposnive = resposnive => setAttributes({ resposnive });
     const set_size = size => setAttributes({ size });
+    const set_resposnive = resposnive => setAttributes({ resposnive });
     const set_use_fevicon = use_fevicon => setAttributes({ use_fevicon });
     const set_mobile_logo = mobile_logo => setAttributes({ mobile_logo: mobile_logo.url });
 
@@ -68,7 +65,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Add Properties <===//
     blockProps["href"]  = "javascript:void(0);";
     blockProps["title"] = attributes.title;
-    blockProps.className += ' inline-block';
+    if (!blockProps.className.includes('inline-block')) blockProps.className += ' inline-block';
 
     //===> Render <===//
     return (<>

@@ -108,7 +108,8 @@ function Edit(_ref) {
 
 
   blockProps["href"] = "javascript:void(0);";
-  blockProps["title"] = attributes.title; //===> Render <===//
+  blockProps["title"] = attributes.title;
+  blockProps.className += ' inline-block'; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -420,8 +421,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
 /*
  * ===> 01 - Block Data
  * ===> 02 - WordPress Modules
@@ -431,7 +430,6 @@ __webpack_require__.r(__webpack_exports__);
 //===> Block Data <===//
 
  //===> WordPress Modules <===//
-
 
 
  //===> Register Block <===//
@@ -458,7 +456,8 @@ __webpack_require__.r(__webpack_exports__);
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save(); //===> Add Properties <===//
 
     blockProps["href"] = attributes.link;
-    blockProps["title"] = attributes.title; //===> Render <===//
+    blockProps["title"] = attributes.title;
+    blockProps.className += ' inline-block'; //===> Render <===//
 
     return /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
       src: attributes.logo,

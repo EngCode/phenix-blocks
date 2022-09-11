@@ -68,6 +68,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Add Properties <===//
     blockProps["href"]  = "javascript:void(0);";
     blockProps["title"] = attributes.title;
+    blockProps.className += ' inline-block';
 
     //===> Render <===//
     return (<>

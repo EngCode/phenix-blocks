@@ -11,13 +11,7 @@ import metadata from './block.json';
 
 //===> WordPress Modules <===//
 import { registerBlockType } from '@wordpress/blocks';
-
-import {
-    InnerBlocks,
-    useBlockProps,
-} from '@wordpress/block-editor';
-
-import apiFetch from '@wordpress/api-fetch';
+import { useBlockProps } from '@wordpress/block-editor';
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -34,6 +28,7 @@ registerBlockType(metadata, {
         //===> Add Properties <===//
         blockProps["href"] = attributes.link;
         blockProps["title"] = attributes.title;
+        blockProps.className += ' inline-block';
         
         //===> Render <===//
         return (

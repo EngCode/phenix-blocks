@@ -58,18 +58,15 @@ if (!function_exists('phenix_assets')) :
         $assets_path = plugin_dir_path(__DIR__);
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
-        //====> Custom Fonts <====//
-        wp_enqueue_style('phenix-fonts', $assets_url. 'css/fonts.css');
-
         //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. 'css/fontawsome.5.14.css');
+        wp_enqueue_style('fontawesome', $assets_url. 'css/fontawsome.5.css');
 
         //====> Google Fonts <====//
-        if (!is_rtl()) :
-            wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
-        else :
-            wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
-        endif;
+        wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+        // if (!is_rtl()) :
+        // else :
+        //     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
+        // endif;
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');

@@ -159,10 +159,11 @@ body[class*="block-editor"] {
 	.components-base-control__field {
 		margin: 0;
 		margin-bottom: 10px;
-		.components-flex {height: auto!important;}
 		.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
 	}
 
+	.components-input-control__container {flex: none!important;}
+	.components-flex {height: auto!important;}
 
 	/*==== Blocks Preview ====*/
 	.block-editor-block-preview__container {

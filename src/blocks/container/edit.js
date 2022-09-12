@@ -96,7 +96,7 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Render Color <===//
-    if (attributes.color) container_element.className += ` ${attributes.color}`;
+    if (attributes.color) blockProps.className += ` ${attributes.color}`;
 
     //===> Render Background <===//
     if (attributes.background) {
@@ -106,8 +106,12 @@ export default function Edit({ attributes, setAttributes }) {
             blockProps["data-src"] = attributes.background;
             setPhenixView();
         }
+
         //===> Name Background <===//
         else blockProps.className += ` ${attributes.background}`;
+
+        //===> Background Rotation <===//
+        if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
     }
 
     //===> Render <===//

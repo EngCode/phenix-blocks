@@ -437,7 +437,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      main: ["bg-transparent", "bg-primary", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
+      main: ["bg-transparent", "bg-primary", "bg-primary-dark", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
       offwhite: ["bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-ffwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-mintcream", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-ivory", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush"],
       brands: ["bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
       gradients: ["bg-grade-primary", "bg-grade-secondary", "bg-grade-warning", "bg-grade-danger", "bg-grade-success", "bg-grade-water", "bg-grade-ice", "bg-grade-fire", "bg-grade-purple"],
@@ -741,7 +741,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
           onChange = _this$props.onChange; //===> Colors List <===//
 
       var pxPallete = {
-        main: ["color-inherit", "color-primary", "color-secondary", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
+        main: ["color-inherit", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
         brands: ["color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker"]
       }; //===> Set Background <===//
 
@@ -948,7 +948,7 @@ function Edit(_ref) {
   } //===> Render Color <===//
 
 
-  if (attributes.color) container_element.className += " ".concat(attributes.color); //===> Render Background <===//
+  if (attributes.color) blockProps.className += " ".concat(attributes.color); //===> Render Background <===//
 
   if (attributes.background) {
     //===> Image Background <===//
@@ -957,7 +957,10 @@ function Edit(_ref) {
       blockProps["data-src"] = attributes.background;
       setPhenixView();
     } //===> Name Background <===//
-    else blockProps.className += " ".concat(attributes.background);
+    else blockProps.className += " ".concat(attributes.background); //===> Background Rotation <===//
+
+
+    if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
   } //===> Render <===//
 
 

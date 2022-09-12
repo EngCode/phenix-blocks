@@ -178,7 +178,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      main: ["bg-transparent", "bg-primary", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
+      main: ["bg-transparent", "bg-primary", "bg-primary-dark", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
       offwhite: ["bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-ffwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-mintcream", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-ivory", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush"],
       brands: ["bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
       gradients: ["bg-grade-primary", "bg-grade-secondary", "bg-grade-warning", "bg-grade-danger", "bg-grade-success", "bg-grade-water", "bg-grade-ice", "bg-grade-fire", "bg-grade-purple"],
@@ -482,7 +482,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
           onChange = _this$props.onChange; //===> Colors List <===//
 
       var pxPallete = {
-        main: ["color-inherit", "color-primary", "color-secondary", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
+        main: ["color-inherit", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
         brands: ["color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker"]
       }; //===> Set Background <===//
 
@@ -607,6 +607,30 @@ function Edit(_ref) {
     return setAttributes({
       data_modal: data_modal
     });
+  };
+
+  var set_color = function set_color(color) {
+    return setAttributes({
+      color: color
+    });
+  };
+
+  var set_size = function set_size(size) {
+    return setAttributes({
+      size: size
+    });
+  };
+
+  var set_type = function set_type(type) {
+    return setAttributes({
+      type: type
+    });
+  };
+
+  var set_radius = function set_radius(radius) {
+    return setAttributes({
+      radius: radius
+    });
   }; //===> Link Settings <===//
 
 
@@ -626,54 +650,6 @@ function Edit(_ref) {
     return setAttributes({
       url: url
     });
-  }; //===> Set Type <===//
-
-
-  var set_type = function set_type(value) {
-    if (attributes.className) {
-      //===> Clear Old Name <===//
-      var _currentNames = attributes.className.replace(attributes.type, ''); //===> Set New Name <===//
-
-
-      setAttributes({
-        type: value,
-        className: "".concat(_currentNames, " ").concat(value)
-      });
-    } else setAttributes({
-      type: value
-    });
-  }; //===> Set Size <===//
-
-
-  var set_size = function set_size(value) {
-    if (attributes.className) {
-      //===> Clear Old Name <===//
-      var _currentNames2 = attributes.className.replace(attributes.size, ''); //===> Set New Name <===//
-
-
-      setAttributes({
-        size: value,
-        className: "".concat(_currentNames2, " ").concat(value)
-      });
-    } else setAttributes({
-      type: value
-    });
-  }; //===> Set Radius <===//
-
-
-  var set_radius = function set_radius(value) {
-    if (attributes.className) {
-      //===> Clear Old Name <===//
-      var _currentNames3 = attributes.className.replace(attributes.radius, ''); //===> Set New Name <===//
-
-
-      setAttributes({
-        radius: value,
-        className: "".concat(_currentNames3, " ").concat(value)
-      });
-    } else setAttributes({
-      radius: value
-    });
   }; //===> Set Background <===//
 
 
@@ -683,52 +659,27 @@ function Edit(_ref) {
 
     if (primaryColors.includes(background.value)) {
       background.value = background.value.replace('bg-', '');
-    } //===> Original Classes <===//
+    } //=== Set New Value ===//
 
-
-    var original = attributes.className.replaceAll(/\s{2,}/g, ' '),
-        current = attributes.px_bg,
-        rotate = attributes.px_bg_rotate; //===> Remove Current Value <===//
-
-    if (attributes.px_bg) original = original.replace(current, '');
-    if (rotate) original = original.replace(rotate, ''); //===> Update Background <===//
 
     setAttributes({
-      px_bg: background.value,
-      px_bg_type: background.type
+      background: background.value
     }); //===> Update Rotation <===//
 
-    if (background.rotation) {
-      original = original.replace(rotate, '');
+    if (attributes.bg_type === 'gradient' && background.rotation) {
       setAttributes({
-        px_bg_rotate: background.rotation
+        bg_rotate: background.rotation
       });
-    } //===> Set Background [Colors, Gradients] <===//
-
-
-    setAttributes({
-      className: "".concat(original, " ").concat(background.value).concat(background.rotation ? ' ' + background.rotation : '')
-    });
-  }; //===> Set Color <===//
-
-
-  var set_color = function set_color(color) {
-    //===> Get Value <===//
-    var current = attributes.px_color,
-        original = attributes.className.replace(/\s{2,}/g, ' '); //===> Remove Current Value <===//
-
-    if (current) original = original.replace(current, ''); //===> Set New Value <===//
-
-    setAttributes({
-      px_color: color,
-      className: "".concat(original, " ").concat(color)
-    });
+    } else {
+      setAttributes({
+        bg_type: background.type
+      });
+    }
   }; //===> Get Block Properties <===//
 
 
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
   var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
-  var currentNames = attributes.className;
   var labelControl = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     value: attributes.label,
     onChange: set_label,
@@ -738,39 +689,30 @@ function Edit(_ref) {
   }); //===> Set Default Values <===//
 
   var setDefault = function setDefault() {
-    if (currentNames) {
-      //===> Clear Spaces <===//
-      var current = currentNames.replace(/\s{2,}/g, ' '); //===> Name Checker <===//
+    //===> Main Names <===//
+    blockProps.className += " btn"; //===> Color/Background <===//
 
-      var checkName = function checkName(val) {
-        //===> if its Default leave it <===//
-        if (val === 'normal') return; //===> if new value set it <===//
+    if (attributes.background) {
+      //===> Background Rotation <===//
+      if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate); //===> Image Background <===//
 
-        if (!current.includes(val)) setAttributes({
-          className: "".concat(current, " ").concat(val)
-        });
-      }; //===> Default Color <===//
-
-
-      checkName(attributes.px_bg);
-      checkName(attributes.px_color); //===> Default Type <===//
-
-      checkName(attributes.type); //===> Default Size <===//
-
-      checkName(attributes.size); //===> Default Radius <===//
-
-      checkName(attributes.radius); //===> Default Style <===//
-
-      if (attributes.outline && current) {
-        if (current.includes("outline")) setAttributes({
-          className: "".concat(current, " outline")
-        });
-      }
-    } else {
-      setAttributes({
-        className: "btn ".concat(attributes.px_bg)
-      });
+      if (attributes.bg_type === 'image') {
+        blockProps.className += " px-media";
+        blockProps["data-src"] = attributes.background;
+        setPhenixView();
+      } //===> Name Background <===//
+      else blockProps.className += " ".concat(attributes.background);
     }
+
+    if (attributes.color) blockProps.className += " ".concat(attributes.color); //===> Default Type <===//
+
+    if (attributes.type) blockProps.className += " ".concat(attributes.type); //===> Default Size <===//
+
+    if (attributes.size) blockProps.className += " ".concat(attributes.size); //===> Default Radius <===//
+
+    if (attributes.radius) blockProps.className += " ".concat(attributes.radius); //===> Default Style <===//
+
+    if (attributes.outline) blockProps.className += " outline";
   };
 
   setDefault(); //===> Set JS URL <===//
@@ -782,7 +724,7 @@ function Edit(_ref) {
       className: "fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y"
     }, props.suggestions.map(function (suggestion, index) {
       return /*#__PURE__*/React.createElement("li", {
-        className: "pdx-15 pdy-5 fs-12 divider-b",
+        className: "pdx-15 pdy-5 fs-12 divider-b mouse-pointer",
         onClick: function onClick() {
           return props.handleSuggestionClick(suggestion);
         }
@@ -894,14 +836,14 @@ function Edit(_ref) {
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_pds_px_colors__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onChange: set_color,
-    value: attributes.px_color
+    value: attributes.color
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Background",
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_pds_px_background__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onChange: set_background,
-    type: attributes.px_bg_type,
-    value: attributes.px_bg
+    type: attributes.bg_type,
+    value: attributes.background
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Custom Data",
     initialOpen: false
@@ -968,7 +910,7 @@ module.exports = window["wp"]["element"];
   \**************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-button","version":"0.1.0","title":"PDS Button","category":"design","description":"Phenix Design System Button Component","supports":{"html":false},"attributes":{"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"normal"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"px_bg_type":{"type":"string","default":"color"},"px_bg_rotate":{"type":"string","default":""},"px_bg":{"type":"string","default":"primary"},"px_color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"className":{"type":"string","default":"btn primary"}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/button","version":"0.1.0","title":"PDS Button","category":"design","description":"Phenix Design System Button Component","supports":{"html":false},"attributes":{"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"normal"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":"primary"},"color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"className":{"type":"string","default":"btn primary"}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1108,8 +1050,44 @@ __webpack_require__.r(__webpack_exports__);
 
     if (attributes.inNewTab) blockProps['target'] = "_blank"; //===> Set Custom Data <===//
 
-    if (attributes.data_id.length > 1) blockProps['data-id'] = attributes.data_id;
-    if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal; //===> Render <===//
+    if (attributes.data_id.length > 1) {
+      blockProps['data-id'] = attributes.data_id;
+      blockProps.className += ' menu-toggle';
+    }
+
+    if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal; //===> Set Default Values <===//
+
+    var setDefault = function setDefault() {
+      //===> Main Names <===//
+      blockProps.className += " btn"; //===> Color/Background <===//
+
+      if (attributes.background) {
+        //===> Image Background <===//
+        if (attributes.bg_type === 'image') {
+          blockProps.className += " px-media";
+          blockProps["data-src"] = attributes.background;
+          setPhenixView();
+        } //===> Name Background <===//
+        else {
+          blockProps.className += " ".concat(attributes.background);
+        } //===> Background Rotation <===//
+
+
+        if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
+      }
+
+      if (attributes.color) blockProps.className += " ".concat(attributes.color); //===> Default Type <===//
+
+      if (attributes.type) blockProps.className += " ".concat(attributes.type); //===> Default Size <===//
+
+      if (attributes.size) blockProps.className += " ".concat(attributes.size); //===> Default Radius <===//
+
+      if (attributes.radius) blockProps.className += " ".concat(attributes.radius); //===> Default Style <===//
+
+      if (attributes.outline) blockProps.className += " outline";
+    };
+
+    setDefault(); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(React.Fragment, null, attributes.isLink ? /*#__PURE__*/React.createElement("a", blockProps, attributes.type !== "square" ? attributes.label : '') : /*#__PURE__*/React.createElement("button", blockProps, attributes.type !== "square" ? attributes.label : ''));
   }

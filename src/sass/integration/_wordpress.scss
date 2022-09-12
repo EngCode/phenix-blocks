@@ -27,7 +27,7 @@ body:not(.wp-admin) .wp-site-blocks {
 }
 
 /*==== GB Editor Blocks ====*/
-body[class*="block-editor"] {
+body[class*="block-editor"], body[class*="site-editor"] {
 	/*==== Layers List ====*/
 	.edit-post-editor__list-view-panel,.edit-site-editor__list-view-panel {min-width: 220px;}
 
@@ -47,14 +47,14 @@ body[class*="block-editor"] {
 			background-color: rgba(#000, 0.05);
 		}
 	
+		/*==== Hidden Blocks ====*/
+		.wp-block[class*="hidden"] {
+			display: block;
+			opacity: 0.7;
+		}
+
 		/*==== Layouts Wrapper ====*/
 		.block-editor-block-list__layout {
-			/*==== Hidden Blocks ====*/
-			.wp-block[class*="hidden"] {
-				display: block;
-				opacity: 0.7;
-			}
-	
 			/*==== Reset Blocks ====*/
 			.wp-block-cover {overflow: hidden;}
 			.gpy-fix, .last-row {margin-bottom: -30px;}

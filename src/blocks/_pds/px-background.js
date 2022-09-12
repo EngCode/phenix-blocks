@@ -16,6 +16,7 @@ export default class PhenixBackground extends Component {
         main : [
             "bg-transparent",
             "bg-primary",
+            "bg-primary-dark",
             "bg-secondary",
             "bg-secondary-dark",
             "bg-gray",

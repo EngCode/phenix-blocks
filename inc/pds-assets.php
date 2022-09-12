@@ -112,7 +112,7 @@ if (!function_exists('pds_blocks_script')) :
     }
 
     //===> Include Phenix Core in the Plguin Page <===//
-    add_action('wp_footer', 'pds_blocks_script');
+    add_action('wp_enqueue_scripts', 'pds_blocks_script');
 endif;
 
 //=====> Phenix Styles <=====//

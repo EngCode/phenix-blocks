@@ -38,8 +38,52 @@ registerBlockType(metadata, {
         if (attributes.inNewTab) blockProps['target'] = "_blank";
 
         //===> Set Custom Data <===//
-        if (attributes.data_id.length > 1) blockProps['data-id'] = attributes.data_id;
+        if (attributes.data_id.length > 1) {
+            blockProps['data-id'] = attributes.data_id;
+            blockProps.className += ' menu-toggle';
+
+        }
+
         if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal;
+
+        //===> Set Default Values <===//
+        const setDefault = () => {
+            //===> Main Names <===//
+            blockProps.className += ` btn`;
+    
+            //===> Color/Background <===//
+            if (attributes.background) {
+                //===> Image Background <===//
+                if (attributes.bg_type === 'image') {
+                    blockProps.className += ` px-media`;
+                    blockProps["data-src"] = attributes.background;
+                    setPhenixView();
+                }
+                //===> Name Background <===//
+                else {
+                    blockProps.className += ` ${attributes.background}`;
+                }
+
+                //===> Background Rotation <===//
+                if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
+            }
+    
+            if (attributes.color) blockProps.className += ` ${attributes.color}`;
+    
+            //===> Default Type <===//
+            if (attributes.type) blockProps.className += ` ${attributes.type}`;
+    
+            //===> Default Size <===//
+            if (attributes.size) blockProps.className += ` ${attributes.size}`;
+    
+            //===> Default Radius <===//
+            if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
+    
+            //===> Default Style <===//
+            if (attributes.outline) blockProps.className += ` outline`;
+        }
+
+        setDefault();
 
         //===> Render <===//
         return (<>

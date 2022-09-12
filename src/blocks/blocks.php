@@ -40,6 +40,12 @@ if (!function_exists('phenix_blocks')) :
 
         //====> Phenix Menu <====//
         wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
+
+        //====> Phenix Button <====//
+        wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
+
+        //====> Phenix Row <====//
+        wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');

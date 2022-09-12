@@ -30,57 +30,16 @@ export default function Edit({ attributes, setAttributes }) {
     const set_iconEnd = iconEnd => setAttributes({ iconEnd });
     const set_data_id = data_id => setAttributes({ data_id });
     const set_data_modal = data_modal => setAttributes({ data_modal });
+    const set_color = color => setAttributes({ color });
+    const set_size = size => setAttributes({size});
+    const set_type = type => setAttributes({type});
+    const set_radius = radius => setAttributes({radius});
 
     //===> Link Settings <===//
     const set_isLink = isLink => setAttributes({ isLink });
     const set_inNewTab = inNewTab => setAttributes({ inNewTab });
     const set_url = url => setAttributes({ url });
 
-    //===> Set Type <===//
-    const set_type = value => {
-        if (attributes.className) {
-            //===> Clear Old Name <===//
-            let currentNames = attributes.className.replace(attributes.type, '');
-
-            //===> Set New Name <===//
-            setAttributes({
-                type : value,
-                className : `${currentNames} ${value}`
-            });
-        }
-
-        else setAttributes({type : value});
-    }
-    //===> Set Size <===//
-    const set_size = value => {
-        if (attributes.className) {
-            //===> Clear Old Name <===//
-            let currentNames = attributes.className.replace(attributes.size, '');
-
-            //===> Set New Name <===//
-            setAttributes({
-                size : value,
-                className : `${currentNames} ${value}`
-            });
-        }
-
-        else setAttributes({type : value});
-    }
-    //===> Set Radius <===//
-    const set_radius = value => {
-        if (attributes.className) {
-            //===> Clear Old Name <===//
-            let currentNames = attributes.className.replace(attributes.radius, '');
-
-            //===> Set New Name <===//
-            setAttributes({
-                radius : value,
-                className : `${currentNames} ${value}`
-            });
-        }
-
-        else setAttributes({radius : value});
-    }
     //===> Set Background <===//
     const set_background = background => {
         //===> Adjust Primary Colors <===//
@@ -89,89 +48,55 @@ export default function Edit({ attributes, setAttributes }) {
             background.value = background.value.replace('bg-', '');
         }
 
-        //===> Original Classes <===//
-        let original = attributes.className.replaceAll(/\s{2,}/g, ' '),
-            current  = attributes.px_bg,
-            rotate   = attributes.px_bg_rotate;
-
-        //===> Remove Current Value <===//
-        if (attributes.px_bg) original = original.replace(current, '');
-        if (rotate) original = original.replace(rotate, '');
-
-        //===> Update Background <===//
-        setAttributes({
-            px_bg : background.value,
-            px_bg_type : background.type,
-        });
+        //=== Set New Value ===//
+        setAttributes({ background : background.value });
 
         //===> Update Rotation <===//
-        if (background.rotation) {
-            original = original.replace(rotate, '');
-            setAttributes({px_bg_rotate : background.rotation,})
+        if (attributes.bg_type === 'gradient' && background.rotation) {
+            setAttributes({bg_rotate : background.rotation});
+        } else {
+            setAttributes({ bg_type : background.type });
         }
-
-        //===> Set Background [Colors, Gradients] <===//
-        setAttributes({className : `${original} ${background.value}${background.rotation ? ' '+background.rotation : ''}`});
-    }
-    //===> Set Color <===//
-    const set_color = color => {
-        //===> Get Value <===//
-        let current  = attributes.px_color,
-            original = attributes.className.replace(/\s{2,}/g, ' ');
-
-        //===> Remove Current Value <===//
-        if (current) original = original.replace(current, '');
-
-        //===> Set New Value <===//
-        setAttributes({
-            px_color  : color,
-            className : `${original} ${color}`,
-        });
     }
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
-    const currentNames = attributes.className;
     const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0"/>;
 
     //===> Set Default Values <===//
     const setDefault = () => {
-        if (currentNames) {
-            //===> Clear Spaces <===//
-            let current = currentNames.replace(/\s{2,}/g, ' ');
+        //===> Main Names <===//
+        blockProps.className += ` btn`;
 
-            //===> Name Checker <===//
-            const checkName = (val) => {
-                //===> if its Default leave it <===//
-                if (val === 'normal') return;
-    
-                //===> if new value set it <===//
-                if (!current.includes(val)) setAttributes({className : `${current} ${val}`});
-            };
+        //===> Color/Background <===//
+        if (attributes.background) {
+            //===> Background Rotation <===//
+            if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
 
-            //===> Default Color <===//
-            checkName(attributes.px_bg);
-            checkName(attributes.px_color);
-
-            //===> Default Type <===//
-            checkName(attributes.type);
-
-            //===> Default Size <===//
-            checkName(attributes.size);
-
-            //===> Default Radius <===//
-            checkName(attributes.radius);
-
-            //===> Default Style <===//
-            if (attributes.outline && current) {
-                if (current.includes("outline")) setAttributes({className : `${current} outline`});
+            //===> Image Background <===//
+            if (attributes.bg_type === 'image') {
+                blockProps.className += ` px-media`;
+                blockProps["data-src"] = attributes.background;
+                setPhenixView();
             }
+            //===> Name Background <===//
+            else blockProps.className += ` ${attributes.background}`;
         }
 
-        else {
-            setAttributes({className : `btn ${attributes.px_bg}`});
-        }
+        if (attributes.color) blockProps.className += ` ${attributes.color}`;
+
+        //===> Default Type <===//
+        if (attributes.type) blockProps.className += ` ${attributes.type}`;
+
+        //===> Default Size <===//
+        if (attributes.size) blockProps.className += ` ${attributes.size}`;
+
+        //===> Default Radius <===//
+        if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
+
+        //===> Default Style <===//
+        if (attributes.outline) blockProps.className += ` outline`;
     }
 
     setDefault();
@@ -183,7 +108,7 @@ export default function Edit({ attributes, setAttributes }) {
         <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
             {props.suggestions.map((suggestion, index) => {
                     return (
-                        <li className="pdx-15 pdy-5 fs-12 divider-b" onClick={() => props.handleSuggestionClick(suggestion)}>
+                        <li className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
                             <strong>{suggestion.title}</strong>
                             <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
                         </li>
@@ -271,11 +196,11 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>
                 {/* Text Color */}
-                <PhenixColor onChange={set_color} value={attributes.px_color} />
+                <PhenixColor onChange={set_color} value={attributes.color} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Background" initialOpen={false}>
-                <PhenixBackground onChange={set_background} type={attributes.px_bg_type} value={attributes.px_bg} />
+                <PhenixBackground onChange={set_background} type={attributes.bg_type} value={attributes.background} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Custom Data" initialOpen={false}>

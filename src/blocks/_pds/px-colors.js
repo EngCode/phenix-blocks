@@ -22,7 +22,9 @@ export default class PhenixColors extends Component {
             main : [
                 "color-inherit",
                 "color-primary",
+                "color-primary-dark",
                 "color-secondary",
+                "color-secondary-dark",
                 "color-gray",
                 "color-dark",
                 "color-white",

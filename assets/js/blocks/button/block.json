@@ -1,6 +1,6 @@
 {
   "apiVersion": 2,
-  "name": "phenix/px-button",
+  "name": "phenix/button",
   "version": "0.1.0",
   "title": "PDS Button",
   "category": "design",
@@ -49,19 +49,19 @@
       "type": "boolean",
       "default": false
     },
-    "px_bg_type": {
+    "bg_type": {
       "type": "string",
       "default": "color"
     },
-    "px_bg_rotate": {
+    "bg_rotate": {
       "type": "string",
       "default": ""
     },
-    "px_bg": {
+    "background": {
       "type": "string",
       "default": "primary"
     },
-    "px_color": {
+    "color": {
       "type": "string",
       "default": ""
     },

@@ -15,9 +15,9 @@ import {
 import { Fragment } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import PhenixColor from '../_pds/px-colors';
-import FlexAlignment from '../_pds/flex-alignment';
-import PhenixBackground from '../_pds/px-background';
+import PhenixColor from '../../src/blocks/_pds/px-colors';
+import FlexAlignment from '../../src/blocks/_pds/flex-alignment';
+import PhenixBackground from '../../src/blocks/_pds/px-background';
 
 //===> Add Custom Attributes <===//
 function template_part_attributes(settings) {

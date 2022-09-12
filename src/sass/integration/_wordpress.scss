@@ -29,7 +29,7 @@ body:not(.wp-admin) .wp-site-blocks {
 /*==== GB Editor Blocks ====*/
 body[class*="block-editor"] {
 	/*==== Layers List ====*/
-	.edit-post-editor__list-view-panel {min-width: 250px;}
+	.edit-post-editor__list-view-panel,.edit-site-editor__list-view-panel {min-width: 220px;}
 
 	/*==== Blocks List ====*/
 	.editor-styles-wrapper {

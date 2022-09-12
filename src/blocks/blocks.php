@@ -46,19 +46,4 @@ if (!function_exists('phenix_blocks')) :
 endif;
 
 //====> Phenix Navigation <====//
-// include(dirname(__FILE__) . '/px-navigation/index.php');
-
-//====> Language Switcher <====//
-// include(dirname(__FILE__) . '/px-languages/index.php');
-
-//====> Page Head <====//
-// include(dirname(__FILE__) . '/px-head/index.php');
-
-//====> Taxonomies Block <====//
-// include(dirname(__FILE__) . '/px-taxonomies/index.php');
-
-//====> Query Block <====//
-// include(dirname(__FILE__) . '/px-query/index.php');
-
-//====> Widget Block <====//
-// include(dirname(__FILE__) . '/px-categories/index.php');
+include(dirname(__FILE__) . '/navigation/index.php');

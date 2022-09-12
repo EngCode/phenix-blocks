@@ -134,7 +134,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"menu_id":{"type":"string","default":""},"responsive":{"type":"boolean","default":true},"className":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"px-navigation"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"menu_id":{"type":"string","default":""},"responsive":{"type":"boolean","default":true},"className":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"px-navigation"}');
 
 /***/ })
 

@@ -4,6 +4,30 @@
 	--wp-admin-theme-color-darker-10 : var(--primary-hover);
 	--wp-admin-theme-color-darker-20 : var(--primary-hover);
 
+	/*==== Typography ====*/
+	.wp-current-version,
+	.auto-update-status ~ h2 {margin-top: 3rem;}
+
+	.wp-current-version, .auto-update-status ~ h2,
+	.nav-menu-meta h2, #menu-management h2 {
+		font-size: 1.25rem;
+		margin-bottom: 15px;
+	}
+
+	.menu-settings h3 {
+		font-size: 1.15rem;
+		margin-bottom: 15px;
+	}
+
+	#wpbody-content {
+		h1 {font-size: 1.5rem;}
+		.accordion-section-title {
+			font-size: 13px;
+			margin-bottom: 0;
+			font-weight: var(--medium-weight);
+		}
+	}
+
 	/*==== Other Elements ====*/
 	#wpwrap {
 		--links-color: #2354c6;
@@ -28,7 +52,11 @@
 			> ul {padding: 0 10px!important;}
 		}
 	
-		h2.hndle {padding: 0 15px!important;}
+		h2.hndle {
+			font-size: 14px;
+			margin-bottom: 0;
+			padding: 0 15px!important;
+		}
 	
 		#future-posts ul, #published-posts ul, #dashboard_right_now ul, #the-comment-list {padding: 0;}
 	}
@@ -249,7 +277,8 @@
 		
 		/*==== Widget Title ====*/
 		.postbox-header {
-			padding: 5px;
+			padding-right: 2px;
+			padding-left: 2px;
 			border-bottom-color: rgba(0,0,0,0.1);
 		}
 	
@@ -635,4 +664,56 @@
 	}
 
 	.components-button, .components-button svg {transition: all 0.3s;}
+
+	/*==== Menus Page ====*/
+	.manage-menus {
+		padding: 10px 20px;
+		border-radius: 5px;
+		input, select, textarea, label {margin-bottom: 0!important;}
+	}
+
+	/*==== List Reset ====*/
+	ul.outer-border,  ul.outer-border ul {
+		padding: 0;
+		li > label {
+			display: inline-block;
+			margin-bottom: 5px!important;
+		}
+		
+	}
+
+	#nav-menu-meta {
+		.wp-clearfix {margin-bottom: 0;}
+		input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="number"]),
+		select:not([type="checkbox"]):not([type="radio"]):not([type="number"]),
+		textarea:not([type="checkbox"]):not([type="radio"]):not([type="number"]) {margin-bottom: 10px;}
+	}
+
+	#menu-management {
+		.menu-item-settings {max-width: 381px;}
+		#post-body-content {padding: 15px;}
+	}
+
+	.categorychecklist > li {
+		max-width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		vertical-align: middle;
+		text-overflow: ellipsis;
+	}
+	
+	/*==== Space Reset ====*/
+	.major-publishing-actions {
+		padding-left: 15px;
+		padding-right: 15px;
+		.button, input, select {margin-bottom: 0!important;}
+	}
+
+	.manage-menus #select-menu-to-edit {min-width: 230px;}
+	.select-all, .select-all + label {margin-bottom: 0!important;}
+}
+
+/*==== newsletter ====*/
+.wp-core-ui.toplevel_page_newsletter_main_index {
+	#wpwrap {background-color: #141422 !important}
 }

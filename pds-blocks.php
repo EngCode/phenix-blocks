@@ -15,6 +15,13 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
+//====> Menus Locations <====//
+register_nav_menus(array(
+    'main-menu' => 'Main Menu',
+    'footer-menu' => 'Quick Links',
+    'footer-menu-2' => 'Important Links',
+));
+
 //====> Multilang Support <====//
 if (!function_exists('px__')) {
 	/**

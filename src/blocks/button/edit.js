@@ -16,8 +16,8 @@ import {
     __experimentalLinkControlSearchInput as LinkControlSearchInput
 } from '@wordpress/block-editor';
 
-import PhenixBackground from '../_pds/px-background';
-import PhenixColor from '../_pds/px-colors';
+import PhenixBackground from '../px-controls/px-background';
+import PhenixColor from '../px-controls/px-colors';
 
 import { useState, useEffect } from '@wordpress/element';
 

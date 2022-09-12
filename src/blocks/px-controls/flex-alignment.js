@@ -120,10 +120,6 @@ export default class FlexAlignment extends Component {
         //===> Component Output <===//
         return (
             <div className='px-gb-component'>
-                {/*=== Flow Reverse ===*/}
-                <ToggleControl key="align-flow" label="Flow Reverse ?" checked={isReversed()} onChange={setFlow}/>
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/*===> Responsive Devices <===*/}
                 <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
                     <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens"  data-options="small"></button>
@@ -151,6 +147,10 @@ export default class FlexAlignment extends Component {
                     </div>
                     {/*===> xLarge <====*/}
                 </div>
+                {/* Divider */}
+                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 divider-t'></span>
+                {/*=== Flow Reverse ===*/}
+                <ToggleControl key="align-flow" label="Flow Reverse" checked={isReversed()} onChange={setFlow}/>
                 {/*===> // Options Tabs <===*/}
             </div>
         )

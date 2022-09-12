@@ -1,12 +1,12 @@
 {
   "apiVersion": 2,
-  "name": "phenix/row",
+  "name": "phenix/column",
   "version": "0.1.0",
-  "title": "Grid Row",
+  "title": "Grid Column",
   "keywords": [
     "pds",
     "phenix",
-    "section",
+    "column",
     "group",
     "wrapper",
     "row",
@@ -15,7 +15,7 @@
     "grid"
   ],
   "category": "design",
-  "description": "Wrapper Represent the Grid System Row with Flexbox Features",
+  "description": "a Wrapper Represent the Grid System Column for its Row Block",
   "supports": {
     "html": false
   },
@@ -28,21 +28,9 @@
       "type": "boolean",
       "default": false
     },
-    "flex_align": {
+    "size": {
       "type": "string",
-      "default": ""
-    },
-    "isEqual": {
-      "type": "boolean",
-      "default": false
-    },
-    "isMasonry": {
-      "type": "boolean",
-      "default": false
-    },
-    "columns": {
-      "type": "string",
-      "default": ""
+      "default": "col"
     }
   },
   "example": {

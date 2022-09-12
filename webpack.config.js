@@ -12,6 +12,7 @@ module.exports = {
         'container': './src/blocks/container/index.js',
         'navigation': './src/blocks/navigation/index.js',
         'grid-row': './src/blocks/grid-row/index.js',
+        'grid-column': './src/blocks/grid-column/index.js',
         // 'query': './src/blocks/query/index.js',
         // 'languages': './src/blocks/languages/index.js',
         // 'categories': './src/blocks/categories/index.js',

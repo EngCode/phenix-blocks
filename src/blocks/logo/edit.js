@@ -13,7 +13,7 @@ import {
 import apiFetch from '@wordpress/api-fetch';
 
 //====> Phenix Modules <====//
-import MediaUploader from '../_pds/media-uploader';
+import MediaUploader from '../px-controls/media-uploader';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

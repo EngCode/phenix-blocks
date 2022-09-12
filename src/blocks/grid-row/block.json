@@ -23,6 +23,21 @@
         "flex_align" : {
             "type": "string",
             "default": ""
+        },
+
+        "isEqual" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "isMasonry" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "columns" : {
+            "type" : "string",
+            "default" : ""
         }
     },
     "example": {

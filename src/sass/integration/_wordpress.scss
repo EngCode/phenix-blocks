@@ -172,9 +172,21 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.block-editor-block-preview__content {transform: scale(1)!important;}
 	}
 
-	/*==== Phenix Blocks ====*/
-	.wp-block-phenix-container {
-		padding: min(20px, 150px);
+	.components-form-toggle {top: 2px;}
+
+	.components-range-control label {margin-bottom: 0;}
+	.flexbox > .components-range-control {
+		flex-grow: 1;
+		margin-bottom: 0;
+		.components-base-control__field {margin-bottom: 0;}
+	}
+}
+
+/*==== Phenix Blocks ====*/
+.wp-block-phenix-container, .wp-block-phenix-row {
+	&[data-block] {
+		min-width: 75px;
+		padding: min(5px, 150px);
 		outline: 1px dashed var(--primary-color);
 		/*==== Container ====*/
 		> [class*="container"] {

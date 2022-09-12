@@ -13,8 +13,7 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/flex-alignment';
-import EqualColumns from '../px-controls/equal-columns';
+// import EqualColumns from '../px-controls/equal-columns';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -31,16 +30,7 @@ export default function Edit({ attributes, setAttributes }) {
     const TagName = attributes.tagName;
 
     //===> Set Properties <===//
-    innerBlocksProps.className += ' row';
-
-    //===> Alignment <===//
-    if (attributes.flex_align) innerBlocksProps.className +=` ${attributes.flex_align}`;
-
-    //===> Masonry <===//
-    if (attributes.isMasonry) innerBlocksProps.className += ' px-masonry';
-
-    //===> Columns <===//
-    if (attributes.isEqual && attributes.columns) innerBlocksProps.className += attributes.columns;
+    innerBlocksProps.className += ` ${attributes.size}`;
 
     //===> Render <===//
     return (<>
@@ -57,29 +47,13 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Header <header>', value: 'header' },
                     { label: 'Footer <footer>', value: 'footer' },
                 ]}/>
-
-                {/*=== Masonry Grid ===*/}
-                <ToggleControl label="Masonry Grid" checked={attributes.isMasonry} onChange={set_isMasonry}/>
-
-                {/*=== Equal Columns ===*/}
-                <ToggleControl label="Responsive Columns" checked={attributes.isEqual} onChange={set_isEqual}/>
-            </PanelBody>
-            {/*=== Columns ===*/}
-            {attributes.isEqual ? 
-                <PanelBody title="Columns" initialOpen={true}>
-                    <EqualColumns key="row-columns" value={attributes.columns} onChange={set_columns}></EqualColumns>
-                </PanelBody>
-            : null}
-            {/*=== Alignment ===*/}
-            <PanelBody title="Alignment" initialOpen={false}>
-                <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
         {/*====> Edit Layout <====*/}
         {attributes.preview ?
-            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg" alt="" className="fluid" />
+            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/column.jpg" alt="" className="fluid" />
         :
         <TagName {...innerBlocksProps}></TagName>
         }

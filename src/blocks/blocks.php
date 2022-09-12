@@ -46,6 +46,9 @@ if (!function_exists('phenix_blocks')) :
 
         //====> Phenix Row <====//
         wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
+
+        //====> Phenix Row <====//
+        wp_enqueue_script('grid-column', $blocksPath.'grid-column/index.js', $blocksDependencies, NULL , true);
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');

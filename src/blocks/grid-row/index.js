@@ -36,6 +36,12 @@ registerBlockType(metadata, {
         //===> Alignment <===//
         if (attributes.flex_align) blockProps.className +=` ${attributes.flex_align}`;
 
+        //===> Masonry <===//
+        if (attributes.isMasonry) blockProps.className += ' px-masonry';
+
+        //===> Columns <===//
+        if (attributes.isEqual && attributes.columns) blockProps.className += attributes.columns;
+
         //===> Render <===//
         return (
             <TagName {...blockProps}>

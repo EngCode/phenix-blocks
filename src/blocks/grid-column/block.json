@@ -1,0 +1,35 @@
+{
+    "apiVersion": 2,
+	"name": "phenix/column",
+	"version": "0.1.0",
+	"title": "Grid Column",
+    "keywords": ["pds", "phenix", "column", "group", "wrapper", "row", "flex", "layout", "grid"],
+	"category": "design",
+	"description": "a Wrapper Represent the Grid System Column for its Row Block",
+	"supports": {
+		"html": false
+	},
+    "attributes" : {
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+
+        "preview" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "size": {
+			"type": "string",
+			"default": "col"
+		}
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+	"textdomain": "phenix",
+	"editorScript": "file:./index.js"
+}

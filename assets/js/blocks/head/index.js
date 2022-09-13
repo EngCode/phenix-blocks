@@ -130,7 +130,7 @@ module.exports = window["wp"]["serverSideRender"];
   \************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-head","version":"0.1.0","title":"PDS Head","category":"design","description":"Page Navigation Head and Breadcrumb.","supports":{"html":false},"attributes":{},"textdomain":"phenix","editorScript":"px-head"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-head","version":"0.1.0","title":"PDS Head","category":"design","description":"Page Navigation Head and Breadcrumb.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-head"}');
 
 /***/ })
 

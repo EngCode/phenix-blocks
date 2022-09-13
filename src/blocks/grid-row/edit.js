@@ -31,6 +31,7 @@ export default function Edit({ attributes, setAttributes }) {
     const TagName = attributes.tagName;
 
     //===> Set Properties <===//
+    innerBlocksProps.className += ` ${blockProps.className}`;
     innerBlocksProps.className += ' row';
 
     //===> Alignment <===//

@@ -62,6 +62,7 @@ function Edit(_ref) {
   var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
   var TagName = attributes.tagName; //===> Set Properties <===//
 
+  innerBlocksProps.className += " ".concat(blockProps.className);
   innerBlocksProps.className += " ".concat(attributes.size); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
@@ -257,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     var TagName = attributes.tagName; //===> Set Properties <===//
 
-    blocksProps.className += " ".concat(attributes.size); //===> Render <===//
+    blockProps.className += " ".concat(attributes.size); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }

@@ -9,6 +9,11 @@
 		"html": false
 	},
     "attributes" : {
+        "preview" : {
+			"type": "boolean",
+			"default": false
+		},
+
         "title" : {
             "type": "string",
             "default": "Site Title"
@@ -47,6 +52,11 @@
         "mobile_logo" : {
             "type": "boolean",
             "default": "https://via.placeholder.com/512x512.webp?text=Logo"
+        }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
         }
     },
 	"textdomain": "phenix",

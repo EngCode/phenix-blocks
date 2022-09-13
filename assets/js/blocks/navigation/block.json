@@ -9,6 +9,10 @@
     "html": false
   },
   "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    },
     "menu_id": {
       "type": "string",
       "default": ""
@@ -20,6 +24,11 @@
     "className": {
       "type": "string",
       "default": ""
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
     }
   },
   "textdomain": "phenix",

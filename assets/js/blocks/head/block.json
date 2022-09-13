@@ -8,7 +8,17 @@
   "supports": {
     "html": false
   },
-  "attributes": {},
+  "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
   "textdomain": "phenix",
   "editorScript": "px-head"
 }

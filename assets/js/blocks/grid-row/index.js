@@ -65,6 +65,7 @@ function Edit(_ref) {
   var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
   var TagName = attributes.tagName; //===> Set Properties <===//
 
+  innerBlocksProps.className += " ".concat(blockProps.className);
   innerBlocksProps.className += ' row'; //===> Alignment <===//
 
   if (attributes.flex_align) innerBlocksProps.className += " ".concat(attributes.flex_align); //===> Masonry <===//

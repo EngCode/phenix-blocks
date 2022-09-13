@@ -31,7 +31,7 @@ registerBlockType(metadata, {
         const TagName = attributes.tagName;
 
         //===> Set Properties <===//
-        blocksProps.className += ` ${attributes.size}`;
+        blockProps.className += ` ${attributes.size}`;
 
         //===> Render <===//
         return (

@@ -9,6 +9,11 @@
 		"html": false
 	},
     "attributes" : {
+		"preview" : {
+			"type": "boolean",
+			"default": false
+		},
+		
         "menu_id" : {
             "type": "string",
             "default": ""
@@ -21,6 +26,11 @@
 			"type": "string",
 			"default" : ""
 		}
+    },
+	"example": {
+        "attributes": {
+            "preview": true
+        }
     },
 	"textdomain": "phenix",
 	"editorScript": "px-navigation"

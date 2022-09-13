@@ -213,10 +213,16 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        {attributes.isLink ? 
-            <a onClick={(event) => event.preventDefault()} { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</a>
+        {attributes.preview ?
+            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/buttons.jpg" alt="" className="fluid" />
             :
-            <button { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</button>
+            <>
+            {attributes.isLink ? 
+                <a onClick={(event) => event.preventDefault()} { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</a>
+                :
+                <button { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</button>
+            }
+            </>
         }
     </>);
 }

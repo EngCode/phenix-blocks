@@ -9,6 +9,11 @@
 		"html": false
 	},
     "attributes" : {
+		"preview" : {
+			"type": "boolean",
+			"default": false
+		},
+
 		"isLink": {
 			"type": "boolean",
 			"default": false
@@ -93,6 +98,11 @@
 			"type": "string",
 			"default" : "btn primary"
 		}
+    },
+	"example": {
+        "attributes": {
+            "preview": true
+        }
     },
 	"textdomain": "phenix",
 	"editorScript": "file:./index.js"

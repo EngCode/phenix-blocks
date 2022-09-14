@@ -1,7 +1,5 @@
-/*==== Layouts Fix ====*/
-body:not(.wp-admin) .wp-site-blocks {
-	--wp--style--block-gap: 0;
-}
+/*==== Layout Fix ====*/
+.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
 
 /*==== Admin-Bar Fix ====*/
 @media screen and (max-width: 782px) {
@@ -172,18 +170,34 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.block-editor-block-preview__content {transform: scale(1)!important;}
 	}
 
+	/*==== Fix ToggleControl ====*/
 	.components-form-toggle {top: 2px;}
-
-	.components-range-control label {margin-bottom: 0;}
+	
+	/*==== Fix RangeControl ====*/
 	.flexbox > .components-range-control {
 		flex-grow: 1;
 		margin-bottom: 0;
 		.components-base-control__field {margin-bottom: 0;}
 	}
+
+	.components-range-control label {margin-bottom: 0;}
 }
 
+/*==== Posts Editor Layout ====*/
+body.block-editor-page.post-php, body.block-editor-page.post-type-post {
+	.editor-styles-wrapper > .is-root-container {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 960px!important;
+		padding-top: 30px!important;
+		padding-bottom: 30px!important;
+		&.block-editor-block-list__layout > * {margin-bottom: 1rem;}
+	}
+}
+
+
 /*==== Phenix Blocks ====*/
-.wp-block-phenix-column, .wp-block-phenix-row {
+.wp-block-phenix-column, .wp-block-phenix-row[data-type="phenix/row"] {
 	&.block-editor-block-list__block, &[data-block] {
 		min-width: 75px;
 		padding-top: min(5px, 150px);

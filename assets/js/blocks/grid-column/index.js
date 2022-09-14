@@ -45,8 +45,8 @@ function Edit(_ref) {
   var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)();
   var TagName = attributes.tagName; //===> Set Properties <===//
 
-  innerBlocksProps.className += " ".concat(blockProps.className);
-  innerBlocksProps.className += " ".concat(attributes.size); //===> Render <===//
+  blockProps.className += " ".concat(blockProps.className);
+  blockProps.className += " ".concat(attributes.size); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -88,7 +88,7 @@ function Edit(_ref) {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/column.jpg",
     alt: "",
     className: "fluid"
-  }) : /*#__PURE__*/React.createElement(TagName, innerBlocksProps));
+  }) : /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("p", innerBlocksProps)));
 }
 
 /***/ }),

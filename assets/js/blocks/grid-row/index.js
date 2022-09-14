@@ -180,7 +180,7 @@ function Edit(_ref) {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg",
     alt: "",
     className: "fluid"
-  }) : /*#__PURE__*/React.createElement(TagName, innerBlocksProps));
+  }) : /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement(TagName, innerBlocksProps)));
 }
 
 /***/ }),

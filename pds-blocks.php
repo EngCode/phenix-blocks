@@ -50,6 +50,7 @@ if (!function_exists('pds_menu')) :
     add_action('admin_menu', 'pds_menu');
 
     function pds_menu() {
+        //===> Main Settings <===//
         add_menu_page(
             'Phenix Blocks Settings',
             'Phenix Blocks',

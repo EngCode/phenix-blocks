@@ -82,18 +82,10 @@ if (!is_admin()) {
     //=====> Styles Optimizer <=====//
     if (!function_exists('styles_optimize')) :
         function styles_optimize() {
-            //===> Gutenberg Library <===//
-            wp_deregister_style('wp-block-library');
-            wp_dequeue_style('wp-block-library');
-    
             //===> Newsletter Plugin <===//
             if (get_option('newsletter_css')) {
                 wp_dequeue_style('newsletter');
             }
-            
-            //===> Remove Blocks Inline Style <===//
-            // wp_deregister_style('wp-block-template-part-inline');
-            // wp_deregister_style('wp-block-paragraph-inline');
         }
         
         add_action('wp_print_styles', 'styles_optimize', 100);
@@ -161,3 +153,27 @@ if (!is_admin()) {
 
     }
 }
+
+//=====> Gutenberg Optimizer <=====//
+if (!function_exists('blocks_optimizer')) :
+    function blocks_optimizer() {
+        wp_dequeue_style('wp-block-list');
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-heading');
+        wp_dequeue_style('wp-block-paragraph');
+        wp_dequeue_style('wp-block-template-part');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_style('wc-blocks-style'); //===> WooCommerce
+        // wp_dequeue_style('global-styles'); //===> Theme Options.
+    }
+    
+    add_action('wp_enqueue_scripts', 'blocks_optimizer', 100);
+endif;
+
+//====> Remove Layout Gap <====//
+remove_filter('render_block', 'wp_render_layout_support_flag', 10, 2);
+remove_filter('render_block', 'gutenberg_render_layout_support_flag', 10, 2);
+
+//====> Remove Link Color <====//
+remove_filter('render_block', 'wp_render_elements_support', 10, 2);
+remove_filter('render_block', 'gutenberg_render_elements_support', 10, 2);

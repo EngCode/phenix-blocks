@@ -39,7 +39,7 @@
     &.xlarge#{$infix} {
         --padding   : #{REM(25)};
         --height    : #{REM(62)};
-        --text-size : #{REM(19)};
+        --text-size : #{REM(18)};
     }
 }
 
@@ -48,7 +48,7 @@
     --padding : #{REM(15)};
     /*=== Size Options ===*/
     --height    : #{REM(42)};
-    --text-size : #{REM(15)};
+    --text-size : #{REM(14)};
     /*=== Colors Options ===*/
     --color : var(--dark-color);
     --box-shadow   : unset;
@@ -165,7 +165,7 @@ label,legend  {@extend %inline-block;}
 .control-icon {
     position: relative;
     color: var(--color);
-    --white-space : calc(var(--padding)*2.15);
+    --white-space : calc(var(--padding)*2.25);
     /*==== icons ====*/
     &::before {
         top: 0;

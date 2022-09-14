@@ -27,8 +27,8 @@ export default function Edit({ attributes, setAttributes }) {
     const TagName = attributes.tagName;
 
     //===> Set Properties <===//
-    innerBlocksProps.className += ` ${blockProps.className}`;
-    innerBlocksProps.className += ` ${attributes.size}`;
+    blockProps.className += ` ${blockProps.className}`;
+    blockProps.className += ` ${attributes.size}`;
 
     //===> Render <===//
     return (<>
@@ -57,7 +57,9 @@ export default function Edit({ attributes, setAttributes }) {
         {attributes.preview ?
             <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/column.jpg" alt="" className="fluid" />
         :
-        <TagName {...innerBlocksProps}></TagName>
+        <TagName {...blockProps}>
+            <p {...innerBlocksProps}></p>
+        </TagName>
         }
     </>);
 }

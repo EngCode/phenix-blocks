@@ -123,7 +123,9 @@ export default function Edit({ attributes, setAttributes }) {
         {attributes.preview ?
             <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg" alt="" className="fluid" />
         :
-        <TagName {...innerBlocksProps}></TagName>
+        <div {...blockProps}>
+            <TagName {...innerBlocksProps}></TagName>
+        </div>
         }
     </>);
 }

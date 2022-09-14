@@ -17,6 +17,8 @@ if (!function_exists('pds_core_blocks')) :
         if (is_admin()) :
             include(dirname(__FILE__) . '/core-blocks.php');
         endif;
+
+        add_filter('extendify_load_library', '__return_false');
     }
 
     add_action('enqueue_block_editor_assets', 'pds_core_blocks');

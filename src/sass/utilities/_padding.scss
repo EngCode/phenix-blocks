@@ -1,7 +1,7 @@
 /*==== Utlites Repeaters ====*/
 @import '../assets/mixin';
 
-$padding-list : 0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100;
+$padding-list : 0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100;
 
 /*==== Padding All ====*/
 @mixin make_padding($infix:'') {

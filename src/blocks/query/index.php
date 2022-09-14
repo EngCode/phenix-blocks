@@ -82,11 +82,11 @@ function px_query_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_query_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = plugin_dir_path(__DIR__).'query\\';
+    $assets_path = plugin_dir_path(__DIR__).'query/';
     $assets_uri  = plugin_dir_url(__DIR__).'query/';
 
     //===> Fix File Paths <===//
-    $assets_path = str_replace('src', 'assets\js', $assets_path);
+    $assets_path = str_replace('src', 'assets/js', $assets_path);
     $assets_uri  = str_replace('src', 'assets/js', $assets_uri);
     $px_assets   = include($assets_path.'index.asset.php');
 

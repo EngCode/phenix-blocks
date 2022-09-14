@@ -36,15 +36,27 @@ function Edit(_ref) {
     });
   };
 
-  var set_alignment = function set_alignment(alignment) {
-    return setAttributes({
-      flex_align: alignment
-    });
-  };
-
   var set_isEqual = function set_isEqual(isEqual) {
     return setAttributes({
       isEqual: isEqual
+    });
+  };
+
+  var set_columns = function set_columns(columns) {
+    return setAttributes({
+      columns: columns
+    });
+  };
+
+  var set_isSlider = function set_isSlider(isSlider) {
+    return setAttributes({
+      isSlider: isSlider
+    });
+  };
+
+  var set_controls = function set_controls(controls) {
+    return setAttributes({
+      controls: controls
     });
   };
 
@@ -54,9 +66,15 @@ function Edit(_ref) {
     });
   };
 
-  var set_columns = function set_columns(columns) {
+  var set_pagination = function set_pagination(pagination) {
     return setAttributes({
-      columns: columns
+      pagination: pagination
+    });
+  };
+
+  var set_alignment = function set_alignment(alignment) {
+    return setAttributes({
+      flex_align: alignment
     });
   }; //===> Get Block Properties <===//
 
@@ -72,7 +90,26 @@ function Edit(_ref) {
 
   if (attributes.isMasonry) innerBlocksProps.className += ' px-masonry'; //===> Columns <===//
 
-  if (attributes.isEqual && attributes.columns) innerBlocksProps.className += attributes.columns; //===> Render <===//
+  if (attributes.isEqual && attributes.columns) innerBlocksProps.className += attributes.columns; //===> Slider <===//
+
+  if (attributes.isSlider) {
+    //===> Add Slider Name <===//
+    innerBlocksProps.className += ' px-slider'; //===> Set Items <===//
+
+    var columns_names = attributes.columns.split(' ');
+    columns_names.forEach(function (name) {
+      //===> Medium Screen <===//
+      if (name.includes('-md')) innerBlocksProps['data-md'] = name.replace('row-cols-md-', ''); //===> Large Screen <===//
+      else if (name.includes('-lg')) innerBlocksProps['data-lg'] = name.replace('row-cols-lg-', ''); //===> xLarge Screen <===//
+      else if (name.includes('-xl')) innerBlocksProps['data-xl'] = name.replace('row-cols-xl-', ''); //===> Small Screen <===//
+      else if (name.includes('row-cols')) innerBlocksProps['data-items'] = name.replace('row-cols-', '');
+    }); //===> Set Other Options <===//
+
+    if (attributes.controls) innerBlocksProps['data-controls'] = 1;
+    if (attributes.pagination) innerBlocksProps['data-pagination'] = 1; //===> for Edit only <===//
+    // innerBlocksProps.className += attributes.columns;
+  } //===> Render <===//
+
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -110,21 +147,36 @@ function Edit(_ref) {
     label: "Responsive Columns",
     checked: attributes.isEqual,
     onChange: set_isEqual
-  })), attributes.isEqual ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
-    title: "Columns",
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Enable Slider",
+    checked: attributes.isSlider,
+    onChange: set_isSlider
+  })), attributes.isSlider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Slider Options",
+    initialOpen: true
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Enable Pagination",
+    checked: attributes.pagination,
+    onChange: set_pagination
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Enable Arrow Buttons",
+    checked: attributes.controls,
+    onChange: set_controls
+  })) : null, attributes.isEqual || attributes.isSlider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Columns Size",
     initialOpen: true
   }, /*#__PURE__*/React.createElement(_px_controls_equal_columns__WEBPACK_IMPORTED_MODULE_3__["default"], {
     key: "row-columns",
     value: attributes.columns,
     onChange: set_columns
-  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+  })) : null, !attributes.isSlider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Alignment",
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_px_controls_flex_alignment__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: "flex-align",
     value: attributes.flex_align,
     onChange: set_alignment
-  }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+  })) : null), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg",
     alt: "",
     className: "fluid"
@@ -637,7 +689,7 @@ module.exports = window["wp"]["element"];
   \****************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"Wrapper Represent the Grid System Row with Flexbox Features","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"isEqual":{"type":"boolean","default":false},"isMasonry":{"type":"boolean","default":false},"columns":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"Wrapper Represent the Grid System Row with Flexbox Features","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"isEqual":{"type":"boolean","default":false},"isMasonry":{"type":"boolean","default":false},"columns":{"type":"string","default":""},"isSlider":{"type":"boolean","default":false},"pagination":{"type":"boolean","default":false},"controls":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -759,7 +811,25 @@ __webpack_require__.r(__webpack_exports__);
 
     if (attributes.isMasonry) blockProps.className += ' px-masonry'; //===> Columns <===//
 
-    if (attributes.isEqual && attributes.columns) blockProps.className += attributes.columns; //===> Render <===//
+    if (attributes.isEqual && attributes.columns) blockProps.className += attributes.columns; //===> Slider <===//
+
+    if (attributes.isSlider) {
+      //===> Add Slider Name <===//
+      blockProps.className += ' px-slider'; //===> Items Info <===//
+
+      var columns_names = attributes.columns.split(' ');
+      columns_names.forEach(function (name) {
+        //===> Medium Screen <===//
+        if (name.includes('-md')) blockProps['data-md'] = name.replace('row-cols-md-', ''); //===> Large Screen <===//
+        else if (name.includes('-lg')) blockProps['data-lg'] = name.replace('row-cols-lg-', ''); //===> xLarge Screen <===//
+        else if (name.includes('-xl')) blockProps['data-xl'] = name.replace('row-cols-xl-', ''); //===> Small Screen <===//
+        else if (name.includes('row-cols')) blockProps['data-items'] = name.replace('row-cols-', '');
+      }); //===> Set Other Options <===//
+
+      if (attributes.controls) blockProps['data-controls'] = 1;
+      if (attributes.pagination) blockProps['data-pagination'] = 1;
+    } //===> Render <===//
+
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }

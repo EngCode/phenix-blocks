@@ -42,6 +42,29 @@ registerBlockType(metadata, {
         //===> Columns <===//
         if (attributes.isEqual && attributes.columns) blockProps.className += attributes.columns;
 
+        //===> Slider <===//
+        if (attributes.isSlider) {
+            //===> Add Slider Name <===//
+            blockProps.className += ' px-slider';
+
+            //===> Items Info <===//
+            let columns_names = attributes.columns.split(' ');
+            columns_names.forEach(name => {
+                //===> Medium Screen <===//
+                if (name.includes('-md')) blockProps['data-md'] = name.replace('row-cols-md-','');
+                //===> Large Screen <===//
+                else if (name.includes('-lg')) blockProps['data-lg'] = name.replace('row-cols-lg-','');
+                //===> xLarge Screen <===//
+                else if (name.includes('-xl')) blockProps['data-xl'] = name.replace('row-cols-xl-','');
+                //===> Small Screen <===//
+                else if (name.includes('row-cols')) blockProps['data-items'] = name.replace('row-cols-','');
+            });
+
+            //===> Set Other Options <===//
+            if (attributes.controls) blockProps['data-controls'] = 1;
+            if (attributes.pagination) blockProps['data-pagination'] = 1;
+        }
+
         //===> Render <===//
         return (
             <TagName {...blockProps}>

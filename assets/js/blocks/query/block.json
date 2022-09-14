@@ -1,0 +1,44 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/query",
+  "version": "0.1.0",
+  "title": "Query Loop",
+  "category": "design",
+  "description": "Custom Query Posts Block.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "query_type": {
+      "type": "string",
+      "default": "native"
+    },
+    "post_type": {
+      "type": "string",
+      "default": "post"
+    },
+    "per_page": {
+      "type": "number",
+      "default": 8
+    },
+    "order": {
+      "type": "string",
+      "default": "DESC"
+    },
+    "pagination": {
+      "type": "boolean",
+      "default": false
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "px-query"
+}

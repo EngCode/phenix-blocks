@@ -20,10 +20,13 @@ import EqualColumns from '../px-controls/equal-columns';
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
     const set_tagName = tagName => setAttributes({ tagName });
-    const set_alignment = alignment => setAttributes({ flex_align : alignment });
     const set_isEqual = isEqual => setAttributes({ isEqual });
-    const set_isMasonry = isMasonry => setAttributes({ isMasonry });
     const set_columns = columns => setAttributes({ columns });
+    const set_isSlider = isSlider => setAttributes({ isSlider });
+    const set_controls = controls => setAttributes({ controls });
+    const set_isMasonry = isMasonry => setAttributes({ isMasonry });
+    const set_pagination = pagination => setAttributes({ pagination });
+    const set_alignment = alignment => setAttributes({ flex_align : alignment });
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -42,6 +45,32 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Columns <===//
     if (attributes.isEqual && attributes.columns) innerBlocksProps.className += attributes.columns;
+    
+    //===> Slider <===//
+    if (attributes.isSlider) {
+        //===> Add Slider Name <===//
+        innerBlocksProps.className += ' px-slider';
+        
+        //===> Set Items <===//
+        let columns_names = attributes.columns.split(' ');
+        columns_names.forEach(name => {
+            //===> Medium Screen <===//
+            if (name.includes('-md')) innerBlocksProps['data-md'] = name.replace('row-cols-md-','');
+            //===> Large Screen <===//
+            else if (name.includes('-lg')) innerBlocksProps['data-lg'] = name.replace('row-cols-lg-','');
+            //===> xLarge Screen <===//
+            else if (name.includes('-xl')) innerBlocksProps['data-xl'] = name.replace('row-cols-xl-','');
+            //===> Small Screen <===//
+            else if (name.includes('row-cols')) innerBlocksProps['data-items'] = name.replace('row-cols-','');
+        });
+
+        //===> Set Other Options <===//
+        if (attributes.controls) innerBlocksProps['data-controls'] = 1;
+        if (attributes.pagination) innerBlocksProps['data-pagination'] = 1;
+
+        //===> for Edit only <===//
+        // innerBlocksProps.className += attributes.columns;
+    }
 
     //===> Render <===//
     return (<>
@@ -64,17 +93,29 @@ export default function Edit({ attributes, setAttributes }) {
 
                 {/*=== Equal Columns ===*/}
                 <ToggleControl label="Responsive Columns" checked={attributes.isEqual} onChange={set_isEqual}/>
+
+                {/*=== Slider Toggle ===*/}
+                <ToggleControl label="Enable Slider" checked={attributes.isSlider} onChange={set_isSlider}/>
             </PanelBody>
+            {/*=== Slider ===*/}
+            {attributes.isSlider ?
+                <PanelBody title="Slider Options" initialOpen={true}>
+                    <ToggleControl label="Enable Pagination" checked={attributes.pagination} onChange={set_pagination}/>
+                    <ToggleControl label="Enable Arrow Buttons" checked={attributes.controls} onChange={set_controls}/>
+                </PanelBody>
+            : null}
             {/*=== Columns ===*/}
-            {attributes.isEqual ? 
-                <PanelBody title="Columns" initialOpen={true}>
+            {attributes.isEqual || attributes.isSlider ?
+                <PanelBody title="Columns Size" initialOpen={true}>
                     <EqualColumns key="row-columns" value={attributes.columns} onChange={set_columns}></EqualColumns>
                 </PanelBody>
             : null}
             {/*=== Alignment ===*/}
-            <PanelBody title="Alignment" initialOpen={false}>
-                <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
-            </PanelBody>
+            {!attributes.isSlider ?
+                <PanelBody title="Alignment" initialOpen={false}>
+                    <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
+                </PanelBody>
+            : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

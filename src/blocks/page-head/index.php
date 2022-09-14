@@ -12,14 +12,16 @@ function px_head_render($block_attributes, $content) {
     $markup = ''; ob_start();
 ?>
 <!-- Page Title -->
-<h1 class="fs-16 fs-md-20 h3-lg color-inherit lineheight-100 mb-10">
+<h1 class="fs-16 fs-md-20 h3-lg color-inherit lineheight-100 mb-5 tx-uppercase weight-medium">
     <?php
         if (is_archive() || is_category()) {
             echo get_the_archive_title();
         }
         //===> Get Single Title <===//
-        if (is_single() || is_page()) {
+        elseif (is_single() || is_page()) {
             echo get_the_title();
+        } else {
+            echo wp_get_document_title();
         }
     ?>
 </h1>
@@ -54,8 +56,8 @@ function px_head_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_head_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = plugin_dir_path(__DIR__).'px-head\\';
-    $assets_uri  = plugin_dir_url(__DIR__).'px-head/';
+    $assets_path = plugin_dir_path(__DIR__).'page-head\\';
+    $assets_uri  = plugin_dir_url(__DIR__).'page-head/';
     
     //===> Fix File Paths <===//
     $assets_path = str_replace('src', 'assets\js', $assets_path);
@@ -63,7 +65,7 @@ function px_head_block () {
     $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//
-    wp_register_script('px-head',
+    wp_register_script('page-head',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
         $px_assets['version']
@@ -72,7 +74,7 @@ function px_head_block () {
     //==== Register Block ====//
     register_block_type($assets_path.'block.json', array(
         'api_version'  => 2,
-        'editor_script'   => 'px-head',
+        'editor_script'   => 'page-head',
         'render_callback' => 'px_head_render'
     ));
 }

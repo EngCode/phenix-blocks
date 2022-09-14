@@ -61,7 +61,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			.px-dropdown-list {display: none!important;}
 			.rich-text:not(.is-selected) {margin-top: 0;}
 			.wp-block-design-px-section {outline: 1px dashed rgba(#000, 0.15);}
-			.rich-text:not([class*="lineheight"]) {line-height: var(--line-height);}
+			p.rich-text:not([class*="lineheight"]) {line-height: var(--line-height);}
 			[class*="wp-container-"] > * + *,.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
 		}
 	
@@ -200,6 +200,8 @@ body[class*="block-editor"], body[class*="site-editor"] {
 }
 
 /*==== Grid Blocks ====*/
+.col-adaptive {flex: 1 1 0;}
+
 .wp-block-phenix-row.block-editor-block-list__block,
 .wp-block-phenix-row[data-block] {outline: 1px dashed var(--primary-color);}
 

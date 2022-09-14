@@ -49,6 +49,18 @@ if (!function_exists('phenix_blocks')) :
 
         //====> Phenix Row <====//
         wp_enqueue_script('grid-column', $blocksPath.'grid-column/index.js', $blocksDependencies, NULL , true);
+
+        //====> Phenix Row <====//
+        wp_enqueue_script('page-head', $blocksPath.'page-head/index.js', $blocksDependencies, NULL , true);
+
+        //====> Phenix Query <====//
+        wp_enqueue_script('px-query', $blocksPath.'query/index.js', $blocksDependencies, NULL , true);
+
+        //====> Taxonomies List <====//
+        wp_enqueue_script('taxonomies-list', $blocksPath.'taxonomies-list/index.js', $blocksDependencies, NULL , true);
+        
+        //====> Theme Part <====//
+        wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');
@@ -56,3 +68,15 @@ endif;
 
 //====> Phenix Navigation <====//
 include(dirname(__FILE__) . '/navigation/index.php');
+
+//====> Phenix Pahe-Head <====//
+include(dirname(__FILE__) . '/page-head/index.php');
+
+//====> Phenix Query <====//
+include(dirname(__FILE__) . '/query/index.php');
+
+//====> Taxonomies List <====//
+include(dirname(__FILE__) . '/taxonomies-list/index.php');
+
+//====> Theme Part <====//
+include(dirname(__FILE__) . '/theme-part/index.php');

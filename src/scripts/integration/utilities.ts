@@ -96,6 +96,16 @@ PhenixElements.prototype.utilities = function (options?:{
             });
         }
 
+        //====> Max Text Length <====//
+        Phenix('[data-max-text]').forEach((element:any) => {
+            //===> Element Data <===//
+            let text = element.textContent,
+                max  = parseInt(element.getAttribute('data-max-text'));
+
+            //===> check count <===//
+            if (text.length > max) element.textContent = text.slice(0, max);
+        });
+
         //====> Images Demstions <====//
         Phenix('img').forEach((img:any) => {
             //===> Get Image Data <===//
@@ -107,6 +117,29 @@ PhenixElements.prototype.utilities = function (options?:{
             if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}px`);
             if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}px`);
         });
+
+        //====> Loading <====//
+        let loading_wrapper = document.querySelector('.px-loader');
+        if (loading_wrapper) {
+            //===> Disable Scroll <===//
+            document.body.classList.add('overflow-hidden');
+
+            //===> When Loading is Complete <===//
+            window.addEventListener('load', loaded => {
+                //===> Fast Loaded Fallback <===//
+                setTimeout(() => {
+                    //===> Enable Scroll <===//
+                    document.body.classList.remove('overflow-hidden');
+                    //===> Hide Loader <===//
+                    Phenix(loading_wrapper).fadeOut();
+                    //===> Remove Loader <===//
+                    setTimeout(()=> loading_wrapper.querySelector('.content-box').remove(), 1000);
+                }, 2500);
+            });
+
+            //===> When Leaving Page <===//
+            window.addEventListener('beforeunload', isLeaving => Phenix(loading_wrapper).fadeIn());
+        }
     });
 
     //====> Return Phenix Query <====//

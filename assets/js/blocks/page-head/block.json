@@ -1,6 +1,6 @@
 {
   "apiVersion": 2,
-  "name": "phenix/px-head",
+  "name": "phenix/page-head",
   "version": "0.1.0",
   "title": "PDS Head",
   "category": "design",

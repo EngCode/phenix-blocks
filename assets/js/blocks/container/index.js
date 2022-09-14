@@ -47,6 +47,12 @@ function Edit(_ref) {
       setAttributes = _ref.setAttributes;
 
   //===> Set Settings <===//
+  var set_id = function set_id(id) {
+    return setAttributes({
+      id: id
+    });
+  };
+
   var set_size = function set_size(size) {
     return setAttributes({
       size: size
@@ -218,6 +224,11 @@ function Edit(_ref) {
       label: 'Full Width',
       value: 'container-fluid'
     }]
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+    key: "container_id",
+    label: "Container ID",
+    value: attributes.id,
+    onChange: set_id
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
     label: "Section Wrapper",
     checked: attributes.isSection,
@@ -1102,7 +1113,7 @@ module.exports = window["wp"]["element"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements Tegother from Phenix Blocks.","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements Tegother from Phenix Blocks.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1241,7 +1252,9 @@ __webpack_require__.r(__webpack_exports__);
     } //===> for Section Convert <===//
 
 
-    if (!attributes.isSection) blockProps.className += " ".concat(container_names); //===> Render <===//
+    if (!attributes.isSection) blockProps.className += " ".concat(container_names); //===> Render ID <===//
+
+    if (attributes.id) blockProps['id'] = attributes.id; //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.isSection ? /*#__PURE__*/React.createElement("div", {
       className: container_names

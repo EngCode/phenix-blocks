@@ -30,7 +30,7 @@
     },
     "size": {
       "type": "string",
-      "default": "col"
+      "default": "col-auto"
     }
   },
   "example": {

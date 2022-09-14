@@ -1,8 +1,8 @@
 {
 	"apiVersion": 2,
-	"name": "phenix/px-categories",
+	"name": "phenix/taxonomies-list",
 	"version": "0.1.0",
-	"title": "PDS Categories",
+	"title": "Taxonomies List",
 	"category": "design",
 	"description": "Custom Taxonomies & Categories Query Block.",
 	"supports": {
@@ -11,7 +11,7 @@
     "attributes" : {
         "taxonomy" : {
             "type": "string",
-            "default": "categories"
+            "default": "category"
         },
 
         "post_type" : {
@@ -20,5 +20,5 @@
         }
     },
 	"textdomain": "phenix",
-	"editorScript": "px-categories"
+	"editorScript": "taxonomies-list"
 }

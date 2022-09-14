@@ -1,6 +1,7 @@
 //====> WP Modules <====//
 import {
     PanelBody,
+    TextControl,
     SelectControl,
     ToggleControl
 } from '@wordpress/components';
@@ -23,6 +24,7 @@ import FlexAlignment from '../px-controls/flex-alignment';
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
+    const set_id = id => setAttributes({ id });
     const set_size = size => setAttributes({ size });
     const set_color = color => setAttributes({ color });
     const set_tagName = tagName => setAttributes({ tagName });
@@ -139,6 +141,9 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: 'Large',  value: 'container-xl' },
                     { label: 'Full Width',  value: 'container-fluid' },
                 ]}/>
+
+                {/*=== Container ID ===*/}
+                <TextControl key="container_id" label="Container ID" value={ attributes.id } onChange={set_id}/>
 
                 {/*=== isSection ===*/}
                 <ToggleControl label="Section Wrapper" checked={attributes.isSection} onChange={set_isSection}/>

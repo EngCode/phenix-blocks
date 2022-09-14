@@ -28,7 +28,6 @@ export default function Edit(props) {
     const set_post_type  = post_type  => setAttributes({ post_type });
     const set_per_page   = per_page   => setAttributes({ per_page });
     const set_pagination = pagination => setAttributes({ pagination });
-    const set_isSlider = isSlider => setAttributes({ isSlider });
 
     //===> Set Phenix View <===//
     const setPhenixView = () => {
@@ -37,13 +36,6 @@ export default function Edit(props) {
 
         //===> Get the Element from Site Editor <===//
         if (siteEditor) {
-            //===> Slider Active <===//
-            if (attributes.isSlider) {
-                let sliderElements = siteEditor.document.querySelectorAll('.px-slider');
-                sliderElements = [...sliderElements];
-                Phenix(sliderElements).slider();
-            }
-
             //===> Media Active <===//
             let mediaElements = siteEditor.document.querySelectorAll('.px-media');
             mediaElements = [...mediaElements];
@@ -52,13 +44,14 @@ export default function Edit(props) {
 
         //===> Set Background <===//
         if (!siteEditor) {
-            if(attributes.isSlider) Phenix('.px-slider').slider();
             Phenix('.px-media').multimedia();
         }
     }
 
     //===> Update Phenix Elements <===//
     useEffect(()=> setPhenixView());
+
+    blockProps.className += ' col tx-align-center';
 
     //===> Render <===//
     return (<>
@@ -76,9 +69,9 @@ export default function Edit(props) {
                 {attributes.query_type === 'custom' ? <>
                     <SelectControl label="Post Type" value={attributes.post_type} onChange={set_post_type} options={[
                         { label: 'Blog', value: 'post' },
-                        { label: 'Products',  value: 'products' },
-                        { label: 'Products Sublist',  value: 'sublist' },
-                        { label: 'Home Slider',  value: 'home-slider' },
+                        // { label: 'Products',  value: 'products' },
+                        // { label: 'Products Sublist',  value: 'sublist' },
+                        // { label: 'Home Slider',  value: 'home-slider' },
                     ]}/>
 
                     {/*===> Post Type <===*/}
@@ -91,9 +84,6 @@ export default function Edit(props) {
                     <RangeControl label="Posts per Page" value={ attributes.per_page } onChange={set_per_page} min={3} max={36} />
                 </> : null}
 
-                {/*===> Slider <===*/}
-                <ToggleControl label="Carousel Mode" checked={attributes.isSlider} onChange={set_isSlider} />
-
                 {/*===> Pagination <===*/}
                 <ToggleControl label="Show Pagination" checked={attributes.pagination} onChange={set_pagination}/>
             </PanelBody>
@@ -101,10 +91,14 @@ export default function Edit(props) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        {attributes.post_type === 'home-slider' ? 
+        {attributes.preview ? 
             <img src="https://design.phenixthemes.com/px-assets/slider-placeholder.svg" alt="" className='fluid' />
         :
-            <ServerSideRender block="phenix/px-query" attributes={attributes} />
+            <div {...blockProps}>
+                <div className='pdy-30 pdx-25 bg-alpha-05 radius-md border-1 border-dashed border-alpha-25 fs-14'>Dynamic Query Loop For : {attributes.post_type}</div>
+                {/* <ServerSideRender block="phenix/px-navigation" attributes={attributes} /> */}
+            </div>
+            // <ServerSideRender block="phenix/query" attributes={attributes} />
         }
     </>);
 }

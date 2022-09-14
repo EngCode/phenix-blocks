@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/head/edit.js":
-/*!*********************************!*\
-  !*** ./src/blocks/head/edit.js ***!
-  \*********************************/
+/***/ "./src/blocks/theme-part/edit.js":
+/*!***************************************!*\
+  !*** ./src/blocks/theme-part/edit.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -35,31 +35,27 @@ function Edit(props) {
       setAttributes = props.setAttributes;
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(); //===> Set Attributes <===//
 
-  var set_menu_id = function set_menu_id(menu_id) {
+  var set_part_name = function set_part_name(part_name) {
     return setAttributes({
-      menu_id: menu_id
+      part_name: part_name
     });
-  };
+  }; //===> Render <===//
 
-  var set_responsive = function set_responsive(responsive) {
-    return setAttributes({
-      responsive: responsive
-    });
-  }; //===> Editor Render <===//
-
-
-  var isFSE = true;
-  if (window.frames['editor-canvas']) isFSE = true; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Setting",
     initialOpen: true
-  })), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
-    block: "phenix/px-head",
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+    key: "template-name",
+    label: "Template Name",
+    value: attributes.part_name,
+    onChange: set_part_name
+  }))), /*#__PURE__*/React.createElement((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
+    block: "phenix/theme-part",
     attributes: attributes
-  })));
+  }));
 }
 
 /***/ }),
@@ -124,13 +120,13 @@ module.exports = window["wp"]["serverSideRender"];
 
 /***/ }),
 
-/***/ "./src/blocks/head/block.json":
-/*!************************************!*\
-  !*** ./src/blocks/head/block.json ***!
-  \************************************/
+/***/ "./src/blocks/theme-part/block.json":
+/*!******************************************!*\
+  !*** ./src/blocks/theme-part/block.json ***!
+  \******************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-head","version":"0.1.0","title":"PDS Head","category":"design","description":"Page Navigation Head and Breadcrumb.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-head"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/theme-part","version":"0.1.0","title":"Theme Part","category":"design","description":"Pull a Dynamic Template Part From Current Theme.","supports":{"html":false},"attributes":{"part_name":{"type":"string","default":""}},"textdomain":"phenix","editorScript":"theme-part"}');
 
 /***/ })
 
@@ -205,12 +201,12 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/px-head","version":"
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!**********************************!*\
-  !*** ./src/blocks/head/index.js ***!
-  \**********************************/
+/*!****************************************!*\
+  !*** ./src/blocks/theme-part/index.js ***!
+  \****************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/blocks/head/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/head/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./src/blocks/theme-part/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/blocks/theme-part/block.json");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__);
 /*
@@ -230,10 +226,13 @@ __webpack_require__.r(__webpack_exports__);
   category: _block_json__WEBPACK_IMPORTED_MODULE_1__.category,
   attributes: _block_json__WEBPACK_IMPORTED_MODULE_1__.attributes,
   icon: /*#__PURE__*/React.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 576 512"
+    viewBox: "0 0 512 512"
   }, /*#__PURE__*/React.createElement("path", {
-    d: "M296 64C282.8 64 272 74.75 272 88V224h-224V88C48 74.75 37.25 64 24 64S0 74.75 0 88v336C0 437.3 10.75 448 24 448s24-10.75 24-24V272h224v152c0 13.25 10.75 24 24 24S320 437.3 320 424V88C320 74.75 309.3 64 296 64zM552 400h-48V88.02c0-8.842-4.875-16.97-12.69-21.15C483.5 62.65 474 63.12 466.7 68.05l-72 47.1c-11.03 7.344-14 22.25-6.656 33.28c7.375 11.03 22.22 13.97 33.28 6.656L456 132.9v267.1h-48c-13.25 0-24 10.75-24 24C384 437.3 394.8 448 408 448h143.1C565.2 448 576 437.3 576 424C576 410.8 565.3 400 552 400z"
+    d: "M473.6 512H38.4C17.2 512 0 494.8 0 473.6V38.4C0 17.2 17.2 0 38.4 0h435.2C494.8 0 512 17.2 512 38.4v435.2c0 21.2-17.2 38.4-38.4 38.4zM38.4 17.1c-11.8 0-21.3 9.6-21.3 21.3v435.2c0 11.8 9.6 21.3 21.3 21.3h435.2c11.8 0 21.3-9.6 21.3-21.3V38.4c0-11.8-9.6-21.3-21.3-21.3H38.4z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M187.7 51.2h17.1v17.1h-17.1zm-136.5 0h17.1v17.1H51.2zm68.3 0h17.1v17.1h-17.1z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M473.6 0H38.4C17.2 0 0 17.2 0 38.4v72.5c0 4.7 3.8 8.5 8.5 8.5h494.9c4.7 0 8.5-3.8 8.5-8.5V38.4C512 17.2 494.8 0 473.6 0zM221.9 42.7v34.1c0 4.7-3.8 8.5-8.5 8.5h-34.1c-4.7 0-8.5-3.8-8.5-8.5V42.7c0-4.7 3.8-8.5 8.5-8.5h34.1c4.6-.1 8.5 3.7 8.5 8.5zm-68.3 0v34.1c0 4.7-3.8 8.5-8.5 8.5H111c-4.7 0-8.5-3.8-8.5-8.5V42.7c0-4.7 3.8-8.5 8.5-8.5h34.1c4.7-.1 8.5 3.7 8.5 8.5zm-76.8-8.6c4.7 0 8.5 3.8 8.5 8.5v34.1c0 4.7-3.8 8.5-8.5 8.5H42.7c-4.7 0-8.5-3.8-8.5-8.5v-34c0-4.7 3.8-8.5 8.5-8.5h34.1zM64 281.6h-4.3v-4.3c0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5v12.8c0 4.7 3.8 8.5 8.5 8.5H64c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-12.8-36.1c4.7 0 8.5-3.8 8.5-8.5v-30.3c0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5V237c0 4.7 3.8 8.5 8.5 8.5zM64 145.1H51.2c-4.7 0-8.5 3.8-8.5 8.5v12.8c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-4.3H64c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm233.7 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5.1-4.7-3.8-8.5-8.5-8.5zm-83.4 17h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5h-25c-4.7 0-8.5 3.8-8.5 8.5-.1 4.7 3.7 8.5 8.5 8.5zm200.3-17h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-233.7 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-58.5 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5.1-4.7-3.8-8.5-8.5-8.5zm233.8 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm104.6 0H448c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h4.3v4.3c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-12.8c0-4.7-3.8-8.5-8.5-8.5zm0 53.1c-4.7 0-8.5 3.8-8.5 8.5V237c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-30.3c0-4.7-3.8-8.5-8.5-8.5zm0 70.6c-4.7 0-8.5 3.8-8.5 8.5v4.3H448c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h12.8c4.7 0 8.5-3.8 8.5-8.5v-12.8c0-4.7-3.8-8.5-8.5-8.5zm-338.4 12.8h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm233.8 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-175.3 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm233.7 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-116.9 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm-58.4 0h-25c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h25c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm25.2-51.2h17.1c4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5h-17.1v-17.1c0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5v17.1h-17.1c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5h17.1v17.1c0 4.7 3.8 8.5 8.5 8.5s8.5-3.8 8.5-8.5v-17.1zm196.3 93.9H51.2c-4.7 0-8.5 3.8-8.5 8.5v128c0 4.7 3.8 8.5 8.5 8.5h409.6c4.7 0 8.5-3.8 8.5-8.5v-128c0-4.7-3.8-8.5-8.5-8.5z"
   })),
 
   /**===> @see ./edit.js <===*/

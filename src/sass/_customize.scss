@@ -107,3 +107,54 @@
 
 /*==== Backdrop [Overlay] Opacity ====*/
 .overlay-dark::before {opacity: 0.75;}
+
+/*==== Links List ====*/
+.links-inherit a {color: inherit;}
+
+.links-list li {
+    margin-bottom: 10px;
+    @extend %fast-motion;
+    @include padding-inline(10px, 'start');
+    /*==== Links ====*/
+    a {
+        color: inherit;
+        @extend %fast-motion;
+    }
+    /*==== Hover ====*/
+    &:hover {
+        color: var(--primary-hover);
+        @include padding-inline(5px, 'start');
+    }
+    /*==== Icon ====*/
+    &::before {
+        content: "\f0c1";
+        @extend %inline-block;
+        margin-#{$direction-end}: 8px;
+        color: var(--primary-hover);
+        font-family: var(--icons-font);
+    }
+}
+
+/*==== Widget Divider Fix ====*/
+.divider-b:last-child {border-bottom: 0 none;}
+
+/*==== Colored icons ====*/
+.icon-primary::before {color: var(--primary-color);}
+
+/*==== Breadcrumb Divider ====*/
+.px-breadcrumb.custom-icon {--divider-icon : '\f101';}
+
+/*==== Checklist ====*/
+.check-list li {
+    margin-bottom: 10px;
+    @extend %fast-motion;
+    @include padding-inline(10px, 'start');
+    /*==== Icon ====*/
+    &::before {
+        @extend %inline-block;
+        content: "\f058";
+        margin-#{$direction-end}: 8px;
+        color: var(--success-color);
+        font-family: var(--icons-font);
+    }
+}

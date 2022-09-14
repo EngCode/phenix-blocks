@@ -40,7 +40,7 @@ export default function Edit(props) {
 
         {/* //====> Edit Layout <====// */}
         <div {...blockProps}> 
-            <ServerSideRender block="phenix/px-head" attributes={attributes} />
+            <ServerSideRender block="phenix/page-head" attributes={attributes} />
         </div>
     </>);
 }

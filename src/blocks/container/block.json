@@ -10,6 +10,11 @@
 		"html": false
 	},
     "attributes" : {
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+
 		"tagName": {
 			"type": "string",
 			"default": "div"

@@ -22,8 +22,7 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
 
     //===> Set Attributes <===//
-    const set_taxonomy = taxonomy => setAttributes({ taxonomy });
-    const set_post_type = post_type => setAttributes({ post_type });
+    const set_part_name = part_name => setAttributes({ part_name });
 
     //===> Render <===//
     return (<>
@@ -31,23 +30,13 @@ export default function Edit(props) {
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
             <PanelBody title="Setting" initialOpen={true}>
-                {/*===> Taxonomy <===*/}
-                <SelectControl label="Order By" value={attributes.taxonomy} onChange={set_taxonomy} options={[
-                    { label: 'Default', value: 'categories' },
-                    { label: 'Cultures',  value: 'cultures' },
-                    { label: 'Products Lines',  value: 'products-lines' },
-                ]}/>
-                {/*===> Post Type <===*/}
-                <SelectControl label="Post Type" value={attributes.post_type} onChange={set_post_type} options={[
-                    { label: 'Blog', value: 'post' },
-                    { label: 'Products',  value: 'products' },
-                    { label: 'Products Sublist',  value: 'sublist' },
-                ]}/>
+                {/*=== Template Name ===*/}
+                <TextControl key="template-name" label="Template Name" value={ attributes.part_name } onChange={set_part_name}/>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        <ServerSideRender block="phenix/px-categories" attributes={attributes} />
+        <ServerSideRender block="phenix/theme-part" attributes={attributes} />
     </>);
 }

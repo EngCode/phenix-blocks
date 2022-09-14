@@ -13,16 +13,13 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-// import EqualColumns from '../px-controls/equal-columns';
+import ColumnSize from '../px-controls/column-size';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
     const set_tagName = tagName => setAttributes({ tagName });
-    const set_alignment = alignment => setAttributes({ flex_align : alignment });
-    const set_isEqual = isEqual => setAttributes({ isEqual });
-    const set_isMasonry = isMasonry => setAttributes({ isMasonry });
-    const set_columns = columns => setAttributes({ columns });
+    const set_size = size => setAttributes({ size });
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -37,8 +34,12 @@ export default function Edit({ attributes, setAttributes }) {
     return (<>
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
+            {/*=== Column Size ===*/}
+            <PanelBody title="Column Size" initialOpen={true}>
+                <ColumnSize key="flex-align" value={attributes.size} onChange={set_size}></ColumnSize>
+            </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title="General Settings">
+            <PanelBody title="General Settings" initialOpen={false}>
                 {/*=== Component <TagName> ===*/}
                 <SelectControl key="tagName" label="HTML Tag" value={attributes.tagName} onChange={set_tagName} options={[
                     { label: 'Default <div>',  value: 'div' },

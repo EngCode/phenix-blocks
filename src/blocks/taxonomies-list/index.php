@@ -17,7 +17,7 @@ function px_categories_render($block_attributes, $content) {
         'hide_empty' => false
     ));
     //===> Loop Throgh Categories <===//
-    echo '<ul class="reset-list links-list mb-15 pdb-15 divider-b fs-14">';
+    echo '<ul class="reset-list links-list fs-14 pds-15">';
     foreach ($categories as $category) :
        echo '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.'</a></li>';
     endforeach;
@@ -31,8 +31,8 @@ function px_categories_render($block_attributes, $content) {
 //===> Register Phenix Block <===//
 function px_categories_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = plugin_dir_path(__DIR__).'px-categories\\';
-    $assets_uri  = plugin_dir_url(__DIR__).'px-categories/';
+    $assets_path = plugin_dir_path(__DIR__).'taxonomies-list\\';
+    $assets_uri  = plugin_dir_url(__DIR__).'taxonomies-list/';
 
     //===> Fix File Paths <===//
     $assets_path = str_replace('src', 'assets\js', $assets_path);
@@ -40,7 +40,7 @@ function px_categories_block () {
     $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//
-    wp_register_script('px-categories',
+    wp_register_script('taxonomies-list',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
         $px_assets['version']
@@ -49,7 +49,7 @@ function px_categories_block () {
     //==== Register Block ====//
     register_block_type($assets_path.'block.json', array(
         'api_version'     => 2,
-        'editor_script'   => 'px-categories',
+        'editor_script'   => 'taxonomies-list',
         'render_callback' => 'px_categories_render'
     ));
 }

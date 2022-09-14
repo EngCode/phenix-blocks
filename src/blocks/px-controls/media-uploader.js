@@ -16,6 +16,7 @@ export default class MediaUploader extends Component {
             label,
             value,
             size,
+            type,
             setValue
         } = this.props;
 
@@ -29,13 +30,13 @@ export default class MediaUploader extends Component {
                         <div className="flexbox align-center-y align-between">
                             {size === 'small' ?
                                 <>
-                                    <img src={value} style={{"max-height": "2.25rem"}} />
+                                    {!type || type === 'image' ? <img src={value} style={{"max-height": "2.25rem"}} /> : null}
                                     <button key="change-media" onClick={open} className="btn square primary small radius-sm fs-12 fas fa-upload"></button>
                                 </>
                                 :
                                 <>
-                                    <img src={value} className="radius-sm radius-top" style={{"maxWidth": "100%", "display": "block"}} />
-                                    <button key="change-media" onClick={open} className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select Image</button>
+                                    {!type || type === 'image' ? <img src={value} className="radius-sm radius-top" style={{"maxWidth": "100%", "display": "block"}} /> : null}
+                                    <button key="change-media" onClick={open} className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select File</button>
                                 </>
                             }
                         </div>

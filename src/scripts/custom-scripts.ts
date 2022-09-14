@@ -16,11 +16,6 @@ Phenix(document).ready((event:any) => {
     //====> Multimedia <====//
     Phenix('.px-media').multimedia();
 
-    //===> Animations <===//
-    Phenix(document).animations({
-        animateCSS: ["fading", "sliding", "utilities"],
-    });
-
     //===> Phenix Menu <===//
     Phenix('.px-navigation').menu();
 
@@ -42,4 +37,33 @@ Phenix(document).ready((event:any) => {
     //====> Sticky Header <====//
     Phenix('.main-header').setAttributes({'data-sticky': "absolute"});
     Phenix('.main-header').addClass('fluid').sticky();
+
+    //====> Media Lightbox <====//
+    Phenix('#px-lightbox').popup({type: 'lightbox'});
+
+    //====> Custom Animations <===//
+    Phenix('.animations-group').forEach((group:any) => {
+        //===> Activeate Lazy Animations <===//
+        group.setAttribute('data-lazy-group', 1);
+        //===> for Each Element <===//
+        group.querySelectorAll('h2, p, .btn, .wp-block-image:not(.hero-image)').forEach((element:any) => {
+            element.classList.add('view-status');
+            element.setAttribute('data-animation', 'fadeInUp');
+        });
+        //===>  <===//
+        group.querySelectorAll('.animate-end').forEach((element:any) => {
+            element.classList.add('view-status');
+            element.setAttribute('data-animation', 'fadeInEnd');
+        });
+        //===>  <===//
+        group.querySelectorAll('.animate-start').forEach((element:any) => {
+            element.classList.add('view-status');
+            element.setAttribute('data-animation', 'fadeInStart');
+        });
+    });
+
+    //===> Animations <===//
+    Phenix('.view-status').animations({
+        animateCSS: ["fading", "sliding", "utilities"]
+    });
 }).utilities('all');

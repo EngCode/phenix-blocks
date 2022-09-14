@@ -592,6 +592,7 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
           label = _this$props.label,
           value = _this$props.value,
           size = _this$props.size,
+          type = _this$props.type,
           setValue = _this$props.setValue; //===> Output <===//
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
@@ -607,27 +608,27 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
             className: "mb-10"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
             className: "flexbox align-center-y align-between"
-          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
               "max-height": "2.25rem"
             }
-          }), /*#__PURE__*/React.createElement("button", {
+          }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
             className: "btn square primary small radius-sm fs-12 fas fa-upload"
-          })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+          })) : /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             className: "radius-sm radius-top",
             style: {
               "maxWidth": "100%",
               "display": "block"
             }
-          }), /*#__PURE__*/React.createElement("button", {
+          }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
             className: "btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon"
-          }, "Select Image"))));
+          }, "Select File"))));
         }
       }));
     }

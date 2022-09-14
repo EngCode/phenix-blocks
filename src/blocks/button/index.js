@@ -46,6 +46,12 @@ registerBlockType(metadata, {
 
         if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal;
 
+        if (attributes.isLightBox) {
+            blockProps['href'] = attributes.url;
+            blockProps.className += ' px-lightbox';
+            if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
+        }
+
         //===> Set Default Values <===//
         const setDefault = () => {
             //===> Main Names <===//

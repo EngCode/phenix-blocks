@@ -94,6 +94,21 @@
             "default" : ""
         },
 
+        "isLightBox" : {
+            "type" : "boolean",
+            "default" : false
+        },
+
+		"lightbox_src" : {
+			"type": "boolean",
+			"default" : false
+		},
+
+		"lightbox_type" : {
+			"type": "string",
+			"default" : "image"
+		},
+
 		"className" : {
 			"type": "string",
 			"default" : "btn primary"

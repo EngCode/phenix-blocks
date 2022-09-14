@@ -18,6 +18,7 @@ import {
 
 import PhenixBackground from '../px-controls/px-background';
 import PhenixColor from '../px-controls/px-colors';
+import MediaUploader from '../px-controls/media-uploader';
 
 import { useState, useEffect } from '@wordpress/element';
 
@@ -34,6 +35,9 @@ export default function Edit({ attributes, setAttributes }) {
     const set_size = size => setAttributes({size});
     const set_type = type => setAttributes({type});
     const set_radius = radius => setAttributes({radius});
+    const set_isLightBox = isLightBox => setAttributes({isLightBox});
+    const set_lightbox_src = lightbox_src => setAttributes({lightbox_src});
+    const set_lightbox_type = lightbox_type => setAttributes({lightbox_type});
 
     //===> Link Settings <===//
     const set_isLink = isLink => setAttributes({ isLink });
@@ -129,7 +133,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <RadioGroup label="Button Type" onChange={ set_type } defaultChecked={attributes.type}>
                     <Radio value="normal">Default</Radio>
                     <Radio value="square">icon only</Radio>
-                    <Radio value="75">with icon</Radio>
+                    <Radio value="btn-icon">with icon</Radio>
                 </RadioGroup>
 
                 {/* Divider */}
@@ -170,6 +174,9 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*=== isLink ===*/}
                 <ToggleControl label="Link Button" checked={attributes.isLink} onChange={set_isLink}/>
 
+                {/*=== isLightbox ===*/}
+                <ToggleControl label="Lightbox Button" checked={attributes.isLightBox} onChange={set_isLightBox}/>
+
                 {/*=== Icon Settings ===*/}
                 {attributes.type === 'btn-icon' ? <>
                     <ToggleControl label="Icon as Label" checked={attributes.iconLabel} onChange={set_iconLabel}/>
@@ -182,16 +189,35 @@ export default function Edit({ attributes, setAttributes }) {
                 <span className='color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>
                 {/* Link Controls */}
                 <LinkControlSearchInput
-					placeholder="URL or Page Name"
-					onChange={set_url}
-					value={ attributes.url }
-					allowDirectEntry={false}
-					withURLSuggestion={false}
-					withCreateSuggestion={false}
-					renderSuggestions={(props) => suggestionsRender(props)}
-				/>
+                    placeholder="URL or Page Name"
+                    onChange={set_url}
+                    value={ attributes.url }
+                    allowDirectEntry={false}
+                    withURLSuggestion={false}
+                    withCreateSuggestion={false}
+                    renderSuggestions={(props) => suggestionsRender(props)}
+                />
                 {/*=== isLink ===*/}
                 <div className='mt-10'><ToggleControl label="Open in New Tab ?" checked={attributes.inNewTab} onChange={set_inNewTab}/></div>
+            </PanelBody> : null}
+            {/*===> Widget Panel <===*/}
+            {attributes.isLightBox ?<PanelBody title="Lightbox Settings">
+                {/*=== Component <TagName> ===*/}
+                <SelectControl key="lightbox-type" label="Lightbox Type" value={attributes.lightbox_type} onChange={set_lightbox_type} options={[
+                    { label: 'Image',  value: 'image' },
+                    { label: 'Video',  value: 'video' },
+                    { label: 'Embed',  value: 'embed' },
+                ]}/>
+
+                {/*===> Custom Source <===*/}
+                <ToggleControl label="Custom Source" checked={attributes.lightbox_src} onChange={set_lightbox_src}/>
+
+                {/*===> Source Control <===*/}
+                {attributes.lightbox_src ?
+                    <MediaUploader label="Upload Source" type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
+                :
+                    <TextControl key="container_id" label="Lightbox Source" value={ attributes.url } onChange={set_url}/>
+                }
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title="Typography" initialOpen={false}>

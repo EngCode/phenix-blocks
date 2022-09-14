@@ -18,11 +18,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _px_controls_px_background__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../px-controls/px-background */ "./src/blocks/px-controls/px-background.js");
 /* harmony import */ var _px_controls_px_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/px-colors */ "./src/blocks/px-controls/px-colors.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/media-uploader */ "./src/blocks/px-controls/media-uploader.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 //====> WP Modules <====//
+
 
 
 
@@ -91,6 +93,24 @@ function Edit(_ref) {
   var set_radius = function set_radius(radius) {
     return setAttributes({
       radius: radius
+    });
+  };
+
+  var set_isLightBox = function set_isLightBox(isLightBox) {
+    return setAttributes({
+      isLightBox: isLightBox
+    });
+  };
+
+  var set_lightbox_src = function set_lightbox_src(lightbox_src) {
+    return setAttributes({
+      lightbox_src: lightbox_src
+    });
+  };
+
+  var set_lightbox_type = function set_lightbox_type(lightbox_type) {
+    return setAttributes({
+      lightbox_type: lightbox_type
     });
   }; //===> Link Settings <===//
 
@@ -211,7 +231,7 @@ function Edit(_ref) {
   }, "Default"), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.__experimentalRadio, {
     value: "square"
   }, "icon only"), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.__experimentalRadio, {
-    value: "75"
+    value: "btn-icon"
   }, "with icon")), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 my-15 divider-t"
   }), /*#__PURE__*/React.createElement("label", {
@@ -264,6 +284,10 @@ function Edit(_ref) {
     label: "Link Button",
     checked: attributes.isLink,
     onChange: set_isLink
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Lightbox Button",
+    checked: attributes.isLightBox,
+    onChange: set_isLightBox
   }), attributes.type === 'btn-icon' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
     label: "Icon as Label",
     checked: attributes.iconLabel,
@@ -292,7 +316,42 @@ function Edit(_ref) {
     label: "Open in New Tab ?",
     checked: attributes.inNewTab,
     onChange: set_inNewTab
-  }))) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+  }))) : null, attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Lightbox Settings"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
+    key: "lightbox-type",
+    label: "Lightbox Type",
+    value: attributes.lightbox_type,
+    onChange: set_lightbox_type,
+    options: [{
+      label: 'Image',
+      value: 'image'
+    }, {
+      label: 'Video',
+      value: 'video'
+    }, {
+      label: 'Embed',
+      value: 'embed'
+    }]
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Custom Source",
+    checked: attributes.lightbox_src,
+    onChange: set_lightbox_src
+  }), attributes.lightbox_src ? /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: "Upload Source",
+    type: attributes.lightbox_type,
+    value: attributes.url,
+    setValue: function setValue(file) {
+      setAttributes({
+        url: file.url
+      });
+    }
+  }) : /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+    key: "container_id",
+    label: "Lightbox Source",
+    value: attributes.url,
+    onChange: set_url
+  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Typography",
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_px_controls_px_colors__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -393,6 +452,7 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
           label = _this$props.label,
           value = _this$props.value,
           size = _this$props.size,
+          type = _this$props.type,
           setValue = _this$props.setValue; //===> Output <===//
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
@@ -408,27 +468,27 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
             className: "mb-10"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
             className: "flexbox align-center-y align-between"
-          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
               "max-height": "2.25rem"
             }
-          }), /*#__PURE__*/React.createElement("button", {
+          }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
             className: "btn square primary small radius-sm fs-12 fas fa-upload"
-          })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+          })) : /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             className: "radius-sm radius-top",
             style: {
               "maxWidth": "100%",
               "display": "block"
             }
-          }), /*#__PURE__*/React.createElement("button", {
+          }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
             className: "btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon"
-          }, "Select Image"))));
+          }, "Select File"))));
         }
       }));
     }
@@ -914,7 +974,7 @@ module.exports = window["wp"]["element"];
   \**************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/button","version":"0.1.0","title":"PDS Button","category":"design","description":"Phenix Design System Button Component","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"normal"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":"primary"},"color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"className":{"type":"string","default":"btn primary"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/button","version":"0.1.0","title":"PDS Button","category":"design","description":"Phenix Design System Button Component","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"normal"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":"primary"},"color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"isLightBox":{"type":"boolean","default":false},"lightbox_src":{"type":"boolean","default":false},"lightbox_type":{"type":"string","default":"image"},"className":{"type":"string","default":"btn primary"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1059,7 +1119,14 @@ __webpack_require__.r(__webpack_exports__);
       blockProps.className += ' menu-toggle';
     }
 
-    if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal; //===> Set Default Values <===//
+    if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal;
+
+    if (attributes.isLightBox) {
+      blockProps['href'] = attributes.url;
+      blockProps.className += ' px-lightbox';
+      if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
+    } //===> Set Default Values <===//
+
 
     var setDefault = function setDefault() {
       //===> Main Names <===//

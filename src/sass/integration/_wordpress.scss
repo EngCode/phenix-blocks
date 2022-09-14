@@ -184,7 +184,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 }
 
 /*==== Posts Editor Layout ====*/
-body.block-editor-page.post-php, body.block-editor-page.post-type-post {
+body.post-type-post, body.post-type-post {
 	.editor-styles-wrapper > .is-root-container {
 		margin-left: auto;
 		margin-right: auto;

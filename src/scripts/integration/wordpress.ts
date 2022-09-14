@@ -17,10 +17,14 @@ declare var wp: any;
 Phenix(document).ready(ready => {
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
-        /*====> <====*/
+        //===> WPF7 Fixes <===//
         Phenix('.wpcf7-textarea').forEach((element:any) => {
             element.setAttribute('cols', null);
             element.setAttribute('rows', null);
+        });
+
+        Phenix('.wpcf7-validates-as-required').forEach((element:any) => {
+            element.setAttribute('required', true);
         });
 
         /*====> Activated Items Detect <====*/

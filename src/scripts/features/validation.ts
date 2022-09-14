@@ -32,10 +32,6 @@ PhenixElements.prototype.validation = function (options?:{
             patterns  = options?.patterns,
             pageDir   = Phenix(document).direction();
 
-        Phenix('.wpcf7-validates-as-required').forEach((element:any) => {
-            element.setAttribute('required', true);
-        });
-
         element.addEventListener('submit', submit => {
             //====> Default Browser Api <====//
             element.querySelectorAll('input, textarea, select').forEach(input => {
@@ -75,6 +71,8 @@ PhenixElements.prototype.validation = function (options?:{
                         input.classList.remove('error');
                     }
 
+                    //===> Do not Submit <===//
+                    if (hasError) submit.preventDefault();
                     return hasError;
                 }
 
@@ -89,13 +87,13 @@ PhenixElements.prototype.validation = function (options?:{
                 });
 
                 //====> if has invalid value <====//
-                input.addEventListener("invalid", validate);
+                input.addEventListener("invalid", invalid => {
+                    //===> Validate <===//
+                    validate();
+                });
                 
                 //====> Init <====//
                 validate();
-
-                //===> Do not Submit <===//
-                submit.preventDefault();
             });
         });
 

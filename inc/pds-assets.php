@@ -47,7 +47,7 @@ if (!function_exists('phenix_core')) :
     add_action('enqueue_block_editor_assets', 'phenix_core');
 endif;
 
-//=====> Phenix Assets [Footer] <=====//
+//=====> Phenix Assets <=====//
 if (!function_exists('phenix_assets')) :
 	/**
 	 * Setup Phenix Design Fonts and Third-Party

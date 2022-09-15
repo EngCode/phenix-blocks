@@ -33,52 +33,80 @@ if (!function_exists('phenix_blocks')) :
         $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
         //====> Phenix Section <====//
-        if (get_option('pds_container_block')) {
+        if (get_option('container_block')) {
             wp_enqueue_script('section', $blocksPath.'container/index.js', $blocksDependencies, NULL , true);
         }
 
         //====> Phenix Logo <====//
-        wp_enqueue_script('px-logo', $blocksPath.'logo/index.js', $blocksDependencies, NULL , true);
+        if (get_option('logo_block')) {
+            wp_enqueue_script('px-logo', $blocksPath.'logo/index.js', $blocksDependencies, NULL , true);
+        }
 
         //====> Phenix Menu <====//
-        wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
+        if (get_option('navigation_block')) {
+            wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
+        }
 
         //====> Phenix Button <====//
-        wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
+        if (get_option('button_block')) {
+            wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
+        }
 
         //====> Phenix Row <====//
-        wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
+        if (get_option('row_block')) {
+            wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
+        }
 
-        //====> Phenix Row <====//
-        wp_enqueue_script('grid-column', $blocksPath.'grid-column/index.js', $blocksDependencies, NULL , true);
+        //====> Phenix Column <====//
+        if (get_option('column_block')) {
+            wp_enqueue_script('grid-column', $blocksPath.'grid-column/index.js', $blocksDependencies, NULL , true);
+        }
 
-        //====> Phenix Row <====//
-        wp_enqueue_script('page-head', $blocksPath.'page-head/index.js', $blocksDependencies, NULL , true);
+        //====> Phenix Head <====//
+        if (get_option('head_block')) {
+            wp_enqueue_script('page-head', $blocksPath.'page-head/index.js', $blocksDependencies, NULL , true);
+        }
 
         //====> Phenix Query <====//
-        wp_enqueue_script('px-query', $blocksPath.'query/index.js', $blocksDependencies, NULL , true);
+        if (get_option('query_block')) {
+            wp_enqueue_script('px-query', $blocksPath.'query/index.js', $blocksDependencies, NULL , true);
+        }
 
         //====> Taxonomies List <====//
-        wp_enqueue_script('taxonomies-list', $blocksPath.'taxonomies-list/index.js', $blocksDependencies, NULL , true);
+        if (get_option('taxonomies_list_block')) {
+            wp_enqueue_script('taxonomies-list', $blocksPath.'taxonomies-list/index.js', $blocksDependencies, NULL , true);
+        }
         
         //====> Theme Part <====//
-        wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
+        if (get_option('theme_part_block')) {
+            wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
+        }
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');
 endif;
 
 //====> Phenix Navigation <====//
-include(dirname(__FILE__) . '/navigation/index.php');
+if (get_option('navigation_block')) {
+    include(dirname(__FILE__) . '/navigation/index.php');
+}
 
 //====> Phenix Pahe-Head <====//
-include(dirname(__FILE__) . '/page-head/index.php');
+if (get_option('head_block')) {
+    include(dirname(__FILE__) . '/page-head/index.php');
+}
 
 //====> Phenix Query <====//
-include(dirname(__FILE__) . '/query/index.php');
+if (get_option('query_block')) {
+    include(dirname(__FILE__) . '/query/index.php');
+}
 
 //====> Taxonomies List <====//
-include(dirname(__FILE__) . '/taxonomies-list/index.php');
+if (get_option('taxonomies_list_block')) {
+    include(dirname(__FILE__) . '/taxonomies-list/index.php');
+}
 
 //====> Theme Part <====//
-include(dirname(__FILE__) . '/theme-part/index.php');
+if (get_option('theme_part_block')) {
+    include(dirname(__FILE__) . '/theme-part/index.php');
+}

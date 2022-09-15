@@ -15,16 +15,25 @@ if (!function_exists('pds_blocks_activation')) :
 
     //===> Activation <===//
     function pds_blocks_activation(){
-        do_action( 'pds_blocks_default_options' );
+        do_action('pds_blocks_active');
     }
 
-    register_activation_hook( __FILE__, 'pds_blocks_activation' );
+    register_activation_hook(__FILE__, 'pds_blocks_activation');
 
     //===> Set default values here <===//
     function pds_blocks_default_values() {
         //===> Form settings <===//
-        add_option('pds_container_block', true);
+        add_option('container_block', true);
+        add_option('logo_block', true);
+        add_option('navigation_block', true);
+        add_option('button_block', true);
+        add_option('row_block', true);
+        add_option('column_block', true);
+        add_option('head_block', true);
+        add_option('query_block', true);
+        add_option('taxonomies_list_block', true);
+        add_option('theme_part_block', true);
     }
 
-    add_action('pds_blocks_default_options', 'name_plugin_default_values' );
+    add_action('pds_blocks_active', 'pds_blocks_default_values');
 endif;

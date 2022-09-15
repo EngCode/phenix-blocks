@@ -43,7 +43,16 @@
             register_setting('pds-admin', 'jquery_remove');
 
             //===> Phenix Blocks <===//
-            register_setting('pds-admin', 'pds_container_block');
+            register_setting('pds-admin', 'container_block');
+            register_setting('pds-admin', 'logo_block');
+            register_setting('pds-admin', 'navigation_block');
+            register_setting('pds-admin', 'button_block');
+            register_setting('pds-admin', 'row_block');
+            register_setting('pds-admin', 'column_block');
+            register_setting('pds-admin', 'head_block');
+            register_setting('pds-admin', 'query_block');
+            register_setting('pds-admin', 'taxonomies_list_block');
+            register_setting('pds-admin', 'theme_part_block');
 
             //===> Core Blocks <===//
             register_setting('pds-admin', 'pds_core_quote');

@@ -13,6 +13,10 @@
                     "title" => 'Remove jQuery',
                 ),
                 array(
+                    "name"  => 'blocks_optimizer',
+                    "title" => 'GB Blocks Optimizer',
+                ),
+                array(
                     "name"  => 'comments_css',
                     "title" => 'Clean Comments CSS',
                 ),
@@ -43,18 +47,9 @@
                     "name"  => 'wpc7_cleaner',
                     "title" => 'CF7 HTML Cleaner',
                 ),
-            ));
-        ?>
-        <hr />
-        <?php
-            echo pds_toggle_controls(array(
                 array(
                     "name"  => 'newsletter_css',
                     "title" => 'Remove [Newsletter] CSS',
-                ),
-                array(
-                    "name"  => 'blocks_optimizer',
-                    "title" => 'GB Blocks Optimizer',
                 ),
             ));
         ?>

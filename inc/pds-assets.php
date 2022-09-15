@@ -41,6 +41,11 @@ if (!function_exists('phenix_core')) :
     
         //====> Enqueue Phenix JS <====//
         wp_enqueue_script('phenix', $assets_url.'js/phenix.js', false , NULL , true);
+
+        //===> Store RESET API DATA and Allow for Phenix to Access it <===//
+        wp_localize_script('phenix', 'PDS_WP_DATA', array(
+            'nonce' => wp_create_nonce('wp_rest'),
+        ));
     }
 
     add_action('wp_enqueue_scripts', 'phenix_core');

@@ -22,6 +22,13 @@ if (!function_exists('pds_blocks_activation')) :
 
     //===> Set default values here <===//
     function pds_blocks_default_values() {
+        //===> Menu Locations <===//
+        add_option('pds_menu_locations', array(
+            'main-menu'     => 'Main Menu',
+            'footer-menu'   => 'Footer Links',
+            'footer-menu-2' => 'Footer Links #2',
+        ));
+
         //===> Blocks settings <===//
         add_option('container_block', true);
         add_option('logo_block', true);

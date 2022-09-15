@@ -50,6 +50,9 @@
         */
 
         function create_pds_options() {
+            //===> Menu Locations <===//
+            register_setting('pds-admin', 'pds_menu_locations');
+            
             //===> General Settings <===//
             register_setting('pds-admin', 'pds_admin_style');
             register_setting('pds-admin', 'pds_gfonts');

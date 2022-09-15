@@ -16,13 +16,9 @@
 if (!defined('ABSPATH')) {exit;}
 
 //====> Menus Locations <====//
-register_nav_menus(array(
-    'main-menu'     => 'Main Menu',
-    'footer-menu'   => 'Footer Links',
-    'footer-menu-2' => 'Footer Links #2',
-    'design-docs'   => 'Design Sidebar',
-    'pxwp-docs'     => 'Blocks Sidebar',
-));
+if (get_option('pds_menu_locations')) :
+  register_nav_menus( get_option('pds_menu_locations') );
+endif;
 
 //====> Multilang Support <====//
 if (!function_exists('px__')) {

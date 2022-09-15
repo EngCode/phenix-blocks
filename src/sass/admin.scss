@@ -213,6 +213,10 @@
 	.notice {
 		border: 0 none;
 		border-radius: 4px;
+		padding-bottom: 5px;
+
+		h2 {font-size: 1.15rem;}
+		h3 {font-size: 1rem;}
 
 		&.updated {
 			border: 1px solid var(--success-color);

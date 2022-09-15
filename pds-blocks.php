@@ -18,6 +18,7 @@ if (!defined('ABSPATH')) {exit;}
 //====> Menus Locations <====//
 register_nav_menus(array(
     'main-menu' => 'Main Menu',
+    'side-menu' => 'Side Menu',
     'footer-menu' => 'Quick Links',
     'footer-menu-2' => 'Important Links',
 ));

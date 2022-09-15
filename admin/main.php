@@ -36,7 +36,7 @@
             $template_markup = '';
             ob_start();
             //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/optimization-settings.php');
+            include(dirname(__FILE__) . '/panels/optimization.php');
             //===> Stop Data <===//
             $template_output = ob_get_clean();
             $template_markup .= $template_output;
@@ -51,7 +51,7 @@
             $template_markup = '';
             ob_start();
             //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/core-blocks-settings.php');
+            include(dirname(__FILE__) . '/panels/core-blocks.php');
             //===> Stop Data <===//
             $template_output = ob_get_clean();
             $template_markup .= $template_output;

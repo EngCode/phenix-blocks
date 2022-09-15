@@ -1,16 +1,9 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks
-  * Plugin URI: https://phenixthemes.com
-  * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 0.1
-  * Author: Abdullah.Ramadan
-  * Author URI:https://phenixthemes.com
-  * License: GPL2
-  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
-  * Text Domain: phenix
-  * Domain Path: /languages
-**/
+ * Phenix Blocks Admin Controls
+ * @since Phenix WP 1.0
+ * @return void
+*/
 
 //====> Default Options <====//
 if (!function_exists('pds_add_admin_page')) :

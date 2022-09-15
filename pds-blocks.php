@@ -48,6 +48,8 @@ if (!function_exists('pds_menu')) :
 	 * @since Phenix Blocks 1.0
 	 * @return void
 	*/
+
+    include(dirname(__FILE__) . '/admin/pds-admin.php');
     
     add_action('admin_menu', 'pds_menu');
 
@@ -70,8 +72,6 @@ if (!function_exists('pds_menu')) :
             'pds_menu_creator'
         );
     }
-
-    include(dirname(__FILE__) . '/admin/pds-admin.php');
 endif;
 
 //=====> Phenix Optimizer <=====//

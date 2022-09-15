@@ -7,181 +7,166 @@
 <div class="row">
     <!-- Column -->
     <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_group" <?php if (get_option('pds_core_group')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>group.svg" class="icon"> Core/Group</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_columns" <?php if (get_option('pds_core_columns')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>columns.svg" class="icon"> Core/Columns</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_preformatted" <?php if (get_option('pds_core_preformatted')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>preformatted.svg" class="icon"> Preformatted</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_pullquote" <?php if (get_option('pds_core_pullquote')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>pullquote.svg" class="icon"> Core/Pullquote</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_verse" <?php if (get_option('pds_core_verse')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>verse.svg" class="icon"> Core/Verse</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_gallery" <?php if (get_option('pds_core_gallery')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>gallery.svg" class="icon"> Core/Gallery</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_file" <?php if (get_option('pds_core_file')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>file.svg" class="icon"> Core/File</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'pds_core_group',
+                    "title" => 'Core/Group',
+                    "icon"  => $icons_url.'group.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_columns',
+                    "title" => 'Core/Columns',
+                    "icon"  => $icons_url.'columns.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_preformatted',
+                    "title" => 'Preformatted',
+                    "icon"  => $icons_url.'preformatted.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_pullquote',
+                    "title" => 'Core/Pullquote',
+                    "icon"  => $icons_url.'pullquote.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_verse',
+                    "title" => 'Core/Verse',
+                    "icon"  => $icons_url.'verse.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_gallery',
+                    "title" => 'Core/Gallery',
+                    "icon"  => $icons_url.'gallery.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_file',
+                    "title" => 'Core/File',
+                    "icon"  => $icons_url.'file.svg',
+                ),
+            ));
+        ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_mediatext" <?php if (get_option('pds_core_mediatext')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>media-text.svg" class="icon"> Media-Text</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_cover" <?php if (get_option('pds_core_cover')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>cover.svg" class="icon"> Core/Cover</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_buttons" <?php if (get_option('pds_core_buttons')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>buttons.svg" class="icon"> Core/Buttons</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_more" <?php if (get_option('pds_core_more')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>more.svg" class="icon"> Core/More</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_nextpage" <?php if (get_option('pds_core_nextpage')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>page-break.svg" class="icon">Page Break</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_quote" <?php if (get_option('pds_core_quote')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>qoute.svg" class="icon"> Core/Quote</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_code" <?php if (get_option('pds_core_code')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>code.svg" class="icon"> Core/Code</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'pds_core_mediatext',
+                    "title" => 'Media-Text',
+                    "icon"  => $icons_url.'media-text.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_cover',
+                    "title" => 'Core/Cover',
+                    "icon"  => $icons_url.'cover.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_buttons',
+                    "title" => 'Core/Buttons',
+                    "icon"  => $icons_url.'buttons.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_more',
+                    "title" => 'Core/More',
+                    "icon"  => $icons_url.'more.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_nextpage',
+                    "title" => 'Page Break',
+                    "icon"  => $icons_url.'page-break.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_quote',
+                    "title" => 'Core/Quote',
+                    "icon"  => $icons_url.'qoute.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_code',
+                    "title" => 'Core/Code',
+                    "icon"  => $icons_url.'code.svg',
+                ),
+            ));
+        ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_separator" <?php if (get_option('pds_core_separator')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>seperator.svg" class="icon"> Separator</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_spacer" <?php if (get_option('pds_core_spacer')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>spacer.svg" class="icon"> Core/Spacer</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_embed" <?php if (get_option('pds_core_embed')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>video-embed.svg" class="icon"> Core/Embed</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_logo" <?php if (get_option('pds_core_logo')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>site-logo.svg" class="icon"> Site Logo</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_title" <?php if (get_option('pds_core_title')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>archive-title.svg" class="icon"> Site Title</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_tagline" <?php if (get_option('pds_core_tagline')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>site-tagline.svg" class="icon"> Site Tagline</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_query" <?php if (get_option('pds_core_query')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>query-loop.svg" class="icon"> Query Loop</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'pds_core_separator',
+                    "title" => 'Core/Separator',
+                    "icon"  => $icons_url.'seperator.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_spacer',
+                    "title" => 'Core/Spacer',
+                    "icon"  => $icons_url.'spacer.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_embed',
+                    "title" => 'Core/Embed',
+                    "icon"  => $icons_url.'video-embed.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_logo',
+                    "title" => 'Site Logo',
+                    "icon"  => $icons_url.'site-logo.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_title',
+                    "title" => 'Site Title',
+                    "icon"  => $icons_url.'archive-title.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_tagline',
+                    "title" => 'Site Tagline',
+                    "icon"  => $icons_url.'site-tagline.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_query',
+                    "title" => 'Query Loop',
+                    "icon"  => $icons_url.'query-loop.svg',
+                ),
+            ));
+        ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_navigation" <?php if (get_option('pds_core_navigation')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>navigation.svg" class="icon"> Navigation</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_avatar" <?php if (get_option('pds_core_avatar')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>avatar.svg" class="icon"> Avatar</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_post_elements" <?php if (get_option('pds_core_post_elements')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>post-image.svg" class="icon"> Post Elements</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_loginout" <?php if (get_option('pds_core_loginout')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>logout.svg" class="icon"> Log-in-out</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_tag_cloud" <?php if (get_option('pds_core_tag_cloud')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>tag.svg" class="icon"> Tags Cloud</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="pds_core_widgets_blocks" <?php if (get_option('pds_core_widgets_blocks')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span><img src="<?php echo $icons_url; ?>latest-posts.svg" class="icon"> Useless Widgets</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'pds_core_navigation',
+                    "title" => 'Core/Navigation',
+                    "icon"  => $icons_url.'navigation.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_avatar',
+                    "title" => 'Core/Avatar',
+                    "icon"  => $icons_url.'avatar.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_post_elements',
+                    "title" => 'Post Elements',
+                    "icon"  => $icons_url.'post-image.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_loginout',
+                    "title" => 'Log-in-out',
+                    "icon"  => $icons_url.'logout.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_tag_cloud',
+                    "title" => 'Tags Cloud',
+                    "icon"  => $icons_url.'tag.svg',
+                ),
+                array(
+                    "name"  => 'pds_core_widgets_blocks',
+                    "title" => 'Useless Widgets',
+                    "icon"  => $icons_url.'latest-posts.svg',
+                ),
+            ));
+        ?>
     </div>
     <!-- // Column -->
 </div>

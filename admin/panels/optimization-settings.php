@@ -2,75 +2,62 @@
 <div class="row">
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="head_cleaner" <?php if (get_option('head_cleaner')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Header Optimizer</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="jquery_remove" <?php if (get_option('jquery_remove')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Remove jQuery</span>
-        </label>
-        <!-- Divider -->
-        <hr />
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="comments_css" <?php if (get_option('comments_css')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Clean Comments CSS</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="adminbar_css" <?php if (get_option('adminbar_css')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Clean Admin-Bar CSS</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="adminbar_disable" <?php if (get_option('adminbar_disable')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Disable Admin-Bar for Users</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'head_cleaner',
+                    "title" => 'Header Optimizer',
+                ),
+                array(
+                    "name"  => 'jquery_remove',
+                    "title" => 'Remove jQuery',
+                ),
+                array(
+                    "name"  => 'comments_css',
+                    "title" => 'Clean Comments CSS',
+                ),
+                array(
+                    "name"  => 'adminbar_css',
+                    "title" => 'Clean Admin-Bar CSS',
+                ),
+                array(
+                    "name"  => 'adminbar_disable',
+                    "title" => 'Disable Admin-Bar for Users',
+                ),
+            ));
+        ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="wpc7_rm_scripts" <?php if (get_option('wpc7_rm_scripts')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>CF7 Remove JS</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="wpc7_rm_styles" <?php if (get_option('wpc7_rm_styles')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>CF7 Remove CSS</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="wpc7_cleaner" <?php if (get_option('wpc7_cleaner')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>CF7 HTML Cleaner</span>
-        </label>
-        <!-- Divider -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'wpc7_rm_scripts',
+                    "title" => 'CF7 Remove JS',
+                ),
+                array(
+                    "name"  => 'wpc7_rm_styles',
+                    "title" => 'CF7 Remove CSS',
+                ),
+                array(
+                    "name"  => 'wpc7_cleaner',
+                    "title" => 'CF7 HTML Cleaner',
+                ),
+            ));
+        ?>
         <hr />
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="newsletter_css" <?php if (get_option('newsletter_css')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>Remove [Newsletter] CSS</span>
-        </label>
-        <!-- Option Control -->
-        <label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">
-            <input type="checkbox" name="blocks_optimizer" <?php if (get_option('blocks_optimizer')) { echo 'checked'; } ?>>
-            <span class="switch"></span>
-            <span>GB Blocks Optimizer</span>
-        </label>
-        <!-- // Option Control -->
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'newsletter_css',
+                    "title" => 'Remove [Newsletter] CSS',
+                ),
+                array(
+                    "name"  => 'blocks_optimizer',
+                    "title" => 'GB Blocks Optimizer',
+                ),
+            ));
+        ?>
     </div>
     <!-- // Column -->
 </div>

@@ -14,6 +14,8 @@
  ** 03 - Phenix Admin CSS
 */
 
+defined('ABSPATH') || exit;
+
 //====> Phenix Core <====//
 if (!function_exists('phenix_core')) :
 	/**

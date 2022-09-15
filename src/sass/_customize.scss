@@ -75,7 +75,7 @@
 
 /*==== Integration ====*/
 @import 'integration/wordpress';  //===> WordPress Integration
-@import 'integration/splide';     //===> Splide Slider
+@import 'integration/splide';    //===> Splide Slider
 
 /*==== Components Modules ====*/
 @import 'components/breadcrumb'; //===> Breadcrumb
@@ -101,3 +101,9 @@
 @import 'utilities/borders';    //===> CSS Borders
 @import 'utilities/visibility'; //===> Visibility Utilities
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
+
+/*==== Fix Button Text ====*/
+// .btn {line-height: calc(var(--height) - 2px);}
+
+/*==== Backdrop [Overlay] Opacity ====*/
+.overlay-dark::before {opacity: 0.75;}

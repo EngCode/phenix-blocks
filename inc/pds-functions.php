@@ -14,6 +14,8 @@
  ** 03 - Styles Optimizer
 */
 
+defined('ABSPATH') || exit;
+
 //====> Delete "Archive" Prefix <====//
 if (!function_exists('refactor_archive_title')) :
 	/**

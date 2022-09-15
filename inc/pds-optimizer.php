@@ -14,6 +14,8 @@
  ** 05 - Contact Form 7 Optimizer
 */
 
+defined('ABSPATH') || exit;
+
 //====> Optimize for Fron-End Only <====//
 if (!is_admin()) {
     //=====> Head Optimizer <=====//

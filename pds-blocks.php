@@ -61,6 +61,14 @@ if (!function_exists('pds_menu')) :
             'pds_admin_page',
             plugin_dir_url(__DIR__).'pds-blocks/assets/img/px-logo/px-dashicon.svg', 60
         );
+        //===> Menu Creator <===//
+        add_submenu_page('pds-admin',
+            'Phenix Menu Creator',
+            'Menu Creator',
+            'manage_options',
+            'pds-menu-creator',
+            'pds_menu_creator'
+        );
     }
 
     include(dirname(__FILE__) . '/admin/pds-admin.php');

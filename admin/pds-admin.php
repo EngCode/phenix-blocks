@@ -5,18 +5,8 @@
      * @return void
     */
 
-    //=====> Phenix Admin <=====//
-    if (!function_exists('pds_admin_page')) :
-        /**
-         * Create Admin Pages for Phenix Blocks
-         * @since Phenix Blocks 1.0
-         * @return void
-        */
-
-        function pds_admin_page () {
-            include(dirname(__FILE__) . '/main.php');
-        };
-    endif;
+    //====> Include Modules <====//
+    include(dirname(__FILE__) . '/modules/page-creator.php');
 
     //====> Register Options <====//
     if (!function_exists('pds_options')) :
@@ -41,6 +31,7 @@
             register_setting('pds-admin', 'comments_css');
             register_setting('pds-admin', 'newsletter_css');
             register_setting('pds-admin', 'jquery_remove');
+            register_setting('pds-admin', 'blocks_optimizer');
 
             //===> Phenix Blocks <===//
             register_setting('pds-admin', 'container_block');
@@ -85,3 +76,30 @@
 
         add_action('admin_init', 'create_pds_options');
     endif;
+
+    //=====> Phenix Admin [General Settings] <=====//
+    if (!function_exists('pds_admin_page')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_admin_page () {
+            include(dirname(__FILE__) . '/main.php');
+        };
+    endif;
+
+    //=====> Phenix Admin [Menu Creator] <=====//
+    if (!function_exists('pds_menu_creator')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_menu_creator () {
+            include(dirname(__FILE__) . '/menu-creator.php');
+        };
+    endif;
+?>

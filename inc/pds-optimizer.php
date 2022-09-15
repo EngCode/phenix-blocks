@@ -157,7 +157,7 @@ if (!is_admin()) {
 }
 
 //=====> Gutenberg Optimizer <=====//
-if (!function_exists('blocks_optimizer')) :
+if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer')) :
     function blocks_optimizer() {
         wp_dequeue_style('wp-block-list');
         wp_dequeue_style('wp-block-library');

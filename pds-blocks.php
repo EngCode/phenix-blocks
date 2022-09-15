@@ -17,10 +17,11 @@ if (!defined('ABSPATH')) {exit;}
 
 //====> Menus Locations <====//
 register_nav_menus(array(
-    'main-menu' => 'Main Menu',
-    'side-menu' => 'Side Menu',
-    'footer-menu' => 'Quick Links',
-    'footer-menu-2' => 'Important Links',
+    'main-menu'     => 'Main Menu',
+    'footer-menu'   => 'Footer Links',
+    'footer-menu-2' => 'Footer Links #2',
+    'design-docs'   => 'Design Sidebar',
+    'pxwp-docs'     => 'Blocks Sidebar',
 ));
 
 //====> Multilang Support <====//

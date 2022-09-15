@@ -1,0 +1,735 @@
+/*==== Media Queries ====*/
+@import './assets/mixin';
+
+/*==== Defines Sizes ====*/
+$header-height: 60px;
+
+/*==== Direction Options ====*/
+$direction: ltr;
+$direction-reverse: rtl;
+$direction-start: left;
+$direction-end: right;
+
+.white-bg {background-color: #fff;}
+
+
+/*==== SASS Selectors ====*/
+%reset {
+    all: unset;
+    /*==== if (All: unset) not Supported ====*/
+    @supports not (all: unset) {
+        list-style: none;
+        padding:0;
+        margin:0;
+    }
+}
+
+%reset-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+%reset-control {
+    border: 0 none;
+    padding: 0;
+    transition: outline 0.3s linear;
+    &:focus {outline: 1px dashed var(--primary-color);}
+}
+
+%inline-block {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+%select-theme {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+        appearance: none;
+    background-repeat: no-repeat;
+    background-image: url('../img/select.svg');
+    background-size: 9px;
+    background-position: var(--direction-end) 10px center;
+}
+
+%sticky-element {
+    position: -webkit-sticky;
+    position: sticky;
+    top: $header-height;
+}
+
+/*==== Colors Options ====*/
+:root {
+    --wp-color : #8772F7;
+}
+
+/*==== Page Options ====*/
+html {line-height: 1.5;}
+
+/*==== Assets [Large Screens] ====*/
+@include large() {
+    .mxw-lg-235 {max-width: 235px;}
+    .mxw-lg-200 {max-width: 200px;}
+};
+
+@include xlarge() {
+    .mxw-xl-275 {max-width: 275px;}
+};
+
+.strong-weight {font-weight: var(--strong-weight);}
+.bold-weight   {font-weight: var(--bold-weight);}
+.medium-weight {font-weight: var(--medium-weight);}
+.normal-weight {font-weight: var(--normal-weight);}
+
+.wp-color {color: var(--wp-color);}
+.tx-align-center {text-align: center;}
+.radius-g  {border-radius: 4px;}
+.radius-gl {border-radius: 8px;}
+
+/*==== Header ====*/
+.main-header {
+    /*==== Component Options ====*/
+    border-bottom: 1px solid #F1F1F1;
+    @include small('down') {padding: 0 15px};
+    &.is-sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--header-index);
+    }
+}
+
+/*==== Navigator ====*/
+.navigator-menu {
+    background-color: #fff;
+    overflow-y: auto;
+    padding: 0 !important;
+    z-index: 100;
+    @extend %sticky-element;
+    /*==== Size ====*/
+    @include large() {height: calc(100vh - #{$header-height})};
+
+    /*==== Links ====*/
+    li > a {
+        color: inherit;
+        display: block;
+        transition: all 0.4s linear;
+    }
+
+    /*==== Search ====*/
+    .search-form {
+        padding: 15px;
+        @include large() {padding: 15px 20px};
+    }
+    
+    /*==== Control Wraper ====*/
+    .control-wraper {
+        position: relative;
+        width: calc(100% - 51px);
+        @include large() {width: 100%;}
+        /*==== Controler ====*/
+        input {
+            @extend %reset-control;
+            width: 100%;
+            padding-left: 35px;
+            padding-right: 15px;
+            border-radius: 5px;
+            background-color: #F6F6F6;
+            height: REM(36);
+            font-size: 13px;
+            @include large() {
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+        /*==== Icon ====*/
+        &::before {
+            opacity: 0.3;
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            font-size: 12px;
+            @include large() {font-size: 14px;}
+        }
+    }
+
+    /*==== Reset Menus ====*/
+    ul { @extend %reset-list; }
+
+    /*==== Main Menu ====*/
+    .main-menu {
+        font-size: 15px;
+        font-weight: var(--medium-weight);
+        line-height: 30px;
+        border-bottom: 1px solid rgba(#000, 0.1);
+        transition: all 0.3s;
+        
+        /*==== Icons ====*/
+        img {
+            @extend %inline-block;
+            max-height: 25px;
+            margin-right: 3px;
+        }
+
+        /*==== Items ====*/
+        li {
+            margin: 0;
+            padding: 3px 20px;
+            &.px-item-active {
+                background: linear-gradient(rgba(#00c4ff, 0.1) 0%, rgba(#1a69f4, 0.1) 100%);
+                line-height: 38px;
+            }
+            &:last-child:not(.px-item-active) { margin-bottom: 5px; }
+        }
+    }
+
+    /*==== Docs Menu ====*/
+    .docs-menu {
+        padding: 15px;
+        /*==== Direct Items ====*/
+        > li {
+            font-size: 14px;
+            line-height: 28px;
+            font-weight: var(--medium-weight);
+            padding: 0 10px;
+            /*==== Links ====*/
+            > a::before {
+                content: '\f07b';
+                font-family: var(--icons-font);
+                margin-right: 7px;
+                font-weight: 400;
+                font-size: 1.1em;
+            }
+            /*==== Submenus ====*/
+            ul {
+                display: none;
+                font-size: 14px;
+                line-height: 25px;
+                color: var(--gray-color);
+                font-weight: normal;
+                margin-left: 25px;
+                margin-bottom: 5px;
+                .px-item-active,li:hover {color: var(--dark-color);}
+                @include xlarge() {margin-left: 30px;}
+            }
+            /*==== Active ====*/
+            &.px-item-active {
+                color: var(--primary-color);
+                .submenu {display: block!important;}
+                > a::before {
+                    content: '\f07c';
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    /*==== Responsive ====*/
+    @include medium('down') {
+        background-color: var(--primary-color);
+        .menus-wraper {
+            padding-top: 15px;
+            padding-bottom: 30px;
+            background-color: #fff;
+            overflow-y: scroll;
+            max-height: calc(100vh - (60px + 64px));
+        }
+    };
+}
+
+/*==== Page Secitons ====*/
+.on-page-menu {
+    background-color: #fcfcfc;
+    padding: 15px 20px;
+    overflow-y: auto;
+    @extend %sticky-element;
+    /*==== Size ====*/
+    @include large() {height: calc(100vh - #{$header-height})};
+
+    /*==== Title ====*/
+    h3 {
+        font-weight: var(--medium-weight);
+        font-size: 14px;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+    /*==== Submenus ====*/
+    ul {
+        @extend %reset-list;
+        display: block;
+        padding-left: 5px;
+        font-size: 14px;
+        line-height: 1.3;
+        color: var(--gray-color);
+        &.scrollspy-menu {margin-left: 5px;}
+        /*==== Links ====*/
+        a {
+            color: inherit;
+            transition: all 0.5s;
+        }
+        /*==== Items ====*/
+        li {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            ul {margin-bottom: -5px;}
+        }
+        /*==== Current Item ====*/
+        .px-active > a, li:hover > a {
+            font-weight: var(--medium-weight);
+            color: var(--dark-color);
+        }
+    }
+}
+
+/*==== Content Side ====*/
+.content-side {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    //====> Space Fix <====//
+    @include large() {padding: 30px!important;}
+    .docs-list {
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 1.4;
+        li {margin-bottom: 5px;}
+    }
+
+    /*==== Typography ====*/
+    h1,h2,h3,h4,h5 {
+        &:not(.strong-weight) {font-weight: var(--medium-weight);}
+    }
+    
+    > h1, > .h1 {font-size: 2rem;}
+    
+    > h2, > .h2 {
+        margin-bottom: 10px;
+        font-size: 1.75rem;
+    }
+    
+    > h3, > .h3 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+    }
+
+    > h4, > .h4 {
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+    
+    > h4 + .enlighter-default {margin-top: 10px;}
+    /*==== Images ====*/
+    img {max-width: 100%;}
+
+    sub {
+        position: relative;
+        top: -1px;
+    }
+
+    /*==== KBD ====*/
+    kbd{
+        padding: 3px 5px;
+        line-height: 1;
+        font-size: 0.75em;
+        border-radius: 3px;
+        background-color: var(--dark-color);
+        color: #FFFFFF;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    code {
+        color: #f85b5b;
+        font-size: 0.9em;
+    }
+
+    .wp-block-separator {border-bottom: 0;}
+
+    /*==== Fix Code Space for h4s ====*/
+    .fix-y-m {margin-top: -10px;}
+
+    table {
+        h1,h2,h3,h4,h5,h6,
+        .h1,.h2,.h3 {margin-bottom: 0;}
+    }
+}
+
+/*==== Table ====*/
+.docs-table {
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 5px;
+    // overflow: hidden;
+
+    code {font-size: 1em;}
+
+    /*==== Table ====*/
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 5px;
+    }
+
+    /*==== Table Note ====*/
+    figcaption {
+        text-align: center;
+        padding: 5px;
+        color: var(--gray-color);
+        font-size: 12px;
+    }
+    /*==== Table Columns ====*/
+    td {
+        padding: 5px 15px;
+        border: 1px solid #eeeeee;
+        img {margin: 8px auto;}
+    }
+    
+    th {
+        padding: 8px 15px;
+        background-color: rgba(#000, 0.06);
+        border: 1px solid #dadada;
+        &:last-child {min-width: 100px;}
+    }
+}
+
+//====> Enlighter Plugin <====//
+.enlighter-default.enlighter-t-wpcustom {
+    background-color: #101325;
+    &:not(.enlighter-v-codegroup) {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    + pre + h4 {margin-top: -25px;}
+
+    //====> Line Background <====//
+    div.enlighter > div {
+        background-color: inherit;
+        &.enlighter-special{background-color: #191D40;}
+    }
+
+    div.enlighter > div > div {padding-left: 0;}
+
+    /*==== Toolbar ====*/
+    .enlighter-toolbar {
+        /*==== Buttons ====*/
+        .enlighter-btn {
+            padding: 0;
+            border: 0 none;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #181A2C;
+        }
+
+        /*==== Icons Font ====*/
+        %icons-base {
+            font-family: var(--icons-font);
+            font-weight: 500;
+        }
+
+        /*==== Copy Button ====*/
+        .enlighter-btn-copy::after {
+            content: '\f0c5'!important;
+            @extend %icons-base;
+        }
+        
+        /*==== Raw Button ====*/
+        .enlighter-btn-raw::after {
+            content: '\f06e'!important;
+            @extend %icons-base;
+        }
+
+        /*==== External Button ====*/
+        .enlighter-btn-window::after {
+            content: '\f14c'!important;
+            @extend %icons-base;
+        }
+
+        /*==== Hide ====*/
+        .enlighter-btn-website {display: none;}
+    }
+    
+    //====> Block Mode <====//
+    &.enlighter-v-standard {
+        padding-top: 15px!important;
+        padding-bottom: 15px!important;
+        border-radius: 8px;
+    }
+    
+    //====> Inline Mode <====//
+    &.enlighter-v-inline {
+        border-radius: 5px;
+        vertical-align: middle;
+        font-size: 12px;
+        top: -2px;
+
+        .enlighter span {
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        span.enlighter {padding: 2px 3px;}
+    }
+
+    &:not(.enlighter-v-inline) {margin-bottom: 40px;}
+
+    /*==== Colors ====*/
+    .enlighter-x2 {color: var(--secondary-color);}
+    .enlighter-m0, .enlighter-m3 {color: #10a2ff;}
+
+    .enlighter-x1 {
+        color: var(--primary-color);
+        font-weight: normal;
+    }
+
+    .enlighter-x11 {color: #eea766;}
+    .enlighter-g1,.enlighter-x12 {color: #e7e7e7;}
+    .enlighter-x12 {color: #e7e7e7;}
+    .enlighter-k7 {color: #f35858;}
+
+    .enlighter-k9,.enlighter-k0 {
+        color: #c156fd;
+        font-weight: var(--medium-weight);
+    }
+
+    //====> Enlighter Groups <====//
+    &.enlighter-v-codegroup {
+        border-radius: 8px;
+        overflow: hidden;
+        /*==== Code Wraper ====*/
+        .enlighter-codegroup-wrapper {
+            padding-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        /*==== Buttons ====*/
+        .enlighter-codegroup-switch {
+            background-color: #181c34;
+            padding: 0;
+            .enlighter-btn {
+                border-radius: 0;
+                background-color: #181c34;
+                color: #7c809f;
+                padding: 8px 15px;
+                margin: 0;
+                text-transform: capitalize;
+                &.enlighter-active {
+                    color: #FFF;
+                    background-color: #101325;
+                }
+            }
+        }
+
+        .enlighter-codegroup-wrapper {padding-bottom: 15px;}
+    }
+}
+
+/*==== Footer ====*/
+.content-footer {
+    display: block;
+    text-align: center;
+    background-color: #fcfcfc;
+    // margin: -15px -12px;
+    margin-top: auto;
+    font-size: 15px;
+    padding: 8px 15px;
+    // @include large() {
+    //     margin: -30px;
+    //     margin-top: auto;
+    // }
+}
+
+.post-card p {max-height: 84px;}
+
+/*==== Grid Example ====*/
+.grid-example {
+    padding: 5px;
+    border: 1px dashed rgba(#000, 0.1);
+    background-color: #FFF;
+    font-size: REM(14);
+    /*==== Nested ====*/
+    .lvl2-row {
+        margin-top: 5px;
+        [class*="col"] {background-color: #dfe8f5;}
+    }
+
+    /*==== Alignment Example ====*/
+    &.alignment-example {
+        .row, .grid-row {min-height: 80px;}
+    }
+
+    &.alignment-example-x2 {
+        .row, .grid-row {min-height: 100px;}
+    }
+
+    /*==== Remove Gutter ====*/
+    &:not(.gutter-example) {
+        .row, .grid-row {
+            @include grid_gap(0, 'x');
+            > [class*="col"] {
+                background-color: #eef4fc;
+                border: 1px solid #FFF;
+                @include padding-block(15px,'both');
+                @include padding-inline(15px,'both');
+            }
+        }
+    }
+
+    /*==== Gutters Example ====*/
+    &.gutter-example [class*="col"] .content-box {
+        background-color: #eef4fc;
+        border: 1px solid #FFF;
+        @include padding-block(15px,'both');
+    }
+}
+
+/*==== Show/Hide Effects ====*/
+.sliding-example, .fading-example, .live-demo {
+    /*==== Buttons ====*/
+    .slide-btn, .fade-btn, .ex-btn {
+        @extend %inline-block;
+        padding: 5px 10px;
+        margin-right: 5px;
+        margin-bottom: 8px;
+        border-radius: 3px;
+        background-color: var(--dark-color);
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+
+    /*==== The Box ====*/
+    .the-box {
+        text-align: center;
+        padding: 30px 15px;
+        // line-height: 90px;
+        border-radius: 3px;
+        background-color: #f1e2ce;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+/*==== RTL ====*/
+body.rtl {
+    /*==== Navigator ====*/
+    .navigator-menu .control-wraper {
+        /*==== Controler ====*/
+        input {
+            padding-left: 15px;
+            padding-right: 50px;
+        }
+        /*==== Icon ====*/
+        &::before {
+            left: auto;
+            right: 12px;
+        }
+    }
+}
+
+/*==== Timer Demo ====*/
+.timer-demo {
+    // padding: 20px;
+    span[data-label] {
+        line-height: 1.2;
+        &::after {
+            content: attr(data-label);
+            font-size: 13px;
+            display: block;
+        }
+    }
+
+    &.px-timer-ended {
+        padding: 20px;
+        color: var(--danger-color);
+    }
+}
+
+//*==== Change Headline Color When its Activated ====*/
+.px-accordion .accordion-btn.px-collapse-active {
+    color: var(--primary-color);
+    background-color: var(--primary-offwhite);
+}
+
+/*===> Custom Angle Arrow Example <===*/
+.px-breadcrumb.custom-angle {--divider-icon : '>';}
+
+/*===> Custom Double Arrow Example <===*/
+.px-breadcrumb.custom-arrows {--divider-icon : '»';}
+
+/*===> Custom Font-Icon Example <===*/
+.px-breadcrumb.custom-icon {--divider-icon : '\f101';}
+
+@include large() {
+    .megamenu-example > ul > li {padding-top: 6px;padding-bottom: 6px;}
+};
+
+/*==== Make the Current Active Slide More Visible then other Thumbnails ====*/
+#thumbnails-example .px-item {transition: opacity 300ms linear;}
+#thumbnails-example .px-item:not(.is-active) {opacity: 0.35;}
+.has-text-align-center {text-align: center;}
+
+/*==== Coloring the Current Active Card ====*/
+#news-thumbnails .post-card {
+
+    .bg-white {transition: all 300ms linear;}
+
+    &.is-active .bg-white {
+        color: #FFF;
+        background-color: var(--primary-color);
+    }
+}
+
+/*==== Ladning Page ====*/
+.px-primary-shadow {text-shadow: 3px 3px 0 rgba(13, 150, 249, 0.33);}
+.px-tx-shadow {text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);}
+
+.wait-for-it {
+    background-size: 30% auto;
+    background-position: 65% 35%;
+    background-repeat: no-repeat;
+    @include small('down') {background-size: 75% auto;}
+}
+
+.hero-section .view-status {
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+@include medium() {
+    .you-in-control-before {padding-bottom: 150px;}
+};
+
+@include large() {
+    .you-in-control-before {padding-bottom: 175px;}
+};
+
+@include xlarge() {
+    .you-in-control-before {padding-bottom: 200px;}
+};
+
+.key-features {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50% auto;
+    @include small('down') {
+        background-size: 75% auto;
+    };
+    ul li i {
+        width: 1em;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+@include small('down') {
+    .tx-align-sm-center {text-align: center;}
+};

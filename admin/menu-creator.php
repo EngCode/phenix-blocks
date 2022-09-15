@@ -41,6 +41,8 @@
             'WP Menu Creator',
             //==> Page Description <==//
             'here you can add and remove Dynamic Menu Locations for your blocks.',
+            //==> Options Form Slug <==//
+            'pds-menu-creator',
             //==> Tabs List <==//
             array(
                 //==> Tabs Panel <==//
@@ -64,5 +66,5 @@
     endif;
 
     //===> Get Script <===//
-    include(dirname(__FILE__) . '/assets/scripts.php');
+    include(dirname(__FILE__) . '/modules/scripts.php');
 ?>

@@ -67,6 +67,8 @@
             'Phenix Blocks Settings',
             //==> Page Description <==//
             'here you can enable or disable phenix blocks plugin features and options.',
+            //==> Options Form Slug <==//
+            'pds-admin',
             //==> Tabs List <==//
             array(
                 //==> Tabs Panel <==//

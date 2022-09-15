@@ -8,8 +8,8 @@
     <form method="post" action="options.php" id="pds-form" class="pdx-20 pdt-10 pdb-20 radius-md bg-white px-tabs bx-shadow-dp-x" data-hash="1" data-active="0" data-navigation=".tabs-navigation">
         <?php
             //===> Hidden Inputs Handler for WP Options Register <===//
-            settings_fields('pds-admin');
-            do_settings_sections('pds-admin');
+            settings_fields($form_page);
+            do_settings_sections($form_page);
         ?>
         <!-- Tabs Navigation -->
         <ul class="tabs-navigation reset-list flexbox fs-15 mb-15 border-reset border-bottom-1 border-solid border-alpha-10">

@@ -28,7 +28,7 @@ registerBlockType(metadata, {
         //===> Add Properties <===//
         blockProps["href"] = attributes.link;
         blockProps["title"] = attributes.title;
-        if (!blockProps.className.includes('inline-block')) blockProps.className += ' inline-block';
+        blockProps.className += ' inline-block';
 
         //===> Render <===//
         return (

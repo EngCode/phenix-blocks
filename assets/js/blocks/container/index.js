@@ -604,14 +604,13 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
             className: "mb-15 cursor-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            "for": "change-media",
             className: "mb-10"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
             className: "flexbox align-center-y align-between"
           }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
-              "max-height": "2.25rem"
+              "maxHeight": "2.25rem"
             }
           }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",

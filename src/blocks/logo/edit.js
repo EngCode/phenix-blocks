@@ -51,7 +51,7 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
 
     //===> if the Title not Set <===//
-    if (attributes.title !== "Site Title" || attributes.link === "javascript:void(0);") {
+    if (attributes.title !== "Site Title" || attributes.link === "#") {
         //===> Fetch Settings <===//
         apiFetch({path: '/wp/v2/settings'}).then(settings => {
             //===> Set Attributes <===//
@@ -63,9 +63,9 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Add Properties <===//
-    blockProps["href"]  = "javascript:void(0);";
+    blockProps["href"]  = "#";
     blockProps["title"] = attributes.title;
-    if (!blockProps.className.includes('inline-block')) blockProps.className += ' inline-block';
+    blockProps.className += ' inline-block';
 
     //===> Render <===//
     return (<>

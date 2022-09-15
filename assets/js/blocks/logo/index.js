@@ -90,7 +90,7 @@ function Edit(_ref) {
 
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(); //===> if the Title not Set <===//
 
-  if (attributes.title !== "Site Title" || attributes.link === "javascript:void(0);") {
+  if (attributes.title !== "Site Title" || attributes.link === "#") {
     //===> Fetch Settings <===//
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
       path: '/wp/v2/settings'
@@ -104,9 +104,9 @@ function Edit(_ref) {
   } //===> Add Properties <===//
 
 
-  blockProps["href"] = "javascript:void(0);";
+  blockProps["href"] = "#";
   blockProps["title"] = attributes.title;
-  if (!blockProps.className.includes('inline-block')) blockProps.className += ' inline-block'; //===> Render <===//
+  blockProps.className += ' inline-block'; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -241,14 +241,13 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
             className: "mb-15 cursor-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            "for": "change-media",
             className: "mb-10"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
             className: "flexbox align-center-y align-between"
           }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
-              "max-height": "2.25rem"
+              "maxHeight": "2.25rem"
             }
           }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
@@ -455,7 +454,7 @@ __webpack_require__.r(__webpack_exports__);
 
     blockProps["href"] = attributes.link;
     blockProps["title"] = attributes.title;
-    if (!blockProps.className.includes('inline-block')) blockProps.className += ' inline-block'; //===> Render <===//
+    blockProps.className += ' inline-block'; //===> Render <===//
 
     return /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
       src: attributes.logo,

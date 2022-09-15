@@ -15,7 +15,15 @@ if (!function_exists('pds_core_blocks')) :
 
     function pds_core_blocks() {
         if (is_admin()) :
+            //===> Start Data <===//
+            $template_markup = '';
+            ob_start();
+            //===> Get the File <===//
             include(dirname(__FILE__) . '/core-blocks.php');
+            //===> Stop Data <===//
+            $template_output = ob_get_clean();
+            $template_markup .= $template_output;
+            return "{$template_markup}";
         endif;
 
         add_filter('extendify_load_library', '__return_false');

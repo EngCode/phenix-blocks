@@ -11,7 +11,7 @@
     "attributes" : {
         "part_name" : {
             "type": "string",
-            "default": ""
+            "default": "pds/placeholder"
         }
     },
 	"textdomain": "phenix",

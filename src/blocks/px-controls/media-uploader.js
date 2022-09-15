@@ -25,12 +25,12 @@ export default class MediaUploader extends Component {
             <MediaUpload onSelect={ setValue } value={value} render={({open}) => (
                     <div className="mb-15 cursor-pointer" onClick={open}>
                         {/* label */}
-                        {label ? <label for="change-media" className="mb-10">{label}</label> : ''}
+                        {label ? <label className="mb-10">{label}</label> : ''}
                         {/* elements group */}
                         <div className="flexbox align-center-y align-between">
                             {size === 'small' ?
                                 <>
-                                    {!type || type === 'image' ? <img src={value} style={{"max-height": "2.25rem"}} /> : null}
+                                    {!type || type === 'image' ? <img src={value} style={{"maxHeight": "2.25rem"}} /> : null}
                                     <button key="change-media" onClick={open} className="btn square primary small radius-sm fs-12 fas fa-upload"></button>
                                 </>
                                 :

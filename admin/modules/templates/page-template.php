@@ -40,7 +40,9 @@
         <!-- // Panels Group -->
 
         <!-- // Panels Group -->
+        <?php if (isset($submit_button)) : ?>
         <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="Save Changes">
+        <?php endif; ?>
     </form>
     <!-- // Setting Wrapper -->
 </div>

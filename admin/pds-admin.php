@@ -5,6 +5,38 @@
      * @return void
     */
 
+    //=====> Phenix Blocks Admin <=====//
+    if (!function_exists('pds_menu')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        
+        add_action('admin_menu', 'pds_menu');
+
+        function pds_menu() {
+            //===> Main Settings <===//
+            add_menu_page(
+                'Phenix Blocks Settings',
+                'Phenix Blocks',
+                'manage_options',
+                'pds-admin',
+                'pds_admin_page',
+                plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
+            );
+            //===> Menu Creator <===//
+            add_submenu_page('pds-admin',
+                'WP Menu Locations',
+                'Menu Locations',
+                'manage_options',
+                'pds-menu-locations',
+                'pds_menu_locations'
+            );
+        }
+    endif;
+
     //====> Include Modules <====//
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
@@ -92,15 +124,15 @@
     endif;
 
     //=====> Phenix Admin [Menu Creator] <=====//
-    if (!function_exists('pds_menu_creator')) :
+    if (!function_exists('pds_menu_locations')) :
         /**
          * Create Admin Pages for Phenix Blocks
          * @since Phenix Blocks 1.0
          * @return void
         */
 
-        function pds_menu_creator () {
-            include(dirname(__FILE__) . '/menu-creator.php');
+        function pds_menu_locations () {
+            include(dirname(__FILE__) . '/menu-locations.php');
         };
     endif;
 ?>

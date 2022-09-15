@@ -99,79 +99,81 @@
 		.wp-submenu {background-color: inherit;}
 	}
 
-	/*==== Standard Controls ====*/
-	input:not([type="submit"]):not([type="button"]), select, textarea {
-		padding: 0 12px;
-		font-size: 13px;
-		box-shadow: unset;
-		border-radius: 4px;
-		border-color: #dbdde0;
-		&:not([type="checkbox"]):not([type="radio"]) {
-			height: 34px;
-			margin-bottom: 15px;
-			+ p {margin-top: -10px;}
-			&:not([type="number"]) {min-width: 150px;}
+	&:not([class*="phenix-blocks_page"]) {
+		/*==== Standard Controls ====*/
+		input:not([type="submit"]):not([type="button"]), select, textarea {
+			padding: 0 12px;
+			font-size: 13px;
+			box-shadow: unset;
+			border-radius: 4px;
+			border-color: #dbdde0;
+			&:not([type="checkbox"]):not([type="radio"]) {
+				height: 34px;
+				margin-bottom: 15px;
+				+ p {margin-top: -10px;}
+				&:not([type="number"]) {min-width: 150px;}
+			}
 		}
-	}
-
-	select {
-		padding: 0 10px;
-		background-size: 1em auto;
-		background-position: right 10px top 50%;
-	}
-
-	/*==== Focuse Mode ====*/
-	select:focus, input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
-		box-shadow: unset;
-		border-width: 2px;
-		border-style: dashed;
-		border-color: var(--primary-color);
-	}
-
-	/*==== Textarea ====*/
-	textarea:not([type="submit"]):not([type="button"]) {
-		height: 75px;
-		padding: 15px;
-	}		
-
-	/*==== Ceckboxes and Radio Buttons ====*/
-	input[type="radio"]:not([type="submit"]):not([type="button"]),
-	input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
-		line-height: 1;
-		box-shadow: unset;
-		margin-right: 3px;
-		border-radius: 50%;
-		text-align: center;
-		position: relative;
-		vertical-align: middle;
-		border: 1px solid rgba(#000, 0.20);
-		/*==== Icons ====*/
-		&::before {
-			top: 50%;
-			left: 50%;
-			margin: 0;
-			position: absolute;
-			transform: translateY(-50%) translateX(-50%);
+	
+		select {
+			padding: 0 10px;
+			background-size: 1em auto;
+			background-position: right 10px top 50%;
 		}
-
+	
 		/*==== Focuse Mode ====*/
-		&:focus {outline: 0 none;box-shadow:unset;}
-	}
-
-	/*==== Radio Buttons ====*/
-	input[type="radio"]:not([type="submit"]):not([type="button"]):checked {
-		border-color: var(--success-color);
-		&::before {background-color: var(--success-color);}
-	}
-
-	/*==== Checkboxes ====*/
-	input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
-		&:checked {background-color: var(--success-color);}
-		/*==== Checked Icon ====*/
-		&::before {
-			width: 0.6em;
-			height: auto;
-			content: url('../img/blocks/check.svg');
+		select:focus, input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
+			box-shadow: unset;
+			border-width: 2px;
+			border-style: dashed;
+			border-color: var(--primary-color);
+		}
+	
+		/*==== Textarea ====*/
+		textarea:not([type="submit"]):not([type="button"]) {
+			height: 75px;
+			padding: 15px;
+		}		
+	
+		/*==== Ceckboxes and Radio Buttons ====*/
+		input[type="radio"]:not([type="submit"]):not([type="button"]),
+		input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
+			line-height: 1;
+			box-shadow: unset;
+			margin-right: 3px;
+			border-radius: 50%;
+			text-align: center;
+			position: relative;
+			vertical-align: middle;
+			border: 1px solid rgba(#000, 0.20);
+			/*==== Icons ====*/
+			&::before {
+				top: 50%;
+				left: 50%;
+				margin: 0;
+				position: absolute;
+				transform: translateY(-50%) translateX(-50%);
+			}
+	
+			/*==== Focuse Mode ====*/
+			&:focus {outline: 0 none;box-shadow:unset;}
+		}
+	
+		/*==== Radio Buttons ====*/
+		input[type="radio"]:not([type="submit"]):not([type="button"]):checked {
+			border-color: var(--success-color);
+			&::before {background-color: var(--success-color);}
+		}
+	
+		/*==== Checkboxes ====*/
+		input[type="checkbox"]:not([type="submit"]):not([type="button"]) {
+			&:checked {background-color: var(--success-color);}
+			/*==== Checked Icon ====*/
+			&::before {
+				width: 0.6em;
+				height: auto;
+				content: url('../img/blocks/check.svg');
+			}
 		}
 	}
 
@@ -720,4 +722,11 @@
 /*==== newsletter ====*/
 .wp-core-ui.toplevel_page_newsletter_main_index {
 	#wpwrap {background-color: #141422 !important}
+}
+
+/*==== Admin Pages ====*/
+body[class*="phenix-blocks_page"] {
+	.form-control {
+		border: 1px solid rgba(#000, 0.15)!important;;
+	}
 }

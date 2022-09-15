@@ -18,31 +18,16 @@
         }
     }
 
-    //===> Locations Panel <===//
-    if (!function_exists('pds_add_menu_panel')) {
-        function pds_add_menu_panel() {
-            //===> Start Data <===//
-            $template_markup = '';
-            ob_start();
-            //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/menus-location-add.php');
-            //===> Stop Data <===//
-            $template_output = ob_get_clean();
-            $template_markup .= $template_output;
-            return "{$template_markup}";
-        }
-    }
-
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
         echo pds_add_admin_page(
             //==> Page Title <==//
-            'WP Menu Creator',
+            'WP Menu Locations',
             //==> Page Description <==//
             'here you can add and remove Dynamic Menu Locations for your blocks.',
             //==> Options Form Slug <==//
-            'pds-menu-creator',
+            'pds-menu-locations',
             //==> Tabs List <==//
             array(
                 //==> Tabs Panel <==//
@@ -51,17 +36,10 @@
                     "slug"  => "pds-current-locations",
                     "icon"  => "far fa-list",
                     "content" => 'pds_menus_locations_panel',
-                    "description" => 'in here you can manage the menu locations created by phenix-blocks.',
-                ),
-                //==> Tabs Panel <==//
-                array(
-                    "title" => "Add New Location",
-                    "slug"  => "pds-blocks",
-                    "icon"  => "fas fa-cog",
-                    "content" => 'pds_add_menu_panel',
-                    "description" => 'in the form below you can add a new menu location all fields are reqiured.',
                 )
             ),
+            //==> Hide Submit Button <==//
+            true
         );
     endif;
 

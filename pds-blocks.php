@@ -42,37 +42,7 @@ if (!function_exists('px__')) {
 }
 
 //=====> Phenix Blocks Admin <=====//
-if (!function_exists('pds_menu')) :
-	/**
-	 * Create Admin Pages for Phenix Blocks
-	 * @since Phenix Blocks 1.0
-	 * @return void
-	*/
-
-    include(dirname(__FILE__) . '/admin/pds-admin.php');
-    
-    add_action('admin_menu', 'pds_menu');
-
-    function pds_menu() {
-        //===> Main Settings <===//
-        add_menu_page(
-            'Phenix Blocks Settings',
-            'Phenix Blocks',
-            'manage_options',
-            'pds-admin',
-            'pds_admin_page',
-            plugin_dir_url(__DIR__).'pds-blocks/assets/img/px-logo/px-dashicon.svg', 60
-        );
-        //===> Menu Creator <===//
-        add_submenu_page('pds-admin',
-            'Phenix Menu Creator',
-            'Menu Creator',
-            'manage_options',
-            'pds-menu-creator',
-            'pds_menu_creator'
-        );
-    }
-endif;
+include(dirname(__FILE__) . '/admin/pds-admin.php');
 
 //=====> Phenix Optimizer <=====//
 include(dirname(__FILE__) . '/inc/pds-optimizer.php');

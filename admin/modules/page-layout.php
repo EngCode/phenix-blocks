@@ -5,7 +5,7 @@
     <p class="mb-30"><?php echo $page_description; ?></p>
 
     <!-- Setting Wrapper -->
-    <form method="post" action="options.php" id="pds-form" class="pdx-20 pdt-10 pdb-20 radius-md bg-white px-tabs bx-shadow-dp-x" data-hash="1" data-active="0" data-navigation=".tabs-navigation">
+    <form method="post" action="options.php" id="pds-form" class="pds-form pdx-20 pdt-10 pdb-20 radius-md bg-white px-tabs bx-shadow-dp-x" data-hash="1" data-active="0" data-navigation=".tabs-navigation">
         <?php
             //===> Hidden Inputs Handler for WP Options Register <===//
             settings_fields($form_page);
@@ -20,7 +20,7 @@
             ?>
         </ul>
         <!-- Panels Group -->
-        <div class="tabs-panels pdb-15 divider-b mb-15">
+        <div class="tabs-panels <?php if (isset($submit_button) && $submit_button) : ?>pdb-15 divider-b<?php endif; ?> mb-15">
             <!-- Panels -->
             <?php
                 foreach ($tabs_list as $tab) {
@@ -40,8 +40,8 @@
         <!-- // Panels Group -->
 
         <!-- // Panels Group -->
-        <?php if (isset($submit_button)) : ?>
-        <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="Save Changes">
+        <?php if (isset($submit_button) && $submit_button) : ?>
+            <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="Save Changes">
         <?php endif; ?>
     </form>
     <!-- // Setting Wrapper -->

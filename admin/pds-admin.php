@@ -41,77 +41,142 @@
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
 
-    //====> Register Options <====//
-    if (!function_exists('pds_options')) :
-        /**
-         * Register Options for Phenix Blocks
-         * @since Phenix Blocks 1.0
-         * @return void
-        */
+    //====> Options List <====//
+    $pds_options_list = array(//==> {option_name, show_in_rest}
+        //===> Menu Locations <===//
+        array('pds_menu_locations', 'pds-menu-locations', true),
 
-        function create_pds_options() {
-            //===> Menu Locations <===//
-            register_setting('pds-admin', 'pds_menu_locations');
-            
-            //===> General Settings <===//
-            register_setting('pds-admin', 'pds_admin_style');
-            register_setting('pds-admin', 'pds_gfonts');
+        //===> General Settings <===//
+        array('pds_admin_style', 'pds-admin'),
+        array('pds_gfonts', 'pds-admin'),
 
-            //===> Optimization <===//
-            register_setting('pds-admin', 'head_cleaner');
-            register_setting('pds-admin', 'wpc7_cleaner');
-            register_setting('pds-admin', 'wpc7_rm_styles');
-            register_setting('pds-admin', 'wpc7_rm_scripts');
-            register_setting('pds-admin', 'adminbar_css');
-            register_setting('pds-admin', 'adminbar_disable');
-            register_setting('pds-admin', 'comments_css');
-            register_setting('pds-admin', 'newsletter_css');
-            register_setting('pds-admin', 'jquery_remove');
-            register_setting('pds-admin', 'blocks_optimizer');
+        //===> Optimization <===//
+        array('head_cleaner', 'pds-admin'),
+        array('wpc7_cleaner', 'pds-admin'),
+        array('wpc7_rm_styles', 'pds-admin'),
+        array('wpc7_rm_scripts', 'pds-admin'),
+        array('adminbar_css', 'pds-admin'),
+        array('adminbar_disable', 'pds-admin'),
+        array('comments_css', 'pds-admin'),
+        array('newsletter_css', 'pds-admin'),
+        array('jquery_remove', 'pds-admin'),
+        array('blocks_optimizer', 'pds-admin'),
 
-            //===> Phenix Blocks <===//
-            register_setting('pds-admin', 'container_block');
-            register_setting('pds-admin', 'logo_block');
-            register_setting('pds-admin', 'navigation_block');
-            register_setting('pds-admin', 'button_block');
-            register_setting('pds-admin', 'row_block');
-            register_setting('pds-admin', 'column_block');
-            register_setting('pds-admin', 'head_block');
-            register_setting('pds-admin', 'query_block');
-            register_setting('pds-admin', 'taxonomies_list_block');
-            register_setting('pds-admin', 'theme_part_block');
+        //===> Phenix Blocks <===//
+        array('container_block', 'pds-admin'),
+        array('logo_block', 'pds-admin'),
+        array('navigation_block', 'pds-admin'),
+        array('button_block', 'pds-admin'),
+        array('row_block', 'pds-admin'),
+        array('column_block', 'pds-admin'),
+        array('head_block', 'pds-admin'),
+        array('query_block', 'pds-admin'),
+        array('taxonomies_list_block', 'pds-admin'),
+        array('theme_part_block', 'pds-admin'),
 
-            //===> Core Blocks <===//
-            register_setting('pds-admin', 'pds_core_quote');
-            register_setting('pds-admin', 'pds_core_preformatted');
-            register_setting('pds-admin', 'pds_core_code');
-            register_setting('pds-admin', 'pds_core_pullquote');
-            register_setting('pds-admin', 'pds_core_verse');
-            register_setting('pds-admin', 'pds_core_gallery');
-            register_setting('pds-admin', 'pds_core_file');
-            register_setting('pds-admin', 'pds_core_mediatext');
-            register_setting('pds-admin', 'pds_core_cover');
-            register_setting('pds-admin', 'pds_core_buttons');
-            register_setting('pds-admin', 'pds_core_columns');
-            register_setting('pds-admin', 'pds_core_group');
-            register_setting('pds-admin', 'pds_core_more');
-            register_setting('pds-admin', 'pds_core_nextpage');
-            register_setting('pds-admin', 'pds_core_separator');
-            register_setting('pds-admin', 'pds_core_spacer');
-            register_setting('pds-admin', 'pds_core_embed');
-            register_setting('pds-admin', 'pds_core_logo');
-            register_setting('pds-admin', 'pds_core_title');
-            register_setting('pds-admin', 'pds_core_tagline');
-            register_setting('pds-admin', 'pds_core_query');
-            register_setting('pds-admin', 'pds_core_navigation');
-            register_setting('pds-admin', 'pds_core_avatar');
-            register_setting('pds-admin', 'pds_core_post_elements');
-            register_setting('pds-admin', 'pds_core_tag_cloud');
-            register_setting('pds-admin', 'pds_core_widgets_blocks');
+        //===> Core Blocks <===//
+        array('pds_core_quote', 'pds-admin'),
+        array('pds_core_preformatted', 'pds-admin'),
+        array('pds_core_code', 'pds-admin'),
+        array('pds_core_pullquote', 'pds-admin'),
+        array('pds_core_verse', 'pds-admin'),
+        array('pds_core_gallery', 'pds-admin'),
+        array('pds_core_file', 'pds-admin'),
+        array('pds_core_mediatext', 'pds-admin'),
+        array('pds_core_cover', 'pds-admin'),
+        array('pds_core_buttons', 'pds-admin'),
+        array('pds_core_columns', 'pds-admin'),
+        array('pds_core_group', 'pds-admin'),
+        array('pds_core_more', 'pds-admin'),
+        array('pds_core_nextpage', 'pds-admin'),
+        array('pds_core_separator', 'pds-admin'),
+        array('pds_core_spacer', 'pds-admin'),
+        array('pds_core_embed', 'pds-admin'),
+        array('pds_core_logo', 'pds-admin'),
+        array('pds_core_title', 'pds-admin'),
+        array('pds_core_tagline', 'pds-admin'),
+        array('pds_core_query', 'pds-admin'),
+        array('pds_core_navigation', 'pds-admin'),
+        array('pds_core_avatar', 'pds-admin'),
+        array('pds_core_post_elements', 'pds-admin'),
+        array('pds_core_tag_cloud', 'pds-admin'),
+        array('pds_core_widgets_blocks', 'pds-admin'),
+    );
+    
+    //===> Create Options <===//
+    function create_pds_options() {
+        //===> Grap Options List <===//
+        global $pds_options_list;
+        //===> Register Options <===//
+        foreach ($pds_options_list as $option) {
+            register_setting($option[1], $option[0]);
         }
+    }
+    
+    add_action('admin_init', 'create_pds_options');
 
-        add_action('admin_init', 'create_pds_options');
-    endif;
+    //====> Get Options for Rest API <====//
+    function pds_get_rest_options($data) {
+        //===> Grap Options List <===//
+        global $pds_options_list;
+        //===> Create List <===//
+        $rest_options_data = array();
+        //===> Get Options <===//
+        foreach ($pds_options_list as $option) {
+            //===> Get Option name and Status <===//
+            $option_name   = $option[0];
+            $option_status = $option[2];
+            //===> Set Option if its valid for Rest <===//
+            if (isset($option_status) && $option_status) {
+                $option_value  = get_option($option_name);
+                $rest_options_data[$option_name] = $option_value;
+            }
+        }
+        //===> Return Options <===//
+        return $rest_options_data;
+    }
+
+    //====> Set Options for Rest API <====//
+    function pds_set_rest_options($data) {
+        //===> Grap Options List <===//
+        global $pds_options_list;
+
+        //===> Register Options <===//
+        foreach ($pds_options_list as $option) {
+            //===> Get Option name and Status <===//
+            $option_name   = $option[0];
+            $option_status = $option[2];
+
+            //===> Set Option if its valid for Rest <===//
+            if (isset($option_status) && $option_status) {
+                update_option($option_name, $data);
+            }
+        }
+        //===> Return Options <===//
+        return $data;
+    }
+
+    //====> Create Rest API Route <====//
+    add_action('rest_api_init', function () {
+        //===> Register Options [GET] Mode <===//
+        register_rest_route('pds-blocks/v1', '/options/', array(
+            'methods'  => 'GET',
+            'callback' => 'pds_get_rest_options',
+            //====> Set Access Permission <====//
+            'permission_callback' => function () {
+                return current_user_can('manage_options');
+            }
+        ));
+        //===> Register Options [POST] <===//
+        register_rest_route('pds-blocks/v1', '/options/', array(
+            'methods'  => 'POST',
+            'callback' => 'pds_set_rest_options',
+            //====> Set Access Permission <====//
+            'permission_callback' => function () {
+                return current_user_can('manage_options');
+            }
+        ));
+    });
 
     //=====> Phenix Admin [General Settings] <=====//
     if (!function_exists('pds_admin_page')) :

@@ -1,6 +1,6 @@
 <?php
     //====> Shared Options <====//
-    $api_url    = site_url().'/wp-json/wp/v1';
+    $api_url    = site_url().'/wp-json/pds-blocks/v1/options';
     $assets_url = plugin_dir_url(__FILE__);
     $icons_url  = str_replace('admin/panels', 'assets/img/blocks/core/', $assets_url);
 ?>
@@ -13,18 +13,18 @@
         <p class="mb-20 fs-14"><?php echo px__('you can add new menu locations from below form.'); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-windsock mb-15">
-            <input type="text" name="location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Location Title');?>">
+            <input type="text" name="add-location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Location Title');?>" required>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">
-            <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="location-name<?php echo px__('location-name');?>">
+            <input type="text" name="add-location-name" class="form-control radius-md border-alpha-10" placeholder="location-name<?php echo px__('location-name');?>" required>
         </div>
         <!-- Form Control -->
-        <button type="button" name="add-location" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
+        <button type="button" name="add-location-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
         <!-- Custom Script -->
         <script defer>            
             document.addEventListener('DOMContentLoaded', ready => {
-                //===> Create Async Function <===//
+                //===> Add New Location <===//
                 async function add_location() {
                     //===> Wait Until it Connect to the API <===//
                     const response = await fetch('<?php echo $api_url; ?>', {
@@ -40,17 +40,24 @@
                         const message = `An error has occured: ${response.status}`;
                         throw new Error(message);
                     }
-                    //===> Get the Response Data <===//
+
+                    //===> Get Data as JSON <===//
                     const response_json = await response.json();
 
-                    console.log(response_json);
-                    
+                    console.log(response_json['pds_menu_locations']);
+
                     //===> Return Data <===//
                     return response_json;
                 }
 
-                add_location().catch(error => {
-                    error.message;
+                //===> Add Location Button <===//
+                document.querySelector('[name="add-location-btn"]')?.addEventListener('click', isClicked => {
+                    //===> Get Inputs <===//
+                    let form_Controls = document.querySelectorAll(`[name*="add-location"]:not(.btn)`);
+                    //===> Validate Inputs <===//
+                    Phenix(...form_Controls).validation();
+                    //===> Add Location <===//
+                    add_location().catch(error => {error.message});
                 });
             });
         </script>
@@ -67,14 +74,15 @@
             <!-- Form Control -->
             <button type="button" name="update-location" class="btn primary radius-sm tiny ms-auto display-block"><?php echo px__('Update'); ?></button>
         </div>
-        
+
         <!-- Locations List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm">
             <li class="flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
                 <span class="col-5">Location Title</span>
                 <span class="col-5">Location Name</span>
             </li>
-            <?php foreach (get_option('pds_menu_locations') as $key => $value) { ?>
+            <?php $locations = get_option('pds_menu_locations'); ?>
+            <?php foreach ($locations as $key => $value) { ?>
             <li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
                 <span class="tx-icon fas fa-windsock col-5 item-title"><?php echo $value; ?></span>
                 <span class="tx-icon fas fa-location col-5 item-name"><?php echo $key; ?></span>
@@ -85,7 +93,6 @@
             </li>
             <?php } ?>
         </ul>
-        
     </div>
 </div>
 <!-- // Grid Layout -->

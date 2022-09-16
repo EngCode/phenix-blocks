@@ -32,71 +32,86 @@ PhenixElements.prototype.validation = function (options?:{
             patterns  = options?.patterns,
             pageDir   = Phenix(document).direction();
 
-        element.addEventListener('submit', submit => {
-            //====> Default Browser Api <====//
-            element.querySelectorAll('input, textarea, select').forEach(input => {
-                //====> Validation Handler <====//
-                let validate = () => {
-                    let hasError = false;
-                    //===> Set Error <===//
-                    input.classList.add('error');
-                    input.classList.remove('success');
-                    //====> .Value Check. <====//
-                    if (input.validity.valueMissing) {
-                        let message = defaults?.valueMissing || pageDir == 'ltr' ? "Please fill this field is Reqiuered" : "هذا الحقل مطلوب يرجي املائه";
-                        input.setCustomValidity(message);
-                        hasError = true;
-                    }
-                    //====> .Type/Bad/Pattren Check. <====//
-                    else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
-                        let message = defaults?.typeMismatch || pageDir == 'ltr' ? "You have entered a wrong value please currect your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
-                        input.setCustomValidity(message);
-                        hasError = true;
-                    }
-                    //====> .Too-Long Check. <====//
-                    else if (input.validity.tooLong || input.validity.rangeOverflow) {
-                        let message = defaults?.tooLong || pageDir == 'ltr' ? "You have exceeded the maximum number, please correct the value." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
-                        input.setCustomValidity(message);
-                        hasError = true;
-                    }
-                    //====> .Too-Short Check. <====//
-                    else if (input.validity.tooShort || input.validity.rangeUnderflow || input.validity.stepMismatch) {
-                        let message = defaults?.tooLong || pageDir == 'ltr' ? "You entered a value less than the minimum, please correct." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
-                        input.setCustomValidity(message);
-                        hasError = true;
-                    }
-                    //====> .Success. <====//
-                    else if (input.validity.valid) {
-                        //===> Remove Error <===//
-                        input.classList.remove('error');
-                    }
+        //===> Control Validation <===//
+        let valid_control = (input, submit?) => {
+            //====> Validation Handler <====//
+            let validate = () => {
+                let hasError = false;
+                //===> Set Error <===//
+                input.classList.add('error');
+                input.classList.remove('success');
 
-                    //===> Do not Submit <===//
-                    if (hasError) submit.preventDefault();
-                    return hasError;
+                //====> .Value Check. <====//
+                if (input.validity.valueMissing) {
+                    let message = defaults?.valueMissing || pageDir == 'ltr' ? "Please fill this field is Reqiuered" : "هذا الحقل مطلوب يرجي املائه";
+                    input.setCustomValidity(message);
+                    hasError = true;
                 }
 
-                //====> Reset When New Value is Set <====//
-                input.addEventListener("input", event => {
-                    //===> Remove Error <===//
-                    input.setCustomValidity('');
-                    input.classList.remove('error', 'success');
-                    //====> Check for Validation <====//
-                    input.checkValidity();
-                    validate();
-                });
+                //====> .Type/Bad/Pattren Check. <====//
+                else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
+                    let message = defaults?.typeMismatch || pageDir == 'ltr' ? "You have entered a wrong value please currect your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
+                    input.setCustomValidity(message);
+                    hasError = true;
+                }
 
-                //====> if has invalid value <====//
-                input.addEventListener("invalid", invalid => {
-                    //===> Validate <===//
-                    validate();
-                });
-                
-                //====> Init <====//
+                //====> .Too-Long Check. <====//
+                else if (input.validity.tooLong || input.validity.rangeOverflow) {
+                    let message = defaults?.tooLong || pageDir == 'ltr' ? "You have exceeded the maximum number, please correct the value." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
+                    input.setCustomValidity(message);
+                    hasError = true;
+                }
+
+                //====> .Too-Short Check. <====//
+                else if (input.validity.tooShort || input.validity.rangeUnderflow || input.validity.stepMismatch) {
+                    let message = defaults?.tooLong || pageDir == 'ltr' ? "You entered a value less than the minimum, please correct." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
+                    input.setCustomValidity(message);
+                    hasError = true;
+                }
+
+                //====> .Success. <====//
+                else if (input.validity.valid) {
+                    //===> Remove Error <===//
+                    input.classList.remove('error');
+                }
+
+                //===> Do not Submit <===//
+                if (submit && hasError) submit.preventDefault();
+                return hasError;
+            }
+
+            //====> Reset When New Value is Set <====//
+            input.addEventListener("input", event => {
+                //===> Remove Error <===//
+                input.setCustomValidity('');
+                input.classList.remove('error', 'success');
+                //====> Check for Validation <====//
+                input.checkValidity();
                 validate();
             });
-        });
 
+            //====> if has invalid value <====//
+            input.addEventListener("invalid", invalid => {
+                //===> Validate <===//
+                validate();
+            });
+
+            //====> Init <====//
+            validate();
+        }
+
+        //===> Active on Form Submit <===//
+        if(element.tagName == 'FORM') {
+            element.addEventListener('submit', isSubmiting => {
+                element.querySelectorAll('input, textarea, select').forEach(item => {
+                    valid_control(item, isSubmiting);
+                });
+            });
+        }
+        //===> Active for Controls <===//
+        else {
+            valid_control(element);
+        }
         //====> Multiple Validation <====//
         if (patterns && patterns.length > 0) patterns.forEach(pattern => {
             //====> Get the Pattern Data <====//

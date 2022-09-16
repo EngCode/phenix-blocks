@@ -13,7 +13,7 @@ if (!function_exists('pds_add_admin_page')) :
      * @return void
     */
 
-    function pds_add_admin_page($page_title, $page_description, $form_page, $tabs_list) {
+    function pds_add_admin_page($page_title, $page_description, $form_page, $tabs_list, $submit_button) {
         //===> Start Data <===//
         $template_markup = '';
         ob_start();

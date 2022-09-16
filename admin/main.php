@@ -102,6 +102,8 @@
                     "description" => 'by default phenix blocks disables the uncessary default core blocks wthin gutenberg to replace it with its own, and in the options below you can choose which core blocks to enable, be sure to select only the blocks that you need and will use.',
                 ),
             ),
+            //==> Show Submit Button <==//
+            true
         );
     endif;
 

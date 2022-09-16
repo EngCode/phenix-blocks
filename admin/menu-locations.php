@@ -10,7 +10,7 @@
             $template_markup = '';
             ob_start();
             //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/menus-locations.php');
+            include(dirname(__FILE__) . '/panels/locations.php');
             //===> Stop Data <===//
             $template_output = ob_get_clean();
             $template_markup .= $template_output;
@@ -39,7 +39,7 @@
                 )
             ),
             //==> Hide Submit Button <==//
-            true
+            false
         );
     endif;
 

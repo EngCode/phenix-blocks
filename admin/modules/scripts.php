@@ -1,6 +1,9 @@
 <script defer>
     document.addEventListener('DOMContentLoaded', ready => {
-        //====> Tabs <====//
+        //===> Tabs <===//
         Phenix('.px-tabs').tabs();
+        
+        //===> Validation <===//
+        Phenix('.pds-form').validation();
     });
 </script>

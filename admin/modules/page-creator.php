@@ -19,7 +19,7 @@ if (!function_exists('pds_add_admin_page')) :
         ob_start();
 
         //===> Get the File <===//
-        include(dirname(__FILE__) . '/templates/page-template.php');
+        include(dirname(__FILE__) . '/page-layout.php');
 
         //===> Stop Data <===//
         $template_output = ob_get_clean();

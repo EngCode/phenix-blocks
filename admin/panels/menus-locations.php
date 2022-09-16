@@ -1,6 +1,6 @@
 <?php
     //====> Shared Options <====//
-    $api_url    = site_url().'/wp-json/wp/v2/settings';
+    $api_url    = site_url().'/wp-json/wp/v1';
     $assets_url = plugin_dir_url(__FILE__);
     $icons_url  = str_replace('admin/panels', 'assets/img/blocks/core/', $assets_url);
 ?>
@@ -10,14 +10,14 @@
     <div class="col-12 col-lg-5 pdy-10 me-lg-30">
         <!-- Area Title -->
         <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Add New Location'); ?></h3>
-        <p class="mb-20 fs-14">you can add new menu locations from below form.</p>
+        <p class="mb-20 fs-14"><?php echo px__('you can add new menu locations from below form.'); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-windsock mb-15">
-            <input type="text" name="location-title" class="form-control radius-md border-alpha-10" placeholder="Location Title">
+            <input type="text" name="location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Location Title');?>">
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">
-            <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="location-name">
+            <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="location-name<?php echo px__('location-name');?>">
         </div>
         <!-- Form Control -->
         <button type="button" name="add-location" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>

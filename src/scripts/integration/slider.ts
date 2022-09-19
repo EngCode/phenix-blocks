@@ -316,9 +316,9 @@ PhenixElements.prototype.slider = function (options?:{
     if (!document.querySelector('#splidejs-phenix')) {
         //===> Create Script Element <===//
         let splide_loader = document.createElement("script"),
-            libPath = Phenix(document).getURL().phenixJS.replace('/js/', '/lib/'),
+            libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),
             splide_url =  libPath+'splide.min.js';
-
+            
         //===> Set ID <===//
         splide_loader.setAttribute('id', 'splidejs-phenix')
         //===> Set Source <===//

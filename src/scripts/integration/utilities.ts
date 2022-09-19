@@ -106,6 +106,12 @@ PhenixElements.prototype.utilities = function (options?:{
             if (text.length > max) element.textContent = text.slice(0, max);
         });
 
+        //====> icons List <====//
+        Phenix('.icons-list').forEach((list:any) => {
+            let classes = list.getAttribute('data-icon').split(" ");
+            list.querySelectorAll('li').forEach(item => item.classList.add(...classes));
+        });
+
         //====> Images Demstions <====//
         Phenix('img').forEach((img:any) => {
             //===> Get Image Data <===//

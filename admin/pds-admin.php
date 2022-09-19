@@ -120,7 +120,7 @@
         //===> Grap Options List <===//
         global $pds_options_list;
         //===> Create List <===//
-        $rest_options_data = array();
+        $response = array();
         //===> Get Options <===//
         foreach ($pds_options_list as $option) {
             //===> Get Option name and Status <===//
@@ -129,56 +129,49 @@
             //===> Set Option if its valid for Rest <===//
             if (isset($option_status) && $option_status) {
                 $option_value  = get_option($option_name);
-                $rest_options_data[$option_name] = $option_value;
+                $response[$option_name] = $option_value;
             }
         }
         //===> Return Options <===//
-        return $rest_options_data;
+        return rest_ensure_response($response);
     }
 
     //====> Set Options for Rest API <====//
     function pds_set_rest_options($data) {
-        //===> Grap Options List <===//
-        global $pds_options_list;
-
-        //===> Register Options <===//
-        foreach ($pds_options_list as $option) {
-            //===> Get Option name and Status <===//
-            $option_name   = $option[0];
-            $option_status = $option[2];
-
-            //===> Set Option if its valid for Rest <===//
-            if (isset($option_status) && $option_status) {
-                update_option($option_name, $data);
-            }
+        //===> Update Options <===//
+        foreach ($data as $key => $value) {
+            update_option($key, $value);
         }
         //===> Return Options <===//
-        return $data;
+        return rest_ensure_response($data);
     }
 
     //====> Create Rest API Route <====//
     add_action('rest_api_init', function () {
-        //===> Register Options [GET] Mode <===//
+        //===> Register Options <===//
         register_rest_route('pds-blocks/v1', '/options/', array(
-            'methods'  => 'GET',
-            'callback' => 'pds_get_rest_options',
-            //====> Set Access Permission <====//
-            'permission_callback' => function () {
-                return current_user_can('manage_options');
-            }
-        ));
-        //===> Register Options [POST] <===//
-        register_rest_route('pds-blocks/v1', '/options/', array(
-            'methods'  => 'POST',
-            'callback' => 'pds_set_rest_options',
-            //====> Set Access Permission <====//
-            'permission_callback' => function () {
-                return current_user_can('manage_options');
-            }
+            //===> [GET] Mode <===//
+            array(
+                'methods'  => WP_REST_Server::READABLE,
+                'callback' => 'pds_get_rest_options',
+                //====> Set Access Permission <====//
+                'permission_callback' => function () {
+                    return current_user_can('edit_posts');
+                }
+            ),
+            //===> [POST] Mode <===//
+            array(
+                'methods'  => WP_REST_Server::EDITABLE,
+                'callback' => 'pds_set_rest_options',
+                //====> Set Access Permission <====//
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                }
+            )
         ));
     });
 
-    //=====> Phenix Admin [General Settings] <=====//
+    //====> Phenix Admin [General Settings] <====//
     if (!function_exists('pds_admin_page')) :
         /**
          * Create Admin Pages for Phenix Blocks
@@ -191,7 +184,7 @@
         };
     endif;
 
-    //=====> Phenix Admin [Menu Creator] <=====//
+    //====> Phenix Admin [Menu Creator] <====//
     if (!function_exists('pds_menu_locations')) :
         /**
          * Create Admin Pages for Phenix Blocks

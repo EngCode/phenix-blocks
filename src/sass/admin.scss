@@ -717,6 +717,10 @@
 
 	.manage-menus #select-menu-to-edit {min-width: 230px;}
 	.select-all, .select-all + label {margin-bottom: 0!important;}
+	.button.site-health-view-passed {
+		width: 130px;
+		text-align: start;
+	}
 }
 
 /*==== newsletter ====*/
@@ -728,6 +732,11 @@
 body[class*="phenix-blocks_page"] {
 	.form-control {
 		border: 1px solid rgba(#000, 0.15)!important;;
+	}
+
+	.btn.square::before {
+		top: -2px;
+		position: relative;
 	}
 
 	.control-icon.error, .form-control.error, .option-control.error {

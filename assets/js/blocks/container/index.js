@@ -146,7 +146,7 @@ function Edit(_ref) {
   }); //===> for Section Convert <===//
 
   var container_element = blockProps;
-  if (attributes.isSection) container_element = innerBlocksProps; //===> Render Size <===//
+  if (attributes.isSection || attributes.isFlexbox) container_element = innerBlocksProps; //===> Render Size <===//
 
   if (attributes.size) container_element.className += " ".concat(attributes.size); //===> Render Alignment <===//
 

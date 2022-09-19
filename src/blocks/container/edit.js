@@ -86,7 +86,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> for Section Convert <===//
     let container_element = blockProps;
-    if (attributes.isSection) container_element = innerBlocksProps;
+    if (attributes.isSection || attributes.isFlexbox) container_element = innerBlocksProps;
 
     //===> Render Size <===//
     if (attributes.size) container_element.className += ` ${attributes.size}`;

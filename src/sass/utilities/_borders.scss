@@ -95,8 +95,8 @@
 /*==== Grouping ====*/
 .px-group {
     @extend .flexbox;
-    > *:nth-child(1) {@extend .radius-start;}
-    > *:nth-last-child(1) {@extend .radius-end;}
+    > *:nth-child(1),> *:nth-child(1) > .form-control {@extend .radius-start;}
+    > *:nth-last-child(1), > *:nth-last-child(1) > .form-control {@extend .radius-end;}
     > *:not(:nth-child(1)):not(:nth-last-child(1)):not(.px-dropdown-list) {--radius: 0;}
     /*==== Vertical ====*/
     &.px-group-v {

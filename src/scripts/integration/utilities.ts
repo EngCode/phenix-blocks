@@ -123,7 +123,7 @@ PhenixElements.prototype.utilities = function (options?:{
             if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}px`);
             if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}px`);
         });
-
+        
         //====> Loading <====//
         let loading_wrapper = document.querySelector('.px-loader');
         if (loading_wrapper) {
@@ -146,6 +146,10 @@ PhenixElements.prototype.utilities = function (options?:{
             //===> When Leaving Page <===//
             window.addEventListener('beforeunload', isLeaving => Phenix(loading_wrapper).fadeIn());
         }
+
+        //====> Copyrights Protection <====//
+        // Phenix(document).on("contextmenu", rightClick => rightClick.preventDefault());
+        // Phenix(document).on("selectstart", textSelect => textSelect.preventDefault());
     });
 
     //====> Return Phenix Query <====//

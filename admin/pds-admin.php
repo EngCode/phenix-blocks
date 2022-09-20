@@ -102,6 +102,21 @@
         array('pds_core_tag_cloud', 'pds-admin'),
         array('pds_core_widgets_blocks', 'pds-admin'),
     );
+
+    //===> Collect Options for Rest API <===//
+    $pds_options_list_rest = array();
+    foreach ($pds_options_list as $key => $option) {
+        //===> Grap Options List <===//
+        global $pds_options_list;
+        global $pds_options_list_rest;
+        $option_name = $option[0];
+        //===> Set Option if its valid for Rest <===//
+        if (isset($option[2]) && $option[2]) {
+            $option_value  = get_option($option_name);
+            //===> Add to the Rest API <===//
+            $pds_options_list_rest[$option_name] = array('default' => $option_value);
+        }
+    }
     
     //===> Create Options <===//
     function create_pds_options() {
@@ -148,6 +163,8 @@
 
     //====> Create Rest API Route <====//
     add_action('rest_api_init', function () {
+        //===> Get Rest Options <===//
+        global $pds_options_list_rest;
         //===> Register Options <===//
         register_rest_route('pds-blocks/v1', '/options/', array(
             //===> [GET] Mode <===//
@@ -161,12 +178,23 @@
             ),
             //===> [POST] Mode <===//
             array(
-                'methods'  => WP_REST_Server::EDITABLE,
+                'methods'  => WP_REST_Server::CREATABLE,
                 'callback' => 'pds_set_rest_options',
+                'args'     => $pds_options_list_rest,
                 //====> Set Access Permission <====//
                 'permission_callback' => function () {
                     return current_user_can('manage_options');
-                }
+                },
+            ),
+            //===> [POST] Mode <===//
+            array(
+                'methods'  => WP_REST_Server::EDITABLE,
+                'callback' => 'pds_set_rest_options',
+                'args'     => $pds_options_list_rest,
+                //====> Set Access Permission <====//
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
             )
         ));
     });

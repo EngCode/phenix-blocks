@@ -40,9 +40,6 @@ Phenix(document).ready(ready => {
         //====> H1 Fix <====//
         if(document.querySelector('h1') !== null) 
             Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
-        //====> Copyrights Protection <====//
-        // Phenix(document).on("contextmenu", rightClick => rightClick.preventDefault());
-        // Phenix(document).on("selectstart", textSelect => textSelect.preventDefault());
 
         //====> Phenix Blocks <====//
         Phenix('.wp-block-design-px-section[data-src]').multimedia();
@@ -53,5 +50,8 @@ Phenix(document).ready(ready => {
         }
     }
     /*====> for Admin Panel <====*/
-    else {}
+    else {
+        //====> Disable Links <====//
+        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+    }
 });

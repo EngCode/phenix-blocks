@@ -30,13 +30,13 @@
     &.large#{$infix} {
         --height    : #{REM(52)};
         --padding   : #{REM(25)};
-        --text-size : #{REM(22)};
+        --text-size : #{REM(17)};
     }
 
     &.xlarge#{$infix} {
         --height    : #{REM(62)};
         --padding   : #{REM(35)};
-        --text-size : #{REM(26)};
+        --text-size : #{REM(18)};
     }
 }
 

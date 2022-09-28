@@ -48,8 +48,9 @@
 }
 
 .container-xl {
-    max-width: 1400px;
+    max-width: 1200px;
     --container-padding : #{REM(30)};
+    @media screen and (min-width: 1500px) {max-width: 1400px;}
     @include medium('down') { --container-padding : #{REM(15)}; }
 }
 

@@ -23,9 +23,7 @@ Phenix(document).ready(ready => {
             element.setAttribute('rows', null);
         });
 
-        Phenix('.wpcf7-validates-as-required').forEach((element:any) => {
-            element.setAttribute('required', true);
-        });
+        Phenix('.wpcf7-validates-as-required').forEach((element:any) => element.setAttribute('required', true));
 
         /*====> Activated Items Detect <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
@@ -41,13 +39,9 @@ Phenix(document).ready(ready => {
         if(document.querySelector('h1') !== null) 
             Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
-        //====> Phenix Blocks <====//
-        Phenix('.wp-block-design-px-section[data-src]').multimedia();
-
         //====> Adminbar <====//
-        if (document.querySelector('#wpadminbar')) {
+        if (document.querySelector('#wpadminbar'))
             Phenix('body').css({"margin-top": "-24px","padding": "0"});
-        }
     }
     /*====> for Admin Panel <====*/
     else {

@@ -66,7 +66,7 @@ if (!function_exists('phenix_assets')) :
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
         //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. 'css/fontawsome.5.css');
+        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawsome-5.css');
 
         //====> Google Fonts <====//
         if (get_option('pds_gfonts')) :

@@ -6,7 +6,7 @@
     */
 
     //=====> Phenix Blocks Admin <=====//
-    if (!function_exists('pds_menu')) :
+    if (!function_exists('pds_admin_menu')) :
         /**
          * Create Admin Pages for Phenix Blocks
          * @since Phenix Blocks 1.0
@@ -14,9 +14,9 @@
         */
 
         
-        add_action('admin_menu', 'pds_menu');
+        add_action('admin_menu', 'pds_admin_menu');
 
-        function pds_menu() {
+        function pds_admin_menu() {
             //===> Main Settings <===//
             add_menu_page(
                 'Phenix Blocks Settings',

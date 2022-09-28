@@ -38,7 +38,7 @@ if (!function_exists('px__')) {
 }
 
 //=====> Phenix Blocks Admin <=====//
-include(dirname(__FILE__) . '/admin/pds-admin.php');
+include(dirname(__FILE__) . '/admin/main.php');
 
 //=====> Phenix Optimizer <=====//
 include(dirname(__FILE__) . '/inc/pds-optimizer.php');

@@ -6,17 +6,14 @@
     */
 
     //=====> Phenix Blocks Admin <=====//
-    if (!function_exists('pds_menu')) :
+    if (!function_exists('pds_admin_menu')) :
         /**
          * Create Admin Pages for Phenix Blocks
          * @since Phenix Blocks 1.0
          * @return void
         */
 
-        
-        add_action('admin_menu', 'pds_menu');
-
-        function pds_menu() {
+        function pds_admin_menu() {
             //===> Main Settings <===//
             add_menu_page(
                 'Phenix Blocks Settings',
@@ -35,14 +32,16 @@
                 'pds_menu_locations'
             );
         }
+
+        add_action('admin_menu', 'pds_admin_menu');
     endif;
 
-    //====> Include Modules <====//
-    include(dirname(__FILE__) . '/modules/page-creator.php');
-    include(dirname(__FILE__) . '/modules/toggle-controls.php');
-
-    //====> Options List <====//
-    $pds_options_list = array(//==> {option_name, show_in_rest}
+    /**===> Options List { properties by order }
+     *** option_name,
+     *** option_page,
+     *** show_in_rest
+    <===*/
+    $pds_options_list = array(
         //===> Menu Locations <===//
         array('pds_menu_locations', 'pds-menu-locations', true),
 
@@ -103,22 +102,12 @@
         array('pds_core_widgets_blocks', 'pds-admin'),
     );
 
-    //===> Collect Options for Rest API <===//
-    $pds_options_list_rest = array();
-    foreach ($pds_options_list as $key => $option) {
-        //===> Grap Options List <===//
-        global $pds_options_list;
-        global $pds_options_list_rest;
-        $option_name = $option[0];
-        //===> Set Option if its valid for Rest <===//
-        if (isset($option[2]) && $option[2]) {
-            $option_value  = get_option($option_name);
-            //===> Add to the Rest API <===//
-            $pds_options_list_rest[$option_name] = array('default' => $option_value);
-        }
-    }
-    
-    //===> Create Options <===//
+    //====> Include Modules <====//
+    include(dirname(__FILE__) . '/modules/page-creator.php');
+    include(dirname(__FILE__) . '/modules/toggle-controls.php');
+    // include(dirname(__FILE__) . '/modules/api-creator.php');
+
+    //====> Create Options <====//
     function create_pds_options() {
         //===> Grap Options List <===//
         global $pds_options_list;
@@ -127,77 +116,8 @@
             register_setting($option[1], $option[0]);
         }
     }
-    
+
     add_action('admin_init', 'create_pds_options');
-
-    //====> Get Options for Rest API <====//
-    function pds_get_rest_options($data) {
-        //===> Grap Options List <===//
-        global $pds_options_list;
-        //===> Create List <===//
-        $response = array();
-        //===> Get Options <===//
-        foreach ($pds_options_list as $option) {
-            //===> Get Option name and Status <===//
-            $option_name   = $option[0];
-            $option_status = $option[2];
-            //===> Set Option if its valid for Rest <===//
-            if (isset($option_status) && $option_status) {
-                $option_value  = get_option($option_name);
-                $response[$option_name] = $option_value;
-            }
-        }
-        //===> Return Options <===//
-        return rest_ensure_response($response);
-    }
-
-    //====> Set Options for Rest API <====//
-    function pds_set_rest_options($data) {
-        //===> Update Options <===//
-        foreach ($data as $key => $value) {
-            update_option($key, $value);
-        }
-        //===> Return Options <===//
-        return rest_ensure_response($data);
-    }
-
-    //====> Create Rest API Route <====//
-    add_action('rest_api_init', function () {
-        //===> Get Rest Options <===//
-        global $pds_options_list_rest;
-        //===> Register Options <===//
-        register_rest_route('pds-blocks/v1', '/options/', array(
-            //===> [GET] Mode <===//
-            array(
-                'methods'  => WP_REST_Server::READABLE,
-                'callback' => 'pds_get_rest_options',
-                //====> Set Access Permission <====//
-                'permission_callback' => function () {
-                    return current_user_can('edit_posts');
-                }
-            ),
-            //===> [POST] Mode <===//
-            array(
-                'methods'  => WP_REST_Server::CREATABLE,
-                'callback' => 'pds_set_rest_options',
-                'args'     => $pds_options_list_rest,
-                //====> Set Access Permission <====//
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-            ),
-            //===> [POST] Mode <===//
-            array(
-                'methods'  => WP_REST_Server::EDITABLE,
-                'callback' => 'pds_set_rest_options',
-                'args'     => $pds_options_list_rest,
-                //====> Set Access Permission <====//
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-            )
-        ));
-    });
 
     //====> Phenix Admin [General Settings] <====//
     if (!function_exists('pds_admin_page')) :

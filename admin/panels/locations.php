@@ -1,6 +1,5 @@
 <?php
     //====> Shared Options <====//
-    $api_url    = site_url().'/wp-json/pds-blocks/v1/options/pds_menu_locations';
     $assets_url = plugin_dir_url(__FILE__);
     $icons_url  = str_replace('admin/panels', 'assets/img/blocks/core/', $assets_url);
 ?>
@@ -48,44 +47,35 @@
 <!-- Form Script -->
 <script defer>
     document.addEventListener('DOMContentLoaded', ready => {
-        //===> Add New Location <===//
+        //===> Get Current Locations <===//
         async function get_locations() {
             //===> Connect to the API <===//
-            const response = await fetch('<?php echo $api_url; ?>', {
+            const response = await fetch(`${PDS_WP_KEY.root}options/pds_menu_locations`, {
                 method : 'GET', //===> [GET, POST, PUT, DELETE].
                 headers: {      //===> WP Cookies Auth
                     "Content-Type": "application/json",
-                    "X-WP-Nonce": PDS_WP_DATA.nonce
+                    "X-WP-Nonce": PDS_WP_KEY.nonce
                 },
             });
 
-            //===> if Connection Faild <===//
-            if (!response.ok) {
-                const message = `An error has occured: ${response.status}`;
-                throw new Error(message);
-            }
-
-            //===> Get Data as JSON <===//
-            const response_json = await response.json();
-
             //===> Return Data <===//
-            return response_json['pds_menu_locations'];
+            return response.json();
         }
 
         //===> Add New Location <===//
         async function add_location(locations) {
             //===> Connect to the API <===//
-            const response = await fetch('<?php echo $api_url; ?>', {
+            const response = await fetch(`${PDS_WP_KEY.root}options/pds_menu_locations`, {
                 method : 'POST', //===> [GET, POST, PUT, DELETE].
                 headers: {      //===> WP Cookies Auth
                     "Content-Type": "application/json",
-                    "X-WP-Nonce": PDS_WP_DATA.nonce
+                    "X-WP-Nonce": PDS_WP_KEY.nonce
                 },
                 body : JSON.stringify(locations)
             });
 
-            console.log(await response);
-            console.log(JSON.stringify(locations));
+            console.log('Add Response : ', response);
+            console.log('to Add This  : ', JSON.stringify(locations));
 
             //===> Update Locations List <===//
             update_locations_list();
@@ -96,6 +86,7 @@
 
         //===> Get Saved Locations <===//
         const update_locations_list = () => {
+            //===> Get Location from Rest-API <===//
             get_locations().then(locations => {
                 //===> Clear Current Locations <===//
                 let locations_list = document.querySelector('.locations-list');
@@ -113,7 +104,6 @@
     
                         <!-- Action Buttons -->
                         <div class="col-auto ms-auto flexbox">
-                            <button type="button" class="edit-item btn light tiny square color-gray far fa-pencil"></button>
                             <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
                         </div>
                     </li>`);

@@ -105,7 +105,7 @@
     //====> Include Modules <====//
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
-    // include(dirname(__FILE__) . '/modules/api-creator.php');
+    include(dirname(__FILE__) . '/modules/api-creator.php');
 
     //====> Create Options <====//
     function create_pds_options() {
@@ -113,6 +113,7 @@
         global $pds_options_list;
         //===> Register Options <===//
         foreach ($pds_options_list as $option) {
+            //===> Register the Option <===//
             register_setting($option[1], $option[0]);
         }
     }
@@ -144,4 +145,36 @@
             include(dirname(__FILE__) . '/menu-locations.php');
         };
     endif;
+
+    //====> Create API Endpoint for [Menu Creator] <====//
+    add_action('rest_api_init', function() {
+        //====> Create PDS Endpoint ====//
+        pds_add_api(array(
+            "api_slug"   => '/options/pds_menu_locations/',
+            "api_props"  => array(),
+            //===> Reading Premission <===//
+            "read_prem"  => function () {
+                return current_user_can('edit_posts');
+            },
+            //===> Editing Premission <===//
+            "write_prem" => function () {
+                return current_user_can('manage_options');
+            },
+            //===> Get Option Method <===//
+            "get_method" => function($data) {
+                //===> Get Option Value <===//
+                $response = get_option('pds_menu_locations');
+                //===> Return Option Value <===//
+                return $response;
+            },
+            //===> Set Option Method <===//
+            "set_method" => function($data) {
+                //===> Update Options <===//
+                update_option('pds_menu_locations', $data);
+                $response = get_option('pds_menu_locations');
+                //===> Return Options <===//
+                return $response;
+            },
+        ));
+    });
 ?>

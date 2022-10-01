@@ -146,7 +146,7 @@
         };
     endif;
 
-    //====> Create API Endpoint for [Menu Creator] <====//
+    //====> API Endpoint [Menu Creator] <====//
     add_action('rest_api_init', function() {
         //====> Create PDS Endpoint ====//
         pds_add_api(array(

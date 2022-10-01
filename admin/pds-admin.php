@@ -171,7 +171,7 @@
             "set_method" => function($data) {
                 //===> Update Options <===//
                 update_option('pds_menu_locations', $data);
-                $response = get_option('pds_menu_locations');
+                $response = "Data has been Set.";
                 //===> Return Options <===//
                 return $response;
             },

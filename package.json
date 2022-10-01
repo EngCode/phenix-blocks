@@ -45,9 +45,9 @@
     }
   ],
   "scripts": {
-    "phenix-start": "concurrently --kill-others \"pnpm run phenix-sass\" \"pnpm run phenix-ts && size-limit\" \"npm run phenix-blocks\"",
-    "phenix-ts": "pnpx webpack --config typescript.webpack.js --watch",
-    "phenix-sass": "pnpx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
+    "phenix-start": "concurrently --kill-others \"npm run phenix-sass\" \"npm run phenix-ts && size-limit\" \"npm run phenix-blocks\"",
+    "phenix-ts": "npx webpack --config typescript.webpack.js --watch",
+    "phenix-sass": "npx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
     "phenix-blocks": "wp-scripts start"
   },
   "devDependencies": {

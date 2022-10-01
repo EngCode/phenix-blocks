@@ -67,9 +67,9 @@
             //===> Connect to the API <===//
             const response = await fetch(`${PDS_WP_KEY.root}options/pds_menu_locations`, {
                 method : 'POST', //===> [GET, POST, PUT, DELETE].
-                headers: {      //===> WP Cookies Auth
-                    "Content-Type": "application/json",
-                    "X-WP-Nonce": PDS_WP_KEY.nonce
+                headers: {       //===> WP Cookies Auth
+                    "Content-Type" : "application/json",
+                    "X-WP-Nonce"   : PDS_WP_KEY.nonce
                 },
                 body : JSON.stringify(locations)
             });
@@ -118,7 +118,7 @@
             //===> Get Controls Elements <===//
             let form_Controls = Phenix('[name*="add-location"]:not(.btn)'),
                 new_location  = {};
-            
+
             //===> Get Controls Values <===//
             form_Controls.forEach(control => {
                 //===> Validate Control <===//

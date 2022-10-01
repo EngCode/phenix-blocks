@@ -558,15 +558,17 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
 
 /*====> Phenix Selecting Method <====*/
 const Phenix = (selector?:any) => {
-    /*====> Get Elements <====*/
+    /*====> Get Elements from Selector <====*/
     if (typeof(selector) === 'string') {
         //====> Select as Phenix Elements <====//
         let selected = document.querySelectorAll(selector);
 
         //====> Create Elements Query <====//
         if (selector.length > 0) return new PhenixElements(...selected);
+    }
+
     /*====> if its Elements Passed it <====*/
-    } else if (selector !== null && typeof(selector) !== 'undefined' || 'number') {
+    else if (selector !== null && typeof(selector) !== 'undefined' || 'number') {
         //====> if Not Array Make it one <====//
         if (!Array.isArray(selector) || typeof(selector) !== 'object') selector = [selector];
 

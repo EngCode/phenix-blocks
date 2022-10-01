@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -6,11 +6,11 @@
 /*!**********************************!*\
   !*** ./src/blocks/query/edit.js ***!
   \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */   "default": function() { return /* binding */ Edit; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
@@ -165,7 +165,7 @@ function Edit(props) {
 /*!**********************************!*\
   !*** external ["wp","apiFetch"] ***!
   \**********************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["apiFetch"];
 
@@ -175,7 +175,7 @@ module.exports = window["wp"]["apiFetch"];
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
   \*************************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["blockEditor"];
 
@@ -185,7 +185,7 @@ module.exports = window["wp"]["blockEditor"];
 /*!********************************!*\
   !*** external ["wp","blocks"] ***!
   \********************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["blocks"];
 
@@ -195,7 +195,7 @@ module.exports = window["wp"]["blocks"];
 /*!************************************!*\
   !*** external ["wp","components"] ***!
   \************************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["components"];
 
@@ -205,7 +205,7 @@ module.exports = window["wp"]["components"];
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
   \*********************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["element"];
 
@@ -215,7 +215,7 @@ module.exports = window["wp"]["element"];
 /*!******************************************!*\
   !*** external ["wp","serverSideRender"] ***!
   \******************************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = window["wp"]["serverSideRender"];
 
@@ -225,7 +225,7 @@ module.exports = window["wp"]["serverSideRender"];
 /*!*************************************!*\
   !*** ./src/blocks/query/block.json ***!
   \*************************************/
-/***/ ((module) => {
+/***/ (function(module) {
 
 module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.1.0","title":"Query Loop","category":"design","description":"Custom Query Posts Block.","supports":{"html":false},"attributes":{"query_type":{"type":"string","default":"native"},"post_type":{"type":"string","default":"post"},"per_page":{"type":"number","default":8},"order":{"type":"string","default":"DESC"},"pagination":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-query"}');
 
@@ -259,49 +259,49 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
+!function() {
 /*!***********************************!*\
   !*** ./src/blocks/query/index.js ***!
   \***********************************/
@@ -339,8 +339,7 @@ __webpack_require__.r(__webpack_exports__);
     return null;
   }
 });
-})();
-
+}();
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

@@ -31,7 +31,7 @@
                 <p class="fs-14"><?php echo px__('in here you can manage the menu locations created by phenix-blocks.'); ?></p>
             </div>
             <!-- Form Control -->
-            <button type="button" name="update-location" class="btn primary radius-sm tiny ms-auto display-block"><?php echo px__('Update'); ?></button>
+            <!-- <button type="button" name="update-location" class="btn primary radius-sm tiny ms-auto display-block"><?php echo px__('Update'); ?></button> -->
         </div>
         <!-- Locations List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm locations-list">
@@ -56,6 +56,7 @@
                     "Content-Type": "application/json",
                     "X-WP-Nonce": PDS_WP_KEY.nonce
                 },
+                credentials: "same-origin",
             });
 
             //===> Return Data <===//
@@ -64,18 +65,19 @@
 
         //===> Add New Location <===//
         async function add_location(locations) {
+            //===> Get Data <===//
+            let data = {"locations": locations};
+
             //===> Connect to the API <===//
             const response = await fetch(`${PDS_WP_KEY.root}options/pds_menu_locations`, {
                 method : 'POST', //===> [GET, POST, PUT, DELETE].
                 headers: {       //===> WP Cookies Auth
+                    "X-WP-Nonce"   : PDS_WP_KEY.nonce,
                     "Content-Type" : "application/json",
-                    "X-WP-Nonce"   : PDS_WP_KEY.nonce
                 },
-                body : JSON.stringify(locations)
+                credentials: "same-origin",
+                body : JSON.stringify(data)
             });
-
-            console.log('Add Response : ', response);
-            console.log('to Add This  : ', JSON.stringify(locations));
 
             //===> Update Locations List <===//
             update_locations_list();
@@ -107,13 +109,29 @@
                             <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
                         </div>
                     </li>`);
+                    //===> Remove Item Method <===//
+                    Phenix('.locations-list .remove-item').on('click', button => {
+                        let menu_item = Phenix(button.target).ancestor('li'),
+                            menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
+                        //===> Loop Throgh Locations <===//
+                        for (const [key, value] of Object.entries(locations)) {
+                            //===> When the item matches the locations <===//
+                            if (menu_name === `${key}`) {
+                                //===> Delete the Location <===//
+                                delete locations[`${key}`];
+                                //===> Update Locations <===//
+                                add_location(locations);
+                            }
+                        }
+                    }, true);
                 }
+            }).then(response => {
             }).catch(error => {error.message});
         }
 
         update_locations_list();
 
-        //===> Add Location Button <===//
+        //===> Add Location Form <===//
         document.querySelector('[name="add-location-btn"]')?.addEventListener('click', isClicked => {
             //===> Get Controls Elements <===//
             let form_Controls = Phenix('[name*="add-location"]:not(.btn)'),
@@ -132,13 +150,19 @@
 
             //===> if has new Location <===//
             if (new_location['title']) {
+                //===> Set Loading Mode <===//
+                isClicked.target.classList.add('px-loading-inline');
+
                 //===> Get Locations <===//
                 get_locations().then(locations => {
                     //===> add the new location to the current ones <===//
                     locations[new_location['name']] = new_location['title'];
 
                     //===> Update Locations <===//
-                    add_location(locations);
+                    add_location(locations).then(response => {
+                        //===> Remove Loading Mode <===//
+                        isClicked.target.classList.remove('px-loading-inline');
+                    });
                 }).catch(error => {error.message});
             }
         });

@@ -151,7 +151,12 @@
         //====> Create PDS Endpoint ====//
         pds_add_api(array(
             "api_slug"   => '/options/pds_menu_locations/',
-            "api_props"  => array(),
+            //===> Data Paramaters <===//
+            "api_props"  => array('locations' => [
+				'validate_callback' => function( $param, $request, $key ) {
+					return is_array($param);
+				},
+			]),
             //===> Reading Premission <===//
             "read_prem"  => function () {
                 return current_user_can('edit_posts');
@@ -161,19 +166,30 @@
                 return current_user_can('manage_options');
             },
             //===> Get Option Method <===//
-            "get_method" => function($data) {
+            "get_method" => function($request) {
                 //===> Get Option Value <===//
                 $response = get_option('pds_menu_locations');
                 //===> Return Option Value <===//
                 return $response;
             },
             //===> Set Option Method <===//
-            "set_method" => function($data) {
-                //===> Update Options <===//
-                update_option('pds_menu_locations', $data);
-                $response = "Data has been Set.";
-                //===> Return Options <===//
-                return $response;
+            "set_method" => function($request) {
+                //===> Get Request Data <===//
+                $params = $request->get_params();
+                //===> Check if has value <===//
+                if (isset($params['locations'])) {
+                    //===> Set 
+                    $response['response'] = 'Success Data has been Set.';
+                    $response['data'] = $params['locations'];
+
+                    //===> Update Options <===//
+                    update_option('pds_menu_locations', $params['locations']);
+
+                    //===> Return Success <===//
+                    return $response;
+                } else {
+                    return $request;
+                }
             },
         ));
     });

@@ -128,3 +128,19 @@
     -webkit-background-clip: text;
         background-clip: text;
 }
+
+/*==== Loading Spinner ====*/
+.px-loading-inline,.px-loading {
+    position: relative;
+    &::after {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: '';
+        display: block;
+        position: absolute;
+        @extend %spinner-loader;
+        background-color: inherit;
+    }
+}

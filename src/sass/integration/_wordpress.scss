@@ -238,7 +238,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	/*==== Borders ====*/
 	.options-list .px-active {outline: 1px dashed var(--primary-color);border-color: var(--primary-color);}
-	.borderd-group .btn:not(:last-child) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+	.borderd-group .btn:not(:last-child):not(.outline) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
 
 	/*==== Select Buttons ====*/
 	.option-control[data-type="button"] .btn, .icon-btns {
@@ -255,6 +255,8 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		color: var(--primary-reverse);
 		background-color: var(--primary-color);
 	}
+
+	.options-tabs .outline.primary {border-width: 1px!important;}
 }
 
 /*==== Block Icons ====*/
@@ -273,6 +275,12 @@ body[class*="block-editor"], body[class*="site-editor"] {
 .pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
 .pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
 .pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}
+.pxi-arrows-y {background-image: url('../img/blocks/arrows-y.png');}
+.pxi-arrows-x {background-image: url('../img/blocks/arrows-x.png');}
+.pxi-arrow-top {background-image: url('../img/blocks/arrows-top.png');}
+.pxi-arrow-bottom {background-image: url('../img/blocks/arrows-bottom.png');}
+.pxi-arrow-start {background-image: url('../img/blocks/arrows-#{$direction-start}.png');}
+.pxi-arrow-end {background-image: url('../img/blocks/arrows-#{$direction-end}.png');}
 
 /*==== Posts Editor Layout ====*/
 body.post-type-post, body.post-type-post {

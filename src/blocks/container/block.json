@@ -60,6 +60,11 @@
             "default" : ""
         },
 
+        "spacing" : {
+            "type" : "string",
+            "default" : ""
+        },
+
         "color" : {
             "type" : "string",
             "default" : ""

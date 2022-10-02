@@ -20,6 +20,7 @@ import { useState, useEffect } from '@wordpress/element';
 import PhenixBackground from '../px-controls/px-background';
 import PhenixColor from '../px-controls/px-colors';
 import FlexAlignment from '../px-controls/flex-alignment';
+import PhenixSpacing from '../px-controls/spacing';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -31,6 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_isSection = isSection => setAttributes({ isSection });
     const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
     const set_alignment = alignment => setAttributes({ flex_align : alignment });
+    const set_spacing = spacing => setAttributes({ spacing : spacing });
 
     //===> Set Background <===//
     const set_background = background => {
@@ -116,6 +118,9 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
     }
 
+    //===> Render Spacing <===//
+    if (attributes.spacing) container_element.spacing += ` ${attributes.spacing}`;
+
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}
@@ -157,7 +162,11 @@ export default function Edit({ attributes, setAttributes }) {
                 <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Typography" initialOpen={false}>
+            <PanelBody title="Spacing" initialOpen={false}>
+                <PhenixSpacing key="px-spacing" onChange={set_spacing} value={attributes.spacing} />
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
+            <PanelBody title="Text Color" initialOpen={false}>
                 {/* Text Color */}
                 <PhenixColor key="px-color" onChange={set_color} value={attributes.color} />
             </PanelBody>

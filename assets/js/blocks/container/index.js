@@ -21,6 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _px_controls_px_background__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/px-background */ "./src/blocks/px-controls/px-background.js");
 /* harmony import */ var _px_controls_px_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/px-colors */ "./src/blocks/px-controls/px-colors.js");
 /* harmony import */ var _px_controls_flex_alignment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/flex-alignment */ "./src/blocks/px-controls/flex-alignment.js");
+/* harmony import */ var _px_controls_spacing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/spacing */ "./src/blocks/px-controls/spacing.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -37,6 +38,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
  //====> Phenix Modules <====//
+
 
 
 
@@ -86,6 +88,12 @@ function Edit(_ref) {
   var set_alignment = function set_alignment(alignment) {
     return setAttributes({
       flex_align: alignment
+    });
+  };
+
+  var set_spacing = function set_spacing(spacing) {
+    return setAttributes({
+      spacing: spacing
     });
   }; //===> Set Background <===//
 
@@ -169,8 +177,10 @@ function Edit(_ref) {
 
 
     if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
-  } //===> Render <===//
+  } //===> Render Spacing <===//
 
+
+  if (attributes.spacing) container_element.spacing += " ".concat(attributes.spacing); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -246,7 +256,14 @@ function Edit(_ref) {
     value: attributes.flex_align,
     onChange: set_alignment
   })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
-    title: "Typography",
+    title: "Spacing",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_px_controls_spacing__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    key: "px-spacing",
+    onChange: set_spacing,
+    value: attributes.spacing
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Text Color",
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_px_controls_px_colors__WEBPACK_IMPORTED_MODULE_4__["default"], {
     key: "px-color",
@@ -1067,6 +1084,276 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./src/blocks/px-controls/spacing.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/px-controls/spacing.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PhenixSpacing; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+ //===> Phenix Background <===//
+
+var PhenixSpacing = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixSpacing, _Component);
+
+  var _super = _createSuper(PhenixSpacing);
+
+  function PhenixSpacing() {
+    _classCallCheck(this, PhenixSpacing);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PhenixSpacing, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> Options Tabs <===//
+
+      var changeTab = function changeTab(clicked) {
+        var _optionsList$querySel;
+
+        //===> Option Data <===//
+        var element = Phenix(clicked.target),
+            parent = element.ancestor('.options-tabs'),
+            optionsList = Phenix(parent).next('.options-list'),
+            currentActive = Phenix(parent.querySelector(':scope > .primary')),
+            currentType = "".concat(element[0].getAttribute('data-options')),
+            targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
+
+        currentActive.addClass('light').removeClass('primary');
+        element.addClass('primary').removeClass('light'); //===> Show Options <===//
+
+        (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
+        Phenix(targetElement).removeClass('hidden');
+      }; //===> .Default. <===//
+
+
+      var current_value = value.split(' '),
+          options_list = {
+        small: {
+          padding: ["", false],
+          margin: ["", false]
+        },
+        medium: {
+          padding: ["", false],
+          margin: ["", false]
+        },
+        large: {
+          padding: ["", false],
+          margin: ["", false]
+        },
+        xlarge: {
+          padding: ["", false],
+          margin: ["", false]
+        }
+      }; //===> Default Options <===//
+
+      current_value.forEach(function (item) {
+        //===> Combined Mode for Each Value Name <===//
+        if (item.includes("comb-")) {
+          //==> Define item <==//
+          var option_item; //==> Check for Padding <==//
+
+          if (item.includes('-pd')) option_item.padding[1] = true; //==> Check for Margin <==//
+
+          if (item.includes('-mg')) option_item.margin[1] = true; //==> Small Screen <==//
+
+          if (item.includes("comb-sm")) {
+            //==> Padding <==//
+            if (option_item.padding) options_list.small.padding = option_item.padding; //==> Margin <==//
+
+            if (option_item.margin) options_list.small.margin = option_item.margin;
+          } //==> Medium Screen <==//
+          else if (item.includes("comb-md")) {
+            //==> Padding <==//
+            if (option_item.padding) options_list.medium.padding = option_item.padding; //==> Margin <==//
+
+            if (option_item.margin) options_list.medium.margin = option_item.margin;
+          } //==> Large Screen <==//
+          else if (item.includes("comb-lg")) {
+            //==> Padding <==//
+            if (option_item.padding) options_list.large.padding = option_item.padding; //==> Margin <==//
+
+            if (option_item.margin) options_list.large.margin = option_item.margin;
+          } //==> xLarge Screen <==//
+          else if (item.includes("comb-xl")) {
+            //==> Padding <==//
+            if (option_item.padding) options_list.xlarge.padding = option_item.padding; //==> Margin <==//
+
+            if (option_item.margin) options_list.xlarge.margin = option_item.margin;
+          }
+        }
+      }); //===> Set Combined Size <===//
+
+      var set_combined = function set_combined(combined) {}; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "mobile",
+        onClick: changeTab,
+        className: "btn square tiny primary col far fa-mobile",
+        title: "Mobile Screens",
+        "data-options": "small-options"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "tablet",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-tablet",
+        title: "Tablet Screens",
+        "data-options": "medium-options"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "laptop",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-laptop",
+        title: "Desktop Screens",
+        "data-options": "large-options"
+      }), /*#__PURE__*/React.createElement("button", {
+        key: "desktop",
+        onClick: changeTab,
+        className: "btn square tiny light col far fa-desktop",
+        title: "xLarge Screens",
+        "data-options": "xlarge-options"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox small-options"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "padding",
+        onClick: changeTab,
+        className: "btn tiny outline primary col",
+        "data-options": "padding-size"
+      }, "Padding Size"), /*#__PURE__*/React.createElement("button", {
+        key: "margin",
+        onClick: changeTab,
+        className: "btn tiny outline light col",
+        "data-options": "margin-size"
+      }, "Margin Size")), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox padding-size"
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+        key: "is-combined",
+        label: "Combined Size",
+        checked: options_list.small.padding[1],
+        onChange: set_combined
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox margin-size hidden"
+      }, "SMALL Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox medium-options hidden"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "padding",
+        onClick: changeTab,
+        className: "btn tiny outline primary col",
+        "data-options": "padding-size"
+      }, "Padding Size"), /*#__PURE__*/React.createElement("button", {
+        key: "margin",
+        onClick: changeTab,
+        className: "btn tiny outline light col",
+        "data-options": "margin-size"
+      }, "Margin Size")), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox padding-size"
+      }, "Medium Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox margin-size hidden"
+      }, "Medium Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox large-options hidden"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "padding",
+        onClick: changeTab,
+        className: "btn tiny outline primary col",
+        "data-options": "padding-size"
+      }, "Padding Size"), /*#__PURE__*/React.createElement("button", {
+        key: "margin",
+        onClick: changeTab,
+        className: "btn tiny outline light col",
+        "data-options": "margin-size"
+      }, "Margin Size")), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox padding-size"
+      }, "Large Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox margin-size hidden"
+      }, "Large Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox xlarge-options hidden"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+      }, /*#__PURE__*/React.createElement("button", {
+        key: "padding",
+        onClick: changeTab,
+        className: "btn tiny outline primary col",
+        "data-options": "padding-size"
+      }, "Padding Size"), /*#__PURE__*/React.createElement("button", {
+        key: "margin",
+        onClick: changeTab,
+        className: "btn tiny outline light col",
+        "data-options": "margin-size"
+      }, "Margin Size")), /*#__PURE__*/React.createElement("div", {
+        className: "options-list"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox padding-size"
+      }, "XL Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox margin-size hidden"
+      }, "XL Options [Margin]")))));
+    }
+  }]);
+
+  return PhenixSpacing;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -1113,7 +1400,7 @@ module.exports = window["wp"]["element"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements Tegother from Phenix Blocks.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements Tegother from Phenix Blocks.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"spacing":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1254,7 +1541,9 @@ __webpack_require__.r(__webpack_exports__);
 
     if (!attributes.isSection) blockProps.className += " ".concat(container_names); //===> Render ID <===//
 
-    if (attributes.id) blockProps['id'] = attributes.id; //===> Render <===//
+    if (attributes.id) blockProps['id'] = attributes.id; //===> Render Spacing <===//
+
+    if (attributes.spacing) blockProps.spacing += " ".concat(attributes.spacing); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.isSection ? /*#__PURE__*/React.createElement("div", {
       className: container_names

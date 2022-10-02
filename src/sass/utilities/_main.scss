@@ -130,7 +130,7 @@
 }
 
 /*==== Loading Spinner ====*/
-.px-loading-inline,.px-loading {
+.px-loading-inline,.px-loading, .px-loader {
     position: relative;
     &::after {
         top: 0;
@@ -141,6 +141,19 @@
         display: block;
         position: absolute;
         @extend %spinner-loader;
-        background-color: inherit;
+        -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+        background-color: rgba(#000, 0.15);
+    }
+}
+
+/*==== Icons List ====*/
+.icons-list li {
+    position: relative;
+    padding-#{$direction-start}: calc(1em + 8px);
+    &::before {
+        top: 0;
+        position: absolute;
+        #{$direction-start}:0;
     }
 }

@@ -32,7 +32,10 @@ export default function Edit({ attributes, setAttributes }) {
     const set_isSection = isSection => setAttributes({ isSection });
     const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
     const set_alignment = alignment => setAttributes({ flex_align : alignment });
-    const set_spacing = spacing => setAttributes({ spacing : spacing });
+    const set_spacing = spacing => {
+        console.log(spacing);
+        setAttributes({ spacing });
+    }
 
     //===> Set Background <===//
     const set_background = background => {
@@ -119,7 +122,7 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Render Spacing <===//
-    if (attributes.spacing) container_element.spacing += ` ${attributes.spacing}`;
+    if (attributes.spacing) container_element.className += ` ${attributes.spacing}`;
 
     //===> Render <===//
     return (<>

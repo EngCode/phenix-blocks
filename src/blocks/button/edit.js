@@ -220,7 +220,7 @@ export default function Edit({ attributes, setAttributes }) {
                 }
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Typography" initialOpen={false}>
+            <PanelBody title="Text Color" initialOpen={false}>
                 {/* Text Color */}
                 <PhenixColor onChange={set_color} value={attributes.color} />
             </PanelBody>

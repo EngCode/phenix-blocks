@@ -46,25 +46,33 @@ PhenixElements.prototype.counter = function (options?:{
 
         //====> Count Runer <===//
         const runCounter = () => {
+            //===> Round Up Values <===//
+            count = Math.round(count)
+            value = Math.round(value)
+
+            //===> Set is Counting <===//
             if (!counting) element.classList.add('counting');
+
             //===> if [Count Down] is Activated => Decrease the Count <===//
-            if (reverse) count -= increment;
+            if (reverse && count > 0) count -= increment;
+
             //===> Otherwise Increase the Count <===//
-            else count += increment;
+            else if (count < value) count += increment;
 
             //===> Current Value <===//
             let current = `${(count).toFixed(decimal).toString().replace(decimal_regex, ',')+symbol}`;
 
             //===> if the Element is Input Control <===//
             if (input) element.value = current;
+
             //===> Otherwise <===//
             else element.innerHTML = current;
 
             //===> Clear When Count Up Reaches The Target <===//
-            if (!reverse) Math.round(count) === Math.round(value) ? clearInterval(interval) : null;
+            if (!reverse && count === value) clearInterval(interval);
 
             //===> Clear When Count Down Reaches Zero <===//
-            else if (reverse) Math.round(count) === 0 ? clearInterval(interval) : null;
+            else if (reverse && count === 0) clearInterval(interval);
         };
 
         //====> Counter Handler <====//
@@ -77,10 +85,13 @@ PhenixElements.prototype.counter = function (options?:{
         //====> Run Counter <====//
         if (lazyloading) {
             //===> First View <===//
-            if (Phenix(element).inView()) counter_handler();
+            if (Phenix(element).inView()) {
+                counter_handler();
+            }
             //===> Hidden View <===//
-            window.addEventListener('scroll', scrolling => {
-                Phenix(element).inView() ? counter_handler() : null
+            if(!counting) window.addEventListener('scroll', scrolling => {
+                counting = element.classList.contains('counting');
+                if(!counting && Phenix(element).inView()) counter_handler();
             });
         } else {
             counter_handler();

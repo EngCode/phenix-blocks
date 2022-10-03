@@ -92,7 +92,8 @@ function Edit(_ref) {
   };
 
   var set_spacing = function set_spacing(spacing) {
-    return setAttributes({
+    console.log(spacing);
+    setAttributes({
       spacing: spacing
     });
   }; //===> Set Background <===//
@@ -180,7 +181,7 @@ function Edit(_ref) {
   } //===> Render Spacing <===//
 
 
-  if (attributes.spacing) container_element.spacing += " ".concat(attributes.spacing); //===> Render <===//
+  if (attributes.spacing) container_element.className += " ".concat(attributes.spacing); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -1067,9 +1068,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/React.createElement("div", {
         className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("label", {
-        className: "mb-10"
-      }, "Select Text Color"), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox options-list"
       }, makeButtons(pxPallete.main, 'main'), /*#__PURE__*/React.createElement("span", {
         className: "border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
@@ -1165,10 +1164,10 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
 
         (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
         Phenix(targetElement).removeClass('hidden');
-      }; //===> .Default. <===//
+      }; //===> .Get Default Value. <===//
 
 
-      var current_value = value.split(' '),
+      var value_list = value.split(' '),
           options_list = {
         small: {
           padding: ["", false],
@@ -1188,44 +1187,83 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
         }
       }; //===> Default Options <===//
 
-      current_value.forEach(function (item) {
-        //===> Combined Mode for Each Value Name <===//
+      value_list.forEach(function (item) {
+        //===> Combined Mode <===//
         if (item.includes("comb-")) {
           //==> Define item <==//
-          var option_item; //==> Check for Padding <==//
+          var option_item = {
+            padding: false,
+            margin: false
+          }; //==> Check for Padding <==//
 
-          if (item.includes('-pd')) option_item.padding[1] = true; //==> Check for Margin <==//
+          if (item.includes('-pd')) option_item.padding = true; //==> Check for Margin <==//
 
-          if (item.includes('-mg')) option_item.margin[1] = true; //==> Small Screen <==//
+          if (item.includes('-mg')) option_item.margin = true; //==> Small Screen <==//
 
           if (item.includes("comb-sm")) {
             //==> Padding <==//
-            if (option_item.padding) options_list.small.padding = option_item.padding; //==> Margin <==//
+            if (option_item.padding) {
+              options_list.small.padding[0] = option_item.padding;
+              options_list.small.padding[1] = true;
+            } //==> Margin <==//
 
-            if (option_item.margin) options_list.small.margin = option_item.margin;
+
+            if (option_item.margin) {
+              options_list.small.margin[0] = option_item.margin;
+              options_list.small.margin[1] = true;
+            }
           } //==> Medium Screen <==//
           else if (item.includes("comb-md")) {
             //==> Padding <==//
-            if (option_item.padding) options_list.medium.padding = option_item.padding; //==> Margin <==//
+            if (option_item.padding) {
+              options_list.medium.padding[0] = option_item.padding;
+              options_list.medium.padding[1] = true;
+            } //==> Margin <==//
 
-            if (option_item.margin) options_list.medium.margin = option_item.margin;
+
+            if (option_item.margin) {
+              options_list.medium.margin[0] = option_item.margin;
+              options_list.medium.margin[1] = true;
+            }
           } //==> Large Screen <==//
           else if (item.includes("comb-lg")) {
             //==> Padding <==//
-            if (option_item.padding) options_list.large.padding = option_item.padding; //==> Margin <==//
+            if (option_item.padding) {
+              options_list.large.padding[0] = option_item.padding;
+              options_list.large.padding[1] = true;
+            } //==> Margin <==//
 
-            if (option_item.margin) options_list.large.margin = option_item.margin;
+
+            if (option_item.margin) {
+              options_list.large.margin[0] = option_item.margin;
+              options_list.large.margin[1] = true;
+            }
           } //==> xLarge Screen <==//
           else if (item.includes("comb-xl")) {
             //==> Padding <==//
-            if (option_item.padding) options_list.xlarge.padding = option_item.padding; //==> Margin <==//
+            if (option_item.padding) {
+              options_list.xlarge.padding[0] = option_item.padding;
+              options_list.xlarge.padding[1] = true;
+            } //==> Margin <==//
 
-            if (option_item.margin) options_list.xlarge.margin = option_item.margin;
+
+            if (option_item.margin) {
+              options_list.xlarge.margin[0] = option_item.margin;
+              options_list.xlarge.margin[1] = true;
+            }
           }
-        }
+        } //===>  <===//
+
       }); //===> Set Combined Size <===//
 
-      var set_combined = function set_combined(combined) {}; //===> Component Output <===//
+      var set_combined = function set_combined(combined) {
+        //===> Element Data <===//
+        var checkbox = combined.target,
+            comb_type = checkbox.name; //===> Activate Combined Size <===//
+
+        if (checkbox.checked && !value_list.includes(comb_type)) return onChange("".concat(value, " ").concat(comb_type)); //===> De-Activate the Combined Size <===//
+        else if (!checkbox.checked && value_list.includes(comb_type)) return onChange(value.replace(" ".concat(comb_type)));
+      }; //===> Component Output <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
@@ -1261,7 +1299,7 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox small-options"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "padding",
         onClick: changeTab,
@@ -1276,17 +1314,32 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
         className: "options-list"
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox padding-size"
-      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        key: "is-combined",
-        label: "Combined Size",
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-sm-pd",
         checked: options_list.small.padding[1],
         onChange: set_combined
-      })), /*#__PURE__*/React.createElement("div", {
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox margin-size hidden"
-      }, "SMALL Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-sm-mg",
+        checked: options_list.small.margin[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox medium-options hidden"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "padding",
         onClick: changeTab,
@@ -1301,12 +1354,32 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
         className: "options-list"
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox padding-size"
-      }, "Medium Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-md-pd",
+        checked: options_list.medium.padding[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox margin-size hidden"
-      }, "Medium Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-md-mg",
+        checked: options_list.medium.margin[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox large-options hidden"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "padding",
         onClick: changeTab,
@@ -1321,12 +1394,32 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
         className: "options-list"
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox padding-size"
-      }, "Large Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-lg-pd",
+        checked: options_list.large.padding[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox margin-size hidden"
-      }, "Large Options [Margin]"))), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-lg-mg",
+        checked: options_list.large.margin[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox xlarge-options hidden"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "padding",
         onClick: changeTab,
@@ -1341,9 +1434,29 @@ var PhenixSpacing = /*#__PURE__*/function (_Component) {
         className: "options-list"
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox padding-size"
-      }, "XL Options [Padding]"), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-xl-pd",
+        checked: options_list.xlarge.padding[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size"))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox margin-size hidden"
-      }, "XL Options [Margin]")))));
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "option-control mb-15",
+        "data-type": "checkbox"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        name: "comb-xl-mg",
+        checked: options_list.xlarge.margin[1],
+        onChange: set_combined
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "fas fa-link"
+      }, "Combined Size")))))));
     }
   }]);
 
@@ -1543,7 +1656,7 @@ __webpack_require__.r(__webpack_exports__);
 
     if (attributes.id) blockProps['id'] = attributes.id; //===> Render Spacing <===//
 
-    if (attributes.spacing) blockProps.spacing += " ".concat(attributes.spacing); //===> Render <===//
+    if (attributes.spacing) blockProps.className += " ".concat(attributes.spacing); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.isSection ? /*#__PURE__*/React.createElement("div", {
       className: container_names

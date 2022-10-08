@@ -57,7 +57,11 @@
       "type": "string",
       "default": ""
     },
-    "spacing": {
+    "spacing_pd": {
+      "type": "string",
+      "default": ""
+    },
+    "spacing_mg": {
       "type": "string",
       "default": ""
     },

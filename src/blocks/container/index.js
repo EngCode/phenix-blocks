@@ -65,7 +65,8 @@ registerBlockType(metadata, {
         if (attributes.id) blockProps['id'] = attributes.id;
 
         //===> Render Spacing <===//
-        if (attributes.spacing) blockProps.className += ` ${attributes.spacing}`;
+        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
+        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
 
         //===> Render <===//
         return (

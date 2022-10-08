@@ -13,7 +13,7 @@ import {
     ToggleControl
 } from '@wordpress/components';
 
-//===> Phenix Background <===//
+//===> Phenix Padding <===//
 export default class PhenixPadding extends Component {
     render () {
         //===> Properties <===//
@@ -76,7 +76,7 @@ export default class PhenixPadding extends Component {
         const set_combined = combined => {
             //===> Element Data <===//
             let checkbox = combined.target,
-                current_sizes = value.replace('  ', ' '),
+                current_sizes = value.replace(/\s\s+/g, ' '),
                 comb_type = checkbox.name,
                 comb_point = `-${comb_type.slice(comb_type.indexOf('-')+1, comb_type.lastIndexOf('-'))}`;
 
@@ -133,7 +133,7 @@ export default class PhenixPadding extends Component {
             if (!prefix || !the_value) return;
 
             //===> Define Returned Value <===//
-            let output_sizes = value;
+            let output_sizes = value.replace(/\s\s+/g, ' ');
 
             //===> Screen Points <===//
             switch (breakpoint) {
@@ -150,11 +150,11 @@ export default class PhenixPadding extends Component {
             }
 
             //===> Update Size <===//
-            if (output_sizes.includes(prefix)) {
+            if (output_sizes.includes(`${prefix}${breakpoint[0]}`)) {
                 //===> For Each Size <===//
                 output_sizes.split(' ').forEach(name => {
                     //===> When the Size is Found Replace it <===//
-                    if (name.startsWith(prefix)) {
+                    if (name.startsWith(`${prefix}${breakpoint[0]}`)) {
                         output_sizes = output_sizes.replace(name, ` ${prefix}${breakpoint[0]}-${the_value}`);
                         return onChange(output_sizes);
                     }
@@ -186,7 +186,6 @@ export default class PhenixPadding extends Component {
                         namePrefix = name.slice(0, end),
                         hasProp = current_values.hasOwnProperty(namePrefix);
 
-                    
                     //===> if the Prefix matches any value Grap it <===//
                     if (value_infix === "-sm" && hasProp) {
                         current_values[namePrefix] = parseInt(name.replace(/\D/g,''));
@@ -254,6 +253,11 @@ export default class PhenixPadding extends Component {
             </>
         }
 
+        //===> Reset Value <===//
+        const reset_value = () => {
+            return onChange('');
+        }
+
         //===> Component Output <===//
         return (
             <div className='px-gb-component'>
@@ -284,7 +288,8 @@ export default class PhenixPadding extends Component {
                     </div>
                     {/*===> xLarge <====*/}
                 </div>
-                {/*===> // Options Tabs <===*/}
+                {/*===> Reset Button <===*/}
+                <button onClick={reset_value} className={`btn tiny radius-sm`}>Reset Size</button>
             </div>
         )
     }

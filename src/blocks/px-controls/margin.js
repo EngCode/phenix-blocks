@@ -13,7 +13,7 @@ import {
     ToggleControl
 } from '@wordpress/components';
 
-//===> Phenix Background <===//
+//===> Phenix Margin <===//
 export default class PhenixMargin extends Component {
     render () {
         //===> Properties <===//
@@ -76,7 +76,7 @@ export default class PhenixMargin extends Component {
         const set_combined = combined => {
             //===> Element Data <===//
             let checkbox = combined.target,
-                current_sizes = value.replace('  ', ' '),
+                current_sizes = value.replace(/\s\s+/g, ' '),
                 comb_type = checkbox.name,
                 comb_point = `-${comb_type.slice(comb_type.indexOf('-')+1, comb_type.lastIndexOf('-'))}`;
 
@@ -87,30 +87,30 @@ export default class PhenixMargin extends Component {
                     //===> Define Properties <===//
                     if (comb_point.includes("sm")) comb_point = "";
                     let nameValue = `${name.slice(name.lastIndexOf('-')+1)}`,
-                        padding_ys = name.includes(`mt${comb_point}-${nameValue}`) || name.includes(`mb${comb_point}-${nameValue}`),
-                        padding_xs = name.includes(`ms${comb_point}-${nameValue}`) || name.includes(`me${comb_point}-${nameValue}`),
-                        padding_x  = name.includes(`mx${comb_point}-${nameValue}`),
-                        padding_y  = name.includes(`my${comb_point}-${nameValue}`);
+                        margin_ys = name.includes(`mt${comb_point}-${nameValue}`) || name.includes(`mb${comb_point}-${nameValue}`),
+                        margin_xs = name.includes(`ms${comb_point}-${nameValue}`) || name.includes(`me${comb_point}-${nameValue}`),
+                        margin_x  = name.includes(`mx${comb_point}-${nameValue}`),
+                        margin_y  = name.includes(`my${comb_point}-${nameValue}`);
 
                     //===> Cleanup Current Sizes <===//
-                    if (padding_ys || padding_xs || padding_y || padding_x) current_sizes = current_sizes.replace(name, ``);
+                    if (margin_ys || margin_xs || margin_y || margin_x) current_sizes = current_sizes.replace(name, ``);
 
                     //===> Seperate X <===//
-                    if (padding_x) {
+                    if (margin_x) {
                         if (!current_sizes.includes(`ms${comb_point}-`)) current_sizes += ` ms${comb_point}-${nameValue}`;
                         if (!current_sizes.includes(`me${comb_point}-`)) current_sizes += ` me${comb_point}-${nameValue}`;
                     }
                     //===> Seperate Y <===//
-                    else if (padding_y) {
+                    else if (margin_y) {
                         if (!current_sizes.includes(`mt${comb_point}-`)) current_sizes += ` mt${comb_point}-${nameValue}`;
                         if (!current_sizes.includes(`mb${comb_point}-`)) current_sizes += ` mb${comb_point}-${nameValue}`;
                     }
                     //===> Combine X <===//
-                    else if (padding_xs && !current_sizes.includes(`mx${comb_point}-`)) {
+                    else if (margin_xs && !current_sizes.includes(`mx${comb_point}-`)) {
                         current_sizes += ` mx${comb_point}-${nameValue}`;
                     }
                     //===> Combine Y <===//
-                    else if (padding_ys && !current_sizes.includes(`my${comb_point}-`)) {
+                    else if (margin_ys && !current_sizes.includes(`my${comb_point}-`)) {
                         current_sizes += ` my${comb_point}-${nameValue}`;
                     }
                 }
@@ -133,7 +133,7 @@ export default class PhenixMargin extends Component {
             if (!prefix || !the_value) return;
 
             //===> Define Returned Value <===//
-            let output_sizes = value;
+            let output_sizes = value.replace(/\s\s+/g, ' ');
 
             //===> Screen Points <===//
             switch (breakpoint) {
@@ -150,11 +150,11 @@ export default class PhenixMargin extends Component {
             }
 
             //===> Update Size <===//
-            if (output_sizes.includes(prefix)) {
+            if (output_sizes.includes(`${prefix}${breakpoint[0]}`)) {
                 //===> For Each Size <===//
                 output_sizes.split(' ').forEach(name => {
                     //===> When the Size is Found Replace it <===//
-                    if (name.startsWith(prefix)) {
+                    if (name.startsWith(`${prefix}${breakpoint[0]}`)) {
                         output_sizes = output_sizes.replace(name, ` ${prefix}${breakpoint[0]}-${the_value}`);
                         return onChange(output_sizes);
                     }
@@ -186,7 +186,6 @@ export default class PhenixMargin extends Component {
                         namePrefix = name.slice(0, end),
                         hasProp = current_values.hasOwnProperty(namePrefix);
 
-                    
                     //===> if the Prefix matches any value Grap it <===//
                     if (value_infix === "-sm" && hasProp) {
                         current_values[namePrefix] = parseInt(name.replace(/\D/g,''));

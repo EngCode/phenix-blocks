@@ -639,7 +639,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 */
 //===> WordPress Modules <===//
 
- //===> Phenix Background <===//
+ //===> Phenix Margin <===//
 
 var PhenixMargin = /*#__PURE__*/function (_Component) {
   _inherits(PhenixMargin, _Component);
@@ -706,7 +706,7 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
       var set_combined = function set_combined(combined) {
         //===> Element Data <===//
         var checkbox = combined.target,
-            current_sizes = value.replace('  ', ' '),
+            current_sizes = value.replace(/\s\s+/g, ' '),
             comb_type = checkbox.name,
             comb_point = "-".concat(comb_type.slice(comb_type.indexOf('-') + 1, comb_type.lastIndexOf('-'))); //===> Cleanup Combined/Sepereated <===//
 
@@ -716,25 +716,25 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
             //===> Define Properties <===//
             if (comb_point.includes("sm")) comb_point = "";
             var nameValue = "".concat(name.slice(name.lastIndexOf('-') + 1)),
-                padding_ys = name.includes("mt".concat(comb_point, "-").concat(nameValue)) || name.includes("mb".concat(comb_point, "-").concat(nameValue)),
-                padding_xs = name.includes("ms".concat(comb_point, "-").concat(nameValue)) || name.includes("me".concat(comb_point, "-").concat(nameValue)),
-                padding_x = name.includes("mx".concat(comb_point, "-").concat(nameValue)),
-                padding_y = name.includes("my".concat(comb_point, "-").concat(nameValue)); //===> Cleanup Current Sizes <===//
+                margin_ys = name.includes("mt".concat(comb_point, "-").concat(nameValue)) || name.includes("mb".concat(comb_point, "-").concat(nameValue)),
+                margin_xs = name.includes("ms".concat(comb_point, "-").concat(nameValue)) || name.includes("me".concat(comb_point, "-").concat(nameValue)),
+                margin_x = name.includes("mx".concat(comb_point, "-").concat(nameValue)),
+                margin_y = name.includes("my".concat(comb_point, "-").concat(nameValue)); //===> Cleanup Current Sizes <===//
 
-            if (padding_ys || padding_xs || padding_y || padding_x) current_sizes = current_sizes.replace(name, ""); //===> Seperate X <===//
+            if (margin_ys || margin_xs || margin_y || margin_x) current_sizes = current_sizes.replace(name, ""); //===> Seperate X <===//
 
-            if (padding_x) {
+            if (margin_x) {
               if (!current_sizes.includes("ms".concat(comb_point, "-"))) current_sizes += " ms".concat(comb_point, "-").concat(nameValue);
               if (!current_sizes.includes("me".concat(comb_point, "-"))) current_sizes += " me".concat(comb_point, "-").concat(nameValue);
             } //===> Seperate Y <===//
-            else if (padding_y) {
+            else if (margin_y) {
               if (!current_sizes.includes("mt".concat(comb_point, "-"))) current_sizes += " mt".concat(comb_point, "-").concat(nameValue);
               if (!current_sizes.includes("mb".concat(comb_point, "-"))) current_sizes += " mb".concat(comb_point, "-").concat(nameValue);
             } //===> Combine X <===//
-            else if (padding_xs && !current_sizes.includes("mx".concat(comb_point, "-"))) {
+            else if (margin_xs && !current_sizes.includes("mx".concat(comb_point, "-"))) {
               current_sizes += " mx".concat(comb_point, "-").concat(nameValue);
             } //===> Combine Y <===//
-            else if (padding_ys && !current_sizes.includes("my".concat(comb_point, "-"))) {
+            else if (margin_ys && !current_sizes.includes("my".concat(comb_point, "-"))) {
               current_sizes += " my".concat(comb_point, "-").concat(nameValue);
             }
           }
@@ -753,7 +753,7 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
         //===> Fallback <===//
         if (!prefix || !the_value) return; //===> Define Returned Value <===//
 
-        var output_sizes = value; //===> Screen Points <===//
+        var output_sizes = value.replace(/\s\s+/g, ' '); //===> Screen Points <===//
 
         switch (breakpoint) {
           case "-sm":
@@ -778,11 +778,11 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
         } //===> Update Size <===//
 
 
-        if (output_sizes.includes(prefix)) {
+        if (output_sizes.includes("".concat(prefix).concat(breakpoint[0]))) {
           //===> For Each Size <===//
           output_sizes.split(' ').forEach(function (name) {
             //===> When the Size is Found Replace it <===//
-            if (name.startsWith(prefix)) {
+            if (name.startsWith("".concat(prefix).concat(breakpoint[0]))) {
               output_sizes = output_sizes.replace(name, " ".concat(prefix).concat(breakpoint[0], "-").concat(the_value));
               return onChange(output_sizes);
             }
@@ -1151,7 +1151,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 */
 //===> WordPress Modules <===//
 
- //===> Phenix Background <===//
+ //===> Phenix Padding <===//
 
 var PhenixPadding = /*#__PURE__*/function (_Component) {
   _inherits(PhenixPadding, _Component);
@@ -1218,7 +1218,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
       var set_combined = function set_combined(combined) {
         //===> Element Data <===//
         var checkbox = combined.target,
-            current_sizes = value.replace('  ', ' '),
+            current_sizes = value.replace(/\s\s+/g, ' '),
             comb_type = checkbox.name,
             comb_point = "-".concat(comb_type.slice(comb_type.indexOf('-') + 1, comb_type.lastIndexOf('-'))); //===> Cleanup Combined/Sepereated <===//
 
@@ -1265,7 +1265,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         //===> Fallback <===//
         if (!prefix || !the_value) return; //===> Define Returned Value <===//
 
-        var output_sizes = value; //===> Screen Points <===//
+        var output_sizes = value.replace(/\s\s+/g, ' '); //===> Screen Points <===//
 
         switch (breakpoint) {
           case "-sm":
@@ -1290,11 +1290,11 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         } //===> Update Size <===//
 
 
-        if (output_sizes.includes(prefix)) {
+        if (output_sizes.includes("".concat(prefix).concat(breakpoint[0]))) {
           //===> For Each Size <===//
           output_sizes.split(' ').forEach(function (name) {
             //===> When the Size is Found Replace it <===//
-            if (name.startsWith(prefix)) {
+            if (name.startsWith("".concat(prefix).concat(breakpoint[0]))) {
               output_sizes = output_sizes.replace(name, " ".concat(prefix).concat(breakpoint[0], "-").concat(the_value));
               return onChange(output_sizes);
             }
@@ -1455,6 +1455,11 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
             return set_value('pde', number, value_infix);
           }
         }))));
+      }; //===> Reset Value <===//
+
+
+      var reset_value = function reset_value() {
+        return onChange('');
       }; //===> Component Output <===//
 
 
@@ -1496,7 +1501,10 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         className: "flexbox large-options hidden"
       }, make_options(options.large, "-lg")), /*#__PURE__*/React.createElement("div", {
         className: "flexbox xlarge-options hidden"
-      }, make_options(options.xlarge, "-xl"))));
+      }, make_options(options.xlarge, "-xl"))), /*#__PURE__*/React.createElement("button", {
+        onClick: reset_value,
+        className: "btn tiny radius-sm"
+      }, "Reset Size"));
     }
   }]);
 

@@ -15,6 +15,8 @@ import {
 //====> Phenix Modules <====//
 import FlexAlignment from '../px-controls/flex-alignment';
 import EqualColumns from '../px-controls/equal-columns';
+import PhenixPadding from '../px-controls/padding';
+import PhenixMargin from '../px-controls/margin';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

@@ -14,6 +14,8 @@ import {
 
 //====> Phenix Modules <====//
 import ColumnSize from '../px-controls/column-size';
+import PhenixPadding from '../px-controls/padding';
+import PhenixMargin from '../px-controls/margin';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

@@ -76,6 +76,37 @@ function Edit(_ref) {
     return setAttributes({
       flex_align: alignment
     });
+  };
+
+  var set_spacing_pd = function set_spacing_pd(spacing_pd) {
+    return setAttributes({
+      spacing_pd: spacing_pd
+    });
+  };
+
+  var set_spacing_mg = function set_spacing_mg(spacing_mg) {
+    return setAttributes({
+      spacing_mg: spacing_mg
+    });
+  }; //===> Options Tabs <===//
+
+
+  var changeTab = function changeTab(clicked) {
+    var _optionsList$querySel;
+
+    //===> Option Data <===//
+    var element = Phenix(clicked.target),
+        parent = element.ancestor('.options-tabs'),
+        optionsList = Phenix(parent).next('.options-list'),
+        currentActive = Phenix(parent.querySelector(':scope > .primary')),
+        currentType = "".concat(element[0].getAttribute('data-options')),
+        targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
+
+    currentActive.addClass('light').removeClass('primary');
+    element.addClass('primary').removeClass('light'); //===> Show Options <===//
+
+    (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
+    Phenix(targetElement).removeClass('hidden');
   }; //===> Get Block Properties <===//
 
 
@@ -108,8 +139,11 @@ function Edit(_ref) {
     if (attributes.controls) innerBlocksProps['data-controls'] = 1;
     if (attributes.pagination) innerBlocksProps['data-pagination'] = 1; //===> for Edit only <===//
     // innerBlocksProps.className += attributes.columns;
-  } //===> Render <===//
+  } //===> Render Spacing <===//
 
+
+  if (attributes.spacing_pd) innerBlocksProps.className += " ".concat(attributes.spacing_pd);
+  if (attributes.spacing_mg) innerBlocksProps.className += " ".concat(attributes.spacing_mg); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -176,7 +210,36 @@ function Edit(_ref) {
     key: "flex-align",
     value: attributes.flex_align,
     onChange: set_alignment
-  })) : null), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Spacing",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10"
+  }, /*#__PURE__*/React.createElement("button", {
+    key: "padding",
+    onClick: changeTab,
+    className: "btn tiny outline primary col",
+    "data-options": "padding-size"
+  }, "Padding Size"), /*#__PURE__*/React.createElement("button", {
+    key: "margin",
+    onClick: changeTab,
+    className: "btn tiny outline light col",
+    "data-options": "margin-size"
+  }, "Margin Size")), /*#__PURE__*/React.createElement("div", {
+    className: "options-list"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flexbox padding-size"
+  }, /*#__PURE__*/React.createElement(PhenixPadding, {
+    key: "px-spacing_pd",
+    onChange: set_spacing_pd,
+    value: attributes.spacing_pd
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "flexbox margin-size hidden"
+  }, /*#__PURE__*/React.createElement(PhenixMargin, {
+    key: "px-spacing_mg",
+    onChange: set_spacing_mg,
+    value: attributes.spacing_mg
+  }))))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg",
     alt: "",
     className: "fluid"
@@ -689,7 +752,7 @@ module.exports = window["wp"]["element"];
   \****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"Wrapper Represent the Grid System Row with Flexbox Features","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"isEqual":{"type":"boolean","default":false},"isMasonry":{"type":"boolean","default":false},"columns":{"type":"string","default":""},"isSlider":{"type":"boolean","default":false},"pagination":{"type":"boolean","default":false},"controls":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"Wrapper Represent the Grid System Row with Flexbox Features","supports":{"html":false},"attributes":{"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"isEqual":{"type":"boolean","default":false},"isMasonry":{"type":"boolean","default":false},"columns":{"type":"string","default":""},"isSlider":{"type":"boolean","default":false},"pagination":{"type":"boolean","default":false},"controls":{"type":"boolean","default":false},"spacing_pd":{"type":"string","default":""},"spacing_mg":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -828,8 +891,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (attributes.controls) blockProps['data-controls'] = 1;
       if (attributes.pagination) blockProps['data-pagination'] = 1;
-    } //===> Render <===//
+    } //===> Render Spacing <===//
 
+
+    if (attributes.spacing_pd) blockProps.className += " ".concat(attributes.spacing_pd);
+    if (attributes.spacing_mg) blockProps.className += " ".concat(attributes.spacing_mg); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }

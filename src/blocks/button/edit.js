@@ -19,6 +19,8 @@ import {
 import PhenixBackground from '../px-controls/px-background';
 import PhenixColor from '../px-controls/px-colors';
 import MediaUploader from '../px-controls/media-uploader';
+import PhenixPadding from '../px-controls/padding';
+import PhenixMargin from '../px-controls/margin';
 
 import { useState, useEffect } from '@wordpress/element';
 
@@ -38,6 +40,27 @@ export default function Edit({ attributes, setAttributes }) {
     const set_isLightBox = isLightBox => setAttributes({isLightBox});
     const set_lightbox_src = lightbox_src => setAttributes({lightbox_src});
     const set_lightbox_type = lightbox_type => setAttributes({lightbox_type});
+    const set_spacing_pd = spacing_pd => setAttributes({ spacing_pd });
+    const set_spacing_mg = spacing_mg => setAttributes({ spacing_mg });
+
+    //===> Options Tabs <===//
+    const changeTab = (clicked) => {
+        //===> Option Data <===//
+        let element = Phenix(clicked.target),
+            parent  = element.ancestor('.options-tabs'),
+            optionsList = Phenix(parent).next('.options-list'),
+            currentActive = Phenix(parent.querySelector(':scope > .primary')),
+            currentType = `${element[0].getAttribute('data-options')}`,
+            targetElement = optionsList.querySelector(`:scope > .${currentType}`);
+
+        //===> Change Active <===//
+        currentActive.addClass('light').removeClass('primary');
+        element.addClass('primary').removeClass('light');
+
+        //===> Show Options <===//
+        optionsList.querySelector(':scope > .flexbox:not(.hidden)')?.classList.add('hidden');
+        Phenix(targetElement).removeClass('hidden');
+    };
 
     //===> Link Settings <===//
     const set_isLink = isLink => setAttributes({ isLink });
@@ -101,6 +124,10 @@ export default function Edit({ attributes, setAttributes }) {
 
         //===> Default Style <===//
         if (attributes.outline) blockProps.className += ` outline`;
+
+        //===> Render Spacing <===//
+        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
+        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
     }
 
     setDefault();
@@ -227,6 +254,26 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="Background" initialOpen={false}>
                 <PhenixBackground onChange={set_background} type={attributes.bg_type} value={attributes.background} />
+            </PanelBody>
+            {/*===> Spacing <===*/}
+            <PanelBody title="Spacing" initialOpen={false}>
+                {/*===> Options Tabs <====*/}
+                <div className='options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10'>
+                    <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">Padding Size</button>
+                    <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">Margin Size</button>
+                </div>
+                {/*===> Options Panels <====*/}
+                <div className='options-list'>
+                    {/*===> Padding <====*/}
+                    <div className={`flexbox padding-size`}>
+                        <PhenixPadding key="px-spacing_pd" onChange={set_spacing_pd} value={attributes.spacing_pd} />
+                    </div>
+                    {/*===> Margin <====*/}
+                    <div className={`flexbox margin-size hidden`}>
+                        <PhenixMargin key="px-spacing_mg" onChange={set_spacing_mg} value={attributes.spacing_mg} />
+                    </div>
+                </div>
+                {/*===> End Options Types <====*/}
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Custom Data" initialOpen={false}>

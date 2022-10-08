@@ -183,10 +183,10 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*=== Flexbox Alignment ===*/}
                 <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody> : null}
-            {/*===> Widget Panel <===*/}
+            {/*===> Spacing <===*/}
             <PanelBody title="Spacing" initialOpen={false}>
                 {/*===> Options Tabs <====*/}
-                <div className='options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10'>
+                <div className='options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10'>
                     <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">Padding Size</button>
                     <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">Margin Size</button>
                 </div>
@@ -203,12 +203,12 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
                 {/*===> End Options Types <====*/}
             </PanelBody>
-            {/*===> Widget Panel <===*/}
+            {/*===> Text Color <===*/}
             <PanelBody title="Text Color" initialOpen={false}>
                 {/* Text Color */}
                 <PhenixColor key="px-color" onChange={set_color} value={attributes.color} />
             </PanelBody>
-            {/*===> Widget Panel <===*/}
+            {/*===> Background <===*/}
             <PanelBody title="Background" initialOpen={false}>
                 <PhenixBackground key="px-bg" onChange={set_background} type={attributes.bg_type} value={attributes.background} />
             </PanelBody>

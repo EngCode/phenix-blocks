@@ -52,6 +52,10 @@ registerBlockType(metadata, {
             if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
         }
 
+        //===> Render Spacing <===//
+        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
+        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
+
         //===> Set Default Values <===//
         const setDefault = () => {
             //===> Main Names <===//

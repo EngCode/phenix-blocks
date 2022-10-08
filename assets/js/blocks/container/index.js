@@ -287,7 +287,7 @@ function Edit(_ref) {
     title: "Spacing",
     initialOpen: false
   }, /*#__PURE__*/React.createElement("div", {
-    className: "options-tabs fluid px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
+    className: "options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10"
   }, /*#__PURE__*/React.createElement("button", {
     key: "padding",
     onClick: changeTab,
@@ -949,7 +949,7 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/React.createElement("div", {
         className: "px-gb-component"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "mobile",
         onClick: changeTab,
@@ -1466,7 +1466,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/React.createElement("div", {
         className: "px-gb-component"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
+        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
       }, /*#__PURE__*/React.createElement("button", {
         key: "mobile",
         onClick: changeTab,

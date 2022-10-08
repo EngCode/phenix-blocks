@@ -257,7 +257,7 @@ export default class PhenixMargin extends Component {
         return (
             <div className='px-gb-component'>
                 {/*===> Responsive Devices <===*/}
-                <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
+                <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10'>
                     <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens" data-options="small-options"></button>
                     <button key="tablet" onClick={changeTab} className={`btn square tiny light col far fa-tablet`} title="Tablet Screens" data-options="medium-options"></button>
                     <button key="laptop" onClick={changeTab} className={`btn square tiny light col far fa-laptop`} title="Desktop Screens" data-options="large-options"></button>

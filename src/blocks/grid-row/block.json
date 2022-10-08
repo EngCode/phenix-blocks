@@ -53,6 +53,15 @@
         "controls" : {
             "type": "boolean",
             "default": false
+        },
+        "spacing_pd" : {
+            "type" : "string",
+            "default" : ""
+        },
+
+        "spacing_mg" : {
+            "type" : "string",
+            "default" : ""
         }
     },
     "example": {

@@ -92,6 +92,14 @@
     "className": {
       "type": "string",
       "default": "btn primary"
+    },
+    "spacing_pd": {
+      "type": "string",
+      "default": ""
+    },
+    "spacing_mg": {
+      "type": "string",
+      "default": ""
     }
   },
   "example": {

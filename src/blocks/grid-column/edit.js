@@ -105,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
             <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/column.jpg" alt="" className="fluid" />
         :
         <TagName {...blockProps}>
-            <p {...innerBlocksProps}></p>
+            <div {...innerBlocksProps}></div>
         </TagName>
         }
     </>);

@@ -73,9 +73,9 @@
         <li>✴️ Popup Trigger</li>
       </ul>
     </li>
-    <li>✴️ Phenix Animations</li>
+    <li>✴️ Animations Utilities</li>
     <li>✴️ Font-Awesome Integration</li>
-    <li>✴️ Width & Height Utilities</li>
+    <li>✴️ Element Size Utilities</li>
     <li>✴️ Custom Data Generator</li>
     <li>✴️ Accessibility Support</li>
 </ul>

@@ -9,6 +9,7 @@ module.exports = {
         'logo': './src/blocks/logo/index.js',
         'query': './src/blocks/query/index.js',
         'button': './src/blocks/button/index.js',
+        'group': './src/blocks/group/index.js',
         'grid-row': './src/blocks/grid-row/index.js',
         'page-head': './src/blocks/page-head/index.js',
         'container': './src/blocks/container/index.js',

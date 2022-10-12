@@ -72,6 +72,7 @@
         array('query_block', 'pds-admin'),
         array('taxonomies_list_block', 'pds-admin'),
         array('theme_part_block', 'pds-admin'),
+        array('group_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),

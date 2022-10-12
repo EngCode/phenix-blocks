@@ -93,5 +93,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }).catch(error => {error.message});
-    
 });

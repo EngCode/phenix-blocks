@@ -15,6 +15,11 @@
                     "icon"  => $icons_url.'container.svg',
                 ),
                 array(
+                    "name"  => 'group_block',
+                    "title" => 'Phenix/Group',
+                    "icon"  => $icons_url.'group.svg',
+                ),
+                array(
                     "name"  => 'logo_block',
                     "title" => 'Phenix/Logo',
                     "icon"  => $icons_url.'site-logo.svg',

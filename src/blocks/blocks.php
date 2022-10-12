@@ -25,7 +25,7 @@ if (!function_exists('phenix_blocks')) :
         }
 
         //====> Phenix Group <====//
-        if (get_option('container_block')) {
+        if (get_option('group_block')) {
             wp_enqueue_script('px-group', $blocksPath.'group/index.js', $blocksDependencies, NULL , true);
         }
 

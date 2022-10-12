@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 else {
                     block_item[1].forEach(item => wp.blocks.unregisterBlockType(`${item}`));
                 }
-                //===> Remove the Block <===//
             }
         });
     }).catch(error => {error.message});

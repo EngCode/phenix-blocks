@@ -237,7 +237,7 @@
                 $params = $request->get_params();
                 //===> Check if has value <===//
                 if (isset($params['blocks-list'])) {
-                    //===> Set 
+                    //===> Get Data <===//
                     $response['response'] = 'Success Data has been Set.';
                     $response['data'] = $params['blocks-list'];
 

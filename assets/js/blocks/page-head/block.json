@@ -2,9 +2,9 @@
   "apiVersion": 2,
   "name": "phenix/page-head",
   "version": "0.1.0",
-  "title": "PDS Head",
+  "title": "Page Head",
   "category": "design",
-  "description": "Page Navigation Head and Breadcrumb.",
+  "description": "Page Title and Breadcrumb.",
   "supports": {
     "html": false
   },

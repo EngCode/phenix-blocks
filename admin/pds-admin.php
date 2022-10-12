@@ -193,4 +193,64 @@
             },
         ));
     });
+
+    //====> API Endpoint [Core Blocks Settings] <====//
+    add_action('rest_api_init', function() {
+        //====> Create PDS Endpoint ====//
+        pds_add_api(array(
+            "api_slug"   => '/options/pds-core-blocks/',
+            //===> Data Paramaters <===//
+            "api_props"  => array('blocks-list' => [
+				'validate_callback' => function( $param, $request, $key ) {
+					return is_array($param);
+				},
+			]),
+            //===> Reading Premission <===//
+            "read_prem"  => function () {
+                return is_user_logged_in();
+            },
+            //===> Editing Premission <===//
+            "write_prem" => function () {
+                return current_user_can('manage_options');
+            },
+            //===> Get Option Method <===//
+            "get_method" => function($request) {
+                global $pds_options_list;
+                //===> Define Options List <===//
+                $pds_output = array();
+
+                //===> Get Option Value <===//
+                foreach ($pds_options_list as $option) {
+                    $option_name = $option[0];
+                    if (strpos($option_name, "pds_core") !== false) {
+                        $pds_output[$option_name] = get_option($option_name);
+                    }
+                }
+
+                //===> Return Option Value <===//
+                return $pds_output;
+            },
+            //===> Set Option Method <===//
+            "set_method" => function($request) {
+                //===> Get Request Data <===//
+                $params = $request->get_params();
+                //===> Check if has value <===//
+                if (isset($params['blocks-list'])) {
+                    //===> Set 
+                    $response['response'] = 'Success Data has been Set.';
+                    $response['data'] = $params['blocks-list'];
+
+                    //===> Update Options <===//
+                    foreach ($response['data'] as $op_name => $op_value) {
+                        update_option($op_name, $op_value);
+                    }
+
+                    //===> Return Success <===//
+                    return $response;
+                } else {
+                }
+                return $request;
+            },
+        ));
+    });
 ?>

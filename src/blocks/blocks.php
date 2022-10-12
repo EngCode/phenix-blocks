@@ -5,33 +5,6 @@
  * @return void
 */
 
-//====> GB Core Blocks Remover <====//
-if (!function_exists('pds_core_blocks')) :
-    /**
-     * Remove Core Blocks to Replace it from 
-     * @since Phenix WP 1.0
-     * @return void
-    */
-
-    function pds_core_blocks() {
-        if (is_admin()) :
-            //===> Start Data <===//
-            $template_markup = '';
-            ob_start();
-            //===> Get the File <===//
-            include(dirname(__FILE__) . '/core-blocks.php');
-            //===> Stop Data <===//
-            $template_output = ob_get_clean();
-            $template_markup .= $template_output;
-            return "{$template_markup}";
-        endif;
-
-        add_filter('extendify_load_library', '__return_false');
-    }
-
-    add_action('enqueue_block_editor_assets', 'pds_core_blocks');
-endif;
-
 //=====> Enqueue Phenix Blocks <=====//
 if (!function_exists('phenix_blocks')) :
     function phenix_blocks() {
@@ -40,9 +13,20 @@ if (!function_exists('phenix_blocks')) :
         $blocksDependencies = array('wp-blocks', 'wp-element', 'wp-editor');
         $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
+        //====> GB Core Blocks Remover <====//
+        if (is_admin() && !get_option("pds_core_post_elements")) :
+            add_filter('extendify_load_library', '__return_false');
+            wp_enqueue_script('core-block-remover', plugin_dir_url(__FILE__).'core-blocks-remover.js', $blocksDependencies, NULL , true);
+        endif;
+
         //====> Phenix Section <====//
         if (get_option('container_block')) {
             wp_enqueue_script('section', $blocksPath.'container/index.js', $blocksDependencies, NULL , true);
+        }
+
+        //====> Phenix Group <====//
+        if (get_option('container_block')) {
+            wp_enqueue_script('px-group', $blocksPath.'group/index.js', $blocksDependencies, NULL , true);
         }
 
         //====> Phenix Logo <====//

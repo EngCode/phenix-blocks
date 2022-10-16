@@ -53,13 +53,13 @@
 /*==== Sorting Mixin ====*/
 @mixin make_sorting($infix:'', $order-limit:24) {
     /*=== Flow Reverse ===*/
-    .flow#{$infix}-reverse {flex-flow: row-reverse;}
+    .flow-reverse#{$infix} {flex-flow: row-reverse;}
     /*=== Stacked Flow ===*/
-    .flow#{$infix}-columns {flex-flow: column;}
+    .flow-columns#{$infix} {flex-flow: column;}
     /*=== Reversed Stacked ===*/
-    .flow#{$infix}-columns-reverse {flex-flow: column-reverse;}
+    .flow-columns-reverse#{$infix} {flex-flow: column-reverse;}
     /*=== No-Wrap ===*/
-    .flow#{$infix}-nowrap  {flex-wrap: nowrap;}
+    .flow-nowrap#{$infix} {flex-wrap: nowrap!important;}
 
     /*==== Ordering ====*/
     @for $i from 0 through $order-limit { 

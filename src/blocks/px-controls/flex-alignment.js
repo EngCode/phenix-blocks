@@ -19,7 +19,6 @@ export default class FlexAlignment extends Component {
     render () {
         //===> Properties <===//
         const {
-            flow,
             value,
             onChange
         } = this.props;
@@ -80,18 +79,42 @@ export default class FlexAlignment extends Component {
             else return false;
         };
 
+        //===> Default Flow <===//
+        let isNowrap = () => {
+            if (value.includes('flow-nowrap')) return true;
+            else return false;
+        };
+
         //===> Set Flow <===//
         const setFlow = toggle => {
             //===> Get Current Value <===//
             let current = value;
 
-            //===> .if already reversed. <===//
+            //===> .if already ON. <===//
             if (isReversed()) {
                 current = current.replaceAll('flow-reverse');
             }
             //===> .if not make it. <===//
             else {
                 current = `${value} flow-reverse`;
+            }
+
+            //===> Return Options <===//
+            return onChange(current);  
+        }
+
+        //===> Set Nowrap <===//
+        const setNowrap = toggle => {
+            //===> Get Current Value <===//
+            let current = value;
+
+            //===> .if already reversed. <===//
+            if (isNowrap()) {
+                current = current.replaceAll('flow-nowrap');
+            }
+            //===> .if not make it. <===//
+            else {
+                current = `${value} flow-nowrap`;
             }
 
             //===> Return Options <===//
@@ -151,6 +174,8 @@ export default class FlexAlignment extends Component {
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 divider-t'></span>
                 {/*=== Flow Reverse ===*/}
                 <ToggleControl key="align-flow" label="Flow Reverse" checked={isReversed()} onChange={setFlow}/>
+                {/*=== Flow Flow Nowrap ===*/}
+                <ToggleControl key="flow-nowrap" label="Nowrap Columns" checked={isNowrap()} onChange={setNowrap}/>
                 {/*===> // Options Tabs <===*/}
             </div>
         )

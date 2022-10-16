@@ -356,7 +356,6 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
     value: function render() {
       //===> Properties <===//
       var _this$props = this.props,
-          flow = _this$props.flow,
           value = _this$props.value,
           onChange = _this$props.onChange; //===> Alignment Buttons <===//
 
@@ -459,18 +458,39 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
 
       var isReversed = function isReversed() {
         if (value.includes('flow-reverse')) return true;else return false;
+      }; //===> Default Flow <===//
+
+
+      var isNowrap = function isNowrap() {
+        if (value.includes('flow-nowrap')) return true;else return false;
       }; //===> Set Flow <===//
 
 
       var setFlow = function setFlow(toggle) {
         //===> Get Current Value <===//
-        var current = value; //===> .if already reversed. <===//
+        var current = value; //===> .if already ON. <===//
 
         if (isReversed()) {
           current = current.replaceAll('flow-reverse');
         } //===> .if not make it. <===//
         else {
           current = "".concat(value, " flow-reverse");
+        } //===> Return Options <===//
+
+
+        return onChange(current);
+      }; //===> Set Nowrap <===//
+
+
+      var setNowrap = function setNowrap(toggle) {
+        //===> Get Current Value <===//
+        var current = value; //===> .if already reversed. <===//
+
+        if (isNowrap()) {
+          current = current.replaceAll('flow-nowrap');
+        } //===> .if not make it. <===//
+        else {
+          current = "".concat(value, " flow-nowrap");
         } //===> Return Options <===//
 
 
@@ -542,6 +562,11 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         label: "Flow Reverse",
         checked: isReversed(),
         onChange: setFlow
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+        key: "flow-nowrap",
+        label: "Nowrap Columns",
+        checked: isNowrap(),
+        onChange: setNowrap
       }));
     }
   }]);
@@ -654,7 +679,7 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
           if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
           else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
           else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarg"; //===> Set the Option <===//
+          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
 
           options[option_screen][0] = option_item;
           options[option_screen][1] = true;
@@ -774,10 +799,14 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
                 namePrefix = name.slice(0, end),
                 hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
 
-            if (value_infix === "-sm" && hasProp) {
-              current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-            } else if (name.includes(value_infix) && hasProp) {
-              if (hasProp) current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+            if (hasProp) {
+              //===> if the Name has any value related to the current infix <===//
+              if (name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              } //===> for Zero Screen <===//
+              else if (value_infix === "-sm" && !name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              }
             }
           }
         }); //===> Create the Layout <===//
@@ -1166,7 +1195,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
           if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
           else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
           else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarg"; //===> Set the Option <===//
+          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
 
           options[option_screen][0] = option_item;
           options[option_screen][1] = true;
@@ -1286,10 +1315,15 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
                 namePrefix = name.slice(0, end),
                 hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
 
-            if (value_infix === "-sm" && hasProp) {
-              current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-            } else if (name.includes(value_infix) && hasProp) {
-              if (hasProp) current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+            if (hasProp) {
+              //===> if the Name has any value related to the current infix <===//
+              if (name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              } //===> for Zero Screen <===//
+              else if (value_infix === "-sm") {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+                console.log(value_infix, current_values[namePrefix]);
+              }
             }
           }
         }); //===> Create the Layout <===//

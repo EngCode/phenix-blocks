@@ -557,7 +557,7 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
           if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
           else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
           else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarg"; //===> Set the Option <===//
+          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
 
           options[option_screen][0] = option_item;
           options[option_screen][1] = true;
@@ -677,10 +677,14 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
                 namePrefix = name.slice(0, end),
                 hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
 
-            if (value_infix === "-sm" && hasProp) {
-              current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-            } else if (name.includes(value_infix) && hasProp) {
-              if (hasProp) current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+            if (hasProp) {
+              //===> if the Name has any value related to the current infix <===//
+              if (name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              } //===> for Zero Screen <===//
+              else if (value_infix === "-sm" && !name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              }
             }
           }
         }); //===> Create the Layout <===//
@@ -1069,7 +1073,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
           if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
           else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
           else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarg"; //===> Set the Option <===//
+          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
 
           options[option_screen][0] = option_item;
           options[option_screen][1] = true;
@@ -1189,10 +1193,15 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
                 namePrefix = name.slice(0, end),
                 hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
 
-            if (value_infix === "-sm" && hasProp) {
-              current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-            } else if (name.includes(value_infix) && hasProp) {
-              if (hasProp) current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+            if (hasProp) {
+              //===> if the Name has any value related to the current infix <===//
+              if (name.includes(value_infix)) {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+              } //===> for Zero Screen <===//
+              else if (value_infix === "-sm") {
+                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
+                console.log(value_infix, current_values[namePrefix]);
+              }
             }
           }
         }); //===> Create the Layout <===//

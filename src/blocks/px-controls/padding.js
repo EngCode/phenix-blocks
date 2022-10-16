@@ -64,7 +64,7 @@ export default class PhenixPadding extends Component {
                 //==> Large Screen <==//
                 else if (item.includes("comb-lg")) option_screen = "large";
                 //==> xLarge Screen <==//
-                else if (item.includes("comb-xl")) option_screen = "xlarg";
+                else if (item.includes("comb-xl")) option_screen = "xlarge";
 
                 //===> Set the Option <===//
                 options[option_screen][0] = option_item;
@@ -187,12 +187,16 @@ export default class PhenixPadding extends Component {
                         hasProp = current_values.hasOwnProperty(namePrefix);
 
                     //===> if the Prefix matches any value Grap it <===//
-                    if (value_infix === "-sm" && hasProp) {
-                        current_values[namePrefix] = parseInt(name.replace(/\D/g,''));
-                    }
-
-                    else if (name.includes(value_infix) && hasProp) {
-                        if (hasProp) current_values[namePrefix] = parseInt(name.replace(/\D/g,''));
+                    if (hasProp) {
+                        //===> if the Name has any value related to the current infix <===//
+                        if (name.includes(value_infix)) {
+                            current_values[namePrefix] = parseInt(name.replace(/\D/g,''));
+                        }
+                        //===> for Zero Screen <===//
+                        else if (value_infix === "-sm") {
+                            current_values[namePrefix] = parseInt(name.replace(/\D/g,''));
+                            console.log(value_infix, current_values[namePrefix]);
+                        }
                     }
                 }
             });

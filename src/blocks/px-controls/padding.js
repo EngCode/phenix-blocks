@@ -215,14 +215,14 @@ export default class PhenixPadding extends Component {
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrows-y" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pdy${value_infix}`} step={5} min={0} max={100} value={current_values.pdy} onChange={(number) => set_value('pdy', number, value_infix)} />
+                        <RangeControl key={`pdy${value_infix}`} step={5} min={-1} max={100} value={current_values.pdy} onChange={(number) => set_value('pdy', number, value_infix)} />
                     </div>
                     {/*=== Form Control <===*/}
                     <div className="flexbox align-center-y mb-10 fluid">
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrows-x" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pdx${value_infix}`} step={5} min={0} max={100} value={current_values.pdx} onChange={(number) => set_value('pdx', number, value_infix)} />
+                        <RangeControl key={`pdx${value_infix}`} step={5} min={-1} max={100} value={current_values.pdx} onChange={(number) => set_value('pdx', number, value_infix)} />
                     </div>
                 </> : <>
                     {/*=== Form Control <===*/}
@@ -230,28 +230,28 @@ export default class PhenixPadding extends Component {
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrow-top" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pdt${value_infix}`} step={5} min={0} max={100} value={current_values.pdt} onChange={(number) => set_value('pdt', number, value_infix)} />
+                        <RangeControl key={`pdt${value_infix}`} step={5} min={-1} max={100} value={current_values.pdt} onChange={(number) => set_value('pdt', number, value_infix)} />
                     </div>
                     {/*=== Form Control <===*/}
                     <div className="flexbox align-center-y mb-10 fluid">
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrow-start" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pds${value_infix}`} step={5} min={0} max={100} value={current_values.pds} onChange={(number) => set_value('pds', number, value_infix)} />
+                        <RangeControl key={`pds${value_infix}`} step={5} min={-1} max={100} value={current_values.pds} onChange={(number) => set_value('pds', number, value_infix)} />
                     </div>
                     {/*=== Form Control <===*/}
                     <div className="flexbox align-center-y mb-10 fluid">
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrow-bottom" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pdb${value_infix}`} step={5} min={0} max={100} value={current_values.pdb} onChange={(number) => set_value('pdb', number, value_infix)} />
+                        <RangeControl key={`pdb${value_infix}`} step={5} min={-1} max={100} value={current_values.pdb} onChange={(number) => set_value('pdb', number, value_infix)} />
                     </div>
                     {/*=== Form Control <===*/}
                     <div className="flexbox align-center-y mb-10 fluid">
                         {/* icon */}
                         <i className="fs-16 me-10 pxi pxi-arrow-end" style={{marginTop:"3px", width:"25px", height: "25px"}}></i>
                         {/* control */}
-                        <RangeControl key={`pde${value_infix}`} step={5} min={0} max={100} value={current_values.pde} onChange={(number) => set_value('pde', number, value_infix)} />
+                        <RangeControl key={`pde${value_infix}`} step={5} min={-1} max={100} value={current_values.pde} onChange={(number) => set_value('pde', number, value_infix)} />
                     </div>
                 </>}
             </>

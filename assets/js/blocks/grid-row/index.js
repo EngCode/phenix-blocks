@@ -1395,7 +1395,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pdy".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pdy,
           onChange: function onChange(number) {
@@ -1413,7 +1413,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pdx".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pdx,
           onChange: function onChange(number) {
@@ -1431,7 +1431,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pdt".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pdt,
           onChange: function onChange(number) {
@@ -1449,7 +1449,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pds".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pds,
           onChange: function onChange(number) {
@@ -1467,7 +1467,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pdb".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pdb,
           onChange: function onChange(number) {
@@ -1485,7 +1485,7 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
           key: "pde".concat(value_infix),
           step: 5,
-          min: 0,
+          min: -1,
           max: 100,
           value: current_values.pde,
           onChange: function onChange(number) {

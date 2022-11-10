@@ -202,10 +202,6 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 /*==== Grid Blocks ====*/
 .col-adaptive {flex: 1 1 0;}
-
-.wp-block-phenix-row.block-editor-block-list__block,
-.wp-block-phenix-row[data-block] {outline: 1px dashed var(--primary-color);}
-
 .wp-block-phenix-column.block-editor-block-list__block,
 .wp-block-phenix-column[data-block] {outline: 1px dashed var(--secondary-color);}
 

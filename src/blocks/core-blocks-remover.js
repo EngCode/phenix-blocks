@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 "core/post-terms",
                 "core/post-navigation-link",
                 "core/read-more",
-                "core/comments-query-loop",
                 "core/post-comments-form",
                 "core/term-description",
                 "core/query-title",

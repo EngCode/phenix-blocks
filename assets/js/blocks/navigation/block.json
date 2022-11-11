@@ -13,7 +13,15 @@
       "type": "boolean",
       "default": false
     },
+    "tagName": {
+      "type": "string",
+      "default": "nav"
+    },
     "menu_id": {
+      "type": "string",
+      "default": ""
+    },
+    "className": {
       "type": "string",
       "default": ""
     },
@@ -21,9 +29,25 @@
       "type": "boolean",
       "default": true
     },
-    "className": {
+    "mobile_mode": {
       "type": "string",
-      "default": ""
+      "default": "dropdown"
+    },
+    "effect": {
+      "type": "string",
+      "default": "slide"
+    },
+    "direction": {
+      "type": "string",
+      "default": "vertical"
+    },
+    "hover": {
+      "type": "boolean",
+      "default": false
+    },
+    "menus_list": {
+      "type": "array",
+      "default": []
     }
   },
   "example": {

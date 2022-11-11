@@ -10,30 +10,38 @@
 function px_navigation_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = ''; ob_start();
-    $currentNames = $block_attributes['className'];
-?>
-<!-- Phenix Navigation -->
-<?php if ($block_attributes['responsive'] !== true) : 
+    $props  = $block_attributes;
+    $classNames  = "px-navigation {$props['className']}";
+    $menuClasses = "reset-list";
+    $menuOptions = "";
+
+    //===> Direction Mode <===//
+    if ($props['direction'] == 'px-vertical') {
+        $classNames = $classNames.' '.$props['direction'];
+    } else {
+        $menuClasses = $menuClasses.' '.$props['direction'];
+    }
+
+    //===> Responsive Classes <===//
+    if ($props['responsive'] == true) {
+        $classNames = $classNames . " hidden-md-down";
+    }
+
+    //===> Start Navigation Wrapper <===//
+    echo "<{$props['tagName']} class='{$classNames}' data-id='{$props['menu_id']}' data-mobile='{$props['mobile_mode']}'> data-hover='{$props['hover']}' data-effect='{$props['effect']}' >";
+
+    //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(
-        'menu' => $block_attributes['menu_id'],
-        'menu_class' => 'reset-list '.$currentNames,
-        'theme_location' => $block_attributes['menu_id'],
+        'menu' => $props['menu_id'],
+        'menu_class' => $menuClasses,
+        'theme_location' => $props['menu_id'],
         'container' => false,
         'container_class' => false,
     ));
-else : ?>
-    <nav class="px-navigation hidden-md-down <?php echo $currentNames; ?>" data-id="<?php echo $block_attributes['menu_id']; ?>" data-arrow="far fa-angle-down" data-hover="true" data-mobile="custom" data-effect="fade">
-        <?php echo wp_nav_menu(array(
-            'menu' => $block_attributes['menu_id'],
-            'menu_class' => 'reset-list flexbox tx-uppercase',
-            'theme_location' => $block_attributes['menu_id'],
-            'container' => false,
-            'container_class' => false,
-        ));?>
-    </nav>
-<?php endif; ?>
-<!-- // Phenix Navigation -->
-<?php
+
+    //===> End Navigation Wrapper <===//
+    echo "</{$props['tagName']}>";
+
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();
     $markup  .= $blockOutput;

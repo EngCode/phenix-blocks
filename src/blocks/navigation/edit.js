@@ -26,6 +26,7 @@ export default function Edit(props) {
     const set_tagName = tagName => setAttributes({ tagName });
     const set_hover  = hover => setAttributes({ hover });
     const set_effect = effect => setAttributes({ effect });
+    const set_arrow_icon = arrow_icon => setAttributes({ arrow_icon });
     const set_direction = direction => setAttributes({ direction });
     const set_mobile_mode = mobile_mode => setAttributes({ mobile_mode });
     const set_responsive = responsive => setAttributes({ responsive });
@@ -52,7 +53,7 @@ export default function Edit(props) {
                 <SelectControl label="Menu Location {ID}" value={ attributes.menu_id } onChange={set_menu_id} options={attributes.menus_list} />
 
                 {/*=== Component <TagName> ===*/}
-                <SelectControl key="tagName" label="HTML Tag" value={attributes.tagName} onChange={set_tagName} options={[
+                <SelectControl key="tagName" label="HTML Wrapper" value={attributes.tagName} onChange={set_tagName} options={[
                     { label: 'Default <nav>',  value: 'nav' },
                     { label: 'Main <main>',  value: 'main' },
                     { label: 'Aside <aside>',  value: 'aside' },
@@ -60,19 +61,22 @@ export default function Edit(props) {
                 ]}/>
 
                 {/*=== Direction Mode ===*/}
-                <SelectControl key="direction" label="HTML Tag" value={attributes.direction} onChange={set_direction} options={[
+                <SelectControl key="direction" label="Menu Direction" value={attributes.direction} onChange={set_direction} options={[
                     { label: 'Vertical',  value: 'px-vertical' },
                     { label: 'Horizontal',  value: 'flexbox' },
                 ]}/>
 
                 {/*===> Dropdown Hover <===*/}
                 <ToggleControl label="Dropdown on Hover ?" checked={attributes.hover} onChange={set_hover}/>
+
+                {/*=== Arrow Icon ===*/}
+                <TextControl key="arrow_icon" label="Dropdown Icon" value={ attributes.arrow_icon } onChange={set_arrow_icon}/>
                 
                 {/*===> Responsive <===*/}
                 <ToggleControl help="this will Hide the Menu in Mobile!" label="Responsive Menu" checked={attributes.responsive} onChange={set_responsive}/>
 
                 {/*=== Mobile Behavior ===*/}
-                <SelectControl key="mobile_mode" label="Mobile Behavior" value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
+                <SelectControl key="mobile_mode" label="Mobile Mode" value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
                     { label: 'Nested Dropdown', value: 'dropdown' },
                     { label: 'Custom Design',   value: 'custom' },
                 ]}/>

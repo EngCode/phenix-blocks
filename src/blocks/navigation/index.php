@@ -11,9 +11,15 @@ function px_navigation_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = ''; ob_start();
     $props  = $block_attributes;
-    $classNames  = "px-navigation {$props['className']}";
+
+    //===> Create Options Data <===//
     $menuClasses = "reset-list";
-    $menuOptions = "";
+    $menu_id = "data-id='{$props['menu_id']}'";
+    $effect_type = "data-effect='{$props['effect']}'";
+    $classNames  = "px-navigation {$props['className']}";
+    $mobile_mode = "data-mobile='{$props['mobile_mode']}'";
+    $arrow_icon  = "data-arrow='{$props['arrow_icon']}'";
+    $hover_mode  = "";
 
     //===> Direction Mode <===//
     if ($props['direction'] == 'px-vertical') {
@@ -27,8 +33,13 @@ function px_navigation_render($block_attributes, $content) {
         $classNames = $classNames . " hidden-md-down";
     }
 
+    //===> Hover Mode <===//
+    if ($props['hover'] === true) {
+        $hover_mode = "data-hover='{$hover_mode}'";
+    }
+
     //===> Start Navigation Wrapper <===//
-    echo "<{$props['tagName']} class='{$classNames}' data-id='{$props['menu_id']}' data-mobile='{$props['mobile_mode']}'> data-hover='{$props['hover']}' data-effect='{$props['effect']}' >";
+    echo "<{$props['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} ${arrow_icon}>";
 
     //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(

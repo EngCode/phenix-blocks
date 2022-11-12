@@ -29,9 +29,14 @@
             "default": ""
         },
 
+        "arrow_icon" : {
+            "type": "string",
+            "default": "far fa-angle-down"
+        },
+
         "responsive" : {
             "type": "boolean",
-            "default": true
+            "default": false
         },
 
         "mobile_mode" : {

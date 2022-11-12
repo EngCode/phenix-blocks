@@ -71,6 +71,12 @@ function Edit(props) {
     });
   };
 
+  var set_arrow_icon = function set_arrow_icon(arrow_icon) {
+    return setAttributes({
+      arrow_icon: arrow_icon
+    });
+  };
+
   var set_direction = function set_direction(direction) {
     return setAttributes({
       direction: direction
@@ -125,7 +131,7 @@ function Edit(props) {
     options: attributes.menus_list
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
     key: "tagName",
-    label: "HTML Tag",
+    label: "HTML Wrapper",
     value: attributes.tagName,
     onChange: set_tagName,
     options: [{
@@ -143,7 +149,7 @@ function Edit(props) {
     }]
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
     key: "direction",
-    label: "HTML Tag",
+    label: "Menu Direction",
     value: attributes.direction,
     onChange: set_direction,
     options: [{
@@ -157,6 +163,11 @@ function Edit(props) {
     label: "Dropdown on Hover ?",
     checked: attributes.hover,
     onChange: set_hover
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+    key: "arrow_icon",
+    label: "Dropdown Icon",
+    value: attributes.arrow_icon,
+    onChange: set_arrow_icon
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
     help: "this will Hide the Menu in Mobile!",
     label: "Responsive Menu",
@@ -164,7 +175,7 @@ function Edit(props) {
     onChange: set_responsive
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
     key: "mobile_mode",
-    label: "Mobile Behavior",
+    label: "Mobile Mode",
     value: attributes.mobile_mode,
     onChange: set_mobile_mode,
     options: [{
@@ -263,7 +274,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"responsive":{"type":"boolean","default":true},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false},"menus_list":{"type":"array","default":[]}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"arrow_icon":{"type":"string","default":"far fa-angle-down"},"responsive":{"type":"boolean","default":false},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false},"menus_list":{"type":"array","default":[]}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
 
 /***/ })
 

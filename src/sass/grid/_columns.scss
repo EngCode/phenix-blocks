@@ -13,7 +13,7 @@
 /*==== Layouts Mixin ====*/
 @mixin make-columns($columns:12, $infix:'') {
     /*==== Auto Columns ====*/
-    .col#{$infix} {flex-grow: 1;}
+    .col#{$infix}, .col#{$infix}-adaptive {flex-grow: 1;}
     .col#{$infix}-auto {width: auto;}
 
     /*==== Flex-Box Columns ====*/

@@ -87,7 +87,7 @@
             ul {border-radius: var(--radius);}
         }
         /*==== hover ====*/
-        li:hover {
+        li:hover, li.px-item-active {
             @extend %fast-motion;
             color: var(--color-hvr);
         }

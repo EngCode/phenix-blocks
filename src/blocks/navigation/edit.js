@@ -77,8 +77,8 @@ export default function Edit(props) {
 
                 {/*=== Mobile Behavior ===*/}
                 <SelectControl key="mobile_mode" label="Mobile Mode" value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
-                    { label: 'Nested Dropdown', value: 'dropdown' },
-                    { label: 'Custom Design',   value: 'custom' },
+                    { label: 'Dropdown', value: 'dropdown' },
+                    { label: 'Offcanvas', value: 'custom' },
                 ]}/>
 
                 {/*=== Animation Effect ===*/}

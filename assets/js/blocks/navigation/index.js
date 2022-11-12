@@ -179,10 +179,10 @@ function Edit(props) {
     value: attributes.mobile_mode,
     onChange: set_mobile_mode,
     options: [{
-      label: 'Nested Dropdown',
+      label: 'Dropdown',
       value: 'dropdown'
     }, {
-      label: 'Custom Design',
+      label: 'Offcanvas',
       value: 'custom'
     }]
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {

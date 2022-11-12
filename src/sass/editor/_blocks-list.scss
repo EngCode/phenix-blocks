@@ -1,0 +1,76 @@
+/*==== GB Editor Blocks List ====*/
+.editor-styles-wrapper {
+	--wp--custom--spacing--outer: 2rem;
+	font-family: var(--secondary-font)!important;
+
+	> .is-root-container {--wp--custom--spacing--outer: 0;}
+	
+	/*==== Editor Page Title ====*/
+	.edit-post-visual-editor__post-title-wrapper {
+		margin: 0;
+		font-size: 14px;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		background-color: rgba(#000, 0.05);
+	}
+
+	/*==== Hidden Blocks ====*/
+	.wp-block[class*="hidden"] {
+		display: block;
+		opacity: 0.7;
+	}
+
+	/*==== Layouts Wrapper ====*/
+	.block-editor-block-list__layout {
+		/*==== Reset Blocks ====*/
+		.wp-block-cover {overflow: hidden;}
+		.gpy-fix, .last-row {margin-bottom: -30px;}
+		.px-dropdown-list {display: none!important;}
+		.rich-text:not(.is-selected) {margin-top: 0;}
+		.wp-block-design-px-section {outline: 1px dashed rgba(#000, 0.15);}
+		p.rich-text:not([class*="lineheight"]) {line-height: var(--line-height);}
+		[class*="wp-container-"] > * + *,.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
+	}
+
+	/*==== Core Block Style ====*/
+	.block-editor-block-list__block {
+		/*==== Blocks Placeholder ====*/
+		.components-placeholder {
+			min-height: 0;
+			padding: 20px 30px;
+			border-radius: 6px;
+			margin-bottom: 10px;
+			.components-base-control {width: 100%;}
+			.components-placeholder__label {margin-bottom: 10px;}
+			.components-select-control__input {
+				height: 36px;
+				border-color: rgba(#000, 0.2)!important;
+			}
+		}
+
+		/*==== Post Content ====*/
+		&.wp-block-post-content > p {
+			margin: auto;
+			padding: 0 30px;
+			max-width: 640px;
+			margin-bottom: 10px;
+			line-height: var(--line-height);
+			&:first-child {padding-top: 30px;}
+			&:last-child  {padding-bottom: 30px;}
+		}
+	}
+
+	.block-editor-inserter {border-color: rgba(#000, 0.1);}
+}
+
+/*==== Posts Editor Layout ====*/
+body.post-type-post, body.post-type-post {
+	.editor-styles-wrapper > .is-root-container {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 960px!important;
+		padding-top: 30px!important;
+		padding-bottom: 30px!important;
+		&.block-editor-block-list__layout > * {margin-bottom: 1rem;}
+	}
+}

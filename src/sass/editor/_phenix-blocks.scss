@@ -1,0 +1,89 @@
+/*==== Phenix Blocks ====*/
+.wp-block-phenix-column, .wp-block-phenix-row[data-type="phenix/row"] {
+	&.block-editor-block-list__block, &[data-block] {
+		min-width: 75px;
+		padding-top: min(5px, 150px);
+		padding-bottom: min(5px, 150px);
+	}
+}
+
+/*==== Container Block ====*/
+.wp-block-phenix-container[data-block] {
+	outline: 1px dashed var(--primary-color);
+	&:not([class*="pd"]) {padding: min(5px, 150px);}
+	/*==== Container ====*/
+	> [class*="container"] {outline: 1px dashed var(--secondary-color);}
+}
+
+/*==== Grid Blocks ====*/
+.col-adaptive {flex: 1 1 0;}
+.wp-block-phenix-column.block-editor-block-list__block,
+.wp-block-phenix-column[data-block] {outline: 1px dashed var(--secondary-color);}
+
+/*==== General Component ====*/
+.px-gb-component {
+	//===> Chessboard Backgrounds <===//
+	.bg-inherit 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
+	.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
+
+	/*==== Borders ====*/
+	.options-list .px-active {outline: 1px dashed var(--primary-color);border-color: var(--primary-color);}
+	.borderd-group .btn:not(:last-child):not(.outline) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+
+	/*==== Select Buttons ====*/
+	.option-control[data-type="button"] .btn, .icon-btns {
+		button i {pointer-events: none;}
+		.px-active {
+			outline: 0 none;
+			color: var(--primary-color);
+		}
+	}
+
+	.option-control[data-type="button"] .btn {width: 100%;}
+
+	.option-control[data-type="button"] input:checked ~ .btn {
+		color: var(--primary-reverse);
+		background-color: var(--primary-color);
+	}
+
+	.options-tabs .outline.primary {border-width: 1px!important;}
+	
+	.lined-tabs .btn.outline {
+		border: 0px none!important;
+		border-bottom: 1px solid var(--dark-color)!important;
+		&.primary {
+			border-width: 0px!important;
+			border-color: var(--primary-color);
+			border-bottom-width: 1px!important;
+		}
+	}
+	
+	/*==== Checkboxes ====*/
+	.option-control[data-type="checkbox"] input:checked + span {
+		color : var(--success-color);
+		&::before {--border-color: var(--success-color);}
+	}
+}
+
+/*==== Block Icons ====*/
+.pxi {
+	background-size: 1em;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/*==== Align Icons ====*/
+.pxi-align-x-start   {background-image: url('../img/blocks/align-x-start.svg');}
+.pxi-align-x-center  {background-image: url('../img/blocks/align-x-center.svg');}
+.pxi-align-x-between {background-image: url('../img/blocks/align-x-between.svg');}
+.pxi-align-x-around  {background-image: url('../img/blocks/align-x-around.svg');}
+.pxi-align-x-end     {background-image: url('../img/blocks/align-x-end.svg');}
+.pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
+.pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
+.pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}
+.pxi-arrows-y {background-image: url('../img/blocks/arrows-y.png');}
+.pxi-arrows-x {background-image: url('../img/blocks/arrows-x.png');}
+.pxi-arrow-top {background-image: url('../img/blocks/arrows-top.png');}
+.pxi-arrow-bottom {background-image: url('../img/blocks/arrows-bottom.png');}
+.pxi-arrow-start {background-image: url('../img/blocks/arrows-#{$direction-start}.png');}
+.pxi-arrow-end {background-image: url('../img/blocks/arrows-#{$direction-end}.png');}

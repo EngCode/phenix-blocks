@@ -97,7 +97,11 @@ if (!function_exists('pds_admin_style')) :
 
     function pds_admin_style($hook) {
         //===> Global for Admin <===//
-        wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css');
+        if (is_rtl()) {
+            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin-rtl.css');
+        } else {
+            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css');
+        }
     }
 
     //===> Include Phenix Core in the Plguin Page <===//

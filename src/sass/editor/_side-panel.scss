@@ -1,0 +1,93 @@
+/*==== GB Editor Side Panels ====*/
+body[class*="block-editor"], body[class*="site-editor"] {
+	/*==== Layers List ====*/
+	.edit-post-editor__list-view-panel, .edit-site-editor__list-view-panel {min-width: 220px;}
+
+	/*==== Inspector Widgets Title ====*/
+	.components-panel__body.is-opened .components-panel__body-title {
+		margin-bottom: 15px;
+		border-bottom: 1px solid rgba(#000, 0.10);
+	}
+
+	.block-editor-block-inspector__advanced {border-bottom: 1px solid rgba(#000, 0.10);}
+
+	/*==== Sidebar Fix ====*/
+	.interface-interface-skeleton__sidebar {
+		// @extend .px-scrollbar;
+		// overflow-x: hidden!important;
+		// padding-#{$direction-end}: 15px;
+		.components-panel__body.is-opened {margin-#{$direction-end}: 5px;}
+	}
+
+	/*==== Radius Groups ====*/
+	.components-button-group {
+		display: flex;
+		flex-wrap: wrap;
+		overflow: hidden;
+		border-radius: 5px;
+		border : 1px solid rgba(#000, 0.15);
+		/*==== Childrens ====*/
+		> * {
+			flex-grow: 1;
+			text-align: center;
+		}
+
+		/*==== Buttons ====*/
+		.components-button {
+			--wp-admin-theme-color : var(--primary-color);
+			height: 32px;
+			font-size: 12px;
+			padding: 0 10px;
+			text-align: center;
+			white-space: normal;
+			display: inline-block;
+			transition: all 0.3s linear;
+			margin-#{$direction-start}: -1px;
+			border-bottom : 1px solid rgba(#000, 0.15);
+			&:not(:first-child) {border-#{$direction-start}: 1px solid rgba(#000, 0.15);}
+			/*==== Primary ====*/
+			&.is-primary {box-shadow: unset;}
+			&.is-primary:hover {background-color: var(--primary-hover);}
+			/*==== Secondary ====*/
+			&.is-secondary, &.is-secondary:hover {
+				box-shadow: none;
+				color: var(--gray-color);
+			}
+		}
+	}
+
+	/*==== Link Input ====*/
+	.block-editor-url-input input[type="text"] {
+		width: 100%;
+		border: 1px solid rgba(#000, 0.2);
+	}
+
+	/*==== Sidebar Fields ====*/
+	.components-base-control__field {
+		margin: 0;
+		margin-bottom: 10px;
+		.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
+	}
+
+	.components-input-control__container {flex: none!important;}
+	.components-flex {height: auto!important;}
+
+	/*==== Blocks Preview ====*/
+	.block-editor-block-preview__container {
+		height: 100%;
+		iframe,.block-editor-block-preview__content {height: 100%!important;}
+		.block-editor-block-preview__content {transform: scale(1)!important;}
+	}
+
+	/*==== Fix ToggleControl ====*/
+	.components-form-toggle {top: 2px;}
+	
+	/*==== Fix RangeControl ====*/
+	.flexbox > .components-range-control {
+		flex-grow: 1;
+		margin-bottom: 0;
+		.components-base-control__field {margin-bottom: 0;}
+	}
+
+	.components-range-control label {margin-bottom: 0;}
+}

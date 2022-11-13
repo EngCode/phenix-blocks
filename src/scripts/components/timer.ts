@@ -100,7 +100,6 @@ PhenixElements.prototype.timer = function (options?:{
 
         //====> Countdown Mode<====//
         else if (type == 'stopwatch') {
-            
             //====> Timer Handler <====//
             let timer_handler = () => {
                 //====> Timer Markup Elements <====//

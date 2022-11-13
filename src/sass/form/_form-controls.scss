@@ -174,7 +174,6 @@ label,legend  {@extend %inline-block;}
         #{$direction-start}: 0;
         line-height: var(--height);
         font-size: var(--text-size);
-        @include padding-inline(var(--padding), 'start');
     }
 
     /*==== icon Position ====*/
@@ -184,13 +183,15 @@ label,legend  {@extend %inline-block;}
         .px-select .px-select-toggle {@include padding-inline(var(--white-space)!important ,'end');}
         /*==== icon position reverse ====*/
         &::before {
-            #{$direction-start}: auto;
             #{$direction-end}: 0;
+            #{$direction-start}: auto;
+            @include padding-inline(var(--padding), 'end');
         }
     }
 
     /*==== White Space Fix ====*/
     &:not(.icon-end) {
+        &::before {@include padding-inline(var(--padding), 'start');}
         .form-control {@include padding-inline(var(--white-space) ,'start');}
         .px-select .px-select-toggle {@include padding-inline(var(--white-space)!important ,'start');}
     }

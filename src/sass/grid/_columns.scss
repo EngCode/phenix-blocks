@@ -13,8 +13,12 @@
 /*==== Layouts Mixin ====*/
 @mixin make-columns($columns:12, $infix:'') {
     /*==== Auto Columns ====*/
-    .col#{$infix}, .col#{$infix}-adaptive {flex-grow: 1;}
     .col#{$infix}-auto {width: auto;}
+
+    .col#{$infix}, .col#{$infix}-adaptive {
+        flex-grow: 1;
+        max-width: 100%;
+    }
 
     /*==== Flex-Box Columns ====*/
     @for $i from 1 through $columns { 

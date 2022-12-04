@@ -21,7 +21,7 @@ PhenixElements.prototype.progress = function (options?:{
         let type = progress.getAttribute('data-type') || options?.type || 'bar',
             color = progress.getAttribute('data-color') || options?.color || 'var(--primary-color)',
             value = parseInt(progress.getAttribute('data-value')) || options?.value || 0,
-            label = progress.getAttribute('data-label') || options?.label,
+            label = progress.getAttribute('data-label') || options?.label || "",
             lazy  = progress.getAttribute('data-lazy')  || options?.lazyloading;
 
         //====> Set Progress <====//

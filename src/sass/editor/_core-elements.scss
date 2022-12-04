@@ -4,6 +4,10 @@
 	--wp-admin-theme-color-darker-10 : var(--primary-hover);
 	--wp-admin-theme-color-darker-20 : var(--primary-hover);
 
+	.structure-selection {
+		.row {display: block;}
+	}
+
 	/*==== Typography ====*/
 	.wp-current-version,
 	.auto-update-status ~ h2 {margin-top: 3rem;}
@@ -43,7 +47,7 @@
 		.postbox-container  {padding: 0 10px;}
 		
 		ul.community-events-results {
-			margin-top: 15px!important;;
+			margin-top: 15px!important;
 			padding: 0!important;
 		}
 		
@@ -58,7 +62,8 @@
 			padding: 0 15px!important;
 		}
 	
-		#future-posts ul, #published-posts ul, #dashboard_right_now ul, #the-comment-list {padding: 0;}
+		#future-posts ul, #published-posts ul,
+		#dashboard_right_now ul, #the-comment-list {padding: 0;}
 	}
 	
 	/*==== Admin Menu ====*/
@@ -81,7 +86,8 @@
 		.wp-menu-arrow div {background-color: var(--primary-color);}
 	
 		/*==== Items Hover ====*/
-		li.menu-top:hover, li.opensub > a.menu-top, li > a.menu-top:focus, li.current, li.wp-has-current-submenu {
+		li.menu-top:hover, li.opensub > a.menu-top, 
+		li > a.menu-top:focus, li.current, li.wp-has-current-submenu {
 			color: var(--primary-color);
 			background-color: #0f1422;
 		}

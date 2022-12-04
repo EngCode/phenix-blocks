@@ -176,6 +176,11 @@ label,legend  {@extend %inline-block;}
         font-size: var(--text-size);
     }
 
+    &.radius-height {
+        --white-space : calc(var(--padding)*2.5);
+        &::before {#{$direction-start}: 5px;}
+    }
+
     /*==== icon Position ====*/
     &.icon-end {
         /*==== White Space Fix ====*/
@@ -186,6 +191,11 @@ label,legend  {@extend %inline-block;}
             #{$direction-end}: 0;
             #{$direction-start}: auto;
             @include padding-inline(var(--padding), 'end');
+        }
+
+        &.radius-height {
+            &::before {#{$direction-start}: auto;}
+            &::before {#{$direction-end}: 5px;}
         }
     }
 

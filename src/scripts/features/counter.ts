@@ -26,7 +26,7 @@ PhenixElements.prototype.counter = function (options?:{
         //====> Get Options Data <====//
         let duration = parseInt(element.getAttribute('data-duration')) || options?.duration || 2000,
             decimal  = parseInt(element.getAttribute('data-decimal')) || options?.decimal || 0,
-            value    = parseInt(element.getAttribute('data-value')) || options?.value || parseInt(element.textContent),
+            value    = parseInt(element.getAttribute('data-value')) || options?.value || parseInt(element.textContent.replaceAll(',','')),
             symbol   = element.getAttribute('data-symbol') || options?.symbol || '',
             delay    = parseInt(element.getAttribute('data-delay')) || options?.delay  || 0,
             steps    = parseInt(element.getAttribute('data-steps')) || options?.steps  || 10,
@@ -37,34 +37,35 @@ PhenixElements.prototype.counter = function (options?:{
         //====> Counter Data <===//
         let input = (element.nodeName.toLowerCase() === 'input') ? true : false,
             count = 0,
-            increment = value / (duration / steps),
+            increment = Math.ceil(value / (duration / steps)),
             interval = null,
             decimal_regex = /\B(?=(\d{3})+(?!\d))/g;
 
         //====> Switch Count for Counting Down <====//
         if (reverse) count = value;
 
+        
         //====> Count Runer <===//
         const runCounter = () => {
             //===> Round Up Values <===//
-            count = Math.round(count)
-            value = Math.round(value)
-
+            count = Math.round(count);
+            value = Math.round(value);
+            
             //===> Set is Counting <===//
             if (!counting) element.classList.add('counting');
-
+            
             //===> if [Count Down] is Activated => Decrease the Count <===//
             if (reverse && count > 0) count -= increment;
-
+            
             //===> Otherwise Increase the Count <===//
             else if (count < value) count += increment;
-
+            
             //===> Current Value <===//
             let current = `${(count).toFixed(decimal).toString().replace(decimal_regex, ',')+symbol}`;
-
+            
             //===> if the Element is Input Control <===//
             if (input) element.value = current;
-
+            
             //===> Otherwise <===//
             else element.innerHTML = current;
 

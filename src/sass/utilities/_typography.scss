@@ -28,25 +28,7 @@ h6 {font-size: REM(17);}
     .h4#{$infix} {font-size: REM(23);}
     .h5#{$infix} {font-size: REM(20);}
     .h6#{$infix} {font-size: REM(17);}
-
-    /*==== Headine Sizes ====*/
-    .fs-inherit {font-size: inherit;}
-    .fs#{$infix}-12 {font-size: 12px;}
-    .fs#{$infix}-13 {font-size: 13px;}
-    .fs#{$infix}-14 {font-size: REM(14);}
-    .fs#{$infix}-15 {font-size: REM(15);}
-    .fs#{$infix}-16 {font-size: REM(16);}
-    .fs#{$infix}-17 {font-size: REM(17);}
-    .fs#{$infix}-18 {font-size: REM(18);}
-    .fs#{$infix}-19 {font-size: REM(19);}
-    .fs#{$infix}-20 {font-size: REM(20);}
-    .fs#{$infix}-20 {font-size: REM(20);}
-    .fs#{$infix}-22 {font-size: REM(22);}
-    .fs#{$infix}-24 {font-size: REM(24);}
-    .fs#{$infix}-25 {font-size: REM(25);}
-    .fs#{$infix}-26 {font-size: REM(26);}
-    .fs#{$infix}-28 {font-size: REM(28);}
-    .fs#{$infix}-30 {font-size: REM(30);}
+    
     /*==== Display Headlines ====*/
     .display#{$infix}-h1 {font-size: REM(62);}
     .display#{$infix}-h2 {font-size: REM(52);}
@@ -54,6 +36,26 @@ h6 {font-size: REM(17);}
     .display#{$infix}-h4 {font-size: REM(44);}
     .display#{$infix}-h5 {font-size: REM(40);}
     .display#{$infix}-h6 {font-size: REM(36);}
+
+    /*==== Text Sizes ====*/
+    .fs-inherit {font-size: inherit;}
+    .fs#{$infix}-12,.tiny-text#{$infix} {font-size: 12px;}
+    .fs#{$infix}-13 {font-size: 13px;}
+    .fs#{$infix}-14,.small-text#{$infix} {font-size: REM(14);}
+    .fs#{$infix}-15 {font-size: REM(15);}
+    .fs#{$infix}-16 {font-size: REM(16);}
+    .fs#{$infix}-17 {font-size: REM(17);}
+    .fs#{$infix}-18,.large-text#{$infix} {font-size: REM(18);}
+    .fs#{$infix}-19 {font-size: REM(19);}
+    .fs#{$infix}-20,.xlarge-text#{$infix} {font-size: REM(20);}
+    .fs#{$infix}-20 {font-size: REM(20);}
+    .fs#{$infix}-22 {font-size: REM(22);}
+    .fs#{$infix}-24 {font-size: REM(24);}
+    .fs#{$infix}-25 {font-size: REM(25);}
+    .fs#{$infix}-26 {font-size: REM(26);}
+    .fs#{$infix}-28 {font-size: REM(28);}
+    .fs#{$infix}-30 {font-size: REM(30);}
+
     /*==== Text Alignment ====*/
     .tx-align#{$infix}-end   {text-align:end;}
     .tx-align#{$infix}-left  {text-align: left;}
@@ -95,14 +97,7 @@ h6 {font-size: REM(17);}
 .lineheight-180 {line-height: 1.8;}
 .lineheight-inherit {line-height: inherit;}
 
-/*==== Text Sizes ====*/
-.small-text {font-size: 0.875rem;}
-
-.large-text {
-    font-size: REM(18);
-    @include xlarge() { font-size: REM(20); }
-}
-
+/*==== Create Responsive Sizes ====*/
 @include make-font-sizes();
 
 @include medium() {

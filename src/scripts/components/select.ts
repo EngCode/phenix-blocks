@@ -15,19 +15,19 @@ PhenixElements.prototype.select = function (options?:{
 }) {
     //====> Loop Through Phenix Elements <====//
     this.forEach(select => {
-        //====> if Not Mounted Create <====//
-        if (!select.classList.contains('px-mounted')) {
-            //====> Get Options <====//
-            let events_data:any = {},
-                classes  = select.classList,
-                multiple = select.hasAttribute('multiple') || options?.multiple,
-                search = select.getAttribute('data-search') || options?.search,
-                placeholder = select.getAttribute('data-placeholder') || options?.placeholder,
-                searchPlaceholder = select.getAttribute('data-search-placeholder') || options?.searchPlaceholder || 'Search in Options';
+        //====> Get Options <====//
+        let events_data:any = {},
+            classes  = select.classList,
+            multiple = select.hasAttribute('multiple') || options?.multiple,
+            search = select.getAttribute('data-search') || options?.search,
+            placeholder = select.getAttribute('data-placeholder') || options?.placeholder,
+            searchPlaceholder = select.getAttribute('data-search-placeholder') || options?.searchPlaceholder || 'Search in Options';
 
+        //====> Select Component <====//
+        const select_create = () => {
             //====> Create Custom Select <====//
             let new_select = Phenix(select).insert('before', `<div class="px-select flexbox position-rv" style="line-height:var(--height);cursor: pointer;"></div>`);
-
+    
             //====> Copy Select Classes and Perpare CSS <====//
             new_select.classList.add(...classes);
             new_select = Phenix(new_select);
@@ -51,9 +51,23 @@ PhenixElements.prototype.select = function (options?:{
             //====> Create Options Wrapper <====//
             let options_list = new_select.insert('append', `<ul class="reset-list fs-14 hidden border-1 border-solid border-alpha-10 fluid bg-inherit px-select-options position-ab fluid lineheight-160 pos-start-0 pos-after-y z-index-dropdown overflow-y-auto" style="max-height:270px;"></ul>`);
                 options_list = Phenix(options_list);
-            
+
             //====> Wrap the Original Select <====//
             select = new_select.insert('append', select);
+
+            //===> Return new Data <===//
+            return [new_select, options_list]
+        };
+
+        //====> Select Options <====//
+        // const options_create = (select_element) => {};
+
+        //====> if Not Mounted Create <====//
+        if (!select.classList.contains('px-mounted')) {
+            //====> Create New Component <====//
+            let select_component = select_create(),
+                new_select = select_component[0],
+                options_list = select_component[1];
 
             //====> Create Options List <====//
             select.querySelectorAll(':scope > *').forEach(option => {

@@ -141,8 +141,8 @@
         display: block;
         position: absolute;
         @extend %spinner-loader;
-        -webkit-backdrop-filter: blur(5px);
-                backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(2.5px);
+                backdrop-filter: blur(2.5px);
         background-color: rgba(#000, 0.15);
     }
 }

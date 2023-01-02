@@ -123,13 +123,13 @@
                                 delete locations[`${key}`];
                                 //===> Update Locations <===//
                                 add_location(locations);
+                                //====> Show Notifications <====//
+                                Phenix(document).notifications({
+                                    type     : "success", //=== Message Type [normal, error, success, warning]
+                                    message  : "the Location has been Deleted.", //=== Message Content
+                                    position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                                });
                             }
-                            //====> Show Notifications <====//
-                            Phenix(document).notifications({
-                                type     : "normal", //=== Message Type [normal, error, success, warning]
-                                message  : "the Location has been Deleted.", //=== Message Content
-                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                            });
                         }
                     }, true);
                 }
@@ -174,34 +174,34 @@
 
                 //===> Update Locations List <===//
                 get_locations().then(locations => {
-                    //===> add the new location to the current ones <===//
-                    locations[new_location['name']] = new_location['title'];
+                    //===> Check if its Exist <===//
+                    let alreadyExist = locations[new_location['name']];
 
-                    for (const [key, value] of Object.entries(locations)) {
-                        //===> Show Error if the Location Exist <===//
-                        if (key === new_location['name']) {
+                    //===> Update Locations <===//
+                    if (!alreadyExist) {
+                        //===> add the new location to the current ones <===//
+                        locations[new_location['name']] = new_location['title'];
+
+                        //===> Post the New Location <===//
+                        add_location(locations).then(response => {
+                            //===> Remove Loading Mode <===//
+                            isClicked.target.classList.remove('px-loading-inline');
                             //====> Show Notifications <====//
                             Phenix(document).notifications({
-                                type     : "error", //=== Message Type [normal, error, success, warning]
-                                message  : "Error : Sorry the Location Already Exists.", //=== Message Content
+                                type     : "success", //=== Message Type [normal, error, success, warning]
+                                message  : "Success : the New Location has been Added.", //=== Message Content
                                 position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
                             });
-                        }
-
-                        //===> Add the New Location <===//
-                        else {
-                            //===> Update Locations <===//
-                            add_location(locations).then(response => {
-                                //===> Remove Loading Mode <===//
-                                isClicked.target.classList.remove('px-loading-inline');
-                                //====> Show Notifications <====//
-                                Phenix(document).notifications({
-                                    type     : "success", //=== Message Type [normal, error, success, warning]
-                                    message  : "Success : the New Location has been Added.", //=== Message Content
-                                    position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                                });
-                            });
-                        }
+                        });
+                    } else {
+                        //====> Show Error <====//
+                        Phenix(document).notifications({
+                            type     : "error", //=== Message Type [normal, error, success, warning]
+                            message  : "Error The Location Already Exist.", //=== Message Content
+                            position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                        });
+                        //===> Remove Loading Mode <===//
+                        isClicked.target.classList.remove('px-loading-inline');
                     }
                 }).catch(error => {error.message});
             }

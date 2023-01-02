@@ -141,28 +141,54 @@
             form_Controls.forEach(control => {
                 //===> Validate Control <===//
                 Phenix(control).validation();
+
                 //===> if its valid control <===//
                 if (!control.matches('.error')) {
+                    //===> Get Control Name [title, name] <===//
                     let control_name = control.getAttribute('name').replace('add-location-','');
-                    new_location[control_name] = control.value;
+
+                    //===> Validate the Location Name <===//
+                    if (control_name === 'name' && !control.value) {
+                        //===> if "name" not exist grap it from the Title <===//
+                        let location_name = Phenix('[name="add-location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
+                        new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
+                    //===> Add the new Location Title <===//
+                    } else {
+                        new_location[control_name] = control.value;
+                    }
                 }
             });
 
             //===> if has new Location <===//
-            if (new_location['title']) {
+            if (new_location['name']) {
                 //===> Set Loading Mode <===//
                 isClicked.target.classList.add('px-loading-inline');
 
-                //===> Get Locations <===//
+                //===> Update Locations List <===//
                 get_locations().then(locations => {
                     //===> add the new location to the current ones <===//
                     locations[new_location['name']] = new_location['title'];
 
-                    //===> Update Locations <===//
-                    add_location(locations).then(response => {
-                        //===> Remove Loading Mode <===//
-                        isClicked.target.classList.remove('px-loading-inline');
-                    });
+                    for (const [key, value] of Object.entries(locations)) {
+                        //===> Show Error if the Location Exist <===//
+                        if (key === new_location['name']) {
+                            //====> Show Notifications <====//
+                            Phenix(document).notifications({
+                                type     : "error", //=== Message Type [normal, error, success, warning]
+                                message  : "Error : Sorry the Location Already Exists.", //=== Message Content
+                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                            });
+                        }
+
+                        //===> Add the New Location <===//
+                        else {
+                            //===> Update Locations <===//
+                            add_location(locations).then(response => {
+                                //===> Remove Loading Mode <===//
+                                isClicked.target.classList.remove('px-loading-inline');
+                            });
+                        }
+                    }
                 }).catch(error => {error.message});
             }
         });

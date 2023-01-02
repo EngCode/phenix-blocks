@@ -122,6 +122,12 @@
                                 //===> Update Locations <===//
                                 add_location(locations);
                             }
+                            //====> Show Notifications <====//
+                            Phenix(document).notifications({
+                                type     : "normal", //=== Message Type [normal, error, success, warning]
+                                message  : "the Location has been Deleted.", //=== Message Content
+                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                            });
                         }
                     }, true);
                 }
@@ -186,6 +192,12 @@
                             add_location(locations).then(response => {
                                 //===> Remove Loading Mode <===//
                                 isClicked.target.classList.remove('px-loading-inline');
+                                //====> Show Notifications <====//
+                                Phenix(document).notifications({
+                                    type     : "success", //=== Message Type [normal, error, success, warning]
+                                    message  : "Success : the New Location has been Added.", //=== Message Content
+                                    position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                                });
                             });
                         }
                     }

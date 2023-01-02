@@ -15,6 +15,9 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
+//====> Default Values <====//
+include(dirname(__FILE__) . '/admin/pds-default.php');
+
 //====> Menus Locations <====//
 if (get_option('pds_menu_locations')) :
   register_nav_menus( get_option('pds_menu_locations') );

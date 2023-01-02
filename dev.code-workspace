@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "..\\..\\themes\\phenix-wp"
+		},
+		{
+			"path": "../../../../phenix-sys"
 		}
 	],
 	"settings": {

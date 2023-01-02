@@ -16,7 +16,7 @@
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">
-            <input type="text" name="add-location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('location-name');?>" required>
+            <input type="text" name="add-location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('location-name');?>">
         </div>
         <!-- Form Control -->
         <button type="button" name="add-location-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>

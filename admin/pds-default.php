@@ -18,7 +18,7 @@ if (!function_exists('pds_blocks_activation')) :
         do_action('pds_blocks_active');
     }
 
-    register_activation_hook(__FILE__, 'pds_blocks_active');
+    register_activation_hook(__FILE__, 'pds_blocks_activation');
 
     //===> Set default values here <===//
     function pds_blocks_default_values() {

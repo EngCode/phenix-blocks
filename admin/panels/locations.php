@@ -113,6 +113,8 @@
                     Phenix('.locations-list .remove-item').on('click', button => {
                         let menu_item = Phenix(button.target).ancestor('li'),
                             menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
+                        //===> Set Loading Mode <===//
+                        menu_item.classList.add('px-loading-inline');
                         //===> Loop Throgh Locations <===//
                         for (const [key, value] of Object.entries(locations)) {
                             //===> When the item matches the locations <===//

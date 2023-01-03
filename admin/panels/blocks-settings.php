@@ -49,7 +49,7 @@
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
-    <?php
+        <?php
             echo pds_toggle_controls(array(
                 array(
                     "name"  => 'head_block',

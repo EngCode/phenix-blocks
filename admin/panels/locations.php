@@ -30,8 +30,6 @@
                 <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Menu Locations'); ?></h3>
                 <p class="fs-14"><?php echo px__('in here you can manage the menu locations created by phenix-blocks.'); ?></p>
             </div>
-            <!-- Form Control -->
-            <!-- <button type="button" name="update-location" class="btn primary radius-sm tiny ms-auto display-block"><?php echo px__('Update'); ?></button> -->
         </div>
         <!-- Locations List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm locations-list">

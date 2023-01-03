@@ -10,6 +10,8 @@ import Phenix, { PhenixElements } from "..";
 PhenixElements.prototype.select = function (options?:{
     search:boolean,
     multiple:boolean,
+    min?:number,
+    max?:number,
     placeholder?:string,
     searchPlaceholder?:string,
 }) {
@@ -19,6 +21,8 @@ PhenixElements.prototype.select = function (options?:{
         let events_data:any = {},
             classes  = select.classList,
             multiple = select.hasAttribute('multiple') || options?.multiple,
+            minItems = parseInt(select.getAttribute('data-min')) || options?.min,
+            maxItems = parseInt(select.getAttribute('data-max')) || options?.max,
             search = select.getAttribute('data-search') || options?.search,
             placeholder = select.getAttribute('data-placeholder') || options?.placeholder,
             searchPlaceholder = select.getAttribute('data-search-placeholder') || options?.searchPlaceholder || 'Search in Options';
@@ -400,9 +404,13 @@ PhenixElements.prototype.select = function (options?:{
                     } 
                     //===> Multiple Mode <===//
                     else {
+                        
                         //====> Get Current Value <====//
                         let current_values = new_select[0].getAttribute('data-value').split(','),
-                            isSelected = false;
+                        isSelected = false;
+  
+                        //===> Maximum Selected Items <===//
+                        if (current_values.length >= maxItems) return;
 
                         //====> Check Selected Values <====//
                         current_values.forEach(val => val === value ? isSelected = true : null);

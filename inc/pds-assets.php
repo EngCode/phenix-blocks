@@ -88,7 +88,7 @@ if (!function_exists('phenix_assets')) :
 endif;
 
 //=====> Phenix Admin CSS <=====//
-if (!function_exists('pds_admin_style')) :
+if (!function_exists('pds_admin_style') && is_admin()) :
     /**
      * Setup WP Phenix Design Assets
      * @since Phenix Blocks 1.0
@@ -105,14 +105,9 @@ if (!function_exists('pds_admin_style')) :
     }
 
     //===> Include Phenix Core in the Plguin Page <===//
-    if (isset($_GET["page"]) && $_GET["page"] == 'pds-admin') {
-        add_action('admin_enqueue_scripts', 'pds_admin_style');
+    if (isset($_GET["page"]) && $_GET["page"] == 'pds-admin' || get_option('pds_admin_style')) {
         add_action('admin_enqueue_scripts', 'phenix_core');
         add_action('admin_enqueue_scripts', 'phenix_assets');
-
-    } elseif (get_option('pds_admin_style')) {
         add_action('admin_enqueue_scripts', 'pds_admin_style');
-        add_action('admin_enqueue_scripts', 'phenix_core');
-        add_action('admin_enqueue_scripts', 'phenix_assets');
     }
 endif;

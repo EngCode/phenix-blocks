@@ -41,23 +41,9 @@
 
         <!-- // Panels Group -->
         <?php if (isset($submit_button) && $submit_button) : ?>
-            <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="Save Changes">
+            <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="<?php echo px__('Save Changes'); ?>">
         <?php endif; ?>
     </form>
     <!-- // Setting Wrapper -->
 </div>
 <!-- // Phenix Admin -->
-
-<!-- Form Script -->
-<script defer>
-    // document.addEventListener('DOMContentLoaded', ready => {
-    //     //===> Ajax Expirement <===//
-    //     Phenix('#pds-form').on('submit', isSubmiting => {
-    //         //===> Stop Submit <===//
-    //         isSubmiting.preventDefault();
-
-            
-    //     });
-    // });
-</script>
-

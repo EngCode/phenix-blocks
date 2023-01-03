@@ -1,15 +1,15 @@
 <?php
 /**
-	* Plugin Name: Phenix Blocks
-	* Plugin URI: https://phenixthemes.com
-	* Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-	* Version: 0.1
-	* Author: Abdullah.Ramadan
-	* Author URI:https://phenixthemes.com
-	* License: GPL2
-	* License URI: https://www.gnu.org/licenses/gpl-2.0.html
-	* Text Domain: phenix
-	* Domain Path: /languages
+  * Plugin Name: Phenix Blocks
+  * Plugin URI: https://phenixthemes.com
+  * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
+  * Version: 0.1
+  * Author: Abdullah.Ramadan
+  * Author URI:https://phenixthemes.com
+  * License: GPL2
+  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+  * Text Domain: phenix
+  * Domain Path: /languages
 **/
 
 //=====> Exit if accessed directly <=====//
@@ -18,9 +18,9 @@ if (!defined('ABSPATH')) {exit;}
 //====> Default Values <====//
 include(dirname(__FILE__) . '/admin/pds-default.php');
 
-//====> Menu Locations <====//
+//====> Set Menu Locations <====//
 if (get_option('pds_menu_locations')) :
-  register_nav_menus( get_option('pds_menu_locations') );
+	register_nav_menus( get_option('pds_menu_locations') );
 endif;
 
 //====> Multilang Support <====//

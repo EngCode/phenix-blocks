@@ -48,5 +48,5 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('blocks_optimizer', true);
     }
 
-    add_action('pds_blocks_active', 'pds_blocks_default_values');
+    add_action('init', 'pds_blocks_default_values');
 endif;

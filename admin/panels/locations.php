@@ -64,7 +64,7 @@
         //===> Add New Location <===//
         async function add_location(locations) {
             //===> Get Data <===//
-            let data = {"locations": locations};
+            let data = {"locations" : locations};
 
             //===> Connect to the API <===//
             const response = await fetch(`${PDS_WP_KEY.root}options/pds_menu_locations`, {
@@ -88,11 +88,9 @@
         const update_locations_list = () => {
             //===> Get Location from Rest-API <===//
             get_locations().then(locations => {
-                console.log(locations);
                 //===> Clear Current Locations <===//
                 let locations_list = document.querySelector('.locations-list');
                 locations_list?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
-    
                 //===> Create Locations List <===//
                 for (const [key, value] of Object.entries(locations)) {
                     //===> Insert the Location in the List <===//
@@ -104,9 +102,9 @@
                         <span class="tx-icon fas fa-location col-5 item-name">${key}</span>
     
                         <!-- Action Buttons -->
-                        <div class="col-auto ms-auto flexbox">
+                        ${key !== "main-menu" ? `<div class="col-auto ms-auto flexbox">
                             <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
-                        </div>
+                        </div>` : ""}
                     </li>`);
                     //===> Remove Item Method <===//
                     Phenix('.locations-list .remove-item').on('click', button => {
@@ -170,12 +168,12 @@
             if (new_location['name']) {
                 //===> Set Loading Mode <===//
                 isClicked.target.classList.add('px-loading-inline');
-
+                
                 //===> Update Locations List <===//
                 get_locations().then(locations => {
                     //===> Check if its Exist <===//
                     let alreadyExist = locations[new_location['name']];
-
+                    
                     //===> Update Locations <===//
                     if (!alreadyExist) {
                         //===> add the new location to the current ones <===//
@@ -199,6 +197,7 @@
                             message  : "Error The Location Already Exist.", //=== Message Content
                             position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
                         });
+
                         //===> Remove Loading Mode <===//
                         isClicked.target.classList.remove('px-loading-inline');
                     }

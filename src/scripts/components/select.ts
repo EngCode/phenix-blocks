@@ -8,10 +8,9 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Advanced Select <====*/
 PhenixElements.prototype.select = function (options?:{
+    max?:number,
     search:boolean,
     multiple:boolean,
-    min?:number,
-    max?:number,
     placeholder?:string,
     searchPlaceholder?:string,
 }) {
@@ -21,7 +20,6 @@ PhenixElements.prototype.select = function (options?:{
         let events_data:any = {},
             classes  = select.classList,
             multiple = select.hasAttribute('multiple') || options?.multiple,
-            minItems = parseInt(select.getAttribute('data-min')) || options?.min,
             maxItems = parseInt(select.getAttribute('data-max')) || options?.max,
             search = select.getAttribute('data-search') || options?.search,
             placeholder = select.getAttribute('data-placeholder') || options?.placeholder,
@@ -408,29 +406,26 @@ PhenixElements.prototype.select = function (options?:{
                         //====> Get Current Value <====//
                         let current_values = new_select[0].getAttribute('data-value').split(','),
                         isSelected = false;
-  
-                        //===> Maximum Selected Items <===//
-                        if (current_values.length >= maxItems) return;
-
+                          
                         //====> Check Selected Values <====//
                         current_values.forEach(val => val === value ? isSelected = true : null);
+                        
+                        //===> if items has reachs the Maximum or is already Selected <===//
+                        if (current_values.length >= maxItems || isSelected) return;
 
-                        //====> if Not Selected <====//
-                        if (!isSelected) {
-                            //====> Create the Option <====//
-                            let value_element = Phenix(new_value_group.querySelector('.px-select-search')).insert('before', `<span style="font-size: 0.8em;${tag_padding_fixer()}" class="${tag_classes}" data-value="${value}">${tag_remover} ${label}</span>`);
-                            current_values.push(value);
+                        //====> Create the Option <====//
+                        let value_element = Phenix(new_value_group.querySelector('.px-select-search')).insert('before', `<span style="font-size: 0.8em;${tag_padding_fixer()}" class="${tag_classes}" data-value="${value}">${tag_remover} ${label}</span>`);
+                        current_values.push(value);
 
-                            //====> Set Remover <====//
-                            set_tag_remover(value_element.querySelector('.px-value-remover'));
+                        //====> Set Remover <====//
+                        set_tag_remover(value_element.querySelector('.px-value-remover'));
 
-                            //====> Set New Values <====//
-                            new_select[0].setAttribute('data-value', current_values);
-                            select.value = current_values;
+                        //====> Set New Values <====//
+                        new_select[0].setAttribute('data-value', current_values);
+                        select.value = current_values;
 
-                            //====> Select Original Options <====//
-                            select.querySelector(`[value="${value}"]`)?.setAttribute('selected', true);
-                        };
+                        //====> Select Original Options <====//
+                        select.querySelector(`[value="${value}"]`)?.setAttribute('selected', true);
                     }
 
                     //===> Fire Event <===//

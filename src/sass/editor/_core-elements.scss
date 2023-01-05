@@ -728,3 +728,10 @@
 		text-align: start;
 	}
 }
+
+/*==== PDS Identity ====*/
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
+    background-image: url('../img/ap-icon.svg');
+    background-size: 100% auto;
+    background-position: center;
+}

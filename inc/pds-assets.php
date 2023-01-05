@@ -100,16 +100,18 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         }
     }
 
-    //===> Include Phenix Core in the Plguin Page <===//
+    //===> Include Phenix Core in the Plugin Page <===//
     if (isset($_GET["page"]) && $_GET["page"] == 'pds-admin' || get_option('pds_admin_style')) {
         add_action('admin_enqueue_scripts', 'phenix_core');
         add_action('admin_enqueue_scripts', 'phenix_assets');
         add_action('admin_enqueue_scripts', 'pds_admin_style');
-        // WordPress Custom Font @ Admin
+
+        //===> Admin Dashboard Style Force <===//
         function admin_custom_font() {
             echo '<style>
                 body, #wpadminbar *:not([class="ab-icon"]),body.rtl, body.rtl .press-this a.wp-switch-editor,.rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6, .wp-core-ui, .media-menu, .media-frame *, .media-modal *{font-family: var(--secondary-font);!important;} 
                 body,.welcome-panel, .welcome-panel h2,.wp-die-message, p {line-height: var(--line-height)!important;}
+                #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon::before {content: ""!important;}
             </style>' . PHP_EOL;
         }
 

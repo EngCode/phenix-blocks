@@ -76,7 +76,7 @@ if (!function_exists('phenix_assets')) :
         endif;
 
         //====> Custom Fonts <====//
-        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/din-next-lt-arabic.css');
+        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');

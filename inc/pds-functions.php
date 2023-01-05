@@ -9,9 +9,11 @@
  * @since Phenix WP 1.0
  * 
  * ========> Reference by Comments <=======
- ** 01 - Head Optimizer
- ** 02 - Scripts Optimizer
- ** 03 - Styles Optimizer
+ ** 01 - Delete "Archive" Prefix
+ ** 02 - Pagination Creator
+ ** 03 - Excerpt Striper
+ ** 04 - Limited Excerpt 
+ ** 05 - Excerpt More
 */
 
 defined('ABSPATH') || exit;
@@ -23,7 +25,7 @@ if (!function_exists('refactor_archive_title')) :
 	 * @since Phenix WP 1.0
 	 * @return void
 	 * 
-	 ** 01 - Excrept Strip
+	 ** 01 - Excerpt Strip
 	 ** 02 - CF7 Customize
 	*/
 	function refactor_archive_title( $title ) {
@@ -49,12 +51,12 @@ if (!function_exists('pagination')) :
 	 * @since Phenix WP 1.0
 	 * @return void
 	 * 
-	 ** 01 - Excrept Strip
+	 ** 01 - Excerpt Strip
 	 ** 02 - CF7 Customize
 	*/
 
 	function pagination($query) {
-		//===> Configration <===//
+		//===> Configuration <===//
 		$pages = paginate_links( array(
 			'end_size'     => 2,
 			'mid_size'     => 1,
@@ -92,7 +94,7 @@ if (!function_exists('pagination')) :
 	}
 endif;
 
-//====> Excrept Strip <====//
+//====> Excerpt Striper <====//
 remove_filter('the_excerpt', 'wpautop');
 
 //====> Limited Excerpt <====//

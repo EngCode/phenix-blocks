@@ -6,28 +6,23 @@
 */
 
 //====> Default Options <====//
-if (!function_exists('pds_blocks_activation')) :
+if (!function_exists('pds_blocks_default_values')) :
     /**
      * Register Default Options for Phenix Blocks
      * @since Phenix Blocks 1.0
      * @return void
     */
 
-    //===> Activation <===//
-    function pds_blocks_activation(){
-        do_action('pds_blocks_active');
-    }
-
-    register_activation_hook(__FILE__, 'pds_blocks_activation');
-
     //===> Set default values here <===//
     function pds_blocks_default_values() {
         //===> Menu Locations <===//
-        add_option('pds_menu_locations', array(
-            'main-menu'     => 'Main Menu',
-            'footer-menu'   => 'Footer Links',
-            'footer-menu-2' => 'Footer Links #2',
-        ));
+        if (!get_option('pds_menu_locations')) :
+            add_option('pds_menu_locations', array(
+                'main-menu'     => 'Main Menu',
+                'footer-menu'   => 'Footer Links',
+                'footer-menu-2' => 'Footer Links #2',
+            ));
+        endif;
 
         //===> Blocks settings <===//
         add_option('container_block', true);

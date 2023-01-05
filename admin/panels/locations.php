@@ -88,6 +88,7 @@
         const update_locations_list = () => {
             //===> Get Location from Rest-API <===//
             get_locations().then(locations => {
+                console.log(locations);
                 //===> Clear Current Locations <===//
                 let locations_list = document.querySelector('.locations-list');
                 locations_list?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());

@@ -15,6 +15,13 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
+//===> Activation <===//
+function pds_blocks_activate() {
+	do_action('pds_blocks_active');
+}
+
+register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
+
 //====> Default Values <====//
 include(dirname(__FILE__) . '/admin/pds-default.php');
 

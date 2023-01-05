@@ -76,11 +76,7 @@ if (!function_exists('phenix_assets')) :
         endif;
 
         //====> Custom Fonts <====//
-        if (!is_rtl()) :
-            wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
-        else :
-            wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
-        endif;
+        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');
@@ -109,5 +105,17 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         add_action('admin_enqueue_scripts', 'phenix_core');
         add_action('admin_enqueue_scripts', 'phenix_assets');
         add_action('admin_enqueue_scripts', 'pds_admin_style');
+        // WordPress Custom Font @ Admin
+        function admin_custom_font() {
+            echo '<style>
+                body, #wpadminbar *:not([class="ab-icon"]),body.rtl, body.rtl .press-this a.wp-switch-editor,.rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6, .wp-core-ui, .media-menu, .media-frame *, .media-modal *{font-family: var(--secondary-font);!important;} 
+                body,.welcome-panel, .welcome-panel h2,.wp-die-message, p {line-height: var(--line-height)!important;}
+            </style>' . PHP_EOL;
+        }
+
+        add_action( 'admin_head', 'admin_custom_font' );
+        add_action( 'login_head', 'admin_custom_font' );
+        add_action( 'wp_head', 'admin_custom_font' );
     }
+
 endif;

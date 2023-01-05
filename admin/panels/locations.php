@@ -94,7 +94,7 @@
                 //===> Create Locations List <===//
                 for (const [key, value] of Object.entries(locations)) {
                     //===> Insert the Location in the List <===//
-                    Phenix(locations_list).insert('append', `<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
+                    Phenix(locations_list).insert('append', `<li class="flexbox divider-b align-center-y ${key !== "main-menu" ? 'pdy-5' : 'pdy-10'} pds-15 pde-10 mb-0">
                         <!-- Location Title -->
                         <span class="tx-icon fas fa-list col-5 item-title">${value}</span>
     

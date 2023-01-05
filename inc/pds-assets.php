@@ -67,7 +67,7 @@ if (!function_exists('phenix_assets')) :
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
         //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawsome-5.css');
+        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawesome-5.css');
 
         //====> Google Fonts <====//
         if (get_option('pds_gfonts')) :
@@ -76,7 +76,7 @@ if (!function_exists('phenix_assets')) :
         endif;
 
         //====> Custom Fonts <====//
-        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css');
+        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/din-next-lt-arabic.css');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');

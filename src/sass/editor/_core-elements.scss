@@ -124,10 +124,10 @@
 		select {
 			padding: 0 10px;
 			background-size: 1em auto;
-			background-position: right 10px top 50%;
+			background-position: $direction-end 10px top 50%;
 		}
 	
-		/*==== Focuse Mode ====*/
+		/*==== Focused Mode ====*/
 		select:focus, input:not([type="submit"]):not([type="button"]):focus, textarea:focus {
 			box-shadow: unset;
 			border-width: 2px;

@@ -1,8 +1,8 @@
 /*==== Direction Options ====*/
-$direction: ltr;
+$direction: rtl;
 $direction-reverse: ltr;
-$direction-start: left;
-$direction-end: right;
+$direction-start: right;
+$direction-end: left;
 
 /*==== Required Modules ====*/
 @import 'assets/mixin';     //===> SASS Mixin

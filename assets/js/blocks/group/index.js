@@ -1901,13 +1901,19 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
           title = title.replace(/^\w/, function (c) {
             return c.toUpperCase();
           });
-          output.push( /*#__PURE__*/React.createElement("button", {
+          output.push( /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
             key: "".concat(name, "-").concat(prefix),
             onClick: setColor,
             title: title,
             "data-value": name,
-            className: "".concat(name.replace('color-', 'bg-'), " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(value === name ? 'px-active' : null)
-          }));
+            className: "reset-button fluid ".concat(value === name ? 'px-active' : null)
+          }, "'", /*#__PURE__*/React.createElement("span", {
+            className: "".concat(name.replace('color-', 'bg-'), " radius-circle me-10 inline-block border-1 border-solid border-alpha-10"),
+            style: {
+              width: "20px",
+              height: "20px"
+            }
+          }), " ", name)));
         } //===> Return Buttons <===//
 
 
@@ -1918,10 +1924,14 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/React.createElement("div", {
         className: "px-gb-component"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox options-list"
-      }, makeButtons(pxPallete.main, 'main'), /*#__PURE__*/React.createElement("span", {
-        className: "border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-      }), makeButtons(pxPallete.brands, 'brands')));
+        "class": "px-dropdown mb-15 px-colors-dropdown"
+      }, /*#__PURE__*/React.createElement("button", {
+        "class": "px-toggle btn small primary"
+      }, "Change Color ", /*#__PURE__*/React.createElement("i", {
+        "class": "ms-5 fas fa-angle-down"
+      })), /*#__PURE__*/React.createElement("ul", {
+        "class": "px-dropdown-list reset-list bg-white fs-14 w-min-200"
+      }, makeButtons(pxPallete.main, 'main'), makeButtons(pxPallete.brands, 'brands'))), Phenix(".px-colors-dropdown").dropdown());
     }
   }]);
 

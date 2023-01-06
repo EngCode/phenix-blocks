@@ -76,6 +76,5 @@ body.post-type-post, body.post-type-post {
 }
 
 /*==== List Items with Text/Icon ====*/
-.tx-icon .block-editor-rich-text__editable.rich-text {
-	display: inline-block;
-}
+.block-editor-rich-text__editable.rich-text {cursor: text;}
+.tx-icon .block-editor-rich-text__editable.rich-text {display: inline-block;}

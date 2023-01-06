@@ -19,6 +19,7 @@ function px_navigation_render($block_attributes, $content) {
     $mobile_mode = "data-mobile='{$props['mobile_mode']}'";
     $arrow_icon  = "data-arrow='{$props['arrow_icon']}'";
     $hover_mode  = "";
+    $nav_style   = "";
 
     //===> Direction Mode <===//
     if ($props['direction'] == 'px-vertical') {
@@ -38,7 +39,7 @@ function px_navigation_render($block_attributes, $content) {
     }
 
     //===> Start Navigation Wrapper <===//
-    echo "<{$props['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} ${arrow_icon}>";
+    echo "<{$props['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
 
     //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(

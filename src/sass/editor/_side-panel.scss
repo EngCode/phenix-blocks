@@ -13,10 +13,8 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	/*==== Sidebar Fix ====*/
 	.interface-interface-skeleton__sidebar {
-		// @extend .px-scrollbar;
-		// overflow-x: hidden!important;
-		// padding-#{$direction-end}: 15px;
-		.components-panel__body.is-opened {margin-#{$direction-end}: 5px;}
+		overflow-x: hidden!important;
+		padding-#{$direction-end}: 10px;
 	}
 
 	/*==== Radius Groups ====*/
@@ -26,7 +24,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		overflow: hidden;
 		border-radius: 5px;
 		border : 1px solid rgba(#000, 0.15);
-		/*==== Childrens ====*/
+		/*==== Children ====*/
 		> * {
 			flex-grow: 1;
 			text-align: center;

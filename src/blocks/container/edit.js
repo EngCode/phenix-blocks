@@ -3,8 +3,17 @@ import {
     PanelBody,
     TextControl,
     SelectControl,
-    ToggleControl
+    ToggleControl,
+    DropdownMenu,
 } from '@wordpress/components';
+
+import {
+    more,
+    arrowLeft,
+    arrowRight,
+    arrowUp,
+    arrowDown,
+} from '@wordpress/icons';
 
 import {
     RichText,

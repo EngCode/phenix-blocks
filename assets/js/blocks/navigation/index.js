@@ -100,7 +100,7 @@ function Edit(props) {
     path: 'pds-blocks/v2/options/pds_menu_locations'
   }).then(function (locations) {
     //===> Create New Array <===//
-    var menus_new_list = []; //===> Perpare Each Location for Select Array <===//
+    var menus_new_list = []; //===> Prepare Each Location for Select Array <===//
 
     for (var _i = 0, _Object$entries = Object.entries(locations); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
@@ -121,7 +121,7 @@ function Edit(props) {
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Panel, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Setting",
     initialOpen: true
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
@@ -160,20 +160,17 @@ function Edit(props) {
       value: 'flexbox'
     }]
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
-    label: "Dropdown on Hover ?",
-    checked: attributes.hover,
-    onChange: set_hover
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
-    key: "arrow_icon",
-    label: "Dropdown Icon",
-    value: attributes.arrow_icon,
-    onChange: set_arrow_icon
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
     help: "this will Hide the Menu in Mobile!",
     label: "Responsive Menu",
     checked: attributes.responsive,
     onChange: set_responsive
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Style Options",
+    initialOpen: false
+  }), attributes.responsive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Responsive Options",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
     key: "mobile_mode",
     label: "Mobile Mode",
     value: attributes.mobile_mode,
@@ -200,7 +197,19 @@ function Edit(props) {
       label: 'Custom',
       value: 'custom'
     }]
-  }))), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
+  }))) : "", /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+    title: "Dropdown Options",
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+    key: "arrow_icon",
+    label: "Dropdown Icon",
+    value: attributes.arrow_icon,
+    onChange: set_arrow_icon
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    label: "Dropdown on Hover ?",
+    checked: attributes.hover,
+    onChange: set_hover
+  })))), /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
     block: "phenix/navigation",
     attributes: attributes
   })));

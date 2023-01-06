@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Navigation 
  * ===> 02 - CSS Options
  * ===> 03 - Menu Items
@@ -99,7 +99,7 @@
         margin-#{$direction-start}: 8px;
     }
 
-    /*==== Submenu Perpare ====*/
+    /*==== Submenu Prepare ====*/
     @include large() {
         &[data-hover] {
             .submenu, .megamenu {

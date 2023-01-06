@@ -13,9 +13,9 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import ColumnSize from '../px-controls/column-size';
-import PhenixPadding from '../px-controls/padding';
-import PhenixMargin from '../px-controls/margin';
+import ColumnSize from '../px-controls/grid/column-size';
+import PhenixPadding from '../px-controls/elements/padding';
+import PhenixMargin from '../px-controls/elements/margin';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

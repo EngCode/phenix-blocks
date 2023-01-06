@@ -13,10 +13,10 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/flex-alignment';
-import EqualColumns from '../px-controls/equal-columns';
-import PhenixPadding from '../px-controls/padding';
-import PhenixMargin from '../px-controls/margin';
+import FlexAlignment from '../px-controls/grid/flex-alignment';
+import EqualColumns from '../px-controls/grid/equal-columns';
+import PhenixPadding from '../px-controls/elements/padding';
+import PhenixMargin from '../px-controls/elements/margin';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

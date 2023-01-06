@@ -16,9 +16,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _px_controls_column_size__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../px-controls/column-size */ "./src/blocks/px-controls/column-size.js");
-/* harmony import */ var _px_controls_padding__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/padding */ "./src/blocks/px-controls/padding.js");
-/* harmony import */ var _px_controls_margin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/margin */ "./src/blocks/px-controls/margin.js");
+/* harmony import */ var _px_controls_grid_column_size__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../px-controls/grid/column-size */ "./src/blocks/px-controls/grid/column-size.js");
+/* harmony import */ var _px_controls_elements_padding__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/elements/padding */ "./src/blocks/px-controls/elements/padding.js");
+/* harmony import */ var _px_controls_elements_margin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/elements/margin */ "./src/blocks/px-controls/elements/margin.js");
 //====> WP Modules <====//
 
  //====> Phenix Modules <====//
@@ -91,7 +91,7 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: "Column Size",
     initialOpen: true
-  }, /*#__PURE__*/React.createElement(_px_controls_column_size__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_grid_column_size__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: "flex-align",
     value: attributes.size,
     onChange: set_size
@@ -141,13 +141,13 @@ function Edit(_ref) {
     className: "options-list"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flexbox padding-size"
-  }, /*#__PURE__*/React.createElement(_px_controls_padding__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_elements_padding__WEBPACK_IMPORTED_MODULE_3__["default"], {
     key: "px-spacing_pd",
     onChange: set_spacing_pd,
     value: attributes.spacing_pd
   })), /*#__PURE__*/React.createElement("div", {
     className: "flexbox margin-size hidden"
-  }, /*#__PURE__*/React.createElement(_px_controls_margin__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_elements_margin__WEBPACK_IMPORTED_MODULE_4__["default"], {
     key: "px-spacing_mg",
     onChange: set_spacing_mg,
     value: attributes.spacing_mg
@@ -160,230 +160,10 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/column-size.js":
-/*!***********************************************!*\
-  !*** ./src/blocks/px-controls/column-size.js ***!
-  \***********************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ ColumnSize; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
-*/
-//===> WordPress Modules <===//
-
- //===> Phenix Background <===//
-
-var ColumnSize = /*#__PURE__*/function (_Component) {
-  _inherits(ColumnSize, _Component);
-
-  var _super = _createSuper(ColumnSize);
-
-  function ColumnSize() {
-    _classCallCheck(this, ColumnSize);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(ColumnSize, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          value = _this$props.value,
-          onChange = _this$props.onChange; //===> .Default. <===//
-
-      var current = value,
-          size_xs = 0,
-          size_md = 0,
-          size_lg = 0,
-          size_xl = 0; //===> Convert Value to Array <===//
-
-      var valueArray = value.split(' '); //===> Get Default Values <===//
-
-      if (valueArray) valueArray.forEach(function (item) {
-        if (item.includes('-md')) {
-          size_md = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.includes('-lg')) {
-          size_lg = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.includes('-xl')) {
-          size_xl = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.length > 0) {
-          if (item.includes('-auto')) size_xs = 13;else if (item.includes('-adaptive')) size_xs = 14;else size_xs = parseInt(item.replace(/\D+/g, ''));
-        }
-      }); //===> New Values Handler <===//
-
-      var set_value = function set_value(theValue, type, current_size) {
-        //===> Update Columns <===//
-        if (current.includes(type)) {
-          //===> if the Value is valid update it <===//
-          if (theValue > 0) {
-            //===> Auto Size <===//
-            if (current_size == 13) {
-              if (theValue == 14) current = current.replace("".concat(type, "-auto"), "".concat(type, "-adaptive"));else if (theValue < 13) current = current.replace("".concat(type, "-auto"), "".concat(type, "-").concat(theValue));
-            } //===> Adaptive Size <===//
-            else if (current_size == 14) {
-              if (theValue == 13) current = current.replace("".concat(type, "-adaptive"), "".concat(type, "-auto"));else if (theValue < 13) current = current.replace("".concat(type, "-adaptive"), "".concat(type, "-").concat(theValue));
-            } //===> Other Size <===//
-            else {
-              //===> Set Auto <===//
-              if (theValue == 13) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-auto")); //===> Set Adaptive <===//
-              else if (theValue == 14) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-adaptive")); //===> Set Normal <===//
-              else if (theValue < 13) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-").concat(theValue));
-            }
-          } //===> if not delete it <===//
-          else {
-            if (current_size == 13) current = current.replace("".concat(type, "-auto"), "");else if (current_size == 14) current = current.replace("".concat(type, "-adaptive"), "");else if (current_size < 13) current = current.replace("".concat(type, "-").concat(current_size), "");
-          }
-        } //===> Set new Columns <===//
-        else if (theValue > 0) {
-          //===> Auto Size <===//
-          if (theValue == 13) current += " ".concat(type, "-auto"); //===> Adaptive Size <===//
-          else if (theValue == 14) current += " ".concat(type, "-adaptive"); //===> New Size <===//
-          else current += " ".concat(type, "-").concat(theValue);
-        }
-      }; //===> Set Columns-{Small} <===//
-
-
-      var set_size = function set_size(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'col', size_xs); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Set Columns-{Medium} <===//
-
-
-      var set_size_md = function set_size_md(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'col-md', size_md); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Set Columns-{Large} <===//
-
-
-      var set_size_lg = function set_size_lg(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'col-lg', size_lg); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Set Columns-{xLarge} <===//
-
-
-      var set_size_xl = function set_size_xl(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'col-xl', size_xl); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Component Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("p", {
-        className: "mb-10 fs-12"
-      }, "select the size of the \"column\" in each screen and keep in mind the \"13\" is for \"auto\" and \"14\" is for \"Adaptive\" column size."), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-16 me-10 fa-mobile",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-size",
-        min: 0,
-        max: 14,
-        value: size_xs,
-        onChange: set_size
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-16 me-10 fa-tablet",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-size",
-        min: 0,
-        max: 14,
-        value: size_md,
-        onChange: set_size_md
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-14 me-10 fa-laptop",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-size",
-        min: 0,
-        max: 14,
-        value: size_lg,
-        onChange: set_size_lg
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-14 me-10 fa-desktop",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-size",
-        min: 0,
-        max: 14,
-        value: size_xl,
-        onChange: set_size_xl
-      })));
-    }
-  }]);
-
-  return ColumnSize;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/margin.js":
-/*!******************************************!*\
-  !*** ./src/blocks/px-controls/margin.js ***!
-  \******************************************/
+/***/ "./src/blocks/px-controls/elements/margin.js":
+/*!***************************************************!*\
+  !*** ./src/blocks/px-controls/elements/margin.js ***!
+  \***************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -784,10 +564,10 @@ var PhenixMargin = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/padding.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/px-controls/padding.js ***!
-  \*******************************************/
+/***/ "./src/blocks/px-controls/elements/padding.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/px-controls/elements/padding.js ***!
+  \****************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1191,6 +971,226 @@ var PhenixPadding = /*#__PURE__*/function (_Component) {
   }]);
 
   return PhenixPadding;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/grid/column-size.js":
+/*!****************************************************!*\
+  !*** ./src/blocks/px-controls/grid/column-size.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ColumnSize; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+ //===> Phenix Background <===//
+
+var ColumnSize = /*#__PURE__*/function (_Component) {
+  _inherits(ColumnSize, _Component);
+
+  var _super = _createSuper(ColumnSize);
+
+  function ColumnSize() {
+    _classCallCheck(this, ColumnSize);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(ColumnSize, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          value = _this$props.value,
+          onChange = _this$props.onChange; //===> .Default. <===//
+
+      var current = value,
+          size_xs = 0,
+          size_md = 0,
+          size_lg = 0,
+          size_xl = 0; //===> Convert Value to Array <===//
+
+      var valueArray = value.split(' '); //===> Get Default Values <===//
+
+      if (valueArray) valueArray.forEach(function (item) {
+        if (item.includes('-md')) {
+          size_md = parseInt(item.replace(/\D+/g, ''));
+        } else if (item.includes('-lg')) {
+          size_lg = parseInt(item.replace(/\D+/g, ''));
+        } else if (item.includes('-xl')) {
+          size_xl = parseInt(item.replace(/\D+/g, ''));
+        } else if (item.length > 0) {
+          if (item.includes('-auto')) size_xs = 13;else if (item.includes('-adaptive')) size_xs = 14;else size_xs = parseInt(item.replace(/\D+/g, ''));
+        }
+      }); //===> New Values Handler <===//
+
+      var set_value = function set_value(theValue, type, current_size) {
+        //===> Update Columns <===//
+        if (current.includes(type)) {
+          //===> if the Value is valid update it <===//
+          if (theValue > 0) {
+            //===> Auto Size <===//
+            if (current_size == 13) {
+              if (theValue == 14) current = current.replace("".concat(type, "-auto"), "".concat(type, "-adaptive"));else if (theValue < 13) current = current.replace("".concat(type, "-auto"), "".concat(type, "-").concat(theValue));
+            } //===> Adaptive Size <===//
+            else if (current_size == 14) {
+              if (theValue == 13) current = current.replace("".concat(type, "-adaptive"), "".concat(type, "-auto"));else if (theValue < 13) current = current.replace("".concat(type, "-adaptive"), "".concat(type, "-").concat(theValue));
+            } //===> Other Size <===//
+            else {
+              //===> Set Auto <===//
+              if (theValue == 13) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-auto")); //===> Set Adaptive <===//
+              else if (theValue == 14) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-adaptive")); //===> Set Normal <===//
+              else if (theValue < 13) current = current.replace("".concat(type, "-").concat(current_size), "".concat(type, "-").concat(theValue));
+            }
+          } //===> if not delete it <===//
+          else {
+            if (current_size == 13) current = current.replace("".concat(type, "-auto"), "");else if (current_size == 14) current = current.replace("".concat(type, "-adaptive"), "");else if (current_size < 13) current = current.replace("".concat(type, "-").concat(current_size), "");
+          }
+        } //===> Set new Columns <===//
+        else if (theValue > 0) {
+          //===> Auto Size <===//
+          if (theValue == 13) current += " ".concat(type, "-auto"); //===> Adaptive Size <===//
+          else if (theValue == 14) current += " ".concat(type, "-adaptive"); //===> New Size <===//
+          else current += " ".concat(type, "-").concat(theValue);
+        }
+      }; //===> Set Columns-{Small} <===//
+
+
+      var set_size = function set_size(cols) {
+        //===> Set New Columns <===//
+        set_value(cols, 'col', size_xs); //===> Return Options <===//
+
+        return onChange(current);
+      }; //===> Set Columns-{Medium} <===//
+
+
+      var set_size_md = function set_size_md(cols) {
+        //===> Set New Columns <===//
+        set_value(cols, 'col-md', size_md); //===> Return Options <===//
+
+        return onChange(current);
+      }; //===> Set Columns-{Large} <===//
+
+
+      var set_size_lg = function set_size_lg(cols) {
+        //===> Set New Columns <===//
+        set_value(cols, 'col-lg', size_lg); //===> Return Options <===//
+
+        return onChange(current);
+      }; //===> Set Columns-{xLarge} <===//
+
+
+      var set_size_xl = function set_size_xl(cols) {
+        //===> Set New Columns <===//
+        set_value(cols, 'col-xl', size_xl); //===> Return Options <===//
+
+        return onChange(current);
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "mb-10 fs-12"
+      }, "select the size of the \"column\" in each screen and keep in mind the \"13\" is for \"auto\" and \"14\" is for \"Adaptive\" column size."), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-center-y mb-20"
+      }, /*#__PURE__*/React.createElement("i", {
+        className: "far fs-16 me-10 fa-mobile",
+        style: {
+          marginTop: "3px",
+          width: "25px"
+        }
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+        key: "mobile-size",
+        min: 0,
+        max: 14,
+        value: size_xs,
+        onChange: set_size
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-center-y mb-20"
+      }, /*#__PURE__*/React.createElement("i", {
+        className: "far fs-16 me-10 fa-tablet",
+        style: {
+          marginTop: "3px",
+          width: "25px"
+        }
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+        key: "mobile-size",
+        min: 0,
+        max: 14,
+        value: size_md,
+        onChange: set_size_md
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-center-y mb-20"
+      }, /*#__PURE__*/React.createElement("i", {
+        className: "far fs-14 me-10 fa-laptop",
+        style: {
+          marginTop: "3px",
+          width: "25px"
+        }
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+        key: "mobile-size",
+        min: 0,
+        max: 14,
+        value: size_lg,
+        onChange: set_size_lg
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-center-y"
+      }, /*#__PURE__*/React.createElement("i", {
+        className: "far fs-14 me-10 fa-desktop",
+        style: {
+          marginTop: "3px",
+          width: "25px"
+        }
+      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+        key: "mobile-size",
+        min: 0,
+        max: 14,
+        value: size_xl,
+        onChange: set_size_xl
+      })));
+    }
+  }]);
+
+  return ColumnSize;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 

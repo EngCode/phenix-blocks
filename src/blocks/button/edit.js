@@ -16,11 +16,11 @@ import {
     __experimentalLinkControlSearchInput as LinkControlSearchInput
 } from '@wordpress/block-editor';
 
-import PhenixBackground from '../px-controls/px-background';
-import PhenixColor from '../px-controls/px-colors';
+import PhenixBackground from '../px-controls/elements/px-background';
+import PhenixColor from '../px-controls/typography/px-colors';
 import MediaUploader from '../px-controls/media-uploader';
-import PhenixPadding from '../px-controls/padding';
-import PhenixMargin from '../px-controls/margin';
+import PhenixPadding from '../px-controls/elements/padding';
+import PhenixMargin from '../px-controls/elements/margin';
 
 import { useState, useEffect } from '@wordpress/element';
 

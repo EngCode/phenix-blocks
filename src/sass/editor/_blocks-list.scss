@@ -74,3 +74,8 @@ body.post-type-post, body.post-type-post {
 		&.block-editor-block-list__layout > * {margin-bottom: 1rem;}
 	}
 }
+
+/*==== List Items with Text/Icon ====*/
+.tx-icon .block-editor-rich-text__editable.rich-text {
+	display: inline-block;
+}

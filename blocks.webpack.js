@@ -2,7 +2,7 @@
 const path = require('path');
 
 module.exports = {
-    mode: "production",
+    mode: "development",
     devtool: "source-map",
     entry: path.join(__dirname, './src/blocks/blocks.js'),
     output: {

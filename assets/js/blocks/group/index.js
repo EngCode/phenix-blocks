@@ -1877,7 +1877,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
       var pxPallete = {
         main: ["color-inherit", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
         brands: ["color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker"]
-      }; //===> Set Background <===//
+      }; //===> Set Color <===//
 
       var setColor = function setColor(clicked) {
         //===> Get Value <===//
@@ -1907,7 +1907,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
             title: title,
             "data-value": name,
             className: "reset-button fluid ".concat(value === name ? 'px-active' : null)
-          }, "'", /*#__PURE__*/React.createElement("span", {
+          }, /*#__PURE__*/React.createElement("span", {
             className: "".concat(name.replace('color-', 'bg-'), " radius-circle me-10 inline-block border-1 border-solid border-alpha-10"),
             style: {
               width: "20px",
@@ -1931,7 +1931,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
         "class": "ms-5 fas fa-angle-down"
       })), /*#__PURE__*/React.createElement("ul", {
         "class": "px-dropdown-list reset-list bg-white fs-14 w-min-200"
-      }, makeButtons(pxPallete.main, 'main'), makeButtons(pxPallete.brands, 'brands'))), Phenix(".px-colors-dropdown").dropdown());
+      }, makeButtons(pxPallete.main, 'main'), makeButtons(pxPallete.brands, 'brands'))));
     }
   }]);
 

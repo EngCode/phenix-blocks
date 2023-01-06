@@ -76,11 +76,7 @@ export default class PhenixColors extends Component {
                     return c.toUpperCase();
                 });
 
-                output.push(<li>
-                    <button key={`${name}-${prefix}`} onClick={setColor} title={title} data-value={name} className={`reset-button fluid ${value === name ? 'px-active' : null}`}>'
-                        <span className={`${name.replace('color-','bg-')} radius-circle me-10 inline-block border-1 border-solid border-alpha-10`} style={{width:"20px", height: "20px"}}></span> {name}
-                    </button>
-                 </li>);
+                output.push(<button key={`${name}-${prefix}`} onClick={setColor} title={title} data-value={name} className={`${name.replace('color-','bg-')} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${value === name ? 'px-active' : null}`}></button>);
             }
 
             //===> Return Buttons <===//
@@ -90,21 +86,14 @@ export default class PhenixColors extends Component {
         //===> Component Output <===//
         return (
             <div className='px-gb-component'>
-                {/*===> new Colors Component */}
-                <div class="px-dropdown mb-15 px-colors-dropdown">
-                    {/* <!-- Toggle Button --> */}
-                    <button class="px-toggle btn small primary">
-                        Change Color <i class="ms-5 fas fa-angle-down"></i>
-                    </button>
-                    {/* <!-- Dropdown Target --> */}
-                    <ul class="px-dropdown-list reset-list bg-white fs-14 w-min-200">
-                        {makeButtons(pxPallete.main, 'main')}
-                        {/* Brands */}
-                        {makeButtons(pxPallete.brands, 'brands')}
-                    </ul>
-                    {/* <!-- // Dropdown Target --> */}
+                {/*===> Background <===*/}
+                <div className='flexbox options-list'>
+                    {makeButtons(pxPallete.main, 'main')}
+                    {/* Divider */}
+                    <span className='border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+                    {/* Brands */}
+                    {makeButtons(pxPallete.brands, 'brands')}
                 </div>
-                {Phenix(".px-colors-dropdown").dropdown()}
                 {/*===> End Component <===*/}
             </div>
         )

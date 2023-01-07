@@ -4,10 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "..\\..\\themes\\phenix-wp"
+			"path": "../../../../phenix-sys"
 		},
 		{
-			"path": "../../../../phenix-sys"
+			"path": "../../themes"
 		}
 	],
 	"settings": {

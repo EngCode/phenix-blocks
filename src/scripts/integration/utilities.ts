@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Phenix Utilities
  * ===> 03 - Form Utilities
@@ -106,13 +106,7 @@ PhenixElements.prototype.utilities = function (options?:{
             if (text.length > max) element.textContent = text.slice(0, max);
         });
 
-        //====> icons List <====//
-        Phenix('.icons-list').forEach((list:any) => {
-            let classes = list.getAttribute('data-icon').split(" ");
-            list.querySelectorAll('li').forEach(item => item.classList.add(...classes));
-        });
-
-        //====> Images Demstions <====//
+        //====> Images Sizes <====//
         Phenix('img').forEach((img:any) => {
             //===> Get Image Data <===//
             let img_width = img.getAttribute('width') || img.style.width,

@@ -1,5 +1,5 @@
-/**======> Referance By Comment <======
- * ===> 01 - Headine Sizes
+/**======> Reference By Comment <======
+ * ===> 01 - Headline Sizes
  * ===> 02 - Paragraph Sizes
  * ===> 03 - Text Utilities
  * ===> 04 - Text Alignment
@@ -11,7 +11,7 @@
 .primary-font {font-family: var(--primary-font);}
 .secondary-font {font-family: var(--secondary-font);}
 
-/*==== Headine Sizes ====*/
+/*==== Headline Sizes ====*/
 h1 {font-size: REM(32);}
 h2 {font-size: REM(28);}
 h3 {font-size: REM(25);}
@@ -21,7 +21,7 @@ h6 {font-size: REM(17);}
 
 /*==== Font Sizes ====*/
 @mixin make-font-sizes($infix:'') {
-    /*==== Headine Sizes ====*/
+    /*==== Headline Sizes ====*/
     .h1#{$infix} {font-size: REM(32);}
     .h2#{$infix} {font-size: REM(28);}
     .h3#{$infix} {font-size: REM(25);}

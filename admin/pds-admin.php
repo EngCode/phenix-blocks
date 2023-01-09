@@ -107,10 +107,11 @@
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
     include(dirname(__FILE__) . '/modules/api-creator.php');
+    include(dirname(__FILE__) . '/modules/cpt-creator.php');
 
     //====> Create Options <====//
     function create_pds_options() {
-        //===> Grap Options List <===//
+        //===> Grape Options List <===//
         global $pds_options_list;
         //===> Register Options <===//
         foreach ($pds_options_list as $option) {

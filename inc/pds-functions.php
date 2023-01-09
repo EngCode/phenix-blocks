@@ -18,53 +18,6 @@
 
 defined('ABSPATH') || exit;
 
-//====> Posts Type [Creation] <====//
-function pds_cpt_create ($options) {
-    //==== Options ====//
-    $name = $options["name"];
-    $label = $options["label"];
-    $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
-    $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
-    $template = isset($options['menu_icon']) ? $options["template"] : array();
-    $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
-    $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 6;
-    $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array();
-
-    //==== CPT Labels ====//
-    $labels = array(
-        'name'               => px__($label),
-        'menu_name'          => px__($label),
-        'add_new'            => px__( 'Add New '.$singular ),
-        'edit_item'          => px__( 'Edit '.$singular ),
-        'new_item'           => px__( 'New '.$singular ),
-        'all_items'          => px__( 'All '.$label_singular ),
-        'view_item'          => px__( 'View '.$singular ),
-        'not_found'          => px__( 'No '.$label_singular.' found' ),
-        'search_items'       => px__( 'Search '.$label ),
-        'add_new_item'       => px__( 'Add New '.$singular ),
-        'singular_name'      => px__($singular),
-        'not_found_in_trash' => px__( 'No '.$label_singular.' found in the Trash' ), 
-    );
-
-    //==== CPT Options ====//
-    $args = array(
-        'labels'         => $labels,
-        'name'          => $name,
-        'singular_name' => $singular,
-        'menu_position' => $menu_position,
-        'menu_icon'     => 'dashicons-'.$menu_icon,
-        'public'        => true,
-        'has_archive'   => true,
-        'show_in_rest'  => true,
-        'hierarchical'  => true,
-        'template'      => $template,
-        'taxonomies'    => $taxonomies,
-        'supports'      => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
-    );
-
-    register_post_type($name, $args);
-}
-
 //====> Delete "Archive" Prefix <====//
 if (!function_exists('refactor_archive_title')) :
 	/**

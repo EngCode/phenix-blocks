@@ -11,7 +11,7 @@ function px_head_render($block_attributes, $content) {
     $markup = ''; ob_start();
 ?>
 <!-- Page Title -->
-<h1 class="fs-16 fs-md-20 h3-lg color-inherit lineheight-100 mb-5 tx-uppercase weight-medium">
+<h1 class="fs-16 fs-md-20 h4-lg color-inherit lineheight-100 mb-10 tx-uppercase weight-medium">
     <?php
         if (is_archive() || is_category()) {
             echo get_the_archive_title();

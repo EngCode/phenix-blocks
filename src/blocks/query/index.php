@@ -19,59 +19,36 @@ function px_query_render($block_attributes, $content) {
     //===> Get Current Global Query <===//
     global $wp_query;
 
-    //===> Custom Query <===//
-    if ($current['query_type'] === 'custom') {
-        /*===> Get Current Page <===*/
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    /*===> Get Current Page <===*/
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-        //===> Query Configration <===//
-        $query_config = array(
-            'paged' => $paged,
-            'order' => $current['order'],
-            'posts_per_page' => $current['per_page'],
-            'post_type' => $current['post_type'],
-        );
+    //===> Query Configuration <===//
+    $query_config = array(
+        'paged' => $paged,
+        'order' => $current['order'],
+        'post_type' => $current['post_type'],
+        'posts_per_page' => $current['per_page'],
+    );
 
-        //===> Create New Query <===//
-        $the_query = new WP_Query($query_config);
+    //===> Create New Query <===//
+    $the_query = new WP_Query($query_config);
 
-        //==== Start Query =====//
-        if ($the_query->have_posts() ) :
-            //==== Loop Start ====//
-            while ($the_query->have_posts()):
-                //=== Block  Design ===//
-                get_template_part('template-parts/blog-card', null, $the_query->the_post()); 
-            endwhile;
-            //=== Pagination ===//
-            if ($current['pagination'] && function_exists("pagination")) {
-                pagination($the_query); 
-            };
-            //=== Reset Query Data ===//
-            wp_reset_postdata();
-        endif;
-        //==== End Query =====//
-    } else {
-        //==== Start Query =====//
-        if (have_posts()) :
-            echo '<div class="row">';
-            //==== Loop Start ====//
-            while (have_posts()) : 
-                //=== Block  Design ===//
-                get_template_part('template-parts/blog-card',null, the_post());
-            endwhile;
-            //==== End Loop =====//
-            echo '</div>';
+    //==== Start Query =====//
+    if ($the_query->have_posts() ) :
+        //==== Loop Start ====//
+        while ($the_query->have_posts()):
+            //=== Block  Design ===//
+            get_template_part($current["template_part"], null, $the_query->the_post()); 
+        endwhile;
+        //=== Pagination ===//
+        if ($current['pagination'] && function_exists("pagination")) {
+            pagination($the_query); 
+        };
+        //=== Reset Query Data ===//
+        wp_reset_postdata();
+    endif;
+    //==== End Query =====//
 
-            //=== Pagination ===//
-            if ($current['pagination'] && function_exists("pagination")) {
-                pagination($wp_query);
-            };
-            //=== Reset Data ===//
-            wp_reset_postdata();
-        endif;
-        //==== End Query =====//
-    }
-    
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();
     $markup  .= $blockOutput;

@@ -27,8 +27,8 @@ if (!function_exists('pds_cpt_create')) :
     
             //==== CPT Labels ====//
             $labels = array(
-                'name'               => px__($label),
-                'menu_name'          => px__($label),
+                'name'               => $label,
+                'menu_name'          => $label,
                 'add_new'            => px__('Add New '.$singular ),
                 'edit_item'          => px__('Edit '.$singular ),
                 'new_item'           => px__('New '.$singular ),

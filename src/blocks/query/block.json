@@ -9,14 +9,14 @@
 		"html": false
 	},
     "attributes" : {
-        "query_type" : {
-            "type": "string",
-            "default": "native"
-        },
-
         "post_type" : {
             "type": "string",
             "default": "post"
+        },
+
+        "template_part" : {
+            "type": "string",
+            "default": "template-parts/pds/placeholder"
         },
 
         "per_page" : {
@@ -37,7 +37,12 @@
         "preview" : {
 			"type": "boolean",
 			"default": false
-		}
+		},
+
+        "types_list" : {
+            "type": "array",
+			"default" : []
+        }
 	},
 	"example": {
         "attributes": {

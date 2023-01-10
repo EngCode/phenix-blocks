@@ -72,6 +72,20 @@
 	background-repeat: no-repeat;
 }
 
+/*==== Counter Input ====*/
+.px-counter-input {
+	/*==== Reset Input ====*/
+	input[type="number"] {
+		border-color: rgba(#000, 0.1)!important;
+		-moz-appearance: textfield!important;
+		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+		-webkit-appearance: none!important;
+		   -moz-appearance: none!important;
+				appearance: none!important;
+		}
+	}
+}
+
 /*==== Align Icons ====*/
 .pxi-align-x-start   {background-image: url('../img/blocks/align-x-start.svg');}
 .pxi-align-x-center  {background-image: url('../img/blocks/align-x-center.svg');}

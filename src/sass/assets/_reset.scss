@@ -253,3 +253,9 @@ dl {
     height: inherit;
     font-size: inherit;
 }
+
+.reset-appearance {
+    -webkit-appearance: none!important;
+       -moz-appearance: none!important;
+            appearance: none!important;
+}

@@ -3,7 +3,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	/*==== Layers List ====*/
 	.edit-post-editor__list-view-panel, .edit-site-editor__list-view-panel {min-width: 220px;}
 
-	/*==== Inspector Widgets Title ====*/
+	/*==== Panels Title ====*/
 	.components-panel__body.is-opened .components-panel__body-title {
 		margin-bottom: 15px;
 		border-bottom: 1px solid rgba(#000, 0.10);
@@ -11,7 +11,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	.block-editor-block-inspector__advanced {border-bottom: 1px solid rgba(#000, 0.10);}
 
-	/*==== Sidebar Fix ====*/
+	/*==== Sidebar [Scrollbar] Fix ====*/
 	.interface-interface-skeleton__sidebar {
 		overflow-x: hidden!important;
 		padding-#{$direction-end}: 10px;
@@ -61,13 +61,55 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	}
 
 	/*==== Sidebar Fields ====*/
-	.components-base-control__field {
-		margin: 0;
-		margin-bottom: 10px;
-		.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
+	.components-base-control {
+		/*==== field wrapper ====*/
+		.components-base-control__field {
+			margin: 0;
+			margin-bottom: 10px;
+			.components-input-control__backdrop {border-color: rgba(#000, 0.1)!important;}
+		}
+	
+		/*==== Control Wrapper ====*/
+		.components-input-control__container {
+			flex: none!important;
+			border-radius: 5px!important;
+		}
+
+		/*==== field label ====*/
+		.components-base-control__label, .components-input-control__label, label {
+			font-weight: 600!important;
+			font-size: 12px!important;
+			font-family: var(--secondary-font)!important;
+		}
+
+		/*==== Inputs & Selects ====*/
+		.components-select-control__input, .components-text-control__input {
+			height: 36px!important;
+			font-size: 12px!important;
+			padding: 0 12px!important;
+			margin-bottom: 0!important;
+			border-radius: 5px!important;
+			font-family: var(--secondary-font);
+		}
+
+		.components-text-control__input, input.form-control {border: 1px solid rgba(#000, 0.15)!important;}
+
+		/*==== Select Icon ====*/
+		.components-input-control-suffix-wrapper {
+			height: 100%;
+			line-height: 30px;
+			text-align: center;
+			background-color: #fff;
+			padding-#{$direction-end}: 12px;
+			padding-#{$direction-start}: 8px;
+			border-#{$direction-start}: 1px solid rgba(0,0,0, 0.15);
+			> div {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
 	}
 
-	.components-input-control__container {flex: none!important;}
 	.components-flex {height: auto!important;}
 
 	/*==== Blocks Preview ====*/

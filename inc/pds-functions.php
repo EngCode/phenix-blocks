@@ -66,8 +66,8 @@ if (!function_exists('pagination')) :
 			'format'       => '?page=%#%',
 			'total'        => $query->max_num_pages,
 			'current'      => max(1, get_query_var('paged')),
-			'prev_text'    => sprintf('<i class="fas fa-angle-left"></i>%1$s', px__( '' )),
-			'next_text'    => sprintf('%1$s<i class="fas fa-angle-right"></i>', px__( '' )),
+			'prev_text'    => sprintf('<i class="fas fa-angle-left"></i>%1$s', ""),
+			'next_text'    => sprintf('%1$s<i class="fas fa-angle-right"></i>', ""),
 			'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
 		));
 	

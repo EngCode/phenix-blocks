@@ -47,6 +47,22 @@ if (!function_exists('px__')) {
 	}
 }
 
+
+//====> Languages Path <====//
+if (!function_exists('phenix_textdomain')) {
+	/**
+	 * Multilangauge Plugins Textdomain
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function phenix_textdomain() {
+		load_plugin_textdomain('phenix', false, dirname(plugin_basename(__FILE__)) . '/languages'); 
+	}
+	
+	add_action( 'init', 'phenix_textdomain' );
+}
+
 //=====> Phenix Blocks Admin <=====//
 include(dirname(__FILE__) . '/admin/pds-admin.php');
 

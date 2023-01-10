@@ -51,10 +51,10 @@ export default class FlexAlignment extends Component {
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/*===> Responsive Devices <===*/}
                 <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens"  data-options="small"></button>
-                    <button key="tablet" onClick={changeTab} className={`btn square tiny light col far fa-tablet`}   title="Tablet Screens"  data-options="medium"></button>
-                    <button key="laptop" onClick={changeTab} className={`btn square tiny light col far fa-laptop`}   title="Desktop Screens" data-options="large"></button>
-                    <button key="desktop" onClick={changeTab} className={`btn square tiny light col far fa-desktop`}  title="xLarge Screens"  data-options="xlarge"></button>
+                    <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens" data-options="small"></button>
+                    <button key="tablet" onClick={changeTab} className={`btn square tiny light col far fa-tablet`} title="Tablet Screens" data-options="medium"></button>
+                    <button key="laptop" onClick={changeTab} className={`btn square tiny light col far fa-laptop`} title="Desktop Screens" data-options="large"></button>
+                    <button key="desktop" onClick={changeTab} className={`btn square tiny light col far fa-desktop`} title="xLarge Screens" data-options="xlarge"></button>
                 </div>
                 {/*===> Options Tabs <===*/}
                 <div className='options-list'>

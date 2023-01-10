@@ -48,6 +48,7 @@
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),
         array('pds_gfonts', 'pds-admin'),
+        array('pds_template_parts', 'pds-admin'),
 
         //===> Optimization <===//
         array('head_cleaner', 'pds-admin'),

@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Phenix Blocks\n"
+"POT-Creation-Date: 2023-01-10 13:30+0200\n"
+"PO-Revision-Date: 2023-01-10 13:34+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: pds-blocks.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2;px__\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: _tools/post-types.php:30
+msgid "Products"
+msgstr "المنتجات"
+
+#: _tools/post-types.php:59
+msgid "Cultures"
+msgstr ""
+
+#: _tools/post-types.php:80
+msgid "Products Lines"
+msgstr "خطوط الإنتاج"
+
+#: _tools/post-types.php:101
+msgid "Categories"
+msgstr "الاقسام"
+
+#: _tools/post-types.php:122
+msgid "Home Slider"
+msgstr "السلايدر الرئيسي"
+
+#: _tools/post-types.php:150
+msgid "Products Sub-List"
+msgstr "منتجات فرعية"
+
+#: _tools/search.php:21
+msgid "Search Resault for "
+msgstr "نتائج البحث عن "
+
+#: _tools/search.php:31
+msgid "No results found for "
+msgstr "لا يوجد نتائج لــ "
+
+#: _tools/search.php:31
+msgid "Try Another Keywords "
+msgstr "جرب كلمات مفتاحية اخري "
+
+#: admin/modules/cpt-creator.php:32 admin/modules/cpt-creator.php:39
+msgid "Add New "
+msgstr "اضف جديد "
+
+#: admin/modules/cpt-creator.php:33
+msgid "Edit "
+msgstr "تعديل "
+
+#: admin/modules/cpt-creator.php:34
+msgid "New "
+msgstr "جديد "
+
+#: admin/modules/cpt-creator.php:35
+msgid "All "
+msgstr "الكل "
+
+#: admin/modules/cpt-creator.php:36
+msgid "View "
+msgstr "عرض "
+
+#: admin/modules/cpt-creator.php:37 admin/modules/cpt-creator.php:41
+msgid "No "
+msgstr "لا "
+
+#: admin/modules/cpt-creator.php:38
+msgid "Search "
+msgstr "بحث "
+
+#: admin/modules/page-layout.php:44
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: admin/panels/locations.php:11
+msgid "Add New Location"
+msgstr "إضافة موقع جديد"
+
+#: admin/panels/locations.php:12
+msgid "you can add new menu locations from below form."
+msgstr "يمكنك إضافة مواقع جديدة للقائمة من خلال النموذج أدناه."
+
+#: admin/panels/locations.php:15 admin/panels/locations.php:37
+msgid "Location Title"
+msgstr "عنوان الموقع"
+
+#: admin/panels/locations.php:19
+msgid "location-name"
+msgstr "اسم الموقع"
+
+#: admin/panels/locations.php:22
+msgid "Add Location"
+msgstr "إضافة الموقع"
+
+#: admin/panels/locations.php:30
+msgid "Menu Locations"
+msgstr "مواقع القائمة"
+
+#: admin/panels/locations.php:31
+msgid "in here you can manage the menu locations created by phenix-blocks."
+msgstr ""
+"من هنا يمكنك إدارة وتعديل مواقع القائمة التي تم انشائها بواسطة فينكس بلوكز."
+
+#: admin/panels/locations.php:38
+msgid "Location Name"
+msgstr "اسم الموقع"
+
+#: src/blocks/patterns.php:28
+msgid "Blog Details"
+msgstr "محتوي تدوينة"
+
+#: src/blocks/patterns.php:30
+msgid "Blog Details Block Pattern to use in the Blog Post Type"
+msgstr "قالب لنموذج محتوي تدوينه يمكن استخدامة كتدوينه افتراضية عند الانشاء"
+
+#. Plugin Name of the plugin/theme
+msgid "Phenix Blocks"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://phenixthemes.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based "
+"themes designed for phenix themes."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Abdullah.Ramadan"
+msgstr ""

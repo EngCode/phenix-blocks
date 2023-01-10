@@ -147,8 +147,8 @@ console.log(`🔥🔥🔥💥 %cDesign by Phenix Themes 💥🔥🔥🔥🔥
 🔥  - Name    : ${name || 'Project Name'}🔥
 🔥  - System  : Phenix Design System     🔥
 🔥  - Front   : PDS UI/UX Framework      🔥
-🔥  - Auther  : Abdullah Ramadan         🔥
-🔥  - Version : PDS v0.7 Alpha           🔥
+🔥  - Author  : Abdullah Ramadan         🔥
+🔥  - Version : PDS v0.7 Beta            🔥
 🔥  - Website : phenixthemes.com         🔥
 🔥  - Docs    : design.phenixthemes.com  🔥
 🔥  - Contact : +2-01122974539           🔥

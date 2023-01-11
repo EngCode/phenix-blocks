@@ -37,8 +37,8 @@ function px_query_render($block_attributes, $content) {
     if ($the_query->have_posts() ) :
         //==== Loop Start ====//
         while ($the_query->have_posts()):
-            //=== Block  Design ===//
-            get_template_part($current["template_part"], null, $the_query->the_post()); 
+            //=== Template Part ===//
+            get_template_part("template-parts/".$current["template_part"], null, $the_query->the_post());
         endwhile;
         //=== Pagination ===//
         if ($current['pagination'] && function_exists("pagination")) {

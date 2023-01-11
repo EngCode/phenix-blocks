@@ -16,7 +16,7 @@
 
         "template_part" : {
             "type": "string",
-            "default": "template-parts/pds/placeholder"
+            "default": "pds/placeholder"
         },
 
         "per_page" : {

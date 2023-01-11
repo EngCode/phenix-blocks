@@ -84,7 +84,7 @@
                     "slug"  => "pds-blocks",
                     "icon"  => "far fa-layer-group",
                     "content" => 'pds_blocks_panel',
-                    "description" => 'by default phenix blocks are enabled to replace the core blocks wthin gutenberg, and in the options below you can choose which "phenix blocks" to enable, be sure to select only the blocks that you need and will use.',
+                    "description" => 'by default phenix blocks are enabled to replace the core blocks within gutenberg, and in the options below you can choose which "phenix blocks" to enable, be sure to select only the blocks that you need and will use.',
                 ),
                 //==> Tabs Panel <==//
                 array(

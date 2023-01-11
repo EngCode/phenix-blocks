@@ -105,10 +105,10 @@
     );
 
     //====> Include Modules <====//
-    include(dirname(__FILE__) . '/modules/page-creator.php');
-    include(dirname(__FILE__) . '/modules/toggle-controls.php');
     include(dirname(__FILE__) . '/modules/api-creator.php');
     include(dirname(__FILE__) . '/modules/cpt-creator.php');
+    include(dirname(__FILE__) . '/modules/page-creator.php');
+    include(dirname(__FILE__) . '/modules/toggle-controls.php');
 
     //====> Create Options <====//
     function create_pds_options() {
@@ -154,17 +154,17 @@
         //====> Create PDS Endpoint ====//
         pds_add_api(array(
             "api_slug"   => '/options/pds_menu_locations/',
-            //===> Data Paramaters <===//
+            //===> Data Parameters <===//
             "api_props"  => array('locations' => [
 				'validate_callback' => function( $param, $request, $key ) {
 					return is_array($param);
 				},
 			]),
-            //===> Reading Premission <===//
+            //===> Reading Permission <===//
             "read_prem"  => function () {
                 return current_user_can('edit_posts');
             },
-            //===> Editing Premission <===//
+            //===> Editing Permission <===//
             "write_prem" => function () {
                 return current_user_can('manage_options');
             },

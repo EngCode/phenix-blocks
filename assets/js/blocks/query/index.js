@@ -273,7 +273,7 @@ function Edit(props) {
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/React.createElement(_px_controls_form_num_counter__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    label: "Columns No.",
+    label: "Items Number",
     value: attributes.per_page,
     onChange: set_per_page,
     min: 3,
@@ -378,7 +378,7 @@ module.exports = window["wp"]["serverSideRender"];
   \*************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.1.0","title":"Query Loop","category":"design","description":"Custom Query Posts Block.","supports":{"html":false},"attributes":{"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"template-parts/pds/placeholder"},"per_page":{"type":"number","default":8},"order":{"type":"string","default":"DESC"},"pagination":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"types_list":{"type":"array","default":[]}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-query"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.1.0","title":"Query Loop","category":"design","description":"Custom Query Posts Block.","supports":{"html":false},"attributes":{"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"per_page":{"type":"number","default":8},"order":{"type":"string","default":"DESC"},"pagination":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"types_list":{"type":"array","default":[]}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-query"}');
 
 /***/ })
 

@@ -86,7 +86,7 @@ export default function Edit(props) {
                 <div className='row gpx-20 mb-15'>
                     {/*===> Column <===*/}
                     <div className='col-6'>
-                        <PhenixNumber label="Columns No." value={ attributes.per_page } onChange={set_per_page} min={3} max={36}></PhenixNumber>
+                        <PhenixNumber label="Items Number" value={ attributes.per_page } onChange={set_per_page} min={3} max={36}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>

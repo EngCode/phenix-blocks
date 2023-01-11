@@ -34,6 +34,7 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('head_block', true);
         add_option('query_block', true);
         add_option('taxonomies_list_block', true);
+        add_option('taxonomies_block', true);
         add_option('theme_part_block', true);
         add_option('group_block', true);
 

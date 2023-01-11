@@ -69,6 +69,11 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('taxonomies-list', $blocksPath.'taxonomies-list/index.js', $blocksDependencies, NULL , true);
         }
         
+        //====> Taxonomies List <====//
+        if (get_option('taxonomies_block')) {
+            wp_enqueue_script('taxonomies', $blocksPath.'taxonomies/index.js', $blocksDependencies, NULL , true);
+        }
+        
         //====> Theme Part <====//
         if (get_option('theme_part_block')) {
             wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);

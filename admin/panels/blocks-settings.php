@@ -67,6 +67,11 @@
                     "icon"  => $icons_url.'latest-posts.svg',
                 ),
                 array(
+                    "name"  => 'taxonomies_block',
+                    "title" => 'Taxonomies Query',
+                    "icon"  => $icons_url.'latest-posts.svg',
+                ),
+                array(
                     "name"  => 'theme_part_block',
                     "title" => 'Theme Part',
                     "icon"  => $icons_url.'theme-part.svg',

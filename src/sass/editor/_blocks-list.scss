@@ -34,6 +34,11 @@
 		.wp-block-design-px-section {outline: 1px dashed rgba(#000, 0.15);}
 		p.rich-text:not([class*="lineheight"]) {line-height: var(--line-height);}
 		[class*="wp-container-"] > * + *,.wp-site-blocks > * + * {--wp--style--block-gap : 0;}
+		/*==== Fix Media Elements ====*/
+		.px-media {
+			.block-editor-block-list__block {height: 100%!important;}
+			textarea.block-editor-plain-text {height: 100%!important;}
+		}
 	}
 
 	/*==== Core Block Style ====*/

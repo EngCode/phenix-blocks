@@ -16,9 +16,9 @@ module.exports = {
         'theme-part': './src/blocks/theme-part/index.js',
         'navigation': './src/blocks/navigation/index.js',
         'grid-column': './src/blocks/grid-column/index.js',
+        'taxonomies': './src/blocks/taxonomies/index.js',
         'taxonomies-list': './src/blocks/taxonomies-list/index.js',
         // 'languages': './src/blocks/languages/index.js',
-        // 'taxonomies': './src/blocks/taxonomies/index.js',
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

@@ -47,7 +47,6 @@ if (!function_exists('px__')) {
 	}
 }
 
-
 //====> Languages Path <====//
 if (!function_exists('phenix_textdomain')) {
 	/**
@@ -56,11 +55,11 @@ if (!function_exists('phenix_textdomain')) {
 	 * @return void
 	*/
 
-	function phenix_textdomain() {
+	function pds_textdomain() {
 		load_plugin_textdomain('phenix', false, dirname(plugin_basename(__FILE__)) . '/languages'); 
 	}
 	
-	add_action( 'init', 'phenix_textdomain' );
+	add_action( 'init', 'pds_textdomain' );
 }
 
 //=====> Phenix Blocks Admin <=====//

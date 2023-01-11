@@ -19,5 +19,5 @@
     }
   },
   "textdomain": "phenix",
-  "editorScript": "px-taxonomies"
+  "editorScript": "pds-taxonomies"
 }

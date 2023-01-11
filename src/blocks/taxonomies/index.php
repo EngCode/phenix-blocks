@@ -7,7 +7,7 @@
 */
 
 //==== Block Render ====//
-function px_taxonomies_render($block_attributes, $content) {
+function pds_taxonomies_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = '';ob_start();
     //===> Get Categories List <===//
@@ -29,14 +29,18 @@ function px_taxonomies_render($block_attributes, $content) {
 }
 
 //===> Register Phenix Block <===//
-function px_taxonomies_block () {
+function pds_taxonomies_block () {
     //===> Define [JSON] Assets  <===//
-    $assets_path = get_template_directory().'/assets/js/blocks/px-taxonomies/';
-    $assets_uri  = get_template_directory_uri().'/assets/js/blocks/px-taxonomies/';
-    $px_assets = include($assets_path.'index.asset.php');
+    $assets_path = plugin_dir_path(__DIR__).'taxonomies/';
+    $assets_uri  = plugin_dir_url(__DIR__).'taxonomies/';
+
+    //===> Fix File Paths <===//
+    $assets_path = str_replace('src', 'assets/js', $assets_path);
+    $assets_uri  = str_replace('src', 'assets/js', $assets_uri);
+    $px_assets   = include($assets_path.'index.asset.php');
 
     //===> Add the Block JS <===//
-    wp_register_script('px-taxonomies',
+    wp_register_script('pds-taxonomies',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
         $px_assets['version']
@@ -45,9 +49,9 @@ function px_taxonomies_block () {
     //==== Register Block ====//
     register_block_type($assets_path.'block.json', array(
         'api_version'     => 2,
-        'editor_script'   => 'px-taxonomies',
-        'render_callback' => 'px_taxonomies_render'
+        'editor_script'   => 'pds-taxonomies',
+        'render_callback' => 'pds_taxonomies_render'
     ));
 }
 
-add_action( 'init', 'px_taxonomies_block' );
+add_action( 'init', 'pds_taxonomies_block' );

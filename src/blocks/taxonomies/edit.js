@@ -11,8 +11,8 @@ import {
     InspectorControls
 } from '@wordpress/block-editor';
 
-import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Edit Mode <====//
@@ -69,6 +69,6 @@ export default function Edit(props) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        <ServerSideRender block="phenix/px-taxonomies" attributes={attributes} />
+        <ServerSideRender block="phenix/taxonomies" attributes={attributes} />
     </>);
 }

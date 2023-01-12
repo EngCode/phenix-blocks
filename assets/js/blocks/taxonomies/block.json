@@ -45,6 +45,34 @@
       "type": "boolean",
       "default": false
     },
+    "grid_cols": {
+      "type": "string",
+      "default": "row-cols-auto"
+    },
+    "grid_cols_stat": {
+      "type": "boolean",
+      "default": true
+    },
+    "grid_flow": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_nowrap": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_masonry": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_gap_fix": {
+      "type": "string",
+      "default": "gpy-fix"
+    },
+    "grid_alignment": {
+      "type": "string",
+      "default": ""
+    },
     "slider_mode": {
       "type": "boolean",
       "default": false

@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/px-controls/form/num-counter.js":
-/*!****************************************************!*\
-  !*** ./src/blocks/px-controls/form/num-counter.js ***!
-  \****************************************************/
+/***/ "./src/blocks/px-controls/number-counter.js":
+/*!**************************************************!*\
+  !*** ./src/blocks/px-controls/number-counter.js ***!
+  \**************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -65,6 +65,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
           min = _this$props.min,
           max = _this$props.max,
           steps = _this$props.steps,
+          icon = _this$props.icon,
           onChange = _this$props.onChange; //===> Set new Value <===//
 
       var setNumber = function setNumber(changed) {
@@ -75,20 +76,30 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         //===> Get Elements <===//
         var button = clicked.target,
             wrapper = button.parentNode,
-            input = wrapper.querySelector('input[type="number"]'),
-            step = steps ? parseInt(steps) : 1; //===> Get Data <===//
+            maxNum = parseInt(max) || 9999999,
+            step = steps ? parseInt(steps) : 1; //===> Wrapper Fallback <===//
 
-        return onChange(Math.round(parseInt(input.value) + step));
+        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
+
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) + step; //===> Set Data <===//
+
+        return onChange(newVal <= maxNum ? newVal : maxNum);
       },
           //===> Decrease Number <===//
       DecreaseNum = function DecreaseNum(clicked) {
         //===> Get Elements <===//
         var button = clicked.target,
             wrapper = button.parentNode,
-            input = wrapper.querySelector('input[type="number"]'),
-            step = steps ? steps : 1; //===> Get Data <===//
+            minNum = parseInt(min) || 0,
+            step = steps ? steps : 1; //===> Wrapper Fallback <===//
 
-        return onChange(Math.round(parseInt(input.value) - step));
+        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
+
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) - step; //===> Set Data <===//
+
+        return onChange(newVal >= minNum ? newVal : minNum);
       }; //===> Output <===//
 
 
@@ -97,21 +108,26 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/React.createElement("label", {
         className: "components-input-control__label components-flex-item mb-5 weight-bold"
       }, label), /*#__PURE__*/React.createElement("div", {
-        className: "px-counter-input position-rv"
-      }, /*#__PURE__*/React.createElement("button", {
+        className: "px-counter-input position-rv " + (icon ? icon : "")
+      }, !icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e"
-      }), /*#__PURE__*/React.createElement("input", {
+        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix"
+      }) : "", /*#__PURE__*/React.createElement("input", {
         type: "number",
         min: min,
         max: max,
-        value: value,
-        className: "form-control small radius-sm tx-align-center reset-appearance",
+        value: parseInt(value) ? parseInt(value) : 0,
+        className: "form-control small radius-sm reset-appearance" + (!icon ? " tx-align-center" : ""),
         onChange: setNumber
-      }), /*#__PURE__*/React.createElement("button", {
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "position-ab pos-end-0 pos-bottom-0 flexbox"
+      }, /*#__PURE__*/React.createElement("button", {
         onClick: IncreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-plus position-ab pos-end-0 pos-top-0 divider-s"
-      })));
+        className: "btn square small bg-transparent fs-13 increase-btn far fa-plus divider-s icon-fix"
+      }), icon ? /*#__PURE__*/React.createElement("button", {
+        onClick: DecreaseNum,
+        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus divider-s icon-fix"
+      }) : "")));
     }
   }]);
 
@@ -142,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _px_controls_form_num_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/form/num-counter */ "./src/blocks/px-controls/form/num-counter.js");
+/* harmony import */ var _px_controls_number_counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/number-counter */ "./src/blocks/px-controls/number-counter.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -272,7 +288,7 @@ function Edit(props) {
     className: "row gpx-20 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_px_controls_form_num_counter__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: "Items Number",
     value: attributes.per_page,
     onChange: set_per_page,

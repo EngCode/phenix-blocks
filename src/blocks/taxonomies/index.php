@@ -11,6 +11,11 @@ function pds_taxonomies_render($block_attributes, $content) {
     $markup = '';ob_start();
     $options = $block_attributes;
 
+    //===> Grid Options <===//
+    $grid_cols = ($options['grid_cols_stat']) ? "" : " ". $options['grid_cols'];
+    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_gap_fix'] .' '. $options['grid_alignment'];
+    $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
+
     //===> Get Categories List <===//
     $categories = get_categories( array(
         'order'      => $options['order'],
@@ -21,8 +26,8 @@ function pds_taxonomies_render($block_attributes, $content) {
     ));
 
     //===> Grid and Slider Wrapper <===//
-    if ($options['grid_mode'] || $options['slider_mode']) {
-        echo '<div class="row">';
+    if ($options['grid_mode']) {
+        echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
     }
 
     //===> Loop Through Categories <===//

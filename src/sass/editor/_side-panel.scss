@@ -107,7 +107,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			padding-#{$direction-start}: 8px;
 			border-#{$direction-start}: 1px solid rgba(0,0,0, 0.15);
 			svg {
-				top: -2px;
+				top: -1px;
 				position: relative;
 			}
 		}
@@ -118,7 +118,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.components-flex {gap: calc(8px)!important;}
 		
 		.components-form-toggle {
-			top: -2px!important;
+			top: 0!important;
 			.components-form-toggle__track {border: 1px solid var(--gray-color)!important;}
 
 			.components-form-toggle__thumb {
@@ -152,6 +152,8 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.components-form-toggle {top: 2px;}
 	
 	/*==== Fix RangeControl ====*/
+	.components-base-control.components-toggle-control {margin-bottom: 5px;}
+
 	.flexbox > .components-range-control {
 		flex-grow: 1;
 		margin-bottom: 0;

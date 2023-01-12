@@ -74,6 +74,10 @@
 
 /*==== Counter Input ====*/
 .px-counter-input {
+	.btn.square {
+		width: REM(28);
+		font-size: 0.75em;
+	}
 	/*==== Reset Input ====*/
 	input[type="number"] {
 		border-color: rgba(#000, 0.1)!important;
@@ -84,14 +88,30 @@
 				appearance: none!important;
 		}
 	}
+	/*====  ====*/
+	&[class*="fa-"] {
+		input[type="number"] {padding-#{$direction-start}: 1.85rem;}
+
+		&::before {
+			top: 0;
+			position: absolute;
+			line-height: REM(34);
+			#{$direction-start}: REM(15);
+		}
+	}
+}
+
+.flex-alignment-btns .btn.tiny {
+	width: 1.65rem;
+	&:not(.active) {opacity: 0.4;}
 }
 
 /*==== Align Icons ====*/
-.pxi-align-x-start   {background-image: url('../img/blocks/align-x-start.svg');}
+.pxi-align-x-start   {background-image: url('../img/blocks/align-x-#{$direction-start}.svg');}
 .pxi-align-x-center  {background-image: url('../img/blocks/align-x-center.svg');}
 .pxi-align-x-between {background-image: url('../img/blocks/align-x-between.svg');}
 .pxi-align-x-around  {background-image: url('../img/blocks/align-x-around.svg');}
-.pxi-align-x-end     {background-image: url('../img/blocks/align-x-end.svg');}
+.pxi-align-x-end     {background-image: url('../img/blocks/align-x-#{$direction-end}.svg');}
 .pxi-align-y-start   {background-image: url('../img/blocks/align-y-start.svg');}
 .pxi-align-y-center  {background-image: url('../img/blocks/align-y-center.svg');}
 .pxi-align-y-end     {background-image: url('../img/blocks/align-y-end.svg');}

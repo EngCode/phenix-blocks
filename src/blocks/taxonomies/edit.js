@@ -1,4 +1,6 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+
 import {
     PanelBody,
     SelectControl,
@@ -16,7 +18,8 @@ import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
-import PhenixNumber from "../px-controls/form/num-counter";
+import PhenixNumber from "../px-controls/number-counter";
+import FlexAlignment from "../px-controls/flex-alignment";
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -27,12 +30,25 @@ export default function Edit(props) {
     //===> Set Attributes <===//
     const set_order = order => setAttributes({ order });
     const set_taxonomy = taxonomy => setAttributes({ taxonomy });
-    const set_grid_mode = grid_mode => setAttributes({ grid_mode });
     const set_post_type = post_type => setAttributes({ post_type });
     const set_hide_empty = hide_empty => setAttributes({ hide_empty });
-    const set_slider_mode = slider_mode => setAttributes({ slider_mode });
     const set_query_count = query_count => setAttributes({ query_count });
     const set_template_part = template_part => setAttributes({ template_part });
+
+    //===> Grid Attributes <===//
+    const set_grid_mode = grid_mode => setAttributes({ grid_mode });
+    const set_grid_cols = grid_cols => setAttributes({ grid_cols: "row-cols-" + (grid_cols > 0 ? grid_cols : "auto") });
+    const set_grid_cols_stat = grid_cols_stat => setAttributes({ grid_cols_stat });
+    const set_grid_alignment = grid_alignment => setAttributes({ grid_alignment });
+
+    //===> Grid Features <===//
+    const set_grid_flow = grid_flow => grid_flow ? setAttributes({ grid_flow: "flow-reverse" }) : setAttributes({grid_flow :""});
+    const set_grid_nowrap = grid_nowrap => grid_nowrap ? setAttributes({ grid_nowrap: "flow-nowrap" }) : setAttributes({grid_nowrap:""});
+    const set_grid_masonry = grid_masonry => grid_masonry ? setAttributes({ grid_masonry: "px-masonry" }) : setAttributes({grid_masonry:""});
+    const set_grid_gap_fix = grid_gap_fix => grid_gap_fix ? setAttributes({ grid_gap_fix: "gpy-fix" }) : setAttributes({grid_gap_fix:""});
+
+    //===> Slider Attributes <===//
+    const set_slider_mode = slider_mode => setAttributes({ slider_mode });
 
     //===> Fetch Post Types <===//
     apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
@@ -95,38 +111,80 @@ export default function Edit(props) {
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Setting" initialOpen={true}>
+            <PanelBody title={__("Taxonomies Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                <SelectControl label="Taxonomy Type" value={attributes.taxonomy} onChange={set_taxonomy} options={attributes.tax_list}/>
+                <SelectControl label={__("Taxonomy Type", "phenix")} value={attributes.taxonomy} onChange={set_taxonomy} options={attributes.tax_list}/>
                 
-                {/*===> Hide Empty <===*/}
-                <ToggleControl label="Hide Empty Taxonomies" checked={attributes.hide_empty} onChange={set_hide_empty}/>
-
+                
                 {/*===> Post Type <===*/}
-                <SelectControl label="Data Type" value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/>
+                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/>
 
-                {/*=== Template Name ===*/}
-                <TextControl key="template-name" label="Template Name" value={ attributes.template_part } onChange={set_template_part}/>
+                {/*=== Card Template ===*/}
+                <TextControl key="template-name" label={__("Card Template", "phenix")} value={ attributes.template_part } onChange={set_template_part}/>
                 
-                {/*===> Group <===*/}
+                {/*===> Max Items and Order <===*/}
                 <div className='row gpx-20 mb-15'>
                     {/*===> Column <===*/}
                     <div className='col-6'>
-                        <PhenixNumber label="Max Items" value={ attributes.query_count } onChange={set_query_count}></PhenixNumber>
+                        <PhenixNumber label={__("Max Items", "phenix")} value={ attributes.query_count } onChange={set_query_count}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
-                        <SelectControl label="Order By" value={attributes.order} onChange={set_order} options={[
-                            { label: 'Oldest', value: 'ASC' },
-                            { label: 'Newest',  value: 'DESC' },
+                        <SelectControl label={__("Order By", "phenix")} value={attributes.order} onChange={set_order} options={[
+                            { label: __('Oldest', "phenix"), value: 'ASC' },
+                            { label: __('Newest', "phenix"),  value: 'DESC' },
                         ]}/>
                     </div>
                     {/*===> // Column <===*/}
                 </div>
 
+                {/*===> Hide Empty <===*/}
+                <ToggleControl label={__("Hide Empty Taxonomies", "phenix")} checked={attributes.hide_empty} onChange={set_hide_empty}/>
+
                 {/*===> Grid and Slider <===*/}
-                <ToggleControl label="Enable Grid Mode" checked={attributes.grid_mode} onChange={set_grid_mode}/>
-                <ToggleControl label="Enable Slider Mode ?" checked={attributes.slider_mode} onChange={set_slider_mode}/>
+                <ToggleControl label={__("Enable Grid Mode", "phenix")} checked={attributes.grid_mode} onChange={set_grid_mode}/>
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
+            <PanelBody title="Loop Grid" initialOpen={true}>
+                {/*===> Columns No. in Row <===*/}
+                {!attributes.grid_cols_stat ? <div class="mb-15">
+                    <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
+                </div> : ""}
+
+                {/*===> Free Columns Size <===*/}
+                <ToggleControl label={__("Free Columns Size ?", "phenix")} checked={attributes.grid_cols_stat} onChange={set_grid_cols_stat}/>
+                
+                {/*===> Switch Button <===*/}
+                <ToggleControl label={__("Enable Slider Mode ?", "phenix")} checked={attributes.slider_mode} onChange={set_slider_mode}/>
+
+                {/*===> Switch Buttons <===*/}
+                <div className='row gpx-15 mb-15 mt-20'>
+                    {/*===> Column [For Alignment] <===*/}
+                    <div className='col-12 mb-20'>
+                        <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.grid_alignment} onChange={set_grid_alignment}></FlexAlignment>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-5'>
+                        {/*===> Switch Button <===*/}
+                        <ToggleControl label={__("Reverse ", "phenix")} checked={attributes.grid_flow.length > 0} onChange={set_grid_flow}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-7'>
+                        {/*===> Switch Button <===*/}
+                        <ToggleControl label={__("Gap-Y Fix", "phenix")} checked={attributes.grid_gap_fix.length > 0} onChange={set_grid_gap_fix}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-5'>
+                        {/*===> Switch Button <===*/}
+                        <ToggleControl label={__("Nowrap", "phenix")} checked={attributes.grid_nowrap.length > 0} onChange={set_grid_nowrap}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-7'>
+                        {/*===> Switch Button <===*/}
+                        <ToggleControl label={__("Masonry Mode", "phenix")} checked={attributes.grid_masonry.length > 0} onChange={set_grid_masonry}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

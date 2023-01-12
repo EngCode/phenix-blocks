@@ -17,7 +17,7 @@ import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
-import PhenixNumber from "../px-controls/form/num-counter";
+import PhenixNumber from "../px-controls/number-counter";
 
 //====> Edit Mode <====//
 export default function Edit(props) {

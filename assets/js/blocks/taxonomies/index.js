@@ -471,14 +471,6 @@ function Edit(props) {
     }) : setAttributes({
       grid_masonry: ""
     });
-  };
-
-  var set_grid_gap_fix = function set_grid_gap_fix(grid_gap_fix) {
-    return grid_gap_fix ? setAttributes({
-      grid_gap_fix: "gpy-fix"
-    }) : setAttributes({
-      grid_gap_fix: ""
-    });
   }; //===> Slider Attributes <===//
 
 
@@ -629,12 +621,8 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Free Columns Size ?", "phenix"),
     checked: attributes.grid_cols_stat,
     onChange: set_grid_cols_stat
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Slider Mode ?", "phenix"),
-    checked: attributes.slider_mode,
-    onChange: set_slider_mode
   }), /*#__PURE__*/React.createElement("div", {
-    className: "row gpx-15 mb-15 mt-20"
+    className: "row gpx-15 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-20"
   }, /*#__PURE__*/React.createElement(_px_controls_flex_alignment__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -642,27 +630,27 @@ function Edit(props) {
     value: attributes.grid_alignment,
     onChange: set_grid_alignment
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col-5"
+    className: "col-6"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reverse ", "phenix"),
     checked: attributes.grid_flow.length > 0,
     onChange: set_grid_flow
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col-7"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Gap-Y Fix", "phenix"),
-    checked: attributes.grid_gap_fix.length > 0,
-    onChange: set_grid_gap_fix
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "col-5"
+    className: "col-6"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"),
     checked: attributes.grid_nowrap.length > 0,
     onChange: set_grid_nowrap
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col-7"
+    className: "col-6"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Masonry Mode", "phenix"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Slider Mode", "phenix"),
+    checked: attributes.slider_mode,
+    onChange: set_slider_mode
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Masonry", "phenix"),
     checked: attributes.grid_masonry.length > 0,
     onChange: set_grid_masonry
   }))))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
@@ -753,7 +741,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies","version":"0.1.0","title":"PDS Taxonomies","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"types_list":{"type":"array","default":[]},"tax_list":{"type":"array","default":[]},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_gap_fix":{"type":"string","default":"gpy-fix"},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"pds-taxonomies"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies","version":"0.1.0","title":"PDS Taxonomies","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"types_list":{"type":"array","default":[]},"tax_list":{"type":"array","default":[]},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"pds-taxonomies"}');
 
 /***/ })
 

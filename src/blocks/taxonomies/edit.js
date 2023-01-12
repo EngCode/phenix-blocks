@@ -45,7 +45,6 @@ export default function Edit(props) {
     const set_grid_flow = grid_flow => grid_flow ? setAttributes({ grid_flow: "flow-reverse" }) : setAttributes({grid_flow :""});
     const set_grid_nowrap = grid_nowrap => grid_nowrap ? setAttributes({ grid_nowrap: "flow-nowrap" }) : setAttributes({grid_nowrap:""});
     const set_grid_masonry = grid_masonry => grid_masonry ? setAttributes({ grid_masonry: "px-masonry" }) : setAttributes({grid_masonry:""});
-    const set_grid_gap_fix = grid_gap_fix => grid_gap_fix ? setAttributes({ grid_gap_fix: "gpy-fix" }) : setAttributes({grid_gap_fix:""});
 
     //===> Slider Attributes <===//
     const set_slider_mode = slider_mode => setAttributes({ slider_mode });
@@ -157,34 +156,31 @@ export default function Edit(props) {
                 {/*===> Free Columns Size <===*/}
                 <ToggleControl label={__("Free Columns Size ?", "phenix")} checked={attributes.grid_cols_stat} onChange={set_grid_cols_stat}/>
                 
-                {/*===> Switch Button <===*/}
-                <ToggleControl label={__("Enable Slider Mode ?", "phenix")} checked={attributes.slider_mode} onChange={set_slider_mode}/>
-
                 {/*===> Switch Buttons <===*/}
-                <div className='row gpx-15 mb-15 mt-20'>
+                <div className='row gpx-15 mb-15'>
                     {/*===> Column [For Alignment] <===*/}
                     <div className='col-12 mb-20'>
                         <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.grid_alignment} onChange={set_grid_alignment}></FlexAlignment>
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-5'>
+                    <div className='col-6'>
                         {/*===> Switch Button <===*/}
                         <ToggleControl label={__("Reverse ", "phenix")} checked={attributes.grid_flow.length > 0} onChange={set_grid_flow}/>
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-7'>
-                        {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Gap-Y Fix", "phenix")} checked={attributes.grid_gap_fix.length > 0} onChange={set_grid_gap_fix}/>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-5'>
+                    <div className='col-6'>
                         {/*===> Switch Button <===*/}
                         <ToggleControl label={__("Nowrap", "phenix")} checked={attributes.grid_nowrap.length > 0} onChange={set_grid_nowrap}/>
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-7'>
+                    <div className='col-6'>
                         {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Masonry Mode", "phenix")} checked={attributes.grid_masonry.length > 0} onChange={set_grid_masonry}/>
+                        <ToggleControl label={__("Slider Mode", "phenix")} checked={attributes.slider_mode} onChange={set_slider_mode}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        {/*===> Switch Button <===*/}
+                        <ToggleControl label={__("Masonry", "phenix")} checked={attributes.grid_masonry.length > 0} onChange={set_grid_masonry}/>
                     </div>
                     {/*===> // Column <===*/}
                 </div>

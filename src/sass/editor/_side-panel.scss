@@ -77,7 +77,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 		/*==== field label ====*/
 		.components-base-control__label, .components-input-control__label, label {
-			font-weight: 600!important;
+			font-weight: 500!important;
 			font-size: 12px!important;
 			font-family: var(--secondary-font)!important;
 		}
@@ -118,7 +118,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.components-flex {gap: calc(8px)!important;}
 		
 		.components-form-toggle {
-			top: 0!important;
+			top: 1px!important;
 			.components-form-toggle__track {border: 1px solid var(--gray-color)!important;}
 
 			.components-form-toggle__thumb {

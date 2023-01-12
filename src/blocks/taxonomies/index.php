@@ -13,7 +13,7 @@ function pds_taxonomies_render($block_attributes, $content) {
 
     //===> Grid Options <===//
     $grid_cols = ($options['grid_cols_stat']) ? "" : " ". $options['grid_cols'];
-    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_gap_fix'] .' '. $options['grid_alignment'];
+    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
     $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
 
     //===> Get Categories List <===//

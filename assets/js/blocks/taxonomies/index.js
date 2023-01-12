@@ -81,9 +81,8 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
 
 
         if (valueArray.length > 1) {
-          console.log("is Array ", valueArray);
           valueArray.forEach(function (val) {
-            return checkNames(val) ? value.replace(val, new_value) : new_value;
+            return checkNames(val) ? value.replace(val, new_value) : "";
           });
         } //===> Update Current Value <===//
         else {
@@ -134,31 +133,31 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         type: "button",
         "data-value": "align-start-x",
         title: "Start",
-        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("x-start") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-center-x",
         title: "Center",
-        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("x-center") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-between",
         title: "Between",
-        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("x-between") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-around",
         title: "Around",
-        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("x-around") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-end-x",
         title: "End",
-        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("x-end") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "active" : ""),
         onClick: set_align_x
       })), /*#__PURE__*/React.createElement("div", {
         className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
@@ -166,19 +165,19 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         type: "button",
         "data-value": "align-start-y",
         title: "Start",
-        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("y-start") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "active" : ""),
         onClick: set_align_y
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-center-y",
         title: "Center",
-        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("y-center") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "active" : ""),
         onClick: set_align_y
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-end-y",
         title: "End",
-        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("y-end") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "active" : ""),
         onClick: set_align_y
       }))));
     }
@@ -351,25 +350,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/number-counter */ "./src/blocks/px-controls/number-counter.js");
 /* harmony import */ var _px_controls_flex_alignment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/flex-alignment */ "./src/blocks/px-controls/flex-alignment.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //====> WP Modules <====//
 
@@ -487,60 +486,8 @@ function Edit(props) {
     return setAttributes({
       slider_mode: slider_mode
     });
-  }; //===> Fetch Post Types <===//
+  }; //===> Set Phenix View <===//
 
-
-  _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-    path: 'wp/v2/taxonomies'
-  }).then(function (taxonomies) {
-    //===> Define Types <===//
-    var new_taxonomies = []; //===> Get Current Active Types <===//
-
-    for (var _i = 0, _Object$entries = Object.entries(taxonomies); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-          key = _Object$entries$_i[0],
-          value = _Object$entries$_i[1];
-
-      //===> Exclude the Core Types <===//
-      if (!['nav_menu', 'post_tag'].includes(key)) {
-        new_taxonomies.push({
-          "value": key,
-          "label": value.name
-        });
-      }
-    } //===> Set the new List if its Deferent <===//
-
-
-    if (attributes.tax_list !== new_taxonomies) setAttributes({
-      tax_list: new_taxonomies
-    });
-  }); //===> Fetch Post Types <===//
-
-  _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-    path: 'wp/v2/types'
-  }).then(function (post_types) {
-    //===> Define Types <===//
-    var new_types = []; //===> Get Current Active Types <===//
-
-    for (var _i2 = 0, _Object$entries2 = Object.entries(post_types); _i2 < _Object$entries2.length; _i2++) {
-      var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
-          key = _Object$entries2$_i[0],
-          value = _Object$entries2$_i[1];
-
-      //===> Exclude the Core Types <===//
-      if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-        new_types.push({
-          "value": key,
-          "label": value.name
-        });
-      }
-    } //===> Set the new List if its Deferent <===//
-
-
-    if (attributes.types_list !== new_types) setAttributes({
-      types_list: new_types
-    });
-  }); //===> Set Phenix View <===//
 
   var setPhenixView = function setPhenixView() {
     //===> Check Site Editor <===//
@@ -561,8 +508,61 @@ function Edit(props) {
 
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(function () {
-    return setPhenixView();
-  }); //===> Render <===//
+    //===> Active Phenix Components <===//
+    setPhenixView(); //===> Fetch Post Types <===//
+
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
+      path: 'wp/v2/taxonomies'
+    }).then(function (taxonomies) {
+      //===> Define Types <===//
+      var new_taxonomies = []; //===> Get Current Active Types <===//
+
+      for (var _i = 0, _Object$entries = Object.entries(taxonomies); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        //===> Exclude the Core Types <===//
+        if (!['nav_menu', 'post_tag'].includes(key)) {
+          new_taxonomies.push({
+            "value": key,
+            "label": value.name
+          });
+        }
+      } //===> Set the new List if its Deferent <===//
+
+
+      if (attributes.tax_list !== new_taxonomies) setAttributes({
+        tax_list: new_taxonomies
+      });
+    }); //===> Fetch Post Types <===//
+
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
+      path: 'wp/v2/types'
+    }).then(function (post_types) {
+      //===> Define Types <===//
+      var new_types = []; //===> Get Current Active Types <===//
+
+      for (var _i2 = 0, _Object$entries2 = Object.entries(post_types); _i2 < _Object$entries2.length; _i2++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+            key = _Object$entries2$_i[0],
+            value = _Object$entries2$_i[1];
+
+        //===> Exclude the Core Types <===//
+        if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+          new_types.push({
+            "value": key,
+            "label": value.name
+          });
+        }
+      } //===> Set the new List if its Deferent <===//
+
+
+      if (attributes.types_list !== new_types) setAttributes({
+        types_list: new_types
+      });
+    });
+  }, []); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"

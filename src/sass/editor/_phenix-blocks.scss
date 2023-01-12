@@ -104,6 +104,7 @@
 .flex-alignment-btns .btn.tiny {
 	width: 1.65rem;
 	&:not(.active) {opacity: 0.4;}
+	&.active {color: var(--primary-color);-webkit-filter: hue-rotate(220deg) saturate(5);filter: hue-rotate(220deg) saturate(5);}
 }
 
 /*==== Align Icons ====*/

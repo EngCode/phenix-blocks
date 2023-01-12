@@ -50,40 +50,6 @@ export default function Edit(props) {
     //===> Slider Attributes <===//
     const set_slider_mode = slider_mode => setAttributes({ slider_mode });
 
-    //===> Fetch Post Types <===//
-    apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
-        //===> Define Types <===//
-        let new_taxonomies = [];
-
-        //===> Get Current Active Types <===//
-        for (const [key, value] of Object.entries(taxonomies)) {
-            //===> Exclude the Core Types <===//
-            if (!['nav_menu', 'post_tag'].includes(key)) {
-                new_taxonomies.push({"value":key, "label":value.name});
-            }
-        }
-
-        //===> Set the new List if its Deferent <===//
-        if (attributes.tax_list !== new_taxonomies) setAttributes({ tax_list : new_taxonomies });
-    });
-
-    //===> Fetch Post Types <===//
-    apiFetch({path: 'wp/v2/types'}).then(post_types => {
-        //===> Define Types <===//
-        let new_types = [];
-
-        //===> Get Current Active Types <===//
-        for (const [key, value] of Object.entries(post_types)) {
-            //===> Exclude the Core Types <===//
-            if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-                new_types.push({"value":key, "label":value.name});
-            }
-        }
-
-        //===> Set the new List if its Deferent <===//
-        if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
-    });
-
     //===> Set Phenix View <===//
     const setPhenixView = () => {
         //===> Check Site Editor <===//
@@ -104,7 +70,44 @@ export default function Edit(props) {
     };
 
     //===> Update Phenix Elements <===//
-    useEffect(()=> setPhenixView());
+    useEffect(()=> {
+        //===> Active Phenix Components <===//
+        setPhenixView();
+
+        //===> Fetch Post Types <===//
+        apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
+            //===> Define Types <===//
+            let new_taxonomies = [];
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(taxonomies)) {
+                //===> Exclude the Core Types <===//
+                if (!['nav_menu', 'post_tag'].includes(key)) {
+                    new_taxonomies.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            if (attributes.tax_list !== new_taxonomies) setAttributes({ tax_list : new_taxonomies });
+        });
+
+        //===> Fetch Post Types <===//
+        apiFetch({path: 'wp/v2/types'}).then(post_types => {
+            //===> Define Types <===//
+            let new_types = [];
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(post_types)) {
+                //===> Exclude the Core Types <===//
+                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+                    new_types.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
+        });
+    }, []);
 
     //===> Render <===//
     return (<>

@@ -32,22 +32,7 @@ export default function Edit(props) {
     const set_pagination = pagination => setAttributes({ pagination });
     const set_template_part = template_part => setAttributes({ template_part });
 
-    //===> Fetch Post Types <===//
-    apiFetch({path: 'wp/v2/types'}).then(post_types => {
-        //===> Define Types <===//
-        let new_types = [];
-
-        //===> Get Current Active Types <===//
-        for (const [key, value] of Object.entries(post_types)) {
-            //===> Exclude the Core Types <===//
-            if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-                new_types.push({"value":key, "label":value.name});
-            }
-        }
-
-        //===> Set the new List if its Deferent <===//
-        if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
-    });
+    
 
     //===> Set Phenix View <===//
     const setPhenixView = () => {
@@ -69,9 +54,27 @@ export default function Edit(props) {
     };
 
     //===> Update Phenix Elements <===//
-    useEffect(()=> setPhenixView());
+    useEffect(()=> {
+        //===> Active Phenix Components <===//
+        setPhenixView();
 
-    // blockProps.className += ' col tx-align-center';
+        //===> Fetch Post Types <===//
+        apiFetch({path: 'wp/v2/types'}).then(post_types => {
+            //===> Define Types <===//
+            let new_types = [];
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(post_types)) {
+                //===> Exclude the Core Types <===//
+                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+                    new_types.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
+        });
+    }, []);
 
     //===> Render <===//
     return (<>

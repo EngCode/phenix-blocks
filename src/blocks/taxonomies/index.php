@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Phenix Blocks
@@ -10,18 +9,30 @@
 function pds_taxonomies_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = '';ob_start();
+    $options = $block_attributes;
+
     //===> Get Categories List <===//
     $categories = get_categories( array(
-        'taxonomy'   => $block_attributes['taxonomy'],
-        'post_type'  => $block_attributes['post_type'],
-        'hide_empty' => false
+        'order'      => $options['order'],
+        'number'     => $options['query_count'],
+        'taxonomy'   => $options['taxonomy'],
+        'post_type'  => $options['post_type'],
+        'hide_empty' => $options['hide_empty'],
     ));
+
+    //===> Grid and Slider Wrapper <===//
+    if ($options['grid_mode'] || $options['slider_mode']) {
+        echo '<div class="row">';
+    }
+
     //===> Loop Through Categories <===//
-    echo '<div class="row align-center-x gpy-fix">';
     foreach ($categories as $category) :
-        get_template_part('template-parts/category-card', null, $category);
+        get_template_part("template-parts/".$options["template_part"], null, $category);
     endforeach;
-    echo '</div>';
+
+    //===> Grid and Slider Wrapper <===//
+    if ($options['grid_mode'] || $options['slider_mode']) : echo '</div>'; endif;
+
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();
     $markup  .= $blockOutput;

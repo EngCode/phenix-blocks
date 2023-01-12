@@ -100,12 +100,41 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			line-height: 30px;
 			text-align: center;
 			background-color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			padding-#{$direction-end}: 12px;
 			padding-#{$direction-start}: 8px;
 			border-#{$direction-start}: 1px solid rgba(0,0,0, 0.15);
-			> div {
-				display: inline-block;
-				vertical-align: middle;
+			svg {
+				top: -2px;
+				position: relative;
+			}
+		}
+	}
+
+	/*==== Toggle Buttons ====*/
+	.components-toggle-control {
+		.components-flex {gap: calc(8px)!important;}
+		
+		.components-form-toggle {
+			top: -2px!important;
+			.components-form-toggle__track {border: 1px solid var(--gray-color)!important;}
+
+			.components-form-toggle__thumb {
+				background-color: var(--gray-light)!important;
+				border-color: var(--gray-light)!important;
+			}
+
+			&.is-checked {
+				.components-form-toggle__thumb {
+					background-color: var(--primary-color)!important;
+				}
+
+				.components-form-toggle__track {
+					background: transparent!important;
+					border: 1px solid var(--primary-color)!important;
+				}
 			}
 		}
 	}

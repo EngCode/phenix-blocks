@@ -71,7 +71,7 @@
     background-position: center;
     &:not([class*="position-"]) {position: relative;}
     /*==== elements ====*/
-    video, iframe, .px-media-img, .block-editor-block-list__layout {
+    video, iframe, .px-media-img, &.editor-mode .block-editor-block-list__layout {
         top: 0;
         left: 0;
         width: 100%;

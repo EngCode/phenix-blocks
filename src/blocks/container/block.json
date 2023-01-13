@@ -5,7 +5,7 @@
 	"title": "Container",
     "keywords": ["pds", "phenix", "section", "group", "wrapper", "container"],
 	"category": "design",
-	"description": "Section and Container to Group the Elements Tegother from Phenix Blocks.",
+	"description": "Section and Container to Group the Elements Together from Phenix Blocks.",
 	"supports": {
 		"html": false
 	},

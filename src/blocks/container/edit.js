@@ -1,4 +1,6 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+
 import {
     PanelBody,
     TextControl,
@@ -26,6 +28,7 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
+import PhenixNumber from "../px-controls/number-counter";
 import PhenixBackground from '../px-controls/elements/px-background';
 import PhenixColor from '../px-controls/typography/px-colors';
 import FlexAlignment from '../px-controls/grid/flex-alignment';
@@ -114,7 +117,10 @@ export default function Edit({ attributes, setAttributes }) {
                 }
             }
         }
-    });
+
+        //===> Render Background <===//
+        if (attributes.background && attributes.bg_type === 'image') setPhenixView();
+    }, []);
 
     //===> for Section Convert <===//
     let container_element = blockProps;
@@ -138,7 +144,6 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.bg_type === 'image') {
             blockProps.className += ` px-media`;
             blockProps["data-src"] = attributes.background;
-            setPhenixView();
         }
 
         //===> Name Background <===//
@@ -157,9 +162,9 @@ export default function Edit({ attributes, setAttributes }) {
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Section Settings">
+            <PanelBody title={__("General Settings", "phenix")}>
                 {/*=== Component <TagName> ===*/}
-                <SelectControl key="tagName" label="HTML Tag" value={attributes.tagName} onChange={set_tagName} options={[
+                <SelectControl key="tagName" label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_tagName} options={[
                     { label: 'Default <div>',  value: 'div' },
                     { label: 'Main <main>',  value: 'main' },
                     { label: 'Aside <aside>',  value: 'aside' },
@@ -169,7 +174,7 @@ export default function Edit({ attributes, setAttributes }) {
                 ]}/>
 
                 {/*=== Container Size ===*/}
-                <SelectControl key="container_size" label="Container Size" value={attributes.size} onChange={set_size} options={[
+                <SelectControl key="container_size" label={__("Container Size", "phenix")} value={attributes.size} onChange={set_size} options={[
                     { label: 'None',   value: '' },
                     { label: 'Small',  value: 'container-sm' },
                     { label: 'Medium', value: 'container-md' },
@@ -179,25 +184,25 @@ export default function Edit({ attributes, setAttributes }) {
                 ]}/>
 
                 {/*=== Container ID ===*/}
-                <TextControl key="container_id" label="Container ID" value={ attributes.id } onChange={set_id}/>
+                <TextControl key="container_id" label={__("Container ID", "phenix")} value={ attributes.id } onChange={set_id}/>
 
                 {/*=== isSection ===*/}
-                <ToggleControl label="Section Wrapper" checked={attributes.isSection} onChange={set_isSection}/>
+                <ToggleControl label={__("Section Wrapper", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
 
                 {/*===  isFlexbox ===*/}
-                <ToggleControl key="isFlexbox" label="Flex Container" checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                <ToggleControl key="isFlexbox" label={__("Flex Container", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
             </PanelBody>
             {/*=== Container Options ===*/}
-            {attributes.isFlexbox ? <PanelBody title="Flexbox" initialOpen={false}>
+            {attributes.isFlexbox ? <PanelBody title={__("Flexbox", "phenix")} initialOpen={false}>
                 {/*=== Flexbox Alignment ===*/}
                 <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
             </PanelBody> : null}
             {/*===> Spacing <===*/}
-            <PanelBody title="Spacing" initialOpen={false}>
+            <PanelBody title={__("Spacing", "phenix")} initialOpen={false}>
                 {/*===> Options Tabs <====*/}
                 <div className='options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10'>
-                    <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">Padding Size</button>
-                    <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">Margin Size</button>
+                    <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">{__("Padding Size", "phenix")}</button>
+                    <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">{__("Margin Size", "phenix")}</button>
                 </div>
                 {/*===> Options Panels <====*/}
                 <div className='options-list'>
@@ -213,12 +218,12 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> End Options Types <====*/}
             </PanelBody>
             {/*===> Text Color <===*/}
-            <PanelBody title="Text Color" initialOpen={false}>
+            <PanelBody title={__("Text Color", "phenix")} initialOpen={false}>
                 {/* Text Color */}
                 <PhenixColor key="px-color" onChange={set_color} value={attributes.color} />
             </PanelBody>
             {/*===> Background <===*/}
-            <PanelBody title="Background" initialOpen={false}>
+            <PanelBody title={__("Background", "phenix")} initialOpen={false}>
                 <PhenixBackground key="px-bg" onChange={set_background} type={attributes.bg_type} value={attributes.background} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}

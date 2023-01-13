@@ -29,6 +29,10 @@
       "type": "boolean",
       "default": false
     },
+    "native_query": {
+      "type": "boolean",
+      "default": false
+    },
     "preview": {
       "type": "boolean",
       "default": false
@@ -36,6 +40,38 @@
     "types_list": {
       "type": "array",
       "default": []
+    },
+    "grid_mode": {
+      "type": "boolean",
+      "default": false
+    },
+    "grid_cols": {
+      "type": "string",
+      "default": "row-cols-auto"
+    },
+    "grid_cols_stat": {
+      "type": "boolean",
+      "default": true
+    },
+    "grid_flow": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_nowrap": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_masonry": {
+      "type": "string",
+      "default": ""
+    },
+    "grid_alignment": {
+      "type": "string",
+      "default": ""
+    },
+    "slider_mode": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {

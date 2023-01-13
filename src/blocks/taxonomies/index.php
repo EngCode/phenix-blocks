@@ -25,7 +25,7 @@ function pds_taxonomies_render($block_attributes, $content) {
         'hide_empty' => $options['hide_empty'],
     ));
 
-    //===> Grid and Slider Wrapper <===//
+    //===> Grid Wrapper <===//
     if ($options['grid_mode']) {
         echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
     }
@@ -35,8 +35,8 @@ function pds_taxonomies_render($block_attributes, $content) {
         get_template_part("template-parts/".$options["template_part"], null, $category);
     endforeach;
 
-    //===> Grid and Slider Wrapper <===//
-    if ($options['grid_mode'] || $options['slider_mode']) : echo '</div>'; endif;
+    //===> End Grid Wrapper <===//
+    if ($options['grid_mode']) : echo '</div>'; endif;
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

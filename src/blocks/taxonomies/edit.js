@@ -147,7 +147,7 @@ export default function Edit(props) {
                 <ToggleControl label={__("Enable Grid Mode", "phenix")} checked={attributes.grid_mode} onChange={set_grid_mode}/>
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Loop Grid" initialOpen={true}>
+            {attributes.grid_mode ? <PanelBody title={__("Loop Grid", "phenix")} initialOpen={true}>
                 {/*===> Columns No. in Row <===*/}
                 {!attributes.grid_cols_stat ? <div class="mb-15">
                     <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
@@ -184,7 +184,7 @@ export default function Edit(props) {
                     </div>
                     {/*===> // Column <===*/}
                 </div>
-            </PanelBody>
+            </PanelBody> : ""}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

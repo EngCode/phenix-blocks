@@ -605,8 +605,8 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Grid Mode", "phenix"),
     checked: attributes.grid_mode,
     onChange: set_grid_mode
-  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: "Loop Grid",
+  })), attributes.grid_mode ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Loop Grid", "phenix"),
     initialOpen: true
   }, !attributes.grid_cols_stat ? /*#__PURE__*/React.createElement("div", {
     "class": "mb-15"
@@ -653,7 +653,7 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Masonry", "phenix"),
     checked: attributes.grid_masonry.length > 0,
     onChange: set_grid_masonry
-  }))))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+  })))) : ""), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://design.phenixthemes.com/px-assets/slider-placeholder.svg",
     alt: "",
     className: "fluid"

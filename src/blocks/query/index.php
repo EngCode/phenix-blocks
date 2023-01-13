@@ -11,43 +11,86 @@ function px_query_render($block_attributes, $content) {
     $markup = '';ob_start();
 
     //===> Current Attributes <===//
-    $current = $block_attributes;
+    $options = $block_attributes;
 
-    //===> wrapper class-names <===//
-    $wrapper_props = '';
-    
+    //===> Grid Options <===//
+    $grid_cols = ($options['grid_cols_stat']) ? "" : " ". $options['grid_cols'];
+    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
+    $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
+
     //===> Get Current Global Query <===//
     global $wp_query;
 
     /*===> Get Current Page <===*/
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-    //===> Query Configuration <===//
-    $query_config = array(
-        'paged' => $paged,
-        'order' => $current['order'],
-        'post_type' => $current['post_type'],
-        'posts_per_page' => $current['per_page'],
-    );
+    //===> Custom Query <===//
+    if (!$options['native_query']) {
+        //===> Query Configuration <===//
+        $query_config = array(
+            'paged' => $paged,
+            'order' => $options['order'],
+            'post_type' => $options['post_type'],
+            'posts_per_page' => $options['per_page'],
+        );
+    
+        //===> Create New Query <===//
+        $the_query = new WP_Query($query_config);
+    
+        //==== Start Query =====//
+        if ($the_query->have_posts() ) :
+            //===> Grid Wrapper <===//
+            if ($options['grid_mode']) {
+                echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
+            }
+    
+            //==== Loop Start ====//
+            while ($the_query->have_posts()):
+                //=== Template Part ===//
+                get_template_part("template-parts/".$options["template_part"], null, $the_query->the_post());
+            endwhile;
+    
+            //===> End Grid Wrapper <===//
+            if ($options['grid_mode']) : echo '</div>'; endif;
+    
+            //=== Pagination ===//
+            if ($options['pagination'] && function_exists("pagination")) {
+                pagination($the_query); 
+            };
+    
+            //=== Reset Query Data ===//
+            wp_reset_postdata();
+        endif;
+        //==== End Query =====//
+    }
 
-    //===> Create New Query <===//
-    $the_query = new WP_Query($query_config);
+    //===> Native Query <===//
+    else {
+        //==== Start Query =====//
+        if (have_posts()) :
+            //===> Grid Wrapper <===//
+            if ($options['grid_mode']) {
+                echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
+            }
 
-    //==== Start Query =====//
-    if ($the_query->have_posts() ) :
-        //==== Loop Start ====//
-        while ($the_query->have_posts()):
-            //=== Template Part ===//
-            get_template_part("template-parts/".$current["template_part"], null, $the_query->the_post());
-        endwhile;
-        //=== Pagination ===//
-        if ($current['pagination'] && function_exists("pagination")) {
-            pagination($the_query); 
-        };
-        //=== Reset Query Data ===//
-        wp_reset_postdata();
-    endif;
-    //==== End Query =====//
+            //==== Loop Start ====//
+            while (have_posts()) : 
+                //=== Template Part ===//
+                get_template_part("template-parts/".$options["template_part"], null, the_post());
+            endwhile;
+
+            //===> End Grid Wrapper <===//
+            if ($options['grid_mode']) : echo '</div>'; endif;
+
+            //=== Pagination ===//
+            if ($options['pagination'] && function_exists("pagination")) {
+                pagination($wp_query); 
+            };
+            //=== Reset Data ===//
+            wp_reset_postdata();
+        endif;
+        //==== End Query =====//
+    }
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

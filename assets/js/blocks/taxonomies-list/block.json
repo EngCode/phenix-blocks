@@ -16,6 +16,30 @@
     "post_type": {
       "type": "string",
       "default": "post"
+    },
+    "query_count": {
+      "type": "number",
+      "default": 0
+    },
+    "order": {
+      "type": "string",
+      "default": "ASC"
+    },
+    "hide_empty": {
+      "type": "boolean",
+      "default": true
+    },
+    "types_list": {
+      "type": "array",
+      "default": []
+    },
+    "tax_list": {
+      "type": "array",
+      "default": []
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
     }
   },
   "textdomain": "phenix",

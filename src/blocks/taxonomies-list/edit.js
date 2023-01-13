@@ -1,4 +1,6 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+
 import {
     PanelBody,
     SelectControl,
@@ -15,6 +17,9 @@ import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
+//====> Phenix Modules <====//
+import PhenixNumber from "../px-controls/number-counter";
+
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Get Properties <===//
@@ -22,32 +27,86 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
 
     //===> Set Attributes <===//
+    const set_order = order => setAttributes({ order });
     const set_taxonomy = taxonomy => setAttributes({ taxonomy });
     const set_post_type = post_type => setAttributes({ post_type });
+    const set_hide_empty = hide_empty => setAttributes({ hide_empty });
+    const set_query_count = query_count => setAttributes({ query_count });
+
+    //===> Update Phenix Elements <===//
+    useEffect(()=> {
+        //===> Fetch Post Types <===//
+        apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
+            //===> Define Types <===//
+            let new_taxonomies = [];
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(taxonomies)) {
+                //===> Exclude the Core Types <===//
+                if (!['nav_menu', 'post_tag'].includes(key)) {
+                    new_taxonomies.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            if (attributes.tax_list !== new_taxonomies) setAttributes({ tax_list : new_taxonomies });
+        });
+
+        //===> Fetch Post Types <===//
+        apiFetch({path: 'wp/v2/types'}).then(post_types => {
+            //===> Define Types <===//
+            let new_types = [];
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(post_types)) {
+                //===> Exclude the Core Types <===//
+                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+                    new_types.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
+        });
+    }, []);
 
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Setting" initialOpen={true}>
-                {/*===> Taxonomy <===*/}
-                <SelectControl label="Taxonomy Type" value={attributes.taxonomy} onChange={set_taxonomy} options={[
-                    { label: 'Categories', value: 'category' },
-                    // { label: 'Cultures',  value: 'cultures' },
-                    // { label: 'Products Lines',  value: 'products-lines' },
-                ]}/>
+            <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                <SelectControl label="Post Type" value={attributes.post_type} onChange={set_post_type} options={[
-                    { label: 'Blog', value: 'post' },
-                    // { label: 'Products',  value: 'products' },
-                    // { label: 'Products Sublist',  value: 'sublist' },
-                ]}/>
+                <SelectControl label={__("Taxonomy Type", "phenix")} value={attributes.taxonomy} onChange={set_taxonomy} options={attributes.tax_list}/>
+
+                {/*===> Post Type <===*/}
+                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/>
+            
+                {/*===> Max Items and Order <===*/}
+                <div className='row gpx-20 mb-15'>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        <PhenixNumber label={__("Max Items", "phenix")} value={ attributes.query_count } onChange={set_query_count}></PhenixNumber>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        <SelectControl label={__("Order By", "phenix")} value={attributes.order} onChange={set_order} options={[
+                            { label: __('Oldest', "phenix"), value: 'ASC' },
+                            { label: __('Newest', "phenix"),  value: 'DESC' },
+                        ]}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
+
+                {/*===> Hide Empty <===*/}
+                <ToggleControl label={__("Hide Empty Taxonomies", "phenix")} checked={attributes.hide_empty} onChange={set_hide_empty}/>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        <ServerSideRender block="phenix/taxonomies-list" attributes={attributes} />
+        <div {...blockProps}>
+            <ServerSideRender block="phenix/taxonomies-list" attributes={attributes} />
+        </div>
     </>);
 }

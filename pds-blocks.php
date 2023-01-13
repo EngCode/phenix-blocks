@@ -79,4 +79,13 @@ include(dirname(__FILE__) . '/inc/pds-assets.php');
 
 //====> Add Phenix Blocks <====//
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
-include(dirname(__FILE__) . '/src/blocks/patterns.php');
+
+//===> Blocks Patterns Categories <===//
+if (!function_exists('pds_patterns_cats')) :
+	function pds_patterns_cats () {
+		register_block_pattern_category('single', array('label' => 'Details Pages'));
+		register_block_pattern_category('phenix', array('label' => 'Phenix Elements'));
+	}
+
+	add_action('init', 'pds_patterns_cats');
+endif;

@@ -9,18 +9,24 @@
 function px_categories_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = '';ob_start();
+    $options = $block_attributes;
+
     //===> Get Categories List <===//
     $categories = get_categories( array(
-        'taxonomy'   => $block_attributes['taxonomy'],
-        'post_type'  => $block_attributes['post_type'],
-        'hide_empty' => false
+        'order'      => $options['order'],
+        'number'     => $options['query_count'],
+        'taxonomy'   => $options['taxonomy'],
+        'post_type'  => $options['post_type'],
+        'hide_empty' => $options['hide_empty'],
     ));
-    //===> Loop Throgh Categories <===//
+
+    //===> Loop Through Categories <===//
     echo '<ul class="reset-list links-list fs-14 pds-15">';
     foreach ($categories as $category) :
        echo '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.'</a></li>';
     endforeach;
     echo '</ul>';
+
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();
     $markup  .= $blockOutput;

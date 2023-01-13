@@ -113,10 +113,9 @@ export default function Edit(props) {
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title={__("Taxonomies Setting", "phenix")} initialOpen={true}>
+            <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
                 <SelectControl label={__("Taxonomy Type", "phenix")} value={attributes.taxonomy} onChange={set_taxonomy} options={attributes.tax_list}/>
-                
                 
                 {/*===> Post Type <===*/}
                 <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/>

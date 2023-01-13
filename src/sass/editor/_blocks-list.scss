@@ -73,7 +73,7 @@
 }
 
 /*==== Posts Editor Layout ====*/
-body.block-editor-page:not(.post-type-page) {
+body.block-editor-page:not(.post-type-page):not(.post-type-home-slider) {
 	.editor-styles-wrapper > .is-root-container {
 		margin-left: auto;
 		margin-right: auto;

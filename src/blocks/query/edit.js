@@ -103,6 +103,7 @@ export default function Edit(props) {
                 <ToggleControl label={__("Native Query", "phenix")} checked={attributes.native_query} onChange={set_native_query}/>
 
                 {/*===> Group <===*/}
+                {!attributes.native_query ? 
                 <div className='row gpx-20 mb-15'>
                     {/*===> Column <===*/}
                     <div className='col-6'>
@@ -116,8 +117,7 @@ export default function Edit(props) {
                         ]}/>
                     </div>
                     {/*===> // Column <===*/}
-                </div>
-                
+                </div> : ""}
                 {/*=== Card Template ===*/}
                 <TextControl key="template-name" label={__("Card Template", "phenix")} value={ attributes.template_part } onChange={set_template_part}/>
 

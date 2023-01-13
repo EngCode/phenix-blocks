@@ -544,7 +544,7 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Native Query", "phenix"),
     checked: attributes.native_query,
     onChange: set_native_query
-  }), /*#__PURE__*/React.createElement("div", {
+  }), !attributes.native_query ? /*#__PURE__*/React.createElement("div", {
     className: "row gpx-20 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
@@ -567,7 +567,7 @@ function Edit(props) {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Newest', "phenix"),
       value: 'DESC'
     }]
-  }))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+  }))) : "", /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     key: "template-name",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Card Template", "phenix"),
     value: attributes.template_part,

@@ -25,6 +25,9 @@ register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
 //====> Default Values <====//
 include(dirname(__FILE__) . '/admin/pds-default.php');
 
+//====> Block Patterns Creator <====//
+include(dirname(__FILE__) . '/admin/modules/pattern-creator.php');
+
 //====> Set Menu Locations <====//
 if (get_option('pds_menu_locations')) :
 	register_nav_menus( get_option('pds_menu_locations') );

@@ -33,16 +33,18 @@ export default function Edit(props) {
     const set_responsive = responsive => setAttributes({ responsive });
 
     //===> Get Menu List <===//
-    apiFetch({path: 'pds-blocks/v2/options/pds_menu_locations'}).then(locations => {
-        //===> Create New Array <===//
-        let menus_new_list = [];
-        //===> Prepare Each Location for Select Array <===//
-        for (const [key, value] of Object.entries(locations)) {
-            menus_new_list.push({label: value, value: key});
-        }
-        //===> Set New Locations List <===//
-        if (attributes.menus_list !== menus_new_list) setAttributes({ menus_list : menus_new_list });
-    });
+    useEffect(() => {
+        apiFetch({path: 'pds-blocks/v2/options/pds_menu_locations'}).then(locations => {
+            //===> Create New Array <===//
+            let menus_new_list = [];
+            //===> Prepare Each Location for Select Array <===//
+            for (const [key, value] of Object.entries(locations)) {
+                menus_new_list.push({label: value, value: key});
+            }
+            //===> Set New Locations List <===//
+            if (attributes.menus_list !== menus_new_list) setAttributes({ menus_list : menus_new_list });
+        });
+    }, []);
 
     //===> Render <===//
     return (<>

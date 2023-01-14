@@ -14,9 +14,34 @@ function px_query_render($block_attributes, $content) {
     $options = $block_attributes;
 
     //===> Grid Options <===//
-    $grid_cols = ($options['grid_cols_stat']) ? "" : " ". $options['grid_cols'];
-    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
-    $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
+    $grid_cols = ($options['grid_cols_stat'] || $options['slider_mode']) ? "" : " ". $options['grid_cols'];
+    $grid_opts = $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
+    $is_slider = $options['slider_mode'] ? " px-slider" : "";
+    $slider_opts = "";
+
+    //===> Slider Options <===//
+    if ($options['slider_mode']) {   
+        //===> Type, Steps, Duration, Speed <===//
+        $slider_opts = $slider_opts.' data-type="'.$options['slider_type'].'"';
+        $slider_opts = $slider_opts.' data-steps="'.$options['slider_steps'].'"';
+        $slider_opts = $slider_opts.' data-duration="'.$options['slider_duration'].'"';
+        $slider_opts = $slider_opts.' data-speed="'.$options['slider_speed'].'"';
+
+        //===> Autoplay, Arrows, Pagination <===//
+        $slider_opts = $slider_opts.' data-autoplay="'.$options['slider_autoplay'].'"';
+        $slider_opts = $slider_opts.' data-controls="'.$options['slider_controls'].'"';
+        $slider_opts = $slider_opts.' data-pagination="'.$options['slider_pagination'].'"';
+
+        //===> Items Number <===//
+        if ($options['grid_cols']) {
+            $slider_opts = $slider_opts.' data-items="'.preg_replace('/[^0-9]/', '', $options['grid_cols']).'"';
+        }
+    }
+
+    //===> Custom Classes <===//
+    if(isset($options['className'])) {
+        $grid_opts = $grid_opts .' '. $options['className'];
+    }
 
     //===> Get Current Global Query <===//
     global $wp_query;
@@ -41,7 +66,7 @@ function px_query_render($block_attributes, $content) {
         if ($the_query->have_posts() ) :
             //===> Grid Wrapper <===//
             if ($options['grid_mode']) {
-                echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
+                echo '<div class="row '. $grid_opts . $grid_cols . $is_slider .'" '. $slider_opts .'>';
             }
     
             //==== Loop Start ====//

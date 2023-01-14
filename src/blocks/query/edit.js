@@ -28,51 +28,49 @@ export default function Edit(props) {
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
 
-    //===> Set Attributes <===//
-    const set_order = order => setAttributes({ order });
-    const set_post_type  = post_type  => setAttributes({ post_type });
-    const set_per_page   = per_page   => setAttributes({ per_page });
-    const set_pagination = pagination => setAttributes({ pagination });
-    const set_native_query = native_query => setAttributes({ native_query });
-    const set_template_part = template_part => setAttributes({ template_part });
+    //===> Query Options <===//
+    const set_order = order => setAttributes({ order }),
+          set_post_type  = post_type  => setAttributes({ post_type }),
+          set_per_page   = per_page   => setAttributes({ per_page }),
+          set_pagination = pagination => setAttributes({ pagination }),
+          set_native_query = native_query => setAttributes({ native_query }),
+          set_template_part = template_part => setAttributes({ template_part });
 
-    //===> Grid Attributes <===//
-    const set_grid_mode = grid_mode => setAttributes({ grid_mode });
-    const set_grid_cols = grid_cols => setAttributes({ grid_cols: "row-cols-" + (grid_cols > 0 ? grid_cols : "auto") });
-    const set_grid_cols_stat = grid_cols_stat => setAttributes({ grid_cols_stat });
-    const set_grid_alignment = grid_alignment => setAttributes({ grid_alignment });
+    //===> Grid Options <===//
+    const set_grid_mode = grid_mode => setAttributes({ grid_mode }),
+          set_grid_cols = grid_cols => setAttributes({ grid_cols: !attributes.slider_mode ? "row-cols-" : "" + (grid_cols > 0 ? grid_cols : "auto") }),
+          set_grid_cols_stat = grid_cols_stat => setAttributes({ grid_cols_stat }),
+          set_grid_alignment = grid_alignment => setAttributes({ grid_alignment });
+    
+    //===> Grid Utilites <===//
+    const set_grid_flow = grid_flow => grid_flow ? setAttributes({ grid_flow: "flow-reverse" }) : setAttributes({grid_flow :""}),
+          set_grid_nowrap = grid_nowrap => grid_nowrap ? setAttributes({ grid_nowrap: "flow-nowrap" }) : setAttributes({grid_nowrap:""}),
+          set_grid_masonry = grid_masonry => grid_masonry ? setAttributes({ grid_masonry: "px-masonry" }) : setAttributes({grid_masonry:""});
 
-    //===> Grid Features <===//
-    const set_grid_flow = grid_flow => grid_flow ? setAttributes({ grid_flow: "flow-reverse" }) : setAttributes({grid_flow :""});
-    const set_grid_nowrap = grid_nowrap => grid_nowrap ? setAttributes({ grid_nowrap: "flow-nowrap" }) : setAttributes({grid_nowrap:""});
-    const set_grid_masonry = grid_masonry => grid_masonry ? setAttributes({ grid_masonry: "px-masonry" }) : setAttributes({grid_masonry:""});
+    //===> Slider Options <===//
+    const set_slider_type = slider_type => setAttributes({ slider_type }),
+          set_slider_steps = slider_steps => setAttributes({ slider_steps }),
+          set_slider_duration = slider_duration => setAttributes({ slider_duration }),
+          set_slider_speed = slider_speed => setAttributes({ slider_speed }),
+          set_slider_autoplay = slider_autoplay => setAttributes({ slider_autoplay }),
+          set_slider_controls = slider_controls => setAttributes({ slider_controls }),
+          set_slider_pagination = slider_pagination => setAttributes({ slider_pagination }),
+          set_slider_mode = slider_mode => setAttributes({
+            slider_mode: slider_mode,
+            grid_cols_stat : slider_mode ? false : attributes.grid_cols_stat,
+            grid_cols : slider_mode && parseInt(attributes.grid_cols) < 1 ? 1 : attributes.grid_cols,
+        });
 
-    //===> Slider Attributes <===//
-    const set_slider_mode = slider_mode => setAttributes({ slider_mode });
-
-    //===> Set Phenix View <===//
-    const setPhenixView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'];
-
-        //===> Get the Element from Site Editor <===//
-        if (siteEditor) {
-            //===> Media Active <===//
-            let mediaElements = siteEditor.document.querySelectorAll('.px-media');
-            mediaElements = [...mediaElements];
-            Phenix(mediaElements).multimedia();
-        }
-
-        //===> Set Background <===//
-        if (!siteEditor) {
-            Phenix('.px-media').multimedia();
-        }
-    };
-
-    //===> Update Phenix Elements <===//
+    //===> Fetch Data for Options <===//
     useEffect(()=> {
-        //===> Active Phenix Components <===//
-        setPhenixView();
+        //===> Run Phenix Components <===//
+        setTimeout(()=> {
+            //===> Run Slider <===//
+            if(attributes.slider_mode) Phenix('.px-slider').slider();
+
+            //===> for Cards Media <===//
+            Phenix('.px-media').multimedia();
+        }, 1000);
 
         //===> Fetch Post Types <===//
         apiFetch({path: 'wp/v2/types'}).then(post_types => {
@@ -91,6 +89,25 @@ export default function Edit(props) {
             if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
         });
     }, []);
+
+    //===> Site-Editor Mode <===//
+    const siteEditorView = () => {
+        //===> Check Site Editor <===//
+        let siteEditor = window.frames['editor-canvas'];
+
+        //===> Site Editor <===//
+        if (siteEditor) {
+            //===> Get Components <===//
+            let mediaElements = [...siteEditor.document.querySelectorAll('.px-media')],
+                slidersElements = [...siteEditor.document.querySelectorAll('.px-slider')];
+            
+            //===> Run Components <===//
+            Phenix(slidersElements).slider();
+            Phenix(mediaElements).multimedia();
+        }
+    };
+
+    // useEffect(()=> siteEditorView());
 
     //===> Render <===//
     return (<>
@@ -137,13 +154,15 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             {attributes.grid_mode ? <PanelBody title={__("Loop Grid", "phenix")} initialOpen={true}>
                 {/*===> Columns No. in Row <===*/}
-                {!attributes.grid_cols_stat ? <div class="mb-15">
-                    <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
-                </div> : ""}
+                {!attributes.slider_mode ? <>
+                    {!attributes.grid_cols_stat ? <div className="mb-15">
+                        <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
+                    </div> : ""}
 
-                {/*===> Free Columns Size <===*/}
-                <ToggleControl label={__("Free Columns Size ?", "phenix")} checked={attributes.grid_cols_stat} onChange={set_grid_cols_stat}/>
-                
+                    {/*===> Free Columns Size <===*/}
+                    <ToggleControl label={__("Free Columns Size ?", "phenix")} checked={attributes.grid_cols_stat} onChange={set_grid_cols_stat}/>    
+                </> : null}
+
                 {/*===> Switch Buttons <===*/}
                 <div className='row gpx-15 mb-15'>
                     {/*===> Column [For Alignment] <===*/}
@@ -173,6 +192,44 @@ export default function Edit(props) {
                     {/*===> // Column <===*/}
                 </div>
             </PanelBody> : ""}
+            {/*===> Widget Panel <===*/}
+            {attributes.slider_mode ? <PanelBody title={__("Slider Options", "phenix")} initialOpen={true}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Column <===*/}
+                    <div className='col-12 mb-15'>
+                        <SelectControl label={__("Type", "phenix")} value={attributes.slider_type} onChange={set_slider_type} options={[
+                            { label: __('Loop', "phenix"), value: 'loop' },
+                            { label: __('Fading', "phenix"),  value: 'fade' },
+                            { label: __('Sliding', "phenix"),  value: 'slide' },
+                        ]}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-15'>
+                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={1} max={12}></PhenixNumber>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-15'>
+                        <PhenixNumber label={__("Steps", "phenix")} value={attributes.slider_steps} onChange={set_slider_steps} min={1} max={12}></PhenixNumber>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-15'>
+                        <PhenixNumber label={__("Duration", "phenix")} value={attributes.slider_duration} onChange={set_slider_duration} min={3000} max={20000} steps={100}></PhenixNumber>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-15'>
+                        <PhenixNumber label={__("Speed", "phenix")} value={attributes.slider_speed} onChange={set_slider_speed} min={300} max={3000} steps={100}></PhenixNumber>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
+
+                {/*===> Switch Buttons <===*/}
+                <div className='pdt-15 divider-t'>
+                    <ToggleControl label={__("Enable Autoplay", "phenix")} checked={attributes.slider_autoplay} onChange={set_slider_autoplay}/>
+                    <ToggleControl label={__("Enable Arrows Buttons", "phenix")} checked={attributes.slider_controls} onChange={set_slider_controls}/>
+                    <ToggleControl label={__("Enable Bullet Pagination", "phenix")} checked={attributes.slider_pagination} onChange={set_slider_pagination}/>
+                </div>
+            </PanelBody> : ""}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
@@ -181,8 +238,6 @@ export default function Edit(props) {
             <img src="https://design.phenixthemes.com/px-assets/slider-placeholder.svg" alt="" className='fluid' />
         :
             <div {...blockProps}>
-                {/* <div className='pdy-30 pdx-25 bg-alpha-05 radius-md border-1 border-dashed border-alpha-25 fs-14'>Dynamic Query Loop For : {attributes.post_type}</div> */}
-                {/* <ServerSideRender block="phenix/px-navigation" attributes={attributes} /> */}
                 <ServerSideRender block="phenix/query" attributes={attributes} />
             </div>
         }

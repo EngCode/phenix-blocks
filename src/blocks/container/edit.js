@@ -163,34 +163,45 @@ export default function Edit({ attributes, setAttributes }) {
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Settings", "phenix")}>
-                {/*=== Component <TagName> ===*/}
-                <SelectControl key="tagName" label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_tagName} options={[
-                    { label: 'Default <div>',  value: 'div' },
-                    { label: 'Main <main>',  value: 'main' },
-                    { label: 'Aside <aside>',  value: 'aside' },
-                    { label: 'Section <section>',  value: 'section' },
-                    { label: 'Header <header>', value: 'header' },
-                    { label: 'Footer <footer>', value: 'footer' },
-                ]}/>
-
-                {/*=== Container Size ===*/}
-                <SelectControl key="container_size" label={__("Container Size", "phenix")} value={attributes.size} onChange={set_size} options={[
-                    { label: 'None',   value: '' },
-                    { label: 'Small',  value: 'container-sm' },
-                    { label: 'Medium', value: 'container-md' },
-                    { label: 'Normal', value: 'container' },
-                    { label: 'Large',  value: 'container-xl' },
-                    { label: 'Full Width',  value: 'container-fluid' },
-                ]}/>
-
-                {/*=== Container ID ===*/}
-                <TextControl key="container_id" label={__("Container ID", "phenix")} value={ attributes.id } onChange={set_id}/>
-
-                {/*=== isSection ===*/}
-                <ToggleControl label={__("Section Wrapper", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
-
-                {/*===  isFlexbox ===*/}
-                <ToggleControl key="isFlexbox" label={__("Flex Container", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20 mb-15'>
+                    {/*===> Size <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="container_size" label={__("Container Size", "phenix")} value={attributes.size} onChange={set_size} options={[
+                            { label: 'None',   value: '' },
+                            { label: 'Small',  value: 'container-sm' },
+                            { label: 'Medium', value: 'container-md' },
+                            { label: 'Normal', value: 'container' },
+                            { label: 'Large',  value: 'container-xl' },
+                            { label: 'Full Width',  value: 'container-fluid' },
+                        ]}/>
+                    </div>
+                    {/*===> HTML Tag <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="tagName" label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_tagName} options={[
+                            { label: '<div>',  value: 'div' },
+                            { label: '<main>',  value: 'main' },
+                            { label: '<aside>',  value: 'aside' },
+                            { label: '<section>',  value: 'section' },
+                            { label: '<header>', value: 'header' },
+                            { label: '<footer>', value: 'footer' },
+                        ]}/>
+                    </div>
+                    {/*=== isSection ===*/}
+                    <div className='col-6 mb-10'>
+                        <ToggleControl label={__("Wrapper ?", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-10'>
+                        {/*===  isFlexbox ===*/}
+                        <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                    </div>
+                    {/*=== Container ID ===*/}
+                    <div className='col-12'>
+                        <TextControl key="container_id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody>
             {/*=== Container Options ===*/}
             {attributes.isFlexbox ? <PanelBody title={__("Flexbox", "phenix")} initialOpen={false}>

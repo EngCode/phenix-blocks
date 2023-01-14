@@ -96,28 +96,30 @@ function Edit(props) {
   }; //===> Get Menu List <===//
 
 
-  _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-    path: 'pds-blocks/v2/options/pds_menu_locations'
-  }).then(function (locations) {
-    //===> Create New Array <===//
-    var menus_new_list = []; //===> Prepare Each Location for Select Array <===//
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
+      path: 'pds-blocks/v2/options/pds_menu_locations'
+    }).then(function (locations) {
+      //===> Create New Array <===//
+      var menus_new_list = []; //===> Prepare Each Location for Select Array <===//
 
-    for (var _i = 0, _Object$entries = Object.entries(locations); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-          key = _Object$entries$_i[0],
-          value = _Object$entries$_i[1];
+      for (var _i = 0, _Object$entries = Object.entries(locations); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
 
-      menus_new_list.push({
-        label: value,
-        value: key
+        menus_new_list.push({
+          label: value,
+          value: key
+        });
+      } //===> Set New Locations List <===//
+
+
+      if (attributes.menus_list !== menus_new_list) setAttributes({
+        menus_list: menus_new_list
       });
-    } //===> Set New Locations List <===//
-
-
-    if (attributes.menus_list !== menus_new_list) setAttributes({
-      menus_list: menus_new_list
     });
-  }); //===> Render <===//
+  }, []); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"

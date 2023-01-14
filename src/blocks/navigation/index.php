@@ -9,49 +9,49 @@
 function px_navigation_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = ''; ob_start();
-    $props  = $block_attributes;
+    $options  = $block_attributes;
 
     //===> Create Options Data <===//
     $menuClasses = "reset-list";
-    $menu_id = "data-id='{$props['menu_id']}'";
-    $effect_type = "data-effect='{$props['effect']}'";
-    $classNames  = "px-navigation {$props['className']}";
-    $mobile_mode = "data-mobile='{$props['mobile_mode']}'";
-    $arrow_icon  = "data-arrow='{$props['arrow_icon']}'";
+    $menu_id = "data-id='{$options['menu_id']}'";
+    $effect_type = "data-effect='{$options['effect']}'";
+    $classNames  = "px-navigation {$options['className']}";
+    $mobile_mode = "data-mobile='{$options['mobile_mode']}'";
+    $arrow_icon  = "data-arrow='{$options['arrow_icon']}'";
     $hover_mode  = "";
     $nav_style   = "";
 
     //===> Direction Mode <===//
-    if ($props['direction'] == 'px-vertical') {
-        $classNames = $classNames.' '.$props['direction'];
+    if ($options['direction'] == 'px-vertical') {
+        $classNames = $classNames.' '.$options['direction'];
     } else {
-        $menuClasses = $menuClasses.' '.$props['direction'];
+        $menuClasses = $menuClasses.' '.$options['direction'];
     }
 
     //===> Responsive Classes <===//
-    if ($props['responsive'] == true) {
+    if ($options['responsive'] == true) {
         $classNames = $classNames . " hidden-md-down";
     }
 
     //===> Hover Mode <===//
-    if ($props['hover'] === true) {
+    if ($options['hover'] === true) {
         $hover_mode = "data-hover='{$hover_mode}'";
     }
 
     //===> Start Navigation Wrapper <===//
-    echo "<{$props['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
+    echo "<{$options['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
 
     //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(
-        'menu' => $props['menu_id'],
+        'menu' => $options['menu_id'],
         'menu_class' => $menuClasses,
-        'theme_location' => $props['menu_id'],
+        'theme_location' => $options['menu_id'],
         'container' => false,
         'container_class' => false,
     ));
 
     //===> End Navigation Wrapper <===//
-    echo "</{$props['tagName']}>";
+    echo "</{$options['tagName']}>";
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

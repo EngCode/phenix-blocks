@@ -72,6 +72,34 @@
     "slider_mode": {
       "type": "boolean",
       "default": false
+    },
+    "slider_autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "slider_controls": {
+      "type": "boolean",
+      "default": true
+    },
+    "slider_pagination": {
+      "type": "boolean",
+      "default": false
+    },
+    "slider_steps": {
+      "type": "string",
+      "default": "1"
+    },
+    "slider_duration": {
+      "type": "string",
+      "default": "7000"
+    },
+    "slider_speed": {
+      "type": "string",
+      "default": "700"
+    },
+    "slider_type": {
+      "type": "string",
+      "default": "loop"
     }
   },
   "example": {

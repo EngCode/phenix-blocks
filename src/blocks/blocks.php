@@ -88,7 +88,7 @@ if (get_option('navigation_block')) {
     include(dirname(__FILE__) . '/navigation/index.php');
 }
 
-//====> Phenix Pahe-Head <====//
+//====> Phenix Page-Head <====//
 if (get_option('head_block')) {
     include(dirname(__FILE__) . '/page-head/index.php');
 }

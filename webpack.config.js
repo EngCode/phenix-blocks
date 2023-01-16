@@ -18,6 +18,7 @@ module.exports = {
         'grid-column': './src/blocks/grid-column/index.js',
         'taxonomies': './src/blocks/taxonomies/index.js',
         'taxonomies-list': './src/blocks/taxonomies-list/index.js',
+        'inline-elements': './src/blocks/inline-elements/index.js',
         // 'languages': './src/blocks/languages/index.js',
     },
     output: {

@@ -78,6 +78,11 @@ if (!function_exists('phenix_blocks')) :
         if (get_option('theme_part_block')) {
             wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
         }
+        
+        //====> Theme Part <====//
+        if (get_option('inline_elements_block')) {
+            wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
+        }
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');

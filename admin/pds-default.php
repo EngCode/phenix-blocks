@@ -37,6 +37,8 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('taxonomies_block', true);
         add_option('theme_part_block', true);
         add_option('group_block', true);
+        add_option('pds_core_separator', true);
+        add_option('inline_elements_block', true);
 
         //===> Optimization settings <===//
         add_option('pds_gfonts', true);

@@ -44,6 +44,11 @@
                     "title" => 'Grid/Column',
                     "icon"  => $icons_url.'columns.svg',
                 ),
+                array(
+                    "name"  => 'inline_elements_block',
+                    "title" => 'Inline Elements',
+                    "icon"  => $icons_url.'columns.svg',
+                ),
             ));
         ?>
     </div>

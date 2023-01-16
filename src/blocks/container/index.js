@@ -35,6 +35,9 @@ registerBlockType(metadata, {
         //===> Render Size <===//
         if (attributes.size) container_names += attributes.size;
 
+        //===> is Hidden <===//
+        if (attributes.isHidden) container_names += ' hidden';
+
         //===> Render Alignment <===//
         if (attributes.isFlexbox) {
             container_names += ' flexbox';

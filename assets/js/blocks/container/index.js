@@ -93,6 +93,12 @@ function Edit(_ref) {
     });
   };
 
+  var set_isHidden = function set_isHidden(isHidden) {
+    return setAttributes({
+      isHidden: isHidden
+    });
+  };
+
   var set_alignment = function set_alignment(alignment) {
     return setAttributes({
       flex_align: alignment
@@ -192,7 +198,9 @@ function Edit(_ref) {
   var container_element = blockProps;
   if (attributes.isSection || attributes.isFlexbox) container_element = innerBlocksProps; //===> Render Size <===//
 
-  if (attributes.size) container_element.className += " ".concat(attributes.size); //===> Render Alignment <===//
+  if (attributes.size) container_element.className += " ".concat(attributes.size); //===> is Hidden <===//
+
+  if (attributes.isHidden) container_element.className += ' hidden'; //===> Render Alignment <===//
 
   if (attributes.isFlexbox) {
     container_element.className += ' flexbox';
@@ -277,18 +285,25 @@ function Edit(_ref) {
       value: 'footer'
     }]
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col-6 mb-10"
+    className: "col-6 mb-5"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Wrapper ?", "phenix"),
     checked: attributes.isSection,
     onChange: set_isSection
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col-6 mb-10"
+    className: "col-6 mb-5"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     key: "isFlexbox",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox", "phenix"),
     checked: attributes.isFlexbox,
     onChange: set_isFlexbox
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col mb-10"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    key: "isHidden",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
+    checked: attributes.isHidden,
+    onChange: set_isHidden
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
@@ -2186,7 +2201,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"spacing_pd":{"type":"string","default":""},"spacing_mg":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"isHidden":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"spacing_pd":{"type":"string","default":""},"spacing_mg":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -2303,7 +2318,9 @@ __webpack_require__.r(__webpack_exports__);
     var TagName = attributes.tagName;
     var container_names = ''; //===> Render Size <===//
 
-    if (attributes.size) container_names += attributes.size; //===> Render Alignment <===//
+    if (attributes.size) container_names += attributes.size; //===> is Hidden <===//
+
+    if (attributes.isHidden) container_names += ' hidden'; //===> Render Alignment <===//
 
     if (attributes.isFlexbox) {
       container_names += ' flexbox';

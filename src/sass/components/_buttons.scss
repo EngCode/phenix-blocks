@@ -146,7 +146,7 @@
         &:hover,&.active,&.px-active, &.is-active {--background : var(#{'--'+$prefix+'-'+$hover});}
         /*==== Outline ====*/
         &.outline {--color: var(#{'--'+$prefix+'-color'});}
-        &.outline:hover {
+        &.outline:hover,&:hover,&.active,&.px-active, &.is-active {
             --color: var(#{'--'+$text});
             --background: var(#{'--'+$prefix+'-color'});
         }

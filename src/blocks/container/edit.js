@@ -44,6 +44,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_tagName = tagName => setAttributes({ tagName });
     const set_isSection = isSection => setAttributes({ isSection });
     const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
+    const set_isHidden = isHidden => setAttributes({ isHidden });
     const set_alignment = alignment => setAttributes({ flex_align : alignment });
     const set_spacing_pd = spacing_pd => setAttributes({ spacing_pd });
     const set_spacing_mg = spacing_mg => setAttributes({ spacing_mg });
@@ -129,6 +130,9 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Render Size <===//
     if (attributes.size) container_element.className += ` ${attributes.size}`;
 
+    //===> is Hidden <===//
+    if (attributes.isHidden) container_element.className += ' hidden';
+
     //===> Render Alignment <===//
     if (attributes.isFlexbox) {
         container_element.className += ' flexbox';
@@ -188,13 +192,18 @@ export default function Edit({ attributes, setAttributes }) {
                         ]}/>
                     </div>
                     {/*=== isSection ===*/}
-                    <div className='col-6 mb-10'>
+                    <div className='col-6 mb-5'>
                         <ToggleControl label={__("Wrapper ?", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-6 mb-10'>
+                    <div className='col-6 mb-5'>
                         {/*===  isFlexbox ===*/}
                         <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col mb-10'>
+                        {/*===  isFlexbox ===*/}
+                        <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
                     </div>
                     {/*=== Container ID ===*/}
                     <div className='col-12'>

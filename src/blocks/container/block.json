@@ -35,6 +35,11 @@
             "default": false
         },
 
+        "isHidden" : {
+            "type": "boolean",
+            "default": false
+        },
+
         "flex_align" : {
             "type": "string",
             "default": ""

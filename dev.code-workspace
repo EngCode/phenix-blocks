@@ -30,7 +30,7 @@
 			
 		],
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "Tornado-v2",
+		"liveServer.settings.multiRootWorkspaceName": "phenix-sys",
 		"liveServer.settings.port": 5502,
 	}
 }

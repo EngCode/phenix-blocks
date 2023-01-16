@@ -1,11 +1,11 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Dropdown
  * ===> 03 - Default Options
  * ===> 04 - Set Trigger Accessibility
  * ===> 05 - When Click on the Trigger
  * ===> 06 - De-Activate Other
- * ===> 07 - Activat Button and List
+ * ===> 07 - Activate Button and List
  * ===> 08 - De-Activate on Blank
  * ===> 09 - Return Phenix Elements
 */
@@ -54,13 +54,17 @@ PhenixElements.prototype.dropdown = function (options?:{
         let change_position = () => position[0] === 'top' || 'bottom' ? Phenix(dropdown_target).dynamicPosition() : null;
 
         //====> Hide Activated Dropdowns <====//
-        const hide_others = () => {
+        const hide_others = (activated) => {
             //==== Hide Others ====//
             Phenix(activated).removeClass(active).forEach((dropdown:HTMLElement) => {
                 //====> Get the Effect Type <====//
-                let current_effect = Phenix(dropdown).ancestor('[data-effect]').getAttribute('data-effect');
+                let dropdown_wrapper = Phenix(dropdown).ancestor('[data-effect]'),
+                    current_effect   = dropdown_wrapper.getAttribute('data-effect');
+
                 //====> De-Activate Triggers <====//
+                dropdown_wrapper.querySelector('.px-toggle').classList.remove(active);
                 Phenix(dropdown).siblings(active)?.forEach((sibling:HTMLElement) => sibling.classList.remove(active));
+
                 //====> Hide Opened Dropdowns <====//
                 if (current_effect == 'fade') Phenix(dropdown).fadeOut(duration, delay, display);
                 else if (current_effect == 'slide') Phenix(dropdown).slideUp(duration, delay, display);
@@ -69,24 +73,35 @@ PhenixElements.prototype.dropdown = function (options?:{
 
         //====> Click to Dropdown <====//
         dropdown_start = event => {
-            //====> Prevent Default Behavor <====//
-            event.preventDefault();
             //====> De-Activate Other <====//
-            hide_others();
-            //====> Get the Target Siblings <====//
-            let event_target = event.target;
-            if (!event.target.matches(toggle)) event_target = Phenix(event_target).ancestor(toggle);
-            siblings = Phenix(event_target).toggleClass(active).siblings(target);
+            // hide_others(activated);
+
+            //====> Prevent Default <====//
+            event.preventDefault();
+
+            //====> Get the Target and its Sibling <====//
+            let event_trigger = event.target;
+            if (!event.target.matches(toggle)) event_trigger = Phenix(event_trigger).ancestor(toggle);
+
+            
+            siblings = Phenix(event_trigger).addClass(active).siblings(target);
+
             //====> Active Button and the Target <====//
             if (siblings) {
                 //====> Change Position <====//
                 change_position();
+
                 //====> Active Target <====//
                 Phenix(siblings).addClass(active);
+
                 //====> Effect : Fade-In-Out <====//
-                if (effect == 'fade') Phenix(siblings).fadeIn(duration, delay, display);
+                if (effect == 'fade') {
+                    Phenix(siblings).fadeIn(duration, delay, display);
+                }
                 //====> Effect : Slide-Down-Up <====//
-                else if (effect == 'slide') Phenix(siblings).slideDown(duration, delay, display);
+                else if (effect == 'slide') {
+                    Phenix(siblings).slideDown(duration, delay, display);
+                }
             }
         },
 
@@ -95,8 +110,9 @@ PhenixElements.prototype.dropdown = function (options?:{
             //====> Clicked Target <====//
             let exclude_final = `${target} *:not([href^="#"]):not(${exclude})`,
                 clicked:any = blank.target;
-            //====> if the target is not the current element or any of its childerns <====//
-            if (!clicked.matches(target) && !clicked.matches(exclude_final) && !clicked.matches(toggle) && !clicked.matches(`${toggle} *`)) hide_others();
+
+            //====> if the target is not the current element or any of its children <====//
+            if (!clicked.matches(target) && !clicked.matches(exclude_final) && !clicked.matches(toggle) && !clicked.matches(`${toggle} *`)) hide_others(activated);
         };
 
         //====> Click to Dropdown <====//
@@ -105,7 +121,7 @@ PhenixElements.prototype.dropdown = function (options?:{
         //====> De-Activate on Blank <====//
         window.addEventListener('click', dropdown_hide);
 
-        //====> CSS Perpare <====//
+        //====> CSS Prepare <====//
         Phenix(dropdown_wrapper).css({"position" : "relative"});
 
         //====> Divide Positions <====//
@@ -135,10 +151,10 @@ PhenixElements.prototype.dropdown = function (options?:{
         });
 
         //===> Target Position [End] <====//
-        else if (position[1] === "end") page_dir == 'ltr' ? the_target.css({"right" : 0}) : the_target.css({"left": 0});
+        else if (position[1] === "end") page_dir == 'ltr' ? the_target.css({"right": 0, "left": null}) : the_target.css({"left": 0, "right": null});
 
         //===> Target Position [Start] <====/
-        else page_dir == 'ltr' ? the_target.css({"left" : 0}) : the_target.css({"right" : 0});
+        else page_dir == 'ltr' ? the_target.css({"left": 0, "right": null}) : the_target.css({"right": 0, "left": null});
 
         //====> Change Position on Scroll <====//
         let isScrolling = false;

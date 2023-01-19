@@ -1,6 +1,6 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
- * ===> 02 - Notficationss
+ * ===> 02 - Notifications
 */
 
 /*====> Phenix Object <====*/
@@ -18,7 +18,7 @@ PhenixElements.prototype.notifications = function (options?:{
         type = options?.type || 'normal',
         message = options?.message || 'No Message Defined.',
         duration = options?.duration || 3000,
-        notfications = document.querySelector('.px-notfications'),
+        notifications = document.querySelector('.px-notifications'),
         background = 'bg-primary color-white',
         item_position = 'pos-bottom-0 pos-start-0',
         css_classes = 'px-item pdy-10 pdx-15 fs-14 mb-10 radius-sm';
@@ -47,9 +47,9 @@ PhenixElements.prototype.notifications = function (options?:{
     //====> Set Default <===//
     } else item_position = `align-self-end`;
 
-    //====> Create Notifcation Area <====//
-    if(!document.querySelector('.px-notfications')) {
-        notfications = Phenix('body').insert('append', `<div class="px-notfications position-fx pos-bottom-0 pos-start-0 hidden z-index-modal pd-15 ${options?.position ? 'flexbox h-100vh col-12' : ''}" style="pointer-events: none"></div>`);
+    //====> Create Notifications Area <====//
+    if(!document.querySelector('.px-notifications')) {
+        notifications = Phenix('body').insert('append', `<div class="px-notifications position-fx pos-bottom-0 pos-start-0 hidden z-index-modal pd-15 ${options?.position ? 'flexbox h-100vh col-12' : ''}" style="pointer-events: none"></div>`);
     }
 
     //====> Change Background <====//
@@ -57,14 +57,14 @@ PhenixElements.prototype.notifications = function (options?:{
     else if (type === 'success') background = 'bg-success color-white';
     else if (type === 'warning') background = 'bg-warning color-dark';
 
-    //=== Set Notifcation ===//
-    current = Phenix(notfications).insert('append', `<div class="w-max-320 ${css_classes} ${background} ${item_position} hidden">${message}</div>`);
+    //=== Set Notifications ===//
+    current = Phenix(notifications).insert('append', `<div class="w-max-320 ${css_classes} ${background} ${item_position} hidden">${message}</div>`);
 
-    //====> Show Notifcations <====//
-    Phenix(notfications).removeClass('hidden').fadeIn(500, 0, 'flex');
+    //====> Show Notifications <====//
+    Phenix(notifications).removeClass('hidden').fadeIn(500, 0, 'flex');
     Phenix(current).removeClass('hidden').fadeIn();
 
-    //====> Hide Notifcations <====//
+    //====> Hide Notifications <====//
     setTimeout(()=> {
         Phenix(current).fadeOut();
         setTimeout(() => current ? current.remove() : '', 500);

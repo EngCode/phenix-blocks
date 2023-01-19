@@ -148,7 +148,7 @@ console.log(`🔥🔥🔥💥 %cDesign by Phenix Themes 💥🔥🔥🔥🔥
 🔥  - System  : Phenix Design System     🔥
 🔥  - Front   : PDS UI/UX Framework      🔥
 🔥  - Author  : Abdullah Ramadan         🔥
-🔥  - Version : PDS v0.7 Beta            🔥
+🔥  - Version : PDS v0.7.0 Beta          🔥
 🔥  - Website : phenixthemes.com         🔥
 🔥  - Docs    : design.phenixthemes.com  🔥
 🔥  - Contact : +2-01122974539           🔥

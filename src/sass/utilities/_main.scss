@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Overflow
  * ===> 02 - Float Elements
  * ===> 03 - Overlay Layer
@@ -81,10 +81,10 @@
 .tx-shadow-dp2 {text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);}
 .tx-shadow-dp3 {text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16);}
 
-/*==== Transtions ====*/
-.transtion-fast {@extend %fast-motion;}
-.transtion-smooth {@extend %smooth-motion;}
-.transtion-slow {@extend %slow-motion;}
+/*==== Transition ====*/
+.transition-fast {@extend %fast-motion;}
+.transition-smooth {@extend %smooth-motion;}
+.transition-slow {@extend %slow-motion;}
 
 /*==== Sticky Elements ====*/
 .is-sticky {
@@ -122,7 +122,7 @@
     position: relative;
 }
 
-/*==== Text Cliping ====*/
+/*==== Text Clipping ====*/
 .bg-clip-text {
     @extend .color-transparent;
     -webkit-background-clip: text;

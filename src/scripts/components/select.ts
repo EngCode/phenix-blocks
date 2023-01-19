@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Advanced Select
 */
@@ -30,7 +30,7 @@ PhenixElements.prototype.select = function (options?:{
             //====> Create Custom Select <====//
             let new_select = Phenix(select).insert('before', `<div class="px-select flexbox position-rv" style="line-height:var(--height);cursor: pointer;"></div>`);
     
-            //====> Copy Select Classes and Perpare CSS <====//
+            //====> Copy Select Classes and Prepare CSS <====//
             new_select.classList.add(...classes);
             new_select = Phenix(new_select);
             select.classList.add('hidden', 'px-mounted');
@@ -91,17 +91,17 @@ PhenixElements.prototype.select = function (options?:{
 
                 //====> Options Headline <====//
                 if (option.matches('optgroup')) {
-                    current_item = options_list.insert('append', `<li class="px-select-group bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-group bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 }
                 
                 //====> Disabled Options  <====//
                 else if (option.hasAttribute('disabled')) {
-                    current_item = options_list.insert('append', `<li class="px-select-disabled pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-disabled pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 } 
                 
                 //====> Options Items <====//
                 else {
-                    current_item = options_list.insert('append', `<li class="px-select-option pdx-15 ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-option pdx-15 ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 }
 
                 //====> Copy Classes <====//

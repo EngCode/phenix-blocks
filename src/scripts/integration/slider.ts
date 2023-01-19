@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix and Splide
  * ===> 02 - Phenix Slider
  * ===> 03 - Create Markup
@@ -71,7 +71,7 @@ PhenixElements.prototype.slider = function (options?:{
                     let first_item = slider.children[0],
                         margin = parseInt(getComputedStyle(first_item).getPropertyValue('margin-bottom')),
                         first_height = first_item.clientHeight;
-                    //====> Height Marign Fallback <====//
+                    //====> Height Margin Fallback <====//
                     if(margin === 0) margin = parseInt(getComputedStyle(first_item).getPropertyValue('margin-top'));
                     if (margin > 0) first_height = (first_height + margin - 1);
 
@@ -191,7 +191,7 @@ PhenixElements.prototype.slider = function (options?:{
             }
         }
 
-        //====> Splide Perpare <====//
+        //====> Splide Prepare <====//
         let current_slider = slider_creator(slider),
             the_slider = new Splide(slider, current_slider.options);
 
@@ -312,13 +312,13 @@ PhenixElements.prototype.slider = function (options?:{
         }
     });
 
-    //====> Load Splid JS <====//
+    //====> Load Splide JS <====//
     if (!document.querySelector('#splidejs-phenix')) {
         //===> Create Script Element <===//
         let splide_loader = document.createElement("script"),
             libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),
             splide_url =  libPath+'splide.min.js';
-            
+
         //===> Set ID <===//
         splide_loader.setAttribute('id', 'splidejs-phenix')
         //===> Set Source <===//
@@ -333,7 +333,6 @@ PhenixElements.prototype.slider = function (options?:{
         splide_loader.addEventListener("error", (ev) => {
             splide_loader.setAttribute("src", splide_url);
         });
-
     //====> if Al-ready loaded run the sliders <====//
     } else slider_handler;
 

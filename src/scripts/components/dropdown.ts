@@ -116,49 +116,32 @@ PhenixElements.prototype.dropdown = function (options?:{
         };
 
         //====> Click to Dropdown <====//
-        dropdown_wrapper.querySelector(toggle).addEventListener('click', dropdown_start);
+        let toggle_element = dropdown_wrapper.querySelector(toggle);
+        toggle_element.addEventListener('click', dropdown_start);
+
+        //====> Set Accessibility Options <====//
+        toggle_element.setAttribute('role', 'button');
+        toggle_element.setAttribute('tabIndex', '0');
 
         //====> De-Activate on Blank <====//
         window.addEventListener('click', dropdown_hide);
 
         //====> CSS Prepare <====//
-        Phenix(dropdown_wrapper).css({"position" : "relative"});
+        Phenix(dropdown_wrapper).addClass("position-rv");
 
         //====> Divide Positions <====//
         position = position.replace(' ','').split(',');
 
         //====> Define Targets <====//
         let the_target = Phenix(dropdown_target),
-            page_dir   = Phenix(document).direction();
+            isScrolling = false
 
-        //====> Target CSS <====//
-        the_target.css({
-            "display"  : "none",
-            "position" : "absolute",
-            "z-index"  : "var(--dropdown-index)",
-        });
-
-        //====> Target Position [Top] <====//
-        if(position[0] === "top") the_target.addClass('pos-before-y');
-
-        //====> Target Position [Bottom] <====//
-        else the_target.addClass('pos-after-y');
-        
-        //====> Target Position [Center] <====//
-        if (position[1] === "center") the_target.css({
-            "left" : "50%",
-            "transform" : "translateX(-50%)"
-        });
-
-        //===> Target Position [End] <====//
-        else if (position[1] === "end") page_dir == 'ltr' ? the_target.css({"right": 0, "left": null}) : the_target.css({"left": 0, "right": null});
-
-        //===> Target Position [Start] <====/
-        else page_dir == 'ltr' ? the_target.css({"left": 0, "right": null}) : the_target.css({"right": 0, "left": null});
+        //====> Style Utilites <====//
+        the_target.addClass("position-ab").addClass("z-index-dropdown").addClass("hidden");
+        the_target.addClass(`pos-${position[1] !== "center" ? `${position[1]}-0` : `${position[1]}-x`}`);
+        position[0] === "top" ? the_target.addClass('pos-before-y') : the_target.addClass('pos-after-y');
 
         //====> Change Position on Scroll <====//
-        let isScrolling = false;
-
         window.addEventListener('scroll', scrolling => isScrolling = true, {passive: true});
 
         setInterval(() => {

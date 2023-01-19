@@ -8,7 +8,7 @@
 /*====> Phenix Object <====*/
 import Phenix, { PhenixElements } from "..";
 
-/*====> Smoth-Scroll [Buged] <====*/
+/*====> Smooth-Scroll [Bugged] <====*/
 PhenixElements.prototype.smothScroll = function (options?:{
     target?:string,   //===> Target to Scroll to
     offset?:number,   //===> Decrease Target Position By [number]
@@ -18,7 +18,7 @@ PhenixElements.prototype.smothScroll = function (options?:{
 }) {
     //====> Loop Through Phenix Elements <====//
     this.on('click', event => {
-        //====> Prevent Default Click Behavor <====//
+        //====> Prevent Default Click Behavior <====//
         event.preventDefault();
 
         //====> Element Data <====//
@@ -168,7 +168,7 @@ PhenixElements.prototype.scrollSpy = function (options?:{
         //====> Get All Links & Triggers <====//
         let triggers:any = Array.from(element.querySelectorAll('[href], [data-target]'));
 
-        //====> Apply Smoth Scroll & Loop Throgh Links & Triggers <====//
+        //====> Apply Smooth Scroll & Loop Through Links & Triggers <====//
         Phenix(triggers).smothScroll({
             into : element.getAttribute('data-into') || spotInto,
             offset : element.getAttribute('data-offset') || spotOffset
@@ -181,18 +181,18 @@ PhenixElements.prototype.scrollSpy = function (options?:{
                 //====> Define Siblings & Parent Elements <====//
                 let siblings, parent;
 
-                //====> if Triger not List-Item Get Ancestor List-Item <====//
+                //====> if Trigger not List-Item Get Ancestor List-Item <====//
                 if (!element.matches('li')) parent = Phenix(element).ancestor('li');
 
                 //====> Active & Get Siblings <====//
                 siblings = Phenix(parent || element).addClass(className).siblings();
 
-                //====> Loop Throgh Siblings <====//
+                //====> Loop Through Siblings <====//
                 if (siblings) siblings.forEach(sibling => {
                     //====> De-Activate Siblings <====//
                     sibling.classList.remove(className);
 
-                    //====> Get Activated Childs & De-Activate them <====//
+                    //====> Get Activated child's & De-Activate them <====//
                     sibling.querySelector(`.${className}`)?.classList.remove(className);
                 });
             };
@@ -204,7 +204,7 @@ PhenixElements.prototype.scrollSpy = function (options?:{
                 offset : element.getAttribute('data-offset') || spotOffset,
             })) activator();
 
-            //====> Check While Scrol if in view-point : Activate <====//
+            //====> Check While Scroll if in view-point : Activate <====//
             window.addEventListener('scroll', event => Phenix(selector).inView() ? activator() : null);
         });
     });

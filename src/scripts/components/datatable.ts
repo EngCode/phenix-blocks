@@ -1,9 +1,9 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Animated Counter
  * ===> 03 - Get Options Data
  * ===> 04 - Counter Data
- * ===> 05 - Count Runer
+ * ===> 05 - Count Runes
  * ===> 06 - Start Counting
 */
 
@@ -32,7 +32,7 @@ PhenixElements.prototype.datatable = function (options?:{
             labels   = element.getAttribute('data-labels') || options?.data?.labels || false,  //===> Table Head Items [array of strings]
             editable = element.getAttribute('data-editable') || options?.data?.editable || false;  //===> Enable Data Edit
 
-        //====> Detact Responsive Wrapper <====//
+        //====> Detect Responsive Wrapper <====//
         if (element.parentNode.matches('[class*="-table"]')) wrapper = element.parentNode;
 
         //====> Label Translate <====//
@@ -51,7 +51,7 @@ PhenixElements.prototype.datatable = function (options?:{
         if (labels) {
             //====> Remove Head <====//
             element.querySelector('thead')?.remove();
-            //====> Create Head Wraper <====//
+            //====> Create Head Wrapper <====//
             Phenix(element).insert('append', `<thead><tr></tr></thead>`);
             let headRow = element.querySelector('thead tr');
             //====> Create Labels <====//
@@ -97,11 +97,11 @@ PhenixElements.prototype.datatable = function (options?:{
         //====> Navigation Template <====//
         var tableNav = `<div class="datatable-nav flexbox align-between align-center-y">
             ${search ?             
-                `<!-- Seach -->
+                `<!-- Search -->
                 <div class="table-filters col-5 col-md-4 col-lg-3">
                     ${searchHTML}
                 </div>
-                <!-- // Seach -->` : ''
+                <!-- // Search -->` : ''
             }
             ${items ? 
                 `<!-- Action Area -->
@@ -160,7 +160,7 @@ PhenixElements.prototype.datatable = function (options?:{
                 item.parentNode.querySelector('.active')?.classList.remove('active')
                 item.classList.add('active');
 
-                //====> Items Caluclation <====//
+                //====> Items Calculation <====//
                 var startPoint = thisPage == 1 ? 0 : thisPage*itemsNumber-itemsNumber,
                     endPoint   = thisPage*itemsNumber-1;
 
@@ -260,7 +260,7 @@ PhenixElements.prototype.datatable = function (options?:{
                     });
                 }
     
-                //====> Search Resault <====//
+                //====> Search Result <====//
                 if (items && filteredData.length > 0) createPagination(filteredData, 0, items-1);
                 if (!items) setPage(filteredData, 0, filteredData.length-1);
             });
@@ -276,9 +276,9 @@ PhenixElements.prototype.datatable = function (options?:{
                 //====> Handler <====//
                 label.addEventListener('click', event => {
                     event.preventDefault();
-                    //====> Deactive Handler <====//
-                    const deactiveOther = () => {
-                        //====> Deactivte Other <====//
+                    //====> Deactivate Handler <====//
+                    const deactivateOther = () => {
+                        //====> Deactivate Other <====//
                         Phenix(label).siblings('.active')?.forEach(sibling => {
                             sibling.classList.remove('active');
                             sibling.classList.remove('asc-sort');
@@ -286,19 +286,19 @@ PhenixElements.prototype.datatable = function (options?:{
                         });
                     }
 
-                    //====> Sort Detactor <====//
+                    //====> Sort Detector <====//
                     if(!label.classList.contains('asc-sort')) {
                         var sortBy = 'asc'
-                        //====> Deactivte Other <====//
-                        deactiveOther();
+                        //====> Deactivates Other <====//
+                        deactivateOther();
                         //====> Activate Item <====//
                         label.classList.add('active');
                         label.classList.add('asc-sort');
                         label.classList.remove('desc-sort');
                     } else {
                         var sortBy = 'desc';
-                        //====> Deactivte Other <====//
-                        deactiveOther();
+                        //====> Deactivates Other <====//
+                        deactivateOther();
                         //====> Activate Item <====//
                         label.classList.add('active');
                         label.classList.add('desc-sort');

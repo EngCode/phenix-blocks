@@ -1,15 +1,15 @@
-/**======> Referance <======
+/**======> Reference <======
  * ===> 01 - CSS Elements Reset
  * ===> 02 - Standard Form Reset
  * ===> 03 - Select Reset
- * ===> 04 - Checkboxs and Radio Buttons Reset
+ * ===> 04 - Checkboxes and Radio Buttons Reset
  * ===> 05 - Responsive REM Base
  * ===> 06 - Page Defaults
  * ===> 07 - Typography
  * ===> 08 - Reset Classes
 */
 
-/*==== Vieport for IE+ ====*/
+/*==== Viewport for IE+ ====*/
 @-ms-viewport {width: device-width;}
 
 /*==== Box Resize for All Elements ====*/
@@ -136,7 +136,7 @@ button,input,optgroup, select,textarea {
 }
 
 /*==== Select Reset ====*/
-select,keygen{
+select, keygen{
     option { padding: 0 0.9375rem; }
 
     optgroup {
@@ -149,7 +149,7 @@ select,keygen{
     }
 }
 
-/*==== Checkboxs and Radio Buttons Reset ====*/
+/*==== Checkboxes and Radio Buttons Reset ====*/
 input {
     &[type="radio"],&[type="checkbox"],&[type="range"],&[type="color"] {
         display:inline-block;
@@ -174,20 +174,20 @@ input {
 }
 
 /*==== Page Defaults ====*/
-html {
+html, body {
+    direction: $direction;
     font-size: var(--current-rem);
     line-height: var(--line-height);
+    font-family: var(--secondary-font), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
     margin: 0;
     padding: 0;
     position: relative;
-    direction: $direction;
     background: var(--body-bg);
-    font-family: var(--secondary-font), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    -moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
 }
 
 iframe {

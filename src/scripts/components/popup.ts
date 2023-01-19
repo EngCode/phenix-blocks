@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Loop Through Phenix Query
  * ===> 03 - Popup Options
@@ -103,7 +103,7 @@ PhenixElements.prototype.popup = function (options?:{
             //===> Set ID <===//
             modal_id = 'px-lightbox';
 
-            //===> Lighbox Triggers <===//
+            //===> Lightbox Triggers <===//
             Phenix('.px-lightbox').on('click', isClicked => {
                 //===> Prevent Default <===//
                 isClicked.preventDefault();
@@ -224,12 +224,20 @@ PhenixElements.prototype.popup = function (options?:{
         if (type === 'modal') {
             let triggers_select = `[data-modal="${modal_id}"], [href="#${modal_id}"]:not([target="_blank"])`;
             Phenix(triggers_select).on('click', show_modal);
+
+            //====> Set Accessibility Options <====//
+            Phenix(triggers_select).setAttributes({'role': 'button', 'tabIndex': '0'});
         }
 
         //=====> Close Triggers <=====///
-        popup.querySelectorAll('.modal-close').forEach(trigger => trigger.addEventListener('click', () => {
-            hide_modal(trigger);
-        }));
+        popup.querySelectorAll('.modal-close').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                hide_modal(trigger);
+            });
+            //====> Set Accessibility Options <====//
+            trigger.setAttribute('role', 'button');
+            trigger.setAttribute('tabIndex', '0');
+        });
     });
 
     //====> Return Phenix Elements <====//

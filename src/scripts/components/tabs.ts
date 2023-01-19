@@ -43,14 +43,18 @@ PhenixElements.prototype.tabs = function (options?:{
             }
         });
 
-        //====> Loop Throgh Buttons <====//
+        //====> Loop Through Buttons <====//
         buttons.forEach((button:HTMLElement, index:number) => {
             //====> Default Activation <====//
             if (index === active) button.classList.add('active');
 
+            //====> Set Accessibility Options <====//
+            button.setAttribute('role', 'button');
+            button.setAttribute('tabIndex', '0');
+
             //====> Tab Clicked <====//
             Phenix(button).on('click', clicked => {
-                //====> Prevent Default Behavor <====//
+                //====> Prevent Default Behaver <====//
                 clicked.preventDefault();
 
                 //====> Get the Panel ID <====//
@@ -73,7 +77,7 @@ PhenixElements.prototype.tabs = function (options?:{
                     //====> Fire Event <====//
                     document.querySelector(`#${tab_id}`).dispatchEvent(showed);
 
-                    //====> if the siblign is active <====//
+                    //====> if the sibling is active <====//
                     if (panel.classList.contains('active')) {
                         //===> Deactivate the Panel <===//
                         let the_panel:any = Phenix(panel).removeClass('active').addClass('hidden')[0];

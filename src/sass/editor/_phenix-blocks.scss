@@ -70,6 +70,8 @@
 	background-size: 1em;
 	background-position: center;
 	background-repeat: no-repeat;
+	-webkit-filter: invert(50%) sepia(91%) saturate(387%) hue-rotate(96deg) brightness(95%) contrast(88%);
+	        filter: invert(50%) sepia(91%) saturate(387%) hue-rotate(96deg) brightness(95%) contrast(88%);
 }
 
 /*==== Counter Input ====*/
@@ -81,11 +83,10 @@
 	/*==== Reset Input ====*/
 	input[type="number"] {
 		border-color: rgba(#000, 0.1)!important;
-		-moz-appearance: textfield!important;
 		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
-		-webkit-appearance: none!important;
-		   -moz-appearance: none!important;
-				appearance: none!important;
+			-webkit-appearance: none!important;
+			-moz-appearance: none!important;
+					appearance: none!important;
 		}
 	}
 	/*====  ====*/

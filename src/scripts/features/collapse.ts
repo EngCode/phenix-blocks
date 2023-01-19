@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Collapse
  * ===> 03 - Loop Through Phenix Query
@@ -80,6 +80,10 @@ PhenixElements.prototype.collapse = function (options?:{
 
         //====> ... <====//
         button.addEventListener('click', collapse_handler);
+
+        //====> Set Accessibility Options <====//
+        button.setAttribute('role', 'button');
+        button.setAttribute('tabIndex', '0');
 
         //====> Done <====//
         button.classList.add('pxjs-done');

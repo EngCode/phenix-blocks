@@ -175,3 +175,13 @@
     /*===== Outline ====*/
     &.outline {--background : transparent;}
 }
+
+/*==== Mobile Only ====*/
+@include small('down') {
+    .btn.responsive-btn, .btn-responsive {
+        --padding: 0;
+        overflow: hidden;
+        width: var(--height);
+        &::before {display: block;margin: 0;}
+    }
+};

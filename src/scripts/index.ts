@@ -5,7 +5,7 @@
  * Copyright: 2022 Abdullah.Ramadan
 */
 
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - D.O.M Ready
  * ===> 03 - Add Class
@@ -22,7 +22,7 @@
  * ===> 14 - Resources Lazy-Loader
  * ===> 15 - Media Query Method
  * ===> 16 - Service Worker
- * ===> 17 - Define Info Grapers
+ * ===> 17 - Define information's
  * ===> 18 - Define UI Effects
  * ===> 19 - Define Other Features
  * ===> 20 - Include Features
@@ -223,24 +223,24 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         else if (siblings.length === 1) return siblings[0];
     }
 
-    /*====> Get Childrens <====*/
+    /*====> Get Children <====*/
     child(target?:string) {
-        //====> Childrens Define <====//
+        //====> Children Define <====//
         let childs = [];
 
         //====> Loop Through Phenix Elements <====//
         this.forEach((element:any) => {
-            //====> All Childrens <====//
+            //====> All Children <====//
             let all_childs = element.children;
     
-            //====> if No target [Return All Direct Childrens] <====//
+            //====> if No target [Return All Direct Children] <====//
             if (!target) childs = all_childs;
     
             //====> if Target is Matched Return it <====//
             if (target) all_childs.forEach(element => element.matches(target) ? childs.push(element) : '');
         });
 
-        //====> Return Childrens <====//
+        //====> Return Children <====//
         if (childs.length > 1) return childs;
         else if (childs.length === 1) return childs[0];
     }
@@ -354,7 +354,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     /*====> Resources Lazy-Loader <====*/
     lazyLoading() {
         //====> Element Data <====//
-        let spiner = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApIG5vbmUgcmVwZWF0IHNjcm9sbCAwJSAwJTsgZGlzcGxheTogYmxvY2s7IHNoYXBlLXJlbmRlcmluZzogYXV0bzsiIHdpZHRoPSIyMDBweCIgaGVpZ2h0PSIyMDBweCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGNkY2RjIiBzdHJva2Utd2lkdGg9IjMiIHI9IjE4IiBzdHJva2UtZGFzaGFycmF5PSI4NC44MjMwMDE2NDY5MjQ0MSAzMC4yNzQzMzM4ODIzMDgxMzgiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIga2V5VGltZXM9IjA7MSI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT4KPCEtLSBbbGRpb10gZ2VuZXJhdGVkIGJ5IGh0dHBzOi8vbG9hZGluZy5pby8gLS0+PC9zdmc+";
+        let spinner = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApIG5vbmUgcmVwZWF0IHNjcm9sbCAwJSAwJTsgZGlzcGxheTogYmxvY2s7IHNoYXBlLXJlbmRlcmluZzogYXV0bzsiIHdpZHRoPSIyMDBweCIgaGVpZ2h0PSIyMDBweCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGNkY2RjIiBzdHJva2Utd2lkdGg9IjMiIHI9IjE4IiBzdHJva2UtZGFzaGFycmF5PSI4NC44MjMwMDE2NDY5MjQ0MSAzMC4yNzQzMzM4ODIzMDgxMzgiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIga2V5VGltZXM9IjA7MSI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT4KPCEtLSBbbGRpb10gZ2VuZXJhdGVkIGJ5IGh0dHBzOi8vbG9hZGluZy5pby8gLS0+PC9zdmc+";
         
         //====> Loop Through Media Elements <====//
         Phenix('img, video, audio, iframe').forEach((element:HTMLElement) => {
@@ -368,7 +368,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
                 //===> for [images, iframe] <===//
                 if (element.matches('img'||'iframe')) {
                     // element.setAttribute('data-lazyload', source);
-                    // element.setAttribute('src', spiner);
+                    // element.setAttribute('src', spinner);
                     element.classList.add('px-loading')
                 }
 
@@ -508,7 +508,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     dynamicPosition = () => {
         //====> Event for Each Element <====//
         this.forEach((element:HTMLElement) => {
-            //=== Check for Visiblity ===//
+            //=== Check for Visibility ===//
             let target_element:any = Phenix(element),
                 panel_size = Math.round(target_element[0].clientHeight),
                 stickyElement = document.querySelector('[data-sticky="absolute"]')?.getBoundingClientRect().height;
@@ -535,7 +535,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         return this;
     };
 
-    /*====> Define Info Grapers <====*/
+    /*====> Define Informations <====*/
     height; getCSS; direction; getURL
     inView; viewport; copyrights;
 
@@ -581,7 +581,7 @@ const Phenix = (selector?:any) => {
 export default Phenix;
 
 /*====> Import Features <====*/
-import './features/get-info';   //==> Info Grapers
+import './features/get-info';   //==> Info Informations
 import './features/effects';    //==> UI Effects
 import './features/counter';    //==> Animated Counter
 import './features/animations'; //==> View-port Animations
@@ -594,7 +594,7 @@ import './features/notifications'; //==> Notifications
 import './components/menu';      //==> Menus
 import './components/media';     //==> Media Setter
 import './components/timer';     //==> Time Counter
-import './components/dropdown';  //==> Dropddown
+import './components/dropdown';  //==> Dropdown
 import './components/tabs';      //==> Tabs System
 import './components/popup';     //==> Popups
 import './components/progress';  //==> Progress

@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
 * ===> 01 - Colors
 * ===> 02 - Backgrounds
 * ===> 03 - Borders
@@ -25,6 +25,8 @@
 .color-transparent {color: transparent;}
 .color-primary  {color: var(--primary-color);}
 .color-secondary{color: var(--secondary-color);}
+.color-primary-dark {background-color: var(--primary-dark);}
+.color-secondary-dark {background-color: var(--secondary-dark);}
 .color-success  {color: var(--success-color);}
 .color-danger   {color: var(--danger-color);}
 .color-warning  {color: var(--warning-color);}
@@ -47,14 +49,13 @@
 .color-flicker  {color: var(--flicker-color);}
 
 /*==== Assets Backgrounds ====*/
-.bg-parallax {
-    background-attachment: fixed;
-    background-position: center;
-}
+.bg-parallax {background-attachment: fixed; background-position: center;}
 .bg-inherit {background-color: inherit;}
 .bg-transparent {background-color: transparent;}
 .bg-primary   {background-color: var(--primary-color);}
 .bg-secondary {background-color: var(--secondary-color);}
+.bg-primary-dark {background-color: var(--primary-dark);}
+.bg-secondary-dark {background-color: var(--secondary-dark);}
 .bg-success {background-color: var(--success-color);}
 .bg-danger {background-color: var(--danger-color);}
 .bg-warning {background-color: var(--warning-color);}
@@ -108,31 +109,31 @@
 .bg-offwhite-lavenderblush {background-color: #FFF0F5;}
 
 /*==== Gradients ====*/
-.bg-grade-ice       {background-image: linear-gradient(var(--gradeient-rotation) ,var(--ice-gradient));}
-.bg-grade-fire      {background-image: linear-gradient(var(--gradeient-rotation) ,var(--fire-gradient));}
-.bg-grade-water     {background-image: linear-gradient(var(--gradeient-rotation) ,var(--water-gradient));}
-.bg-grade-danger    {background-image: linear-gradient(var(--gradeient-rotation) ,var(--danger-gradient));}
-.bg-grade-purple    {background-image: linear-gradient(var(--gradeient-rotation) ,var(--purple-gradient));}
-.bg-grade-primary   {background-image: linear-gradient(var(--gradeient-rotation) ,var(--primary-gradient));}
-.bg-grade-warning   {background-image: linear-gradient(var(--gradeient-rotation) ,var(--warning-gradient));}
-.bg-grade-success   {background-image: linear-gradient(var(--gradeient-rotation) ,var(--success-gradient));}
-.bg-grade-secondary {background-image: linear-gradient(var(--gradeient-rotation) ,var(--secondary-gradient));}
+.bg-grade-ice       {background-image: linear-gradient(var(--gradient-rotation) ,var(--ice-gradient));}
+.bg-grade-fire      {background-image: linear-gradient(var(--gradient-rotation) ,var(--fire-gradient));}
+.bg-grade-water     {background-image: linear-gradient(var(--gradient-rotation) ,var(--water-gradient));}
+.bg-grade-danger    {background-image: linear-gradient(var(--gradient-rotation) ,var(--danger-gradient));}
+.bg-grade-purple    {background-image: linear-gradient(var(--gradient-rotation) ,var(--purple-gradient));}
+.bg-grade-primary   {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-gradient));}
+.bg-grade-warning   {background-image: linear-gradient(var(--gradient-rotation) ,var(--warning-gradient));}
+.bg-grade-success   {background-image: linear-gradient(var(--gradient-rotation) ,var(--success-gradient));}
+.bg-grade-secondary {background-image: linear-gradient(var(--gradient-rotation) ,var(--secondary-gradient));}
 
 /*==== Gradients Rotation ====*/
 [class*="bg-grade-"] {
-    --gradeient-rotation: 0;
+    --gradient-rotation: 0;
     background-repeat: no-repeat;
 }
 
 /*==== Gradients Rotations ====*/
-.bg-grade-45   {--gradeient-rotation : 45deg;}
-.bg-grade-90   {--gradeient-rotation : 90deg;}
-.bg-grade-120  {--gradeient-rotation : 120deg;}
-.bg-grade-180  {--gradeient-rotation : 180deg;}
-.bg-grade-45n  {--gradeient-rotation : -45deg;}
-.bg-grade-90n  {--gradeient-rotation : -90deg;}
-.bg-grade-120n {--gradeient-rotation : -120deg;}
-.bg-grade-180n {--gradeient-rotation : -180deg;}
+.bg-grade-45   {--gradient-rotation : 45deg;}
+.bg-grade-90   {--gradient-rotation : 90deg;}
+.bg-grade-120  {--gradient-rotation : 120deg;}
+.bg-grade-180  {--gradient-rotation : 180deg;}
+.bg-grade-45n  {--gradient-rotation : -45deg;}
+.bg-grade-90n  {--gradient-rotation : -90deg;}
+.bg-grade-120n {--gradient-rotation : -120deg;}
+.bg-grade-180n {--gradient-rotation : -180deg;}
 
 /*==== Border Colors ====*/
 .border-primary    {border-color: var(--primary-color);}

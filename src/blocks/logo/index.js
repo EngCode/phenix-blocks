@@ -23,18 +23,20 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const blockProps = useBlockProps.save();
+        const siteUrl = attributes.site_link,
+              blockProps = useBlockProps.save();
 
+        console.log(siteUrl);
         //===> Add Properties <===//
-        blockProps["href"] = attributes.link;
-        blockProps["title"] = attributes.title;
+        blockProps["title"] = attributes.site_title;
+        blockProps["href"] = attributes.site_link ? attributes.site_link : "#none";
         blockProps.className += ' inline-block';
 
         //===> Render <===//
         return (
             <a { ...blockProps }>
-                <img src={attributes.logo} className={attributes.resposnive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "height": attributes.size }} />
-                {attributes.resposnive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "height": attributes.size }} /> : null}
+                <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "height": attributes.size }} />
+                {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "height": attributes.size }} /> : null}
             </a>
         );
     }

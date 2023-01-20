@@ -13,9 +13,9 @@
       "type": "boolean",
       "default": false
     },
-    "title": {
+    "site_title": {
       "type": "string",
-      "default": "Site Title"
+      "default": ""
     },
     "logo": {
       "type": "string",
@@ -25,9 +25,9 @@
       "type": "string",
       "default": "42px"
     },
-    "link": {
+    "site_link": {
       "type": "string",
-      "default": "javascript:void(0);"
+      "default": "https://phenixthemes.com"
     },
     "fevicon": {
       "type": "string",

@@ -135,6 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set JS URL <===//
     if (attributes.isLink) blockProps['href'] = "#none";
 
+    //===> URL Auto-Complete <===//
     const suggestionsRender = (props) => (
         <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
             {props.suggestions.map((suggestion, index) => {

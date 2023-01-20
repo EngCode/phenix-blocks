@@ -61,8 +61,9 @@
 .divider-t, .divider-y {border-top: 1px solid rgba(#000, 0.1);}
 .divider-s, .divider-x {border-#{$direction-start}: 1px solid rgba(#000, 0.1);}
 .divider-e, .divider-x {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+.divider-b:last-child {border-bottom: 0 none;}
 
-/*==== Radius Utilties ====*/
+/*==== Radius Utilites ====*/
 .radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl, .radius-none, .radius-circle, .radius-height, .radius-rounded {
     --radius : 0;
     border-radius: var(--radius);

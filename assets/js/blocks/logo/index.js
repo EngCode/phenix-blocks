@@ -12,14 +12,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Edit; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/media-uploader */ "./src/blocks/px-controls/media-uploader.js");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/media-uploader */ "./src/blocks/px-controls/media-uploader.js");
 //====> WP Modules <====//
+
 
 
  //====> Phenix Modules <====//
@@ -37,9 +40,9 @@ function Edit(_ref) {
     });
   };
 
-  var set_resposnive = function set_resposnive(resposnive) {
+  var set_responsive = function set_responsive(responsive) {
     return setAttributes({
-      resposnive: resposnive
+      responsive: responsive
     });
   };
 
@@ -62,7 +65,7 @@ function Edit(_ref) {
       logo: value.url
     }); //===> Set Fevicon in Settings <===//
 
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
       method: 'POST',
       path: '/wp/v2/settings',
       data: {
@@ -78,7 +81,7 @@ function Edit(_ref) {
       fevicon: value.url
     }); //===> Set Fevicon in Settings <===//
 
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
@@ -88,72 +91,72 @@ function Edit(_ref) {
   }; //===> Get Block Properties <===//
 
 
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(); //===> if the Title not Set <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(); //===> if the Title not Set <===//
 
-  if (attributes.title !== "Site Title" || attributes.link === "#") {
-    //===> Fetch Settings <===//
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
-      path: '/wp/v2/settings'
-    }).then(function (settings) {
-      //===> Set Attributes <===//
-      setAttributes({
-        link: settings.url,
-        title: settings.title
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: 'wp/v2/settings'
+    }).then(function (Response) {
+      //===> Set Options <===//
+      if (Response.title !== attributes.site_title) setAttributes({
+        site_title: Response.title
+      });
+      if (Response.url !== attributes.site_link) setAttributes({
+        site_link: Response.url
       });
     });
-  } //===> Add Properties <===//
+  }, []); //===> Add Properties <===//
 
-
-  blockProps["href"] = "#";
-  blockProps["title"] = attributes.title;
+  blockProps["title"] = attributes.site_title;
+  blockProps["href"] = attributes.site_link;
   blockProps.className += ' inline-block'; //===> Render <===//
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     key: "inspector"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: "Logo Setting",
     initialOpen: true
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     label: "Logo Size",
     value: attributes.size,
     onChange: set_size
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Logo",
     value: attributes.logo,
     setValue: set_logo,
     size: "small"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Fevicon",
     value: attributes.fevicon,
     setValue: set_fevicon,
     size: "small"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
     label: "Responsive Logo",
-    checked: attributes.resposnive,
-    onChange: set_resposnive
-  }), attributes.resposnive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ToggleControl, {
+    checked: attributes.responsive,
+    onChange: set_responsive
+  }), attributes.responsive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
     label: "Use Fevicon for Mobile",
     checked: attributes.use_fevicon,
     onChange: set_use_fevicon
-  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Mobile Logo",
     value: attributes.mobile_logo,
     setValue: set_mobile_logo,
     size: "small"
   }) : null) : null)), /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
     src: attributes.logo,
-    className: attributes.resposnive ? 'hidden-md-down' : '',
+    className: attributes.responsive ? 'hidden-md-down' : '',
     alt: blockProps.title,
     style: {
       "height": attributes.size
     }
-  }), attributes.resposnive ? /*#__PURE__*/React.createElement("img", {
+  }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
     src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,
     className: "hidden-lg-up",
     alt: blockProps.title,
@@ -333,7 +336,7 @@ module.exports = window["wp"]["element"];
   \************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"title":{"type":"string","default":"Site Title"},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"link":{"type":"string","default":"javascript:void(0);"},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"site_title":{"type":"string","default":""},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"site_link":{"type":"string","default":"https://phenixthemes.com"},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -450,20 +453,22 @@ __webpack_require__.r(__webpack_exports__);
   save: function save(_ref) {
     var attributes = _ref.attributes;
     //===> Get Block Properties <===//
-    var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save(); //===> Add Properties <===//
+    var siteUrl = attributes.site_link,
+        blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
+    console.log(siteUrl); //===> Add Properties <===//
 
-    blockProps["href"] = attributes.link;
-    blockProps["title"] = attributes.title;
+    blockProps["title"] = attributes.site_title;
+    blockProps["href"] = attributes.site_link ? attributes.site_link : "#none";
     blockProps.className += ' inline-block'; //===> Render <===//
 
     return /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
       src: attributes.logo,
-      className: attributes.resposnive ? 'hidden-md-down' : '',
+      className: attributes.responsive ? 'hidden-md-down' : '',
       alt: blockProps.title,
       style: {
         "height": attributes.size
       }
-    }), attributes.resposnive ? /*#__PURE__*/React.createElement("img", {
+    }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
       src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,
       className: "hidden-lg-up",
       alt: blockProps.title,

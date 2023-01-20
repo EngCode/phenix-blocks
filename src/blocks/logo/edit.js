@@ -1,4 +1,7 @@
 //====> WP Modules <====//
+import apiFetch from '@wordpress/api-fetch';
+import { useEffect } from '@wordpress/element';
+
 import {
     PanelBody,
     TextControl,
@@ -7,10 +10,9 @@ import {
 
 import {
     useBlockProps,
-    InspectorControls
+    InspectorControls,
 } from '@wordpress/block-editor';
 
-import apiFetch from '@wordpress/api-fetch';
 
 //====> Phenix Modules <====//
 import MediaUploader from '../px-controls/media-uploader';
@@ -19,7 +21,7 @@ import MediaUploader from '../px-controls/media-uploader';
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Attributes <===//
     const set_size = size => setAttributes({ size });
-    const set_resposnive = resposnive => setAttributes({ resposnive });
+    const set_responsive = responsive => setAttributes({ responsive });
     const set_use_fevicon = use_fevicon => setAttributes({ use_fevicon });
     const set_mobile_logo = mobile_logo => setAttributes({ mobile_logo: mobile_logo.url });
 
@@ -51,20 +53,17 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
 
     //===> if the Title not Set <===//
-    if (attributes.title !== "Site Title" || attributes.link === "#") {
-        //===> Fetch Settings <===//
-        apiFetch({path: '/wp/v2/settings'}).then(settings => {
-            //===> Set Attributes <===//
-            setAttributes({
-                link  : settings.url,
-                title : settings.title
-            });
+    useEffect(() => {
+        apiFetch({path: 'wp/v2/settings'}).then(Response => {
+            //===> Set Options <===//
+            if(Response.title !== attributes.site_title) setAttributes({site_title: Response.title});
+            if(Response.url !== attributes.site_link) setAttributes({site_link: Response.url});
         });
-    }
+    }, []);
 
     //===> Add Properties <===//
-    blockProps["href"]  = "#";
-    blockProps["title"] = attributes.title;
+    blockProps["title"] = attributes.site_title;
+    blockProps["href"]  = attributes.site_link;
     blockProps.className += ' inline-block';
 
     //===> Render <===//
@@ -86,9 +85,9 @@ export default function Edit({ attributes, setAttributes }) {
                 {/* Divider */}
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/*=== Responsive ===*/}
-                <ToggleControl label="Responsive Logo" checked={attributes.resposnive} onChange={set_resposnive}/>
+                <ToggleControl label="Responsive Logo" checked={attributes.responsive} onChange={set_responsive}/>
                 {/*=== Responsive [...] ===*/}
-                {attributes.resposnive ? <>
+                {attributes.responsive ? <>
                     <ToggleControl label="Use Fevicon for Mobile" checked={attributes.use_fevicon} onChange={set_use_fevicon}/>
                     {/* Fevicon */}
                     {!attributes.use_fevicon ? <MediaUploader label="Upload Mobile Logo" value={attributes.mobile_logo} setValue={set_mobile_logo} size="small"></MediaUploader> : null}
@@ -99,8 +98,8 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/* //====> Edit Layout <====// */}
         <a { ...blockProps }>
-            <img src={attributes.logo} className={attributes.resposnive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "height": attributes.size }} />
-            {attributes.resposnive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "height": attributes.size }} /> : null}
+            <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "height": attributes.size }} />
+            {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "height": attributes.size }} /> : null}
         </a>
     </>);
 }

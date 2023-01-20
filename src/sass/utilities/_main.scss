@@ -100,9 +100,10 @@
 }
 
 /*==== Assets ====*/
-.tx-icon::before {margin-#{$direction-end}: 7px;}
-.mouse-pointer {cursor: pointer;}
 .mouse-normal {cursor: none;}
+.mouse-pointer {cursor: pointer;}
+.links-inherit a {color: inherit;}
+.tx-icon::before {margin-#{$direction-end}: 7px;}
 
 /*==== Custom Scrollbar ====*/
 .px-scrollbar {

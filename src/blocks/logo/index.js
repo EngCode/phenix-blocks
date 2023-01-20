@@ -29,9 +29,8 @@ registerBlockType(metadata, {
             //===> Add Properties <===//
             blockProps["href"] = siteUrl || "#none";
             blockProps["title"] = attributes.site_title;
-            // blockProps.className += ' inline-block';
-              
-            console.log(siteUrl, blockProps["href"], attributes.site_link);
+            blockProps.className += ' inline-block';
+
         //===> Render <===//
         return (
             <a { ...blockProps }>

@@ -457,9 +457,8 @@ __webpack_require__.r(__webpack_exports__);
         blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save(); //===> Add Properties <===//
 
     blockProps["href"] = siteUrl || "#none";
-    blockProps["title"] = attributes.site_title; // blockProps.className += ' inline-block';
-
-    console.log(siteUrl, blockProps["href"], attributes.site_link); //===> Render <===//
+    blockProps["title"] = attributes.site_title;
+    blockProps.className += ' inline-block'; //===> Render <===//
 
     return /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
       src: attributes.logo,

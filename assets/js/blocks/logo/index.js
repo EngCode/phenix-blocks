@@ -101,7 +101,7 @@ function Edit(_ref) {
       if (Response.title !== attributes.site_title) setAttributes({
         site_title: Response.title
       });
-      if (Response.url !== attributes.site_link) setAttributes({
+      if (Response.url & Response.url !== attributes.site_link) setAttributes({
         site_link: Response.url
       });
     });
@@ -454,12 +454,12 @@ __webpack_require__.r(__webpack_exports__);
     var attributes = _ref.attributes;
     //===> Get Block Properties <===//
     var siteUrl = attributes.site_link,
-        blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
-    console.log(siteUrl); //===> Add Properties <===//
+        blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save(); //===> Add Properties <===//
 
-    blockProps["title"] = attributes.site_title;
-    blockProps["href"] = attributes.site_link ? attributes.site_link : "#none";
-    blockProps.className += ' inline-block'; //===> Render <===//
+    blockProps["href"] = siteUrl || "#none";
+    blockProps["title"] = attributes.site_title; // blockProps.className += ' inline-block';
+
+    console.log(siteUrl, blockProps["href"], attributes.site_link); //===> Render <===//
 
     return /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
       src: attributes.logo,

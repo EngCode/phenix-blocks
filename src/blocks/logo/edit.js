@@ -13,7 +13,6 @@ import {
     InspectorControls,
 } from '@wordpress/block-editor';
 
-
 //====> Phenix Modules <====//
 import MediaUploader from '../px-controls/media-uploader';
 
@@ -57,7 +56,7 @@ export default function Edit({ attributes, setAttributes }) {
         apiFetch({path: 'wp/v2/settings'}).then(Response => {
             //===> Set Options <===//
             if(Response.title !== attributes.site_title) setAttributes({site_title: Response.title});
-            if(Response.url !== attributes.site_link) setAttributes({site_link: Response.url});
+            if(Response.url & Response.url !== attributes.site_link) setAttributes({site_link: Response.url});
         });
     }, []);
 

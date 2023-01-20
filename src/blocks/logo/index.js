@@ -26,12 +26,12 @@ registerBlockType(metadata, {
         const siteUrl = attributes.site_link,
               blockProps = useBlockProps.save();
 
-        console.log(siteUrl);
-        //===> Add Properties <===//
-        blockProps["title"] = attributes.site_title;
-        blockProps["href"] = attributes.site_link ? attributes.site_link : "#none";
-        blockProps.className += ' inline-block';
-
+            //===> Add Properties <===//
+            blockProps["href"] = siteUrl || "#none";
+            blockProps["title"] = attributes.site_title;
+            // blockProps.className += ' inline-block';
+              
+            console.log(siteUrl, blockProps["href"], attributes.site_link);
         //===> Render <===//
         return (
             <a { ...blockProps }>

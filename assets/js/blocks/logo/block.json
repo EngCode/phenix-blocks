@@ -27,7 +27,7 @@
     },
     "site_link": {
       "type": "string",
-      "default": "https://phenixthemes.com"
+      "default": "#none"
     },
     "fevicon": {
       "type": "string",

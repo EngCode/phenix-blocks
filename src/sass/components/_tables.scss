@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Tables CSS
  * ===> 02 - Options
  * ===> 03 - Baseline
@@ -62,9 +62,9 @@
 
 /*==== Table Responsive ====*/
 @mixin make-table-responsive($infix:'', $size: 1024px) {
-    .table-responsive#{$infix} .table {
-        width: #{$size};
+    .table-responsive#{$infix} {
         overflow-x: auto;
+        .table {width: #{$size};}
     }
 }
 

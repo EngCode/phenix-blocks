@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Splide CSS
 */
 
@@ -144,7 +144,8 @@
 .splide__toggle.is-active .splide__toggle__pause {display: inline}
 
 .splide__track {
+    width: 100%;
+    z-index: 0;
     overflow: hidden;
     position: relative;
-    z-index: 0
 }

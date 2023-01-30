@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Media Setter
  * ===> 03 - Methods
@@ -25,7 +25,7 @@ PhenixElements.prototype.multimedia = function (options?:{
     lazyloading?:boolean, //===> Lazyloading [true, false]
     //===> Gradient Settings <===//
     gradient?:{
-        value?:[],       //===> CSS Gradient Value [rtoation, color1, color2, etc...]
+        value?:[],       //===> CSS Gradient Value [rotation, color1, color2, etc...]
         mode?:string,    //===> Gradient Mode [linear, radial, conic]
         repeat?:boolean, //===> Gradient Repeat [true, false]
     },
@@ -115,7 +115,7 @@ PhenixElements.prototype.multimedia = function (options?:{
 
                 //====> De-Activate Loader <====//
                 if (lazy) {
-                    element.classList.remove('px-loader');
+                    element.classList.remove('px-loading');
                     if (element.style.backgroundImage) element.style.removeProperty('background-image');
                 }
     
@@ -187,7 +187,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                     if (!iframe) {
                         Phenix(element).insert('append', `<iframe src="${src}" frameborder="0" ${lazy ? 'loading="lazy"' : ''} allowfullscreen></iframe>`);
                     }
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
 
@@ -209,15 +209,15 @@ PhenixElements.prototype.multimedia = function (options?:{
                         //====> Create the View <====//
                         Phenix(element).insert('append', `<iframe src="${source}"  ${lazy ? 'loading="lazy"' : ''} frameborder="0" allowfullscreen></iframe>`);
                     } 
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
 
-                //====> Somthing Else <====//
+                //====> Something Else <====//
                 else {
                     //===> Set Background <===//
                     background(element, src);
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
             };
@@ -226,7 +226,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             if (lazy) {
                 //====> Activate Lazy-Loading <====//
                 if (!splide) {
-                    element.classList.add('px-loader');
+                    element.classList.add('px-loading');
                     element.style.backgroundImage = `url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApIG5vbmUgcmVwZWF0IHNjcm9sbCAwJSAwJTsgZGlzcGxheTogYmxvY2s7IHNoYXBlLXJlbmRlcmluZzogYXV0bzsiIHdpZHRoPSIyMDBweCIgaGVpZ2h0PSIyMDBweCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGNkY2RjIiBzdHJva2Utd2lkdGg9IjMiIHI9IjE4IiBzdHJva2UtZGFzaGFycmF5PSI4NC44MjMwMDE2NDY5MjQ0MSAzMC4yNzQzMzM4ODIzMDgxMzgiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIga2V5VGltZXM9IjA7MSI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT4KPCEtLSBbbGRpb10gZ2VuZXJhdGVkIGJ5IGh0dHBzOi8vbG9hZGluZy5pby8gLS0+PC9zdmc+)`;
                 }
 

@@ -40,7 +40,7 @@ PhenixElements.prototype.popup = function (options?:{
 
         /*=====> Backdrop Trigger <=====*/
         if (backdrop && !popup.querySelector('.backdrop-btn')) {
-            Phenix(popup).insert('append', `<button class="backdrop-btn modal-close position-ab w-fluid h-100vh pos-start-0 pos-top-0 bg-transparent"></button>`);
+            Phenix(popup).insert('append', `<button class="reset-button backdrop-btn modal-close position-fx fluid h-100vh pos-start-0 pos-top-0 bg-transparent"></button>`);
             backdrop = popup.querySelector('.backdrop-btn');
         }
 
@@ -95,7 +95,7 @@ PhenixElements.prototype.popup = function (options?:{
             //====> Fire Event <====//
             popup.dispatchEvent(hidden);
             //===> Cleanup Lightbox <===//
-            popup.querySelectorAll('.px-lightbox-media, .lighbox-slider').forEach(element => element.remove());
+            popup.querySelectorAll('.px-lightbox-media, .lightbox-slider').forEach(element => element.remove());
         };
 
         //=====> Lightbox Mode <=====//
@@ -151,7 +151,7 @@ PhenixElements.prototype.popup = function (options?:{
 
                     //===> Image Type <===//
                     else {
-                        return `<img src="${url}" alt="Full Size Image" class="px-lightbox-media" />`;
+                        return `<img src="${url}" alt="Full Size Image" class="px-lightbox-media h-max-100vh" />`;
                     }
                 }
 
@@ -166,7 +166,7 @@ PhenixElements.prototype.popup = function (options?:{
                 //===> Group Mode <===//
                 else {
                     //===> Create Slider Wrapper <===//
-                    let slider_wrapper = Phenix(lightbox_wrapper).insert('append', `<div class="lighbox-slider" data-controls="1"></div>`);
+                    let slider_wrapper = Phenix(lightbox_wrapper).insert('append', `<div class="lightbox-slider" data-controls="1"></div>`);
 
                     //===> Insert Elements of the Group <===//
                     Phenix(`[data-group="${lightbox_group}"]`).forEach((item:any) => {
@@ -186,7 +186,7 @@ PhenixElements.prototype.popup = function (options?:{
 
                     //===> Activate the Slider <===//
                     popup.addEventListener('modal-showed', event => {
-                        Phenix('.lighbox-slider').slider({ autoplay: false });
+                        Phenix('.lightbox-slider').slider({ autoplay: false });
                     });
                 }
 

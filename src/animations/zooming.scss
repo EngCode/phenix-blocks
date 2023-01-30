@@ -289,3 +289,35 @@
                 animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
     }
 }
+
+@-webkit-keyframes bgZoomInOut {
+    0% {background-size: 100% auto;}
+    50% {background-size: 150% auto;}
+    100% {background-size: 100% auto;}
+}
+
+@keyframes bgZoomInOut {
+    0% {background-size: 100% auto;}
+    50% {background-size: 150% auto;}
+    100% {background-size: 100% auto;}
+}
+
+@-webkit-keyframes bgZoomIn {
+    0% {background-size: 100% auto;}
+    100% {background-size: 130% auto;}
+}
+
+@keyframes bgZoomIn {
+    0% {background-size: 100% auto;}
+    100% {background-size: 130% auto;}
+}
+
+@-webkit-keyframes bgZoomOut {
+    0% {background-size: 130% auto;}
+    100% {background-size: 100% auto;}
+}
+
+@keyframes bgZoomOut {
+    0% {background-size: 130% auto;}
+    100% {background-size: 100% auto;}
+}

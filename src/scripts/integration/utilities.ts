@@ -108,8 +108,8 @@ PhenixElements.prototype.utilities = function (options?:{
                 parent_width = img.parentNode.clientWidth,
                 parent_height = img.parentNode.clientHeight;
             //===> Set Width and Height <===//
-            if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}px`);
-            if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}px`);
+            if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
+            if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
         });
 
         //====> icons List <====//
@@ -121,22 +121,24 @@ PhenixElements.prototype.utilities = function (options?:{
         });
 
         //====> Loading <====//
-        let loading_wrapper = document.querySelector('.px-loader');
+        let loading_wrapper = document.querySelector('.px-page-loader');
+
         if (loading_wrapper) {
             //===> Disable Scroll <===//
-            document.body.classList.add('overflow-hidden');
+            let BodyClasses:any = document.body.classList;
+            BodyClasses.add('overflow-hidden');
 
             //===> When Loading is Complete <===//
             window.addEventListener('load', loaded => {
                 //===> Fast Loaded Fallback <===//
                 setTimeout(() => {
                     //===> Enable Scroll <===//
-                    document.body.classList.remove('overflow-hidden');
+                    let BodyClasses:any = document.body.classList;
+                    if(BodyClasses) BodyClasses?.remove('overflow-hidden');
+                    
                     //===> Hide Loader <===//
                     Phenix(loading_wrapper).fadeOut();
-                    //===> Remove Loader <===//
-                    setTimeout(()=> loading_wrapper.querySelector('.content-box').remove(), 1000);
-                }, 2500);
+                }, 300);
             });
 
             //===> When Leaving Page <===//

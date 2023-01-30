@@ -66,6 +66,7 @@
     @extend %fast-motion;
     @extend %inline-block;
     @include padding-inline(var(--padding), 'both');
+    
     a {
         color : inherit;
         display: block;
@@ -137,21 +138,24 @@
         height: var(--height);
         background-color: rgba(#000, 0.1);
     }
-    
+
     /*==== Colors Maker ===*/
     @mixin make-color($prefix, $hover, $text:'dark-reverse') {
         --color  : var(#{'--'+$text});
         --background : var(#{'--'+$prefix+'-color'});
         --border-color : var(#{'--'+$prefix+'-color'});
         &:hover,&.active,&.px-active, &.is-active {--background : var(#{'--'+$prefix+'-'+$hover});}
+
         /*==== Outline ====*/
-        &.outline {--color: var(#{'--'+$prefix+'-color'});}
-        &.outline:hover,&:hover,&.active,&.px-active, &.is-active {
-            --color: var(#{'--'+$text});
-            --background: var(#{'--'+$prefix+'-color'});
+        &.outline {
+            --color: var(#{'--'+$prefix+'-color'});
+            &:hover, &.active, &.px-active, &.is-active {
+                --color: var(#{'--'+$text});
+                --background: var(#{'--'+$prefix+'-color'});
+            }
         }
     }
-    
+
     /*==== Prime Colors ===*/
     &.primary { @include make-color('primary','hover','primary-reverse'); }
     &.secondary { @include make-color('secondary','hover','secondary-reverse'); }

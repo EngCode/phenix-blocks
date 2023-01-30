@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Tabs Panels
  * ===> 03 - Default Options
@@ -73,7 +73,10 @@ PhenixElements.prototype.tabs = function (options?:{
                 Phenix(button).addClass('active').siblings()?.forEach(sibling => sibling.classList.remove('active'));
 
                 //====> Active the Panel and Get its Siblings <====//
-                Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
+                let TabElement:any = Phenix(`#${tab_id}`),
+                    TabDisplay = TabElement[0].getAttribute('data-display') || "block";
+
+                TabElement.fadeIn(700, 0, TabDisplay).addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
                     //====> Fire Event <====//
                     document.querySelector(`#${tab_id}`).dispatchEvent(showed);
 

@@ -96,9 +96,9 @@ PhenixElements.prototype.slider = function (options?:{
             currentClasses.add('splide');
             slider_track.setAttribute("class", "splide__track");
             slider_list.setAttribute("class", "splide__list");
+
             Array.from(currentClasses).forEach((cl:any) => {
-                cl.includes('gp') ? slider_list.classList.add(cl) : null;
-                cl.includes('row') ? slider_list.classList.add('row') : null;
+                if (cl.includes('gp') || cl.includes('row')) slider_list.classList.add(cl);
             });
 
             //====> Append Elements <====//
@@ -212,6 +212,10 @@ PhenixElements.prototype.slider = function (options?:{
                     }
                 }
             });
+
+            //====> Popup Modals <====//
+            let modalTriggers = slider.querySelectorAll(".px-lightbox, [data-modal]");
+            if (modalTriggers.length > 0) Phenix('.px-modal').popup();
         };
 
         //====> Events Data <====//

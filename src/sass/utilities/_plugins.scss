@@ -51,6 +51,12 @@
     }
 }
 
+/*==== Progress Circle Fix ====*/
+.px-progress-circle {
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 12px rgba(#000, 0.30);
+}
+
 /*==== Sticky ====*/
 .is-sticky {
     z-index: var(--header-index);

@@ -12,7 +12,6 @@ export default class FlexAlignment extends Component {
     render () {
         //===> Properties <===//
         const {label, value, onChange} = this.props;
-            
         let button_style = "btn tiny bg-transparent fs-12 square pxi";
 
         //===> Align Handler <===//
@@ -38,7 +37,7 @@ export default class FlexAlignment extends Component {
                 return checkNames(value) ? new_value : `${new_value} ${current_value}`;
             }
         },
-        
+
         //===> Set Align X <===//
         set_align_x = (clicked) => {
             //===> Get Elements <===//
@@ -75,17 +74,17 @@ export default class FlexAlignment extends Component {
             <div className={"flexbox align-between"}>
                 {/*===> Radio Buttons <===*/}
                 <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
-                    <button type="button" data-value="align-start-x"  title="Start" className={`${button_style} pxi-align-x-start ${value.includes("start-x") ? "active":""}`} onClick={set_align_x}></button>
-                    <button type="button" data-value="align-center-x" title="Center" className={`${button_style} pxi-align-x-center ${value.includes("center-x") ? "active":""}`} onClick={set_align_x}></button>
-                    <button type="button" data-value="align-between" title="Between" className={`${button_style} pxi-align-x-between ${value.includes("between") ? "active":""}`} onClick={set_align_x}></button>
-                    <button type="button" data-value="align-around" title="Around" className={`${button_style} pxi-align-x-around ${value.includes("around") ? "active":""}`} onClick={set_align_x}></button>
-                    <button type="button" data-value="align-end-x" title="End" className={`${button_style} pxi-align-x-end ${value.includes("end-x") ? "active":""}`} onClick={set_align_x}></button>
+                    <button type="button" data-value="align-start-x"  title="Start" className={`${button_style} pxi-align-x-start ${value.includes("start-x") ? "px-active":""}`} onClick={set_align_x}></button>
+                    <button type="button" data-value="align-center-x" title="Center" className={`${button_style} pxi-align-x-center ${value.includes("center-x") ? "px-active":""}`} onClick={set_align_x}></button>
+                    <button type="button" data-value="align-between" title="Between" className={`${button_style} pxi-align-x-between ${value.includes("between") ? "px-active":""}`} onClick={set_align_x}></button>
+                    <button type="button" data-value="align-around" title="Around" className={`${button_style} pxi-align-x-around ${value.includes("around") ? "px-active":""}`} onClick={set_align_x}></button>
+                    <button type="button" data-value="align-end-x" title="End" className={`${button_style} pxi-align-x-end ${value.includes("end-x") ? "px-active":""}`} onClick={set_align_x}></button>
                 </div>
                 {/*===> Radio Buttons <===*/}
                 <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
-                    <button type="button" data-value="align-start-y" title="Start" className={`${button_style} pxi-align-y-start ${value.includes("start-y") ? "active":""}`} onClick={set_align_y}></button>
-                    <button type="button" data-value="align-center-y" title="Center" className={`${button_style} pxi-align-y-center ${value.includes("center-y") ? "active":""}`} onClick={set_align_y}></button>
-                    <button type="button" data-value="align-end-y" title="End" className={`${button_style} pxi-align-y-end ${value.includes("end-y") ? "active":""}`} onClick={set_align_y}></button>
+                    <button type="button" data-value="align-start-y" title="Start" className={`${button_style} pxi-align-y-start ${value.includes("start-y") ? "px-active":""}`} onClick={set_align_y}></button>
+                    <button type="button" data-value="align-center-y" title="Center" className={`${button_style} pxi-align-y-center ${value.includes("center-y") ? "px-active":""}`} onClick={set_align_y}></button>
+                    <button type="button" data-value="align-end-y" title="End" className={`${button_style} pxi-align-y-end ${value.includes("end-y") ? "px-active":""}`} onClick={set_align_y}></button>
                 </div>
             </div>
             {/*===> Counter Control <===*/}

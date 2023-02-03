@@ -104,9 +104,9 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "components-flex-item"
+        className: "flexbox flex-gap-fix align-between flow-column"
       }, /*#__PURE__*/React.createElement("label", {
-        className: "components-input-control__label components-flex-item mb-5 weight-bold"
+        className: "components-input-control__label tx-uppercase weight-bold"
       }, label), /*#__PURE__*/React.createElement("div", {
         className: "px-counter-input position-rv " + (icon ? icon : "")
       }, !icon ? /*#__PURE__*/React.createElement("button", {

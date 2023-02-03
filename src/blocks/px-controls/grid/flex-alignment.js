@@ -30,17 +30,17 @@ export default class FlexAlignment extends Component {
             return (<>
                 <label className='mb-10 fluid weight-medium'>Horizontal Align</label>
                 <div className='px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button key={`start-x-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-start`} data-screen={screen} data-value={`align${screen}-start-x`}></button>
-                    <button key={`center-x-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-center`} data-screen={screen} data-value={`align${screen}-center-x`}></button>
-                    <button key={`end-x-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-x`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-end`} data-screen={screen} data-value={`align${screen}-end-x`}></button>
-                    <button key={`between-x-${screen}`} onClick={setAlignment} title="Between" className={`btn small ${value.includes(`align${screen}-between`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-between`} data-screen={screen} data-value={`align${screen}-between`}></button>
-                    <button key={`around-x-${screen}`} onClick={setAlignment} title="Around" className={`btn small ${value.includes(`align${screen}-around`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-x-around`} data-screen={screen} data-value={`align${screen}-around`}></button>
+                    <button key={`start-x-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-x`) ? 'px-active' : 'light'} col pxi pxi-align-x-start`} data-screen={screen} data-value={`align${screen}-start-x`}></button>
+                    <button key={`center-x-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-x`) ? 'px-active' : 'light'} col pxi pxi-align-x-center`} data-screen={screen} data-value={`align${screen}-center-x`}></button>
+                    <button key={`end-x-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-x`) ? 'px-active' : 'light'} col pxi pxi-align-x-end`} data-screen={screen} data-value={`align${screen}-end-x`}></button>
+                    <button key={`between-x-${screen}`} onClick={setAlignment} title="Between" className={`btn small ${value.includes(`align${screen}-between`) ? 'px-active' : 'light'} col pxi pxi-align-x-between`} data-screen={screen} data-value={`align${screen}-between`}></button>
+                    <button key={`around-x-${screen}`} onClick={setAlignment} title="Around" className={`btn small ${value.includes(`align${screen}-around`) ? 'px-active' : 'light'} col pxi pxi-align-x-around`} data-screen={screen} data-value={`align${screen}-around`}></button>
                 </div>
                 <label className='mb-10 fluid weight-medium'>Vertical Align</label>
                 <div className='px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button key={`start-y-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-start`} data-screen={screen} data-value={`align${screen}-start-y`}></button>
-                    <button key={`center-y-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-center`} data-screen={screen} data-value={`align${screen}-center-y`}></button>
-                    <button key={`end-y-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-y`) ? 'bg-offwhite-smoke' : 'light'} col pxi pxi-align-y-end`} data-screen={screen} data-value={`align${screen}-end-y`}></button>
+                    <button key={`start-y-${screen}`} onClick={setAlignment} title="Start" className={`btn small ${value.includes(`align${screen}-start-y`) ? 'px-active' : 'light'} col pxi pxi-align-y-start`} data-screen={screen} data-value={`align${screen}-start-y`}></button>
+                    <button key={`center-y-${screen}`} onClick={setAlignment} title="Center" className={`btn small ${value.includes(`align${screen}-center-y`) ? 'px-active' : 'light'} col pxi pxi-align-y-center`} data-screen={screen} data-value={`align${screen}-center-y`}></button>
+                    <button key={`end-y-${screen}`} onClick={setAlignment} title="End" className={`btn small ${value.includes(`align${screen}-end-y`) ? 'px-active' : 'light'} col pxi pxi-align-y-end`} data-screen={screen} data-value={`align${screen}-end-y`}></button>
                 </div>
             </>)
         }

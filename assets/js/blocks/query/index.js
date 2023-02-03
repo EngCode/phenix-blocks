@@ -133,31 +133,31 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         type: "button",
         "data-value": "align-start-x",
         title: "Start",
-        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "px-active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-center-x",
         title: "Center",
-        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "px-active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-between",
         title: "Between",
-        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "px-active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-around",
         title: "Around",
-        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "px-active" : ""),
         onClick: set_align_x
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-end-x",
         title: "End",
-        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "px-active" : ""),
         onClick: set_align_x
       })), /*#__PURE__*/React.createElement("div", {
         className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
@@ -165,19 +165,19 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
         type: "button",
         "data-value": "align-start-y",
         title: "Start",
-        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "px-active" : ""),
         onClick: set_align_y
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-center-y",
         title: "Center",
-        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "px-active" : ""),
         onClick: set_align_y
       }), /*#__PURE__*/React.createElement("button", {
         type: "button",
         "data-value": "align-end-y",
         title: "End",
-        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "active" : ""),
+        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "px-active" : ""),
         onClick: set_align_y
       }))));
     }
@@ -292,9 +292,9 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "components-flex-item"
+        className: "flexbox flex-gap-fix align-between flow-column"
       }, /*#__PURE__*/React.createElement("label", {
-        className: "components-input-control__label components-flex-item mb-5 weight-bold"
+        className: "components-input-control__label tx-uppercase weight-bold"
       }, label), /*#__PURE__*/React.createElement("div", {
         className: "px-counter-input position-rv " + (icon ? icon : "")
       }, !icon ? /*#__PURE__*/React.createElement("button", {

@@ -55,9 +55,9 @@ export default class PhenixNumber extends Component {
         };
 
         //===> Output <===//
-        return (<div className='components-flex-item'>
+        return (<div className='flexbox flex-gap-fix align-between flow-column'>
             {/*===> Label <===*/}
-            <label className='components-input-control__label components-flex-item mb-5 weight-bold'>{label}</label>
+            <label className='components-input-control__label tx-uppercase weight-bold'>{label}</label>
             {/*===> Counter Control <===*/}
             <div className={"px-counter-input position-rv " + (icon ? icon : "")}>
                 {/*===> Button <===*/}

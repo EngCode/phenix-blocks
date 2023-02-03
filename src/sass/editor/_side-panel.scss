@@ -75,13 +75,6 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			border-radius: 5px!important;
 		}
 
-		/*==== field label ====*/
-		.components-base-control__label, .components-input-control__label, label {
-			font-weight: 500!important;
-			font-size: 12px!important;
-			font-family: var(--secondary-font)!important;
-		}
-
 		/*==== Inputs & Selects ====*/
 		.components-select-control__input, .components-text-control__input {
 			height: 36px!important;
@@ -140,6 +133,13 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	}
 
 	.components-flex {height: auto!important;}
+
+	/*==== field label ====*/
+	.components-base-control__label, .components-input-control__label, label {
+		font-size: 12px!important;
+		font-weight: 500!important;
+		font-family: var(--secondary-font)!important;
+	}
 
 	/*==== Fix ToggleControl ====*/
 	.components-form-toggle {top: 2px;}

@@ -1346,35 +1346,35 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
           key: "start-x-".concat(screen),
           onClick: setAlignment,
           title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-start"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-start"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-start-x")
         }), /*#__PURE__*/React.createElement("button", {
           key: "center-x-".concat(screen),
           onClick: setAlignment,
           title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-center"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-center"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-center-x")
         }), /*#__PURE__*/React.createElement("button", {
           key: "end-x-".concat(screen),
           onClick: setAlignment,
           title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-end"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-end"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-end-x")
         }), /*#__PURE__*/React.createElement("button", {
           key: "between-x-".concat(screen),
           onClick: setAlignment,
           title: "Between",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-between"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'px-active' : 'light', " col pxi pxi-align-x-between"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-between")
         }), /*#__PURE__*/React.createElement("button", {
           key: "around-x-".concat(screen),
           onClick: setAlignment,
           title: "Around",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-x-around"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'px-active' : 'light', " col pxi pxi-align-x-around"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-around")
         })), /*#__PURE__*/React.createElement("label", {
@@ -1385,21 +1385,21 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
           key: "start-y-".concat(screen),
           onClick: setAlignment,
           title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-start"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-start"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-start-y")
         }), /*#__PURE__*/React.createElement("button", {
           key: "center-y-".concat(screen),
           onClick: setAlignment,
           title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-center"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-center"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-center-y")
         }), /*#__PURE__*/React.createElement("button", {
           key: "end-y-".concat(screen),
           onClick: setAlignment,
           title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'bg-offwhite-smoke' : 'light', " col pxi pxi-align-y-end"),
+          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-end"),
           "data-screen": screen,
           "data-value": "align".concat(screen, "-end-y")
         })));

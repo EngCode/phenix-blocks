@@ -21,6 +21,7 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
+    const [menus_list, set_menu_list] = useState([]);
 
     //===> Set Attributes <===//
     const set_menu_id = menu_id => setAttributes({ menu_id });
@@ -42,7 +43,7 @@ export default function Edit(props) {
                 menus_new_list.push({label: value, value: key});
             }
             //===> Set New Locations List <===//
-            if (attributes.menus_list !== menus_new_list) setAttributes({ menus_list : menus_new_list });
+            if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
         });
     }, []);
 
@@ -54,7 +55,7 @@ export default function Edit(props) {
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Setting" initialOpen={true}>
                     {/*===> Menu Location aka ID <===*/}
-                    <SelectControl label="Menu Location {ID}" value={ attributes.menu_id } onChange={set_menu_id} options={attributes.menus_list} />
+                    <SelectControl label="Menu Location {ID}" value={ attributes.menu_id } onChange={set_menu_id} options={menus_list} />
 
                     {/*=== Component <TagName> ===*/}
                     <SelectControl key="tagName" label="HTML Wrapper" value={attributes.tagName} onChange={set_tagName} options={[

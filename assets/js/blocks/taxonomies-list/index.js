@@ -187,7 +187,18 @@ function Edit(props) {
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(); //===> Set Attributes <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      PostTypes = _useState2[0],
+      setPostTypes = _useState2[1];
+
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      TaxonomyList = _useState4[0],
+      setTaxonomyList = _useState4[1]; //===> Set Attributes <===//
+
 
   var set_order = function set_order(order) {
     return setAttributes({
@@ -228,8 +239,8 @@ function Edit(props) {
       //===> Define Types <===//
       var new_taxonomies = []; //===> Get Current Active Types <===//
 
-      for (var _i = 0, _Object$entries = Object.entries(taxonomies); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+      for (var _i2 = 0, _Object$entries = Object.entries(taxonomies); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
@@ -243,9 +254,7 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (attributes.tax_list !== new_taxonomies) setAttributes({
-        tax_list: new_taxonomies
-      });
+      if (TaxonomyList !== new_taxonomies) setPostTypes([].concat(new_taxonomies));
     }); //===> Fetch Post Types <===//
 
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
@@ -254,8 +263,8 @@ function Edit(props) {
       //===> Define Types <===//
       var new_types = []; //===> Get Current Active Types <===//
 
-      for (var _i2 = 0, _Object$entries2 = Object.entries(post_types); _i2 < _Object$entries2.length; _i2++) {
-        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+      for (var _i3 = 0, _Object$entries2 = Object.entries(post_types); _i3 < _Object$entries2.length; _i3++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
             key = _Object$entries2$_i[0],
             value = _Object$entries2$_i[1];
 
@@ -269,9 +278,7 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (attributes.types_list !== new_types) setAttributes({
-        types_list: new_types
-      });
+      if (PostTypes !== new_types) setTaxonomyList([].concat(new_types));
     });
   }, []); //===> Render <===//
 
@@ -284,12 +291,12 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Taxonomy Type", "phenix"),
     value: attributes.taxonomy,
     onChange: set_taxonomy,
-    options: attributes.tax_list
+    options: TaxonomyList
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Data Type", "phenix"),
     value: attributes.post_type,
     onChange: set_post_type,
-    options: attributes.types_list
+    options: PostTypes
   }), /*#__PURE__*/React.createElement("div", {
     className: "row gpx-20 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
@@ -399,7 +406,7 @@ module.exports = window["wp"]["serverSideRender"];
   \***********************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies-list","version":"0.1.0","title":"Taxonomies List","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"types_list":{"type":"array","default":[]},"tax_list":{"type":"array","default":[]},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"taxonomies-list"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies-list","version":"0.1.0","title":"Taxonomies List","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"taxonomies-list"}');
 
 /***/ })
 

@@ -29,14 +29,6 @@
       "type": "boolean",
       "default": true
     },
-    "types_list": {
-      "type": "array",
-      "default": []
-    },
-    "tax_list": {
-      "type": "array",
-      "default": []
-    },
     "preview": {
       "type": "boolean",
       "default": false

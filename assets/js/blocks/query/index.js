@@ -385,7 +385,13 @@ function Edit(props) {
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(); //===> Query Options <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      postTypes = _useState2[0],
+      setPostTypes = _useState2[1]; //===> Query Options <===//
+
 
   var set_order = function set_order(order) {
     return setAttributes({
@@ -523,8 +529,8 @@ function Edit(props) {
       //===> Define Types <===//
       var new_types = []; //===> Get Current Active Types <===//
 
-      for (var _i = 0, _Object$entries = Object.entries(post_types); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+      for (var _i2 = 0, _Object$entries = Object.entries(post_types); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
@@ -538,9 +544,7 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (attributes.types_list !== new_types) setAttributes({
-        types_list: new_types
-      });
+      if (postTypes !== new_types) setPostTypes([].concat(new_types));
     });
   }, []); //===> Site-Editor Mode <===//
 
@@ -570,7 +574,7 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Data Type", "phenix"),
     value: attributes.post_type,
     onChange: set_post_type,
-    options: attributes.types_list
+    options: postTypes
   }) : "", /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Native Query", "phenix"),
     checked: attributes.native_query,
@@ -822,7 +826,7 @@ module.exports = window["wp"]["serverSideRender"];
   \*************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.1.0","title":"Query Loop","category":"design","description":"Custom Query Posts Block.","supports":{"html":false},"attributes":{"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"per_page":{"type":"number","default":8},"order":{"type":"string","default":"DESC"},"pagination":{"type":"boolean","default":false},"native_query":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"types_list":{"type":"array","default":[]},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"slider_autoplay":{"type":"boolean","default":true},"slider_controls":{"type":"boolean","default":true},"slider_pagination":{"type":"boolean","default":false},"slider_steps":{"type":"string","default":"1"},"slider_duration":{"type":"string","default":"7000"},"slider_speed":{"type":"string","default":"700"},"slider_type":{"type":"string","default":"loop"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-query"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/query","version":"0.1.0","title":"Query Loop","category":"design","description":"Custom Query Posts Block.","supports":{"html":false},"attributes":{"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"per_page":{"type":"number","default":8},"order":{"type":"string","default":"DESC"},"pagination":{"type":"boolean","default":false},"native_query":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"slider_autoplay":{"type":"boolean","default":true},"slider_controls":{"type":"boolean","default":true},"slider_pagination":{"type":"boolean","default":false},"slider_steps":{"type":"string","default":"1"},"slider_duration":{"type":"string","default":"7000"},"slider_speed":{"type":"string","default":"700"},"slider_type":{"type":"string","default":"loop"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-query"}');
 
 /***/ })
 

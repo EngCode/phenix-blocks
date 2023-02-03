@@ -44,11 +44,6 @@
 			"default": false
 		},
 
-        "types_list" : {
-            "type": "array",
-			"default" : []
-        },
-
         "grid_mode" : {
 			"type": "boolean",
 			"default": false

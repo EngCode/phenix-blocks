@@ -48,10 +48,6 @@
     "hover": {
       "type": "boolean",
       "default": false
-    },
-    "menus_list": {
-      "type": "array",
-      "default": []
     }
   },
   "example": {

@@ -27,6 +27,7 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
+    const [postTypes, setPostTypes] = useState([]);
 
     //===> Query Options <===//
     const set_order = order => setAttributes({ order }),
@@ -86,7 +87,7 @@ export default function Edit(props) {
             }
 
             //===> Set the new List if its Deferent <===//
-            if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
+            if (postTypes !== new_types) setPostTypes([...new_types]);
         });
     }, []);
 
@@ -116,7 +117,7 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                {!attributes.native_query ? <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/> : ""}
+                {!attributes.native_query ? <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={postTypes}/> : ""}
                 <ToggleControl label={__("Native Query", "phenix")} checked={attributes.native_query} onChange={set_native_query}/>
 
                 {/*===> Group <===*/}

@@ -350,25 +350,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/number-counter */ "./src/blocks/px-controls/number-counter.js");
 /* harmony import */ var _px_controls_flex_alignment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/flex-alignment */ "./src/blocks/px-controls/flex-alignment.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //====> WP Modules <====//
 
@@ -385,7 +385,18 @@ function Edit(props) {
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(); //===> Set Attributes <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      PostTypes = _useState2[0],
+      setPostTypes = _useState2[1];
+
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      TaxonomyList = _useState4[0],
+      setTaxonomyList = _useState4[1]; //===> Set Attributes <===//
+
 
   var set_order = function set_order(order) {
     return setAttributes({
@@ -509,8 +520,8 @@ function Edit(props) {
       //===> Define Types <===//
       var new_taxonomies = []; //===> Get Current Active Types <===//
 
-      for (var _i = 0, _Object$entries = Object.entries(taxonomies); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+      for (var _i2 = 0, _Object$entries = Object.entries(taxonomies); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
@@ -524,9 +535,7 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (attributes.tax_list !== new_taxonomies) setAttributes({
-        tax_list: new_taxonomies
-      });
+      if (TaxonomyList !== new_taxonomies) setTaxonomyList([].concat(new_taxonomies));
     }); //===> Fetch Post Types <===//
 
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
@@ -535,8 +544,8 @@ function Edit(props) {
       //===> Define Types <===//
       var new_types = []; //===> Get Current Active Types <===//
 
-      for (var _i2 = 0, _Object$entries2 = Object.entries(post_types); _i2 < _Object$entries2.length; _i2++) {
-        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+      for (var _i3 = 0, _Object$entries2 = Object.entries(post_types); _i3 < _Object$entries2.length; _i3++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
             key = _Object$entries2$_i[0],
             value = _Object$entries2$_i[1];
 
@@ -550,9 +559,7 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (attributes.types_list !== new_types) setAttributes({
-        types_list: new_types
-      });
+      if (PostTypes !== new_types) setPostTypes([].concat(new_types));
     });
   }, []); //===> Render <===//
 
@@ -565,12 +572,12 @@ function Edit(props) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Taxonomy Type", "phenix"),
     value: attributes.taxonomy,
     onChange: set_taxonomy,
-    options: attributes.tax_list
+    options: TaxonomyList
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Data Type", "phenix"),
     value: attributes.post_type,
     onChange: set_post_type,
-    options: attributes.types_list
+    options: PostTypes
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     key: "template-name",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Card Template", "phenix"),
@@ -741,7 +748,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies","version":"0.1.0","title":"PDS Taxonomies","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"types_list":{"type":"array","default":[]},"tax_list":{"type":"array","default":[]},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"pds-taxonomies"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies","version":"0.1.0","title":"PDS Taxonomies","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"template_part":{"type":"string","default":"pds/placeholder"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"grid_mode":{"type":"boolean","default":false},"grid_cols":{"type":"string","default":"row-cols-auto"},"grid_cols_stat":{"type":"boolean","default":true},"grid_flow":{"type":"string","default":""},"grid_nowrap":{"type":"string","default":""},"grid_masonry":{"type":"string","default":""},"grid_alignment":{"type":"string","default":""},"slider_mode":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"pds-taxonomies"}');
 
 /***/ })
 

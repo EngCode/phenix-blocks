@@ -45,7 +45,13 @@ function Edit(props) {
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(); //===> Set Attributes <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      menus_list = _useState2[0],
+      set_menu_list = _useState2[1]; //===> Set Attributes <===//
+
 
   var set_menu_id = function set_menu_id(menu_id) {
     return setAttributes({
@@ -103,8 +109,8 @@ function Edit(props) {
       //===> Create New Array <===//
       var menus_new_list = []; //===> Prepare Each Location for Select Array <===//
 
-      for (var _i = 0, _Object$entries = Object.entries(locations); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+      for (var _i2 = 0, _Object$entries = Object.entries(locations); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             key = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
 
@@ -115,9 +121,7 @@ function Edit(props) {
       } //===> Set New Locations List <===//
 
 
-      if (attributes.menus_list !== menus_new_list) setAttributes({
-        menus_list: menus_new_list
-      });
+      if (menus_list !== menus_new_list) set_menu_list([].concat(menus_new_list));
     });
   }, []); //===> Render <===//
 
@@ -130,7 +134,7 @@ function Edit(props) {
     label: "Menu Location {ID}",
     value: attributes.menu_id,
     onChange: set_menu_id,
-    options: attributes.menus_list
+    options: menus_list
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.SelectControl, {
     key: "tagName",
     label: "HTML Wrapper",
@@ -285,7 +289,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"arrow_icon":{"type":"string","default":"far fa-angle-down"},"responsive":{"type":"boolean","default":false},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false},"menus_list":{"type":"array","default":[]}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"Main Navigation Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"arrow_icon":{"type":"string","default":"far fa-angle-down"},"responsive":{"type":"boolean","default":false},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
 
 /***/ })
 

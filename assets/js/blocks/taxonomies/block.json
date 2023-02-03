@@ -33,14 +33,6 @@
       "type": "boolean",
       "default": true
     },
-    "types_list": {
-      "type": "array",
-      "default": []
-    },
-    "tax_list": {
-      "type": "array",
-      "default": []
-    },
     "grid_mode": {
       "type": "boolean",
       "default": false

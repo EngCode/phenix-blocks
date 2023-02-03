@@ -25,6 +25,8 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
+    const [PostTypes, setPostTypes] = useState([]);
+    const [TaxonomyList, setTaxonomyList] = useState([]);
 
     //===> Set Attributes <===//
     const set_order = order => setAttributes({ order });
@@ -49,7 +51,7 @@ export default function Edit(props) {
             }
 
             //===> Set the new List if its Deferent <===//
-            if (attributes.tax_list !== new_taxonomies) setAttributes({ tax_list : new_taxonomies });
+            if (TaxonomyList !== new_taxonomies) setPostTypes([...new_taxonomies]);
         });
 
         //===> Fetch Post Types <===//
@@ -66,7 +68,7 @@ export default function Edit(props) {
             }
 
             //===> Set the new List if its Deferent <===//
-            if (attributes.types_list !== new_types) setAttributes({ types_list : new_types });
+            if (PostTypes !== new_types) setTaxonomyList([...new_types]);
         });
     }, []);
 
@@ -77,10 +79,10 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                <SelectControl label={__("Taxonomy Type", "phenix")} value={attributes.taxonomy} onChange={set_taxonomy} options={attributes.tax_list}/>
+                <SelectControl label={__("Taxonomy Type", "phenix")} value={attributes.taxonomy} onChange={set_taxonomy} options={TaxonomyList}/>
 
                 {/*===> Post Type <===*/}
-                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={attributes.types_list}/>
+                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={PostTypes}/>
             
                 {/*===> Max Items and Order <===*/}
                 <div className='row gpx-20 mb-15'>

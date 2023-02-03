@@ -44,6 +44,7 @@ if (!function_exists('phenix_core')) :
 
         //=====> Create Phenix API Key <=====//
         wp_localize_script('phenix', 'PDS_WP_KEY', array(
+            'site' => esc_url_raw(site_url()),
             'root' => esc_url_raw(rest_url('pds-blocks/v2/')),
             'nonce' => wp_create_nonce('wp_rest'),
         ));

@@ -16,6 +16,11 @@ function pds_taxonomies_render($block_attributes, $content) {
     $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
     $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
 
+    //===> Custom Classes <===//
+    if(isset($options['className'])) {
+        $grid_opts = $grid_opts .' '. $options['className'];
+    }
+
     //===> Get Categories List <===//
     $categories = get_categories( array(
         'order'      => $options['order'],

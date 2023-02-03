@@ -112,7 +112,7 @@
                             menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
                         //===> Set Loading Mode <===//
                         menu_item.classList.add('px-loading-inline');
-                        //===> Loop Throgh Locations <===//
+                        //===> Loop Through Locations <===//
                         for (const [key, value] of Object.entries(locations)) {
                             //===> When the item matches the locations <===//
                             if (menu_name === `${key}`) {
@@ -154,7 +154,7 @@
 
                     //===> Validate the Location Name <===//
                     if (control_name === 'name' && !control.value) {
-                        //===> if "name" not exist grap it from the Title <===//
+                        //===> if "name" not exist get it from the Title <===//
                         let location_name = Phenix('[name="add-location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
                         new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
                     //===> Add the new Location Title <===//

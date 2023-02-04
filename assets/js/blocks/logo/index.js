@@ -141,7 +141,7 @@ function Edit(_ref) {
     checked: attributes.responsive,
     onChange: set_responsive
   }), attributes.responsive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-    label: "Use Fevicon for Mobile",
+    label: "Use Favicon for Mobile",
     checked: attributes.use_fevicon,
     onChange: set_use_fevicon
   }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {

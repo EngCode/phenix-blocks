@@ -20,12 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _px_controls_number_counter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/number-counter */ "./src/blocks/px-controls/number-counter.js");
-/* harmony import */ var _px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/elements/px-background */ "./src/blocks/px-controls/elements/px-background.js");
-/* harmony import */ var _px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/typography/px-colors */ "./src/blocks/px-controls/typography/px-colors.js");
-/* harmony import */ var _px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/grid/flex-alignment */ "./src/blocks/px-controls/grid/flex-alignment.js");
-/* harmony import */ var _px_controls_elements_padding__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../px-controls/elements/padding */ "./src/blocks/px-controls/elements/padding.js");
-/* harmony import */ var _px_controls_elements_margin__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../px-controls/elements/margin */ "./src/blocks/px-controls/elements/margin.js");
+/* harmony import */ var _px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/grid/flex-alignment */ "./src/blocks/px-controls/grid/flex-alignment.js");
+/* harmony import */ var _px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/typography/px-colors */ "./src/blocks/px-controls/typography/px-colors.js");
+/* harmony import */ var _px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/elements/px-background */ "./src/blocks/px-controls/elements/px-background.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -38,15 +35,17 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //====> WP Modules <====//
 
 
 
-
  //====> Phenix Modules <====//
-
-
-
 
 
 
@@ -66,12 +65,6 @@ function Edit(_ref) {
   var set_size = function set_size(size) {
     return setAttributes({
       size: size
-    });
-  };
-
-  var set_color = function set_color(color) {
-    return setAttributes({
-      color: color
     });
   };
 
@@ -97,43 +90,56 @@ function Edit(_ref) {
     return setAttributes({
       isHidden: isHidden
     });
-  };
+  }; //===> Get Options <===//
+
+
+  var flexbox_options = attributes.flexbox,
+      style_options = attributes.style,
+      typography_opts = attributes.typography; //===> Flexbox Options <===//
 
   var set_alignment = function set_alignment(alignment) {
-    return setAttributes({
-      flex_align: alignment
+    //==> Align <==//
+    flexbox_options.align = alignment;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_options)
     });
-  };
-
-  var set_spacing_pd = function set_spacing_pd(spacing_pd) {
-    return setAttributes({
-      spacing_pd: spacing_pd
+  },
+      //==> Flow <==//
+  set_flex_flow = function set_flex_flow(flex_flow) {
+    flex_flow ? flexbox_options.flow = "flow-reverse" : flexbox_options.flow = "";
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_options)
     });
-  };
-
-  var set_spacing_mg = function set_spacing_mg(spacing_mg) {
-    return setAttributes({
-      spacing_mg: spacing_mg
+  },
+      //==> No-Wrap <==//
+  set_flex_nowrap = function set_flex_nowrap(flex_nowrap) {
+    flex_nowrap ? flexbox_options.nowrap = "flow-nowrap" : flexbox_options.nowrap = "";
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_options)
     });
-  }; //===> Options Tabs <===//
+  }; //===> Typography Options <===//
 
 
-  var changeTab = function changeTab(clicked) {
-    var _optionsList$querySel;
-
-    //===> Option Data <===//
-    var element = Phenix(clicked.target),
-        parent = element.ancestor('.options-tabs'),
-        optionsList = Phenix(parent).next('.options-list'),
-        currentActive = Phenix(parent.querySelector(':scope > .primary')),
-        currentType = "".concat(element[0].getAttribute('data-options')),
-        targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
-
-    currentActive.addClass('light').removeClass('primary');
-    element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-    (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-    Phenix(targetElement).removeClass('hidden');
+  var set_typography_size = function set_typography_size(value) {
+    //==> Size <==//
+    typography_opts.size = value;
+    setAttributes({
+      typography: _objectSpread({}, typography_opts)
+    });
+  },
+      //==> Weight <==//
+  set_typography_weight = function set_typography_weight(value) {
+    typography_opts.weight = value;
+    setAttributes({
+      typography: _objectSpread({}, typography_opts)
+    });
+  },
+      //==> Color <==//
+  set_color = function set_color(value) {
+    typography_opts.color = value;
+    setAttributes({
+      typography: _objectSpread({}, typography_opts)
+    });
   }; //===> Set Background <===//
 
 
@@ -195,20 +201,26 @@ function Edit(_ref) {
     if (attributes.background && attributes.bg_type === 'image') setPhenixView();
   }, []); //===> for Section Convert <===//
 
-  var container_element = blockProps;
-  if (attributes.isSection || attributes.isFlexbox) container_element = innerBlocksProps; //===> Render Size <===//
+  var container = blockProps;
+  if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps; //===> Container Options <===//
 
-  if (attributes.size) container_element.className += " ".concat(attributes.size); //===> is Hidden <===//
-
-  if (attributes.isHidden) container_element.className += ' hidden'; //===> Render Alignment <===//
+  if (attributes.size) container.className += " ".concat(attributes.size);
+  if (attributes.isHidden) container.className += ' hidden'; //===> Flexbox Properties <===//
 
   if (attributes.isFlexbox) {
-    container_element.className += ' flexbox';
-    if (attributes.flex_align) container_element.className += " ".concat(attributes.flex_align);
-  } //===> Render Color <===//
+    container.className += ' flexbox';
+    if (flexbox_options.align) container.className += " ".concat(flexbox_options.align);
+    if (flexbox_options.flow) container.className += " ".concat(flexbox_options.flow);
+    if (flexbox_options.nowrap) container.className += " ".concat(flexbox_options.nowrap);
+  } //===> Typography Properties <===//
 
 
-  if (attributes.color) blockProps.className += " ".concat(attributes.color); //===> Render Background <===//
+  if (attributes.typography) {
+    container.className += " ".concat(typography_opts.size);
+    container.className += " ".concat(typography_opts.color);
+    container.className += " ".concat(typography_opts.weight);
+  } //===> Render Background <===//
+
 
   if (attributes.background) {
     //===> Image Background <===//
@@ -220,18 +232,15 @@ function Edit(_ref) {
 
 
     if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
-  } //===> Render Spacing <===//
+  } //===> Render <===//
 
-
-  if (attributes.spacing_pd) container_element.className += " ".concat(attributes.spacing_pd);
-  if (attributes.spacing_mg) container_element.className += " ".concat(attributes.spacing_mg); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General Settings", "phenix")
   }, /*#__PURE__*/React.createElement("div", {
-    className: "row gpx-20 mb-15"
+    className: "row gpx-20"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
@@ -311,880 +320,98 @@ function Edit(_ref) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("HTML ID [Anchor]", "phenix"),
     value: attributes.id,
     onChange: set_id
-  })))), attributes.isFlexbox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox", "phenix"),
-    initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    key: "flex-align",
-    value: attributes.flex_align,
-    onChange: set_alignment
-  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Spacing", "phenix"),
-    initialOpen: false
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10"
-  }, /*#__PURE__*/React.createElement("button", {
-    key: "padding",
-    onClick: changeTab,
-    className: "btn tiny outline primary col",
-    "data-options": "padding-size"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Padding Size", "phenix")), /*#__PURE__*/React.createElement("button", {
-    key: "margin",
-    onClick: changeTab,
-    className: "btn tiny outline light col",
-    "data-options": "margin-size"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Margin Size", "phenix"))), /*#__PURE__*/React.createElement("div", {
-    className: "options-list"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flexbox padding-size"
-  }, /*#__PURE__*/React.createElement(_px_controls_elements_padding__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    key: "px-spacing_pd",
-    onChange: set_spacing_pd,
-    value: attributes.spacing_pd
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "flexbox margin-size hidden"
-  }, /*#__PURE__*/React.createElement(_px_controls_elements_margin__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    key: "px-spacing_mg",
-    onChange: set_spacing_mg,
-    value: attributes.spacing_mg
   })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", "phenix"),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Typography", "phenix"),
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-20"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-10"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    key: "typography-size",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Size", "phenix"),
+    value: typography_opts.size,
+    onChange: set_typography_size,
+    options: [{
+      label: 'Default',
+      value: ''
+    }]
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-10"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    key: "typography-weight",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Weight", "phenix"),
+    value: typography_opts.weight,
+    onChange: set_typography_weight,
+    options: [{
+      label: 'Default',
+      value: ''
+    }, {
+      label: 'Thin',
+      value: 'weight-thin'
+    }, {
+      label: 'Light',
+      value: 'weight-light'
+    }, {
+      label: 'Extra Light',
+      value: 'weight-xlight'
+    }, {
+      label: 'Normal',
+      value: 'weight-normal'
+    }, {
+      label: 'Medium',
+      value: 'weight-medium'
+    }, {
+      label: 'Semi-Bold',
+      value: 'weight-bold'
+    }, {
+      label: 'Bold',
+      value: 'weight-strong'
+    }, {
+      label: 'Heavy',
+      value: 'weight-xbold'
+    }, {
+      label: 'Black',
+      value: 'weight-black'
+    }]
+  }))), /*#__PURE__*/React.createElement(_px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_5__["default"], {
     key: "px-color",
     onChange: set_color,
-    value: attributes.color
+    value: typography_opts.color
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, attributes.isFlexbox ? /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-15 divider-b mb-20 pdb-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12 mb-20"
+  }, /*#__PURE__*/React.createElement(_px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
+    value: flexbox_options.align,
+    onChange: set_alignment
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reverse ", "phenix"),
+    checked: flexbox_options.flow.length > 0,
+    onChange: set_flex_flow
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"),
+    checked: flexbox_options.nowrap.length > 0,
+    onChange: set_flex_nowrap
+  }))) : null, /*#__PURE__*/React.createElement(_px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: "px-bg",
     onChange: set_background,
-    type: attributes.bg_type,
-    value: attributes.background
+    type: style_options.background.type,
+    value: style_options.background.value
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/section.jpg",
     alt: "",
     className: "fluid"
   }) : /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("div", innerBlocksProps)));
 }
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/elements/margin.js":
-/*!***************************************************!*\
-  !*** ./src/blocks/px-controls/elements/margin.js ***!
-  \***************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ PhenixMargin; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
-*/
-//===> WordPress Modules <===//
-
- //===> Phenix Margin <===//
-
-var PhenixMargin = /*#__PURE__*/function (_Component) {
-  _inherits(PhenixMargin, _Component);
-
-  var _super = _createSuper(PhenixMargin);
-
-  function PhenixMargin() {
-    _classCallCheck(this, PhenixMargin);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(PhenixMargin, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          value = _this$props.value,
-          onChange = _this$props.onChange; //===> Options Tabs <===//
-
-      var changeTab = function changeTab(clicked) {
-        var _optionsList$querySel;
-
-        //===> Option Data <===//
-        var element = Phenix(clicked.target),
-            parent = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector(':scope > .primary')),
-            currentType = "".concat(element[0].getAttribute('data-options')),
-            targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
-
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-        (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-      }; //===> .Get Default Value. <===//
-
-
-      var values = value.split(' '),
-          options = {
-        small: ["", false],
-        medium: ["", false],
-        large: ["", false],
-        xlarge: ["", false]
-      }; //===> Default Combined Options <===//
-
-      if (value.includes("comb")) values.forEach(function (item) {
-        if (item.includes("comb")) {
-          //==> Define item <==//
-          var option_item = false,
-              option_screen; //==> Small Screen <==//
-
-          if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
-          else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
-          else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
-
-          options[option_screen][0] = option_item;
-          options[option_screen][1] = true;
-        }
-      }); //===> Set Combined Size <===//
-
-      var set_combined = function set_combined(combined) {
-        //===> Element Data <===//
-        var checkbox = combined.target,
-            current_sizes = value.replace(/\s\s+/g, ' '),
-            comb_type = checkbox.name,
-            comb_point = "-".concat(comb_type.slice(comb_type.indexOf('-') + 1, comb_type.lastIndexOf('-'))); //===> Cleanup Combined/Sepereated <===//
-
-        current_sizes.split(" ").forEach(function (name) {
-          //===> Fallback <===//
-          if (name.length > 0 && !name.includes('comb')) {
-            //===> Define Properties <===//
-            if (comb_point.includes("sm")) comb_point = "";
-            var nameValue = "".concat(name.slice(name.lastIndexOf('-') + 1)),
-                margin_ys = name.includes("mt".concat(comb_point, "-").concat(nameValue)) || name.includes("mb".concat(comb_point, "-").concat(nameValue)),
-                margin_xs = name.includes("ms".concat(comb_point, "-").concat(nameValue)) || name.includes("me".concat(comb_point, "-").concat(nameValue)),
-                margin_x = name.includes("mx".concat(comb_point, "-").concat(nameValue)),
-                margin_y = name.includes("my".concat(comb_point, "-").concat(nameValue)); //===> Cleanup Current Sizes <===//
-
-            if (margin_ys || margin_xs || margin_y || margin_x) current_sizes = current_sizes.replace(name, ""); //===> Seperate X <===//
-
-            if (margin_x) {
-              if (!current_sizes.includes("ms".concat(comb_point, "-"))) current_sizes += " ms".concat(comb_point, "-").concat(nameValue);
-              if (!current_sizes.includes("me".concat(comb_point, "-"))) current_sizes += " me".concat(comb_point, "-").concat(nameValue);
-            } //===> Seperate Y <===//
-            else if (margin_y) {
-              if (!current_sizes.includes("mt".concat(comb_point, "-"))) current_sizes += " mt".concat(comb_point, "-").concat(nameValue);
-              if (!current_sizes.includes("mb".concat(comb_point, "-"))) current_sizes += " mb".concat(comb_point, "-").concat(nameValue);
-            } //===> Combine X <===//
-            else if (margin_xs && !current_sizes.includes("mx".concat(comb_point, "-"))) {
-              current_sizes += " mx".concat(comb_point, "-").concat(nameValue);
-            } //===> Combine Y <===//
-            else if (margin_ys && !current_sizes.includes("my".concat(comb_point, "-"))) {
-              current_sizes += " my".concat(comb_point, "-").concat(nameValue);
-            }
-          }
-        }); //===> Activate Combined Size <===//
-
-        if (checkbox.checked && !values.includes(comb_type)) {
-          return onChange(" ".concat(comb_type, " ").concat(current_sizes));
-        } //===> De-Activate the Combined Size <===//
-        else if (!checkbox.checked && values.includes(comb_type)) {
-          return onChange(current_sizes.replace(" ".concat(comb_type, " "), ''));
-        }
-      }; //===> Set Value <===//
-
-
-      var set_value = function set_value(prefix, the_value, breakpoint) {
-        //===> Fallback <===//
-        if (!prefix || !the_value) return; //===> Define Returned Value <===//
-
-        var output_sizes = value.replace(/\s\s+/g, ' '); //===> Screen Points <===//
-
-        switch (breakpoint) {
-          case "-sm":
-            breakpoint = ['', "small"];
-            break;
-
-          case "-md":
-            breakpoint = [breakpoint, "medium"];
-            break;
-
-          case "-lg":
-            breakpoint = [breakpoint, "large"];
-            break;
-
-          case "-xl":
-            breakpoint = [breakpoint, "xlarge"];
-            break;
-
-          default:
-            breakpoint = breakpoint;
-            break;
-        } //===> Update Size <===//
-
-
-        if (output_sizes.includes("".concat(prefix).concat(breakpoint[0]))) {
-          //===> For Each Size <===//
-          output_sizes.split(' ').forEach(function (name) {
-            //===> When the Size is Found Replace it <===//
-            if (name.startsWith("".concat(prefix).concat(breakpoint[0]))) {
-              output_sizes = output_sizes.replace(name, " ".concat(prefix).concat(breakpoint[0], "-").concat(the_value));
-              return onChange(output_sizes);
-            }
-          });
-        } //===> for New Size <===//
-        else {
-          //===> Set the New Size <===//
-          return onChange(" ".concat(output_sizes, " ").concat(prefix).concat(breakpoint[0], "-").concat(the_value));
-        }
-      }; //===> Layout Creator <===//
-
-
-      var make_options = function make_options(data, value_infix) {
-        //===> Default Values <===//
-        var current_values = {
-          my: 0,
-          mx: 0,
-          mt: 0,
-          ms: 0,
-          mb: 0,
-          me: 0
-        }; //===> Get Options Status <===//
-
-        var comb_status = data[1]; //===> for Each Name in Value <===//
-
-        values.forEach(function (name) {
-          //===> Fallback <===//
-          if (!name.includes('comb')) {
-            //===> Get the Name Prefix <===//
-            var end = name.indexOf("-"),
-                namePrefix = name.slice(0, end),
-                hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
-
-            if (hasProp) {
-              //===> if the Name has any value related to the current infix <===//
-              if (name.includes(value_infix)) {
-                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-              } //===> for Zero Screen <===//
-              else if (value_infix === "-sm" && !name.includes(value_infix)) {
-                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-              }
-            }
-          }
-        }); //===> Create the Layout <===//
-
-        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
-          className: "option-control mb-5",
-          "data-type": "checkbox"
-        }, /*#__PURE__*/React.createElement("input", {
-          type: "checkbox",
-          name: "comb".concat(value_infix, "-mg"),
-          checked: comb_status,
-          onChange: set_combined
-        }), /*#__PURE__*/React.createElement("span", {
-          className: "fas fa-link"
-        }, "Combined Size")), comb_status ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrows-y",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "my".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.my,
-          onChange: function onChange(number) {
-            return set_value('my', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrows-x",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "mx".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.mx,
-          onChange: function onChange(number) {
-            return set_value('mx', number, value_infix);
-          }
-        }))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-top",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "mt".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.mt,
-          onChange: function onChange(number) {
-            return set_value('mt', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-start",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "ms".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.ms,
-          onChange: function onChange(number) {
-            return set_value('ms', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-bottom",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "mb".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.mb,
-          onChange: function onChange(number) {
-            return set_value('mb', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-end",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "me".concat(value_infix),
-          step: 5,
-          min: 0,
-          max: 100,
-          value: current_values.me,
-          onChange: function onChange(number) {
-            return set_value('me', number, value_infix);
-          }
-        }))));
-      }; //===> Component Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
-      }, /*#__PURE__*/React.createElement("button", {
-        key: "mobile",
-        onClick: changeTab,
-        className: "btn square tiny primary col far fa-mobile",
-        title: "Mobile Screens",
-        "data-options": "small-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "tablet",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-tablet",
-        title: "Tablet Screens",
-        "data-options": "medium-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "laptop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-laptop",
-        title: "Desktop Screens",
-        "data-options": "large-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "desktop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-desktop",
-        title: "xLarge Screens",
-        "data-options": "xlarge-options"
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox small-options"
-      }, make_options(options.small, "-sm")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox medium-options hidden"
-      }, make_options(options.medium, "-md")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox large-options hidden"
-      }, make_options(options.large, "-lg")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox xlarge-options hidden"
-      }, make_options(options.xlarge, "-xl"))));
-    }
-  }]);
-
-  return PhenixMargin;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/elements/padding.js":
-/*!****************************************************!*\
-  !*** ./src/blocks/px-controls/elements/padding.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ PhenixPadding; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
-*/
-//===> WordPress Modules <===//
-
- //===> Phenix Padding <===//
-
-var PhenixPadding = /*#__PURE__*/function (_Component) {
-  _inherits(PhenixPadding, _Component);
-
-  var _super = _createSuper(PhenixPadding);
-
-  function PhenixPadding() {
-    _classCallCheck(this, PhenixPadding);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(PhenixPadding, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          value = _this$props.value,
-          onChange = _this$props.onChange; //===> Options Tabs <===//
-
-      var changeTab = function changeTab(clicked) {
-        var _optionsList$querySel;
-
-        //===> Option Data <===//
-        var element = Phenix(clicked.target),
-            parent = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector(':scope > .primary')),
-            currentType = "".concat(element[0].getAttribute('data-options')),
-            targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
-
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-        (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-      }; //===> .Get Default Value. <===//
-
-
-      var values = value.split(' '),
-          options = {
-        small: ["", false],
-        medium: ["", false],
-        large: ["", false],
-        xlarge: ["", false]
-      }; //===> Default Combined Options <===//
-
-      if (value.includes("comb")) values.forEach(function (item) {
-        if (item.includes("comb")) {
-          //==> Define item <==//
-          var option_item = false,
-              option_screen; //==> Small Screen <==//
-
-          if (item.includes("comb-sm")) option_screen = "small"; //==> Medium Screen <==//
-          else if (item.includes("comb-md")) option_screen = "medium"; //==> Large Screen <==//
-          else if (item.includes("comb-lg")) option_screen = "large"; //==> xLarge Screen <==//
-          else if (item.includes("comb-xl")) option_screen = "xlarge"; //===> Set the Option <===//
-
-          options[option_screen][0] = option_item;
-          options[option_screen][1] = true;
-        }
-      }); //===> Set Combined Size <===//
-
-      var set_combined = function set_combined(combined) {
-        //===> Element Data <===//
-        var checkbox = combined.target,
-            current_sizes = value.replace(/\s\s+/g, ' '),
-            comb_type = checkbox.name,
-            comb_point = "-".concat(comb_type.slice(comb_type.indexOf('-') + 1, comb_type.lastIndexOf('-'))); //===> Cleanup Combined/Sepereated <===//
-
-        current_sizes.split(" ").forEach(function (name) {
-          //===> Fallback <===//
-          if (name.length > 0 && !name.includes('comb')) {
-            //===> Define Properties <===//
-            if (comb_point.includes("sm")) comb_point = "";
-            var nameValue = "".concat(name.slice(name.lastIndexOf('-') + 1)),
-                padding_ys = name.includes("pdt".concat(comb_point, "-").concat(nameValue)) || name.includes("pdb".concat(comb_point, "-").concat(nameValue)),
-                padding_xs = name.includes("pds".concat(comb_point, "-").concat(nameValue)) || name.includes("pde".concat(comb_point, "-").concat(nameValue)),
-                padding_x = name.includes("pdx".concat(comb_point, "-").concat(nameValue)),
-                padding_y = name.includes("pdy".concat(comb_point, "-").concat(nameValue)); //===> Cleanup Current Sizes <===//
-
-            if (padding_ys || padding_xs || padding_y || padding_x) current_sizes = current_sizes.replace(name, ""); //===> Seperate X <===//
-
-            if (padding_x) {
-              if (!current_sizes.includes("pds".concat(comb_point, "-"))) current_sizes += " pds".concat(comb_point, "-").concat(nameValue);
-              if (!current_sizes.includes("pde".concat(comb_point, "-"))) current_sizes += " pde".concat(comb_point, "-").concat(nameValue);
-            } //===> Seperate Y <===//
-            else if (padding_y) {
-              if (!current_sizes.includes("pdt".concat(comb_point, "-"))) current_sizes += " pdt".concat(comb_point, "-").concat(nameValue);
-              if (!current_sizes.includes("pdb".concat(comb_point, "-"))) current_sizes += " pdb".concat(comb_point, "-").concat(nameValue);
-            } //===> Combine X <===//
-            else if (padding_xs && !current_sizes.includes("pdx".concat(comb_point, "-"))) {
-              current_sizes += " pdx".concat(comb_point, "-").concat(nameValue);
-            } //===> Combine Y <===//
-            else if (padding_ys && !current_sizes.includes("pdy".concat(comb_point, "-"))) {
-              current_sizes += " pdy".concat(comb_point, "-").concat(nameValue);
-            }
-          }
-        }); //===> Activate Combined Size <===//
-
-        if (checkbox.checked && !values.includes(comb_type)) {
-          return onChange(" ".concat(comb_type, " ").concat(current_sizes));
-        } //===> De-Activate the Combined Size <===//
-        else if (!checkbox.checked && values.includes(comb_type)) {
-          return onChange(current_sizes.replace(" ".concat(comb_type, " "), ''));
-        }
-      }; //===> Set Value <===//
-
-
-      var set_value = function set_value(prefix, the_value, breakpoint) {
-        //===> Fallback <===//
-        if (!prefix || !the_value) return; //===> Define Returned Value <===//
-
-        var output_sizes = value.replace(/\s\s+/g, ' '); //===> Screen Points <===//
-
-        switch (breakpoint) {
-          case "-sm":
-            breakpoint = ['', "small"];
-            break;
-
-          case "-md":
-            breakpoint = [breakpoint, "medium"];
-            break;
-
-          case "-lg":
-            breakpoint = [breakpoint, "large"];
-            break;
-
-          case "-xl":
-            breakpoint = [breakpoint, "xlarge"];
-            break;
-
-          default:
-            breakpoint = breakpoint;
-            break;
-        } //===> Update Size <===//
-
-
-        if (output_sizes.includes("".concat(prefix).concat(breakpoint[0]))) {
-          //===> For Each Size <===//
-          output_sizes.split(' ').forEach(function (name) {
-            //===> When the Size is Found Replace it <===//
-            if (name.startsWith("".concat(prefix).concat(breakpoint[0]))) {
-              output_sizes = output_sizes.replace(name, " ".concat(prefix).concat(breakpoint[0], "-").concat(the_value));
-              return onChange(output_sizes);
-            }
-          });
-        } //===> for New Size <===//
-        else {
-          //===> Set the New Size <===//
-          return onChange(" ".concat(output_sizes, " ").concat(prefix).concat(breakpoint[0], "-").concat(the_value));
-        }
-      }; //===> Layout Creator <===//
-
-
-      var make_options = function make_options(data, value_infix) {
-        //===> Default Values <===//
-        var current_values = {
-          pdy: 0,
-          pdx: 0,
-          pdt: 0,
-          pds: 0,
-          pdb: 0,
-          pde: 0
-        }; //===> Get Options Status <===//
-
-        var comb_status = data[1]; //===> for Each Name in Value <===//
-
-        values.forEach(function (name) {
-          //===> Fallback <===//
-          if (!name.includes('comb')) {
-            //===> Get the Name Prefix <===//
-            var end = name.indexOf("-"),
-                namePrefix = name.slice(0, end),
-                hasProp = current_values.hasOwnProperty(namePrefix); //===> if the Prefix matches any value Grap it <===//
-
-            if (hasProp) {
-              //===> if the Name has any value related to the current infix <===//
-              if (name.includes(value_infix)) {
-                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-              } //===> for Zero Screen <===//
-              else if (value_infix === "-sm") {
-                current_values[namePrefix] = parseInt(name.replace(/\D/g, ''));
-                console.log(value_infix, current_values[namePrefix]);
-              }
-            }
-          }
-        }); //===> Create the Layout <===//
-
-        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
-          className: "option-control mb-5",
-          "data-type": "checkbox"
-        }, /*#__PURE__*/React.createElement("input", {
-          type: "checkbox",
-          name: "comb".concat(value_infix, "-pd"),
-          checked: comb_status,
-          onChange: set_combined
-        }), /*#__PURE__*/React.createElement("span", {
-          className: "fas fa-link"
-        }, "Combined Size")), comb_status ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrows-y",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pdy".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pdy,
-          onChange: function onChange(number) {
-            return set_value('pdy', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrows-x",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pdx".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pdx,
-          onChange: function onChange(number) {
-            return set_value('pdx', number, value_infix);
-          }
-        }))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-top",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pdt".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pdt,
-          onChange: function onChange(number) {
-            return set_value('pdt', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-start",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pds".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pds,
-          onChange: function onChange(number) {
-            return set_value('pds', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-bottom",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pdb".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pdb,
-          onChange: function onChange(number) {
-            return set_value('pdb', number, value_infix);
-          }
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "flexbox align-center-y mb-10 fluid"
-        }, /*#__PURE__*/React.createElement("i", {
-          className: "fs-16 me-10 pxi pxi-arrow-end",
-          style: {
-            marginTop: "3px",
-            width: "25px",
-            height: "25px"
-          }
-        }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-          key: "pde".concat(value_infix),
-          step: 5,
-          min: -1,
-          max: 100,
-          value: current_values.pde,
-          onChange: function onChange(number) {
-            return set_value('pde', number, value_infix);
-          }
-        }))));
-      }; //===> Reset Value <===//
-
-
-      var reset_value = function reset_value() {
-        return onChange('');
-      }; //===> Component Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-10"
-      }, /*#__PURE__*/React.createElement("button", {
-        key: "mobile",
-        onClick: changeTab,
-        className: "btn square tiny primary col far fa-mobile",
-        title: "Mobile Screens",
-        "data-options": "small-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "tablet",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-tablet",
-        title: "Tablet Screens",
-        "data-options": "medium-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "laptop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-laptop",
-        title: "Desktop Screens",
-        "data-options": "large-options"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "desktop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-desktop",
-        title: "xLarge Screens",
-        "data-options": "xlarge-options"
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox small-options"
-      }, make_options(options.small, "-sm")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox medium-options hidden"
-      }, make_options(options.medium, "-md")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox large-options hidden"
-      }, make_options(options.large, "-lg")), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox xlarge-options hidden"
-      }, make_options(options.xlarge, "-xl"))), /*#__PURE__*/React.createElement("button", {
-        onClick: reset_value,
-        className: "btn tiny radius-sm"
-      }, "Reset Size"));
-    }
-  }]);
-
-  return PhenixPadding;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
 
 /***/ }),
 
@@ -1505,8 +732,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1530,14 +755,12 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
 */
 //===> WordPress Modules <===//
-
- //===> Phenix Background <===//
+ //===> Media Uploader <===//
 
 var FlexAlignment = /*#__PURE__*/function (_Component) {
   _inherits(FlexAlignment, _Component);
@@ -1555,218 +778,126 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
     value: function render() {
       //===> Properties <===//
       var _this$props = this.props,
+          label = _this$props.label,
           value = _this$props.value,
-          onChange = _this$props.onChange; //===> Alignment Buttons <===//
+          onChange = _this$props.onChange;
+      var button_style = "btn tiny bg-transparent fs-12 square pxi"; //===> Align Handler <===//
 
-      var createAlignment = function createAlignment(screen) {
-        if (!screen) screen = "";
-        {
-          /*===> Responsive Devices <===*/
+      var set_align = function set_align(new_value, current_value, Axis) {
+        //===> Split the value <===//
+        var valueArray = current_value.split(" ").filter(function (val) {
+          return val;
+        }),
+            //===> Check Names Method <===//
+        checkNames = function checkNames(name) {
+          if (Axis === "align-x") {
+            return name.includes('-x') || name.includes('-between') || name.includes('-around');
+          } else if (Axis === "align-y") {
+            return name.includes('-y');
+          }
+        }; //===> Replace if has Multiple <===//
+
+
+        if (valueArray.length > 1) {
+          valueArray.forEach(function (val) {
+            return checkNames(val) ? value.replace(val, new_value) : "";
+          });
+        } //===> Update Current Value <===//
+        else {
+          return checkNames(value) ? new_value : "".concat(new_value, " ").concat(current_value);
         }
-        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
-          className: "mb-10 fluid weight-medium"
-        }, "Horizontal Align"), /*#__PURE__*/React.createElement("div", {
-          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-        }, /*#__PURE__*/React.createElement("button", {
-          key: "start-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-start"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-start-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "center-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-center"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-center-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "end-x-".concat(screen),
-          onClick: setAlignment,
-          title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-end"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-end-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "between-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Between",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'px-active' : 'light', " col pxi pxi-align-x-between"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-between")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "around-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Around",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'px-active' : 'light', " col pxi pxi-align-x-around"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-around")
-        })), /*#__PURE__*/React.createElement("label", {
-          className: "mb-10 fluid weight-medium"
-        }, "Vertical Align"), /*#__PURE__*/React.createElement("div", {
-          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-        }, /*#__PURE__*/React.createElement("button", {
-          key: "start-y-".concat(screen),
-          onClick: setAlignment,
-          title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-start"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-start-y")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "center-y-".concat(screen),
-          onClick: setAlignment,
-          title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-center"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-center-y")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "end-y-".concat(screen),
-          onClick: setAlignment,
-          title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-end"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-end-y")
-        })));
-      }; //===> Set Alignment <===//
-
-
-      var setAlignment = function setAlignment(clicked) {
-        //===> Element Data <===//
+      },
+          //===> Set Align X <===//
+      set_align_x = function set_align_x(clicked) {
+        //===> Get Elements <===//
         var button = clicked.target,
-            newVal = button.getAttribute('data-value'),
-            other = [],
-            screen = button.getAttribute('data-screen') || ''; //===> Get Sibling Values <===//
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-x"); //===> Set Data <===//
 
-        button.parentNode.querySelectorAll('.btn').forEach(function (element) {
-          other.push(element.getAttribute('data-value'));
-        });
-        /*===> if Current Value has Current Screen Point <===*/
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      set_align_y = function set_align_y(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-y"); //===> Set Data <===//
 
-        if (value.includes(screen)) value.split(' ').forEach(function (item) {
-          //===> if the siblings has the item in it remove it <===//
-          if (other.includes(item)) value.replace(item, ''); //===> if the item is not in siblings add it <===//
-          else if (item.length > 1) newVal = "".concat(item, " ").concat(newVal);
-        });
-        /*===> else if its New Screen Point <===*/
-        else newVal = "".concat(value, " ").concat(newVal); //===> Return Options <===//
-
-        return onChange("".concat(newVal));
-      }; //===> Default Flow <===//
-
-
-      var isReversed = function isReversed() {
-        if (value.includes('flow-reverse')) return true;else return false;
-      }; //===> Default Flow <===//
-
-
-      var isNowrap = function isNowrap() {
-        if (value.includes('flow-nowrap')) return true;else return false;
-      }; //===> Set Flow <===//
-
-
-      var setFlow = function setFlow(toggle) {
-        //===> Get Current Value <===//
-        var current = value; //===> .if already ON. <===//
-
-        if (isReversed()) {
-          current = current.replaceAll('flow-reverse');
-        } //===> .if not make it. <===//
-        else {
-          current = "".concat(value, " flow-reverse");
-        } //===> Return Options <===//
-
-
-        return onChange(current);
-      }; //===> Set Nowrap <===//
-
-
-      var setNowrap = function setNowrap(toggle) {
-        //===> Get Current Value <===//
-        var current = value; //===> .if already reversed. <===//
-
-        if (isNowrap()) {
-          current = current.replaceAll('flow-nowrap');
-        } //===> .if not make it. <===//
-        else {
-          current = "".concat(value, " flow-nowrap");
-        } //===> Return Options <===//
-
-
-        return onChange(current);
-      }; //===> Options Changer <===//
-
-
-      var changeTab = function changeTab(clicked) {
-        var _optionsList$querySel;
-
-        //===> Option Data <===//
-        var element = Phenix(clicked.target),
-            parent = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector('.primary')),
-            currentType = "".concat(element[0].getAttribute('data-options'), "-options"),
-            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
-
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-      }; //===> Component Output <===//
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      reset_align = function reset_align(clicked) {
+        return onChange("");
+      }; //===> Output <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
+        className: "components-flex-item flex-alignment-btns"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-      }, /*#__PURE__*/React.createElement("button", {
-        key: "mobile",
-        onClick: changeTab,
-        className: "btn square tiny primary col far fa-mobile",
-        title: "Mobile Screens",
-        "data-options": "small"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "tablet",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-tablet",
-        title: "Tablet Screens",
-        "data-options": "medium"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "laptop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-laptop",
-        title: "Desktop Screens",
-        "data-options": "large"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "desktop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-desktop",
-        title: "xLarge Screens",
-        "data-options": "xlarge"
+        className: "flexbox align-between mb-5 align-center-y"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label components-flex-item weight-bold"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "",
+        title: "Reset",
+        className: "btn tiny bg-transparent fs-12 square far fa-redo",
+        onClick: reset_align
       })), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
+        className: "flexbox align-between"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox small-options"
-      }, createAlignment()), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox medium-options hidden"
-      }, createAlignment('-md')), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox large-options hidden"
-      }, createAlignment('-lg')), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox xlarge-options hidden"
-      }, createAlignment('-xl'))), /*#__PURE__*/React.createElement("span", {
-        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 divider-t"
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        key: "align-flow",
-        label: "Flow Reverse",
-        checked: isReversed(),
-        onChange: setFlow
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        key: "flow-nowrap",
-        label: "Nowrap Columns",
-        checked: isNowrap(),
-        onChange: setNowrap
-      }));
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-x",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-x",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-between",
+        title: "Between",
+        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-around",
+        title: "Around",
+        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-x",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "px-active" : ""),
+        onClick: set_align_x
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-y",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-y",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-y",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }))));
     }
   }]);
 
@@ -1884,142 +1015,6 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
 
   return MediaUploader;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/number-counter.js":
-/*!**************************************************!*\
-  !*** ./src/blocks/px-controls/number-counter.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ PhenixNumber; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - Import Assets
- * ===> 02 - Import Block Functions
- * ===> 03 - Register Block
-*/
-//===> WordPress Modules <===//
- //===> Media Uploader <===//
-
-var PhenixNumber = /*#__PURE__*/function (_Component) {
-  _inherits(PhenixNumber, _Component);
-
-  var _super = _createSuper(PhenixNumber);
-
-  function PhenixNumber() {
-    _classCallCheck(this, PhenixNumber);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(PhenixNumber, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          label = _this$props.label,
-          value = _this$props.value,
-          min = _this$props.min,
-          max = _this$props.max,
-          steps = _this$props.steps,
-          icon = _this$props.icon,
-          onChange = _this$props.onChange; //===> Set new Value <===//
-
-      var setNumber = function setNumber(changed) {
-        return onChange(changed.value);
-      },
-          //===> Increase Number <===//
-      IncreaseNum = function IncreaseNum(clicked) {
-        //===> Get Elements <===//
-        var button = clicked.target,
-            wrapper = button.parentNode,
-            maxNum = parseInt(max) || 9999999,
-            step = steps ? parseInt(steps) : 1; //===> Wrapper Fallback <===//
-
-        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
-
-        var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) + step; //===> Set Data <===//
-
-        return onChange(newVal <= maxNum ? newVal : maxNum);
-      },
-          //===> Decrease Number <===//
-      DecreaseNum = function DecreaseNum(clicked) {
-        //===> Get Elements <===//
-        var button = clicked.target,
-            wrapper = button.parentNode,
-            minNum = parseInt(min) || 0,
-            step = steps ? steps : 1; //===> Wrapper Fallback <===//
-
-        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
-
-        var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) - step; //===> Set Data <===//
-
-        return onChange(newVal >= minNum ? newVal : minNum);
-      }; //===> Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "flexbox flex-gap-fix align-between flow-column"
-      }, /*#__PURE__*/React.createElement("label", {
-        className: "components-input-control__label tx-uppercase weight-bold"
-      }, label), /*#__PURE__*/React.createElement("div", {
-        className: "px-counter-input position-rv " + (icon ? icon : "")
-      }, !icon ? /*#__PURE__*/React.createElement("button", {
-        onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix"
-      }) : "", /*#__PURE__*/React.createElement("input", {
-        type: "number",
-        min: min,
-        max: max,
-        value: parseInt(value) ? parseInt(value) : 0,
-        className: "form-control small radius-sm reset-appearance" + (!icon ? " tx-align-center" : ""),
-        onChange: setNumber
-      }), /*#__PURE__*/React.createElement("div", {
-        className: "position-ab pos-end-0 pos-bottom-0 flexbox"
-      }, /*#__PURE__*/React.createElement("button", {
-        onClick: IncreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-plus divider-s icon-fix"
-      }), icon ? /*#__PURE__*/React.createElement("button", {
-        onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus divider-s icon-fix"
-      }) : "")));
-    }
-  }]);
-
-  return PhenixNumber;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 
 
@@ -2201,7 +1196,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"Section and Container to Group the Elements.","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"preview":{"type":"boolean","default":false},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"isHidden":{"type":"boolean","default":false},"flex_align":{"type":"string","default":""},"size":{"type":"string","default":""},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":""},"spacing_pd":{"type":"string","default":""},"spacing_mg":{"type":"string","default":""},"color":{"type":"string","default":""}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"size":{"type":"string","default":""},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"isHidden":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{"flow":"","align":"","nowrap":""}},"typography":{"type":"object","default":{"color":"","size":"","align":"","weight":"","family":"","height":"","utility":""}},"style":{"type":"object","default":{"display":"","spacing":{"padding":"","margin":""},"background":{"type":"color","value":"","rotation":""}}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -2316,19 +1311,25 @@ __webpack_require__.r(__webpack_exports__);
     //===> Get Block Properties <===//
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     var TagName = attributes.tagName;
-    var container_names = ''; //===> Render Size <===//
+    var container = attributes.isFlexbox ? "flexbox " : ''; //===> Container Options <===//
 
-    if (attributes.size) container_names += attributes.size; //===> is Hidden <===//
-
-    if (attributes.isHidden) container_names += ' hidden'; //===> Render Alignment <===//
+    if (attributes.id) blockProps['id'] = attributes.id;
+    if (attributes.size) container += attributes.size;
+    if (attributes.isHidden) container += ' hidden'; //===> Flexbox Properties <===//
 
     if (attributes.isFlexbox) {
-      container_names += ' flexbox';
-      if (attributes.flex_align) container_names += " ".concat(attributes.flex_align);
-    } //===> Render Color <===//
+      if (attributes.flexbox.align) container += " ".concat(attributes.flexbox.align);
+      if (attributes.flexbox.flow) container += " ".concat(attributes.flexbox.flow);
+      if (attributes.flexbox.nowrap) container += " ".concat(attributes.flexbox.nowrap);
+    } //===> Typography Properties <===//
 
 
-    if (attributes.color) container_names += " ".concat(attributes.color); //===> Render Background <===//
+    if (attributes.typography) {
+      container += " ".concat(attributes.typography.size);
+      container += " ".concat(attributes.typography.weight);
+      container += " ".concat(attributes.typography.color);
+    } //===> Render Background <===//
+
 
     if (attributes.background) {
       //===> Image Background <===//
@@ -2343,15 +1344,10 @@ __webpack_require__.r(__webpack_exports__);
     } //===> for Section Convert <===//
 
 
-    if (!attributes.isSection) blockProps.className += " ".concat(container_names); //===> Render ID <===//
-
-    if (attributes.id) blockProps['id'] = attributes.id; //===> Render Spacing <===//
-
-    if (attributes.spacing_pd) blockProps.className += " ".concat(attributes.spacing_pd);
-    if (attributes.spacing_mg) blockProps.className += " ".concat(attributes.spacing_mg); //===> Render <===//
+    if (!attributes.isSection) blockProps.className += " ".concat(container); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.isSection ? /*#__PURE__*/React.createElement("div", {
-      className: container_names
+      className: container
     }, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)) : /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }
 });

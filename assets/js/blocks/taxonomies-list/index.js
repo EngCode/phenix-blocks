@@ -75,14 +75,13 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
       IncreaseNum = function IncreaseNum(clicked) {
         //===> Get Elements <===//
         var button = clicked.target,
-            wrapper = button.parentNode,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
             maxNum = parseInt(max) || 9999999,
-            step = steps ? parseInt(steps) : 1; //===> Wrapper Fallback <===//
-
-        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
+            step = steps ? parseInt(steps) : 1; //===> Get Input Element <===//
 
         var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) + step; //===> Set Data <===//
+            newVal = parseInt(input.value) + step;
+        console.log(input, newVal); //===> Set Data <===//
 
         return onChange(newVal <= maxNum ? newVal : maxNum);
       },
@@ -90,14 +89,13 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
       DecreaseNum = function DecreaseNum(clicked) {
         //===> Get Elements <===//
         var button = clicked.target,
-            wrapper = button.parentNode,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
             minNum = parseInt(min) || 0,
-            step = steps ? steps : 1; //===> Wrapper Fallback <===//
-
-        if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode; //===> Get Input Element <===//
+            step = steps ? steps : 1; //===> Get Input Element <===//
 
         var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) - step; //===> Set Data <===//
+            newVal = parseInt(input.value) - step;
+        console.log(input, newVal); //===> Set Data <===//
 
         return onChange(newVal >= minNum ? newVal : minNum);
       }; //===> Output <===//
@@ -108,7 +106,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/React.createElement("label", {
         className: "components-input-control__label tx-uppercase weight-bold"
       }, label), /*#__PURE__*/React.createElement("div", {
-        className: "px-counter-input position-rv " + (icon ? icon : "")
+        className: "px-counter-input position-rv fluid " + (icon ? icon : "")
       }, !icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
         className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix"

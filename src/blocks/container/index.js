@@ -30,22 +30,26 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
-        let container_names = '';
+        let container = attributes.isFlexbox ? "flexbox " : '';
 
-        //===> Render Size <===//
-        if (attributes.size) container_names += attributes.size;
+        //===> Container Options <===//
+        if (attributes.id) blockProps['id'] = attributes.id;
+        if (attributes.size) container += attributes.size;
+        if (attributes.isHidden) container += ' hidden';
 
-        //===> is Hidden <===//
-        if (attributes.isHidden) container_names += ' hidden';
-
-        //===> Render Alignment <===//
+        //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {
-            container_names += ' flexbox';
-            if (attributes.flex_align) container_names +=` ${attributes.flex_align}`;
+            if (attributes.flexbox.align)  container += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.flow)   container += ` ${attributes.flexbox.flow}`;
+            if (attributes.flexbox.nowrap) container += ` ${attributes.flexbox.nowrap}`;
         }
 
-        //===> Render Color <===//
-        if (attributes.color) container_names += ` ${attributes.color}`;
+        //===> Typography Properties <===//
+        if (attributes.typography) {
+            container += ` ${attributes.typography.size}`;
+            container += ` ${attributes.typography.weight}`;
+            container += ` ${attributes.typography.color}`;
+        }
 
         //===> Render Background <===//
         if (attributes.background) {
@@ -63,20 +67,13 @@ registerBlockType(metadata, {
         }
 
         //===> for Section Convert <===//
-        if (!attributes.isSection) blockProps.className += ` ${container_names}`;
-
-        //===> Render ID <===//
-        if (attributes.id) blockProps['id'] = attributes.id;
-
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
+        if (!attributes.isSection) blockProps.className += ` ${container}`;
 
         //===> Render <===//
         return (
             <TagName {...blockProps}>
                 {attributes.isSection ?
-                    <div className={container_names}>
+                    <div className={container}>
                         <InnerBlocks.Content />
                     </div>
                 :

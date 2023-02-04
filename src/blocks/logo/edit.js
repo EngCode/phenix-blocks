@@ -87,7 +87,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <ToggleControl label="Responsive Logo" checked={attributes.responsive} onChange={set_responsive}/>
                 {/*=== Responsive [...] ===*/}
                 {attributes.responsive ? <>
-                    <ToggleControl label="Use Fevicon for Mobile" checked={attributes.use_fevicon} onChange={set_use_fevicon}/>
+                    <ToggleControl label="Use Favicon for Mobile" checked={attributes.use_fevicon} onChange={set_use_fevicon}/>
                     {/* Fevicon */}
                     {!attributes.use_fevicon ? <MediaUploader label="Upload Mobile Logo" value={attributes.mobile_logo} setValue={set_mobile_logo} size="small"></MediaUploader> : null}
                 </> : null}

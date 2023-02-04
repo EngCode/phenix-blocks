@@ -1280,8 +1280,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1305,14 +1303,12 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
 */
 //===> WordPress Modules <===//
-
- //===> Phenix Background <===//
+ //===> Media Uploader <===//
 
 var FlexAlignment = /*#__PURE__*/function (_Component) {
   _inherits(FlexAlignment, _Component);
@@ -1330,218 +1326,126 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
     value: function render() {
       //===> Properties <===//
       var _this$props = this.props,
+          label = _this$props.label,
           value = _this$props.value,
-          onChange = _this$props.onChange; //===> Alignment Buttons <===//
+          onChange = _this$props.onChange;
+      var button_style = "btn tiny bg-transparent fs-12 square pxi"; //===> Align Handler <===//
 
-      var createAlignment = function createAlignment(screen) {
-        if (!screen) screen = "";
-        {
-          /*===> Responsive Devices <===*/
+      var set_align = function set_align(new_value, current_value, Axis) {
+        //===> Split the value <===//
+        var valueArray = current_value.split(" ").filter(function (val) {
+          return val;
+        }),
+            //===> Check Names Method <===//
+        checkNames = function checkNames(name) {
+          if (Axis === "align-x") {
+            return name.includes('-x') || name.includes('-between') || name.includes('-around');
+          } else if (Axis === "align-y") {
+            return name.includes('-y');
+          }
+        }; //===> Replace if has Multiple <===//
+
+
+        if (valueArray.length > 1) {
+          valueArray.forEach(function (val) {
+            return checkNames(val) ? value.replace(val, new_value) : "";
+          });
+        } //===> Update Current Value <===//
+        else {
+          return checkNames(value) ? new_value : "".concat(new_value, " ").concat(current_value);
         }
-        return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
-          className: "mb-10 fluid weight-medium"
-        }, "Horizontal Align"), /*#__PURE__*/React.createElement("div", {
-          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-        }, /*#__PURE__*/React.createElement("button", {
-          key: "start-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-start"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-start-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "center-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-center"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-center-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "end-x-".concat(screen),
-          onClick: setAlignment,
-          title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-x")) ? 'px-active' : 'light', " col pxi pxi-align-x-end"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-end-x")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "between-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Between",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-between")) ? 'px-active' : 'light', " col pxi pxi-align-x-between"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-between")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "around-x-".concat(screen),
-          onClick: setAlignment,
-          title: "Around",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-around")) ? 'px-active' : 'light', " col pxi pxi-align-x-around"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-around")
-        })), /*#__PURE__*/React.createElement("label", {
-          className: "mb-10 fluid weight-medium"
-        }, "Vertical Align"), /*#__PURE__*/React.createElement("div", {
-          className: "px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-        }, /*#__PURE__*/React.createElement("button", {
-          key: "start-y-".concat(screen),
-          onClick: setAlignment,
-          title: "Start",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-start-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-start"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-start-y")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "center-y-".concat(screen),
-          onClick: setAlignment,
-          title: "Center",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-center-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-center"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-center-y")
-        }), /*#__PURE__*/React.createElement("button", {
-          key: "end-y-".concat(screen),
-          onClick: setAlignment,
-          title: "End",
-          className: "btn small ".concat(value.includes("align".concat(screen, "-end-y")) ? 'px-active' : 'light', " col pxi pxi-align-y-end"),
-          "data-screen": screen,
-          "data-value": "align".concat(screen, "-end-y")
-        })));
-      }; //===> Set Alignment <===//
-
-
-      var setAlignment = function setAlignment(clicked) {
-        //===> Element Data <===//
+      },
+          //===> Set Align X <===//
+      set_align_x = function set_align_x(clicked) {
+        //===> Get Elements <===//
         var button = clicked.target,
-            newVal = button.getAttribute('data-value'),
-            other = [],
-            screen = button.getAttribute('data-screen') || ''; //===> Get Sibling Values <===//
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-x"); //===> Set Data <===//
 
-        button.parentNode.querySelectorAll('.btn').forEach(function (element) {
-          other.push(element.getAttribute('data-value'));
-        });
-        /*===> if Current Value has Current Screen Point <===*/
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      set_align_y = function set_align_y(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-y"); //===> Set Data <===//
 
-        if (value.includes(screen)) value.split(' ').forEach(function (item) {
-          //===> if the siblings has the item in it remove it <===//
-          if (other.includes(item)) value.replace(item, ''); //===> if the item is not in siblings add it <===//
-          else if (item.length > 1) newVal = "".concat(item, " ").concat(newVal);
-        });
-        /*===> else if its New Screen Point <===*/
-        else newVal = "".concat(value, " ").concat(newVal); //===> Return Options <===//
-
-        return onChange("".concat(newVal));
-      }; //===> Default Flow <===//
-
-
-      var isReversed = function isReversed() {
-        if (value.includes('flow-reverse')) return true;else return false;
-      }; //===> Default Flow <===//
-
-
-      var isNowrap = function isNowrap() {
-        if (value.includes('flow-nowrap')) return true;else return false;
-      }; //===> Set Flow <===//
-
-
-      var setFlow = function setFlow(toggle) {
-        //===> Get Current Value <===//
-        var current = value; //===> .if already ON. <===//
-
-        if (isReversed()) {
-          current = current.replaceAll('flow-reverse');
-        } //===> .if not make it. <===//
-        else {
-          current = "".concat(value, " flow-reverse");
-        } //===> Return Options <===//
-
-
-        return onChange(current);
-      }; //===> Set Nowrap <===//
-
-
-      var setNowrap = function setNowrap(toggle) {
-        //===> Get Current Value <===//
-        var current = value; //===> .if already reversed. <===//
-
-        if (isNowrap()) {
-          current = current.replaceAll('flow-nowrap');
-        } //===> .if not make it. <===//
-        else {
-          current = "".concat(value, " flow-nowrap");
-        } //===> Return Options <===//
-
-
-        return onChange(current);
-      }; //===> Options Changer <===//
-
-
-      var changeTab = function changeTab(clicked) {
-        var _optionsList$querySel;
-
-        //===> Option Data <===//
-        var element = Phenix(clicked.target),
-            parent = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector('.primary')),
-            currentType = "".concat(element[0].getAttribute('data-options'), "-options"),
-            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
-
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-      }; //===> Component Output <===//
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      reset_align = function reset_align(clicked) {
+        return onChange("");
+      }; //===> Output <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
+        className: "components-flex-item flex-alignment-btns"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-      }, /*#__PURE__*/React.createElement("button", {
-        key: "mobile",
-        onClick: changeTab,
-        className: "btn square tiny primary col far fa-mobile",
-        title: "Mobile Screens",
-        "data-options": "small"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "tablet",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-tablet",
-        title: "Tablet Screens",
-        "data-options": "medium"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "laptop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-laptop",
-        title: "Desktop Screens",
-        "data-options": "large"
-      }), /*#__PURE__*/React.createElement("button", {
-        key: "desktop",
-        onClick: changeTab,
-        className: "btn square tiny light col far fa-desktop",
-        title: "xLarge Screens",
-        "data-options": "xlarge"
+        className: "flexbox align-between mb-5 align-center-y"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label components-flex-item weight-bold"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "",
+        title: "Reset",
+        className: "btn tiny bg-transparent fs-12 square far fa-redo",
+        onClick: reset_align
       })), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
+        className: "flexbox align-between"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox small-options"
-      }, createAlignment()), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox medium-options hidden"
-      }, createAlignment('-md')), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox large-options hidden"
-      }, createAlignment('-lg')), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox xlarge-options hidden"
-      }, createAlignment('-xl'))), /*#__PURE__*/React.createElement("span", {
-        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 divider-t"
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        key: "align-flow",
-        label: "Flow Reverse",
-        checked: isReversed(),
-        onChange: setFlow
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-        key: "flow-nowrap",
-        label: "Nowrap Columns",
-        checked: isNowrap(),
-        onChange: setNowrap
-      }));
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-x",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-x",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-between",
+        title: "Between",
+        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-around",
+        title: "Around",
+        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-x",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "px-active" : ""),
+        onClick: set_align_x
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-y",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-y",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-y",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }))));
     }
   }]);
 

@@ -39,7 +39,7 @@ export default function Edit(props) {
 
     //===> Grid Options <===//
     const set_grid_mode = grid_mode => setAttributes({ grid_mode }),
-          set_grid_cols = grid_cols => setAttributes({ grid_cols: !attributes.slider_mode ? "row-cols-" : "" + (grid_cols > 0 ? grid_cols : "auto") }),
+          set_grid_cols = grid_cols => setAttributes({ grid_cols: (!attributes.slider_mode ? "row-cols-" : "") + (grid_cols > 0 ? grid_cols : "auto") }),
           set_grid_cols_stat = grid_cols_stat => setAttributes({ grid_cols_stat }),
           set_grid_alignment = grid_alignment => setAttributes({ grid_alignment });
     
@@ -157,7 +157,7 @@ export default function Edit(props) {
                 {/*===> Columns No. in Row <===*/}
                 {!attributes.slider_mode ? <>
                     {!attributes.grid_cols_stat ? <div className="mb-15">
-                        <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
+                        <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={1} max={12}></PhenixNumber>
                     </div> : ""}
 
                     {/*===> Free Columns Size <===*/}

@@ -9,10 +9,9 @@
 
 /*==== Container Block ====*/
 .wp-block-phenix-container[data-block] {
+	min-height: 2.5rem;
 	outline: 1px dashed var(--primary-color);
-	&:not([class*="pd"]) {padding: min(5px, 150px);}
-	/*==== Container ====*/
-	> [class*="container"] {outline: 1px dashed var(--secondary-color);}
+	// &:not([class*="pd"]) {padding: min(5px, 150px);}
 }
 
 /*==== Grid Blocks ====*/
@@ -118,11 +117,7 @@
 	}
 }
 
-.flex-alignment-btns .btn.tiny {
-	width: 1.65rem;
-	&:not(.active) {opacity: 0.4;}
-	&.active {color: var(--primary-color);-webkit-filter: hue-rotate(220deg) saturate(5);filter: hue-rotate(220deg) saturate(5);}
-}
+.flex-alignment-btns .btn.tiny {width: 1.65rem;}
 
 .flex-gap-fix {gap: calc(7px);}
 

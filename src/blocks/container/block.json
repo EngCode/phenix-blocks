@@ -5,7 +5,7 @@
 	"title": "Container",
     "keywords": ["pds", "phenix", "section", "group", "wrapper", "container"],
 	"category": "design",
-	"description": "Section and Container to Group the Elements.",
+	"description": "",
 	"supports": {
 		"html": false
 	},
@@ -20,9 +20,9 @@
 			"default": "div"
 		},
 
-        "preview" : {
-            "type": "boolean",
-            "default": false
+        "size" : {
+            "type": "string",
+            "default": ""
         },
 
         "isSection" : {
@@ -40,44 +40,28 @@
             "default": false
         },
 
-        "flex_align" : {
-            "type": "string",
-            "default": ""
+        "preview" : {
+            "type": "boolean",
+            "default": false
         },
 
-        "size" : {
-            "type": "string",
-            "default": ""
+        "flexbox": {
+            "type": "object",
+            "default": {"flow": "", "align": "", "nowrap": ""}
         },
 
-        "bg_type" : {
-            "type" : "string",
-            "default" : "color"
+        "typography": {
+            "type": "object",
+            "default": {"color": "", "size": "", "align": "", "weight": "", "family": "", "height": "", "utility": ""}
         },
 
-        "bg_rotate" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "background" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "spacing_pd" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "spacing_mg" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "color" : {
-            "type" : "string",
-            "default" : ""
+        "style": {
+            "type": "object",
+            "default": {
+                "display": "",
+                "spacing": {"padding":"", "margin": ""},
+                "background": {"type":"color", "value": "", "rotation": ""}
+            }
         }
     },
     "example": {

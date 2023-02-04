@@ -20,17 +20,15 @@ export default class PhenixNumber extends Component {
         IncreaseNum = (clicked) => {
             //===> Get Elements <===//
             let button  = clicked.target,
-                wrapper = button.parentNode,
+                wrapper = Phenix(button).ancestor(".px-counter-input"),
                 maxNum  = parseInt(max) || 9999999,
                 step    = steps ? parseInt(steps) : 1;
-            
-            //===> Wrapper Fallback <===//
-            if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode;
-            
+
             //===> Get Input Element <===//
             let input  = wrapper.querySelector('input[type="number"]'),
                 newVal = parseInt(input.value) + step;
 
+            console.log(input, newVal);
             //===> Set Data <===//
             return onChange(newVal <= maxNum ? newVal : maxNum);
         },
@@ -39,17 +37,15 @@ export default class PhenixNumber extends Component {
         DecreaseNum = (clicked) => {
             //===> Get Elements <===//
             let button  = clicked.target,
-                wrapper = button.parentNode,
+                wrapper = Phenix(button).ancestor(".px-counter-input"),
                 minNum  = parseInt(min) || 0,
                 step    = steps ? steps : 1;
-
-            //===> Wrapper Fallback <===//
-            if (!wrapper.matches(".px-counter-input")) wrapper = wrapper.parentNode;
 
             //===> Get Input Element <===//
             let input = wrapper.querySelector('input[type="number"]'),
                 newVal = parseInt(input.value) - step;
 
+            console.log(input, newVal);
             //===> Set Data <===//
             return onChange(newVal >= minNum ? newVal : minNum);
         };
@@ -59,7 +55,7 @@ export default class PhenixNumber extends Component {
             {/*===> Label <===*/}
             <label className='components-input-control__label tx-uppercase weight-bold'>{label}</label>
             {/*===> Counter Control <===*/}
-            <div className={"px-counter-input position-rv " + (icon ? icon : "")}>
+            <div className={"px-counter-input position-rv fluid " + (icon ? icon : "")}>
                 {/*===> Button <===*/}
                 {!icon ? <button onClick={DecreaseNum} className='btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix'></button> : ""}
 

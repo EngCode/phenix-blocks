@@ -10,16 +10,6 @@ import {
 } from '@wordpress/components';
 
 import {
-    more,
-    arrowLeft,
-    arrowRight,
-    arrowUp,
-    arrowDown,
-} from '@wordpress/icons';
-
-import {
-    RichText,
-    InnerBlocks,
     useBlockProps,
     useInnerBlocksProps,
     InspectorControls
@@ -28,45 +18,60 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import PhenixNumber from "../px-controls/number-counter";
-import PhenixBackground from '../px-controls/elements/px-background';
-import PhenixColor from '../px-controls/typography/px-colors';
 import FlexAlignment from '../px-controls/grid/flex-alignment';
-import PhenixPadding from '../px-controls/elements/padding';
-import PhenixMargin from '../px-controls/elements/margin';
+import PhenixColor from '../px-controls/typography/px-colors';
+import PhenixBackground from '../px-controls/elements/px-background';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
     const set_id = id => setAttributes({ id });
     const set_size = size => setAttributes({ size });
-    const set_color = color => setAttributes({ color });
     const set_tagName = tagName => setAttributes({ tagName });
     const set_isSection = isSection => setAttributes({ isSection });
     const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
-    const set_isHidden = isHidden => setAttributes({ isHidden });
-    const set_alignment = alignment => setAttributes({ flex_align : alignment });
-    const set_spacing_pd = spacing_pd => setAttributes({ spacing_pd });
-    const set_spacing_mg = spacing_mg => setAttributes({ spacing_mg });
+    const set_isHidden  = isHidden => setAttributes({ isHidden });
 
-    //===> Options Tabs <===//
-    const changeTab = (clicked) => {
-        //===> Option Data <===//
-        let element = Phenix(clicked.target),
-            parent  = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector(':scope > .primary')),
-            currentType = `${element[0].getAttribute('data-options')}`,
-            targetElement = optionsList.querySelector(`:scope > .${currentType}`);
-
-        //===> Change Active <===//
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light');
-
-        //===> Show Options <===//
-        optionsList.querySelector(':scope > .flexbox:not(.hidden)')?.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
+    //===> Get Options <===//
+    let flexbox_options = attributes.flexbox,
+        style_options = attributes.style,
+        typography_opts = attributes.typography;
+    
+    //===> Flexbox Options <===//
+    const set_alignment = alignment => {
+        //==> Align <==//
+        flexbox_options.align = alignment;
+        setAttributes({ flexbox : {...flexbox_options} });
+    },
+    //==> Flow <==//
+    set_flex_flow = flex_flow => {
+        flex_flow ? flexbox_options.flow = "flow-reverse" : flexbox_options.flow = "";
+        setAttributes({flexbox : {...flexbox_options}});
+    },
+    //==> No-Wrap <==//
+    set_flex_nowrap = flex_nowrap => {
+        flex_nowrap ? flexbox_options.nowrap = "flow-nowrap" : flexbox_options.nowrap = "";
+        setAttributes({flexbox : {...flexbox_options}});
     };
+
+    //===> Typography Options <===//
+    const set_typography_size = value => {
+        //==> Size <==//
+        typography_opts.size = value;
+        setAttributes({ typography : {...typography_opts} });
+    },
+
+    //==> Weight <==//
+    set_typography_weight = value => {
+        typography_opts.weight = value;
+        setAttributes({ typography : {...typography_opts} });
+    },
+
+    //==> Color <==//
+    set_color = value => {
+        typography_opts.color = value;
+        setAttributes({ typography : {...typography_opts} });
+    }
 
     //===> Set Background <===//
     const set_background = background => {
@@ -124,23 +129,27 @@ export default function Edit({ attributes, setAttributes }) {
     }, []);
 
     //===> for Section Convert <===//
-    let container_element = blockProps;
-    if (attributes.isSection || attributes.isFlexbox) container_element = innerBlocksProps;
+    let container = blockProps;
+    if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps;
 
-    //===> Render Size <===//
-    if (attributes.size) container_element.className += ` ${attributes.size}`;
+    //===> Container Options <===//
+    if (attributes.size) container.className += ` ${attributes.size}`;
+    if (attributes.isHidden) container.className += ' hidden';
 
-    //===> is Hidden <===//
-    if (attributes.isHidden) container_element.className += ' hidden';
-
-    //===> Render Alignment <===//
+    //===> Flexbox Properties <===//
     if (attributes.isFlexbox) {
-        container_element.className += ' flexbox';
-        if (attributes.flex_align) container_element.className +=` ${attributes.flex_align}`;
+        container.className += ' flexbox';
+        if (flexbox_options.align)  container.className += ` ${flexbox_options.align}`;
+        if (flexbox_options.flow)   container.className += ` ${flexbox_options.flow}`;
+        if (flexbox_options.nowrap) container.className += ` ${flexbox_options.nowrap}`;
     }
 
-    //===> Render Color <===//
-    if (attributes.color) blockProps.className += ` ${attributes.color}`;
+    //===> Typography Properties <===//
+    if (attributes.typography) {
+        container.className += ` ${typography_opts.size}`;
+        container.className += ` ${typography_opts.color}`;
+        container.className += ` ${typography_opts.weight}`;
+    }
 
     //===> Render Background <===//
     if (attributes.background) {
@@ -157,18 +166,14 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
     }
 
-    //===> Render Spacing <===//
-    if (attributes.spacing_pd) container_element.className += ` ${attributes.spacing_pd}`;
-    if (attributes.spacing_mg) container_element.className += ` ${attributes.spacing_mg}`;
-
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
-            {/*===> Widget Panel <===*/}
+            {/*===> General Options <===*/}
             <PanelBody title={__("General Settings", "phenix")}>
                 {/*===> Elements Group <===*/}
-                <div className='row gpx-20 mb-15'>
+                <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
                         <SelectControl key="container_size" label={__("Container Size", "phenix")} value={attributes.size} onChange={set_size} options={[
@@ -195,14 +200,12 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className='col-6 mb-5'>
                         <ToggleControl label={__("Wrapper ?", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
                     </div>
-                    {/*===> Column <===*/}
+                    {/*===  isFlexbox ===*/}
                     <div className='col-6 mb-5'>
-                        {/*===  isFlexbox ===*/}
                         <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
                     </div>
-                    {/*===> Column <===*/}
+                    {/*===  isHidden ===*/}
                     <div className='col mb-10'>
-                        {/*===  isFlexbox ===*/}
                         <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
                     </div>
                     {/*=== Container ID ===*/}
@@ -212,39 +215,59 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> // Column <===*/}
                 </div>
             </PanelBody>
-            {/*=== Container Options ===*/}
-            {attributes.isFlexbox ? <PanelBody title={__("Flexbox", "phenix")} initialOpen={false}>
-                {/*=== Flexbox Alignment ===*/}
-                <FlexAlignment key="flex-align" value={attributes.flex_align} onChange={set_alignment}></FlexAlignment>
-            </PanelBody> : null}
-            {/*===> Spacing <===*/}
-            <PanelBody title={__("Spacing", "phenix")} initialOpen={false}>
-                {/*===> Options Tabs <====*/}
-                <div className='options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10'>
-                    <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">{__("Padding Size", "phenix")}</button>
-                    <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">{__("Margin Size", "phenix")}</button>
-                </div>
-                {/*===> Options Panels <====*/}
-                <div className='options-list'>
-                    {/*===> Padding <====*/}
-                    <div className={`flexbox padding-size`}>
-                        <PhenixPadding key="px-spacing_pd" onChange={set_spacing_pd} value={attributes.spacing_pd} />
+            {/*===> Typography <===*/}
+            <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Size <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography_opts.size} onChange={set_typography_size} options={[
+                            { label: 'Default',   value: '' },
+                        ]}/>
                     </div>
-                    {/*===> Margin <====*/}
-                    <div className={`flexbox margin-size hidden`}>
-                        <PhenixMargin key="px-spacing_mg" onChange={set_spacing_mg} value={attributes.spacing_mg} />
+                    {/*===> HTML Tag <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={typography_opts.weight} onChange={set_typography_weight} options={[
+                            { label: 'Default',  value: '' },
+                            { label: 'Thin',  value: 'weight-thin'},
+                            { label: 'Light',  value: 'weight-light'},
+                            { label: 'Extra Light',  value: 'weight-xlight'},
+                            { label: 'Normal',  value: 'weight-normal'},
+                            { label: 'Medium',  value: 'weight-medium'},
+                            { label: 'Semi-Bold',  value: 'weight-bold'},
+                            { label: 'Bold',  value: 'weight-strong'},
+                            { label: 'Heavy',  value: 'weight-xbold'},
+                            { label: 'Black',  value: 'weight-black'},
+                        ]}/>
                     </div>
+                    {/*===> // Column <===*/}
                 </div>
-                {/*===> End Options Types <====*/}
+                {/*===> Text Color <===*/}
+                <PhenixColor key="px-color" onChange={set_color} value={typography_opts.color} />
             </PanelBody>
-            {/*===> Text Color <===*/}
-            <PanelBody title={__("Text Color", "phenix")} initialOpen={false}>
-                {/* Text Color */}
-                <PhenixColor key="px-color" onChange={set_color} value={attributes.color} />
-            </PanelBody>
-            {/*===> Background <===*/}
-            <PanelBody title={__("Background", "phenix")} initialOpen={false}>
-                <PhenixBackground key="px-bg" onChange={set_background} type={attributes.bg_type} value={attributes.background} />
+            {/*===> Style Options <===*/}
+            <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {attributes.isFlexbox ?
+                    <div className='row gpx-15 divider-b mb-20 pdb-5'>
+                        {/*===> Column <===*/}
+                        <div className='col-12 mb-20'>
+                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align} onChange={set_alignment}></FlexAlignment>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6'>
+                            {/*===> Switch Button <===*/}
+                            <ToggleControl label={__("Reverse ", "phenix")} checked={flexbox_options.flow.length > 0} onChange={set_flex_flow}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6'>
+                            {/*===> Switch Button <===*/}
+                            <ToggleControl label={__("Nowrap", "phenix")} checked={flexbox_options.nowrap.length > 0} onChange={set_flex_nowrap}/>
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
+                : null}
+                {/*===> Background <===*/}
+                <PhenixBackground key="px-bg" onChange={set_background} type={style_options.background.type} value={style_options.background.value} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

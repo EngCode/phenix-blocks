@@ -66,7 +66,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.components-base-control__field {
 			margin: 0;
 			margin-bottom: 10px;
-			.components-input-control__backdrop {border-color: rgba(#000, 0.1)!important;}
+			.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
 		}
 	
 		/*==== Control Wrapper ====*/
@@ -85,7 +85,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			font-family: var(--secondary-font);
 		}
 
-		.components-text-control__input, input.form-control {border: 1px solid rgba(#000, 0.15)!important;}
+		.components-text-control__input, input.form-control {border: 1px solid rgba(#000, 0.2)!important;}
 
 		/*==== Select Icon ====*/
 		.components-input-control-suffix-wrapper {

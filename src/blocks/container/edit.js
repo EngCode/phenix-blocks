@@ -18,9 +18,9 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/grid/flex-alignment';
-import PhenixColor from '../px-controls/typography/px-colors';
-import PhenixBackground from '../px-controls/elements/px-background';
+import PhenixColor from '../px-controls/colors/text';
+import FlexAlignment from '../px-controls/grid/alignment';
+import PhenixBackground from '../px-controls/colors/background';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -48,6 +48,7 @@ export default function Edit({ attributes, setAttributes }) {
         flex_flow ? flexbox_options.flow = "flow-reverse" : flexbox_options.flow = "";
         setAttributes({flexbox : {...flexbox_options}});
     },
+
     //==> No-Wrap <==//
     set_flex_nowrap = flex_nowrap => {
         flex_nowrap ? flexbox_options.nowrap = "flow-nowrap" : flexbox_options.nowrap = "";
@@ -204,10 +205,6 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className='col-6 mb-5'>
                         <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
                     </div>
-                    {/*===  isHidden ===*/}
-                    <div className='col mb-10'>
-                        <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
-                    </div>
                     {/*=== Container ID ===*/}
                     <div className='col-12'>
                         <TextControl key="container_id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id}/>
@@ -223,6 +220,22 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className='col-6 mb-10'>
                         <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography_opts.size} onChange={set_typography_size} options={[
                             { label: 'Default',   value: '' },
+                            { label: '12px',   value: 'fs-12' },
+                            { label: '13px',   value: 'fs-13' },
+                            { label: '14px',   value: 'fs-14' },
+                            { label: '15px',   value: 'fs-15' },
+                            { label: '16px',   value: 'fs-16' },
+                            { label: '17px',   value: 'fs-17' },
+                            { label: '18px',   value: 'fs-18' },
+                            { label: '19px',   value: 'fs-19' },
+                            { label: '20px',   value: 'fs-20' },
+                            { label: '20px',   value: 'fs-20' },
+                            { label: '22px',   value: 'fs-22' },
+                            { label: '24px',   value: 'fs-24' },
+                            { label: '25px',   value: 'fs-25' },
+                            { label: '26px',   value: 'fs-26' },
+                            { label: '28px',   value: 'fs-28' },
+                            { label: '30px',   value: 'fs-30' },
                         ]}/>
                     </div>
                     {/*===> HTML Tag <===*/}
@@ -243,10 +256,14 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> // Column <===*/}
                 </div>
                 {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" onChange={set_color} value={typography_opts.color} />
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography_opts.color} />
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {/*===> Display <===*/}
+                <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
+
+                {/*===> Flexbox Properties <===*/}
                 {attributes.isFlexbox ?
                     <div className='row gpx-15 divider-b mb-20 pdb-5'>
                         {/*===> Column <===*/}

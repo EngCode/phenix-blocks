@@ -1,4 +1,4 @@
-/**======> Referance By Comment <======
+/**======> Reference By Comment <======
  * ===> 01 - Progress
  * ===> 02 - Sticky
  * ===> 03 - Multi-Media
@@ -10,7 +10,7 @@
 /*==== Phenix Slider ====*/
 .px-slider {
     /*==== Fix Row ====*/
-    .row {flex-wrap: nowrap;}
+    .splide__list {flex-wrap: nowrap;}
 
     /*==== Controls ====*/
     .px-slider-controls, .px-slider-pagination {z-index: 100;}
@@ -35,6 +35,6 @@
         button svg {fill: var(--color);}
     }
 
-    /*==== Pagiantion ====*/
+    /*==== Pagination ====*/
     .px-slider-pagination .px-slider-page:not(.is-active) {opacity: 0.5;}
 }

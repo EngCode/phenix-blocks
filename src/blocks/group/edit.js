@@ -17,11 +17,11 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/grid/flex-alignment';
-import PhenixBackground from '../px-controls/elements/px-background';
-import PhenixColor from '../px-controls/typography/px-colors';
-import PhenixPadding from '../px-controls/elements/padding';
+import PhenixColor from '../px-controls/colors/text';
+import FlexAlignment from '../px-controls/grid/alignment';
 import PhenixMargin from '../px-controls/elements/margin';
+import PhenixPadding from '../px-controls/elements/padding';
+import PhenixBackground from '../px-controls/colors/background';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

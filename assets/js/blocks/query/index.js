@@ -2,10 +2,198 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/px-controls/number-counter.js":
+/***/ "./src/blocks/px-controls/grid/alignment.js":
 /*!**************************************************!*\
-  !*** ./src/blocks/px-controls/number-counter.js ***!
+  !*** ./src/blocks/px-controls/grid/alignment.js ***!
   \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ FlexAlignment; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
+*/
+//===> WordPress Modules <===//
+ //===> Media Uploader <===//
+
+var FlexAlignment = /*#__PURE__*/function (_Component) {
+  _inherits(FlexAlignment, _Component);
+
+  var _super = _createSuper(FlexAlignment);
+
+  function FlexAlignment() {
+    _classCallCheck(this, FlexAlignment);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(FlexAlignment, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          onChange = _this$props.onChange;
+      var button_style = "btn tiny bg-transparent fs-12 square pxi"; //===> Align Handler <===//
+
+      var set_align = function set_align(new_value, current_value, Axis) {
+        //===> Split the value <===//
+        var valueArray = current_value.split(" ").filter(function (val) {
+          return val;
+        }),
+            //===> Check Names Method <===//
+        checkNames = function checkNames(name) {
+          if (Axis === "align-x") {
+            return name.includes('-x') || name.includes('-between') || name.includes('-around');
+          } else if (Axis === "align-y") {
+            return name.includes('-y');
+          }
+        }; //===> Replace if has Multiple <===//
+
+
+        if (valueArray.length > 1) {
+          valueArray.forEach(function (val) {
+            return checkNames(val) ? value.replace(val, new_value) : "";
+          });
+        } //===> Update Current Value <===//
+        else {
+          return checkNames(value) ? new_value : "".concat(new_value, " ").concat(current_value);
+        }
+      },
+          //===> Set Align X <===//
+      set_align_x = function set_align_x(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-x"); //===> Set Data <===//
+
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      set_align_y = function set_align_y(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            new_val = button.getAttribute('data-value'),
+            checkVal = set_align(new_val, value, "align-y"); //===> Set Data <===//
+
+        return checkVal ? onChange(checkVal) : "";
+      },
+          //===> Set Align Y <===//
+      reset_align = function reset_align(clicked) {
+        return onChange("");
+      }; //===> Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "components-flex-item flex-alignment-btns"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-between mb-5 align-center-y"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label components-flex-item weight-bold"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "",
+        title: "Reset",
+        className: "btn tiny bg-transparent fs-12 square far fa-redo",
+        onClick: reset_align
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-between"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-x",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-x-start ").concat(value.includes("start-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-x",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-x-center ").concat(value.includes("center-x") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-between",
+        title: "Between",
+        className: "".concat(button_style, " pxi-align-x-between ").concat(value.includes("between") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-around",
+        title: "Around",
+        className: "".concat(button_style, " pxi-align-x-around ").concat(value.includes("around") ? "px-active" : ""),
+        onClick: set_align_x
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-x",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-x-end ").concat(value.includes("end-x") ? "px-active" : ""),
+        onClick: set_align_x
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-start-y",
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-y-start ").concat(value.includes("start-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-center-y",
+        title: "Center",
+        className: "".concat(button_style, " pxi-align-y-center ").concat(value.includes("center-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "align-end-y",
+        title: "End",
+        className: "".concat(button_style, " pxi-align-y-end ").concat(value.includes("end-y") ? "px-active" : ""),
+        onClick: set_align_y
+      }))));
+    }
+  }]);
+
+  return FlexAlignment;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/number.js":
+/*!******************************************!*\
+  !*** ./src/blocks/px-controls/number.js ***!
+  \******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -158,8 +346,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/number-counter */ "./src/blocks/px-controls/number-counter.js");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../px-controls/flex-alignment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _px_controls_number__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/number */ "./src/blocks/px-controls/number.js");
+/* harmony import */ var _px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/grid/alignment */ "./src/blocks/px-controls/grid/alignment.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -393,7 +581,7 @@ function Edit(props) {
     className: "row gpx-20 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Per Page", "phenix"),
     value: attributes.per_page,
     onChange: set_per_page,
@@ -436,7 +624,7 @@ function Edit(props) {
     initialOpen: true
   }, !attributes.slider_mode ? /*#__PURE__*/React.createElement(React.Fragment, null, !attributes.grid_cols_stat ? /*#__PURE__*/React.createElement("div", {
     className: "mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns in Row", "phenix"),
     icon: "far fa-mobile-android",
     value: attributes.grid_cols.replace("row-cols-", ""),
@@ -451,7 +639,7 @@ function Edit(props) {
     className: "row gpx-15 mb-15"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-20"
-  }, /*#__PURE__*/React.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module '../px-controls/flex-alignment'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+  }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
     value: attributes.grid_alignment,
     onChange: set_grid_alignment
@@ -502,7 +690,7 @@ function Edit(props) {
     }]
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns No.", "phenix"),
     value: attributes.grid_cols.replace("row-cols-", ""),
     onChange: set_grid_cols,
@@ -510,7 +698,7 @@ function Edit(props) {
     max: 12
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Steps", "phenix"),
     value: attributes.slider_steps,
     onChange: set_slider_steps,
@@ -518,7 +706,7 @@ function Edit(props) {
     max: 12
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Duration", "phenix"),
     value: attributes.slider_duration,
     onChange: set_slider_duration,
@@ -527,7 +715,7 @@ function Edit(props) {
     steps: 100
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_number_counter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Speed", "phenix"),
     value: attributes.slider_speed,
     onChange: set_slider_speed,

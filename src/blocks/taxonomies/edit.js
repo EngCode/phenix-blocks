@@ -18,8 +18,8 @@ import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
-import PhenixNumber from "../px-controls/number-counter";
-import FlexAlignment from "../px-controls/flex-alignment";
+import PhenixNumber from "../px-controls/number";
+import FlexAlignment from "../px-controls/grid/alignment";
 
 //====> Edit Mode <====//
 export default function Edit(props) {

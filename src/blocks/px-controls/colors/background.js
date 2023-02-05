@@ -7,7 +7,7 @@
 
 //===> WordPress Modules <===//
 import {Component} from '@wordpress/element';
-import MediaUploader from '../media-uploader';
+import MediaUploader from '../uploader';
 
 //===> Phenix Background <===//
 export default class PhenixBackground extends Component {

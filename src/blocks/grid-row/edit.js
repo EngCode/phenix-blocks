@@ -13,7 +13,7 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/grid/flex-alignment';
+import FlexAlignment from '../px-controls/grid/alignment';
 import EqualColumns from '../px-controls/grid/equal-columns';
 import PhenixPadding from '../px-controls/elements/padding';
 import PhenixMargin from '../px-controls/elements/margin';

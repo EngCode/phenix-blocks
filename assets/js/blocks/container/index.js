@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/grid/flex-alignment */ "./src/blocks/px-controls/grid/flex-alignment.js");
-/* harmony import */ var _px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/typography/px-colors */ "./src/blocks/px-controls/typography/px-colors.js");
-/* harmony import */ var _px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/elements/px-background */ "./src/blocks/px-controls/elements/px-background.js");
+/* harmony import */ var _px_controls_colors_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/colors/text */ "./src/blocks/px-controls/colors/text.js");
+/* harmony import */ var _px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/grid/alignment */ "./src/blocks/px-controls/grid/alignment.js");
+/* harmony import */ var _px_controls_colors_background__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/colors/background */ "./src/blocks/px-controls/colors/background.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -307,13 +307,6 @@ function Edit(_ref) {
     checked: attributes.isFlexbox,
     onChange: set_isFlexbox
   })), /*#__PURE__*/React.createElement("div", {
-    className: "col mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    key: "isHidden",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
-    checked: attributes.isHidden,
-    onChange: set_isHidden
-  })), /*#__PURE__*/React.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     key: "container_id",
@@ -335,6 +328,54 @@ function Edit(_ref) {
     options: [{
       label: 'Default',
       value: ''
+    }, {
+      label: '12px',
+      value: 'fs-12'
+    }, {
+      label: '13px',
+      value: 'fs-13'
+    }, {
+      label: '14px',
+      value: 'fs-14'
+    }, {
+      label: '15px',
+      value: 'fs-15'
+    }, {
+      label: '16px',
+      value: 'fs-16'
+    }, {
+      label: '17px',
+      value: 'fs-17'
+    }, {
+      label: '18px',
+      value: 'fs-18'
+    }, {
+      label: '19px',
+      value: 'fs-19'
+    }, {
+      label: '20px',
+      value: 'fs-20'
+    }, {
+      label: '20px',
+      value: 'fs-20'
+    }, {
+      label: '22px',
+      value: 'fs-22'
+    }, {
+      label: '24px',
+      value: 'fs-24'
+    }, {
+      label: '25px',
+      value: 'fs-25'
+    }, {
+      label: '26px',
+      value: 'fs-26'
+    }, {
+      label: '28px',
+      value: 'fs-28'
+    }, {
+      label: '30px',
+      value: 'fs-30'
     }]
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
@@ -374,18 +415,24 @@ function Edit(_ref) {
       label: 'Black',
       value: 'weight-black'
     }]
-  }))), /*#__PURE__*/React.createElement(_px_controls_typography_px_colors__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }))), /*#__PURE__*/React.createElement(_px_controls_colors_text__WEBPACK_IMPORTED_MODULE_4__["default"], {
     key: "px-color",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", "phenix"),
     onChange: set_color,
     value: typography_opts.color
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
     initialOpen: false
-  }, attributes.isFlexbox ? /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    key: "isHidden",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
+    checked: attributes.isHidden,
+    onChange: set_isHidden
+  }), attributes.isFlexbox ? /*#__PURE__*/React.createElement("div", {
     className: "row gpx-15 divider-b mb-20 pdb-5"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-20"
-  }, /*#__PURE__*/React.createElement(_px_controls_grid_flex_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
     value: flexbox_options.align,
     onChange: set_alignment
@@ -401,7 +448,7 @@ function Edit(_ref) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"),
     checked: flexbox_options.nowrap.length > 0,
     onChange: set_flex_nowrap
-  }))) : null, /*#__PURE__*/React.createElement(_px_controls_elements_px_background__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }))) : null, /*#__PURE__*/React.createElement(_px_controls_colors_background__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: "px-bg",
     onChange: set_background,
     type: style_options.background.type,
@@ -415,10 +462,10 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/elements/px-background.js":
-/*!**********************************************************!*\
-  !*** ./src/blocks/px-controls/elements/px-background.js ***!
-  \**********************************************************/
+/***/ "./src/blocks/px-controls/colors/background.js":
+/*!*****************************************************!*\
+  !*** ./src/blocks/px-controls/colors/background.js ***!
+  \*****************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -427,7 +474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _media_uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../media-uploader */ "./src/blocks/px-controls/media-uploader.js");
+/* harmony import */ var _uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../uploader */ "./src/blocks/px-controls/uploader.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -705,7 +752,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         className: "px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10"
       }, makeRotations(this.state.rotation, 'rotate'))), /*#__PURE__*/React.createElement("div", {
         className: "flexbox image-options ".concat(activeTab('image'))
-      }, /*#__PURE__*/React.createElement(_media_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/React.createElement(_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
         key: "image-background",
         value: type !== 'image' ? this.state.placeholder : value,
         setValue: setBackground
@@ -720,10 +767,165 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/grid/flex-alignment.js":
-/*!*******************************************************!*\
-  !*** ./src/blocks/px-controls/grid/flex-alignment.js ***!
-  \*******************************************************/
+/***/ "./src/blocks/px-controls/colors/text.js":
+/*!***********************************************!*\
+  !*** ./src/blocks/px-controls/colors/text.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PhenixColors; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+ //===> Phenix Background <===//
+
+var PhenixColors = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixColors, _Component);
+
+  var _super = _createSuper(PhenixColors);
+
+  function PhenixColors() {
+    _classCallCheck(this, PhenixColors);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PhenixColors, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          value = _this$props.value,
+          label = _this$props.label,
+          onChange = _this$props.onChange; //===> Colors List <===//
+
+      var pxPallete = ["color-inherit", "color-transparent", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker", "fas fa-redo tx-align-center"]; //===> Set Color <===//
+
+      var setColor = function setColor(clicked) {
+        //===> Get Value <===//
+        var button = clicked.target,
+            value = button.getAttribute('data-value'); //===> Return Options <===//
+
+        return onChange(value);
+      }; //===> Buttons Creator <===//
+
+
+      var makeButtons = function makeButtons(list) {
+        var output = []; //===> for each item <===//
+
+        for (var index = 0; index < list.length; index++) {
+          //===> Get Value <===//
+          var name = list[index];
+          var title = "",
+              isColor = !name.includes("fa-"); //===> Convert to Title <===//
+
+          if (isColor) {
+            title = list[index].replace('color-', '').replace('-', ' '); //===> UpperCase Title <===//
+
+            title = title.replace(/^\w/, function (c) {
+              return c.toUpperCase();
+            });
+          } else title = "Reset";
+
+          output.push( /*#__PURE__*/React.createElement("button", {
+            key: "".concat(name.replaceAll(" ", "-")),
+            onClick: setColor,
+            title: title,
+            "data-value": isColor ? name : "",
+            className: "".concat(isColor ? name.replace('color-', 'bg-') : "".concat(name, " color-gray fs-12"), " reset-button ").concat(value === name ? 'px-active' : null),
+            style: {
+              "width": "30px",
+              "height": "16px",
+              "borderRadius": "16px"
+            }
+          }));
+        } //===> Return Buttons <===//
+
+
+        return output;
+      }; //===> Colors Panel <===//
+
+
+      var editColor = function editColor(clicked) {
+        var button = clicked.target,
+            panel = Phenix(button).next(".options-list"); //=== Show/Hide Panel ===//
+
+        if (panel) {
+          Phenix(button).toggleClass("px-active");
+          Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+        }
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component position-rv mb-15"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "mb-10 tx-UpperCase"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        onClick: editColor,
+        className: "options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5",
+        type: "button"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "me-10 radius-circle inline-block ".concat(value.length > 0 ? value.replace("color-", "bg-") : "bg-inherit"),
+        style: {
+          "width": "20px",
+          "height": "20px"
+        }
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "col"
+      }, value.length > 0 ? value.replaceAll("-", " ").replace("color", "") : "Default"), /*#__PURE__*/React.createElement("i", {
+        className: "fas fa-pencil"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
+        style: {
+          gap: "10px"
+        }
+      }, makeButtons(pxPallete)));
+    }
+  }]);
+
+  return PhenixColors;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/grid/alignment.js":
+/*!**************************************************!*\
+  !*** ./src/blocks/px-controls/grid/alignment.js ***!
+  \**************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -908,10 +1110,10 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/media-uploader.js":
-/*!**************************************************!*\
-  !*** ./src/blocks/px-controls/media-uploader.js ***!
-  \**************************************************/
+/***/ "./src/blocks/px-controls/uploader.js":
+/*!********************************************!*\
+  !*** ./src/blocks/px-controls/uploader.js ***!
+  \********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1015,126 +1217,6 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
 
   return MediaUploader;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/typography/px-colors.js":
-/*!********************************************************!*\
-  !*** ./src/blocks/px-controls/typography/px-colors.js ***!
-  \********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ PhenixColors; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
-*/
-//===> WordPress Modules <===//
- //===> Phenix Background <===//
-
-var PhenixColors = /*#__PURE__*/function (_Component) {
-  _inherits(PhenixColors, _Component);
-
-  var _super = _createSuper(PhenixColors);
-
-  function PhenixColors() {
-    _classCallCheck(this, PhenixColors);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(PhenixColors, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          value = _this$props.value,
-          onChange = _this$props.onChange; //===> Colors List <===//
-
-      var pxPallete = {
-        main: ["color-inherit", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-transparent"],
-        brands: ["color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker"]
-      }; //===> Set Background <===//
-
-      var setColor = function setColor(clicked) {
-        //===> Get Value <===//
-        var button = clicked.target,
-            value = button.getAttribute('data-value'); //===> Return Options <===//
-
-        return onChange(value);
-      }; //===> Buttons Creator <===//
-
-
-      var makeButtons = function makeButtons(list, prefix) {
-        var output = []; //===> for each item <===//
-
-        for (var index = 0; index < list.length; index++) {
-          //===> Get Value <===//
-          var name = list[index]; //===> Convert to Title <===//
-
-          var title = list[index].replace('color-', '');
-          title = title.replace('-', ' '); //===> UpperCase Title <===//
-
-          title = title.replace(/^\w/, function (c) {
-            return c.toUpperCase();
-          });
-          output.push( /*#__PURE__*/React.createElement("button", {
-            key: "".concat(name, "-").concat(prefix),
-            onClick: setColor,
-            title: title,
-            "data-value": name,
-            className: "".concat(name.replace('color-', 'bg-'), " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(value === name ? 'px-active' : null)
-          }));
-        } //===> Return Buttons <===//
-
-
-        return output;
-      }; //===> Component Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox options-list"
-      }, makeButtons(pxPallete.main, 'main'), /*#__PURE__*/React.createElement("span", {
-        className: "border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-      }), makeButtons(pxPallete.brands, 'brands')));
-    }
-  }]);
-
-  return PhenixColors;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 
 

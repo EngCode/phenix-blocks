@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/media-uploader */ "./src/blocks/px-controls/media-uploader.js");
+/* harmony import */ var _px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/uploader */ "./src/blocks/px-controls/uploader.js");
 //====> WP Modules <====//
 
 
@@ -122,14 +122,14 @@ function Edit(_ref) {
     onChange: set_size
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Logo",
     value: attributes.logo,
     setValue: set_logo,
     size: "small"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Fevicon",
     value: attributes.fevicon,
     setValue: set_fevicon,
@@ -144,7 +144,7 @@ function Edit(_ref) {
     label: "Use Favicon for Mobile",
     checked: attributes.use_fevicon,
     onChange: set_use_fevicon
-  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_media_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Upload Mobile Logo",
     value: attributes.mobile_logo,
     setValue: set_mobile_logo,
@@ -168,10 +168,10 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/media-uploader.js":
-/*!**************************************************!*\
-  !*** ./src/blocks/px-controls/media-uploader.js ***!
-  \**************************************************/
+/***/ "./src/blocks/px-controls/uploader.js":
+/*!********************************************!*\
+  !*** ./src/blocks/px-controls/uploader.js ***!
+  \********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);

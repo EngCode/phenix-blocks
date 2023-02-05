@@ -22,12 +22,13 @@
 /*==== General Component ====*/
 .px-gb-component {
 	//===> Chessboard Backgrounds <===//
+	.bg-inherit, .bg-transparent, .bg-white {border: 1px solid rgba(#000, 0.2);}
 	.bg-inherit 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
 	.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
 
 	/*==== Borders ====*/
 	.options-list .px-active {outline: 1px dashed var(--primary-color);border-color: var(--primary-color);}
-	.borderd-group .btn:not(:last-child):not(.outline) {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
+	.borderd-group .btn:not(:last-child):not(.outline) {border-#{$direction-end}: 1px solid rgba(#000, 0.2);}
 
 	/*==== Select Buttons ====*/
 	.option-control[data-type="button"] .btn, .icon-btns {
@@ -62,6 +63,8 @@
 		color : var(--success-color);
 		&::before {--border-color: var(--success-color);}
 	}
+
+	.options-toggle span {pointer-events: none;}
 }
 
 /*==== Block Icons ====*/

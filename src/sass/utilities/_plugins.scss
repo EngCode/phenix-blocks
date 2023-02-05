@@ -100,6 +100,8 @@
     .px-media-img {opacity: 0;}
 }
 
+.object-fit {-o-object-fit: cover;object-fit: cover;}
+
 /*==== Aspect Ratio ====*/
 [class*="ratio"] {
     --ratio-size : initial;
@@ -143,6 +145,14 @@
        object-fit: contain;
     background-size: auto 100%;
     background-color: #F1F2F3;
+}
+
+/*==== Phenix Animations ====*/
+.px-animate {
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
 }
 
 /*==== Background X ====*/

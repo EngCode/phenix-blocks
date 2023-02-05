@@ -14,7 +14,7 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import MediaUploader from '../px-controls/media-uploader';
+import MediaUploader from '../px-controls/uploader';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

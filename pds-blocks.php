@@ -15,15 +15,15 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
+//====> Default Values <====//
+include(dirname(__FILE__) . '/admin/pds-default.php');
+
 //===> Activation <===//
 function pds_blocks_activate() {
 	do_action('pds_blocks_active');
 }
 
 register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
-
-//====> Default Values <====//
-include(dirname(__FILE__) . '/admin/pds-default.php');
 
 //====> Block Patterns Creator <====//
 include(dirname(__FILE__) . '/admin/modules/pattern-creator.php');
@@ -34,20 +34,12 @@ if (get_option('pds_menu_locations')) :
 endif;
 
 //====> Multilang Support <====//
-if (!function_exists('px__')) {
-	/**
-	 * Multilangauge Plugins Fallback
-	 * @since Phenix WP 1.0
-	 * @return void
-	*/
-
-	function px__($string) {
-		if(function_exists('pll__')) :
-			return pll__($string, 'phenix');
-		else :
-			return __($string, 'phenix');
-		endif;
-	}
+function px__($string) {
+	if(function_exists('pll__')) :
+		return pll__($string, 'phenix');
+	else :
+		return __($string, 'phenix');
+	endif;
 }
 
 //====> Languages Path <====//
@@ -79,6 +71,9 @@ include(dirname(__FILE__) . '/inc/pds-assets.php');
 
 //====> Add Phenix Blocks <====//
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
+
+//=====> Phenix Post Types <=====//
+include(dirname(__FILE__) . '/inc/pds-post-types.php');
 
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :

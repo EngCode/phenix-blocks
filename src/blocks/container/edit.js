@@ -72,19 +72,13 @@ export default function Edit({ attributes, setAttributes }) {
     set_color = value => {
         typography_opts.color = value;
         setAttributes({ typography : {...typography_opts} });
-    }
+    },
 
     //===> Set Background <===//
-    const set_background = background => {
-        //=== Set New Value ===//
-        setAttributes({ background : background.value });
-        //===> Update Rotation <===//
-        if (attributes.bg_type === 'gradient' && background.rotation) {
-            setAttributes({bg_rotate : background.rotation});
-        } else {
-            setAttributes({ bg_type : background.type });
-        }
-    }
+    set_background = background => {
+        style_options.background = background;
+        setAttributes({ style : {...style_options} });
+    };
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();

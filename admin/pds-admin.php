@@ -31,6 +31,22 @@
                 'pds-menu-locations',
                 'pds_menu_locations'
             );
+            //===> Post Types <===//
+            add_submenu_page('pds-admin',
+                'Custom Data Collections',
+                'Data Collections',
+                'manage_options',
+                'pds-post-types',
+                'pds_post_types'
+            );
+            //===> Custom Meta <===//
+            add_submenu_page('pds-admin',
+                'Custom Meta Boxes',
+                'Meta Boxes',
+                'manage_options',
+                'pds-metabox',
+                'pds_metabox'
+            );
         }
 
         add_action('admin_menu', 'pds_admin_menu');
@@ -44,6 +60,15 @@
     $pds_options_list = array(
         //===> Menu Locations <===//
         array('pds_menu_locations', 'pds-menu-locations', true),
+
+        //===> Meta Boxes <===//
+        array('pds_post_types', 'pds-metabox', true),
+
+        //===> Taxonomies <===//
+        array('pds_taxonomies', 'pds-taxonomies', true),
+
+        //===> Post Types <===//
+        array('pds_post_types', 'pds-custom-post-types', true),
 
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),
@@ -204,17 +229,17 @@
         //====> Create PDS Endpoint ====//
         pds_add_api(array(
             "api_slug"   => '/options/pds-core-blocks/',
-            //===> Data Paramaters <===//
+            //===> Data Parameters <===//
             "api_props"  => array('blocks-list' => [
 				'validate_callback' => function( $param, $request, $key ) {
 					return is_array($param);
 				},
 			]),
-            //===> Reading Premission <===//
+            //===> Reading Permission <===//
             "read_prem"  => function () {
                 return is_user_logged_in();
             },
-            //===> Editing Premission <===//
+            //===> Editing Permission <===//
             "write_prem" => function () {
                 return current_user_can('manage_options');
             },
@@ -255,6 +280,189 @@
                 } else {
                 }
                 return $request;
+            },
+        ));
+    });
+
+    //====> Phenix Admin [Post Types Creator] <====//
+    if (!function_exists('pds_post_types')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_post_types () {
+            include(dirname(__FILE__) . '/post-types.php');
+        };
+    endif;
+
+    //====> API Endpoint [Post Types Creator] <====//
+    add_action('rest_api_init', function() {
+        //====> Create PDS Endpoint ====//
+        pds_add_api(array(
+            "api_slug"   => '/options/pds_post_types/',
+            //===> Data Parameters <===//
+            "api_props"  => array('post-types' => [
+                'validate_callback' => function( $param, $request, $key ) {
+                    return is_array($param);
+                },
+            ]),
+            //===> Reading Permission <===//
+            "read_prem"  => function () {
+                return current_user_can('edit_posts');
+            },
+            //===> Editing Permission <===//
+            "write_prem" => function () {
+                return current_user_can('manage_options');
+            },
+            //===> Get Option Method <===//
+            "get_method" => function($request) {
+                //===> Get Option Value <===//
+                $response = get_option('pds_post_types');
+                //===> Return Option Value <===//
+                return $response;
+            },
+            //===> Set Option Method <===//
+            "set_method" => function($request) {
+                //===> Get Request Data <===//
+                $params = $request->get_params();
+                //===> Check if has value <===//
+                if (isset($params['post_types'])) {
+                    //===> Set 
+                    $response['response'] = 'Success Data has been Set.';
+                    $response['data'] = $params['post_types'];
+
+                    //===> Update Options <===//
+                    update_option('pds_post_types', $params['post_types']);
+
+                    //===> Return Success <===//
+                    return $response;
+                } else {
+                    return $request;
+                }
+            },
+        ));
+    });
+
+    //====> Phenix Admin [Taxonomies Creator] <====//
+    if (!function_exists('pds_taxonomies')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_taxonomies () {
+            include(dirname(__FILE__) . '/taxonomies.php');
+        };
+    endif;
+
+    //====> API Endpoint [Taxonomies Creator] <====//
+    add_action('rest_api_init', function() {
+        //====> Create PDS Endpoint ====//
+        pds_add_api(array(
+            "api_slug"   => '/options/pds_taxonomies/',
+            //===> Data Parameters <===//
+            "api_props"  => array('taxonomies' => [
+                'validate_callback' => function( $param, $request, $key ) {
+                    return is_array($param);
+                },
+            ]),
+            //===> Reading Permission <===//
+            "read_prem"  => function () {
+                return current_user_can('edit_posts');
+            },
+            //===> Editing Permission <===//
+            "write_prem" => function () {
+                return current_user_can('manage_options');
+            },
+            //===> Get Option Method <===//
+            "get_method" => function($request) {
+                //===> Get Option Value <===//
+                $response = get_option('pds_taxonomies');
+                //===> Return Option Value <===//
+                return $response;
+            },
+            //===> Set Option Method <===//
+            "set_method" => function($request) {
+                //===> Get Request Data <===//
+                $params = $request->get_params();
+                //===> Check if has value <===//
+                if (isset($params['taxonomies'])) {
+                    //===> Set 
+                    $response['response'] = 'Success Data has been Set.';
+                    $response['data'] = $params['taxonomies'];
+
+                    //===> Update Options <===//
+                    update_option('pds_taxonomies', $params['taxonomies']);
+
+                    //===> Return Success <===//
+                    return $response;
+                } else {
+                    return $request;
+                }
+            },
+        ));
+    });
+
+    //====> Phenix Admin [Metabox Creator] <====//
+    if (!function_exists('pds_metabox')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_metabox () {
+            include(dirname(__FILE__) . '/metabox.php');
+        };
+    endif;
+
+    //====> API Endpoint [Metabox Creator] <====//
+    add_action('rest_api_init', function() {
+        //====> Create PDS Endpoint ====//
+        pds_add_api(array(
+            "api_slug"   => '/options/pds_metabox/',
+            //===> Data Parameters <===//
+            "api_props"  => array('post-types' => [
+                'validate_callback' => function( $param, $request, $key ) {
+                    return is_array($param);
+                },
+            ]),
+            //===> Reading Permission <===//
+            "read_prem"  => function () {
+                return current_user_can('edit_posts');
+            },
+            //===> Editing Permission <===//
+            "write_prem" => function () {
+                return current_user_can('manage_options');
+            },
+            //===> Get Option Method <===//
+            "get_method" => function($request) {
+                //===> Get Option Value <===//
+                $response = get_option('pds_metabox');
+                //===> Return Option Value <===//
+                return $response;
+            },
+            //===> Set Option Method <===//
+            "set_method" => function($request) {
+                //===> Get Request Data <===//
+                $params = $request->get_params();
+                //===> Check if has value <===//
+                if (isset($params['metabox'])) {
+                    //===> Set 
+                    $response['response'] = 'Success Data has been Set.';
+                    $response['data'] = $params['metabox'];
+
+                    //===> Update Options <===//
+                    update_option('pds_metabox', $params['metabox']);
+
+                    //===> Return Success <===//
+                    return $response;
+                } else {
+                    return $request;
+                }
             },
         ));
     });

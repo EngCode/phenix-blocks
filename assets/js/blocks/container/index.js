@@ -140,24 +140,13 @@ function Edit(_ref) {
     setAttributes({
       typography: _objectSpread({}, typography_opts)
     });
-  }; //===> Set Background <===//
-
-
-  var set_background = function set_background(background) {
-    //=== Set New Value ===//
+  },
+      //===> Set Background <===//
+  set_background = function set_background(background) {
+    style_options.background = background;
     setAttributes({
-      background: background.value
-    }); //===> Update Rotation <===//
-
-    if (attributes.bg_type === 'gradient' && background.rotation) {
-      setAttributes({
-        bg_rotate: background.rotation
-      });
-    } else {
-      setAttributes({
-        bg_type: background.type
-      });
-    }
+      style: _objectSpread({}, style_options)
+    });
   }; //===> Get Block Properties <===//
 
 

@@ -24,6 +24,18 @@ if (!function_exists('pds_blocks_default_values')) :
             ));
         endif;
 
+        //===> Post Types <===//
+        if (!get_option('pds_post_types')) :
+            add_option('pds_post_types', array(
+                array ('label' => 'Home Slider', 'name' => 'home-slider', 'label_singular' => 'Slides', 'singular' => 'slide', 'menu_icon' => 'align-wide', 'menu_position' => 6, 'open' => true)
+            ));
+        endif;
+
+        //===> Taxonomies <===//
+        if (!get_option('pds_taxonomies')) :
+            add_option('pds_taxonomies', array());
+        endif;
+
         //===> Blocks settings <===//
         add_option('container_block', true);
         add_option('logo_block', true);

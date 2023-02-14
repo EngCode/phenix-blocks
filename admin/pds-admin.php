@@ -216,13 +216,12 @@
                     //===> Define Data <===//
                     $option_name = $option[0];
                     $option_api  = $option[2];
-                    
+
                     //===> Core Blocks <===//
                     if (strpos($option_name, "pds_core") == true) {
                         $core_blocks[$option_name] = get_option($option_name);
                     }
 
-                    
                     //===> Options with API Enabled <===// 
                     if ($option_api) {
                         $current_options[$option_name] = get_option($option_name);

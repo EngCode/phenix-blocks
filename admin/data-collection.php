@@ -286,7 +286,5 @@
         });
     });
 </script>
-<!-- Phenix Scripts -->
-<?php
-    //===> Get Script <===//
-    include(dirname(__FILE__) . '/modules/scripts.php');
+<!-- Phenix Script -->
+<?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>

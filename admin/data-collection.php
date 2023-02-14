@@ -174,22 +174,41 @@
             </li>`)
         },
 
+        type_template = (type) => {
+            return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
+                <!-- Label -->
+                <span class="tx-icon dashicons-before dashicons-${type.menu_icon} col-3 item-label">${type.label}</span>
+
+                <!-- Name -->
+                <span class="tx-icon fas fa-location col-4 item-name">${type.name}</span>
+
+                <!-- Singular -->
+                <span class="tx-icon fas fa-location col item-singular">${type.singular ? type.singular : type.name}</span>
+
+                <!-- Buttons -->
+                <div class="col-auto ms-auto flexbox">
+                    <button type="button" class="edit-item btn light tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                    <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                </div>
+            </li>`);
+        },
+
         //===> Menu Locations Method <===//
         update_locations_list = () => {
             //===> Get Location from Rest-API <===//
             get_options().then(options => {
                 //===> Define Data <===//
                 let current   = options,
-                    locations = current['menu_locations'];
-                    locations_list = document.querySelector('.locations-list');
+                    theData = current['menu_locations'];
+                    dataList = document.querySelector('.locations-list');
 
                 //===> Clear Current Data List <===//
-                locations_list?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
+                dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
 
                 //===> Create New List <===//
-                for (const [key, value] of Object.entries(locations)) {
+                for (const [key, value] of Object.entries(theData)) {
                     //===> Insert the Location in the List <===//
-                    Phenix(locations_list).insert('append', location_template(key, value));
+                    Phenix(dataList).insert('append', location_template(key, value));
                 }
 
                 //===> Remove Item Method <===//
@@ -213,9 +232,48 @@
                     }).catch(error => {error.message});
                 });
             }).then(response => {}).catch(error => {error.message});
-        }
+        },
 
-        //===> Initial Locations List <===//
+        //===> Post Types Method <===//
+        update_types_list = () => {
+            //===> Get Data from Rest-API <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options,
+                    theData = current['pds_types'];
+                    dataList = document.querySelector('.types-list');
+
+                //===> Clear Current Data List <===//
+                dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
+
+                //===> Create New List <===//
+                theData.forEach(item => Phenix(dataList).insert('append', type_template(item)));
+
+                //===> Remove Item Method <===//
+                Phenix('.types-list .remove-item').on('click', button => {
+                    //===> Define Elements <===//
+                    let menu_item = Phenix(button.target).ancestor('li'),
+                        menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
+
+                    //===> Set Loading Mode then Delete the Location <===//
+                    menu_item.classList.add('px-loading-inline');
+                    // delete current.menu_locations[`${menu_name}`];
+
+                    //===> Update Options <===//
+                    update_options(current).then(succuss => {
+                        //====> Show Notifications <====//
+                        Phenix(document).notifications({
+                            type     : "success", //=== Message Type [normal, error, success, warning]
+                            message  : "the Location has been Deleted.", //=== Message Content
+                            position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                        });
+                    }).catch(error => {error.message});
+                });
+            }).then(response => {}).catch(error => {error.message});
+        };
+
+        //===> Initial Lists <===//
+        update_types_list();
         update_locations_list();
 
         //===> Add Location Form <===//

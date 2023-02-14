@@ -32,16 +32,6 @@
                 'pds-data-collection',
                 'pds_data_collection'
             );
-            
-            //===> Main Settings <===//
-            add_menu_page(
-                px__('Phenix Blocks Settings'),
-                px__('Phenix Blocks'),
-                'manage_options',
-                'pds-admin',
-                'pds_admin_page',
-                plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
-            );
 
             //===> Remove Menu Items <===//
             remove_menu_page('flamingo');
@@ -269,8 +259,7 @@
 
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
-        $pds_types = get_option('pds_types');
-        foreach($pds_types as $post_type) {
+        foreach(get_option('pds_types') as $post_type) {
             //===> if is Posts Disable Core <===//
             if ($post_type["name"] == "post") {
                 add_action('admin_menu', function() {

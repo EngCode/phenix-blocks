@@ -185,13 +185,13 @@
         };
     endif;
 
-    //====> API Endpoint [All Options] <====//
+    //====> API Endpoint for [All Options] <====//
     add_action('rest_api_init', function() {
         //====> Create PDS Endpoint ====//
         pds_add_api(array(
-            "api_slug"   => '/options/pds-core-blocks/',
+            "api_slug"   => '/options',
             //===> Data Parameters <===//
-            "api_props"  => array('blocks-list' => [
+            "api_props"  => array('options' => [
 				'validate_callback' => function( $param, $request, $key ) {
 					return is_array($param);
 				},
@@ -208,183 +208,49 @@
             "get_method" => function($request) {
                 global $pds_options_list;
                 //===> Define Options List <===//
-                $pds_output = array();
+                $core_blocks = array();
+                $current_options = array();
 
                 //===> Get Option Value <===//
                 foreach ($pds_options_list as $option) {
+                    //===> Define Data <===//
                     $option_name = $option[0];
-                    if (strpos($option_name, "pds_core") !== false) {
-                        $pds_output[$option_name] = get_option($option_name);
+                    $option_api  = $option[2];
+                    
+                    //===> Core Blocks <===//
+                    if (strpos($option_name, "pds_core") == true) {
+                        $core_blocks[$option_name] = get_option($option_name);
+                    }
+
+                    
+                    //===> Options with API Enabled <===// 
+                    if ($option_api) {
+                        $current_options[$option_name] = get_option($option_name);
                     }
                 }
 
-                //===> Return Option Value <===//
-                return $pds_output;
+                //===> add Core Blocks <===//
+                $current_options["pds_core"] = $core_blocks;
+
+                //===> Return Options <===//
+                return $current_options;
             },
             //===> Set Option Method <===//
             "set_method" => function($request) {
                 //===> Get Request Data <===//
                 $params = $request->get_params();
-                //===> Check if has value <===//
-                if (isset($params['blocks-list'])) {
-                    //===> Get Data <===//
-                    $response['response'] = 'Success Data has been Set.';
-                    $response['data'] = $params['blocks-list'];
 
-                    //===> Update Options <===//
-                    foreach ($response['data'] as $op_name => $op_value) {
-                        update_option($op_name, $op_value);
-                    }
+                //===> Set Response Data <===//
+                $response['data'] = $params;
+                $response['response'] = 'Success Data has been Set.';
 
-                    //===> Return Success <===//
-                    return $response;
-                } else {
+                //===> Update Options <===//
+                foreach ($response['data'] as $option => $value) {
+                    update_option($option, $value);
                 }
-                return $request;
-            },
-        ));
-    });
 
-    //====> API Endpoint [Menu Creator] <====//
-    add_action('rest_api_init', function() {
-        //====> Create PDS Endpoint ====//
-        pds_add_api(array(
-            "api_slug"   => '/options/pds_menu_locations/',
-            //===> Data Parameters <===//
-            "api_props"  => array('locations' => [
-				'validate_callback' => function( $param, $request, $key ) {
-					return is_array($param);
-				},
-			]),
-            //===> Reading Permission <===//
-            "read_prem"  => function () {
-                return current_user_can('edit_posts');
-            },
-            //===> Editing Permission <===//
-            "write_prem" => function () {
-                return current_user_can('manage_options');
-            },
-            //===> Get Option Method <===//
-            "get_method" => function($request) {
-                //===> Get Option Value <===//
-                $response = get_option('pds_menu_locations');
-                //===> Return Option Value <===//
+                //===> Return Success <===//
                 return $response;
-            },
-            //===> Set Option Method <===//
-            "set_method" => function($request) {
-                //===> Get Request Data <===//
-                $params = $request->get_params();
-                //===> Check if has value <===//
-                if (isset($params['locations'])) {
-                    //===> Set 
-                    $response['response'] = 'Success Data has been Set.';
-                    $response['data'] = $params['locations'];
-
-                    //===> Update Options <===//
-                    update_option('pds_menu_locations', $params['locations']);
-
-                    //===> Return Success <===//
-                    return $response;
-                } else {
-                    return $request;
-                }
-            },
-        ));
-    });
-
-    //====> API Endpoint [Types Creator] <====//
-    add_action('rest_api_init', function() {
-        //====> Create PDS Endpoint ====//
-        pds_add_api(array(
-            "api_slug"   => '/options/pds_post_types/',
-            //===> Data Parameters <===//
-            "api_props"  => array('post-types' => [
-                'validate_callback' => function( $param, $request, $key ) {
-                    return is_array($param);
-                },
-            ]),
-            //===> Reading Permission <===//
-            "read_prem"  => function () {
-                return current_user_can('edit_posts');
-            },
-            //===> Editing Permission <===//
-            "write_prem" => function () {
-                return current_user_can('manage_options');
-            },
-            //===> Get Option Method <===//
-            "get_method" => function($request) {
-                //===> Get Option Value <===//
-                $response = get_option('pds_post_types');
-                //===> Return Option Value <===//
-                return $response;
-            },
-            //===> Set Option Method <===//
-            "set_method" => function($request) {
-                //===> Get Request Data <===//
-                $params = $request->get_params();
-                //===> Check if has value <===//
-                if (isset($params['post_types'])) {
-                    //===> Set 
-                    $response['response'] = 'Success Data has been Set.';
-                    $response['data'] = $params['post_types'];
-
-                    //===> Update Options <===//
-                    update_option('pds_post_types', $params['post_types']);
-
-                    //===> Return Success <===//
-                    return $response;
-                } else {
-                    return $request;
-                }
-            },
-        ));
-    });
-
-    //====> API Endpoint [Taxonomies Creator] <====//
-    add_action('rest_api_init', function() {
-        //====> Create PDS Endpoint ====//
-        pds_add_api(array(
-            "api_slug"   => '/options/pds_taxonomies/',
-            //===> Data Parameters <===//
-            "api_props"  => array('taxonomies' => [
-                'validate_callback' => function( $param, $request, $key ) {
-                    return is_array($param);
-                },
-            ]),
-            //===> Reading Permission <===//
-            "read_prem"  => function () {
-                return current_user_can('edit_posts');
-            },
-            //===> Editing Permission <===//
-            "write_prem" => function () {
-                return current_user_can('manage_options');
-            },
-            //===> Get Option Method <===//
-            "get_method" => function($request) {
-                //===> Get Option Value <===//
-                $response = get_option('pds_taxonomies');
-                //===> Return Option Value <===//
-                return $response;
-            },
-            //===> Set Option Method <===//
-            "set_method" => function($request) {
-                //===> Get Request Data <===//
-                $params = $request->get_params();
-                //===> Check if has value <===//
-                if (isset($params['taxonomies'])) {
-                    //===> Set 
-                    $response['response'] = 'Success Data has been Set.';
-                    $response['data'] = $params['taxonomies'];
-
-                    //===> Update Options <===//
-                    update_option('pds_taxonomies', $params['taxonomies']);
-
-                    //===> Return Success <===//
-                    return $response;
-                } else {
-                    return $request;
-                }
             },
         ));
     });

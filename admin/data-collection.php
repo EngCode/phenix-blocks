@@ -151,61 +151,69 @@
             return await response;
         }
 
+        //===> Templates <===//
+        const location_template = (key, value) => {
+            return (`<li class="flexbox divider-b align-center-y ${key !== "main-menu" ? 'pdy-5' : 'pdy-10'} pds-15 pde-10 mb-0">
+                <!-- Location Title -->
+                <span class="tx-icon fas fa-list col-5 item-title">${value}</span>
+
+                <!-- Location Name -->
+                <span class="tx-icon fas fa-location col-5 item-name">${key}</span>
+
+                <!-- Action Buttons -->
+                ${key !== "main-menu" ? `<div class="col-auto ms-auto flexbox">
+                    <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
+                </div>` : ""}
+            </li>`)
+        },
+
         //===> Menu Locations Method <===//
-        const update_locations_list = () => {
+        update_locations_list = () => {
             //===> Get Location from Rest-API <===//
             get_options().then(options => {
-                //===> Clear Current Locations <===//
+                //===> Define Data <===//
                 let current   = options,
                     locations = current['pds_menu_locations'];
                     locations_list = document.querySelector('.locations-list');
 
-                //===> if Locations List Exist <===//
+                //===> Clear Current Data List <===//
                 locations_list?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
-                
-                //===> Create Locations List <===//
+
+                //===> Create New List <===//
                 for (const [key, value] of Object.entries(locations)) {
                     //===> Insert the Location in the List <===//
-                    Phenix(locations_list).insert('append', `<li class="flexbox divider-b align-center-y ${key !== "main-menu" ? 'pdy-5' : 'pdy-10'} pds-15 pde-10 mb-0">
-                        <!-- Location Title -->
-                        <span class="tx-icon fas fa-list col-5 item-title">${value}</span>
-    
-                        <!-- Location Name -->
-                        <span class="tx-icon fas fa-location col-5 item-name">${key}</span>
-    
-                        <!-- Action Buttons -->
-                        ${key !== "main-menu" ? `<div class="col-auto ms-auto flexbox">
-                            <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
-                        </div>` : ""}
-                    </li>`);
-                    //===> Remove Item Method <===//
-                    Phenix('.locations-list .remove-item').on('click', button => {
-                        let menu_item = Phenix(button.target).ancestor('li'),
-                            menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
-                        //===> Set Loading Mode <===//
-                        menu_item.classList.add('px-loading-inline');
-
-                        //===> Loop Through Locations <===//
-                        for (const [key, value] of Object.entries(locations)) {
-                            //===> When the item matches the locations <===//
-                            if (menu_name === `${key}`) {
-                                //===> Delete the Location <===//
-                                delete locations[`${key}`];
-
-                                //===> Update Locations <===//
-                                current['pds_menu_locations'] = locations;
-                                update_options(current);
-
-                                //====> Show Notifications <====//
-                                Phenix(document).notifications({
-                                    type     : "success", //=== Message Type [normal, error, success, warning]
-                                    message  : "the Location has been Deleted.", //=== Message Content
-                                    position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                                });
-                            }
-                        }
-                    }, true);
+                    Phenix(locations_list).insert('append', location_template(key, value));
                 }
+
+                //===> Remove Item Method <===//
+                Phenix('.locations-list .remove-item').on('click', button => {
+                    //===> Define Elements <===//
+                    let menu_item = Phenix(button.target).ancestor('li'),
+                        menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
+
+                    //===> Set Loading Mode <===//
+                    menu_item.classList.add('px-loading-inline');
+
+                    //===> Loop Through Locations <===//
+                    for (const [key, value] of Object.entries(locations)) {
+                        //===> When the item matches the locations <===//
+                        if (menu_name === `${key}`) {
+                            //===> Delete the Location <===//
+                            delete locations[`${key}`];
+
+                            //===> Update Options <===//
+                            current['pds_menu_locations'] = locations;
+                            update_options(current);
+
+                            //====> Show Notifications <====//
+                            Phenix(document).notifications({
+                                type     : "success", //=== Message Type [normal, error, success, warning]
+                                message  : "the Location has been Deleted.", //=== Message Content
+                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                            });
+                        }
+                    }
+                }, true);
             }).then(response => {}).catch(error => {error.message});
         }
 

@@ -24,11 +24,11 @@ register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
 
 //====> Multilang Support <====//
 function px__($string) {
-	if(function_exists('pll__')) :
+	if(function_exists('pll__')) {
 		return pll__($string, 'phenix');
-	else :
+	} else {
 		return __($string, 'phenix');
-	endif;
+	}
 }
 
 //====> Languages Path <====//
@@ -43,7 +43,7 @@ if (!function_exists('phenix_textdomain')) {
 		load_plugin_textdomain('phenix', false, dirname(plugin_basename(__FILE__)) . '/languages'); 
 	}
 	
-	add_action( 'init', 'pds_textdomain' );
+	add_action('init', 'pds_textdomain');
 }
 
 //====> Default Values <====//

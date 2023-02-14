@@ -16,14 +16,14 @@ if (!function_exists('pds_blocks_default_values')) :
     //===> Set default values here <===//
     function pds_blocks_default_values() {
         //===> Menu Locations <===//
-        add_option('pds_menu_locations', array(
+        add_option('menu_locations', array(
             'main-menu'     => 'Main Menu',
             'footer-menu'   => 'Footer Links',
             'footer-menu-2' => 'Footer Links #2',
         ));
 
         //===> Post Types <===//
-        add_option('pds_post_types', array(
+        add_option('pds_types', array(
             array(
                 'open' => true,
                 "name"  => "post",

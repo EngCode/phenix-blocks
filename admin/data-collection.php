@@ -151,7 +151,7 @@
             return await response;
         }
 
-        //===> Templates <===//
+        //===> Items Templates <===//
         const location_template = (key, value) => {
             return (`<li class="flexbox divider-b align-center-y ${key !== "main-menu" ? 'pdy-5' : 'pdy-10'} pds-15 pde-10 mb-0">
                 <!-- Location Title -->
@@ -173,7 +173,7 @@
             get_options().then(options => {
                 //===> Define Data <===//
                 let current   = options,
-                    locations = current['pds_menu_locations'];
+                    locations = current['menu_locations'];
                     locations_list = document.querySelector('.locations-list');
 
                 //===> Clear Current Data List <===//
@@ -191,32 +191,24 @@
                     let menu_item = Phenix(button.target).ancestor('li'),
                         menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
 
-                    //===> Set Loading Mode <===//
+                    //===> Set Loading Mode then Delete the Location <===//
                     menu_item.classList.add('px-loading-inline');
+                    delete current.menu_locations[`${menu_name}`];
 
-                    //===> Loop Through Locations <===//
-                    for (const [key, value] of Object.entries(locations)) {
-                        //===> When the item matches the locations <===//
-                        if (menu_name === `${key}`) {
-                            //===> Delete the Location <===//
-                            delete locations[`${key}`];
-
-                            //===> Update Options <===//
-                            current['pds_menu_locations'] = locations;
-                            update_options(current);
-
-                            //====> Show Notifications <====//
-                            Phenix(document).notifications({
-                                type     : "success", //=== Message Type [normal, error, success, warning]
-                                message  : "the Location has been Deleted.", //=== Message Content
-                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                            });
-                        }
-                    }
-                }, true);
+                    //===> Update Options <===//
+                    update_options(current).then(succuss => {
+                        //====> Show Notifications <====//
+                        Phenix(document).notifications({
+                            type     : "success", //=== Message Type [normal, error, success, warning]
+                            message  : "the Location has been Deleted.", //=== Message Content
+                            position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
+                        });
+                    }).catch(error => {error.message});
+                });
             }).then(response => {}).catch(error => {error.message});
         }
 
+        //===> Initial Locations List <===//
         update_locations_list();
 
         //===> Add Location Form <===//
@@ -251,44 +243,27 @@
             if (new_location['name']) {
                 //===> Set Loading Mode <===//
                 isClicked.target.classList.add('px-loading-inline');
-                
+
                 //===> Update Locations List <===//
                 get_options().then(options => {
-                    //===> Check if its Exist <===//
-                    let current   = options,
-                        locations = current["pds_menu_locations"],
-                        alreadyExist = locations[new_location['name']];
+                    //===> Define Data <===//
+                    let current = options;
 
-                    //===> Update Locations <===//
-                    if (!alreadyExist) {
-                        //===> add the new location to the current ones <===//
-                        locations[new_location['name']] = new_location['title'];
+                    //===> add/update the location <===//
+                    current.menu_locations[new_location['name']] = new_location['title'];
 
-                        //===> Post the New Location <===//
-                        current["pds_menu_locations"] = locations;
-
-                        update_options(options).then(response => {
-                            //===> Remove Loading Mode <===//
-                            isClicked.target.classList.remove('px-loading-inline');
-
-                            //====> Show Notifications <====//
-                            Phenix(document).notifications({
-                                type     : "success", //=== Message Type [normal, error, success, warning]
-                                message  : "Success : the New Location has been Added.", //=== Message Content
-                                position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                            });
-                        });
-                    } else {
-                        //====> Show Error <====//
-                        Phenix(document).notifications({
-                            type     : "error", //=== Message Type [normal, error, success, warning]
-                            message  : "Error The Location Already Exist.", //=== Message Content
-                            position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                        });
-
+                    //===> Update Options <===//
+                    update_options(options).then(response => {
                         //===> Remove Loading Mode <===//
                         isClicked.target.classList.remove('px-loading-inline');
-                    }
+
+                        //====> Show Notifications <====//
+                        Phenix(document).notifications({
+                            type: "success",
+                            message: "Success : the Location has been Added/Updated.",
+                            position: ["bottom", "end"],
+                        });
+                    });
                 }).catch(error => {error.message});
             }
         });

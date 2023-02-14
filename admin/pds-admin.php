@@ -54,7 +54,7 @@
         array('pds_metabox', 'pds-data-collection', true),
         array('pds_taxonomies', 'pds-data-collection', true),
         array('pds_post_types', 'pds-data-collection', true),
-        array('pds_menu_locations', 'pds-data-collection', true),
+        array('menu_locations', 'pds-data-collection', true),
 
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),
@@ -129,8 +129,8 @@
         }
 
         //====> Set Menu Locations <====//
-        if (get_option('pds_menu_locations')) :
-            register_nav_menus( get_option('pds_menu_locations') );
+        if (get_option('menu_locations')) :
+            register_nav_menus( get_option('menu_locations') );
         endif;
 
         //===> Set Post-Types <===//

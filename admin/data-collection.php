@@ -84,7 +84,7 @@
                 ),
                 //==> Types Panel <==//
                 array(
-                    "title" => "Data Types",
+                    "title" => "Post Types",
                     "slug"  => "pds-types",
                     "icon"  => "far fa-cube",
                     "content" => 'pds_types_panel',
@@ -277,7 +277,7 @@
             }).then(response => {}).catch(error => {error.message});
         },
 
-        //===> Add Items Handler <===//
+        //===> Add Items Method <===//
         add_new_item = (trigger) => {
             //===> Get Elements <===//
             let data_form = Phenix(trigger).ancestor(".collection-form"),

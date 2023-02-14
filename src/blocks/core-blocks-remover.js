@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pds_core_options;
     async function get_core_options() {
         //===> Connect to the API <===//
-        const response = await fetch(`${PDS_WP_KEY.root}options/pds-core-blocks`, {
+        const response = await fetch(`${PDS_WP_KEY.root}options`, {
             method : 'GET', //===> [GET, POST, PUT, DELETE].
             headers: {      //===> WP Cookies Auth
                 "Content-Type": "application/json",
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //===> Get Location from Rest-API <===//
     get_core_options().then(responde => {
         //===> Get Data <===//
-        pds_core_options = responde;
+        pds_core_options = responde["pds_core"];
 
         //===> Blocks List [Option, Name] <===//    
         let pds_core_blocks = [

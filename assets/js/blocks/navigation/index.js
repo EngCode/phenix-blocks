@@ -104,10 +104,11 @@ function Edit(props) {
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
-      path: 'pds-blocks/v2/options/pds_menu_locations'
-    }).then(function (locations) {
+      path: 'pds-blocks/v2/options'
+    }).then(function (options) {
       //===> Create New Array <===//
-      var menus_new_list = []; //===> Prepare Each Location for Select Array <===//
+      var locations = options.menu_locations,
+          menus_new_list = []; //===> Prepare Each Location for Select Array <===//
 
       for (var _i2 = 0, _Object$entries = Object.entries(locations); _i2 < _Object$entries.length; _i2++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),

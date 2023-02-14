@@ -35,9 +35,10 @@ export default function Edit(props) {
 
     //===> Get Menu List <===//
     useEffect(() => {
-        apiFetch({path: 'pds-blocks/v2/options/pds_menu_locations'}).then(locations => {
+        apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
-            let menus_new_list = [];
+            let locations = options.menu_locations,
+                menus_new_list = [];
             //===> Prepare Each Location for Select Array <===//
             for (const [key, value] of Object.entries(locations)) {
                 menus_new_list.push({label: value, value: key});

@@ -162,7 +162,7 @@
 
                 <!-- Action Buttons -->
                 ${key !== "main-menu" ? `<div class="col-auto ms-auto flexbox">
-                    <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle" data-target="li"></button>
+                    <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
                 </div>` : ""}
             </li>`)
         },

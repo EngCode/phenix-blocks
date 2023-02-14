@@ -16,8 +16,8 @@
         function pds_admin_menu() {
             //===> Main Settings <===//
             add_menu_page(
-                'Phenix Blocks Settings',
-                'Phenix Blocks',
+                px__('Phenix Blocks Settings'),
+                px__('Phenix Blocks'),
                 'manage_options',
                 'pds-admin',
                 'pds_admin_page',
@@ -26,8 +26,8 @@
 
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
-                'Custom Data Collection',
-                'Data Collection',
+                px__('Custom Data Collection'),
+                px__('Data Collection'),
                 'manage_options',
                 'pds-data-collection',
                 'pds_data_collection'
@@ -35,8 +35,8 @@
             
             //===> Main Settings <===//
             add_menu_page(
-                'Phenix Blocks Settings',
-                'Phenix Blocks',
+                px__('Phenix Blocks Settings'),
+                px__('Phenix Blocks'),
                 'manage_options',
                 'pds-admin',
                 'pds_admin_page',
@@ -50,11 +50,11 @@
             remove_menu_page('edit-comments.php');
 
             //===> Organize Menu Items <===//
-            add_submenu_page('themes.php', 'Plugins', 'Plugins', 'manage_options', 'plugins.php');
-            add_submenu_page('users.php', 'Comments', 'Comments', 'manage_options', 'edit-comments.php');
-            add_submenu_page('wpcf7', 'Address Book', 'Address Book', 'manage_options', 'admin.php?page=flamingo');
-            add_submenu_page('options-general.php', 'Media Uploads', 'Media Uploads', 'manage_options', 'upload.php');
-            add_submenu_page('wpcf7', 'Inbound Messages', 'Inbound Messages', 'manage_options', 'admin.php?page=flamingo_inbound');
+            add_submenu_page('themes.php', px__('Plugins'), px__('Plugins'), 'manage_options', 'plugins.php');
+            add_submenu_page('users.php', px__('Comments'), px__('Comments'), 'manage_options', 'edit-comments.php');
+            add_submenu_page('wpcf7', px__('Address Book'), px__('Address Book'), 'manage_options', 'admin.php?page=flamingo');
+            add_submenu_page('options-general.php', px__('Media Uploads'), px__('Media Uploads'), 'manage_options', 'upload.php');
+            add_submenu_page('wpcf7', px__('Inbound Messages'), px__('Inbound Messages'), 'manage_options', 'admin.php?page=flamingo_inbound');
         }
 
         add_action('admin_menu', 'pds_admin_menu');

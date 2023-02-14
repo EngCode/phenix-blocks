@@ -25,8 +25,8 @@
             );
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
-                'Custom Data Collections',
-                'Data Collections',
+                'Custom Data Collection',
+                'Data Collection',
                 'manage_options',
                 'pds-data-collection',
                 'pds_data_collection'
@@ -115,6 +115,7 @@
     include(dirname(__FILE__) . '/modules/tax-creator.php');
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
+    include(dirname(__FILE__) . '/modules/pattern-creator.php');
 
     //====> Create Options <====//
     function create_pds_options() {

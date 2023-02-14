@@ -15,23 +15,12 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) {exit;}
 
-//====> Default Values <====//
-include(dirname(__FILE__) . '/admin/pds-default.php');
-
 //===> Activation <===//
 function pds_blocks_activate() {
 	do_action('pds_blocks_active');
 }
 
 register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
-
-//====> Block Patterns Creator <====//
-include(dirname(__FILE__) . '/admin/modules/pattern-creator.php');
-
-//====> Set Menu Locations <====//
-if (get_option('pds_menu_locations')) :
-	register_nav_menus( get_option('pds_menu_locations') );
-endif;
 
 //====> Multilang Support <====//
 function px__($string) {
@@ -57,6 +46,9 @@ if (!function_exists('phenix_textdomain')) {
 	add_action( 'init', 'pds_textdomain' );
 }
 
+//====> Default Values <====//
+include(dirname(__FILE__) . '/admin/pds-default.php');
+
 //=====> Phenix Blocks Admin <=====//
 include(dirname(__FILE__) . '/admin/pds-admin.php');
 
@@ -71,25 +63,6 @@ include(dirname(__FILE__) . '/inc/pds-assets.php');
 
 //====> Add Phenix Blocks <====//
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
-
-//===> Register Post-Types <===//
-foreach(get_option('pds_post_types') as $post_type) {
-    //===> if is Posts Disable Core <===//
-    if ($post_type["name"] == "post") {
-        add_action('admin_menu', function() {
-            remove_menu_page('edit.php'); 
-        });
-    }
-
-    //===> if the Post-Type is Enabled <===//
-    if($post_type['open'] == true) {pds_cpt_create($post_type);}
-}
-
-//===> Register Taxonomies <===//
-foreach(get_option('pds_taxonomies') as $taxonomy) {
-    //===> if the Taxonomy is Enabled <===//
-    if($taxonomy['open'] == true) {pds_tax_create($taxonomy);}
-}
 
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :

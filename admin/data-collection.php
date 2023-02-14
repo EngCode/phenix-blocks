@@ -92,7 +92,7 @@
                 //==> Locations Panel <==//
                 array(
                     "title" => "Menu Locations",
-                    "slug"  => "pds-current-locations",
+                    "slug"  => "pds-locations",
                     "icon"  => "far fa-list",
                     "content" => 'pds_menus_locations_panel',
                 ),

@@ -15,13 +15,6 @@ if (!function_exists('pds_blocks_default_values')) :
 
     //===> Set default values here <===//
     function pds_blocks_default_values() {
-        //===> Menu Locations <===//
-        add_option('menu_locations', array(
-            'main-menu'     => 'Main Menu',
-            'footer-menu'   => 'Footer Links',
-            'footer-menu-2' => 'Footer Links #2',
-        ));
-
         //===> Post Types <===//
         add_option('pds_types', array(
             array(
@@ -49,15 +42,15 @@ if (!function_exists('pds_blocks_default_values')) :
                     ),
                 ),
                 "menu_icon" => "welcome-view-site",
-                "taxonomies" => array('tag','category')
+                "taxonomies" => array()
             ),
         ));
 
+        //===> Menu Locations <===//
+        add_option('menu_locations', array('main-menu' => 'Main Menu'));
+
         //===> Taxonomies <===//
         add_option('pds_taxonomies', array());
-
-        //===> Theme Parts and Templates <===//
-        
 
         //===> Blocks settings <===//
         add_option('container_block', true);

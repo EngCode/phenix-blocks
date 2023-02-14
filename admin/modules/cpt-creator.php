@@ -23,7 +23,7 @@ if (!function_exists('pds_cpt_create')) :
             $template = isset($options['template']) ? $options["template"] : array();
             $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
             $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 19;
-            $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("tag");
+            $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
 
             //==== CPT Labels ====//
             $labels = array(

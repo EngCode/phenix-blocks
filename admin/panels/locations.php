@@ -12,14 +12,14 @@
         <p class="mb-20 fs-14"><?php echo px__('you can add new menu locations from below form.'); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Location Title');?>" required>
+            <input type="text" name="location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Location Title');?>" required>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">
-            <input type="text" name="add-location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('location-name');?>">
+            <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('location-name');?>">
         </div>
         <!-- Form Control -->
-        <button type="button" name="add-location-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
+        <button type="button" name="location-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">

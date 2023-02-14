@@ -12,42 +12,42 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-text">
-                    <input type="text" name="add-type-label" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Label');?>" required>
+                    <input type="text" name="type-label" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Label');?>" required>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-link">
-                    <input type="text" name="add-type-name" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Name');?>" required>
+                    <input type="text" name="type-name" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Name');?>" required>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-text">
-                    <input type="text" name="add-type-label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo px__('singular Label');?>">
+                    <input type="text" name="type-label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo px__('singular Label');?>">
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-link">
-                    <input type="text" name="add-type-singular" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Singular');?>">
+                    <input type="text" name="type-singular" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Singular');?>">
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-image">
-                    <input type="text" name="add-type-icon" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Icon');?>" required>
+                    <input type="text" name="type-icon" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Icon');?>" required>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-file-alt">
-                    <select name="add-type-template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo px__('Pattern Template');?>">
+                    <select name="type-template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo px__('Pattern Template');?>">
                         <option value="slide-example"><?php echo px__("Slider Single"); ?></option>
                         <option value="blog-example"><?php echo px__("Blog Single"); ?></option>
                     </select>
@@ -57,7 +57,7 @@
             <div class="col-12">
                 <!-- Form Control -->
                 <div class="control-icon far fa-boxes mb-15">
-                    <select name="add-type-taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo px__('Taxonomies');?>" multiple>
+                    <select name="type-taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo px__('Taxonomies');?>" multiple>
                         <option value="category"><?php echo px__("Category"); ?></option>
                         <option value="tag"><?php echo px__("Tags"); ?></option>
                     </select>
@@ -66,11 +66,11 @@
                 <div class="flexbox align-between align-center-y">
                     <!-- Form Control -->
                     <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
-                        <input type="checkbox" name="add-type-enable" checked />
+                        <input type="checkbox" name="type-enable" checked />
                         <span class="fas fa-check radius-circle tx-icon"><?php echo px__("Enable this Type once added ?"); ?></span>
                     </label>
                     <!-- Form Control -->
-                    <button type="button" name="add-type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>
+                    <button type="button" name="type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>
                 </div>
                 <!-- // Elements Group -->
             </div>

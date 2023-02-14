@@ -297,27 +297,24 @@
                 form_Controls.forEach(control => {
                     //===> Define Data <===//
                     let control_name = control.getAttribute('name');
-
+                    
                     //===> Locations Controls <===//
                     if (data_type === "menu-locations") {
-                        //===> Get Control Name [title, name] <===//
-                        let control_name = control_name.replace('add-location-','');
-    
                         //===> Validate the Location Name <===//
-                        if (control_name === 'name' && !control.value) {
+                        if (control_name === 'location-name' && !control.value) {
                             //===> if "name" not exist get it from the Title <===//
-                            let location_name = Phenix('[name="add-location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
-                            new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
+                            let location_name = Phenix('[name="location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
+                            new_location[control_name.replace('location-', '')] = location_name.toLowerCase().replaceAll(' ','-');
                         }
 
                         //===> Add the new Location Title <===//
-                        else new_location[control_name] = control.value;
+                        else new_location[control_name.replace('location-', '')] = control.value;
                     }
                 });
 
                 //===> Set Loading Mode <===//
                 trigger.classList.add('px-loading-inline');
-    
+
                 //===> Update Data List <===//
                 get_options().then(options => {
                     //===> Define Data <===//
@@ -348,8 +345,8 @@
         update_types_list();
         update_locations_list();
 
-        //===> Add Location Form <===//
-        Phenix('[name="add-location-btn"]').on('click', event => add_new_item(event.target));
+        //===> Add Location Trigger <===//
+        Phenix('[name="location-btn"]').on('click', event => add_new_item(event.target));
     });
 </script>
 <!-- Phenix Script -->

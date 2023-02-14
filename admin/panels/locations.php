@@ -6,7 +6,7 @@
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form">
+    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="menu-locations">
         <!-- Area Title -->
         <h3 class="fs-16 mb-0 weight-medium"><?php echo px__('Add New Location'); ?></h3>
         <p class="mb-20 fs-14"><?php echo px__('you can add new menu locations from below form.'); ?></p>

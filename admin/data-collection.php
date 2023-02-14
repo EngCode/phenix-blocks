@@ -279,61 +279,69 @@
 
         //===> Add Items Handler <===//
         add_new_item = (trigger) => {
-            //===> Get Controls Elements <===//
-            let form_Controls = Phenix(trigger).ancestor(".collection-form").querySelectorAll("input, select, textarea");
+            //===> Get Elements <===//
+            let data_form = Phenix(trigger).ancestor(".collection-form"),
+                data_type = data_form.getAttribute('data-type'),
+                form_Controls = data_form.querySelectorAll("input, select, textarea");
 
             //===> Define Data <===//
             let new_type = {},
                 new_location = {};
 
-            //===> Get Controls Values <===//
-            form_Controls.forEach(control => {
-                //===> Validate Control <===//
-                Phenix(control).validation();
+            //===> Validate Controls <===//
+            Phenix(...form_Controls).validation();
 
-                //===> if its valid control <===//
-                if (!control.matches('.error')) {
-                    //===> Get Control Name [title, name] <===//
-                    let control_name = control.getAttribute('name').replace('add-location-','');
+            //===> if the Controls is valid <===//
+            if (!data_form.querySelector('.error')) {
+                //===> Controls Handle <===//
+                form_Controls.forEach(control => {
+                    //===> Define Data <===//
+                    let control_name = control.getAttribute('name');
 
-                    //===> Validate the Location Name <===//
-                    if (control_name === 'name' && !control.value) {
-                        //===> if "name" not exist get it from the Title <===//
-                        let location_name = Phenix('[name="add-location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
-                        new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
-                    //===> Add the new Location Title <===//
-                    } else {
-                        new_location[control_name] = control.value;
+                    //===> Locations Controls <===//
+                    if (data_type === "menu-locations") {
+                        //===> Get Control Name [title, name] <===//
+                        let control_name = control_name.replace('add-location-','');
+    
+                        //===> Validate the Location Name <===//
+                        if (control_name === 'name' && !control.value) {
+                            //===> if "name" not exist get it from the Title <===//
+                            let location_name = Phenix('[name="add-location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
+                            new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
+                        }
+
+                        //===> Add the new Location Title <===//
+                        else new_location[control_name] = control.value;
                     }
-                }
-            });
-
-            //===> Set Loading Mode <===//
-            trigger.classList.add('px-loading-inline');
-
-            //===> Update Data List <===//
-            get_options().then(options => {
-                //===> Define Data <===//
-                let current = options;
-
-                //===> Set Locations <===//
-                if (new_location['name']) {
-                    current.menu_locations[new_location['name']] = new_location['title'];
-                }
-
-                //===> Update Options <===//
-                update_options(options).then(response => {
-                    //===> Remove Loading Mode <===//
-                    trigger.classList.remove('px-loading-inline');
-
-                    //====> Show Notifications <====//
-                    Phenix(document).notifications({
-                        type: "success",
-                        message: "Success : the Data has been Updated.",
-                        position: ["bottom", "end"],
-                    });
                 });
-            }).catch(error => {error.message});
+
+                //===> Set Loading Mode <===//
+                trigger.classList.add('px-loading-inline');
+    
+                //===> Update Data List <===//
+                get_options().then(options => {
+                    //===> Define Data <===//
+                    let current = options;
+    
+                    //===> Set Locations <===//
+                    if (new_location['name']) {
+                        current.menu_locations[new_location['name']] = new_location['title'];
+                    }
+    
+                    //===> Update Options <===//
+                    update_options(options).then(response => {
+                        //===> Remove Loading Mode <===//
+                        trigger.classList.remove('px-loading-inline');
+    
+                        //====> Show Notifications <====//
+                        Phenix(document).notifications({
+                            type: "success",
+                            message: "Success : the Data has been Updated.",
+                            position: ["bottom", "end"],
+                        });
+                    });
+                }).catch(error => {error.message});
+            }
         };
 
         //===> Initial Data <===//

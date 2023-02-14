@@ -36,6 +36,14 @@
         add_action('admin_menu', 'pds_admin_menu');
     endif;
 
+    //====> Include Modules <====//
+    include(dirname(__FILE__) . '/modules/api-creator.php');
+    include(dirname(__FILE__) . '/modules/cpt-creator.php');
+    include(dirname(__FILE__) . '/modules/tax-creator.php');
+    include(dirname(__FILE__) . '/modules/page-creator.php');
+    include(dirname(__FILE__) . '/modules/toggle-controls.php');
+    include(dirname(__FILE__) . '/modules/pattern-creator.php');
+
     /**===> Options List { properties by order }
      *** option_name,
      *** option_page,
@@ -109,23 +117,44 @@
         array('pds_core_widgets_blocks', 'pds-admin'),
     );
 
-    //====> Include Modules <====//
-    include(dirname(__FILE__) . '/modules/api-creator.php');
-    include(dirname(__FILE__) . '/modules/cpt-creator.php');
-    include(dirname(__FILE__) . '/modules/tax-creator.php');
-    include(dirname(__FILE__) . '/modules/page-creator.php');
-    include(dirname(__FILE__) . '/modules/toggle-controls.php');
-    include(dirname(__FILE__) . '/modules/pattern-creator.php');
-
     //====> Create Options <====//
     function create_pds_options() {
         //===> Grape Options List <===//
         global $pds_options_list;
+
         //===> Register Options <===//
         foreach ($pds_options_list as $option) {
             //===> Register the Option <===//
             register_setting($option[1], $option[0]);
         }
+
+        //====> Set Menu Locations <====//
+        if (get_option('pds_menu_locations')) :
+            register_nav_menus( get_option('pds_menu_locations') );
+        endif;
+
+        //===> Set Post-Types <===//
+        if (get_option('pds_post_types')) :
+            foreach(get_option('pds_post_types') as $post_type) {
+                //===> if is Posts Disable Core <===//
+                if ($post_type["name"] == "post") {
+                    add_action('admin_menu', function() {
+                        remove_menu_page('edit.php'); 
+                    });
+                }
+
+                //===> if the Post-Type is Enabled <===//
+                if($post_type['open'] == true) {pds_cpt_create($post_type);}
+            }
+        endif;
+
+        //===> Set Taxonomies <===//
+        if (get_option('pds_taxonomies')) :
+            foreach(get_option('pds_taxonomies') as $taxonomy) {
+                //===> if the Taxonomy is Enabled <===//
+                if($taxonomy['open'] == true) {pds_tax_create($taxonomy);}
+            }
+        endif;
     }
 
     add_action('admin_init', 'create_pds_options');

@@ -23,6 +23,7 @@
                 'pds_admin_page',
                 plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
             );
+
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
                 'Custom Data Collection',
@@ -31,6 +32,29 @@
                 'pds-data-collection',
                 'pds_data_collection'
             );
+            
+            //===> Main Settings <===//
+            add_menu_page(
+                'Phenix Blocks Settings',
+                'Phenix Blocks',
+                'manage_options',
+                'pds-admin',
+                'pds_admin_page',
+                plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
+            );
+
+            //===> Remove Menu Items <===//
+            remove_menu_page('flamingo');
+            remove_menu_page('upload.php');
+            remove_menu_page('plugins.php');
+            remove_menu_page('edit-comments.php');
+
+            //===> Organize Menu Items <===//
+            add_submenu_page('themes.php', 'Plugins', 'Plugins', 'manage_options', 'plugins.php');
+            add_submenu_page('users.php', 'Comments', 'Comments', 'manage_options', 'edit-comments.php');
+            add_submenu_page('wpcf7', 'Address Book', 'Address Book', 'manage_options', 'admin.php?page=flamingo');
+            add_submenu_page('options-general.php', 'Media Uploads', 'Media Uploads', 'manage_options', 'upload.php');
+            add_submenu_page('wpcf7', 'Inbound Messages', 'Inbound Messages', 'manage_options', 'admin.php?page=flamingo_inbound');
         }
 
         add_action('admin_menu', 'pds_admin_menu');

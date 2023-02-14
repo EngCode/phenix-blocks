@@ -1,21 +1,23 @@
 /*==== Admin Pages ====*/
-body[class*="phenix-blocks_page"] {
+body[class*="phenix-blocks_page"], body.toplevel_page_pds-admin {
 	.form-control {
 		border: 1px solid rgba(#000, 0.15)!important;;
 	}
-
+	
 	.btn.square::before {
 		top: -2px;
 		position: relative;
 	}
-
+	
 	.control-icon.error, .form-control.error, .option-control.error {
 		color : var(--danger-color)!important;
 		border-color : var(--danger-color)!important;
 	}
-
+	
 	.control-icon.success, .form-control.success, .option-control.success {
 		color: var(--success-color)!important;
 		border-color: var(--success-color)!important;
 	}
+	
+	.pds-form .tabs-navigation .btn:not(.active) {background-color: transparent;}
 }

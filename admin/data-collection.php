@@ -75,20 +75,6 @@
             'pds-data-collection',
             //==> Tabs List <==//
             array(
-                //==> Types Panel <==//
-                // array(
-                //     "title" => "Post-Types",
-                //     "slug"  => "pds-types",
-                //     "icon"  => "far fa-list",
-                //     "content" => 'pds_types_panel',
-                // ),
-                //==> Taxonomies Panel <==//
-                // array(
-                //     "title" => "Taxonomies",
-                //     "slug"  => "pds-taxonomy",
-                //     "icon"  => "far fa-list",
-                //     "content" => 'pds_taxonomies_panel',
-                // ),
                 //==> Locations Panel <==//
                 array(
                     "title" => "Menu Locations",
@@ -96,13 +82,27 @@
                     "icon"  => "far fa-list",
                     "content" => 'pds_menus_locations_panel',
                 ),
+                //==> Types Panel <==//
+                array(
+                    "title" => "Data Types",
+                    "slug"  => "pds-types",
+                    "icon"  => "far fa-cube",
+                    "content" => 'pds_types_panel',
+                ),
+                //==> Taxonomies Panel <==//
+                array(
+                    "title" => "Taxonomies",
+                    "slug"  => "pds-taxonomy",
+                    "icon"  => "far fa-boxes",
+                    "content" => 'pds_taxonomies_panel',
+                ),
                 //==> Meta Boxes Panel <==//
-                // array(
-                //     "title" => "Metaboxes",
-                //     "slug"  => "pds-metabox",
-                //     "icon"  => "far fa-list",
-                //     "content" => 'pds_metabox_panel',
-                // )
+                array(
+                    "title" => "Metaboxes",
+                    "slug"  => "pds-metabox",
+                    "icon"  => "far fa-layer-group",
+                    "content" => 'pds_metabox_panel',
+                )
             ),
             //==> Hide Submit Button <==//
             false

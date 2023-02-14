@@ -32,7 +32,7 @@
             </div>
         </div>
         <!-- Locations List -->
-        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm locations-list">
+        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm locations-list fs-14">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
                 <span class="col-5"><?php echo px__('Location Title'); ?></span>
                 <span class="col-5"><?php echo px__('Location Name'); ?></span>

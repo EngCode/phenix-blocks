@@ -25,7 +25,7 @@ if (!function_exists('pds_blocks_default_values')) :
         //===> Post Types <===//
         add_option('pds_types', array(
             array(
-                'open' => true,
+                'enable'=> true,
                 "name"  => "post",
                 "label" => "Blog Posts",
                 "label_singular" => "Posts",
@@ -38,7 +38,7 @@ if (!function_exists('pds_blocks_default_values')) :
                 "taxonomies" => array('tag','category')
             ),
             array(
-                'open' => true,
+                'enable'=> true,
                 "name"  => "home-slider",
                 "label" => "Home Slider",
                 "singular" => "slides",

@@ -53,7 +53,7 @@
         //===> Data Collection <===//
         array('pds_metabox', 'pds-data-collection', true),
         array('pds_taxonomies', 'pds-data-collection', true),
-        array('pds_post_types', 'pds-data-collection', true),
+        array('pds_types', 'pds-data-collection', true),
         array('menu_locations', 'pds-data-collection', true),
         array('theme_parts', 'pds-data-collection', true),
         array('theme_templates', 'pds-data-collection', true),
@@ -130,34 +130,6 @@
             //===> Register the Option <===//
             register_setting($option[1], $option[0]);
         }
-
-        //====> Set Menu Locations <====//
-        if (get_option('menu_locations')) :
-            register_nav_menus( get_option('menu_locations') );
-        endif;
-
-        //===> Set Post-Types <===//
-        if (get_option('pds_post_types')) :
-            foreach(get_option('pds_post_types') as $post_type) {
-                //===> if is Posts Disable Core <===//
-                if ($post_type["name"] == "post") {
-                    add_action('admin_menu', function() {
-                        remove_menu_page('edit.php'); 
-                    });
-                }
-
-                //===> if the Post-Type is Enabled <===//
-                if($post_type['open'] == true) {pds_cpt_create($post_type);}
-            }
-        endif;
-
-        //===> Set Taxonomies <===//
-        if (get_option('pds_taxonomies')) :
-            foreach(get_option('pds_taxonomies') as $taxonomy) {
-                //===> if the Taxonomy is Enabled <===//
-                if($taxonomy['open'] == true) {pds_tax_create($taxonomy);}
-            }
-        endif;
     }
 
     add_action('admin_init', 'create_pds_options');
@@ -265,4 +237,27 @@
             },
         ));
     });
+
+    //====> Set Menu Locations <====//
+    if (get_option('menu_locations')) :
+        register_nav_menus( get_option('menu_locations') );
+    endif;
+
+    //===> Set Post-Types <===//
+    if (get_option('pds_types')) :
+        $pds_types = get_option('pds_types');
+        foreach($pds_types as $post_type) {
+            //===> if is Posts Disable Core <===//
+            if ($post_type["name"] == "post") {
+                add_action('admin_menu', function() {
+                    remove_menu_page('edit.php'); 
+                });
+            }
+
+            //===> if the Post-Type is Enabled <===//
+            if($post_type['enable']) {
+                pds_cpt_create($post_type);
+            }
+        }
+    endif;
 ?>

@@ -1,8 +1,8 @@
 <!-- Phenix Admin -->
 <div class="pds-10 pde-30 pde-lg-50 pds-lg-30 pdy-50">
     <!-- Page Title -->
-    <h1 class="weight-bold h3 mb-10 tx-uppercase"><?php echo $page_title; ?></h1>
-    <p class="mb-30"><?php echo $page_description; ?></p>
+    <h1 class="weight-bold h3 mb-0 tx-uppercase"><?php echo $page_title; ?></h1>
+    <p class="fs-17 mb-30"><?php echo $page_description; ?></p>
 
     <!-- Setting Wrapper -->
     <form method="post" action="options.php" id="pds-form" class="pds-form pdx-20 pdt-10 pdb-20 radius-md bg-white px-tabs bx-shadow-dp-x" data-hash="1" data-active="0" data-navigation=".tabs-navigation">

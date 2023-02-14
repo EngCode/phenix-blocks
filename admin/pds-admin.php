@@ -23,15 +23,7 @@
                 'pds_admin_page',
                 plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
             );
-            //===> Menu Creator <===//
-            add_submenu_page('pds-admin',
-                'WP Menu Locations',
-                'Menu Locations',
-                'manage_options',
-                'pds-menu-locations',
-                'pds_menu_locations'
-            );
-            //===> Post Types <===//
+            //===> Data Collection <===//
             add_submenu_page('pds-admin',
                 'Custom Data Collections',
                 'Data Collections',
@@ -50,17 +42,11 @@
      *** show_in_rest
     <===*/
     $pds_options_list = array(
-        //===> Menu Locations <===//
-        array('pds_menu_locations', 'pds-menu-locations', true),
-
-        //===> Meta Boxes <===//
-        array('pds_post_types', 'pds-metabox', true),
-
-        //===> Taxonomies <===//
-        array('pds_taxonomies', 'pds-taxonomies', true),
-
-        //===> Post Types <===//
-        array('pds_post_types', 'pds-custom-post-types', true),
+        //===> Data Collection <===//
+        array('pds_metabox', 'pds-data-collection', true),
+        array('pds_taxonomies', 'pds-data-collection', true),
+        array('pds_post_types', 'pds-data-collection', true),
+        array('pds_menu_locations', 'pds-data-collection', true),
 
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),
@@ -156,19 +142,6 @@
         };
     endif;
 
-    //====> Phenix Admin [Menu Creator] <====//
-    if (!function_exists('pds_menu_locations')) :
-        /**
-         * Create Admin Pages for Phenix Blocks
-         * @since Phenix Blocks 1.0
-         * @return void
-        */
-
-        function pds_menu_locations () {
-            include(dirname(__FILE__) . '/menu-locations.php');
-        };
-    endif;
-
     //====> Phenix Admin [Data Collection] <====//
     if (!function_exists('pds_data_collection')) :
         /**
@@ -179,7 +152,6 @@
 
         function pds_data_collection () {
             include(dirname(__FILE__) . '/data-collection.php');
-            // include(dirname(__FILE__) . '/metabox.php');
         };
     endif;
 
@@ -377,54 +349,6 @@
 
                     //===> Update Options <===//
                     update_option('pds_taxonomies', $params['taxonomies']);
-
-                    //===> Return Success <===//
-                    return $response;
-                } else {
-                    return $request;
-                }
-            },
-        ));
-    });
-
-    //====> API Endpoint [Metabox Creator] <====//
-    add_action('rest_api_init', function() {
-        //====> Create PDS Endpoint ====//
-        pds_add_api(array(
-            "api_slug"   => '/options/pds_metabox/',
-            //===> Data Parameters <===//
-            "api_props"  => array('post-types' => [
-                'validate_callback' => function( $param, $request, $key ) {
-                    return is_array($param);
-                },
-            ]),
-            //===> Reading Permission <===//
-            "read_prem"  => function () {
-                return current_user_can('edit_posts');
-            },
-            //===> Editing Permission <===//
-            "write_prem" => function () {
-                return current_user_can('manage_options');
-            },
-            //===> Get Option Method <===//
-            "get_method" => function($request) {
-                //===> Get Option Value <===//
-                $response = get_option('pds_metabox');
-                //===> Return Option Value <===//
-                return $response;
-            },
-            //===> Set Option Method <===//
-            "set_method" => function($request) {
-                //===> Get Request Data <===//
-                $params = $request->get_params();
-                //===> Check if has value <===//
-                if (isset($params['metabox'])) {
-                    //===> Set 
-                    $response['response'] = 'Success Data has been Set.';
-                    $response['data'] = $params['metabox'];
-
-                    //===> Update Options <===//
-                    update_option('pds_metabox', $params['metabox']);
 
                     //===> Return Success <===//
                     return $response;

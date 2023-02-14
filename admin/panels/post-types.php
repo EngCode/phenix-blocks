@@ -91,10 +91,9 @@
         <!-- Post Types List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm types-list fs-14">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-                <span class="col-3"><?php echo px__('Label'); ?></span>
+                <span class="col-4"><?php echo px__('Label'); ?></span>
                 <span class="col-3"><?php echo px__('Name'); ?></span>
-                <span class="col-3"><?php echo px__('Singular'); ?></span>
-                <span class="col-2"><?php echo px__('Status'); ?></span>
+                <span class="col-2"><?php echo px__('Singular'); ?></span>
             </li>
         </ul>
     </div>

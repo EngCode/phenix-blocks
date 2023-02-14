@@ -177,22 +177,23 @@
         type_template = (type) => {
             return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
                 <!-- Label -->
-                <span class="tx-icon dashicons-before dashicons-${type.menu_icon} col-3 item-label">${type.label}</span>
+                <span class="tx-icon dashicons-before dashicons-${type.menu_icon} col-4 item-label">${type.label}</span>
 
                 <!-- Name -->
                 <span class="tx-icon far fa-link col-3 item-name">${type.name}</span>
 
                 <!-- Singular -->
-                <span class="tx-icon far fa-link col-3 item-singular">${type.singular ? type.singular : type.name}</span>
-                
-                <!-- Status -->
-                <label class="col-auto small option-control" data-type="switch">
-                    <input type="checkbox" name="item-status" ${type.enable ? 'checked' : null}><span class="switch"></span>
-                </label>
+                <span class="tx-icon far fa-link col-2 item-singular">${type.singular ? type.singular : type.name}</span>
 
                 <!-- Buttons -->
-                <div class="col-auto ms-auto flexbox">
+                <div class="col-auto ms-auto flexbox align-center-y">
+                    <!-- Status -->
+                    <label class="small option-control me-5" data-type="switch">
+                        <input type="checkbox" name="item-status" ${type.enable ? 'checked' : null}><span class="switch"></span>
+                    </label>
+                    <!-- Edit -->
                     <button type="button" class="edit-item me-5 btn light tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                    <!-- Remove -->
                     <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
                 </div>
             </li>`);

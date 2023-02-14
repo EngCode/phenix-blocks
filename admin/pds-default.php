@@ -48,7 +48,7 @@ if (!function_exists('pds_blocks_default_values')) :
                         array ('slug' => 'phenix/slide-example'),
                     ),
                 ),
-                "menu_icon" => "align-wide",
+                "menu_icon" => "welcome-view-site",
                 "taxonomies" => array('tag','category')
             ),
         ));

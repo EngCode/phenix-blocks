@@ -236,7 +236,7 @@ label,legend  {@extend %inline-block;}
         span::before {
             padding: 4px;
             font-size: 0.8em;
-            --border-color : var(--gray-color);
+            --border-color : var(--color);
             @include margin-inline(5px, 'end');
             border-radius: var(--radius);
             background-color: var(--background);

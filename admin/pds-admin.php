@@ -34,17 +34,20 @@
             );
 
             //===> Remove Menu Items <===//
-            remove_menu_page('flamingo');
-            remove_menu_page('upload.php');
-            remove_menu_page('plugins.php');
-            remove_menu_page('edit-comments.php');
+            $removable = ['flamingo', 'upload.php', 'plugins.php', 'edit-comments.php'];
+            foreach ($removable as $item) { remove_menu_page($item); }
 
             //===> Organize Menu Items <===//
-            add_submenu_page('themes.php', px__('Plugins'), px__('Plugins'), 'manage_options', 'plugins.php');
-            add_submenu_page('users.php', px__('Comments'), px__('Comments'), 'manage_options', 'edit-comments.php');
-            add_submenu_page('wpcf7', px__('Address Book'), px__('Address Book'), 'manage_options', 'admin.php?page=flamingo');
-            add_submenu_page('options-general.php', px__('Media Uploads'), px__('Media Uploads'), 'manage_options', 'upload.php');
-            add_submenu_page('wpcf7', px__('Inbound Messages'), px__('Inbound Messages'), 'manage_options', 'admin.php?page=flamingo_inbound');
+            $capability = 'manage_options';
+            $movable = [
+                ['themes.php', null, px__('Plugins'), $capability, 'plugins.php'],
+                ['users.php', null, px__('Comments'), $capability, 'edit-comments.php'],
+                ['wpcf7', null, px__('Address Book'), $capability, 'admin.php?page=flamingo'],
+                ['options-general.php', null, px__('Media Uploads'), $capability, 'upload.php'],
+                ['wpcf7', null, px__('Inbox Messages'), $capability, 'admin.php?page=flamingo_inbound'],
+            ];
+
+            foreach ($movable as $item) { add_submenu_page(...$item); }
         }
 
         add_action('admin_menu', 'pds_admin_menu');

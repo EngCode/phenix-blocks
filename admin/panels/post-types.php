@@ -65,9 +65,9 @@
                 <!-- Elements Group -->
                 <div class="flexbox align-between align-center-y">
                     <!-- Form Control -->
-                    <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="custom">
+                    <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
                         <input type="checkbox" name="add-type-enable" checked />
-                        <span class="fas fa-check-circle tx-icon"><?php echo px__("Enable this Type once added ?"); ?></span>
+                        <span class="fas fa-check radius-circle tx-icon"><?php echo px__("Enable this Type once added ?"); ?></span>
                     </label>
                     <!-- Form Control -->
                     <button type="button" name="add-type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>

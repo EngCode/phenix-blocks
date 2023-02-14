@@ -275,17 +275,16 @@
                     }).catch(error => {error.message});
                 });
             }).then(response => {}).catch(error => {error.message});
-        };
+        },
 
-        //===> Initial Data <===//
-        update_types_list();
-        update_locations_list();
-
-        //===> Add Location Form <===//
-        document.querySelector('[name="add-location-btn"]')?.addEventListener('click', isClicked => {
+        //===> Add Items Handler <===//
+        add_new_item = (trigger) => {
             //===> Get Controls Elements <===//
-            let form_Controls = Phenix('[name*="add-location"]:not(.btn)'),
-                new_location  = {};
+            let form_Controls = Phenix(trigger).ancestor(".collection-form").querySelectorAll("input, select, textarea");
+
+            //===> Define Data <===//
+            let new_type = {},
+                new_location = {};
 
             //===> Get Controls Values <===//
             form_Controls.forEach(control => {
@@ -309,34 +308,40 @@
                 }
             });
 
-            //===> if has new Location <===//
-            if (new_location['name']) {
-                //===> Set Loading Mode <===//
-                isClicked.target.classList.add('px-loading-inline');
+            //===> Set Loading Mode <===//
+            trigger.classList.add('px-loading-inline');
 
-                //===> Update Locations List <===//
-                get_options().then(options => {
-                    //===> Define Data <===//
-                    let current = options;
+            //===> Update Data List <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options;
 
-                    //===> add/update the location <===//
+                //===> Set Locations <===//
+                if (new_location['name']) {
                     current.menu_locations[new_location['name']] = new_location['title'];
+                }
 
-                    //===> Update Options <===//
-                    update_options(options).then(response => {
-                        //===> Remove Loading Mode <===//
-                        isClicked.target.classList.remove('px-loading-inline');
+                //===> Update Options <===//
+                update_options(options).then(response => {
+                    //===> Remove Loading Mode <===//
+                    trigger.classList.remove('px-loading-inline');
 
-                        //====> Show Notifications <====//
-                        Phenix(document).notifications({
-                            type: "success",
-                            message: "Success : the Location has been Added/Updated.",
-                            position: ["bottom", "end"],
-                        });
+                    //====> Show Notifications <====//
+                    Phenix(document).notifications({
+                        type: "success",
+                        message: "Success : the Data has been Updated.",
+                        position: ["bottom", "end"],
                     });
-                }).catch(error => {error.message});
-            }
-        });
+                });
+            }).catch(error => {error.message});
+        };
+
+        //===> Initial Data <===//
+        update_types_list();
+        update_locations_list();
+
+        //===> Add Location Form <===//
+        Phenix('[name="add-location-btn"]').on('click', event => add_new_item(event.target));
     });
 </script>
 <!-- Phenix Script -->

@@ -7,7 +7,7 @@
         <p class="mb-20 fs-14"><?php echo px__('you can add custom post types from below form.'); ?></p>
 
         <!-- Grid -->
-        <div class="row gpx-15 gpy-15">
+        <div class="row gpx-15 gpy-15 collection-form">
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->

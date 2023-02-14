@@ -45,7 +45,7 @@ if (!function_exists('pds_blocks_default_values')) :
                 "label_singular" => "Slides",
                 "template" => array (
                     array('core/pattern',
-                        array ('slug' => 'phenix/hero-slide'),
+                        array ('slug' => 'phenix/slide-example'),
                     ),
                 ),
                 "menu_icon" => "align-wide",
@@ -55,6 +55,9 @@ if (!function_exists('pds_blocks_default_values')) :
 
         //===> Taxonomies <===//
         add_option('pds_taxonomies', array());
+
+        //===> Theme Parts and Templates <===//
+        
 
         //===> Blocks settings <===//
         add_option('container_block', true);

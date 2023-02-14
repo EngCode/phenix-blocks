@@ -76,7 +76,7 @@ PhenixElements.prototype.select = function (options?:{
                 //====> Get Option Data <====//
                 let option_text = option.textContent,
                     option_value = option.getAttribute('value'),
-                    option_classes = `divider-b pdy-5`,
+                    option_classes = `divider-b pdy-10`,
                     image_icon = ``,
                     current_item:any;
 
@@ -91,17 +91,17 @@ PhenixElements.prototype.select = function (options?:{
 
                 //====> Options Headline <====//
                 if (option.matches('optgroup')) {
-                    current_item = options_list.insert('append', `<li class="px-select-group bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-group mb-0 bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 }
                 
                 //====> Disabled Options  <====//
                 else if (option.hasAttribute('disabled')) {
-                    current_item = options_list.insert('append', `<li class="px-select-disabled pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-disabled mb-0 pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 } 
                 
                 //====> Options Items <====//
                 else {
-                    current_item = options_list.insert('append', `<li class="px-select-option pdx-15 ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-option mb-0 pdx-15 ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
                 }
 
                 //====> Copy Classes <====//
@@ -172,7 +172,7 @@ PhenixElements.prototype.select = function (options?:{
 
                 //===> Create Values Group <===//
                 new_value_group = new_select.insert('prepend', `<div class="px-selected-values pdt-5 px-select-toggle col-12 flexbox align-center-y">
-                    <input class="pd-5 px-select-search col-auto reset-input input-inherit mb-5" style="font-size: 0.9em" placeholder="${first_label}" />
+                    <input class="px-select-search col-auto reset-input input-inherit mb-5" placeholder="${first_label}" />
                 </div>`);
             }
             //====> Single Mode <====//

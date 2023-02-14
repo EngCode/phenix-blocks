@@ -102,7 +102,14 @@
                     "slug"  => "pds-metabox",
                     "icon"  => "far fa-layer-group",
                     "content" => 'pds_metabox_panel',
-                )
+                ),
+                //==> Patterns Panel <==//
+                array(
+                    "title" => "Block Patterns",
+                    "slug"  => "pds-patterns",
+                    "icon"  => "far fa-file-alt",
+                    "content" => 'pds_types_panel',
+                ),
             ),
             //==> Hide Submit Button <==//
             false

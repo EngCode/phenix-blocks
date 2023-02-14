@@ -3,34 +3,80 @@
     <!-- Column -->
     <div class="col-12 col-lg-5 pdy-10 me-lg-20">
         <!-- Area Title -->
-        <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Add New Post Type'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo px__('you can add menu post types from below form.'); ?></p>
-        <!-- Form Control -->
-        <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-post-type-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Post Type Title');?>" required>
+        <h3 class="fs-16 mb-0 weight-medium"><?php echo px__('Add New Post Type'); ?></h3>
+        <p class="mb-20 fs-14"><?php echo px__('you can add custom post types from below form.'); ?></p>
+
+        <!-- Grid -->
+        <div class="row gpx-15 gpy-15">
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-text">
+                    <input type="text" name="add-type-label" class="form-control radius-md fs-13" placeholder="<?php echo px__('Label');?>" required>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-link">
+                    <input type="text" name="add-type-name" class="form-control radius-md fs-13" placeholder="<?php echo px__('Name');?>" required>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-text">
+                    <input type="text" name="add-type-label-singular" class="form-control radius-md fs-13" placeholder="<?php echo px__('singular Label');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-link">
+                    <input type="text" name="add-type-singular" class="form-control radius-md fs-13" placeholder="<?php echo px__('Singular');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-image">
+                    <input type="text" name="add-type-icon" class="form-control radius-md fs-13" placeholder="<?php echo px__('Icon');?>" required>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-file-alt">
+                    <select name="add-type-template" class="px-select form-control radius-md fs-13" data-placeholder="<?php echo px__('Pattern Template');?>">
+                        <option value="slide-example"><?php echo px__("Slider Single"); ?></option>
+                        <option value="blog-example"><?php echo px__("Blog Single"); ?></option>
+                    </select>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12">
+                <!-- Form Control -->
+                <div class="control-icon far fa-boxes mb-15">
+                    <select name="add-type-taxonomies" class="px-select form-control radius-md fs-13" data-placeholder="<?php echo px__('Taxonomies');?>" multiple>
+                        <option value="category"><?php echo px__("Category"); ?></option>
+                        <option value="tag"><?php echo px__("Tags"); ?></option>
+                    </select>
+                </div>
+                <!-- Elements Group -->
+                <div class="flexbox align-between align-center-y">
+                    <!-- Form Control -->
+                    <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="custom">
+                        <input type="checkbox" name="add-type-open" checked />
+                        <span class="fas fa-check-circle tx-icon"><?php echo px__("Enable this Type once added ?"); ?></span>
+                    </label>
+                    <!-- Form Control -->
+                    <button type="button" name="add-type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>
+                </div>
+                <!-- // Elements Group -->
+            </div>
+            <!-- // Column -->
         </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-post-type-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('post-type-name');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-post-type-label-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Label Singular');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-post-type-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Singular');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-post-type-menu-icon" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Menu Icon');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-post-type-menu-position" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Menu Position');?>">
-        </div>
-        <!-- Form Control -->
-        <button type="button" name="add-post-type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Post Type'); ?></button>
+        <!-- // Grid -->
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -38,15 +84,16 @@
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
             <div class="col">
-                <h3 class="fs-16 mb-5 weight-medium"><?php echo px__(' Post Types'); ?></h3>
+                <h3 class="fs-16 mb-0 weight-medium"><?php echo px__('Post Types'); ?></h3>
                 <p class="fs-14"><?php echo px__('in here you can manage the  post types created by phenix-blocks.'); ?></p>
             </div>
         </div>
         <!-- Post Types List -->
-        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm post-types-list">
+        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm post-types-list fs-14">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-                <span class="col-5"><?php echo px__('Post Type Title'); ?></span>
-                <span class="col-5"><?php echo px__('Post Type Name'); ?></span>
+                <span class="col-4"><?php echo px__('Label'); ?></span>
+                <span class="col-4"><?php echo px__('Name'); ?></span>
+                <span class="col-4"><?php echo px__('Singular'); ?></span>
             </li>
         </ul>
     </div>

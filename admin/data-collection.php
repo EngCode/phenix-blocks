@@ -112,7 +112,7 @@
 <!-- Form Script -->
 <script defer>
     document.addEventListener('DOMContentLoaded', ready => {
-        //===> Get Current Locations <===//
+        //===> Get Options Method <===//
         async function get_options() {
             //===> Connect to the API <===//
             const response = await fetch(`${PDS_WP_KEY.root}options`, {
@@ -128,7 +128,7 @@
             return response.json();
         }
 
-        //===> Add New Location <===//
+        //===> Update Options Method <===//
         async function update_options(options) {
             //===> Get Data <===//
             let data = {...options};
@@ -148,13 +148,10 @@
             update_locations_list();
 
             //===> Return Response <===//
-            let res = await response;
-
-            console.log(response);
-            return res;
+            return await response;
         }
 
-        //===> Get Saved Locations <===//
+        //===> Menu Locations Method <===//
         const update_locations_list = () => {
             //===> Get Location from Rest-API <===//
             get_options().then(options => {

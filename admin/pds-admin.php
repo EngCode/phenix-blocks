@@ -246,7 +246,16 @@
 
                 //===> Update Options <===//
                 foreach ($response['data'] as $option => $value) {
-                    update_option($option, $value);
+                    //===> for Core Blocks Options <===//
+                    if ($option == "pds_core") {
+                        foreach ($option as $block => $value) {
+                            update_option($block, $value);
+                        }
+                    }
+                    //===> for Other Options <===//
+                    else {
+                        update_option($option, $value);
+                    } 
                 }
 
                 //===> Return Success <===//

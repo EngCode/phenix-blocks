@@ -72,8 +72,24 @@ include(dirname(__FILE__) . '/inc/pds-assets.php');
 //====> Add Phenix Blocks <====//
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
 
-//=====> Phenix Post Types <=====//
-include(dirname(__FILE__) . '/inc/pds-post-types.php');
+//===> Register Post-Types <===//
+foreach(get_option('pds_post_types') as $post_type) {
+    //===> if is Posts Disable Core <===//
+    if ($post_type["name"] == "post") {
+        add_action('admin_menu', function() {
+            remove_menu_page('edit.php'); 
+        });
+    }
+
+    //===> if the Post-Type is Enabled <===//
+    if($post_type['open'] == true) {pds_cpt_create($post_type);}
+}
+
+//===> Register Taxonomies <===//
+foreach(get_option('pds_taxonomies') as $taxonomy) {
+    //===> if the Taxonomy is Enabled <===//
+    if($taxonomy['open'] == true) {pds_tax_create($taxonomy);}
+}
 
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :

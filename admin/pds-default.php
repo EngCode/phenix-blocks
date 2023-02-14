@@ -26,8 +26,35 @@ if (!function_exists('pds_blocks_default_values')) :
 
         //===> Post Types <===//
         if (!get_option('pds_post_types')) :
+            //===> Blog CPT <===//
             add_option('pds_post_types', array(
-                array ('label' => 'Home Slider', 'name' => 'home-slider', 'label_singular' => 'Slides', 'singular' => 'slide', 'menu_icon' => 'align-wide', 'menu_position' => 6, 'open' => true)
+                array(
+                    'open' => true,
+                    "name"  => "post",
+                    "label" => "Blog Posts",
+                    "label_singular" => "Posts",
+                    "template" => array (
+                        array('core/pattern',
+                            array ('slug' => 'phenix/blog-example'),
+                        ),
+                    ),
+                    "menu_icon" => "welcome-widgets-menus",
+                    "taxonomies" => array('tag','category')
+                ),
+                array(
+                    'open' => true,
+                    "name"  => "home-slider",
+                    "label" => "Home Slider",
+                    "singular" => "slides",
+                    "label_singular" => "Slides",
+                    "template" => array (
+                        array('core/pattern',
+                            array ('slug' => 'phenix/hero-slide'),
+                        ),
+                    ),
+                    "menu_icon" => "align-wide",
+                    "taxonomies" => array('tag','category')
+                ),
             ));
         endif;
 
@@ -63,5 +90,5 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('blocks_optimizer', true);
     }
 
-    add_action('pds_blocks_active', 'pds_blocks_default_values');
+    add_action('init', 'pds_blocks_default_values');
 endif;

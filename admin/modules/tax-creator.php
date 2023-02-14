@@ -6,24 +6,21 @@
 */
 
 //====> Posts Type [Creation] <====//
-if (!function_exists('pds_cpt_create')) :
+if (!function_exists('pds_tax_create')) :
     /**
      * Register new Custom Post Types
      * @since Phenix Blocks 1.0
      * @return void
     */
 
-    function pds_cpt_create ($options) {
+    function pds_tax_create ($options) {
         add_action('init', function () use ($options) {
             //==== Get Options ====//
             $name = $options["name"];
             $label = $options["label"];
             $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
             $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
-            $template = isset($options['template']) ? $options["template"] : array();
-            $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
-            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 6;
-            $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("tag");
+            $post_types = isset($options['post_types']) ? $options["post_types"] : array("tag");
 
             //==== CPT Labels ====//
             $labels = array(
@@ -43,21 +40,16 @@ if (!function_exists('pds_cpt_create')) :
 
             //==== CPT Options ====//
             $args = array(
-                'labels'        => $labels,
-                'name'          => $name,
-                'singular_name' => $singular,
-                'menu_position' => $menu_position,
-                'menu_icon'     => 'dashicons-'.$menu_icon,
-                'public'        => true,
-                'has_archive'   => true,
-                'show_in_rest'  => true,
-                'hierarchical'  => true,
-                'template'      => $template,
-                'taxonomies'    => $taxonomies,
-                'supports'      => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
+                'labels'            => $labels,
+                'public'            => true,
+                'hierarchical'      => true,
+                'show_admin_column' => true,
+                'show_in_rest'      => true,
+                'query_var'         => true,
+                'rewrite'           => array('slug' => $name),
             );
 
-            register_post_type($name, $args);
+            register_taxonomy ($name, $post_types, $options);
         });
     }
 endif;

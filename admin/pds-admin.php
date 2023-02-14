@@ -134,6 +134,7 @@
     //====> Include Modules <====//
     include(dirname(__FILE__) . '/modules/api-creator.php');
     include(dirname(__FILE__) . '/modules/cpt-creator.php');
+    include(dirname(__FILE__) . '/modules/tax-creator.php');
     include(dirname(__FILE__) . '/modules/page-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
 

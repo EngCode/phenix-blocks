@@ -22,7 +22,7 @@ if (!function_exists('pds_cpt_create')) :
             $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
             $template = isset($options['template']) ? $options["template"] : array();
             $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
-            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 6;
+            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 19;
             $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("tag");
 
             //==== CPT Labels ====//

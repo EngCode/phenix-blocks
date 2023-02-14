@@ -4,8 +4,8 @@
     $icons_url = str_replace('admin/', 'assets/img/blocks/core/', $assets_url);
 
     //===> post-type Panel <===//
-    if (!function_exists('pds_post_types_panel')) {
-        function pds_post_types_panel() {
+    if (!function_exists('pds_types_panel')) {
+        function pds_types_panel() {
             //===> Start Data <===//
             $template_markup = '';
             ob_start();
@@ -37,19 +37,19 @@
         //===> Create New Page <===//
         echo pds_add_admin_page(
             //==> Page Title <==//
-            'Custom Data Collections',
+            'Custom Data Collection',
             //==> Page Description <==//
             'here you can add and remove Dynamic Custom Post Types And Taxonomies for your data.',
             //==> Options Form Slug <==//
-            'pds-post-types',
+            'pds-data-collection',
             //==> Tabs List <==//
             array(
                 //==> Tabs Panel <==//
                 array(
                     "title" => "Post-Types",
-                    "slug"  => "pds-post-type",
+                    "slug"  => "pds-types",
                     "icon"  => "far fa-list",
-                    "content" => 'pds_post_types_panel',
+                    "content" => 'pds_types_panel',
                 ),
 
                 array(

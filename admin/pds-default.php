@@ -16,52 +16,45 @@ if (!function_exists('pds_blocks_default_values')) :
     //===> Set default values here <===//
     function pds_blocks_default_values() {
         //===> Menu Locations <===//
-        if (!get_option('pds_menu_locations')) :
-            add_option('pds_menu_locations', array(
-                'main-menu'     => 'Main Menu',
-                'footer-menu'   => 'Footer Links',
-                'footer-menu-2' => 'Footer Links #2',
-            ));
-        endif;
+        add_option('pds_menu_locations', array(
+            'main-menu'     => 'Main Menu',
+            'footer-menu'   => 'Footer Links',
+            'footer-menu-2' => 'Footer Links #2',
+        ));
 
         //===> Post Types <===//
-        if (!get_option('pds_post_types')) :
-            //===> Blog CPT <===//
-            add_option('pds_post_types', array(
-                array(
-                    'open' => true,
-                    "name"  => "post",
-                    "label" => "Blog Posts",
-                    "label_singular" => "Posts",
-                    "template" => array (
-                        array('core/pattern',
-                            array ('slug' => 'phenix/blog-example'),
-                        ),
+        add_option('pds_post_types', array(
+            array(
+                'open' => true,
+                "name"  => "post",
+                "label" => "Blog Posts",
+                "label_singular" => "Posts",
+                "template" => array (
+                    array('core/pattern',
+                        array ('slug' => 'phenix/blog-example'),
                     ),
-                    "menu_icon" => "welcome-widgets-menus",
-                    "taxonomies" => array('tag','category')
                 ),
-                array(
-                    'open' => true,
-                    "name"  => "home-slider",
-                    "label" => "Home Slider",
-                    "singular" => "slides",
-                    "label_singular" => "Slides",
-                    "template" => array (
-                        array('core/pattern',
-                            array ('slug' => 'phenix/hero-slide'),
-                        ),
+                "menu_icon" => "welcome-widgets-menus",
+                "taxonomies" => array('tag','category')
+            ),
+            array(
+                'open' => true,
+                "name"  => "home-slider",
+                "label" => "Home Slider",
+                "singular" => "slides",
+                "label_singular" => "Slides",
+                "template" => array (
+                    array('core/pattern',
+                        array ('slug' => 'phenix/hero-slide'),
                     ),
-                    "menu_icon" => "align-wide",
-                    "taxonomies" => array('tag','category')
                 ),
-            ));
-        endif;
+                "menu_icon" => "align-wide",
+                "taxonomies" => array('tag','category')
+            ),
+        ));
 
         //===> Taxonomies <===//
-        if (!get_option('pds_taxonomies')) :
-            add_option('pds_taxonomies', array());
-        endif;
+        add_option('pds_taxonomies', array());
 
         //===> Blocks settings <===//
         add_option('container_block', true);

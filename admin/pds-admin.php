@@ -38,13 +38,12 @@
             foreach ($removable as $item) { remove_menu_page($item); }
 
             //===> Organize Menu Items <===//
-            $capability = 'manage_options';
             $movable = [
-                ['themes.php', null, px__('Plugins'), $capability, 'plugins.php'],
-                ['users.php', null, px__('Comments'), $capability, 'edit-comments.php'],
-                ['wpcf7', null, px__('Address Book'), $capability, 'admin.php?page=flamingo'],
-                ['options-general.php', null, px__('Media Uploads'), $capability, 'upload.php'],
-                ['wpcf7', null, px__('Inbox Messages'), $capability, 'admin.php?page=flamingo_inbound'],
+                ['themes.php', null, px__('Plugins'), 'manage_options', 'plugins.php'],
+                ['users.php', null, px__('Comments'), 'manage_options', 'edit-comments.php'],
+                ['wpcf7', null, px__('Address Book'), 'manage_options', 'admin.php?page=flamingo'],
+                ['options-general.php', null, px__('Media Uploads'), 'manage_options', 'upload.php'],
+                ['wpcf7', null, px__('Inbox Messages'), 'manage_options', 'admin.php?page=flamingo_inbound'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }

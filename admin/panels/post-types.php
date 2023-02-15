@@ -19,7 +19,7 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-link">
-                    <input type="text" name="type-name" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Name');?>" required>
+                    <input type="text" name="type-name" class="form-control radius-sm fs-13" placeholder="<?php echo px__('Name');?>">
                 </div>
             </div>
             <!-- Column -->
@@ -47,7 +47,8 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-file-alt">
-                    <select name="type-template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo px__('Pattern Template');?>">
+                    <select name="type-template" class="px-select form-control radius-sm fs-13">
+                        <option value=""><?php echo px__("Pattern Template"); ?></option>
                         <option value="slide-example"><?php echo px__("Slider Single"); ?></option>
                         <option value="blog-example"><?php echo px__("Blog Single"); ?></option>
                     </select>
@@ -70,7 +71,7 @@
                         <span class="fas fa-check radius-circle tx-icon"><?php echo px__("Enable this Type once added ?"); ?></span>
                     </label>
                     <!-- Form Control -->
-                    <button type="button" name="type-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>
+                    <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Type'); ?></button>
                 </div>
                 <!-- // Elements Group -->
             </div>

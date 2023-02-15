@@ -19,7 +19,7 @@
             <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('location-name');?>">
         </div>
         <!-- Form Control -->
-        <button type="button" name="location-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
+        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Location'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">

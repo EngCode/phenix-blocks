@@ -47,7 +47,7 @@
             //===> Remove Sub Menu Items <===//
             $removable_sub = [
                 ['index.php', 'my-sites.php'],
-                ['index.php', 'my-sites.php'],
+                ['index.php', 'update-core.php'],
                 ['wpcf7', 'wpcf7-integration'],
                 ['options-general.php', 'options-writing.php'],
                 ['options-general.php', 'options-privacy.php'],

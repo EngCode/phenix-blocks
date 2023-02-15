@@ -177,7 +177,7 @@
         type_template = (type) => {
             return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
                 <!-- Label -->
-                <span class="tx-icon dashicons-before dashicons-${type.menu_icon} col-4 item-label">${type.label}</span>
+                <span class="tx-icon dashicons-before dashicons-${type.menu_icon ? type.menu_icon : "category"} col-4 item-label">${type.label}</span>
 
                 <!-- Name -->
                 <span class="tx-icon far fa-link col-3 item-name">${type.name}</span>
@@ -299,17 +299,35 @@
                     //===> Define Data <===//
                     let control_name = control.getAttribute('name');
                     
-                    //===> Locations Controls <===//
-                    if (data_type === "menu-locations") {
-                        //===> Validate the Location Name <===//
-                        if (control_name === 'location-name' && !control.value) {
-                            //===> if "name" not exist get it from the Title <===//
-                            let location_name = Phenix('[name="location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
-                            new_location[control_name.replace('location-', '')] = location_name.toLowerCase().replaceAll(' ','-');
+                    //===> Check the Control <===//
+                    if (control_name) {
+                        //===> Correct Locations <===//
+                        if (data_type === "menu-locations") {
+                            //===> Validate the Location Name <===//
+                            if (control_name === 'location-name' && !control.value) {
+                                //===> if "name" not exist get it from the Title <===//
+                                let location_name = Phenix('[name="location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
+                                new_location[control_name.replace('location-', '')] = location_name.toLowerCase().replaceAll(' ','-');
+                            }
+    
+                            //===> Add the new Location Title <===//
+                            else new_location[control_name.replace('location-', '')] = control.value;
                         }
+    
+                        //===> Post Types <===//
+                        else if (data_type === "post-types") {
+                            //===> Define Data <===//
+                            control_name = control_name.replace('type-', '');
 
-                        //===> Add the new Location Title <===//
-                        else new_location[control_name.replace('location-', '')] = control.value;
+                            //===> Check Name <===//
+                            if (!control.value && control_name === "name") new_type[control_name] = new_type["label"].toLowerCase().replaceAll(' ','-');
+
+                            //===> Check Status <===//
+                            else if (control_name === "enable") new_type[control_name] = control.value === "on" ? true : false;
+
+                            //===> Set the Value <===//
+                            else if (control.value) new_type[control_name] = control.value;
+                        }
                     }
                 });
 
@@ -324,6 +342,16 @@
                     //===> Set Locations <===//
                     if (new_location['name']) {
                         current.menu_locations[new_location['name']] = new_location['title'];
+                    }
+
+                    //===> Set Types <===//
+                    else if (new_type['name']) {
+                        //===> Check for Existing <===//
+                        let alreadyExist = false;
+                        current.pds_types.forEach(type => type['name'] === new_type['name'] ? alreadyExist = true : null);
+
+                        //===> add the New Type <===//
+                        if (!alreadyExist) current.pds_types.push(new_type);
                     }
     
                     //===> Update Options <===//
@@ -346,8 +374,8 @@
         update_types_list();
         update_locations_list();
 
-        //===> Add Location Trigger <===//
-        Phenix('[name="location-btn"]').on('click', event => add_new_item(event.target));
+        //===> Add Item Trigger <===//
+        Phenix('.collection-form .add-item').on('click', event => add_new_item(event.target));
     });
 </script>
 <!-- Phenix Script -->

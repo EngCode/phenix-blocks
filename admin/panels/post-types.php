@@ -59,8 +59,14 @@
                 <!-- Form Control -->
                 <div class="control-icon far fa-boxes mb-15">
                     <select name="type-taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', 'phenix');?>" multiple>
-                        <option value="category"><?php echo __("Category", 'phenix'); ?></option>
-                        <option value="tag"><?php echo __("Tags", 'phenix'); ?></option>
+                        <?php
+                            $taxonomies = get_taxonomies(array('public'=> true), 'objects');
+                            foreach ($taxonomies as $taxonomy) {
+                                if ($taxonomy->name !== "post_format") {
+                                    echo '<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>';
+                                }
+                            };
+                        ?>
                     </select>
                 </div>
                 <!-- Elements Group -->

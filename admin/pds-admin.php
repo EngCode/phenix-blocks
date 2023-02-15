@@ -86,13 +86,13 @@
     <===*/
     $pds_options_list = array(
         //===> Data Collection <===//
-        array('pds_metabox', 'pds-data-collection', true),
-        array('pds_taxonomies', 'pds-data-collection', true),
         array('pds_types', 'pds-data-collection', true),
-        array('menu_locations', 'pds-data-collection', true),
+        array('pds_metabox', 'pds-data-collection', true),
         array('theme_parts', 'pds-data-collection', true),
-        array('theme_templates', 'pds-data-collection', true),
+        array('pds_taxonomies', 'pds-data-collection', true),
+        array('menu_locations', 'pds-data-collection', true),
         array('block_patterns', 'pds-data-collection', true),
+        array('theme_templates', 'pds-data-collection', true),
 
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),

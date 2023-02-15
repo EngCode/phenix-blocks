@@ -151,9 +151,6 @@
                 body : JSON.stringify(data)
             });
 
-            //===> Update Locations List <===//
-            update_list("menu_locations", ".locations-list", location_template);
-
             //===> Return Response <===//
             return await response;
         }
@@ -199,9 +196,18 @@
             </li>`);
         },
 
+        //===> Success Notification <===//
+        data_success = (message) => {
+            Phenix(document).notifications({
+                type     : "success",
+                message  : message,
+                position : ["bottom", "end"],
+            });
+        },
+
         //===> Update Method <===//
         update_list = (type, list, template) => {
-            //===> Get Location from Rest-API <===//
+            //===> Get Data from Rest-API <===//
             get_options().then(options => {
                 //===> Define Data <===//
                 let current = options,
@@ -212,11 +218,15 @@
                 dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
     
                 //===> Create New List <===//
-                for (const [key, value] of Object.entries(theData)) Phenix(dataList).insert('append', template(key, value));
+                if (type === "menu_locations") {
+                    for (const [key, value] of Object.entries(theData)) Phenix(dataList).insert('append', template(key, value));
+                } else {
+                    theData.forEach(item => Phenix(dataList).insert('append', template(item)));
+                }
+
+                //===> Activate Remove Method <===//
+                Phenix(`${list} .remove-item`).on('click', event => remove_item(event.target));
             }).then(response => {}).catch(error => {error.message});
-    
-            //===> Remove Item Method <===//
-            Phenix(`${list} .remove-item`).on('click', event => remove_new_item(event.target));
         },
 
         //===> Add Items Method <===//
@@ -267,7 +277,7 @@
                             else if (control_name === "enable") new_type[control_name] = control.value === "on" ? true : false;
 
                             //===> Set the Value <===//
-                            else if (control.value || control_name == "taxonomies") new_type[control_name] = control.value;
+                            else if (control.value || control_name == "taxonomies") new_type[control_name] = control.value.length > 0 ? control.value : [];
                         }
                     }
                 });
@@ -301,15 +311,11 @@
                         trigger.classList.remove('px-loading-inline');
     
                         //====> Show Notifications <====//
-                        Phenix(document).notifications({
-                            type: "success",
-                            message: "Success : the Data has been Updated.",
-                            position: ["bottom", "end"],
-                        });
+                        data_success("Success : the Data has been Updated.");
 
                         //===> Update Types <===//
                         if (new_type['name']) {
-                            !new_type['enable'] ? update_list("pds_types", "types-list", type_template) : location.reload();
+                            !new_type['enable'] ? update_list("pds_types", ".types-list", type_template) : location.reload();
                         }
 
                         //===> Update Locations <===//
@@ -324,26 +330,55 @@
         //===> Remove Item Method <===//
         remove_item = (trigger) => {
             //===> Define Elements <===//
-            let menu_item = Phenix(button.target).ancestor('li'),
-                menu_name = Phenix(button.target).ancestor('li').querySelector('.item-name')?.textContent;
+            let menu_item = Phenix(trigger).ancestor('li'),
+                menu_element = Phenix(menu_item).ancestor('ul'),
+                item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
-            //===> Set Loading Mode then Delete the Location <===//
+            //===> Set Loading Mode <===//
             menu_item.classList.add('px-loading-inline');
-            delete current.menu_locations[`${menu_name}`];
+            
+            //===> Get Location from Rest-API <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options;
 
-            //===> Update Options <===//
-            update_options(current).then(succuss => {
-                //====> Show Notifications <====//
-                Phenix(document).notifications({
-                    type     : "success", //=== Message Type [normal, error, success, warning]
-                    message  : "the Location has been Deleted.", //=== Message Content
-                    position : ["bottom", "end"],  //=== Message Position [top,center,bottom] [start,center,end]
-                });
-            }).catch(error => {error.message});
+                //===> for Locations <===//
+                if (menu_element.classList.contains('locations-list')) {
+                    delete current.menu_locations[`${item_name}`];
+                }
+
+                //===> for Types <===//
+                else if (menu_element.classList.contains('types-list')) {
+                    //===> Define Data <===//
+                    let new_types = [];
+
+                    current.pds_types.forEach((type, index) => {
+                        if(type.name !== item_name) new_types.push(type);
+                    });
+                    
+                    current.pds_types = new_types;
+                }
+
+                //===> Update Options <===//
+                update_options(current).then(succuss => {
+                    //===> Show Notification <===//
+                    data_success("the Item has been Deleted.");
+
+                    //===> Update Types <===//
+                    if (menu_element.classList.contains('types-list')) {
+                        update_list("pds_types", ".types-list", type_template);
+                    }
+
+                    //===> Update Locations <===//
+                    else if (menu_element.classList.contains('locations-list')) {
+                        update_list("menu_locations", ".locations-list", location_template);
+                    }
+                }).catch(error => {error.message});
+            });
         };
 
         //===> Initial Data <===//
-        update_list("pds_types", "types-list", type_template);
+        update_list("pds_types", ".types-list", type_template);
         update_list("menu_locations", ".locations-list", location_template);
 
         //===> Add Item Trigger <===//

@@ -332,12 +332,13 @@
             //===> Define Elements <===//
             let menu_item = Phenix(trigger).ancestor('li'),
                 menu_element = Phenix(menu_item).ancestor('ul'),
+                item_stats = menu_item.querySelector(`[name="item-status"]`).value,
                 item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
             //===> Set Loading Mode <===//
             menu_item.classList.add('px-loading-inline');
-            
-            //===> Get Location from Rest-API <===//
+
+            //===> Get Data from Rest-API <===//
             get_options().then(options => {
                 //===> Define Data <===//
                 let current = options;
@@ -368,7 +369,7 @@
 
                     //===> Update Types <===//
                     if (menu_element.classList.contains('types-list')) {
-                        update_list("pds_types", ".types-list", type_template);
+                        item_stats == "on" ? location.reload() : update_list("pds_types", ".types-list", type_template);
                     }
 
                     //===> Update Locations <===//

@@ -352,10 +352,12 @@
                     //===> Define Data <===//
                     let new_types = [];
 
+                    //===> Find the item and Excluded from the new List <===//
                     current.pds_types.forEach((type, index) => {
                         if(type.name !== item_name) new_types.push(type);
                     });
                     
+                    //===> Set the New List <===//
                     current.pds_types = new_types;
                 }
 

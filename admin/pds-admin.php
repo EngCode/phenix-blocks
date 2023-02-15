@@ -34,8 +34,27 @@
             );
 
             //===> Remove Menu Items <===//
-            $removable = ['flamingo', 'upload.php', 'plugins.php', 'edit-comments.php'];
+            $removable = [
+                'flamingo',
+                'tools.php',
+                'upload.php',
+                'plugins.php',
+                'edit-comments.php',
+            ];
+
             foreach ($removable as $item) { remove_menu_page($item); }
+
+            //===> Remove Sub Menu Items <===//
+            $removable_sub = [
+                ['index.php', 'my-sites.php'],
+                ['index.php', 'my-sites.php'],
+                ['wpcf7', 'wpcf7-integration'],
+                ['options-general.php', 'options-writing.php'],
+                ['options-general.php', 'options-privacy.php'],
+                ['options-general.php', 'options-discussion.php'],
+            ];
+
+            foreach ($removable_sub as $item) { remove_submenu_page(...$item); }
 
             //===> Organize Menu Items <===//
             $movable = [

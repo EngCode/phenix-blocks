@@ -324,6 +324,9 @@
 
                             //===> Check Status <===//
                             else if (control_name === "enable") new_type[control_name] = control.value === "on" ? true : false;
+                            
+                            //===> Check Taxonomies <===//
+                            else if (control_name === "taxonomies") new_type[control_name] = [""];
 
                             //===> Set the Value <===//
                             else if (control.value) new_type[control_name] = control.value;
@@ -365,6 +368,11 @@
                             message: "Success : the Data has been Updated.",
                             position: ["bottom", "end"],
                         });
+
+                        //===> Update Lists <===//
+                        if (new_type['name']) !new_type['enable'] ? update_types_list() : location.reload();
+
+                        else if (new_location['name']) update_locations_list();
                     });
                 }).catch(error => {error.message});
             }

@@ -43,7 +43,7 @@
 
         <!-- // Panels Group -->
         <?php if (isset($submit_button) && $submit_button) : ?>
-            <input type="submit" name="submit" id="submit" class="ms-25 btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="<?php echo px__('Save Changes'); ?>">
+            <input type="submit" name="submit" id="submit" class="ms-25 btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase small" value="<?php echo __('Save Changes', 'phenix'); ?>">
         <?php endif; ?>
     </form>
     <!-- // Setting Wrapper -->

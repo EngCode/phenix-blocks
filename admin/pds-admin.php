@@ -16,8 +16,8 @@
         function pds_admin_menu() {
             //===> Main Settings <===//
             add_menu_page(
-                px__('Phenix Blocks Settings'),
-                px__('Phenix Blocks'),
+                __('Phenix Blocks Settings', 'phenix'),
+                __('Phenix Blocks', 'phenix'),
                 'manage_options',
                 'pds-admin',
                 'pds_admin_page',
@@ -26,8 +26,8 @@
 
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
-                px__('Custom Data Collection'),
-                px__('Data Collection'),
+                __('Custom Data Collection', 'phenix'),
+                __('Data Collection', 'phenix'),
                 'manage_options',
                 'pds-data-collection',
                 'pds_data_collection'
@@ -58,11 +58,11 @@
 
             //===> Organize Menu Items <===//
             $movable = [
-                ['themes.php', null, px__('Plugins'), 'manage_options', 'plugins.php'],
-                ['users.php', null, px__('Comments'), 'manage_options', 'edit-comments.php'],
-                ['wpcf7', null, px__('Address Book'), 'manage_options', 'admin.php?page=flamingo'],
-                ['options-general.php', null, px__('Media Uploads'), 'manage_options', 'upload.php'],
-                ['wpcf7', null, px__('Inbox Messages'), 'manage_options', 'admin.php?page=flamingo_inbound'],
+                ['themes.php', null, __('Plugins', 'phenix'), 'manage_options', 'plugins.php'],
+                ['users.php', null, __('Comments', 'phenix'), 'manage_options', 'edit-comments.php'],
+                ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
+                ['options-general.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
+                ['wpcf7', null, __('Inbox Messages', 'phenix'), 'manage_options', 'admin.php?page=flamingo_inbound'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }

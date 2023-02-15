@@ -17,44 +17,44 @@
     <!-- Column -->
     <div class="col-12 col-lg-5 pdy-10 me-lg-20">
         <!-- Area Title -->
-        <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Add New Metabox'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo px__('you can add new menu metabox from below form.'); ?></p>
+        <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Add New Metabox', 'phenix'); ?></h3>
+        <p class="mb-20 fs-14"><?php echo __('you can add new menu metabox from below form.', 'phenix'); ?></p>
          <!-- Form Control -->
         <div class="control-icon far fa-metabox mb-15">
-            <select name="add-post-page" id="select-post-page" class="form-control" data-placeholder="<?php echo px__('Select Type');?>" data-search="1" >
-                <option value=""><?php echo px__('Select Type');?></option>
-                <option value="page"><?php echo px__('Page');?></option>
-                <option value="post"><?php echo px__('Post');?></option>
+            <select name="add-post-page" id="select-post-page" class="form-control" data-placeholder="<?php echo __('Select Type', 'phenix');?>" data-search="1" >
+                <option value=""><?php echo __('Select Type', 'phenix');?></option>
+                <option value="page"><?php echo __('Page', 'phenix');?></option>
+                <option value="post"><?php echo __('Post', 'phenix');?></option>
             </select>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-metabox mb-15">
-            <select name="add-metabox-post-type[]" id="select-post-type" class="form-control px-select post-page" data-placeholder="<?php echo px__('Select Post Type');?>" data-search="1" multiple>
+            <select name="add-metabox-post-type[]" id="select-post-type" class="form-control px-select post-page" data-placeholder="<?php echo __('Select Post Type', 'phenix');?>" data-search="1" multiple>
             </select>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-metabox-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Metabox Title');?>" required>
+            <input type="text" name="add-metabox-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Metabox Title', 'phenix');?>" required>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-metabox mb-15">
-            <input type="text" name="add-metabox-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Metabox-name');?>">
+            <input type="text" name="add-metabox-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Metabox-name', 'phenix');?>">
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-metabox mb-15">
-            <select name="add-type" id="select-type" class="form-control" data-placeholder="<?php echo px__('Select Field Type');?>" data-search="1" >
-                <option value=""><?php echo px__('Select Field Type');?></option>
-                <option value="text"><?php echo px__('Text');?></option>
-                <option value="number"><?php echo px__('Number');?></option>
-                <option value="date"><?php echo px__('Date');?></option>
-                <option value="file"><?php echo px__('File');?></option>
-                <option value="select"><?php echo px__('Select');?></option>
+            <select name="add-type" id="select-type" class="form-control" data-placeholder="<?php echo __('Select Field Type', 'phenix');?>" data-search="1" >
+                <option value=""><?php echo __('Select Field Type', 'phenix');?></option>
+                <option value="text"><?php echo __('Text', 'phenix');?></option>
+                <option value="number"><?php echo __('Number', 'phenix');?></option>
+                <option value="date"><?php echo __('Date', 'phenix');?></option>
+                <option value="file"><?php echo __('File', 'phenix');?></option>
+                <option value="select"><?php echo __('Select', 'phenix');?></option>
             </select>
         </div>
        
      
         <!-- Form Control -->
-        <button type="button" name="add-metabox-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Metabox'); ?></button>
+        <button type="button" name="add-metabox-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo __('Add Metabox', 'phenix'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -62,15 +62,15 @@
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
             <div class="col">
-                <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Menu metabox'); ?></h3>
-                <p class="fs-14"><?php echo px__('in here you can manage the menu metabox created by phenix-blocks.'); ?></p>
+                <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Menu metabox', 'phenix'); ?></h3>
+                <p class="fs-14"><?php echo __('in here you can manage the menu metabox created by phenix-blocks.', 'phenix'); ?></p>
             </div>
         </div>
         <!-- metabox List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm metabox-list">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-                <span class="col-5"><?php echo px__('Metabox Title'); ?></span>
-                <span class="col-5"><?php echo px__('Metabox Name'); ?></span>
+                <span class="col-5"><?php echo __('Metabox Title', 'phenix'); ?></span>
+                <span class="col-5"><?php echo __('Metabox Name', 'phenix'); ?></span>
             </li>
         </ul>
     </div>

@@ -205,7 +205,7 @@
             });
         },
 
-        //===> Update Method <===//
+        //===> Update List Method <===//
         update_list = (type, list, template) => {
             //===> Get Data from Rest-API <===//
             get_options().then(options => {

@@ -14,11 +14,11 @@
     <!-- Column -->
     <div class="col-12 col-lg-5 pdy-10 me-lg-20">
         <!-- Area Title -->
-        <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Add New Taxonomy'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo px__('you can add new menu taxonomies from below form.'); ?></p>
+        <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Add New Taxonomy', 'phenix'); ?></h3>
+        <p class="mb-20 fs-14"><?php echo __('you can add new menu taxonomies from below form.', 'phenix'); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-taxonomy mb-15">
-            <select name="add-taxonomy-post-type[]" id="select-post-type" class="form-control px-select" data-placeholder="<?php echo px__('Select Post Tye');?>" data-search="1" multiple>
+            <select name="add-taxonomy-post-type[]" id="select-post-type" class="form-control px-select" data-placeholder="<?php echo __('Select Post Tye', 'phenix');?>" data-search="1" multiple>
               <?php foreach($post_types as $post_type){?>
                 <option value="<?php echo $post_type;?>"><?php echo $post_type;?></option>
                 <?php }?>
@@ -26,22 +26,22 @@
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-taxonomy-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Taxonomy Title');?>" required>
+            <input type="text" name="add-taxonomy-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Taxonomy Title', 'phenix');?>" required>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-taxonomy mb-15">
-            <input type="text" name="add-taxonomy-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('taxonomy-name');?>">
+            <input type="text" name="add-taxonomy-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('taxonomy-name', 'phenix');?>">
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-taxonomy-label-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Label Singular');?>">
+            <input type="text" name="add-taxonomy-label-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Label Singular', 'phenix');?>">
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-taxonomy-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo px__('Singular');?>">
+            <input type="text" name="add-taxonomy-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Singular', 'phenix');?>">
         </div>
         <!-- Form Control -->
-        <button type="button" name="add-taxonomy-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo px__('Add Taxonomy'); ?></button>
+        <button type="button" name="add-taxonomy-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo __('Add Taxonomy', 'phenix'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -49,15 +49,15 @@
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
             <div class="col">
-                <h3 class="fs-16 mb-5 weight-medium"><?php echo px__('Menu Taxonomies'); ?></h3>
-                <p class="fs-14"><?php echo px__('in here you can manage the menu taxonomies created by phenix-blocks.'); ?></p>
+                <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Menu Taxonomies', 'phenix'); ?></h3>
+                <p class="fs-14"><?php echo __('in here you can manage the menu taxonomies created by phenix-blocks.', 'phenix'); ?></p>
             </div>
         </div>
         <!-- taxonomies List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm taxonomies-list">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-                <span class="col-5"><?php echo px__('Taxonomy Title'); ?></span>
-                <span class="col-5"><?php echo px__('Taxonomy Name'); ?></span>
+                <span class="col-5"><?php echo __('Taxonomy Title', 'phenix'); ?></span>
+                <span class="col-5"><?php echo __('Taxonomy Name', 'phenix'); ?></span>
             </li>
         </ul>
     </div>

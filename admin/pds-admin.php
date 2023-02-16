@@ -69,7 +69,8 @@
                 ['themes.php', null, __('Plugins', 'phenix'), 'manage_options', 'plugins.php'],
                 ['users.php', null, __('Comments', 'phenix'), 'manage_options', 'edit-comments.php'],
                 ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
-                ['options-general.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
+                ['options-general.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'update-core.php'],
+                ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'upload.php'],
                 ['wpcf7', null, __('Inbox Messages', 'phenix'), 'manage_options', 'admin.php?page=flamingo_inbound'],
             ];
 

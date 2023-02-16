@@ -52,6 +52,7 @@ if (!function_exists('phenix_core')) :
 
     add_action('wp_enqueue_scripts', 'phenix_core');
     add_action('enqueue_block_editor_assets', 'phenix_core');
+    add_action('login_enqueue_scripts', 'phenix_core');
 endif;
 
 //=====> Phenix Assets <=====//
@@ -121,4 +122,19 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         add_action( 'wp_head', 'admin_custom_font' );
     }
 
+endif;
+
+//====> Login Page Script <====//
+if (!function_exists('pds_login_admin')) :
+	/**
+	 * Overwrite Login Page Design
+	 * @since Phenix Blocks 1.0
+	 * @return void
+	*/
+    function pds_login_admin () {
+        //===> Script <===//
+        include(dirname(__FILE__) . '/login-overwrite.php');
+    }
+
+    add_action('login_enqueue_scripts', 'pds_login_admin');
 endif;

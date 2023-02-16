@@ -298,7 +298,7 @@
             }
 
             //===> if the Post-Type is Enabled <===//
-            if($post_type['enable']) {
+            if(isset($post_type['enable']) && $post_type['enable'] == true) {
                 pds_cpt_create($post_type);
             }
         }

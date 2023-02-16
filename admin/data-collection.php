@@ -274,7 +274,7 @@
                             if (!control.value && control_name === "name") new_type[control_name] = new_type["label"].toLowerCase().replaceAll(' ','-');
 
                             //===> Check Status <===//
-                            else if (control_name === "enable") new_type[control_name] = control.value === "on" ? true : false;
+                            else if (control_name === "enable") new_type[control_name] = control.checked;
 
                             //===> Set the Value <===//
                             else if (control.value || control_name == "taxonomies") new_type[control_name] = control.value.length > 0 ? control.value : [];

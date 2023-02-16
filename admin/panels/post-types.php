@@ -47,10 +47,14 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-file-alt">
-                    <select name="type-template" class="px-select form-control radius-sm fs-13">
-                        <option value=""><?php echo __("Pattern Template", 'phenix'); ?></option>
-                        <option value="slide-example"><?php echo __("Slider Single", 'phenix'); ?></option>
-                        <option value="blog-example"><?php echo __("Blog Single", 'phenix'); ?></option>
+                    <select name="type-template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Pattern Template' ,'phenix'); ?>">
+                        <option value=""><?php echo __("Default", 'phenix'); ?></option>
+                        <?php 
+                            $block_patterns = pds_get_patterns();
+                            foreach ($block_patterns as $pattern) {
+                                echo '<option value="'.$pattern['name'].'">' . $pattern['title'] . '</option>';
+                            }
+                        ?>
                     </select>
                 </div>
             </div>

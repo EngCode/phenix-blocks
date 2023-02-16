@@ -22,11 +22,7 @@ if (!function_exists('pds_blocks_default_values')) :
                 "name"  => "post",
                 "label" => "Blog Posts",
                 "label_singular" => "Posts",
-                "template" => array (
-                    array('core/pattern',
-                        array ('slug' => 'phenix/blog-example'),
-                    ),
-                ),
+                "template" => "phenix/blog-example",
                 "menu_icon" => "welcome-widgets-menus",
                 "taxonomies" => array('tag','category')
             ),
@@ -36,11 +32,7 @@ if (!function_exists('pds_blocks_default_values')) :
                 "label" => "Home Slider",
                 "singular" => "slides",
                 "label_singular" => "Slides",
-                "template" => array (
-                    array('core/pattern',
-                        array ('slug' => 'phenix/slide-example'),
-                    ),
-                ),
+                "template" => "phenix/slide-example",
                 "menu_icon" => "welcome-view-site",
                 "taxonomies" => array()
             ),

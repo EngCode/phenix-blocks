@@ -20,10 +20,23 @@ if (!function_exists('pds_cpt_create')) :
             $label = $options["label"];
             $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
             $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
-            $template = isset($options['template']) ? $options["template"] : array();
+            $template = isset($options['template']) ? $options["template"] : "";
             $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
             $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 19;
             $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
+
+            //==== Template Correct ====//
+            if($template && getType($template) !== 'array') {
+                if ($template == "") {
+                    $template = array();
+                } else {
+                    $template = array (
+                        array('core/pattern',
+                            array ('slug' => $template),
+                        ),
+                    );
+                }
+            }
 
             //==== CPT Labels ====//
             $labels = array(

@@ -104,3 +104,20 @@ add_filter('excerpt_length', 'px_excerpt_length', 175);
 //====> Excerpt More <====//
 function wpdocs_excerpt_more($more) {return '...';}
 add_filter('excerpt_more', 'wpdocs_excerpt_more');
+
+//===> Get Patterns Function <===//
+function pds_get_patterns() {
+	//===> Get Registered Block Patterns <===//
+	$get_patterns  = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+
+	//===> Get the Names of the Patterns <===//
+	$pattern_names = array_map(
+		function (array $pattern) {
+			return $pattern;
+		},
+		$get_patterns
+	);
+
+	//===> Return the Patterns Names <===//
+	return $pattern_names;
+}

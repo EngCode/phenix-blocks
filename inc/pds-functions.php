@@ -106,18 +106,25 @@ function wpdocs_excerpt_more($more) {return '...';}
 add_filter('excerpt_more', 'wpdocs_excerpt_more');
 
 //===> Get Patterns Function <===//
-function pds_get_patterns() {
-	//===> Get Registered Block Patterns <===//
-	$get_patterns  = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+if (!function_exists('pds_get_patterns')) :
+	/**
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
 
-	//===> Get the Names of the Patterns <===//
-	$pattern_names = array_map(
-		function (array $pattern) {
-			return $pattern;
-		},
-		$get_patterns
-	);
+	function pds_get_patterns() {
+		//===> Get Registered Block Patterns <===//
+		$get_patterns  = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
 
-	//===> Return the Patterns Names <===//
-	return $pattern_names;
-}
+		//===> Create a new List of Patterns <===//
+		$patterns_list = array_map(
+			function (array $pattern) {
+				return $pattern;
+			},
+			$get_patterns
+		);
+
+		//===> Return the Patterns <===//
+		return $patterns_list;
+	}
+endif;

@@ -33,6 +33,14 @@
                 'pds_data_collection'
             );
 
+            //===> Reusable Blocks <===//
+            add_submenu_page('pds-admin',
+                __('Reusable Blocks', 'phenix'),
+                __('Reusable Blocks', 'phenix'),
+                'manage_options',
+                'edit.php?post_type=wp_block',
+            );
+
             //===> Remove Menu Items <===//
             $removable = [
                 'flamingo',

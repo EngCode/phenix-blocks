@@ -189,9 +189,9 @@
                         <input type="checkbox" name="item-status" ${type.enable ? 'checked' : null}><span class="switch"></span>
                     </label>
                     <!-- Edit -->
-                    <button type="button" class="edit-item me-5 btn light tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                    <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
                     <!-- Remove -->
-                    <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                    <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
                 </div>
             </li>`);
         },
@@ -224,6 +224,9 @@
                     theData.forEach(item => Phenix(dataList).insert('append', template(item)));
                 }
 
+                //===> Activate Edit Method <===//
+                Phenix(`${list} .edit-item`).on('click', event => edit_item(event.target));
+                
                 //===> Activate Remove Method <===//
                 Phenix(`${list} .remove-item`).on('click', event => remove_item(event.target));
 
@@ -303,14 +306,30 @@
                     else if (new_type['name']) {
                         //===> Check for Existing <===//
                         let alreadyExist = false;
-                        current.pds_types.forEach(type => type['name'] === new_type['name'] ? alreadyExist = true : null);
+                        current.pds_types.forEach(type => {
+                            //===> Set New Type <===//
+                            type['name'] === new_type['name'] ? alreadyExist = true : null;
 
-                        //===> add the New Type <===//
-                        if (!alreadyExist) current.pds_types.push(new_type);
+                            //===> if found convert to update <===//
+                            if (alreadyExist) {
+                                //===> Define Data <===//
+                                let new_types = [];
+                                
+                                //===> Remove the old Type <===//
+                                current.pds_types.forEach((type) => type.name !== new_type.name ? new_types.push(type) : null);
+
+                                //===> Reset Existing <===//
+                                current.pds_types = new_types;
+                                alreadyExist = false;
+                            }
+                        });
+
+                        //===> Add Type <===//
+                        if (!alreadyExist) { current.pds_types.push(new_type); }
                     }
 
                     //===> Update Options <===//
-                    update_options(options).then(response => {
+                    update_options(current).then(response => {
                         //===> Remove Loading Mode <===//
                         trigger.classList.remove('px-loading-inline');
     
@@ -380,7 +399,7 @@
                     }
                 }).catch(error => {error.message});
             });
-        };
+        },
 
         //===> Toggle Item Method <===//
         toggle_item = (trigger) => {
@@ -388,6 +407,7 @@
             let item_stats = trigger.checked,
                 menu_item = Phenix(trigger).ancestor('li'),
                 menu_element = Phenix(menu_item).ancestor('ul'),
+                listClasses = menu_element.classList,
                 item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
             //===> Set Loading Mode <===//
@@ -397,13 +417,13 @@
             get_options().then(options => {
                 //===> Define Data <===//
                 let current = options,
-                    listClasses = menu_element.classList,
-                    dataTarget  = listClasses.contains('types-list') ? current.pds_types : [];
+                    dataTarget = [];
 
                 //===> Correct Data Target <===//
-                if (listClasses.contains('taxonomies-list')) dataTarget = current.pds_taxonomies;
-                if (listClasses.contains('metabox-list')) dataTarget = current.pds_metabox;
-                if (listClasses.contains('patterns-list')) dataTarget = current.block_patterns;
+                if (listClasses.contains('types-list')) dataTarget = current.pds_types;
+                else if (listClasses.contains('metabox-list')) dataTarget = current.pds_metabox;
+                else if (listClasses.contains('patterns-list')) dataTarget = current.block_patterns;
+                else if (listClasses.contains('taxonomies-list')) dataTarget = current.pds_taxonomies;
 
                 //===> Find the item and change its status <===//
                 if (dataTarget.length > 0) dataTarget.forEach((item) => item.name === item_name ? item.enable = item_stats : null);
@@ -416,6 +436,125 @@
                     //===> Reload Page <===//
                     location.reload();
                 }).catch(error => {error.message});
+            });
+        },
+
+        //===> Toggle Item Method <===//
+        edit_item = (trigger) => {
+            //===> Define Elements <===//
+            let menu_item = Phenix(trigger).ancestor('li'),
+                menu_element = Phenix(menu_item).ancestor('ul'),
+                listClasses = menu_element.classList,
+                item_stats = menu_item.querySelector(`[name="item-status"]`).checked,
+                item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
+
+            //===> Set Selected Mode <===//
+            menu_element.querySelector('.bg-offwhite-primary')?.classList.remove('bg-offwhite-primary');
+            menu_item.classList.add('bg-offwhite-primary');
+
+            //===> Define Data <===//
+            let dataItem,
+                FormElement = document.querySelector(".tab-panel.active .collection-form"),
+                dataType = FormElement?.getAttribute('data-type'),
+                FormControls = FormElement.querySelectorAll('input, select, textarea');
+
+                
+            //===> Highlight Form <===//
+            FormElement.classList.add('form-highlight');
+            setTimeout(() => FormElement.classList.remove('form-highlight'), 1500);
+
+            //===> Reset Controls <===//
+            FormControls.forEach(control => {
+                //===> Define Data <===//
+                let control_tag  = control.tagName;
+
+                //===> Reset Value <===//
+                if (control_tag === 'SELECT') {
+                    //===> Check for PDS <===//
+                    let pds_select = Phenix(control).ancestor('.px-select');
+
+                    //===> Unselect the Options <===//
+                    control.querySelectorAll('option[selected]').forEach(option => option.removeAttribute('selected'));
+
+                    //===> Reset Value <===//
+                    if (pds_select) {
+                        control.value = "";
+                        pds_select.setAttribute('data-value', "");
+                        control.dispatchEvent(new Event('update'));
+                    } else control.value = "";
+                } 
+
+                //===> Textarea Controls <===//
+                else if (control_tag === 'TEXTAREA') control.textContent = dataItem[control_name];
+
+                //===> Other Controls <===//
+                else {
+                    control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
+                }
+            });
+
+            //===> Get Data from Rest-API <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options,
+                    dataTarget = [];
+
+                //===> Correct Data Target <===//
+                if (listClasses.contains('types-list')) dataTarget = current.pds_types;
+                else if (listClasses.contains('metabox-list')) dataTarget = current.pds_metabox;
+                else if (listClasses.contains('patterns-list')) dataTarget = current.block_patterns;
+                else if (listClasses.contains('taxonomies-list')) dataTarget = current.pds_taxonomies;
+
+                //===> Get the Required Item <===//
+                dataTarget.forEach(item => item.name === item_name ? dataItem = item : null);
+ 
+                //===> Check for Data Item <===//
+                if (dataItem) {
+                    //===> Update Controls <===//
+                    FormControls.forEach(control => {
+                        //===> Define Data <===//
+                        let control_name = control.getAttribute('name'),
+                            control_tag  = control.tagName,
+                            control_type = control.getAttribute('type');
+    
+                        //===> Correct Control Name <===//
+                        if (dataType == 'post-types' && control_name) control_name = control_name.replace('type-', '');
+    
+                        //===> Check for Data <===//
+                        if (control_name && dataItem[control_name]) {
+                            //===> Select Controls <===//
+                            if (control_tag === 'SELECT') {
+                                //===> Define Data <===//
+                                let pds_select = Phenix(control).ancestor('.px-select'),
+                                    data_value = typeof(dataItem[control_name]) === 'string' ? dataItem[control_name].split(' ') : dataItem[control_name];
+    
+                                //===> Select the Options <===//
+                                control.querySelectorAll('option').forEach(option => {
+                                    //===> Check for Value <===//
+                                    if (option.value.length > 0) data_value.forEach(val => option.value === val ? option.setAttribute('selected', true) : null);
+                                });
+    
+                                //===> Set the Value <===//
+                                control.value = dataItem[control_name];
+                                
+                                //===> Update PDS : Select <===//
+                                if (pds_select) {
+                                    pds_select.setAttribute('data-value', dataItem[control_name]);
+                                    control.dispatchEvent(new Event('update'));
+                                }
+                            }
+                            //===> Textarea Controls <===//
+                            else if (control_tag === 'TEXTAREA') control.textContent = dataItem[control_name];
+                            //===> Normal Controls <===//
+                            else {
+                                //===> Checkbox Controls <===//
+                                if(control_type === 'checkbox') control.checked = dataItem[control_name];
+                                //===> Normal Inputs <===//
+                                else {control.value = dataItem[control_name];}
+                            }
+                        }
+                    });
+                }
             });
         };
 

@@ -124,6 +124,24 @@
 
 .flex-gap-fix {gap: calc(7px);}
 
+/*==== Form Highlight ====*/
+.form-highlight .form-control {
+	-webkit-animation: controlHighlight 500ms linear infinite;
+	        animation: controlHighlight 500ms linear infinite;
+}
+
+@-webkit-keyframes controlHighlight {
+	from {box-shadow: revert;}
+	50% {box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {box-shadow: revert;}
+}
+
+@keyframes controlHighlight {
+	from {box-shadow: revert;}
+	50% {box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {box-shadow: revert;}
+}
+
 /*==== Align Icons ====*/
 .pxi-align-x-start::before   {background-image: url('../img/blocks/align-x-#{$direction-start}.svg');}
 .pxi-align-x-center::before  {background-image: url('../img/blocks/align-x-center.svg');}

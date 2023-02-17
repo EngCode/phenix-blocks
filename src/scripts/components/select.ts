@@ -156,6 +156,79 @@ PhenixElements.prototype.select = function (options?:{
                     //===> Remover Size Fixer <===//
                     if(Phenix(document).direction() === 'ltr') return 'padding-left: calc(1.5em + 8px)';
                     else return 'padding-right: calc(1.5em + 8px)';
+                },
+                //====> Default Value Setter <====//
+                get_default_value = () => {
+                    //====> Set Default Value <====//
+                    if (!multiple && select.querySelector('[selected]')) {
+                        //====> Set Value <====//
+                        let selected_option = select.querySelector('[selected]'),
+                            default_value = selected_option.getAttribute('value'),
+                            default_label = selected_option.textContent;
+
+                        new_select[0].setAttribute('data-value', default_value);
+                        new_select_value.textContent = default_label;
+
+                        //====> Change Classes <====//
+                        if(selected_option.classList) {
+                            //====> Get new Classes <====//
+                            let new_classes = selected_option.classList,
+                                holder_classes = select.getAttribute('data-holder-classes')?.split(' ') || [''];
+
+                            //====> Remove Holder Classes <====//
+                            holder_classes.forEach(cl => {
+                                if (cl === '') return;
+                                new_select_value.classList.remove(cl);
+                            });
+
+                            //====> Set New Classes <====//
+                            new_select_value.classList.add(...new_classes);
+                        }
+
+                        //====> Change Image <====//
+                        if (selected_option.getAttribute('data-image')) {
+                            //===> Get New Image <===//
+                            let new_image = encodeURI(selected_option.getAttribute('data-image')),
+                                current_image = new_select_value.querySelector('img'),
+                                holder_classes = select.getAttribute('data-holder-classes')?.split(' ') || [''];
+
+                            //====> Remove Holder Classes <====//
+                            holder_classes.forEach(cl => new_select_value.classList.remove(cl));
+
+                            //===> If Exist Change URL <====//
+                            if (current_image) {
+                                current_image.setAttribute('src', new_image);
+                                current_image.setAttribute('alt', selected_option.textContent);
+                            }
+
+                            //===> Create Image <===//
+                            else Phenix(new_select_value).insert('prepend', `<img style="width:1em" alt="${selected_option.textContent}" src="${new_image}" class="me-5">`);
+                        }
+                    } 
+                    //====> For Multiple Selection <====//
+                    else if (multiple) {
+                        //====> Collect Default Value <====//
+                        let default_values = [],
+                            search_element = Phenix(new_value_group.querySelector('.px-select-search'));
+
+                        //====> Reset Value <====//
+                        new_value_group.querySelectorAll('.px-selected-value').forEach(value => value.remove());
+
+                        //====> Attach each Option as Tag <====// 
+                        select.querySelectorAll('[selected]').forEach(item => {
+                            //====> Create the Option <====//
+                            let value_element = search_element.insert('before', `<span style="font-size: 0.8em;${tag_padding_fixer()}" class="${tag_classes}" data-value="${item.value}">${tag_remover} ${item.textContent}</span>`);
+
+                            //====> Collect its Value <=====//
+                            default_values.push(item.value);
+
+                            //====> Set Remover <====//
+                            set_tag_remover(value_element.querySelector('.px-value-remover'));
+                        });
+                        //====> Set Default Values <====//
+                        new_select[0].setAttribute('data-value', default_values);
+                        select.value = default_values;
+                    }
                 };
 
             //====> Multiple Mode <====//
@@ -196,70 +269,7 @@ PhenixElements.prototype.select = function (options?:{
             }
 
             //====> Set Default Value <====//
-            if (!multiple && select.querySelector('[selected]')) {
-                //====> Set Value <====//
-                let selected_option = select.querySelector('[selected]'),
-                    default_value = selected_option.getAttribute('value'),
-                    default_label = selected_option.textContent;
-
-                new_select[0].setAttribute('data-value', default_value);
-                new_select_value.textContent = default_label;
-
-                //====> Change Classes <====//
-                if(selected_option.classList) {
-                    //====> Get new Classes <====//
-                    let new_classes = selected_option.classList,
-                        holder_classes = select.getAttribute('data-holder-classes')?.split(' ') || [''];
-
-                    //====> Remove Holder Classes <====//
-                    holder_classes.forEach(cl => {
-                        if (cl === '') return;
-                        new_select_value.classList.remove(cl);
-                    });
-
-                    //====> Set New Classes <====//
-                    new_select_value.classList.add(...new_classes);
-                }
-
-                //====> Change Image <====//
-                if (selected_option.getAttribute('data-image')) {
-                    //===> Get New Image <===//
-                    let new_image = encodeURI(selected_option.getAttribute('data-image')),
-                        current_image = new_select_value.querySelector('img'),
-                        holder_classes = select.getAttribute('data-holder-classes')?.split(' ') || [''];
-
-                    //====> Remove Holder Classes <====//
-                    holder_classes.forEach(cl => new_select_value.classList.remove(cl));
-
-                    //===> If Exist Change URL <====//
-                    if (current_image) {
-                        current_image.setAttribute('src', new_image);
-                        current_image.setAttribute('alt', selected_option.textContent);
-                    }
-
-                    //===> Create Image <===//
-                    else Phenix(new_select_value).insert('prepend', `<img style="width:1em" alt="${selected_option.textContent}" src="${new_image}" class="me-5">`);
-                }
-            } 
-            //====> For Multiple Selection <====//
-            else if (multiple) {
-                //====> Collect Default Value <====//
-                let default_values = [];
-                //====> Attach each Option as Tag <====// 
-                select.querySelectorAll('[selected]').forEach(item => {
-                    //====> Create the Option <====//
-                    let value_element = Phenix(new_value_group.querySelector('.px-select-search')).insert('before', `<span style="font-size: 0.8em;${tag_padding_fixer()}" class="${tag_classes}" data-value="${item.value}">${tag_remover} ${item.textContent}</span>`);
-                    
-                    //====> Collect its Value <=====//
-                    default_values.push(item.value);
-
-                    //====> Set Remover <====//
-                    set_tag_remover(value_element.querySelector('.px-value-remover'));
-                });
-                //====> Set Default Values <====//
-                new_select[0].setAttribute('data-value', default_values);
-                select.value = default_values;
-            }
+            get_default_value();
 
             //====> Disabled Mode <====//
             if (select.hasAttribute('disabled')) new_select.addClass('disabled');
@@ -283,7 +293,7 @@ PhenixElements.prototype.select = function (options?:{
                         //====> Hide All Group Titles <====//
                         options_list[0].querySelectorAll('.px-select-group').forEach(headline => headline.classList.add('hidden'));
                         
-                        //====> Loop Throgh Options <====//
+                        //====> Loop Through Options <====//
                         options_list[0].querySelectorAll('.px-select-option,.px-select-disabled').forEach(option => {
                             //====> Hide Options <====//
                             option.classList.add('hidden');
@@ -311,8 +321,9 @@ PhenixElements.prototype.select = function (options?:{
             //====> Create Custom Events <====//
             const opened = new CustomEvent('opened', {detail: events_data}), //===> Fired when options list is opened
                   change = new CustomEvent('change', {detail: events_data}), //===> Fired when select value is changed
+                  update = new CustomEvent('update', {detail: events_data}), //===> Fired when select value is changed
                   typing = new CustomEvent('typing', {detail: events_data}), //===> Fired when typing in options search
-                  focus  = new CustomEvent('focus',  {detail: events_data}), //===> Fired when focued on options search
+                  focus  = new CustomEvent('focus',  {detail: events_data}), //===> Fired when focused on options search
                   closed = new CustomEvent('closed', {detail: events_data}); //===> Fired when options list is closed
 
             //====> Show Options <====//
@@ -336,7 +347,7 @@ PhenixElements.prototype.select = function (options?:{
                     check_clicked = clicked !== new_select[0] && clicked !== select_toggle && !clicked.matches('.px-selected-value'),
                     check_clicked_2 = clicked !== select_search && !clicked.matches('.px-select-disabled');
 
-                //====> if the target is not the current element or any of its childerns <====//
+                //====> if the target is not the current element or any of its children <====//
                 if (check_clicked && check_clicked_2) {
                     Phenix(options_list).fadeOut();
                     //===> Fire Event <===//
@@ -402,15 +413,14 @@ PhenixElements.prototype.select = function (options?:{
                     } 
                     //===> Multiple Mode <===//
                     else {
-                        
                         //====> Get Current Value <====//
                         let current_values = new_select[0].getAttribute('data-value').split(','),
                         isSelected = false;
                           
                         //====> Check Selected Values <====//
                         current_values.forEach(val => val === value ? isSelected = true : null);
-                        
-                        //===> if items has reachs the Maximum or is already Selected <===//
+
+                        //===> if items has reaches the Maximum or is already Selected <===//
                         if (current_values.length >= maxItems || isSelected) return;
 
                         //====> Create the Option <====//
@@ -440,16 +450,23 @@ PhenixElements.prototype.select = function (options?:{
             //====> Change Position on Scroll <====//
             let isScrolling = false;
             window.addEventListener('scroll', scrolling => isScrolling = true, {passive: true});
+
             setInterval(() => {
                 if (isScrolling) {
                     isScrolling = false;
                     Phenix(options_list).dynamicPosition();
                 }
             }, 300);
+
+            //===> Update Value <==//
+            select.addEventListener('update', isUpdated => get_default_value());
         }
 
         //====> if Already Mounted Update <====//
-        else { /* ..update.mode.. */ }
+        else {
+            //===> Define Data <===//
+            // let pds_options = select.
+        }
     });
 
     //====> Return Phenix <====//

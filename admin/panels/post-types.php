@@ -40,7 +40,7 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-image">
-                    <input type="text" name="type-icon" class="form-control radius-sm fs-13" placeholder="<?php echo __('Icon', 'phenix');?>" required>
+                    <input type="text" name="type-menu_icon" class="form-control radius-sm fs-13" placeholder="<?php echo __('Icon', 'phenix');?>" required>
                 </div>
             </div>
             <!-- Column -->

@@ -15,47 +15,14 @@
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="metabox">
+    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="block-pattern">
         <!-- Area Title -->
-        <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Metabox', 'phenix'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo __('you can add/edit metaboxes from the next form.', 'phenix'); ?></p>
+        <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Pattern', 'phenix'); ?></h3>
+        <p class="mb-20 fs-14"><?php echo __('you can add/edit gutenberg block patterns from the next form.', 'phenix'); ?></p>
+
 
         <!-- Form Control -->
-        <div class="control-icon far fa-metabox mb-15">
-            <select name="add-post-page" id="select-post-page" class="form-control" data-placeholder="<?php echo __('Select Type', 'phenix');?>" data-search="1" >
-                <option value=""><?php echo __('Select Type', 'phenix');?></option>
-                <option value="page"><?php echo __('Page', 'phenix');?></option>
-                <option value="post"><?php echo __('Post', 'phenix');?></option>
-            </select>
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-metabox mb-15">
-            <select name="add-metabox-post-type[]" id="select-post-type" class="form-control px-select post-page" data-placeholder="<?php echo __('Select Post Type', 'phenix');?>" data-search="1" multiple>
-            </select>
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-metabox-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Metabox Title', 'phenix');?>" required>
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-metabox mb-15">
-            <input type="text" name="add-metabox-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Metabox-name', 'phenix');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-metabox mb-15">
-            <select name="add-type" id="select-type" class="form-control" data-placeholder="<?php echo __('Select Field Type', 'phenix');?>" data-search="1" >
-                <option value=""><?php echo __('Select Field Type', 'phenix');?></option>
-                <option value="text"><?php echo __('Text', 'phenix');?></option>
-                <option value="number"><?php echo __('Number', 'phenix');?></option>
-                <option value="date"><?php echo __('Date', 'phenix');?></option>
-                <option value="file"><?php echo __('File', 'phenix');?></option>
-                <option value="select"><?php echo __('Select', 'phenix');?></option>
-            </select>
-        </div>
-       
-     
-        <!-- Form Control -->
-        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Metabox', 'phenix'); ?></button>
+        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Pattern', 'phenix'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -63,8 +30,8 @@
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
             <div class="col">
-                <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Metaboxes List', 'phenix'); ?></h3>
-                <p class="fs-14"><?php echo __('in here you can manage the metaboxes created by phenix-blocks.', 'phenix'); ?></p>
+                <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Patterns List', 'phenix'); ?></h3>
+                <p class="fs-14"><?php echo __('in here you can manage the patterns created by phenix-blocks.', 'phenix'); ?></p>
             </div>
         </div>
         <!-- metabox List -->
@@ -72,7 +39,7 @@
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
                 <span class="col-4"><?php echo __('Label', 'phenix'); ?></span>
                 <span class="col-3"><?php echo __('Name', 'phenix'); ?></span>
-                <span class="col-2"><?php echo __('Types', 'phenix'); ?></span>
+                <span class="col-2"><?php echo __('Category', 'phenix'); ?></span>
             </li>
         </ul>
     </div>

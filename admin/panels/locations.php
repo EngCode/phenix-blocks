@@ -12,11 +12,11 @@
         <p class="mb-20 fs-14"><?php echo __('you can add new menu locations from below form.', 'phenix'); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-list mb-15">
-            <input type="text" name="location-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Location Title', 'phenix');?>" required>
+            <input type="text" name="title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Location Title', 'phenix');?>" required>
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">
-            <input type="text" name="location-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('location-name', 'phenix');?>">
+            <input type="text" name="name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('location-name', 'phenix');?>">
         </div>
         <!-- Form Control -->
         <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Location', 'phenix'); ?></button>

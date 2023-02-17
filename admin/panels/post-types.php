@@ -4,7 +4,7 @@
     <div class="col-12 col-lg-6 w-max-480 pdy-10">
         <!-- Area Title -->
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Post Type', 'phenix'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo __('you can add custom post types from below form.', 'phenix'); ?></p>
+        <p class="mb-20 fs-14"><?php echo __('you can add/edit custom post types from the next form.', 'phenix'); ?></p>
 
         <!-- Grid -->
         <div class="row gpx-15 gpy-15 collection-form" data-type="post-types">
@@ -12,42 +12,42 @@
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-text">
-                    <input type="text" name="type-label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', 'phenix');?>" required>
+                    <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', 'phenix');?>" required>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-link">
-                    <input type="text" name="type-name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', 'phenix');?>">
+                    <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', 'phenix');?>">
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-text">
-                    <input type="text" name="type-label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('singular Label', 'phenix');?>">
+                    <input type="text" name="label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('singular Label', 'phenix');?>">
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-link">
-                    <input type="text" name="type-singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('Singular', 'phenix');?>">
+                    <input type="text" name="singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('Singular', 'phenix');?>">
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-image">
-                    <input type="text" name="type-menu_icon" class="form-control radius-sm fs-13" placeholder="<?php echo __('Icon', 'phenix');?>" required>
+                    <input type="text" name="menu_icon" class="form-control radius-sm fs-13" placeholder="<?php echo __('Icon', 'phenix');?>" required>
                 </div>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-6">
                 <!-- Form Control -->
                 <div class="control-icon far fa-file-alt">
-                    <select name="type-template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Pattern Template' ,'phenix'); ?>">
+                    <select name="template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Pattern Template' ,'phenix'); ?>">
                         <option value=""><?php echo __("Default", 'phenix'); ?></option>
                         <?php 
                             $block_patterns = pds_get_patterns();
@@ -77,7 +77,7 @@
                 <div class="flexbox align-between align-center-y">
                     <!-- Form Control -->
                     <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
-                        <input type="checkbox" name="type-enable" checked />
+                        <input type="checkbox" name="enable" checked />
                         <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable this Type once added ?", 'phenix'); ?></span>
                     </label>
                     <!-- Form Control -->

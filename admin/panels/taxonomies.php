@@ -12,10 +12,11 @@
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20">
+    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="taxonomies">
         <!-- Area Title -->
-        <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Add New Taxonomy', 'phenix'); ?></h3>
-        <p class="mb-20 fs-14"><?php echo __('you can add new menu taxonomies from below form.', 'phenix'); ?></p>
+        <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Taxonomy', 'phenix'); ?></h3>
+        <p class="mb-20 fs-14"><?php echo __('you can add/edit taxonomies from the next form.', 'phenix'); ?></p>
+        
         <!-- Form Control -->
         <div class="control-icon far fa-taxonomy mb-15">
             <select name="add-taxonomy-post-type[]" id="select-post-type" class="form-control px-select" data-placeholder="<?php echo __('Select Post Tye', 'phenix');?>" data-search="1" multiple>
@@ -41,7 +42,7 @@
             <input type="text" name="add-taxonomy-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Singular', 'phenix');?>">
         </div>
         <!-- Form Control -->
-        <button type="button" name="add-taxonomy-btn" class="btn primary radius-sm small ms-auto display-block"><?php echo __('Add Taxonomy', 'phenix'); ?></button>
+        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Taxonomy', 'phenix'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -49,15 +50,16 @@
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
             <div class="col">
-                <h3 class="fs-16 mb-5 weight-medium"><?php echo __('Menu Taxonomies', 'phenix'); ?></h3>
-                <p class="fs-14"><?php echo __('in here you can manage the menu taxonomies created by phenix-blocks.', 'phenix'); ?></p>
+                <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Taxonomies List', 'phenix'); ?></h3>
+                <p class="fs-14"><?php echo __('in here you can manage the taxonomies created by phenix-blocks.', 'phenix'); ?></p>
             </div>
         </div>
         <!-- taxonomies List -->
-        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm taxonomies-list">
+        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 taxonomies-list">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-                <span class="col-5"><?php echo __('Taxonomy Title', 'phenix'); ?></span>
-                <span class="col-5"><?php echo __('Taxonomy Name', 'phenix'); ?></span>
+                <span class="col-4"><?php echo __('Label', 'phenix'); ?></span>
+                <span class="col-3"><?php echo __('Name', 'phenix'); ?></span>
+                <span class="col-2"><?php echo __('Types', 'phenix'); ?></span>
             </li>
         </ul>
     </div>

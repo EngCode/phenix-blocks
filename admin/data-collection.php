@@ -63,6 +63,21 @@
         }
     }
 
+    //===> Patterns Panel <===//
+    if (!function_exists('pds_patterns_panel')) {
+        function pds_patterns_panel() {
+            //===> Start Data <===//
+            $template_markup = '';
+            ob_start();
+            //===> Get Panel Template <===//
+            include(dirname(__FILE__) . '/panels/block-patterns.php');
+            //===> Stop Data <===//
+            $template_output = ob_get_clean();
+            $template_markup .= $template_output;
+            return "{$template_markup}";
+        }
+    }
+
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
@@ -108,7 +123,7 @@
                     "title" => "Block Patterns",
                     "slug"  => "pds-patterns",
                     "icon"  => "far fa-file-alt",
-                    "content" => 'pds_types_panel',
+                    "content" => 'pds_patterns_panel',
                 ),
             ),
             //==> Hide Submit Button <==//
@@ -262,21 +277,18 @@
                         //===> Correct Locations <===//
                         if (data_type === "menu-locations") {
                             //===> Validate the Location Name <===//
-                            if (control_name === 'location-name' && !control.value) {
+                            if (control_name === 'name' && !control.value) {
                                 //===> if "name" not exist get it from the Title <===//
-                                let location_name = Phenix('[name="location-title"]')[0].value.toLowerCase().replaceAll(' ','-');
-                                new_location[control_name.replace('location-', '')] = location_name.toLowerCase().replaceAll(' ','-');
+                                let location_name = Phenix('[name="title"]')[0].value.toLowerCase().replaceAll(' ','-');
+                                new_location[control_name] = location_name.toLowerCase().replaceAll(' ','-');
                             }
     
                             //===> Add the new Location Title <===//
-                            else new_location[control_name.replace('location-', '')] = control.value;
+                            else new_location[control_name] = control.value;
                         }
     
                         //===> Post Types <===//
                         else if (data_type === "post-types") {
-                            //===> Define Data <===//
-                            control_name = control_name.replace('type-', '');
-
                             //===> Check Name <===//
                             if (!control.value && control_name === "name") new_type[control_name] = new_type["label"].toLowerCase().replaceAll(' ','-');
 
@@ -306,6 +318,7 @@
                     else if (new_type['name']) {
                         //===> Check for Existing <===//
                         let alreadyExist = false;
+
                         current.pds_types.forEach(type => {
                             //===> Set New Type <===//
                             type['name'] === new_type['name'] ? alreadyExist = true : null;
@@ -313,13 +326,13 @@
                             //===> if found convert to update <===//
                             if (alreadyExist) {
                                 //===> Define Data <===//
-                                let new_types = [];
+                                let new_data = [];
                                 
                                 //===> Remove the old Type <===//
-                                current.pds_types.forEach((type) => type.name !== new_type.name ? new_types.push(type) : null);
+                                current.pds_types.forEach((type) => type.name !== new_type.name ? new_data.push(type) : null);
 
                                 //===> Reset Existing <===//
-                                current.pds_types = new_types;
+                                current.pds_types = new_data;
                                 alreadyExist = false;
                             }
                         });
@@ -371,16 +384,16 @@
                     delete current.menu_locations[`${item_name}`];
                 }
 
-                //===> for Types <===//
-                else if (menu_element.classList.contains('types-list')) {
+                //===> for [Types, Taxonomies, Metaboxes, Patterns] <===//
+                else {
                     //===> Define Data <===//
-                    let new_types = [];
+                    let new_data = [];
 
                     //===> Find the item and Excluded from the new List <===//
-                    current.pds_types.forEach((type) => type.name !== item_name ? new_types.push(type) : null);
+                    current.pds_types.forEach((type) => type.name !== item_name ? new_data.push(type) : null);
 
                     //===> Set the New List <===//
-                    current.pds_types = new_types;
+                    current.pds_types = new_data;
                 }
 
                 //===> Update Options <===//
@@ -515,9 +528,6 @@
                         let control_name = control.getAttribute('name'),
                             control_tag  = control.tagName,
                             control_type = control.getAttribute('type');
-    
-                        //===> Correct Control Name <===//
-                        if (dataType == 'post-types' && control_name) control_name = control_name.replace('type-', '');
     
                         //===> Check for Data <===//
                         if (control_name && dataItem[control_name]) {

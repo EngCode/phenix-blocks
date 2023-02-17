@@ -226,6 +226,7 @@
 
                 //===> Activate Remove Method <===//
                 Phenix(`${list} .remove-item`).on('click', event => remove_item(event.target));
+
                 //===> Activate Toggle Method <===//
                 Phenix(`${list} input[name="item-status"]`).on('change', event => toggle_item(event.target));
                 
@@ -395,13 +396,17 @@
             //===> Get Data from Rest-API <===//
             get_options().then(options => {
                 //===> Define Data <===//
-                let current = options;
+                let current = options,
+                    listClasses = menu_element.classList,
+                    dataTarget  = listClasses.contains('types-list') ? current.pds_types : [];
 
-                //===> for Types <===//
-                if (menu_element.classList.contains('types-list')) {
-                    //===> Find the item and Excluded from the new List <===//
-                    current.pds_types.forEach((type) => type.name === item_name ? type.enable = item_stats : null);
-                }
+                //===> Correct Data Target <===//
+                if (listClasses.contains('taxonomies-list')) dataTarget = current.pds_taxonomies;
+                if (listClasses.contains('metabox-list')) dataTarget = current.pds_metabox;
+                if (listClasses.contains('patterns-list')) dataTarget = current.block_patterns;
+
+                //===> Find the item and change its status <===//
+                if (dataTarget.length > 0) dataTarget.forEach((item) => item.name === item_name ? type.enable = item_stats : null);
 
                 //===> Update Options <===//
                 update_options(current).then(succuss => {

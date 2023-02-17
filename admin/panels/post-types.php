@@ -62,7 +62,7 @@
             <div class="col-12">
                 <!-- Form Control -->
                 <div class="control-icon far fa-boxes mb-15">
-                    <select name="type-taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', 'phenix');?>" multiple>
+                    <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', 'phenix');?>" multiple>
                         <?php
                             $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                             foreach ($taxonomies as $taxonomy) {

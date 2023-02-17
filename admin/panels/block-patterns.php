@@ -15,14 +15,19 @@
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="block-pattern">
+    <div class="col-12 col-lg-5 pdy-10 me-lg-20">
         <!-- Area Title -->
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Pattern', 'phenix'); ?></h3>
         <p class="mb-20 fs-14"><?php echo __('you can add/edit gutenberg block patterns from the next form.', 'phenix'); ?></p>
 
+        <!-- Grid -->
+        <div class="row gpx-15 gpy-15 collection-form" data-type="block-pattern">
+            
+            <!-- Form Control -->
+            <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Pattern', 'phenix'); ?></button>
+        </div>
+        <!-- // Grid -->
 
-        <!-- Form Control -->
-        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Pattern', 'phenix'); ?></button>
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">

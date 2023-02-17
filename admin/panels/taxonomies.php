@@ -12,37 +12,71 @@
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="taxonomies">
+    <div class="col-12 col-lg-5 pdy-10 me-lg-20">
         <!-- Area Title -->
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Taxonomy', 'phenix'); ?></h3>
         <p class="mb-20 fs-14"><?php echo __('you can add/edit taxonomies from the next form.', 'phenix'); ?></p>
         
-        <!-- Form Control -->
-        <div class="control-icon far fa-taxonomy mb-15">
-            <select name="add-taxonomy-post-type[]" id="select-post-type" class="form-control px-select" data-placeholder="<?php echo __('Select Post Tye', 'phenix');?>" data-search="1" multiple>
-              <?php foreach($post_types as $post_type){?>
-                <option value="<?php echo $post_type;?>"><?php echo $post_type;?></option>
-                <?php }?>
-            </select>
+        <!-- Grid -->
+        <div class="row gpx-15 gpy-15 collection-form" data-type="taxonomies">
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-text">
+                    <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', 'phenix');?>" required>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-link">
+                    <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', 'phenix');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-text">
+                    <input type="text" name="label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('singular Label', 'phenix');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-link">
+                    <input type="text" name="singular" class="form-control radius-sm fs-13" placeholder="<?php echo __('Singular', 'phenix');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12">
+                <!-- Form Control -->
+                <div class="control-icon far fa-boxes mb-15">
+                    <select name="types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', 'phenix');?>" multiple>
+                        <?php
+                            $post_types = get_post_types(array('public'=> true), 'objects');
+                            foreach ($post_types as $post_type) {
+                                if ($post_type->name !== "attachment") {
+                                    echo '<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>';
+                                }
+                            };
+                        ?>
+                    </select>
+                </div>
+                <!-- Elements Group -->
+                <div class="flexbox align-between align-center-y">
+                    <!-- Form Control -->
+                    <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
+                        <input type="checkbox" name="enable" checked />
+                        <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable this Taxonomy once added ?", 'phenix'); ?></span>
+                    </label>
+                    <!-- Form Control -->
+                    <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Taxonomy', 'phenix'); ?></button>
+                </div>
+                <!-- // Elements Group -->
+            </div>
+            <!-- // Column -->
         </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-list mb-15">
-            <input type="text" name="add-taxonomy-title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Taxonomy Title', 'phenix');?>" required>
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-taxonomy mb-15">
-            <input type="text" name="add-taxonomy-name" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('taxonomy-name', 'phenix');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-taxonomy-label-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Label Singular', 'phenix');?>">
-        </div>
-        <!-- Form Control -->
-        <div class="control-icon far fa-archive mb-15">
-            <input type="text" name="add-taxonomy-singular" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Singular', 'phenix');?>">
-        </div>
-        <!-- Form Control -->
-        <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Taxonomy', 'phenix'); ?></button>
+        <!-- // Grid -->
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">

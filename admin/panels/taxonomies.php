@@ -50,8 +50,8 @@
             <!-- Column -->
             <div class="col-12">
                 <!-- Form Control -->
-                <div class="control-icon far fa-boxes mb-15">
-                    <select name="types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', 'phenix');?>" multiple>
+                <div class="control-icon far fa-cube mb-15">
+                    <select name="post_types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', 'phenix');?>" multiple>
                         <?php
                             $post_types = get_post_types(array('public'=> true), 'objects');
                             foreach ($post_types as $post_type) {

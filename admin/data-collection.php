@@ -112,12 +112,12 @@
                     "content" => 'pds_taxonomies_panel',
                 ),
                 //==> Meta Boxes Panel <==//
-                array(
-                    "title" => "Metaboxes",
-                    "slug"  => "pds-metabox",
-                    "icon"  => "far fa-layer-group",
-                    "content" => 'pds_metabox_panel',
-                ),
+                // array(
+                //     "title" => "Metaboxes",
+                //     "slug"  => "pds-metabox",
+                //     "icon"  => "far fa-layer-group",
+                //     "content" => 'pds_metabox_panel',
+                // ),
                 //==> Patterns Panel <==//
                 array(
                     "title" => "Block Patterns",

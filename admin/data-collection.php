@@ -439,7 +439,7 @@
             });
         },
 
-        //===> Toggle Item Method <===//
+        //===> Edit Item Method <===//
         edit_item = (trigger) => {
             //===> Define Elements <===//
             let menu_item = Phenix(trigger).ancestor('li'),

@@ -458,7 +458,6 @@
                 dataType = FormElement?.getAttribute('data-type'),
                 FormControls = FormElement.querySelectorAll('input, select, textarea');
 
-                
             //===> Highlight Form <===//
             FormElement.classList.add('form-highlight');
             setTimeout(() => FormElement.classList.remove('form-highlight'), 1500);

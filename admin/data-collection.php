@@ -406,7 +406,7 @@
                 if (listClasses.contains('patterns-list')) dataTarget = current.block_patterns;
 
                 //===> Find the item and change its status <===//
-                if (dataTarget.length > 0) dataTarget.forEach((item) => item.name === item_name ? type.enable = item_stats : null);
+                if (dataTarget.length > 0) dataTarget.forEach((item) => item.name === item_name ? item.enable = item_stats : null);
 
                 //===> Update Options <===//
                 update_options(current).then(succuss => {

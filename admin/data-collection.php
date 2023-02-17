@@ -237,7 +237,7 @@
         },
 
         //===> Add Items Method <===//
-        add_new_item = (trigger) => {
+        add_item = (trigger) => {
             //===> Get Elements <===//
             let data_form = Phenix(trigger).ancestor(".collection-form"),
                 data_type = data_form.getAttribute('data-type'),
@@ -562,7 +562,7 @@
         update_list("menu_locations", ".locations-list", location_template);
 
         //===> Add Item Trigger <===//
-        Phenix('.collection-form .add-item').on('click', event => add_new_item(event.target));
+        Phenix('.collection-form .add-item').on('click', event => add_item(event.target));
     });
 </script>
 <!-- Phenix Script -->

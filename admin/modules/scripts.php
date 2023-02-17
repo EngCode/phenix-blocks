@@ -8,8 +8,5 @@
         
         //===> Validation <===//
         Phenix('.pds-form').validation();
-
-
-        console.log("Hello.!!!");
     });
 </script>

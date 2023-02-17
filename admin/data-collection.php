@@ -226,6 +226,9 @@
 
                 //===> Activate Remove Method <===//
                 Phenix(`${list} .remove-item`).on('click', event => remove_item(event.target));
+                //===> Activate Toggle Method <===//
+                Phenix(`${list} input[name="item-status"]`).on('change', event => toggle_item(event.target));
+                
             }).then(response => {}).catch(error => {error.message});
         },
 
@@ -332,7 +335,7 @@
             //===> Define Elements <===//
             let menu_item = Phenix(trigger).ancestor('li'),
                 menu_element = Phenix(menu_item).ancestor('ul'),
-                item_stats = menu_item.querySelector(`[name="item-status"]`).value,
+                item_stats = menu_item.querySelector(`[name="item-status"]`).checked,
                 item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
             //===> Set Loading Mode <===//
@@ -367,13 +370,46 @@
 
                     //===> Update Types <===//
                     if (menu_element.classList.contains('types-list')) {
-                        item_stats == "on" ? location.reload() : update_list("pds_types", ".types-list", type_template);
+                        item_stats ? location.reload() : update_list("pds_types", ".types-list", type_template);
                     }
 
                     //===> Update Locations <===//
                     else if (menu_element.classList.contains('locations-list')) {
                         update_list("menu_locations", ".locations-list", location_template);
                     }
+                }).catch(error => {error.message});
+            });
+        };
+
+        //===> Toggle Item Method <===//
+        toggle_item = (trigger) => {
+            //===> Define Elements <===//
+            let item_stats = trigger.checked,
+                menu_item = Phenix(trigger).ancestor('li'),
+                menu_element = Phenix(menu_item).ancestor('ul'),
+                item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
+
+            //===> Set Loading Mode <===//
+            menu_item.classList.add('px-loading-inline');
+
+            //===> Get Data from Rest-API <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options;
+
+                //===> for Types <===//
+                if (menu_element.classList.contains('types-list')) {
+                    //===> Find the item and Excluded from the new List <===//
+                    current.pds_types.forEach((type) => type.name === item_name ? type.enable = item_stats : null);
+                }
+
+                //===> Update Options <===//
+                update_options(current).then(succuss => {
+                    //===> Show Notification <===//
+                    data_success("the Item has been Disabled.");
+
+                    //===> Reload Page <===//
+                    location.reload();
                 }).catch(error => {error.message});
             });
         };

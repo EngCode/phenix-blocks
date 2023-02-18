@@ -41,13 +41,13 @@ Phenix(document).ready(ready => {
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
-
-        //====> Disable Links <====//
-        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     }
 
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //====> Disable Links <====//
+        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+
         //===> Removes Editor Reset styles <===//
         let common_css    = `#common-rtl-css, #common-css`,
             reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,

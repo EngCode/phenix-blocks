@@ -416,15 +416,10 @@ function Edit(_ref) {
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    key: "isHidden",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
-    checked: attributes.isHidden,
-    onChange: set_isHidden
-  }), attributes.isFlexbox ? /*#__PURE__*/React.createElement("div", {
+  }, attributes.isFlexbox ? /*#__PURE__*/React.createElement("div", {
     className: "row gpx-15 divider-b mb-20 pdb-5"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col-12 mb-20"
+    className: "col-12 mb-15"
   }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
     value: flexbox_options.align || "",
@@ -447,7 +442,14 @@ function Edit(_ref) {
     onChange: set_background,
     type: ((_style_options$backgr = style_options.background) === null || _style_options$backgr === void 0 ? void 0 : _style_options$backgr.type) || "color",
     value: ((_style_options$backgr2 = style_options.background) === null || _style_options$backgr2 === void 0 ? void 0 : _style_options$backgr2.value) || ""
-  }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "divider-t pdt-15 mt-20"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    key: "isHidden",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
+    checked: attributes.isHidden,
+    onChange: set_isHidden
+  })))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/section.jpg",
     alt: "",
     className: "fluid"

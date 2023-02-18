@@ -256,14 +256,11 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
-                {/*===> Display <===*/}
-                <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
-
                 {/*===> Flexbox Properties <===*/}
                 {attributes.isFlexbox ?
                     <div className='row gpx-15 divider-b mb-20 pdb-5'>
                         {/*===> Column <===*/}
-                        <div className='col-12 mb-20'>
+                        <div className='col-12 mb-15'>
                             <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align || ""} onChange={set_alignment}></FlexAlignment>
                         </div>
                         {/*===> Column <===*/}
@@ -279,8 +276,15 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> // Column <===*/}
                     </div>
                 : null}
+
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} />
+
+                {/*===> Other <===*/}
+                <div className='divider-t pdt-15 mt-20'>
+                {/*===> Display <===*/}
+                    <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
+                </div>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

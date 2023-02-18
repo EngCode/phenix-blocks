@@ -84,7 +84,7 @@ export default class PhenixColors extends Component {
         };
 
         //===> Colors Panel <===//
-        const editColor = clicked => {
+        const showPanel = clicked => {
             let button = clicked.target,
                 panel  = Phenix(button).next(".options-list");
             //=== Show/Hide Panel ===//
@@ -92,7 +92,7 @@ export default class PhenixColors extends Component {
                 Phenix(button).toggleClass("px-active");
                 Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
             }
-        }
+        };
 
         //===> Component Output <===//
         return (
@@ -100,7 +100,7 @@ export default class PhenixColors extends Component {
                 {/*===> Toggle Button <===*/}
                 <label className='mb-10 tx-UpperCase'>{label}</label>
                 {/*===> Trigger <===*/}
-                <button onClick={editColor} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
+                <button onClick={showPanel} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
                     <span className={`me-10 radius-circle inline-block ${value.length > 0 ? value.replace("color-","bg-") : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>
                     <span className='col'>{value.length > 0 ? value.replaceAll("-", " ").replace("color","") : "Default"}</span>
                     <i className='fas fa-pencil'></i>

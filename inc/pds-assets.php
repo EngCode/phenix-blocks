@@ -121,7 +121,6 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         add_action( 'login_head', 'admin_custom_font' );
         add_action( 'wp_head', 'admin_custom_font' );
     }
-
 endif;
 
 //====> Login Page Script <====//

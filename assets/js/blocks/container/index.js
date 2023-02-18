@@ -52,6 +52,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //====> Edit Mode <====//
 
 function Edit(_ref) {
+  var _flexbox_options$flow, _flexbox_options$nowr, _style_options$backgr, _style_options$backgr2;
+
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
 
@@ -95,7 +97,8 @@ function Edit(_ref) {
 
   var flexbox_options = attributes.flexbox,
       style_options = attributes.style,
-      typography_opts = attributes.typography; //===> Flexbox Options <===//
+      background = style_options === null || style_options === void 0 ? void 0 : style_options.background,
+      typography = attributes.typography; //===> Flexbox Options <===//
 
   var set_alignment = function set_alignment(alignment) {
     //==> Align <==//
@@ -122,23 +125,23 @@ function Edit(_ref) {
 
   var set_typography_size = function set_typography_size(value) {
     //==> Size <==//
-    typography_opts.size = value;
+    typography.size = value;
     setAttributes({
-      typography: _objectSpread({}, typography_opts)
+      typography: _objectSpread({}, typography)
     });
   },
       //==> Weight <==//
   set_typography_weight = function set_typography_weight(value) {
-    typography_opts.weight = value;
+    typography.weight = value;
     setAttributes({
-      typography: _objectSpread({}, typography_opts)
+      typography: _objectSpread({}, typography)
     });
   },
       //==> Color <==//
   set_color = function set_color(value) {
-    typography_opts.color = value;
+    typography.color = value;
     setAttributes({
-      typography: _objectSpread({}, typography_opts)
+      typography: _objectSpread({}, typography)
     });
   },
       //===> Set Background <===//
@@ -204,23 +207,23 @@ function Edit(_ref) {
   } //===> Typography Properties <===//
 
 
-  if (attributes.typography) {
-    container.className += " ".concat(typography_opts.size);
-    container.className += " ".concat(typography_opts.color);
-    container.className += " ".concat(typography_opts.weight);
+  if (typography) {
+    if (typography.size) container.className += " ".concat(typography.size);
+    if (typography.color) container.className += " ".concat(typography.color);
+    if (typography.weight) container.className += " ".concat(typography.weight);
   } //===> Render Background <===//
 
 
-  if (attributes.background) {
+  if (background !== null && background !== void 0 && background.value) {
     //===> Image Background <===//
-    if (attributes.bg_type === 'image') {
+    if (background.type === 'image') {
       blockProps.className += " px-media";
-      blockProps["data-src"] = attributes.background;
+      blockProps["data-src"] = background.value;
     } //===> Name Background <===//
-    else blockProps.className += " ".concat(attributes.background); //===> Background Rotation <===//
+    else blockProps.className += " ".concat(background.value); //===> Background Rotation <===//
 
 
-    if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
+    if (background.rotate) blockProps.className += " ".concat(background.rotate);
   } //===> Render <===//
 
 
@@ -312,7 +315,7 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     key: "typography-size",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Size", "phenix"),
-    value: typography_opts.size,
+    value: typography.size || "",
     onChange: set_typography_size,
     options: [{
       label: 'Default',
@@ -371,7 +374,7 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     key: "typography-weight",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Weight", "phenix"),
-    value: typography_opts.weight,
+    value: typography.weight || "",
     onChange: set_typography_weight,
     options: [{
       label: 'Default',
@@ -408,7 +411,7 @@ function Edit(_ref) {
     key: "px-color",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", "phenix"),
     onChange: set_color,
-    value: typography_opts.color
+    value: typography.color || ""
   })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
     initialOpen: false
@@ -423,25 +426,26 @@ function Edit(_ref) {
     className: "col-12 mb-20"
   }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
-    value: flexbox_options.align,
+    value: flexbox_options.align || "",
     onChange: set_alignment
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reverse ", "phenix"),
-    checked: flexbox_options.flow.length > 0,
+    checked: ((_flexbox_options$flow = flexbox_options.flow) === null || _flexbox_options$flow === void 0 ? void 0 : _flexbox_options$flow.length) > 0,
     onChange: set_flex_flow
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"),
-    checked: flexbox_options.nowrap.length > 0,
+    checked: ((_flexbox_options$nowr = flexbox_options.nowrap) === null || _flexbox_options$nowr === void 0 ? void 0 : _flexbox_options$nowr.length) > 0,
     onChange: set_flex_nowrap
   }))) : null, /*#__PURE__*/React.createElement(_px_controls_colors_background__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: "px-bg",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
     onChange: set_background,
-    type: style_options.background.type,
-    value: style_options.background.value
+    type: ((_style_options$backgr = style_options.background) === null || _style_options$backgr === void 0 ? void 0 : _style_options$backgr.type) || "color",
+    value: ((_style_options$backgr2 = style_options.background) === null || _style_options$backgr2 === void 0 ? void 0 : _style_options$backgr2.value) || ""
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/section.jpg",
     alt: "",
@@ -515,9 +519,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      main: ["bg-transparent", "bg-primary", "bg-primary-dark", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-alpha-05", "bg-alpha-10", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75"],
-      offwhite: ["bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-ffwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-mintcream", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-ivory", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush"],
-      brands: ["bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
+      colors: ["fas fa-redo tx-align-center", "bg-inherit", "bg-transparent", "bg-primary", "bg-primary-dark", "bg-secondary", "bg-secondary-dark", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-offwhite-primary", "bg-offwhite-secondary", "bg-offwhite-info", "bg-offwhite-success", "bg-offwhite-danger", "bg-offwhite-warning", "bg-offwhite-smoke", "bg-offwhite-gray", "bg-offwhite-snow", "bg-offwhite-honeydew", "bg-offwhite-aliceblue", "bg-offwhite-ghost", "bg-offwhite-seashell", "bg-offwhite-beige", "bg-offwhite-oldlace", "bg-offwhite-floral", "bg-offwhite-antique", "bg-offwhite-linen", "bg-offwhite-lavenderblush", "bg-alpha-05", "bg-alpha-10", "bg-alpha-15", "bg-alpha-25", "bg-alpha-50", "bg-alpha-75", "bg-facebook", "bg-twitter", "bg-youtube", "bg-instagram", "bg-snapchat", "bg-whatsapp", "bg-pinterest", "bg-linkedin", "bg-behance", "bg-dribbble", "bg-flicker"],
       gradients: ["bg-grade-primary", "bg-grade-secondary", "bg-grade-warning", "bg-grade-danger", "bg-grade-success", "bg-grade-water", "bg-grade-ice", "bg-grade-fire", "bg-grade-purple"],
       rotation: ['bg-grade-0', 'bg-grade-45', 'bg-grade-90', 'bg-grade-120', 'bg-grade-120n', 'bg-grade-90n', 'bg-grade-45n', 'bg-grade-180'],
       placeholder: "https://via.placeholder.com/480x200.webp?text=Example"
@@ -530,61 +532,27 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     key: "render",
     value: //===> Render <===//
     function render() {
-      var _this2 = this;
-
       //===> Properties <===//
       var _this$props = this.props,
           type = _this$props.type,
           value = _this$props.value,
+          label = _this$props.label,
           onChange = _this$props.onChange; //===> Returned Value <===//
 
-      var options = {}; //===> Type Activator <===//
-
-      var activeBtn = function activeBtn(current) {
-        return type === current ? 'primary' : 'light';
-      };
-
-      var activeTab = function activeTab(current) {
-        return type === current ? '' : 'hidden';
+      var options = {
+        type: type,
+        value: value
       }; //===> Set Background <===//
 
-
       var setBackground = function setBackground(clicked) {
-        //===> Colors & Gradients <===//
-        if (clicked.target) {
-          //===> Get Value <===//
-          var button = clicked.target,
-              btnType = button.getAttribute('data-type'),
-              btnValue = button.getAttribute('data-value'); //===> Rotate Gradient <===//
+        //===> Get Value <===//
+        var button = clicked.target,
+            value = button.getAttribute('data-value'); //===> Colors & Gradients <===//
 
-          if (btnType === 'rotate') {
-            if (type !== 'gradient') return; //===> Get Current Value <===//
-
-            var current = options.value || value,
-                currentArray = value.split(' '); //===> Clear Current Rotation <===//
-
-            if (currentArray.length > 0) {
-              _this2.state.rotation.forEach(function (rotate) {
-                //=== for each name in value ===//
-                currentArray.forEach(function (item) {
-                  if (item === rotate) current = current.replace(" ".concat(item), '');
-                });
-              });
-            } //===> Set Rotation <===//
-
-
-            options.value = "".concat(current, " ").concat(btnValue);
-            options.type = 'gradient';
-          } //===> Set Background Name <===//
-          else {
-            options.type = btnType;
-            options.value = btnValue;
-            if (btnType !== 'gradient') options.rotation = null;
-          }
+        if (button) {
+          options.value = value;
         } //===> Image Type <===//
         else {
-          //===> Set New Direction <===//
-          options.type = 'image';
           options.value = clicked.url;
         } //===> Return Options <===//
 
@@ -596,161 +564,120 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var makeButtons = function makeButtons(list, type) {
         var output = []; //===> for each item <===//
 
-        var _loop = function _loop(index) {
+        for (var index = 0; index < list.length; index++) {
           //===> Get Value <===//
-          var name = list[index]; //===> Convert to Title <===//
+          var name = list[index];
+          var title = "",
+              isColor = !name.includes("fa-"); //===> Convert to Title <===//
 
-          var title = list[index].replace('bg-', '');
-          title = title.replace('-', ' ');
-          title = title.replace('grade', ''); //===> UpperCase Title <===//
+          if (isColor) {
+            title = list[index].replace('bg-', '').replace('-', ' '); //===> UpperCase Title <===//
 
-          title = title.replace(/^\w/, function (c) {
-            return c.toUpperCase();
-          }); //===> Check Active <===//
-
-          var current = value.split(' '),
-              isActive = ''; //=== for each name in value ===//
-
-          if (current.length > 0) {
-            current.forEach(function (item) {
-              if (item === name) isActive = 'px-active';
+            title = title.replace(/^\w/, function (c) {
+              return c.toUpperCase();
             });
-          } else if (item === name) isActive = 'px-active';
+          } else title = "Reset";
 
           output.push( /*#__PURE__*/React.createElement("button", {
-            key: "".concat(name, "-").concat(index),
+            key: "".concat(name.replaceAll(" ", "-")),
             onClick: setBackground,
             title: title,
-            "data-value": name,
-            "data-type": type,
-            className: "".concat(name, " btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ").concat(isActive)
-          }));
-        };
-
-        for (var index = 0; index < list.length; index++) {
-          _loop(index);
-        } //===> Return Buttons <===//
-
-
-        return output;
-      }; //===> Icons Buttons <===//
-
-
-      var makeRotations = function makeRotations(list, type) {
-        var output = []; //===> for each item <===//
-
-        var _loop2 = function _loop2(index) {
-          //===> Get Value <===//
-          var name = list[index]; //===> Rotation <===//
-
-          var rotation = name.replace('bg-grade-', '');
-          if (name.endsWith('n')) rotation = "-".concat(rotation.slice(0, -1)); //===> Check Active <===//
-
-          var current = value.split(' '),
-              isActive = ''; //=== for each name in value ===//
-
-          if (current.length > 0) {
-            current.forEach(function (item) {
-              if (item === name) isActive = 'px-active';
-            });
-          } else if (item === name) isActive = 'px-active'; //===> Get Value <===//
-
-
-          output.push( /*#__PURE__*/React.createElement("button", {
-            key: "".concat(name, "-").concat(index),
-            "data-type": type,
-            onClick: setBackground,
-            "data-value": name,
-            className: "btn square tiny light ".concat(isActive)
-          }, /*#__PURE__*/React.createElement("i", {
-            className: "inline-block fas fa-arrow-to-bottom",
+            "data-value": isColor ? name : "",
+            className: "".concat(isColor ? name : "".concat(name, " color-gray fs-12"), " reset-button ").concat(value === name ? 'px-active' : null),
             style: {
-              transform: "rotate(".concat(rotation, "deg)")
+              "width": "30px",
+              "height": "16px",
+              "borderRadius": "16px"
             }
-          })));
-        };
-
-        for (var index = 0; index < list.length; index++) {
-          _loop2(index);
+          }));
         } //===> Return Buttons <===//
 
 
         return output;
-      }; //===> Options Changer <===//
+      }; //===> Colors Panel <===//
 
 
-      var changeTab = function changeTab(clicked) {
-        var _optionsList$querySel;
+      var showPanel = function showPanel(clicked) {
+        var button = clicked.target,
+            panel = Phenix(button).next(".options-list"); //=== Show/Hide Panel ===//
 
-        //===> Option Data <===//
-        var element = Phenix(clicked.target),
-            parent = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector('.primary')),
-            currentType = "".concat(element[0].getAttribute('data-value'), "-options"),
-            targetElement = optionsList.querySelector(".".concat(currentType)); //===> Change Active <===//
-
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-        (_optionsList$querySel = optionsList.querySelector('.flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
+        if (panel) {
+          Phenix(button).toggleClass("px-active");
+          Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+        }
       }; //===> Component Design <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20"
-      }, /*#__PURE__*/React.createElement("button", {
-        key: "color",
-        className: "btn tiny col ".concat(activeBtn('color')),
-        onClick: changeTab,
-        "data-value": "color"
-      }, "Colors"), /*#__PURE__*/React.createElement("button", {
-        key: "gradient",
-        className: "btn tiny col ".concat(activeBtn('gradient')),
-        onClick: changeTab,
-        "data-value": "gradient"
-      }, "Gradients"), /*#__PURE__*/React.createElement("button", {
-        key: "image",
-        className: "btn tiny col ".concat(activeBtn('image')),
-        onClick: changeTab,
-        "data-value": "image"
-      }, "Image"), /*#__PURE__*/React.createElement("button", {
-        key: "more",
-        className: "btn tiny bg-offwhite-smoke col far fa-ellipsis-v",
+        className: "px-gb-component position-rv mb-15"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "mb-10 tx-UpperCase"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        onClick: showPanel,
+        className: "options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5",
+        type: "button"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "me-10 radius-circle inline-block ".concat(value.length > 0 ? value : "bg-inherit"),
         style: {
-          padding: '0 8px'
+          "width": "20px",
+          "height": "20px"
         }
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox color-options ".concat(activeTab('color'))
-      }, makeButtons(this.state.main, 'color'), /*#__PURE__*/React.createElement("span", {
-        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-      }), makeButtons(this.state.offwhite, 'color'), /*#__PURE__*/React.createElement("span", {
-        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-      }), makeButtons(this.state.brands, 'color')), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox gradient-options ".concat(activeTab('gradient'))
-      }, makeButtons(this.state.gradients, 'gradient'), /*#__PURE__*/React.createElement("span", {
-        className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-      }), /*#__PURE__*/React.createElement("label", {
-        className: "mb-10 col-12"
-      }, "Gradient Direction"), /*#__PURE__*/React.createElement("div", {
-        className: "px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10"
-      }, makeRotations(this.state.rotation, 'rotate'))), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox image-options ".concat(activeTab('image'))
-      }, /*#__PURE__*/React.createElement(_uploader__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        key: "image-background",
-        value: type !== 'image' ? this.state.placeholder : value,
-        setValue: setBackground
-      }))));
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "col"
+      }, value.length > 0 ? value.replaceAll("-", " ").replace("bg", "") : "Default"), /*#__PURE__*/React.createElement("i", {
+        className: "fas fa-pencil"
+      })), type !== "image" ? /*#__PURE__*/React.createElement("div", {
+        className: "flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
+        style: {
+          gap: "10px"
+        }
+      }, type === "color" ? makeButtons(this.state.colors) : type === "gradients" ? makeButtons(this.state.gradients) : null) : null);
     }
   }]);
 
   return PhenixBackground;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component); // <div className='px-gb-component'>
+//     {/*===> Background Types <===*/}
+//     <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
+//         <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
+//         <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
+//         <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
+//         <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
+//     </div>
+//     {/*===> Background <===*/}
+//     <div className='options-list'>
+//         {/*===> Colors <====*/}
+//         <div className={`flexbox color-options ${activeTab('color')}`}>
+//             {makeButtons(this.state.main, 'color')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Offwhite */}
+//             {makeButtons(this.state.offwhite, 'color')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Brands */}
+//             {makeButtons(this.state.brands, 'color')}
+//         </div>
+//         {/*===> Gradients <====*/}
+//         <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
+//             {makeButtons(this.state.gradients, 'gradient')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Directions */}
+//             <label className='mb-10 col-12'>Gradient Direction</label>
+//             {/* .... */}
+//             <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
+//                 {makeRotations(this.state.rotation, 'rotate')}
+//             </div>
+//         </div>
+//         {/*===> Background <====*/}
+//         <div className={`flexbox image-options ${activeTab('image')}`}>
+//             <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
+//         </div>
+//     </div>
+//     {/*===> End Component <===*/}
+// </div>
+
 
 
 
@@ -866,7 +793,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
       }; //===> Colors Panel <===//
 
 
-      var editColor = function editColor(clicked) {
+      var showPanel = function showPanel(clicked) {
         var button = clicked.target,
             panel = Phenix(button).next(".options-list"); //=== Show/Hide Panel ===//
 
@@ -882,7 +809,7 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
       }, label), /*#__PURE__*/React.createElement("button", {
-        onClick: editColor,
+        onClick: showPanel,
         className: "options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5",
         type: "button"
       }, /*#__PURE__*/React.createElement("span", {
@@ -1267,7 +1194,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"size":{"type":"string","default":""},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"isHidden":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{"flow":"","align":"","nowrap":""}},"typography":{"type":"object","default":{"color":"","size":"","align":"","weight":"","family":"","height":"","utility":""}},"style":{"type":"object","default":{"display":"","spacing":{"padding":"","margin":""},"background":{"type":"color","value":"","rotation":""}}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"size":{"type":"string","default":""},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"isHidden":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1382,7 +1309,9 @@ __webpack_require__.r(__webpack_exports__);
     //===> Get Block Properties <===//
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     var TagName = attributes.tagName;
-    var container = attributes.isFlexbox ? "flexbox " : ''; //===> Container Options <===//
+    var container = attributes.isFlexbox ? "flexbox " : '',
+        background = attributes.style.background,
+        typography = attributes.typography; //===> Container Options <===//
 
     if (attributes.id) blockProps['id'] = attributes.id;
     if (attributes.size) container += attributes.size;
@@ -1395,23 +1324,23 @@ __webpack_require__.r(__webpack_exports__);
     } //===> Typography Properties <===//
 
 
-    if (attributes.typography) {
-      container += " ".concat(attributes.typography.size);
-      container += " ".concat(attributes.typography.weight);
-      container += " ".concat(attributes.typography.color);
+    if (typography) {
+      if (typography.size) container.className += " ".concat(typography.size);
+      if (typography.color) container.className += " ".concat(typography.color);
+      if (typography.weight) container.className += " ".concat(typography.weight);
     } //===> Render Background <===//
 
 
-    if (attributes.background) {
+    if (background !== null && background !== void 0 && background.value) {
       //===> Image Background <===//
-      if (attributes.bg_type === 'image') {
+      if (background.type === 'image') {
         blockProps.className += " px-media";
-        blockProps["data-src"] = attributes.background;
+        blockProps["data-src"] = background.value;
       } //===> Name Background <===//
-      else blockProps.className += " ".concat(attributes.background); //===> Background Rotation <===//
+      else blockProps.className += " ".concat(background.value); //===> Background Rotation <===//
 
 
-      if (attributes.bg_rotate) blockProps.className += " ".concat(attributes.bg_rotate);
+      if (background.rotate) blockProps.className += " ".concat(background.rotate);
     } //===> for Section Convert <===//
 
 

@@ -47,21 +47,17 @@
 
         "flexbox": {
             "type": "object",
-            "default": {"flow": "", "align": "", "nowrap": ""}
+            "default": {}
         },
 
         "typography": {
             "type": "object",
-            "default": {"color": "", "size": "", "align": "", "weight": "", "family": "", "height": "", "utility": ""}
+            "default": {}
         },
 
         "style": {
             "type": "object",
-            "default": {
-                "display": "",
-                "spacing": {"padding":"", "margin": ""},
-                "background": {"type":"color", "value": "", "rotation": ""}
-            }
+            "default": {}
         }
     },
     "example": {

@@ -581,7 +581,7 @@ const Phenix = (selector?:any) => {
 export default Phenix;
 
 /*====> Import Features <====*/
-import './features/get-info';   //==> Info Informations
+import './features/get-info';   //==> Information
 import './features/effects';    //==> UI Effects
 import './features/counter';    //==> Animated Counter
 import './features/animations'; //==> View-port Animations

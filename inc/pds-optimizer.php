@@ -88,6 +88,9 @@ if (!is_admin()) {
             if (get_option('newsletter_css')) {
                 wp_dequeue_style('newsletter');
             }
+            
+            wp_dequeue_style('wp-reset-editor-styles-rtl');
+            wp_dequeue_style('wp-reset-editor-styles');
         }
         
         add_action('wp_print_styles', 'styles_optimize', 100);

@@ -30,7 +30,9 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
-        let container = attributes.isFlexbox ? "flexbox " : '';
+        let container = attributes.isFlexbox ? "flexbox " : '',
+            background = attributes.style.background,
+            typography = attributes.typography;
 
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
@@ -45,25 +47,25 @@ registerBlockType(metadata, {
         }
 
         //===> Typography Properties <===//
-        if (attributes.typography) {
-            container += ` ${attributes.typography.size}`;
-            container += ` ${attributes.typography.weight}`;
-            container += ` ${attributes.typography.color}`;
+        if (typography) {
+            if(typography.size) container.className += ` ${typography.size}`;
+            if(typography.color) container.className += ` ${typography.color}`;
+            if(typography.weight) container.className += ` ${typography.weight}`;
         }
 
         //===> Render Background <===//
-        if (attributes.background) {
+        if (background?.value) {
             //===> Image Background <===//
-            if (attributes.bg_type === 'image') {
+            if (background.type === 'image') {
                 blockProps.className += ` px-media`;
-                blockProps["data-src"] = attributes.background;
+                blockProps["data-src"] = background.value;
             }
 
             //===> Name Background <===//
-            else blockProps.className += ` ${attributes.background}`;
+            else blockProps.className += ` ${background.value}`;
 
             //===> Background Rotation <===//
-            if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
+            if (background.rotate) blockProps.className += ` ${background.rotate}`;
         }
 
         //===> for Section Convert <===//

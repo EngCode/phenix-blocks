@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Phenix Blocks\n"
-"POT-Creation-Date: 2023-01-10 13:30+0200\n"
-"PO-Revision-Date: 2023-01-10 13:34+0200\n"
+"POT-Creation-Date: 2023-02-18 01:15+0200\n"
+"PO-Revision-Date: 2023-02-18 01:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -18,33 +18,9 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2;px__\n"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-
-#: _tools/post-types.php:30
-msgid "Products"
-msgstr "المنتجات"
-
-#: _tools/post-types.php:59
-msgid "Cultures"
-msgstr ""
-
-#: _tools/post-types.php:80
-msgid "Products Lines"
-msgstr "خطوط الإنتاج"
-
-#: _tools/post-types.php:101
-msgid "Categories"
-msgstr "الاقسام"
-
-#: _tools/post-types.php:122
-msgid "Home Slider"
-msgstr "السلايدر الرئيسي"
-
-#: _tools/post-types.php:150
-msgid "Products Sub-List"
-msgstr "منتجات فرعية"
 
 #: _tools/search.php:21
 msgid "Search Resault for "
@@ -58,37 +34,79 @@ msgstr "لا يوجد نتائج لــ "
 msgid "Try Another Keywords "
 msgstr "جرب كلمات مفتاحية اخري "
 
-#: admin/modules/cpt-creator.php:32 admin/modules/cpt-creator.php:39
+#: admin/modules/cpt-creator.php:45 admin/modules/cpt-creator.php:52
+#: admin/modules/tax-creator.php:29 admin/modules/tax-creator.php:36
 msgid "Add New "
 msgstr "اضف جديد "
 
-#: admin/modules/cpt-creator.php:33
+#: admin/modules/cpt-creator.php:46 admin/modules/tax-creator.php:30
 msgid "Edit "
 msgstr "تعديل "
 
-#: admin/modules/cpt-creator.php:34
+#: admin/modules/cpt-creator.php:47 admin/modules/tax-creator.php:31
 msgid "New "
 msgstr "جديد "
 
-#: admin/modules/cpt-creator.php:35
+#: admin/modules/cpt-creator.php:48 admin/modules/tax-creator.php:32
 msgid "All "
 msgstr "الكل "
 
-#: admin/modules/cpt-creator.php:36
+#: admin/modules/cpt-creator.php:49 admin/modules/tax-creator.php:33
 msgid "View "
 msgstr "عرض "
 
-#: admin/modules/cpt-creator.php:37 admin/modules/cpt-creator.php:41
+#: admin/modules/cpt-creator.php:50 admin/modules/cpt-creator.php:54
+#: admin/modules/tax-creator.php:34 admin/modules/tax-creator.php:38
 msgid "No "
 msgstr "لا "
 
-#: admin/modules/cpt-creator.php:38
+#: admin/modules/cpt-creator.php:51 admin/modules/tax-creator.php:35
 msgid "Search "
 msgstr "بحث "
 
-#: admin/modules/page-layout.php:44
+#: admin/modules/page-layout.php:46
 msgid "Save Changes"
 msgstr "حفظ التغييرات"
+
+#: admin/panels/block-patterns.php:20
+msgid "Add New Pattern"
+msgstr "إضافة نمط جديد"
+
+#: admin/panels/block-patterns.php:21
+msgid "you can add/edit gutenberg block patterns from the next form."
+msgstr "يمكنك إضافة وتعديل الأنماط المخصصة للمكونات من خلال النموذج أدناه."
+
+#: admin/panels/block-patterns.php:27
+msgid "Add Pattern"
+msgstr "إضافة نمط"
+
+#: admin/panels/block-patterns.php:38
+msgid "Patterns List"
+msgstr "قائمة الانماط"
+
+#: admin/panels/block-patterns.php:39
+msgid "in here you can manage the patterns created by phenix-blocks."
+msgstr ""
+"يمكنك إدارة وتعديل الأنماط التي تم انشائها بواسطة نظام العنقاء من القائمة "
+"أدناه."
+
+#: admin/panels/block-patterns.php:45 admin/panels/metabox.php:29
+#: admin/panels/metabox.php:105 admin/panels/post-types.php:15
+#: admin/panels/post-types.php:105 admin/panels/taxonomies.php:26
+#: admin/panels/taxonomies.php:94
+msgid "Label"
+msgstr "العنوان"
+
+#: admin/panels/block-patterns.php:46 admin/panels/metabox.php:36
+#: admin/panels/metabox.php:106 admin/panels/post-types.php:22
+#: admin/panels/post-types.php:106 admin/panels/taxonomies.php:33
+#: admin/panels/taxonomies.php:95
+msgid "Name"
+msgstr "الأسم"
+
+#: admin/panels/block-patterns.php:47
+msgid "Category"
+msgstr "القسم"
 
 #: admin/panels/locations.php:11
 msgid "Add New Location"
@@ -117,23 +135,173 @@ msgstr "مواقع القائمة"
 #: admin/panels/locations.php:31
 msgid "in here you can manage the menu locations created by phenix-blocks."
 msgstr ""
-"من هنا يمكنك إدارة وتعديل مواقع القائمة التي تم انشائها بواسطة فينكس بلوكز."
+"يمكنك إدارة وتعديل مواقع القائمة التي تم انشائها بواسطة نظام العنقاء من "
+"القائمة أدناه."
 
 #: admin/panels/locations.php:38
 msgid "Location Name"
 msgstr "اسم الموقع"
 
-#: src/blocks/patterns.php:28
-msgid "Blog Details"
-msgstr "محتوي تدوينة"
+#: admin/panels/metabox.php:20
+msgid "Add New Metabox"
+msgstr "إضافة ميتا جديد"
 
-#: src/blocks/patterns.php:30
-msgid "Blog Details Block Pattern to use in the Blog Post Type"
-msgstr "قالب لنموذج محتوي تدوينه يمكن استخدامة كتدوينه افتراضية عند الانشاء"
+#: admin/panels/metabox.php:21
+msgid "you can add/edit metaboxes from the next form."
+msgstr "يمكنك إضافة وتعديل بيانات ميتا مخصصة من خلال النموذج أدناه."
+
+#: admin/panels/metabox.php:43
+msgid "Data Type"
+msgstr "نوع بيانات الحقل"
+
+#: admin/panels/metabox.php:55
+msgid "Data Location"
+msgstr "مجموعة البيانات"
+
+#: admin/panels/metabox.php:65 admin/panels/post-types.php:98
+#: admin/panels/taxonomies.php:54
+msgid "Post Types"
+msgstr "أنواع البيانات"
+
+#: admin/panels/metabox.php:81
+msgid "Enable this Metabox once added ?"
+msgstr "تفعيل الميتا عند أنشاءه ؟"
+
+#: admin/panels/metabox.php:84
+msgid "Add Metabox"
+msgstr "إضافة ميتا"
+
+#: admin/panels/metabox.php:98
+msgid "Metaboxes List"
+msgstr "قائمة بيانات الميتا"
+
+#: admin/panels/metabox.php:99
+msgid "in here you can manage the metaboxes created by phenix-blocks."
+msgstr ""
+"يمكنك إدارة وتعديل بيانات الميتا التي تم انشائها بواسطة نظام العنقاء من "
+"القائمة أدناه."
+
+#: admin/panels/metabox.php:107 admin/panels/taxonomies.php:96
+msgid "Types"
+msgstr "أنواع البيانات"
+
+#: admin/panels/post-types.php:6
+msgid "Add New Post Type"
+msgstr "إضافة نوع جديد"
+
+#: admin/panels/post-types.php:7
+msgid "you can add/edit custom post types from the next form."
+msgstr "يمكنك إضافة وتعديل أنواع البيانات المخصصة من خلال النموذج أدناه."
+
+#: admin/panels/post-types.php:29 admin/panels/taxonomies.php:40
+msgid "singular Label"
+msgstr "العنوان مفرد"
+
+#: admin/panels/post-types.php:36 admin/panels/post-types.php:107
+#: admin/panels/taxonomies.php:47
+msgid "Singular"
+msgstr "الاسم مفرد"
+
+#: admin/panels/post-types.php:43
+msgid "Icon"
+msgstr "الايقونة"
+
+#: admin/panels/post-types.php:50
+msgid "Pattern Template"
+msgstr "النمط الافتراضي"
+
+#: admin/panels/post-types.php:51
+msgid "Default"
+msgstr "افتراضي"
+
+#: admin/panels/post-types.php:65
+msgid "Taxonomies"
+msgstr "التصنيفات"
+
+#: admin/panels/post-types.php:81
+msgid "Enable this Type once added ?"
+msgstr "تفعيل نوع البيانات عند أنشاءه ؟"
+
+#: admin/panels/post-types.php:84
+msgid "Add Type"
+msgstr "إضافة النوع"
+
+#: admin/panels/post-types.php:99
+msgid "in here you can manage the  post types created by phenix-blocks."
+msgstr ""
+"يمكنك إدارة وتعديل أنواع البيانات التي تم انشائها بواسطة نظام العنقاء من "
+"القائمة أدناه."
+
+#: admin/panels/taxonomies.php:17
+msgid "Add New Taxonomy"
+msgstr "إضافة تصنيف جديد"
+
+#: admin/panels/taxonomies.php:18
+msgid "you can add/edit taxonomies from the next form."
+msgstr "يمكنك إضافة وتعديل تصنيفات مخصصة من خلال النموذج أدناه."
+
+#: admin/panels/taxonomies.php:70
+msgid "Enable this Taxonomy once added ?"
+msgstr "تفعيل التنصيف عند أنشاءه ؟"
+
+#: admin/panels/taxonomies.php:73
+msgid "Add Taxonomy"
+msgstr "إضافة تصنيف"
+
+#: admin/panels/taxonomies.php:87
+msgid "Taxonomies List"
+msgstr "قائمة التصنيفات"
+
+#: admin/panels/taxonomies.php:88
+msgid "in here you can manage the taxonomies created by phenix-blocks."
+msgstr ""
+"يمكنك إدارة وتعديل التصنيفات التي تم انشائها بواسطة نظام العنقاء من القائمة "
+"أدناه."
+
+#: admin/pds-admin.php:19
+msgid "Phenix Blocks Settings"
+msgstr "اعدادات عامة"
 
 #. Plugin Name of the plugin/theme
+#: admin/pds-admin.php:20
 msgid "Phenix Blocks"
-msgstr ""
+msgstr "مكونات العنقاء"
+
+#: admin/pds-admin.php:29
+msgid "Custom Data Collection"
+msgstr "مجموعة البيانات المخصصة"
+
+#: admin/pds-admin.php:30
+msgid "Data Collection"
+msgstr "مجموعة البيانات"
+
+#: admin/pds-admin.php:38 admin/pds-admin.php:39
+msgid "Reusable Blocks"
+msgstr "المكونات المحفوظة"
+
+#: admin/pds-admin.php:69
+msgid "Plugins"
+msgstr "الإضافات"
+
+#: admin/pds-admin.php:70
+msgid "Comments"
+msgstr "التعليقات"
+
+#: admin/pds-admin.php:71
+msgid "Address Book"
+msgstr "قائمة الاتصال"
+
+#: admin/pds-admin.php:72
+msgid "Media Uploads"
+msgstr "إدارة الوسائط"
+
+#: admin/pds-admin.php:73
+msgid "Core Updates"
+msgstr "تحديثات النظام"
+
+#: admin/pds-admin.php:74
+msgid "Inbox Messages"
+msgstr "الرسائل الواردة"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme

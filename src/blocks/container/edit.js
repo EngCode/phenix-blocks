@@ -35,7 +35,8 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Options <===//
     let flexbox_options = attributes.flexbox,
         style_options = attributes.style,
-        typography_opts = attributes.typography;
+        background = style_options?.background,
+        typography = attributes.typography;
     
     //===> Flexbox Options <===//
     const set_alignment = alignment => {
@@ -58,20 +59,20 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Typography Options <===//
     const set_typography_size = value => {
         //==> Size <==//
-        typography_opts.size = value;
-        setAttributes({ typography : {...typography_opts} });
+        typography.size = value;
+        setAttributes({ typography : {...typography} });
     },
 
     //==> Weight <==//
     set_typography_weight = value => {
-        typography_opts.weight = value;
-        setAttributes({ typography : {...typography_opts} });
+        typography.weight = value;
+        setAttributes({ typography : {...typography} });
     },
 
     //==> Color <==//
     set_color = value => {
-        typography_opts.color = value;
-        setAttributes({ typography : {...typography_opts} });
+        typography.color = value;
+        setAttributes({ typography : {...typography} });
     },
 
     //===> Set Background <===//
@@ -140,25 +141,25 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Typography Properties <===//
-    if (attributes.typography) {
-        container.className += ` ${typography_opts.size}`;
-        container.className += ` ${typography_opts.color}`;
-        container.className += ` ${typography_opts.weight}`;
+    if (typography) {
+        if(typography.size) container.className += ` ${typography.size}`;
+        if(typography.color) container.className += ` ${typography.color}`;
+        if(typography.weight) container.className += ` ${typography.weight}`;
     }
 
     //===> Render Background <===//
-    if (attributes.background) {
+    if (background?.value) {
         //===> Image Background <===//
-        if (attributes.bg_type === 'image') {
+        if (background.type === 'image') {
             blockProps.className += ` px-media`;
-            blockProps["data-src"] = attributes.background;
+            blockProps["data-src"] = background.value;
         }
 
         //===> Name Background <===//
-        else blockProps.className += ` ${attributes.background}`;
+        else blockProps.className += ` ${background.value}`;
 
         //===> Background Rotation <===//
-        if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
+        if (background.rotate) blockProps.className += ` ${background.rotate}`;
     }
 
     //===> Render <===//
@@ -212,7 +213,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography_opts.size} onChange={set_typography_size} options={[
+                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography.size || ""} onChange={set_typography_size} options={[
                             { label: 'Default',   value: '' },
                             { label: '12px',   value: 'fs-12' },
                             { label: '13px',   value: 'fs-13' },
@@ -234,7 +235,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={typography_opts.weight} onChange={set_typography_weight} options={[
+                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={typography.weight || ""} onChange={set_typography_weight} options={[
                             { label: 'Default',  value: '' },
                             { label: 'Thin',  value: 'weight-thin'},
                             { label: 'Light',  value: 'weight-light'},
@@ -250,7 +251,7 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> // Column <===*/}
                 </div>
                 {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography_opts.color} />
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography.color || ""} />
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
@@ -262,23 +263,23 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className='row gpx-15 divider-b mb-20 pdb-5'>
                         {/*===> Column <===*/}
                         <div className='col-12 mb-20'>
-                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align} onChange={set_alignment}></FlexAlignment>
+                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align || ""} onChange={set_alignment}></FlexAlignment>
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-6'>
                             {/*===> Switch Button <===*/}
-                            <ToggleControl label={__("Reverse ", "phenix")} checked={flexbox_options.flow.length > 0} onChange={set_flex_flow}/>
+                            <ToggleControl label={__("Reverse ", "phenix")} checked={flexbox_options.flow?.length > 0} onChange={set_flex_flow}/>
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-6'>
                             {/*===> Switch Button <===*/}
-                            <ToggleControl label={__("Nowrap", "phenix")} checked={flexbox_options.nowrap.length > 0} onChange={set_flex_nowrap}/>
+                            <ToggleControl label={__("Nowrap", "phenix")} checked={flexbox_options.nowrap?.length > 0} onChange={set_flex_nowrap}/>
                         </div>
                         {/*===> // Column <===*/}
                     </div>
                 : null}
                 {/*===> Background <===*/}
-                <PhenixBackground key="px-bg" onChange={set_background} type={style_options.background.type} value={style_options.background.value} />
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

@@ -13,7 +13,10 @@ import MediaUploader from '../uploader';
 export default class PhenixBackground extends Component {
     //===> States <===//
     state = {
-        main : [
+        colors : [
+            "fas fa-redo tx-align-center",
+
+            "bg-inherit",
             "bg-transparent",
             "bg-primary",
             "bg-primary-dark",
@@ -26,38 +29,35 @@ export default class PhenixBackground extends Component {
             "bg-danger",
             "bg-warning",
             "bg-info",
-            "bg-alpha-05",
-            "bg-alpha-10",
-            "bg-alpha-25",
-            "bg-alpha-50",
-            "bg-alpha-75",
-        ],
-        offwhite : [
+
             "bg-offwhite-primary",
             "bg-offwhite-secondary",
             "bg-offwhite-info",
             "bg-offwhite-success",
-            "bg-ffwhite-danger",
+            "bg-offwhite-danger",
             "bg-offwhite-warning",
-            "bg-offwhite-smoke",
+
             "bg-offwhite-smoke",
             "bg-offwhite-gray",
             "bg-offwhite-snow",
-            "bg-offwhite-snow",
             "bg-offwhite-honeydew",
-            "bg-offwhite-mintcream",
             "bg-offwhite-aliceblue",
             "bg-offwhite-ghost",
             "bg-offwhite-seashell",
             "bg-offwhite-beige",
             "bg-offwhite-oldlace",
             "bg-offwhite-floral",
-            "bg-offwhite-ivory",
             "bg-offwhite-antique",
             "bg-offwhite-linen",
-            "bg-offwhite-lavenderblush"
-        ],
-        brands : [
+            "bg-offwhite-lavenderblush",
+
+            "bg-alpha-05",
+            "bg-alpha-10",
+            "bg-alpha-15",
+            "bg-alpha-25",
+            "bg-alpha-50",
+            "bg-alpha-75",
+
             "bg-facebook",
             "bg-twitter",
             "bg-youtube",
@@ -68,7 +68,7 @@ export default class PhenixBackground extends Component {
             "bg-linkedin",
             "bg-behance",
             "bg-dribbble",
-            "bg-flicker"
+            "bg-flicker",
         ],
         gradients: [
             "bg-grade-primary",
@@ -99,59 +99,28 @@ export default class PhenixBackground extends Component {
         const {
             type,
             value,
+            label,
             onChange
         } = this.props;
 
         //===> Returned Value <===//
-        const options = {}
-
-        //===> Type Activator <===//
-        const activeBtn = (current) => type === current ?  'primary' : 'light';
-        const activeTab = (current) => type === current ?  '' : 'hidden';
+        const options = {
+            type: type,
+            value: value
+        }
 
         //===> Set Background <===//
         const setBackground = clicked => {
+            //===> Get Value <===//
+            let button = clicked.target,
+                value  = button.getAttribute('data-value');
+
             //===> Colors & Gradients <===//
-            if (clicked.target) {
-                //===> Get Value <===//
-                let button   = clicked.target,
-                    btnType  = button.getAttribute('data-type'),
-                    btnValue = button.getAttribute('data-value');
-    
-                //===> Rotate Gradient <===//
-                if (btnType === 'rotate') {
-                    if (type !== 'gradient') return;
-
-                    //===> Get Current Value <===//
-                    let current = options.value || value,
-                        currentArray = value.split(' ');
-
-                    //===> Clear Current Rotation <===//
-                    if (currentArray.length > 0) {
-                        this.state.rotation.forEach(rotate => {
-                            //=== for each name in value ===//
-                            currentArray.forEach(item => {
-                                if (item === rotate) current = current.replace(` ${item}`, '');
-                            });
-                        });
-                    }
-
-                    //===> Set Rotation <===//
-                    options.value = `${current} ${btnValue}`;
-                    options.type  = 'gradient';
-                }
-
-                //===> Set Background Name <===//
-                else {
-                    options.type  = btnType;
-                    options.value = btnValue;
-                    if (btnType !== 'gradient') options.rotation = null;
-                }
+            if (button) {
+                options.value = value;
             }
             //===> Image Type <===//
             else {
-                //===> Set New Direction <===//
-                options.type  = 'image';
                 options.value = clicked.url;
             }
             //===> Return Options <===//
@@ -165,129 +134,97 @@ export default class PhenixBackground extends Component {
             for (let index = 0; index < list.length; index++) {
                 //===> Get Value <===//
                 const name = list[index];
+                let title = "",
+                    isColor = !name.includes("fa-");
 
                 //===> Convert to Title <===//
-                let title = list[index].replace('bg-', '');
-                    title = title.replace('-', ' ');
-                    title = title.replace('grade', '');
-
-                //===> UpperCase Title <===//
-                title = title.replace(/^\w/, function(c) {
-                    return c.toUpperCase();
-                });
-
-                //===> Check Active <===//
-                let current = value.split(' '),
-                    isActive = '';
-                
-                //=== for each name in value ===//
-                if (current.length > 0) {
-                    current.forEach(item => {
-                        if (item === name) isActive = 'px-active';
+                if (isColor) {
+                    title = list[index].replace('bg-', '').replace('-', ' ');
+    
+                    //===> UpperCase Title <===//
+                    title = title.replace(/^\w/, function(c) {
+                        return c.toUpperCase();
                     });
-                } else if (item === name) isActive = 'px-active';
+                } else title = "Reset";
 
-                output.push(<button key={`${name}-${index}`} onClick={setBackground} title={title} data-value={name} data-type={type} className={`${name} btn square tiny radius-circle border-1 border-solid border-alpha-25 mb-10 me-10 ${isActive}`}></button>);
+                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} reset-button ${value === name ? 'px-active' : null}`} style={{"width":"30px","height":"16px","borderRadius":"16px"}}></button>);
             }
-
             //===> Return Buttons <===//
             return output;
         }
 
-        //===> Icons Buttons <===//
-        const makeRotations = (list, type) => {
-            let output = [];
-            //===> for each item <===//
-            for (let index = 0; index < list.length; index++) {
-                //===> Get Value <===//
-                const name = list[index];
-
-                //===> Rotation <===//
-                let rotation = name.replace('bg-grade-', '');
-                if (name.endsWith('n')) rotation = `-${rotation.slice(0,-1)}`;
-
-                //===> Check Active <===//
-                let current = value.split(' '),
-                    isActive = '';
-                
-                //=== for each name in value ===//
-                if (current.length > 0) {
-                    current.forEach(item => {
-                        if (item === name) isActive = 'px-active';
-                    });
-                } else if (item === name) isActive = 'px-active';
-                
-                //===> Get Value <===//
-                output.push(<button key={`${name}-${index}`} data-type={type} onClick={setBackground} data-value={name} className={`btn square tiny light ${isActive}`}><i className='inline-block fas fa-arrow-to-bottom' style={{transform:`rotate(${rotation}deg)`}}></i></button>);
+        //===> Colors Panel <===//
+        const showPanel = clicked => {
+            let button = clicked.target,
+                panel  = Phenix(button).next(".options-list");
+            //=== Show/Hide Panel ===//
+            if (panel) {
+                Phenix(button).toggleClass("px-active");
+                Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
             }
-
-            //===> Return Buttons <===//
-            return output
-        }
-
-        //===> Options Changer <===//
-        const changeTab = (clicked) => {
-            //===> Option Data <===//
-            let element = Phenix(clicked.target),
-                parent  = element.ancestor('.options-tabs'),
-                optionsList = Phenix(parent).next('.options-list'),
-                currentActive = Phenix(parent.querySelector('.primary')),
-                currentType = `${element[0].getAttribute('data-value')}-options`,
-                targetElement = optionsList.querySelector(`.${currentType}`);
-
-            //===> Change Active <===//
-            currentActive.addClass('light').removeClass('primary');
-            element.addClass('primary').removeClass('light');
-
-            //===> Show Options <===//
-            optionsList.querySelector('.flexbox:not(.hidden)')?.classList.add('hidden');
-            Phenix(targetElement).removeClass('hidden');
         };
 
         //===> Component Design <===//
         return (
-            <div className='px-gb-component'>
-                {/*===> Background Types <===*/}
-                <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
-                    <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
-                    <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
-                    <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
-                </div>
-
-                {/*===> Background <===*/}
-                <div className='options-list'>
-                    {/*===> Colors <====*/}
-                    <div className={`flexbox color-options ${activeTab('color')}`}>
-                        {makeButtons(this.state.main, 'color')}
-                        {/* Divider */}
-                        <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-                        {/* Offwhite */}
-                        {makeButtons(this.state.offwhite, 'color')}
-                        {/* Divider */}
-                        <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-                        {/* Brands */}
-                        {makeButtons(this.state.brands, 'color')}
+            <div className='px-gb-component position-rv mb-15'>
+                {/*===> Toggle Button <===*/}
+                <label className='mb-10 tx-UpperCase'>{label}</label>
+                {/*===> Trigger <===*/}
+                <button onClick={showPanel} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
+                    <span className={`me-10 radius-circle inline-block ${value.length > 0 ? value : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>
+                    <span className='col'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : "Default"}</span>
+                    <i className='fas fa-pencil'></i>
+                </button>
+                {/*===> Panel <===*/}
+                {type !== "image" ?
+                    <div className='flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid' style={{gap:"10px"}}>
+                        {type === "color" ? makeButtons(this.state.colors) : type === "gradients" ? makeButtons(this.state.gradients) : null}
                     </div>
-                    {/*===> Gradients <====*/}
-                    <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
-                        {makeButtons(this.state.gradients, 'gradient')}
-                        {/* Divider */}
-                        <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-                        {/* Directions */}
-                        <label className='mb-10 col-12'>Gradient Direction</label>
-                        {/* .... */}
-                        <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
-                            {makeRotations(this.state.rotation, 'rotate')}
-                        </div>
-                    </div>
-                    {/*===> Background <====*/}
-                    <div className={`flexbox image-options ${activeTab('image')}`}>
-                        <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
-                    </div>
-                </div>
-                {/*===> End Component <===*/}
+                : null}
             </div>
         )
     }
 }
+
+// <div className='px-gb-component'>
+//     {/*===> Background Types <===*/}
+//     <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
+//         <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
+//         <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
+//         <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
+//         <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
+//     </div>
+
+//     {/*===> Background <===*/}
+//     <div className='options-list'>
+//         {/*===> Colors <====*/}
+//         <div className={`flexbox color-options ${activeTab('color')}`}>
+//             {makeButtons(this.state.main, 'color')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Offwhite */}
+//             {makeButtons(this.state.offwhite, 'color')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Brands */}
+//             {makeButtons(this.state.brands, 'color')}
+//         </div>
+//         {/*===> Gradients <====*/}
+//         <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
+//             {makeButtons(this.state.gradients, 'gradient')}
+//             {/* Divider */}
+//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+//             {/* Directions */}
+//             <label className='mb-10 col-12'>Gradient Direction</label>
+//             {/* .... */}
+//             <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
+//                 {makeRotations(this.state.rotation, 'rotate')}
+//             </div>
+//         </div>
+//         {/*===> Background <====*/}
+//         <div className={`flexbox image-options ${activeTab('image')}`}>
+//             <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
+//         </div>
+//     </div>
+//     {/*===> End Component <===*/}
+// </div>

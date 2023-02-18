@@ -5,7 +5,7 @@
 /*====> Phenix JS <====*/
 import Phenix from "..";
 declare var wp:any,
-            PDS_WP_KEY:any;
+PDS_WP_KEY:any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).ready(ready => {
@@ -44,5 +44,11 @@ Phenix(document).ready(ready => {
 
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+    }
+
+    /*====> for the Editor <====*/
+    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //===> Removes Editor Reset styles <===//
+        Phenix("#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css").forEach((file:HTMLElement) => file.remove());
     }
 });

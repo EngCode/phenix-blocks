@@ -500,9 +500,7 @@
                 else if (control_tag === 'TEXTAREA') control.textContent = dataItem[control_name];
 
                 //===> Other Controls <===//
-                else {
-                    control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
-                }
+                else control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
             });
 
             //===> Get Data from Rest-API <===//

@@ -304,9 +304,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ PhenixBackground; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _uploader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../uploader */ "./src/blocks/px-controls/uploader.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _uploader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../uploader */ "./src/blocks/px-controls/uploader.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -338,6 +342,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * ===> 04 - Component Output
 */
 //===> WordPress Modules <===//
+
+
+ //====> Phenix Modules <====//
 
  //===> Phenix Background <===//
 
@@ -371,6 +378,8 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
     key: "render",
     value: //===> Render <===//
     function render() {
+      var _this2 = this;
+
       //===> Properties <===//
       var _this$props = this.props,
           type = _this$props.type,
@@ -381,7 +390,22 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var options = {
         type: type,
         value: value
+      }; //===> Set Type <===//
+
+      var set_type = function set_type(type) {
+        //===> Set Value <===//
+        options.type = type; //===> change value <===//
+
+        if (options.type === 'image') {
+          options.value = _this2.state.placeholder;
+        } else {
+          options.value = "";
+        } //===> Return Options <===//
+
+
+        return onChange(options);
       }; //===> Set Background <===//
+
 
       var setBackground = function setBackground(clicked) {
         //===> Get Value <===//
@@ -422,7 +446,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
             onClick: setBackground,
             title: title,
             "data-value": isColor ? name : "",
-            className: "".concat(isColor ? name : "".concat(name, " color-gray fs-12"), " reset-button ").concat(value === name ? 'px-active' : null),
+            className: "".concat(isColor ? name : "".concat(name, " color-gray fs-12"), " col reset-button ").concat(value === name ? 'px-active' : ""),
             style: {
               "width": "30px",
               "height": "16px",
@@ -438,7 +462,8 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
       var showPanel = function showPanel(clicked) {
         var button = clicked.target,
-            panel = Phenix(button).next(".options-list"); //=== Show/Hide Panel ===//
+            wrapper = Phenix(button).ancestor('.px-gb-component'),
+            panel = wrapper.querySelector(".options-list"); //=== Show/Hide Panel ===//
 
         if (panel) {
           Phenix(button).toggleClass("px-active");
@@ -451,72 +476,62 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         className: "px-gb-component position-rv mb-15"
       }, /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
-      }, label), /*#__PURE__*/React.createElement("button", {
+      }, label), /*#__PURE__*/React.createElement("div", {
+        className: "overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap"
+      }, /*#__PURE__*/React.createElement("button", {
         onClick: showPanel,
-        className: "options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5",
+        className: "w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e",
         type: "button"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "me-10 radius-circle inline-block ".concat(value.length > 0 ? value : "bg-inherit"),
+      }, type !== "image" ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+        className: "me-5 radius-circle inline-block ".concat(value.length > 0 ? value : "bg-inherit"),
         style: {
-          "width": "20px",
-          "height": "20px"
+          "width": "17px",
+          "height": "17px"
         }
       }), /*#__PURE__*/React.createElement("span", {
-        className: "col"
-      }, value.length > 0 ? value.replaceAll("-", " ").replace("bg", "") : "Default"), /*#__PURE__*/React.createElement("i", {
-        className: "fas fa-pencil"
-      })), type !== "image" ? /*#__PURE__*/React.createElement("div", {
-        className: "flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
+        className: "col tx-nowrap pde-5 tx-capitalize"
+      }, value.length > 0 ? value.replaceAll("-", " ").replace("bg", "") : "Default")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+        className: "me-5 radius-circle inline-block",
+        style: {
+          "width": "22px",
+          "height": "22px",
+          "backgroundImage": "url(".concat(value, ")"),
+          "backgroundSize": "cover",
+          "backgroundPosition": "center"
+        }
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "col tx-nowrap pde-5"
+      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix"))), /*#__PURE__*/React.createElement("i", {
+        className: "fas fa-pencil fs-12 color-gray"
+      })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        key: "bg-type",
+        value: type || "",
+        onChange: set_type,
+        options: [{
+          label: 'color',
+          value: 'color'
+        }, {
+          label: 'image',
+          value: 'image'
+        }, {
+          label: 'gradient',
+          value: 'gradient'
+        }]
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox options-list align-between ".concat(type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5', " hidden fluid"),
         style: {
           gap: "10px"
         }
-      }, type === "color" ? makeButtons(this.state.colors) : type === "gradients" ? makeButtons(this.state.gradients) : null) : null);
+      }, type === "color" ? makeButtons(this.state.colors) : type === "gradient" ? makeButtons(this.state.gradients) : null, type === "image" ? /*#__PURE__*/React.createElement(_uploader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        key: "upload-file",
+        value: !value ? this.state.placeholder : value,
+        setValue: setBackground
+      }) : null));
     }
   }]);
 
   return PhenixBackground;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component); // <div className='px-gb-component'>
-//     {/*===> Background Types <===*/}
-//     <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-//         <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
-//         <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
-//         <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
-//         <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
-//     </div>
-//     {/*===> Background <===*/}
-//     <div className='options-list'>
-//         {/*===> Colors <====*/}
-//         <div className={`flexbox color-options ${activeTab('color')}`}>
-//             {makeButtons(this.state.main, 'color')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Offwhite */}
-//             {makeButtons(this.state.offwhite, 'color')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Brands */}
-//             {makeButtons(this.state.brands, 'color')}
-//         </div>
-//         {/*===> Gradients <====*/}
-//         <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
-//             {makeButtons(this.state.gradients, 'gradient')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Directions */}
-//             <label className='mb-10 col-12'>Gradient Direction</label>
-//             {/* .... */}
-//             <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
-//                 {makeRotations(this.state.rotation, 'rotate')}
-//             </div>
-//         </div>
-//         {/*===> Background <====*/}
-//         <div className={`flexbox image-options ${activeTab('image')}`}>
-//             <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
-//         </div>
-//     </div>
-//     {/*===> End Component <===*/}
-// </div>
-
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
 
@@ -1747,7 +1762,8 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
           value = _this$props.value,
           size = _this$props.size,
           type = _this$props.type,
-          setValue = _this$props.setValue; //===> Output <===//
+          setValue = _this$props.setValue,
+          className = _this$props.className; //===> Output <===//
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
         onSelect: setValue,
@@ -1755,12 +1771,12 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
         render: function render(_ref) {
           var open = _ref.open;
           return /*#__PURE__*/React.createElement("div", {
-            className: "mb-15 cursor-pointer",
+            className: "cursor-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            className: "mb-10"
+            className: "mb-10 cursor-pointer"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
-            className: "flexbox align-center-y align-between"
+            className: "flexbox align-center-y align-between cursor-pointer".concat(className ? "".concat(className) : "")
           }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
@@ -1831,6 +1847,16 @@ module.exports = window["wp"]["components"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["i18n"];
 
 /***/ }),
 

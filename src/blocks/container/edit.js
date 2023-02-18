@@ -44,6 +44,7 @@ export default function Edit({ attributes, setAttributes }) {
         flexbox_options.align = alignment;
         setAttributes({ flexbox : {...flexbox_options} });
     },
+
     //==> Flow <==//
     set_flex_flow = flex_flow => {
         flex_flow ? flexbox_options.flow = "flow-reverse" : flexbox_options.flow = "";
@@ -86,43 +87,25 @@ export default function Edit({ attributes, setAttributes }) {
     const innerBlocksProps = useInnerBlocksProps();
     const TagName = attributes.tagName;
 
-    //===> Set Phenix View <===//
+    //===> Set Phenix Components <===//
     const setPhenixView = () => {
         //===> Check Site Editor <===//
         let siteEditor = window.frames['editor-canvas'],
             blockElement = '.px-media';
 
-        //===> Get the Element from Site Editor <===//
+        //===> Correct Editor Target for Site-Editor <===//
         if (siteEditor) {
             blockElement = siteEditor.document.querySelectorAll('.px-media');
             blockElement = [...blockElement];
-            Phenix(blockElement).multimedia();
         }
 
         //===> Set Background <===//
-        if (!siteEditor) Phenix(blockElement).multimedia();
+        if (background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
-    //===> Component is Ready <===//
     useEffect(() => {
-        //===> Loading FontAwesome <===//
-        if (window.frames['editor-canvas']) {
-            let fontAwesome = document.querySelector("#fontawesome-css");
-            if (fontAwesome) {
-                //===> Check in the Editor <===//
-                let canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css");
-    
-                //===> if Font Awesome not Loaded <===//
-                if (!canvasAwesome && fontAwesome) {
-                    let newAwesome = document.importNode(fontAwesome, true);
-                    window.frames['editor-canvas'].document.head.appendChild(newAwesome);
-                }
-            }
-        }
-
-        //===> Render Background <===//
-        if (attributes.background && attributes.bg_type === 'image') setPhenixView();
-    }, []);
+        setPhenixView();
+    }, [attributes]);
 
     //===> for Section Convert <===//
     let container = blockProps;
@@ -225,7 +208,6 @@ export default function Edit({ attributes, setAttributes }) {
                             { label: '18px',   value: 'fs-18' },
                             { label: '19px',   value: 'fs-19' },
                             { label: '20px',   value: 'fs-20' },
-                            { label: '20px',   value: 'fs-20' },
                             { label: '22px',   value: 'fs-22' },
                             { label: '24px',   value: 'fs-24' },
                             { label: '25px',   value: 'fs-25' },
@@ -256,9 +238,12 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {/*===> Background <===*/}
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} />
+
                 {/*===> Flexbox Properties <===*/}
                 {attributes.isFlexbox ?
-                    <div className='row gpx-15 divider-b mb-20 pdb-5'>
+                    <div className='row gpx-15 divider-t pdt-10'>
                         {/*===> Column <===*/}
                         <div className='col-12 mb-15'>
                             <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align || ""} onChange={set_alignment}></FlexAlignment>
@@ -277,14 +262,8 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                 : null}
 
-                {/*===> Background <===*/}
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} />
-
-                {/*===> Other <===*/}
-                <div className='divider-t pdt-15 mt-20'>
                 {/*===> Display <===*/}
-                    <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
-                </div>
+                <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

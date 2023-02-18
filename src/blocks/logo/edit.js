@@ -76,7 +76,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/* Divider */}
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/* Logo */}
-                <MediaUploader label="Upload Logo" value={attributes.logo} setValue={set_logo} size="small"></MediaUploader>
+                <MediaUploader label="Upload Logo" value={attributes.logo} setValue={set_logo} size="small" className="mb-15"></MediaUploader>
                 {/* Divider */}
                 <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
                 {/* Fevicon */}

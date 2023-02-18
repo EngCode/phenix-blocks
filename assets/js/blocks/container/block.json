@@ -37,11 +37,11 @@
       "type": "boolean",
       "default": false
     },
-    "isHidden": {
+    "preview": {
       "type": "boolean",
       "default": false
     },
-    "preview": {
+    "isHidden": {
       "type": "boolean",
       "default": false
     },
@@ -54,6 +54,10 @@
       "default": {}
     },
     "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
       "type": "object",
       "default": {}
     }

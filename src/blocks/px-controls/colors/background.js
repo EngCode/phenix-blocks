@@ -6,7 +6,11 @@
 */
 
 //===> WordPress Modules <===//
+import { __ } from '@wordpress/i18n';
 import {Component} from '@wordpress/element';
+import {SelectControl} from '@wordpress/components';
+
+//====> Phenix Modules <====//
 import MediaUploader from '../uploader';
 
 //===> Phenix Background <===//
@@ -104,10 +108,26 @@ export default class PhenixBackground extends Component {
         } = this.props;
 
         //===> Returned Value <===//
-        const options = {
+        let options = {
             type: type,
             value: value
-        }
+        };
+
+        //===> Set Type <===//
+        const set_type = type => {
+            //===> Set Value <===//
+            options.type = type;
+
+            //===> change value <===//
+            if (options.type === 'image') {
+                options.value = this.state.placeholder;
+            } else {
+                options.value = "";
+            }
+
+            //===> Return Options <===//
+            return onChange(options);
+        };
 
         //===> Set Background <===//
         const setBackground = clicked => {
@@ -116,16 +136,13 @@ export default class PhenixBackground extends Component {
                 value  = button.getAttribute('data-value');
 
             //===> Colors & Gradients <===//
-            if (button) {
-                options.value = value;
-            }
+            if (button) {options.value = value;}
             //===> Image Type <===//
-            else {
-                options.value = clicked.url;
-            }
+            else {options.value = clicked.url;}
+
             //===> Return Options <===//
             return onChange(options);
-        }
+        };
 
         //===> Buttons Creator <===//
         const makeButtons = (list, type) => {
@@ -147,16 +164,18 @@ export default class PhenixBackground extends Component {
                     });
                 } else title = "Reset";
 
-                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} reset-button ${value === name ? 'px-active' : null}`} style={{"width":"30px","height":"16px","borderRadius":"16px"}}></button>);
+                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : ""}`} style={{"width":"30px","height":"16px","borderRadius":"16px"}}></button>);
             }
             //===> Return Buttons <===//
             return output;
-        }
+        };
 
         //===> Colors Panel <===//
         const showPanel = clicked => {
-            let button = clicked.target,
-                panel  = Phenix(button).next(".options-list");
+            let button  = clicked.target,
+                wrapper = Phenix(button).ancestor('.px-gb-component'),
+                panel   = wrapper.querySelector(".options-list");
+
             //=== Show/Hide Panel ===//
             if (panel) {
                 Phenix(button).toggleClass("px-active");
@@ -169,62 +188,32 @@ export default class PhenixBackground extends Component {
             <div className='px-gb-component position-rv mb-15'>
                 {/*===> Toggle Button <===*/}
                 <label className='mb-10 tx-UpperCase'>{label}</label>
-                {/*===> Trigger <===*/}
-                <button onClick={showPanel} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
-                    <span className={`me-10 radius-circle inline-block ${value.length > 0 ? value : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>
-                    <span className='col'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : "Default"}</span>
-                    <i className='fas fa-pencil'></i>
-                </button>
+                {/*===> Group <===*/}
+                <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
+                    {/*===> Panel Trigger */}
+                    <button onClick={showPanel} className={`w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
+                        {type !== "image" ? <>
+                            <span className={`me-5 radius-circle inline-block ${value.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
+                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : "Default"}</span>
+                        </> : <>
+                        <span className={`me-5 radius-circle inline-block`} style={{"width": "22px", "height": "22px", "backgroundImage": `url(${value})`, "backgroundSize": "cover", "backgroundPosition": "center"}}></span>
+                            <span className='col tx-nowrap pde-5'>{__("Replace", "phenix")}</span>
+                        </>}
+                        <i className='fas fa-pencil fs-12 color-gray'></i>
+                    </button>
+                    {/*===> Type Select <===*/}
+                    <SelectControl key="bg-type" value={type || ""} onChange={set_type} options={[
+                        { label: 'color',   value: 'color' },
+                        { label: 'image',   value: 'image' },
+                        { label: 'gradient',   value: 'gradient' },
+                    ]}/>
+                </div>
                 {/*===> Panel <===*/}
-                {type !== "image" ?
-                    <div className='flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid' style={{gap:"10px"}}>
-                        {type === "color" ? makeButtons(this.state.colors) : type === "gradients" ? makeButtons(this.state.gradients) : null}
-                    </div>
-                : null}
+                <div className={`flexbox options-list align-between ${type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid`} style={{gap:"10px"}}>
+                    {type === "color" ? makeButtons(this.state.colors) : type === "gradient" ? makeButtons(this.state.gradients) : null}
+                    {type === "image" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
+                </div>
             </div>
         )
     }
 }
-
-// <div className='px-gb-component'>
-//     {/*===> Background Types <===*/}
-//     <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-//         <button key="color" className={`btn tiny col ${activeBtn('color')}`} onClick={changeTab} data-value="color">Colors</button>
-//         <button key="gradient" className={`btn tiny col ${activeBtn('gradient')}`} onClick={changeTab} data-value="gradient">Gradients</button>
-//         <button key="image" className={`btn tiny col ${activeBtn('image')}`} onClick={changeTab} data-value="image">Image</button>
-//         <button key="more" className={`btn tiny bg-offwhite-smoke col far fa-ellipsis-v`} style={{padding:'0 8px'}}></button>
-//     </div>
-
-//     {/*===> Background <===*/}
-//     <div className='options-list'>
-//         {/*===> Colors <====*/}
-//         <div className={`flexbox color-options ${activeTab('color')}`}>
-//             {makeButtons(this.state.main, 'color')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Offwhite */}
-//             {makeButtons(this.state.offwhite, 'color')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Brands */}
-//             {makeButtons(this.state.brands, 'color')}
-//         </div>
-//         {/*===> Gradients <====*/}
-//         <div className={`flexbox gradient-options ${activeTab('gradient')}`}>
-//             {makeButtons(this.state.gradients, 'gradient')}
-//             {/* Divider */}
-//             <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-//             {/* Directions */}
-//             <label className='mb-10 col-12'>Gradient Direction</label>
-//             {/* .... */}
-//             <div className='px-group icon-btns radius-sm border-1 border-solid border-alpha-10 borderd-group mb-10'>
-//                 {makeRotations(this.state.rotation, 'rotate')}
-//             </div>
-//         </div>
-//         {/*===> Background <====*/}
-//         <div className={`flexbox image-options ${activeTab('image')}`}>
-//             <MediaUploader key="image-background" value={type !== 'image' ? this.state.placeholder : value} setValue={setBackground}></MediaUploader>
-//         </div>
-//     </div>
-//     {/*===> End Component <===*/}
-// </div>

@@ -126,7 +126,8 @@ function Edit(_ref) {
     label: "Upload Logo",
     value: attributes.logo,
     setValue: set_logo,
-    size: "small"
+    size: "small",
+    className: "mb-15"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
   }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -233,7 +234,8 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
           value = _this$props.value,
           size = _this$props.size,
           type = _this$props.type,
-          setValue = _this$props.setValue; //===> Output <===//
+          setValue = _this$props.setValue,
+          className = _this$props.className; //===> Output <===//
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
         onSelect: setValue,
@@ -241,12 +243,12 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
         render: function render(_ref) {
           var open = _ref.open;
           return /*#__PURE__*/React.createElement("div", {
-            className: "mb-15 cursor-pointer",
+            className: "cursor-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            className: "mb-10"
+            className: "mb-10 cursor-pointer"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
-            className: "flexbox align-center-y align-between"
+            className: "flexbox align-center-y align-between cursor-pointer".concat(className ? "".concat(className) : "")
           }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {

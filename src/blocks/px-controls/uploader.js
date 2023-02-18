@@ -17,17 +17,18 @@ export default class MediaUploader extends Component {
             value,
             size,
             type,
-            setValue
+            setValue,
+            className,
         } = this.props;
 
         //===> Output <===//
         return (<>
             <MediaUpload onSelect={ setValue } value={value} render={({open}) => (
-                    <div className="mb-15 cursor-pointer" onClick={open}>
+                    <div className="cursor-pointer" onClick={open}>
                         {/* label */}
-                        {label ? <label className="mb-10">{label}</label> : ''}
+                        {label ? <label className="mb-10 cursor-pointer">{label}</label> : ''}
                         {/* elements group */}
-                        <div className="flexbox align-center-y align-between">
+                        <div className={`flexbox align-center-y align-between cursor-pointer${className ? `${className}` : ""}`}>
                             {size === 'small' ?
                                 <>
                                     {!type || type === 'image' ? <img src={value} style={{"maxHeight": "2.25rem"}} /> : null}

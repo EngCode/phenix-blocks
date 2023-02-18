@@ -197,7 +197,8 @@ function Edit(_ref) {
   if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps; //===> Container Options <===//
 
   if (attributes.size) container.className += " ".concat(attributes.size);
-  if (attributes.isHidden) container.className += ' hidden'; //===> Flexbox Properties <===//
+  if (attributes.isHidden) container.className += ' hidden';
+  if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += " ".concat(blockProps.className); //===> Flexbox Properties <===//
 
   if (attributes.isFlexbox) {
     container.className += ' flexbox';
@@ -1325,9 +1326,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
     if (typography) {
-      if (typography.size) container.className += " ".concat(typography.size);
-      if (typography.color) container.className += " ".concat(typography.color);
-      if (typography.weight) container.className += " ".concat(typography.weight);
+      if (typography.size) container += " ".concat(typography.size);
+      if (typography.color) container += " ".concat(typography.color);
+      if (typography.weight) container += " ".concat(typography.weight);
     } //===> Render Background <===//
 
 

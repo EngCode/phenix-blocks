@@ -131,6 +131,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Container Options <===//
     if (attributes.size) container.className += ` ${attributes.size}`;
     if (attributes.isHidden) container.className += ' hidden';
+    if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
     //===> Flexbox Properties <===//
     if (attributes.isFlexbox) {

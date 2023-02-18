@@ -70,6 +70,7 @@
 	}
 
 	.block-editor-inserter {border-color: rgba(#000, 0.1);}
+	.components-popover__content {width: auto!important;max-width: 280px;}
 }
 
 /*==== Posts Editor Layout ====*/
@@ -84,13 +85,13 @@ body.block-editor-page:not(.post-type-page):not(.post-type-home-slider) {
 	}
 }
 
-body.block-editor-page .block-editor-block-list__block.rich-content {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 960px!important;
-	padding-top: 30px!important;
-	padding-bottom: 30px!important;
-}
+// body.block-editor-page .block-editor-block-list__block.rich-content {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	max-width: 960px!important;
+// 	padding-top: 30px!important;
+// 	padding-bottom: 30px!important;
+// }
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

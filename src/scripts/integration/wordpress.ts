@@ -49,6 +49,11 @@ Phenix(document).ready(ready => {
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
         //===> Removes Editor Reset styles <===//
-        Phenix("#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css").forEach((file:HTMLElement) => file.remove());
+        let common_css    = `#common-rtl-css, #common-css`,
+            reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,
+            block_library = `#wp-block-library-theme-css, #wp-block-library-theme-rtl-css`;
+
+        //===> Run Files Remover <===//
+        Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     }
 });

@@ -30,6 +30,7 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
+
         let container = attributes.isFlexbox ? "flexbox " : '',
             background = attributes.style.background,
             typography = attributes.typography;
@@ -48,9 +49,9 @@ registerBlockType(metadata, {
 
         //===> Typography Properties <===//
         if (typography) {
-            if(typography.size) container.className += ` ${typography.size}`;
-            if(typography.color) container.className += ` ${typography.color}`;
-            if(typography.weight) container.className += ` ${typography.weight}`;
+            if(typography.size) container += ` ${typography.size}`;
+            if(typography.color) container += ` ${typography.color}`;
+            if(typography.weight) container += ` ${typography.weight}`;
         }
 
         //===> Render Background <===//

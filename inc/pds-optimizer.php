@@ -159,6 +159,7 @@ if (!is_admin()) {
 if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer')) :
     function blocks_optimizer() {
         wp_dequeue_style('wp-block-list');
+        wp_dequeue_style('wp-block-image');
         wp_dequeue_style('wp-block-library');
         wp_dequeue_style('wp-block-heading');
         wp_dequeue_style('wp-block-paragraph');

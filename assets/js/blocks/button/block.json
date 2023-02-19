@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "title": "PDS Button",
   "category": "design",
-  "description": "Phenix Design System Button Component",
+  "description": "",
   "supports": {
     "html": false
   },
@@ -89,17 +89,17 @@
       "type": "string",
       "default": "image"
     },
-    "className": {
-      "type": "string",
-      "default": "btn primary"
+    "typography": {
+      "type": "object",
+      "default": {}
     },
-    "spacing_pd": {
-      "type": "string",
-      "default": ""
+    "style": {
+      "type": "object",
+      "default": {}
     },
-    "spacing_mg": {
-      "type": "string",
-      "default": ""
+    "responsive": {
+      "type": "object",
+      "default": {}
     }
   },
   "example": {

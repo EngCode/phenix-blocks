@@ -116,24 +116,6 @@ export default function Edit({ attributes, setAttributes }) {
 
     useEffect(() => setPhenixView(), [attributes]);
 
-    //===> Initial Script <===//
-    useEffect(() => {
-        //===> Loading FontAwesome <===//
-        if (window.frames['editor-canvas']) {
-            if (document.querySelector("#fontawesome-css")) {
-                //===> Check in the Editor <===//
-                let fontAwesome = document.querySelector("#fontawesome-css"),
-                    canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css");
-    
-                //===> if Font Awesome not Loaded <===//
-                if (!canvasAwesome && fontAwesome) {
-                    let newAwesome = document.importNode(fontAwesome, true);
-                    window.frames['editor-canvas'].document.head.appendChild(newAwesome);
-                }
-            }
-        }
-    }, []);
-
     //===> Flexbox Options <===//
     let container = blockProps;
     if (attributes.isFlexbox) container = innerBlocksProps;
@@ -191,11 +173,11 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===  isFlexbox ===*/}
                     <div className='col-6 mb-5'>
-                        <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                        <TextControl key="container_id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id}/>
                     </div>
                     {/*=== Container ID ===*/}
                     <div className='col-12'>
-                        <TextControl key="container_id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id}/>
+                        <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
                     </div>
                     {/*===> // Column <===*/}
                 </div>

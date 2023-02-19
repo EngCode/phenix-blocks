@@ -178,23 +178,7 @@ function Edit(_ref) {
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     return setPhenixView();
-  }, [attributes]); //===> Initial Script <===//
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    //===> Loading FontAwesome <===//
-    if (window.frames['editor-canvas']) {
-      if (document.querySelector("#fontawesome-css")) {
-        //===> Check in the Editor <===//
-        var fontAwesome = document.querySelector("#fontawesome-css"),
-            canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"); //===> if Font Awesome not Loaded <===//
-
-        if (!canvasAwesome && fontAwesome) {
-          var newAwesome = document.importNode(fontAwesome, true);
-          window.frames['editor-canvas'].document.head.appendChild(newAwesome);
-        }
-      }
-    }
-  }, []); //===> Flexbox Options <===//
+  }, [attributes]); //===> Flexbox Options <===//
 
   var container = blockProps;
   if (attributes.isFlexbox) container = innerBlocksProps; //===> Flexbox Properties <===//
@@ -263,18 +247,18 @@ function Edit(_ref) {
     }]
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-5"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    key: "isFlexbox",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox", "phenix"),
-    checked: attributes.isFlexbox,
-    onChange: set_isFlexbox
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "col-12"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     key: "container_id",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("HTML ID [Anchor]", "phenix"),
     value: attributes.id,
     onChange: set_id
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    key: "isFlexbox",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox", "phenix"),
+    checked: attributes.isFlexbox,
+    onChange: set_isFlexbox
   })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Typography", "phenix"),
     initialOpen: false

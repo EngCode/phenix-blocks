@@ -28,6 +28,44 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
+        blockProps.className += ` btn`;
+
+        let background = attributes.style.background,
+            typography = attributes.typography;
+
+        //===> Typography Properties <===//
+        if (typography) {
+            if(typography.size) blockProps.className += ` ${typography.size}`;
+            if(typography.color) blockProps.className += ` ${typography.color}`;
+            if(typography.weight) blockProps.className += ` ${typography.weight}`;
+            if(typography.align) blockProps.className += ` ${typography.align}`;
+        }
+
+        //===> Render Background <===//
+        if (background?.value) {
+            //===> Image Background <===//
+            if (background.type === 'image') {
+                blockProps.className += ` px-media`;
+                blockProps["data-src"] = background.value;
+            }
+
+            //===> Name Background <===//
+            else {
+                //===> Adjust Primary Colors <===//
+                let isPrimary = false,
+                    primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+                
+                //===> Correct Colors <===//
+                primaryColors.forEach(color => background.value === color ? isPrimary = true : null);
+
+                //===> Set the Background <===//
+                if (isPrimary) { blockProps.className += ` ${background.value.replace('bg-', '')}`; }
+                else { blockProps.className += ` ${background.value}`; }
+            }
+
+            //===> Background Rotation <===//
+            if (background.rotate) blockProps.className += ` ${background.rotate}`;
+        }
 
         //===> Set JS URL <===//
         if (attributes.isLink) {
@@ -52,48 +90,17 @@ registerBlockType(metadata, {
             if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
         }
 
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
+        //===> Type <===//
+        if (attributes.type) blockProps.className += ` ${attributes.type}`;
 
-        //===> Set Default Values <===//
-        const setDefault = () => {
-            //===> Main Names <===//
-            blockProps.className += ` btn`;
-    
-            //===> Color/Background <===//
-            if (attributes.background) {
-                //===> Image Background <===//
-                if (attributes.bg_type === 'image') {
-                    blockProps.className += ` px-media`;
-                    blockProps["data-src"] = attributes.background;
-                    setPhenixView();
-                }
-                //===> Name Background <===//
-                else {
-                    blockProps.className += ` ${attributes.background}`;
-                }
+        //===> Size <===//
+        if (attributes.size) blockProps.className += ` ${attributes.size}`;
 
-                //===> Background Rotation <===//
-                if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
-            }
-    
-            if (attributes.color) blockProps.className += ` ${attributes.color}`;
-    
-            //===> Default Type <===//
-            if (attributes.type) blockProps.className += ` ${attributes.type}`;
-    
-            //===> Default Size <===//
-            if (attributes.size) blockProps.className += ` ${attributes.size}`;
-    
-            //===> Default Radius <===//
-            if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
-    
-            //===> Default Style <===//
-            if (attributes.outline) blockProps.className += ` outline`;
-        }
+        //===> Radius <===//
+        if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
 
-        setDefault();
+        //===> Style <===//
+        if (attributes.outline) blockProps.className += ` outline`;
 
         //===> Render <===//
         return (<>

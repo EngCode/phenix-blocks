@@ -1,4 +1,7 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+import { useState, useEffect } from '@wordpress/element';
+
 import {
     PanelBody,
     SelectControl,
@@ -16,121 +19,156 @@ import {
     __experimentalLinkControlSearchInput as LinkControlSearchInput
 } from '@wordpress/block-editor';
 
+//====> Phenix Modules <====//
+import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import PhenixColor from '../px-controls/colors/text';
-import PhenixMargin from '../px-controls/elements/margin';
-import PhenixPadding from '../px-controls/elements/padding';
 import PhenixBackground from '../px-controls/colors/background';
-
-import { useState, useEffect } from '@wordpress/element';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
-    const set_label = label => setAttributes({ label });
-    const set_outline = outline => setAttributes({ outline });
-    const set_iconLabel = iconLabel => setAttributes({ iconLabel });
-    const set_iconEnd = iconEnd => setAttributes({ iconEnd });
-    const set_data_id = data_id => setAttributes({ data_id });
-    const set_data_modal = data_modal => setAttributes({ data_modal });
-    const set_color = color => setAttributes({ color });
     const set_size = size => setAttributes({size});
     const set_type = type => setAttributes({type});
+    const set_label = label => setAttributes({ label });
     const set_radius = radius => setAttributes({radius});
+    const set_outline = outline => setAttributes({ outline });
+    const set_data_id = data_id => setAttributes({ data_id });
+    const set_iconEnd = iconEnd => setAttributes({ iconEnd });
+    const set_iconLabel = iconLabel => setAttributes({ iconLabel });
     const set_isLightBox = isLightBox => setAttributes({isLightBox});
+    const set_data_modal = data_modal => setAttributes({ data_modal });
     const set_lightbox_src = lightbox_src => setAttributes({lightbox_src});
     const set_lightbox_type = lightbox_type => setAttributes({lightbox_type});
-    const set_spacing_pd = spacing_pd => setAttributes({ spacing_pd });
-    const set_spacing_mg = spacing_mg => setAttributes({ spacing_mg });
-
-    //===> Options Tabs <===//
-    const changeTab = (clicked) => {
-        //===> Option Data <===//
-        let element = Phenix(clicked.target),
-            parent  = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector(':scope > .primary')),
-            currentType = `${element[0].getAttribute('data-options')}`,
-            targetElement = optionsList.querySelector(`:scope > .${currentType}`);
-
-        //===> Change Active <===//
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light');
-
-        //===> Show Options <===//
-        optionsList.querySelector(':scope > .flexbox:not(.hidden)')?.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-    };
 
     //===> Link Settings <===//
     const set_isLink = isLink => setAttributes({ isLink });
     const set_inNewTab = inNewTab => setAttributes({ inNewTab });
     const set_url = url => setAttributes({ url });
 
+    //===> Get Options <===//
+    let style_options = attributes.style,
+        background = style_options?.background,
+        typography = attributes.typography;
+
+    //===> Typography Options <===//
+    const set_typography_size = value => {
+        //==> Size <==//
+        typography.size = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Weight <==//
+    const set_typography_weight = value => {
+        typography.weight = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Align <==//
+    const set_typography_align = target => {
+        typography.align = target.checked ? target.value : "";
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Color <==//
+    const set_color = value => {
+        typography.color = value;
+        setAttributes({ typography : {...typography} });
+    };
+
     //===> Set Background <===//
     const set_background = background => {
-        //===> Adjust Primary Colors <===//
-        let primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
-        if (primaryColors.includes(background.value)) {
-            background.value = background.value.replace('bg-', '');
-        }
-
-        //=== Set New Value ===//
-        setAttributes({ background : background.value });
-
-        //===> Update Rotation <===//
-        if (attributes.bg_type === 'gradient' && background.rotation) {
-            setAttributes({bg_rotate : background.rotation});
-        } else {
-            setAttributes({ bg_type : background.type });
-        }
-    }
+        style_options.background = background;
+        setAttributes({ style : {...style_options} });
+    };
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
+    blockProps.className += ` btn`;
     const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0"/>;
 
-    //===> Set Default Values <===//
-    const setDefault = () => {
-        //===> Main Names <===//
-        blockProps.className += ` btn`;
+    //===> Set Phenix Components <===//
+    const setPhenixView = () => {
+        //===> Check Site Editor <===//
+        let siteEditor = window.frames['editor-canvas'],
+            blockElement = '.px-media';
 
-        //===> Color/Background <===//
-        if (attributes.background) {
-            //===> Background Rotation <===//
-            if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
-
-            //===> Image Background <===//
-            if (attributes.bg_type === 'image') {
-                blockProps.className += ` px-media`;
-                blockProps["data-src"] = attributes.background;
-                setPhenixView();
-            }
-            //===> Name Background <===//
-            else blockProps.className += ` ${attributes.background}`;
+        //===> Correct Editor Target for Site-Editor <===//
+        if (siteEditor) {
+            blockElement = siteEditor.document.querySelectorAll('.px-media');
+            blockElement = [...blockElement];
         }
 
-        if (attributes.color) blockProps.className += ` ${attributes.color}`;
-
-        //===> Default Type <===//
-        if (attributes.type) blockProps.className += ` ${attributes.type}`;
-
-        //===> Default Size <===//
-        if (attributes.size) blockProps.className += ` ${attributes.size}`;
-
-        //===> Default Radius <===//
-        if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
-
-        //===> Default Style <===//
-        if (attributes.outline) blockProps.className += ` outline`;
-
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
+        //===> Set Background <===//
+        if (background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
-    setDefault();
+    useEffect(() => setPhenixView(), [attributes]);
+
+    //===> Initial Script <===//
+    useEffect(() => {
+        //===> Loading FontAwesome <===//
+        if (window.frames['editor-canvas']) {
+            if (document.querySelector("#fontawesome-css")) {
+                //===> Check in the Editor <===//
+                let fontAwesome = document.querySelector("#fontawesome-css"),
+                    canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css");
+    
+                //===> if Font Awesome not Loaded <===//
+                if (!canvasAwesome && fontAwesome) {
+                    let newAwesome = document.importNode(fontAwesome, true);
+                    window.frames['editor-canvas'].document.head.appendChild(newAwesome);
+                }
+            }
+        }
+    }, []);
+
+    //===> Typography Properties <===//
+    if (typography) {
+        if(typography.size) blockProps.className += ` ${typography.size}`;
+        if(typography.color) blockProps.className += ` ${typography.color}`;
+        if(typography.weight) blockProps.className += ` ${typography.weight}`;
+        if(typography.align) blockProps.className += ` ${typography.align}`;
+    }
+
+    //===> Render Background <===//
+    if (background?.value) {
+        //===> Image Background <===//
+        if (background.type === 'image') {
+            blockProps.className += ` px-media`;
+            blockProps["data-src"] = background.value;
+        }
+
+        //===> Name Background <===//
+        else {
+            //===> Adjust Primary Colors <===//
+            let isPrimary = false,
+                primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+            
+            //===> Correct Colors <===//
+            primaryColors.forEach(color => background.value === color ? isPrimary = true : null);
+
+            //===> Set the Background <===//
+            if (isPrimary) { blockProps.className += ` ${background.value.replace('bg-', '')}`; }
+            else { blockProps.className += ` ${background.value}`; }
+        }
+
+        //===> Background Rotation <===//
+        if (background.rotate) blockProps.className += ` ${background.rotate}`;
+    }
+
+    //===> Default Type <===//
+    if (attributes.type) blockProps.className += ` ${attributes.type}`;
+
+    //===> Default Size <===//
+    if (attributes.size) blockProps.className += ` ${attributes.size}`;
+
+    //===> Default Radius <===//
+    if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
+
+    //===> Default Style <===//
+    if (attributes.outline) blockProps.className += ` outline`;
 
     //===> Set JS URL <===//
     if (attributes.isLink) blockProps['href'] = "#none";
@@ -155,7 +193,24 @@ export default function Edit({ attributes, setAttributes }) {
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Settings">
+            {attributes.isLink ?<PanelBody title="Link Settings">
+                {/* Current Link */}
+                <span className='color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>
+                {/* Link Controls */}
+                <LinkControlSearchInput
+                    placeholder="URL or Page Name"
+                    onChange={set_url}
+                    value={ attributes.url }
+                    allowDirectEntry={false}
+                    withURLSuggestion={false}
+                    withCreateSuggestion={false}
+                    renderSuggestions={(props) => suggestionsRender(props)}
+                />
+                {/*=== isLink ===*/}
+                <div className='mt-10'><ToggleControl label="Open in New Tab ?" checked={attributes.inNewTab} onChange={set_inNewTab}/></div>
+            </PanelBody> : null}
+            {/*===> Widget Panel <===*/}
+            <PanelBody title="General Settings">
                 {/*=== Button Type ===*/}
                 <label className='mb-10 weight-medium'>Button Type</label>
                 <RadioGroup label="Button Type" onChange={ set_type } defaultChecked={attributes.type}>
@@ -211,23 +266,81 @@ export default function Edit({ attributes, setAttributes }) {
                     <ToggleControl label="Icon in the End" checked={attributes.iconEnd} onChange={set_iconEnd}/>
                 </>: null}
             </PanelBody>
-            {/*===> Widget Panel <===*/}
-            {attributes.isLink ?<PanelBody title="Link Settings">
-                {/* Current Link */}
-                <span className='color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>
-                {/* Link Controls */}
-                <LinkControlSearchInput
-                    placeholder="URL or Page Name"
-                    onChange={set_url}
-                    value={ attributes.url }
-                    allowDirectEntry={false}
-                    withURLSuggestion={false}
-                    withCreateSuggestion={false}
-                    renderSuggestions={(props) => suggestionsRender(props)}
-                />
-                {/*=== isLink ===*/}
-                <div className='mt-10'><ToggleControl label="Open in New Tab ?" checked={attributes.inNewTab} onChange={set_inNewTab}/></div>
-            </PanelBody> : null}
+            {/*===> Typography <===*/}
+            <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Size <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography.size || ""} onChange={set_typography_size} options={[
+                            { label: 'Default',   value: '' },
+                            { label: '12px',   value: 'fs-12' },
+                            { label: '13px',   value: 'fs-13' },
+                            { label: '14px',   value: 'fs-14' },
+                            { label: '15px',   value: 'fs-15' },
+                            { label: '16px',   value: 'fs-16' },
+                            { label: '17px',   value: 'fs-17' },
+                            { label: '18px',   value: 'fs-18' },
+                            { label: '19px',   value: 'fs-19' },
+                            { label: '20px',   value: 'fs-20' },
+                            { label: '22px',   value: 'fs-22' },
+                            { label: '24px',   value: 'fs-24' },
+                            { label: '25px',   value: 'fs-25' },
+                            { label: '26px',   value: 'fs-26' },
+                            { label: '28px',   value: 'fs-28' },
+                            { label: '30px',   value: 'fs-30' },
+                        ]}/>
+                    </div>
+                    {/*===> HTML Tag <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={typography.weight || ""} onChange={set_typography_weight} options={[
+                            { label: 'Default',  value: '' },
+                            { label: 'Thin',  value: 'weight-thin'},
+                            { label: 'Light',  value: 'weight-light'},
+                            { label: 'Extra Light',  value: 'weight-xlight'},
+                            { label: 'Normal',  value: 'weight-normal'},
+                            { label: 'Medium',  value: 'weight-medium'},
+                            { label: 'Semi-Bold',  value: 'weight-bold'},
+                            { label: 'Bold',  value: 'weight-strong'},
+                            { label: 'Heavy',  value: 'weight-xbold'},
+                            { label: 'Black',  value: 'weight-black'},
+                        ]}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
+                {/*===> Text Color <===*/}
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography.color || ""} />
+                {/*===> Label <===*/}
+                <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
+                {/*===> Elements Group <===*/}
+                <div className='flexbox'>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={!typography.align || typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
+                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                    </OptionControl>
+                </div>
+            </PanelBody>
+            {/*===> Style Options <===*/}
+            <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {/*===> Background <===*/}
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} rotate={style_options.background?.rotate || null} />
+            </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.isLightBox ?<PanelBody title="Lightbox Settings">
                 {/*=== Component <TagName> ===*/}
@@ -247,35 +360,6 @@ export default function Edit({ attributes, setAttributes }) {
                     <TextControl key="container_id" label="Lightbox Source" value={ attributes.url } onChange={set_url}/>
                 }
             </PanelBody> : null}
-            {/*===> Widget Panel <===*/}
-            <PanelBody title="Text Color" initialOpen={false}>
-                {/* Text Color */}
-                <PhenixColor onChange={set_color} value={attributes.color} />
-            </PanelBody>
-            {/*===> Widget Panel <===*/}
-            <PanelBody title="Background" initialOpen={false}>
-                <PhenixBackground onChange={set_background} type={attributes.bg_type} value={attributes.background} />
-            </PanelBody>
-            {/*===> Spacing <===*/}
-            <PanelBody title="Spacing" initialOpen={false}>
-                {/*===> Options Tabs <====*/}
-                <div className='options-tabs lined-tabs fluid px-group borderd-group divider-b mb-10'>
-                    <button key="padding" onClick={changeTab} className={`btn tiny outline primary col`} data-options="padding-size">Padding Size</button>
-                    <button key="margin" onClick={changeTab} className={`btn tiny outline light col`} data-options="margin-size">Margin Size</button>
-                </div>
-                {/*===> Options Panels <====*/}
-                <div className='options-list'>
-                    {/*===> Padding <====*/}
-                    <div className={`flexbox padding-size`}>
-                        <PhenixPadding key="px-spacing_pd" onChange={set_spacing_pd} value={attributes.spacing_pd} />
-                    </div>
-                    {/*===> Margin <====*/}
-                    <div className={`flexbox margin-size hidden`}>
-                        <PhenixMargin key="px-spacing_mg" onChange={set_spacing_mg} value={attributes.spacing_mg} />
-                    </div>
-                </div>
-                {/*===> End Options Types <====*/}
-            </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title="Custom Data" initialOpen={false}>
                 {/* Data ID */}

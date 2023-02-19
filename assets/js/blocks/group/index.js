@@ -538,7 +538,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         key: "upload-file",
         value: !value ? this.state.placeholder : value,
         setValue: setBackground
-      }) : null, /*#__PURE__*/React.createElement("div", {
+      }) : null, type === "gradient" ? /*#__PURE__*/React.createElement("div", {
         className: "divider-t pdt-15 col-12"
       }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
         label: "".concat(_("Rotation", "phenix")),
@@ -573,7 +573,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('-180 Degree', "phenix"),
           value: 'bg-grade-180n'
         }]
-      }))));
+      })) : null));
     }
   }]);
 

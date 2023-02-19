@@ -32,9 +32,6 @@ registerBlockType(metadata, {
 
         //===> Set Properties <===//
         blockProps.className += ` ${attributes.size}`;
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
 
         //===> Render <===//
         return (

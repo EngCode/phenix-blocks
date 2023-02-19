@@ -21,25 +21,6 @@ export default function Edit({ attributes, setAttributes }) {
     const set_tagName = tagName => setAttributes({ tagName });
     const set_size = size => setAttributes({ size });
 
-    //===> Options Tabs <===//
-    const changeTab = (clicked) => {
-        //===> Option Data <===//
-        let element = Phenix(clicked.target),
-            parent  = element.ancestor('.options-tabs'),
-            optionsList = Phenix(parent).next('.options-list'),
-            currentActive = Phenix(parent.querySelector(':scope > .primary')),
-            currentType = `${element[0].getAttribute('data-options')}`,
-            targetElement = optionsList.querySelector(`:scope > .${currentType}`);
-
-        //===> Change Active <===//
-        currentActive.addClass('light').removeClass('primary');
-        element.addClass('primary').removeClass('light');
-
-        //===> Show Options <===//
-        optionsList.querySelector(':scope > .flexbox:not(.hidden)')?.classList.add('hidden');
-        Phenix(targetElement).removeClass('hidden');
-    };
-
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
@@ -48,10 +29,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Properties <===//
     blockProps.className += ` ${blockProps.className}`;
     blockProps.className += ` ${attributes.size}`;
-    
-    //===> Render Spacing <===//
-    if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-    if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
 
     //===> Render <===//
     return (<>

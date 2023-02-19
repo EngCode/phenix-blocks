@@ -51,6 +51,23 @@ export default function Edit({ attributes, setAttributes }) {
         background = style_options?.background,
         typography = attributes.typography;
 
+    //===> Default Typography <===//
+    if(typography) {
+        if(!typography.size)   typography.size = "";
+        if(!typography.color)  typography.color = "";
+        if(!typography.weight) typography.weight = "";
+        if(!typography.align)  typography.align  = "";
+    }
+
+    //===> Default Style <===//
+    if(style_options) {
+        //===> Background <===//
+        if (!style_options.background) style_options.background = {};
+        if (!style_options.background.value)  typography.value  = "";
+        if (!style_options.background.rotate) typography.rotate = "";
+        if (!style_options.background.type)   typography.type = "color";
+    }
+
     //===> Typography Options <===//
     const set_typography_size = value => {
         //==> Size <==//

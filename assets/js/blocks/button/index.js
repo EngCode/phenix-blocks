@@ -56,7 +56,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //====> Edit Mode <====//
 
 function Edit(_ref) {
-  var _style_options$backgr, _style_options$backgr2, _style_options$backgr3;
+  var _style_options$backgr4, _style_options$backgr5, _style_options$backgr6;
 
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
@@ -156,7 +156,23 @@ function Edit(_ref) {
 
   var style_options = attributes.style,
       background = style_options === null || style_options === void 0 ? void 0 : style_options.background,
-      typography = attributes.typography; //===> Typography Options <===//
+      typography = attributes.typography; //===> Default Options <===//
+
+  if (typography) {
+    if (!typography.size) typography.size = "";
+    if (!typography.color) typography.color = "";
+    if (!typography.weight) typography.weight = "";
+    if (!typography.align) typography.align = "";
+  }
+
+  if (style_options) {
+    var _style_options$backgr, _style_options$backgr2, _style_options$backgr3;
+
+    if (!((_style_options$backgr = style_options.background) !== null && _style_options$backgr !== void 0 && _style_options$backgr.value)) typography.value = "";
+    if (!((_style_options$backgr2 = style_options.background) !== null && _style_options$backgr2 !== void 0 && _style_options$backgr2.rotate)) typography.rotate = "";
+    if (!((_style_options$backgr3 = style_options.background) !== null && _style_options$backgr3 !== void 0 && _style_options$backgr3.type)) typography.type = "color";
+  } //===> Typography Options <===//
+
 
   var set_typography_size = function set_typography_size(value) {
     //==> Size <==//
@@ -566,9 +582,9 @@ function Edit(_ref) {
     key: "px-bg",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
     onChange: set_background,
-    type: ((_style_options$backgr = style_options.background) === null || _style_options$backgr === void 0 ? void 0 : _style_options$backgr.type) || "color",
-    value: ((_style_options$backgr2 = style_options.background) === null || _style_options$backgr2 === void 0 ? void 0 : _style_options$backgr2.value) || "",
-    rotate: ((_style_options$backgr3 = style_options.background) === null || _style_options$backgr3 === void 0 ? void 0 : _style_options$backgr3.rotate) || null
+    type: ((_style_options$backgr4 = style_options.background) === null || _style_options$backgr4 === void 0 ? void 0 : _style_options$backgr4.type) || "color",
+    value: ((_style_options$backgr5 = style_options.background) === null || _style_options$backgr5 === void 0 ? void 0 : _style_options$backgr5.value) || "",
+    rotate: ((_style_options$backgr6 = style_options.background) === null || _style_options$backgr6 === void 0 ? void 0 : _style_options$backgr6.rotate) || null
   })), attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: "Lightbox Settings"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {

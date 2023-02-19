@@ -82,7 +82,7 @@ export default function Edit(props) {
             //===> Run Phenix Components <===//
             Phenix(mediaElement).multimedia();
             Phenix(sliderElement).slider();
-        }, 300);
+        }, 1000);
     }
 
     //===> Active Phenix Components <===//
@@ -110,25 +110,6 @@ export default function Edit(props) {
         //===> Active Phenix Components <===//
         setPhenixView();
     }, []);
-
-    //===> Site-Editor Mode <===//
-    const siteEditorView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'];
-
-        //===> Site Editor <===//
-        if (siteEditor) {
-            //===> Get Components <===//
-            let mediaElements = [...siteEditor.document.querySelectorAll('.px-media')],
-                slidersElements = [...siteEditor.document.querySelectorAll('.px-slider')];
-            
-            //===> Run Components <===//
-            Phenix(slidersElements).slider();
-            Phenix(mediaElements).multimedia();
-        }
-    };
-
-    // useEffect(()=> siteEditorView());
 
     //===> Render <===//
     return (<>

@@ -656,7 +656,7 @@ function Edit(props) {
 
       Phenix(mediaElement).multimedia();
       Phenix(sliderElement).slider();
-    }, 300);
+    }, 1000);
   }; //===> Active Phenix Components <===//
   // useEffect(() => setPhenixView(), [attributes]);
   //===> Fetch Data for Options <===//
@@ -689,24 +689,7 @@ function Edit(props) {
     }); //===> Active Phenix Components <===//
 
     setPhenixView();
-  }, []); //===> Site-Editor Mode <===//
-
-  var siteEditorView = function siteEditorView() {
-    //===> Check Site Editor <===//
-    var siteEditor = window.frames['editor-canvas']; //===> Site Editor <===//
-
-    if (siteEditor) {
-      //===> Get Components <===//
-      var mediaElements = _toConsumableArray(siteEditor.document.querySelectorAll('.px-media')),
-          slidersElements = _toConsumableArray(siteEditor.document.querySelectorAll('.px-slider')); //===> Run Components <===//
-
-
-      Phenix(slidersElements).slider();
-      Phenix(mediaElements).multimedia();
-    }
-  }; // useEffect(()=> siteEditorView());
-  //===> Render <===//
-
+  }, []); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"

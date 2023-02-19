@@ -31,17 +31,19 @@ export default class OptionControl extends Component {
         //===> Custom Classes <===//
         if (className) options += ` ${className}`;
 
+        //===> Check if is On <===//
+        attributes.checked = value;
+
         //===> add Options <===//
         if (required) attributes.required = true;
 
-        //===> Check if is On <===//
-        if (value === true) attributes.defaultChecked = true;
+        
 
         //===> Render Component <===//
         return (<label className={options} data-type={type?.includes("switch") ? "switch" : type}>
             <input type={type?.replace("switch-","")} name={name} {...attributes} />
-            {children}
             {type?.includes("switch") ? <span className="switch"></span> : null}
+            {children}
         </label>)
     }
 }

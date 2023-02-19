@@ -38,25 +38,6 @@ function Edit(_ref) {
     return setAttributes({
       size: size
     });
-  }; //===> Options Tabs <===//
-
-
-  var changeTab = function changeTab(clicked) {
-    var _optionsList$querySel;
-
-    //===> Option Data <===//
-    var element = Phenix(clicked.target),
-        parent = element.ancestor('.options-tabs'),
-        optionsList = Phenix(parent).next('.options-list'),
-        currentActive = Phenix(parent.querySelector(':scope > .primary')),
-        currentType = "".concat(element[0].getAttribute('data-options')),
-        targetElement = optionsList.querySelector(":scope > .".concat(currentType)); //===> Change Active <===//
-
-    currentActive.addClass('light').removeClass('primary');
-    element.addClass('primary').removeClass('light'); //===> Show Options <===//
-
-    (_optionsList$querySel = optionsList.querySelector(':scope > .flexbox:not(.hidden)')) === null || _optionsList$querySel === void 0 ? void 0 : _optionsList$querySel.classList.add('hidden');
-    Phenix(targetElement).removeClass('hidden');
   }; //===> Get Block Properties <===//
 
 
@@ -65,10 +46,7 @@ function Edit(_ref) {
   var TagName = attributes.tagName; //===> Set Properties <===//
 
   blockProps.className += " ".concat(blockProps.className);
-  blockProps.className += " ".concat(attributes.size); //===> Render Spacing <===//
-
-  if (attributes.spacing_pd) blockProps.className += " ".concat(attributes.spacing_pd);
-  if (attributes.spacing_mg) blockProps.className += " ".concat(attributes.spacing_mg); //===> Render <===//
+  blockProps.className += " ".concat(attributes.size); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -501,10 +479,7 @@ __webpack_require__.r(__webpack_exports__);
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     var TagName = attributes.tagName; //===> Set Properties <===//
 
-    blockProps.className += " ".concat(attributes.size); //===> Render Spacing <===//
-
-    if (attributes.spacing_pd) blockProps.className += " ".concat(attributes.spacing_pd);
-    if (attributes.spacing_mg) blockProps.className += " ".concat(attributes.spacing_mg); //===> Render <===//
+    blockProps.className += " ".concat(attributes.size); //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null));
   }

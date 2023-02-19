@@ -72,6 +72,8 @@
 	.block-editor-inserter {border-color: rgba(#000, 0.1);}
 	.components-popover__content {width: auto!important;max-width: 280px;}
 	.splide {visibility: visible;}
+
+	.wp-block-image .components-resizable-box__container img {display: inline-block!important;}
 }
 
 /*==== Posts Editor Layout ====*/

@@ -35,28 +35,28 @@ export default function Edit({ attributes, setAttributes }) {
         typography = attributes.typography;
 
     //===> Default Typography <===//
-    if(typography) {
-        if(!typography.size)   typography.size = "";
-        if(!typography.color)  typography.color = "";
-        if(!typography.weight) typography.weight = "";
-        if(!typography.align)  typography.align  = "";
-    }
+    // if(typography) {
+    //     if(!typography.size)   typography.size = "";
+    //     if(!typography.color)  typography.color = "";
+    //     if(!typography.weight) typography.weight = "";
+    //     if(!typography.align)  typography.align  = "";
+    // }
 
     //===> Default Style <===//
-    if(style_options) {
-        //===> Flexbox <===//
-        if (!style_options.flexbox) style_options.flexbox = {};
-        if (!style_options.flexbox.align)   flexbox_options.align = "";
-        if (!style_options.flexbox.flow)    flexbox_options.flow = "";
-        if (!style_options.flexbox.nowrap)  flexbox_options.nowrap = "";
-        if (!style_options.flexbox.masonry) flexbox_options.masonry = "";
+    // if(style_options) {
+    //     //===> Flexbox <===//
+    //     if (!style_options.flexbox) style_options.flexbox = {};
+    //     if (!style_options.flexbox.align)   flexbox_options.align = "";
+    //     if (!style_options.flexbox.flow)    flexbox_options.flow = "";
+    //     if (!style_options.flexbox.nowrap)  flexbox_options.nowrap = "";
+    //     if (!style_options.flexbox.masonry) flexbox_options.masonry = "";
 
-        //===> Background <===//
-        if (!style_options.background) style_options.background = {};
-        if (!style_options.background.value)  typography.value  = "";
-        if (!style_options.background.rotate) typography.rotate = "";
-        if (!style_options.background.type)   typography.type = "color";
-    }
+    //     //===> Background <===//
+    //     if (!style_options.background) style_options.background = {};
+    //     if (!style_options.background.value)  typography.value  = "";
+    //     if (!style_options.background.rotate) typography.rotate = "";
+    //     if (!style_options.background.type)   typography.type = "color";
+    // }
 
     //===> Flexbox Options <===//
     const set_alignment = alignment => {

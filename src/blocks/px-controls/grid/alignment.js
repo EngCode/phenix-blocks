@@ -28,7 +28,7 @@ export default class FlexAlignment extends Component {
                 if (align_type.includes('-x') && value.includes('-x' || 'between' || 'around')) {align_val.replace(value, target.value);} 
     
                 //===> Type Y Checker <===//
-                else if (align_type.includes('-y') && align_val.includes('-y')) {align_val.replace(value, target.value);}
+                else if (align_type.includes('-y') && value.includes('-y')) {align_val.replace(value, target.value);}
     
                 //===> New Type <===//
                 else {align_val += ` ${target.value}`;}

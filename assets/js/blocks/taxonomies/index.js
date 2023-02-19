@@ -78,7 +78,7 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
           if (align_type.includes('-x') && value.includes('-x' || 0 || 0)) {
             align_val.replace(value, target.value);
           } //===> Type Y Checker <===//
-          else if (align_type.includes('-y') && align_val.includes('-y')) {
+          else if (align_type.includes('-y') && value.includes('-y')) {
             align_val.replace(value, target.value);
           } //===> New Type <===//
           else {

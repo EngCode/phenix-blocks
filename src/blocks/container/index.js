@@ -45,6 +45,7 @@ registerBlockType(metadata, {
             if (attributes.flexbox.align)  container += ` ${attributes.flexbox.align}`;
             if (attributes.flexbox.flow)   container += ` ${attributes.flexbox.flow}`;
             if (attributes.flexbox.nowrap) container += ` ${attributes.flexbox.nowrap}`;
+            if (attributes.flexbox.stacked) container += ` ${attributes.flexbox.stacked}`;
         }
 
         //===> Typography Properties <===//
@@ -52,6 +53,7 @@ registerBlockType(metadata, {
             if(typography.size) container += ` ${typography.size}`;
             if(typography.color) container += ` ${typography.color}`;
             if(typography.weight) container += ` ${typography.weight}`;
+            if(typography.align) container += ` ${typography.align}`;
         }
 
         //===> Render Background <===//

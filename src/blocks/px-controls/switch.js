@@ -13,6 +13,7 @@ export default class OptionControl extends Component {
             name,
             type,
             value,
+            checked,
             onChange,
             children,
             required,
@@ -21,7 +22,7 @@ export default class OptionControl extends Component {
 
         //===> Change Value <===//
         const setValue = (event) => {
-            return onChange(event.target.checked);
+            return onChange(event.target);
         };
 
         //===> Define Data <===//
@@ -32,16 +33,14 @@ export default class OptionControl extends Component {
         if (className) options += ` ${className}`;
 
         //===> Check if is On <===//
-        attributes.checked = value;
+        attributes.defaultChecked = checked;
 
         //===> add Options <===//
         if (required) attributes.required = true;
 
-        
-
         //===> Render Component <===//
-        return (<label className={options} data-type={type?.includes("switch") ? "switch" : type}>
-            <input type={type?.replace("switch-","")} name={name} {...attributes} />
+        return (<label className={options} data-type={type?.includes("switch") ? "switch" : type.includes("button") ? "button" : type}>
+            <input type={type?.replace("switch-","").replace("button-", "")} name={name} value={value || ""} {...attributes} />
             {type?.includes("switch") ? <span className="switch"></span> : null}
             {children}
         </label>)

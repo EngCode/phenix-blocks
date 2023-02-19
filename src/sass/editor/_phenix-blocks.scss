@@ -39,7 +39,10 @@
 		}
 	}
 
-	.option-control[data-type="button"] .btn {width: 100%;}
+	.option-control[data-type="button"] .btn {
+		width: 100%;
+		&::before {top: 1px;}
+	}
 
 	.option-control[data-type="button"] input:checked ~ .btn {
 		color: var(--primary-reverse);
@@ -114,9 +117,9 @@
 		-webkit-filter: brightness(0) saturate(100%) invert(60%) sepia(5%) saturate(561%) hue-rotate(169deg) brightness(92%) contrast(91%);
 		        filter: brightness(0) saturate(100%) invert(60%) sepia(5%) saturate(561%) hue-rotate(169deg) brightness(92%) contrast(91%);
 	}
-
-	&.px-active::before {-webkit-filter: brightness(0) saturate(100%) invert(7%) sepia(2%) saturate(0%) hue-rotate(37deg) brightness(101%) contrast(92%);filter: brightness(0) saturate(100%) invert(7%) sepia(2%) saturate(0%) hue-rotate(37deg) brightness(101%) contrast(92%);}
 }
+
+.pxi.px-active::before,.option-control[data-type="button"] input:checked ~ .pxi::before {-webkit-filter: brightness(0) saturate(100%) invert(7%) sepia(2%) saturate(0%) hue-rotate(37deg) brightness(101%) contrast(92%);filter: brightness(0) saturate(100%) invert(7%) sepia(2%) saturate(0%) hue-rotate(37deg) brightness(101%) contrast(92%);}
 
 /*==== Counter Input ====*/
 .px-counter-input {

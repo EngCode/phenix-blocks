@@ -44,51 +44,53 @@ export default function Edit({ attributes, setAttributes }) {
         //==> Align <==//
         flexbox_options.align = alignment;
         setAttributes({ flexbox : {...flexbox_options} });
-    },
+    };
 
     //==> Flow <==//
-    set_flex_flow = flex_flow => {
-        if (flex_flow) {
-            if (flexbox_options.flowCols.length > 0) {flexbox_options.flow = "flow-columns-reverse"}
-            else {flexbox_options.flow = "flow-reverse"}
-        } else {flexbox_options.flow = "";}
-
+    const set_flex_flow = target => {
+        flexbox_options.flow = target.checked ? target.value : "";
         setAttributes({flexbox : {...flexbox_options}});
-    },
+    };
 
     //==> No-Wrap <==//
-    set_flex_nowrap = flex_nowrap => {
-        flex_nowrap ? flexbox_options.nowrap = "flow-nowrap" : flexbox_options.nowrap = "";
+    const set_flex_nowrap = target => {
+        flexbox_options.nowrap = target.checked ? target.value : "";
         setAttributes({flexbox : {...flexbox_options}});
-    },
+    };
 
     //==> Flow Columns <==//
-    set_flex_flowcols = flex_nowrap => {
-        flex_nowrap ? flexbox_options.flowCols = "flow-columns" : flexbox_options.flowCols = "";
+    const set_flex_stacked = target => {
+        flexbox_options.stacked = target.checked ? target.value : "";        
         setAttributes({flexbox : {...flexbox_options}});
-    },
+    };
 
     //===> Typography Options <===//
-    set_typography_size = value => {
+    const set_typography_size = value => {
         //==> Size <==//
         typography.size = value;
         setAttributes({ typography : {...typography} });
-    },
+    };
 
     //==> Weight <==//
-    set_typography_weight = value => {
+    const set_typography_weight = value => {
         typography.weight = value;
         setAttributes({ typography : {...typography} });
-    },
+    };
+
+    //==> Align <==//
+    const set_typography_align = target => {
+        typography.align = target.checked ? target.value : "";
+        setAttributes({ typography : {...typography} });
+    };
 
     //==> Color <==//
-    set_color = value => {
+    const set_color = value => {
         typography.color = value;
         setAttributes({ typography : {...typography} });
-    },
+    };
 
     //===> Set Background <===//
-    set_background = background => {
+    const set_background = background => {
         style_options.background = background;
         setAttributes({ style : {...style_options} });
     };
@@ -133,7 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (flexbox_options.align)  container.className += ` ${flexbox_options.align}`;
         if (flexbox_options.flow)   container.className += ` ${flexbox_options.flow}`;
         if (flexbox_options.nowrap) container.className += ` ${flexbox_options.nowrap}`;
-        if (flexbox_options.flowCols) container.className += ` ${flexbox_options.flowCols}`;
+        if (flexbox_options.stacked) container.className += ` ${flexbox_options.stacked}`;
     }
 
     //===> Typography Properties <===//
@@ -141,6 +143,7 @@ export default function Edit({ attributes, setAttributes }) {
         if(typography.size) container.className += ` ${typography.size}`;
         if(typography.color) container.className += ` ${typography.color}`;
         if(typography.weight) container.className += ` ${typography.weight}`;
+        if(typography.align) container.className += ` ${typography.align}`;
     }
 
     //===> Render Background <===//
@@ -247,6 +250,31 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
                 {/*===> Text Color <===*/}
                 <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography.color || ""} />
+                {/*===> Label <===*/}
+                <label className='col-12 mb-5 tx-UpperCase'>{__("Text Align", "phenix")}</label>
+                {/*===> Elements Group <===*/}
+                <div className='flexbox'>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={!typography.align || typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray far fa-align-justify radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                        <span className={`btn small square outline gray far fa-align-center radius-sm`}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='text-align' checked={typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
+                        <span className={`btn small square outline gray far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                    </OptionControl>
+                </div>
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
@@ -257,21 +285,23 @@ export default function Edit({ attributes, setAttributes }) {
                 {attributes.isFlexbox ?
                     <div className='row gpx-15 divider-t pdt-10'>
                         {/*===> Column <===*/}
-                        <div className='col-12 mb-10'>
+                        <div className='col-12 mb-15'>
                             <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={flexbox_options.align || ""} onChange={set_alignment}></FlexAlignment>
                         </div>
                         {/*===> Column <===*/}
-                        <div className='col-12 flexbox align-between mb-10'>
+                        <div className='col-12 flexbox align-between mb-15'>
+                            {/*===> Label <===*/}
+                            <label className='col-12 mb-5 tx-UpperCase'>{__("Flow Options", "phenix")}</label>
                             {/*===> Switch Button <===*/}
-                            <OptionControl value={flexbox_options.flow?.length > 0} name='flex-flow' onChange={set_flex_flow} type='checkbox' className='tiny'>
+                            <OptionControl name='flex-flow' value={!flexbox_options.stacked || flexbox_options.stacked === "" ? `flow-reverse` : "flow-columns-reverse"} checked={flexbox_options.flow?.length > 0} onChange={set_flex_flow} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
                             </OptionControl>
                             {/*===> Switch Button <===*/}
-                            <OptionControl value={flexbox_options.flowCols?.length > 0} name='flex-columns' onChange={set_flex_flowcols} type='checkbox' className='tiny'>
+                            <OptionControl name='flex-columns' value="flow-columns" checked={flexbox_options.stacked?.length > 0} onChange={set_flex_stacked} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Stacked", "phenix")}</span>
                             </OptionControl>
                             {/*===> Switch Button <===*/}
-                            <OptionControl value={flexbox_options.nowrap?.length > 0} name='flex-nowrap' onChange={set_flex_nowrap} type='checkbox' className='tiny'>
+                            <OptionControl name='flex-nowrap' value="flow-nowrap" checked={flexbox_options.nowrap?.length > 0} onChange={set_flex_nowrap} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
                             </OptionControl>
                         </div>

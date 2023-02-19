@@ -547,10 +547,12 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
           type = _this$props.type,
           value = _this$props.value,
           label = _this$props.label,
+          rotate = _this$props.rotate,
           onChange = _this$props.onChange; //===> Returned Value <===//
 
       var options = {
         type: type,
+        rotate: rotate,
         value: value
       }; //===> Set Type <===//
 
@@ -564,6 +566,16 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
           options.value = "";
         } //===> Return Options <===//
 
+
+        return onChange(options);
+      }; //===> Set Type <===//
+
+
+      var set_rotate = function set_rotate(rotate) {
+        //===> Set Value <===//
+        options.rotate = rotate; //===> change value <===//
+
+        if (options.type !== 'gradient') options.value = ""; //===> Return Options <===//
 
         return onChange(options);
       }; //===> Set Background <===//
@@ -688,7 +700,42 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         key: "upload-file",
         value: !value ? this.state.placeholder : value,
         setValue: setBackground
-      }) : null));
+      }) : null, /*#__PURE__*/React.createElement("div", {
+        className: "divider-t pdt-15 col-12"
+      }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        label: "".concat(_("Rotation", "phenix")),
+        key: "gradient-direction",
+        value: rotate || "",
+        onChange: set_rotate,
+        options: [{
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Default', "phenix"),
+          value: ''
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('45 Degree', "phenix"),
+          value: 'bg-grade-45'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('-45 Degree', "phenix"),
+          value: 'bg-grade-45n'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('90 Degree', "phenix"),
+          value: 'bg-grade-90'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('-90 Degree', "phenix"),
+          value: 'bg-grade-90n'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('120 Degree', "phenix"),
+          value: 'bg-grade-120'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('-120 Degree', "phenix"),
+          value: 'bg-grade-120n'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('180 Degree', "phenix"),
+          value: 'bg-grade-180'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('-180 Degree', "phenix"),
+          value: 'bg-grade-180n'
+        }]
+      }))));
     }
   }]);
 

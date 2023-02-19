@@ -104,12 +104,14 @@ export default class PhenixBackground extends Component {
             type,
             value,
             label,
+            rotate,
             onChange
         } = this.props;
 
         //===> Returned Value <===//
         let options = {
             type: type,
+            rotate: rotate,
             value: value
         };
 
@@ -124,6 +126,18 @@ export default class PhenixBackground extends Component {
             } else {
                 options.value = "";
             }
+
+            //===> Return Options <===//
+            return onChange(options);
+        };
+
+        //===> Set Type <===//
+        const set_rotate = rotate => {
+            //===> Set Value <===//
+            options.rotate = rotate;
+
+            //===> change value <===//
+            if (options.type !== 'gradient') options.value = "";
 
             //===> Return Options <===//
             return onChange(options);
@@ -212,6 +226,20 @@ export default class PhenixBackground extends Component {
                 <div className={`flexbox options-list align-between ${type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid`} style={{gap:"10px"}}>
                     {type === "color" ? makeButtons(this.state.colors) : type === "gradient" ? makeButtons(this.state.gradients) : null}
                     {type === "image" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
+                    {/*===> Type Select <===*/}
+                    <div className='divider-t pdt-15 col-12'>
+                        <SelectControl label={`${_("Rotation", "phenix")}`} key="gradient-direction" value={rotate || ""} onChange={set_rotate} options={[
+                            { label: __('Default' ,"phenix"), value: '' },
+                            { label: __('45 Degree' ,"phenix"), value: 'bg-grade-45' },
+                            { label: __('-45 Degree' ,"phenix"), value: 'bg-grade-45n' },
+                            { label: __('90 Degree' ,"phenix"), value: 'bg-grade-90' },
+                            { label: __('-90 Degree' ,"phenix"), value: 'bg-grade-90n' },
+                            { label: __('120 Degree' ,"phenix"), value: 'bg-grade-120' },
+                            { label: __('-120 Degree' ,"phenix"), value: 'bg-grade-120n' },
+                            { label: __('180 Degree' ,"phenix"), value: 'bg-grade-180' },
+                            { label: __('-180 Degree' ,"phenix"), value: 'bg-grade-180n' },
+                        ]}/>
+                    </div>
                 </div>
             </div>
         )

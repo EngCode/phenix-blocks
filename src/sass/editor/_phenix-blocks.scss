@@ -65,7 +65,35 @@
 	}
 
 	.options-toggle span {pointer-events: none;}
-	.options-list .radius-sm {--radius: 3px;}
+
+	.options-list {
+		.radius-sm {--radius: 3px;}
+		.components-flex {gap: calc(5px);}
+		.components-input-control__label {font-size: 10px!important;}
+		.components-base-control, .components-base-control .components-base-control__field {margin-bottom: 0!important;}
+	}
+
+	/*==== Colors Controls ====*/
+	.form-control {
+		/*==== Fix GB Select ====*/
+		.block-editor-block-inspector .components-base-control:last-child,
+		.components-base-control {
+			margin-bottom: 0!important;
+			.components-input-control__container {border-radius: 0!important;}
+			.components-select-control__input {padding: 0 12px!important;}
+
+			.components-input-control-suffix-wrapper {
+				padding-#{$direction-end}: 10px;
+				padding-#{$direction-start}: 4px;
+			}
+			.components-base-control__field {
+				margin-bottom: 0!important;
+				.components-input-control__backdrop {border: 0 none!important;}
+			}
+		}
+
+		&.flexbox .components-base-control {min-width: 100px;}
+	}
 }
 
 /*==== Block Icons ====*/
@@ -99,6 +127,7 @@
 		width: REM(28);
 		font-size: 0.75em;
 	}
+
 	/*==== Reset Input ====*/
 	input[type="number"] {
 		border-color: rgba(#000, 0.1)!important;
@@ -108,6 +137,7 @@
 					appearance: none!important;
 		}
 	}
+
 	/*====  ====*/
 	&[class*="fa-"] {
 		input[type="number"] {padding-#{$direction-start}: 1.85rem;}

@@ -163,28 +163,5 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			// transform: scale(1)!important;
 		}
 	}
-
-	/*==== Colors Controls ====*/
-	.form-control {
-		/*==== Fix GB Select ====*/
-		.block-editor-block-inspector .components-base-control:last-child,
-		.components-base-control {
-			margin-bottom: 0!important;
-			.components-input-control__container {border-radius: 0!important;}
-			.components-select-control__input {padding: 0 12px!important;}
-
-			.components-input-control-suffix-wrapper {
-				padding-#{$direction-end}: 8px;
-				padding-#{$direction-start}: 4px;
-			}
-			.components-base-control__field {
-				margin-bottom: 0!important;
-				.components-input-control__backdrop {border: 0 none!important;}
-			}
-		}
-
-		&.flexbox .components-base-control {min-width: 100px;}
-	}
-
 }
 

@@ -635,18 +635,35 @@ function Edit(props) {
       grid_cols_stat: slider_mode ? false : attributes.grid_cols_stat,
       grid_cols: slider_mode && parseInt(attributes.grid_cols) < 1 ? 1 : attributes.grid_cols
     });
-  }; //===> Fetch Data for Options <===//
+  }; //===> Set Phenix Components <===//
+
+
+  var setPhenixView = function setPhenixView() {
+    //===> Timeout for Loading <===//
+    setTimeout(function () {
+      //===> Check Site Editor <===//
+      var siteEditor = window.frames['editor-canvas'],
+          mediaElement = '.px-media',
+          sliderElement = '.px-slider:not(.splide)'; //===> Correct Editor Target for Site-Editor <===//
+
+      if (siteEditor) {
+        //===> Correct Media <===//
+        mediaElement = _toConsumableArray(siteEditor.document.querySelectorAll(mediaElement)); //===> Correct Slider <===//
+
+        sliderElement = _toConsumableArray(siteEditor.document.querySelectorAll(sliderElement));
+      } //===> Run Phenix Components <===//
+
+
+      Phenix(mediaElement).multimedia();
+      Phenix(sliderElement).slider();
+    }, 300);
+  }; //===> Active Phenix Components <===//
+  // useEffect(() => setPhenixView(), [attributes]);
+  //===> Fetch Data for Options <===//
 
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    //===> Run Phenix Components <===//
-    setTimeout(function () {
-      //===> Run Slider <===//
-      if (attributes.slider_mode) Phenix('.px-slider').slider(); //===> for Cards Media <===//
-
-      Phenix('.px-media').multimedia();
-    }, 1000); //===> Fetch Post Types <===//
-
+    //===> Fetch Post Types <===//
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: 'wp/v2/types'
     }).then(function (post_types) {
@@ -669,7 +686,9 @@ function Edit(props) {
 
 
       if (postTypes !== new_types) setPostTypes([].concat(new_types));
-    });
+    }); //===> Active Phenix Components <===//
+
+    setPhenixView();
   }, []); //===> Site-Editor Mode <===//
 
   var siteEditorView = function siteEditorView() {

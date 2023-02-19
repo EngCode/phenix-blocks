@@ -62,17 +62,34 @@ export default function Edit(props) {
             grid_cols : slider_mode && parseInt(attributes.grid_cols) < 1 ? 1 : attributes.grid_cols,
         });
 
+    //===> Set Phenix Components <===//
+    const setPhenixView = () => {
+        //===> Timeout for Loading <===//
+        setTimeout(() => {
+            //===> Check Site Editor <===//
+            let siteEditor = window.frames['editor-canvas'],
+                mediaElement = '.px-media',
+                sliderElement = '.px-slider:not(.splide)';
+
+            //===> Correct Editor Target for Site-Editor <===//
+            if (siteEditor) {
+                //===> Correct Media <===//
+                mediaElement = [...siteEditor.document.querySelectorAll(mediaElement)];
+                //===> Correct Slider <===//
+                sliderElement = [...siteEditor.document.querySelectorAll(sliderElement)];
+            }
+
+            //===> Run Phenix Components <===//
+            Phenix(mediaElement).multimedia();
+            Phenix(sliderElement).slider();
+        }, 300);
+    }
+
+    //===> Active Phenix Components <===//
+    // useEffect(() => setPhenixView(), [attributes]);
+    
     //===> Fetch Data for Options <===//
     useEffect(()=> {
-        //===> Run Phenix Components <===//
-        setTimeout(()=> {
-            //===> Run Slider <===//
-            if(attributes.slider_mode) Phenix('.px-slider').slider();
-
-            //===> for Cards Media <===//
-            Phenix('.px-media').multimedia();
-        }, 1000);
-
         //===> Fetch Post Types <===//
         apiFetch({path: 'wp/v2/types'}).then(post_types => {
             //===> Define Types <===//
@@ -89,6 +106,9 @@ export default function Edit(props) {
             //===> Set the new List if its Deferent <===//
             if (postTypes !== new_types) setPostTypes([...new_types]);
         });
+
+        //===> Active Phenix Components <===//
+        setPhenixView();
     }, []);
 
     //===> Site-Editor Mode <===//

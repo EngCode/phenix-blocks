@@ -28,10 +28,10 @@ if (!function_exists('pds_blocks_default_values')) :
             ),
             array(
                 'enable'=> true,
-                "name"  => "home-slider",
-                "label" => "Home Slider",
-                "singular" => "slides",
-                "label_singular" => "Slides",
+                "name"  => "sliders",
+                "label" => "Block Sliders",
+                "singular" => "slider",
+                "label_singular" => "Slider",
                 "template" => "phenix/slide-hero",
                 "menu_icon" => "welcome-view-site",
                 "taxonomies" => array()

@@ -5,7 +5,7 @@
 	"title": "PDS Group",
     "keywords": ["pds", "phenix", "group", "wrapper", "container"],
 	"category": "design",
-	"description": "Flexbox Container to Group the Elements Tegother from Phenix Blocks.",
+	"description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
 	"supports": {"html": false},
     "attributes" : {
 		"id": {
@@ -33,34 +33,24 @@
             "default": ""
         },
 
-        "bg_type" : {
-            "type" : "string",
-            "default" : "color"
+        "flexbox": {
+            "type": "object",
+            "default": {}
         },
 
-        "bg_rotate" : {
-            "type" : "string",
-            "default" : ""
+        "typography": {
+            "type": "object",
+            "default": {}
         },
 
-        "background" : {
-            "type" : "string",
-            "default" : ""
+        "style": {
+            "type": "object",
+            "default": {}
         },
 
-        "spacing_pd" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "spacing_mg" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "color" : {
-            "type" : "string",
-            "default" : ""
+        "responsive": {
+            "type": "object",
+            "default": {}
         }
     },
     "example": {

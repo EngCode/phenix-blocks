@@ -30,36 +30,40 @@ registerBlockType(metadata, {
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
 
-        //===> Render Alignment <===//
+        let background = attributes.style.background,
+            typography = attributes.typography;
+
+        //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {
-            blockProps.className += ' flexbox';
-            if (attributes.flex_align) blockProps.className +=` ${attributes.flex_align}`;
+            blockProps.className += ` flexbox`;
+            if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.flow)   blockProps.className += ` ${attributes.flexbox.flow}`;
+            if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
+            if (attributes.flexbox.stacked) blockProps.className += ` ${attributes.flexbox.stacked}`;
         }
 
-        //===> Render Color <===//
-        if (attributes.color) blockProps.className += ` ${attributes.color}`;
+        //===> Typography Properties <===//
+        if (typography) {
+            if(typography.size) blockProps.className += ` ${typography.size}`;
+            if(typography.color) blockProps.className += ` ${typography.color}`;
+            if(typography.weight) blockProps.className += ` ${typography.weight}`;
+            if(typography.align) blockProps.className += ` ${typography.align}`;
+        }
 
         //===> Render Background <===//
-        if (attributes.background) {
+        if (background?.value) {
             //===> Image Background <===//
-            if (attributes.bg_type === 'image') {
+            if (background.type === 'image') {
                 blockProps.className += ` px-media`;
-                blockProps["data-src"] = attributes.background;
+                blockProps["data-src"] = background.value;
             }
 
             //===> Name Background <===//
-            else blockProps.className += ` ${attributes.background}`;
+            else blockProps.className += ` ${background.value}`;
 
             //===> Background Rotation <===//
-            if (attributes.bg_rotate) blockProps.className += ` ${attributes.bg_rotate}`;
+            if (background.rotate) blockProps.className += ` ${background.rotate}`;
         }
-
-        //===> Render ID <===//
-        if (attributes.id) blockProps['id'] = attributes.id;
-
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
 
         //===> Render <===//
         return (

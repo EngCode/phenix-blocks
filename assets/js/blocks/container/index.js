@@ -195,7 +195,7 @@ function Edit(_ref) {
   };
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    setPhenixView();
+    return setPhenixView();
   }, [attributes]); //===> for Section Convert <===//
 
   var container = blockProps;

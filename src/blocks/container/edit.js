@@ -116,9 +116,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
-    useEffect(() => {
-        setPhenixView();
-    }, [attributes]);
+    useEffect(() => setPhenixView(), [attributes]);
 
     //===> for Section Convert <===//
     let container = blockProps;

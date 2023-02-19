@@ -15,28 +15,32 @@
     "grid"
   ],
   "category": "design",
-  "description": "Wrapper Represent the Grid System Row with Flexbox Features",
+  "description": "",
   "supports": {
     "html": false
   },
   "attributes": {
-    "tagName": {
-      "type": "string",
-      "default": "div"
-    },
     "preview": {
       "type": "boolean",
       "default": false
     },
-    "flex_align": {
-      "type": "string",
-      "default": ""
+    "flexbox": {
+      "type": "object",
+      "default": {}
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
     },
     "isEqual": {
-      "type": "boolean",
-      "default": false
-    },
-    "isMasonry": {
       "type": "boolean",
       "default": false
     },
@@ -55,14 +59,6 @@
     "controls": {
       "type": "boolean",
       "default": false
-    },
-    "spacing_pd": {
-      "type": "string",
-      "default": ""
-    },
-    "spacing_mg": {
-      "type": "string",
-      "default": ""
     }
   },
   "example": {

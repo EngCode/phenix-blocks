@@ -28,22 +28,19 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        const TagName = attributes.tagName;
-
-        //===> Set Properties <===//
         blockProps.className += ' row';
 
-        //===> Alignment <===//
-        if (attributes.flex_align) blockProps.className +=` ${attributes.flex_align}`;
-
-        //===> Masonry <===//
-        if (attributes.isMasonry) blockProps.className += ' px-masonry';
+        //===> Properties <===//
+        if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align}`;
+        if (attributes.flexbox.flow)   blockProps.className += ` ${attributes.flexbox.flow}`;
+        if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
+        if (attributes.flexbox.masonry) blockProps.className += ` ${attributes.flexbox.masonry}`;
 
         //===> Columns <===//
-        if (attributes.isEqual && attributes.columns) blockProps.className += attributes.columns;
+        if (attributes.flexbox.equals && attributes.columns) blockProps.className += attributes.columns;
 
         //===> Slider <===//
-        if (attributes.isSlider) {
+        if (attributes.flexbox.slider) {
             //===> Add Slider Name <===//
             blockProps.className += ' px-slider';
 
@@ -65,15 +62,11 @@ registerBlockType(metadata, {
             if (attributes.pagination) blockProps['data-pagination'] = 1;
         }
 
-        //===> Render Spacing <===//
-        if (attributes.spacing_pd) blockProps.className += ` ${attributes.spacing_pd}`;
-        if (attributes.spacing_mg) blockProps.className += ` ${attributes.spacing_mg}`;
-
         //===> Render <===//
         return (
-            <TagName {...blockProps}>
+            <div {...blockProps}>
                 <InnerBlocks.Content />
-            </TagName>
+            </div>
         );
     }
 });

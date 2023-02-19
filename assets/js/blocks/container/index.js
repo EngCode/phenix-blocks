@@ -419,7 +419,7 @@ function Edit(_ref) {
     value: typography.color || ""
   }), /*#__PURE__*/React.createElement("label", {
     className: "col-12 mb-5 tx-UpperCase"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Align", "phenix")), /*#__PURE__*/React.createElement("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Alignment", "phenix")), /*#__PURE__*/React.createElement("div", {
     className: "flexbox"
   }, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
@@ -438,7 +438,7 @@ function Edit(_ref) {
     type: "button-radio",
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "btn small square outline gray far fa-align-".concat(Phenix(document).direction() === "ltr" ? 'left' : "right", " radius-sm")
+    className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "ltr" ? 'left' : "right", " radius-sm")
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: typography.align === "tx-align-justify" ? true : false,
@@ -447,7 +447,7 @@ function Edit(_ref) {
     type: "button-radio",
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "btn small square outline gray far fa-align-justify radius-sm"
+    className: "btn small square outline gray fs-17 far fa-align-justify radius-sm"
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: typography.align === "tx-align-center" ? true : false,
@@ -456,7 +456,7 @@ function Edit(_ref) {
     type: "button-radio",
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "btn small square outline gray far fa-align-center radius-sm"
+    className: "btn small square outline gray fs-17 far fa-align-center radius-sm"
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: typography.align === "tx-align-end" ? true : false,
@@ -465,7 +465,7 @@ function Edit(_ref) {
     type: "button-radio",
     className: "small"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "btn small square outline gray far fa-align-".concat(Phenix(document).direction() === "rtl" ? 'left' : "right", " radius-sm")
+    className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "rtl" ? 'left' : "right", " radius-sm")
   })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
     initialOpen: false
@@ -517,7 +517,7 @@ function Edit(_ref) {
     className: "fas fa-check radius-circle"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"))))) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     key: "isHidden",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hide this Block ?", "phenix"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hidden Block ?", "phenix"),
     checked: attributes.isHidden,
     onChange: set_isHidden
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
@@ -657,9 +657,9 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var setBackground = function setBackground(clicked) {
         //===> Get Value <===//
         var button = clicked.target,
-            value = button.getAttribute('data-value'); //===> Colors & Gradients <===//
+            value = button === null || button === void 0 ? void 0 : button.getAttribute('data-value'); //===> Colors & Gradients <===//
 
-        if (button) {
+        if (type !== 'image') {
           options.value = value;
         } //===> Image Type <===//
         else {
@@ -1257,7 +1257,7 @@ var OptionControl = /*#__PURE__*/function (_Component) {
       }; //===> Define Data <===//
 
 
-      var options = "option-control flexbox align-between align-center-y",
+      var options = "option-control flexbox align-center-y",
           attributes = {
         onChange: setValue
       }; //===> Custom Classes <===//

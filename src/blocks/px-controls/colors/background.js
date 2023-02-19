@@ -147,10 +147,10 @@ export default class PhenixBackground extends Component {
         const setBackground = clicked => {
             //===> Get Value <===//
             let button = clicked.target,
-                value  = button.getAttribute('data-value');
+                value  = button?.getAttribute('data-value');
 
             //===> Colors & Gradients <===//
-            if (button) {options.value = value;}
+            if (type !== 'image') {options.value = value;}
             //===> Image Type <===//
             else {options.value = clicked.url;}
 

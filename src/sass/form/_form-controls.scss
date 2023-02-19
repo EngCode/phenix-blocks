@@ -258,7 +258,7 @@ label,legend  {@extend %inline-block;}
         position: relative;
         @extend %fast-motion;
         @extend %inline-block;
-        @include margin-inline(5px);
+        @include margin-inline(5px, 'end');
         background-color: var(--color);
         width: var(--height);
         height: calc(var(--height) / 2.15);

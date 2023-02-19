@@ -584,9 +584,9 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var setBackground = function setBackground(clicked) {
         //===> Get Value <===//
         var button = clicked.target,
-            value = button.getAttribute('data-value'); //===> Colors & Gradients <===//
+            value = button === null || button === void 0 ? void 0 : button.getAttribute('data-value'); //===> Colors & Gradients <===//
 
-        if (button) {
+        if (type !== 'image') {
           options.value = value;
         } //===> Image Type <===//
         else {

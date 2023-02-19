@@ -422,9 +422,9 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
       var setBackground = function setBackground(clicked) {
         //===> Get Value <===//
         var button = clicked.target,
-            value = button.getAttribute('data-value'); //===> Colors & Gradients <===//
+            value = button === null || button === void 0 ? void 0 : button.getAttribute('data-value'); //===> Colors & Gradients <===//
 
-        if (button) {
+        if (type !== 'image') {
           options.value = value;
         } //===> Image Type <===//
         else {
@@ -1839,7 +1839,7 @@ var OptionControl = /*#__PURE__*/function (_Component) {
       }; //===> Define Data <===//
 
 
-      var options = "option-control flexbox align-between align-center-y",
+      var options = "option-control flexbox align-center-y",
           attributes = {
         onChange: setValue
       }; //===> Custom Classes <===//

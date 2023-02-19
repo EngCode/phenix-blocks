@@ -251,7 +251,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Text Color <===*/}
                 <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography.color || ""} />
                 {/*===> Label <===*/}
-                <label className='col-12 mb-5 tx-UpperCase'>{__("Text Align", "phenix")}</label>
+                <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
                 {/*===> Elements Group <===*/}
                 <div className='flexbox'>
                     {/*===> Switch Button <===*/}
@@ -260,19 +260,19 @@ export default function Edit({ attributes, setAttributes }) {
                     </OptionControl>
                     {/*===> Switch Button <===*/}
                     <OptionControl name='text-align' checked={typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
+                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
                     <OptionControl name='text-align' checked={typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray far fa-align-justify radius-sm`}></span>
+                        <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
                     <OptionControl name='text-align' checked={typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray far fa-align-center radius-sm`}></span>
+                        <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
                     <OptionControl name='text-align' checked={typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
-                        <span className={`btn small square outline gray far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                 </div>
             </PanelBody>
@@ -310,7 +310,7 @@ export default function Edit({ attributes, setAttributes }) {
                 : null}
 
                 {/*===> Display <===*/}
-                <ToggleControl key="isHidden" label={__("Hide this Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
+                <ToggleControl key="isHidden" label={__("Hidden Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

@@ -419,7 +419,7 @@ var OptionControl = /*#__PURE__*/function (_Component) {
       }; //===> Define Data <===//
 
 
-      var options = "option-control flexbox align-between align-center-y",
+      var options = "option-control flexbox align-center-y",
           attributes = {
         onChange: setValue
       }; //===> Custom Classes <===//

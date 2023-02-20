@@ -28,71 +28,64 @@ export default function Edit({ attributes, setAttributes }) {
     const set_controls = controls => setAttributes({ controls });
     const set_pagination = pagination => setAttributes({ pagination });
 
-    //===> Get Options <===//
-    let flexbox_options = attributes.flexbox,
-        style_options = attributes.style,
-        background = style_options?.background,
-        typography = attributes.typography;
-
-    //===> Default Typography <===//
-    // if(typography) {
-    //     if(!typography.size)   typography.size = "";
-    //     if(!typography.color)  typography.color = "";
-    //     if(!typography.weight) typography.weight = "";
-    //     if(!typography.align)  typography.align  = "";
-    // }
-
-    //===> Default Style <===//
-    // if(style_options) {
-    //     //===> Flexbox <===//
-    //     if (!style_options.flexbox) style_options.flexbox = {};
-    //     if (!style_options.flexbox.align)   flexbox_options.align = "";
-    //     if (!style_options.flexbox.flow)    flexbox_options.flow = "";
-    //     if (!style_options.flexbox.nowrap)  flexbox_options.nowrap = "";
-    //     if (!style_options.flexbox.masonry) flexbox_options.masonry = "";
-
-    //     //===> Background <===//
-    //     if (!style_options.background) style_options.background = {};
-    //     if (!style_options.background.value)  typography.value  = "";
-    //     if (!style_options.background.rotate) typography.rotate = "";
-    //     if (!style_options.background.type)   typography.type = "color";
-    // }
-
     //===> Flexbox Options <===//
     const set_alignment = alignment => {
-        //==> Align <==//
-        flexbox_options.align = alignment;
-        setAttributes({ flexbox : {...flexbox_options} });
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.align = alignment;
+        setAttributes({ flexbox : {...flex_ops} });
     };
 
     //==> Flow <==//
     const set_flex_flow = target => {
-        flexbox_options.flow = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flexbox_options}});
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.flow = target.checked ? target.value : "";
+        setAttributes({flexbox : {...flex_ops}});
     };
 
     //==> No-Wrap <==//
     const set_flex_nowrap = target => {
-        flexbox_options.nowrap = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flexbox_options}});
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.nowrap = target.checked ? target.value : "";
+        setAttributes({flexbox : {...flex_ops}});
     };
 
     //==> Masonry <==//
     const set_flex_masonry = target => {
-        flexbox_options.masonry = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flexbox_options}});
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.masonry = target.checked ? target.value : "";
+        setAttributes({flexbox : {...flex_ops}});
     };
 
     //==> Equal Columns <==//
     const set_flex_equals = target => {
-        flexbox_options.equals = target.checked;        
-        setAttributes({flexbox : {...flexbox_options}});
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.equals = target.checked;        
+        setAttributes({flexbox : {...flex_ops}});
     };
 
     //==> Slider Mode <==//
     const set_flex_slider = target => {
-        flexbox_options.slider = target.checked;        
-        setAttributes({flexbox : {...flexbox_options}});
+        //==> Get Current <==//
+        let flex_ops = attributes.flexbox;
+
+        //==> Set Value <==//
+        flex_ops.slider = target.checked;        
+        setAttributes({flexbox : {...flex_ops}});
     };
 
     //===> Get Block Properties <===//
@@ -104,16 +97,16 @@ export default function Edit({ attributes, setAttributes }) {
     innerBlocksProps.className += ' row';
 
     //===> Properties <===//
-    if (flexbox_options.align)  innerBlocksProps.className += ` ${flexbox_options.align}`;
-    if (flexbox_options.flow)   innerBlocksProps.className += ` ${flexbox_options.flow}`;
-    if (flexbox_options.nowrap) innerBlocksProps.className += ` ${flexbox_options.nowrap}`;
-    if (flexbox_options.masonry) innerBlocksProps.className += ` ${flexbox_options.masonry}`;
+    if (attributes.flexbox.align)  innerBlocksProps.className += ` ${attributes.flexbox.align}`;
+    if (attributes.flexbox.flow)   innerBlocksProps.className += ` ${attributes.flexbox.flow}`;
+    if (attributes.flexbox.nowrap) innerBlocksProps.className += ` ${attributes.flexbox.nowrap}`;
+    if (attributes.flexbox.masonry) innerBlocksProps.className += ` ${attributes.flexbox.masonry}`;
 
     //===> Columns <===//
-    if (flexbox_options.equals && attributes.columns) innerBlocksProps.className += attributes.columns;
+    if (attributes.flexbox.equals && attributes.columns) innerBlocksProps.className += attributes.columns;
     
     //===> Slider <===//
-    if (flexbox_options.slider) {
+    if (attributes.flexbox.slider) {
         //===> Add Slider Name <===//
         innerBlocksProps.className += ' px-slider';
         
@@ -145,46 +138,46 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="General Settings">
                 {/*===> Flexbox Properties <===*/}
-                {!flexbox_options.slider ? <div className='row gpx-15 mb-10 divider-b'>
+                {!attributes.flexbox.slider ? <div className='row gpx-15 mb-10 divider-b'>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-15'>
-                        <FlexAlignment label={__("Grid Alignment", "phenix")} value={flexbox_options.align || ""} onChange={set_alignment}></FlexAlignment>
+                        <FlexAlignment label={__("Grid Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={set_alignment}></FlexAlignment>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-12 flexbox mb-15'>
                         {/*===> Label <===*/}
                         <label className='col-12 mb-5 tx-UpperCase'>{__("Grid Options", "phenix")}</label>
                         {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-flow' value="flow-reverse" checked={flexbox_options.flow?.length > 0} onChange={set_flex_flow} type='checkbox' className='tiny mb-5 me-10'>
+                        <OptionControl name='flex-flow' value="flow-reverse" checked={attributes.flexbox.flow?.length > 0} onChange={set_flex_flow} type='checkbox' className='tiny mb-5 me-10'>
                             <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
                         </OptionControl>
                         {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-nowrap' value="flow-nowrap" checked={flexbox_options.nowrap?.length > 0} onChange={set_flex_nowrap} type='checkbox' className='tiny mb-5 me-10'>
+                        <OptionControl name='flex-nowrap' value="flow-nowrap" checked={attributes.flexbox.nowrap?.length > 0} onChange={set_flex_nowrap} type='checkbox' className='tiny mb-5 me-10'>
                             <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
                         </OptionControl>
                         {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-masonry' value="px-masonry" checked={flexbox_options.masonry?.length > 0} onChange={set_flex_masonry} type='checkbox' className='tiny mb-5'>
+                        <OptionControl name='flex-masonry' value="px-masonry" checked={attributes.flexbox.masonry?.length > 0} onChange={set_flex_masonry} type='checkbox' className='tiny mb-5'>
                             <span className='fas fa-check radius-circle'>{__("Masonry", "phenix")}</span>
                         </OptionControl>
                         {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-equals' checked={flexbox_options.equals} onChange={set_flex_equals} type='checkbox' className='tiny'>
+                        <OptionControl name='flex-equals' checked={attributes.flexbox.equals} onChange={set_flex_equals} type='checkbox' className='tiny'>
                             <span className='fas fa-check radius-circle'>{__("Equal Columns.", "phenix")}</span>
                         </OptionControl>
                     </div>
                     {/*===> // Column <===*/}
                 </div> : null}
                 {/*===> Switch Button <===*/}
-                <OptionControl name='flex-slider' checked={flexbox_options.slider} onChange={set_flex_slider} type='switch-checkbox' className='tiny'>{__("Enable Slider Mode", "phenix")}</OptionControl>
+                <OptionControl name='flex-slider' checked={attributes.flexbox.slider} onChange={set_flex_slider} type='switch-checkbox' className='tiny'>{__("Enable Slider Mode", "phenix")}</OptionControl>
             </PanelBody>
             {/*=== Slider ===*/}
-            {flexbox_options.slider ?
+            {attributes.flexbox.slider ?
                 <PanelBody title="Slider Options" initialOpen={true}>
                     <ToggleControl label="Enable Pagination" checked={attributes.pagination} onChange={set_pagination}/>
                     <ToggleControl label="Enable Arrow Buttons" checked={attributes.controls} onChange={set_controls}/>
                 </PanelBody>
             : null}
             {/*=== Columns ===*/}
-            {flexbox_options.equals || flexbox_options.slider ?
+            {attributes.flexbox.equals || attributes.flexbox.slider ?
                 <PanelBody title="Columns Size" initialOpen={true}>
                     <EqualColumns key="row-columns" value={attributes.columns} onChange={set_columns}></EqualColumns>
                 </PanelBody>

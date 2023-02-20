@@ -37,7 +37,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //====> Edit Mode <====//
 
 function Edit(_ref) {
-  var _flexbox_options$flow, _flexbox_options$nowr, _flexbox_options$maso;
+  var _attributes$flexbox$f, _attributes$flexbox$n, _attributes$flexbox$m;
 
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
@@ -71,80 +71,71 @@ function Edit(_ref) {
     return setAttributes({
       pagination: pagination
     });
-  }; //===> Get Options <===//
+  }; //===> Flexbox Options <===//
 
-
-  var flexbox_options = attributes.flexbox,
-      style_options = attributes.style,
-      background = style_options === null || style_options === void 0 ? void 0 : style_options.background,
-      typography = attributes.typography; //===> Default Typography <===//
-  // if(typography) {
-  //     if(!typography.size)   typography.size = "";
-  //     if(!typography.color)  typography.color = "";
-  //     if(!typography.weight) typography.weight = "";
-  //     if(!typography.align)  typography.align  = "";
-  // }
-  //===> Default Style <===//
-  // if(style_options) {
-  //     //===> Flexbox <===//
-  //     if (!style_options.flexbox) style_options.flexbox = {};
-  //     if (!style_options.flexbox.align)   flexbox_options.align = "";
-  //     if (!style_options.flexbox.flow)    flexbox_options.flow = "";
-  //     if (!style_options.flexbox.nowrap)  flexbox_options.nowrap = "";
-  //     if (!style_options.flexbox.masonry) flexbox_options.masonry = "";
-  //     //===> Background <===//
-  //     if (!style_options.background) style_options.background = {};
-  //     if (!style_options.background.value)  typography.value  = "";
-  //     if (!style_options.background.rotate) typography.rotate = "";
-  //     if (!style_options.background.type)   typography.type = "color";
-  // }
-  //===> Flexbox Options <===//
 
   var set_alignment = function set_alignment(alignment) {
-    //==> Align <==//
-    flexbox_options.align = alignment;
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.align = alignment;
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //==> Flow <==//
 
 
   var set_flex_flow = function set_flex_flow(target) {
-    flexbox_options.flow = target.checked ? target.value : "";
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.flow = target.checked ? target.value : "";
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //==> No-Wrap <==//
 
 
   var set_flex_nowrap = function set_flex_nowrap(target) {
-    flexbox_options.nowrap = target.checked ? target.value : "";
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.nowrap = target.checked ? target.value : "";
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //==> Masonry <==//
 
 
   var set_flex_masonry = function set_flex_masonry(target) {
-    flexbox_options.masonry = target.checked ? target.value : "";
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.masonry = target.checked ? target.value : "";
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //==> Equal Columns <==//
 
 
   var set_flex_equals = function set_flex_equals(target) {
-    flexbox_options.equals = target.checked;
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.equals = target.checked;
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //==> Slider Mode <==//
 
 
   var set_flex_slider = function set_flex_slider(target) {
-    flexbox_options.slider = target.checked;
+    //==> Get Current <==//
+    var flex_ops = attributes.flexbox; //==> Set Value <==//
+
+    flex_ops.slider = target.checked;
     setAttributes({
-      flexbox: _objectSpread({}, flexbox_options)
+      flexbox: _objectSpread({}, flex_ops)
     });
   }; //===> Get Block Properties <===//
 
@@ -155,14 +146,14 @@ function Edit(_ref) {
   innerBlocksProps.className += " ".concat(blockProps.className);
   innerBlocksProps.className += ' row'; //===> Properties <===//
 
-  if (flexbox_options.align) innerBlocksProps.className += " ".concat(flexbox_options.align);
-  if (flexbox_options.flow) innerBlocksProps.className += " ".concat(flexbox_options.flow);
-  if (flexbox_options.nowrap) innerBlocksProps.className += " ".concat(flexbox_options.nowrap);
-  if (flexbox_options.masonry) innerBlocksProps.className += " ".concat(flexbox_options.masonry); //===> Columns <===//
+  if (attributes.flexbox.align) innerBlocksProps.className += " ".concat(attributes.flexbox.align);
+  if (attributes.flexbox.flow) innerBlocksProps.className += " ".concat(attributes.flexbox.flow);
+  if (attributes.flexbox.nowrap) innerBlocksProps.className += " ".concat(attributes.flexbox.nowrap);
+  if (attributes.flexbox.masonry) innerBlocksProps.className += " ".concat(attributes.flexbox.masonry); //===> Columns <===//
 
-  if (flexbox_options.equals && attributes.columns) innerBlocksProps.className += attributes.columns; //===> Slider <===//
+  if (attributes.flexbox.equals && attributes.columns) innerBlocksProps.className += attributes.columns; //===> Slider <===//
 
-  if (flexbox_options.slider) {
+  if (attributes.flexbox.slider) {
     //===> Add Slider Name <===//
     innerBlocksProps.className += ' px-slider'; //===> Set Items <===//
 
@@ -185,13 +176,13 @@ function Edit(_ref) {
     key: "inspector"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: "General Settings"
-  }, !flexbox_options.slider ? /*#__PURE__*/React.createElement("div", {
+  }, !attributes.flexbox.slider ? /*#__PURE__*/React.createElement("div", {
     className: "row gpx-15 mb-10 divider-b"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-15"
   }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Alignment", "phenix"),
-    value: flexbox_options.align || "",
+    value: attributes.flexbox.align || "",
     onChange: set_alignment
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-12 flexbox mb-15"
@@ -200,7 +191,7 @@ function Edit(_ref) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Options", "phenix")), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-flow",
     value: "flow-reverse",
-    checked: ((_flexbox_options$flow = flexbox_options.flow) === null || _flexbox_options$flow === void 0 ? void 0 : _flexbox_options$flow.length) > 0,
+    checked: ((_attributes$flexbox$f = attributes.flexbox.flow) === null || _attributes$flexbox$f === void 0 ? void 0 : _attributes$flexbox$f.length) > 0,
     onChange: set_flex_flow,
     type: "checkbox",
     className: "tiny mb-5 me-10"
@@ -209,7 +200,7 @@ function Edit(_ref) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reverse ", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-nowrap",
     value: "flow-nowrap",
-    checked: ((_flexbox_options$nowr = flexbox_options.nowrap) === null || _flexbox_options$nowr === void 0 ? void 0 : _flexbox_options$nowr.length) > 0,
+    checked: ((_attributes$flexbox$n = attributes.flexbox.nowrap) === null || _attributes$flexbox$n === void 0 ? void 0 : _attributes$flexbox$n.length) > 0,
     onChange: set_flex_nowrap,
     type: "checkbox",
     className: "tiny mb-5 me-10"
@@ -218,7 +209,7 @@ function Edit(_ref) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-masonry",
     value: "px-masonry",
-    checked: ((_flexbox_options$maso = flexbox_options.masonry) === null || _flexbox_options$maso === void 0 ? void 0 : _flexbox_options$maso.length) > 0,
+    checked: ((_attributes$flexbox$m = attributes.flexbox.masonry) === null || _attributes$flexbox$m === void 0 ? void 0 : _attributes$flexbox$m.length) > 0,
     onChange: set_flex_masonry,
     type: "checkbox",
     className: "tiny mb-5"
@@ -226,7 +217,7 @@ function Edit(_ref) {
     className: "fas fa-check radius-circle"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Masonry", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-equals",
-    checked: flexbox_options.equals,
+    checked: attributes.flexbox.equals,
     onChange: set_flex_equals,
     type: "checkbox",
     className: "tiny"
@@ -234,11 +225,11 @@ function Edit(_ref) {
     className: "fas fa-check radius-circle"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Equal Columns.", "phenix"))))) : null, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-slider",
-    checked: flexbox_options.slider,
+    checked: attributes.flexbox.slider,
     onChange: set_flex_slider,
     type: "switch-checkbox",
     className: "tiny"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Slider Mode", "phenix"))), flexbox_options.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Slider Mode", "phenix"))), attributes.flexbox.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: "Slider Options",
     initialOpen: true
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
@@ -249,7 +240,7 @@ function Edit(_ref) {
     label: "Enable Arrow Buttons",
     checked: attributes.controls,
     onChange: set_controls
-  })) : null, flexbox_options.equals || flexbox_options.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+  })) : null, attributes.flexbox.equals || attributes.flexbox.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: "Columns Size",
     initialOpen: true
   }, /*#__PURE__*/React.createElement(_px_controls_grid_equal_columns__WEBPACK_IMPORTED_MODULE_5__["default"], {

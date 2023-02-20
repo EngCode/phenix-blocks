@@ -46,57 +46,54 @@ export default function Edit({ attributes, setAttributes }) {
     const set_inNewTab = inNewTab => setAttributes({ inNewTab });
     const set_url = url => setAttributes({ url });
 
-    //===> Get Options <===//
-    let style_options = attributes.style,
-        background = style_options?.background,
-        typography = attributes.typography;
-
-    //===> Default Typography <===//
-    // if(typography) {
-    //     if(!typography.size)   typography.size = "";
-    //     if(!typography.color)  typography.color = "";
-    //     if(!typography.weight) typography.weight = "";
-    //     if(!typography.align)  typography.align  = "";
-    // }
-
-    //===> Default Style <===//
-    // if(style_options) {
-    //     //===> Background <===//
-    //     if (!style_options.background) style_options.background = {};
-    //     if (!style_options.background.value)  typography.value  = "";
-    //     if (!style_options.background.rotate) typography.rotate = "";
-    //     if (!style_options.background.type)   typography.type = "color";
-    // }
-
     //===> Typography Options <===//
     const set_typography_size = value => {
-        //==> Size <==//
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
         typography.size = value;
         setAttributes({ typography : {...typography} });
     };
 
     //==> Weight <==//
     const set_typography_weight = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
         typography.weight = value;
         setAttributes({ typography : {...typography} });
     };
 
     //==> Align <==//
     const set_typography_align = target => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
         typography.align = target.checked ? target.value : "";
         setAttributes({ typography : {...typography} });
     };
 
     //==> Color <==//
     const set_color = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
         typography.color = value;
         setAttributes({ typography : {...typography} });
     };
 
     //===> Set Background <===//
     const set_background = background => {
-        style_options.background = background;
-        setAttributes({ style : {...style_options} });
+        //==> Get Current <==//
+        let styles = attributes.style;
+
+        //==> Set Value <==//
+        styles.background = background;
+        setAttributes({ style : {...styles} });
     };
 
     //===> Get Block Properties <===//
@@ -118,7 +115,7 @@ export default function Edit({ attributes, setAttributes }) {
         }
 
         //===> Set Background <===//
-        if (background?.type === 'image') Phenix(blockElement).multimedia();
+        if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
     useEffect(() => setPhenixView(), [attributes]);
@@ -142,19 +139,19 @@ export default function Edit({ attributes, setAttributes }) {
     }, []);
 
     //===> Typography Properties <===//
-    if (typography) {
-        if(typography.size) blockProps.className += ` ${typography.size}`;
-        if(typography.color) blockProps.className += ` ${typography.color}`;
-        if(typography.weight) blockProps.className += ` ${typography.weight}`;
-        if(typography.align) blockProps.className += ` ${typography.align}`;
+    if (attributes.typography) {
+        if(attributes.typography.size) blockProps.className += ` ${attributes.typography.size}`;
+        if(attributes.typography.color) blockProps.className += ` ${attributes.typography.color}`;
+        if(attributes.typography.weight) blockProps.className += ` ${attributes.typography.weight}`;
+        if(attributes.typography.align) blockProps.className += ` ${attributes.typography.align}`;
     }
 
     //===> Render Background <===//
-    if (background?.value) {
+    if (attributes.style.background?.value) {
         //===> Image Background <===//
-        if (background.type === 'image') {
+        if (attributes.style.background.type === 'image') {
             blockProps.className += ` px-media`;
-            blockProps["data-src"] = background.value;
+            blockProps["data-src"] = attributes.style.background.value;
         }
 
         //===> Name Background <===//
@@ -164,15 +161,15 @@ export default function Edit({ attributes, setAttributes }) {
                 primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
             
             //===> Correct Colors <===//
-            primaryColors.forEach(color => background.value === color ? isPrimary = true : null);
+            primaryColors.forEach(color => attributes.style.background.value === color ? isPrimary = true : null);
 
             //===> Set the Background <===//
-            if (isPrimary) { blockProps.className += ` ${background.value.replace('bg-', '')}`; }
-            else { blockProps.className += ` ${background.value}`; }
+            if (isPrimary) { blockProps.className += ` ${attributes.style.background.value.replace('bg-', '')}`; }
+            else { blockProps.className += ` ${attributes.style.background.value}`; }
         }
 
         //===> Background Rotation <===//
-        if (background.rotate) blockProps.className += ` ${background.rotate}`;
+        if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
     }
 
     //===> Default Type <===//
@@ -289,7 +286,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={typography.size || ""} onChange={set_typography_size} options={[
+                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={[
                             { label: 'Default',   value: '' },
                             { label: '12px',   value: 'fs-12' },
                             { label: '13px',   value: 'fs-13' },
@@ -310,7 +307,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={typography.weight || ""} onChange={set_typography_weight} options={[
+                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={attributes.typography.weight || ""} onChange={set_typography_weight} options={[
                             { label: 'Default',  value: '' },
                             { label: 'Thin',  value: 'weight-thin'},
                             { label: 'Light',  value: 'weight-light'},
@@ -326,29 +323,29 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> // Column <===*/}
                 </div>
                 {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={typography.color || ""} />
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color || ""} />
                 {/*===> Label <===*/}
                 <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
                 {/*===> Elements Group <===*/}
                 <div className='flexbox'>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={!typography.align || typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='text-align' checked={!attributes.typography.align || attributes.typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
                         <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
+                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                 </div>
@@ -356,7 +353,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
                 {/*===> Background <===*/}
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={style_options.background?.type || "color"} value={style_options.background?.value || ""} rotate={style_options.background?.rotate || null} />
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.isLightBox ?<PanelBody title="Lightbox Settings">

@@ -56,7 +56,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //====> Edit Mode <====//
 
 function Edit(_ref) {
-  var _style_options$backgr, _style_options$backgr2, _style_options$backgr3;
+  var _attributes$style$bac2, _attributes$style$bac3, _attributes$style$bac4, _attributes$style$bac5;
 
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
@@ -151,30 +151,13 @@ function Edit(_ref) {
     return setAttributes({
       url: url
     });
-  }; //===> Get Options <===//
+  }; //===> Typography Options <===//
 
-
-  var style_options = attributes.style,
-      background = style_options === null || style_options === void 0 ? void 0 : style_options.background,
-      typography = attributes.typography; //===> Default Typography <===//
-  // if(typography) {
-  //     if(!typography.size)   typography.size = "";
-  //     if(!typography.color)  typography.color = "";
-  //     if(!typography.weight) typography.weight = "";
-  //     if(!typography.align)  typography.align  = "";
-  // }
-  //===> Default Style <===//
-  // if(style_options) {
-  //     //===> Background <===//
-  //     if (!style_options.background) style_options.background = {};
-  //     if (!style_options.background.value)  typography.value  = "";
-  //     if (!style_options.background.rotate) typography.rotate = "";
-  //     if (!style_options.background.type)   typography.type = "color";
-  // }
-  //===> Typography Options <===//
 
   var set_typography_size = function set_typography_size(value) {
-    //==> Size <==//
+    //==> Get Current <==//
+    var typography = attributes.typography; //==> Set Value <==//
+
     typography.size = value;
     setAttributes({
       typography: _objectSpread({}, typography)
@@ -183,6 +166,9 @@ function Edit(_ref) {
 
 
   var set_typography_weight = function set_typography_weight(value) {
+    //==> Get Current <==//
+    var typography = attributes.typography; //==> Set Value <==//
+
     typography.weight = value;
     setAttributes({
       typography: _objectSpread({}, typography)
@@ -191,6 +177,9 @@ function Edit(_ref) {
 
 
   var set_typography_align = function set_typography_align(target) {
+    //==> Get Current <==//
+    var typography = attributes.typography; //==> Set Value <==//
+
     typography.align = target.checked ? target.value : "";
     setAttributes({
       typography: _objectSpread({}, typography)
@@ -199,6 +188,9 @@ function Edit(_ref) {
 
 
   var set_color = function set_color(value) {
+    //==> Get Current <==//
+    var typography = attributes.typography; //==> Set Value <==//
+
     typography.color = value;
     setAttributes({
       typography: _objectSpread({}, typography)
@@ -207,9 +199,12 @@ function Edit(_ref) {
 
 
   var set_background = function set_background(background) {
-    style_options.background = background;
+    //==> Get Current <==//
+    var styles = attributes.style; //==> Set Value <==//
+
+    styles.background = background;
     setAttributes({
-      style: _objectSpread({}, style_options)
+      style: _objectSpread({}, styles)
     });
   }; //===> Get Block Properties <===//
 
@@ -226,6 +221,8 @@ function Edit(_ref) {
   }); //===> Set Phenix Components <===//
 
   var setPhenixView = function setPhenixView() {
+    var _attributes$style$bac;
+
     //===> Check Site Editor <===//
     var siteEditor = window.frames['editor-canvas'],
         blockElement = '.px-media'; //===> Correct Editor Target for Site-Editor <===//
@@ -236,7 +233,7 @@ function Edit(_ref) {
     } //===> Set Background <===//
 
 
-    if ((background === null || background === void 0 ? void 0 : background.type) === 'image') Phenix(blockElement).multimedia();
+    if (((_attributes$style$bac = attributes.style.background) === null || _attributes$style$bac === void 0 ? void 0 : _attributes$style$bac.type) === 'image') Phenix(blockElement).multimedia();
   };
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
@@ -259,19 +256,19 @@ function Edit(_ref) {
     }
   }, []); //===> Typography Properties <===//
 
-  if (typography) {
-    if (typography.size) blockProps.className += " ".concat(typography.size);
-    if (typography.color) blockProps.className += " ".concat(typography.color);
-    if (typography.weight) blockProps.className += " ".concat(typography.weight);
-    if (typography.align) blockProps.className += " ".concat(typography.align);
+  if (attributes.typography) {
+    if (attributes.typography.size) blockProps.className += " ".concat(attributes.typography.size);
+    if (attributes.typography.color) blockProps.className += " ".concat(attributes.typography.color);
+    if (attributes.typography.weight) blockProps.className += " ".concat(attributes.typography.weight);
+    if (attributes.typography.align) blockProps.className += " ".concat(attributes.typography.align);
   } //===> Render Background <===//
 
 
-  if (background !== null && background !== void 0 && background.value) {
+  if ((_attributes$style$bac2 = attributes.style.background) !== null && _attributes$style$bac2 !== void 0 && _attributes$style$bac2.value) {
     //===> Image Background <===//
-    if (background.type === 'image') {
+    if (attributes.style.background.type === 'image') {
       blockProps.className += " px-media";
-      blockProps["data-src"] = background.value;
+      blockProps["data-src"] = attributes.style.background.value;
     } //===> Name Background <===//
     else {
       //===> Adjust Primary Colors <===//
@@ -279,18 +276,18 @@ function Edit(_ref) {
           primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"]; //===> Correct Colors <===//
 
       primaryColors.forEach(function (color) {
-        return background.value === color ? isPrimary = true : null;
+        return attributes.style.background.value === color ? isPrimary = true : null;
       }); //===> Set the Background <===//
 
       if (isPrimary) {
-        blockProps.className += " ".concat(background.value.replace('bg-', ''));
+        blockProps.className += " ".concat(attributes.style.background.value.replace('bg-', ''));
       } else {
-        blockProps.className += " ".concat(background.value);
+        blockProps.className += " ".concat(attributes.style.background.value);
       }
     } //===> Background Rotation <===//
 
 
-    if (background.rotate) blockProps.className += " ".concat(background.rotate);
+    if (attributes.style.background.rotate) blockProps.className += " ".concat(attributes.style.background.rotate);
   } //===> Default Type <===//
 
 
@@ -431,7 +428,7 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
     key: "typography-size",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Size", "phenix"),
-    value: typography.size || "",
+    value: attributes.typography.size || "",
     onChange: set_typography_size,
     options: [{
       label: 'Default',
@@ -487,7 +484,7 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
     key: "typography-weight",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Weight", "phenix"),
-    value: typography.weight || "",
+    value: attributes.typography.weight || "",
     onChange: set_typography_weight,
     options: [{
       label: 'Default',
@@ -524,14 +521,14 @@ function Edit(_ref) {
     key: "px-color",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", "phenix"),
     onChange: set_color,
-    value: typography.color || ""
+    value: attributes.typography.color || ""
   }), /*#__PURE__*/React.createElement("label", {
     className: "col-12 mb-5 tx-UpperCase"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Alignment", "phenix")), /*#__PURE__*/React.createElement("div", {
     className: "flexbox"
   }, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "text-align",
-    checked: !typography.align || typography.align === "",
+    checked: !attributes.typography.align || attributes.typography.align === "",
     value: "",
     onChange: set_typography_align,
     type: "button-radio",
@@ -540,7 +537,7 @@ function Edit(_ref) {
     className: "btn small square outline gray far fa-align-slash radius-sm"
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "text-align",
-    checked: typography.align === "tx-align-start" ? true : false,
+    checked: attributes.typography.align === "tx-align-start" ? true : false,
     value: "tx-align-start",
     onChange: set_typography_align,
     type: "button-radio",
@@ -549,7 +546,7 @@ function Edit(_ref) {
     className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "ltr" ? 'left' : "right", " radius-sm")
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "text-align",
-    checked: typography.align === "tx-align-justify" ? true : false,
+    checked: attributes.typography.align === "tx-align-justify" ? true : false,
     value: "tx-align-justify",
     onChange: set_typography_align,
     type: "button-radio",
@@ -558,7 +555,7 @@ function Edit(_ref) {
     className: "btn small square outline gray fs-17 far fa-align-justify radius-sm"
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "text-align",
-    checked: typography.align === "tx-align-center" ? true : false,
+    checked: attributes.typography.align === "tx-align-center" ? true : false,
     value: "tx-align-center",
     onChange: set_typography_align,
     type: "button-radio",
@@ -567,7 +564,7 @@ function Edit(_ref) {
     className: "btn small square outline gray fs-17 far fa-align-center radius-sm"
   })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "text-align",
-    checked: typography.align === "tx-align-end" ? true : false,
+    checked: attributes.typography.align === "tx-align-end" ? true : false,
     value: "tx-align-end",
     onChange: set_typography_align,
     type: "button-radio",
@@ -581,9 +578,9 @@ function Edit(_ref) {
     key: "px-bg",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
     onChange: set_background,
-    type: ((_style_options$backgr = style_options.background) === null || _style_options$backgr === void 0 ? void 0 : _style_options$backgr.type) || "color",
-    value: ((_style_options$backgr2 = style_options.background) === null || _style_options$backgr2 === void 0 ? void 0 : _style_options$backgr2.value) || "",
-    rotate: ((_style_options$backgr3 = style_options.background) === null || _style_options$backgr3 === void 0 ? void 0 : _style_options$backgr3.rotate) || null
+    type: ((_attributes$style$bac3 = attributes.style.background) === null || _attributes$style$bac3 === void 0 ? void 0 : _attributes$style$bac3.type) || "color",
+    value: ((_attributes$style$bac4 = attributes.style.background) === null || _attributes$style$bac4 === void 0 ? void 0 : _attributes$style$bac4.value) || "",
+    rotate: ((_attributes$style$bac5 = attributes.style.background) === null || _attributes$style$bac5 === void 0 ? void 0 : _attributes$style$bac5.rotate) || null
   })), attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: "Lightbox Settings"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {

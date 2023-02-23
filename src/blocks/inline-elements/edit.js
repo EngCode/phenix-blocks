@@ -23,6 +23,9 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const TagName = attributes.tagName;
 
+    //===> Convert Block to Inline <===//
+    if (TagName === 'div') blockProps.className += ` inline-block`;
+
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}
@@ -31,7 +34,17 @@ export default function Edit({ attributes, setAttributes }) {
             <PanelBody title="General Settings" initialOpen={false}>
                 {/*=== Component <TagName> ===*/}
                 <SelectControl key="tagName" label="HTML Tag" value={attributes.tagName} onChange={set_tagName} options={[
-                    { label: '<span>',  value: 'span' },
+                    { label: '<span>', value: 'span' },
+                    { label: '<italic>', value: 'i' },
+                    { label: '<strong>', value: 'strong' },
+                    { label: '<sub>', value: 'sub' },
+                    { label: '<sup>', value: 'sup' },
+                    { label: '<break>', value: 'br' },
+                    { label: '<abbr>', value: 'abbr' },
+                    { label: '<code>', value: 'code' },
+                    { label: '<kbd>', value: 'kbd' },
+                    { label: '<div>', value: 'div' },
+                    { label: '<object>', value: 'object' },
                 ]}/>
             </PanelBody>
         </InspectorControls>

@@ -75,7 +75,7 @@ PhenixElements.prototype.utilities = function (options?:{
 
     //====> H1 Fix <====//
     let headline = document.querySelector('h1');
-    if(headline !== null) Phenix('body').insert('prepend', `<h1 class="hidden">${document.title}</h1>`);
+    if(!headline) Phenix('body').insert('prepend', `<h1 class="hidden">${document.title}</h1>`);
 
     //====> Dynamic Word Coloring <====//
     Phenix('body:not(.wp-admin) .colored-word').forEach((title:HTMLElement) => {

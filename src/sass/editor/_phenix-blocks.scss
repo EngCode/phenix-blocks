@@ -14,6 +14,13 @@
 	// &:not([class*="pd"]) {padding: min(5px, 150px);}
 }
 
+/*==== Inline Elements Blocks ====*/
+.wp-block-phenix-inline[data-block] {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap!important;
+}
+
 /*==== Grid Blocks ====*/
 .col-adaptive {flex: 1 1 0;}
 .wp-block-phenix-column.block-editor-block-list__block,

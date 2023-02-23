@@ -41,7 +41,9 @@ function Edit(_ref) {
 
 
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
-  var TagName = attributes.tagName; //===> Render <===//
+  var TagName = attributes.tagName; //===> Convert Block to Inline <===//
+
+  if (TagName === 'div') blockProps.className += " inline-block"; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
     key: "inspector"
@@ -56,6 +58,36 @@ function Edit(_ref) {
     options: [{
       label: '<span>',
       value: 'span'
+    }, {
+      label: '<italic>',
+      value: 'i'
+    }, {
+      label: '<strong>',
+      value: 'strong'
+    }, {
+      label: '<sub>',
+      value: 'sub'
+    }, {
+      label: '<sup>',
+      value: 'sup'
+    }, {
+      label: '<break>',
+      value: 'br'
+    }, {
+      label: '<abbr>',
+      value: 'abbr'
+    }, {
+      label: '<code>',
+      value: 'code'
+    }, {
+      label: '<kbd>',
+      value: 'kbd'
+    }, {
+      label: '<div>',
+      value: 'div'
+    }, {
+      label: '<object>',
+      value: 'object'
     }]
   }))), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, _extends({}, blockProps, {
     tagName: attributes.tagName,
@@ -221,7 +253,9 @@ __webpack_require__.r(__webpack_exports__);
     var attributes = _ref.attributes;
     //===> Get Block Properties <===//
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
-    var TagName = attributes.tagName; //===> Render <===//
+    var TagName = attributes.tagName; //===> Convert Block to Inline <===//
+
+    if (TagName === 'div') blockProps.className += " inline-block"; //===> Render <===//
 
     return /*#__PURE__*/React.createElement(TagName, blockProps, attributes.content);
   }

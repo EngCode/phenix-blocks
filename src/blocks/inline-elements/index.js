@@ -30,6 +30,9 @@ registerBlockType(metadata, {
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
 
+        //===> Convert Block to Inline <===//
+        if (TagName === 'div') blockProps.className += ` inline-block`;
+
         //===> Render <===//
         return (
             <TagName {...blockProps}>{attributes.content}</TagName>

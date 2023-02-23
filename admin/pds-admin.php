@@ -57,6 +57,9 @@
                 ['index.php', 'my-sites.php'],
                 ['index.php', 'update-core.php'],
                 ['wpcf7', 'wpcf7-integration'],
+                ['tools.php', 'export-personal-data.php'],
+                ['tools.php', 'erase-personal-data.php'],
+                ['options-general.php', 'svg-support'],
                 ['options-general.php', 'options-writing.php'],
                 ['options-general.php', 'options-privacy.php'],
                 ['options-general.php', 'options-discussion.php'],
@@ -77,7 +80,7 @@
             foreach ($movable as $item) { add_submenu_page(...$item); }
         }
 
-        add_action('admin_menu', 'pds_admin_menu');
+        add_action('admin_menu', 'pds_admin_menu', 11);
     endif;
 
     //====> Include Modules <====//

@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "../../../../phenix-sys"
+			"path": "../../../phenix-sys"
 		},
 		{
 			"path": "../../themes"

@@ -44,7 +44,7 @@
             //===> Remove Menu Items <===//
             $removable = [
                 'flamingo',
-                'tools.php',
+                // 'tools.php',
                 'upload.php',
                 'plugins.php',
                 'edit-comments.php',

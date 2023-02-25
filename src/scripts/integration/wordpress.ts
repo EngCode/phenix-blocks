@@ -61,6 +61,14 @@ Phenix(document).ready(ready => {
             let value = form.querySelector('[name="px-prot"]')?.value;
             if(value && value !== "") submit.preventDefault();
         }));
+    } 
+    /*====> for the Admin <====*/
+    else {
+        //===> Fix Date Column Style <===//
+        Phenix('table.widefat .column-date, table.wp-list-table .column-date').forEach((dateColumn:HTMLElement) => {
+            dateColumn.classList.add('tx-nowrap');
+            dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
+        });
     }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
@@ -75,4 +83,5 @@ Phenix(document).ready(ready => {
         //===> Run Files Remover <===//
         Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     }
+    
 });

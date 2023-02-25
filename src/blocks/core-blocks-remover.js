@@ -1,5 +1,8 @@
 //===> Core Blocks Remover <===//
 document.addEventListener('DOMContentLoaded', () => {
+    //===> Hide JS Note <===//
+    document.querySelectorAll('.hide-if-js').forEach(element => element.style.display = "none");
+
     //===> Get Current Options <===//
     let pds_core_options;
     async function get_core_options() {

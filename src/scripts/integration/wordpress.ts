@@ -58,6 +58,12 @@ Phenix(document).ready(ready => {
 
             if(value && value !== "") form.addEventListener('submit', submit => submit.preventDefault());
         });
+
+        //===> Extra Spam Protection <===//
+        document.querySelectorAll("form[action]").forEach((form:any) => form.addEventListener('submit', submit => {
+            let value = form.querySelector('[name="px-prot"]')?.value;
+            if(value && value !== "") submit.preventDefault();
+        }));
     }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {

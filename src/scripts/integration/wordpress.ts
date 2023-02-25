@@ -34,10 +34,7 @@ Phenix(document).ready(ready => {
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
 
         //====> Adminbar Fix <====//
-        if (document.querySelector('#wpadminbar')) Phenix('body').css({ 'padding-top' : '32px' });
-
-        //====> Adminbar <====//
-        if (document.querySelector('#wpadminbar')) Phenix('body').css({"margin-top": "-24px","padding": "0"});
+        if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});

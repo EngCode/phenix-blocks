@@ -307,7 +307,7 @@
 			margin-bottom: 15px;
 		}
 	}
-	
+
 	/*==== Tables ====*/
 	table.widefat, table.wp-list-table {
 		border-radius: 6px;
@@ -348,16 +348,17 @@
 		}
 
 		/*==== Useless Columns ====*/
+		.column-comments,
 		*[class*="column-wpseo"]:not([class*="wpseo-link"]):not([class*="wpseo-score"]) {display: none;}
 	}
-	
+
 	/*==== Table Navigation ====*/
 	.tablenav {
 		height: auto;
 		&::after {content: '';display: block;clear: both;}
 		#doaction, #doaction2, #post-query-submit {margin: 0;margin-bottom: 15px;}
 	}
-	
+
 	/*==== Borders/Shadows ====*/
 	.widget-top, .menu-item-handle, .widget-inside, #menu-settings-column .accordion-container,
 	#menu-management .menu-edit, .manage-menus, .stuffbox, p.popular-tags, .widgets-holder-wrap,

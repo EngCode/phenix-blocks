@@ -65,7 +65,7 @@ Phenix(document).ready(ready => {
     /*====> for the Admin <====*/
     else {
         //===> Fix Date Column Style <===//
-        Phenix('table.widefat .column-date, table.wp-list-table .column-date').forEach((dateColumn:HTMLElement) => {
+        Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
             dateColumn.classList.add('tx-nowrap');
             dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
         });

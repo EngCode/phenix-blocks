@@ -240,7 +240,7 @@
                     $option_api  = $option[2];
 
                     //===> Core Blocks <===//
-                    if (strpos($option_name, "pds_core") == true) {
+                    if (strpos($option_name, "pds_core") !== false) {
                         $core_blocks[$option_name] = get_option($option_name);
                     }
 

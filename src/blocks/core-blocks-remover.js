@@ -78,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //===> for Each Block <===//
         pds_core_blocks.forEach(block_item => {
+            let option_name = block_item[0];
             //===> Check for the Block Option <===//
-            if (!pds_core_options[`${block_item[0]}`]) {
+            if (pds_core_options[option_name] !== "on") {
                 //===> for Core Blocks <===//
                 if (typeof(block_item[1]) !== "object") {
                     wp.blocks.unregisterBlockType(`${block_item[1]}`);

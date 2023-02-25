@@ -104,6 +104,7 @@
 		background-color: #171D31;
 		.wp-submenu {background-color: inherit;}
 	}
+	
 
 	&:not([class*="phenix-blocks_page"]) {
 		/*==== Standard Controls ====*/
@@ -345,6 +346,9 @@
 				input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="number"]) {min-width: 0;}
 			}
 		}
+
+		/*==== Useless Columns ====*/
+		*[class*="column-wpseo"]:not([class*="wpseo-link"]):not([class*="wpseo-score"]) {display: none;}
 	}
 	
 	/*==== Table Navigation ====*/

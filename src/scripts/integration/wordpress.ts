@@ -41,8 +41,24 @@ Phenix(document).ready(ready => {
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
-    }
 
+        //===> Form Spam Protection <===//
+        let FormsSubmit = Phenix('form[action] [type="submit"]'),
+            spamInput = `<input style="left:100%; opacity: 0; visibility: hidden;" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
+        
+        //===> Create Spam Inputs <===//
+        FormsSubmit.forEach(button => Phenix(button).insert('after', spamInput));
+
+        //===> Add Spam Protection Filter <===//
+        Phenix('form[action] [type="submit"]').on('click', isClicked => {
+            //===> Get Form <===//
+            let button = isClicked.target,
+                form = Phenix(button).ancestor('form'),
+                value = form.querySelector('[name="px-prot"]').value;
+
+            if(value && value !== "") form.addEventListener('submit', submit => submit.preventDefault());
+        });
+    }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
         //====> Disable Links <====//

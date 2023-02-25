@@ -102,11 +102,6 @@
         @include make_button_sizes('-sm');
     };
 
-    &.square {
-        width: var(--height);
-        @include padding-inline(0, 'both');
-    }
-
     /*===== Outline ===*/
     &.outline {
         --border-size  : 2px;
@@ -114,7 +109,14 @@
         line-height : calc(var(--height) - 4px);
     }
 
+
     /*===== Icons for Button ===*/
+    &.square {
+        width: var(--height);
+        line-height : var(--height);
+        @include padding-inline(0, 'both');
+    }
+
     &.btn-icon {
         /*==== icon ====*/
         &::before {@include margin-inline(calc(var(--padding) / 2) ,'end');}

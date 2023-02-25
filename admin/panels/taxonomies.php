@@ -3,12 +3,8 @@
         'public'   => true,
         '_builtin' => false,
     );
-
-    $output = 'names'; // names or objects, note names is the default
-    $operator = 'and'; // 'and' or 'or'
-    $post_types = get_post_types( $args, $output, $operator ); 
+    $post_types = get_post_types( $args, 'names', 'and'); 
 ?>
-
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->
@@ -99,7 +95,6 @@
     </div>
 </div>
 <!-- // Grid Layout -->
-
 <!-- Form Script -->
 <script defer> 
     document.addEventListener('DOMContentLoaded', ready => {

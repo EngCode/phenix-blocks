@@ -64,11 +64,14 @@ Phenix(document).ready(ready => {
     } 
     /*====> for the Admin <====*/
     else {
-        //===> Fix Date Column Style <===//
+        //===> Fix Tables Style <===//
         Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
             dateColumn.classList.add('tx-nowrap');
             dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
         });
+
+        //===> Fix Tables Style <===//
+        Phenix('.wp-list-table .row-actions span').forEach((spanLink:HTMLElement) => spanLink.innerHTML = spanLink.innerHTML.replace('|', ''));
     }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
@@ -83,5 +86,4 @@ Phenix(document).ready(ready => {
         //===> Run Files Remover <===//
         Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     }
-    
 });

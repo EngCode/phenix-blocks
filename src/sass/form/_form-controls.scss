@@ -219,9 +219,9 @@ label,legend  {@extend %inline-block;}
     line-height: var(--height);
     /*==== option box ====*/
     span::before {
-        line-height: 1;
         position : relative;
         color: var(--color);
+        line-height: inherit;
         @extend %fast-motion;
         @extend %inline-block;
     }
@@ -236,6 +236,7 @@ label,legend  {@extend %inline-block;}
             top: -1px;
             padding: 4px;
             font-size: 0.8em;
+            line-height: 1;
             --border-color : var(--color);
             @include margin-inline(5px, 'end');
             border-radius: var(--radius);

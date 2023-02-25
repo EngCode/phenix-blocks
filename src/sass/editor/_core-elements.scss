@@ -347,6 +347,16 @@
 			}
 		}
 
+		/*==== Action Buttons ====*/
+		.row-actions {
+			opacity: 0;
+			#{$direction-start}: 0;
+			transition: opacity 0.3s ease;
+			span:not(:first-child) {padding: 0 5px;}
+		}
+
+		tr:hover .row-actions {opacity: 1;}
+
 		/*==== Useless Columns ====*/
 		.column-comments,
 		*[class*="column-wpseo"]:not([class*="wpseo-link"]):not([class*="wpseo-score"]) {display: none;}

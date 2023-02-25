@@ -45,6 +45,7 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('pds_taxonomies', array());
 
         //===> Blocks settings <===//
+        add_option('pds_admin_style', true);
         add_option('container_block', true);
         add_option('logo_block', true);
         add_option('navigation_block', true);
@@ -57,9 +58,8 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('taxonomies_block', true);
         add_option('theme_part_block', true);
         add_option('group_block', true);
-        add_option('pds_core_separator', true);
         add_option('inline_elements_block', true);
-
+        
         //===> Optimization settings <===//
         add_option('pds_gfonts', true);
         add_option('head_cleaner', true);

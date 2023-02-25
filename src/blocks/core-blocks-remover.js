@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //===> Get Location from Rest-API <===//
-    get_core_options().then(responde => {
+    get_core_options().then(responds => {
         //===> Get Data <===//
-        pds_core_options = responde["pds_core"];
+        pds_core_options = responds["pds_core"];
 
         //===> Blocks List [Option, Name] <===//    
         let pds_core_blocks = [

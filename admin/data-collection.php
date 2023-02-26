@@ -365,8 +365,6 @@
                     }
                 });
 
-                console.log(new_type);
-
                 //===> Set Loading Mode <===//
                 trigger.classList.add('px-loading-inline');
 

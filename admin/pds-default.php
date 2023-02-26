@@ -33,7 +33,7 @@ if (!function_exists('pds_blocks_default_values')) :
                 "singular" => "slider",
                 "label_singular" => "Slider",
                 "template" => "phenix/slide-hero",
-                "menu_icon" => "welcome-view-site",
+                "menu_icon" => "cover-image",
                 "taxonomies" => array()
             ),
         ));

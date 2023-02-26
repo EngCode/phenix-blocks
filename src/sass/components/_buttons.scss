@@ -73,10 +73,14 @@
     }
 
     /*==== icons preset ====*/
-    &::before {
-        margin-top: -1px;
+    &::before, .icon {
         line-height: inherit;
         @extend %inline-block;
+    }
+
+    .icon {
+        top: -1px;
+        position: relative;
     }
     
     /*===== Button Sizes  ===*/
@@ -119,7 +123,7 @@
 
     &.btn-icon {
         /*==== icon ====*/
-        &::before {@include margin-inline(calc(var(--padding) / 2) ,'end');}
+        &::before, .icon {@include margin-inline(calc(var(--padding) / 2) ,'end');}
 
         /*==== Labeled ====*/
         &.labeled {padding-#{$direction-start}: 0;}
@@ -127,7 +131,7 @@
 
     &.btn-icon-end {
         /*==== icon ====*/
-        &::before {
+        &::before, .icon {
             float: $direction-end;
             @include margin-inline(calc(var(--padding) / 2) ,'start');
         }
@@ -135,7 +139,7 @@
         &.labeled {padding-#{$direction-end}: 0;}
     }
 
-    &.labeled::before {
+    &.labeled::before, &.labeled .icon {
         width: var(--height);
         height: var(--height);
         background-color: rgba(#000, 0.1);

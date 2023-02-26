@@ -220,7 +220,7 @@
                 <span class="tx-icon far fa-link col-3 item-name">${taxonomy.name}</span>
 
                 <!-- Types -->
-                <span class="tx-icon far fa-link col-2 item-types">${taxonomy.post_types ? taxonomy.post_types : taxonomy.post_types}</span>
+                <span class="tx-icon far fa-link col-2 item-types tx-nowrap">${taxonomy.post_types ? taxonomy.post_types : taxonomy.post_types}</span>
 
                 <!-- Buttons -->
                 <div class="col-auto ms-auto flexbox align-center-y">
@@ -487,7 +487,7 @@
                     let new_data = []
                         data_type = 'pds_types';
 
-                    //===> Check for Type <===//
+                    //===> Check for Taxonomies <===//
                     if (list_classes.contains('taxonomies-list')) data_type = 'pds_taxonomies';
 
                     //===> Find the item and Excluded from the new List <===//

@@ -211,6 +211,31 @@
             </li>`);
         },
 
+        taxonomy_template = (taxonomy) => {
+            return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
+                <!-- Label -->
+                <span class="tx-icon far fa-boxes col-4 item-label">${taxonomy.label}</span>
+
+                <!-- Name -->
+                <span class="tx-icon far fa-link col-3 item-name">${taxonomy.name}</span>
+
+                <!-- Types -->
+                <span class="tx-icon far fa-link col-2 item-types">${taxonomy.post_types ? taxonomy.post_types : taxonomy.post_types}</span>
+
+                <!-- Buttons -->
+                <div class="col-auto ms-auto flexbox align-center-y">
+                    <!-- Status -->
+                    <label class="small option-control me-5" data-type="switch">
+                        <input type="checkbox" name="item-status" ${taxonomy.enable ? 'checked' : null}><span class="switch"></span>
+                    </label>
+                    <!-- Edit -->
+                    <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                    <!-- Remove -->
+                    <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                </div>
+            </li>`);
+        },
+
         //===> Success Notification <===//
         data_success = (message) => {
             Phenix(document).notifications({
@@ -260,6 +285,7 @@
 
             //===> Define Data <===//
             let new_type = {},
+                new_taxonomy = {},
                 new_location = {};
 
             //===> Validate Controls <===//
@@ -286,20 +312,60 @@
                             //===> Add the new Location Title <===//
                             else new_location[control_name] = control.value;
                         }
-    
+
                         //===> Post Types <===//
                         else if (data_type === "post-types") {
                             //===> Check Name <===//
                             if (!control.value && control_name === "name") new_type[control_name] = new_type["label"].toLowerCase().replaceAll(' ','-');
-
+                            
                             //===> Check Status <===//
                             else if (control_name === "enable") new_type[control_name] = control.checked;
 
+                            //===> Check for Array <===//
+                            else if (control.tagName === "SELECT" && control.getAttribute('multiple') !== null) {
+                                //===> Get Multiple Value <===//
+                                let values = Phenix(control).ancestor('.px-select').getAttribute('data-value').split(','),
+                                    array_val = [];
+
+                                //===> Get Current Values <===//
+                                values.forEach(val => val !== "" ? array_val.push(val) : null);
+
+                                //===> Set Array Value <===//
+                                new_type[control_name] = array_val;
+                            }
+
                             //===> Set the Value <===//
-                            else if (control.value || control_name == "taxonomies") new_type[control_name] = control.value.length > 0 ? control.value : [];
+                            else if (control.value && control.value.length > 0) new_type[control_name] = control.value;
+                        }
+
+                        //===> Post Types <===//
+                        else if (data_type === "taxonomies") {
+                            //===> Check Name <===//
+                            if (!control.value && control_name === "name") new_taxonomy[control_name] = new_taxonomy["label"].toLowerCase().replaceAll(' ','-');
+
+                            //===> Check Status <===//
+                            else if (control_name === "enable") new_taxonomy[control_name] = control.checked;
+
+                            //===> Check for Array <===//
+                            else if (control.tagName === "SELECT" && control.getAttribute('multiple') !== null) {
+                                //===> Get Multiple Value <===//
+                                let values = Phenix(control).ancestor('.px-select').getAttribute('data-value').split(','),
+                                    array_val = [];
+
+                                //===> Get Current Values <===//
+                                values.forEach(val => val !== "" ? array_val.push(val) : null);
+
+                                //===> Set Array Value <===//
+                                new_taxonomy[control_name] = array_val;
+                            }
+
+                            //===> Set the Value <===//
+                            else if (control.value && control.value.length > 0) new_taxonomy[control_name] = control.value;
                         }
                     }
                 });
+
+                console.log(new_type);
 
                 //===> Set Loading Mode <===//
                 trigger.classList.add('px-loading-inline');
@@ -341,6 +407,33 @@
                         if (!alreadyExist) { current.pds_types.push(new_type); }
                     }
 
+                    //===> Set Types <===//
+                    else if (new_taxonomy['name']) {
+                        //===> Check for Existing <===//
+                        let alreadyExist = false;
+
+                        current.pds_taxonomies.forEach(taxonomy => {
+                            //===> Set New Type <===//
+                            taxonomy['name'] === new_taxonomy['name'] ? alreadyExist = true : null;
+
+                            //===> if found convert to update <===//
+                            if (alreadyExist) {
+                                //===> Define Data <===//
+                                let new_data = [];
+                                
+                                //===> Remove the old Type <===//
+                                current.pds_taxonomies.forEach((taxonomy) => taxonomy.name !== new_taxonomy.name ? new_data.push(taxonomy) : null);
+
+                                //===> Reset Existing <===//
+                                current.pds_taxonomies = new_data;
+                                alreadyExist = false;
+                            }
+                        });
+
+                        //===> Add Type <===//
+                        if (!alreadyExist) { current.pds_taxonomies.push(new_taxonomy); }
+                    }
+
                     //===> Update Options <===//
                     update_options(current).then(response => {
                         //===> Remove Loading Mode <===//
@@ -352,6 +445,11 @@
                         //===> Update Types <===//
                         if (new_type['name']) {
                             !new_type['enable'] ? update_list("pds_types", ".types-list", type_template) : location.reload();
+                        }
+
+                        //===> Update Types <===//
+                        else if (new_taxonomy['name']) {
+                            !new_taxonomy['enable'] ? update_list("pds_taxonomies", ".taxonomies-list", taxonomy_template) : location.reload();
                         }
 
                         //===> Update Locations <===//
@@ -377,23 +475,28 @@
             //===> Get Data from Rest-API <===//
             get_options().then(options => {
                 //===> Define Data <===//
-                let current = options;
+                let list_classes = menu_element.classList;
+                    current = options;
 
                 //===> for Locations <===//
-                if (menu_element.classList.contains('locations-list')) {
+                if (list_classes.contains('locations-list')) {
                     delete current.menu_locations[`${item_name}`];
                 }
 
                 //===> for [Types, Taxonomies, Metaboxes, Patterns] <===//
                 else {
                     //===> Define Data <===//
-                    let new_data = [];
+                    let new_data = []
+                        data_type = 'pds_types';
+
+                    //===> Check for Type <===//
+                    if (list_classes.contains('taxonomies-list')) data_type = 'pds_taxonomies';
 
                     //===> Find the item and Excluded from the new List <===//
-                    current.pds_types.forEach((type) => type.name !== item_name ? new_data.push(type) : null);
+                    current[data_type].forEach((type) => type.name !== item_name ? new_data.push(type) : null);
 
                     //===> Set the New List <===//
-                    current.pds_types = new_data;
+                    current[data_type] = new_data;
                 }
 
                 //===> Update Options <===//
@@ -402,12 +505,17 @@
                     data_success("the Item has been Deleted.");
 
                     //===> Update Types <===//
-                    if (menu_element.classList.contains('types-list')) {
+                    if (list_classes.contains('types-list')) {
                         item_stats ? location.reload() : update_list("pds_types", ".types-list", type_template);
                     }
 
+                    //===> Update Taxonomies <===//
+                    else if (list_classes.contains('taxonomies-list')) {
+                        update_list("pds_taxonomies", ".taxonomies-list", taxonomy_template);
+                    }
+
                     //===> Update Locations <===//
-                    else if (menu_element.classList.contains('locations-list')) {
+                    else if (list_classes.contains('locations-list')) {
                         update_list("menu_locations", ".locations-list", location_template);
                     }
                 }).catch(error => {error.message});
@@ -568,6 +676,7 @@
         //===> Initial Data <===//
         update_list("pds_types", ".types-list", type_template);
         update_list("menu_locations", ".locations-list", location_template);
+        update_list("pds_taxonomies", ".taxonomies-list", taxonomy_template);
 
         //===> Add Item Trigger <===//
         Phenix('.collection-form .add-item').on('click', event => add_item(event.target));

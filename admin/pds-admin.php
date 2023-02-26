@@ -307,6 +307,14 @@
         }
     endif;
 
+    //===> Set Taxonomies <===//
+    if (get_option('pds_taxonomies')) :
+        foreach(get_option('pds_taxonomies') as $taxonomy) {
+            //===> if the Post-Type is Enabled <===//
+            if(isset($taxonomy['enable']) && $taxonomy['enable'] == true) { pds_tax_create($taxonomy); }
+        }
+    endif;
+
     //===> [Pattern] Hero Slide <===//
     pds_add_pattern("slide-hero", array(
         'width'    => 300,

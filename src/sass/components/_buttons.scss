@@ -74,7 +74,7 @@
 
     /*==== icons preset ====*/
     &::before, .icon {
-        line-height: inherit;
+        line-height: 1;
         @extend %inline-block;
     }
 
@@ -106,19 +106,17 @@
         @include make_button_sizes('-sm');
     };
 
+    /*===== Icons for Button ===*/
+    &.square {
+        width: var(--height);
+        @include padding-inline(0, 'both');
+    }
+
     /*===== Outline ===*/
     &.outline {
         --border-size  : 2px;
         --border-color : rgba(0,0,0, 0.1);
-        line-height : calc(var(--height) - 4px);
-    }
-
-
-    /*===== Icons for Button ===*/
-    &.square {
-        width: var(--height);
-        line-height : var(--height);
-        @include padding-inline(0, 'both');
+        line-height : calc(var(--height) - 3px);
     }
 
     &.btn-icon {
@@ -184,14 +182,18 @@
     
     /*===== Outline ====*/
     &.outline {--background : transparent;}
+    
+    /*==== Mobile Only ====*/
+    &.responsive-btn, &.btn-responsive {
+        @include small('down') {
+            --padding: 0;
+            overflow: hidden;
+            width: var(--height);
+            &::before {
+                display: block;
+                margin-#{$direction-end}: 0;
+            }
+        };
+    }
 }
 
-/*==== Mobile Only ====*/
-@include small('down') {
-    .btn.responsive-btn, .btn-responsive {
-        --padding: 0;
-        overflow: hidden;
-        width: var(--height);
-        &::before {display: block;margin: 0;}
-    }
-};

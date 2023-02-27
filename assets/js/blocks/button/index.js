@@ -238,23 +238,7 @@ function Edit(_ref) {
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     return setPhenixView();
-  }, [attributes]); //===> Initial Script <===//
-
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    //===> Loading FontAwesome <===//
-    if (window.frames['editor-canvas']) {
-      if (document.querySelector("#fontawesome-css")) {
-        //===> Check in the Editor <===//
-        var fontAwesome = document.querySelector("#fontawesome-css"),
-            canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"); //===> if Font Awesome not Loaded <===//
-
-        if (!canvasAwesome && fontAwesome) {
-          var newAwesome = document.importNode(fontAwesome, true);
-          window.frames['editor-canvas'].document.head.appendChild(newAwesome);
-        }
-      }
-    }
-  }, []); //===> Typography Properties <===//
+  }, [attributes]); //===> Typography Properties <===//
 
   if (attributes.typography) {
     if (attributes.typography.size) blockProps.className += " ".concat(attributes.typography.size);

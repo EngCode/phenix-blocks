@@ -236,6 +236,24 @@
             </li>`);
         },
 
+        pattern_template = (pattern) => {
+            return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
+                <!-- Label -->
+                <span class="tx-icon far fa-boxes col-4 item-label">${pattern.title}</span>
+
+                <!-- Name -->
+                <span class="tx-icon far fa-link col-3 item-name">${pattern.name}</span>
+
+                <!-- Buttons -->
+                <div class="col-auto ms-auto flexbox align-center-y">
+                    <!-- Edit -->
+                    <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                    <!-- Remove -->
+                    <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                </div>
+            </li>`);
+        },
+
         //===> Success Notification <===//
         data_success = (message) => {
             Phenix(document).notifications({
@@ -285,6 +303,7 @@
 
             //===> Define Data <===//
             let new_type = {},
+                new_pattern = {},
                 new_taxonomy = {},
                 new_location = {};
 
@@ -338,7 +357,7 @@
                             else if (control.value && control.value.length > 0) new_type[control_name] = control.value;
                         }
 
-                        //===> Post Types <===//
+                        //===> Taxonomies <===//
                         else if (data_type === "taxonomies") {
                             //===> Check Name <===//
                             if (!control.value && control_name === "name") new_taxonomy[control_name] = new_taxonomy["label"].toLowerCase().replaceAll(' ','-');
@@ -358,6 +377,34 @@
                                 //===> Set Array Value <===//
                                 new_taxonomy[control_name] = array_val;
                             }
+
+                            //===> Set the Value <===//
+                            else if (control.value && control.value.length > 0) new_taxonomy[control_name] = control.value;
+                        }
+
+                        //===> Patterns <===//
+                        else if (data_type === "block-pattern") {
+                            //===> Check Name <===//
+                            if (!control.value && control_name === "name") new_pattern[control_name] = new_pattern["label"].toLowerCase().replaceAll(' ','-');
+
+                            //===> Check Status <===//
+                            else if (control_name === "enable") new_pattern[control_name] = control.checked;
+
+                            //===> Check for Array <===//
+                            else if (control.tagName === "SELECT" && control.getAttribute('multiple') !== null) {
+                                //===> Get Multiple Value <===//
+                                let values = Phenix(control).ancestor('.px-select').getAttribute('data-value').split(','),
+                                    array_val = [];
+
+                                //===> Get Current Values <===//
+                                values.forEach(val => val !== "" ? array_val.push(val) : null);
+
+                                //===> Set Array Value <===//
+                                new_pattern[control_name] = array_val;
+                            }
+
+                            //===> Check for Textarea <===//
+                            else if (control.tagName === "TEXTAREA") new_pattern[control_name] = JSON.stringify(`${control.value}`);
 
                             //===> Set the Value <===//
                             else if (control.value && control.value.length > 0) new_taxonomy[control_name] = control.value;
@@ -405,7 +452,7 @@
                         if (!alreadyExist) { current.pds_types.push(new_type); }
                     }
 
-                    //===> Set Types <===//
+                    //===> Set Taxonomies <===//
                     else if (new_taxonomy['name']) {
                         //===> Check for Existing <===//
                         let alreadyExist = false;
@@ -424,6 +471,33 @@
 
                                 //===> Reset Existing <===//
                                 current.pds_taxonomies = new_data;
+                                alreadyExist = false;
+                            }
+                        });
+
+                        //===> Add Type <===//
+                        if (!alreadyExist) { current.pds_taxonomies.push(new_taxonomy); }
+                    }
+
+                    //===> Set Patterns <===//
+                    else if (new_pattern['name']) {
+                        //===> Check for Existing <===//
+                        let alreadyExist = false;
+
+                        current.block_patterns.forEach(pattern => {
+                            //===> Set New Type <===//
+                            pattern['name'] === new_pattern['name'] ? alreadyExist = true : null;
+
+                            //===> if found convert to update <===//
+                            if (alreadyExist) {
+                                //===> Define Data <===//
+                                let new_data = [];
+                                
+                                //===> Remove the old Type <===//
+                                current.block_patterns.forEach((pattern) => pattern.name !== new_pattern.name ? new_data.push(pattern) : null);
+
+                                //===> Reset Existing <===//
+                                current.block_patterns = new_data;
                                 alreadyExist = false;
                             }
                         });
@@ -454,6 +528,11 @@
                         else if (new_location['name']) {
                             update_list("menu_locations", ".locations-list", location_template);
                         }
+
+                        //===> Update Patterns <===//
+                        else if (new_pattern['name']) {
+                            update_list("block_patterns", ".patterns-list", pattern_template);
+                        }
                     });
                 }).catch(error => {error.message});
             }
@@ -464,7 +543,7 @@
             //===> Define Elements <===//
             let menu_item = Phenix(trigger).ancestor('li'),
                 menu_element = Phenix(menu_item).ancestor('ul'),
-                item_stats = menu_item.querySelector(`[name="item-status"]`).checked,
+                item_stats = menu_item.querySelector(`[name="item-status"]`)?.checked,
                 item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
             //===> Set Loading Mode <===//
@@ -489,6 +568,7 @@
 
                     //===> Check for Taxonomies <===//
                     if (list_classes.contains('taxonomies-list')) data_type = 'pds_taxonomies';
+                    if (list_classes.contains('patterns-list')) data_type = 'block_patterns';
 
                     //===> Find the item and Excluded from the new List <===//
                     current[data_type].forEach((type) => type.name !== item_name ? new_data.push(type) : null);
@@ -515,6 +595,11 @@
                     //===> Update Locations <===//
                     else if (list_classes.contains('locations-list')) {
                         update_list("menu_locations", ".locations-list", location_template);
+                    }
+
+                    //===> Update Patterns <===//
+                    else if (list_classes.contains('locations-list')) {
+                        update_list("block_patterns", ".patterns-list", pattern_template);
                     }
                 }).catch(error => {error.message});
             });
@@ -564,7 +649,7 @@
             let menu_item = Phenix(trigger).ancestor('li'),
                 menu_element = Phenix(menu_item).ancestor('ul'),
                 listClasses = menu_element.classList,
-                item_stats = menu_item.querySelector(`[name="item-status"]`).checked,
+                item_stats = menu_item.querySelector(`[name="item-status"]`)?.checked,
                 item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
             //===> Set Selected Mode <===//
@@ -584,7 +669,7 @@
             //===> Reset Controls <===//
             FormControls.forEach(control => {
                 //===> Define Data <===//
-                let control_tag  = control.tagName;
+                let control_tag = control.tagName;
 
                 //===> Reset Value <===//
                 if (control_tag === 'SELECT') {
@@ -603,7 +688,7 @@
                 } 
 
                 //===> Textarea Controls <===//
-                else if (control_tag === 'TEXTAREA') control.textContent = dataItem[control_name];
+                else if (control_tag === 'TEXTAREA') control.textContent = "";
 
                 //===> Other Controls <===//
                 else control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
@@ -675,6 +760,7 @@
         update_list("pds_types", ".types-list", type_template);
         update_list("menu_locations", ".locations-list", location_template);
         update_list("pds_taxonomies", ".taxonomies-list", taxonomy_template);
+        update_list("block_patterns", ".patterns-list", pattern_template);
 
         //===> Add Item Trigger <===//
         Phenix('.collection-form .add-item').on('click', event => add_item(event.target));

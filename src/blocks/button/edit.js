@@ -120,24 +120,6 @@ export default function Edit({ attributes, setAttributes }) {
 
     useEffect(() => setPhenixView(), [attributes]);
 
-    //===> Initial Script <===//
-    useEffect(() => {
-        //===> Loading FontAwesome <===//
-        if (window.frames['editor-canvas']) {
-            if (document.querySelector("#fontawesome-css")) {
-                //===> Check in the Editor <===//
-                let fontAwesome = document.querySelector("#fontawesome-css"),
-                    canvasAwesome = window.frames['editor-canvas'].document.querySelector("#fontawesome-css");
-    
-                //===> if Font Awesome not Loaded <===//
-                if (!canvasAwesome && fontAwesome) {
-                    let newAwesome = document.importNode(fontAwesome, true);
-                    window.frames['editor-canvas'].document.head.appendChild(newAwesome);
-                }
-            }
-        }
-    }, []);
-
     //===> Typography Properties <===//
     if (attributes.typography) {
         if(attributes.typography.size) blockProps.className += ` ${attributes.typography.size}`;

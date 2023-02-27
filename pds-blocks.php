@@ -67,8 +67,13 @@ include(dirname(__FILE__) . '/src/blocks/blocks.php');
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :
 	function pds_patterns_cats () {
-		register_block_pattern_category('single', array('label' => 'Details Pages'));
-		register_block_pattern_category('phenix', array('label' => 'Phenix Elements'));
+		register_block_pattern_category('phenix', array('label' => 'Phenix'));
+		register_block_pattern_category('headers', array('label' => 'Headers'));
+		register_block_pattern_category('footers', array('label' => 'Footers'));
+		register_block_pattern_category('elements', array('label' => 'Elements'));
+		register_block_pattern_category('sections', array('label' => 'Sections'));
+		register_block_pattern_category('single', array('label' => 'Single Pages'));
+		register_block_pattern_category('pages', array('label' => 'General Pages'));
 	}
 
 	add_action('init', 'pds_patterns_cats');

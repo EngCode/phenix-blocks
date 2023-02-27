@@ -506,8 +506,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  //====> Edit Mode <====//
 
 function Edit(props) {
-  var _attributes$className;
-
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
@@ -644,26 +642,33 @@ function Edit(props) {
 
 
   var setPhenixView = function setPhenixView() {
-    //===> Timeout for Loading <===//
-    setTimeout(function () {
-      //===> Check Site Editor <===//
-      var siteEditor = window.frames['editor-canvas'],
-          mediaElement = '.px-media',
-          sliderElement = '.px-slider:not(.splide)'; //===> Correct Editor Target for Site-Editor <===//
+    //===> Get View iFrame <===//
+    if (window.frames['editor-canvas']) {
+      //===> View Script <===//
+      var frameDoc = window.frames['editor-canvas'].document;
+      setTimeout(function () {
+        //===> Get Elements <===//
+        var Sliders = Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-slider:not(.splide)"))),
+            MediaEls = Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-media")));
+        if (MediaEls.length > 0) Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-media"))).multimedia();
+        if (Sliders.length > 0) Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-slider:not(.splide)"))).addClass('edit-mode').slider();
+      }, 2000);
+    } else {
+      //===> Timeout for Loading <===//
+      setTimeout(function () {
+        //===> Get Elements <===//
+        var Sliders = Phenix('.px-slider'),
+            MediaEls = Phenix(".px-media"); //===> Run Phenix Components <===//
 
-      if (siteEditor) {
-        //===> Correct Media <===//
-        mediaElement = _toConsumableArray(siteEditor.document.querySelectorAll(mediaElement)); //===> Correct Slider <===//
+        if (MediaEls.length > 0) Phenix(".px-media").multimedia();
+        if (Sliders.length > 0) Phenix('.px-slider').addClass('edit-mode').slider();
+      }, 2000);
+    }
+  };
 
-        sliderElement = _toConsumableArray(siteEditor.document.querySelectorAll(sliderElement));
-      } //===> Run Phenix Components <===//
-
-
-      Phenix(mediaElement).multimedia();
-      Phenix(sliderElement).slider();
-    }, 1000);
-  }; //===> Fetch Data for Options <===//
-
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+    setPhenixView();
+  }, [attributes]); //===> Fetch Data for Options <===//
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     //===> Fetch Post Types <===//
@@ -689,12 +694,8 @@ function Edit(props) {
 
 
       if (new_types.length > 0) setPostTypes([].concat(new_types));
-    }); //===> Active Phenix Components <===//
-
-    setPhenixView();
-  }, []); //===> Set Edit Mode <===//
-
-  if (!((_attributes$className = attributes.className) !== null && _attributes$className !== void 0 && _attributes$className.includes('edit-mode'))) attributes.className += " edit-mode"; //===> Render <===//
+    });
+  }, []); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"
@@ -876,7 +877,7 @@ function Edit(props) {
   }) : /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default()), {
     block: "phenix/query",
     attributes: attributes
-  })));
+  }), setPhenixView()));
 }
 
 /***/ }),

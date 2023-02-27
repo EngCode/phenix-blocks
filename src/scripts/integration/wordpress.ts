@@ -78,6 +78,22 @@ Phenix(document).ready(ready => {
     }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //===> Site Editor Only <====//
+        if (document.querySelector('#site-editor')) {
+            let loadAssetTimer = setInterval(()=> {
+                //===> Load Assets in Frame <====//
+                if (window.frames['editor-canvas']) {
+                    //===> Check in the Editor <===//
+                    let frameDoc = window.frames['editor-canvas'].document,
+                        fontAwesome = document.querySelector("#fontawesome-css");
+                    //===> Load FontAwesome <===//
+                    if (!frameDoc.querySelector("#fontawesome-css") && fontAwesome) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                    //===> Clear Timer <===//
+                    clearInterval(loadAssetTimer);
+                }
+            }, 1000);
+        }
+
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
 

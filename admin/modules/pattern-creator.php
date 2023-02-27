@@ -5,13 +5,15 @@
  * @return void
 */
 
+// Note : for Template Use <!-- wp:pattern {"slug":"prefix/pattern-slug"} /-->
+
 //===> Add Pattern Method <===//
 if (!function_exists('pds_add_pattern')) :
     /**
      * Phenix Blocks.
      * @since Phenix WP 1.0
      * @return void
-    */
+    */ 
 
     function pds_add_pattern($name, $options) {
         add_action('init', function () use ($name, $options) {

@@ -22,12 +22,43 @@
 
         <!-- Grid -->
         <div class="row gpx-15 gpy-15 collection-form" data-type="block-pattern">
-            
-            <!-- Form Control -->
-            <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Pattern', 'phenix'); ?></button>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-text">
+                    <input type="text" name="title" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', 'phenix');?>" required>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12 col-md-6">
+                <!-- Form Control -->
+                <div class="control-icon far fa-link">
+                    <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', 'phenix');?>">
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-12">
+                <!-- Form Control -->
+                <div class="control-icon far fa-folder mb-15">
+                    <select name="category" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Categories' ,'phenix'); ?>" multiple>
+                        <option value="phenix"><?php echo __("Phenix", 'phenix'); ?></option>
+                        <option value="headers"><?php echo __("Headers", 'phenix'); ?></option>
+                        <option value="footers"><?php echo __("Footers", 'phenix'); ?></option>
+                        <option value="elements"><?php echo __("Elements", 'phenix'); ?></option>
+                        <option value="sections"><?php echo __("Sections", 'phenix'); ?></option>
+                        <option value="pages"><?php echo __("General Pages", 'phenix'); ?></option>
+                        <option value="single"><?php echo __("Single Pages", 'phenix'); ?></option>
+                    </select>
+                </div>
+                <!-- Form Control -->
+                <div class="control-icon far fa-file large">
+                    <textarea name="content" class="form-control large radius-sm fs-13 mb-15" placeholder="<?php echo __('Content', 'phenix');?>"></textarea>
+                </div>
+                <!-- Form Button -->
+                <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Pattern', 'phenix'); ?></button>
+            </div>
         </div>
         <!-- // Grid -->
-
     </div>
     <!-- Column -->
     <div class="col col-lg-6 pdy-10">
@@ -40,11 +71,10 @@
             </div>
         </div>
         <!-- metabox List -->
-        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 metabox-list">
+        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 patterns-list">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
                 <span class="col-4"><?php echo __('Label', 'phenix'); ?></span>
                 <span class="col-3"><?php echo __('Name', 'phenix'); ?></span>
-                <span class="col-2"><?php echo __('Category', 'phenix'); ?></span>
             </li>
         </ul>
     </div>

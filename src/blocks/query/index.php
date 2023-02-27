@@ -15,31 +15,30 @@ function px_query_render($block_attributes, $content) {
 
     //===> Grid Options <===//
     $grid_cols = ($options['grid_cols_stat'] || $options['slider_mode']) ? "" : " ". $options['grid_cols'];
-    $grid_opts = $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
-    $is_slider = $options['slider_mode'] ? " px-slider" : "";
+    $grid_opts = $options['grid_flow'];
+    //==>...<===//
+    if (isset($options['grid_masonry'])) { $grid_opts .= " ".$options['grid_masonry']; }
+    if (isset($options['grid_nowrap'])) { $grid_opts .= " ".$options['grid_nowrap']; }
+    if (isset($options['grid_alignment'])) { $grid_opts .= " ".$options['grid_alignment']; }
+    
+    //==>. Slider Options .<===//
     $slider_opts = "";
-
-    //===> Slider Options <===//
     if ($options['slider_mode']) {
-        //===> Type, Steps, Duration, Speed <===//
-        $slider_opts = $slider_opts.' data-type="'.$options['slider_type'].'"';
-        $slider_opts = $slider_opts.' data-steps="'.$options['slider_steps'].'"';
-        $slider_opts = $slider_opts.' data-duration="'.$options['slider_duration'].'"';
-        $slider_opts = $slider_opts.' data-speed="'.$options['slider_speed'].'"';
-
-        //===> Autoplay, Arrows, Pagination <===//
-        $slider_opts = $slider_opts.' data-autoplay="'.$options['slider_autoplay'].'"';
-        $slider_opts = $slider_opts.' data-controls="'.$options['slider_controls'].'"';
-        $slider_opts = $slider_opts.' data-pagination="'.$options['slider_pagination'].'"';
-
-        //===> Items Number <===//
-        if ($options['grid_cols']) {
-            $slider_opts = $slider_opts.' data-items="'.preg_replace('/[^0-9]/', '', $options['grid_cols']).'"';
-        }
+        //===>...<===//
+        $grid_opts .= " px-slider";
+        if (isset($options['slider_type'])) { $slider_opts .= ' data-type="'.$options['slider_type'].'"'; }
+        if (isset($options['slider_steps'])) { $slider_opts .= ' data-steps="'.$options['slider_steps'].'"'; }
+        if (isset($options['slider_speed'])) { $slider_opts .= ' data-speed="'.$options['slider_speed'].'"'; }
+        if (isset($options['slider_duration'])) { $slider_opts .= ' data-duration="'.$options['slider_duration'].'"'; }
+        if (isset($options['slider_autoplay']) && $options['slider_autoplay']) { $slider_opts .= ' data-autoplay="1"'; }
+        if (isset($options['slider_controls']) && $options['slider_controls']) { $slider_opts .= ' data-controls="1"'; }
+        if (isset($options['slider_pagination']) && $options['slider_pagination']) { $slider_opts .= ' data-pagination="1"'; }
+        if (isset($options['grid_cols'])) { $slider_opts .= ' data-items="'.preg_replace('/[^0-9]/', '', $options['grid_cols']).'"'; }
     }
 
     //===> Custom Classes <===//
     if(isset($options['className'])) {
+        //===> Set the Classes <===//
         $grid_opts = $grid_opts .' '. $options['className'];
     }
 
@@ -66,15 +65,15 @@ function px_query_render($block_attributes, $content) {
         if ($the_query->have_posts() ) :
             //===> Grid Wrapper <===//
             if ($options['grid_mode']) {
-                echo '<div class="row '. $grid_opts . $grid_cols . $is_slider .'" '. $slider_opts .'>';
+                echo '<div class="row '. $grid_opts . $grid_cols .'" '. $slider_opts .'>';
             }
-    
+
             //==== Loop Start ====//
             while ($the_query->have_posts()):
                 //=== Template Part ===//
                 get_template_part("template-parts/".$options["template_part"], null, $the_query->the_post());
             endwhile;
-    
+
             //===> End Grid Wrapper <===//
             if ($options['grid_mode']) : echo '</div>'; endif;
     
@@ -82,7 +81,7 @@ function px_query_render($block_attributes, $content) {
             if ($options['pagination'] && function_exists("pagination")) {
                 pagination($the_query); 
             };
-    
+
             //=== Reset Query Data ===//
             wp_reset_postdata();
         endif;
@@ -95,7 +94,7 @@ function px_query_render($block_attributes, $content) {
         if (have_posts()) :
             //===> Grid Wrapper <===//
             if ($options['grid_mode']) {
-                echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
+                echo '<div class="row'. $grid_cols . $grid_opts .'">';
             }
 
             //==== Loop Start ====//
@@ -106,7 +105,7 @@ function px_query_render($block_attributes, $content) {
 
             //===> End Grid Wrapper <===//
             if ($options['grid_mode']) : echo '</div>'; endif;
-
+ 
             //=== Pagination ===//
             if ($options['pagination'] && function_exists("pagination")) {
                 pagination($wp_query); 

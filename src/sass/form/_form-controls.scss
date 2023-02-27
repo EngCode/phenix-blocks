@@ -154,6 +154,7 @@ select.form-control, .reset-appearance {
 /*==== Textarea Theme ====*/
 textarea.form-control {
     height : auto;
+    line-height: normal;
     min-height : calc(var(--height)*2);
     @include padding-block(var(--padding));
 }

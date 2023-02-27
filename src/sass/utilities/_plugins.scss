@@ -72,10 +72,10 @@
 /*==== Multi-Media ====*/
 .px-media {
     /*==== ....====*/
-    display: block;
     background-size: cover;
     background-position: center;
     &:not([class*="position-"]) {position: relative;}
+    &:not([class*="flex"]):not([class*="display-"]):not([class*="inline-"]) {display: block;}
     /*==== elements ====*/
     video, iframe, .px-media-img, &.editor-mode .block-editor-block-list__layout {
         top: 0;

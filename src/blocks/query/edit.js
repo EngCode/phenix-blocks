@@ -64,26 +64,33 @@ export default function Edit(props) {
 
     //===> Set Phenix Components <===//
     const setPhenixView = () => {
-        //===> Timeout for Loading <===//
-        setTimeout(() => {
-            //===> Check Site Editor <===//
-            let siteEditor = window.frames['editor-canvas'],
-                mediaElement = '.px-media',
-                sliderElement = '.px-slider:not(.splide)';
+        //===> Get View iFrame <===//
+        if (window.frames['editor-canvas']) {
+            //===> View Script <===//
+            let frameDoc = window.frames['editor-canvas'].document;
+            setTimeout(() => {
+                //===> Get Elements <===//
+                let Sliders  = Phenix(...frameDoc.querySelectorAll(".px-slider:not(.splide)")),
+                    MediaEls = Phenix(...frameDoc.querySelectorAll(".px-media"));
 
-            //===> Correct Editor Target for Site-Editor <===//
-            if (siteEditor) {
-                //===> Correct Media <===//
-                mediaElement = [...siteEditor.document.querySelectorAll(mediaElement)];
-                //===> Correct Slider <===//
-                sliderElement = [...siteEditor.document.querySelectorAll(sliderElement)];
-            }
+                if(MediaEls.length > 0) Phenix(...frameDoc.querySelectorAll(".px-media")).multimedia();      
+                if(Sliders.length > 0) Phenix(...frameDoc.querySelectorAll(".px-slider:not(.splide)")).addClass('edit-mode').slider();
+            }, 2000);
+        } else {
+            //===> Timeout for Loading <===//
+            setTimeout(() => {
+                //===> Get Elements <===//
+                let Sliders  = Phenix('.px-slider'),
+                    MediaEls = Phenix(".px-media");
 
-            //===> Run Phenix Components <===//
-            Phenix(mediaElement).multimedia();
-            Phenix(sliderElement).slider();
-        }, 1000);
+                //===> Run Phenix Components <===//
+                if(MediaEls.length > 0) Phenix(".px-media").multimedia();
+                if(Sliders.length > 0) Phenix('.px-slider').addClass('edit-mode').slider();
+            }, 2000);
+        }
     }
+
+    useEffect(()=> { setPhenixView(); }, [attributes]);
 
     //===> Fetch Data for Options <===//
     useEffect(()=> {
@@ -103,13 +110,7 @@ export default function Edit(props) {
             //===> Set the new List if its Deferent <===//
             if (new_types.length > 0) setPostTypes([...new_types]);
         });
-
-        //===> Active Phenix Components <===//
-        setPhenixView();
     }, []);
-    
-    //===> Set Edit Mode <===//
-    if (!attributes.className?.includes('edit-mode')) attributes.className += " edit-mode";
 
     //===> Render <===//
     return (<>
@@ -241,6 +242,7 @@ export default function Edit(props) {
         :
             <div {...blockProps}>
                 <ServerSideRender block="phenix/query" attributes={attributes} />
+                { setPhenixView() }
             </div>
         }
     </>);

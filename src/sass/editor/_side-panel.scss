@@ -155,13 +155,30 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	.components-range-control label {margin-bottom: 0;}
 
-	/*==== Inserter [Blocks, PAtterns] Preview ====*/
-	.block-editor-block-preview__container {
-		.block-editor-block-preview__content {
-			width: 100%;
-			overflow: hidden;
-			// transform: scale(1)!important;
+	/*==== Inserter [Patterns] Preview ====*/
+	.block-editor-block-patterns-list__list-item {
+		/*==== Title ====*/
+		.block-editor-block-patterns-list__item-title {
+			padding: 10px 15px;
+			font-weight: var(--medium-weight);
+			border: 1px solid rgba(#000, 0.15);
+			background-color: var(--primary-offwhite);
 		}
+		/*==== Preview Container ====*/
+		.block-editor-block-preview__container {
+			//===> Hidden Preview Temporary <===//
+			display: none!important;
+			/*==== Preview Content ====*/
+			.block-editor-block-preview__content {
+				width: 100%;
+				overflow: hidden;
+			}
+		}
+	}
+
+	.components-modal__frame .block-editor-block-patterns-list {
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 }
 

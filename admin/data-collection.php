@@ -385,10 +385,7 @@
                         //===> Patterns <===//
                         else if (data_type === "block-pattern") {
                             //===> Check Name <===//
-                            if (!control.value && control_name === "name") new_pattern[control_name] = new_pattern["label"].toLowerCase().replaceAll(' ','-');
-
-                            //===> Check Status <===//
-                            else if (control_name === "enable") new_pattern[control_name] = control.checked;
+                            if (!control.value && control_name === "name") new_pattern[control_name] = new_pattern["title"].toLowerCase().replaceAll(' ','-');
 
                             //===> Check for Array <===//
                             else if (control.tagName === "SELECT" && control.getAttribute('multiple') !== null) {
@@ -403,15 +400,15 @@
                                 new_pattern[control_name] = array_val;
                             }
 
-                            //===> Check for Textarea <===//
-                            else if (control.tagName === "TEXTAREA") new_pattern[control_name] = JSON.stringify(`${control.value}`);
-
                             //===> Set the Value <===//
-                            else if (control.value && control.value.length > 0) new_taxonomy[control_name] = control.value;
+                            else if (control.value && control.value.length > 0) {
+                                if (control_name === 'content') new_pattern[control_name] = JSON.stringify(control.value);
+                                else new_pattern[control_name] = control.value;
+                            }
                         }
                     }
                 });
-
+                
                 //===> Set Loading Mode <===//
                 trigger.classList.add('px-loading-inline');
 
@@ -503,7 +500,7 @@
                         });
 
                         //===> Add Type <===//
-                        if (!alreadyExist) { current.pds_taxonomies.push(new_taxonomy); }
+                        if (!alreadyExist) { current.block_patterns.push(new_pattern); }
                     }
 
                     //===> Update Options <===//
@@ -598,7 +595,7 @@
                     }
 
                     //===> Update Patterns <===//
-                    else if (list_classes.contains('locations-list')) {
+                    else if (list_classes.contains('patterns-list')) {
                         update_list("block_patterns", ".patterns-list", pattern_template);
                     }
                 }).catch(error => {error.message});
@@ -746,8 +743,8 @@
                             }
                             //===> Textarea Controls <===//
                             else if (control_tag === 'TEXTAREA') {
-                                control.textContent = dataItem[control_name];
                                 control.value = dataItem[control_name];
+                                control.textContent = dataItem[control_name];
                             }
                             //===> Normal Controls <===//
                             else {

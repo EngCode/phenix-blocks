@@ -57,7 +57,7 @@ registerBlockType(metadata, {
         }
 
         //===> Render Background <===//
-        if (background?.value) {
+        if (background && background.value) {
             //===> Image Background <===//
             if (background.type === 'image') {
                 blockProps.className += ` px-media`;

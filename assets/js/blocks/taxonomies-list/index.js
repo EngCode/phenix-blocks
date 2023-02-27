@@ -187,12 +187,18 @@ function Edit(props) {
       setAttributes = props.setAttributes;
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
 
-  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([{
+    "value": attributes.post_type,
+    "label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Default', 'phenix')
+  }]),
       _useState2 = _slicedToArray(_useState, 2),
       PostTypes = _useState2[0],
       setPostTypes = _useState2[1];
 
-  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([{
+    "value": attributes.taxonomy,
+    "label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Default', 'phenix')
+  }]),
       _useState4 = _slicedToArray(_useState3, 2),
       TaxonomyList = _useState4[0],
       setTaxonomyList = _useState4[1]; //===> Set Attributes <===//
@@ -230,8 +236,8 @@ function Edit(props) {
 
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    //===> Fetch Post Types <===//
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+    //===> Fetch Taxonomies <===//
+    if (TaxonomyList.length < 2) _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: 'wp/v2/taxonomies'
     }).then(function (taxonomies) {
       //===> Define Types <===//
@@ -255,7 +261,7 @@ function Edit(props) {
       if (TaxonomyList !== new_taxonomies) setPostTypes([].concat(new_taxonomies));
     }); //===> Fetch Post Types <===//
 
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+    if (postTypes.length < 2) _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: 'wp/v2/types'
     }).then(function (post_types) {
       //===> Define Types <===//

@@ -20,7 +20,7 @@ function px_query_render($block_attributes, $content) {
     $slider_opts = "";
 
     //===> Slider Options <===//
-    if ($options['slider_mode']) {   
+    if ($options['slider_mode']) {
         //===> Type, Steps, Duration, Speed <===//
         $slider_opts = $slider_opts.' data-type="'.$options['slider_type'].'"';
         $slider_opts = $slider_opts.' data-steps="'.$options['slider_steps'].'"';

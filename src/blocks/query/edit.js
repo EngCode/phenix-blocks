@@ -27,7 +27,7 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
-    const [postTypes, setPostTypes] = useState([]);
+    const [postTypes, setPostTypes] = useState([{"value": attributes.post_type, "label": __('Default', 'phenix')}]);
 
     //===> Query Options <===//
     const set_order = order => setAttributes({ order }),
@@ -85,16 +85,13 @@ export default function Edit(props) {
         }, 1000);
     }
 
-    //===> Active Phenix Components <===//
-    // useEffect(() => setPhenixView(), [attributes]);
-    
     //===> Fetch Data for Options <===//
     useEffect(()=> {
         //===> Fetch Post Types <===//
-        apiFetch({path: 'wp/v2/types'}).then(post_types => {
-            //===> Define Types <===//
+        if (postTypes.length < 2) apiFetch({path: 'wp/v2/types'}).then(post_types => {
+            //===> Reset Types <===//
             let new_types = [];
-
+    
             //===> Get Current Active Types <===//
             for (const [key, value] of Object.entries(post_types)) {
                 //===> Exclude the Core Types <===//
@@ -102,14 +99,17 @@ export default function Edit(props) {
                     new_types.push({"value":key, "label":value.name});
                 }
             }
-
+    
             //===> Set the new List if its Deferent <===//
-            if (postTypes !== new_types) setPostTypes([...new_types]);
+            if (new_types.length > 0) setPostTypes([...new_types]);
         });
 
         //===> Active Phenix Components <===//
         setPhenixView();
     }, []);
+    
+    //===> Set Edit Mode <===//
+    if (!attributes.className?.includes('edit-mode')) attributes.className += " edit-mode";
 
     //===> Render <===//
     return (<>

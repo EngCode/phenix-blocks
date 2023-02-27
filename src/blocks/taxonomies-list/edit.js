@@ -25,8 +25,8 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
-    const [PostTypes, setPostTypes] = useState([]);
-    const [TaxonomyList, setTaxonomyList] = useState([]);
+    const [PostTypes, setPostTypes] = useState([{"value": attributes.post_type, "label": __('Default', 'phenix')}]);
+    const [TaxonomyList, setTaxonomyList] = useState([{"value": attributes.taxonomy, "label": __('Default', 'phenix')}]);
 
     //===> Set Attributes <===//
     const set_order = order => setAttributes({ order });
@@ -37,8 +37,8 @@ export default function Edit(props) {
 
     //===> Update Phenix Elements <===//
     useEffect(()=> {
-        //===> Fetch Post Types <===//
-        apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
+        //===> Fetch Taxonomies <===//
+        if (TaxonomyList.length < 2) apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
             //===> Define Types <===//
             let new_taxonomies = [];
 
@@ -55,7 +55,7 @@ export default function Edit(props) {
         });
 
         //===> Fetch Post Types <===//
-        apiFetch({path: 'wp/v2/types'}).then(post_types => {
+        if (postTypes.length < 2) apiFetch({path: 'wp/v2/types'}).then(post_types => {
             //===> Define Types <===//
             let new_types = [];
 

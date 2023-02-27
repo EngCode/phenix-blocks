@@ -506,12 +506,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  //====> Edit Mode <====//
 
 function Edit(props) {
+  var _attributes$className;
+
   //===> Get Properties <===//
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
   var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
 
-  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([{
+    "value": attributes.post_type,
+    "label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Default', 'phenix')
+  }]),
       _useState2 = _slicedToArray(_useState, 2),
       postTypes = _useState2[0],
       setPostTypes = _useState2[1]; //===> Query Options <===//
@@ -657,17 +662,15 @@ function Edit(props) {
       Phenix(mediaElement).multimedia();
       Phenix(sliderElement).slider();
     }, 1000);
-  }; //===> Active Phenix Components <===//
-  // useEffect(() => setPhenixView(), [attributes]);
-  //===> Fetch Data for Options <===//
+  }; //===> Fetch Data for Options <===//
 
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     //===> Fetch Post Types <===//
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+    if (postTypes.length < 2) _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: 'wp/v2/types'
     }).then(function (post_types) {
-      //===> Define Types <===//
+      //===> Reset Types <===//
       var new_types = []; //===> Get Current Active Types <===//
 
       for (var _i2 = 0, _Object$entries = Object.entries(post_types); _i2 < _Object$entries.length; _i2++) {
@@ -685,11 +688,13 @@ function Edit(props) {
       } //===> Set the new List if its Deferent <===//
 
 
-      if (postTypes !== new_types) setPostTypes([].concat(new_types));
+      if (new_types.length > 0) setPostTypes([].concat(new_types));
     }); //===> Active Phenix Components <===//
 
     setPhenixView();
-  }, []); //===> Render <===//
+  }, []); //===> Set Edit Mode <===//
+
+  if (!((_attributes$className = attributes.className) !== null && _attributes$className !== void 0 && _attributes$className.includes('edit-mode'))) attributes.className += " edit-mode"; //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"

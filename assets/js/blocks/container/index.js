@@ -1618,7 +1618,7 @@ __webpack_require__.r(__webpack_exports__);
     } //===> Render Background <===//
 
 
-    if (background !== null && background !== void 0 && background.value) {
+    if (background && background.value) {
       //===> Image Background <===//
       if (background.type === 'image') {
         blockProps.className += " px-media";

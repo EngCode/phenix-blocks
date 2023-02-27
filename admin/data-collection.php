@@ -688,7 +688,10 @@
                 } 
 
                 //===> Textarea Controls <===//
-                else if (control_tag === 'TEXTAREA') control.textContent = "";
+                else if (control_tag === 'TEXTAREA') {
+                    control.value = "";
+                    control.textContent = "";
+                }
 
                 //===> Other Controls <===//
                 else control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
@@ -742,7 +745,10 @@
                                 }
                             }
                             //===> Textarea Controls <===//
-                            else if (control_tag === 'TEXTAREA') control.textContent = dataItem[control_name];
+                            else if (control_tag === 'TEXTAREA') {
+                                control.textContent = dataItem[control_name];
+                                control.value = dataItem[control_name];
+                            }
                             //===> Normal Controls <===//
                             else {
                                 //===> Checkbox Controls <===//

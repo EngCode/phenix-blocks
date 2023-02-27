@@ -11,6 +11,9 @@ PDS_WP_KEY:any;
 Phenix(document).ready(ready => {
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
+        //====> Add Design Options Classes <===//
+        document.body.classList.add('phenix-wp-design');
+
         //====> S.E.O : Headline Fix <====//
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
@@ -75,6 +78,9 @@ Phenix(document).ready(ready => {
     }
     /*====> for the Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //====> Add Design Options Classes <===//
+        document.body.classList.add('phenix-wp-design');
+
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
 

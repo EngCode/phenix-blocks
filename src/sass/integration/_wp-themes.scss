@@ -1,0 +1,51 @@
+/*==== Theme Options for WordPress ====*/
+body:not(.wp-admin), body.block-editor-page {
+    /*==== Global ====*/
+    --body-bg: var(--wp--preset--color--background)!important;
+
+    /*==== Primary Color ====*/
+    --primary-color: var(--wp--preset--color--primary);
+    --primary-hover: var(--wp--preset--color--primary-hvr);
+    --primary-dark: var(--wp--preset--color--primary-dark);
+    --primary-reverse: var(--wp--preset--color--primary-txt);
+    --primary-offwhite: var(--wp--preset--color--primary-offwhite);
+
+    /*==== Secondary Color ====*/
+    --secondary-color: var(--wp--preset--color--secondary);
+    --secondary-dark: var(--wp--preset--color--secondary-dark);
+    --secondary-hover: var(--wp--preset--color--secondary-hvr);
+    --secondary-reverse: var(--wp--preset--color--secondary-txt);
+    --secondary-offwhite: var(--wp--preset--color--secondary-offwhite);
+
+    /*=== Assets Colors ====*/
+    --info-color: var(--wp--preset--color--info);
+    --gray-color: var(--wp--preset--color--gray);
+    --dark-color: var(--wp--preset--color--dark);
+    --links-color: var(--wp--preset--color--links);
+    --danger-color: var(--wp--preset--color--danger);
+    --success-color: var(--wp--preset--color--success);
+    --warning-color: var(--wp--preset--color--warning);
+    --disable-color: var(--wp--preset--color--disable);
+
+    /*=== Assets Lighter ====*/
+    --info-light: var(--wp--preset--color--info-offwhite);
+    --gray-light: var(--wp--preset--color--gray-offwhite);
+    --dark-light: var(--wp--preset--color--dark-offwhite);
+    --danger-light: var(--wp--preset--color--danger-offwhite);
+    --success-light: var(--wp--preset--color--success-offwhite);
+    --warning-light: var(--wp--preset--color--warning-offwhite);
+
+    /*=== Typography Colors ===*/
+    --typography-color: var(--wp--preset--color--text);
+
+    /*==== Gradients ====*/
+    --primary-gradient   : var(--primary-color), var(--primary-hover);
+    --secondary-gradient : var(--secondary-color), var(--secondary-hover);
+    --success-gradient   : #22B567, #00A186;
+    --warning-gradient   : #FAD934, #F49D1A;
+    --danger-gradient    : #FD875B, #F9515A, #F96AAC;
+    --water-gradient     : #00C4FF, #1A69F4;
+    --ice-gradient       : #54AEFC, #3289E9, #5848D2;
+    --fire-gradient      : #FFD500, #FAA10B, #F4291A;
+    --purple-gradient    : #8772F7, #5F48DD;
+}

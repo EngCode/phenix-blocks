@@ -1,4 +1,6 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+
 import {
     Panel,
     PanelBody,
@@ -38,7 +40,7 @@ export default function Edit(props) {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
             let locations = options.menu_locations,
-                menus_new_list = [];
+                menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
             //===> Prepare Each Location for Select Array <===//
             for (const [key, value] of Object.entries(locations)) {
                 menus_new_list.push({label: value, value: key});

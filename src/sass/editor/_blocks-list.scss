@@ -28,7 +28,7 @@
 	.block-editor-block-list__layout {
 		/*==== Reset Blocks ====*/
 		.wp-block-cover {overflow: hidden;}
-		.gpy-fix, .last-row {margin-bottom: -30px;}
+		.gpy-fix, .last-row {margin-bottom: 0;}
 		.px-dropdown-list {display: none!important;}
 		.rich-text:not(.is-selected) {margin-top: 0;}
 		.wp-block-design-px-section {outline: 1px dashed rgba(#000, 0.15);}

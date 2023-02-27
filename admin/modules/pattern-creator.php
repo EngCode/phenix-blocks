@@ -5,8 +5,6 @@
  * @return void
 */
 
-// Note : for Template Use <!-- wp:pattern {"slug":"prefix/pattern-slug"} /-->
-
 //===> Add Pattern Method <===//
 if (!function_exists('pds_add_pattern')) :
     /**

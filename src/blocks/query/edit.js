@@ -69,12 +69,11 @@ export default function Edit(props) {
             //===> View Script <===//
             let frameDoc = window.frames['editor-canvas'].document;
             setTimeout(() => {
-                //===> Get Elements <===//
-                let Sliders  = Phenix(...frameDoc.querySelectorAll(".px-slider:not(.splide)")),
-                    MediaEls = Phenix(...frameDoc.querySelectorAll(".px-media"));
-
-                if(MediaEls.length > 0) Phenix(...frameDoc.querySelectorAll(".px-media")).multimedia();      
-                if(Sliders.length > 0) Phenix(...frameDoc.querySelectorAll(".px-slider:not(.splide)")).addClass('edit-mode').slider();
+                frameDoc.querySelectorAll(".px-media").forEach(element => Phenix(element).multimedia());
+                frameDoc.querySelectorAll(".px-slider:not(.splide)").forEach(element => {
+                    element.classList.add('edit-mode');
+                    Phenix(element).slider();
+                });
             }, 2000);
         } else {
             //===> Timeout for Loading <===//
@@ -84,8 +83,8 @@ export default function Edit(props) {
                     MediaEls = Phenix(".px-media");
 
                 //===> Run Phenix Components <===//
-                if(MediaEls.length > 0) Phenix(".px-media").multimedia();
-                if(Sliders.length > 0) Phenix('.px-slider').addClass('edit-mode').slider();
+                if(MediaEls.length > 0) MediaEls.multimedia();
+                if(Sliders.length > 0) Sliders.addClass('edit-mode').slider();
             }, 2000);
         }
     }

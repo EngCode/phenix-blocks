@@ -402,7 +402,7 @@
 
                             //===> Set the Value <===//
                             else if (control.value && control.value.length > 0) {
-                                if (control_name === 'content') new_pattern[control_name] = JSON.stringify(control.value);
+                                if (control_name === 'content') new_pattern[control_name] = control.value;
                                 else new_pattern[control_name] = control.value;
                             }
                         }

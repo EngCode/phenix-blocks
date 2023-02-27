@@ -474,14 +474,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _px_controls_number__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/number */ "./src/blocks/px-controls/number.js");
 /* harmony import */ var _px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/grid/alignment */ "./src/blocks/px-controls/grid/alignment.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -647,11 +639,13 @@ function Edit(props) {
       //===> View Script <===//
       var frameDoc = window.frames['editor-canvas'].document;
       setTimeout(function () {
-        //===> Get Elements <===//
-        var Sliders = Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-slider:not(.splide)"))),
-            MediaEls = Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-media")));
-        if (MediaEls.length > 0) Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-media"))).multimedia();
-        if (Sliders.length > 0) Phenix.apply(void 0, _toConsumableArray(frameDoc.querySelectorAll(".px-slider:not(.splide)"))).addClass('edit-mode').slider();
+        frameDoc.querySelectorAll(".px-media").forEach(function (element) {
+          return Phenix(element).multimedia();
+        });
+        frameDoc.querySelectorAll(".px-slider:not(.splide)").forEach(function (element) {
+          element.classList.add('edit-mode');
+          Phenix(element).slider();
+        });
       }, 2000);
     } else {
       //===> Timeout for Loading <===//
@@ -660,8 +654,8 @@ function Edit(props) {
         var Sliders = Phenix('.px-slider'),
             MediaEls = Phenix(".px-media"); //===> Run Phenix Components <===//
 
-        if (MediaEls.length > 0) Phenix(".px-media").multimedia();
-        if (Sliders.length > 0) Phenix('.px-slider').addClass('edit-mode').slider();
+        if (MediaEls.length > 0) MediaEls.multimedia();
+        if (Sliders.length > 0) Sliders.addClass('edit-mode').slider();
       }, 2000);
     }
   };

@@ -42,10 +42,11 @@
                 <div class="control-icon far fa-folder mb-15">
                     <select name="category" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Categories' ,'phenix'); ?>" multiple>
                         <option value="phenix"><?php echo __("Phenix", 'phenix'); ?></option>
-                        <option value="headers"><?php echo __("Headers", 'phenix'); ?></option>
-                        <option value="footers"><?php echo __("Footers", 'phenix'); ?></option>
                         <option value="elements"><?php echo __("Elements", 'phenix'); ?></option>
+                        <option value="cards"><?php echo __("Cards", 'phenix'); ?></option>
                         <option value="sections"><?php echo __("Sections", 'phenix'); ?></option>
+                        <option value="footers"><?php echo __("Footers", 'phenix'); ?></option>
+                        <option value="headers"><?php echo __("Headers", 'phenix'); ?></option>
                         <option value="pages"><?php echo __("General Pages", 'phenix'); ?></option>
                         <option value="single"><?php echo __("Single Pages", 'phenix'); ?></option>
                     </select>

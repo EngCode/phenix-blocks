@@ -210,7 +210,6 @@ export default function Edit(props) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        
         //===> Layout <===//
         return <>
             {/*===> Column <===*/}

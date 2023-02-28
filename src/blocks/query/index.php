@@ -43,10 +43,10 @@ function px_query_render($block_attributes, $content) {
         if (isset($grid['cols-xl'])) { $slider_opts .= ' data-xl="'.preg_replace('/[^0-9]/', '', $grid['cols-xl']).'"'; }
     } else {
         //==>...<===//
-        if (isset($grid['cols'])) { $grid_cols .= 'row-cols-'.$grid['cols']; }
-        if (isset($grid['cols-md'])) { $grid_cols .= 'row-cols-md-'.$grid['cols-md']; }
-        if (isset($grid['cols-lg'])) { $grid_cols .= 'row-cols-lg-'.$grid['cols-lg']; }
-        if (isset($grid['cols-xl'])) { $grid_cols .= 'row-cols-xl-'.$grid['cols-xl']; }
+        if (isset($grid['cols'])) { $grid_cols .= ' row-cols-'.$grid['cols']; }
+        if (isset($grid['cols-md'])) { $grid_cols .= ' row-cols-md-'.$grid['cols-md']; }
+        if (isset($grid['cols-lg'])) { $grid_cols .= ' row-cols-lg-'.$grid['cols-lg']; }
+        if (isset($grid['cols-xl'])) { $grid_cols .= ' row-cols-xl-'.$grid['cols-xl']; }
     }
 
     //===> Custom Classes <===//
@@ -107,7 +107,7 @@ function px_query_render($block_attributes, $content) {
         if (have_posts()) :
             //===> Grid Wrapper <===//
             if ($options['grid_mode']) {
-                echo '<div class="row'. $grid_cols . $grid_opts .'">';
+                echo '<div class="row '. $grid_cols . ' '.$grid_opts .'">';
             }
 
             //==== Loop Start ====//

@@ -196,7 +196,7 @@ PhenixElements.prototype.popup = function (options?:{
         }
 
         //=====> Open by URL <=====//
-        if (hash_url) if (hash_url !== '0' || 'false') window.addEventListener('load', () => {
+        if (parseInt(hash_url))  window.addEventListener('load', () => {
             setTimeout(() => {
                 if (window.location.hash.substr(1) == modal_id) show_modal();
             }, timeout)

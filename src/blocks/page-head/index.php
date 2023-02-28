@@ -11,7 +11,7 @@ function px_head_render($block_attributes, $content) {
     $markup = ''; ob_start();
 ?>
 <!-- Page Title -->
-<h1 class="fs-16 fs-md-20 h4-lg color-inherit lineheight-100 mb-10 tx-uppercase weight-medium">
+<h1 class="fs-16 fs-md-20 h4-lg color-inherit lineheight-100 pdt-5 mb-10 tx-uppercase weight-medium">
     <?php
         if (is_archive() || is_category()) {
             echo get_the_archive_title();
@@ -27,10 +27,10 @@ function px_head_render($block_attributes, $content) {
 
 <!-- Breadcrumb -->
 <?php if (!is_front_page()) : ?>
-    <ul class="px-breadcrumb reset-list flexbox custom-icon links-inherit align-center-y" data-type="font-icon">
+    <ul class="px-breadcrumb reset-list flexbox custom-icon links-inherit align-center-y" data-type="font-icon" itemprop="breadcrumb">
         <?php
             //===> Create Home Page <===//
-            echo '<li><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>';
+            echo '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>';
 
             //===> Get Category Title <===//
             if (is_category() || is_archive()) {

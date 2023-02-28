@@ -13,12 +13,37 @@ Phenix(document).ready(ready => {
     if (!document.body.classList.contains('wp-admin')) {
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
-
-        //====> S.E.O : Headline Fix <====//
+        
+        //====> S.E.O : Fixes <====//
+        document.body.setAttribute('itemscope', "");
+        document.body.setAttribute('itemtype', "https://schema.org/WebPage");
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
         //===> Contact Form 7 Fixes <===//
         if (document.querySelector(".wpcf7-form")) {
+            //===> Redirect WP7 After Submit <===//
+            if (window.location.hash.substr(1).includes('wpcf7-')) {
+                //===> ... <===//
+                let isFailed = false,
+                    theForm = document.querySelector(`#${window.location.hash.substr(1)}`);
+                
+                //===> Check Forms <===//
+                if(theForm.classList.contains('failed')) isFailed = true;
+
+                //===> Redirect <===//
+                if (isFailed === false) {
+                    console.log("is Success");
+                    window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + '/success' : "/success"}`;
+                }
+                //===> Show Failed Message <===//
+                else Phenix(document).notifications({
+                    type: "error",
+                    duration: "7000",
+                    position: ["center", "center"],
+                    message: Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
+                });
+            }
+
             //===> Textarea <===//
             Phenix('.wpcf7-textarea').forEach((element:any) => {
                 element.setAttribute('cols', null);

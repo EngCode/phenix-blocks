@@ -108,4 +108,10 @@ Phenix(document).ready(ready => {
         //===> Run Files Remover <===//
         Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     }
+    /*====> for Adminbar <====*/
+    if(document.querySelector('#wpadminbar')) {
+        /*====> Remove Logo Submenu <====*/
+        document.querySelector('#wp-admin-bar-wp-logo .ab-sub-wrapper')?.remove();
+        document.querySelector('#wp-admin-bar-customize')?.remove();
+    }
 });

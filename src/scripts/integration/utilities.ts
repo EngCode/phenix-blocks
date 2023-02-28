@@ -98,7 +98,7 @@ PhenixElements.prototype.utilities = function (options?:{
         if (text.length > max) element.textContent = text.slice(0, max);
     });
 
-    //====> Images Sizes <====//
+    //====> Images SEO/Performance <====//
     Phenix('img').forEach((img:any) => {
         //===> Get Image Data <===//
         let img_width = img.getAttribute('width') || img.style.width,
@@ -108,6 +108,14 @@ PhenixElements.prototype.utilities = function (options?:{
         //===> Set Width and Height <===//
         if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
         if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
+        //===> Alternative Text <===//
+        if (!img.getAttribute('alt') || img.getAttribute('alt') === "") img.setAttribute('alt', document.title);
+    });
+
+    //====> Links SEO <====//
+    Phenix('a[href]').forEach((link:any) => {
+        //===> Alternative Text <===//
+        if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', link.textContent);
     });
 
     //====> icons List <====//

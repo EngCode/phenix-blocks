@@ -21,6 +21,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _px_controls_number__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/number */ "./src/blocks/px-controls/number.js");
 /* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
 /* harmony import */ var _px_controls_elements_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/elements/tabs */ "./src/blocks/px-controls/elements/tabs.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //====> WP Modules <====//
 
 
@@ -41,9 +47,17 @@ function Edit(_ref) {
     });
   };
 
-  var set_size = function set_size(size) {
-    return setAttributes({
-      size: size
+  var set_size = function set_size(value, screen) {
+    //===> Define Data <===//
+    var responsive_ops = attributes.responsive; //===> Set Value <===//
+
+    if (screen !== "sm") {
+      responsive_ops["size-".concat(screen)] = value;
+      setAttributes({
+        responsive: _objectSpread({}, responsive_ops)
+      });
+    } else setAttributes({
+      size: value
     });
   }; //===> Get Block Properties <===//
 
@@ -54,7 +68,8 @@ function Edit(_ref) {
 
   var responsive_options = function responsive_options(screen) {
     //===> Correct Base Screen <===*/
-    var size_value = screen === "sm" ? parseInt(attributes.size) || 0 : attributes.responsive["size-".concat(screen)] || 0; //===> Layout <===//
+    var size_value = attributes.responsive["size-".concat(screen)] || 0;
+    if (screen === "sm") size_value = parseInt(attributes.size) || 0; //===> Layout <===//
 
     return /*#__PURE__*/React.createElement("div", {
       className: "row gpx-15"

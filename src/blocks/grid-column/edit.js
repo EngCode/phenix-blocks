@@ -23,7 +23,15 @@ import ScreensTabs from "../px-controls/elements/tabs";
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Settings <===//
     const set_tagName = tagName => setAttributes({ tagName });
-    const set_size = size => setAttributes({ size });
+    const set_size = (value, screen) => {
+        //===> Define Data <===//
+        let responsive_ops = attributes.responsive;
+        //===> Set Value <===//
+        if (screen !== "sm") {
+            responsive_ops[`size-${screen}`] = value;
+            setAttributes({ responsive: {...responsive_ops} });
+        } else setAttributes({ size: value });
+    };
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -33,7 +41,8 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
         //===> Correct Base Screen <===*/
-        let size_value = screen === "sm" ? parseInt(attributes.size) || 0 : attributes.responsive[`size-${screen}`] || 0;
+        let size_value = attributes.responsive[`size-${screen}`] || 0;
+        if(screen === "sm") size_value = parseInt(attributes.size) || 0;
 
         //===> Layout <===//
         return <div className='row gpx-15'>

@@ -126,7 +126,7 @@ PhenixElements.prototype.utilities = function (options?:{
         }
     });
 
-    //====> Loading <====//
+    //====> Loading/Scrollbar <====//
     let loading_wrapper = document.querySelector('.px-page-loader');
 
     if (loading_wrapper) {

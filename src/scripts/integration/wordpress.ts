@@ -9,11 +9,14 @@ PDS_WP_KEY:any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).ready(ready => {
+    /*====> Change Scrollbar <====*/
+    document.querySelector('html').classList.add('px-scrollbar');
+
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
-        
+
         //====> S.E.O : Fixes <====//
         document.body.setAttribute('itemscope', "");
         document.body.setAttribute('itemtype', "https://schema.org/WebPage");

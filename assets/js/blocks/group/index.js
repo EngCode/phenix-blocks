@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _px_controls_colors_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/colors/text */ "./src/blocks/px-controls/colors/text.js");
 /* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
-/* harmony import */ var _px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/grid/alignment */ "./src/blocks/px-controls/grid/alignment.js");
+/* harmony import */ var _px_controls_alignment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/alignment */ "./src/blocks/px-controls/alignment.js");
 /* harmony import */ var _px_controls_colors_background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/colors/background */ "./src/blocks/px-controls/colors/background.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -448,7 +448,7 @@ function Edit(_ref) {
     className: "row gpx-15 divider-t pdt-10"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_alignment__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flexbox Alignment", "phenix"),
     value: attributes.flexbox.align || "",
     onChange: set_alignment
@@ -489,6 +489,207 @@ function Edit(_ref) {
     className: "fluid"
   }) : /*#__PURE__*/React.createElement(TagName, blockProps, /*#__PURE__*/React.createElement("div", innerBlocksProps)));
 }
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/alignment.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/px-controls/alignment.js ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ FlexAlignment; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _switch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./switch */ "./src/blocks/px-controls/switch.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
+*/
+//===> WordPress Modules <===//
+
+ //===> Media Uploader <===//
+
+var FlexAlignment = /*#__PURE__*/function (_Component) {
+  _inherits(FlexAlignment, _Component);
+
+  var _super = _createSuper(FlexAlignment);
+
+  function FlexAlignment() {
+    _classCallCheck(this, FlexAlignment);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(FlexAlignment, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          onChange = _this$props.onChange;
+      var button_style = "btn tiny bg-transparent fs-12 square pxi"; //===> Align Handler <===//
+
+      var set_alignment = function set_alignment(target) {
+        //===> Define Data <===//
+        var align_val = value,
+            align_type = target.getAttribute('name'),
+            val_split = value.split(" "); //===> Loop on Values <===//
+
+        val_split.forEach(function (value) {
+          //===> Type X Checker <===//
+          if (align_type.includes('-x') && value.includes('-x' || 0 || 0)) {
+            align_val.replace(value, target.value);
+          } //===> Type Y Checker <===//
+          else if (align_type.includes('-y') && value.includes('-y')) {
+            align_val.replace(value, target.value);
+          } //===> New Type <===//
+          else {
+            align_val += " ".concat(target.value);
+          }
+        }); //===> Return new Value <===//
+
+        return onChange(align_val);
+      },
+          //===> Set Align Y <===//
+      reset_align = function reset_align(clicked) {
+        return onChange("");
+      }; //===> Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "components-flex-item flex-alignment-btns"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-between mb-5 align-center-y"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label components-flex-item weight-bold"
+      }, label), /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        "data-value": "",
+        title: "Reset",
+        className: "btn tiny bg-transparent fs-12 square far fa-redo",
+        onClick: reset_align
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox align-between"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-x",
+        checked: value.includes("align-start-x"),
+        value: "align-start-x",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        title: "Start",
+        className: "".concat(button_style, " pxi-align-x-start")
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-x",
+        checked: value.includes("align-center-x"),
+        value: "align-center-x",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-x-center"),
+        title: "Center"
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-x",
+        checked: value.includes("align-between"),
+        value: "align-between",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-x-between"),
+        title: "Between"
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-x",
+        checked: value.includes("align-around"),
+        value: "align-around",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-x-around"),
+        title: "Around"
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-x",
+        checked: value.includes("align-end-x"),
+        value: "align-end-x",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-x-end"),
+        title: "Around"
+      }))), /*#__PURE__*/React.createElement("div", {
+        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
+      }, /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-y",
+        checked: value.includes("align-start-y"),
+        value: "align-start-y",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-y-start"),
+        title: "Start"
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-y",
+        checked: value.includes("align-center-y"),
+        value: "align-center-y",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-y-center"),
+        title: "Center"
+      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        name: "flex-align-y",
+        checked: value.includes("align-end-y"),
+        value: "align-end-y",
+        onChange: set_alignment,
+        type: "button-radio",
+        className: "tiny inline-block"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "".concat(button_style, " pxi-align-y-end"),
+        title: "End"
+      })))));
+    }
+  }]);
+
+  return FlexAlignment;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 
@@ -931,207 +1132,6 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
   }]);
 
   return PhenixColors;
-}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/blocks/px-controls/grid/alignment.js":
-/*!**************************************************!*\
-  !*** ./src/blocks/px-controls/grid/alignment.js ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ FlexAlignment; }
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _switch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../switch */ "./src/blocks/px-controls/switch.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-/*
- * ===> 01 - Import Assets
- * ===> 02 - Import Block Functions
- * ===> 03 - Register Block
-*/
-//===> WordPress Modules <===//
-
- //===> Media Uploader <===//
-
-var FlexAlignment = /*#__PURE__*/function (_Component) {
-  _inherits(FlexAlignment, _Component);
-
-  var _super = _createSuper(FlexAlignment);
-
-  function FlexAlignment() {
-    _classCallCheck(this, FlexAlignment);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(FlexAlignment, [{
-    key: "render",
-    value: function render() {
-      //===> Properties <===//
-      var _this$props = this.props,
-          label = _this$props.label,
-          value = _this$props.value,
-          onChange = _this$props.onChange;
-      var button_style = "btn tiny bg-transparent fs-12 square pxi"; //===> Align Handler <===//
-
-      var set_alignment = function set_alignment(target) {
-        //===> Define Data <===//
-        var align_val = value,
-            align_type = target.getAttribute('name'),
-            val_split = value.split(" "); //===> Loop on Values <===//
-
-        val_split.forEach(function (value) {
-          //===> Type X Checker <===//
-          if (align_type.includes('-x') && value.includes('-x' || 0 || 0)) {
-            align_val.replace(value, target.value);
-          } //===> Type Y Checker <===//
-          else if (align_type.includes('-y') && value.includes('-y')) {
-            align_val.replace(value, target.value);
-          } //===> New Type <===//
-          else {
-            align_val += " ".concat(target.value);
-          }
-        }); //===> Return new Value <===//
-
-        return onChange(align_val);
-      },
-          //===> Set Align Y <===//
-      reset_align = function reset_align(clicked) {
-        return onChange("");
-      }; //===> Output <===//
-
-
-      return /*#__PURE__*/React.createElement("div", {
-        className: "components-flex-item flex-alignment-btns"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-between mb-5 align-center-y"
-      }, /*#__PURE__*/React.createElement("label", {
-        className: "components-input-control__label components-flex-item weight-bold"
-      }, label), /*#__PURE__*/React.createElement("button", {
-        type: "button",
-        "data-value": "",
-        title: "Reset",
-        className: "btn tiny bg-transparent fs-12 square far fa-redo",
-        onClick: reset_align
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-between"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
-      }, /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-x",
-        checked: value.includes("align-start-x"),
-        value: "align-start-x",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        title: "Start",
-        className: "".concat(button_style, " pxi-align-x-start")
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-x",
-        checked: value.includes("align-center-x"),
-        value: "align-center-x",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-x-center"),
-        title: "Center"
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-x",
-        checked: value.includes("align-between"),
-        value: "align-between",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-x-between"),
-        title: "Between"
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-x",
-        checked: value.includes("align-around"),
-        value: "align-around",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-x-around"),
-        title: "Around"
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-x",
-        checked: value.includes("align-end-x"),
-        value: "align-end-x",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-x-end"),
-        title: "Around"
-      }))), /*#__PURE__*/React.createElement("div", {
-        className: "col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm"
-      }, /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-y",
-        checked: value.includes("align-start-y"),
-        value: "align-start-y",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-y-start"),
-        title: "Start"
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-y",
-        checked: value.includes("align-center-y"),
-        value: "align-center-y",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-y-center"),
-        title: "Center"
-      })), /*#__PURE__*/React.createElement(_switch__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        name: "flex-align-y",
-        checked: value.includes("align-end-y"),
-        value: "align-end-y",
-        onChange: set_alignment,
-        type: "button-radio",
-        className: "tiny inline-block"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "".concat(button_style, " pxi-align-y-end"),
-        title: "End"
-      })))));
-    }
-  }]);
-
-  return FlexAlignment;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 

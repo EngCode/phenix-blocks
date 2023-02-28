@@ -6,7 +6,7 @@
 
 //===> WordPress Modules <===//
 import {Component} from '@wordpress/element';
-import OptionControl from '../switch';
+import OptionControl from './switch';
 
 //===> Media Uploader <===//
 export default class FlexAlignment extends Component {

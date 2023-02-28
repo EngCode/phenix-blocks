@@ -35,29 +35,9 @@
             "default": {}
         },
 
-        "isEqual" : {
-            "type": "boolean",
-            "default": false
-        },
-
-        "columns" : {
-            "type" : "string",
-            "default" : ""
-        },
-
-        "isSlider" : {
-            "type": "boolean",
-            "default": false
-        },
-
-        "pagination" : {
-            "type": "boolean",
-            "default": false
-        },
-
-        "controls" : {
-            "type": "boolean",
-            "default": false
+        "slider" : {
+            "type": "object",
+            "default": {}
         }
     },
 

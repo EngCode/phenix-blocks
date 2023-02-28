@@ -31,35 +31,45 @@ registerBlockType(metadata, {
         blockProps.className += ' row';
 
         //===> Properties <===//
-        if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align}`;
-        if (attributes.flexbox.flow)   blockProps.className += ` ${attributes.flexbox.flow}`;
-        if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
-        if (attributes.flexbox.masonry) blockProps.className += ` ${attributes.flexbox.masonry}`;
-
-        //===> Columns <===//
-        if (attributes.flexbox.equals && attributes.columns) blockProps.className += attributes.columns;
+        if(!attributes.flexbox.slider) {
+            if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.flow)   blockProps.className += ` ${attributes.flexbox.flow}`;
+            if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
+            if (attributes.flexbox.masonry) blockProps.className += ` ${attributes.flexbox.masonry}`;
+            if (attributes.flexbox.equals && attributes.flexbox.cols) blockProps.className += ` row-cols-${attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"}`;
+            //===> Responsive <===//
+            let screens = ["md", "lg", "xl"];
+            screens.forEach(screen => {
+                if (attributes.flexbox[`align-${screen}`]) blockProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+                if (attributes.flexbox[`flow-${screen}`]) blockProps.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
+                if (attributes.flexbox[`nowrap-${screen}`]) blockProps.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
+                if (attributes.flexbox[`masonry-${screen}`]) blockProps.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
+                if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) blockProps.className += ` row-cols-${screen}-${attributes.flexbox[`cols-${screen}`] > 0 ? attributes.flexbox[`cols-${screen}`] : "auto"}`;
+            });
+        }
 
         //===> Slider <===//
         if (attributes.flexbox.slider) {
             //===> Add Slider Name <===//
             blockProps.className += ' px-slider';
 
-            //===> Items Info <===//
-            let columns_names = attributes.columns.split(' ');
-            columns_names.forEach(name => {
-                //===> Medium Screen <===//
-                if (name.includes('-md')) blockProps['data-md'] = name.replace('row-cols-md-','');
-                //===> Large Screen <===//
-                else if (name.includes('-lg')) blockProps['data-lg'] = name.replace('row-cols-lg-','');
-                //===> xLarge Screen <===//
-                else if (name.includes('-xl')) blockProps['data-xl'] = name.replace('row-cols-xl-','');
-                //===> Small Screen <===//
-                else if (name.includes('row-cols')) blockProps['data-items'] = name.replace('row-cols-','');
-            });
-
             //===> Set Other Options <===//
-            if (attributes.controls) blockProps['data-controls'] = 1;
-            if (attributes.pagination) blockProps['data-pagination'] = 1;
+            if (attributes.slider.type) blockProps['data-type'] = attributes.slider.type;
+            if (attributes.slider.steps) blockProps['data-steps'] = attributes.slider.steps;
+            if (attributes.slider.speed) blockProps['data-speed'] = attributes.slider.speed;
+            if (attributes.slider.duration) blockProps['data-duration'] = attributes.slider.duration;
+            if (attributes.slider.controls) blockProps['data-controls'] = 1;
+            if (attributes.slider.pagination) blockProps['data-pagination'] = 1;
+            if (attributes.slider.hasOwnProperty('autoplay')) {
+                if (attributes.slider.autoplay === true) {blockProps['data-autoplay'] = 1;}
+                else {blockProps['data-autoplay'] = 0;}
+            }
+            //===> Responsive <===//
+            let screens = ["md", "lg", "xl"];
+            if (attributes.flexbox.cols) blockProps[`data-items`] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
+            screens.forEach(screen => {
+                if (attributes.flexbox[`cols-${screen}`] && attributes.flexbox[`cols-${screen}`] > 0) blockProps[`data-${screen}`] = attributes.flexbox[`cols-${screen}`];
+            });
         }
 
         //===> Render <===//

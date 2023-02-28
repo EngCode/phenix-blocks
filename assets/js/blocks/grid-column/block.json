@@ -15,7 +15,7 @@
     "grid"
   ],
   "category": "design",
-  "description": "a Wrapper Represent the Grid System Column for its Row Block",
+  "description": "",
   "supports": {
     "html": false
   },
@@ -29,16 +29,28 @@
       "default": false
     },
     "size": {
-      "type": "string",
-      "default": "col-auto"
+      "type": "number",
+      "default": 0
     },
-    "spacing_pd": {
-      "type": "string",
-      "default": ""
+    "isFlexbox": {
+      "type": "boolean",
+      "default": false
     },
-    "spacing_mg": {
-      "type": "string",
-      "default": ""
+    "flexbox": {
+      "type": "object",
+      "default": {}
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
     }
   },
   "example": {

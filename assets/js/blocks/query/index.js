@@ -120,25 +120,25 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
       }, this.props.sm ? /*#__PURE__*/React.createElement("button", {
         key: "tablet",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "light" : "primary", " col far fa-tablet"),
+        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "bg-alpha-05" : "primary", " col far fa-tablet"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
         "data-options": "sm"
       }) : null, this.props.md ? /*#__PURE__*/React.createElement("button", {
         key: "tablet",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "md" ? "light" : "primary", " col far fa-tablet"),
+        className: "btn square tiny ".concat(this.state.screen !== "md" ? "bg-alpha-05" : "primary", " col far fa-tablet"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
         "data-options": "md"
       }) : null, this.props.lg ? /*#__PURE__*/React.createElement("button", {
         key: "laptop",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "lg" ? "light" : "primary", " col far fa-laptop"),
+        className: "btn square tiny ".concat(this.state.screen !== "lg" ? "bg-alpha-05" : "primary", " col far fa-laptop"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Desktop Screens", "phenix"),
         "data-options": "lg"
       }) : null, this.props.xl ? /*#__PURE__*/React.createElement("button", {
         key: "desktop",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "xl" ? "light" : "primary", " col far fa-desktop"),
+        className: "btn square tiny ".concat(this.state.screen !== "xl" ? "bg-alpha-05" : "primary", " col far fa-desktop"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("xLarge Screens", "phenix"),
         "data-options": "xl"
       }) : null), /*#__PURE__*/React.createElement("div", {

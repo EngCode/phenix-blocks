@@ -19,7 +19,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
 import PhenixNumber from "../px-controls/number";
-import FlexAlignment from "../px-controls/grid/alignment";
+import FlexAlignment from "../px-controls/alignment";
 
 //====> Edit Mode <====//
 export default function Edit(props) {

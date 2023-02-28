@@ -21,7 +21,7 @@ import { useState, useEffect } from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixColor from '../px-controls/colors/text';
 import OptionControl from '../px-controls/switch';
-import FlexAlignment from '../px-controls/grid/alignment';
+import FlexAlignment from '../px-controls/alignment';
 import PhenixBackground from '../px-controls/colors/background';
 
 //====> Edit Mode <====//

@@ -31,7 +31,10 @@ registerBlockType(metadata, {
         const TagName = attributes.tagName;
 
         //===> Set Properties <===//
-        blockProps.className += ` ${attributes.size}`;
+        if(attributes.size) blockProps.className += ` col${parseInt(attributes.size) === 0 ? `-auto` : parseInt(attributes.size) === 13 ? "" : `-${parseInt(attributes.size)}`}`;
+        if(attributes.responsive['size-md']) blockProps.className += ` col${attributes.responsive['size-md'] === 0 ? `-auto` : attributes.responsive['size-md'] === 13 ? "" : `-md-${attributes.responsive['size-md']}`}`;
+        if(attributes.responsive['size-lg']) blockProps.className += ` col${attributes.responsive['size-lg'] === 0 ? `-auto` : attributes.responsive['size-lg'] === 13 ? "" : `-lg-${attributes.responsive['size-lg']}`}`;
+        if(attributes.responsive['size-xl']) blockProps.className += ` col${attributes.responsive['size-xl'] === 0 ? `-auto` : attributes.responsive['size-xl'] === 13 ? "" : `-xl-${attributes.responsive['size-xl']}`}`;
 
         //===> Render <===//
         return (

@@ -19,8 +19,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
-/* harmony import */ var _px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/grid/alignment */ "./src/blocks/px-controls/grid/alignment.js");
-/* harmony import */ var _px_controls_grid_equal_columns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/grid/equal-columns */ "./src/blocks/px-controls/grid/equal-columns.js");
+/* harmony import */ var _px_controls_alignment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/alignment */ "./src/blocks/px-controls/alignment.js");
+/* harmony import */ var _px_controls_number__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/number */ "./src/blocks/px-controls/number.js");
+/* harmony import */ var _px_controls_elements_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/elements/tabs */ "./src/blocks/px-controls/elements/tabs.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -34,6 +35,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
  //====> Edit Mode <====//
 
 function Edit(_ref) {
@@ -42,38 +44,7 @@ function Edit(_ref) {
   var attributes = _ref.attributes,
       setAttributes = _ref.setAttributes;
 
-  //===> Set Settings <===//
-  var set_isEqual = function set_isEqual(isEqual) {
-    return setAttributes({
-      isEqual: isEqual
-    });
-  };
-
-  var set_columns = function set_columns(columns) {
-    return setAttributes({
-      columns: columns
-    });
-  };
-
-  var set_isSlider = function set_isSlider(isSlider) {
-    return setAttributes({
-      isSlider: isSlider
-    });
-  };
-
-  var set_controls = function set_controls(controls) {
-    return setAttributes({
-      controls: controls
-    });
-  };
-
-  var set_pagination = function set_pagination(pagination) {
-    return setAttributes({
-      pagination: pagination
-    });
-  }; //===> Flexbox Options <===//
-
-
+  //===> Flexbox Options <===//
   var set_alignment = function set_alignment(alignment) {
     //==> Get Current <==//
     var flex_ops = attributes.flexbox; //==> Set Value <==//
@@ -126,6 +97,62 @@ function Edit(_ref) {
     setAttributes({
       flexbox: _objectSpread({}, flex_ops)
     });
+  }; //===> Columns Options <===//
+
+
+  var set_flexbox_cols = function set_flexbox_cols(value) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops.cols = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
+  },
+      set_flexbox_cols_resp = function set_flexbox_cols_resp(value, screen) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops["cols-".concat(screen)] = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
+  },
+      set_alignment_resp = function set_alignment_resp(value, screen) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops["align-".concat(screen)] = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
+  },
+      set_flex_flow_resp = function set_flex_flow_resp(value, screen) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops["flow-".concat(screen)] = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
+  },
+      set_flex_nowrap_resp = function set_flex_nowrap_resp(value, screen) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops["nowrap-".concat(screen)] = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
+  },
+      set_flex_masonry_resp = function set_flex_masonry_resp(value, screen) {
+    //===> Define Data <===//
+    var flexbox_ops = attributes.flexbox; //===> Set Value <===//
+
+    flexbox_ops["masonry-".concat(screen)] = value;
+    setAttributes({
+      flexbox: _objectSpread({}, flexbox_ops)
+    });
   }; //==> Slider Mode <==//
 
 
@@ -137,6 +164,135 @@ function Edit(_ref) {
     setAttributes({
       flexbox: _objectSpread({}, flex_ops)
     });
+  }; //===> Slider Options <===//
+
+
+  var set_slider_type = function set_slider_type(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.type = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_steps = function set_slider_steps(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.steps = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_duration = function set_slider_duration(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.duration = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_speed = function set_slider_speed(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.speed = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_autoplay = function set_slider_autoplay(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.autoplay = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_controls = function set_slider_controls(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.controls = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  },
+      set_slider_pagination = function set_slider_pagination(value) {
+    //==> Get Current <==//
+    var options = attributes.slider; //==> Set Value <==//
+
+    options.pagination = value;
+    setAttributes({
+      slider: _objectSpread({}, options)
+    });
+  }; //===> Responsive Options <===//
+
+
+  var responsive_options = function responsive_options(screen) {
+    var _attributes$flexbox, _attributes$flexbox2, _attributes$flexbox3;
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, attributes.flexbox.equals || attributes.flexbox.slider ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "col col-6 mb-15"
+    }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns No.", "phenix"),
+      value: attributes.flexbox["cols-".concat(screen)] ? attributes.flexbox["cols-".concat(screen)] : 1,
+      onChange: function onChange(value) {
+        return set_flexbox_cols_resp(value, screen);
+      },
+      min: 1,
+      max: 12
+    }))) : null, !attributes.flexbox.slider ? /*#__PURE__*/React.createElement("div", {
+      className: "row gpx-15 mb-10 divider-b"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "col-12 mb-15"
+    }, /*#__PURE__*/React.createElement(_px_controls_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Alignment", "phenix"),
+      value: attributes.flexbox["align-".concat(screen)] || "",
+      onChange: function onChange(value) {
+        return set_alignment_resp(value.replace('align-', "align-".concat(screen, "-")), screen);
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "col-12 flexbox mb-15"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "col-12 mb-5 tx-UpperCase"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Options", "phenix")), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "flex-".concat(screen, "-flow"),
+      value: "flow-".concat(screen, "-reverse"),
+      checked: ((_attributes$flexbox = attributes.flexbox["flow-".concat(screen)]) === null || _attributes$flexbox === void 0 ? void 0 : _attributes$flexbox.length) > 0,
+      onChange: function onChange(value) {
+        return set_flex_flow_resp(value, screen);
+      },
+      type: "checkbox",
+      className: "tiny mb-5 me-10"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "fas fa-check radius-circle"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reverse ", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "flex-".concat(screen, "-nowrap"),
+      value: "flow-".concat(screen, "-nowrap"),
+      checked: ((_attributes$flexbox2 = attributes.flexbox["nowrap-".concat(screen)]) === null || _attributes$flexbox2 === void 0 ? void 0 : _attributes$flexbox2.length) > 0,
+      onChange: function onChange(value) {
+        return set_flex_nowrap_resp(value, screen);
+      },
+      type: "checkbox",
+      className: "tiny mb-5 me-10"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "fas fa-check radius-circle"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Nowrap", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "flex-".concat(screen, "-masonry"),
+      value: "px-masonry-".concat(screen),
+      checked: ((_attributes$flexbox3 = attributes.flexbox["masonry-".concat(screen)]) === null || _attributes$flexbox3 === void 0 ? void 0 : _attributes$flexbox3.length) > 0,
+      onChange: function onChange(value) {
+        return set_flex_masonry_resp(value, screen);
+      },
+      type: "checkbox",
+      className: "tiny mb-5"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "fas fa-check radius-circle"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Masonry", "phenix"))))) : null);
   }; //===> Get Block Properties <===//
 
 
@@ -146,41 +302,63 @@ function Edit(_ref) {
   innerBlocksProps.className += " ".concat(blockProps.className);
   innerBlocksProps.className += ' row'; //===> Properties <===//
 
-  if (attributes.flexbox.align) innerBlocksProps.className += " ".concat(attributes.flexbox.align);
-  if (attributes.flexbox.flow) innerBlocksProps.className += " ".concat(attributes.flexbox.flow);
-  if (attributes.flexbox.nowrap) innerBlocksProps.className += " ".concat(attributes.flexbox.nowrap);
-  if (attributes.flexbox.masonry) innerBlocksProps.className += " ".concat(attributes.flexbox.masonry); //===> Columns <===//
+  if (!attributes.flexbox.slider) {
+    if (attributes.flexbox.align) innerBlocksProps.className += " ".concat(attributes.flexbox.align);
+    if (attributes.flexbox.flow) innerBlocksProps.className += " ".concat(attributes.flexbox.flow);
+    if (attributes.flexbox.nowrap) innerBlocksProps.className += " ".concat(attributes.flexbox.nowrap);
+    if (attributes.flexbox.masonry) innerBlocksProps.className += " ".concat(attributes.flexbox.masonry);
+    if (attributes.flexbox.equals && attributes.flexbox.cols) innerBlocksProps.className += " row-cols-".concat(attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"); //===> Responsive <===//
 
-  if (attributes.flexbox.equals && attributes.columns) innerBlocksProps.className += attributes.columns; //===> Slider <===//
+    var screens = ["md", "lg", "xl"];
+    screens.forEach(function (screen) {
+      if (attributes.flexbox["align-".concat(screen)]) innerBlocksProps.className += " ".concat(attributes.flexbox["align-".concat(screen)]);
+      if (attributes.flexbox["flow-".concat(screen)]) innerBlocksProps.className += " ".concat(attributes.flexbox["flow-".concat(screen)]);
+      if (attributes.flexbox["nowrap-".concat(screen)]) innerBlocksProps.className += " ".concat(attributes.flexbox["nowrap-".concat(screen)]);
+      if (attributes.flexbox["masonry-".concat(screen)]) innerBlocksProps.className += " ".concat(attributes.flexbox["masonry-".concat(screen)]);
+      if (attributes.flexbox.equals && attributes.flexbox["cols-".concat(screen)]) innerBlocksProps.className += " row-cols-".concat(screen, "-").concat(attributes.flexbox["cols-".concat(screen)] > 0 ? attributes.flexbox["cols-".concat(screen)] : "auto");
+    });
+  } //===> Slider <===//
 
-  if (attributes.flexbox.slider) {
+
+  if (attributes.flexbox.slider && attributes.slider.preview) {
     //===> Add Slider Name <===//
-    innerBlocksProps.className += ' px-slider'; //===> Set Items <===//
+    innerBlocksProps.className += ' px-slider'; //===> Set Other Options <===//
 
-    var columns_names = attributes.columns.split(' ');
-    columns_names.forEach(function (name) {
-      //===> Medium Screen <===//
-      if (name.includes('-md')) innerBlocksProps['data-md'] = name.replace('row-cols-md-', ''); //===> Large Screen <===//
-      else if (name.includes('-lg')) innerBlocksProps['data-lg'] = name.replace('row-cols-lg-', ''); //===> xLarge Screen <===//
-      else if (name.includes('-xl')) innerBlocksProps['data-xl'] = name.replace('row-cols-xl-', ''); //===> Small Screen <===//
-      else if (name.includes('row-cols')) innerBlocksProps['data-items'] = name.replace('row-cols-', '');
-    }); //===> Set Other Options <===//
+    if (attributes.slider.type) innerBlocksProps['data-type'] = attributes.slider.type;
+    if (attributes.slider.steps) innerBlocksProps['data-steps'] = attributes.slider.steps;
+    if (attributes.slider.speed) innerBlocksProps['data-speed'] = attributes.slider.speed;
+    if (attributes.slider.duration) innerBlocksProps['data-duration'] = attributes.slider.duration;
+    if (attributes.slider.controls) innerBlocksProps['data-controls'] = 1;
+    if (attributes.slider.pagination) innerBlocksProps['data-pagination'] = 1;
 
-    if (attributes.controls) innerBlocksProps['data-controls'] = 1;
-    if (attributes.pagination) innerBlocksProps['data-pagination'] = 1; //===> for Edit only <===//
-    // innerBlocksProps.className += attributes.columns;
+    if (attributes.slider.hasOwnProperty('autoplay')) {
+      if (attributes.slider.autoplay === true) {
+        innerBlocksProps['data-autoplay'] = 1;
+      } else {
+        innerBlocksProps['data-autoplay'] = 0;
+      }
+    } //===> Responsive <===//
+
+
+    var _screens = ["md", "lg", "xl"];
+    if (attributes.flexbox.cols) innerBlocksProps["data-items"] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
+
+    _screens.forEach(function (screen) {
+      if (attributes.flexbox["cols-".concat(screen)] && attributes.flexbox["cols-".concat(screen)] > 0) innerBlocksProps["data-".concat(screen)] = attributes.flexbox["cols-".concat(screen)];
+    });
   } //===> Render <===//
 
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: "General Settings"
-  }, !attributes.flexbox.slider ? /*#__PURE__*/React.createElement("div", {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General Settings", "phenix"),
+    initialOpen: attributes.flexbox.equals || attributes.flexbox.slider ? false : true
+  }, /*#__PURE__*/React.createElement("div", {
     className: "row gpx-15 mb-10 divider-b"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 mb-15"
-  }, /*#__PURE__*/React.createElement(_px_controls_grid_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_alignment__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Alignment", "phenix"),
     value: attributes.flexbox.align || "",
     onChange: set_alignment
@@ -220,34 +398,94 @@ function Edit(_ref) {
     checked: attributes.flexbox.equals,
     onChange: set_flex_equals,
     type: "checkbox",
-    className: "tiny"
+    className: "tiny me-10"
   }, /*#__PURE__*/React.createElement("span", {
     className: "fas fa-check radius-circle"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Equal Columns.", "phenix"))))) : null, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Equal Columns.", "phenix"))), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "flex-slider",
     checked: attributes.flexbox.slider,
     onChange: set_flex_slider,
-    type: "switch-checkbox",
+    type: "checkbox",
     className: "tiny"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Slider Mode", "phenix"))), attributes.flexbox.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: "Slider Options",
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "fas fa-check radius-circle"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Slider Mode.", "phenix")))))), attributes.flexbox.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Slider Options", "phenix"),
     initialOpen: true
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-20"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12 mb-15"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Type", "phenix"),
+    value: attributes.slider_type,
+    onChange: set_slider_type,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loop', "phenix"),
+      value: 'loop'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Fading', "phenix"),
+      value: 'fade'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sliding', "phenix"),
+      value: 'slide'
+    }]
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns No.", "phenix"),
+    value: attributes.flexbox.cols ? attributes.flexbox.cols : 1,
+    onChange: set_flexbox_cols,
+    min: 1,
+    max: 12
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Steps", "phenix"),
+    value: attributes.slider.steps || 1,
+    onChange: set_slider_steps,
+    min: 1,
+    max: 12
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Duration", "phenix"),
+    value: attributes.slider.duration || 6000,
+    onChange: set_slider_duration,
+    min: 3000,
+    max: 20000,
+    steps: 100
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Speed", "phenix"),
+    value: attributes.slider.speed || 700,
+    onChange: set_slider_speed,
+    min: 300,
+    max: 3000,
+    steps: 100
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "pdt-15 divider-t"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Enable Pagination",
-    checked: attributes.pagination,
-    onChange: set_pagination
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Autoplay", "phenix"),
+    checked: attributes.slider.autoplay || false,
+    onChange: set_slider_autoplay
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: "Enable Arrow Buttons",
-    checked: attributes.controls,
-    onChange: set_controls
-  })) : null, attributes.flexbox.equals || attributes.flexbox.slider ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-    title: "Columns Size",
-    initialOpen: true
-  }, /*#__PURE__*/React.createElement(_px_controls_grid_equal_columns__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    key: "row-columns",
-    value: attributes.columns,
-    onChange: set_columns
-  })) : null), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Arrows Buttons", "phenix"),
+    checked: attributes.slider.controls || false,
+    onChange: set_slider_controls
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable Bullet Pagination", "phenix"),
+    checked: attributes.slider.pagination || false,
+    onChange: set_slider_pagination
+  }))) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Responsive Options", "phenix"),
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_px_controls_elements_tabs__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    md: responsive_options,
+    lg: responsive_options,
+    xl: responsive_options
+  }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/row.jpg",
     alt: "",
     className: "fluid"
@@ -256,10 +494,10 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/grid/alignment.js":
-/*!**************************************************!*\
-  !*** ./src/blocks/px-controls/grid/alignment.js ***!
-  \**************************************************/
+/***/ "./src/blocks/px-controls/alignment.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/px-controls/alignment.js ***!
+  \*********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -268,7 +506,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _switch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../switch */ "./src/blocks/px-controls/switch.js");
+/* harmony import */ var _switch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./switch */ "./src/blocks/px-controls/switch.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -457,20 +695,170 @@ var FlexAlignment = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/blocks/px-controls/grid/equal-columns.js":
-/*!******************************************************!*\
-  !*** ./src/blocks/px-controls/grid/equal-columns.js ***!
-  \******************************************************/
+/***/ "./src/blocks/px-controls/elements/tabs.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/px-controls/elements/tabs.js ***!
+  \*************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ EqualColumns; }
+/* harmony export */   "default": function() { return /* binding */ ScreensTabs; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+ //===> Phenix Background <===//
+
+var ScreensTabs = /*#__PURE__*/function (_Component) {
+  _inherits(ScreensTabs, _Component);
+
+  var _super = _createSuper(ScreensTabs);
+
+  function ScreensTabs() {
+    var _this;
+
+    _classCallCheck(this, ScreensTabs);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      screen: "none"
+    });
+
+    return _this;
+  }
+
+  _createClass(ScreensTabs, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      //===> Properties <===//
+      var _this$props = this.props,
+          sm = _this$props.sm,
+          lg = _this$props.lg,
+          xl = _this$props.xl,
+          md = _this$props.md;
+
+      var screenContent = function screenContent() {}; //===> Initial Tab <===//
+
+
+      if (this.state.screen === "none") {
+        if (this.props.sm) this.setState({
+          screen: "sm"
+        });else if (this.props.md) this.setState({
+          screen: "md"
+        });else if (this.props.lg) this.setState({
+          screen: "lg"
+        });else if (this.props.xl) this.setState({
+          screen: "xl"
+        });
+      } else {
+        screenContent = this.props["".concat(this.state.screen)];
+      } //===> Options Changer <===//
+
+
+      var changeTab = function changeTab(clicked) {
+        //===> Option Data <===//
+        var element = clicked.target; //===> Show Options <===//
+
+        _this2.setState({
+          screen: element.getAttribute('data-options')
+        });
+      }; //===> Component Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-tabs"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "options-tabs px-group borderd-group divider-b border-alpha-15 mb-20"
+      }, this.props.sm ? /*#__PURE__*/React.createElement("button", {
+        key: "tablet",
+        onClick: changeTab,
+        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "bg-alpha-05" : "primary", " col far fa-tablet"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
+        "data-options": "sm"
+      }) : null, this.props.md ? /*#__PURE__*/React.createElement("button", {
+        key: "tablet",
+        onClick: changeTab,
+        className: "btn square tiny ".concat(this.state.screen !== "md" ? "bg-alpha-05" : "primary", " col far fa-tablet"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
+        "data-options": "md"
+      }) : null, this.props.lg ? /*#__PURE__*/React.createElement("button", {
+        key: "laptop",
+        onClick: changeTab,
+        className: "btn square tiny ".concat(this.state.screen !== "lg" ? "bg-alpha-05" : "primary", " col far fa-laptop"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Desktop Screens", "phenix"),
+        "data-options": "lg"
+      }) : null, this.props.xl ? /*#__PURE__*/React.createElement("button", {
+        key: "desktop",
+        onClick: changeTab,
+        className: "btn square tiny ".concat(this.state.screen !== "xl" ? "bg-alpha-05" : "primary", " col far fa-desktop"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("xLarge Screens", "phenix"),
+        "data-options": "xl"
+      }) : null), /*#__PURE__*/React.createElement("div", {
+        className: "flexbox ".concat(this.state.screen, "-options")
+      }, screenContent(this.state.screen)));
+    }
+  }]);
+
+  return ScreensTabs;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/number.js":
+/*!******************************************!*\
+  !*** ./src/blocks/px-controls/number.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PhenixNumber; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -494,162 +882,104 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /*
- * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
 */
 //===> WordPress Modules <===//
+ //===> Media Uploader <===//
 
- //===> Phenix Background <===//
+var PhenixNumber = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixNumber, _Component);
 
-var EqualColumns = /*#__PURE__*/function (_Component) {
-  _inherits(EqualColumns, _Component);
+  var _super = _createSuper(PhenixNumber);
 
-  var _super = _createSuper(EqualColumns);
-
-  function EqualColumns() {
-    _classCallCheck(this, EqualColumns);
+  function PhenixNumber() {
+    _classCallCheck(this, PhenixNumber);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(EqualColumns, [{
+  _createClass(PhenixNumber, [{
     key: "render",
     value: function render() {
       //===> Properties <===//
       var _this$props = this.props,
+          label = _this$props.label,
           value = _this$props.value,
-          onChange = _this$props.onChange; //===> .Default. <===//
+          min = _this$props.min,
+          max = _this$props.max,
+          steps = _this$props.steps,
+          icon = _this$props.icon,
+          onChange = _this$props.onChange; //===> Set Value <===//
 
-      var current = value,
-          columns = 0,
-          columns_md = 0,
-          columns_lg = 0,
-          columns_xl = 0; //===> Convert Value to Array <===//
+      var setNumber = function setNumber(changed) {
+        //===> Get Elements <===//
+        var input = changed.target,
+            minNum = parseInt(min) || 0,
+            maxNum = parseInt(max) || 0; //===> Get Input Element <===//
 
-      var valueArray = value.split(' '); //===> Get Default Values <===//
+        var newVal = parseInt(input.value); //===> Set Data <===//
 
-      if (valueArray) valueArray.forEach(function (item) {
-        if (item.includes('-md')) {
-          columns_md = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.includes('-lg')) {
-          columns_lg = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.includes('-xl')) {
-          columns_xl = parseInt(item.replace(/\D+/g, ''));
-        } else if (item.length > 0) {
-          columns = parseInt(item.replace(/\D+/g, ''));
-        }
-      }); //===> New Values Handler <===//
+        return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
+      },
+          //===> Increase Number <===//
+      IncreaseNum = function IncreaseNum(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
+            maxNum = parseInt(max) || 9999999,
+            step = steps ? parseInt(steps) : 1; //===> Get Input Element <===//
 
-      var set_value = function set_value(theValue, type, current_cols) {
-        //===> Update Columns <===//
-        if (current.includes(type)) {
-          //===> if the Value is valid update it <===//
-          if (theValue > 0) current = current.replace("".concat(type, "-").concat(current_cols), "".concat(type, "-").concat(theValue)); //===> if not delete it <===//
-          else current = current.replace(" ".concat(type, "-").concat(current_cols), "");
-        } //===> Set new Columns <===//
-        else if (theValue > 0) current += " ".concat(type, "-").concat(theValue);
-      }; //===> Set Columns-{Small} <===//
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) + step; //===> Set Data <===//
 
+        return onChange(newVal <= maxNum ? newVal : maxNum);
+      },
+          //===> Decrease Number <===//
+      DecreaseNum = function DecreaseNum(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
+            minNum = parseInt(min) || 0,
+            step = steps ? steps : 1; //===> Get Input Element <===//
 
-      var set_cols = function set_cols(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'row-cols', columns); //===> Return Options <===//
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) - step; //===> Set Data <===//
 
-        return onChange(current);
-      }; //===> Set Columns-{Medium} <===//
-
-
-      var set_cols_md = function set_cols_md(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'row-cols-md', columns_md); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Set Columns-{Large} <===//
-
-
-      var set_cols_lg = function set_cols_lg(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'row-cols-lg', columns_lg); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Set Columns-{xLarge} <===//
-
-
-      var set_cols_xl = function set_cols_xl(cols) {
-        //===> Set New Columns <===//
-        set_value(cols, 'row-cols-xl', columns_xl); //===> Return Options <===//
-
-        return onChange(current);
-      }; //===> Component Output <===//
+        return onChange(newVal >= minNum ? newVal : minNum);
+      }; //===> Output <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
-      }, /*#__PURE__*/React.createElement("p", {
-        className: "mb-10 fs-12"
-      }, "select number of columns in each row for each screen size"), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-16 me-10 fa-mobile",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-cols",
-        min: 0,
-        max: 12,
-        value: columns,
-        onChange: set_cols
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-16 me-10 fa-tablet",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-cols",
-        min: 0,
-        max: 12,
-        value: columns_md,
-        onChange: set_cols_md
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y mb-20"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-14 me-10 fa-laptop",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-cols",
-        min: 0,
-        max: 12,
-        value: columns_lg,
-        onChange: set_cols_lg
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "flexbox align-center-y"
-      }, /*#__PURE__*/React.createElement("i", {
-        className: "far fs-14 me-10 fa-desktop",
-        style: {
-          marginTop: "3px",
-          width: "25px"
-        }
-      }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
-        key: "mobile-cols",
-        min: 0,
-        max: 12,
-        value: columns_xl,
-        onChange: set_cols_xl
-      })));
+        className: "flexbox flex-gap-fix align-between flow-column"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label tx-uppercase weight-bold"
+      }, label), /*#__PURE__*/React.createElement("div", {
+        className: "px-counter-input position-rv fluid " + (icon ? icon : "")
+      }, !icon ? /*#__PURE__*/React.createElement("button", {
+        onClick: DecreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix"
+      }) : "", /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        min: min,
+        max: max,
+        value: parseInt(value) ? parseInt(value) : 0,
+        className: "form-control small radius-sm reset-appearance" + (!icon ? " tx-align-center" : ""),
+        onChange: setNumber
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "position-ab pos-end-0 pos-bottom-0 flexbox"
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: IncreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-plus divider-s icon-fix"
+      }), icon ? /*#__PURE__*/React.createElement("button", {
+        onClick: DecreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-minus divider-s icon-fix"
+      }) : "")));
     }
   }]);
 
-  return EqualColumns;
+  return PhenixNumber;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 
@@ -825,7 +1155,7 @@ module.exports = window["wp"]["i18n"];
   \****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"isEqual":{"type":"boolean","default":false},"columns":{"type":"string","default":""},"isSlider":{"type":"boolean","default":false},"pagination":{"type":"boolean","default":false},"controls":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"slider":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -941,28 +1271,50 @@ __webpack_require__.r(__webpack_exports__);
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
     blockProps.className += ' row'; //===> Properties <===//
 
-    if (attributes.flexbox.align) blockProps.className += " ".concat(attributes.flexbox.align);
-    if (attributes.flexbox.flow) blockProps.className += " ".concat(attributes.flexbox.flow);
-    if (attributes.flexbox.nowrap) blockProps.className += " ".concat(attributes.flexbox.nowrap);
-    if (attributes.flexbox.masonry) blockProps.className += " ".concat(attributes.flexbox.masonry); //===> Columns <===//
+    if (!attributes.flexbox.slider) {
+      if (attributes.flexbox.align) blockProps.className += " ".concat(attributes.flexbox.align);
+      if (attributes.flexbox.flow) blockProps.className += " ".concat(attributes.flexbox.flow);
+      if (attributes.flexbox.nowrap) blockProps.className += " ".concat(attributes.flexbox.nowrap);
+      if (attributes.flexbox.masonry) blockProps.className += " ".concat(attributes.flexbox.masonry);
+      if (attributes.flexbox.equals && attributes.flexbox.cols) blockProps.className += " row-cols-".concat(attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"); //===> Responsive <===//
 
-    if (attributes.flexbox.equals && attributes.columns) blockProps.className += attributes.columns; //===> Slider <===//
+      var screens = ["md", "lg", "xl"];
+      screens.forEach(function (screen) {
+        if (attributes.flexbox["align-".concat(screen)]) blockProps.className += " ".concat(attributes.flexbox["align-".concat(screen)]);
+        if (attributes.flexbox["flow-".concat(screen)]) blockProps.className += " ".concat(attributes.flexbox["flow-".concat(screen)]);
+        if (attributes.flexbox["nowrap-".concat(screen)]) blockProps.className += " ".concat(attributes.flexbox["nowrap-".concat(screen)]);
+        if (attributes.flexbox["masonry-".concat(screen)]) blockProps.className += " ".concat(attributes.flexbox["masonry-".concat(screen)]);
+        if (attributes.flexbox.equals && attributes.flexbox["cols-".concat(screen)]) blockProps.className += " row-cols-".concat(screen, "-").concat(attributes.flexbox["cols-".concat(screen)] > 0 ? attributes.flexbox["cols-".concat(screen)] : "auto");
+      });
+    } //===> Slider <===//
+
 
     if (attributes.flexbox.slider) {
       //===> Add Slider Name <===//
-      blockProps.className += ' px-slider'; //===> Items Info <===//
+      blockProps.className += ' px-slider'; //===> Set Other Options <===//
 
-      var columns_names = attributes.columns.split(' ');
-      columns_names.forEach(function (name) {
-        //===> Medium Screen <===//
-        if (name.includes('-md')) blockProps['data-md'] = name.replace('row-cols-md-', ''); //===> Large Screen <===//
-        else if (name.includes('-lg')) blockProps['data-lg'] = name.replace('row-cols-lg-', ''); //===> xLarge Screen <===//
-        else if (name.includes('-xl')) blockProps['data-xl'] = name.replace('row-cols-xl-', ''); //===> Small Screen <===//
-        else if (name.includes('row-cols')) blockProps['data-items'] = name.replace('row-cols-', '');
-      }); //===> Set Other Options <===//
+      if (attributes.slider.type) blockProps['data-type'] = attributes.slider.type;
+      if (attributes.slider.steps) blockProps['data-steps'] = attributes.slider.steps;
+      if (attributes.slider.speed) blockProps['data-speed'] = attributes.slider.speed;
+      if (attributes.slider.duration) blockProps['data-duration'] = attributes.slider.duration;
+      if (attributes.slider.controls) blockProps['data-controls'] = 1;
+      if (attributes.slider.pagination) blockProps['data-pagination'] = 1;
 
-      if (attributes.controls) blockProps['data-controls'] = 1;
-      if (attributes.pagination) blockProps['data-pagination'] = 1;
+      if (attributes.slider.hasOwnProperty('autoplay')) {
+        if (attributes.slider.autoplay === true) {
+          blockProps['data-autoplay'] = 1;
+        } else {
+          blockProps['data-autoplay'] = 0;
+        }
+      } //===> Responsive <===//
+
+
+      var _screens = ["md", "lg", "xl"];
+      if (attributes.flexbox.cols) blockProps["data-items"] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
+
+      _screens.forEach(function (screen) {
+        if (attributes.flexbox["cols-".concat(screen)] && attributes.flexbox["cols-".concat(screen)] > 0) blockProps["data-".concat(screen)] = attributes.flexbox["cols-".concat(screen)];
+      });
     } //===> Render <===//
 
 

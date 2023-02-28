@@ -42,10 +42,10 @@ export default class ScreensTabs extends Component {
             <div className='px-gb-tabs'>
                 {/*===> Tabs Buttons <===*/}
                 <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-20'>
-                    {this.props.sm ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "sm" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="sm"></button> : null}
-                    {this.props.md ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "md" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="md"></button> : null}
-                    {this.props.lg ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "lg" ? "light" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="lg"></button> : null}
-                    {this.props.xl ? <button key="desktop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "xl" ? "light" : "primary"} col far fa-desktop`} title={__("xLarge Screens", "phenix")}  data-options="xl"></button> : null}
+                    {this.props.sm ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "sm" ? "bg-alpha-05" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="sm"></button> : null}
+                    {this.props.md ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "md" ? "bg-alpha-05" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="md"></button> : null}
+                    {this.props.lg ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "lg" ? "bg-alpha-05" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="lg"></button> : null}
+                    {this.props.xl ? <button key="desktop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "xl" ? "bg-alpha-05" : "primary"} col far fa-desktop`} title={__("xLarge Screens", "phenix")}  data-options="xl"></button> : null}
                 </div>
                 {/*===> Screen <====*/}
                 <div className={`flexbox ${this.state.screen}-options`}>{screenContent(this.state.screen)}</div>

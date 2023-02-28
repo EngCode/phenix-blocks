@@ -80,23 +80,23 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
 
       //===> Properties <===//
       var _this$props = this.props,
-          small = _this$props.small,
-          large = _this$props.large,
-          xlarge = _this$props.xlarge,
-          medium = _this$props.medium;
+          sm = _this$props.sm,
+          lg = _this$props.lg,
+          xl = _this$props.xl,
+          md = _this$props.md;
 
       var screenContent = function screenContent() {}; //===> Initial Tab <===//
 
 
       if (this.state.screen === "none") {
-        if (this.props.small) this.setState({
-          screen: "small"
-        });else if (this.props.medium) this.setState({
-          screen: "medium"
-        });else if (this.props.large) this.setState({
-          screen: "large"
-        });else if (this.props.xlarge) this.setState({
-          screen: "xlarge"
+        if (this.props.sm) this.setState({
+          screen: "sm"
+        });else if (this.props.md) this.setState({
+          screen: "md"
+        });else if (this.props.lg) this.setState({
+          screen: "lg"
+        });else if (this.props.xl) this.setState({
+          screen: "xl"
         });
       } else {
         screenContent = this.props["".concat(this.state.screen)];
@@ -114,38 +114,36 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component"
+        className: "px-gb-tabs"
       }, /*#__PURE__*/React.createElement("div", {
         className: "options-tabs px-group borderd-group divider-b border-alpha-15 mb-20"
-      }, this.props.small ? /*#__PURE__*/React.createElement("button", {
+      }, this.props.sm ? /*#__PURE__*/React.createElement("button", {
         key: "tablet",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "small" ? "light" : "primary", " col far fa-tablet"),
+        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "light" : "primary", " col far fa-tablet"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
-        "data-options": "small"
-      }) : null, this.props.medium ? /*#__PURE__*/React.createElement("button", {
+        "data-options": "sm"
+      }) : null, this.props.md ? /*#__PURE__*/React.createElement("button", {
         key: "tablet",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "medium" ? "light" : "primary", " col far fa-tablet"),
+        className: "btn square tiny ".concat(this.state.screen !== "md" ? "light" : "primary", " col far fa-tablet"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
-        "data-options": "medium"
-      }) : null, this.props.large ? /*#__PURE__*/React.createElement("button", {
+        "data-options": "md"
+      }) : null, this.props.lg ? /*#__PURE__*/React.createElement("button", {
         key: "laptop",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "large" ? "light" : "primary", " col far fa-laptop"),
+        className: "btn square tiny ".concat(this.state.screen !== "lg" ? "light" : "primary", " col far fa-laptop"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Desktop Screens", "phenix"),
-        "data-options": "large"
-      }) : null, this.props.xlarge ? /*#__PURE__*/React.createElement("button", {
+        "data-options": "lg"
+      }) : null, this.props.xl ? /*#__PURE__*/React.createElement("button", {
         key: "desktop",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "xlarge" ? "light" : "primary", " col far fa-desktop"),
+        className: "btn square tiny ".concat(this.state.screen !== "xl" ? "light" : "primary", " col far fa-desktop"),
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("xLarge Screens", "phenix"),
-        "data-options": "xlarge"
+        "data-options": "xl"
       }) : null), /*#__PURE__*/React.createElement("div", {
-        className: "options-list"
-      }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox ".concat(this.state.screen, "-options")
-      }, screenContent(this.state.screen))));
+      }, screenContent(this.state.screen)));
     }
   }]);
 
@@ -268,7 +266,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         className: "px-counter-input position-rv fluid " + (icon ? icon : "")
       }, !icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix"
       }) : "", /*#__PURE__*/React.createElement("input", {
         type: "number",
         min: min,
@@ -280,10 +278,10 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         className: "position-ab pos-end-0 pos-bottom-0 flexbox"
       }, /*#__PURE__*/React.createElement("button", {
         onClick: IncreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-plus divider-s icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-plus divider-s icon-fix"
       }), icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus divider-s icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-minus divider-s icon-fix"
       }) : "")));
     }
   }]);
@@ -528,7 +526,16 @@ function Edit(props) {
     //===> Define Data <===//
     var grid_ops = attributes.grid; //===> Set Value <===//
 
-    grid_ops.cols = (!attributes.slider_mode ? "row-cols-" : "") + (grid_ops.cols > 0 ? value : "auto");
+    grid_ops.cols = value;
+    setAttributes({
+      grid: _objectSpread({}, grid_ops)
+    });
+  },
+      set_grid_cols_resp = function set_grid_cols_resp(value, screen) {
+    //===> Define Data <===//
+    var grid_ops = attributes.grid; //===> Set Value <===//
+
+    grid_ops["cols-".concat(screen)] = value;
     setAttributes({
       grid: _objectSpread({}, grid_ops)
     });
@@ -692,7 +699,18 @@ function Edit(props) {
   }, []); //===> Responsive Options <===//
 
   var responsive_options = function responsive_options(screen) {
-    return "Testing Screen " + screen;
+    //===> Layout <===//
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "col col-6 mb-15"
+    }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns No.", "phenix"),
+      value: attributes.grid["cols-".concat(screen)] || 0,
+      onChange: function onChange(value) {
+        return set_grid_cols_resp(value, screen);
+      },
+      min: 0,
+      max: 12
+    })));
   }; //===> Render <===//
 
 
@@ -817,7 +835,7 @@ function Edit(props) {
     className: "col-6 mb-15"
   }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns No.", "phenix"),
-    value: attributes.grid.cols ? attributes.grid.cols.replace("row-cols-", "") : 1,
+    value: attributes.grid.cols ? attributes.grid.cols : 1,
     onChange: set_grid_cols,
     min: 0,
     max: 12
@@ -865,9 +883,9 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Responsive Options", "phenix"),
     initialOpen: false
   }, /*#__PURE__*/React.createElement(_px_controls_elements_tabs__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    medium: responsive_options,
-    large: responsive_options,
-    xlarge: responsive_options
+    md: responsive_options,
+    lg: responsive_options,
+    xl: responsive_options
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://design.phenixthemes.com/px-assets/slider-placeholder.svg",
     alt: "",

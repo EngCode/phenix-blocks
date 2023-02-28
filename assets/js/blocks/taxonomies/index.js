@@ -315,7 +315,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         className: "px-counter-input position-rv fluid " + (icon ? icon : "")
       }, !icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix"
       }) : "", /*#__PURE__*/React.createElement("input", {
         type: "number",
         min: min,
@@ -327,10 +327,10 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         className: "position-ab pos-end-0 pos-bottom-0 flexbox"
       }, /*#__PURE__*/React.createElement("button", {
         onClick: IncreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-plus divider-s icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-plus divider-s icon-fix"
       }), icon ? /*#__PURE__*/React.createElement("button", {
         onClick: DecreaseNum,
-        className: "btn square small bg-transparent fs-13 increase-btn far fa-minus divider-s icon-fix"
+        className: "btn square small fs-13 increase-btn far fa-minus divider-s icon-fix"
       }) : "")));
     }
   }]);

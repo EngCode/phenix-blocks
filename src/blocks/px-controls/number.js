@@ -66,15 +66,15 @@ export default class PhenixNumber extends Component {
             {/*===> Counter Control <===*/}
             <div className={"px-counter-input position-rv fluid " + (icon ? icon : "")}>
                 {/*===> Button <===*/}
-                {!icon ? <button onClick={DecreaseNum} className='btn square small bg-transparent fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-bottom-0 divider-e icon-fix'></button> : ""}
+                {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 
                 {/*===> Number Input <===*/}
                 <input type="number" min={min} max={max} value={parseInt(value) ? parseInt(value) : 0} className={"form-control small radius-sm reset-appearance"+(!icon ? " tx-align-center" : "")} onChange={setNumber} />
 
                 {/*===> Button <===*/}
                 <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>
-                    <button onClick={IncreaseNum} className='btn square small bg-transparent fs-13 increase-btn far fa-plus divider-s icon-fix'></button>
-                    {icon ? <button onClick={DecreaseNum} className='btn square small bg-transparent fs-13 increase-btn far fa-minus divider-s icon-fix'></button> : ""}
+                    <button onClick={IncreaseNum} className='btn square small fs-13 increase-btn far fa-plus divider-s icon-fix'></button>
+                    {icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus divider-s icon-fix'></button> : ""}
                 </div>
             </div>
             {/*===> Counter Control <===*/}

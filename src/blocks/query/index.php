@@ -16,7 +16,7 @@ function px_query_render($block_attributes, $content) {
     $options = $block_attributes;
 
     //===> Grid Options <===//
-    $grid_cols = isset($grid['cols']) ? $grid['cols'] : "row-cols-1";
+    $grid_cols = "";
     $grid_opts = isset($grid['flow']) ? $grid['flow'] : false;
 
     //==>...<===//
@@ -34,9 +34,19 @@ function px_query_render($block_attributes, $content) {
         if (isset($slider['duration'])) { $slider_opts .= ' data-duration="'.$slider['duration'].'"'; }
         if (isset($slider['controls']) && $slider['controls']) { $slider_opts .= ' data-controls="1"'; }
         if (isset($slider['pagination']) && $slider['pagination']) { $slider_opts .= ' data-pagination="1"'; }
-        if (isset($grid['cols'])) { $slider_opts .= ' data-items="'.preg_replace('/[^0-9]/', '', $grid['cols']).'"'; }
         if (isset($slider['autoplay']) && $slider['autoplay']) { $slider_opts .= ' data-autoplay="1"'; }
         else { $slider_opts .= ' data-autoplay="0"'; }
+        //===>...<===//
+        if (isset($grid['cols'])) { $slider_opts .= ' data-items="'.preg_replace('/[^0-9]/', '', $grid['cols']).'"'; }
+        if (isset($grid['cols-md'])) { $slider_opts .= ' data-md="'.preg_replace('/[^0-9]/', '', $grid['cols-md']).'"'; }
+        if (isset($grid['cols-lg'])) { $slider_opts .= ' data-lg="'.preg_replace('/[^0-9]/', '', $grid['cols-lg']).'"'; }
+        if (isset($grid['cols-xl'])) { $slider_opts .= ' data-xl="'.preg_replace('/[^0-9]/', '', $grid['cols-xl']).'"'; }
+    } else {
+        //==>...<===//
+        if (isset($grid['cols'])) { $grid_cols .= 'row-cols-'.$grid['cols']; }
+        if (isset($grid['cols-md'])) { $grid_cols .= 'row-cols-md-'.$grid['cols-md']; }
+        if (isset($grid['cols-lg'])) { $grid_cols .= 'row-cols-lg-'.$grid['cols-lg']; }
+        if (isset($grid['cols-xl'])) { $grid_cols .= 'row-cols-xl-'.$grid['cols-xl']; }
     }
 
     //===> Custom Classes <===//

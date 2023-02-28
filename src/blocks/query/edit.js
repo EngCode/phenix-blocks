@@ -54,7 +54,15 @@ export default function Edit(props) {
         //===> Define Data <===//
         let grid_ops = attributes.grid;
         //===> Set Value <===//
-        grid_ops.cols = (!attributes.slider_mode ? "row-cols-" : "") + (grid_ops.cols > 0 ? value : "auto");
+        grid_ops.cols = value;
+        setAttributes({ grid: {...grid_ops} });
+    },
+
+    set_grid_cols_resp = (value, screen) => {
+        //===> Define Data <===//
+        let grid_ops = attributes.grid;
+        //===> Set Value <===//
+        grid_ops[`cols-${screen}`] = value;
         setAttributes({ grid: {...grid_ops} });
     },
 
@@ -202,7 +210,15 @@ export default function Edit(props) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return "Testing Screen "+screen;
+        
+        //===> Layout <===//
+        return <>
+            {/*===> Column <===*/}
+            <div className='col col-6 mb-15'>
+                <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid[`cols-${screen}`] || 0} onChange={value => set_grid_cols_resp(value, screen)} min={0} max={12}></PhenixNumber>
+            </div>
+            {/*===> // Column <===*/}
+        </>
     };
 
     //===> Render <===//
@@ -296,7 +312,7 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid.cols ? attributes.grid.cols.replace("row-cols-", "") : 1} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
+                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid.cols ? attributes.grid.cols : 1} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
@@ -322,7 +338,7 @@ export default function Edit(props) {
             </PanelBody> : null}
             {/*===> Widgets Panel <===*/}
             <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>
-                <ScreensTabs medium={responsive_options} large={responsive_options} xlarge={responsive_options} />
+                <ScreensTabs md={responsive_options} lg={responsive_options} xl={responsive_options} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

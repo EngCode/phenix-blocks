@@ -16,21 +16,15 @@ export default class ScreensTabs extends Component {
 
     render () {
         //===> Properties <===//
-        const {
-            small,
-            large,
-            xlarge,
-            medium,
-        } = this.props;
-
+        const {sm, lg, xl, md} = this.props;
         let screenContent = () => {};
 
         //===> Initial Tab <===//
         if (this.state.screen === "none") {
-            if(this.props.small) this.setState({screen: "small"});
-            else if(this.props.medium) this.setState({screen: "medium"});
-            else if(this.props.large) this.setState({screen: "large"});
-            else if(this.props.xlarge) this.setState({screen: "xlarge"});
+            if(this.props.sm) this.setState({screen: "sm"});
+            else if(this.props.md) this.setState({screen: "md"});
+            else if(this.props.lg) this.setState({screen: "lg"});
+            else if(this.props.xl) this.setState({screen: "xl"});
         } else {
             screenContent = this.props[`${this.state.screen}`];
         }
@@ -45,20 +39,16 @@ export default class ScreensTabs extends Component {
 
         //===> Component Output <===//
         return (
-            <div className='px-gb-component'>
+            <div className='px-gb-tabs'>
                 {/*===> Tabs Buttons <===*/}
                 <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-20'>
-                    {this.props.small ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "small" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="small"></button> : null}
-                    {this.props.medium ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "medium" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="medium"></button> : null}
-                    {this.props.large ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "large" ? "light" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="large"></button> : null}
-                    {this.props.xlarge ? <button key="desktop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "xlarge" ? "light" : "primary"} col far fa-desktop`} title={__("xLarge Screens", "phenix")}  data-options="xlarge"></button> : null}
+                    {this.props.sm ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "sm" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="sm"></button> : null}
+                    {this.props.md ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "md" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="md"></button> : null}
+                    {this.props.lg ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "lg" ? "light" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="lg"></button> : null}
+                    {this.props.xl ? <button key="desktop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "xl" ? "light" : "primary"} col far fa-desktop`} title={__("xLarge Screens", "phenix")}  data-options="xl"></button> : null}
                 </div>
-                {/*===> Options Tabs <===*/}
-                <div className='options-list'>
-                    {/*===> Screen <====*/}
-                    <div className={`flexbox ${this.state.screen}-options`}>{screenContent(this.state.screen)}</div>
-                </div>
-                {/*===> // Options Tabs <===*/}
+                {/*===> Screen <====*/}
+                <div className={`flexbox ${this.state.screen}-options`}>{screenContent(this.state.screen)}</div>
             </div>
         )
     }

@@ -35,6 +35,7 @@ Phenix(document).ready(ready => {
                     console.log("is Success");
                     window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + '/success' : "/success"}`;
                 }
+
                 //===> Show Failed Message <===//
                 else Phenix(document).notifications({
                     type: "error",

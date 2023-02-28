@@ -196,14 +196,18 @@ PhenixElements.prototype.popup = function (options?:{
         }
 
         //=====> Open by URL <=====//
-        if (parseInt(hash_url))  window.addEventListener('load', () => {
-            setTimeout(() => {
-                if (window.location.hash.substr(1) == modal_id) show_modal();
-            }, timeout)
-        });
+        if (hash_url) {
+            if (hash_url !== '0' || 'false') window.addEventListener('load', () => {
+                setTimeout(() => {
+                    if (window.location.hash.substr(1) == modal_id) show_modal();
+                }, timeout)
+            });
+        }
 
         //=====> Open on Load <=====//
-        if (onload) if (onload !== '0' || 'false') window.addEventListener('load', () => setTimeout(show_modal, timeout));
+        if (onload) {
+            if (onload !== '0' || 'false') window.addEventListener('load', () => setTimeout(show_modal, timeout));
+        }
         
         //=====> Open When Scroll <=====//
         if (showon) {

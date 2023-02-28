@@ -13,8 +13,19 @@ export default class PhenixNumber extends Component {
         //===> Properties <===//
         const {label, value, min, max, steps, icon, onChange} = this.props;
 
-        //===> Set new Value <===//
-        const setNumber = (changed) => onChange(changed.value),
+        //===> Set Value <===//
+        const setNumber = (changed) => {
+            //===> Get Elements <===//
+            let input  = changed.target,
+                minNum  = parseInt(min) || 0,
+                maxNum  = parseInt(max) || 0;
+
+            //===> Get Input Element <===//
+            let newVal = parseInt(input.value);
+
+            //===> Set Data <===//
+            return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
+        },
 
         //===> Increase Number <===//
         IncreaseNum = (clicked) => {
@@ -28,7 +39,6 @@ export default class PhenixNumber extends Component {
             let input  = wrapper.querySelector('input[type="number"]'),
                 newVal = parseInt(input.value) + step;
 
-            console.log(input, newVal);
             //===> Set Data <===//
             return onChange(newVal <= maxNum ? newVal : maxNum);
         },
@@ -45,7 +55,6 @@ export default class PhenixNumber extends Component {
             let input = wrapper.querySelector('input[type="number"]'),
                 newVal = parseInt(input.value) - step;
 
-            console.log(input, newVal);
             //===> Set Data <===//
             return onChange(newVal >= minNum ? newVal : minNum);
         };

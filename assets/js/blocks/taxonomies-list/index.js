@@ -66,10 +66,17 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
           max = _this$props.max,
           steps = _this$props.steps,
           icon = _this$props.icon,
-          onChange = _this$props.onChange; //===> Set new Value <===//
+          onChange = _this$props.onChange; //===> Set Value <===//
 
       var setNumber = function setNumber(changed) {
-        return onChange(changed.value);
+        //===> Get Elements <===//
+        var input = changed.target,
+            minNum = parseInt(min) || 0,
+            maxNum = parseInt(max) || 0; //===> Get Input Element <===//
+
+        var newVal = parseInt(input.value); //===> Set Data <===//
+
+        return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
       },
           //===> Increase Number <===//
       IncreaseNum = function IncreaseNum(clicked) {
@@ -80,8 +87,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
             step = steps ? parseInt(steps) : 1; //===> Get Input Element <===//
 
         var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) + step;
-        console.log(input, newVal); //===> Set Data <===//
+            newVal = parseInt(input.value) + step; //===> Set Data <===//
 
         return onChange(newVal <= maxNum ? newVal : maxNum);
       },
@@ -94,8 +100,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
             step = steps ? steps : 1; //===> Get Input Element <===//
 
         var input = wrapper.querySelector('input[type="number"]'),
-            newVal = parseInt(input.value) - step;
-        console.log(input, newVal); //===> Set Data <===//
+            newVal = parseInt(input.value) - step; //===> Set Data <===//
 
         return onChange(newVal >= minNum ? newVal : minNum);
       }; //===> Output <===//

@@ -11,29 +11,32 @@ function px_query_render($block_attributes, $content) {
     $markup = '';ob_start();
 
     //===> Current Attributes <===//
+    $grid = $block_attributes['grid'];
+    $slider = $block_attributes['slider'];
     $options = $block_attributes;
 
     //===> Grid Options <===//
-    $grid_cols = ($options['grid_cols_stat'] || $options['slider_mode']) ? "" : " ". $options['grid_cols'];
-    $grid_opts = $options['grid_flow'];
+    $grid_cols = isset($grid['cols']) ? $grid['cols'] : "row-cols-1";
+    $grid_opts = isset($grid['flow']) ? $grid['flow'] : false;
+
     //==>...<===//
-    if (isset($options['grid_masonry'])) { $grid_opts .= " ".$options['grid_masonry']; }
-    if (isset($options['grid_nowrap'])) { $grid_opts .= " ".$options['grid_nowrap']; }
-    if (isset($options['grid_alignment'])) { $grid_opts .= " ".$options['grid_alignment']; }
-    
+    if (isset($grid['masonry'])) { $grid_opts .= " ".$grid['masonry']; }
+    if (isset($grid['nowrap'])) { $grid_opts .= " ".$grid['nowrap']; }
+
     //==>. Slider Options .<===//
     $slider_opts = "";
     if ($options['slider_mode']) {
         //===>...<===//
-        $grid_opts .= " px-slider";
-        if (isset($options['slider_type'])) { $slider_opts .= ' data-type="'.$options['slider_type'].'"'; }
-        if (isset($options['slider_steps'])) { $slider_opts .= ' data-steps="'.$options['slider_steps'].'"'; }
-        if (isset($options['slider_speed'])) { $slider_opts .= ' data-speed="'.$options['slider_speed'].'"'; }
-        if (isset($options['slider_duration'])) { $slider_opts .= ' data-duration="'.$options['slider_duration'].'"'; }
-        if (isset($options['slider_autoplay']) && $options['slider_autoplay']) { $slider_opts .= ' data-autoplay="1"'; }
-        if (isset($options['slider_controls']) && $options['slider_controls']) { $slider_opts .= ' data-controls="1"'; }
-        if (isset($options['slider_pagination']) && $options['slider_pagination']) { $slider_opts .= ' data-pagination="1"'; }
-        if (isset($options['grid_cols'])) { $slider_opts .= ' data-items="'.preg_replace('/[^0-9]/', '', $options['grid_cols']).'"'; }
+        $grid_opts .= " px-slider ";
+        if (isset($slider['type'])) { $slider_opts .= ' data-type="'.$slider['type'].'"'; }
+        if (isset($slider['steps'])) { $slider_opts .= ' data-steps="'.$slider['steps'].'"'; }
+        if (isset($slider['speed'])) { $slider_opts .= ' data-speed="'.$slider['speed'].'"'; }
+        if (isset($slider['duration'])) { $slider_opts .= ' data-duration="'.$slider['duration'].'"'; }
+        if (isset($slider['controls']) && $slider['controls']) { $slider_opts .= ' data-controls="1"'; }
+        if (isset($slider['pagination']) && $slider['pagination']) { $slider_opts .= ' data-pagination="1"'; }
+        if (isset($grid['cols'])) { $slider_opts .= ' data-items="'.preg_replace('/[^0-9]/', '', $grid['cols']).'"'; }
+        if (isset($slider['autoplay']) && $slider['autoplay']) { $slider_opts .= ' data-autoplay="1"'; }
+        else { $slider_opts .= ' data-autoplay="0"'; }
     }
 
     //===> Custom Classes <===//
@@ -49,7 +52,7 @@ function px_query_render($block_attributes, $content) {
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     //===> Custom Query <===//
-    if (!$options['native_query']) {
+    if ($options['post_type'] !== "default") {
         //===> Query Configuration <===//
         $query_config = array(
             'paged' => $paged,

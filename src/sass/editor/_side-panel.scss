@@ -187,7 +187,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			overflow-y: auto;
 			border-#{$direction-end}: 1px solid rgba(#000, 0.15);
 		}
-		
+
 		/*==== Popup List ====*/
 		[class*="explorer__list"] {
 			padding-top: 20px;
@@ -196,4 +196,3 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		}
 	}
 }
-

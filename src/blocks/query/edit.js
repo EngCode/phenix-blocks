@@ -20,7 +20,8 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
 import PhenixNumber from "../px-controls/number";
-import FlexAlignment from "../px-controls/grid/alignment";
+import OptionControl from '../px-controls/switch';
+import ScreensTabs from "../px-controls/elements/tabs";
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -31,36 +32,124 @@ export default function Edit(props) {
 
     //===> Query Options <===//
     const set_order = order => setAttributes({ order }),
-          set_post_type  = post_type  => setAttributes({ post_type }),
-          set_per_page   = per_page   => setAttributes({ per_page }),
-          set_pagination = pagination => setAttributes({ pagination }),
-          set_native_query = native_query => setAttributes({ native_query }),
-          set_template_part = template_part => setAttributes({ template_part });
+        set_post_type  = post_type  => setAttributes({ post_type }),
+        set_grid_mode = grid_mode => setAttributes({ grid_mode }),
+        set_per_page   = per_page   => setAttributes({ per_page }),
+        set_pagination = pagination => setAttributes({ pagination }),
+        set_template_part = template_part => setAttributes({ template_part }),
+        set_slider_mode = value => {
+            //===> Define Data <===//
+            let options = attributes.grid;
+
+            //===> Convert Grid to Slider <===//
+            if (options.state && value) options.state = false;
+            if (options.cols && parseInt(options.cols) < 1) options.cols = 1;
+
+            //===> Set Value <===//
+            setAttributes({slider_mode: value, grid: {...options}});
+        };
 
     //===> Grid Options <===//
-    const set_grid_mode = grid_mode => setAttributes({ grid_mode }),
-          set_grid_cols = grid_cols => setAttributes({ grid_cols: (!attributes.slider_mode ? "row-cols-" : "") + (grid_cols > 0 ? grid_cols : "auto") }),
-          set_grid_cols_stat = grid_cols_stat => setAttributes({ grid_cols_stat }),
-          set_grid_alignment = grid_alignment => setAttributes({ grid_alignment });
-    
+    const set_grid_cols = value => {
+        //===> Define Data <===//
+        let grid_ops = attributes.grid;
+        //===> Set Value <===//
+        grid_ops.cols = (!attributes.slider_mode ? "row-cols-" : "") + (grid_ops.cols > 0 ? value : "auto");
+        setAttributes({ grid: {...grid_ops} });
+    },
+
+    set_grid_state = target => {
+        //==> Get Current <==//
+        let grid_ops = attributes.grid;
+
+        //==> Set Value <==//
+        grid_ops.state = target.checked;
+        console.log(grid_ops);
+        setAttributes({grid : {...grid_ops}});
+    };
+
     //===> Grid Utilites <===//
-    const set_grid_flow = grid_flow => grid_flow ? setAttributes({ grid_flow: "flow-reverse" }) : setAttributes({grid_flow :""}),
-          set_grid_nowrap = grid_nowrap => grid_nowrap ? setAttributes({ grid_nowrap: "flow-nowrap" }) : setAttributes({grid_nowrap:""}),
-          set_grid_masonry = grid_masonry => grid_masonry ? setAttributes({ grid_masonry: "px-masonry" }) : setAttributes({grid_masonry:""});
+    const set_grid_flow = target => {
+        //==> Get Current <==//
+        let grid_ops = attributes.grid;
+
+        //==> Set Value <==//
+        grid_ops.flow = target.checked ? target.value : "";
+        setAttributes({grid : {...grid_ops}});
+    },
+
+    set_grid_masonry = target => {
+        //==> Get Current <==//
+        let grid_ops = attributes.grid;
+
+        //==> Set Value <==//
+        grid_ops.masonry = target.checked ? target.value : "";
+        setAttributes({grid : {...grid_ops}});
+    };
 
     //===> Slider Options <===//
-    const set_slider_type = slider_type => setAttributes({ slider_type }),
-          set_slider_steps = slider_steps => setAttributes({ slider_steps }),
-          set_slider_duration = slider_duration => setAttributes({ slider_duration }),
-          set_slider_speed = slider_speed => setAttributes({ slider_speed }),
-          set_slider_autoplay = slider_autoplay => setAttributes({ slider_autoplay }),
-          set_slider_controls = slider_controls => setAttributes({ slider_controls }),
-          set_slider_pagination = slider_pagination => setAttributes({ slider_pagination }),
-          set_slider_mode = slider_mode => setAttributes({
-            slider_mode: slider_mode,
-            grid_cols_stat : slider_mode ? false : attributes.grid_cols_stat,
-            grid_cols : slider_mode && parseInt(attributes.grid_cols) < 1 ? 1 : attributes.grid_cols,
-        });
+    const set_slider_type = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.type = value;
+        setAttributes({ slider : {...options} });
+    },
+
+    set_slider_steps = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.steps = value;
+        setAttributes({ slider : {...options} });
+    },
+
+    set_slider_duration = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.duration = value;
+        setAttributes({ slider : {...options} });
+    },
+
+    set_slider_speed = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.speed = value;
+        setAttributes({ slider : {...options} });
+    },
+
+    set_slider_autoplay = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.autoplay = value;
+        setAttributes({slider : {...options}});
+    },
+
+    set_slider_controls = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.controls = value;
+        setAttributes({slider : {...options}});
+    },
+
+    set_slider_pagination = value => {
+        //==> Get Current <==//
+        let options = attributes.slider;
+
+        //==> Set Value <==//
+        options.pagination = value;
+        setAttributes({slider : {...options}});
+    };
 
     //===> Set Phenix Components <===//
     const setPhenixView = () => {
@@ -96,8 +185,8 @@ export default function Edit(props) {
         //===> Fetch Post Types <===//
         if (postTypes.length < 2) apiFetch({path: 'wp/v2/types'}).then(post_types => {
             //===> Reset Types <===//
-            let new_types = [];
-    
+            let new_types = [{"value": "default", "label": "Default"}];
+
             //===> Get Current Active Types <===//
             for (const [key, value] of Object.entries(post_types)) {
                 //===> Exclude the Core Types <===//
@@ -111,6 +200,11 @@ export default function Edit(props) {
         });
     }, []);
 
+    //===> Responsive Options <===//
+    const responsive_options = (screen) => {
+        return "Testing Screen "+screen;
+    };
+
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}
@@ -118,11 +212,10 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                {!attributes.native_query ? <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={postTypes}/> : ""}
-                <ToggleControl label={__("Native Query", "phenix")} checked={attributes.native_query} onChange={set_native_query}/>
+                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={postTypes}/>
 
                 {/*===> Group <===*/}
-                {!attributes.native_query ? 
+                {attributes.post_type !== 'default' ? 
                 <div className='row gpx-20 mb-15'>
                     {/*===> Column <===*/}
                     <div className='col-6'>
@@ -137,6 +230,7 @@ export default function Edit(props) {
                     </div>
                     {/*===> // Column <===*/}
                 </div> : ""}
+
                 {/*=== Card Template ===*/}
                 <TextControl key="template-name" label={__("Card Template", "phenix")} value={ attributes.template_part } onChange={set_template_part}/>
 
@@ -150,50 +244,44 @@ export default function Edit(props) {
                     <div className='col-6'>
                         <ToggleControl label={__("Grid Mode", "phenix")} checked={attributes.grid_mode} onChange={set_grid_mode}/>
                     </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        <ToggleControl label={__("Slider Mode", "phenix")} checked={attributes.slider_mode} onChange={set_slider_mode}/>
+                    </div>
                     {/*===> // Column <===*/}
                 </div>
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            {attributes.grid_mode ? <PanelBody title={__("Loop Grid", "phenix")} initialOpen={true}>
+            {attributes.grid_mode && !attributes.slider_mode ? <PanelBody title={__("Loop Grid", "phenix")} initialOpen={true}>
                 {/*===> Columns No. in Row <===*/}
-                {!attributes.slider_mode ? <>
-                    {!attributes.grid_cols_stat ? <div className="mb-15">
-                        <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={1} max={12}></PhenixNumber>
-                    </div> : ""}
+                {!attributes.grid.state ? <div className="mb-15">
+                    <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid.cols?.replace("row-cols-", "") || 1} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
+                </div> : ""}
 
-                    {/*===> Free Columns Size <===*/}
-                    <ToggleControl label={__("Free Columns Size ?", "phenix")} checked={attributes.grid_cols_stat} onChange={set_grid_cols_stat}/>    
-                </> : null}
+                {/*===> Switch Button <===*/}
+                <OptionControl name='grid-state' checked={attributes.grid.state} onChange={set_grid_state} type='switch-checkbox' className='small'>
+                    <span>{__("Free Columns Size ?", "phenix")}</span>
+                </OptionControl>
 
                 {/*===> Switch Buttons <===*/}
                 <div className='row gpx-15 mb-15'>
-                    {/*===> Column [For Alignment] <===*/}
-                    <div className='col-12 mb-20'>
-                        <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.grid_alignment} onChange={set_grid_alignment}></FlexAlignment>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='grid-state' value="flow-reverse" checked={attributes.grid.flow?.length > 0} onChange={set_grid_flow} type='switch-checkbox' className='small'>
+                            <span>{__("Reverse", "phenix")}</span>
+                        </OptionControl>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
                         {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Reverse ", "phenix")} checked={attributes.grid_flow.length > 0} onChange={set_grid_flow}/>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6'>
-                        {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Nowrap", "phenix")} checked={attributes.grid_nowrap.length > 0} onChange={set_grid_nowrap}/>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6'>
-                        {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Slider Mode", "phenix")} checked={attributes.slider_mode} onChange={set_slider_mode}/>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6'>
-                        {/*===> Switch Button <===*/}
-                        <ToggleControl label={__("Masonry", "phenix")} checked={attributes.grid_masonry.length > 0} onChange={set_grid_masonry}/>
+                        <OptionControl name='grid-masonry' value="px-masonry" checked={attributes.grid.masonry?.length > 0} onChange={set_grid_masonry} type='switch-checkbox' className='small'>
+                            <span>{__("Masonry", "phenix")}</span>
+                        </OptionControl>
                     </div>
                     {/*===> // Column <===*/}
                 </div>
-            </PanelBody> : ""}
+            </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             {attributes.slider_mode ? <PanelBody title={__("Slider Options", "phenix")} initialOpen={true}>
                 {/*===> Elements Group <===*/}
@@ -208,30 +296,34 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={1} max={12}></PhenixNumber>
+                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid.cols ? attributes.grid.cols.replace("row-cols-", "") : 1} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Steps", "phenix")} value={attributes.slider_steps} onChange={set_slider_steps} min={1} max={12}></PhenixNumber>
+                        <PhenixNumber label={__("Steps", "phenix")} value={attributes.slider.steps || 1} onChange={set_slider_steps} min={1} max={12}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Duration", "phenix")} value={attributes.slider_duration} onChange={set_slider_duration} min={3000} max={20000} steps={100}></PhenixNumber>
+                        <PhenixNumber label={__("Duration", "phenix")} value={attributes.slider.duration || 6000} onChange={set_slider_duration} min={3000} max={20000} steps={100}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Speed", "phenix")} value={attributes.slider_speed} onChange={set_slider_speed} min={300} max={3000} steps={100}></PhenixNumber>
+                        <PhenixNumber label={__("Speed", "phenix")} value={attributes.slider.speed || 700} onChange={set_slider_speed} min={300} max={3000} steps={100}></PhenixNumber>
                     </div>
                     {/*===> // Column <===*/}
                 </div>
 
                 {/*===> Switch Buttons <===*/}
                 <div className='pdt-15 divider-t'>
-                    <ToggleControl label={__("Enable Autoplay", "phenix")} checked={attributes.slider_autoplay} onChange={set_slider_autoplay}/>
-                    <ToggleControl label={__("Enable Arrows Buttons", "phenix")} checked={attributes.slider_controls} onChange={set_slider_controls}/>
-                    <ToggleControl label={__("Enable Bullet Pagination", "phenix")} checked={attributes.slider_pagination} onChange={set_slider_pagination}/>
+                    <ToggleControl label={__("Enable Autoplay", "phenix")} checked={attributes.slider.autoplay || false} onChange={set_slider_autoplay}/>
+                    <ToggleControl label={__("Enable Arrows Buttons", "phenix")} checked={attributes.slider.controls || false} onChange={set_slider_controls}/>
+                    <ToggleControl label={__("Enable Bullet Pagination", "phenix")} checked={attributes.slider.pagination || false} onChange={set_slider_pagination}/>
                 </div>
-            </PanelBody> : ""}
+            </PanelBody> : null}
+            {/*===> Widgets Panel <===*/}
+            <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>
+                <ScreensTabs medium={responsive_options} large={responsive_options} xlarge={responsive_options} />
+            </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

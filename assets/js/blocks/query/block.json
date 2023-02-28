@@ -11,7 +11,7 @@
   "attributes": {
     "post_type": {
       "type": "string",
-      "default": "post"
+      "default": "default"
     },
     "template_part": {
       "type": "string",
@@ -29,10 +29,6 @@
       "type": "boolean",
       "default": false
     },
-    "native_query": {
-      "type": "boolean",
-      "default": false
-    },
     "preview": {
       "type": "boolean",
       "default": false
@@ -41,61 +37,21 @@
       "type": "boolean",
       "default": false
     },
-    "grid_cols": {
-      "type": "string",
-      "default": "row-cols-auto"
-    },
-    "grid_cols_stat": {
-      "type": "boolean",
-      "default": true
-    },
-    "grid_flow": {
-      "type": "string",
-      "default": ""
-    },
-    "grid_nowrap": {
-      "type": "string",
-      "default": ""
-    },
-    "grid_masonry": {
-      "type": "string",
-      "default": ""
-    },
-    "grid_alignment": {
-      "type": "string",
-      "default": ""
+    "grid": {
+      "type": "object",
+      "default": {}
     },
     "slider_mode": {
       "type": "boolean",
       "default": false
     },
-    "slider_autoplay": {
-      "type": "boolean",
-      "default": true
+    "slider": {
+      "type": "object",
+      "default": {}
     },
-    "slider_controls": {
-      "type": "boolean",
-      "default": true
-    },
-    "slider_pagination": {
-      "type": "boolean",
-      "default": false
-    },
-    "slider_steps": {
-      "type": "string",
-      "default": "1"
-    },
-    "slider_duration": {
-      "type": "string",
-      "default": "7000"
-    },
-    "slider_speed": {
-      "type": "string",
-      "default": "700"
-    },
-    "slider_type": {
-      "type": "string",
-      "default": "loop"
+    "responsive": {
+      "type": "object",
+      "default": {}
     }
   },
   "example": {

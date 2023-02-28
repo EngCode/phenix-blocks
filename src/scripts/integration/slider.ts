@@ -149,7 +149,7 @@ PhenixElements.prototype.slider = function (options?:{
                 interval: duration,
                 perPage: items,
                 perMove: steps,
-                autoplay: autoplay,
+                autoplay: parseInt(autoplay),
                 pauseOnHover: false,
                 mediaQuery: 'min',
                 direction: direction,

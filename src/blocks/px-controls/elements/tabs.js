@@ -6,75 +6,53 @@
 */
 
 //===> WordPress Modules <===//
+import { __ } from '@wordpress/i18n';
 import {Component} from '@wordpress/element';
 
-import {
-    PanelBody,
-    SelectControl,
-    ToggleControl
-} from '@wordpress/components';
-
 //===> Phenix Background <===//
-export default class FlexAlignment extends Component {
+export default class ScreensTabs extends Component {
+    //===> States <===//
+    state = {screen : "none"};
+
     render () {
         //===> Properties <===//
         const {
-            value,
-            onChange
+            small,
+            large,
+            xlarge,
+            medium,
         } = this.props;
+
+        //===> Initial Tab <===//
+        if (this.state.screen === "none") {
+            if(this.props.small) this.setState({screen: "small"});
+            else if(this.props.medium) this.setState({screen: "medium"});
+            else if(this.props.large) this.setState({screen: "large"});
+            else if(this.props.xlarge) this.setState({screen: "xlarge"});
+        }
 
         //===> Options Changer <===//
         const changeTab = (clicked) => {
             //===> Option Data <===//
-            let element = Phenix(clicked.target),
-                parent  = element.ancestor('.options-tabs'),
-                optionsList = Phenix(parent).next('.options-list'),
-                currentActive = Phenix(parent.querySelector('.primary')),
-                currentType = `${element[0].getAttribute('data-options')}-options`,
-                targetElement = optionsList.querySelector(`.${currentType}`);
-
-            //===> Change Active <===//
-            currentActive.addClass('light').removeClass('primary');
-            element.addClass('primary').removeClass('light');
-
+            let element = clicked.target;
             //===> Show Options <===//
-            optionsList.querySelector('.flexbox:not(.hidden)')?.classList.add('hidden');
-            Phenix(targetElement).removeClass('hidden');
+            this.setState({screen: element.getAttribute('data-options')});
         };
 
         //===> Component Output <===//
         return (
             <div className='px-gb-component'>
-                {/*=== Flow Reverse ===*/}
-                <ToggleControl key="align-flow" label="Flow Reverse ?" checked={isReversed()} onChange={setFlow}/>
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
-                {/*===> Responsive Devices <===*/}
-                <div className='options-tabs px-group borderd-group radius-sm border-1 border-solid border-alpha-10 mb-20'>
-                    <button key="mobile" onClick={changeTab} className={`btn square tiny primary col far fa-mobile`} title="Mobile Screens" data-options="small"></button>
-                    <button key="tablet" onClick={changeTab} className={`btn square tiny light col far fa-tablet`} title="Tablet Screens" data-options="medium"></button>
-                    <button key="laptop" onClick={changeTab} className={`btn square tiny light col far fa-laptop`} title="Desktop Screens" data-options="large"></button>
-                    <button key="desktop" onClick={changeTab} className={`btn square tiny light col far fa-desktop`} title="xLarge Screens" data-options="xlarge"></button>
+                {/*===> Tabs Buttons <===*/}
+                <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-20'>
+                    {this.props.small ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "small" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="small"></button> : null}
+                    {this.props.medium ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "medium" ? "light" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="medium"></button> : null}
+                    {this.props.large ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "large" ? "light" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="large"></button> : null}
+                    {this.props.xlarge ? <button key="desktop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "xlarge" ? "light" : "primary"} col far fa-desktop`} title={__("xLarge Screens", "phenix")}  data-options="xlarge"></button> : null}
                 </div>
                 {/*===> Options Tabs <===*/}
                 <div className='options-list'>
-                    {/*===> Small <====*/}
-                    <div className={`flexbox small-options`}>
-                        
-                    </div>
-                    {/*===> Medium <====*/}
-                    <div className={`flexbox medium-options hidden`}>
-
-                    </div>
-                    {/*===> Large <====*/}
-                    <div className={`flexbox large-options hidden`}>
-
-                    </div>
-                    {/*===> xLarge <====*/}
-                    <div className={`flexbox xlarge-options hidden`}>
-
-                    </div>
-                    {/*===> xLarge <====*/}
+                    {/*===> Screen <====*/}
+                    <div className={`flexbox ${this.state.screen}-options`}>{this.props[`${this.state.screen}`](this.state.screen)}</div>
                 </div>
                 {/*===> // Options Tabs <===*/}
             </div>

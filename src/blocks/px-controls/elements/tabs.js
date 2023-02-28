@@ -23,12 +23,16 @@ export default class ScreensTabs extends Component {
             medium,
         } = this.props;
 
+        let screenContent = () => {};
+
         //===> Initial Tab <===//
         if (this.state.screen === "none") {
             if(this.props.small) this.setState({screen: "small"});
             else if(this.props.medium) this.setState({screen: "medium"});
             else if(this.props.large) this.setState({screen: "large"});
             else if(this.props.xlarge) this.setState({screen: "xlarge"});
+        } else {
+            screenContent = this.props[`${this.state.screen}`];
         }
 
         //===> Options Changer <===//
@@ -52,7 +56,7 @@ export default class ScreensTabs extends Component {
                 {/*===> Options Tabs <===*/}
                 <div className='options-list'>
                     {/*===> Screen <====*/}
-                    <div className={`flexbox ${this.state.screen}-options`}>{this.props[`${this.state.screen}`](this.state.screen)}</div>
+                    <div className={`flexbox ${this.state.screen}-options`}>{screenContent(this.state.screen)}</div>
                 </div>
                 {/*===> // Options Tabs <===*/}
             </div>

@@ -83,7 +83,10 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
           small = _this$props.small,
           large = _this$props.large,
           xlarge = _this$props.xlarge,
-          medium = _this$props.medium; //===> Initial Tab <===//
+          medium = _this$props.medium;
+
+      var screenContent = function screenContent() {}; //===> Initial Tab <===//
+
 
       if (this.state.screen === "none") {
         if (this.props.small) this.setState({
@@ -95,6 +98,8 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
         });else if (this.props.xlarge) this.setState({
           screen: "xlarge"
         });
+      } else {
+        screenContent = this.props["".concat(this.state.screen)];
       } //===> Options Changer <===//
 
 
@@ -140,7 +145,7 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
         className: "options-list"
       }, /*#__PURE__*/React.createElement("div", {
         className: "flexbox ".concat(this.state.screen, "-options")
-      }, this.props["".concat(this.state.screen)](this.state.screen))));
+      }, screenContent(this.state.screen))));
     }
   }]);
 

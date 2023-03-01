@@ -52,7 +52,7 @@
         color: var(--color);
         background-color: var(--background);
         position: relative;
-        @extend %fast-motion;
+        transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
         @include padding_inline(var(--space-in));
         /*==== Hover & Active ====*/
         &:hover, &.px-item-active, &.px-submenu-active {
@@ -83,14 +83,12 @@
         &:not(.megamenu) li {
             position: relative;
             line-height: var(--height);
-            @include padding-inline(var(--space-in));
             ul {border-radius: var(--radius);}
+            @include padding-inline(var(--space-in));
+            transition: color 0.3s ease, background-color 0.3s;
         }
         /*==== hover ====*/
-        li:hover, li.px-item-active {
-            @extend %fast-motion;
-            color: var(--color-hvr);
-        }
+        li:hover, li.px-item-active {color: var(--color-hvr);}
     }
 
     .arrow-icon::before {

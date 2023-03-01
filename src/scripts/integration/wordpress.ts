@@ -14,9 +14,6 @@ Phenix(document).ready(ready => {
 
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
-        //====> Add Design Options Classes <===//
-        document.body.classList.add('phenix-wp-design');
-
         //====> S.E.O : Fixes <====//
         document.body.setAttribute('itemscope', "");
         document.body.setAttribute('itemtype', "https://schema.org/WebPage");

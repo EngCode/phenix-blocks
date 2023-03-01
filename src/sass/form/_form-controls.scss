@@ -125,11 +125,11 @@
     /*=== Text ===*/
     color : var(--color);
     font-size : var(--text-size);
-    @extend %fast-motion;
     /*=== Space & Size ===*/
     @extend %inline-block;
     @include padding-inline(var(--padding));
     &:not([class*="col-"]):not(.inline) {width:100%;}
+    transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
 
     /*=== Focus Mode ===*/
     &:focus {outline: var(--border-size) dashed var(--primary-color);}
@@ -223,8 +223,8 @@ label,legend  {@extend %inline-block;}
         position : relative;
         color: var(--color);
         line-height: inherit;
-        @extend %fast-motion;
         @extend %inline-block;
+        transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
     }
     /*==== ... ====*/
     input {
@@ -258,13 +258,13 @@ label,legend  {@extend %inline-block;}
     /*==== Switches ====*/
     &[data-type="switch"] .switch {
         position: relative;
-        @extend %fast-motion;
-        @extend %inline-block;
-        @include margin-inline(5px, 'end');
-        background-color: var(--color);
         width: var(--height);
+        @extend %inline-block;
+        background-color: var(--color);
+        @include margin-inline(5px, 'end');
         height: calc(var(--height) / 2.15);
         border-radius: calc(var(--height) / 2.15);
+        transition: color 0.3s ease, background-color 0.3s, border-color 0.3s, inset 0.3s;
         /*==== Handle ====*/
         &::before {
             top: 50%;

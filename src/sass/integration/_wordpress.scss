@@ -1,5 +1,5 @@
 /*==== Theme Options for WordPress ====*/
-body:not(.wp-admin), body.block-editor-page, .phenix-wp-design:not(.wp-admin) {
+body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-design:not(.wp-admin) {
     /*==== Global ====*/
     --body-bg: var(--wp--preset--color--background);
 

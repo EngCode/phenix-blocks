@@ -83,6 +83,7 @@ if (!function_exists('phenix_assets')) :
 
     add_action('wp_enqueue_scripts', 'phenix_assets');
     add_action('enqueue_block_editor_assets', 'phenix_assets');
+    add_action('login_enqueue_scripts', 'phenix_assets');
 endif;
 
 //=====> Phenix Admin CSS <=====//

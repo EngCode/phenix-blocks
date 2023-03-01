@@ -5,6 +5,7 @@
 <style>
     /*===> Form Wrapper <===*/
     #loginform {border: 0 none;}
+    #login *{font-family: var(--secondary-font)!important;}
 
     /*===> Inputs <===*/
     #loginform input:not([type="submit"]):not([type="hidden"]):not([type="checkbox"]),

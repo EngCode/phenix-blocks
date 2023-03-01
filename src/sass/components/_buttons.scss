@@ -63,9 +63,9 @@
     font-weight : var(--text-weight);
     line-height : var(--height);
     background-color : var(--background);
-    @extend %fast-motion;
     @extend %inline-block;
     @include padding-inline(var(--padding), 'both');
+    transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
     
     a {
         color : inherit;

@@ -102,31 +102,6 @@ PhenixElements.prototype.utilities = function (options?:{
         }
     });
 
-    //====> Loading/Scrollbar <====//
-    let loading_wrapper = document.querySelector('.px-page-loader');
-
-    if (loading_wrapper) {
-        //===> Disable Scroll <===//
-        let BodyClasses:any = document.body.classList;
-        BodyClasses.add('overflow-hidden');
-
-        //===> When Loading is Complete <===//
-        window.addEventListener('load', loaded => {
-            //===> Fast Loaded Fallback <===//
-            setTimeout(() => {
-                //===> Enable Scroll <===//
-                let BodyClasses:any = document.body.classList;
-                if(BodyClasses) BodyClasses?.remove('overflow-hidden');
-                
-                //===> Hide Loader <===//
-                Phenix(loading_wrapper).fadeOut();
-            }, 300);
-        });
-
-        //===> When Leaving Page <===//
-        window.addEventListener('beforeunload', isLeaving => Phenix(loading_wrapper).fadeIn());
-    }
-
     //====> Copyrights Protection <====//
     // Phenix(document).on("contextmenu", rightClick => rightClick.preventDefault());
     // Phenix(document).on("selectstart", textSelect => textSelect.preventDefault());

@@ -552,7 +552,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     dropdown; tabs; collapse; connect;
     popup; lightbox; menu; datatable;
     validation; uploader; progress;
-    select; repeater; rating; seo;
+    select; repeater; rating; seo; loader;
     slider; utilities; notifications;
 }
 
@@ -579,6 +579,9 @@ const Phenix = (selector?:any) => {
 
 //====> Export Phenix <====//
 export default Phenix;
+
+//===> Page Loader Script <===//
+import './integration/loader';
 
 /*====> Import Features <====*/
 import './features/get-info';   //==> Information

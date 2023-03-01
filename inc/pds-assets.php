@@ -134,15 +134,34 @@ if (!function_exists('pds_defer_scripts')) :
 	*/
 
     function pds_defer_scripts($tag, $handle, $src) {
-        // $async_scripts = array('phenix');
-        $defer_scripts = array('pds-script');
+        $async_scripts = array('phenix');
+        // $defer_scripts = array('pds-script');
 
-        if (in_array($handle, $defer_scripts)) {
-            return '<script src="' . $src . '" async defer></script>' . "\n";
+        if (in_array($handle, $async_scripts)) {
+            return '<script src="' . $src . '" defer></script>' . "\n";
         }
 
         return $tag;
     }
 
-    // add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
+    add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
+
+    add_filter('body_class', function( $classes ) {
+        return array_merge($classes, array('pds-loader'));
+    });
+endif;
+
+//====> Custom Body Classes <====//
+if (!function_exists('pds_body_class')) :
+	/**
+	 * Defer Scripts
+	 * @since Phenix Blocks 1.0
+	 * @return void
+	*/
+    add_filter('body_class', 'pds_body_class');
+    
+    function pds_body_class( $classes ) {
+        $classes[] = 'pds-loader';
+        return $classes;
+    }
 endif;

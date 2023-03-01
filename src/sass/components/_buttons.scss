@@ -191,6 +191,7 @@
             width: var(--height);
             &::before {
                 display: block;
+                line-height: inherit;
                 margin-#{$direction-end}: 0;
             }
         };

@@ -47,7 +47,7 @@ if (loading_document) {
             setTimeout(() => {
                 //===> Hide Loader <===//
                 Phenix(loading_wrapper).fadeOut();
-            }, 100);
+            }, 500);
         });
 
         //===> When Leaving Page <===//

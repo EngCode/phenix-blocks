@@ -327,6 +327,8 @@ PhenixElements.prototype.slider = function (options?:{
         splide_loader.setAttribute('id', 'splidejs-phenix')
         //===> Set Source <===//
         splide_loader.setAttribute("src", splide_url);
+        splide_loader.setAttribute("async", "");
+
         //===> Append Script <===//
         document.body.appendChild(splide_loader);
     

@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
 //====> Optimize for Front-End Only <====//
 if (!is_admin()) {
     //=====> Head Optimizer <=====//
-    if (!function_exists('head_optimize') && get_option('head_cleaner')) :
+    if (!function_exists('head_optimize') && get_option('head_cleaner') == "on") :
         /**
          * Optimizing the Default Unnecessary Scripts and Styles
          * @since Phenix WP 1.0
@@ -85,7 +85,7 @@ if (!is_admin()) {
     if (!function_exists('styles_optimize')) :
         function styles_optimize() {
             //===> Newsletter Plugin <===//
-            if (get_option('newsletter_css')) {
+            if (get_option('newsletter_css') && get_option('newsletter_css') == "on") {
                 wp_dequeue_style('newsletter');
             }
             
@@ -97,7 +97,7 @@ if (!is_admin()) {
     endif;
 
     //===> Remove Comments Default CSS <===//
-    if (!function_exists('comments_styles') && get_option('comments_css')) :
+    if (!function_exists('comments_styles') && get_option('comments_css') == "on") :
         function comments_styles() {
             global $wp_widget_factory;
             remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
@@ -107,7 +107,7 @@ if (!is_admin()) {
     endif;
 
     //===> Remove Admin Bar Inline CSS <===//
-    if (!function_exists('remove_adminbar_style') && get_option('adminbar_css')) :
+    if (!function_exists('remove_adminbar_style') && get_option('adminbar_css') == "on") :
         function remove_adminbar_style() {
             remove_action('wp_head', '_admin_bar_bump_cb');
         }
@@ -116,7 +116,7 @@ if (!is_admin()) {
     endif;
 
     //=====> Remove Admin Bar for Users <=====//
-    if (!function_exists('adminbar_disable')) :
+    if (!function_exists('adminbar_disable') && get_option("adminbar_disable") == "on") :
         function adminbar_disable() {
             if (!current_user_can('edit_posts') && get_option('adminbar_disable')) {
                 show_admin_bar(false);
@@ -127,7 +127,7 @@ if (!is_admin()) {
     endif;
 
     //===== C7 Elements Fix =====//
-    if (get_option('wpc7_cleaner')) {
+    if (get_option('wpc7_cleaner') == "on") {
         add_filter('wpcf7_form_elements', function($content) {
             $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
             return $content;
@@ -137,7 +137,7 @@ if (!is_admin()) {
     }
 
     //===== CSS Remove =====//
-    if (get_option('wpc7_rm_styles') && !function_exists('wpcf7_deregister_styles')) {
+    if (get_option('wpc7_rm_styles') == "on" && !function_exists('wpcf7_deregister_styles')) {
         function wpcf7_deregister_styles() {
             wp_deregister_style('contact-form-7');
         }
@@ -146,7 +146,7 @@ if (!is_admin()) {
     }
 
     //===== JavaScript Remove =====//
-    if (get_option('wpc7_rm_scripts') && !function_exists('wpcf7_deregister_scripts')) {
+    if (get_option('wpc7_rm_scripts') == "on" && !function_exists('wpcf7_deregister_scripts')) {
         function wpcf7_deregister_scripts() {
             wp_deregister_script('contact-form-7');
         }
@@ -156,7 +156,7 @@ if (!is_admin()) {
 }
 
 //=====> Gutenberg Optimizer <=====//
-if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer')) :
+if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer') == "on") :
     function blocks_optimizer() {
         wp_dequeue_style('wp-block-list');
         wp_dequeue_style('wp-block-image');

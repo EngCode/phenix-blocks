@@ -69,16 +69,15 @@ if (!function_exists('phenix_assets')) :
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
 
         //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawesome-5.css');
-
+        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawesome-5.css', array('phenix'), false, 'screen and (min-width: 2500px)');
         //====> Google Fonts <====//
-        if (get_option('pds_gfonts')) :
+        if (get_option('pds_gfonts') == "on") :
             echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
             echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
         endif;
 
         //====> Custom Fonts <====//
-        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css');
+        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css', array('phenix'), false, 'screen and (min-width: 2500px)');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');
@@ -124,4 +123,29 @@ if (!function_exists('pds_login_admin')) :
     }
 
     add_action('login_enqueue_scripts', 'pds_login_admin');
+endif;
+
+//====> Defer Scripts <====//
+if (!function_exists('pds_defer_scripts')) :
+	/**
+	 * Defer Scripts
+	 * @since Phenix Blocks 1.0
+	 * @return void
+	*/
+
+    function pds_defer_scripts($tag, $handle, $src) {
+        $async_scripts = array('phenix');
+        $defer_scripts = array('pds-script');
+
+        if (in_array($handle, $async_scripts)) {
+            return '<script src="' . $src . '" async></script>' . "\n";
+
+        } else if (in_array($handle, $defer_scripts)) {
+            return '<script src="' . $src . '"></script>' . "\n";
+        }
+
+        return $tag;
+    }
+
+    // add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
 endif;

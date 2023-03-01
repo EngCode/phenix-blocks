@@ -97,29 +97,29 @@ if (!function_exists('pds_blocks_default_values')) :
         ));
 
         //===> Blocks settings <===//
-        add_option('pds_admin_style', true);
-        add_option('container_block', true);
-        add_option('logo_block', true);
-        add_option('navigation_block', true);
-        add_option('button_block', true);
-        add_option('row_block', true);
-        add_option('column_block', true);
-        add_option('head_block', true);
-        add_option('query_block', true);
-        add_option('taxonomies_list_block', true);
-        add_option('taxonomies_block', true);
-        add_option('theme_part_block', true);
-        add_option('group_block', true);
-        add_option('inline_elements_block', true);
+        update_option('pds_admin_style', "on");
+        update_option('container_block', "on");
+        update_option('logo_block', "on");
+        update_option('navigation_block', "on");
+        update_option('button_block', "on");
+        update_option('row_block', "on");
+        update_option('column_block', "on");
+        update_option('head_block', "on");
+        update_option('query_block', "on");
+        update_option('taxonomies_list_block', "on");
+        update_option('taxonomies_block', "on");
+        update_option('theme_part_block', "on");
+        update_option('group_block', "on");
+        update_option('inline_elements_block', "on");
         
         //===> Optimization settings <===//
-        add_option('head_cleaner', true);
-        add_option('wpc7_cleaner', true);
-        add_option('adminbar_css', true);
-        add_option('comments_css', true);
-        add_option('wpc7_rm_styles', true);
-        add_option('wpc7_rm_scripts', true);
-        add_option('blocks_optimizer', true);
+        update_option('head_cleaner', "on");
+        update_option('wpc7_cleaner', "on");
+        update_option('adminbar_css', "on");
+        update_option('comments_css', "on");
+        update_option('wpc7_rm_styles', "on");
+        update_option('wpc7_rm_scripts', "on");
+        update_option('blocks_optimizer', "on");
     }
 
     add_action('init', 'pds_blocks_default_values');

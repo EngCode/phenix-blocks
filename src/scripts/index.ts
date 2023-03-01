@@ -535,7 +535,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         return this;
     };
 
-    /*====> Define Informations <====*/
+    /*====> Define Information <====*/
     height; getCSS; direction; getURL
     inView; viewport; copyrights;
 
@@ -552,7 +552,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     dropdown; tabs; collapse; connect;
     popup; lightbox; menu; datatable;
     validation; uploader; progress;
-    select; repeater; rating;
+    select; repeater; rating; seo;
     slider; utilities; notifications;
 }
 

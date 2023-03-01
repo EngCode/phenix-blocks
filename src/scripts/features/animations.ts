@@ -123,6 +123,8 @@ PhenixElements.prototype.animations = function (options?:{
         //===> Set Attributes <===//
         animations_loader.setAttribute('id', `px-animations${id}`);
         animations_loader.setAttribute('rel', 'stylesheet');
+        animations_loader.setAttribute('class', 'px-css-file');
+        animations_loader.setAttribute('media', 'screen and (min-width: 2500px)');
 
         //===> Set Source <===//
         animations_loader.setAttribute("href", package_url);

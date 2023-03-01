@@ -11,6 +11,10 @@ PDS_WP_KEY:any;
 Phenix(document).ready(ready => {
     /*====> Change Scrollbar <====*/
     document.querySelector('html').classList.add('px-scrollbar');
+    document.querySelector('#phenix-js')?.removeAttribute('async');
+
+    /*====> Unblock Fonts <====*/
+    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style, .px-css-file, #phenix-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {

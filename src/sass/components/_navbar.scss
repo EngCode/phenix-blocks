@@ -39,6 +39,7 @@
         li > a {
             color: inherit;
             display: block;
+            transition: none;
             line-height: inherit;
             &:focus, &:active {outline: 0 none;}
         }
@@ -52,7 +53,7 @@
         color: var(--color);
         background-color: var(--background);
         position: relative;
-        transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
+        transition: background-color 0.3s, border-color 0.3s;
         @include padding_inline(var(--space-in));
         /*==== Hover & Active ====*/
         &:hover, &.px-item-active, &.px-submenu-active {

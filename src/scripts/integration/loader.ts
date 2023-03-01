@@ -16,8 +16,7 @@ let loading_document = document.querySelector('.pds-loader');
 if (loading_document) {
     //===> Prepare the Document <===//
     let elBody:any = document.body;
-    elBody.style.overflow = 'hidden';
-    
+
     //===> Create the Loading Template <===//
     let loading_wrapper = document.createElement("div"),
         template = `<div class="px-page-loader" style="display: flex; align-items: center; justify-content: center; position: fixed; inset: 0; z-index: 999999999; width: 100%; min-height: 100vh; background-color: #FFF; text-align: center;">
@@ -39,18 +38,8 @@ if (loading_document) {
     //===> Loading Complete <===//
     if(document.querySelector('.px-page-loader')) {
         //===> When Loading is Complete <===//
-        window.addEventListener('load', loaded => {
-            //===> Enable Scroll <===//
-            elBody.style.overflow = null;
-
-            //===> Fast Loaded Fallback <===//
-            setTimeout(() => {
-                //===> Hide Loader <===//
-                Phenix(loading_wrapper).fadeOut();
-            }, 500);
-        });
-
+        window.addEventListener('load', loaded => Phenix(loading_wrapper).fadeOut(500, 0));
         //===> When Leaving Page <===//
-        window.addEventListener('beforeunload', isLeaving => Phenix(loading_wrapper).fadeIn());
+        window.addEventListener('beforeunload', isLeaving => Phenix(loading_wrapper).fadeIn(500, 0));
     }
 }

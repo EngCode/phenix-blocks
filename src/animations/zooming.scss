@@ -291,15 +291,15 @@
 }
 
 @-webkit-keyframes bgZoomInOut {
-    0% {background-size: 100% auto;}
-    50% {background-size: 150% auto;}
-    100% {background-size: 100% auto;}
+    0% {background-size: 100%;}
+    50% {background-size: 150%;}
+    100% {background-size: 100%;}
 }
 
 @keyframes bgZoomInOut {
-    0% {background-size: 100% auto;}
-    50% {background-size: 150% auto;}
-    100% {background-size: 100% auto;}
+    0% {background-size: 100%;}
+    50% {background-size: 150%;}
+    100% {background-size: 100%;}
 }
 
 @-webkit-keyframes bgZoomIn {

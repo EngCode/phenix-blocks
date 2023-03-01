@@ -113,7 +113,6 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('inline_elements_block', true);
         
         //===> Optimization settings <===//
-        add_option('pds_gfonts', true);
         add_option('head_cleaner', true);
         add_option('wpc7_cleaner', true);
         add_option('adminbar_css', true);

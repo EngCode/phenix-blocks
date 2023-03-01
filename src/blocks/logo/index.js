@@ -34,8 +34,8 @@ registerBlockType(metadata, {
         //===> Render <===//
         return (
             <a { ...blockProps }>
-                <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "height": attributes.size }} />
-                {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "height": attributes.size }} /> : null}
+                <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "maxHeight": attributes.size }} height={parseInt(attributes.size)} />
+                {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} width={parseInt(attributes.size)} height={parseInt(attributes.size)} /> : null}
             </a>
         );
     }

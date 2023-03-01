@@ -144,5 +144,5 @@ if (!function_exists('pds_defer_scripts')) :
         return $tag;
     }
 
-    add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
+    // add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
 endif;

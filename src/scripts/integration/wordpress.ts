@@ -14,7 +14,7 @@ Phenix(document).ready(ready => {
     document.querySelector('#phenix-js')?.removeAttribute('async');
 
     /*====> Unblock Fonts <====*/
-    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style-css, .px-css-file, #phenix-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
+    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style-css, #phenix-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
@@ -164,5 +164,8 @@ Phenix(document).ready(ready => {
         /*====> Remove Logo Submenu <====*/
         document.querySelector('#wp-admin-bar-wp-logo .ab-sub-wrapper')?.remove();
         document.querySelector('#wp-admin-bar-customize')?.remove();
+
+        /*====> Fixes <====*/
+        Phenix('a.ab-item, .ab-item a').forEach((link:HTMLElement) => link.setAttribute('rel', 'noopener'));
     }
 });

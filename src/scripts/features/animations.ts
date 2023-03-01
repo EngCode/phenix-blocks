@@ -136,7 +136,8 @@ PhenixElements.prototype.animations = function (options?:{
         animations_loader.addEventListener("load", () => {
             viewPort_Handler;
             /*====> Unblock Fonts <====*/
-            animations_loader.setAttribute('media', 'all')
+            animations_loader.setAttribute('media', 'all');
+            // document.head.querySelectorAll('.px-css-file').forEach(style => style.setAttribute('media', 'all'));
         });
 
         //====> When Error Re-Load <====//

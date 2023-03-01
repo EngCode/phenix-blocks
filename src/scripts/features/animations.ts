@@ -133,8 +133,12 @@ PhenixElements.prototype.animations = function (options?:{
         document.head.appendChild(animations_loader);
 
         //====> When Loaded Run Sliders <====//
-        animations_loader.addEventListener("load", () => viewPort_Handler);
-    
+        animations_loader.addEventListener("load", () => {
+            viewPort_Handler;
+            /*====> Unblock Fonts <====*/
+            animations_loader.setAttribute('media', 'all')
+        });
+
         //====> When Error Re-Load <====//
         animations_loader.addEventListener("error", () => animations_loader.setAttribute("href", package_url));
     }

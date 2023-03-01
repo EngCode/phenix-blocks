@@ -134,18 +134,15 @@ if (!function_exists('pds_defer_scripts')) :
 	*/
 
     function pds_defer_scripts($tag, $handle, $src) {
-        $async_scripts = array('phenix');
+        // $async_scripts = array('phenix');
         $defer_scripts = array('pds-script');
 
-        if (in_array($handle, $async_scripts)) {
-            return '<script src="' . $src . '" async></script>' . "\n";
-
-        } else if (in_array($handle, $defer_scripts)) {
-            return '<script src="' . $src . '"></script>' . "\n";
+        if (in_array($handle, $defer_scripts)) {
+            return '<script src="' . $src . '" async defer></script>' . "\n";
         }
 
         return $tag;
     }
 
-    // add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
+    add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
 endif;

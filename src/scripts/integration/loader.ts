@@ -16,7 +16,7 @@ let loading_document = document.querySelector('.pds-loader');
 if (loading_document) {
     //===> Prepare the Document <===//
     let elBody:any = document.body,
-        elLoader:HTMLElement = document.querySelector('.px-page-loader');
+        elLoader:any = document.querySelector('.px-page-loader');
 
     //===> Create the Loading Template <===//
     if (!elLoader) {

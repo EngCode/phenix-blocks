@@ -28,6 +28,22 @@ Phenix(document).ready((event:any) => {
     Phenix('.full-screen').forEach((element:HTMLElement) => element.style.minHeight = `calc(100vh - ${headerHeight}px)`);
     Phenix('.full-screen-wide').forEach((element:HTMLElement) => element.style.minHeight = `calc(85vh - ${headerHeight}px)`);
 
+    //====> Sliders Fix <====//
+    Phenix('.temp-slider-3x, .temp-slider-4x').setAttributes({
+        "data-md"    : 3,
+        "data-items" : 1,
+        "data-controls": 1,
+    }).addClass("px-slider");
+
+    Phenix('.temp-slider-4x').setAttributes({"data-lg": 4, "data-duration": 7000}).addClass("px-slider");
+
+    Phenix('.logo-slider').setAttributes({
+        "data-items": 2,
+        "data-md": 4,
+        "data-lg": 6,
+        "data-xl": 7,
+    }).addClass("px-slider");
+
     //====> Multimedia <====//
     Phenix('.px-media').multimedia();
 

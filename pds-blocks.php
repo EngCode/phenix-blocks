@@ -79,12 +79,3 @@ if (!function_exists('pds_patterns_cats')) :
 
 	add_action('init', 'pds_patterns_cats');
 endif;
-
-//===> Loading Page <===//
-if (!function_exists('pds_loader_template')) :
-	function pds_loader_template() {
-		include(dirname(__FILE__) . '/inc/loading.php');
-	}
-
-	add_action('after_body_open_tag', 'pds_loader_template');
-endif;

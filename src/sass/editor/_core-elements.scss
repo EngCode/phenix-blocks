@@ -784,3 +784,16 @@ body, .welcome-panel, .welcome-panel h2, .wp-die-message, p {line-height: var(--
 #wpadminbar #wp-admin-bar-wp-logo>.ab-item .ab-icon::before {content: "" !important;}
 .php-error #adminmenuback {margin: 0!important;}
 .php-error #adminmenuback + #adminmenuwrap {margin-top: 0!important;}
+
+/*==== Fixes on the Flay ====*/
+#wpfooter {display: none;}
+
+#adminmenu {
+	.wp-menu-separator {
+		height: 2px!important;
+		margin: 5px 0!important;
+		div.separator {	background-color: #232a44;}
+	}
+	
+	.toplevel_page_pds-dashboard + .wp-menu-separator {display: none;}
+}

@@ -67,7 +67,9 @@ PhenixElements.prototype.tabs = function (options?:{
                 }
 
                 //====> Add to URL <====//
-                if (hash_url !== '0' || 'false') window.location.href = `#${tab_id}`;
+                if (hash_url !== '0' || 'false') {
+                    window.history.replaceState({ additionalInformation: 'Updated the URL with JS' }, document.title, window.location.href.replace(location.hash, "")+`#${tab_id}`);
+                }
 
                 //====> Active the Button <====//
                 Phenix(button).addClass('active').siblings()?.forEach(sibling => sibling.classList.remove('active'));
@@ -100,7 +102,7 @@ PhenixElements.prototype.tabs = function (options?:{
                 Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
                     //====> Fire Event <====//
                     document.querySelector(`#${tab_id}`).dispatchEvent(showed);
-                    //====> if the siblign is active <====//
+                    //====> if the siblings is active <====//
                     if (panel.classList.contains('active')) {
                         //===> Deactivate the Panel <===//
                         let the_panel:any = Phenix(panel).removeClass('active').addClass('hidden')[0];

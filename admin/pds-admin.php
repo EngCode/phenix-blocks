@@ -14,9 +14,19 @@
         */
 
         function pds_admin_menu() {
-            //===> Main Settings <===//
+            //===> Dashboard Settings <===//
             add_menu_page(
-                __('Phenix Blocks Settings', 'phenix'),
+                __('Home', 'phenix'),
+                __('Home', 'phenix'),
+                'manage_options',
+                'pds-dashboard',
+                'pds_dash_page',
+                plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 0
+            );
+
+            //===> General Settings <===//
+            add_menu_page(
+                __('Phenix Settings', 'phenix'),
                 __('Phenix Blocks', 'phenix'),
                 'manage_options',
                 'pds-admin',
@@ -44,7 +54,7 @@
             //===> Remove Menu Items <===//
             $removable = [
                 'flamingo',
-                // 'tools.php',
+                'index.php',
                 'upload.php',
                 'plugins.php',
                 'edit-comments.php',
@@ -74,6 +84,7 @@
                 ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
                 ['tools.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
                 ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'update-core.php'],
+                ['pds-dashboard', null, __('WordPress', 'phenix'), 'manage_options', 'about.php'],
                 ['wpcf7', null, __('Inbox Messages', 'phenix'), 'manage_options', 'admin.php?page=flamingo_inbound'],
             ];
 
@@ -180,6 +191,19 @@
     }
 
     add_action('admin_init', 'create_pds_options');
+
+    //====> Phenix Admin [Dashboard] <====//
+    if (!function_exists('pds_dash_page')) :
+        /**
+         * Create Admin Pages for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+
+        function pds_dash_page () {
+            include(dirname(__FILE__) . '/pds-dashboard.php');
+        };
+    endif;
 
     //====> Phenix Admin [General Settings] <====//
     if (!function_exists('pds_admin_page')) :
@@ -325,5 +349,19 @@
                 'content'  => $pattern['content']
             ));
         }
+    endif;
+
+    //===> Redirect to Dashboard <===//
+    if (!function_exists('pds_dash_redirect')) :
+        /**
+         * Admin Page for Phenix Blocks
+         * @since Phenix Blocks 1.0
+         * @return void
+        */
+        function pds_dash_redirect(){
+            wp_redirect(admin_url('admin.php?page=pds-dashboard'));
+        }
+
+        add_action('load-index.php', 'pds_dash_redirect');
     endif;
 ?>

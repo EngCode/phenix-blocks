@@ -164,6 +164,8 @@ Phenix(document).ready(ready => {
         /*====> Remove Logo Submenu <====*/
         document.querySelector('#wp-admin-bar-wp-logo .ab-sub-wrapper')?.remove();
         document.querySelector('#wp-admin-bar-customize')?.remove();
+        let aboutLink = document.querySelector('#wpadminbar .ab-item[href*="about.php"]');
+        if (aboutLink) aboutLink.setAttribute('href', aboutLink.getAttribute('href').replace('about.php', 'admin.php?page=pds-dashboard'));
 
         /*====> Fixes <====*/
         Phenix('a.ab-item, .ab-item a').forEach((link:HTMLElement) => link.setAttribute('rel', 'noopener'));

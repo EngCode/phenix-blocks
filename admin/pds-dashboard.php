@@ -30,6 +30,7 @@
         <p class="weight-medium fs-12 col-12 tx-align-center color-gray pdy-10 lineheight-100 mb-0"><?php echo __("اتبع التعليمات بالترتيب فى كل قسم من الصفحة فكل قسم يشرح كيفية تعديل جزء من النظام.","phenix");?></p>
         <!-- Grid Layout -->
         <div class="px-tabs radius-md border-solid border-1 border-alpha-10">
+            <!-- Custom Tabs Style -->
             <style>
                 .tabs-navigation .active {
                     color: var(--primary-reverse);
@@ -37,27 +38,38 @@
                 }
 
                 .tabs-navigation .btn:not(.active) {background-color: transparent;}
+                .tabs-navigation .btn {--padding: 15px;}
+                .tabs-navigation .btn.active {font-weight: var(--bold-weight);}
+                .tabs-navigation .btn::before {font-size: 15px;}
             </style>
             <!-- Tabs Navigation -->
             <ul class="tabs-navigation reset-list flexbox overflow-hidden fs-15 mb-15 radius-md bg-alpha-05 radius-top divider-b">
-                <li data-tab="section-1" class="btn light btn-icon mb-0 fs-12 weight-bold fas fa-brush divider-e"><?php echo __("الهوية والالوان","phenix");?></li>
-                <li data-tab="section-2" class="btn light btn-icon mb-0 fs-12 weight-bold fas fa-link divider-e"><?php echo __("القوائم والروابط","phenix");?></li>
-                <li data-tab="section-3" class="btn light btn-icon mb-0 fs-12 weight-bold fas fa-cube divider-e"><?php echo __("القطع والصفحات","phenix");?></li>
+                <li data-tab="section-1" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-brush divider-e"><?php echo __("الوان الهوية","phenix");?></li>
+                <li data-tab="section-2" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cube divider-e"><?php echo __("القطع والقوالب","phenix");?></li>
+                <li data-tab="section-3" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-font divider-e"><?php echo __("الخطوط","phenix");?></li>
+                <li data-tab="section-4" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-link divider-e"><?php echo __("القوائم","phenix");?></li>
+                <li data-tab="section-5" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-pen divider-e"><?php echo __("المحتوي","phenix");?></li>
+                <li data-tab="section-6" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-file divider-e"><?php echo __("الانماط","phenix");?></li>
+                <li data-tab="section-7" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-layer-group divider-e"><?php echo __("المكونات","phenix");?></li>
+                <li data-tab="section-8" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-database divider-e"><?php echo __("الترجمة","phenix");?></li>
+                <li data-tab="section-9" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-database divider-e"><?php echo __("البيانات","phenix");?></li>
+                <li data-tab="section-10" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cog"><?php echo __("الاعدادات","phenix");?></li>
             </ul>
             <!-- Tabs Wrapper -->
             <div class="tabs-panels">
-                <!-- Colors and Identity -->
+                <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-1">
                     <img src="<?php echo $images_folder;?>/tuts/colors.png" width="900" alt="screenshot" class="fluid" />
                 </div>
-                <!-- Menus and Links -->
+                <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-2">
-                    <img src="<?php echo $images_folder;?>/tuts/menus.png" width="900" alt="screenshot" class="fluid" />
-                </div>
-                <!-- Menus and Links -->
-                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-3">
                     <img src="<?php echo $images_folder;?>/tuts/part-templates.png" width="900" alt="screenshot" class="fluid" />
                 </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-4">
+                    <img src="<?php echo $images_folder;?>/tuts/menus.png" width="900" alt="screenshot" class="fluid" />
+                </div>
+                <!-- // Panel -->
             </div>
             <!-- // Tabs Wrapper -->
         </div>

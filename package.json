@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "description": "Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.",
   "author": "Abdullah.Ramadan <elampratorabdallah14@gmail.com> (https://phenixthemes.com)",
-  "license": "MIT",
+  "license": "GPL v3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EngCode/phenix-blocks.git"

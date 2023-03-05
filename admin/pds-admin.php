@@ -18,7 +18,7 @@
             add_menu_page(
                 __('Home', 'phenix'),
                 __('Home', 'phenix'),
-                'manage_options',
+                'edit_posts',
                 'pds-dashboard',
                 'pds_dash_page',
                 plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 0
@@ -47,7 +47,7 @@
             add_submenu_page('pds-admin',
                 __('Reusable Blocks', 'phenix'),
                 __('Reusable Blocks', 'phenix'),
-                'manage_options',
+                'edit_posts',
                 'edit.php?post_type=wp_block',
             );
 

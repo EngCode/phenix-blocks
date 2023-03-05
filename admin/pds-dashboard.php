@@ -44,16 +44,16 @@
             </style>
             <!-- Tabs Navigation -->
             <ul class="tabs-navigation reset-list flexbox overflow-hidden fs-15 mb-15 radius-md bg-alpha-05 radius-top divider-b">
-                <li data-tab="section-1" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-brush divider-e"><?php echo __("الوان الهوية","phenix");?></li>
-                <li data-tab="section-2" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cube divider-e"><?php echo __("القطع والقوالب","phenix");?></li>
-                <li data-tab="section-3" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-font divider-e"><?php echo __("الخطوط","phenix");?></li>
-                <li data-tab="section-4" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-link divider-e"><?php echo __("القوائم","phenix");?></li>
-                <li data-tab="section-5" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-pen divider-e"><?php echo __("المحتوي","phenix");?></li>
-                <li data-tab="section-6" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-file divider-e"><?php echo __("الانماط","phenix");?></li>
-                <li data-tab="section-7" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-layer-group divider-e"><?php echo __("المكونات","phenix");?></li>
-                <li data-tab="section-8" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-database divider-e"><?php echo __("الترجمة","phenix");?></li>
-                <li data-tab="section-9" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-database divider-e"><?php echo __("البيانات","phenix");?></li>
-                <li data-tab="section-10" class="btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cog"><?php echo __("الاعدادات","phenix");?></li>
+                <li data-tab="section-1" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-brush divider-e"><?php echo __("الوان الهوية","phenix");?></li>
+                <li data-tab="section-2" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-font divider-e"><?php echo __("الخطوط","phenix");?></li>
+                <li data-tab="section-3" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-link divider-e"><?php echo __("القوائم","phenix");?></li>
+                <li data-tab="section-4" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cube divider-e"><?php echo __("القطع والقوالب","phenix");?></li>
+                <li data-tab="section-5" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-pen divider-e"><?php echo __("المحتوي","phenix");?></li>
+                <li data-tab="section-6" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-file divider-e"><?php echo __("الانماط","phenix");?></li>
+                <li data-tab="section-7" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium far fa-globe-africa divider-e"><?php echo __("الترجمة","phenix");?></li>
+                <li data-tab="section-8" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-layer-group divider-e"><?php echo __("المكونات","phenix");?></li>
+                <li data-tab="section-9" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-database divider-e"><?php echo __("البيانات","phenix");?></li>
+                <li data-tab="section-10" class="col btn light btn-icon mb-0 fs-12 fs-xl-13 weight-medium fas fa-cog"><?php echo __("الاعدادات","phenix");?></li>
             </ul>
             <!-- Tabs Wrapper -->
             <div class="tabs-panels">
@@ -63,11 +63,47 @@
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-2">
-                    <img src="<?php echo $images_folder;?>/tuts/part-templates.png" width="900" alt="screenshot" class="fluid" />
+                    تعديل الخطوط
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-3">
+                    <img src="<?php echo $images_folder;?>/tuts/menus.png" width="900" alt="screenshot" class="fluid" />
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-4">
-                    <img src="<?php echo $images_folder;?>/tuts/menus.png" width="900" alt="screenshot" class="fluid" />
+                    <img src="<?php echo $images_folder;?>/tuts/part-templates.png" width="900" alt="screenshot" class="fluid" />
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-5">
+                    تعديل المحتوي
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-6">
+                    كيفية استخدام الانماط
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-7">
+                    كيفية ترجمة الموقع والمحتوي
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-8">
+                    ماهية المكونات وكيفية استخدامها
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-9">
+                    <!-- Alert -->
+                    <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
+                       <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس و ادارة البيانات وانواعها ننصحك بعدم تغيير اى شئ فى ادوات مجموعة البيانات .","phenix"); ?>
+                    </p>
+                    <span>ماهية مجموعة البيانات وكيفية استخدامها</span>
+                </div>
+                <!-- Panel -->
+                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-10">
+                    <!-- Alert -->
+                    <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
+                       <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
+                    </p>
+                    <span>اعدادات الاضافة</span>
                 </div>
                 <!-- // Panel -->
             </div>

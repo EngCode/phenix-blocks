@@ -67,7 +67,7 @@
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-2">
-                    تعديل الخطوط
+                    <img src="<?php echo $images_folder;?>/tuts/fonts-options.png" width="900" alt="screenshot" class="fluid" />
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-3">

@@ -119,7 +119,11 @@
 
         //===> General Settings <===//
         array('pds_admin_style', 'pds-admin'),
-        array('pds_gfonts', 'pds-admin'),
+        array('pds_gfonts', 'pds-admin', true),
+        array('pds_icon_font', 'pds-admin', true),
+        array('pds_icon_font_key', 'pds-admin', true),
+        array('pds_primary_font', 'pds-admin', true),
+        array('pds_secondary_font', 'pds-admin', true),
         array('pds_template_parts', 'pds-admin'),
 
         //===> Optimization <===//

@@ -6,7 +6,7 @@
 <!-- Grid -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
+    <div class="col-12 col-md-3 divider-e">
         <?php
             echo pds_toggle_controls(array(
                 array(
@@ -48,7 +48,7 @@
         ?>
     </div>
     <!-- Column -->
-    <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
+    <div class="col-12 col-md-3 divider-e">
         <?php
             echo pds_toggle_controls(array(
                 array(
@@ -90,7 +90,7 @@
         ?>
     </div>
     <!-- Column -->
-    <div class="col-12 col-md-3 border-reset border-end-1 border-alpha-10 border-solid">
+    <div class="col-12 col-md-3 divider-e">
         <?php
             echo pds_toggle_controls(array(
                 array(

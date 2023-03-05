@@ -4,10 +4,14 @@
 ?>
 <!-- Dashboard Wrapper -->
 <div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
+    <img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" />
+</div>
+<!-- ........ -->
+<div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
     <!-- Headline -->
     <div class="flexbox align-center-y align-between pdx-20 pdy-10 divider-b">
         <h1 style="font-size: 1rem; margin-bottom: 0"><?php echo __("الدليل الارشادي السريع للاستخدام", "phenix"); ?></h1>
-        <img src="<?php echo $images_folder;?>/px-logo/px-blocks-x.svg" width="150" alt="phenix-logo" />
+        <img src="<?php echo $images_folder;?>/px-logo/px-blocks-x.svg" width="170" alt="phenix-logo" />
     </div>
     <!-- // Headline -->
 

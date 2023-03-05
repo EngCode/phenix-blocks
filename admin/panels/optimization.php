@@ -1,7 +1,7 @@
 <!-- Grid -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
+    <div class="col-12 col-md-4 divider-e">
         <?php
             echo pds_toggle_controls(array(
                 array(
@@ -23,16 +23,12 @@
                 array(
                     "name"  => 'adminbar_css',
                     "title" => 'Clean Admin-Bar CSS',
-                ),
-                array(
-                    "name"  => 'adminbar_disable',
-                    "title" => 'Disable Admin-Bar for Users',
-                ),
+                )
             ));
         ?>
     </div>
     <!-- Column -->
-    <div class="col-12 col-md-4 border-reset border-end-1 border-alpha-10 border-solid">
+    <div class="col-12 col-md-4 divider-e">
         <?php
             echo pds_toggle_controls(array(
                 array(

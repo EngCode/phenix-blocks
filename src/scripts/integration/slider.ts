@@ -317,7 +317,7 @@ PhenixElements.prototype.slider = function (options?:{
     });
 
     //====> Load Splide JS <====//
-    if (!document.querySelector('#splidejs-phenix')) {
+    if (!document.querySelector('#splidejs-phenix') && this.length > 0) {
         //===> Create Script Element <===//
         let splide_loader = document.createElement("script"),
             libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),

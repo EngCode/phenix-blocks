@@ -29,7 +29,7 @@
 
     $google_fonts = [];
 
-    //===> Check for Google Fonts <===//
+    //===> Get Google Fonts <===//
     if (get_option("pds_gfonts") === "on") {
         //===> Get Json File <===//
         $json_data = file_get_contents($json_dir."gfonts.json", false, stream_context_create(array("ssl" => array("verify_peer" => false, "verify_peer_name" => false))));
@@ -44,7 +44,7 @@
 <!-- Grid -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-md-6 divider-e" style="max-width: 420px">
+    <div class="col-12 col-md-6" style="max-width: 420px">
         <!-- Control Label -->
         <label class="mb-5 weight-medium"><?php echo __("Primary Font", "phenix"); ?></label>
         <!-- Form Control -->
@@ -107,20 +107,20 @@
                 ?>
             </select>
         </div>
-        <p class="control-hint"><?php echo __("Select a Icons Font for all icons for the design system", "phenix"). "<span class='color-danger'>" .__(" you need a license to run the (PRO) version of the supported fonts..","phenix"). "</span>";?></p>
+        <p class="control-hint"><?php echo __("Select a Icons Font for all icons for the design system", "phenix"). "<br /><span class='fs-12 color-danger'>" .__("Note: you need a license to run the (PRO) version.","phenix"). "</span>";?></p>
 
-        <?php if (get_option("pds_icon_font") === "fontawesome-5-pro" || get_option("pds_icon_font") === "fontawesome-6-pro") : ?>
-        <!-- Control Label -->
-        <label class="mb-5 weight-medium"><?php echo __("Icons Font License", "phenix"); ?></label>
-        <!-- Form Control -->
-        <div class="control-icon far fa-lock mb-5">
-            <input type="text" name="pds_icon_font_key" class="form-control radius-sm fs-13" placeholder="<?php echo __('license key', 'phenix');?>" required>
-        </div>
-        <p class="control-hint"><?php echo __("please enter the license key for the (PRO) version of the selected icon font.", "phenix");?></p>
+        <?php if (str_contains($current_fonts['icon'], "-pro")) : ?>
+            <!-- Control Label -->
+            <label class="mb-5 weight-medium"><?php echo __("Icons Font License", "phenix"); ?></label>
+            <!-- Form Control -->
+            <div class="control-icon far fa-lock mb-5">
+                <input type="text" name="pds_icon_font_key" class="form-control radius-sm fs-13" placeholder="<?php echo __('license key', 'phenix');?>">
+            </div>
+            <p class="control-hint"><?php echo __("please enter the license key for the (PRO) version.", "phenix");?></p>
         <?php endif; ?>
     </div>
     <!-- Column -->
-    <div class="col-12 col-md-4 border-reset">
+    <div class="col-12 col-md-4 border-reset divider-s ms-10">
         <?php
             echo pds_toggle_controls(array(
                 array(
@@ -128,12 +128,16 @@
                     "title" => 'Admin UI Re-Style',
                 ),
                 array(
-                    "name"  => 'adminbar_disable',
-                    "title" => 'Disable Admin-Bar for Users',
-                ),
-                array(
                     "name"  => 'pds_gfonts',
                     "title" => 'Enable Google Fonts',
+                ),
+                array(
+                    "name"  => 'pds_cdn',
+                    "title" => 'Enable CDN Links',
+                ),
+                array(
+                    "name"  => 'adminbar_disable',
+                    "title" => 'Disable Admin-Bar for Users',
                 ),
             ));
         ?>

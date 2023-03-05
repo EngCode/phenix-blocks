@@ -67,17 +67,58 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $assets_path = plugin_dir_path(__DIR__);
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
+        $icons_font  = "fontawesome-5";
+        $current_fonts = [
+            "icon" => get_option("pds_icon_font"),
+            "primary" => get_option("pds_primary_font"),
+            "secondary" => get_option("pds_secondary_font"),
+        ];
 
-        //====> Font-Awesome <====//
-        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/fontawesome-5.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+        //===> Font Css Settings <===//
+        $prim_font = str_replace("-", " ", $current_fonts['primary']);
+        $sec_font = str_replace("-", " ", $current_fonts['secondary']);
+        $icon_font = str_replace("-", " ", $current_fonts['icon']);
+
+        //====> Font-icon <====//
+        if (str_contains($current_fonts['icon'], "fontawesome-6")) : $icons_font = "fontawesome-6"; endif;
+
         //====> Google Fonts <====//
-        if (get_option('pds_gfonts') == "on") :
+        if (get_option('pds_gfonts') == "on") {
             echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
             echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
-        endif;
+            
+            //===> Load Primary Font <===//
+            $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['primary'];
+            wp_enqueue_style('pds-primary-font', $google_url, array('phenix'), null, 'screen and (min-width: 2500px)');
 
-        //====> Custom Fonts <====//
-        wp_enqueue_style('pds-cfont', $assets_url. 'webfonts/somar-rounded.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+            //===> Load Secondary Font <===//
+            if ($current_fonts['primary'] !== $current_fonts['secondary']) {
+                $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['secondary'];
+                wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), null, 'screen and (min-width: 2500px)');
+            }
+        } else {
+            //===> Load Primary Font <===//
+            wp_enqueue_style('pds-primary-font', $assets_url. 'webfonts/'.$current_fonts['primary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+            //===> Load Secondary Font <===//
+            if ($current_fonts['primary'] !== $current_fonts['secondary']) {
+                wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+            }
+        }
+
+        //===> Set Font Css Settings <===//
+        $fonts_css_options = 'body {
+            --primary-font: '.ucwords($prim_font).';
+            --secondary-font: '.ucwords($sec_font).';
+        }';
+
+        wp_add_inline_style('pds-primary-font', $fonts_css_options);
+
+        //===> Load Icon Font <===//
+        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/'.$icons_font.'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+        
+        //===> Set Font Css Settings <===//
+        $icons_css_options = 'body { --icons-font: '.ucwords($icon_font).'; }';
+        wp_add_inline_style('fontawesome', $icons_css_options );
     }
 
     add_action('wp_enqueue_scripts', 'phenix_assets');
@@ -174,3 +215,27 @@ if (!function_exists('pds_loader_template')) :
 
 	add_action('wp_body_open', 'pds_loader_template');
 endif;
+
+//===> Set Font Css Settings <===//
+// if (!function_exists('pds_fonts_setup')) :
+//     function pds_fonts_setup() {
+//         $current_fonts = [
+//             "icon" => get_option("pds_icon_font"),
+//             "primary" => get_option("pds_primary_font"),
+//             "secondary" => get_option("pds_secondary_font"),
+//         ];
+
+//         $prim_font = str_replace("-", " ", $current_fonts['primary']);
+//         $sec_font = str_replace("-", " ", $current_fonts['secondary']);
+//         $icon_font = str_replace("-", " ", $current_fonts['icon']);
+
+//         echo '<style id="pds-font-settings">body {
+//             --icons-font: '.ucwords($prim_font).';
+//             --primary-font: '.ucwords($sec_font).';
+//             --secondary-font: '.ucwords($icon_font).';
+//         }</style>';
+//     }
+
+//     add_action('wp_body_open', 'pds_fonts_setup');
+// endif;
+

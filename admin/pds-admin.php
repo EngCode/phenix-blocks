@@ -125,8 +125,9 @@
         array('pds_primary_font', 'pds-admin', true),
         array('pds_secondary_font', 'pds-admin', true),
         array('pds_template_parts', 'pds-admin'),
-
+        
         //===> Optimization <===//
+        array('pds_cdn', 'pds-admin', true),
         array('head_cleaner', 'pds-admin'),
         array('wpc7_cleaner', 'pds-admin'),
         array('wpc7_rm_styles', 'pds-admin'),

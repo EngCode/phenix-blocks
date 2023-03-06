@@ -79,7 +79,7 @@ if (!function_exists('phenix_assets')) :
         $prim_font = str_replace("-", " ", $current_fonts['primary']);
         $sec_font  = str_replace("-", " ", $current_fonts['secondary']);
         $icon_font = str_replace("-", " ", $current_fonts['icon']);
-        $icon_font = str_replace("Free", "Pro", $icon_font);
+        $icon_font = str_replace("free", "pro", $icon_font);
 
         //====> Font-icon <====//
         if (str_contains($current_fonts['icon'], "fontawesome-6")) : $icons_font = "fontawesome-6"; endif;

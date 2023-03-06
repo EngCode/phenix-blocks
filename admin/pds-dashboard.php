@@ -79,12 +79,80 @@
                     <img src="<?php echo $images_folder;?>/tuts/menus.png" width="900" alt="screenshot" class="fluid" />
                 </div>
                 <!-- Panel -->
-                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-4">
+                <div class="tab-panel pdy-15 pdx-30" id="section-4">
                     <img src="<?php echo $images_folder;?>/tuts/part-templates.png" width="900" alt="screenshot" class="fluid" />
+                    <!-- Grid -->
+                    <div class="row pdy-15 mt-15 divider-t">
+                        <!-- Column -->
+                        <div class="col-12 tx-align-center mb-30">
+                            <h4 class="fs-16 mb-5"><?php echo __("المكونات والقوالب واجزاء القالب","phenix"); ?></h4>
+                            <p class="fs-14"><?php echo __("اليك بعض المصطلحات التي ستتعرض لها اثناء بنائك لمحتوي موقعك وعند استخدامك اى من الاشياء المذكورة اعلاه.","phenix"); ?></p>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-12">
+                            <ul class="reset-list fs-13 flexbox">
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-alpha-05 mb-30 mx-15 pd-15 border-1 border-alpha-15 border-solid"><span class="fs-14 weight-bold mb-5 display-block"><?php echo __("ماهية المكونات ؟","phenix"); ?></span>
+                                    <?php echo __("المكونات هية اجزاء صغيرة من العناصر يتم التجميع بينها لبناء جزء من قالب او قالب كامل لصفحة ما او نوع بيانات يحتويه موقعك مثل الخدمات اشياء يتم الاشارة اليها كـ مكون او Block على سبيل المثال (صورة, عنوان, زرار, قائمة) هذة الاشياء يتم اعتبارها مكونات صغيرة وعندما تبنيها مع بعضها يتم تكوين ما نسمية بالنمط او جزء قالب.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-alpha-05 mb-30 mx-15 pd-15 border-1 border-alpha-15 border-solid"><span class="fs-14 weight-bold mb-5 display-block"><?php echo __("ماهو جزء القالب ؟","phenix"); ?></span>
+                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من لوجو, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقه فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="bg-alpha-05 col-12 col mx-15 pd-15 border-1 border-alpha-15 border-solid"><span class="fs-14 weight-bold mb-5 display-block"><?php echo __("ماهو القالب ؟","phenix"); ?></span>
+                                    <?php echo __("القالب هو تصميم نوع من انواع البيانات او تصميم خاص لصفحة معينة تم بناءة من عدة مكونات واجزاء قوالب لتظهر بشكل معين على سبيل المثال الرئيسية وصفحة الاخبار قوالب مختلفة فى طريقة عرضهم للمحتوي فكل منهم يعرض المحتوي بشكل مختلف والقالب عادتا يتم تطبيقة على جميع صفحات نوع المحتوي التي تم تحديدة للقالب فعلي سبيل المثال صفحة تفاصيل جميع الاخبار تظهر بتصميم واحد ولكن محتوي مختلف.","phenix"); ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- // Column -->
+                    </div>
+                    <!-- // Grid -->
                 </div>
                 <!-- Panel -->
-                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-5">
-                    تعديل المحتوي
+                <div class="tab-panel pdy-15 pdx-30" id="section-5">
+                    <h3 class="fs-16 divider-b mb-20 pdb-10"><?php echo __("لوحة التحكم وشريط المحرر","phenix"); ?></h3>
+                    <img src="<?php echo $images_folder;?>/tuts/content-1.png" width="900" alt="screenshot" class="mb-20 fluid" />
+                    <!-- Grid -->
+                    <div class="row pdt-25 pdb-30 pdx-15 bg-primary radius-md color-white" style="margin: 15px 0;">
+                        <!-- Column -->
+                        <div class="col-6">
+                            <h4 class="fs-16 mb-15"><?php echo __("ماهو محرر الموقع ؟","phenix"); ?></h4>
+                            <p class="fs-14"><?php echo __("محرر الموقع هو المحرر الذي تسطيع من خلاله التحكم وبناء تصميم الموقع العام وقوالب البيانات على سبيل المثال الشكل العام للصفحة الرئيسية او الشكل العام لصفحات عرض الاخبار او الخدمات او الشكل العام لصفحة محتوي تفاصيل الخدمة او الخبر او اى نوع من البيانات يحتويه موقعك وأيضا لتعديل القطع العامة فى هذة القوالب مثل الهيدر والفوتر ولوجو الموقع الماثل عادتا فى جزء الهيدر..","phenix"); ?></p>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-6">
+                            <h4 class="fs-16 mb-15"><?php echo __("ماهو محرر المحتوي ؟","phenix"); ?></h4>
+                            <p class="fs-14"><?php echo __("اما محرر المحتوي فهو المحرر الذي تستطيع من خلالة تعديل محتوي البيانات مثل اضافة اخبار جديدة تعديل الاخبار الحالية اضافة خدمات او تعديل محتوي الخدمات او اى نوع اخر من انواع البيانات الذي يحتوية موقعك.","phenix"); ?></p>
+                        </div>
+                        <!-- // Column -->
+                    </div>
+                    <!-- // Grid -->
+                    
+                    <!-- Grid -->
+                    <div class="flexbox mt-30">
+                        <!-- Column -->
+                        <div class="col-4 w-max-260 pde-15">
+                            <h4 class="fs-15 mb-5"><?php echo __("المكونات واجزاء القالب","phenix"); ?></h4>
+                            <p class="fs-13 mb-20"><?php echo __("اليك بعض المصطلحات التي ستتعرض لها اثناء بنائك لمحتوي موقعك وعند استخدامك اى من الاشياء المذكورة اعلاه.","phenix"); ?></p>
+                            <ul class="reset-list icons-list fs-12" data-icon="fas fa-star">
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("ماهية المكونات ؟","phenix"); ?></span>
+                                    <?php echo __("المكونات هية اجزاء صغيرة من العناصر يتم التجميع بينها لبناء جزء من قالب او قالب كامل لصفحة ما او نوع بيانات يحتويه موقعك مثل الخدمات اشياء يتم الاشارة اليها كـ مكون او Block على سبيل المثال (صورة, عنوان, زرار, قائمة) هذة الاشياء يتم اعتبارها مكونات صغيرة وعندما تبنيها مع بعضها يتم تكوين ما نسمية بالنمط او جزء قالب.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("ماهو جزء القالب ؟","phenix"); ?></span>
+                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من لوجو, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقة فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-8 col">
+                            <img src="<?php echo $images_folder;?>/tuts/content-2.png" width="900" alt="screenshot" class="mb-20 fluid" />
+                        </div>
+                        <!-- // Column -->
+                    </div>
+                    <!-- // Grid -->
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-6">
@@ -102,17 +170,17 @@
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-9">
                     <!-- Alert -->
                     <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
-                       <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس و ادارة البيانات وانواعها ننصحك بعدم تغيير اى شئ فى ادوات مجموعة البيانات .","phenix"); ?>
+                        <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس و ادارة البيانات وانواعها ننصحك بعدم تغيير اى شئ فى ادوات مجموعة البيانات .","phenix"); ?>
                     </p>
                     <img src="<?php echo $images_folder;?>/tuts/data-collection.png" width="900" alt="screenshot" class="fluid pdx-15 mb-10" />
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-10">
-                    <!-- Alert -->
-                    <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
-                       <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
-                    </p>
-                    <img src="<?php echo $images_folder;?>/tuts/settings.png" width="700" alt="screenshot" class="mb-10" />
+                <!-- Alert -->
+                <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
+                    <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
+                </p>
+                <img src="<?php echo $images_folder;?>/tuts/settings.png" width="700" alt="screenshot" class="mb-10" />
                 </div>
                 <!-- // Panel -->
             </div>

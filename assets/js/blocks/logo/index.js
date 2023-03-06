@@ -156,14 +156,17 @@ function Edit(_ref) {
     alt: blockProps.title,
     style: {
       "height": attributes.size
-    }
+    },
+    height: parseInt(attributes.size)
   }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
     src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,
     className: "hidden-lg-up",
     alt: blockProps.title,
     style: {
       "height": attributes.size
-    }
+    },
+    width: parseInt(attributes.size),
+    height: parseInt(attributes.size)
   }) : null));
 }
 

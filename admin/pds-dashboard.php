@@ -104,7 +104,7 @@
                     <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
                        <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس و ادارة البيانات وانواعها ننصحك بعدم تغيير اى شئ فى ادوات مجموعة البيانات .","phenix"); ?>
                     </p>
-                    <span>ماهية مجموعة البيانات وكيفية استخدامها</span>
+                    <img src="<?php echo $images_folder;?>/tuts/data-collection.png" width="900" alt="screenshot" class="fluid pdx-15 mb-10" />
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-10">

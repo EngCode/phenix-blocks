@@ -110,7 +110,7 @@
                     <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
                        <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
                     </p>
-                    <span>اعدادات الاضافة</span>
+                    <img src="<?php echo $images_folder;?>/tuts/settings.png" width="700" alt="screenshot" class="mb-10" />
                 </div>
                 <!-- // Panel -->
             </div>
@@ -127,7 +127,7 @@
 <div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px" id="about">
     <!-- Headline -->
     <div class="flexbox align-center-y align-between pdx-20 pdy-10 divider-b">
-        <h1 style="font-size: 1rem; margin-bottom: 0"><?php echo __("نبذة عن نظام فينكس", "phenix"); ?></h1>
+        <h2 style="font-size: 1rem; margin-bottom: 0"><?php echo __("نبذة عن نظام فينكس", "phenix"); ?></h2>
         <img src="<?php echo $images_folder;?>/px-logo/px-blocks-x.svg" width="170" alt="phenix-logo" />
     </div>
     <!-- // Headline -->

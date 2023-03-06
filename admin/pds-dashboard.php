@@ -160,13 +160,82 @@
 <?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>
 <script defer>
     document.querySelector("#play-music-man").addEventListener("click", clicked => {
+        
         //===> .... <===//
         let element = clicked.target,
-            musicTrigger = Phenix(element).ancestor(".pds-dashboard")?.querySelector("#play-music-man");
+        musicTrigger = Phenix(element).ancestor(".pds-dashboard")?.querySelector("#play-music-man");
+        
+        //===> .... <====//
+        if (musicTrigger.classList.contains('is-playing')) {
+            let thePlayer = document.querySelector("#music-player");
+
+            thePlayer?.pause();
+            musicTrigger.classList.remove('is-playing');
+            musicTrigger.classList.remove('music-effect');
+            return;
+        }
+
         //===> .Create Audio. <===//
-        let audio_temp = `<audio src="<?php echo $media_folder; ?>/01.mp3" preload="none" class="hidden" id="music-player"></audio>`;
+        let audio_temp = `<audio src="<?php echo $media_folder; ?>/1.mp3" data-playing="1" preload="none" class="hidden" id="music-player"></audio>`;
         Phenix(musicTrigger).insert("after", audio_temp);
+
         let audio_player = document.querySelector("#music-player");
-        if (audio_player) audio_player.play();
+        if (audio_player) {
+            audio_player.play();
+            musicTrigger.classList.add("music-effect")
+        }
+
+        //===> .Playlist. <===//
+        audio_player.onended = () => {
+            let source = parseInt(audio_player.getAttribute('data-playing')),
+                maxNum = 2;
+
+            if (source <= maxNum) {
+                audio_player.setAttribute("src", `<?php echo $media_folder; ?>/${source+1}.mp3`);
+                audio_player.setAttribute("data-playing", source+1);
+            } else {
+                audio_player.setAttribute("src", `<?php echo $media_folder; ?>/1.mp3`);
+                audio_player.setAttribute("data-playing", 1);
+            }
+
+            audio_player.play();
+        };
+        
+        //===> Toggle <===//
+        musicTrigger.classList.add('is-playing');
     });
 </script>
+
+<style>
+   .music-effect {
+       -webkit-animation: musicEffect 0.7s infinite; 
+            animation: musicEffect 0.7s infinite; 
+   }
+
+   .music-effect i {
+       -webkit-animation: musicEffectIcons 0.7s infinite; 
+            animation: musicEffectIcons 0.7s infinite; 
+   }
+
+    @-webkit-keyframes musicEffect {
+        50% {color: var(--primary-color);}
+        100% {color: var(--secondary-color);}
+    }
+
+    @keyframes musicEffect {
+        50% {color: var(--primary-color);}
+        100% {color: var(--secondary-color);}
+    }
+
+    @-webkit-keyframes musicEffectIcons {
+        from {color: var(--primary-color);}
+        50% {color: var(--secondary-color);}
+        1000% {color: var(--dark-color);}
+    }
+
+    @keyframes musicEffectIcons {
+        from {color: var(--primary-color);}
+        50% {color: var(--secondary-color);}
+        1000% {color: var(--dark-color);}
+    }
+</style>

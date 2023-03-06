@@ -106,7 +106,7 @@
 	}
 	
 
-	&:not([class*="phenix-blocks_page"]):not([class*="pds-admin"]) {
+	&:not([class*="pds-admin"]):not([class*="data-collection"]) {
 		/*==== Standard Controls ====*/
 		input:not([type="submit"]):not([type="button"]), select, textarea {
 			padding: 0 12px;

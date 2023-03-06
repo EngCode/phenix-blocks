@@ -90,7 +90,6 @@ if (!function_exists('phenix_assets')) :
             echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
         }
 
-        
         //===> Load Primary Font <===//
         if (get_option('pds_gfonts') == "on" && !in_array($current_fonts["primary"], $pds_custom_fonts, true)) {
             $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['primary'];

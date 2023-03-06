@@ -122,8 +122,8 @@
     </div>
     <!-- // Container -->
 </div>
-<!-- // Dashboard Wrapper -->
 
+<!-- Temporary Music Player -->
 <div class="pds-dashboard me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
     <!-- Music Player -->
     <h3 class="color-gray tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
@@ -161,6 +161,8 @@
 </div>
 
 <?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>
+
+<!-- Temporary Music Script and Style -->
 <script defer>
     document.querySelector("#play-music-man").addEventListener("click", clicked => {
         

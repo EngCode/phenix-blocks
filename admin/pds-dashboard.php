@@ -1,9 +1,17 @@
 <?php
     //===> Define Elements <===//
     $images_folder = plugin_dir_url(__DIR__).'/assets/img';
+    $media_folder = plugin_dir_url(__DIR__).'/assets/media';
 ?>
 <!-- Intro Poster -->
-<div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
+<div class="pds-dashboard mb-30 mt-10 me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
+    <!-- Music Player -->
+    <h3 class="color-dark tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
+        <i class="me-5 fas fa-mp3-player fs-18 color-primary"></i>
+        <?php echo __("هل تريد الاستماع الى شئ ممتع ؟ اضغط هنا", "phenix"); ?>
+        <i class="ms-5 fas fa-mp3-player fs-18 color-primary"></i>
+    </h3>    
+    <!-- Cover Image -->
     <a href="#about"><img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" /></a>
 </div>
 
@@ -122,7 +130,6 @@
 </div>
 <!-- // Dashboard Wrapper -->
 
-
 <!-- Note Text -->
 <div class="pds-dashboard me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px" id="about">
     <!-- Headline -->
@@ -151,3 +158,15 @@
 </div>
 
 <?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>
+<script defer>
+    document.querySelector("#play-music-man").addEventListener("click", clicked => {
+        //===> .... <===//
+        let element = clicked.target,
+            musicTrigger = Phenix(element).ancestor(".pds-dashboard")?.querySelector("#play-music-man");
+        //===> .Create Audio. <===//
+        let audio_temp = `<audio src="<?php echo $media_folder; ?>/01.mp3" preload="none" class="hidden" id="music-player"></audio>`;
+        Phenix(musicTrigger).insert("after", audio_temp);
+        let audio_player = document.querySelector("#music-player");
+        if (audio_player) audio_player.play();
+    });
+</script>

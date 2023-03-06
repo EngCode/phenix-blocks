@@ -18,15 +18,18 @@ Phenix(document).ready((event:any) => {
 
     //====> Sticky Header <====//
     let headerElement = Phenix('.main-header');
-    headerElement.setAttributes({'data-sticky': "absolute"});
-    headerElement.addClass('fluid').addClass('z-index-header').sticky();
 
-    //===> Define Data <===//
-    let headerHeight = headerElement.height();
-
-    //====> Full Screen Fixes <====//
-    Phenix('.full-screen').forEach((element:HTMLElement) => element.style.minHeight = `calc(100vh - ${headerHeight}px)`);
-    Phenix('.full-screen-wide').forEach((element:HTMLElement) => element.style.minHeight = `calc(85vh - ${headerHeight}px)`);
+    if (headerElement.length > 0) {
+        headerElement.setAttributes({'data-sticky': "absolute"});
+        headerElement.addClass('fluid').addClass('z-index-header').sticky();
+    
+        //===> Define Data <===//
+        let headerHeight = headerElement.height();
+    
+        //====> Full Screen Fixes <====//
+        Phenix('.full-screen').forEach((element:HTMLElement) => element.style.minHeight = `calc(100vh - ${headerHeight}px)`);
+        Phenix('.full-screen-wide').forEach((element:HTMLElement) => element.style.minHeight = `calc(85vh - ${headerHeight}px)`);
+    }
 
     //====> Sliders Fix <====//
     Phenix('.temp-slider-3x, .temp-slider-4x').setAttributes({

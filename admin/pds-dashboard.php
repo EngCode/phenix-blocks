@@ -2,11 +2,12 @@
     //===> Define Elements <===//
     $images_folder = plugin_dir_url(__DIR__).'/assets/img';
 ?>
-<!-- Dashboard Wrapper -->
+<!-- Intro Poster -->
 <div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
     <img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" />
 </div>
-<!-- ........ -->
+
+<!-- Dashboard Wrapper -->
 <div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
     <!-- Headline -->
     <div class="flexbox align-center-y align-between pdx-20 pdy-10 divider-b">
@@ -22,16 +23,18 @@
             <!-- Column -->
             <div class="col-12 col-md-4 divider-e pdy-25">
                 <p class="weight-medium"><?php echo __("هذا دليل ارشادي سريع لتعلم كيفية التعديل على قالب ووردبريس مبني بنظام تصميم فينكس, في هذة الصفحة ستتعرف سريعا على ادوات التعديل المتاحة فى الووردبريس ومدمجة مع نظام تصميم فينكس لتعديل كامل التصميم ومحتوي الموقع.","phenix");?></p>
+                <p class="weight-medium"><?php echo __("اهلا بكم فى الحقبة الجديدة من الووردبريس بواسطة <a href='https://phenixthemes.com/pds-docs/'>Abdullah.Ramadan</a> لمعرفة المزيد اضغط هنا <a href='#about'>المزيد عن نظام فينكس.</a>.","phenix");?></p>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-8 pdb-10 pdt-20 align-self-center">
                 <img src="<?php echo $images_folder;?>/tuts/01.png" width="900" alt="screenshot" class="mb-10" />
-                <p class="fs-12 weight-bold tx-align-end">By <a href="https://phenixthemes.com/pds-docs/">Abdullah.Ramadan</a></p>
             </div>
             <!-- // Column -->
         </div>
         <!-- Note Text -->
-        <p class="weight-medium fs-12 col-12 tx-align-center color-gray pdy-10 lineheight-100 mb-0"><?php echo __("اتبع التعليمات بالترتيب فى كل قسم من الصفحة فكل قسم يشرح كيفية تعديل جزء من النظام.","phenix");?></p>
+        <p class="weight-medium fs-12 col-12 tx-align-center color-gray pdy-10 lineheight-100 mb-0">
+            <?php echo __("اتبع التعليمات بالترتيب فى كل قسم من الصفحة فكل قسم يشرح كيفية تعديل جزء من النظام.","phenix");?>
+        </p>
         <!-- Grid Layout -->
         <div class="px-tabs radius-md border-solid border-1 border-alpha-10">
             <!-- Custom Tabs Style -->
@@ -118,4 +121,34 @@
     <!-- // Container -->
 </div>
 <!-- // Dashboard Wrapper -->
+
+
+<!-- Note Text -->
+<div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px" id="about">
+    <!-- Headline -->
+    <div class="flexbox align-center-y align-between pdx-20 pdy-10 divider-b">
+        <h1 style="font-size: 1rem; margin-bottom: 0"><?php echo __("نبذة عن نظام فينكس", "phenix"); ?></h1>
+        <img src="<?php echo $images_folder;?>/px-logo/px-blocks-x.svg" width="170" alt="phenix-logo" />
+    </div>
+    <!-- // Headline -->
+    
+    <!-- Layout Group -->
+    <div class="flexbox">
+        <!-- Column -->
+        <div class="fs-13 col col-5 pds-20 tx-align-center pdy-50">
+            <img src="<?php echo $images_folder;?>/tuts/about.png" width="900" alt="screenshot" class="fluid" />
+        </div>
+
+        <!-- Column -->
+        <div class="fs-13 col-7 w-max-570 pd-30">
+            <p><?php echo __('فينكس هو نظام تصميم وتطوير لـ واجهات المستخدم (UI/UX/Front-End) لبناء وتصميم تطبيقات الويب بمختلف انواعها وقد تم بناءة بمنطق بسيط لبناء تطبيقات ويب عالية الاداء والسرعة ولديه اكبر نسبة توافق ودعم لمحركات البحث وبه الكثير من المميزات التي تتيح لك بناء اى شئ بدون الحاجة الى اضافات اخري.',"phenix");?></p>
+            <p><?php echo __('و منذ مطلع عام 2018 وقد اتخذ الووردبريس طريق جديد فى كيفية إدارة وانشاء المحتوي عبر تبنى المحرر "Gutenberg" فى الإصدار الخامس بشكل رسمي والان فى عام 2023 بعد صدور الإصدار السادس من الووردبريس قد اكتمل هذا المحرر ليقدم تجربة مستخدم عظيمة واصبح ينتهج الووردبريس نهج بناء الموقع عبر المكونات',"phenix");?></p>
+            <p><?php echo __('وهو أيضا نفس النهج والمفهوم الذي تم بناء نظام تصميم “Phenix” علية واصبح من الممكن نقل تجربة نظام التصميم الى الووردبريس بتكامل تام مما يضيف لموقعك جميع مميزات وقوة نظام التصميم من السرعة والأداء الى دعم وتجهيز موقعك لمحركات البحث',"phenix");?></p>
+            <p><?php echo __('وليس على مستوي التحكم وبناء التصميم ومحتوي الموقع فقط بل أيضا على مستوي توسع وتطوير موقعك واضافة أنواع محتوي جديدة بسهولة, ومع المكونات المجهزة خصيصا لنظام فينكس داخل محرر الووردبريس ستجد ان لديك تحكم كامل فى كل تفاصيل التصميم والمحتوي لبناء موقعك كما تشاء بحرية كاملة.',"phenix");?></p>
+            <p><?php echo __('تم بناء وتطوير نظام فينكس بواسطة <a href="mailto:abdullah@phenixthemes.com" class="weight-medium color-danger">عبدالله.رمضان</a>.',"phenix");?></p>
+        </div>
+    </div>
+    <!-- // Layout Group -->
+</div>
+
 <?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>

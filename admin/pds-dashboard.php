@@ -4,19 +4,13 @@
     $media_folder = plugin_dir_url(__DIR__).'/assets/media';
 ?>
 <!-- Intro Poster -->
-<div class="pds-dashboard mb-30 mt-10 me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
-    <!-- Music Player -->
-    <h3 class="color-dark tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
-        <i class="me-5 fas fa-mp3-player fs-18 color-primary"></i>
-        <?php echo __("هل تريد الاستماع الى شئ ممتع ؟ اضغط هنا", "phenix"); ?>
-        <i class="ms-5 fas fa-mp3-player fs-18 color-primary"></i>
-    </h3>    
+<div class="pds-dashboard my-30 me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
     <!-- Cover Image -->
     <a href="#about"><img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" /></a>
 </div>
 
 <!-- Dashboard Wrapper -->
-<div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
+<div class="pds-dashboard me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
     <!-- Headline -->
     <div class="flexbox align-center-y align-between pdx-20 pdy-10 divider-b">
         <h1 style="font-size: 1rem; margin-bottom: 0"><?php echo __("الدليل الارشادي السريع للاستخدام", "phenix"); ?></h1>
@@ -129,6 +123,15 @@
     <!-- // Container -->
 </div>
 <!-- // Dashboard Wrapper -->
+
+<div class="pds-dashboard me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
+    <!-- Music Player -->
+    <h3 class="color-dark tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
+        <i class="me-5 fas fa-mp3-player fs-18 color-primary"></i>
+        <?php echo __("هل تريد الاستماع الى شئ ممتع ؟ اضغط هنا", "phenix"); ?>
+        <i class="ms-5 fas fa-mp3-player fs-18 color-primary"></i>
+    </h3>  
+</div>
 
 <!-- Note Text -->
 <div class="pds-dashboard me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px" id="about">

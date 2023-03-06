@@ -12,6 +12,7 @@
           "text-decoration-skip"
         ]
       }
-    ]
+    ],
+    "typescript-config/consistent-casing": "off"
   }
 }

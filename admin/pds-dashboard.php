@@ -126,10 +126,10 @@
 
 <div class="pds-dashboard me-30 mgx-xl-auto radius-lg" style="max-width: 1100px">
     <!-- Music Player -->
-    <h3 class="color-dark tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
-        <i class="me-5 fas fa-mp3-player fs-18 color-primary"></i>
+    <h3 class="color-gray tx-align-center pdy-10 flexbox align-center mouse-pointer" style="font-size: 14px; margin-bottom: 0" id="play-music-man">
+        <i class="me-5 fas fa-mp3-player fs-18"></i>
         <?php echo __("هل تريد الاستماع الى شئ ممتع ؟ اضغط هنا", "phenix"); ?>
-        <i class="ms-5 fas fa-mp3-player fs-18 color-primary"></i>
+        <i class="ms-5 fas fa-mp3-player fs-18"></i>
     </h3>  
 </div>
 

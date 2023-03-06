@@ -23,7 +23,7 @@
             <!-- Column -->
             <div class="col-12 col-md-4 divider-e pdy-25">
                 <p class="weight-medium"><?php echo __("هذا دليل ارشادي سريع لتعلم كيفية التعديل على قالب ووردبريس مبني بنظام تصميم فينكس, في هذة الصفحة ستتعرف سريعا على ادوات التعديل المتاحة فى الووردبريس ومدمجة مع نظام تصميم فينكس لتعديل كامل التصميم ومحتوي الموقع.","phenix");?></p>
-                <p class="weight-medium"><?php echo __("اهلا بكم فى الحقبة الجديدة من الووردبريس بواسطة <a href='https://phenixthemes.com/pds-docs/'>Abdullah.Ramadan</a> لمعرفة المزيد اضغط هنا <a href='#about'>المزيد عن نظام فينكس.</a>.","phenix");?></p>
+                <p class="weight-medium"><?php echo __("اهلا بكم فى الحقبة الجديدة من الووردبريس بواسطة <a href='https://phenixthemes.com/pds-docs/'>Abdullah.Ramadan</a> لمعرفة المزيد اضغط علي <a href='#about'>المزيد عن نظام فينكس.</a>.","phenix");?></p>
             </div>
             <!-- Column -->
             <div class="col-12 col-md-8 pdb-10 pdt-20 align-self-center">

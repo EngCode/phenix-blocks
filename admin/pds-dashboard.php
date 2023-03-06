@@ -200,7 +200,7 @@
 
             audio_player.play();
         };
-        
+
         //===> Toggle <===//
         musicTrigger.classList.add('is-playing');
     });

@@ -179,13 +179,17 @@
         }
 
         //===> .Create Audio. <===//
-        let audio_temp = `<audio src="<?php echo $media_folder; ?>/1.mp3" data-playing="1" preload="none" class="hidden" id="music-player"></audio>`;
-        Phenix(musicTrigger).insert("after", audio_temp);
-
         let audio_player = document.querySelector("#music-player");
-        if (audio_player) {
+
+        if (!document.querySelector("#music-player")) {
+            let audio_temp = `<audio src="<?php echo $media_folder; ?>/1.mp3" data-playing="1" preload="none" class="hidden" id="music-player"></audio>`;
+            Phenix(musicTrigger).insert("after", audio_temp);
+            audio_player = document.querySelector("#music-player");
             audio_player.play();
-            musicTrigger.classList.add("music-effect")
+            musicTrigger.classList.add("music-effect");
+        } else {
+            audio_player.play();
+            musicTrigger.classList.add("music-effect");
         }
 
         //===> .Playlist. <===//

@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "phenix/taxonomies",
   "version": "0.1.0",
-  "title": "PDS Taxonomies",
+  "title": "Taxonomies Loop",
   "category": "design",
   "description": "Custom Taxonomies & Categories Query Block.",
   "supports": {

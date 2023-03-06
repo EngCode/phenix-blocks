@@ -97,11 +97,11 @@
                                 </li>
                                 <!-- Item -->
                                 <li style="width:calc(50% - 30px)" class="bg-alpha-05 mb-30 mx-15 pd-15 border-1 border-alpha-15 border-solid"><span class="fs-14 weight-bold mb-5 display-block"><?php echo __("ماهو جزء القالب ؟","phenix"); ?></span>
-                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من لوجو, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقه فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
+                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من شعار, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقه فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
                                 </li>
                                 <!-- Item -->
                                 <li class="bg-alpha-05 col-12 col mx-15 pd-15 border-1 border-alpha-15 border-solid"><span class="fs-14 weight-bold mb-5 display-block"><?php echo __("ماهو القالب ؟","phenix"); ?></span>
-                                    <?php echo __("القالب هو تصميم نوع من انواع البيانات او تصميم خاص لصفحة معينة تم بناءة من عدة مكونات واجزاء قوالب لتظهر بشكل معين على سبيل المثال الرئيسية وصفحة الاخبار قوالب مختلفة فى طريقة عرضهم للمحتوي فكل منهم يعرض المحتوي بشكل مختلف والقالب عادتا يتم تطبيقة على جميع صفحات نوع المحتوي التي تم تحديدة للقالب فعلي سبيل المثال صفحة تفاصيل جميع الاخبار تظهر بتصميم واحد ولكن محتوي مختلف.","phenix"); ?>
+                                    <?php echo __("القالب هو تصميم نوع من انواع البيانات او تصميم خاص لصفحة معينة تم بناءة من عدة مكونات واجزاء قوالب لتظهر بشكل معين على سبيل المثال الرئيسية وصفحة الاخبار قوالب مختلفة فى طريقة عرضهم للمحتوي فكل منهم يعرض المحتوي بشكل مختلف والقالب عادتا يتم تطبيقه على جميع صفحات نوع المحتوي التي تم تحديده للقالب فعلي سبيل المثال صفحة تفاصيل جميع الاخبار تظهر بتصميم واحد ولكن محتوي مختلف.","phenix"); ?>
                                 </li>
                             </ul>
                         </div>
@@ -118,12 +118,12 @@
                         <!-- Column -->
                         <div class="col-6">
                             <h4 class="fs-16 mb-15"><?php echo __("ماهو محرر الموقع ؟","phenix"); ?></h4>
-                            <p class="fs-14"><?php echo __("محرر الموقع هو المحرر الذي تسطيع من خلاله التحكم وبناء تصميم الموقع العام وقوالب البيانات على سبيل المثال الشكل العام للصفحة الرئيسية او الشكل العام لصفحات عرض الاخبار او الخدمات او الشكل العام لصفحة محتوي تفاصيل الخدمة او الخبر او اى نوع من البيانات يحتويه موقعك وأيضا لتعديل القطع العامة فى هذة القوالب مثل الهيدر والفوتر ولوجو الموقع الماثل عادتا فى جزء الهيدر..","phenix"); ?></p>
+                            <p class="fs-14"><?php echo __("محرر الموقع هو المحرر الذي تسطيع من خلاله التحكم وبناء تصميم الموقع العام وقوالب البيانات على سبيل المثال الشكل العام للصفحة الرئيسية او الشكل العام لصفحات عرض الاخبار او الخدمات او الشكل العام لصفحة محتوي تفاصيل الخدمة او الخبر او اى نوع من البيانات يحتويه موقعك وأيضا لتعديل القطع العامة فى هذة القوالب مثل الهيدر والفوتر وشعار الموقع الماثل عادتا فى جزء الهيدر..","phenix"); ?></p>
                         </div>
                         <!-- Column -->
                         <div class="col-6">
                             <h4 class="fs-16 mb-15"><?php echo __("ماهو محرر المحتوي ؟","phenix"); ?></h4>
-                            <p class="fs-14"><?php echo __("اما محرر المحتوي فهو المحرر الذي تستطيع من خلالة تعديل محتوي البيانات مثل اضافة اخبار جديدة تعديل الاخبار الحالية اضافة خدمات او تعديل محتوي الخدمات او اى نوع اخر من انواع البيانات الذي يحتوية موقعك.","phenix"); ?></p>
+                            <p class="fs-14"><?php echo __("اما محرر المحتوي فهو المحرر الذي تستطيع من خلالة تعديل محتوي البيانات مثل اضافة اخبار جديدة تعديل الاخبار الحالية اضافة خدمات او تعديل محتوي الخدمات او اى نوع اخر من انواع البيانات الذي يحتويه موقعك.","phenix"); ?></p>
                         </div>
                         <!-- // Column -->
                     </div>
@@ -142,7 +142,7 @@
                                 </li>
                                 <!-- Item -->
                                 <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("ماهو جزء القالب ؟","phenix"); ?></span>
-                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من لوجو, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقة فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
+                                    <?php echo __("جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب مكون من شعار, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم تطبيقه فى كل القوالب التي يتواجد بها هذا الجزء.","phenix"); ?>
                                 </li>
                             </ul>
                         </div>
@@ -167,7 +167,7 @@
                         <!-- Column -->
                         <div class="col-5 pde-15">
                             <h4 class="fs-15 mb-5"><?php echo __("تعريف الانماط","phenix"); ?></h4>
-                            <p class="fs-13 mb-20"><?php echo __("الانماط هية قطع من المحتوي مثل اجزاء القالب باختلاف انك تستطيع استخدامها بشكل متكرر وتغيير محتواها واعداداتها بدون التأثير على باقي المحتوي وستجد العديد من الانماط حسب تصميم موقعك عادتا يتم تجهيز بعض الانماط مثل السلايدر, قطعة عرض خدمات او لوجوهات عملائك لكي تستطيع اعادة استخدامها فى صفحات جديدة من محتوي موقعك واليك بعض الانماط الشائع استخدامها :","phenix"); ?></p>
+                            <p class="fs-13 mb-20"><?php echo __("الانماط هية قطع من المحتوي مثل اجزاء القالب باختلاف انك تستطيع استخدامها بشكل متكرر وتغيير محتواها واعداداتها بدون التأثير على باقي المحتوي وستجد العديد من الانماط حسب تصميم موقعك عادتا يتم تجهيز بعض الانماط مثل السلايدر, قطعة عرض خدمات او شعارات عملائك لكي تستطيع اعادة استخدامها فى صفحات جديدة من محتوي موقعك واليك بعض الانماط الشائع استخدامها :","phenix"); ?></p>
                             
                             <ul class="reset-list icons-list fs-12" data-icon="fas fa-star">
                                 <!-- Item -->
@@ -209,8 +209,206 @@
                     <img src="<?php echo $images_folder;?>/tuts/translation.png" width="900" alt="screenshot" class="fluid mb-10" />
                 </div>
                 <!-- Panel -->
-                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-8">
-                    ماهية المكونات وكيفية استخدامها
+                <div class="tab-panel pdy-15 pdx-30" id="section-8">
+                    <!-- Grid -->
+                    <div class="row">
+                        <!-- Column -->
+                        <div class="col-12 tx-align-center mb-30">
+                            <h4 class="fs-16 mb-5"><?php echo __("مكونات نظام التصميم","phenix"); ?></h4>
+                            <p class="fs-14"><?php echo __("هنا ستجد قائمة بالمكونات المتوفرة ومفعلة بشكل افتراضي فى نظام تصميم فينكس بجانب المكونات الشائع استخدامها من نظام الووردبريس :","phenix"); ?></p>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-12">
+                            <ul class="reset-list fs-13 flexbox">
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-5 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/site-logo.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Phenix Logo - شعار الموقع","phenix"); ?>
+                                    </span>
+                                    <?php echo __("بهذا المكون يمكنك تعيين شعار اساسي لموقعك وايقونة لشريط الموقع ويتم استخدامه عاده فى اجزاء القالب مثل الهيدر وبه وضع تجاوبي لتغيير الشعار بواحد مناسب لاجهزة الجوال.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/navigation.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Phenix Menu - عرض قائمة روابط","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون القائمة من فينكس يسمح لك بعرض قائمة تم انشاءها عن طريق نظام قوائم الووردبريس الكلاسيكي وايضا بها وضع تجاوبي لاخفاء القائمة فى اجهزة الجوال واظهارها عبر مكون الازرار. ","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/container.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Container - حاوية","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون الحاوية يسمح لك بانشاء عنصر خالي يستطيع ان يحتوي عدة مكونات اخري بداخلة مثل النظام الشبكي ويمتاز بخواصه التي تجعلك تستطيع ان تصمم به قوالب مقسمة لاقسام كل قسم يعرض نوع محتوي بشكل مختلف كما فى الرئيسية عاده.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/grid.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Grid Row - النظام الشبكي","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون النظام الشبكي يجب استخدامه بداخل مكون الحاوية ويسمح لك بتقسيم المكونات بداخلة الى اعمدة بجانب بعضها البعض او تحتها بعضها ويمكن استخدام وضع الشرائح (Slider Mode) لتحويل النظام الشبكي الي سلايدر والتمتع بخواص عارض الشرائح المتجاوب.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/columns.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Grid Column - اعمدة للنظام الشبكي","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون الاعمدة يتم استخدامه عادتا بداخل مكون النظام الشبكي لتحديد حجم للمحتوي داخل هذا المكون بشكل تجاوبي بحجم مختلف فى كل جهاز او حجم شاشة ويمكن الاستفادة منه خارج النظام الشبكي ايضاً لنفس الغرض.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/theme-part.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Theme Part - جزء قالب دينامكي","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون جزء القالب الديناميكي يسمح لك باستدعاء قالب تم بناءة بلغة PHP ويجب ان يكون ملف هذا القالب بداخل مجلد (template-parts) داخل مجلد الـ Theme الخاص بك ويمكن الاستفادة به لتشغيل خواص وقطع تصميم تم بنائها بلغة PHP.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/button.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("PDS Button - مكون ازرار","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون الازرار يسمح لك بانشاء عنصر زر يمكن استخدامه كرابط او زر لتفعيل شئ ما مثل ظهور نافذه مبوبه او اظهار قائمة متجاوبة والكثير من الامثلة التي يمكن استخدام عنصر الزر بها ويمكنك التحكم بكامل خواص الزر من الحجم والالوان بشكل متجاوب لكل جهاز او شاشه.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/group.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("PDS Group","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون المجموعات هو عنصر يمكن استخدام لتجميع مكونات وعناصر اخري بداخلة كمجموعة محتوي مرتبطة ببعضها ويمتاز بخواص النظام الشبكي والاعمدة التجاوبي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/query-loop.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Query Loop - عارض المقالات","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون قائمة مقالات هو مكون لعرض قائمة لاى نوع محتوي على سبيل مثال عرض اخر الاخبار او جميع الخدمات ويجب ان يكون متوفر  بداخل Theme تصميم موقعك قالب PHP Template Part لنوع المحتوي ويمتاز ايضا بجميع خواص النظام الشبكي والسلايدر ويتم استخدامه عاده داخل مكون حاويه.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/page-head.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Page Head - رأس الصفحة","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون رأس الصفحة هو مكون تم اعداده برمجيا لعرض عنوان الصفحة الحالية و روابط تتبع بنية الصفحة Breadcrumb وهو مفيد ويجب ان يتواجد ف جميع الصفحات الداخلية لتوافق موقعك التام مع محركات البحث وارشفه المحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/categoreis.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Taxonomies List - قائمة الفئات","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون قائمة الفئات هو عنصر لعرض قائمة بنوع من الفئات كالاقسام على سبيل المثال او قائمة بالكلمات الدلالية لنوع المحتوي التي يتم تحديده فى اعدادات المكون.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/query-loop.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Taxonomies Loop - عارض الفئات","phenix"); ?>
+                                    </span>
+                                    <?php echo __("عارض الفئات هو مكون مثل مكون عارض المقالات باختلاف انه يسمح لك بعرض قائمة من الاقسام على سبيل المثال بتصميم خاص باستدعاء قالب Template Part من الـ Theme الخاص بك وهو ايضاً يحتوي على جميع مميزات مكون النظام الشبكي وعارض الشرائح Slider Mode التجاوبي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/columns.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Inline elements - عناصر كتابية","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون العنصر الكتابي هو مكون يسمح لك بانشاء محتوي كتابي بداخل عناصر لتمييز النصوص مثل strong, italic, span ويمكن الاستفادة به وبخواصه لتمييز بعض النصوص داخل محتوي صفحتك.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/post-content.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Post Content - محتوي مقالة","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون محتوي مقالة هو عنصر لعرض محتوي المقالة لنوع محتوي القالب الحالي ويتم استخدامه فقط فى قوالب انواع البيانات والمحتوى وهو برمجيا ينفذ وظيفة the_content();.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/image.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Image - صورة","phenix"); ?>
+                                    </span>
+                                    <?php echo __("هو عنصر اساسي فى نظام الووردبريس ويسمح لك بوضع صور داخل محتوي صفحتك ويمكن استخدامه فى حالات لا حصر لها اثناء بناء التصميم او كتابه وتعديل المحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/paragraph.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Paragraph - فقرة","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون الفقرة هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء فقرات نصية وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/headline.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Headline - عنوان","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون العنوان هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء عناوين لفقراتك النصية وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/list.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("List - قائمة","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون القائمة النصية هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء قوائم نصية لمحتواك وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/template-part.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Template Part - جزء قالب","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون جزء قالب هو عنصر أساسي في نظام الووردبريس ويسمح لك باستدعاء أجزاء القالب التي تم بنائها فى محرر تصميم الموقع مثل الهيدر والفوتر ورأس الصفحة","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/cf-7.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Contact Form - نماذج الاتصال","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون نماذج الاتصال هو عنصر يسمح لك باستدعاء نموذج تم بناء باضافة نماذج الاتصال مثل نموذج تواصل معنا او طلب الخدمة على سبيل المثال ويتواجد فقط عند استخدام اضافه Contact Form 7.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/table.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Table - جدول","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون الجدول هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء جداول لمحتواك وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/video.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Video - فيديو","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون فيديو هو عنصر أساسي في نظام الووردبريس ويسمح لك بوضع فيديوهات لمحتواك كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
+                                    <span class="fs-14 weight-bold mb-10 display-block">
+                                        <img src="<?php echo $images_folder;?>/blocks/core/audio.svg" alt="" class="me-5" width="20" />
+                                        <?php echo __("Audio - صوت","phenix"); ?>
+                                    </span>
+                                    <?php echo __("مكون صوت هو عنصر أساسي في نظام الووردبريس ويسمح لك بوضع ملفات صوتية في محتواك كما تريد وهو أيضا من العناصر الحيوية والذي يتم استخدامه فى بناء التصميم والمحتوي.","phenix"); ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- // Column -->
+                    </div>
+                    <!-- // Grid -->
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-9">

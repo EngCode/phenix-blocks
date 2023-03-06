@@ -68,6 +68,7 @@ if (!function_exists('phenix_assets')) :
         $assets_path = plugin_dir_path(__DIR__);
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
         $icons_font  = "fontawesome-5";
+        $pds_custom_fonts = ["somar-rounded", "somar-sans", "neo-sans-w23", "din-next-lt-arabic", "tarek-v"];
         $current_fonts = [
             "icon" => get_option("pds_icon_font"),
             "primary" => get_option("pds_primary_font"),
@@ -87,21 +88,23 @@ if (!function_exists('phenix_assets')) :
         if (get_option('pds_gfonts') == "on") {
             echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
             echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
-            
-            //===> Load Primary Font <===//
+        }
+
+        
+        //===> Load Primary Font <===//
+        if (get_option('pds_gfonts') == "on" && !in_array($current_fonts["primary"], $pds_custom_fonts, true)) {
             $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['primary'];
             wp_enqueue_style('pds-primary-font', $google_url, array('phenix'), null, 'screen and (min-width: 2500px)');
+        } else {
+            wp_enqueue_style('pds-primary-font', $assets_url. 'webfonts/'.$current_fonts['primary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
+        }
 
-            //===> Load Secondary Font <===//
-            if ($current_fonts['primary'] !== $current_fonts['secondary']) {
+        //===> Load Secondary Font <===//
+        if ($current_fonts['primary'] !== $current_fonts['secondary']) {
+            if (get_option('pds_gfonts') == "on" && !in_array($current_fonts["secondary"], $pds_custom_fonts, true)) {
                 $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['secondary'];
                 wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), null, 'screen and (min-width: 2500px)');
-            }
-        } else {
-            //===> Load Primary Font <===//
-            wp_enqueue_style('pds-primary-font', $assets_url. 'webfonts/'.$current_fonts['primary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
-            //===> Load Secondary Font <===//
-            if ($current_fonts['primary'] !== $current_fonts['secondary']) {
+            } else {
                 wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
             }
         }

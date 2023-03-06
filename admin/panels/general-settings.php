@@ -7,7 +7,6 @@
     $fonts_list = [
         "somar-rounded" => "Somar Rounded",
         "somar-sans" => "Somar Sans",
-        "somar-sans" => "Somar Sans",
         "neo-sans-w23" => "Neo Sans W23",
         "din-next-lt-arabic" => "DIN Next LT Arabic",
         "tarek-v" => "Tarek V",

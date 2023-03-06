@@ -199,7 +199,7 @@
             let source = parseInt(audio_player.getAttribute('data-playing')),
                 maxNum = 2;
 
-            if (source <= maxNum) {
+            if (source < maxNum+1) {
                 audio_player.setAttribute("src", `<?php echo $media_folder; ?>/${source+1}.mp3`);
                 audio_player.setAttribute("data-playing", source+1);
             } else {

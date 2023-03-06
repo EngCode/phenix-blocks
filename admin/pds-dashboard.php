@@ -153,10 +153,56 @@
                         <!-- // Column -->
                     </div>
                     <!-- // Grid -->
+
+                    <!-- Area Title -->
+                    <h4 class="pdt-15 pdb-20 pdx-15 mb-30 bg-primary radius-md color-white fs-16 tx-align-center"><?php echo __("بعد ان تعرفت على المكونات واجزاء القالب ولوحة اعداداتهم اليك بعض التلميحات عن كيفية تعديل بعض من العناصر الشائع استخدامها","phenix"); ?></h4>
+                    <img src="<?php echo $images_folder;?>/tuts/content-3.png" width="900" alt="screenshot" class="mb-40 fluid" />
+                    <img src="<?php echo $images_folder;?>/tuts/content-4.png" width="900" alt="screenshot" class="mb-20 fluid" />
+                    <!-- // Grid -->
                 </div>
                 <!-- Panel -->
-                <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-6">
-                    كيفية استخدام الانماط
+                <div class="tab-panel pdy-15 pdx-30" id="section-6">
+                    <!-- Grid -->
+                    <div class="flexbox align-center-x">
+                        <!-- Column -->
+                        <div class="col-5 pde-15">
+                            <h4 class="fs-15 mb-5"><?php echo __("تعريف الانماط","phenix"); ?></h4>
+                            <p class="fs-13 mb-20"><?php echo __("الانماط هية قطع من المحتوي مثل اجزاء القالب باختلاف انك تستطيع استخدامها بشكل متكرر وتغيير محتواها واعداداتها بدون التأثير على باقي المحتوي وستجد العديد من الانماط حسب تصميم موقعك عادتا يتم تجهيز بعض الانماط مثل السلايدر, قطعة عرض خدمات او لوجوهات عملائك لكي تستطيع اعادة استخدامها فى صفحات جديدة من محتوي موقعك واليك بعض الانماط الشائع استخدامها :","phenix"); ?></p>
+                            
+                            <ul class="reset-list icons-list fs-12" data-icon="fas fa-star">
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("الهيدر القياسي","phenix"); ?></span>
+                                    <?php echo __("الهيدر القياسي عادتا يكون نسخة من الهيدر الخاص بتصميم موقعك ليمكنك من صناعة نسخ مختلفة منه لتستخدمها فى صفحات مختلفة حسب حاجتك.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("الفوتر القياسي","phenix"); ?></span>
+                                    <?php echo __("الفوتر القياسي عادتا يكون نسخة من الفوتر الخاص بتصميم موقعك ليمكنك من صناعة نسخ مختلفة منه لتستخدمها فى صفحات مختلفة حسب حاجتك.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("السلايدر الرئيسي","phenix"); ?></span>
+                                    <?php echo __("قطعة لعرض شرائح مكونات من نوع بيانات الشرائح او السلايدر الرئيسي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("سلايدر للخدمات او الاخبار","phenix"); ?></span>
+                                    <?php echo __("قطعة لعرض الخدمات او الاخبار حيث يمكنك تغيير مصدر البيانات المعروضة بسهولة من اعدادات المكون الخاص بالنظام الشبكي.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("محتوي مدونة افتراضي","phenix"); ?></span>
+                                    <?php echo __("هو عادة نمط لمحتوي مدونة افتراضي كمثال لمحررين المحتوي يمكن اتباعه فى انشاء المحتوي او تعديل المحتوي ليحافظ على بنية محتوي متوافقة بنسبة اكبر فى محركات البحث.","phenix"); ?>
+                                </li>
+                                <!-- Item -->
+                                <li class="mb-20"><span class="fs-13 weight-bold mb-5 display-block"><?php echo __("محتوي خدمة افتراضي","phenix"); ?></span>
+                                    <?php echo __("نمط اخر مثل المدونة الافتراضية ولكن لنوع بيانات اخر مثل الخدمة.","phenix"); ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-6 col">
+                            <img src="<?php echo $images_folder;?>/tuts/use-patterns.png" width="900" alt="screenshot" class="mb-20 fluid" />
+                        </div>
+                        <!-- // Column -->
+                    </div>
+                    <!-- // Grid -->
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-7">

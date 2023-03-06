@@ -206,7 +206,7 @@
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-7">
-                    كيفية ترجمة الموقع والمحتوي
+                    <img src="<?php echo $images_folder;?>/tuts/translation.png" width="900" alt="screenshot" class="fluid mb-10" />
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-8">
@@ -222,11 +222,11 @@
                 </div>
                 <!-- Panel -->
                 <div class="tab-panel tx-align-center pdy-15 pdx-30" id="section-10">
-                <!-- Alert -->
-                <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
-                    <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
-                </p>
-                <img src="<?php echo $images_folder;?>/tuts/settings.png" width="700" alt="screenshot" class="mb-10" />
+                    <!-- Alert -->
+                    <p class="bg-offwhite-danger pdt-5 pdb-10 pdx-15 fs-13 tx-icon icon-lg fas fa-exclamation-triangle mb-15 weight-bold color-black radius-md">
+                        <?php echo __("تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من اعدادات الاضافة.","phenix"); ?>
+                    </p>
+                    <img src="<?php echo $images_folder;?>/tuts/settings.png" width="700" alt="screenshot" class="mb-10" />
                 </div>
                 <!-- // Panel -->
             </div>

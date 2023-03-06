@@ -4,7 +4,7 @@
 ?>
 <!-- Intro Poster -->
 <div class="pds-dashboard my-30 me-30 mgx-xl-auto bg-white radius-lg" style="max-width: 1100px">
-    <img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" />
+    <a href="#about"><img src="<?php echo $images_folder;?>/tuts/intro.jpg" width="900" alt="screenshot" class="fluid" /></a>
 </div>
 
 <!-- Dashboard Wrapper -->

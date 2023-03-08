@@ -40,9 +40,10 @@ if (!function_exists('pds_textdomain')) {
 	*/
 
 	function pds_textdomain() {
-		load_plugin_textdomain('phenix', false, dirname(__FILE__) . '/languages'); 
+		$testing = dirname(plugin_basename(__FILE__)). '/languages';
+		load_plugin_textdomain('phenix', false, $testing);
 	}
-	
+
 	add_action('init', 'pds_textdomain');
 }
 

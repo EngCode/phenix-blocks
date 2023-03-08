@@ -57,10 +57,11 @@ published as open-source project for web community benefits.
     <li>✴️ [Block] Multimedia Block w/ [Lightbox]</li>
     <li>✴️ [Block] Editable Card for [PostTypes/Taxonomies]</li>
     <li style="height:1px;background-color: #CCC; margin: 10px 0;"></li>
-    <li>✅ [Tool] Post Types Generator </li>
-    <li>✅ [Tool] Taxonomies Generator</li>
-    <li>✴️ [Tool] Metaboxes Generator</li>
-    <li>✅ [Tool] Menu Locations Generator</li>
+    <li>✅ [Tool] Create Custom Block Pattern</li>
+    <li>✅ [Tool] Create Custom Post Types</li>
+    <li>✅ [Tool] Create Custom Taxonomies</li>
+    <li>✴️ [Tool] Create Custom Metaboxes</li>
+    <li>✅ [Tool] Create Custom Menu Locations</li>
     <li>✅ [Tool] Core GB Blocks Optimizer</li>
     <li>✅ [Tool] WordPress Optimizing Options</li>
     <li>✅ [Tool] Full Support for Google Fonts</li>

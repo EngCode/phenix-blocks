@@ -32,7 +32,7 @@ function px__($string) {
 }
 
 //====> Languages Path <====//
-if (!function_exists('phenix_textdomain')) {
+if (!function_exists('pds_textdomain')) {
 	/**
 	 * Multilangauge Plugins Textdomain
 	 * @since Phenix WP 1.0
@@ -40,7 +40,7 @@ if (!function_exists('phenix_textdomain')) {
 	*/
 
 	function pds_textdomain() {
-		load_plugin_textdomain('phenix', false, dirname(plugin_basename(__FILE__)) . '/languages'); 
+		load_plugin_textdomain('phenix', false, dirname(__FILE__) . '/languages'); 
 	}
 	
 	add_action('init', 'pds_textdomain');

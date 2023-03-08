@@ -229,4 +229,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.edit-site-global-styles-sidebar .components-item-group {
 		[id="/typography"],[id="/layout"], [id="/colors/button"] {display: none;}
 	}
+
+	.components-dropdown__content .components-popover__content {width: 280px;}
+	.edit-site-template-card .components-dropdown .components-button.has-icon {padding: 2px 0;}
 }

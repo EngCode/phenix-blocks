@@ -100,10 +100,9 @@ published as open-source project for web community benefits.
         </ul>
     </li>
     <li>✴️ Animations Utilities</li>
-    <li>✴️ Font-Awesome Integration</li>
     <li>✴️ Element Size Utilities</li>
-    <li>✴️ Custom Data Generator</li>
-    <li>✴️ Accessibility Support</li>
+    <li>✴️ Custom Data Attributes</li>
+    <li>✅ Accessibility Support</li>
 </ul>
 ---
 

@@ -76,11 +76,10 @@ if (!function_exists('phenix_assets')) :
         ];
 
         //===> Font Css Settings <===//
-        $prim_font = str_replace("-", " ", $current_fonts['primary']);
-        $sec_font  = str_replace("-", " ", $current_fonts['secondary']);
+        $prim_font = trim(str_replace("-", " ", $current_fonts['primary']));
+        $sec_font  = trim(str_replace("-", " ", $current_fonts['secondary']));
         $icon_font = str_replace("-", " ", $current_fonts['icon']);
-        $icon_font = str_replace("free", "", $icon_font);
-        $icon_font = str_replace("pro", "", $icon_font);
+        $icon_font = trim(preg_replace("/(pro|free)/i", "", $icon_font));
 
         //====> Font-icon <====//
         if (str_contains($current_fonts['icon'], "fontawesome-6")) : $icons_font = "fontawesome-6"; endif;
@@ -121,7 +120,7 @@ if (!function_exists('phenix_assets')) :
         wp_enqueue_style('fontawesome', $assets_url. 'webfonts/'.$icons_font.'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
         
         //===> Set Font Css Settings <===//
-        $icons_css_options = 'body { --icons-font: '.ucwords($icon_font).'; }';
+        $icons_css_options = 'body { --icons-font: "'.ucwords($icon_font).'"; }';
         wp_add_inline_style('fontawesome', $icons_css_options );
     }
 

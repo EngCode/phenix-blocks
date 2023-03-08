@@ -43,12 +43,12 @@ published as open-source project for web community benefits.
 
 #### 🚀 Phenix Blocks Key-Features
 <ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ Container Block</li>
-    <li>✅ Grid Row Block</li>
-    <li>✅ Grid Column Block</li>
+    <li>✅ Responsive Container</li>
+    <li>✅ Responsive Grid Row</li>
     <li>✅ Responsive Logo</li>
-    <li>✅ Navigation Menu</li>
-    <li>✅ Phenix Buttons</li>
+    <li>✅ Responsive Grid Column</li>
+    <li>✅ Responsive Advanced Buttons</li>
+    <li>✅ Responsive Navigation Menu</li>
     <li>✅ PostTypes Query</li>
     <li>✅ Taxonomies Query</li>
     <li>✅ Breadcrumb (Page-Head)</li>
@@ -56,19 +56,28 @@ published as open-source project for web community benefits.
     <li>✅ Inline elements</li>
     <li>✅ PDS Group (Flexbox Wrapper)</li>
     <li>✅ Taxonomies Links List</li>
-    <li>✅ </li>
-    <li>✅ </li>
+    <li>✴️ Modals/Popups Block</li>
+    <li>✴️ Accordion List Block</li>
+    <li>✴️ Dropdown Button Block</li>
+    <li>✴️ Tabs and Panels Block</li>
+    <li>✴️ Multimedia Block w/ [Lightbox]</li>
+    <li>✴️ Editable Card for [PostTypes/Taxonomies] </li>
+    <li style="height:1px;background-color: #CCC; margin: 10px 0;"></li>
     <li>✅ Post Types Generator</li>
     <li>✅ Taxonomies Generator</li>
     <li>✴️ Metaboxes Generator</li>
+    <li>✅ Animated Loading Screen</li>
     <li>✅ Menu Locations Generator</li>
     <li>✅ Core GB Blocks Optimizer</li>
     <li>✅ Site-Editor Full Integration</li>
     <li>✅ Multilangauge Full Support</li>
     <li>✅ SEO Optimization Fallbacks</li>
     <li>✅ WordPress Optimizing Options</li>
+    <li>✅ Full Support for Google Fonts</li>
     <li>✅ WordPress Admin Panel Styling</li>
+    <li>✅ Full Support for Fontawesome 5/6</li>
     <li>✅ CSS and JavaScript Optimization</li>
+    <li>✅ Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
 </ul>
 
 
@@ -78,6 +87,8 @@ published as open-source project for web community benefits.
     <li>✅ Phenix Backgrounds</li>
     <li>✅ Responsive Styling</li>
     <li>✅ Responsive Typography</li>
+    <li>✅ Show/Hide Animations</li>
+    <li>✴️ Icons Selector Control</li>
     <li>✴️ Position Controller</li>
     <li>✴️ Element Effects
         <ul style="list-style:none;padding:0;margin:0 25px;">

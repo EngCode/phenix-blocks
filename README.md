@@ -87,7 +87,7 @@ published as open-source project for web community benefits.
     <li>✅ Phenix Backgrounds</li>
     <li>✅ Responsive Styling</li>
     <li>✅ Responsive Typography</li>
-    <li>✅ Show/Hide Animations</li>
+    <li>✴️ Show/Hide Animations</li>
     <li>✴️ Icons Selector Control</li>
     <li>✴️ Position Controller</li>
     <li>✴️ Element Effects

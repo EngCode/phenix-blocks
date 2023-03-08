@@ -70,7 +70,7 @@ Phenix(document).ready((event:any) => {
     Phenix('.px-modal').popup();
 
     //===> Animations <===//
-    Phenix('.px-animate').animations({animateCSS: ["fading", "sliding", "zooming", "utilities"]});
+    Phenix('[data-animation], .px-animate').animations({animateCSS: ["fading", "sliding", "zooming", "utilities"]});
 
     //====> Activate Select <====//
     Phenix('.px-select').select();

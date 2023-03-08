@@ -78,7 +78,8 @@ if (!function_exists('phenix_assets')) :
         //===> Font Css Settings <===//
         $prim_font = trim(str_replace("-", " ", $current_fonts['primary']));
         $sec_font  = trim(str_replace("-", " ", $current_fonts['secondary']));
-        $icon_font = str_replace("fontawesome-", "Font Awesome ", $current_fonts['icon']);
+        $icon_font = str_replace("-", " ", $current_fonts['icon']);
+        $icon_font = str_replace("fontawesome", "Font Awesome", $icon_font);
         $icon_font = trim(preg_replace("/(pro|free)/i", "", $icon_font));
 
         //====> Font-icon <====//

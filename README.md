@@ -12,13 +12,7 @@
     <a href="https://design.phenixthemes.com/wp-docs"><strong>Explore Phenix Docs »</strong></a>
 </p>
 <p align="center">
-    <a href="https://github.com/EngCode/phenix-blocks/issues/new?assignees=-&labels=bug&template=bug_report.yml">Report
-        bug</a>
-    <a
-        href="https://github.com/EngCode/phenix-blocks/issues/new?assignees=&labels=feature&template=feature_request.yml">Request
-        feature</a>
-    <a href="https://phenixthemes.com/">Themes</a>
-    <a href="https://design.phenixthemes.com/blog">Blog</a>
+    <a href="https://github.com/EngCode/phenix-starter">you need the (Block Theme) for this plugin to run correctly</a>
 </p>
 
 <p align="center">
@@ -43,41 +37,41 @@ published as open-source project for web community benefits.
 
 #### 🚀 Phenix Blocks Key-Features
 <ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ Responsive Container</li>
-    <li>✅ Responsive Grid Row</li>
-    <li>✅ Responsive Logo</li>
-    <li>✅ Responsive Grid Column</li>
-    <li>✅ Responsive Advanced Buttons</li>
-    <li>✅ Responsive Navigation Menu</li>
-    <li>✅ PostTypes Query</li>
-    <li>✅ Taxonomies Query</li>
-    <li>✅ Breadcrumb (Page-Head)</li>
-    <li>✅ PHP Theme Part</li>
-    <li>✅ Inline elements</li>
-    <li>✅ PDS Group (Flexbox Wrapper)</li>
-    <li>✅ Taxonomies Links List</li>
-    <li>✴️ Modals/Popups Block</li>
-    <li>✴️ Accordion List Block</li>
-    <li>✴️ Dropdown Button Block</li>
-    <li>✴️ Tabs and Panels Block</li>
-    <li>✴️ Multimedia Block w/ [Lightbox]</li>
-    <li>✴️ Editable Card for [PostTypes/Taxonomies] </li>
+    <li>✅ [Block] Responsive Logo</li>
+    <li>✅ [Block] Responsive Container</li>
+    <li>✅ [Block] Responsive Grid Row</li>
+    <li>✅ [Block] Responsive Column</li>
+    <li>✅ [Block] Responsive Advanced Buttons</li>
+    <li>✅ [Block] Responsive Navigation Menu</li>
+    <li>✅ [Block] PostTypes Query</li>
+    <li>✅ [Block] Taxonomies Query</li>
+    <li>✅ [Block] Breadcrumb (Page-Head)</li>
+    <li>✅ [Block] PHP Theme Part</li>
+    <li>✅ [Block] Inline elements</li>
+    <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
+    <li>✅ [Block] Taxonomies Links List</li>
+    <li>✴️ [Block] Modals/Popups</li>
+    <li>✴️ [Block] Accordion List</li>
+    <li>✴️ [Block] Dropdown Button</li>
+    <li>✴️ [Block] Tabs and Panels</li>
+    <li>✴️ [Block] Multimedia Block w/ [Lightbox]</li>
+    <li>✴️ [Block] Editable Card for [PostTypes/Taxonomies]</li>
     <li style="height:1px;background-color: #CCC; margin: 10px 0;"></li>
-    <li>✅ Post Types Generator</li>
-    <li>✅ Taxonomies Generator</li>
-    <li>✴️ Metaboxes Generator</li>
-    <li>✅ Animated Loading Screen</li>
-    <li>✅ Menu Locations Generator</li>
-    <li>✅ Core GB Blocks Optimizer</li>
-    <li>✅ Site-Editor Full Integration</li>
-    <li>✅ Multilangauge Full Support</li>
-    <li>✅ SEO Optimization Fallbacks</li>
-    <li>✅ WordPress Optimizing Options</li>
-    <li>✅ Full Support for Google Fonts</li>
-    <li>✅ WordPress Admin Panel Styling</li>
-    <li>✅ Full Support for Fontawesome 5/6</li>
-    <li>✅ CSS and JavaScript Optimization</li>
-    <li>✅ Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
+    <li>✅ [Tool] Post Types Generator </li>
+    <li>✅ [Tool] Taxonomies Generator</li>
+    <li>✴️ [Tool] Metaboxes Generator</li>
+    <li>✅ [Tool] Menu Locations Generator</li>
+    <li>✅ [Tool] Core GB Blocks Optimizer</li>
+    <li>✅ [Tool] WordPress Optimizing Options</li>
+    <li>✅ [Tool] Full Support for Google Fonts</li>
+    <li>✅ [Tool] Full Support for Fontawesome 5/6</li>
+    <li>✅ [Feature] Animated Loading Screen</li>
+    <li>✅ [Feature] Site-Editor Full Integration</li>
+    <li>✅ [Feature] Multilangauge Full Support</li>
+    <li>✅ [Feature] SEO Optimization Fallbacks</li>
+    <li>✅ [Feature] WordPress Admin Panel Styling</li>
+    <li>✅ [Feature] CSS and JavaScript Optimization</li>
+    <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
 </ul>
 
 

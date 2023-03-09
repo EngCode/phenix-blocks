@@ -12,29 +12,24 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.edit-post-editor__list-view-panel, .edit-site-editor__list-view-panel {min-width: 220px;}
 
 	/*==== Page Settings Panel ====*/
-	.interface-complementary-area .components-panel {
-		font-size: 13px;
-		// .components-dropdown {
-			// border: 1px solid var(--primary-color);
-			// > button:not(.is-small):not(.has-icon) {
-			// 	height: auto;
-			// 	font-size: 12px;
-			// 	max-width: 137px;
-			// 	overflow: hidden;
-			// 	padding: 5px 10px;
-			// 	white-space: nowrap;
-			// 	text-overflow: ellipsis;
-			// 	color: var(--primary-color);
-			// }
-		// }
+	.interface-complementary-area {
+		ul, ol {list-style: none;margin: 0;padding: 0;}
+		[class*="site-sidebar__panel-tab"] {
+			padding: 0 15px;
+			height: 45px;
+			top: 0;
+		}
 
-		[class*="post-status"] .components-panel__row {margin-top: 0!important;}
-		.post-author-selector {
-			flex-direction: row;
-			align-items: center;
-			margin-top: 15px!important;
-			.components-flex-item {max-width: 110px!important;}
-			.components-input-control__container {max-width: 137px;}
+		.components-panel {
+			font-size: 13px;
+			[class*="post-status"] .components-panel__row {margin-top: 0!important;}
+			.post-author-selector {
+				flex-direction: row;
+				align-items: center;
+				margin-top: 15px!important;
+				.components-flex-item {max-width: 110px!important;}
+				.components-input-control__container {max-width: 137px;}
+			}
 		}
 	}
 

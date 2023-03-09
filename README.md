@@ -84,8 +84,9 @@ published as open-source project for web community benefits.
     <li>✅ Responsive Styling</li>
     <li>✅ Responsive Typography</li>
     <li>✴️ Show/Hide Animations</li>
-    <li>✴️ Icons Selector Control</li>
+    <li>✅ Icons Selector Control</li>
     <li>✴️ Position Controller</li>
+    <li>✴️ Cards Data Schema</li>
     <li>✴️ Element Effects
         <ul style="list-style:none;padding:0;margin:0 25px;">
             <li>✴️ Box Border</li>

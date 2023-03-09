@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"title": "Phenix Menu",
 	"category": "design",
-	"description": "Main Navigation Block for Phenix Header.",
+	"description": "",
 	"supports": {
 		"html": false
 	},

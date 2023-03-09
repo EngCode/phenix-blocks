@@ -186,7 +186,7 @@ function Edit(_ref) {
     style: {
       "height": attributes.size
     },
-    width: parseInt(attributes.width),
+    width: parseInt(attributes.width) ? parseInt(attributes.width) : null,
     height: parseInt(attributes.size)
   }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
     src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,
@@ -516,7 +516,7 @@ __webpack_require__.r(__webpack_exports__);
       style: {
         "maxHeight": attributes.size
       },
-      width: parseInt(attributes.width),
+      width: parseInt(attributes.width) ? parseInt(attributes.width) : null,
       height: parseInt(attributes.size)
     }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
       src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,

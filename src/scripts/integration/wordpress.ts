@@ -5,7 +5,8 @@
 /*====> Phenix JS <====*/
 import Phenix from "..";
 declare var wp:any,
-PDS_WP_KEY:any;
+    PDS_WP_KEY:any,
+    window:any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).ready(ready => {

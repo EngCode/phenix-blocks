@@ -18,24 +18,29 @@ import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
+//====> Phenix Modules <====//
+import PhenixIcons from '../px-controls/icons';
+
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const [menus_list, set_menu_list] = useState([]);
+    const [icons_list, set_icons_list] = useState([]);
 
     //===> Set Attributes <===//
     const set_menu_id = menu_id => setAttributes({ menu_id });
     const set_tagName = tagName => setAttributes({ tagName });
     const set_hover  = hover => setAttributes({ hover });
     const set_effect = effect => setAttributes({ effect });
-    const set_arrow_icon = arrow_icon => setAttributes({ arrow_icon });
+    const set_arrow_icon = icon => setAttributes({ arrow_icon: `${icon.type} ${icon.value}`});
     const set_direction = direction => setAttributes({ direction });
     const set_mobile_mode = mobile_mode => setAttributes({ mobile_mode });
     const set_responsive = responsive => setAttributes({ responsive });
+    const set_trigger = trigger => setAttributes({ trigger });
 
-    //===> Get Menu List <===//
+    //===> Fetching Data <===//
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
@@ -47,6 +52,16 @@ export default function Edit(props) {
             }
             //===> Set New Locations List <===//
             if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
+            
+            //===> Fetch Icons List <===//
+            let filename = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
+            //===> Correct Brands Icons <===//
+            if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
+            //===> Start Fetching <===//
+            fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {
+                let iconsList = json.icons;
+                if (iconsList !== icons_list) set_icons_list([...iconsList]);
+            });
         });
     }, []);
 
@@ -57,55 +72,77 @@ export default function Edit(props) {
             <Panel>
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Setting" initialOpen={true}>
-                    {/*===> Menu Location aka ID <===*/}
-                    <SelectControl label="Menu Location {ID}" value={ attributes.menu_id } onChange={set_menu_id} options={menus_list} />
-
-                    {/*=== Component <TagName> ===*/}
-                    <SelectControl key="tagName" label="HTML Wrapper" value={attributes.tagName} onChange={set_tagName} options={[
-                        { label: 'Default <nav>',  value: 'nav' },
-                        { label: 'Main <main>',  value: 'main' },
-                        { label: 'Aside <aside>',  value: 'aside' },
-                        { label: 'Standard <div>',  value: 'div' },
-                    ]}/>
-
-                    {/*=== Direction Mode ===*/}
-                    <SelectControl key="direction" label="Menu Direction" value={attributes.direction} onChange={set_direction} options={[
-                        { label: 'Vertical',  value: 'px-vertical' },
-                        { label: 'Horizontal',  value: 'flexbox' },
-                    ]}/>
-
-                    {/*===> Responsive <===*/}
-                    <ToggleControl help="this will Hide the Menu in Mobile!" label="Responsive Menu" checked={attributes.responsive} onChange={set_responsive}/>
+                    {/*===> Elements Group <===*/}
+                    <div className='row gpx-20'>
+                        {/*===> Column <===*/}
+                        <div className='col-12 mb-10'>
+                            <SelectControl label={__("Location (ID)", "phenix")} value={ attributes.menu_id } onChange={set_menu_id} options={menus_list} />
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <SelectControl key="direction" label={__("Direction", "phenix")} value={attributes.direction} onChange={set_direction} options={[
+                                { label: 'Vertical',  value: 'px-vertical' },
+                                { label: 'Horizontal',  value: 'flexbox' },
+                            ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <SelectControl key="tagName" label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_tagName} options={[
+                                { label: '<nav>', value: 'nav' },
+                                { label: '<main>', value: 'main' },
+                                { label: '<aside>', value: 'aside' },
+                                { label: '<div>', value: 'div' },
+                            ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <ToggleControl label="Responsive" checked={attributes.responsive} onChange={set_responsive}/>
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
                 </PanelBody>
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Style Options" initialOpen={false}>
 
                 </PanelBody>
                 {/*===> Widget Panel <===*/}
-                {attributes.responsive ? <>
-                <PanelBody title="Responsive Options" initialOpen={false}>
-                    {/*=== Mobile Behavior ===*/}
-                    <SelectControl key="mobile_mode" label="Mobile Mode" value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
-                        { label: 'Dropdown', value: 'dropdown' },
-                        { label: 'Offcanvas', value: 'custom' },
-                    ]}/>
-
-                    {/*=== Animation Effect ===*/}
-                    <SelectControl key="effect" label="Animation Effect" value={attributes.effect} onChange={set_effect} options={[
-                        { label: 'Sliding', value: 'slide' },
-                        { label: 'Fading', value: 'fade' },
-                        { label: 'Custom', value: 'custom' },
-                    ]}/>
-                </PanelBody>
-                </> : ""}
-                {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
                     {/*=== Arrow Icon ===*/}
-                    <TextControl key="arrow_icon" label="Dropdown Icon" value={ attributes.arrow_icon } onChange={set_arrow_icon}/>
+                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={icons_list} type={ attributes.arrow_icon.split(" ")[0] } value={ attributes.arrow_icon.split(" ")[1] } onChange={set_arrow_icon} />
                     
                     {/*===> Dropdown Hover <===*/}
-                    <ToggleControl label="Dropdown on Hover ?" checked={attributes.hover} onChange={set_hover}/>
+                    <ToggleControl label="Support Hover" checked={attributes.hover} onChange={set_hover}/>
                 </PanelBody>
+                {/*===> Widget Panel <===*/}
+                {attributes.responsive ? <>
+                <PanelBody title="Responsive Options" initialOpen={true}>
+                    {/*===> Elements Group <===*/}
+                    <div className='row gpx-20'>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-5'>
+                            <SelectControl key="mobile_mode" label={__("Mode", "phenix")} value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
+                                { label: 'Default', value: '' },
+                                { label: 'Dropdown', value: 'dropdown' },
+                                { label: 'Offcanvas', value: 'custom' },
+                            ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-5'>
+                            <SelectControl key="effect" label={__("Effect", "phenix")} value={attributes.effect} onChange={set_effect} options={[
+                                { label: 'Default', value: '' },
+                                { label: 'Sliding', value: 'slide' },
+                                { label: 'Fading', value: 'fade' },
+                                { label: 'Custom', value: 'custom' },
+                            ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-12'>
+                            <ToggleControl label={__("Attach Trigger Button", "phenix")} checked={attributes.trigger} onChange={set_trigger}/>
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
+                </PanelBody>
+                </> : ""}
                 {/*===> End Widgets Panels <===*/}
             </Panel>
         </InspectorControls>

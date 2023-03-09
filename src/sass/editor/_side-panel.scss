@@ -131,14 +131,19 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding-#{$direction-end}: 12px;
-			padding-#{$direction-start}: 8px;
+			padding-#{$direction-end}: 10px;
+			padding-#{$direction-start}: 6px;
 			border-#{$direction-start}: 1px solid rgba(0,0,0, 0.15);
 			svg {
 				top: -1px;
 				position: relative;
 			}
 		}
+	}
+
+	.col-6 .components-input-control-suffix-wrapper {
+		padding-#{$direction-end}: 8px;
+		padding-#{$direction-start}: 4px;
 	}
 
 	/*==== Toggle Buttons ====*/

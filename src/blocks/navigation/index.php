@@ -11,7 +11,7 @@ function px_navigation_render($block_attributes, $content) {
     $markup = ''; ob_start();
     $options  = $block_attributes;
 
-    //===> Create Options Data <===//
+    //===> Collect Options Data <===//
     $menuClasses = "reset-list";
     $menu_id = "data-id='{$options['menu_id']}'";
     $effect_type = "data-effect='{$options['effect']}'";
@@ -20,6 +20,15 @@ function px_navigation_render($block_attributes, $content) {
     $arrow_icon  = "data-arrow='{$options['arrow_icon']}'";
     $hover_mode  = "";
     $nav_style   = "";
+
+    //===> Collect Style Data <===//
+    $font_size = isset($options['typography']['size']) ? $options['typography']['size'] : "14px";
+    $font_weight = isset($options['typography']['weight']) ? $options['typography']['weight'] : "var(--bold-weight)";
+    $text_align = isset($options['typography']['align']) ? $options['typography']['align'] : "";
+    $text_color = isset($options['typography']['color']) ? $options['typography']['color'] : "var(--dark-color)";
+    $text_color_hvr = isset($options['typography']['color_hvr']) ? $options['typography']['color_hvr'] : "var(--primary-color)";
+    $background_color = isset($options['style']['background']['value']) ? $options['style']['background']['value'] : "transparent";
+    $background_color_hvr = isset($options['style']['background_hvr']['value']) ? $options['style']['background_hvr']['value'] : "transparent";
 
     //===> Direction Mode <===//
     if ($options['direction'] == 'px-vertical') {
@@ -39,20 +48,20 @@ function px_navigation_render($block_attributes, $content) {
     }
 
     //===> Start Navigation Wrapper <===//
-    echo "<{$options['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
+    echo "<{$options['tagName']} class='{$classNames}' {$text_align} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
 
     //===> Custom CSS Style <===//
     echo '<style>
         /*==== Navigation Theme ====*/
         .px-navigation {
-            --font-size : 14px;
-            --space-in  : 5px;
+            --space-in  : 12px;
             --height : 34px;
-            --color  : inherit;
-            --color-hvr : var(--primary-color);
-            --background : transparent;
-            --background-hvr : transparent;
-            --font-weight : var(--bold-weight);
+            --font-size : '.$font_size.';
+            --font-weight : '.$font_weight.';
+            --color  : '.str_replace("color-", "--wp--preset--color--", $text_color).';
+            --color-hvr : '.str_replace("color-", "--wp--preset--color--", $text_color_hvr).';
+            --background : '.str_replace("bg-", "--wp--preset--color--", $background_color).';
+            --background-hvr : '.str_replace("bg-", "--wp--preset--color--", $background_color_hvr).';
         }
         /*==== Submenu Theme ====*/
         .px-navigation .submenu {

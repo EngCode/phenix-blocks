@@ -844,6 +844,9 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
           value = _this$props.value,
           label = _this$props.label,
           rotate = _this$props.rotate,
+          colorsOnly = _this$props.colorsOnly,
+          isSmall = _this$props.isSmall,
+          placeholder = _this$props.placeholder,
           onChange = _this$props.onChange; //===> Returned Value <===//
 
       var options = {
@@ -943,10 +946,10 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component position-rv mb-15"
-      }, /*#__PURE__*/React.createElement("label", {
+        className: "px-gb-component position-rv ".concat(label ? "mb-15" : "")
+      }, label ? /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
-      }, label), /*#__PURE__*/React.createElement("div", {
+      }, label) : null, /*#__PURE__*/React.createElement("div", {
         className: "overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap"
       }, /*#__PURE__*/React.createElement("button", {
         onClick: showPanel,
@@ -960,7 +963,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         }
       }), /*#__PURE__*/React.createElement("span", {
         className: "col tx-nowrap pde-5 tx-capitalize"
-      }, value.length > 0 ? value.replaceAll("-", " ").replace("bg", "") : "Default")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+      }, value.length > 0 ? value.replaceAll("-", " ").replace("bg", "") : placeholder ? placeholder : "Default")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
         className: "me-5 radius-circle inline-block",
         style: {
           "width": "22px",
@@ -971,9 +974,9 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
         }
       }), /*#__PURE__*/React.createElement("span", {
         className: "col tx-nowrap pde-5"
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix"))), /*#__PURE__*/React.createElement("i", {
+      }, placeholder ? placeholder : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix"))), !isSmall ? /*#__PURE__*/React.createElement("i", {
         className: "fas fa-pencil fs-12 color-gray"
-      })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      }) : null), !colorsOnly ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
         key: "bg-type",
         value: type || "",
         onChange: set_type,
@@ -987,7 +990,7 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
           label: 'gradient',
           value: 'gradient'
         }]
-      })), /*#__PURE__*/React.createElement("div", {
+      }) : null), /*#__PURE__*/React.createElement("div", {
         className: "flexbox options-list align-between ".concat(type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5', " hidden fluid"),
         style: {
           gap: "10px"
@@ -1103,6 +1106,8 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           value = _this$props.value,
           label = _this$props.label,
+          isSmall = _this$props.isSmall,
+          placeholder = _this$props.placeholder,
           onChange = _this$props.onChange; //===> Colors List <===//
 
       var pxPallete = ["color-inherit", "color-transparent", "color-primary", "color-primary-dark", "color-secondary", "color-secondary-dark", "color-gray", "color-dark", "color-white", "color-success", "color-danger", "color-warning", "color-info", "color-facebook", "color-twitter", "color-youtube", "color-instagram", "color-snapchat", "color-whatsapp", "color-pinterest", "color-linkedin", "color-behance", "color-dribbble", "color-flicker", "fas fa-redo tx-align-center"]; //===> Set Color <===//
@@ -1164,24 +1169,24 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component position-rv mb-15"
-      }, /*#__PURE__*/React.createElement("label", {
+        className: "px-gb-component position-rv ".concat(label ? "mb-15" : "")
+      }, label ? /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
-      }, label), /*#__PURE__*/React.createElement("button", {
+      }, label) : null, /*#__PURE__*/React.createElement("button", {
         onClick: showPanel,
         className: "options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5",
         type: "button"
       }, /*#__PURE__*/React.createElement("span", {
-        className: "me-10 radius-circle inline-block ".concat(value.length > 0 ? value.replace("color-", "bg-") : "bg-inherit"),
+        className: "me-5 radius-circle inline-block ".concat(value.length > 0 ? value.replace("color-", "bg-") : "bg-inherit"),
         style: {
           "width": "20px",
           "height": "20px"
         }
       }), /*#__PURE__*/React.createElement("span", {
         className: "col"
-      }, value.length > 0 ? value.replaceAll("-", " ").replace("color", "") : "Default"), /*#__PURE__*/React.createElement("i", {
+      }, value.length > 0 && !placeholder ? value.replaceAll("-", " ").replace("color", "") : placeholder ? placeholder : "Default"), !isSmall ? /*#__PURE__*/React.createElement("i", {
         className: "fas fa-pencil"
-      })), /*#__PURE__*/React.createElement("div", {
+      }) : null), /*#__PURE__*/React.createElement("div", {
         className: "flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
         style: {
           gap: "10px"

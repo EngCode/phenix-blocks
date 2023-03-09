@@ -266,7 +266,7 @@ export default function Edit({ attributes, setAttributes }) {
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
                 {/*===> Elements Group <===*/}
                 <div className='row gpx-20'>
-                    {/*===> Size <===*/}
+                    {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
                         <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={[
                             { label: 'Default',   value: '' },
@@ -287,7 +287,7 @@ export default function Edit({ attributes, setAttributes }) {
                             { label: '30px',   value: 'fs-30' },
                         ]}/>
                     </div>
-                    {/*===> HTML Tag <===*/}
+                    {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
                         <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={attributes.typography.weight || ""} onChange={set_typography_weight} options={[
                             { label: 'Default',  value: '' },

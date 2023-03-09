@@ -105,6 +105,9 @@ export default class PhenixBackground extends Component {
             value,
             label,
             rotate,
+            colorsOnly,
+            isSmall,
+            placeholder,
             onChange
         } = this.props;
 
@@ -199,28 +202,30 @@ export default class PhenixBackground extends Component {
 
         //===> Component Design <===//
         return (
-            <div className='px-gb-component position-rv mb-15'>
+            <div className={`px-gb-component position-rv ${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
-                <label className='mb-10 tx-UpperCase'>{label}</label>
+                {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
                 {/*===> Group <===*/}
                 <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
                         {type !== "image" ? <>
                             <span className={`me-5 radius-circle inline-block ${value.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
-                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : "Default"}</span>
+                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : placeholder ? placeholder : "Default"}</span>
                         </> : <>
                         <span className={`me-5 radius-circle inline-block`} style={{"width": "22px", "height": "22px", "backgroundImage": `url(${value})`, "backgroundSize": "cover", "backgroundPosition": "center"}}></span>
-                            <span className='col tx-nowrap pde-5'>{__("Replace", "phenix")}</span>
+                            <span className='col tx-nowrap pde-5'>{placeholder ? placeholder : __("Replace", "phenix")}</span>
                         </>}
-                        <i className='fas fa-pencil fs-12 color-gray'></i>
+                        {!isSmall ? <i className='fas fa-pencil fs-12 color-gray'></i> : null}
                     </button>
                     {/*===> Type Select <===*/}
+                    {!colorsOnly ? 
                     <SelectControl key="bg-type" value={type || ""} onChange={set_type} options={[
                         { label: 'color',   value: 'color' },
                         { label: 'image',   value: 'image' },
                         { label: 'gradient',   value: 'gradient' },
                     ]}/>
+                    : null}
                 </div>
                 {/*===> Panel <===*/}
                 <div className={`flexbox options-list align-between ${type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid`} style={{gap:"10px"}}>

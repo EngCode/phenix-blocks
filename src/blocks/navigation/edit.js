@@ -20,6 +20,9 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
 import PhenixIcons from '../px-controls/icons';
+import PhenixColor from '../px-controls/colors/text';
+import OptionControl from '../px-controls/switch';
+import PhenixBackground from '../px-controls/colors/background';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -40,6 +43,74 @@ export default function Edit(props) {
     const set_mobile_mode = mobile_mode => setAttributes({ mobile_mode });
     const set_responsive = responsive => setAttributes({ responsive });
     const set_trigger = trigger => setAttributes({ trigger });
+
+    //===> Typography Options <===//
+    const set_typography_size = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
+        typography.size = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Weight <==//
+    const set_typography_weight = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
+        typography.weight = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Align <==//
+    const set_typography_align = target => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
+        typography.align = target.checked ? target.value : "";
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Color <==//
+    const set_color = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
+        typography.color = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    const set_color_hvr = value => {
+        //==> Get Current <==//
+        let typography = attributes.typography;
+
+        //==> Set Value <==//
+        typography.color_hvr = value;
+        setAttributes({ typography : {...typography} });
+    };
+
+    //===> Set Background <===//
+    const set_background = background => {
+        //==> Get Current <==//
+        let styles = attributes.style;
+
+        //==> Set Value <==//
+        styles.background = background;
+        setAttributes({ style : {...styles} });
+    };
+
+    const set_background_hvr = background => {
+        //==> Get Current <==//
+        let styles = attributes.style;
+
+        //==> Set Value <==//
+        styles.background_hvr = background;
+        setAttributes({ style : {...styles} });
+    };
 
     //===> Sharp Icons Fallback <===//
     let arrow_ops = attributes.arrow_icon.split(" "),
@@ -116,9 +187,104 @@ export default function Edit(props) {
                         {/*===> // Column <===*/}
                     </div>
                 </PanelBody>
+                {/*===> Typography <===*/}
+                <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
+                    {/*===> Elements Group <===*/}
+                    <div className='row gpx-20'>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={[
+                                { label: 'Default',   value: '' },
+                                { label: '12px',   value: '12px' },
+                                { label: '13px',   value: '13px' },
+                                { label: '14px',   value: '14px' },
+                                { label: '15px',   value: '15px' },
+                                { label: '16px',   value: '16px' },
+                                { label: '17px',   value: '17px' },
+                                { label: '18px',   value: '18px' },
+                                { label: '19px',   value: '19px' },
+                                { label: '20px',   value: '20px' },
+                                { label: '22px',   value: '22px' },
+                                { label: '24px',   value: '24px' },
+                                { label: '25px',   value: '25px' },
+                                { label: '26px',   value: '26px' },
+                                { label: '28px',   value: '28px' },
+                                { label: '30px',   value: '30px' },
+                            ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={attributes.typography.weight || ""} onChange={set_typography_weight} options={[
+                                { label: 'Default',  value: '' },
+                                { label: 'Thin',  value: '100'},
+                                { label: 'Light',  value: '300'},
+                                { label: 'Extra Light',  value: '200'},
+                                { label: 'Normal',  value: '400'},
+                                { label: 'Medium',  value: '500'},
+                                { label: 'Semi-Bold',  value: '600'},
+                                { label: 'Bold',  value: '700'},
+                                { label: 'Heavy',  value: '800'},
+                                { label: 'Black',  value: '900'},
+                            ]}/>
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
+                    {/*===> Text Alignment <===*/}
+                    <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
+                    {/*===> Elements Group <===*/}
+                    <div className='flexbox'>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='text-align' checked={!attributes.typography.align || attributes.typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                            <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                        </OptionControl>
+                    </div>
+                </PanelBody>
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Style Options" initialOpen={false}>
-
+                    {/*===> Colors <===*/}
+                    <label className='mb-5'>{__("Text Color", "phenix")}</label>
+                    {/*===> Elements Group <===*/}
+                    <div className='row gpx-10'>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <PhenixColor key="px-color" placeholder={__("Normal","phenix")} isSmall={true} onChange={set_color} value={attributes.typography.color || ""} />
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <PhenixColor key="px-color-hvr" placeholder={__("Hover","phenix")} isSmall={true} onChange={set_color_hvr} value={attributes.typography.color_hvr || ""} />
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
+                    {/*===> Background <===*/}
+                    <label className='mb-5'>{__("Background Color", "phenix")}</label>
+                    {/*===> Elements Group <===*/}
+                    <div className='row gpx-10'>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <PhenixBackground key="px-bg" placeholder={__("Normal","phenix")} isSmall={true} colorsOnly={true} onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-10'>
+                            <PhenixBackground key="px-bg-hvr" placeholder={__("Hover","phenix")} isSmall={true} colorsOnly={true} onChange={set_background_hvr} type={attributes.style.background_hvr?.type || "color"} value={attributes.style.background_hvr?.value || ""} rotate={attributes.style.background_hvr?.rotate || null} />
+                        </div>
+                        {/*===> // Column <===*/}
+                    </div>
                 </PanelBody>
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
@@ -130,33 +296,33 @@ export default function Edit(props) {
                 </PanelBody>
                 {/*===> Widget Panel <===*/}
                 {attributes.responsive ? <>
-                <PanelBody title="Responsive Options" initialOpen={true}>
-                    {/*===> Elements Group <===*/}
-                    <div className='row gpx-20'>
-                        {/*===> Column <===*/}
-                        <div className='col-6 mb-5'>
-                            <SelectControl key="mobile_mode" label={__("Mode", "phenix")} value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
-                                { label: 'Default', value: '' },
-                                { label: 'Dropdown', value: 'dropdown' },
-                                { label: 'Offcanvas', value: 'custom' },
-                            ]}/>
+                    <PanelBody title="Responsive Options" initialOpen={false}>
+                        {/*===> Elements Group <===*/}
+                        <div className='row gpx-20'>
+                            {/*===> Column <===*/}
+                            <div className='col-6 mb-5'>
+                                <SelectControl key="mobile_mode" label={__("Mode", "phenix")} value={attributes.mobile_mode} onChange={set_mobile_mode} options={[
+                                    { label: 'Default', value: '' },
+                                    { label: 'Dropdown', value: 'dropdown' },
+                                    { label: 'Offcanvas', value: 'custom' },
+                                ]}/>
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col-6 mb-5'>
+                                <SelectControl key="effect" label={__("Effect", "phenix")} value={attributes.effect} onChange={set_effect} options={[
+                                    { label: 'Default', value: '' },
+                                    { label: 'Sliding', value: 'slide' },
+                                    { label: 'Fading', value: 'fade' },
+                                    { label: 'Custom', value: 'custom' },
+                                ]}/>
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col-12'>
+                                <ToggleControl label={__("Attach Trigger Button", "phenix")} checked={attributes.trigger} onChange={set_trigger}/>
+                            </div>
+                            {/*===> // Column <===*/}
                         </div>
-                        {/*===> Column <===*/}
-                        <div className='col-6 mb-5'>
-                            <SelectControl key="effect" label={__("Effect", "phenix")} value={attributes.effect} onChange={set_effect} options={[
-                                { label: 'Default', value: '' },
-                                { label: 'Sliding', value: 'slide' },
-                                { label: 'Fading', value: 'fade' },
-                                { label: 'Custom', value: 'custom' },
-                            ]}/>
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col-12'>
-                            <ToggleControl label={__("Attach Trigger Button", "phenix")} checked={attributes.trigger} onChange={set_trigger}/>
-                        </div>
-                        {/*===> // Column <===*/}
-                    </div>
-                </PanelBody>
+                    </PanelBody>
                 </> : ""}
                 {/*===> End Widgets Panels <===*/}
             </Panel>

@@ -15,6 +15,8 @@ export default class PhenixColors extends Component {
         const {
             value,
             label,
+            isSmall,
+            placeholder,
             onChange
         } = this.props;
 
@@ -96,14 +98,14 @@ export default class PhenixColors extends Component {
 
         //===> Component Output <===//
         return (
-            <div className='px-gb-component position-rv mb-15'>
+            <div className={`px-gb-component position-rv ${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
-                <label className='mb-10 tx-UpperCase'>{label}</label>
+                {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
                 {/*===> Trigger <===*/}
                 <button onClick={showPanel} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
-                    <span className={`me-10 radius-circle inline-block ${value.length > 0 ? value.replace("color-","bg-") : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>
-                    <span className='col'>{value.length > 0 ? value.replaceAll("-", " ").replace("color","") : "Default"}</span>
-                    <i className='fas fa-pencil'></i>
+                    <span className={`me-5 radius-circle inline-block ${value.length > 0 ? value.replace("color-","bg-") : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>
+                    <span className='col'>{value.length > 0 && !placeholder ? value.replaceAll("-", " ").replace("color","") : placeholder ? placeholder : "Default"}</span>
+                    {!isSmall ? <i className='fas fa-pencil'></i> : null}
                 </button>
                 {/*===> Panel <===*/}
                 <div className='flexbox options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid' style={{gap:"10px"}}>

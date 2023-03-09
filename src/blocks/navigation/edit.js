@@ -46,7 +46,7 @@ export default function Edit(props) {
         arrowIcon = arrow_ops[1],
         arrowType = arrow_ops[0];
     
-    if (arrow_icon.includes('fa-sharp')) {
+    if (attributes.arrow_icon.includes('fa-sharp')) {
         arrowType = `${arrow_ops[0]} ${arrow_ops[1]}`,
         arrowIcon = arrow_ops[2];
     }

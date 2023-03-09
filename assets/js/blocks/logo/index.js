@@ -137,36 +137,31 @@ function Edit(_ref) {
     title: "Logo Setting",
     initialOpen: true
   }, /*#__PURE__*/React.createElement("div", {
-    className: "row gpx-10"
+    className: "row gpx-10 mb-10"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Width (Optional)", "phenix"),
-    value: attributes.width,
-    onChange: set_width
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
+    className: "col-5"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Size (Height)", "phenix"),
     value: attributes.size,
     onChange: set_size
-  }))), /*#__PURE__*/React.createElement("span", {
-    className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-7"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Width (Optional)", "phenix"),
+    value: attributes.width,
+    onChange: set_width
+  }))), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Logo", "phenix"),
     value: attributes.logo,
     setValue: set_logo,
     size: "small",
     className: "mb-15"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
   }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Fevicon", "phenix"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Favicon", "phenix"),
     value: attributes.fevicon,
     setValue: set_fevicon,
-    size: "small"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
+    size: "small",
+    className: "mb-15"
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Responsive Logo", "phenix"),
     checked: attributes.responsive,
@@ -182,7 +177,7 @@ function Edit(_ref) {
     size: "small"
   }) : null) : null, /*#__PURE__*/React.createElement("button", {
     type: "button",
-    className: "btn tiny fs-12 mb-10 primary radius-sm",
+    className: "tx-uppercase btn fluid tiny fs-12 mt-5 primary radius-sm",
     onClick: set_site_logo
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Update Site Logo", "phenix")))), /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
     src: attributes.logo,
@@ -281,22 +276,26 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
         render: function render(_ref) {
           var open = _ref.open;
           return /*#__PURE__*/React.createElement("div", {
-            className: "cursor-pointer",
+            className: "mouse-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            className: "mb-10 cursor-pointer"
+            className: "mb-5"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
-            className: "flexbox align-center-y align-between cursor-pointer".concat(className ? "".concat(className) : "")
-          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
+            className: "".concat(className ? "".concat(className) : "")
+          }, size === 'small' ? /*#__PURE__*/React.createElement("div", {
+            className: "flexbox align-center-y align-between pd-5 border-solid border-1 border-alpha-15 radius-sm"
+          }, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
-              "maxHeight": "2.25rem"
+              "maxHeight": "1.5rem"
             }
           }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
-            className: "btn square primary small radius-sm fs-12 fas fa-upload"
-          })) : /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
+            className: "btn square primary tiny radius-sm fs-12 fas fa-upload"
+          })) : /*#__PURE__*/React.createElement("div", {
+            className: "flexbox align-center-y align-between"
+          }, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             className: "radius-sm radius-top",
             style: {

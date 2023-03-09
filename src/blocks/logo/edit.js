@@ -77,28 +77,25 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="Logo Setting" initialOpen={true}>
                 {/*===> Group <===*/}
-                <div className='row gpx-10'>
+                <div className='row gpx-10 mb-10'>
                     {/*===> Column <===*/}
-                    <div className='col-6'>
-                        {/* Size */}
-                        <TextControl label={__("Width (Optional)","phenix")} value={attributes.width} onChange={set_width}></TextControl>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6'>
+                    <div className='col-5'>
                         {/* Size */}
                         <TextControl label={__("Size (Height)","phenix")} value={attributes.size} onChange={set_size}></TextControl>
                     </div>
+                    {/*===> Column <===*/}
+                    <div className='col-7'>
+                        {/* Size */}
+                        <TextControl label={__("Width (Optional)","phenix")} value={attributes.width} onChange={set_width}></TextControl>
+                    </div>
                 </div>
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+
                 {/* Logo */}
                 <MediaUploader label={__("Upload Logo","phenix")} value={attributes.logo} setValue={set_logo} size="small" className="mb-15"></MediaUploader>
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+
                 {/* Fevicon */}
-                <MediaUploader label={__("Upload Fevicon","phenix")} value={attributes.fevicon} setValue={set_fevicon} size="small"></MediaUploader>
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t'></span>
+                <MediaUploader label={__("Upload Favicon","phenix")} value={attributes.fevicon} setValue={set_fevicon} size="small" className="mb-15"></MediaUploader>
+
                 {/*=== Responsive ===*/}
                 <ToggleControl label={__("Responsive Logo","phenix")} checked={attributes.responsive} onChange={set_responsive}/>
 
@@ -110,7 +107,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </> : null}
 
                 {/*=== Button ===*/}
-                <button type='button' className='btn tiny fs-12 mb-10 primary radius-sm' onClick={set_site_logo}>{__("Update Site Logo", "phenix")}</button>
+                <button type='button' className='tx-uppercase btn fluid tiny fs-12 mt-5 primary radius-sm' onClick={set_site_logo}>{__("Update Site Logo", "phenix")}</button>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

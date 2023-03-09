@@ -19,7 +19,7 @@ Phenix(document).ready((event:any) => {
     //====> Sticky Header <====//
     let headerElement = Phenix('.main-header');
 
-    if (headerElement.length > 0) {
+    if (headerElement[0]) {
         headerElement.setAttributes({'data-sticky': "absolute"});
         headerElement.addClass('fluid').addClass('z-index-header').sticky();
     
@@ -76,5 +76,5 @@ Phenix(document).ready((event:any) => {
     Phenix('.px-select').select();
 
     //===> ... <===//
-    Phenix(document).utilities().copyrights("Phenix Blocks");
+    Phenix(document).utilities();
 });

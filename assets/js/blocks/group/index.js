@@ -1325,22 +1325,26 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
         render: function render(_ref) {
           var open = _ref.open;
           return /*#__PURE__*/React.createElement("div", {
-            className: "cursor-pointer",
+            className: "mouse-pointer",
             onClick: open
           }, label ? /*#__PURE__*/React.createElement("label", {
-            className: "mb-10 cursor-pointer"
+            className: "mb-5"
           }, label) : '', /*#__PURE__*/React.createElement("div", {
-            className: "flexbox align-center-y align-between cursor-pointer".concat(className ? "".concat(className) : "")
-          }, size === 'small' ? /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
+            className: "".concat(className ? "".concat(className) : "")
+          }, size === 'small' ? /*#__PURE__*/React.createElement("div", {
+            className: "flexbox align-center-y align-between pd-5 border-solid border-1 border-alpha-15 radius-sm"
+          }, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             style: {
-              "maxHeight": "2.25rem"
+              "maxHeight": "1.5rem"
             }
           }) : null, /*#__PURE__*/React.createElement("button", {
             key: "change-media",
             onClick: open,
-            className: "btn square primary small radius-sm fs-12 fas fa-upload"
-          })) : /*#__PURE__*/React.createElement(React.Fragment, null, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
+            className: "btn square primary tiny radius-sm fs-12 fas fa-upload"
+          })) : /*#__PURE__*/React.createElement("div", {
+            className: "flexbox align-center-y align-between"
+          }, !type || type === 'image' ? /*#__PURE__*/React.createElement("img", {
             src: value,
             className: "radius-sm radius-top",
             style: {

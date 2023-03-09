@@ -401,7 +401,7 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
             onClick: set_value,
             title: item,
             "data-value": item,
-            className: "".concat(type, " ").concat(item, " reset-button ").concat(value === item ? 'px-active' : ""),
+            className: "icon-btn-item ".concat(type, " ").concat(item, " reset-button ").concat(value === item ? 'px-active bg-offwhite-primary' : ""),
             style: {
               "fontSize": "17px",
               "lineHeight": "24px",
@@ -426,6 +426,19 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
           Phenix(button).toggleClass("px-active");
           Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
         }
+      }; //===> Search in icons <===//
+
+
+      var iconsFilter = function iconsFilter(changed) {
+        //===> Define Data <===//
+        var input = changed.target,
+            value = input.value,
+            options = Phenix(input).ancestor(".options-list"),
+            buttons = options.querySelectorAll(".icon-btn-item"); //===> Find the searched icon and hide the rest <===//
+
+        buttons.forEach(function (button) {
+          return button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden");
+        });
       }; //===> Component Design <===//
 
 
@@ -440,8 +453,15 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
         className: "w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e",
         type: "button"
       }, /*#__PURE__*/React.createElement("span", {
-        className: "col tx-nowrap pde-5 tx-icon ".concat(type, " ").concat(value)
-      }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix")), /*#__PURE__*/React.createElement("i", {
+        className: "col tx-nowrap pde-5"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "me-5 radius-circle inline-block bg-inherit ".concat(type, " ").concat(value, " tx-align-center"),
+        style: {
+          "width": "17px",
+          "height": "17px",
+          "lineHeight": "15px"
+        }
+      }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Edit Icon", "phenix")), /*#__PURE__*/React.createElement("i", {
         className: "fas fa-pencil fs-12 color-gray"
       })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
         key: "icons-type",
@@ -464,12 +484,17 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
           label: 'Brands'
         }]
       })), /*#__PURE__*/React.createElement("div", {
-        className: "overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
+        className: "overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
         style: {
           gap: "10px",
-          maxHeight: "140px"
+          maxHeight: "220px"
         }
-      }, makeButtons(icons, type)));
+      }, /*#__PURE__*/React.createElement("input", {
+        name: "pds-icons-search",
+        className: "reset-input pdy-5 fs-12 divider-b fluid tx-align-center",
+        onChange: iconsFilter,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Search in icons", "phenix")
+      }), makeButtons(icons, type)));
     }
   }]);
 

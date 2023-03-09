@@ -58,7 +58,7 @@ export default class PhenixIcons extends Component {
             let buttonsList = [];
 
             //===> for each item <===//
-            if(list) list.forEach((item) => buttonsList.push(<button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`${type} ${item} reset-button ${value === item ? 'px-active' : ""}`} style={{"fontSize": "17px", "lineHeight": "24px", "width":"24px", "height":"24px", "borderRadius": "3px", "padding": 0}}></button>));
+            if(list) list.forEach((item) => buttonsList.push(<button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`icon-btn-item ${type} ${item} reset-button ${value === item ? 'px-active bg-offwhite-primary' : ""}`} style={{"fontSize": "17px", "lineHeight": "24px", "width":"24px", "height":"24px", "borderRadius": "3px", "padding": 0}}></button>));
 
             //===> Return Buttons <===//
             return buttonsList;
@@ -77,6 +77,17 @@ export default class PhenixIcons extends Component {
             }
         };
 
+        //===> Search in icons <===//
+        const iconsFilter = changed => {
+            //===> Define Data <===//
+            let input = changed.target,
+                value = input.value,
+                options = Phenix(input).ancestor(".options-list"),
+                buttons = options.querySelectorAll(".icon-btn-item");
+            //===> Find the searched icon and hide the rest <===//
+            buttons.forEach(button => button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden"));
+        };
+
         //===> Component Design <===//
         return (
             <div className='px-gb-component position-rv mb-15'>
@@ -87,7 +98,10 @@ export default class PhenixIcons extends Component {
                 <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
-                        <span className={`col tx-nowrap pde-5 tx-icon ${type} ${value}`}>{__("Replace", "phenix")}</span>
+                        <span className={`col tx-nowrap pde-5`}>
+                            <span className={`me-5 radius-circle inline-block bg-inherit ${type} ${value} tx-align-center`} style={{"width": "17px", "height": "17px", "lineHeight": "15px"}}></span>
+                            {__("Edit Icon", "phenix")}
+                        </span>
                         <i className='fas fa-pencil fs-12 color-gray'></i>
                     </button>
                     {/*===> Type Select <===*/}
@@ -100,7 +114,8 @@ export default class PhenixIcons extends Component {
                     ]}/>
                 </div>
                 {/*===> Panel <===*/}
-                <div className={`overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid`} style={{gap:"10px", maxHeight: "140px"}}>
+                <div className={`overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid`} style={{gap:"10px", maxHeight: "220px"}}>
+                    <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "phenix")} />
                     {makeButtons(icons, type)}
                 </div>
             </div>

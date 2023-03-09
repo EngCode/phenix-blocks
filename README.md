@@ -51,7 +51,7 @@ published as open-source project for web community benefits.
     <li>✅ [Block] Inline elements</li>
     <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
     <li>✅ [Block] Taxonomies Links List</li>
-    <li>✴️ [Block] Font-Awesome Icon</li>
+    <li>✴️ [Block] Icon Font (FontAwesome)</li>
     <li>✴️ [Block] Modals/Popups</li>
     <li>✴️ [Block] Accordion List</li>
     <li>✴️ [Block] Dropdown Button</li>

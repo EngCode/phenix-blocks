@@ -106,6 +106,19 @@
 
 		&.flexbox .components-base-control {min-width: 100px;}
 	}
+
+	.pds-icon-preview {
+		top: 3px;
+		width: 17px;
+		height: 17px;
+		overflow: hidden;
+		&::before {
+			top: 50%;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
 }
 
 .px-gb-tabs .options-tabs {

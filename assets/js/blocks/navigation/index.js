@@ -453,15 +453,13 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
         className: "w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e",
         type: "button"
       }, /*#__PURE__*/React.createElement("span", {
-        className: "col tx-nowrap pde-5"
-      }, /*#__PURE__*/React.createElement("span", {
-        className: "me-5 radius-circle inline-block bg-inherit ".concat(type, " ").concat(value, " tx-align-center"),
+        className: "col tx-nowrap pde-5",
         style: {
-          "width": "17px",
-          "height": "17px",
-          "lineHeight": "15px"
+          "lineHeight": "20px"
         }
-      }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Edit Icon", "phenix")), /*#__PURE__*/React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "pds-icon-preview inline-block me-5 radius-circle bg-alpha-05 ".concat(type, " ").concat(value, " position-rv")
+      }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix")), /*#__PURE__*/React.createElement("i", {
         className: "fas fa-pencil fs-12 color-gray"
       })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
         key: "icons-type",

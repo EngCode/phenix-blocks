@@ -98,9 +98,9 @@ export default class PhenixIcons extends Component {
                 <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
-                        <span className={`col tx-nowrap pde-5`}>
-                            <span className={`me-5 radius-circle inline-block bg-inherit ${type} ${value} tx-align-center`} style={{"width": "17px", "height": "17px", "lineHeight": "15px"}}></span>
-                            {__("Edit Icon", "phenix")}
+                        <span className={`col tx-nowrap pde-5`} style={{"lineHeight": "20px"}}>
+                            <span className={`pds-icon-preview inline-block me-5 radius-circle bg-alpha-05 ${type} ${value} position-rv`}></span>
+                            {__("Replace", "phenix")}
                         </span>
                         <i className='fas fa-pencil fs-12 color-gray'></i>
                     </button>

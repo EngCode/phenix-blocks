@@ -234,6 +234,7 @@ dl {
 .no-border  {border: 0 none;}
 .reset-list {@extend %reset-list;}
 .reset-block, .reset {@extend %reset-space;}
+[class*="fa-"]::before {vertical-align: middle;}
 
 .reset-button {
     height: auto;

@@ -69,7 +69,12 @@ function Edit(props) {
   var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       icons_list = _useState4[0],
-      set_icons_list = _useState4[1]; //===> Set Attributes <===//
+      set_icons_list = _useState4[1];
+
+  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)("5-free"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      icons_version = _useState6[0],
+      set_icons_version = _useState6[1]; //===> Set Attributes <===//
 
 
   var set_menu_id = function set_menu_id(menu_id) {
@@ -124,7 +129,16 @@ function Edit(props) {
     return setAttributes({
       trigger: trigger
     });
-  }; //===> Fetching Data <===//
+  }; //===> Sharp Icons Fallback <===//
+
+
+  var arrow_ops = attributes.arrow_icon.split(" "),
+      arrowIcon = arrow_ops[1],
+      arrowType = arrow_ops[0];
+
+  if (arrow_icon.includes('fa-sharp')) {
+    arrowType = "".concat(arrow_ops[0], " ").concat(arrow_ops[1]), arrowIcon = arrow_ops[2];
+  } //===> Fetching Data <===//
 
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
@@ -152,9 +166,11 @@ function Edit(props) {
 
       if (menus_list !== menus_new_list) set_menu_list([].concat(menus_new_list)); //===> Fetch Icons List <===//
 
-      var filename = "".concat(options.pds_icon_font.replace("fontawesome-", "fa")); //===> Correct Brands Icons <===//
+      var filename = "".concat(options.pds_icon_font.replace("fontawesome-", "fa")); //===> Correct Icons <===//
 
-      if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands"); //===> Start Fetching <===//
+      if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands");
+      if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
+      if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6")); //===> Start Fetching <===//
 
       fetch("".concat(PDS_WP_KEY.json, "/").concat(filename, ".json")).then(function (res) {
         return res.json();
@@ -229,8 +245,9 @@ function Edit(props) {
     key: "arrow_icon",
     label: "Dropdown Icon",
     icons: icons_list,
-    type: attributes.arrow_icon.split(" ")[0],
-    value: attributes.arrow_icon.split(" ")[1],
+    version: icons_version,
+    type: arrowType,
+    value: arrowIcon,
     onChange: set_arrow_icon
   }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: "Support Hover",
@@ -366,6 +383,7 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
           label = _this$props.label,
           value = _this$props.value,
           icons = _this$props.icons,
+          version = _this$props.version,
           onChange = _this$props.onChange; //===> Returned Value <===//
 
       var options = {
@@ -439,7 +457,40 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
         buttons.forEach(function (button) {
           return button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden");
         });
-      }; //===> Component Design <===//
+      };
+
+      var icons_types = [{
+        value: 'far',
+        label: 'Regular'
+      }, {
+        value: 'fas',
+        label: 'Solid'
+      }, {
+        value: 'fab',
+        label: 'Brands'
+      }];
+
+      if (version.includes("pro")) {
+        icons_types.push({
+          value: 'fal',
+          label: 'Light'
+        });
+        icons_types.push({
+          value: 'fad',
+          label: 'Duotone'
+        });
+      }
+
+      if (version.includes("6")) {
+        icons_types.push({
+          value: 'fa-sharp fa-regular',
+          label: 'Regular Sharp'
+        });
+        icons_types.push({
+          value: 'fa-sharp fa-solid',
+          label: 'Solid Sharp'
+        });
+      } //===> Component Design <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
@@ -465,22 +516,7 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
         key: "icons-type",
         value: type,
         onChange: set_type,
-        options: [{
-          value: 'fal',
-          label: 'Light'
-        }, {
-          value: 'far',
-          label: 'Regular'
-        }, {
-          value: 'fas',
-          label: 'Solid'
-        }, {
-          value: 'fad',
-          label: 'Duotone'
-        }, {
-          value: 'fab',
-          label: 'Brands'
-        }]
+        options: icons_types
       })), /*#__PURE__*/React.createElement("div", {
         className: "overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
         style: {
@@ -579,7 +615,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"arrow_icon":{"type":"string","default":"far fa-angle-down"},"responsive":{"type":"boolean","default":false},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/navigation","version":"0.1.0","title":"Phenix Menu","category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"tagName":{"type":"string","default":"nav"},"menu_id":{"type":"string","default":""},"className":{"type":"string","default":""},"arrow_icon":{"type":"string","default":"far fa-angle-down"},"responsive":{"type":"boolean","default":false},"mobile_mode":{"type":"string","default":"dropdown"},"effect":{"type":"string","default":"slide"},"direction":{"type":"string","default":"vertical"},"hover":{"type":"boolean","default":false},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive_ops":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-navigation"}');
 
 /***/ })
 

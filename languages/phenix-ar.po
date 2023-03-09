@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Phenix Blocks\n"
-"POT-Creation-Date: 2023-03-08 23:00+0200\n"
-"PO-Revision-Date: 2023-03-08 23:15+0200\n"
+"POT-Creation-Date: 2023-03-09 20:58+0200\n"
+"PO-Revision-Date: 2023-03-09 21:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: abdullah@phenixthemes.com\n"
 "Language: ar\n"
@@ -272,7 +272,7 @@ msgstr "الرمز/الايقونة"
 msgid "Pattern Template"
 msgstr "قالب النمط"
 
-#: admin/panels/post-types.php:51 src/blocks/navigation/edit.js:43
+#: admin/panels/post-types.php:51 src/blocks/navigation/edit.js:48
 #: src/blocks/px-controls/colors/background.js:232 src/blocks/query/edit.js:31
 #: src/blocks/taxonomies-list/edit.js:28 src/blocks/taxonomies-list/edit.js:29
 #: src/blocks/taxonomies/edit.js:29 src/blocks/taxonomies/edit.js:30
@@ -961,6 +961,7 @@ msgid "Container Size"
 msgstr "حجم المحتوي"
 
 #: src/blocks/container/edit.js:211 src/blocks/group/edit.js:193
+#: src/blocks/navigation/edit.js:90
 msgid "HTML Tag"
 msgstr "نوع العنصر"
 
@@ -1071,7 +1072,52 @@ msgstr "تفعيل الاسهم"
 msgid "Responsive Options"
 msgstr "تفعيل الترقيم"
 
+#: src/blocks/logo/edit.js:84
+msgid "Size (Height)"
+msgstr "الطول (مطلوب)"
+
+#: src/blocks/logo/edit.js:89
+msgid "Width (Optional)"
+msgstr "العرض (اختياري)"
+
+#: src/blocks/logo/edit.js:94
+msgid "Upload Logo"
+msgstr "رفع شعار"
+
+#: src/blocks/logo/edit.js:97
+msgid "Upload Favicon"
+msgstr "رفع ايقونة شعار"
+
+#: src/blocks/logo/edit.js:100
+msgid "Responsive Logo"
+msgstr "شعار متجاوب"
+
+#: src/blocks/logo/edit.js:110
+msgid "Update Site Logo"
+msgstr "تحديث شعار الموقع"
+
+#: src/blocks/navigation/edit.js:79
+msgid "Location (ID)"
+msgstr "معرف المكان"
+
+#: src/blocks/navigation/edit.js:83
+msgid "Direction"
+msgstr "الاتجاه"
+
+#: src/blocks/navigation/edit.js:123
+msgid "Mode"
+msgstr "الوضع"
+
+#: src/blocks/navigation/edit.js:131
+msgid "Effect"
+msgstr "التأثير"
+
+#: src/blocks/navigation/edit.js:140
+msgid "Attach Trigger Button"
+msgstr "ارفاق زر التفعيل"
+
 #: src/blocks/px-controls/colors/background.js:214
+#: src/blocks/px-controls/icons.js:103
 msgid "Replace"
 msgstr "استبدال"
 
@@ -1123,6 +1169,10 @@ msgstr "الاب توب"
 #: src/blocks/px-controls/elements/tabs.js:48
 msgid "xLarge Screens"
 msgstr "الكمبيوتر"
+
+#: src/blocks/px-controls/icons.js:118
+msgid "Search in icons"
+msgstr "بحث في الرموز"
 
 #: src/blocks/query/edit.js:228 src/blocks/taxonomies-list/edit.js:80
 #: src/blocks/taxonomies/edit.js:118

@@ -57,6 +57,21 @@
         "hover" : {
             "type": "boolean",
             "default": false
+        },
+        
+        "typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive_ops": {
+            "type": "object",
+            "default": {}
         }
     },
 	"example": {

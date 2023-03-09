@@ -22,6 +22,7 @@ export default class PhenixIcons extends Component {
             label,
             value,
             icons,
+            version,
             onChange
         } = this.props;
 
@@ -88,6 +89,22 @@ export default class PhenixIcons extends Component {
             buttons.forEach(button => button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden"));
         };
 
+        const icons_types = [
+            { value: 'far',   label: 'Regular' },
+            { value: 'fas',   label: 'Solid' },
+            { value: 'fab',   label: 'Brands' }
+        ]
+
+        if (version.includes("pro")) {
+            icons_types.push({ value: 'fal',   label: 'Light' });
+            icons_types.push({ value: 'fad',   label: 'Duotone' });
+        }
+
+        if (version.includes("6")) {
+            icons_types.push({ value: 'fa-sharp fa-regular',   label: 'Regular Sharp' });
+            icons_types.push({ value: 'fa-sharp fa-solid',   label: 'Solid Sharp' });
+        }
+
         //===> Component Design <===//
         return (
             <div className='px-gb-component position-rv mb-15'>
@@ -105,13 +122,7 @@ export default class PhenixIcons extends Component {
                         <i className='fas fa-pencil fs-12 color-gray'></i>
                     </button>
                     {/*===> Type Select <===*/}
-                    <SelectControl key="icons-type" value={type} onChange={set_type} options={[
-                        { value: 'fal',   label: 'Light' },
-                        { value: 'far',   label: 'Regular' },
-                        { value: 'fas',   label: 'Solid' },
-                        { value: 'fad',   label: 'Duotone' },
-                        { value: 'fab',   label: 'Brands' },
-                    ]}/>
+                    <SelectControl key="icons-type" value={type} onChange={set_type} options={icons_types}/>
                 </div>
                 {/*===> Panel <===*/}
                 <div className={`overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid`} style={{gap:"10px", maxHeight: "220px"}}>

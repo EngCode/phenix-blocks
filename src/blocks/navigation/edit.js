@@ -28,6 +28,7 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
     const [menus_list, set_menu_list] = useState([]);
     const [icons_list, set_icons_list] = useState([]);
+    const [icons_version, set_icons_version] = useState("5-free");
 
     //===> Set Attributes <===//
     const set_menu_id = menu_id => setAttributes({ menu_id });
@@ -39,6 +40,16 @@ export default function Edit(props) {
     const set_mobile_mode = mobile_mode => setAttributes({ mobile_mode });
     const set_responsive = responsive => setAttributes({ responsive });
     const set_trigger = trigger => setAttributes({ trigger });
+
+    //===> Sharp Icons Fallback <===//
+    let arrow_ops = attributes.arrow_icon.split(" "),
+        arrowIcon = arrow_ops[1],
+        arrowType = arrow_ops[0];
+    
+    if (arrow_icon.includes('fa-sharp')) {
+        arrowType = `${arrow_ops[0]} ${arrow_ops[1]}`,
+        arrowIcon = arrow_ops[2];
+    }
 
     //===> Fetching Data <===//
     useEffect(() => {
@@ -52,11 +63,15 @@ export default function Edit(props) {
             }
             //===> Set New Locations List <===//
             if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
-            
+
             //===> Fetch Icons List <===//
             let filename = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
-            //===> Correct Brands Icons <===//
+
+            //===> Correct Icons <===//
             if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
+            if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
+            if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6"));
+
             //===> Start Fetching <===//
             fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {
                 let iconsList = json.icons;
@@ -108,7 +123,7 @@ export default function Edit(props) {
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
                     {/*=== Arrow Icon ===*/}
-                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={icons_list} type={ attributes.arrow_icon.split(" ")[0] } value={ attributes.arrow_icon.split(" ")[1] } onChange={set_arrow_icon} />
+                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={icons_list} version={icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
                     
                     {/*===> Dropdown Hover <===*/}
                     <ToggleControl label="Support Hover" checked={attributes.hover} onChange={set_hover}/>

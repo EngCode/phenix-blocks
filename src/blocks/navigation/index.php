@@ -41,6 +41,31 @@ function px_navigation_render($block_attributes, $content) {
     //===> Start Navigation Wrapper <===//
     echo "<{$options['tagName']} class='{$classNames}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
 
+    //===> Custom CSS Style <===//
+    echo '<style>
+        /*==== Navigation Theme ====*/
+        .px-navigation {
+            --font-size : 14px;
+            --space-in  : 5px;
+            --height : 34px;
+            --color  : inherit;
+            --color-hvr : var(--primary-color);
+            --background : transparent;
+            --background-hvr : transparent;
+            --font-weight : var(--bold-weight);
+        }
+        /*==== Submenu Theme ====*/
+        .px-navigation .submenu {
+            --height : 26px;
+            --radius : 5px;
+            --background : white;
+            --space-in : 15px;
+            --color : var(--gray-color);
+            --color-hvr : var(--primary-color);
+            --box-shadow : 3px 3px 8px 0 rgba(0,0,0, 0.05);
+        }
+    </style>';
+
     //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(
         'menu' => $options['menu_id'],

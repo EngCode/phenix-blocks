@@ -29,6 +29,14 @@
       "type": "string",
       "default": "#none"
     },
+    "logo_id": {
+      "type": "number",
+      "default": 0
+    },
+    "favicon_id": {
+      "type": "number",
+      "default": 0
+    },
     "fevicon": {
       "type": "string",
       "default": "https://via.placeholder.com/512x512.webp?text=Fevicon"

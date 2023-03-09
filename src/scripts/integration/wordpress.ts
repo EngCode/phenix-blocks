@@ -138,7 +138,10 @@ Phenix(document).ready(ready => {
                     let frameDoc = window.frames['editor-canvas'].document,
                         fontAwesome = document.querySelector("#fontawesome-css");
                     //===> Load FontAwesome <===//
-                    if (!frameDoc.querySelector("#fontawesome-css") && fontAwesome) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                    if (!frameDoc.querySelector("#fontawesome-css")) {
+                        let importedEl = document.importNode(fontAwesome, true);
+                        if(importedEl) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                    }
                     //===> Clear Timer <===//
                     clearInterval(loadAssetTimer);
                 }

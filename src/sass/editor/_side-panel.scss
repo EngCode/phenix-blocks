@@ -1,7 +1,7 @@
 %thin-scrollbar {
 	scrollbar-width: thin;
     scrollbar-color: var(--gray-color) rgba(#000, 0.05);
-    &::-webkit-scrollbar-track {background-color: rgba(#000, 0.05);}
+    &::-webkit-scrollbar-track {background-color: rgba(#000, 0.15);}
     &::-webkit-scrollbar-thumb {background-color: rgba(#000, 0.15);}
     &::-webkit-scrollbar {width: 5px;box-shadow: inset 1px 0 0 0 1px rgba(#000, 0.1);}
 }
@@ -50,7 +50,6 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.interface-interface-skeleton__sidebar {
 		overflow-x: hidden!important;
 		@extend %thin-scrollbar;
-		// padding-#{$direction-end}: 10px;
 	}
 
 	/*==== Radius Groups ====*/

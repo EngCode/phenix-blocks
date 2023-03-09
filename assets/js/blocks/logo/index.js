@@ -12,16 +12,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Edit; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/uploader */ "./src/blocks/px-controls/uploader.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/uploader */ "./src/blocks/px-controls/uploader.js");
 //====> WP Modules <====//
+
 
 
 
@@ -37,6 +40,12 @@ function Edit(_ref) {
   var set_size = function set_size(size) {
     return setAttributes({
       size: size
+    });
+  };
+
+  var set_width = function set_width(width) {
+    return setAttributes({
+      width: width
     });
   };
 
@@ -60,41 +69,52 @@ function Edit(_ref) {
 
 
   var set_logo = function set_logo(value) {
-    //===> Set Attribute <===//
-    setAttributes({
-      logo: value.url
-    }); //===> Set Fevicon in Settings <===//
-
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-      method: 'POST',
-      path: '/wp/v2/settings',
-      data: {
-        site_logo: value.id
-      }
+    return setAttributes({
+      logo: value.url,
+      logo_id: value.id
     });
   }; //===> Set Fevicon <===//
 
 
   var set_fevicon = function set_fevicon(value) {
-    //===> Set Attribute <===//
-    setAttributes({
-      fevicon: value.url
-    }); //===> Set Fevicon in Settings <===//
+    return setAttributes({
+      fevicon: value.url,
+      favicon_id: value.id
+    });
+  }; //===> Set Site Logo <===//
 
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+
+  var set_site_logo = function set_site_logo(clicked) {
+    //===> Add Loading Mode <===//
+    clicked.target.classList.add('px-loading'); //===> Set Fevicon in Settings <===//
+
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
       path: '/wp/v2/settings',
       method: 'POST',
       data: {
-        site_icon: value.id
+        site_icon: attributes.favicon_id
       }
+    }).then(function (respond) {
+      return clicked.target.classList.remove('px-loading');
+    }); //===> Set Logo in Settings <===//
+
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'POST',
+      path: '/wp/v2/settings',
+      data: {
+        site_logo: attributes.logo_id
+      }
+    }).then(function (respond) {
+      return clicked.target.classList.remove('px-loading');
     });
   }; //===> Get Block Properties <===//
 
 
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(); //===> if the Title not Set <===//
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)(); //===> Accessibility Fallback <===//
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    //===> Fetch Site Title and Link <===//
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
       path: 'wp/v2/settings'
     }).then(function (Response) {
       //===> Set Options <===//
@@ -111,52 +131,67 @@ function Edit(_ref) {
   blockProps["href"] = attributes.site_link;
   blockProps.className += ' inline-block'; //===> Render <===//
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
     key: "inspector"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "Logo Setting",
     initialOpen: true
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: "Logo Size",
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-10"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Width (Optional)", "phenix"),
+    value: attributes.width,
+    onChange: set_width
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Size (Height)", "phenix"),
     value: attributes.size,
     onChange: set_size
-  }), /*#__PURE__*/React.createElement("span", {
+  }))), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Upload Logo",
+  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Logo", "phenix"),
     value: attributes.logo,
     setValue: set_logo,
     size: "small",
     className: "mb-15"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Upload Fevicon",
+  }), /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Fevicon", "phenix"),
     value: attributes.fevicon,
     setValue: set_fevicon,
     size: "small"
   }), /*#__PURE__*/React.createElement("span", {
     className: "display-block border-alpha-05 bg-alpha-05 col-12 mb-15 mt-5 divider-t"
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-    label: "Responsive Logo",
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Responsive Logo", "phenix"),
     checked: attributes.responsive,
     onChange: set_responsive
-  }), attributes.responsive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }), attributes.responsive ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "Use Favicon for Mobile",
     checked: attributes.use_fevicon,
     onChange: set_use_fevicon
-  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), !attributes.use_fevicon ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: "Upload Mobile Logo",
     value: attributes.mobile_logo,
     setValue: set_mobile_logo,
     size: "small"
-  }) : null) : null)), /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
+  }) : null) : null, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "btn tiny fs-12 mb-10 primary radius-sm",
+    onClick: set_site_logo
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Update Site Logo", "phenix")))), /*#__PURE__*/React.createElement("a", blockProps, /*#__PURE__*/React.createElement("img", {
     src: attributes.logo,
     className: attributes.responsive ? 'hidden-md-down' : '',
     alt: blockProps.title,
     style: {
       "height": attributes.size
     },
+    width: parseInt(attributes.width),
     height: parseInt(attributes.size)
   }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
     src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,
@@ -335,13 +370,23 @@ module.exports = window["wp"]["element"];
 
 /***/ }),
 
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
 /***/ "./src/blocks/logo/block.json":
 /*!************************************!*\
   !*** ./src/blocks/logo/block.json ***!
   \************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"site_title":{"type":"string","default":""},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"site_link":{"type":"string","default":"#none"},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"site_title":{"type":"string","default":""},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"site_link":{"type":"string","default":"#none"},"logo_id":{"type":"number","default":0},"favicon_id":{"type":"number","default":0},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -472,6 +517,7 @@ __webpack_require__.r(__webpack_exports__);
       style: {
         "maxHeight": attributes.size
       },
+      width: parseInt(attributes.width),
       height: parseInt(attributes.size)
     }), attributes.responsive ? /*#__PURE__*/React.createElement("img", {
       src: attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo,

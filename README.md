@@ -36,6 +36,7 @@ published as open-source project for web community benefits.
 ---
 
 #### 🚀 Phenix Blocks Key-Features
+
 <ul style="list-style:none;padding:0;margin:0 25px;">
     <li>✅ [Block] Responsive Logo</li>
     <li>✅ [Block] Responsive Container</li>
@@ -75,8 +76,8 @@ published as open-source project for web community benefits.
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
 </ul>
 
-
 #### 🚀 Phenix Editor Components
+
 <ul style="list-style:none;padding:0;margin:0 25px;">
     <li>✅ Media Uploader</li>
     <li>✅ Phenix Backgrounds</li>

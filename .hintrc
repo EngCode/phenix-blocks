@@ -9,7 +9,10 @@
       {
         "ignore": [
           "-moz-appearance",
-          "text-decoration-skip"
+          "text-decoration-skip",
+          "scrollbar-width",
+          "scrollbar-color",
+          "backdrop-filter"
         ]
       }
     ],

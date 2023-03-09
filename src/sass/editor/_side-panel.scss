@@ -230,6 +230,12 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		[id="/typography"],[id="/layout"], [id="/colors/button"] {display: none;}
 	}
 
+	/*==== Popup Components ====*/
 	.components-dropdown__content .components-popover__content {width: 280px;}
 	.edit-site-template-card .components-dropdown .components-button.has-icon {padding: 2px 0;}
+	.components-palette-edit__popover {
+		.components-popover__content {width: 280px;}
+		.components-select-control {min-width: 100px;}
+		.components-color-picker, .components-color-picker .react-colorful {width: 100%;}
+	}
 }

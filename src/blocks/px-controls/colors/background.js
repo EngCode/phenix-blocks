@@ -196,13 +196,18 @@ export default class PhenixBackground extends Component {
             //=== Show/Hide Panel ===//
             if (panel) {
                 Phenix(button).toggleClass("px-active");
-                Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+                if (isSmall) {
+                    Phenix(wrapper).toggleClass("overlay-panel")
+                    Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+                } else {
+                    Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+                };
             }
         };
 
         //===> Component Design <===//
         return (
-            <div className={`px-gb-component position-rv ${label ? "mb-15" : ""}`}>
+            <div className={`px-gb-component${isSmall ? "":" position-rv "}${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
                 {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
                 {/*===> Group <===*/}

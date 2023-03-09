@@ -260,7 +260,7 @@ export default function Edit(props) {
                     {/*===> Colors <===*/}
                     <label className='mb-5'>{__("Text Color", "phenix")}</label>
                     {/*===> Elements Group <===*/}
-                    <div className='row gpx-10'>
+                    <div className='row gpx-10 position-rv'>
                         {/*===> Column <===*/}
                         <div className='col-6 mb-10'>
                             <PhenixColor key="px-color" placeholder={__("Normal","phenix")} isSmall={true} onChange={set_color} value={attributes.typography.color || ""} />
@@ -274,7 +274,7 @@ export default function Edit(props) {
                     {/*===> Background <===*/}
                     <label className='mb-5'>{__("Background Color", "phenix")}</label>
                     {/*===> Elements Group <===*/}
-                    <div className='row gpx-10'>
+                    <div className='row gpx-10 position-rv'>
                         {/*===> Column <===*/}
                         <div className='col-6 mb-10'>
                             <PhenixBackground key="px-bg" placeholder={__("Normal","phenix")} isSmall={true} colorsOnly={true} onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />

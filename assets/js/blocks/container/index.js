@@ -940,13 +940,21 @@ var PhenixBackground = /*#__PURE__*/function (_Component) {
 
         if (panel) {
           Phenix(button).toggleClass("px-active");
-          Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+
+          if (isSmall) {
+            Phenix(wrapper).toggleClass("overlay-panel");
+            Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+          } else {
+            Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+          }
+
+          ;
         }
       }; //===> Component Design <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component position-rv ".concat(label ? "mb-15" : "")
+        className: "px-gb-component".concat(isSmall ? "" : " position-rv ").concat(label ? "mb-15" : "")
       }, label ? /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
       }, label) : null, /*#__PURE__*/React.createElement("div", {
@@ -1159,17 +1167,26 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
       var showPanel = function showPanel(clicked) {
         var button = clicked.target,
+            wrapper = Phenix(button).ancestor('.px-gb-component'),
             panel = Phenix(button).next(".options-list"); //=== Show/Hide Panel ===//
 
         if (panel) {
           Phenix(button).toggleClass("px-active");
-          Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+
+          if (isSmall) {
+            Phenix(wrapper).toggleClass("overlay-panel");
+            Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+          } else {
+            Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+          }
+
+          ;
         }
       }; //===> Component Output <===//
 
 
       return /*#__PURE__*/React.createElement("div", {
-        className: "px-gb-component position-rv ".concat(label ? "mb-15" : "")
+        className: "px-gb-component".concat(isSmall ? "" : " position-rv ").concat(label ? "mb-15" : "")
       }, label ? /*#__PURE__*/React.createElement("label", {
         className: "mb-10 tx-UpperCase"
       }, label) : null, /*#__PURE__*/React.createElement("button", {

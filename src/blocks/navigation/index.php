@@ -58,10 +58,10 @@ function px_navigation_render($block_attributes, $content) {
             --height : 34px;
             --font-size : '.$font_size.';
             --font-weight : '.$font_weight.';
-            --color  : '.str_replace("color-", "--wp--preset--color--", $text_color).';
-            --color-hvr : '.str_replace("color-", "--wp--preset--color--", $text_color_hvr).';
-            --background : '.str_replace("bg-", "--wp--preset--color--", $background_color).';
-            --background-hvr : '.str_replace("bg-", "--wp--preset--color--", $background_color_hvr).';
+            --color  : '.str_replace("color-", "var(--wp--preset--color--", $text_color).');
+            --color-hvr : '.str_replace("color-", "var(--wp--preset--color--", $text_color_hvr).');
+            --background : '.str_replace("bg-", "var(--wp--preset--color--", $background_color).');
+            --background-hvr : '.str_replace("bg-", "var(--wp--preset--color--", $background_color_hvr).');
         }
         /*==== Submenu Theme ====*/
         .px-navigation .submenu {

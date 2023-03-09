@@ -88,17 +88,23 @@ export default class PhenixColors extends Component {
         //===> Colors Panel <===//
         const showPanel = clicked => {
             let button = clicked.target,
+                wrapper = Phenix(button).ancestor('.px-gb-component'),
                 panel  = Phenix(button).next(".options-list");
             //=== Show/Hide Panel ===//
             if (panel) {
                 Phenix(button).toggleClass("px-active");
-                Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+                if (isSmall) {
+                    Phenix(wrapper).toggleClass("overlay-panel")
+                    Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+                } else {
+                    Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+                };
             }
         };
 
         //===> Component Output <===//
         return (
-            <div className={`px-gb-component position-rv ${label ? "mb-15" : ""}`}>
+            <div className={`px-gb-component${isSmall ? "":" position-rv "}${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
                 {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
                 {/*===> Trigger <===*/}

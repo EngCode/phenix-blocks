@@ -4,18 +4,7 @@
   ],
   "hints": {
     "typescript-config/strict": "off",
-    "compat-api/css": [
-      "default",
-      {
-        "ignore": [
-          "-moz-appearance",
-          "text-decoration-skip",
-          "scrollbar-width",
-          "scrollbar-color",
-          "backdrop-filter"
-        ]
-      }
-    ],
+    "compat-api/css": "off",
     "typescript-config/consistent-casing": "off"
   }
 }

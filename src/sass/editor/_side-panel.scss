@@ -253,7 +253,10 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.editor-post-featured-image {
 		text-align: center;
 		.components-button {display: inline-block;}
-		.editor-post-featured-image__preview span[style="padding-bottom: 100%;"] {display: none;}
+		.editor-post-featured-image__preview {
+			img {max-height: 100px;}
+			span[style="padding-bottom: 100%;"] {display: none;}
+		}
 		.editor-post-featured-image__container + .components-button.is-secondary {width: 100%;text-align: center;}
 	}
 

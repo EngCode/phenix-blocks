@@ -136,7 +136,7 @@ export default function Edit({ attributes, setAttributes }) {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
             let locations = options.menu_locations,
-                menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
+                menus_new_list = [{label: __("None", 'phenix'), value: ""}];
 
             //===> Prepare Each Location for Select Array <===//
             for (const [key, value] of Object.entries(locations)) {
@@ -367,30 +367,43 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            {attributes.isLightBox ?<PanelBody title="Lightbox Settings">
-                {/*=== Component <TagName> ===*/}
-                <SelectControl key="lightbox-type" label="Lightbox Type" value={attributes.lightbox_type} onChange={set_lightbox_type} options={[
-                    { label: 'Image',  value: 'image' },
-                    { label: 'Video',  value: 'video' },
-                    { label: 'Embed',  value: 'embed' },
-                ]}/>
-
-                {/*===> Custom Source <===*/}
-                <ToggleControl label="Custom Source" checked={attributes.lightbox_src} onChange={set_lightbox_src}/>
-
-                {/*===> Source Control <===*/}
-                {attributes.lightbox_src ?
-                    <MediaUploader label="Upload Source" type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
-                :
-                    <TextControl key="container_id" label="Lightbox Source" value={ attributes.url } onChange={set_url}/>
-                }
+            {attributes.isLightBox ?<PanelBody title={__("Lightbox Settings","phenix")}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Column <===*/}
+                    <div className='col-12 mb-10'>
+                        <SelectControl key="lightbox-type" label={__("Type","phenix")} value={attributes.lightbox_type} onChange={set_lightbox_type} options={[
+                            { label: __("Image", "phenix"),  value: 'image' },
+                            { label: __("Video", "phenix"),  value: 'video' },
+                            { label: __("Embed", "phenix"),  value: 'embed' },
+                        ]}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-12'>
+                        {attributes.lightbox_src ? <MediaUploader label={__("Upload Source", "phenix")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
+                        : <TextControl key="container_id" label={__("Source URL", "phenix")} value={ attributes.url } onChange={set_url}/> }
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-12'>
+                        <ToggleControl label={__("Upload Source","phenix")} checked={attributes.lightbox_src} onChange={set_lightbox_src}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Custom Data" initialOpen={false}>
-                {/* Data ID */}
-                <SelectControl label={__("Menu (ID)", "phenix")} value={ attributes.data_id } onChange={set_data_id} options={menus_list} />
-                {/* Data Modal */}
-                <TextControl label={__("Modal (ID)", "phenix")} value={ attributes.data_modal } onChange={set_data_modal} />
+            <PanelBody title={__("Trigger Data", "phenix")} initialOpen={false}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl label={__("Menu (ID)", "phenix")} value={ attributes.data_id } onChange={set_data_id} options={menus_list} />
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-10'>
+                        <TextControl label={__("Modal (ID)", "phenix")} value={ attributes.data_modal } onChange={set_data_modal} />
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

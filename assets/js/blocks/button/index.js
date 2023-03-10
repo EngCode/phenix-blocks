@@ -286,7 +286,7 @@ function Edit(_ref) {
       //===> Create New Array <===//
       var locations = options.menu_locations,
           menus_new_list = [{
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default", 'phenix'),
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("None", 'phenix'),
         value: ""
       }]; //===> Prepare Each Location for Select Array <===//
 
@@ -691,28 +691,30 @@ function Edit(_ref) {
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "rtl" ? 'left' : "right", " radius-sm")
   })))), attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Lightbox Settings"
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Lightbox Settings", "phenix")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-20"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12 mb-10"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "lightbox-type",
-    label: "Lightbox Type",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Type", "phenix"),
     value: attributes.lightbox_type,
     onChange: set_lightbox_type,
     options: [{
-      label: 'Image',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image", "phenix"),
       value: 'image'
     }, {
-      label: 'Video',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Video", "phenix"),
       value: 'video'
     }, {
-      label: 'Embed',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Embed", "phenix"),
       value: 'embed'
     }]
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: "Custom Source",
-    checked: attributes.lightbox_src,
-    onChange: set_lightbox_src
-  }), attributes.lightbox_src ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    label: "Upload Source",
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, attributes.lightbox_src ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Source", "phenix"),
     type: attributes.lightbox_type,
     value: attributes.url,
     setValue: function setValue(file) {
@@ -722,22 +724,34 @@ function Edit(_ref) {
     }
   }) : /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     key: "container_id",
-    label: "Lightbox Source",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Source URL", "phenix"),
     value: attributes.url,
     onChange: set_url
-  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: "Custom Data",
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Source", "phenix"),
+    checked: attributes.lightbox_src,
+    onChange: set_lightbox_src
+  })))) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Trigger Data", "phenix"),
     initialOpen: false
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row gpx-20"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-10"
   }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Menu (ID)", "phenix"),
     value: attributes.data_id,
     onChange: set_data_id,
     options: menus_list
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-10"
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Modal (ID)", "phenix"),
     value: attributes.data_modal,
     onChange: set_data_modal
-  }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
+  }))))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
     src: "https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/buttons.jpg",
     alt: "",
     className: "fluid"

@@ -797,3 +797,7 @@ body, .welcome-panel, .welcome-panel h2, .wp-die-message, p {line-height: var(--
 	
 	.toplevel_page_pds-dashboard + .wp-menu-separator {display: none;}
 }
+
+/*==== Dark Mode ====*/
+.pds-force-dark {-webkit-filter: invert(85%);filter: invert(85%);}
+.pds-force-black {-webkit-filter: invert(85%);filter: invert(85%);}

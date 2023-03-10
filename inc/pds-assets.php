@@ -81,7 +81,7 @@ if (!function_exists('phenix_assets')) :
         $sec_font  = trim(str_replace("-", " ", $current_fonts['secondary']));
         $icon_font = str_replace("-", " ", $current_fonts['icon']);
         $icon_font = str_replace("fontawesome", "Font Awesome", $icon_font);
-        $icon_font = trim(preg_replace("/(pro|free)/i", "", $icon_font));
+        $icon_font = trim(preg_replace("/(free)/i", "pro", $icon_font));
 
         //====> Font-icon <====//
         if (str_contains($current_fonts['icon'], "fontawesome-6")) : $icons_font = "fontawesome-6"; endif;
@@ -221,26 +221,11 @@ if (!function_exists('pds_loader_template')) :
 	add_action('wp_body_open', 'pds_loader_template');
 endif;
 
-//===> Set Font Css Settings <===//
-// if (!function_exists('pds_fonts_setup')) :
-//     function pds_fonts_setup() {
-//         $current_fonts = [
-//             "icon" => get_option("pds_icon_font"),
-//             "primary" => get_option("pds_primary_font"),
-//             "secondary" => get_option("pds_secondary_font"),
-//         ];
+//===> Lightbox Template <===//
+if (!function_exists('pds_lightbox_template')) :
+	function pds_lightbox_template() {
+		include(dirname(__FILE__) . '/lightbox.php');
+	}
 
-//         $prim_font = str_replace("-", " ", $current_fonts['primary']);
-//         $sec_font = str_replace("-", " ", $current_fonts['secondary']);
-//         $icon_font = str_replace("-", " ", $current_fonts['icon']);
-
-//         echo '<style id="pds-font-settings">body {
-//             --icons-font: '.ucwords($prim_font).';
-//             --primary-font: '.ucwords($sec_font).';
-//             --secondary-font: '.ucwords($icon_font).';
-//         }</style>';
-//     }
-
-//     add_action('wp_body_open', 'pds_fonts_setup');
-// endif;
-
+	add_action('wp_footer', 'pds_lightbox_template');
+endif;

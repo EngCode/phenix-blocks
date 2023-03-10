@@ -171,6 +171,8 @@ Phenix(document).ready(ready => {
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
         //===> Editor Assets <====//
         editorAssets();
+        let cf7Cleaner = setInterval(() => fixCF7(), 1000);
+        setTimeout(() => clearInterval(cf7Cleaner), 10000);
 
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);

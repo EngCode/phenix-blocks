@@ -94,8 +94,8 @@
 .h-100 {height: 100%;}
 .h-25vh {height: 25vh;}
 .h-50vh {height: 50vh;}
-.h-75vh, .full-screen-wide {height: 75vh;}
-.h-100vh,.full-screen {height: 100vh;}
+.h-75vh {height: 75vh;}
+.h-100vh {height: 100vh;}
 
 /*==== Min Height's ====*/
 @mixin make-min-height($infix:'') {
@@ -105,8 +105,8 @@
     .h#{$infix}-min-100 {min-height: 100%;}
     .h#{$infix}-min-25vh {min-height: 25vh;}
     .h#{$infix}-min-50vh {min-height: 50vh;}
-    .h#{$infix}-min-75vh {min-height: 75vh;}
-    .h#{$infix}-min-100vh {min-height: 100vh;}
+    .h#{$infix}-min-75vh, .full-screen#{$infix}-wide {min-height: 75vh;}
+    .h#{$infix}-min-100vh,.full-screen#{$infix} {min-height: 100vh;}
 }
 
 @include make-min-height();

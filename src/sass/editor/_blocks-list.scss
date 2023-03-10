@@ -75,6 +75,12 @@
 
 	.wp-block-image .components-resizable-box__container img {display: inline-block!important;}
 	.wp-block-phenix-button {pointer-events: all!important;}
+
+}
+
+/*==== Post Editor Wrapper ====*/
+.edit-post-visual-editor {
+	+ .edit-post-layout__metaboxes {display: none;}
 }
 
 /*==== Posts Editor Layout ====*/

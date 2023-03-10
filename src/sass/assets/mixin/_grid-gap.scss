@@ -18,7 +18,7 @@
 
     //====> Horizontal/Row <====//
     @if ($flow == 'x' or $flow == 'both') {
-        /*==== Nigative Margin ====*/
+        /*==== Negative Margin ====*/
         @if($size != 0) {
             @include margin_inline(calc(-#{$size} / 2));
         }

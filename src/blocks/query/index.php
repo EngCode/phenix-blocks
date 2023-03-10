@@ -74,13 +74,13 @@ function px_query_render($block_attributes, $content) {
         //===> Create New Query <===//
         $the_query = new WP_Query($query_config);
 
-        if ($options['grid_mode']) $grid_opts += 'row ';
+        if ($options['grid_mode']) $grid_opts .= ' row';
 
         elseif ($options['slider_mode'] && isset($grid['cols'])) {
-            if ($grid['cols'] > 1) { $grid_opts += 'row '; }
-            elseif (isset($grid['cols-md']) && $grid['cols-md'] > 1) {$grid_opts += 'row ';}
-            elseif (isset($grid['cols-lg']) && $grid['cols-lg'] > 1) {$grid_opts += 'row ';}
-            elseif (isset($grid['cols-xl']) && $grid['cols-xl'] > 1) {$grid_opts += 'row ';}
+            if ($grid['cols'] > 1) { $grid_opts .= ' row'; }
+            elseif (isset($grid['cols-md']) && $grid['cols-md'] > 1) {$grid_opts .= ' row';}
+            elseif (isset($grid['cols-lg']) && $grid['cols-lg'] > 1) {$grid_opts .= ' row';}
+            elseif (isset($grid['cols-xl']) && $grid['cols-xl'] > 1) {$grid_opts .= ' row';}
         }
     
         //==== Start Query =====//

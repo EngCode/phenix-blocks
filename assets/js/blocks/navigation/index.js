@@ -28,6 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _px_controls_colors_text__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/colors/text */ "./src/blocks/px-controls/colors/text.js");
 /* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
 /* harmony import */ var _px_controls_colors_background__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../px-controls/colors/background */ "./src/blocks/px-controls/colors/background.js");
+/* harmony import */ var _px_controls_number__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../px-controls/number */ "./src/blocks/px-controls/number.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -61,6 +62,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
  //====> Phenix Modules <====//
+
 
 
 
@@ -175,6 +177,28 @@ function Edit(props) {
     typography.align = target.checked ? target.value : "";
     setAttributes({
       typography: _objectSpread({}, typography)
+    });
+  }; //===> Set Height <===//
+
+
+  var set_typography_height = function set_typography_height(value) {
+    //===> Define Data <===//
+    var typography = attributes.typography; //===> Set Value <===//
+
+    typography.height = value;
+    setAttributes({
+      typography: _objectSpread({}, typography)
+    });
+  }; //===> Set Padding <===//
+
+
+  var set_style_padding = function set_style_padding(value) {
+    //===> Define Data <===//
+    var style = attributes.style; //===> Set Value <===//
+
+    style.height = value;
+    setAttributes({
+      style: _objectSpread({}, style)
     });
   }; //==> Color <==//
 
@@ -423,6 +447,20 @@ function Edit(props) {
       label: 'Black',
       value: '900'
     }]
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Line-Height (px)", "phenix"),
+    value: attributes.typography["height"] ? attributes.typography["height"] : 34,
+    onChange: set_typography_height,
+    min: 0
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-6 mb-15"
+  }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Padding (px)", "phenix"),
+    value: attributes.style["padding"] ? attributes.style["padding"] : 12,
+    onChange: set_style_padding,
+    min: 0
   }))), /*#__PURE__*/React.createElement("label", {
     className: "col-12 mb-5 tx-UpperCase"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Alignment", "phenix")), /*#__PURE__*/React.createElement("div", {
@@ -1284,6 +1322,145 @@ var PhenixIcons = /*#__PURE__*/function (_Component) {
 
   return PhenixIcons;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/blocks/px-controls/number.js":
+/*!******************************************!*\
+  !*** ./src/blocks/px-controls/number.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PhenixNumber; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - Import Assets
+ * ===> 02 - Import Block Functions
+ * ===> 03 - Register Block
+*/
+//===> WordPress Modules <===//
+ //===> Media Uploader <===//
+
+var PhenixNumber = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixNumber, _Component);
+
+  var _super = _createSuper(PhenixNumber);
+
+  function PhenixNumber() {
+    _classCallCheck(this, PhenixNumber);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PhenixNumber, [{
+    key: "render",
+    value: function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          label = _this$props.label,
+          value = _this$props.value,
+          min = _this$props.min,
+          max = _this$props.max,
+          steps = _this$props.steps,
+          icon = _this$props.icon,
+          onChange = _this$props.onChange; //===> Set Value <===//
+
+      var setNumber = function setNumber(changed) {
+        //===> Get Elements <===//
+        var input = changed.target,
+            minNum = parseInt(min) || 0,
+            maxNum = parseInt(max) || 0; //===> Get Input Element <===//
+
+        var newVal = parseInt(input.value); //===> Set Data <===//
+
+        return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
+      },
+          //===> Increase Number <===//
+      IncreaseNum = function IncreaseNum(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
+            maxNum = parseInt(max) || 9999999,
+            step = steps ? parseInt(steps) : 1; //===> Get Input Element <===//
+
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) + step; //===> Set Data <===//
+
+        return onChange(newVal <= maxNum ? newVal : maxNum);
+      },
+          //===> Decrease Number <===//
+      DecreaseNum = function DecreaseNum(clicked) {
+        //===> Get Elements <===//
+        var button = clicked.target,
+            wrapper = Phenix(button).ancestor(".px-counter-input"),
+            minNum = parseInt(min) || 0,
+            step = steps ? steps : 1; //===> Get Input Element <===//
+
+        var input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseInt(input.value) - step; //===> Set Data <===//
+
+        return onChange(newVal >= minNum ? newVal : minNum);
+      }; //===> Output <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "flexbox flex-gap-fix align-between flow-column"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "components-input-control__label tx-uppercase weight-bold"
+      }, label), /*#__PURE__*/React.createElement("div", {
+        className: "px-counter-input position-rv fluid " + (icon ? icon : "")
+      }, !icon ? /*#__PURE__*/React.createElement("button", {
+        onClick: DecreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix"
+      }) : "", /*#__PURE__*/React.createElement("input", {
+        type: "number",
+        min: min,
+        max: max,
+        value: parseInt(value) ? parseInt(value) : 0,
+        className: "form-control small radius-sm reset-appearance" + (!icon ? " tx-align-center" : ""),
+        onChange: setNumber
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "position-ab pos-end-0 pos-bottom-0 flexbox"
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: IncreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-plus divider-s icon-fix"
+      }), icon ? /*#__PURE__*/React.createElement("button", {
+        onClick: DecreaseNum,
+        className: "btn square small fs-13 increase-btn far fa-minus divider-s icon-fix"
+      }) : "")));
+    }
+  }]);
+
+  return PhenixNumber;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 
 

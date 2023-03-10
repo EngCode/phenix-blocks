@@ -24,11 +24,13 @@ function px_navigation_render($block_attributes, $content) {
     //===> Collect Style Data <===//
     $font_size = isset($options['typography']['size']) ? $options['typography']['size'] : "14px";
     $font_weight = isset($options['typography']['weight']) ? $options['typography']['weight'] : "var(--bold-weight)";
+    $font_height = isset($options['typography']['height']) ? $options['typography']['height'] : "34";
     $text_align = isset($options['typography']['align']) ? $options['typography']['align'] : "";
     $text_color = isset($options['typography']['color']) ? $options['typography']['color'] : "var(--dark-color)";
     $text_color_hvr = isset($options['typography']['color_hvr']) ? $options['typography']['color_hvr'] : "var(--primary-color)";
     $background_color = isset($options['style']['background']['value']) ? $options['style']['background']['value'] : "transparent";
     $background_color_hvr = isset($options['style']['background_hvr']['value']) ? $options['style']['background_hvr']['value'] : "transparent";
+    $style_padding = isset($options['style']['padding']) ? $options['style']['padding'] : "12";
 
     //===> Direction Mode <===//
     if ($options['direction'] == 'px-vertical') {
@@ -54,8 +56,8 @@ function px_navigation_render($block_attributes, $content) {
     echo '<style>
         /*==== Navigation Theme ====*/
         .px-navigation {
-            --space-in  : 12px;
-            --height : 34px;
+            --space-in  : '.$style_padding.'px;
+            --height : '.$font_height.'px;
             --font-size : '.$font_size.';
             --font-weight : '.$font_weight.';
             --color  : '.str_replace("color-", "var(--wp--preset--color--", $text_color).');

@@ -23,6 +23,7 @@ import PhenixIcons from '../px-controls/icons';
 import PhenixColor from '../px-controls/colors/text';
 import OptionControl from '../px-controls/switch';
 import PhenixBackground from '../px-controls/colors/background';
+import PhenixNumber from '../px-controls/number';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -73,6 +74,24 @@ export default function Edit(props) {
         typography.align = target.checked ? target.value : "";
         setAttributes({ typography : {...typography} });
     };
+
+    //===> Set Height <===//
+    const set_typography_height = value => {
+        //===> Define Data <===//
+        let typography = attributes.typography;
+        //===> Set Value <===//
+        typography.height = value;
+        setAttributes({ typography: {...typography} });
+    }
+
+    //===> Set Padding <===//
+    const set_style_padding = value => {
+        //===> Define Data <===//
+        let style = attributes.style;
+        //===> Set Value <===//
+        style.height = value;
+        setAttributes({ style: {...style} });
+    }
 
     //==> Color <==//
     const set_color = value => {
@@ -226,6 +245,14 @@ export default function Edit(props) {
                                 { label: 'Heavy',  value: '800'},
                                 { label: 'Black',  value: '900'},
                             ]}/>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-15'>
+                            <PhenixNumber label={__("Line-Height (px)", "phenix")} value={attributes.typography[`height`] ? attributes.typography[`height`] : 34} onChange={set_typography_height} min={0}></PhenixNumber>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6 mb-15'>
+                            <PhenixNumber label={__("Padding (px)", "phenix")} value={attributes.style[`padding`] ? attributes.style[`padding`] : 12} onChange={set_style_padding} min={0}></PhenixNumber>
                         </div>
                         {/*===> // Column <===*/}
                     </div>

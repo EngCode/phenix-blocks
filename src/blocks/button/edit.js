@@ -189,78 +189,59 @@ export default function Edit({ attributes, setAttributes }) {
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            {attributes.isLink ?<PanelBody title="Link Settings">
-                {/* Current Link */}
-                <span className='color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>
-                {/* Link Controls */}
-                <LinkControlSearchInput
-                    placeholder="URL or Page Name"
-                    onChange={set_url}
-                    value={ attributes.url }
-                    allowDirectEntry={false}
-                    withURLSuggestion={false}
-                    withCreateSuggestion={false}
-                    renderSuggestions={(props) => suggestionsRender(props)}
-                />
-                {/*=== isLink ===*/}
-                <div className='mt-10'><ToggleControl label="Open in New Tab ?" checked={attributes.inNewTab} onChange={set_inNewTab}/></div>
-            </PanelBody> : null}
-            {/*===> Widget Panel <===*/}
-            <PanelBody title="General Settings">
-                {/*=== Button Type ===*/}
-                <label className='mb-10 weight-medium'>Button Type</label>
-                <RadioGroup label="Button Type" onChange={ set_type } defaultChecked={attributes.type}>
-                    <Radio value="normal">Default</Radio>
-                    <Radio value="square">icon only</Radio>
-                    <Radio value="btn-icon">with icon</Radio>
-                </RadioGroup>
-
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 my-15 divider-t'></span>
-
-                {/*=== Button Size ===*/}
-                <label className='mb-10 weight-medium'>Button Size</label>
-                <RadioGroup label="Button Size" onChange={ set_size } defaultChecked={attributes.size}>
-                    <Radio value="normal">Default</Radio>
-                    <Radio value="tiny">XS</Radio>
-                    <Radio value="small">SM</Radio>
-                    <Radio value="large">LG</Radio>
-                    <Radio value="xlarge">XL</Radio>
-                </RadioGroup>
-
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 my-15 divider-t'></span>
-
-                {/*=== Button Size ===*/}
-                <label className='mb-10 weight-medium'>Border Radius</label>
-                <RadioGroup label="Button Size" onChange={ set_radius } defaultChecked={attributes.radius}>
-                    <Radio value="radius-none">NO</Radio>
-                    <Radio value="radius-sm">XS</Radio>
-                    <Radio value="radius-md">SM</Radio>
-                    <Radio value="radius-lg">LG</Radio>
-                    <Radio value="radius-xl">XL</Radio>
-                    <Radio value="radius-xxl">XXL</Radio>
-                    <Radio value="radius-circle">Full Circle</Radio>
-                    <Radio value="radius-height">Full Round</Radio>
-                </RadioGroup>
-
-                {/* Divider */}
-                <span className='display-block border-alpha-05 bg-alpha-05 col-12 my-15 divider-t'></span>
-
-                {/*=== isOutline ===*/}
-                <ToggleControl label="Outline Style" checked={attributes.outline} onChange={set_outline}/>
-
-                {/*=== isLink ===*/}
-                <ToggleControl label="Link Button" checked={attributes.isLink} onChange={set_isLink}/>
-
-                {/*=== isLightbox ===*/}
-                <ToggleControl label="Lightbox Button" checked={attributes.isLightBox} onChange={set_isLightBox}/>
-
-                {/*=== Icon Settings ===*/}
-                {attributes.type === 'btn-icon' ? <>
-                    <ToggleControl label="Icon as Label" checked={attributes.iconLabel} onChange={set_iconLabel}/>
-                    <ToggleControl label="Icon in the End" checked={attributes.iconEnd} onChange={set_iconEnd}/>
-                </>: null}
+            <PanelBody title={__("General Settings", "phenix")}>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="type" label={__("Type", "phenix")} value={attributes.type} onChange={set_type} options={[
+                            { label: __("Default", "phenix"), value: '' },
+                            { label: __("Text/Icon", "phenix"), value: 'btn-icon' },
+                            { label: __("Icon Only", "phenix"), value: 'square' },
+                        ]}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-10'>
+                        <SelectControl key="type" label={__("Size", "phenix")} value={attributes.size} onChange={set_size} options={[
+                            { label: __("Tiny", "phenix"), value: 'tiny' },
+                            { label: __("Small", "phenix"), value: 'small' },
+                            { label: __("Normal", "phenix"), value: '' },
+                            { label: __("Large", "phenix"), value: 'large' },
+                            { label: __("xLarge", "phenix"), value: 'xlarge' },
+                        ]}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    {attributes.isLink ? <div className='col col-6 mb-10'>
+                        <label className='mb-5'>{__("URL/Page")}</label>
+                        <LinkControlSearchInput placeholder={__("URL or Page Name", "phenix")} onChange={set_url} value={ attributes.url } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => suggestionsRender(props)} />
+                    </div> : null}
+                    {/*===> Column <===*/}
+                    <div className='col col-6 mb-10'>
+                        <SelectControl key="radius" label={__("Radius Size", "phenix")} value={attributes.radius} onChange={set_radius} options={[
+                            { label: __("None", "phenix"), value: '' },
+                            { label: __("Tiny", "phenix"), value: 'radius-sm' },
+                            { label: __("Small", "phenix"), value: 'radius-md' },
+                            { label: __("Medium", "phenix"), value: 'radius-lg' },
+                            { label: __("Large", "phenix"), value: 'radius-xl' },
+                            { label: __("xLarge", "phenix"), value: 'radius-xxl' },
+                            { label: __("Circle", "phenix"), value: 'radius-circle' },
+                            { label: __("Rounded", "phenix"), value: 'radius-height' },
+                        ]}/>
+                    </div>
+                    {/*===> Column <===*/}
+                    {attributes.isLink ? <span style={{marginTop: "-10px"}} className='col-12 color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>: null}
+                    {/*===> Column <===*/}
+                    <div className='col-12 row gpx-10'>
+                        {/*===> Current Link <===*/}
+                        <div className='col-6'><ToggleControl label="is Link" checked={attributes.isLink} onChange={set_isLink}/></div>
+                        {attributes.isLink ? <div className='col-6'> <ToggleControl label={__("New Tab", "phenix")} checked={attributes.inNewTab} onChange={set_inNewTab}/> </div>: null}
+                        <div className='col-6'><ToggleControl label="Outline" checked={attributes.outline} onChange={set_outline}/></div>
+                        <div className='col-6'><ToggleControl label="Lightbox" checked={attributes.isLightBox} onChange={set_isLightBox}/></div>
+                        {attributes.type === 'btn-icon' ? <div className='col-6'><ToggleControl label="Labeled" checked={attributes.iconLabel} onChange={set_iconLabel}/></div> : null}
+                        {attributes.type === 'btn-icon' ? <div className='col-6'><ToggleControl label="Reverse Position" checked={attributes.iconEnd} onChange={set_iconEnd}/></div> : null}
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>

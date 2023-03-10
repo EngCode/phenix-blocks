@@ -96,6 +96,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		.components-base-control__field {
 			margin: 0;
 			margin-bottom: 10px;
+			.block-editor-url-input__input {border-radius: 4px;}
 			.components-input-control__backdrop {border-color: rgba(#000, 0.2)!important;}
 		}
 	

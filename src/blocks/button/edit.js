@@ -1,6 +1,7 @@
 //====> WP Modules <====//
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 
 import {
     PanelBody,
@@ -24,6 +25,7 @@ import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
+import PhenixIcons from '../px-controls/icons';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -34,6 +36,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_radius = radius => setAttributes({radius});
     const set_outline = outline => setAttributes({ outline });
     const set_data_id = data_id => setAttributes({ data_id });
+    const set_icon = value => setAttributes({ icon: `${value.type} ${value.value}`});
     const set_iconEnd = iconEnd => setAttributes({ iconEnd });
     const set_iconLabel = iconLabel => setAttributes({ iconLabel });
     const set_isLightBox = isLightBox => setAttributes({isLightBox});
@@ -99,8 +102,19 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
-    blockProps.className += ` btn`;
+    const [menus_list, set_menu_list] = useState([]);
+    const [icons_list, set_icons_list] = useState([]);
+    const [icons_version, set_icons_version] = useState("5-free");
     const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0"/>;
+    //===> Sharp Icons Fallback <===//
+    let icon_ops = attributes.icon.split(" "),
+        icon_name = icon_ops[1],
+        icon_type = icon_ops[0];
+    
+    if (attributes.icon.includes('fa-sharp')) {
+        icon_type = `${icon_ops[0]} ${icon_ops[1]}`,
+        icon_name = icon_ops[2];
+    }
 
     //===> Set Phenix Components <===//
     const setPhenixView = () => {
@@ -118,7 +132,36 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
-    useEffect(() => setPhenixView(), [attributes]);
+    useEffect(() => {
+        apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
+            //===> Create New Array <===//
+            let locations = options.menu_locations,
+                menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
+
+            //===> Prepare Each Location for Select Array <===//
+            for (const [key, value] of Object.entries(locations)) {
+                menus_new_list.push({label: value, value: key});
+            }
+            //===> Set New Locations List <===//
+            if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
+
+            //===> Fetch Icons List <===//
+            let filename = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
+
+            //===> Correct Icons <===//
+            if (attributes.icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
+            if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
+            if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6"));
+
+            //===> Start Fetching <===//
+            fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {
+                let iconsList = json.icons;
+                if (iconsList !== icons_list) set_icons_list([...iconsList]);
+            });
+        });
+
+        setPhenixView()
+    }, [attributes]);
 
     //===> Typography Properties <===//
     if (attributes.typography) {
@@ -155,7 +198,7 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Default Type <===//
-    if (attributes.type) blockProps.className += ` ${attributes.type}`;
+    if (attributes.type) blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
 
     //===> Default Size <===//
     if (attributes.size) blockProps.className += ` ${attributes.size}`;
@@ -168,6 +211,9 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Set JS URL <===//
     if (attributes.isLink) blockProps['href'] = "#none";
+
+    //===> Set icon <===//
+    if (attributes.type !== "btn" && attributes.icon) blockProps.className+= ` ${attributes.icon}`;
 
     //===> URL Auto-Complete <===//
     const suggestionsRender = (props) => (
@@ -195,17 +241,17 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
                         <SelectControl key="type" label={__("Type", "phenix")} value={attributes.type} onChange={set_type} options={[
-                            { label: __("Default", "phenix"), value: '' },
-                            { label: __("Text/Icon", "phenix"), value: 'btn-icon' },
-                            { label: __("Icon Only", "phenix"), value: 'square' },
+                            { label: __("Default", "phenix"), value: 'btn' },
+                            { label: __("Text/Icon", "phenix"), value: 'btn btn-icon' },
+                            { label: __("Icon Only", "phenix"), value: 'btn square' },
                         ]}/>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
                         <SelectControl key="type" label={__("Size", "phenix")} value={attributes.size} onChange={set_size} options={[
+                            { label: __("Normal", "phenix"), value: '' },
                             { label: __("Tiny", "phenix"), value: 'tiny' },
                             { label: __("Small", "phenix"), value: 'small' },
-                            { label: __("Normal", "phenix"), value: '' },
                             { label: __("Large", "phenix"), value: 'large' },
                             { label: __("xLarge", "phenix"), value: 'xlarge' },
                         ]}/>
@@ -238,10 +284,17 @@ export default function Edit({ attributes, setAttributes }) {
                         <div className='col-6'><ToggleControl label="Outline" checked={attributes.outline} onChange={set_outline}/></div>
                         <div className='col-6'><ToggleControl label="Lightbox" checked={attributes.isLightBox} onChange={set_isLightBox}/></div>
                         {attributes.type === 'btn-icon' ? <div className='col-6'><ToggleControl label="Labeled" checked={attributes.iconLabel} onChange={set_iconLabel}/></div> : null}
-                        {attributes.type === 'btn-icon' ? <div className='col-6'><ToggleControl label="Reverse Position" checked={attributes.iconEnd} onChange={set_iconEnd}/></div> : null}
+                        {attributes.type === 'btn-icon' ? <div className='col-6'><ToggleControl label="icon End" checked={attributes.iconEnd} onChange={set_iconEnd}/></div> : null}
                     </div>
                     {/*===> // Column <===*/}
                 </div>
+            </PanelBody>
+            {/*===> Style Options <===*/}
+            <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {/*===> Background <===*/}
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+                {/*=== Icon ===*/}
+                <PhenixIcons key="icon" label="Button Icon" icons={icons_list} version={icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
@@ -313,11 +366,6 @@ export default function Edit({ attributes, setAttributes }) {
                     </OptionControl>
                 </div>
             </PanelBody>
-            {/*===> Style Options <===*/}
-            <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
-                {/*===> Background <===*/}
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
-            </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.isLightBox ?<PanelBody title="Lightbox Settings">
                 {/*=== Component <TagName> ===*/}
@@ -340,9 +388,9 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="Custom Data" initialOpen={false}>
                 {/* Data ID */}
-                <TextControl label="Data-ID" value={ attributes.data_id } onChange={set_data_id} />
+                <SelectControl label={__("Menu (ID)", "phenix")} value={ attributes.data_id } onChange={set_data_id} options={menus_list} />
                 {/* Data Modal */}
-                <TextControl label="Data-Modal" value={ attributes.data_modal } onChange={set_data_modal} />
+                <TextControl label={__("Modal (ID)", "phenix")} value={ attributes.data_modal } onChange={set_data_modal} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
@@ -353,9 +401,9 @@ export default function Edit({ attributes, setAttributes }) {
             :
             <>
             {attributes.isLink ? 
-                <a onClick={(event) => event.preventDefault()} { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</a>
+                <a onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
                 :
-                <button { ...blockProps }>{attributes.type !== 'square' ? labelControl : ''}</button>
+                <button { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</button>
             }
             </>
         }

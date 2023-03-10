@@ -46,7 +46,12 @@
 
 		"type": {
 			"type": "string",
-			"default": "normal"
+			"default": "btn"
+		},
+
+		"icon": {
+			"type": "string",
+			"default": "far fa-icons"
 		},
 
 		"size": {

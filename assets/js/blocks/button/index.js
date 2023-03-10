@@ -16,27 +16,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
-/* harmony import */ var _px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/uploader */ "./src/blocks/px-controls/uploader.js");
-/* harmony import */ var _px_controls_colors_text__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/colors/text */ "./src/blocks/px-controls/colors/text.js");
-/* harmony import */ var _px_controls_colors_background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/colors/background */ "./src/blocks/px-controls/colors/background.js");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _px_controls_switch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../px-controls/switch */ "./src/blocks/px-controls/switch.js");
+/* harmony import */ var _px_controls_uploader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../px-controls/uploader */ "./src/blocks/px-controls/uploader.js");
+/* harmony import */ var _px_controls_colors_text__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../px-controls/colors/text */ "./src/blocks/px-controls/colors/text.js");
+/* harmony import */ var _px_controls_colors_background__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../px-controls/colors/background */ "./src/blocks/px-controls/colors/background.js");
+/* harmony import */ var _px_controls_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../px-controls/icons */ "./src/blocks/px-controls/icons.js");
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -48,7 +59,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
  //====> Phenix Modules <====//
+
 
 
 
@@ -95,6 +108,12 @@ function Edit(_ref) {
   var set_data_id = function set_data_id(data_id) {
     return setAttributes({
       data_id: data_id
+    });
+  };
+
+  var set_icon = function set_icon(value) {
+    return setAttributes({
+      icon: "".concat(value.type, " ").concat(value.value)
     });
   };
 
@@ -209,16 +228,40 @@ function Edit(_ref) {
   }; //===> Get Block Properties <===//
 
 
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
-  var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useInnerBlocksProps)();
-  blockProps.className += " btn";
-  var labelControl = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
+  var innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)();
+
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      menus_list = _useState2[0],
+      set_menu_list = _useState2[1];
+
+  var _useState3 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      icons_list = _useState4[0],
+      set_icons_list = _useState4[1];
+
+  var _useState5 = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)("5-free"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      icons_version = _useState6[0],
+      set_icons_version = _useState6[1];
+
+  var labelControl = /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.RichText, {
     value: attributes.label,
     onChange: set_label,
     tagName: "span",
     placeholder: "TXT",
     className: "mg-0 pd-0"
-  }); //===> Set Phenix Components <===//
+  }); //===> Sharp Icons Fallback <===//
+
+  var icon_ops = attributes.icon.split(" "),
+      icon_name = icon_ops[1],
+      icon_type = icon_ops[0];
+
+  if (attributes.icon.includes('fa-sharp')) {
+    icon_type = "".concat(icon_ops[0], " ").concat(icon_ops[1]), icon_name = icon_ops[2];
+  } //===> Set Phenix Components <===//
+
 
   var setPhenixView = function setPhenixView() {
     var _attributes$style$bac;
@@ -237,7 +280,44 @@ function Edit(_ref) {
   };
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    return setPhenixView();
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+      path: 'pds-blocks/v2/options'
+    }).then(function (options) {
+      //===> Create New Array <===//
+      var locations = options.menu_locations,
+          menus_new_list = [{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default", 'phenix'),
+        value: ""
+      }]; //===> Prepare Each Location for Select Array <===//
+
+      for (var _i2 = 0, _Object$entries = Object.entries(locations); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        menus_new_list.push({
+          label: value,
+          value: key
+        });
+      } //===> Set New Locations List <===//
+
+
+      if (menus_list !== menus_new_list) set_menu_list([].concat(menus_new_list)); //===> Fetch Icons List <===//
+
+      var filename = "".concat(options.pds_icon_font.replace("fontawesome-", "fa")); //===> Correct Icons <===//
+
+      if (attributes.icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands");
+      if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
+      if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6")); //===> Start Fetching <===//
+
+      fetch("".concat(PDS_WP_KEY.json, "/").concat(filename, ".json")).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        var iconsList = json.icons;
+        if (iconsList !== icons_list) set_icons_list(_toConsumableArray(iconsList));
+      });
+    });
+    setPhenixView();
   }, [attributes]); //===> Typography Properties <===//
 
   if (attributes.typography) {
@@ -275,7 +355,7 @@ function Edit(_ref) {
   } //===> Default Type <===//
 
 
-  if (attributes.type) blockProps.className += " ".concat(attributes.type); //===> Default Size <===//
+  if (attributes.type) blockProps.className += " ".concat(attributes.type.replace('normal', 'btn')); //===> Default Size <===//
 
   if (attributes.size) blockProps.className += " ".concat(attributes.size); //===> Default Radius <===//
 
@@ -283,7 +363,9 @@ function Edit(_ref) {
 
   if (attributes.outline) blockProps.className += " outline"; //===> Set JS URL <===//
 
-  if (attributes.isLink) blockProps['href'] = "#none"; //===> URL Auto-Complete <===//
+  if (attributes.isLink) blockProps['href'] = "#none"; //===> Set icon <===//
+
+  if (attributes.type !== "btn" && attributes.icon) blockProps.className += " ".concat(attributes.icon); //===> URL Auto-Complete <===//
 
   var suggestionsRender = function suggestionsRender(props) {
     return /*#__PURE__*/React.createElement("ul", {
@@ -302,45 +384,45 @@ function Edit(_ref) {
   }; //===> Render <===//
 
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
     key: "inspector"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General Settings", "phenix")
   }, /*#__PURE__*/React.createElement("div", {
     className: "row gpx-20"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "type",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Type", "phenix"),
     value: attributes.type,
     onChange: set_type,
     options: [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default", "phenix"),
-      value: ''
+      value: 'btn'
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text/Icon", "phenix"),
-      value: 'btn-icon'
+      value: 'btn btn-icon'
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Only", "phenix"),
-      value: 'square'
+      value: 'btn square'
     }]
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "type",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Size", "phenix"),
     value: attributes.size,
     onChange: set_size,
     options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Normal", "phenix"),
+      value: ''
+    }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tiny", "phenix"),
       value: 'tiny'
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Small", "phenix"),
       value: 'small'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Normal", "phenix"),
-      value: ''
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Large", "phenix"),
       value: 'large'
@@ -352,7 +434,7 @@ function Edit(_ref) {
     className: "col col-6 mb-10"
   }, /*#__PURE__*/React.createElement("label", {
     className: "mb-5"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("URL/Page")), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.__experimentalLinkControlSearchInput, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("URL/Page")), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalLinkControlSearchInput, {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("URL or Page Name", "phenix"),
     onChange: set_url,
     value: attributes.url,
@@ -364,7 +446,7 @@ function Edit(_ref) {
     }
   })) : null, /*#__PURE__*/React.createElement("div", {
     className: "col col-6 mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "radius",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Radius Size", "phenix"),
     value: attributes.radius,
@@ -403,48 +485,66 @@ function Edit(_ref) {
     className: "col-12 row gpx-10"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "is Link",
     checked: attributes.isLink,
     onChange: set_isLink
   })), attributes.isLink ? /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, " ", /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }, " ", /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("New Tab", "phenix"),
     checked: attributes.inNewTab,
     onChange: set_inNewTab
   }), " ") : null, /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "Outline",
     checked: attributes.outline,
     onChange: set_outline
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "Lightbox",
     checked: attributes.isLightBox,
     onChange: set_isLightBox
   })), attributes.type === 'btn-icon' ? /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "Labeled",
     checked: attributes.iconLabel,
     onChange: set_iconLabel
   })) : null, attributes.type === 'btn-icon' ? /*#__PURE__*/React.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-    label: "Reverse Position",
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: "icon End",
     checked: attributes.iconEnd,
     onChange: set_iconEnd
-  })) : null))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  })) : null))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
+    initialOpen: false
+  }, /*#__PURE__*/React.createElement(_px_controls_colors_background__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    key: "px-bg",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
+    onChange: set_background,
+    type: ((_attributes$style$bac3 = attributes.style.background) === null || _attributes$style$bac3 === void 0 ? void 0 : _attributes$style$bac3.type) || "color",
+    value: ((_attributes$style$bac4 = attributes.style.background) === null || _attributes$style$bac4 === void 0 ? void 0 : _attributes$style$bac4.value) || "",
+    rotate: ((_attributes$style$bac5 = attributes.style.background) === null || _attributes$style$bac5 === void 0 ? void 0 : _attributes$style$bac5.rotate) || null
+  }), /*#__PURE__*/React.createElement(_px_controls_icons__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    key: "icon",
+    label: "Button Icon",
+    icons: icons_list,
+    version: icons_version,
+    type: icon_type,
+    value: icon_name,
+    onChange: set_icon
+  })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Typography", "phenix"),
     initialOpen: false
   }, /*#__PURE__*/React.createElement("div", {
     className: "row gpx-20"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "typography-size",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Size", "phenix"),
     value: attributes.typography.size || "",
@@ -500,7 +600,7 @@ function Edit(_ref) {
     }]
   })), /*#__PURE__*/React.createElement("div", {
     className: "col-6 mb-10"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "typography-weight",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Font Weight", "phenix"),
     value: attributes.typography.weight || "",
@@ -536,7 +636,7 @@ function Edit(_ref) {
       label: 'Black',
       value: 'weight-black'
     }]
-  }))), /*#__PURE__*/React.createElement(_px_controls_colors_text__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }))), /*#__PURE__*/React.createElement(_px_controls_colors_text__WEBPACK_IMPORTED_MODULE_7__["default"], {
     key: "px-color",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", "phenix"),
     onChange: set_color,
@@ -545,7 +645,7 @@ function Edit(_ref) {
     className: "col-12 mb-5 tx-UpperCase"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Alignment", "phenix")), /*#__PURE__*/React.createElement("div", {
     className: "flexbox"
-  }, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: !attributes.typography.align || attributes.typography.align === "",
     value: "",
@@ -554,7 +654,7 @@ function Edit(_ref) {
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray far fa-align-slash radius-sm"
-  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: attributes.typography.align === "tx-align-start" ? true : false,
     value: "tx-align-start",
@@ -563,7 +663,7 @@ function Edit(_ref) {
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "ltr" ? 'left' : "right", " radius-sm")
-  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: attributes.typography.align === "tx-align-justify" ? true : false,
     value: "tx-align-justify",
@@ -572,7 +672,7 @@ function Edit(_ref) {
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray fs-17 far fa-align-justify radius-sm"
-  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: attributes.typography.align === "tx-align-center" ? true : false,
     value: "tx-align-center",
@@ -581,7 +681,7 @@ function Edit(_ref) {
     className: "small me-5"
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray fs-17 far fa-align-center radius-sm"
-  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), /*#__PURE__*/React.createElement(_px_controls_switch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     name: "text-align",
     checked: attributes.typography.align === "tx-align-end" ? true : false,
     value: "tx-align-end",
@@ -590,19 +690,9 @@ function Edit(_ref) {
     className: "small"
   }, /*#__PURE__*/React.createElement("span", {
     className: "btn small square outline gray fs-17 far fa-align-".concat(Phenix(document).direction() === "rtl" ? 'left' : "right", " radius-sm")
-  })))), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style Options", "phenix"),
-    initialOpen: false
-  }, /*#__PURE__*/React.createElement(_px_controls_colors_background__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    key: "px-bg",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "phenix"),
-    onChange: set_background,
-    type: ((_attributes$style$bac3 = attributes.style.background) === null || _attributes$style$bac3 === void 0 ? void 0 : _attributes$style$bac3.type) || "color",
-    value: ((_attributes$style$bac4 = attributes.style.background) === null || _attributes$style$bac4 === void 0 ? void 0 : _attributes$style$bac4.value) || "",
-    rotate: ((_attributes$style$bac5 = attributes.style.background) === null || _attributes$style$bac5 === void 0 ? void 0 : _attributes$style$bac5.rotate) || null
-  })), attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  })))), attributes.isLightBox ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "Lightbox Settings"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     key: "lightbox-type",
     label: "Lightbox Type",
     value: attributes.lightbox_type,
@@ -617,11 +707,11 @@ function Edit(_ref) {
       label: 'Embed',
       value: 'embed'
     }]
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     label: "Custom Source",
     checked: attributes.lightbox_src,
     onChange: set_lightbox_src
-  }), attributes.lightbox_src ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), attributes.lightbox_src ? /*#__PURE__*/React.createElement(_px_controls_uploader__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: "Upload Source",
     type: attributes.lightbox_type,
     value: attributes.url,
@@ -630,20 +720,21 @@ function Edit(_ref) {
         url: file.url
       });
     }
-  }) : /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+  }) : /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     key: "container_id",
     label: "Lightbox Source",
     value: attributes.url,
     onChange: set_url
-  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  })) : null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: "Custom Data",
     initialOpen: false
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: "Data-ID",
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Menu (ID)", "phenix"),
     value: attributes.data_id,
-    onChange: set_data_id
-  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: "Data-Modal",
+    onChange: set_data_id,
+    options: menus_list
+  }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Modal (ID)", "phenix"),
     value: attributes.data_modal,
     onChange: set_data_modal
   }))), attributes.preview ? /*#__PURE__*/React.createElement("img", {
@@ -654,7 +745,7 @@ function Edit(_ref) {
     onClick: function onClick(event) {
       return event.preventDefault();
     }
-  }, blockProps), attributes.type !== 'square' ? labelControl : '') : /*#__PURE__*/React.createElement("button", blockProps, attributes.type !== 'square' ? labelControl : '')));
+  }, blockProps), !attributes.type.includes("square") ? labelControl : '') : /*#__PURE__*/React.createElement("button", blockProps, !attributes.type.includes("square") ? labelControl : '')));
 }
 
 /***/ }),
@@ -1126,6 +1217,236 @@ var PhenixColors = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./src/blocks/px-controls/icons.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/px-controls/icons.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PhenixIcons; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+/*
+ * ===> 01 - WordPress Modules
+ * ===> 02 - Phenix Background
+ * ===> 03 - Buttons Creator
+ * ===> 04 - Component Output
+*/
+//===> WordPress Modules <===//
+
+
+
+
+ //===> Phenix Icons <===//
+
+var PhenixIcons = /*#__PURE__*/function (_Component) {
+  _inherits(PhenixIcons, _Component);
+
+  var _super = _createSuper(PhenixIcons);
+
+  function PhenixIcons() {
+    _classCallCheck(this, PhenixIcons);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PhenixIcons, [{
+    key: "render",
+    value: //===> Render <===//
+    function render() {
+      //===> Properties <===//
+      var _this$props = this.props,
+          type = _this$props.type,
+          label = _this$props.label,
+          value = _this$props.value,
+          icons = _this$props.icons,
+          version = _this$props.version,
+          onChange = _this$props.onChange; //===> Returned Value <===//
+
+      var options = {
+        type: type,
+        value: value
+      }; //===> Set Type <===//
+
+      var set_value = function set_value(clicked) {
+        //===> Get Value <===//
+        var button = clicked.target,
+            theValue = button === null || button === void 0 ? void 0 : button.getAttribute('data-value'); //===> Set Value <===//
+
+        options.value = theValue; //===> Return Options <===//
+
+        return onChange(options);
+      };
+
+      var set_type = function set_type(value) {
+        //===> Set Value <===//
+        options.type = value; //===> Return Options <===//
+
+        return onChange(options);
+      }; //===> Buttons Creator <===//
+
+
+      var makeButtons = function makeButtons(list, type) {
+        //===> Define Data <===//
+        var buttonsList = []; //===> for each item <===//
+
+        if (list) list.forEach(function (item) {
+          return buttonsList.push( /*#__PURE__*/React.createElement("button", {
+            key: "".concat(item),
+            onClick: set_value,
+            title: item,
+            "data-value": item,
+            className: "icon-btn-item ".concat(type, " ").concat(item, " reset-button ").concat(value === item ? 'px-active bg-offwhite-primary' : ""),
+            style: {
+              "fontSize": "17px",
+              "lineHeight": "24px",
+              "width": "24px",
+              "height": "24px",
+              "borderRadius": "3px",
+              "padding": 0
+            }
+          }));
+        }); //===> Return Buttons <===//
+
+        return buttonsList;
+      }; //===> Colors Panel <===//
+
+
+      var showPanel = function showPanel(clicked) {
+        var button = clicked.target,
+            wrapper = Phenix(button).ancestor('.px-gb-component'),
+            panel = wrapper.querySelector(".options-list"); //=== Show/Hide Panel ===//
+
+        if (panel) {
+          Phenix(button).toggleClass("px-active");
+          Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+        }
+      }; //===> Search in icons <===//
+
+
+      var iconsFilter = function iconsFilter(changed) {
+        //===> Define Data <===//
+        var input = changed.target,
+            value = input.value,
+            options = Phenix(input).ancestor(".options-list"),
+            buttons = options.querySelectorAll(".icon-btn-item"); //===> Find the searched icon and hide the rest <===//
+
+        buttons.forEach(function (button) {
+          return button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden");
+        });
+      };
+
+      var icons_types = [{
+        value: 'far',
+        label: 'Regular'
+      }, {
+        value: 'fas',
+        label: 'Solid'
+      }, {
+        value: 'fab',
+        label: 'Brands'
+      }];
+
+      if (version.includes("pro")) {
+        icons_types.push({
+          value: 'fal',
+          label: 'Light'
+        });
+        icons_types.push({
+          value: 'fad',
+          label: 'Duotone'
+        });
+      }
+
+      if (version.includes("6")) {
+        icons_types.push({
+          value: 'fa-sharp fa-regular',
+          label: 'Regular Sharp'
+        });
+        icons_types.push({
+          value: 'fa-sharp fa-solid',
+          label: 'Solid Sharp'
+        });
+      } //===> Component Design <===//
+
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: "px-gb-component position-rv mb-15"
+      }, /*#__PURE__*/React.createElement("label", {
+        className: "mb-10 tx-UpperCase"
+      }, label), /*#__PURE__*/React.createElement("div", {
+        className: "overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap"
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: showPanel,
+        className: "w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e",
+        type: "button"
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "col tx-nowrap pde-5",
+        style: {
+          "lineHeight": "20px"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        className: "pds-icon-preview inline-block me-5 radius-circle bg-alpha-05 ".concat(type, " ").concat(value, " position-rv")
+      }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace", "phenix")), /*#__PURE__*/React.createElement("i", {
+        className: "fas fa-pencil fs-12 color-gray"
+      })), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        key: "icons-type",
+        value: type,
+        onChange: set_type,
+        options: icons_types
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid",
+        style: {
+          gap: "10px",
+          maxHeight: "220px"
+        }
+      }, /*#__PURE__*/React.createElement("input", {
+        name: "pds-icons-search",
+        className: "reset-input pdy-5 fs-12 divider-b fluid tx-align-center",
+        onChange: iconsFilter,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Search in icons", "phenix")
+      }), makeButtons(icons, type)));
+    }
+  }]);
+
+  return PhenixIcons;
+}(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+/***/ }),
+
 /***/ "./src/blocks/px-controls/switch.js":
 /*!******************************************!*\
   !*** ./src/blocks/px-controls/switch.js ***!
@@ -1356,6 +1677,16 @@ var MediaUploader = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["apiFetch"];
+
+/***/ }),
+
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -1412,7 +1743,7 @@ module.exports = window["wp"]["i18n"];
   \**************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/button","version":"0.1.0","title":"PDS Button","category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"normal"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":"primary"},"color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"isLightBox":{"type":"boolean","default":false},"lightbox_src":{"type":"boolean","default":false},"lightbox_type":{"type":"string","default":"image"},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/button","version":"0.1.0","title":"PDS Button","category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"isLink":{"type":"boolean","default":false},"inNewTab":{"type":"boolean","default":false},"iconLabel":{"type":"boolean","default":false},"iconEnd":{"type":"boolean","default":false},"label":{"type":"string","default":"Button"},"url":{"type":"string","default":"#none"},"type":{"type":"string","default":"btn"},"icon":{"type":"string","default":"far fa-icons"},"size":{"type":"string","default":"normal"},"radius":{"type":"string","default":"radius-none"},"outline":{"type":"boolean","default":false},"bg_type":{"type":"string","default":"color"},"bg_rotate":{"type":"string","default":""},"background":{"type":"string","default":"primary"},"color":{"type":"string","default":""},"data_id":{"type":"string","default":""},"data_modal":{"type":"string","default":""},"isLightBox":{"type":"boolean","default":false},"lightbox_src":{"type":"boolean","default":false},"lightbox_type":{"type":"string","default":"image"},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -1544,7 +1875,6 @@ __webpack_require__.r(__webpack_exports__);
     var attributes = _ref.attributes;
     //===> Get Block Properties <===//
     var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
-    blockProps.className += " btn";
     var background = attributes.style.background,
         typography = attributes.typography; //===> Typography Properties <===//
 
@@ -1604,15 +1934,17 @@ __webpack_require__.r(__webpack_exports__);
     } //===> Type <===//
 
 
-    if (attributes.type) blockProps.className += " ".concat(attributes.type); //===> Size <===//
+    if (attributes.type) blockProps.className += " ".concat(attributes.type.replace('normal', 'btn')); //===> Size <===//
 
     if (attributes.size) blockProps.className += " ".concat(attributes.size); //===> Radius <===//
 
     if (attributes.radius) blockProps.className += " ".concat(attributes.radius); //===> Style <===//
 
-    if (attributes.outline) blockProps.className += " outline"; //===> Render <===//
+    if (attributes.outline) blockProps.className += " outline"; //===> Set icon <===//
 
-    return /*#__PURE__*/React.createElement(React.Fragment, null, attributes.isLink ? /*#__PURE__*/React.createElement("a", blockProps, attributes.type !== "square" ? attributes.label : '') : /*#__PURE__*/React.createElement("button", blockProps, attributes.type !== "square" ? attributes.label : ''));
+    if (attributes.type !== "btn" && attributes.icon) blockProps.className += " ".concat(attributes.icon); //===> Render <===//
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, attributes.isLink ? /*#__PURE__*/React.createElement("a", blockProps, !attributes.type.includes("square") ? attributes.label : '') : /*#__PURE__*/React.createElement("button", blockProps, !attributes.type.includes("square") ? attributes.label : ''));
   }
 });
 }();

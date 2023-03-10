@@ -28,8 +28,6 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        blockProps.className += ` btn`;
-
         let background = attributes.style.background,
             typography = attributes.typography;
 
@@ -79,7 +77,6 @@ registerBlockType(metadata, {
         if (attributes.data_id.length > 1) {
             blockProps['data-id'] = attributes.data_id;
             blockProps.className += ' menu-toggle';
-
         }
 
         if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal;
@@ -91,23 +88,22 @@ registerBlockType(metadata, {
         }
 
         //===> Type <===//
-        if (attributes.type) blockProps.className += ` ${attributes.type}`;
-
+        if (attributes.type) blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
         //===> Size <===//
         if (attributes.size) blockProps.className += ` ${attributes.size}`;
-
         //===> Radius <===//
         if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
-
         //===> Style <===//
         if (attributes.outline) blockProps.className += ` outline`;
+        //===> Set icon <===//
+        if (attributes.type !== "btn" && attributes.icon) blockProps.className += ` ${attributes.icon}`;
 
         //===> Render <===//
         return (<>
             {attributes.isLink ? 
-                <a { ...blockProps }>{attributes.type !== "square" ? attributes.label : ''}</a>
+                <a { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</a>
                 :
-                <button { ...blockProps }>{attributes.type !== "square" ? attributes.label : ''}</button>
+                <button { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</button>
             }
         </>);
     }

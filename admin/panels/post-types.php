@@ -76,9 +76,14 @@
                 <!-- Elements Group -->
                 <div class="flexbox align-between align-center-y">
                     <!-- Form Control -->
-                    <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
+                    <label class="col-4 small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
+                        <input type="checkbox" name="hierarchical" />
+                        <span class="fas fa-check radius-circle tx-icon"><?php echo __("is Hierarchical", 'phenix'); ?></span>
+                    </label>
+                    <!-- Form Control -->
+                    <label class="col-4 small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
                         <input type="checkbox" name="enable" checked />
-                        <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable this Type once added ?", 'phenix'); ?></span>
+                        <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable Type ?", 'phenix'); ?></span>
                     </label>
                     <!-- Form Control -->
                     <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Type', 'phenix'); ?></button>

@@ -24,6 +24,7 @@ if (!function_exists('pds_cpt_create')) :
             $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
             $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 19;
             $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
+            $hierarchical = isset($options['hierarchical']) ? $options["hierarchical"] : false;
 
             //==== Template Correct ====//
             if($template && getType($template) !== 'array') {
@@ -64,10 +65,10 @@ if (!function_exists('pds_cpt_create')) :
                 'public'        => true,
                 'has_archive'   => true,
                 'show_in_rest'  => true,
-                'hierarchical'  => true,
+                'hierarchical'  => $hierarchical,
                 'template'      => $template,
                 'taxonomies'    => $taxonomies,
-                'supports'      => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
+                'supports'      => array('title', 'editor', 'thumbnail'),
             );
 
             register_post_type($name, $args);

@@ -73,12 +73,21 @@ function px_query_render($block_attributes, $content) {
     
         //===> Create New Query <===//
         $the_query = new WP_Query($query_config);
+
+        if ($options['grid_mode']) $grid_opts += 'row ';
+
+        elseif ($options['slider_mode'] && isset($grid['cols'])) {
+            if ($grid['cols'] > 1) { $grid_opts += 'row '; }
+            elseif (isset($grid['cols-md']) && $grid['cols-md'] > 1) {$grid_opts += 'row ';}
+            elseif (isset($grid['cols-lg']) && $grid['cols-lg'] > 1) {$grid_opts += 'row ';}
+            elseif (isset($grid['cols-xl']) && $grid['cols-xl'] > 1) {$grid_opts += 'row ';}
+        }
     
         //==== Start Query =====//
         if ($the_query->have_posts() ) :
             //===> Grid Wrapper <===//
-            if ($options['grid_mode']) {
-                echo '<div class="row '. $grid_opts . $grid_cols .'" '. $slider_opts .'>';
+            if ($options['grid_mode'] || $options['slider_mode']) {
+                echo '<div class="'. $grid_opts . $grid_cols .'" '. $slider_opts .'>';
             }
 
             //==== Loop Start ====//
@@ -88,7 +97,7 @@ function px_query_render($block_attributes, $content) {
             endwhile;
 
             //===> End Grid Wrapper <===//
-            if ($options['grid_mode']) : echo '</div>'; endif;
+            if ($options['grid_mode'] || $options['slider_mode']) : echo '</div>'; endif;
     
             //=== Pagination ===//
             if ($options['pagination'] && function_exists("pagination")) {

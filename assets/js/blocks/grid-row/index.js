@@ -811,10 +811,10 @@ var ScreensTabs = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/React.createElement("div", {
         className: "options-tabs px-group borderd-group divider-b border-alpha-15 mb-20"
       }, this.props.sm ? /*#__PURE__*/React.createElement("button", {
-        key: "tablet",
+        key: "mobile",
         onClick: changeTab,
-        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "bg-alpha-05" : "primary", " col far fa-tablet"),
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tablet Screens", "phenix"),
+        className: "btn square tiny ".concat(this.state.screen !== "sm" ? "bg-alpha-05" : "primary", " col far fa-mobile"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Mobile Screens", "phenix"),
         "data-options": "sm"
       }) : null, this.props.md ? /*#__PURE__*/React.createElement("button", {
         key: "tablet",

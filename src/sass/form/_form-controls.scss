@@ -156,7 +156,7 @@ textarea.form-control {
     height : auto;
     line-height: normal;
     min-height : calc(var(--height)*2);
-    @include padding-block(var(--padding));
+    @include padding-block(calc(var(--padding) / 1.75));
 }
 
 /*==== Labels ====*/

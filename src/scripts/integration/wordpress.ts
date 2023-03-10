@@ -10,42 +10,8 @@ declare var wp:any,
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).ready(ready => {
-    /*====> Change Scrollbar <====*/
-    document.querySelector('html').classList.add('px-scrollbar');
-    document.querySelector('#phenix-js')?.removeAttribute('async');
-
-    /*====> Unblock Fonts <====*/
-    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
-
-    /*====> for Front-End <====*/
-    if (!document.body.classList.contains('wp-admin')) {
-        //====> S.E.O : Fixes <====//
-        document.body.setAttribute('itemscope', "");
-        document.body.setAttribute('itemtype', "https://schema.org/WebPage");
-        if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
-
-        //====> S.E.O : Missing Meta <====//
-        if (!document.head.querySelector('meta[name="description"]')) Phenix(document.head).insert('append', `<meta name="description" content="this is ${document.title} website with no proper description.">`);
-        if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
-        
-        //====> Links do not have a discernible name <====//
-        Phenix('a:empty').forEach((link:HTMLElement) => {
-            //===> Define Data <===//
-            let elTitle:string,
-                elType = link.classList.contains('btn') ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
-
-            //===> Get a Correct Title <===//
-            let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
-            if (parent && parent.querySelectorAll('h2, h3, h4, p')[0]) {
-                parent.querySelectorAll('h2, h3, h4, p').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent : null);
-            } else elTitle = document.title;
-
-            //===> Set Attributes <===//
-            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle} ${elType} Link`);
-            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Link`);
-        });
-
-        //===> Contact Form 7 Fixes <===//
+    //===> Contact Form 7 Fixes <===//
+    const fixCF7 = () => {
         if (document.querySelector(".wpcf7-form")) {
             //===> Redirect WP7 After Submit <===//
             if (window.location.hash.substr(1).includes('wpcf7-')) {
@@ -76,24 +42,44 @@ Phenix(document).ready(ready => {
                 element.setAttribute('cols', null);
                 element.setAttribute('rows', null);
             });
-    
+
             //===> Required <===//
             Phenix('.wpcf7-validates-as-required').forEach((element:any) => element.setAttribute('required', true));
-    
+
             /*===== Whitespace =====*/
             Phenix('.wpcf7-form br').forEach((space:HTMLElement) => space.remove());
             Phenix('.wpcf7[dir], .wpcf7 [dir]').forEach((element:HTMLElement) => element.removeAttribute('dir'));
         }
+    },
+    //====> S.E.O : Fixes <====//
+    fixSEO = () => {
+        document.body.setAttribute('itemscope', "");
+        document.body.setAttribute('itemtype', "https://schema.org/WebPage");
+        if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
-        /*====> Activated Menu Items <====*/
-        Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
+        //====> S.E.O : Missing Meta <====//
+        if (!document.head.querySelector('meta[name="description"]')) Phenix(document.head).insert('append', `<meta name="description" content="this is ${document.title} website with no proper description.">`);
+        if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
+        
+        //====> Links do not have a discernible name <====//
+        Phenix('a:empty').forEach((link:HTMLElement) => {
+            //===> Define Data <===//
+            let elTitle:string,
+                elType = link.classList.contains('btn') ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
 
-        //====> Adminbar Fix <====//
-        if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
+            //===> Get a Correct Title <===//
+            let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
+            if (parent && parent.querySelectorAll('h2, h3, h4, p')[0]) {
+                parent.querySelectorAll('h2, h3, h4, p').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent : null);
+            } else elTitle = document.title;
 
-        //===> Set Logo Link <===//
-        Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
+            //===> Set Attributes <===//
+            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle} ${elType} Link`);
+            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Link`);
+        });
+    },
 
+    spamBlock = () => {
         //===> Form Spam Protection <===//
         let FormsSubmit = Phenix('form[action] [type="submit"]'),
             spamInput = `<input style="left:100%; opacity: 0; visibility: hidden; z-index: -1" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
@@ -116,24 +102,12 @@ Phenix(document).ready(ready => {
             let value = form.querySelector('[name="px-prot"]')?.value;
             if(value && value !== "") submit.preventDefault();
         }));
-    } 
-    /*====> for the Admin <====*/
-    else {
-        //===> Fix Tables Style <===//
-        Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
-            dateColumn.classList.add('tx-nowrap');
-            dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
-        });
+    },
 
-        //===> Fix Tables Style <===//
-        Phenix('.wp-list-table .row-actions span').forEach((spanLink:HTMLElement) => spanLink.innerHTML = spanLink.innerHTML.replace('|', ''));
-    }
-    /*====> for the Editor <====*/
-    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
-        //===> Site Editor Only <====//
+    editorAssets = () => {
         if (document.querySelector('#site-editor')) {
+            //===> Load Assets in Frame <====//
             let loadAssetTimer = setInterval(()=> {
-                //===> Load Assets in Frame <====//
                 if (window.frames['editor-canvas']) {
                     //===> Check in the Editor <===//
                     let frameDoc = window.frames['editor-canvas'].document,
@@ -152,9 +126,6 @@ Phenix(document).ready(ready => {
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
 
-        //====> Disable Links <====//
-        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
-
         //===> Removes Editor Reset styles <===//
         let common_css    = `#common-rtl-css, #common-css`,
             reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,
@@ -162,6 +133,48 @@ Phenix(document).ready(ready => {
 
         //===> Run Files Remover <===//
         Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
+    };
+
+    /*====> Change Scrollbar <====*/
+    document.querySelector('html').classList.add('px-scrollbar');
+    document.querySelector('#phenix-js')?.removeAttribute('async');
+
+    /*====> Unblock Fonts <====*/
+    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
+
+    /*====> for Front-End <====*/
+    if (!document.body.classList.contains('wp-admin')) {
+        //====> Start Fixes <====//
+        fixCF7();
+        fixSEO();
+        spamBlock();
+
+        /*====> Activated Menu Items <====*/
+        Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
+        //====> Adminbar Fix <====//
+        if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
+        //===> Set Logo Link <===//
+        Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
+    } 
+    /*====> for Admin Panel <====*/
+    else {
+        //===> Fix Tables Style <===//
+        Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
+            dateColumn.classList.add('tx-nowrap');
+            dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
+        });
+
+        //===> Fix Tables Style <===//
+        Phenix('.wp-list-table .row-actions span').forEach((spanLink:HTMLElement) => spanLink.innerHTML = spanLink.innerHTML.replace('|', ''));
+    }
+    /*====> for Block Editor <====*/
+    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //===> Editor Assets <====//
+        editorAssets();
+
+        //====> Disable Links <====//
+        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+
     }
     /*====> for Adminbar <====*/
     if(document.querySelector('#wpadminbar')) {

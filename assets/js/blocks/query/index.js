@@ -651,7 +651,10 @@ function Edit(props) {
           element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
           Phenix(element).slider({
             autoplay: false
-          });
+          }); //===> Stretch Fix <===//
+
+          var slider_element = element.querySelector(".splide__list");
+          if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
         });
       }, 2000);
     } else {
@@ -665,10 +668,16 @@ function Edit(props) {
 
         if (Sliders.length > 0) {
           Sliders.forEach(function (slider) {
-            return slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null;
+            slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null;
           });
           Sliders.addClass('edit-mode').slider({
             autoplay: false
+          }); //===> Stretch Fix <===//
+
+          Sliders.forEach(function (element) {
+            var slider_element = element.querySelector(".splide__list");
+            if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
+            element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
           });
         }
       }, 2000);

@@ -171,6 +171,9 @@ export default function Edit(props) {
                     element.classList.add('edit-mode');
                     element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
                     Phenix(element).slider({autoplay: false});
+                    //===> Stretch Fix <===//
+                    let slider_element = element.querySelector(".splide__list");
+                    if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
                 });
             }, 2000);
         } else {
@@ -183,8 +186,16 @@ export default function Edit(props) {
                 //===> Run Phenix Components <===//
                 if(MediaEls.length > 0) MediaEls.multimedia();
                 if(Sliders.length > 0) {
-                    Sliders.forEach(slider => slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null);
+                    Sliders.forEach(slider => {
+                        slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null;
+                    });
                     Sliders.addClass('edit-mode').slider({autoplay: false});
+                    //===> Stretch Fix <===//
+                    Sliders.forEach(element => {
+                        let slider_element = element.querySelector(".splide__list");
+                        if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
+                        element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
+                    });
                 }
             }, 2000);
         }

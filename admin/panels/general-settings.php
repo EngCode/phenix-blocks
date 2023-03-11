@@ -66,7 +66,7 @@
                 ?>
             </select>
         </div>
-        <p class="control-hint mb-30"><?php echo __("Select a Primary Font for all Headlines and Titles.","phenix");?></p>
+        <p class="control-hint"><?php echo __("Select a Primary Font for all Headlines and Titles.","phenix");?></p>
 
         <!-- Control Label -->
         <label class="mb-5 weight-medium"><?php echo __("Secondary Font", "phenix"); ?></label>

@@ -12,6 +12,8 @@
         "button-name": "off",
         "link-name": "off"
       }
-    ]
+    ],
+    "axe/forms": "off",
+    "button-type": "off"
   }
 }

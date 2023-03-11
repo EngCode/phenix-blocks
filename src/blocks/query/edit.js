@@ -169,7 +169,8 @@ export default function Edit(props) {
                 frameDoc.querySelectorAll(".px-media").forEach(element => Phenix(element).multimedia());
                 frameDoc.querySelectorAll(".px-slider:not(.splide)").forEach(element => {
                     element.classList.add('edit-mode');
-                    Phenix(element).slider();
+                    element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
+                    Phenix(element).slider({autoplay: false});
                 });
             }, 2000);
         } else {
@@ -181,7 +182,10 @@ export default function Edit(props) {
 
                 //===> Run Phenix Components <===//
                 if(MediaEls.length > 0) MediaEls.multimedia();
-                if(Sliders.length > 0) Sliders.addClass('edit-mode').slider();
+                if(Sliders.length > 0) {
+                    Sliders.forEach(slider => slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null);
+                    Sliders.addClass('edit-mode').slider({autoplay: false});
+                }
             }, 2000);
         }
     }

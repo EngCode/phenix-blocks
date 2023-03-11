@@ -75,6 +75,9 @@
 
 	.wp-block-image .components-resizable-box__container img {display: inline-block!important;}
 	.wp-block-phenix-button {pointer-events: all!important;}
+
+	/*==== Full Screen Fix ====*/
+    .px-slider .splide__list {max-height: 100vh;}
 }
 
 /*==== Post Editor Wrapper ====*/

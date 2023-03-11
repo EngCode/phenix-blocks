@@ -105,8 +105,8 @@
     .h#{$infix}-min-100 {min-height: 100%;}
     .h#{$infix}-min-25vh {min-height: 25vh;}
     .h#{$infix}-min-50vh {min-height: 50vh;}
-    .h#{$infix}-min-75vh, .full-screen#{$infix}-wide {min-height: 75vh;}
-    .h#{$infix}-min-100vh,.full-screen#{$infix} {min-height: 100vh;}
+    .h#{$infix}-min-75vh {min-height: 75vh;}
+    .h#{$infix}-min-100vh {min-height: 100vh;}
 }
 
 @include make-min-height();

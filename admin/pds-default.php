@@ -91,10 +91,20 @@ if (!function_exists('pds_blocks_default_values')) :
                 'category' => array("phenix", "cards", "elements"),
                 'content'  => "<!-- wp:phenix/column -->\n<div class=\"wp-block-phenix-column\"><!-- wp:image {\"id\":428,\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"lightbox-image tx-align-center\"} -->\n<figure class=\"wp-block-image size-full lightbox-image tx-align-center\"><img src=\"https://localhost/galvanco/wp-content/uploads/sites/10/2023/02/placeholder-1.webp\" alt=\"\" class=\"wp-image-428\"/><figcaption class=\"wp-element-caption\">ISO #95612</figcaption></figure>\n<!-- /wp:image --></div>\n<!-- /wp:phenix/column -->"
             ),
+            array('name' => "testimonial-card",
+                'title'  => "Testimonial Card",
+                'category' => array("phenix", "cards", "elements"),
+                'content'  => "<!-- wp:phenix/column {\"size\":12,\"responsive\":{\"size-md\":6,\"size-lg\":4}} -->\n<div class=\"wp-block-phenix-column col-12 col-md-6 col-lg-4\"><!-- wp:phenix/group {\"isFlexbox\":false,\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-offwhite-secondary\"}},\"className\":\"radius-md pdx-25 pdt-25 pdb-10 h-min-100\"} -->\n<div class=\"wp-block-phenix-group radius-md pdx-25 pdt-25 pdb-10 h-min-100 bg-offwhite-secondary\"><!-- wp:paragraph {\"className\":\"fs-13\"} -->\n<p class=\"fs-13\">إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:phenix/group {\"flexbox\":{\"align\":\" align-center-y\"},\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"\"}}} -->\n<div class=\"wp-block-phenix-group flexbox  align-center-y\"><!-- wp:image {\"id\":165,\"width\":36,\"height\":36,\"sizeSlug\":\"large\",\"linkDestination\":\"none\",\"className\":\"avatar-image-sm radius-circle me-10\"} -->\n<figure class=\"wp-block-image size-large is-resized avatar-image-sm radius-circle me-10\"><img src=\"https://localhost/asfco/wp-content/uploads/sites/8/2023/03/avatar.svg\" alt=\"\" class=\"wp-image-165\" width=\"36\" height=\"36\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:heading {\"level\":6,\"className\":\"fs-14 mb-0\"} -->\n<h6 class=\"fs-14 mb-0\">اسم العميل يقع هنا</h6>\n<!-- /wp:heading --></div>\n<!-- /wp:phenix/group --></div>\n<!-- /wp:phenix/group --></div>\n<!-- /wp:phenix/column -->"
+            ),
             array('name' => "column-with-icon",
                 'title'  => "Column with icon",
                 'category' => array("phenix", "cards", "elements"),
                 'content'  => "<!-- wp:phenix/group {\"flexbox\":{\"stacked\":\"flow-columns\",\"align\":\" align-center-x align-center-y align-center-y\"},\"className\":\"tx-align-center mb-20 color-primary\"} -->\n<div class=\"wp-block-phenix-group tx-align-center mb-20 color-primary flexbox  align-center-x align-center-y align-center-y flow-columns\"><!-- wp:heading {\"textColor\":\"primary\",\"className\":\"mb-0\"} -->\n<h2 class=\"mb-0 has-primary-color has-text-color\">شركاء نجاحنا</h2>\n<!-- /wp:heading -->\n\n<!-- wp:image {\"id\":227,\"width\":130,\"sizeSlug\":\"full\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-full is-resized\"><img src=\"https://localhost/galvanco/wp-content/uploads/sites/10/2023/02/line-bottom.webp\" alt=\"\" class=\"wp-image-227\" width=\"130\"/></figure>\n<!-- /wp:image --></div>\n<!-- /wp:phenix/group -->"
+            ),
+            array('name' => "divider-line",
+                'title'  => "Divider Line",
+                'category' => array("phenix", "elements"),
+                'content'  => "<!-- wp:phenix/inline {\"content\":\"\",\"className\":\"my-30 divider-b container-md display-block\"} -->\n<span class=\"wp-block-phenix-inline my-30 divider-b container-md display-block\"></span>\n<!-- /wp:phenix/inline -->"
             ),
             array('name' => "native-query",
                 'title'  => "Native Query",

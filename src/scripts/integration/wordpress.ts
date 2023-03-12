@@ -182,6 +182,9 @@ Phenix(document).ready(ready => {
 
         //===> Fix Tables Style <===//
         Phenix('.wp-list-table .row-actions span').forEach((spanLink:HTMLElement) => spanLink.innerHTML = spanLink.innerHTML.replace('|', ''));
+        
+        //===> Run Scripts <===//
+        Phenix(document).init();
     }
     /*====> for Block Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {

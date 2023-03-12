@@ -733,6 +733,7 @@
 	/*==== W3 Total Cache ====*/
 	&[class*="w3tc_dashboard"] {
 		.widefat h4 {font-size: inherit;}
+		#w3tc_dashboard_banner {display: none;}
 		#w3tc-dashboard-widgets #postbox-container-left {padding: 15px 30px;}
 		#w3tc-dashboard-widgets #normal-sortables .postbox {
 			max-width: 30%;

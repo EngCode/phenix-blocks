@@ -89,7 +89,7 @@ export default function Edit(props) {
         //===> Define Data <===//
         let style = attributes.style;
         //===> Set Value <===//
-        style.height = value;
+        style.padding = value;
         setAttributes({ style: {...style} });
     }
 

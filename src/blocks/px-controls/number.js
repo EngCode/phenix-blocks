@@ -21,10 +21,11 @@ export default class PhenixNumber extends Component {
                 maxNum  = parseInt(max) || 0;
 
             //===> Get Input Element <===//
-            let newVal = parseInt(input.value);
+            let newVal = parseInt(input.value),
+                checkVal = (newVal >= minNum || newVal <= maxNum) ? newVal : 0;
 
             //===> Set Data <===//
-            return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
+            return onChange(checkVal);
         },
 
         //===> Increase Number <===//
@@ -40,7 +41,7 @@ export default class PhenixNumber extends Component {
                 newVal = parseInt(input.value) + step;
 
             //===> Set Data <===//
-            return onChange(newVal <= maxNum ? newVal : maxNum);
+            return onChange(newVal < maxNum || newVal === maxNum ? newVal : maxNum);
         },
 
         //===> Decrease Number <===//
@@ -56,7 +57,7 @@ export default class PhenixNumber extends Component {
                 newVal = parseInt(input.value) - step;
 
             //===> Set Data <===//
-            return onChange(newVal >= minNum ? newVal : minNum);
+            return onChange(newVal > minNum || newVal === minNum ? newVal : minNum);
         };
 
         //===> Output <===//

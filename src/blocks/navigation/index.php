@@ -22,15 +22,15 @@ function px_navigation_render($block_attributes, $content) {
     $nav_style   = "";
 
     //===> Collect Style Data <===//
-    $font_size = isset($options['typography']['size']) ? $options['typography']['size'] : "14px";
-    $font_weight = isset($options['typography']['weight']) ? $options['typography']['weight'] : "var(--bold-weight)";
-    $font_height = isset($options['typography']['height']) ? $options['typography']['height'] : "34";
+    $font_size = isset($options['typography']['size']) ? $options['typography']['size'] : false;
+    $font_weight = isset($options['typography']['weight']) ? $options['typography']['weight'] : false;
+    $font_height = isset($options['typography']['height']) ? $options['typography']['height'] : false;
     $text_align = isset($options['typography']['align']) ? $options['typography']['align'] : "";
-    $text_color = isset($options['typography']['color']) ? $options['typography']['color'] : "var(--dark-color)";
-    $text_color_hvr = isset($options['typography']['color_hvr']) ? $options['typography']['color_hvr'] : "var(--primary-color)";
-    $background_color = isset($options['style']['background']['value']) ? $options['style']['background']['value'] : "transparent";
-    $background_color_hvr = isset($options['style']['background_hvr']['value']) ? $options['style']['background_hvr']['value'] : "transparent";
-    $style_padding = isset($options['style']['padding']) ? $options['style']['padding'] : "12";
+    $text_color = isset($options['typography']['color']) ? $options['typography']['color'] : false;
+    $text_color_hvr = isset($options['typography']['color_hvr']) ? $options['typography']['color_hvr'] : false;
+    $background_color = isset($options['style']['background']) ? $options['style']['background']['value'] : false;
+    $background_color_hvr = isset($options['style']['background_hvr']) ? $options['style']['background_hvr']['value'] : false;
+    $style_padding = isset($options['style']['padding']) ? $options['style']['padding'] : false;
 
     //===> Direction Mode <===//
     if ($options['direction'] == 'px-vertical') {
@@ -49,33 +49,18 @@ function px_navigation_render($block_attributes, $content) {
         $hover_mode = "data-hover='{$hover_mode}'";
     }
 
-    //===> Start Navigation Wrapper <===//
-    echo "<{$options['tagName']} class='{$classNames}' {$text_align} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon} {$nav_style}>";
-
     //===> Custom CSS Style <===//
-    echo '<style>
-        /*==== Navigation Theme ====*/
-        .px-navigation {
-            --space-in  : '.$style_padding.'px;
-            --height : '.$font_height.'px;
-            --font-size : '.$font_size.';
-            --font-weight : '.$font_weight.';
-            --color  : '.str_replace("color-", "var(--wp--preset--color--", $text_color).');
-            --color-hvr : '.str_replace("color-", "var(--wp--preset--color--", $text_color_hvr).');
-            --background : '.str_replace("bg-", "var(--wp--preset--color--", $background_color).');
-            --background-hvr : '.str_replace("bg-", "var(--wp--preset--color--", $background_color_hvr).');
-        }
-        /*==== Submenu Theme ====*/
-        .px-navigation .submenu {
-            --height : 26px;
-            --radius : 5px;
-            --background : white;
-            --space-in : 15px;
-            --color : var(--gray-color);
-            --color-hvr : var(--primary-color);
-            --box-shadow : 3px 3px 8px 0 rgba(0,0,0, 0.05);
-        }
-    </style>';
+    if (isset($font_size) && $font_size) { $nav_style .= "--font-size:'{$font_size}';"; }
+    if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight:'{$font_weight}';"; }
+    if (isset($font_height) && $font_height) { $nav_style .= "--height:'{$font_height}';"; }
+    if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
+    if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }
+    if (isset($background_color) && $background_color) { $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$background_color).");"; }
+    if (isset($background_color_hvr) && $background_color_hvr) { $nav_style .= "--background-hvr:".str_replace('bg-', 'var(--wp--preset--color--',$background_color_hvr).");"; }
+    if (isset($style_padding) && $style_padding) { $nav_style .= "--space-in :'{$style_padding}'px;"; }
+
+    //===> Start Navigation Wrapper <===//
+    echo "<{$options['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>";
 
     //===> Get the Dynamic Menu <===//
     echo wp_nav_menu(array(

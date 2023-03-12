@@ -37,10 +37,11 @@
         }
         /*==== Links ====*/
         li > a {
-            color: inherit;
             display: block;
             transition: none;
+            color: var(--color);
             line-height: inherit;
+            transition: color 0.3s;
             &:focus, &:active {outline: 0 none;}
         }
     }
@@ -53,11 +54,12 @@
         color: var(--color);
         background-color: var(--background);
         position: relative;
-        transition: background-color 0.3s, border-color 0.3s;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s, padding 0.3s;
         @include padding_inline(var(--space-in));
         /*==== Hover & Active ====*/
         &:hover, &.px-item-active, &.px-submenu-active {
             color: var(--color-hvr);
+            > a {color: var(--color-hvr);}
             background-color: var(--background-hvr);
         }
     }

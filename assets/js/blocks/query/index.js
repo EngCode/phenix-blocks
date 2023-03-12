@@ -226,9 +226,10 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
             minNum = parseInt(min) || 0,
             maxNum = parseInt(max) || 0; //===> Get Input Element <===//
 
-        var newVal = parseInt(input.value); //===> Set Data <===//
+        var newVal = parseInt(input.value),
+            checkVal = newVal >= minNum || newVal <= maxNum ? newVal : 0; //===> Set Data <===//
 
-        return onChange(newVal >= minNum || newVal <= maxNum ? newVal : newVal < minNum ? minNum : newVal > maxNum ? maxNum : 0);
+        return onChange(checkVal);
       },
           //===> Increase Number <===//
       IncreaseNum = function IncreaseNum(clicked) {
@@ -241,7 +242,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         var input = wrapper.querySelector('input[type="number"]'),
             newVal = parseInt(input.value) + step; //===> Set Data <===//
 
-        return onChange(newVal <= maxNum ? newVal : maxNum);
+        return onChange(newVal < maxNum || newVal === maxNum ? newVal : maxNum);
       },
           //===> Decrease Number <===//
       DecreaseNum = function DecreaseNum(clicked) {
@@ -254,7 +255,7 @@ var PhenixNumber = /*#__PURE__*/function (_Component) {
         var input = wrapper.querySelector('input[type="number"]'),
             newVal = parseInt(input.value) - step; //===> Set Data <===//
 
-        return onChange(newVal >= minNum ? newVal : minNum);
+        return onChange(newVal > minNum || newVal === minNum ? newVal : minNum);
       }; //===> Output <===//
 
 

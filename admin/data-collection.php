@@ -239,10 +239,10 @@
         pattern_template = (pattern) => {
             return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
                 <!-- Label -->
-                <span class="tx-icon far fa-boxes col-4 item-label">${pattern.title}</span>
+                <span class="tx-icon far fa-boxes col-5 item-label">${pattern.title}</span>
 
                 <!-- Name -->
-                <span class="tx-icon far fa-link col-3 item-name">${pattern.name}</span>
+                <span class="tx-icon far fa-link col-5 item-name">${pattern.name}</span>
 
                 <!-- Buttons -->
                 <div class="col-auto ms-auto flexbox align-center-y">

@@ -105,23 +105,36 @@ Phenix(document).ready(ready => {
     },
 
     editorAssets = () => {
+        //===> Load Assets in Frame <====//
         if (document.querySelector('#site-editor')) {
-            //===> Load Assets in Frame <====//
             let loadAssetTimer = setInterval(()=> {
                 if (window.frames['editor-canvas']) {
                     //===> Check in the Editor <===//
-                    let frameDoc = window.frames['editor-canvas'].document,
-                        fontAwesome = document.querySelector("#fontawesome-css");
-                    //===> Load FontAwesome <===//
-                    if (!frameDoc.querySelector("#fontawesome-css")) {
-                        let importedEl = document.importNode(fontAwesome, true);
-                        if(importedEl) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                    let frameDoc = window.frames['editor-canvas'].document;
+
+                    //===> Check for the Frame Document <===//
+                    if (frameDoc) {
+                        //===> Load FontAwesome <===//
+                        if (!frameDoc.querySelector("#fontawesome-css")) {
+                            let fontAwesome = document.querySelector("#fontawesome-css"),
+                                importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+    
+                            if(importedEl) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                        }
+    
+                        //===> Load Phenix Js <===//
+                        if (!frameDoc.querySelector("#phenix-js")) {
+                            let phenixJs = document.querySelector("#phenix-js"),
+                                importedEl = phenixJs ? document.importNode(phenixJs, true) : false;
+                            if(importedEl) frameDoc.body.appendChild(document.importNode(phenixJs, true));
+                        }
                     }
-                    //===> Clear Timer <===//
-                    clearInterval(loadAssetTimer);
                 }
+
+                //===> Clear Timer <===//
+                clearInterval(loadAssetTimer);
             }, 1000);
-        }
+        };
 
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
@@ -145,16 +158,19 @@ Phenix(document).ready(ready => {
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
         //====> Start Fixes <====//
-        fixCF7();
-        fixSEO();
-        spamBlock();
+        fixCF7(); fixSEO(); spamBlock();
 
         /*====> Activated Menu Items <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
+
         //====> Adminbar Fix <====//
         if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
+
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
+
+        //===> Run Scripts <===//
+        Phenix(document).init();
     } 
     /*====> for Admin Panel <====*/
     else {
@@ -176,7 +192,6 @@ Phenix(document).ready(ready => {
 
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
-
     }
     /*====> for Adminbar <====*/
     if(document.querySelector('#wpadminbar')) {

@@ -166,7 +166,10 @@ export default function Edit(props) {
             //===> View Script <===//
             let frameDoc = window.frames['editor-canvas'].document;
             setTimeout(() => {
+                //===> Run Multimedia <===//
                 frameDoc.querySelectorAll(".px-media").forEach(element => Phenix(element).multimedia());
+
+                //===> Run Sliders <===//
                 frameDoc.querySelectorAll(".px-slider:not(.splide)").forEach(element => {
                     element.classList.add('edit-mode');
                     element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
@@ -177,28 +180,28 @@ export default function Edit(props) {
                 });
             }, 2000);
         } else {
-            //===> Timeout for Loading <===//
-            setTimeout(() => {
-                //===> Get Elements <===//
-                let Sliders  = Phenix('.px-slider'),
-                    MediaEls = Phenix(".px-media");
-
-                //===> Run Phenix Components <===//
-                if(MediaEls.length > 0) MediaEls.multimedia();
-                if(Sliders.length > 0) {
-                    Sliders.forEach(slider => {
-                        slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null;
-                    });
-                    Sliders.addClass('edit-mode').slider({autoplay: false});
-                    //===> Stretch Fix <===//
-                    Sliders.forEach(element => {
-                        let slider_element = element.querySelector(".splide__list");
-                        if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
-                        element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
-                    });
-                }
-            }, 2000);
         }
+        //===> Timeout for Loading <===//
+        setTimeout(() => {
+            //===> Get Elements <===//
+            let Sliders  = Phenix('.px-slider'),
+                MediaEls = Phenix(".px-media");
+
+            //===> Run Phenix Components <===//
+            if(MediaEls.length > 0) MediaEls.multimedia();
+            if(Sliders.length > 0) {
+                Sliders.forEach(slider => {
+                    slider.getAttribute('data-autoplay') ? slider.setAttribute('data-autoplay', false) : null;
+                });
+                Sliders.addClass('edit-mode').slider({autoplay: false});
+                //===> Stretch Fix <===//
+                Sliders.forEach(element => {
+                    let slider_element = element.querySelector(".splide__list");
+                    if (slider_element) slider_element.style.maxHeight = Phenix(slider_element).height();
+                    element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
+                });
+            }
+        }, 2000);
     }
 
     useEffect(()=> { setPhenixView(); }, [attributes]);

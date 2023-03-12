@@ -101,6 +101,11 @@ if (!function_exists('pds_blocks_default_values')) :
                 'category' => array("phenix", "cards", "elements"),
                 'content'  => "<!-- wp:phenix/group {\"flexbox\":{\"stacked\":\"flow-columns\",\"align\":\" align-center-x align-center-y align-center-y\"},\"className\":\"tx-align-center mb-20 color-primary\"} -->\n<div class=\"wp-block-phenix-group tx-align-center mb-20 color-primary flexbox  align-center-x align-center-y align-center-y flow-columns\"><!-- wp:heading {\"textColor\":\"primary\",\"className\":\"mb-0\"} -->\n<h2 class=\"mb-0 has-primary-color has-text-color\">شركاء نجاحنا</h2>\n<!-- /wp:heading -->\n\n<!-- wp:image {\"id\":227,\"width\":130,\"sizeSlug\":\"full\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-full is-resized\"><img src=\"https://localhost/galvanco/wp-content/uploads/sites/10/2023/02/line-bottom.webp\" alt=\"\" class=\"wp-image-227\" width=\"130\"/></figure>\n<!-- /wp:image --></div>\n<!-- /wp:phenix/group -->"
             ),
+            array('name' => "contact-info-column",
+                'title'  => "Contact info Column",
+                'category' => array("phenix", "cards", "elements"),
+                'content'  => "<!-- wp:phenix/column {\"size\":12,\"responsive\":{\"size-md\":4}} -->\n<div class=\"wp-block-phenix-column col-12 col-md-4\"><!-- wp:phenix/group {\"flexbox\":{\"nowrap\":\"flow-nowrap\"}} -->\n<div class=\"wp-block-phenix-group flexbox flow-nowrap\"><!-- wp:image {\"id\":248,\"sizeSlug\":\"large\",\"linkDestination\":\"none\",\"className\":\"w-50\"} -->\n<figure class=\"wp-block-image size-large w-50\"><img src=\"https://localhost/asfco/wp-content/uploads/sites/8/2023/03/fa-map-marker-alt.svg\" alt=\"\" class=\"wp-image-248\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:phenix/group {\"isFlexbox\":false,\"className\":\"col\"} -->\n<div class=\"wp-block-phenix-group col\"><!-- wp:heading {\"className\":\"fs-12\"} -->\n<h2 class=\"fs-12\">اعطينا زيارة!</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>جدة – المملكة العربية السعودية</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:phenix/group --></div>\n<!-- /wp:phenix/group --></div>\n<!-- /wp:phenix/column -->"
+            ),
             array('name' => "divider-line",
                 'title'  => "Divider Line",
                 'category' => array("phenix", "elements"),

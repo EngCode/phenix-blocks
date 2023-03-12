@@ -553,7 +553,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     popup; lightbox; menu; datatable;
     validation; uploader; progress;
     select; repeater; rating; seo; loader;
-    slider; utilities; notifications;
+    slider; utilities; notifications; init;
 }
 
 /*====> Phenix Selecting Method <====*/
@@ -608,6 +608,7 @@ import './components/datatable'; //==> Data-Tables
 /*====> Integration <====*/
 import './integration/slider';    //==> Splide.js Slider
 import './integration/utilities'; //==> Phenix Utilities
+import './integration/blocks';    //==> Phenix Blocks Scripts
 import './integration/wordpress'; //==> Wordpress Integration
 
 /*====> Custom Script <====*/

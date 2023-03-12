@@ -2,41 +2,41 @@
 import {
     PanelBody,
     SelectControl,
-    ToggleControl,
-    TextControl
+    ToggleControl
 } from '@wordpress/components';
 
 import {
+    RichText,
+    InnerBlocks,
     useBlockProps,
+    useInnerBlocksProps,
     InspectorControls
 } from '@wordpress/block-editor';
 
-import { useState, useEffect } from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
-import ServerSideRender from '@wordpress/server-side-render';
-
 //====> Edit Mode <====//
-export default function Edit(props) {
-    //===> Get Properties <===//
-    const {attributes, setAttributes} = props;
-    const blockProps = useBlockProps();
+export default function Edit({ attributes, setAttributes }) {
+    //===> Set Settings <===//
+    const set_tagName = tagName => setAttributes({ tagName });
+    const set_content = content => setAttributes({ content });
 
-    //===> Set Attributes <===//
-    const set_part_name = part_name => setAttributes({ part_name });
+    //===> Get Block Properties <===//
+    const blockProps = useBlockProps();
+    const TagName = attributes.tagName;
+
+    //===> Convert Block to Inline <===//
+    if (TagName === 'div') blockProps.className += ` inline-block`;
 
     //===> Render <===//
     return (<>
-        {/* //====> Controls Layout <====// */}
+        {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="Setting" initialOpen={true}>
-                {/*=== Template Name ===*/}
-                <TextControl key="template-name" label="Template Name" value={ attributes.part_name } onChange={set_part_name}/>
+            <PanelBody title="General Settings" initialOpen={false}>
+                
             </PanelBody>
-            {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
-        {/* //====> Edit Layout <====// */}
-        <ServerSideRender block="phenix/theme-part" attributes={attributes} />
+        {/*====> Edit Layout <====*/}
+        <RichText {...blockProps} tagName={attributes.tagName} value={attributes.content} onChange={set_content} placeholder="type any thing..."/>
     </>);
 }

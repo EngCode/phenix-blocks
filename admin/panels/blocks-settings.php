@@ -49,6 +49,11 @@
                     "title" => 'Inline Elements',
                     "icon"  => $icons_url.'columns.svg',
                 ),
+                array(
+                    "name"  => 'popups_block',
+                    "title" => 'Popups Block',
+                    "icon"  => $icons_url.'latest-comments.svg',
+                ),
             ));
         ?>
     </div>

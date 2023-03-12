@@ -147,6 +147,7 @@
         array('theme_part_block', 'pds-admin'),
         array('group_block', 'pds-admin'),
         array('inline_elements_block', 'pds-admin'),
+        array('popups_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),

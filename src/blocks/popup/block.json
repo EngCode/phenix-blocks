@@ -6,9 +6,7 @@
 	"category": "design",
 	"description": "",
 	"supports": {
-		"html": false,
-		"align": ["full"],
-		"alignWide": true
+		"html": false
 	},
     "attributes" : {
 		"align": {
@@ -17,5 +15,5 @@
 		}
     },
 	"textdomain": "phenix",
-	"editorScript": "theme-part"
+	"editorScript": "popups"
 }

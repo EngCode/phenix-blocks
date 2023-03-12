@@ -148,6 +148,7 @@ if (!function_exists('pds_blocks_default_values')) :
         add_option('theme_part_block', "on");
         add_option('group_block', "on");
         add_option('inline_elements_block', "on");
+        add_option('popups_block', "on");
         
         //===> Optimization settings <===//
         add_option('head_cleaner', "on");

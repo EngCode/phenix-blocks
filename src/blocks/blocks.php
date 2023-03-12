@@ -79,9 +79,14 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
         }
         
-        //====> Theme Part <====//
+        //====> Inline Elements <====//
         if (get_option('inline_elements_block')) {
             wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
+        }
+        
+        //====> Popups <====//
+        if (get_option('popups_block')) {
+            wp_enqueue_script('popups', $blocksPath.'popups/index.js', $blocksDependencies, NULL , true);
         }
     }
 

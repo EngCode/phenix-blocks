@@ -6,9 +6,7 @@
 	"category": "design",
 	"description": "Pull a Dynamic Template Part From Current Theme.",
 	"supports": {
-		"html": false,
-        "align": ["full"],
-        "alignWide": true
+		"html": false
 	},
     "attributes" : {
         "part_name" : {

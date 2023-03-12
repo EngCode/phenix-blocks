@@ -16,12 +16,8 @@
     "align": {
       "type": "string",
       "default": "full"
-    },
-    "part_name": {
-      "type": "string",
-      "default": "pds/placeholder"
     }
   },
   "textdomain": "phenix",
-  "editorScript": "theme-part"
+  "editorScript": "popups"
 }

@@ -7,14 +7,11 @@
 	"category": "design",
 	"description": "",
 	"supports": {
-		"html": false
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
 	},
     "attributes" : {
-        "supports": {
-            "align": ["full"],
-            "alignWide": true
-        },
-
         "align": {
             "type": "string",
             "default": "full"

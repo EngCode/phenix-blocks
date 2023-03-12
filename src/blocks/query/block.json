@@ -6,7 +6,9 @@
 	"category": "design",
 	"description": "Custom Query Posts Block.",
 	"supports": {
-		"html": false
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
 	},
     "attributes" : {
         "post_type" : {

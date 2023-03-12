@@ -6,7 +6,11 @@
     "keywords": ["pds", "phenix", "group", "wrapper", "container"],
 	"category": "design",
 	"description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
-	"supports": {"html": false},
+	"supports": {
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
+	},
     "attributes" : {
 		"id": {
 			"type": "string",

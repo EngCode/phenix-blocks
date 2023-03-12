@@ -416,7 +416,7 @@ module.exports = window["wp"]["serverSideRender"];
   \***********************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies-list","version":"0.1.0","title":"Taxonomies List","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"taxonomies-list"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/taxonomies-list","version":"0.1.0","title":"Taxonomies List","category":"design","description":"Custom Taxonomies & Categories Query Block.","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"taxonomy":{"type":"string","default":"category"},"post_type":{"type":"string","default":"post"},"query_count":{"type":"number","default":0},"order":{"type":"string","default":"ASC"},"hide_empty":{"type":"boolean","default":true},"preview":{"type":"boolean","default":false}},"textdomain":"phenix","editorScript":"taxonomies-list"}');
 
 /***/ })
 

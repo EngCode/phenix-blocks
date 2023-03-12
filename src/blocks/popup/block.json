@@ -1,16 +1,20 @@
 {
 	"apiVersion": 2,
-	"name": "phenix/theme-part",
+	"name": "phenix/popup",
 	"version": "0.1.0",
-	"title": "Theme Part",
+	"title": "Popup/Modal",
 	"category": "design",
-	"description": "Pull a Dynamic Template Part From Current Theme.",
+	"description": "",
 	"supports": {
 		"html": false,
-        "align": ["full"],
-        "alignWide": true
+		"align": ["full"],
+		"alignWide": true
 	},
     "attributes" : {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
         "part_name" : {
             "type": "string",
             "default": "pds/placeholder"

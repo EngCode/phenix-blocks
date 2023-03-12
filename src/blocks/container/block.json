@@ -10,6 +10,16 @@
 		"html": false
 	},
     "attributes" : {
+        "supports": {
+            "align": ["full"],
+            "alignWide": true
+        },
+
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+
 		"id": {
 			"type": "string",
 			"default": ""

@@ -42,15 +42,7 @@
                 'pds-data-collection',
                 'pds_data_collection'
             );
-
-            //===> Reusable Blocks <===//
-            add_submenu_page('pds-admin',
-                __('Reusable Blocks', 'phenix'),
-                __('Reusable Blocks', 'phenix'),
-                'edit_posts',
-                'edit.php?post_type=wp_block',
-            );
-
+            
             //===> Remove Menu Items <===//
             $removable = [
                 'flamingo',
@@ -84,8 +76,10 @@
                 ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
                 ['tools.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
                 ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'update-core.php'],
-                ['pds-dashboard', null, __('WordPress', 'phenix'), 'manage_options', 'about.php'],
-                ['wpcf7', null, __('Inbox Messages', 'phenix'), 'manage_options', 'admin.php?page=flamingo_inbound'],
+                ['pds-dashboard', null, __('WordPress', 'phenix'), 'edit_posts', 'about.php'],
+                ['wpcf7', null, __('Inbox Messages', 'phenix'), 'edit_posts', 'admin.php?page=flamingo_inbound'],
+                ['pds-dashboard', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
+                ['pds-admin', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }

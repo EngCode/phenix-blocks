@@ -187,6 +187,9 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
     }
 
+    //===> Full Width Editing <===//
+    if (!attributes.align) setAttributes({ align: 'full' });
+
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}

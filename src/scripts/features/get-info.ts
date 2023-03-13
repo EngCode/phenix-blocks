@@ -142,7 +142,7 @@ PhenixElements.prototype.copyrights = function (project_name) {
     let name = project_name;
     while (name.length < 25) name += ` `;
     //====> Print Copyrights <====//
-console.log(`🔥🔥🔥💥 %cDesign by Phenix Themes 💥🔥🔥🔥🔥
+console.info(`🔥🔥🔥💥 %cDesign by Phenix Themes 💥🔥🔥🔥🔥
 🔥                                       🔥
 🔥  - Project : ${name || 'Project Name'}🔥
 🔥  - System  : Phenix Design System     🔥

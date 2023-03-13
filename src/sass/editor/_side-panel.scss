@@ -235,9 +235,9 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	}
 
 	/*==== Hide Typography Settings ====*/
-	// .edit-site-global-styles-sidebar .components-item-group {
-	// 	[id="/typography"],[id="/layout"], [id="/colors/button"] {display: none;}
-	// }
+	.edit-site-global-styles-sidebar .components-item-group {
+		[id="/typography"],[id="/layout"], [id="/colors/button"] {display: none;}
+	}
 
 	/*==== Popup Components ====*/
 	.components-dropdown__content .components-popover__content {width: 300px;}

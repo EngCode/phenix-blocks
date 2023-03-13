@@ -15,6 +15,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import {
     InnerBlocks,
     useBlockProps,
+    useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 //===> Register Block <===//
@@ -28,14 +29,17 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        const TagName = attributes.tagName;
+        const innerBlocksProps = useInnerBlocksProps.save();
 
-        //===> Convert Block to Inline <===//
-        if (TagName === 'div') blockProps.className += ` inline-block`;
+        //===> Modal Settings <===//
+        blockProps.className += ` px-modal hidden align-center`;
+        innerBlocksProps.className += ` modal-content`;
+        if(attributes.id) blockProps.id = attributes.id;
 
         //===> Render <===//
-        return (
-            <TagName {...blockProps}>{attributes.content}</TagName>
-        );
+        return (<div {...blockProps}>
+            {/*===> Container <===*/}
+            <InnerBlocks.Content />
+        </div>);
     }
 });

@@ -26,6 +26,14 @@
 .wp-block-phenix-column.block-editor-block-list__block,
 .wp-block-phenix-column[data-block] {outline: 1px dashed var(--secondary-color);}
 
+/*==== Popup Modal ====*/
+.wp-block-phenix-popup {
+	padding: 2rem;
+	min-height: 50vh;
+	background-color: rgba(#000, 0.75);
+	.modal-content > .block-editor-rich-text__editable {color: #FFF;}
+}
+
 /*==== General Component ====*/
 .px-gb-component {
 	//===> Chessboard Backgrounds <===//

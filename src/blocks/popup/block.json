@@ -14,6 +14,10 @@
 		"align": {
 			"type": "string",
 			"default": "full"
+		},
+		"id": {
+			"type": "string",
+			"default": ""
 		}
     },
 	"example": {

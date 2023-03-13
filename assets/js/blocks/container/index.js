@@ -255,9 +255,11 @@ function Edit(_ref) {
 
     if (attributes.style.background.rotate) blockProps.className += " ".concat(attributes.style.background.rotate);
   } //===> Full Width Editing <===//
-  // if (!attributes.align) setAttributes({ align: 'full' });
-  //===> Render <===//
 
+
+  if (!attributes.align) setAttributes({
+    align: 'full'
+  }); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"

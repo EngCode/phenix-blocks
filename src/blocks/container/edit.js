@@ -188,7 +188,7 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> Full Width Editing <===//
-    // if (!attributes.align) setAttributes({ align: 'full' });
+    if (!attributes.align) setAttributes({ align: 'full' });
 
     //===> Render <===//
     return (<>

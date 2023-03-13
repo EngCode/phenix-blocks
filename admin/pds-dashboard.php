@@ -312,7 +312,7 @@
                                 <!-- Item -->
                                 <li style="width:calc(50% - 30px)" class="bg-offwhite-secondary mb-30 mx-15 pd-15 border-1 border-alpha-15 border-dashed">
                                     <span class="fs-14 weight-bold mb-10 display-block">
-                                        <img src="<?php echo $images_folder;?>/blocks/core/categoreis.svg" alt="" class="me-5" width="20" />
+                                        <img src="<?php echo $images_folder;?>/blocks/core/latest-comments.svg" alt="" class="me-5" width="20" />
                                         <?php echo __("Popup/Modals - نافذه مبوبه","phenix"); ?>
                                     </span>
                                     <?php echo __("مكون النافذه المبوبه يسمح لك بانشاء قطعة مخفية مبنية من عدة مكونات اخري داخلها و تظهر عند الضغط على زر ما له نفس المعرف ID الخاص بالنافذة المبوبة.","phenix"); ?>

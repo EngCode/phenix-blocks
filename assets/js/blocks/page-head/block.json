@@ -6,11 +6,7 @@
   "category": "design",
   "description": "Page Title and Breadcrumb.",
   "supports": {
-    "html": false,
-    "align": [
-      "full"
-    ],
-    "alignWide": true
+    "html": false
   },
   "attributes": {
     "preview": {

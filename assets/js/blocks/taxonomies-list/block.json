@@ -6,11 +6,7 @@
   "category": "design",
   "description": "Custom Taxonomies & Categories Query Block.",
   "supports": {
-    "html": false,
-    "align": [
-      "full"
-    ],
-    "alignWide": true
+    "html": false
   },
   "attributes": {
     "taxonomy": {

@@ -1,9 +1,9 @@
-/**====> Referance By Comment <====
+/**====> Reference By Comment <====
  * ===> 01 - Phenix Object
  * ===> 02 - Get Information Class
  * ===> 03 - Page Direction
  * ===> 04 - Get Element Height
- * ===> 05 - ViewPort Detactor
+ * ===> 05 - ViewPort Detector
  * ===> 06 - Get CSS Properties
  * ===> 07 - Get Viewport Dimensions
  * ===> 00 - ....
@@ -72,11 +72,11 @@ PhenixElements.prototype.getCSS = function(property?:string, pseudo?:string) {
     //====> If Property is Targeted <====//
     if (property) styles = styles[property];
 
-    //====> Return Informations <====//
+    //====> Return Information <====//
     return styles;
 }
 
-/*====> ViewPort Detactor <====*/
+/*====> ViewPort Detector <====*/
 PhenixElements.prototype.inView = function (options?:{
     flow:string,    //====> From Top to Bottom [start] Reverse [end] Or Any of [both]
     into:number,    //====> Increase Target Position By [number]
@@ -144,11 +144,10 @@ PhenixElements.prototype.copyrights = function (project_name) {
     //====> Print Copyrights <====//
 console.log(`🔥🔥🔥💥 %cDesign by Phenix Themes 💥🔥🔥🔥🔥
 🔥                                       🔥
-🔥  - Name    : ${name || 'Project Name'}🔥
+🔥  - Project : ${name || 'Project Name'}🔥
 🔥  - System  : Phenix Design System     🔥
-🔥  - Front   : PDS UI/UX Framework      🔥
 🔥  - Author  : Abdullah Ramadan         🔥
-🔥  - Version : PDS v0.7.0 Beta          🔥
+🔥  - Version : PDS v0.7.1 Beta          🔥
 🔥  - Website : phenixthemes.com         🔥
 🔥  - Docs    : design.phenixthemes.com  🔥
 🔥  - Contact : +2-01122974539           🔥
@@ -163,7 +162,7 @@ PhenixElements.prototype.getURL = function (location?) {
     //====> Current Script File <====//
     let url = document.querySelector('script[src*="phenix.js"]')?.getAttribute('src'),
         phenix_js = url.substring(0, url.lastIndexOf('/')+1);
-    //====> Return Informations <====//
+    //====> Return information's <====//
     return {
         script : url,
         window : window.location.href,

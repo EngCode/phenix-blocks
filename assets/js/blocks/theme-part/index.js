@@ -126,7 +126,7 @@ module.exports = window["wp"]["serverSideRender"];
   \******************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/theme-part","version":"0.1.0","title":"Theme Part","category":"design","description":"Pull a Dynamic Template Part From Current Theme.","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"part_name":{"type":"string","default":"pds/placeholder"}},"textdomain":"phenix","editorScript":"theme-part"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/theme-part","version":"0.1.0","title":"Theme Part","category":"design","description":"Pull a Dynamic Template Part From Current Theme.","supports":{"html":false},"attributes":{"part_name":{"type":"string","default":"pds/placeholder"}},"textdomain":"phenix","editorScript":"theme-part"}');
 
 /***/ })
 

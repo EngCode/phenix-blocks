@@ -255,11 +255,9 @@ function Edit(_ref) {
 
     if (attributes.style.background.rotate) blockProps.className += " ".concat(attributes.style.background.rotate);
   } //===> Full Width Editing <===//
+  // if (!attributes.align) setAttributes({ align: 'full' });
+  //===> Render <===//
 
-
-  if (!attributes.align) setAttributes({
-    align: 'full'
-  }); //===> Render <===//
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"
@@ -1509,7 +1507,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"size":{"type":"string","default":""},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"isHidden":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/container","version":"0.1.0","title":"Container","keywords":["pds","phenix","section","group","wrapper","container"],"category":"design","description":"","supports":{"html":false},"attributes":{"id":{"type":"string","default":""},"tagName":{"type":"string","default":"div"},"size":{"type":"string","default":""},"isSection":{"type":"boolean","default":false},"isFlexbox":{"type":"boolean","default":false},"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"isHidden":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 

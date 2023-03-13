@@ -1156,7 +1156,7 @@ module.exports = window["wp"]["i18n"];
   \****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"slider":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/row","version":"0.1.0","title":"Grid Row","keywords":["pds","phenix","section","group","wrapper","row","flex","layout","grid"],"category":"design","description":"","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"flexbox":{"type":"object","default":{}},"typography":{"type":"object","default":{}},"style":{"type":"object","default":{}},"responsive":{"type":"object","default":{}},"slider":{"type":"object","default":{}}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 

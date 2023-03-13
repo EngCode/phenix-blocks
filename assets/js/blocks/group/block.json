@@ -13,11 +13,7 @@
   "category": "design",
   "description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
   "supports": {
-    "html": false,
-    "align": [
-      "full"
-    ],
-    "alignWide": true
+    "html": false
   },
   "attributes": {
     "id": {

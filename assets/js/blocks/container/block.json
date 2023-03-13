@@ -14,11 +14,7 @@
   "category": "design",
   "description": "",
   "supports": {
-    "html": false,
-    "align": [
-      "full"
-    ],
-    "alignWide": true
+    "html": false
   },
   "attributes": {
     "id": {

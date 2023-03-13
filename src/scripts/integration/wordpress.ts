@@ -165,12 +165,15 @@ Phenix(document).ready(ready => {
 
         //====> Adminbar Fix <====//
         if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
+        
+        //===> Alignwide Fix <===//
+        Phenix(".alignfull").forEach((element:HTMLElement) => element.classList.remove('alignfull'));
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
 
         //===> Run Scripts <===//
-        Phenix(document).init();
+        Phenix(document).copyrights("Phenix Blocks").init();
     } 
     /*====> for Admin Panel <====*/
     else {

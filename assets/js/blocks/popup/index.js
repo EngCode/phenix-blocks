@@ -96,7 +96,7 @@ module.exports = window["wp"]["components"];
   \*************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/popup","version":"0.1.0","title":"Popup/Modal","category":"design","description":"","supports":{"html":false},"attributes":{"align":{"type":"string","default":"full"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/popup","version":"0.1.0","title":"Popup/Modal","category":"design","description":"","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"align":{"type":"string","default":"full"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 

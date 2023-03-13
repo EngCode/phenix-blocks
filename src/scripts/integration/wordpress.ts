@@ -167,7 +167,10 @@ Phenix(document).ready(ready => {
         if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
         
         //===> Alignwide Fix <===//
-        Phenix(".alignfull").forEach((element:HTMLElement) => element.classList.remove('alignfull'));
+        Phenix(".alignfull").forEach((element:HTMLElement) => {
+            console.log(element);
+            element.classList.remove('alignfull');
+        });
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});

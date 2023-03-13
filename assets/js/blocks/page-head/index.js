@@ -130,7 +130,7 @@ module.exports = window["wp"]["serverSideRender"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/page-head","version":"0.1.0","title":"Page Head","category":"design","description":"Page Title and Breadcrumb.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-head"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/page-head","version":"0.1.0","title":"Page Head","category":"design","description":"Page Title and Breadcrumb.","supports":{"html":false,"align":["full"],"alignWide":true},"attributes":{"preview":{"type":"boolean","default":false}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"px-head"}');
 
 /***/ })
 

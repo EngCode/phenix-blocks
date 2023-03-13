@@ -86,7 +86,7 @@ if (!function_exists('phenix_blocks')) :
         
         //====> Popups <====//
         if (get_option('popups_block')) {
-            wp_enqueue_script('popups', $blocksPath.'popups/index.js', $blocksDependencies, NULL , true);
+            wp_enqueue_script('popup', $blocksPath.'popup/index.js', $blocksDependencies, NULL , true);
         }
     }
 

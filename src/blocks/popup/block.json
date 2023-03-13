@@ -6,7 +6,9 @@
 	"category": "design",
 	"description": "",
 	"supports": {
-		"html": false
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
 	},
     "attributes" : {
 		"align": {

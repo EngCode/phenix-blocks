@@ -7,7 +7,9 @@
 	"category": "design",
 	"description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
 	"supports": {
-		"html": false
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
 	},
     "attributes" : {
 		"id": {

@@ -51,8 +51,8 @@ function px_navigation_render($block_attributes, $content) {
 
     //===> Custom CSS Style <===//
     if (isset($font_size) && $font_size) { $nav_style .= "--font-size:'{$font_size}';"; }
-    if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight:'{$font_weight}';"; }
-    if (isset($font_height) && $font_height) { $nav_style .= "--height:'{$font_height}';"; }
+    if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
+    if (isset($font_height) && $font_height) { $nav_style .= "--height: {$font_height}px;"; }
     if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
     if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }
     if (isset($background_color) && $background_color) { $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$background_color).");"; }

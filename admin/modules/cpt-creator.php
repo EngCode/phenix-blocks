@@ -43,7 +43,7 @@ if (!function_exists('pds_cpt_create')) :
             $labels = array(
                 'name'               => $label,
                 'menu_name'          => $label,
-                'add_new'            => __('Add New '.$singular, 'phenix'),
+                'add_new'            => __('Add New '.$label_singular, 'phenix'),
                 'edit_item'          => __('Edit '.$singular, 'phenix'),
                 'new_item'           => __('New '.$singular, 'phenix'),
                 'all_items'          => __('All '.$label_singular, 'phenix'),

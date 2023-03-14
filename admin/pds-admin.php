@@ -78,8 +78,8 @@
                 ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'update-core.php'],
                 ['pds-dashboard', null, __('WordPress', 'phenix'), 'edit_posts', 'about.php'],
                 ['wpcf7', null, __('Inbox Messages', 'phenix'), 'edit_posts', 'admin.php?page=flamingo_inbound'],
-                ['pds-dashboard', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
-                ['pds-admin', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
+                // ['pds-dashboard', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
+                // ['pds-admin', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }
@@ -313,6 +313,16 @@
     if (get_option('menu_locations')) :
         register_nav_menus( get_option('menu_locations') );
     endif;
+
+    //===> Add Reusable Blocks <===//
+    pds_cpt_create(array(
+        'enable'=> true,
+        "name"  => "wp_block",
+        "label" =>  __('Reusable Blocks', 'phenix'),
+        "label_singular" => __('Block', 'phenix'),
+        "menu_icon" => "welcome-view-site",
+        "taxonomies" => array(),
+    ));
 
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :

@@ -753,6 +753,81 @@
 	}
 
 	#titlediv #title-prompt-text {font-size: 15px;}
+
+	/*==== Demo Importer ====*/
+	.ai-body {
+		ul, ol {margin: 0;padding: 0;}
+
+		/*==== Badges ====*/
+		.ai-count {
+			width: 20px;
+			height: 20px;
+			padding: 0px;
+			font-size: 11px;
+			line-height: 21px;
+			text-align: center;
+			margin-#{$direction-end}: 0;
+			margin-#{$direction-start}: 5px;
+			background-color: var(--danger-color);
+		}
+
+		.ai-import-available-categories ul li span {float: $direction-end;}
+
+		/*==== Filters ====*/
+		input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="number"]), .wp-core-ui:not(.block-editor-page):not([class*="pds-admin"]):not([class*="data-collection"]) select:not([type="checkbox"]):not([type="radio"]):not([type="number"]) {margin-bottom: 0!important;}
+
+		/*==== Sidebar ====*/
+		.ai-sidebar {
+			padding-top: 0;
+			box-shadow: unset;
+			border-#{$direction-end}: 1px solid rgba(#000, 0.1);
+			h3 {font-size: 18px;display: none;}
+		}
+
+		/*==== Preview Card ====*/
+		.ai-item {
+			img {width: 100%;}
+			box-shadow: unset;
+			text-align: center;
+			width: calc(100% / 3 - 40px);
+			border: 1px solid rgba(#000, 0.1);
+			/*==== Overlay ====*/
+			.ai-author-info {font-size: 12px;}
+
+			/*==== Card Title ====*/
+			.theme-name {font-size: 14px;}
+			.ai-item-footer {
+				padding: 18px 20px;
+				.ai-item-footer-actions {width: 100%;height: 100%;}
+				.button {
+					margin: 0 10px;
+					font-size: 12px;
+					.dashicons {
+						font-size: 15px;
+						margin-top: -10px;
+						margin-#{$direction-start}: 0;
+						margin-#{$direction-end}: 8px;
+					}
+				}
+			}
+
+			/*==== Premium Label ====*/
+			.ai-premium-label {
+				right: 0;
+				left: auto;
+				width: auto;
+				height: auto;
+				font-size: 12px;
+				padding: 5px 15px;
+				font-weight: normal;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				border-radius: 15px 0 0 15px;
+				background-color: var(--wp-admin-theme-color);
+				&::before, &::after {display: none;}
+			}
+		}
+	}
 }
 
 /*==== Core Fixes ====*/

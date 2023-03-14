@@ -127,7 +127,7 @@ PhenixElements.prototype.utilities = function (options?:{
     //====> Links SEO <====//
     Phenix('a[href]').forEach((link:any) => {
         //===> Alternative Text <===//
-        if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', link.textContent);
+        if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', link.textContent.trim());
     });
 
     //====> Return Phenix Query <====//

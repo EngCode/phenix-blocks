@@ -70,7 +70,7 @@ Phenix(document).ready(ready => {
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
             if (parent && parent.querySelectorAll('h2, h3, h4, p')[0]) {
-                parent.querySelectorAll('h2, h3, h4, p').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent : null);
+                parent.querySelectorAll('h2, h3, h4, p').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : null);
             } else elTitle = document.title;
 
             //===> Set Attributes <===//

@@ -192,13 +192,10 @@ if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_de
 
         //===> Reset Options <===//
         if (isset($is_reset_mode) && $is_reset_mode !== "off") {
-            $target_option = get_option('pds_reset');
-            if($target_option) {
-                //===> Reset Data <===//
-                update_option($target_option, $default_options[$target_option]);
-                //===> Turn Off Reset <===//
-                update_option("pds_reset", "off");
-            }
+            //===> Reset Data <===//
+            update_option($is_reset_mode, $default_options[$is_reset_mode]);
+            //===> Turn Off Reset <===//
+            update_option("pds_reset", "off");
         }
     }
 

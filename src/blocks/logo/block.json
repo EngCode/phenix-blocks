@@ -29,6 +29,11 @@
             "default": "42px"
         },
 
+        "width" : {
+            "type": "string",
+            "default": ""
+        },
+
         "site_link" : {
             "type": "string",
             "default": "#none"

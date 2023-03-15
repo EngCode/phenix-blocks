@@ -184,7 +184,7 @@ function Edit(_ref) {
     className: attributes.responsive ? 'hidden-md-down' : '',
     alt: blockProps.title,
     style: {
-      "height": attributes.size
+      "maxHeight": "".concat(parseInt(attributes.size), "px")
     },
     width: parseInt(attributes.width) ? parseInt(attributes.width) : null,
     height: parseInt(attributes.size)
@@ -385,7 +385,7 @@ module.exports = window["wp"]["i18n"];
   \************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"site_title":{"type":"string","default":""},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"site_link":{"type":"string","default":"#none"},"logo_id":{"type":"number","default":0},"favicon_id":{"type":"number","default":0},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"phenix/logo","version":"0.1.0","title":"Phenix Logo","category":"design","description":"Main Logo Block for Phenix Header.","supports":{"html":false},"attributes":{"preview":{"type":"boolean","default":false},"site_title":{"type":"string","default":""},"logo":{"type":"string","default":"https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"},"size":{"type":"string","default":"42px"},"width":{"type":"string","default":""},"site_link":{"type":"string","default":"#none"},"logo_id":{"type":"number","default":0},"favicon_id":{"type":"number","default":0},"fevicon":{"type":"string","default":"https://via.placeholder.com/512x512.webp?text=Fevicon"},"responsive":{"type":"boolean","default":false},"use_fevicon":{"type":"boolean","default":false},"mobile_logo":{"type":"boolean","default":"https://via.placeholder.com/512x512.webp?text=Logo"}},"example":{"attributes":{"preview":true}},"textdomain":"phenix","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -514,7 +514,7 @@ __webpack_require__.r(__webpack_exports__);
       className: attributes.responsive ? 'hidden-md-down' : '',
       alt: blockProps.title,
       style: {
-        "maxHeight": attributes.size
+        "maxHeight": "".concat(parseInt(attributes.size), "px")
       },
       width: parseInt(attributes.width) ? parseInt(attributes.width) : null,
       height: parseInt(attributes.size)

@@ -5,18 +5,17 @@
  * @return void
 */
 
-//====> Default Options <====//
-if (!function_exists('pds_blocks_default_values')) :
+//====> Default Options Data <====//
+if (!function_exists('pds_get_default_options')) :
     /**
      * Register Default Options for Phenix Blocks
      * @since Phenix Blocks 1.0
      * @return void
     */
-
-    //===> Set default values here <===//
-    function pds_blocks_default_values() {
-        //===> Post Types <===//
-        add_option('pds_types', array(
+    
+    function pds_get_default_options() {
+        //====> Define Options Data <====//
+        $default_types = array(
             array(
                 'enable'=> true,
                 "name"  => "post",
@@ -36,16 +35,9 @@ if (!function_exists('pds_blocks_default_values')) :
                 "menu_icon" => "cover-image",
                 "taxonomies" => array()
             ),
-        ));
-
-        //===> Menu Locations <===//
-        add_option('menu_locations', array('main-menu' => 'Main Menu'));
-
-        //===> Taxonomies <===//
-        add_option('pds_taxonomies', array());
-
-        //===> Patterns <===//
-        add_option('block_patterns', array(
+        );
+        
+        $default_patterns = array(
             array('name' => "header-standard",
                 'title'  => "Header Standard",
                 'category' => array("phenix", "headers"),
@@ -136,38 +128,72 @@ if (!function_exists('pds_blocks_default_values')) :
                 'category' => array("phenix", "pages"),
                 'content'  => "<!-- wp:phenix/container {\"size\":\"container\",\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-white\"}},\"className\":\"pd-20 pd-md-30 radius-lg border-1 border-solid border-alpha-15 my-30 my-md-50\"} -->\n<div class=\"wp-block-phenix-container pd-20 pd-md-30 radius-lg border-1 border-solid border-alpha-15 my-30 my-md-50 bg-white container\"><!-- wp:post-content {\"layout\":{\"inherit\":true}} /--></div>\n<!-- /wp:phenix/container -->"
             ),
-        ));
-
-        //===> Fonts settings <===//
-        add_option('pds_icon_font', "fontawesome-5-free");
-        add_option('pds_primary_font', "somar-rounded");
-        add_option('pds_secondary_font', "somar-rounded");
-
-        //===> Blocks settings <===//
-        add_option('pds_admin_style', "on");
-        add_option('container_block', "on");
-        add_option('logo_block', "on");
-        add_option('navigation_block', "on");
-        add_option('button_block', "on");
-        add_option('row_block', "on");
-        add_option('column_block', "on");
-        add_option('head_block', "on");
-        add_option('query_block', "on");
-        add_option('taxonomies_list_block', "on");
-        add_option('taxonomies_block', "on");
-        add_option('theme_part_block', "on");
-        add_option('group_block', "on");
-        add_option('inline_elements_block', "on");
-        add_option('popups_block', "on");
+        );
         
-        //===> Optimization settings <===//
-        add_option('head_cleaner', "on");
-        add_option('wpc7_cleaner', "on");
-        add_option('adminbar_css', "on");
-        add_option('comments_css', "on");
-        add_option('wpc7_rm_styles', "on");
-        add_option('wpc7_rm_scripts', "on");
-        add_option('blocks_optimizer', "on");
+        $default_locations = array('main-menu' => 'Main Menu');
+        
+        //====> Return Options <====//
+        return array(
+            "pds_types" => $default_types,
+            "block_patterns" => $default_patterns,
+            "menu_locations" => $default_locations,
+            "pds_taxonomies" => array(),
+
+            //===> Blocks settings <===//
+            'pds_admin_style' => "on",
+            'container_block' => "on",
+            'logo_block' => "on",
+            'navigation_block' => "on",
+            'button_block' => "on",
+            'row_block' => "on",
+            'column_block' => "on",
+            'head_block' => "on",
+            'query_block' => "on",
+            'taxonomies_list_block' => "on",
+            'taxonomies_block' => "on",
+            'theme_part_block' => "on",
+            'group_block' => "on",
+            'inline_elements_block' => "on",
+            'popups_block' => "on",
+
+            //===> Optimization settings <===//
+            'head_cleaner' => "on",
+            'wpc7_cleaner' => "on",
+            'adminbar_css' => "on",
+            'comments_css' => "on",
+            'wpc7_rm_styles' => "on",
+            'wpc7_rm_scripts' => "on",
+            'blocks_optimizer' => "on",
+
+            //===> Turn Off Reset <===//
+            'pds_reset' => false
+        );
+    }
+endif;
+
+//====> Default Options <====//
+if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_default_options')) :
+    /**
+     * Register Default Options for Phenix Blocks
+     * @since Phenix Blocks 1.0
+     * @return void
+    */
+
+    //===> Set default values here <===//
+    function pds_blocks_default_values() {
+        //===> Get Default Options <===//
+        $default_options = pds_get_default_options();
+
+        //===> Add Options <===//
+        if (!get_option('pds_reset') || get_option('pds_reset') === false) {
+            foreach ($default_options as $key => $value) { add_option($key, $value); }
+        }
+
+        //===> Reset Options <===//
+        elseif (get_option('pds_reset') !== false) {
+            $target_option = get_option('pds_reset');
+            update_option($target_option, $default_options[$target_option]);
+        }
     }
 
     add_action('init', 'pds_blocks_default_values');

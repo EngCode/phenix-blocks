@@ -356,6 +356,13 @@
 		}
 
 		tr:hover .row-actions {opacity: 1;}
+		.handle.column-handle.ui-sortable-handle {padding: 5px 0;}
+		.handle.column-handle.ui-sortable-handle::before {
+			margin: 0;
+			width: auto;
+			vertical-align: middle;
+			display: inline-block;
+		}
 
 		/*==== Useless Columns ====*/
 		.column-comments,

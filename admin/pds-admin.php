@@ -318,16 +318,6 @@
         register_nav_menus( get_option('menu_locations') );
     endif;
 
-    //===> Add Reusable Blocks <===//
-    pds_cpt_create(array(
-        'enable'=> true,
-        "name"  => "wp_block",
-        "label" =>  __('Reusable Blocks', 'phenix'),
-        "label_singular" => __('Block', 'phenix'),
-        "menu_icon" => "welcome-view-site",
-        "taxonomies" => array(),
-    ));
-
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
         foreach(get_option('pds_types') as $post_type) {
@@ -344,6 +334,17 @@
             }
         }
     endif;
+
+    //===> Add Reusable Blocks <===//
+    pds_cpt_create(array(
+        'enable'=> true,
+        "name"  => "wp_block",
+        "label" =>  __('Reusable Blocks', 'phenix'),
+        "label_singular" => __('Block', 'phenix'),
+        "menu_icon" => "welcome-view-site",
+        "taxonomies" => array(),
+        "menu_position" => 35
+    ));
 
     //===> Set Taxonomies <===//
     if (get_option('pds_taxonomies')) :

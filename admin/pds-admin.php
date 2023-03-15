@@ -50,6 +50,7 @@
                 'upload.php',
                 'plugins.php',
                 'edit-comments.php',
+                // 'blocks-product-editor-for-woocommerce',
             ];
 
             foreach ($removable as $item) { remove_menu_page($item); }
@@ -65,8 +66,11 @@
                 ['options-general.php', 'options-writing.php'],
                 ['options-general.php', 'options-privacy.php'],
                 ['options-general.php', 'options-discussion.php'],
+                ['options-general.php', 'blocks-product-editor-for-woocommerce'],
+                ['blocks-product-editor-for-woocommerce', 'pricing'],
+                ['blocks-product-editor-for-woocommerce', 'contact'],
+                ['blocks-product-editor-for-woocommerce', 'wp-support-forum'],
             ];
-
             foreach ($removable_sub as $item) { remove_submenu_page(...$item); }
 
             //===> Organize Menu Items <===//
@@ -85,7 +89,7 @@
             foreach ($movable as $item) { add_submenu_page(...$item); }
         }
 
-        add_action('admin_menu', 'pds_admin_menu', 11);
+        add_action('admin_menu', 'pds_admin_menu', 99);
     endif;
 
     //====> Include Modules <====//

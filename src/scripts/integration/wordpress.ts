@@ -188,6 +188,11 @@ Phenix(document).ready(ready => {
         
         //===> Run Scripts <===//
         Phenix(document).init();
+        Phenix("#menu-settings li a").forEach((link:HTMLElement) => {
+            if (link.getAttribute("href").includes("blocks-product-editor-for-woocommerce")) {
+                Phenix(link.parentNode).css({"display": "none"});
+            }
+        });
     }
     /*====> for Block Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {

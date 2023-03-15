@@ -830,6 +830,18 @@
 	}
 }
 
+/*==== Editor Fixes ====*/
+.block-editor-page {
+	.postbox {
+		input[type="radio"], input[type="checkbox"], input[type="range"], input[type="color"] {
+			width: 1rem;
+			height: 1rem;
+			margin: -.25rem .25rem 0 0;
+			border: 1px solid rgba(#000, 0.20);
+		}
+	}
+}
+
 /*==== Core Fixes ====*/
 .filter-group .filter-group-feature {
 	input {margin-bottom: 10px!important;}

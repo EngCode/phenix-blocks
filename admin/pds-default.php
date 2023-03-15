@@ -135,7 +135,11 @@ if (!function_exists('pds_get_default_options')) :
             ),
         );
 
-        $default_locations = array('main-menu' => 'Main Menu');
+        $default_locations = array(
+            'main-menu' => 'Main Menu',
+            'quick-links' => "Quick Links",
+            'secondary-menu' => 'Secondary Menu',
+        );
         
         //====> Return Options <====//
         return array(

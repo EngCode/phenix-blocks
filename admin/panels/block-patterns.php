@@ -70,6 +70,8 @@
                 <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Patterns List', 'phenix'); ?></h3>
                 <p class="fs-14"><?php echo __('in here you can manage the patterns created by phenix-blocks.', 'phenix'); ?></p>
             </div>
+            <!-- Reset Button -->
+            <button class="btn bg-alpha-10 color-gray radius-sm small fs-12 pds-reset-data" type="button" data-reset="block_patterns"><?php echo __('Reset Patterns', 'phenix'); ?></button>
         </div>
         <!-- metabox List -->
         <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 patterns-list">

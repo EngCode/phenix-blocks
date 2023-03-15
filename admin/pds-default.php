@@ -36,7 +36,7 @@ if (!function_exists('pds_get_default_options')) :
                 "taxonomies" => array()
             ),
         );
-        
+
         $default_patterns = array(
             array('name' => "header-standard",
                 'title'  => "Header Standard",
@@ -128,8 +128,13 @@ if (!function_exists('pds_get_default_options')) :
                 'category' => array("phenix", "pages"),
                 'content'  => "<!-- wp:phenix/container {\"size\":\"container\",\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-white\"}},\"className\":\"pd-20 pd-md-30 radius-lg border-1 border-solid border-alpha-15 my-30 my-md-50\"} -->\n<div class=\"wp-block-phenix-container pd-20 pd-md-30 radius-lg border-1 border-solid border-alpha-15 my-30 my-md-50 bg-white container\"><!-- wp:post-content {\"layout\":{\"inherit\":true}} /--></div>\n<!-- /wp:phenix/container -->"
             ),
+            array('name' => "coming-soon",
+                'title'  => "Coming Soon",
+                'category' => array("phenix", "pages"),
+                'content'  => "<!-- wp:phenix/container {\"size\":\"container-sm\",\"isSection\":true,\"isFlexbox\":true,\"flexbox\":{\"align\":\" align-center-x align-center-y align-center-y\"},\"typography\":{\"align\":\"tx-align-center\",\"color\":\"color-white\"},\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"\"}},\"align\":\"full\",\"className\":\"coming-soon pdy-50\"} -->\n<div class=\"wp-block-phenix-container alignfull coming-soon pdy-50\"><div class=\"flexbox container-sm  align-center-x align-center-y align-center-y color-white tx-align-center\"><!-- wp:phenix/column {\"className\":\"col-12\"} -->\n<div class=\"wp-block-phenix-column col-12\"><!-- wp:phenix/group {\"isFlexbox\":false,\"className\":\"px-logo mb-20 mgx-auto w-max-320\"} -->\n<div class=\"wp-block-phenix-group px-logo mb-20 mgx-auto w-max-320\"><!-- wp:phenix/column {\"className\":\"px-logo-icon position-rv mb-30 col-12\"} -->\n<div class=\"wp-block-phenix-column px-logo-icon position-rv mb-30 col-12\"><!-- wp:image {\"id\":169,\"sizeSlug\":\"large\",\"linkDestination\":\"none\",\"className\":\"outline\"} -->\n<figure class=\"wp-block-image size-large outline\"><img src=\"https://localhost/px-multisite/wp-content/uploads/2023/02/px-icon-outline-1.svg\" alt=\"\" class=\"wp-image-169\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:html -->\n<span class=\"px-media position-ab pos-start-0 pos-bottom-0 normal fluid\" data-src=\"https://localhost/px-multisite/wp-content/uploads/2023/02/px-icon.svg\"></span>\n<!-- /wp:html --></div>\n<!-- /wp:phenix/column -->\n\n<!-- wp:phenix/column {\"className\":\"px-logo-text position-rv col-12\"} -->\n<div class=\"wp-block-phenix-column px-logo-text position-rv col-12\"><!-- wp:image {\"id\":171,\"sizeSlug\":\"large\",\"linkDestination\":\"none\",\"className\":\"outline\"} -->\n<figure class=\"wp-block-image size-large outline\"><img src=\"https://localhost/px-multisite/wp-content/uploads/2023/02/px-text-outline-1.svg\" alt=\"\" class=\"wp-image-171\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:html -->\n<span class=\"px-media position-ab pos-start-0 pos-top-0 normal h-100\" data-src=\"https://localhost/px-multisite/wp-content/uploads/2023/02/px-text.svg\"></span>\n<!-- /wp:html --></div>\n<!-- /wp:phenix/column --></div>\n<!-- /wp:phenix/group -->\n\n<!-- wp:heading {\"level\":1,\"className\":\"title-spaces lineheight-130 tx-uppercase display-md-h2 weight-normal mb-15\"} -->\n<h1 class=\"title-spaces lineheight-130 tx-uppercase display-md-h2 weight-normal mb-15\">Coming Soon</h1>\n<!-- /wp:heading -->\n\n<!-- wp:phenix/group {\"flexbox\":{\"align\":\" align-center-x align-center-y align-center-y\"},\"className\":\"mb-15\"} -->\n<div class=\"wp-block-phenix-group mb-15 flexbox  align-center-x align-center-y align-center-y\"><!-- wp:list {\"className\":\"reset-list flexbox align-center-y lineheight-180 links-inherit\"} -->\n<ul class=\"reset-list flexbox align-center-y lineheight-180 links-inherit\"><!-- wp:list-item {\"className\":\"pdx-10 tx-icon fab fa-whatsapp color-whatsapp\"} -->\n<li class=\"pdx-10 tx-icon fab fa-whatsapp color-whatsapp\"><a href=\"https://wa.me/01122974539\" target=\"_blank\" rel=\"noreferrer noopener\">+2011-2297-4539</a></li>\n<!-- /wp:list-item -->\n\n<!-- wp:list-item {\"className\":\"pdx-10 tx-icon far fa-envelope color-secondary\"} -->\n<li class=\"pdx-10 tx-icon far fa-envelope color-secondary\"><a href=\"mailto:abdallah@phenixthemes.com\" target=\"_blank\" rel=\"noreferrer noopener\">Send a Message</a></li>\n<!-- /wp:list-item --></ul>\n<!-- /wp:list -->\n\n<!-- wp:phenix/inline {\"content\":\"\",\"className\":\"w-50 hidden-sm-down border-reset border-bottom-1 mx-5 t border-white border-solid\"} -->\n<span class=\"wp-block-phenix-inline w-50 hidden-sm-down border-reset border-bottom-1 mx-5 t border-white border-solid\"></span>\n<!-- /wp:phenix/inline -->\n\n<!-- wp:phenix/group {\"className\":\"align-center-x\"} -->\n<div class=\"wp-block-phenix-group align-center-x flexbox\"><!-- wp:phenix/button {\"isLink\":true,\"inNewTab\":true,\"url\":\"https://m.me/Eng.AbdallahPS\",\"type\":\"btn square\",\"icon\":\"fab fa-facebook-messenger\",\"size\":\"small\",\"typography\":{\"color\":\"color-secondary\",\"size\":\"fs-16\"},\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-transparent\"}}} -->\n<a class=\"wp-block-phenix-button fs-16 color-secondary bg-transparent btn square small radius-none fab fa-facebook-messenger\" href=\"https://m.me/Eng.AbdallahPS\" rel=\"noopener\" target=\"_blank\"></a>\n<!-- /wp:phenix/button -->\n\n<!-- wp:phenix/button {\"isLink\":true,\"inNewTab\":true,\"url\":\"https://twitter.com/EngAbdallahPS\",\"type\":\"btn square\",\"icon\":\"fab fa-twitter\",\"size\":\"small\",\"typography\":{\"color\":\"color-secondary\",\"size\":\"fs-16\"},\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-transparent\"}}} -->\n<a class=\"wp-block-phenix-button fs-16 color-secondary bg-transparent btn square small radius-none fab fa-twitter\" href=\"https://twitter.com/EngAbdallahPS\" rel=\"noopener\" target=\"_blank\"></a>\n<!-- /wp:phenix/button -->\n\n<!-- wp:phenix/button {\"isLink\":true,\"inNewTab\":true,\"url\":\"https://www.behance.net/Eng-Abdallah\",\"type\":\"btn square\",\"icon\":\"fab fa-behance\",\"size\":\"small\",\"typography\":{\"color\":\"color-secondary\",\"size\":\"fs-16\"},\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-transparent\"}}} -->\n<a class=\"wp-block-phenix-button fs-16 color-secondary bg-transparent btn square small radius-none fab fa-behance\" href=\"https://www.behance.net/Eng-Abdallah\" rel=\"noopener\" target=\"_blank\"></a>\n<!-- /wp:phenix/button --></div>\n<!-- /wp:phenix/group --></div>\n<!-- /wp:phenix/group -->\n\n<!-- wp:list {\"className\":\"inline-flex reset-list pdt-10 flexbox mgx-auto align-center-x fs-14 tx-uppercase color-white links-inherit divider-y boroder-white\"} -->\n<ul class=\"inline-flex reset-list pdt-10 flexbox mgx-auto align-center-x fs-14 tx-uppercase color-white links-inherit divider-y boroder-white\"><!-- wp:list-item {\"className\":\"pdb-10 pdx-10 color-gray\"} -->\n<li class=\"pdb-10 pdx-10 color-gray\"><a href=\"https://wa.me/01122974539\">WordPress Themes</a></li>\n<!-- /wp:list-item -->\n\n<!-- wp:list-item {\"className\":\"pdb-10 pdx-10\"} -->\n<li class=\"pdb-10 pdx-10\"><a href=\"https://localhost/pds-docs\">Design System</a></li>\n<!-- /wp:list-item -->\n\n<!-- wp:list-item {\"className\":\"pdb-10 pdx-10\"} -->\n<li class=\"pdb-10 pdx-10\"><a href=\"https://wa.me/01122974539\" target=\"_blank\" rel=\"noreferrer noopener\">Web Development</a></li>\n<!-- /wp:list-item --></ul>\n<!-- /wp:list --></div>\n<!-- /wp:phenix/column --></div></div>\n<!-- /wp:phenix/container -->"
+            ),
         );
-        
+
         $default_locations = array('main-menu' => 'Main Menu');
         
         //====> Return Options <====//
@@ -164,14 +169,11 @@ if (!function_exists('pds_get_default_options')) :
             'wpc7_rm_styles' => "on",
             'wpc7_rm_scripts' => "on",
             'blocks_optimizer' => "on",
-
-            //===> Turn Off Reset <===//
-            'pds_reset' => false
         );
     }
 endif;
 
-//====> Default Options <====//
+//====> Set Default Options <====//
 if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_default_options')) :
     /**
      * Register Default Options for Phenix Blocks
@@ -185,15 +187,18 @@ if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_de
         $default_options = pds_get_default_options();
         $is_reset_mode = get_option('pds_reset');
 
-        //===> Add Options <===//
-        if (!isset($is_reset_mode) || $is_reset_mode === false) {
-            foreach ($default_options as $key => $value) { add_option($key, $value); }
-        }
+        //===> Add Options if not Exist <===//
+        foreach ($default_options as $key => $value) { add_option($key, $value); }
 
         //===> Reset Options <===//
-        elseif (isset($is_reset_mode) && get_option('pds_reset') !== false) {
+        if (isset($is_reset_mode) && $is_reset_mode !== "off") {
             $target_option = get_option('pds_reset');
-            update_option($target_option, $default_options[$target_option]);
+            if($target_option) {
+                //===> Reset Data <===//
+                update_option($target_option, $default_options[$target_option]);
+                //===> Turn Off Reset <===//
+                update_option("pds_reset", "off");
+            }
         }
     }
 

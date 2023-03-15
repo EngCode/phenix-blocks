@@ -116,6 +116,7 @@
         array('theme_templates', 'pds-data-collection', true),
 
         //===> General Settings <===//
+        array('pds_reset', 'pds-data-collection', true),
         array('pds_admin_style', 'pds-admin'),
         array('pds_gfonts', 'pds-admin', true),
         array('pds_icon_font', 'pds-admin', true),

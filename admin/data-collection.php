@@ -602,6 +602,33 @@
             });
         },
 
+        //===> Reset Item Method <===//
+        reset_item = (trigger) => {
+            //===> Define Elements <===//
+            let data_target = trigger.getAttribute('data-reset');
+
+            //===> Set Loading Mode <===//
+            trigger.classList.add('px-loading-inline');
+
+            //===> Get Data from Rest-API <===//
+            get_options().then(options => {
+                //===> Define Data <===//
+                let current = options;
+
+                //===> Set Data <===//
+                current.pds_reset = data_target;
+                console.log(current);
+
+                //===> Update Options <===//
+                update_options(current).then(succuss => {
+                    //===> Show Notification <===//
+                    data_success("the Data has been Reset.");
+                    //===> Reload Page <===//
+                    location.reload();
+                }).catch(error => {error.message});
+            });
+        },
+
         //===> Toggle Item Method <===//
         toggle_item = (trigger) => {
             //===> Define Elements <===//
@@ -767,6 +794,8 @@
 
         //===> Add Item Trigger <===//
         Phenix('.collection-form .add-item').on('click', event => add_item(event.target));
+        //===> Reset Data Trigger <===//
+        Phenix('.pds-reset-data').on('click', event => reset_item(event.target));
     });
 </script>
 <!-- Phenix Script -->

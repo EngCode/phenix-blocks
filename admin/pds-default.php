@@ -183,14 +183,15 @@ if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_de
     function pds_blocks_default_values() {
         //===> Get Default Options <===//
         $default_options = pds_get_default_options();
+        $is_reset_mode = get_option('pds_reset');
 
         //===> Add Options <===//
-        if (!get_option('pds_reset') || get_option('pds_reset') === false) {
+        if (!isset($is_reset_mode) || $is_reset_mode === false) {
             foreach ($default_options as $key => $value) { add_option($key, $value); }
         }
 
         //===> Reset Options <===//
-        elseif (get_option('pds_reset') !== false) {
+        elseif (isset($is_reset_mode) && get_option('pds_reset') !== false) {
             $target_option = get_option('pds_reset');
             update_option($target_option, $default_options[$target_option]);
         }

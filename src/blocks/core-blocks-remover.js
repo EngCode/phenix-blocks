@@ -78,27 +78,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 "core/page-list",
             ]],
             //===> WooCommerce <===//
-            // ["on", ["woocommerce/all-reviews",
-            //     "woocommerce/product-new",
-            //     "woocommerce/all-products",
-            //     "woocommerce/product-on-sale",
-            //     "woocommerce/product-category",
-            //     "woocommerce/featured-product",
-            //     "woocommerce/product-top-rated",
-            //     "woocommerce/featured-category",
-            //     "woocommerce/reviews-by-product",
-            //     "woocommerce/product-categories",
-            //     "woocommerce/handpicked-products",
-            //     "woocommerce/product-best-sellers",
-            //     "woocommerce/products-by-attribute",
-            //     "woocommerce/reviews-by-category",
-            //     "woocommerce/product-search",
-            //     "woocommerce/product-tag",
-            //     "woocommerce/price-filter",
-            //     "woocommerce/attribute-filter",
-            //     "woocommerce/active-filters",
-            // ]]
+            ["pds_core_woo", ["woocommerce/all-reviews",
+                "woocommerce/product-new",
+                "woocommerce/all-products",
+                "woocommerce/product-on-sale",
+                "woocommerce/product-category",
+                "woocommerce/featured-product",
+                "woocommerce/product-top-rated",
+                "woocommerce/featured-category",
+                "woocommerce/reviews-by-product",
+                "woocommerce/product-categories",
+                "woocommerce/handpicked-products",
+                "woocommerce/product-best-sellers",
+                "woocommerce/products-by-attribute",
+                "woocommerce/reviews-by-category",
+                "woocommerce/product-search",
+                "woocommerce/product-tag",
+                "woocommerce/price-filter",
+                "woocommerce/attribute-filter",
+                "woocommerce/active-filters",
+            ]]
         ];
+
         //===> for Each Block <===//
         pds_core_blocks.forEach(block_item => {
             let option_name = block_item[0];

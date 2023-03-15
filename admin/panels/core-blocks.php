@@ -44,6 +44,11 @@
                     "title" => 'Core/File',
                     "icon"  => $icons_url.'file.svg',
                 ),
+                array(
+                    "name"  => 'pds_core_woo',
+                    "title" => 'Disable Woo Blocks',
+                    "icon"  => $icons_url.'woo.svg',
+                ),
             ));
         ?>
     </div>

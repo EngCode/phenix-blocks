@@ -181,6 +181,7 @@
         array('pds_core_post_elements', 'pds-admin'),
         array('pds_core_tag_cloud', 'pds-admin'),
         array('pds_core_widgets_blocks', 'pds-admin'),
+        array('pds_core_woo', 'pds-admin'),
     );
 
     //====> Create Options <====//

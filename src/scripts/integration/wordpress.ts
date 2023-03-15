@@ -107,17 +107,20 @@ Phenix(document).ready(ready => {
     editorAssets = () => {
         //===> Load Assets in Frame <====//
         if (document.querySelector('#site-editor')) {
-            let loadAssetTimer = setInterval(()=> {
+            //===> Time Counter <===//
+            let trying_times = 0,
+                loadAssetTimer = setInterval(()=> {
+                //===> When the Frame is Found <===//
                 if (window.frames['editor-canvas']) {
                     //===> Check in the Editor <===//
                     let frameDoc = window.frames['editor-canvas'].document;
-
+                    
                     //===> Check for the Frame Document <===//
                     if (frameDoc) {
                         //===> Load FontAwesome <===//
                         if (!frameDoc.querySelector("#fontawesome-css")) {
                             let fontAwesome = document.querySelector("#fontawesome-css"),
-                                importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+                            importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
     
                             if(importedEl) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
                         }
@@ -129,11 +132,14 @@ Phenix(document).ready(ready => {
                             if(importedEl) frameDoc.body.appendChild(document.importNode(phenixJs, true));
                         }
                     }
-                }
 
-                //===> Clear Timer <===//
-                clearInterval(loadAssetTimer);
-            }, 1000);
+                    //===> Clear Timer <===//
+                    clearInterval(loadAssetTimer);
+                }
+                //===> Increase Counter <===//
+                trying_times += 1;
+                if (trying_times > 30) clearInterval(loadAssetTimer);
+            }, 300);
         };
 
         //====> Add Design Options Classes <===//
@@ -197,7 +203,7 @@ Phenix(document).ready(ready => {
     /*====> for Block Editor <====*/
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
         //===> Editor Assets <====//
-        editorAssets();
+        window.onload = editorAssets();
         let cf7Cleaner = setInterval(() => fixCF7(), 1000);
         setTimeout(() => clearInterval(cf7Cleaner), 10000);
 

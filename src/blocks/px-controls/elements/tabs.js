@@ -12,22 +12,12 @@ import {Component} from '@wordpress/element';
 //===> Phenix Background <===//
 export default class ScreensTabs extends Component {
     //===> States <===//
-    state = {screen : "none"};
+    state = {screen : this.props.sm ? "sm" : "md"};
 
     render () {
         //===> Properties <===//
         const {sm, lg, xl, md} = this.props;
-        let screenContent = () => {};
-
-        //===> Initial Tab <===//
-        if (this.state.screen === "none") {
-            if(this.props.sm) this.setState({screen: "sm"});
-            else if(this.props.md) this.setState({screen: "md"});
-            else if(this.props.lg) this.setState({screen: "lg"});
-            else if(this.props.xl) this.setState({screen: "xl"});
-        } else {
-            screenContent = this.props[`${this.state.screen}`];
-        }
+        let screenContent = this.props[`${this.state.screen}`];
 
         //===> Options Changer <===//
         const changeTab = (clicked) => {

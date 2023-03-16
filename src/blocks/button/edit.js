@@ -150,8 +150,9 @@ export default function Edit({ attributes, setAttributes }) {
 
             //===> Correct Icons <===//
             if (attributes.icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
-            if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
-            if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6"));
+            if (filename.includes('pro')) icons_version = icons_version.replace("free", "pro");
+            if (filename.includes('6')) icons_version = icons_version.replace("5", "6");
+            set_icons_version(icons_version);
 
             //===> Start Fetching <===//
             fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {

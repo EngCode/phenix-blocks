@@ -55,6 +55,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 //====> WP Modules <====//
 
 
@@ -307,8 +309,9 @@ function Edit(_ref) {
       var filename = "".concat(options.pds_icon_font.replace("fontawesome-", "fa")); //===> Correct Icons <===//
 
       if (attributes.icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands");
-      if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
-      if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6")); //===> Start Fetching <===//
+      if (filename.includes('pro')) icons_version.replace("free", "pro"), _readOnlyError("icons_version");
+      if (filename.includes('6')) icons_version.replace("5", "6"), _readOnlyError("icons_version");
+      set_icons_version(icons_version); //===> Start Fetching <===//
 
       fetch("".concat(PDS_WP_KEY.json, "/").concat(filename, ".json")).then(function (res) {
         return res.json();

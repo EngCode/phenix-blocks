@@ -55,6 +55,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 //====> WP Modules <====//
 
 
@@ -282,8 +284,9 @@ function Edit(props) {
       var filename = "".concat(options.pds_icon_font.replace("fontawesome-", "fa")); //===> Correct Icons <===//
 
       if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands");
-      if (filename.includes('pro')) set_icons_version(icons_version.replace("free", "pro"));
-      if (filename.includes('6')) set_icons_version(icons_version.replace("5", "6")); //===> Start Fetching <===//
+      if (filename.includes('pro')) icons_version.replace("free", "pro"), _readOnlyError("icons_version");
+      if (filename.includes('6')) icons_version.replace("5", "6"), _readOnlyError("icons_version");
+      set_icons_version(icons_version); //===> Start Fetching <===//
 
       fetch("".concat(PDS_WP_KEY.json, "/").concat(filename, ".json")).then(function (res) {
         return res.json();

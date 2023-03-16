@@ -165,7 +165,10 @@ if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer') == "o
         wp_dequeue_style('wp-block-paragraph');
         wp_dequeue_style('wp-block-template-part');
         wp_dequeue_style('wp-block-library-theme');
-        wp_dequeue_style('wc-blocks-style'); //===> WooCommerce
+        // wp_dequeue_style('wc-blocks-style'); //===> WooCommerce
+        // wp_dequeue_script('tnp-blocks'); //===> Newsletter
+        // wp_dequeue_script('pll_blocks'); //===> PolyLang
+        // wp_dequeue_script('contact-form-7-block-editor'); //===> CF7 Form
         // wp_dequeue_style('global-styles'); //===> Theme Options.
     }
     
@@ -184,7 +187,7 @@ remove_filter('render_block', 'gutenberg_render_elements_support', 10, 2);
 if (!function_exists('woo_scripts_optimize')) :
     function woo_scripts_optimize() {
         //===> Define Scripts <===//
-        $woo_scripts = array("woocommerce");
+        $woo_scripts = array("woocommerce", "wc-product-image-gallery-block");
 
         //===> Define Styles <===//
         $woo_style = array(
@@ -197,7 +200,7 @@ if (!function_exists('woo_scripts_optimize')) :
             "woocommerce-smallscreen",
         );
 
-        remove_action( 'wp_head', array($GLOBALS['woocommerce'], 'generator'));
+        // remove_action('wp_head', array($GLOBALS['woocommerce'], 'generator'));
 
         //===> Remove Scripts <===//
         foreach ($woo_scripts as $script) {

@@ -752,7 +752,7 @@ function Edit(props) {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Loop Grid", "phenix"),
     initialOpen: true
   }, !attributes.grid_cols_stat ? /*#__PURE__*/React.createElement("div", {
-    "class": "mb-15"
+    className: "mb-15"
   }, /*#__PURE__*/React.createElement(_px_controls_number__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Columns in Row", "phenix"),
     icon: "far fa-mobile-android",

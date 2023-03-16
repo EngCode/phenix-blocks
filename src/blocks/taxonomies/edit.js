@@ -150,7 +150,7 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             {attributes.grid_mode ? <PanelBody title={__("Loop Grid", "phenix")} initialOpen={true}>
                 {/*===> Columns No. in Row <===*/}
-                {!attributes.grid_cols_stat ? <div class="mb-15">
+                {!attributes.grid_cols_stat ? <div className="mb-15">
                     <PhenixNumber label={__("Columns in Row", "phenix")} icon="far fa-mobile-android" value={attributes.grid_cols.replace("row-cols-", "")} onChange={set_grid_cols} min={0} max={12}></PhenixNumber>
                 </div> : ""}
 

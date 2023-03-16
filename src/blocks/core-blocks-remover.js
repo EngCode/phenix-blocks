@@ -78,27 +78,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 "core/page-list",
             ]],
             //===> WooCommerce <===//
-            ["pds_core_woo", ["woocommerce/all-reviews",
-                "woocommerce/product-new",
-                "woocommerce/all-products",
-                "woocommerce/product-on-sale",
-                "woocommerce/product-category",
-                "woocommerce/featured-product",
-                "woocommerce/product-top-rated",
-                "woocommerce/featured-category",
-                "woocommerce/reviews-by-product",
-                "woocommerce/product-categories",
-                "woocommerce/handpicked-products",
-                "woocommerce/product-best-sellers",
-                "woocommerce/products-by-attribute",
-                "woocommerce/reviews-by-category",
-                "woocommerce/product-search",
-                "woocommerce/product-tag",
-                "woocommerce/price-filter",
-                "woocommerce/attribute-filter",
-                "woocommerce/active-filters",
-            ]]
+            ["pds_core_woo", []]
         ];
+
+        //===> WooCommerce <===//
+        let WooCommerceBlocks = [],
+            OtherBlocksRemove = [],
+            all_registered_blocks = wp.blocks.getBlockTypes();
+
+        if(all_registered_blocks) {
+            all_registered_blocks.forEach(block => {
+                //===> Yoast S.E.O <===//
+                if(block.name.includes('yoast')) OtherBlocksRemove.push(block.name);
+            
+                //===> WooCommerce <===//
+                if(block.name.includes('woocommerce')) WooCommerceBlocks.push(block.name);
+            });
+        }
+        
+        //===> WooCommerce <===//
+        pds_core_blocks.push(["pds_core_woo", WooCommerceBlocks]);
+
+        //===> Other Blocks <===//
+        pds_core_blocks.push(["on", OtherBlocksRemove]);
 
         //===> for Each Block <===//
         pds_core_blocks.forEach(block_item => {

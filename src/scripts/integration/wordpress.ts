@@ -138,8 +138,8 @@ Phenix(document).ready(ready => {
                     clearInterval(loadAssetTimer);
                 }
                 //===> Increase Counter <===//
-                trying_times += 1;
-                if (trying_times > 30) clearInterval(loadAssetTimer);
+                // trying_times += 1;
+                // if (trying_times > 30) clearInterval(loadAssetTimer);
             }, 300);
         };
 

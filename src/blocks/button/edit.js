@@ -102,10 +102,14 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
-    const [menus_list, set_menu_list] = useState([]);
-    const [icons_list, set_icons_list] = useState([]);
-    const [icons_version, set_icons_version] = useState("5-free");
+    const [state, set_state] = useState({
+        menus_list: [],
+        icons_list: [],
+        icons_file: "fa5-free",
+        icons_version: "5-free",
+    });
     const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0"/>;
+
     //===> Sharp Icons Fallback <===//
     let icon_ops = attributes.icon.split(" "),
         icon_name = icon_ops[1],
@@ -132,37 +136,41 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
+    useEffect(() => setPhenixView(), [attributes]);
+
+    //===> Fetch Data <===//
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
-            let locations = options.menu_locations,
-                menus_new_list = [{label: __("None", 'phenix'), value: ""}];
+            let new_state = state,
+                locations = options.menu_locations,
+                menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
+            
+            //===> Get Menu Locations <===//
+            for (const [key, value] of Object.entries(locations)) menus_new_list.push({label: value, value: key});
+            if (menus_new_list !== state.menus_list) new_state.menus_list = menus_new_list;
 
-            //===> Prepare Each Location for Select Array <===//
-            for (const [key, value] of Object.entries(locations)) {
-                menus_new_list.push({label: value, value: key});
+            //===> Define Icons File <===//
+            if (attributes.icon.split(" ")[0] === "fab") {
+                new_state.icons_file = new_state.icons_file.replace(new_state.icons_file.includes("free") ? "free" : "pro", "brands");
+            } else {
+                new_state.icons_file = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
             }
-            //===> Set New Locations List <===//
-            if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
 
-            //===> Fetch Icons List <===//
-            let filename = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
-
-            //===> Correct Icons <===//
-            if (attributes.icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
-            if (filename.includes('pro')) icons_version = icons_version.replace("free", "pro");
-            if (filename.includes('6')) icons_version = icons_version.replace("5", "6");
-            set_icons_version(icons_version);
+            //===> Version Correct <===//
+            if (new_state.icons_file.includes('6') || new_state.icons_file.includes('pro')) {
+                new_vers = new_vers.replace("5", "6");
+                new_vers = new_vers.replace("free", "pro");
+            }
 
             //===> Start Fetching <===//
-            fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {
-                let iconsList = json.icons;
-                if (iconsList !== icons_list) set_icons_list([...iconsList]);
+            fetch(`${PDS_WP_KEY.json}/${new_state.icons_file}.json`).then(res => res.json()).then(json => {
+                if (json.icons !== new_state.icons_list) new_state.icons_list = json.icons;
+                //===> Set State <===//
+                if(new_state !== state) set_state({...new_state});
             });
         });
-
-        setPhenixView();
-    }, [attributes]);
+    }, []);
 
     //===> Typography Properties <===//
     if (attributes.typography) {
@@ -295,7 +303,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {/*=== Icon ===*/}
-                <PhenixIcons key="icon" label="Button Icon" icons={icons_list} version={icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
+                <PhenixIcons key="icon" label="Button Icon" icons={state.icons_list} version={state.icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
@@ -397,7 +405,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl label={__("Menu (ID)", "phenix")} value={ attributes.data_id } onChange={set_data_id} options={menus_list} />
+                        <SelectControl label={__("Menu (ID)", "phenix")} value={ attributes.data_id } onChange={set_data_id} options={state.menus_list} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>

@@ -30,9 +30,12 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
-    const [menus_list, set_menu_list] = useState([]);
-    const [icons_list, set_icons_list] = useState([]);
-    const [icons_version, set_icons_version] = useState("5-free");
+    const [state, set_state] = useState({
+        menus_list: [],
+        icons_list: [],
+        icons_file: "fa5-free",
+        icons_version: "5-free",
+    });
 
     //===> Set Attributes <===//
     const set_menu_id = menu_id => setAttributes({ menu_id });
@@ -145,28 +148,32 @@ export default function Edit(props) {
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
-            let locations = options.menu_locations,
+            let new_state = state,
+                locations = options.menu_locations,
                 menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
-            //===> Prepare Each Location for Select Array <===//
-            for (const [key, value] of Object.entries(locations)) {
-                menus_new_list.push({label: value, value: key});
+            
+            //===> Get Menu Locations <===//
+            for (const [key, value] of Object.entries(locations)) menus_new_list.push({label: value, value: key});
+            if (menus_new_list !== state.menus_list) new_state.menus_list = menus_new_list;
+
+            //===> Define Icons File <===//
+            if (attributes.arrowIcon?.split(" ")[0] === "fab") {
+                new_state.icons_file = new_state.icons_file.replace(new_state.icons_file.includes("free") ? "free" : "pro", "brands");
+            } else {
+                new_state.icons_file = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
             }
-            //===> Set New Locations List <===//
-            if (menus_list !== menus_new_list) set_menu_list([...menus_new_list]);
 
-            //===> Fetch Icons List <===//
-            let filename = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
-
-            //===> Correct Icons <===//
-            if (attributes.arrow_icon.split(" ")[0] === "fab") filename = filename.replace(filename.includes("free") ? "free" : "pro", "brands")
-            if (filename.includes('pro')) icons_version = icons_version.replace("free", "pro");
-            if (filename.includes('6')) icons_version = icons_version.replace("5", "6");
-            set_icons_version(icons_version);
+            //===> Version Correct <===//
+            if (new_state.icons_file.includes('6') || new_state.icons_file.includes('pro')) {
+                new_vers = new_vers.replace("5", "6");
+                new_vers = new_vers.replace("free", "pro");
+            }
 
             //===> Start Fetching <===//
-            fetch(`${PDS_WP_KEY.json}/${filename}.json`).then(res => res.json()).then(json => {
-                let iconsList = json.icons;
-                if (iconsList !== icons_list) set_icons_list([...iconsList]);
+            fetch(`${PDS_WP_KEY.json}/${new_state.icons_file}.json`).then(res => res.json()).then(json => {
+                if (json.icons !== new_state.icons_list) new_state.icons_list = json.icons;
+                //===> Set State <===//
+                if(new_state !== state) set_state({...new_state});
             });
         });
     }, []);
@@ -182,7 +189,7 @@ export default function Edit(props) {
                     <div className='row gpx-20'>
                         {/*===> Column <===*/}
                         <div className='col-12 mb-10'>
-                            <SelectControl label={__("Location (ID)", "phenix")} value={ attributes.menu_id } onChange={set_menu_id} options={menus_list} />
+                            <SelectControl label={__("Location (ID)", "phenix")} value={ attributes.menu_id } onChange={set_menu_id} options={state.menus_list} />
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-6 mb-10'>
@@ -317,7 +324,7 @@ export default function Edit(props) {
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
                     {/*=== Arrow Icon ===*/}
-                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={icons_list} version={icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
+                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={state.icons_list} version={state.icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
                     
                     {/*===> Dropdown Hover <===*/}
                     <ToggleControl label="Support Hover" checked={attributes.hover} onChange={set_hover}/>

@@ -62,20 +62,21 @@ Phenix(document).ready(ready => {
         if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
         
         //====> Links do not have a discernible name <====//
-        Phenix('a:empty').forEach((link:HTMLElement) => {
+        Phenix('a:empty, button:empty, input:not([title]), input:not([placeholder])').forEach((link:HTMLElement) => {
             //===> Define Data <===//
             let elTitle:string,
-                elType = link.classList.contains('btn') ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
+                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : link.tagName === "INPUT" ? link.getAttribute('placeholder') || "input" : "Resource";
 
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
-            if (parent && parent.querySelectorAll('h2, h3, h4, p')[0]) {
-                parent.querySelectorAll('h2, h3, h4, p').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : null);
+            if (parent && parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type')[0]) {
+                parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : null);
             } else elTitle = document.title;
 
             //===> Set Attributes <===//
-            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle} ${elType} Link`);
-            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Link`);
+            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle} ${elType} Element`);
+            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Element`);
+            if(!link.getAttribute('placeholder') || link.getAttribute('placeholder') === "") link.setAttribute('placeholder', `${elTitle} ${elType} Element`);
         });
     },
 

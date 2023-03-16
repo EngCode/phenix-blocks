@@ -40,7 +40,7 @@ PhenixElements.prototype.popup = function (options?:{
 
         /*=====> Backdrop Trigger <=====*/
         if (backdrop && !popup.querySelector('.backdrop-btn')) {
-            Phenix(popup).insert('append', `<button class="reset-button backdrop-btn modal-close position-fx fluid h-100vh pos-start-0 pos-top-0 bg-transparent"></button>`);
+            Phenix(popup).insert('append', `<button class="reset-button backdrop-btn modal-close position-fx fluid h-100vh pos-start-0 pos-top-0 bg-transparent" title="Close Window"></button>`);
             backdrop = popup.querySelector('.backdrop-btn');
         }
 

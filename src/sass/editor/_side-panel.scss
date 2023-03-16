@@ -288,4 +288,14 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		}
 	}
 	.postbox.closed .handlediv .toggle-indicator::before {content: '\f343'!important;}
+
+	/*==== Blocks Panel ====*/
+	.block-editor-inserter__panel-header {
+		width: 100%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		h2 {font-size: 16px;}
+		border-bottom: 1px solid rgba(0,0,0, .15);
+		&:not(:first-child) {border-bottom: 1px solid rgba(0,0,0, .15);}
+	}
 }

@@ -69,9 +69,8 @@ registerBlockType(metadata, {
         if (attributes.isLink) {
             blockProps['href'] = attributes.url;
             blockProps['rel']  = "noopener";
+            if (attributes.inNewTab) blockProps['target'] = "_blank";
         }
-
-        if (attributes.inNewTab) blockProps['target'] = "_blank";
 
         //===> Set Custom Data <===//
         if (attributes.data_id.length > 1) {

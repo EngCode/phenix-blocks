@@ -123,7 +123,7 @@ Phenix(document).ready(ready => {
                             let fontAwesome = document.querySelector("#fontawesome-css"),
                             importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
     
-                            if(importedEl) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                            if(importedEl && fontAwesome) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
                         }
     
                         //===> Load Phenix Js <===//

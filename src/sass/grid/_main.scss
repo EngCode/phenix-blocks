@@ -52,6 +52,10 @@
     .container-xl, .container-lg, .container-fluid {--container-padding : #{REM(30)};}
 }
 
+@media screen and (max-width: 1480px) and (min-width: 1370px) {
+    .container-xl, .container-lg {max-width: 95%;}
+}
+
 /*==== Flexbox Grid ====*/
 .row {
     @extend %flexbox;

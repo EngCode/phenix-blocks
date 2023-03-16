@@ -39,11 +39,6 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
         }
 
-        //====> Phenix Button <====//
-        if (get_option('button_block')) {
-            wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
-        }
-
         //====> Phenix Row <====//
         if (get_option('row_block')) {
             wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
@@ -79,14 +74,19 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
         }
         
-        //====> Inline Elements <====//
-        if (get_option('inline_elements_block')) {
-            wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
-        }
-        
         //====> Popups <====//
         if (get_option('popups_block')) {
             wp_enqueue_script('popup', $blocksPath.'popup/index.js', $blocksDependencies, NULL , true);
+        }
+        
+        //====> Phenix Button <====//
+        if (get_option('button_block')) {
+            wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
+        }
+        
+        //====> Inline Elements <====//
+        if (get_option('inline_elements_block')) {
+            wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
         }
     }
 

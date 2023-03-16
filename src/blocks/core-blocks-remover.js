@@ -90,7 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
             all_registered_blocks.forEach(block => {
                 //===> Yoast S.E.O <===//
                 if(block.name.includes('yoast')) OtherBlocksRemove.push(block.name);
-            
+
+                //===> News Letter <===//
+                if(block.name.includes('tnp/minimal')) OtherBlocksRemove.push(block.name);
+
+                //===> Core Blocks <===//
+                if(block.name.includes('core/comment')) OtherBlocksRemove.push(block.name);
+                if(block.name.includes('core/calendar')) OtherBlocksRemove.push(block.name);
+                // if(block.name.includes('core/categories')) OtherBlocksRemove.push(block.name);
+
+                /*===> Others for Later
+                *** polylang/language-switcher
+                *** polylang/navigation-language-switcher
+                <===*/
+
                 //===> WooCommerce <===//
                 if(block.name.includes('woocommerce')) WooCommerceBlocks.push(block.name);
             });
@@ -117,5 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
     }).catch(error => {error.message});
 });

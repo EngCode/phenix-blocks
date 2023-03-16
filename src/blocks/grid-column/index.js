@@ -37,10 +37,8 @@ registerBlockType(metadata, {
         if(attributes.responsive['size-xl']) blockProps.className += ` col${attributes.responsive['size-xl'] === 0 ? `-auto` : attributes.responsive['size-xl'] === 13 ? "" : `-xl-${attributes.responsive['size-xl']}`}`;
 
         //===> Render <===//
-        return (
-            <TagName {...blockProps}>
-                <InnerBlocks.Content />
-            </TagName>
-        );
+        return <TagName {...blockProps}>
+            <InnerBlocks.Content />
+        </TagName>;
     }
 });

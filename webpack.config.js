@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
     ...defaultConfig,
-    mode: "development",
+    mode: "production",
     entry: {
         'logo': './src/blocks/logo/index.js',
         'query': './src/blocks/query/index.js',

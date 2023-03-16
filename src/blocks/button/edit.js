@@ -161,7 +161,7 @@ export default function Edit({ attributes, setAttributes }) {
             });
         });
 
-        setPhenixView()
+        setPhenixView();
     }, [attributes]);
 
     //===> Typography Properties <===//

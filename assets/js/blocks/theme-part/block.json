@@ -16,6 +16,10 @@
     "part_name": {
       "type": "string",
       "default": "_placeholder"
+    },
+    "part_options": {
+      "type": "object",
+      "default": {}
     }
   },
   "textdomain": "phenix",

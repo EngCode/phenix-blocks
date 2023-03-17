@@ -49,7 +49,7 @@ export default function Edit(props) {
                 //===> Post Types Select <===//
                 console.log(option);
             });
-
+            
             {/*===> Options Panel <===*/}
             options_panels.push(
                 <PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>

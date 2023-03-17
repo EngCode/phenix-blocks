@@ -19,7 +19,7 @@ if (!function_exists('pds_add_pattern')) :
             $title   = $options["title"];
             $content = $options["content"];
             $categories = isset($options['category']) ? $options["category"] : array('phenix');
-            $width = isset($options['width']) ? $options["width"] : 300;
+            $width = isset($options['width']) ? intval($options["width"]) : 300;
 
             //===> Register the Pattern <===//
             register_block_pattern('phenix/'.$name,

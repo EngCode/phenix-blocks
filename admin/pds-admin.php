@@ -361,9 +361,10 @@
         foreach(get_option('block_patterns') as $pattern) {
             //===> if the Post-Type is Enabled <===//
             pds_add_pattern($pattern['name'], array(
-                'title'    => $pattern['title'],
+                'width' => isset($pattern['width']) ? intval($pattern['width']) : 320,
+                'title' => $pattern['title'],
                 'category' => $pattern['category'],
-                'content'  => $pattern['content']
+                'content'  => $pattern['content'],
             ));
         }
     endif;

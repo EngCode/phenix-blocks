@@ -39,6 +39,10 @@
             <!-- Column -->
             <div class="col-12">
                 <!-- Form Control -->
+                <div class="control-icon far fa-arrows-alt-h mb-15">
+                    <input type="number" name="width" class="form-control radius-sm fs-13" placeholder="<?php echo __('Width', 'phenix');?>">
+                </div>
+                <!-- Form Control -->
                 <div class="control-icon far fa-folder mb-15">
                     <select name="category" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Categories' ,'phenix'); ?>" multiple>
                         <option value="phenix"><?php echo __("Phenix", 'phenix'); ?></option>

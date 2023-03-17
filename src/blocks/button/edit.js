@@ -136,8 +136,6 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
     }
 
-    useEffect(() => setPhenixView(), [attributes]);
-
     //===> Fetch Data <===//
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
@@ -170,7 +168,10 @@ export default function Edit({ attributes, setAttributes }) {
                 if(new_state !== state) set_state({...new_state});
             });
         });
-    }, []);
+
+        //===> Run Phenix Script <===//
+        setPhenixView();
+    }, [attributes]);
 
     //===> Typography Properties <===//
     if (attributes.typography) {

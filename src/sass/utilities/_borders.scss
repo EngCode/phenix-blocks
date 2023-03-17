@@ -6,6 +6,19 @@
  * ===> 05 - Grouping 
 */
 
+/*==== Dividers ====*/
+[class*="divider"] {
+    border-width: 0;
+    border-style: solid;
+    &:not([class*="border-"]) { border-color: rgba(#000, 0.1); }
+}
+
+.divider-b, .divider-y {border-bottom-width: 1px;}
+.divider-t, .divider-y {border-top-width: 1px;}
+.divider-s, .divider-x {border-#{$direction-start}-width: 1px;}
+.divider-e, .divider-x {border-#{$direction-end}-width: 1px;}
+.divider-b:last-child {border-width: 0;}
+
 /*==== Borders Style ====*/
 .border-reset {border-width: 0;}
 .border-solid {border-style: solid;}
@@ -55,13 +68,6 @@
 @include large() {
     @include make-borders('-lg');
 };
-
-/*==== Dividers ====*/
-.divider-b, .divider-y {border-bottom: 1px solid rgba(#000, 0.1);}
-.divider-t, .divider-y {border-top: 1px solid rgba(#000, 0.1);}
-.divider-s, .divider-x {border-#{$direction-start}: 1px solid rgba(#000, 0.1);}
-.divider-e, .divider-x {border-#{$direction-end}: 1px solid rgba(#000, 0.1);}
-.divider-b:last-child {border-bottom: 0 none;}
 
 /*==== Radius Utilites ====*/
 .radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl, .radius-none, .radius-circle, .radius-height, .radius-rounded {

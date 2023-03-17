@@ -104,7 +104,12 @@
 		background-color: #171D31;
 		.wp-submenu {background-color: inherit;}
 	}
+
+	#wpadminbar {z-index: var(--header-index);}
 	
+
+	/*==== Form Controls ====*/
+	input:not([type="submit"]):not([type="button"]), select, textarea  {border-color: #dbdde0;}
 
 	&:not([class*="pds-admin"]):not([class*="data-collection"]) {
 		/*==== Standard Controls ====*/
@@ -113,7 +118,6 @@
 			font-size: 13px;
 			box-shadow: unset;
 			border-radius: 4px;
-			border-color: #dbdde0;
 			&:not([type="checkbox"]):not([type="radio"]) {
 				height: 34px;
 				margin-bottom: 15px;

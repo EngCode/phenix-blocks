@@ -176,8 +176,7 @@ export default function Edit(props) {
                 if(new_state !== state) set_state({...new_state});
             });
         });
-    }, []);
-
+    }, [attributes]);
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}

@@ -32,30 +32,41 @@ export default function Edit(props) {
     //===> Set Attributes <===//
     const set_part_name = part_name => setAttributes({ part_name });
 
+    //===> Set Template Option <===//
+    const set_template_option = value => {
+        //===> Get Current Value <===//
+        let current = part_options;
+
+        //===> Set Options <===//
+        setAttributes({ part_options: current });
+    };
+
     //===> Get Template Options <===//
     const get_template_options = () => {
         //===> Define Options List <===//
         let options_panels = [],
+            options_controls = [],
+            options_features = [],
             template_opts = state.templates_meta[attributes.part_name];
 
         //===> Check if the Template Has Meta Data <===//
         if (template_opts) {
-            console.log(template_opts['options']);
             //===> Loop Through Template Options <===//
             Object.entries(template_opts['options']).forEach(([option, value]) => {                
                 //===> Define Data <===//
                 let option_element;
-    
+                console.log(value);
                 //===> Post Types Select <===//
-                console.log(option);
+                if (value.type === "post-type") {
+                    option_element = <SelectControl key={option} label={option.replace('-', ' ').toUpperCase()} value={attributes.post_type} onChange={set_template_option} options={state.post_types} />
+                    options_controls.push(option_element);
+                }
             });
             
             {/*===> Options Panel <===*/}
-            options_panels.push(
-                <PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>
-                    
-                </PanelBody>
-            )
+            if(options_controls.length > 0) options_panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>{options_controls}</PanelBody>)
+            {/*===> Features Panel <===*/}
+            if(options_features.length > 0) options_panels.push(<PanelBody key="template-options" title={__("Template Features", "phenix")} initialOpen={true}>{options_features}</PanelBody>)
         }
 
         //===> Return the Options <===//
@@ -92,10 +103,21 @@ export default function Edit(props) {
                 }
             });
 
+            //===> Loop Through Post Types <===//
+            Object.entries(post_types).forEach(([key, value]) => {
+                //===> Exclude the Core Types <===//
+                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+                    new_state.post_types.push({"value":key, "label":value.name});
+                }
+            });
+
+            //===> Loop Through Taxonomies <===//
+            Object.entries(taxonomies).forEach(([key, value]) => {
+                new_state.taxonomies.push({"value":key, "label":value.name});
+            });
+
             //===> Get Phenix Data <===//
             if(meta_templates !== state.templates_meta) new_state.templates_meta = meta_templates;
-            if(post_types !== state.post_types) new_state.post_types = post_types;
-            if(taxonomies !== state.taxonomies) new_state.taxonomies = taxonomies;
 
             //===> Set State <===//
             if (new_state !== state) set_state({...new_state});

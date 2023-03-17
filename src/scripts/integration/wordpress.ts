@@ -121,16 +121,16 @@ Phenix(document).ready(ready => {
                         //===> Load FontAwesome <===//
                         if (!frameDoc.querySelector("#fontawesome-css")) {
                             let fontAwesome = document.querySelector("#fontawesome-css"),
-                            importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+                                importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
     
-                            if(importedEl && fontAwesome) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                            if(importedEl && frameDoc.body.appendChild !== null) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
                         }
     
                         //===> Load Phenix Js <===//
                         if (!frameDoc.querySelector("#phenix-js")) {
                             let phenixJs = document.querySelector("#phenix-js"),
                                 importedEl = phenixJs ? document.importNode(phenixJs, true) : false;
-                            if(importedEl) frameDoc.body.appendChild(document.importNode(phenixJs, true));
+                            if(importedEl && frameDoc.body.appendChild !== null) frameDoc.body.appendChild(document.importNode(phenixJs, true));
                         }
                     }
 

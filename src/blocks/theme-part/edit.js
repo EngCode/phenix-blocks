@@ -1,4 +1,6 @@
 //====> WP Modules <====//
+import { __ } from '@wordpress/i18n';
+
 import {
     PanelBody,
     SelectControl,
@@ -20,9 +22,44 @@ export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
+    const [state, set_state] = useState({
+        template_list: [<option key={__("Default", "phenix")} value="">{__("Default", "phenix")}</option>],
+    });
 
     //===> Set Attributes <===//
     const set_part_name = part_name => setAttributes({ part_name });
+
+    //===> Fetching Data <===//
+    useEffect(() => {
+        apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
+            //===> Create New Array <===//
+            let new_state = state,
+                template_parts = options.theme_parts;
+
+            //===> Loop Through Theme-Parts <===//
+            Object.entries(template_parts).forEach(([key, value]) => {
+                //===> if its direct theme-part <===//
+                if(typeof(value) === 'string') {
+                    new_state.template_list.push(<option key={`${key}-${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
+                }
+                //===> if its nested theme-part in a directory <===//
+                else {
+                    //===> Define Directory Files <===//
+                    let files_list = [];
+                    //===> Loop Through Files <===//
+                    Object.entries(value).forEach(([key2, value]) => {
+                        //===> add the file to the list <===//
+                        files_list.push(<option key={`${key2}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
+                    });
+                    //===> Push the Options Group <===//
+                    new_state.template_list.push(<optgroup key={`${key}-group`} label={`${key}`}>{files_list}</optgroup>);
+                }
+            });
+            
+            //===> Set State <===//
+            if (new_state !== state) set_state({...new_state});
+        });
+    }, []);
 
     //===> Render <===//
     return (<>
@@ -31,12 +68,17 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="Setting" initialOpen={true}>
                 {/*=== Template Name ===*/}
-                <TextControl key="template-name" label="Template Name" value={ attributes.part_name } onChange={set_part_name}/>
+                <SelectControl label={__("Template Name", "phenix")} value={ attributes.part_name } onChange={set_part_name} >
+                    {state.template_list}
+                </SelectControl>
+
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        <ServerSideRender block="phenix/theme-part" attributes={attributes} />
+        <div {...blockProps}>
+            <ServerSideRender block="phenix/theme-part" attributes={attributes}  />
+        </div>
     </>);
 }

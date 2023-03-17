@@ -180,20 +180,19 @@ if (!function_exists('pds_get_theme_parts_select')) :
         $Files_List = get_option("theme_parts");
 
         //===> Create Select Control <===//
-        echo '<select class="form-control tx-capitalize tx-align-start" name="theme_part">';
+        echo '<select class="form-control tx-capitalize" name="theme-part" title="Template Part" style="max-width:unset;">';
             foreach (array_reverse($Files_List) as $key => $value) {
                 if (is_array($value)) {
                     echo '<optgroup label="'.$key.'">';
                         foreach ($value as $key2 => $value2) {
                             $value2 = str_replace(".php", "",$value2);
-                            $value2 = str_replace("-", " ",$value2);
-                            echo '<option value="'.$value2.'">'.$value2.'</option>';
+                            echo '<option value="'.$key.'/'.$value2.'">'.str_replace("-", " ",$value2).'</option>';
                         }
                     echo '</optgroup>';
                 } else {
                     $value = str_replace(".php", "",$value);
-                    $value = str_replace("-", " ",$value);
-                    echo '<option value="'.str_replace("_", "", $value).'">'.str_replace("_", "", $value).'</option>';
+                    $value = str_replace("_", "", $value);
+                    echo '<option value="'.$value.'">'.str_replace("-", " ",$value).'</option>';
                 }
             }
         echo '</select>';

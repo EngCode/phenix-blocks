@@ -78,6 +78,21 @@
         }
     }
 
+    //===> Templates Meta <===//
+    if (!function_exists('pds_templates_meta')) {
+        function pds_templates_meta() {
+            //===> Start Data <===//
+            $template_markup = '';
+            ob_start();
+            //===> Get Panel Template <===//
+            include(dirname(__FILE__) . '/panels/templates-meta.php');
+            //===> Stop Data <===//
+            $template_output = ob_get_clean();
+            $template_markup .= $template_output;
+            return "{$template_markup}";
+        }
+    }
+
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
@@ -111,19 +126,26 @@
                     "icon"  => "far fa-boxes",
                     "content" => 'pds_taxonomies_panel',
                 ),
-                //==> Meta Boxes Panel <==//
-                // array(
-                //     "title" => "Metaboxes",
-                //     "slug"  => "pds-metabox",
-                //     "icon"  => "far fa-layer-group",
-                //     "content" => 'pds_metabox_panel',
-                // ),
                 //==> Patterns Panel <==//
                 array(
                     "title" => "Block Patterns",
                     "slug"  => "pds-patterns",
                     "icon"  => "far fa-file-alt",
                     "content" => 'pds_patterns_panel',
+                ),
+                //==> Meta Boxes Panel <==//
+                array(
+                    "title" => "Metaboxes",
+                    "slug"  => "pds-metabox",
+                    "icon"  => "far fa-layer-group",
+                    "content" => 'pds_metabox_panel',
+                ),
+                //==> Templates Meta Panel <==//
+                array(
+                    "title" => "Templates Meta",
+                    "slug"  => "pds-templates-meta",
+                    "icon"  => "far fa-layer-group",
+                    "content" => 'pds_templates_meta',
                 ),
             ),
             //==> Hide Submit Button <==//

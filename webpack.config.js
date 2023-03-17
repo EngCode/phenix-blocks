@@ -20,7 +20,11 @@ module.exports = {
         'taxonomies': './src/blocks/taxonomies/index.js',
         'taxonomies-list': './src/blocks/taxonomies-list/index.js',
         'inline-elements': './src/blocks/inline-elements/index.js',
-        // 'languages': './src/blocks/languages/index.js',
+        // 'pds-form': './src/blocks/pds-form/index.js',
+        // 'custom-code': './src/blocks/custom-code/index.js',
+        // 'icon-element': './src/blocks/icon-element/index.js',
+        // 'media-element': './src/blocks/media-element/index.js',
+        // 'language-switcher': './src/blocks/language-switcher/index.js',
     },
     output: {
         path: path.join(__dirname, './assets/js/'),

@@ -62,8 +62,9 @@ if (!is_admin()) {
 
             //===> Remove Duotone SVG <===//
             remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+
         }
-    
+        
         add_action('init', 'head_optimize');
     endif;
 
@@ -212,6 +213,11 @@ if (!function_exists('woo_scripts_optimize')) :
             wp_dequeue_style($style);
         };
     }
+
+    function woo_patterns_remove() {
+       unregister_block_pattern_category('woo-commerce');
+    }
     
+    // add_action('after_setup_theme', 'woo_patterns_remove', 999);
     add_action('wp_enqueue_scripts', 'woo_scripts_optimize', 99);
 endif;

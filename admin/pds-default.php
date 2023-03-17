@@ -159,7 +159,26 @@ if (!function_exists('pds_get_default_options')) :
             'quick-links' => "Quick Links",
             'secondary-menu' => 'Secondary Menu',
         );
-        
+
+        //====> Define Template Meta <====//
+        $default_templates_meta = array(
+            //===> Dynamic Search Bar <===//
+            "dynamic/search-bar" => array(
+                //===> Features <===//
+                "features" => array("grid", "spacing", "typography"),
+
+                //===> Options <===//
+                "options" => array(
+                    "search-type" => array("type" => "string", "default" => "post"),
+                    "taxonomies" => array("type" => "options", "default" => array(
+                        "enable" => array("type" => "boolean", "default" => false),
+                        "fields" => array("type" => "string", "default" => "1"),
+                        "value"  => array("type" => "array", "default" => array("category")),
+                    )),
+                ),
+            )
+        );
+
         //====> Conditional Options <====//
         $other_options = array();
 
@@ -176,6 +195,7 @@ if (!function_exists('pds_get_default_options')) :
             "block_patterns" => $default_patterns,
             "menu_locations" => $default_locations,
             "pds_taxonomies" => array(),
+            "templates_meta" => $default_templates_meta,
 
             //===> Blocks settings <===//
             'pds_admin_style' => "on",

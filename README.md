@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://design.phenixthemes.com">
+    <a href="https://phenixthemes.com/pds-docs">
         <img src="https://phenixthemes.com/pds-docs/wp-content/uploads/sites/2/2022/09/phenix-design-icon.svg"
             alt="Phenix Design logo" width="175" height="162">
     </a>
@@ -29,7 +29,7 @@
 
 ### About Phenix Design System
 
-**[Phenix DS](https://design.phenixthemes.com "About Phenix")** is lightweight user-interface framework build for simple
+**[Phenix DS](https://phenixthemes.com/pds-docs "About Phenix")** is lightweight user-interface framework build for simple
 structure, fast execution, and performance is number One concern in mind it was build for personal use and later
 published as open-source project for web community benefits.
 
@@ -120,12 +120,12 @@ published as open-source project for web community benefits.
 
 -----------------------
 
-#### ### Where to Start ? : [Documentation](https://design.phenixthemes.com/wp-docs)
+#### ### Where to Start ? : [Documentation](https://phenixthemes.com/pds-docs/wp-docs)
 
 you can visit the offical website of phenix design system and read the documentation to master the frameowork :
-[design.phenixthemes.com](https://design.phenixthemes.com) and then you can read the
-[Designer-Guide](https://design.phenixthemes.com/wp-docs/designer) of phenix blocks for more advanced development you
-can read the [Developer Docs](https://design.phenixthemes.com/wp-docs/developer) for the Plugin and its Theme.
+[phenixthemes.com/pds-docs](https://phenixthemes.com/pds-docs) and then you can read the
+[Designer-Guide](https://phenixthemes.com/pds-docs/wp-docs/designer) of phenix blocks for more advanced development you
+can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/developer) for the Plugin and its Theme.
 
 ---
 

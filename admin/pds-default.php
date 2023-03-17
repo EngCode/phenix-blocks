@@ -52,7 +52,7 @@ if (!function_exists('pds_get_default_options')) :
             ),
             array('name' => "popup-standard",
                 'title'  => "Popup/Modal Standard",
-                'width'  => 1200,
+                'width'  => 900,
                 'category' => array("phenix", "section", "headers", "footers"),
                 'content'  => "<!-- wp:phenix/popup {\"id\":\"order-form\"} -->\n<div class=\"wp-block-phenix-popup alignfull px-modal hidden align-center\" id=\"order-form\"><!-- wp:phenix/container {\"size\":\"container-sm\",\"style\":{\"background\":{\"type\":\"color\",\"rotate\":null,\"value\":\"bg-white\"}},\"align\":\"full\",\"className\":\"pd-25 radius-md\"} -->\n<div class=\"wp-block-phenix-container alignfull pd-25 radius-md bg-white container-sm\"><!-- wp:heading {\"level\":3,\"textColor\":\"primary\",\"className\":\"pdb-10 divider-b fs-16 mb-15\"} -->\n<h3 class=\"pdb-10 divider-b fs-16 mb-15 has-primary-color has-text-color\">نموذج طلب استشارة</h3>\n<!-- /wp:heading -->\n\n<!-- wp:contact-form-7/contact-form-selector {\"id\":105,\"title\":\"طلب خدمة\"} -->\n<div class=\"wp-block-contact-form-7-contact-form-selector\">[contact-form-7 id=\"105\" title=\"طلب خدمة\"]</div>\n<!-- /wp:contact-form-7/contact-form-selector --></div>\n<!-- /wp:phenix/container --></div>\n<!-- /wp:phenix/popup -->"
             ),

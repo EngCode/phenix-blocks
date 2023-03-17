@@ -114,6 +114,7 @@
         array('menu_locations', 'pds-data-collection', true),
         array('block_patterns', 'pds-data-collection', true),
         array('theme_templates', 'pds-data-collection', true),
+        array('templates_meta', 'pds-data-collection', true),
 
         //===> General Settings <===//
         array('pds_reset', 'pds-data-collection', true),

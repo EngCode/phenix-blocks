@@ -42,10 +42,10 @@ export default function Edit(props) {
         if (template_opts) {
             console.log(template_opts['options']);
             //===> Loop Through Template Options <===//
-            template_opts['options'].forEach(option => { 
+            Object.entries(template_opts['options']).forEach(([option, value]) => {                
                 //===> Define Data <===//
                 let option_element;
-
+    
                 //===> Post Types Select <===//
                 console.log(option);
             });

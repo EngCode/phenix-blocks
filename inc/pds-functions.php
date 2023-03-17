@@ -128,3 +128,74 @@ if (!function_exists('pds_get_patterns')) :
 		return $patterns_list;
 	}
 endif;
+
+//===> Get Templates Parts <===//
+if (!function_exists('pds_get_theme_parts')) :
+	/**
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function pds_get_theme_parts(DirectoryIterator $base_path) {
+		//===> Define Files List <===//
+		$result = array();
+
+		//===> For Each File in the Givin Path <===//
+		foreach ($base_path as $key => $child) {
+			//===> If its a File <===//
+			if ($child->isDot()) { continue; }
+			
+			//===> Get its Base Base <===//
+			$name = $child->getBasename();
+
+			//===> if its a Directory <===//
+			if ($child->isDir()) {
+				//===> Get its Files List <===//
+				$sub_directory = new DirectoryIterator($child->getPathname());
+
+				//===> add the Files List to the Result <===//
+				$result[$name] = pds_get_theme_parts($sub_directory);
+			}
+			//===> if its Normal File <===//
+			else {
+				//===> Add the File to the Result <===//
+				$result[] = $name;
+			}
+		}
+
+		//===> Return the Files Tree <===//
+		return $result;
+	}
+endif;
+
+//===> Get Templates Parts Select <===//
+if (!function_exists('pds_get_theme_parts_select')) :
+	/**
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function pds_get_theme_parts_select() {
+		//===> Define Files List <===//
+        $Files_List = get_option("theme_parts");
+
+        //===> Create Select Control <===//
+        echo '<select class="form-control tx-capitalize tx-align-start" name="theme_part">';
+            foreach (array_reverse($Files_List) as $key => $value) {
+                if (is_array($value)) {
+                    echo '<optgroup label="'.$key.'">';
+                        foreach ($value as $key2 => $value2) {
+                            $value2 = str_replace(".php", "",$value2);
+                            $value2 = str_replace("-", " ",$value2);
+                            echo '<option value="'.$value2.'">'.$value2.'</option>';
+                        }
+                    echo '</optgroup>';
+                } else {
+                    $value = str_replace(".php", "",$value);
+                    $value = str_replace("-", " ",$value);
+                    echo '<option value="'.str_replace("_", "", $value).'">'.str_replace("_", "", $value).'</option>';
+                }
+            }
+        echo '</select>';
+	}
+endif;

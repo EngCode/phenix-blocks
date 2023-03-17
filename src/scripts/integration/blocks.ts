@@ -21,7 +21,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     if (headerElement[0]) {
         headerElement.setAttributes({'data-sticky': "absolute"});
-        headerElement.addClass('fluid').addClass('z-index-header').sticky();
+        headerElement.addClass('fluid').addClass('position-rv').addClass('z-index-header').sticky();
     
         //===> Define Data <===//
         let headerHeight = headerElement.height();
@@ -30,6 +30,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         Phenix('.full-screen').forEach((element:HTMLElement) => element.style.minHeight = `calc(100vh - ${headerHeight}px)`);
         Phenix('.full-screen-wide').forEach((element:HTMLElement) => element.style.minHeight = `calc(85vh - ${headerHeight}px)`);
     }
+
+    //===> Element Overlap <===//
+    Phenix(".pos-overlap").forEach((element:HTMLElement) => element.style.marginBottom = `-${Phenix(element).height()}px`);
 
     //====> Sliders Fix <====//
     Phenix('.temp-slider-3x, .temp-slider-4x').setAttributes({"data-md" : 3,"data-items" : 1,"data-controls": 1,}).addClass("px-slider");

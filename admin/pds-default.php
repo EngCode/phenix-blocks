@@ -211,6 +211,10 @@ if (!function_exists('pds_blocks_default_values') && function_exists('pds_get_de
             //===> Turn Off Reset <===//
             update_option("pds_reset", "off");
         }
+
+        //===> Set Theme Parts <===//
+        $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
+        update_option('theme_parts', $current_theme_parts);
     }
 
     add_action('init', 'pds_blocks_default_values');

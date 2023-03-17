@@ -49,3 +49,10 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     --fire-gradient      : #FFD500, #FAA10B, #F4291A;
     --purple-gradient    : #8772F7, #5F48DD;
 }
+
+/*==== Helpers Fixes ====*/
+.full-screen, .full-screen-wide {
+    > [class*="container"] {min-height: inherit;}
+}
+
+.pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}

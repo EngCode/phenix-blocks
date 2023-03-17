@@ -193,9 +193,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	/*==== Inserter [Patterns] ====*/
 	iframe {max-width: unset;}
-	// .block-editor-block-patterns-list__item {height: auto!important;}
 	.block-editor-block-patterns-list__list-item {
-		// min-height: unset!important;
 		/*==== Title ====*/
 		.block-editor-block-patterns-list__item-title {
 			padding: 10px 15px;
@@ -203,16 +201,6 @@ body[class*="block-editor"], body[class*="site-editor"] {
 			border: 1px solid rgba(#000, 0.15);
 			background-color: var(--primary-offwhite);
 		}
-		/*==== Preview Container ====*/
-		// .block-editor-block-preview__container {
-		// 	//===> Hidden Preview Temporary <===//
-		// 	display: none!important;
-		// 	/*==== Preview Content ====*/
-		// 	.block-editor-block-preview__content {
-		// 		width: 100%;
-		// 		overflow: hidden;
-		// 	}
-		// }
 	}
 
 	/*==== Popup Modal ====*/

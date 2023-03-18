@@ -94,7 +94,14 @@ PhenixElements.prototype.select = function (options?:{
 
                 //====> Options Headline <====//
                 if (option.matches('optgroup')) {
-                    current_item = options_list.insert('append', `<li class="px-select-group mb-0 bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
+                    //===> Create Option Group <===//
+                    current_item = options_list.insert('append', `<li class="px-select-group mb-0 bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}">${image_icon}${option.getAttribute('label') ? option.getAttribute('label') : option_text}</li>`);
+                    
+                    //===> Create Sub Options <===//
+                    option.querySelectorAll('option').forEach(sub_option => {
+                        //===> Create Option <===//
+                        current_item = options_list.insert('append', `<li class="px-select-option mb-0 pdx-15 ${option_classes}" data-value="${sub_option.getAttribute('value')}" role="button" tabIndex="0">${image_icon}${sub_option.textContent}</li>`);
+                    });
                 }
                 
                 //====> Disabled Options  <====//

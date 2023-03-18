@@ -19,6 +19,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Components <====//
 import TemplateOptions from '../px-controls/elements/templates-meta';
+import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -73,6 +74,9 @@ export default function Edit(props) {
             //===> Set State <===//
             if (new_state !== state) set_state({...new_state});
         });
+
+        //===> Run Phenix Components <===//
+        if(state.templates_meta.length > 0) PhenixComponentsBuilder();
     }, []);
 
     //===> Render <===//
@@ -82,9 +86,10 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*=== Template Name ===*/}
-                <SelectControl label={__("Template Name", "phenix")} value={ attributes.part_name } onChange={set_part_name} >
+                <label className='mb-5'>{__("Template Name", "phenix")}</label>
+                <select className='px-select form-control pds-tm-control' data-search="1" value={ attributes.part_name } onChange={set_part_name} >
                     {state.template_list}
-                </SelectControl>
+                </select>
             </PanelBody>
             {/*=== Template Meta Panels ===*/}
             {state.templates_meta[attributes.part_name] ? 

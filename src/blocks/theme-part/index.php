@@ -9,8 +9,10 @@
 function px_theme_part_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = '';ob_start();
+
     //===> Get Part <===//
-    get_template_part('template-parts/'.$block_attributes['part_name']);
+    get_template_part('template-parts/'.$block_attributes['part_name'], null, $block_attributes);
+
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();
     $markup  .= $blockOutput;

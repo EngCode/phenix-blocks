@@ -17,6 +17,9 @@ import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
+//====> Phenix Components <====//
+import TemplateOptions from '../px-controls/elements/templates-meta';
+
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Get Properties <===//
@@ -33,53 +36,28 @@ export default function Edit(props) {
     const set_part_name = part_name => setAttributes({ part_name });
 
     //===> Set Template Option <===//
-    const set_template_option = value => {
+    const set_template_option = control => {
         //===> Get Current Value <===//
-        let current = part_options;
+        let current = attributes.part_options,
+            option_group = control.name.split(':')[0],
+            option_name = control.name.split(':')[1];
+
+        //===> Create the Options Group if not Existed <===//
+        if (!current[option_group]) current[option_group] = {};
+        
+        //===> Set Current Value <===//
+        current[option_group][option_name] = control.value;
 
         //===> Set Options <===//
-        setAttributes({ part_options: current });
-    };
-
-    //===> Get Template Options <===//
-    const get_template_options = () => {
-        //===> Define Options List <===//
-        let options_panels = [],
-            options_controls = [],
-            options_features = [],
-            template_opts = state.templates_meta[attributes.part_name];
-
-        //===> Check if the Template Has Meta Data <===//
-        if (template_opts) {
-            //===> Loop Through Template Options <===//
-            Object.entries(template_opts['options']).forEach(([option, value]) => {                
-                //===> Define Data <===//
-                let option_element;
-                console.log(value);
-                //===> Post Types Select <===//
-                if (value.type === "post-type") {
-                    option_element = <SelectControl key={option} label={option.replace('-', ' ').toUpperCase()} value={attributes.post_type} onChange={set_template_option} options={state.post_types} />
-                    options_controls.push(option_element);
-                }
-            });
-            
-            {/*===> Options Panel <===*/}
-            if(options_controls.length > 0) options_panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>{options_controls}</PanelBody>)
-            {/*===> Features Panel <===*/}
-            if(options_features.length > 0) options_panels.push(<PanelBody key="template-options" title={__("Template Features", "phenix")} initialOpen={true}>{options_features}</PanelBody>)
-        }
-
-        //===> Return the Options <===//
-        return <>{options_panels}</>;
+        setAttributes({ part_options: {...current} });
     };
 
     //===> Fetching Data <===//
     useEffect(() => {
+        //===> Fetch PDS Options <===//
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
             //===> Create New Array <===//
             let new_state = state,
-                post_types = options.pds_types,
-                taxonomies = options.pds_taxonomies,
                 meta_templates = options.templates_meta,
                 template_parts = options.theme_parts;
 
@@ -103,19 +81,6 @@ export default function Edit(props) {
                 }
             });
 
-            //===> Loop Through Post Types <===//
-            Object.entries(post_types).forEach(([key, value]) => {
-                //===> Exclude the Core Types <===//
-                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-                    new_state.post_types.push({"value":key, "label":value.name});
-                }
-            });
-
-            //===> Loop Through Taxonomies <===//
-            Object.entries(taxonomies).forEach(([key, value]) => {
-                new_state.taxonomies.push({"value":key, "label":value.name});
-            });
-
             //===> Get Phenix Data <===//
             if(meta_templates !== state.templates_meta) new_state.templates_meta = meta_templates;
 
@@ -136,7 +101,9 @@ export default function Edit(props) {
                 </SelectControl>
             </PanelBody>
             {/*=== Template Meta Panels ===*/}
-            {get_template_options()}
+            {state.templates_meta[attributes.part_name] ? 
+                <TemplateOptions options={attributes.part_options.options} features={attributes.part_options.features} meta={state.templates_meta[attributes.part_name]} onChange={set_template_option} />
+            : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

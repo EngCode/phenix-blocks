@@ -23,7 +23,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
             element.querySelectorAll(`.${selector}`).forEach((item:HTMLElement) => {
                 //===> Add Data Options to Elements <====//
                 Object.entries(options).forEach(([attribute, value]) => item.setAttribute(`${attribute}`, value));
-            }); 
+            });
         });
     });
 
@@ -46,7 +46,14 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     }
 
     //===> Element Overlap <===//
-    Phenix(".pos-overlap").forEach((element:HTMLElement) => element.style.marginBottom = `-${Phenix(element).height()}px`);
+    Phenix(".pos-overlap").forEach((element:HTMLElement) => {
+        let height = Phenix(element).height(),
+            nextEl = Phenix(element).next() || Phenix(element.parentNode).next(),
+            nextElPadding = nextEl ? Phenix(nextEl).getCSS("paddingTop") : 0;
+        //===> Element CSS <===//
+        element.style.marginBottom = `-${height}px`;
+        if(nextEl) Phenix(nextEl).css({'padding-top': `${height+parseInt(nextElPadding)}px`});
+    });
 
     //====> Sliders Fix <====//
     Phenix('.temp-slider-3x, .temp-slider-4x').setAttributes({"data-md" : 3,"data-items" : 1,"data-controls": 1,}).addClass("px-slider");

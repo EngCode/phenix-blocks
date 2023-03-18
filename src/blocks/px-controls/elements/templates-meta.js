@@ -72,7 +72,6 @@ export default class TemplateOptions extends Component {
 
         //===> Set Value <===//
         const set_value = (control) => {
-            console.log(control);
             //===> Get Current Value <===//
             let current = {"options": options, "features": features},
                 option_group = control.name.split(':')[0],
@@ -91,16 +90,40 @@ export default class TemplateOptions extends Component {
         //===> Post-Type Controls <===//
         const post_types_control = (option, value) => {
             //===> Create Post Types Select <===//
-            if (value.type === "post-type" && this.state.post_types.length > 0) {
+            if (this.state.post_types.length > 0) {
                 //===> Form Control <===//
-                return <div key={option} className={`col-${value.size ? value.size : '12'}`}>
+                return <div key={option} className={`mb-10 col-${value.size ? value.size : '12'}`}>
                     {/*===> Control Label <===*/}
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
-                    <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : value.default} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                    <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : value.default} multiple={value.multiple ? value.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                         {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                     </select>
                 </div>;
+            } else {
+                return <div key={option} className={`col-${value.size ? value.size : '12'}`}>
+                    <div className="px-loading-inline form-control small radius-md overflow-hidden flexbox align-center">{__("Loading","phenix")}</div>
+                </div>
+            }
+        };
+
+        //===> Post-Type Controls <===//
+        const post_taxonomies_control = (option, value) => {
+            //===> Create Post Types Select <===//
+            if (this.state.taxonomies.length > 0) {
+                //===> Form Control <===//
+                return <div key={option} className={`mb-10 col-${value.size ? value.size : '12'}`}>
+                    {/*===> Control Label <===*/}
+                    <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
+                    {/*===> Control Element <===*/}
+                    <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : value.default} multiple={value.multiple ? value.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
+                    </select>
+                </div>;
+            } else {
+                return <div key={option} className={`col-${value.size ? value.size : '12'}`}>
+                    <div className="px-loading-inline form-control small radius-md overflow-hidden flexbox align-center">{__("Loading","phenix")}</div>
+                </div>
             }
         };
 
@@ -112,10 +135,13 @@ export default class TemplateOptions extends Component {
                 let element;
 
                 //===> Create Post Types Select <===//
-                if (value.type === "post-type" && this.state.post_types.length > 0) element = post_types_control(option, value);
+                if (value.type === "post-type") element = post_types_control(option, value);
+
+                //===> Create Taxonomies Select <===//
+                if (value.type === "taxonomies") element = post_taxonomies_control(option, value);
 
                 //===> Create Switch Button <===//
-                if(value.type === "boolean") sub_options.push(<div className={`col-${value.size ? value.size : 12}`} key={`${option}`}>
+                if(value.type === "boolean") sub_options.push(<div className={`mb-5 col-${value.size ? value.size : 12}`} key={`${option}`}>
                     <OptionControl name={`options:${option}`} checked={options[`${option}`] ? options[`${option}`] : sub_value.default} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{option.replace('-', ' ').toUpperCase()}</OptionControl>
                 </div>);
 
@@ -126,23 +152,33 @@ export default class TemplateOptions extends Component {
 
                     //===> Create Sub-Options <===//
                     Object.entries(value.default).forEach(([sub_option, sub_value]) => {
-                        //===> Create Post Types Select <===//
-                        if (sub_value.type === "post-type" && this.state.post_types.length > 0) sub_options.push(post_types_control(sub_option, sub_value));
-                        //===> Create Switch Button <===//
-                        if(sub_value.type === "boolean") {
-                            //===> Label Correction <===//
-                            let label = sub_option.replace('-', ' ');
-                            if (sub_option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
-
-                            //===> Create the Element <===//
-                            sub_options.push(<div className={`col-${sub_value.size ? sub_value.size : 12}`} key={`${option}-${sub_option}`}>
-                                <OptionControl name={`options:${option}-${sub_option}`} checked={options[`${option}-${sub_option}`] ? options[`${option}-${sub_option}`] : sub_value.default} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
-                            </div>);
+                        //====> for the Status Controller and any Switch Button <====//
+                        if (sub_option === 'status' || options[`${option}-status`] === true) {
+                            //===> Create Switch Button <===//
+                            if(sub_value.type === "boolean") {
+                                //===> Label Correction <===//
+                                let label = sub_option.replace('-', ' ');
+                                if (sub_option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
+    
+                                //===> Create the Element <===//
+                                sub_options.push(<div className={`mb-5 col-${sub_value.size ? sub_value.size : 12}`} key={`${option}-${sub_option}`}>
+                                    <OptionControl name={`options:${option}-${sub_option}`} checked={options[`${option}-${sub_option}`] ? options[`${option}-${sub_option}`] : sub_value.default} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
+                                </div>);
+                            }
+                        }
+                        //====> for the Others Controllers <====//
+                        if (options[`${option}-status`] === true) {
+                            //===> Create Post Types Select <===//
+                            if (sub_value.type === "post-type") sub_options.push(post_types_control(sub_option, sub_value));
+                            //===> Create Taxonomies Select <===//
+                            if (sub_value.type === "taxonomies") sub_options.push(post_taxonomies_control(sub_option, sub_value));
                         }
                     });
 
                     //===> Controls Group <===//
-                    element = <div key={option} className={`col-12 row gpx-10 gpy-15`}>{sub_options}</div>;
+                    element = <div key={option} className={`col-12`}>
+                        <div className='row gpx-10'>{sub_options}</div>
+                    </div>;
                 }
 
 
@@ -151,9 +187,9 @@ export default class TemplateOptions extends Component {
             });
 
             {/*===> Options Panel <===*/}
-            if(controls.length > 0) panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}><div className='row gpx-10 gpy-15'>{controls}</div></PanelBody>)
+            if(controls.length > 0) panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}><div className='row gpx-10'>{controls}</div></PanelBody>)
             {/*===> Features Panel <===*/}
-            if(features_panels.length > 0) panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}><div className='row gpx-10 gpy-15'>{features_panels}</div></PanelBody>)
+            if(features_panels.length > 0) panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}><div className='row gpx-10'>{features_panels}</div></PanelBody>)
         }
 
         //===> Output <===//

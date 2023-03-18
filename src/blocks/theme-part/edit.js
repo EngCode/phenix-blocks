@@ -37,7 +37,7 @@ export default function Edit(props) {
     const set_part_name = part_name => setAttributes({ part_name });
 
     //===> Set Template Option <===//
-    const set_template_option = part_options => setAttributes({ part_options });
+    const set_template_option = value => setAttributes({ part_options: {...value} });
 
     //===> Fetching Data <===//
     useEffect(() => {

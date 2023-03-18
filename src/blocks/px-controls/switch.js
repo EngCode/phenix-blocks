@@ -37,10 +37,11 @@ export default class OptionControl extends Component {
 
         //===> add Options <===//
         if (required) attributes.required = true;
+        if (value) attributes.value = value;
 
         //===> Render Component <===//
         return (<label className={options} data-type={type?.includes("switch") ? "switch" : type.includes("button") ? "button" : type}>
-            <input type={type?.replace("switch-","").replace("button-", "")} name={name} value={value || ""} {...attributes} />
+            <input type={type?.replace("switch-","").replace("button-", "")} name={name} {...attributes} />
             {type?.includes("switch") ? <span className="switch"></span> : null}
             {children}
         </label>)

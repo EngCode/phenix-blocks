@@ -87,13 +87,13 @@ export default function Edit(props) {
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*=== Template Name ===*/}
                 <label className='mb-5'>{__("Template Name", "phenix")}</label>
-                <select className='px-select form-control pds-tm-control' data-search="1" value={ attributes.part_name } onChange={set_part_name} >
+                <select className='px-select form-control pds-tm-control small radius-md' data-search="1" value={ attributes.part_name } onChange={set_part_name} >
                     {state.template_list}
                 </select>
             </PanelBody>
             {/*=== Template Meta Panels ===*/}
             {state.templates_meta[attributes.part_name] ? 
-                <TemplateOptions options={attributes.part_options.options} features={attributes.part_options.features} meta={state.templates_meta[attributes.part_name]} onChange={set_template_option} />
+                <TemplateOptions options={attributes.part_options.options} features={attributes.part_options.features} meta={state.templates_meta[attributes.part_name]} onChange={(e) => set_template_option(e.target.value)} />
             : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

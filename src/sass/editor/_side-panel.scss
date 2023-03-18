@@ -45,6 +45,8 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.interface-interface-skeleton__sidebar {
 		overflow-x: hidden!important;
 		@extend %thin-scrollbar;
+
+		.form-control {--border: 1px solid rgba(#000, 0.15);}
 	}
 
 	/*==== Radius Groups ====*/

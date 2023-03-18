@@ -46,7 +46,7 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		overflow-x: hidden!important;
 		@extend %thin-scrollbar;
 
-		.form-control {--border: 1px solid rgba(#000, 0.15);}
+		.form-control {--border-color: #{rgba(#000, 0.2)};}
 	}
 
 	/*==== Radius Groups ====*/

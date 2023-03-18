@@ -58,7 +58,7 @@ export default class TemplateOptions extends Component {
                 if (value.type === "post-type" && this.state.post_types.length > 0) {
                     element = <div key={option}>
                         <label className='mb-5'>{option.replace('-', ' ').toUpperCase()}</label>
-                        <select name={`options:${option}`} defaultValue={options[`${option}`] ? options[`${option}`] : "post"} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        <select name={`options:${option}`} multiple={true} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`].split(',') : "post"} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>;
@@ -82,6 +82,7 @@ export default class TemplateOptions extends Component {
                 option_name = control.name.split(':')[1];
 
             //===> Set Current Value <===//
+            console.log(control.value, current);
             current[option_group][option_name] = control.value;
 
             //===> Set Data <===//

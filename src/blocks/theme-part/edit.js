@@ -87,7 +87,7 @@ export default function Edit(props) {
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*=== Template Name ===*/}
                 <label className='mb-5'>{__("Template Name", "phenix")}</label>
-                <select className='px-select form-control pds-tm-control small radius-md' data-search="1" value={ attributes.part_name } onChange={set_part_name} >
+                <select className='px-select form-control pds-tm-control small radius-md' data-search="1" defaultValue={ attributes.part_name } onChange={set_part_name} >
                     {state.template_list}
                 </select>
             </PanelBody>

@@ -255,7 +255,7 @@ PhenixElements.prototype.select = function (options?:{
 
                 //===> Create Values Group <===//
                 new_value_group = new_select.insert('prepend', `<div class="px-selected-values pdt-5 px-select-toggle col-12 flexbox align-center-y">
-                    <input class="px-select-search col-auto reset-input input-inherit mb-5" placeholder="${first_label}" />
+                    <input class="px-select-search col w-50 reset-input input-inherit mb-5" placeholder="${first_label}" />
                 </div>`);
             }
             //====> Single Mode <====//

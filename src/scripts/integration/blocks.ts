@@ -13,6 +13,20 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
+    /*====> Add Data Options to un-reachable Elements <====*/
+    Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
+        //===> Get Data Options <====//
+        let dataOptions = JSON.parse(element.getAttribute('data-add-options'));
+        //===> Add Data Options the Elements <====//
+        Object.entries(dataOptions).forEach(([selector, options]) => {
+            //===> Get Selector <====//
+            element.querySelectorAll(`.${selector}`).forEach((item:HTMLElement) => {
+                //===> Add Data Options to Elements <====//
+                Object.entries(options).forEach(([attribute, value]) => item.setAttribute(`${attribute}`, value));
+            }); 
+        });
+    });
+
     //====> Validation Demo <====//
     Phenix('.wpcf7-form').validation();
 

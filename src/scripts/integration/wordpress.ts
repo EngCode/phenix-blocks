@@ -62,10 +62,10 @@ Phenix(document).ready(ready => {
         if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
         
         //====> Links do not have a discernible name <====//
-        Phenix('a:empty, button:empty, input:not([title]), select:not([title])').forEach((link:HTMLElement) => {
+        Phenix('a:empty, button:empty').forEach((link:HTMLElement) => {
             //===> Define Data <===//
             let elTitle:string,
-                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : link.tagName === "INPUT" ? link.getAttribute('placeholder') || "input" : link.tagName === "SELECT" ? link.querySelector('option:first-child').textContent || "Select" : "Resource";
+                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
 
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
@@ -77,6 +77,38 @@ Phenix(document).ready(ready => {
             if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle} ${elType} Element`);
             if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Element`);
             if(!link.getAttribute('placeholder') || link.getAttribute('placeholder') === "") link.setAttribute('placeholder', `${elTitle} ${elType} Element`);
+        });
+        
+        //====> Links do not have a discernible name <====//
+        Phenix('input:not([title]), select:not([title])').forEach((element:HTMLElement) => {
+            //===> Define Data <===//
+            let element_label = element.tagName;
+
+            //===> Get a Correct Title <===//
+            let label = Phenix(element).prev('label') || Phenix(element).next('label');
+            if (!label) {
+                let element_parent = Phenix(element).ancestor('p') || Phenix(element).ancestor('[class*="col"]') || Phenix(element).ancestor('div');
+                if (element_parent) label = Phenix(element_parent).prev('label') || Phenix(element_parent).next('label');
+            }
+
+            //===> Set Attributes <===//
+            if (label && label.textContent) element_label = label.textContent.trim();
+
+            //===> Set Attributes <===//
+            if(!element.getAttribute('aria-label')) element.setAttribute('aria-label', `${element_label}`);
+            if(!element.getAttribute('title') || element.getAttribute('title') === "") element.setAttribute('title', `${element_label}`);
+            if(!element.getAttribute('placeholder') || element.getAttribute('placeholder') === "") element.setAttribute('placeholder', `${element_label}`);
+        });
+
+        //===> Buttons Fixes <===//
+        Phenix('button.btn:not([type])').forEach((button:HTMLElement) => {
+            //===> Check if the Button in a Form <===//
+            let checkForForm = Phenix(button).ancestor('form'),
+                checkForInput = checkForForm?.querySelector('[type="submit"]');
+
+            //===> Set Type Attribute <===//
+            if (!checkForForm || !checkForInput) button.setAttribute('type', "button");
+            else if (checkForForm && !checkForInput) button.setAttribute('type', 'submit');
         });
     },
 

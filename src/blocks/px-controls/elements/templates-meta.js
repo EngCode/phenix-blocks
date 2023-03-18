@@ -37,7 +37,7 @@ export default class TemplateOptions extends Component {
 
             //===> Clear Timer Loop <===//
             if (finder_counter > 30) clearInterval(element_finder);
-        }, 300);
+        }, 500);
     };
 
     //===> Render <===//

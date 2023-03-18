@@ -62,10 +62,10 @@ Phenix(document).ready(ready => {
         if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
         
         //====> Links do not have a discernible name <====//
-        Phenix('a:empty, button:empty, input:not([title]), input:not([placeholder])').forEach((link:HTMLElement) => {
+        Phenix('a:empty, button:empty, input:not([title]), select:not([title])').forEach((link:HTMLElement) => {
             //===> Define Data <===//
             let elTitle:string,
-                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : link.tagName === "INPUT" ? link.getAttribute('placeholder') || "input" : "Resource";
+                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : link.tagName === "INPUT" ? link.getAttribute('placeholder') || "input" : link.tagName === "SELECT" ? link.querySelector('option:first-child').textContent || "Select" : "Resource";
 
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
@@ -83,7 +83,7 @@ Phenix(document).ready(ready => {
     spamBlock = () => {
         //===> Form Spam Protection <===//
         let FormsSubmit = Phenix('form[action] [type="submit"]'),
-            spamInput = `<input style="left:100%; opacity: 0; visibility: hidden; z-index: -1" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
+            spamInput = `<input name="px-protection" title="px-prot" style="left:100%; opacity: 0; visibility: hidden; z-index: -1" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
 
         //===> Create Spam Inputs <===//
         FormsSubmit.forEach(button => Phenix(button).insert('after', spamInput));

@@ -14,7 +14,7 @@ import PhenixComponentsBuilder from '../panel-scripts';
 //===> Media Uploader <===//
 export default class TemplateOptions extends Component {
     //===> States <===//
-    state = {post_types : []};
+    state = {post_types : [], taxonomies: []};
 
     //===> Component Rendered Hook <===//
     componentDidMount() {
@@ -44,6 +44,23 @@ export default class TemplateOptions extends Component {
             this.setState({...new_state});
         });
 
+        //===> Fetch Taxonomies <===//
+        if (this.state.taxonomies.length < 1 && this.state.post_types.length > 0) apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
+            //===> Define Types <===//
+            let new_state = {...this.state};
+
+            //===> Get Current Active Types <===//
+            for (const [key, value] of Object.entries(taxonomies)) {
+                //===> Exclude the Core Types <===//
+                if (!['nav_menu', 'post_tag'].includes(key)) {
+                    new_state.taxonomies.push({"value":key, "label":value.name});
+                }
+            }
+
+            //===> Set the new List if its Deferent <===//
+            this.setState({...new_state});
+        });
+
         //===> Define Elements Lists <===//
         let panels = [], controls = [], features_panels = [];
 
@@ -56,22 +73,24 @@ export default class TemplateOptions extends Component {
 
                 //===> Create Post Types Select <===//
                 if (value.type === "post-type" && this.state.post_types.length > 0) {
-                    element = <div key={option}>
+                    //===> Form Control <===//
+                    element = <div key={option} className={`col-${value.size ? value.size : '12'}`}>
+                        {/*===> Control Label <===*/}
                         <label className='mb-5'>{option.replace('-', ' ').toUpperCase()}</label>
-                        <select name={`options:${option}`} multiple={true} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`].split(',') : "post"} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        {/*===> Control Element <===*/}
+                        <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : "post"} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>;
-
+                    //===> Add the Element <===//
                     controls.push(element);
                 }
             });
 
             {/*===> Options Panel <===*/}
-            if(controls.length > 0) panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>{controls}</PanelBody>)
-
+            if(controls.length > 0) panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}><div className='flexbox'>{controls}</div></PanelBody>)
             {/*===> Features Panel <===*/}
-            if(features_panels.length > 0) panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}>{features_panels}</PanelBody>)
+            if(features_panels.length > 0) panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}><div className='flexbox'>{features_panels}</div></PanelBody>)
         }
 
         //===> Set Value <===//
@@ -82,7 +101,6 @@ export default class TemplateOptions extends Component {
                 option_name = control.name.split(':')[1];
 
             //===> Set Current Value <===//
-            console.log(control.value, current);
             current[option_group][option_name] = control.value;
 
             //===> Set Data <===//

@@ -103,6 +103,7 @@
 .mouse-normal {cursor: none;}
 .mouse-pointer {cursor: pointer;}
 .links-inherit a {color: inherit;}
+.mouse-no-events {pointer-events: none;}
 .tx-icon::before {margin-#{$direction-end}: 7px;}
 
 /*==== Custom Scrollbar ====*/

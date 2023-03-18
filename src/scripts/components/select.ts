@@ -94,12 +94,12 @@ PhenixElements.prototype.select = function (options?:{
 
                 //====> Options Headline <====//
                 if (option.matches('optgroup')) {
-                    current_item = options_list.insert('append', `<li class="px-select-group mb-0 bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-group mb-0 bg-alpha-05 pdx-10 weight-strong ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
                 }
                 
                 //====> Disabled Options  <====//
                 else if (option.hasAttribute('disabled')) {
-                    current_item = options_list.insert('append', `<li class="px-select-disabled mb-0 pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}" role="button" tabIndex="0">${image_icon}${option_text}</li>`);
+                    current_item = options_list.insert('append', `<li class="px-select-disabled mb-0 pdx-15 color-gray tx-line-through ${option_classes}" data-value="${option_value}">${image_icon}${option_text}</li>`);
                 } 
                 
                 //====> Options Items <====//

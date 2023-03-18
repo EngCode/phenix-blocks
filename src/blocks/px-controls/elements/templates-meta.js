@@ -15,7 +15,31 @@ export default class TemplateOptions extends Component {
     //===> States <===//
     state = {post_types : []};
 
-    
+    //===> Component Rendered Hook <===//
+    componentDidMount() {
+        //===> Create Time Loop to Find the Elements <===//
+        let finder_counter = 0,
+            element_finder = setInterval(() => {
+            //===> Get Elements <===//
+            let elements = document.querySelectorAll('.pds-tm-control');
+
+            //===> Loop Through Elements <===//
+            elements.forEach(element => {
+                //===> Define Element Data <===//
+                let class_names = element.classList;
+
+                //===> for Selects <===//
+                if (class_names.contains('px-select')) Phenix(element).select();
+            });
+
+            //===> Increase Counter <===//
+            finder_counter++;
+
+            //===> Clear Timer Loop <===//
+            if (finder_counter > 30) clearInterval(element_finder);
+        }, 300);
+    };
+
     //===> Render <===//
     render () {
         //===> Properties <===//
@@ -38,39 +62,34 @@ export default class TemplateOptions extends Component {
             this.setState({...new_state});
         });
 
-        //===> Define Options List <===//
-        let options_panels = [],
-            options_controls = [],
-            options_features = [],
-            current_options = options,
-            current_features = features,
-            template_opts = meta;
+        //===> Define Elements Lists <===//
+        let panels = [], controls = [], features_panels = [];
 
-        //===> Check if the Template Has Meta Data <===//
-        if (template_opts) {
+        //===> Create the Template Meta Data <===//
+        if (meta) {
             //===> Loop Through Template Options <===//
-            Object.entries(template_opts['options']).forEach(([option, value]) => {
-                //===> Define Data <===//
-                let option_element;
+            Object.entries(meta['options']).forEach(([option, value]) => {
+                //===> Define Element <===//
+                let element;
 
-                //===> Post Types Select <===//
+                //===> Create Post Types Select <===//
                 if (value.type === "post-type" && this.state.post_types.length > 0) {
-                    option_element = <div key={option}>
-                        <label key={`${option}-label`} className='mb-5'>{option.replace('-', ' ').toUpperCase()}</label>
-                        <select key={`${option}-control`} className='form-control small radius-md' name={`options:${option}`} value={current_options[`${option}`] ? current_options[`${option}`] : "post"} onChange={event => set_value(event.target)}>
+                    element = <div key={option}>
+                        <label className='mb-5'>{option.replace('-', ' ').toUpperCase()}</label>
+                        <select name={`options:${option}`} defaultValue={options[`${option}`] ? options[`${option}`] : "post"} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>;
 
-                    options_controls.push(option_element);
+                    controls.push(element);
                 }
             });
 
             {/*===> Options Panel <===*/}
-            if(options_controls.length > 0) options_panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>{options_controls}</PanelBody>)
+            if(controls.length > 0) panels.push(<PanelBody key="template-options" title={__("Template Options", "phenix")} initialOpen={true}>{controls}</PanelBody>)
 
             {/*===> Features Panel <===*/}
-            if(options_features.length > 0) options_panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}>{options_features}</PanelBody>)
+            if(features_panels.length > 0) panels.push(<PanelBody key="template-features" title={__("Template Features", "phenix")} initialOpen={true}>{features_panels}</PanelBody>)
         }
 
         //===> Set Value <===//
@@ -88,6 +107,6 @@ export default class TemplateOptions extends Component {
         };
 
         //===> Output <===//
-        return (<>{options_panels}</>);
+        return (<>{panels}</>);
     }
 }

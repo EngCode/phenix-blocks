@@ -120,8 +120,9 @@
 /*==== Form Control ====*/
 .form-control {
     height : var(--height);
-    border : var(--border-size) solid var(--border-color);
+    text-align: $direction-start;
     background-color : var(--background);
+    border : var(--border-size) solid var(--border-color);
     /*=== Text ===*/
     color : var(--color);
     font-size : var(--text-size);
@@ -149,6 +150,11 @@ select.form-control, .reset-appearance {
     background-size: calc(var(--text-size)/1.35);
     background-position: $direction-end var(--padding) center;
     @extend %select-icon;
+    /*==== Items ====*/
+    .px-select-option {
+        transition: color 0.3s, background-color 0.3s;
+        &:hover {background-color: var(--primary-offwhite);}
+    }
 }
 
 /*==== Textarea Theme ====*/

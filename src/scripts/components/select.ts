@@ -54,7 +54,7 @@ PhenixElements.prototype.select = function (options?:{
             }
 
             //====> Create Options Wrapper <====//
-            let options_list = new_select.insert('append', `<ul class="reset-list fs-14 hidden border-1 border-solid border-alpha-10 fluid bg-inherit px-select-options position-ab fluid lineheight-160 pos-start-0 pos-after-y z-index-dropdown overflow-y-auto" style="max-height:270px;"></ul>`);
+            let options_list = new_select.insert('append', `<ul class="reset-list fs-13 hidden border-1 border-solid border-alpha-10 fluid bg-inherit px-select-options bx-shadow-dp-2 position-ab fluid lineheight-160 pos-start-0 pos-after-y z-index-dropdown overflow-y-auto" style="max-height:270px;"></ul>`);
                 options_list = Phenix(options_list);
 
             //====> Wrap the Original Select <====//
@@ -79,7 +79,7 @@ PhenixElements.prototype.select = function (options?:{
                 //====> Get Option Data <====//
                 let option_text = option.textContent,
                     option_value = option.getAttribute('value'),
-                    option_classes = `divider-b pdy-10`,
+                    option_classes = `divider-b pdy-10 lineheight-150`,
                     image_icon = ``,
                     current_item:any;
 

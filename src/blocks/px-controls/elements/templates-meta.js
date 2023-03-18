@@ -57,7 +57,7 @@ export default class TemplateOptions extends Component {
                 if (value.type === "post-type" && this.state.post_types.length > 0) {
                     option_element = <div key={option}>
                         <label key={`${option}-label`} className='mb-5'>{option.replace('-', ' ').toUpperCase()}</label>
-                        <select key={`${option}-control`} className='form-control small radius-md' name={`options:${option}`} value={current_options?.post_type ? current_options.post_type : "post"} onChange={event => set_template_option(event.target)}>
+                        <select key={`${option}-control`} className='form-control small radius-md' name={`options:${option}`} value={current_options[`${option}`] ? current_options[`${option}`] : "post"} onChange={event => set_value(event.target)}>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>;
@@ -74,18 +74,17 @@ export default class TemplateOptions extends Component {
         }
 
         //===> Set Value <===//
-        const setNumber = (changed) => {
-            //===> Get Elements <===//
-            let input  = changed.target,
-                minNum  = parseInt(min) || 0,
-                maxNum  = parseInt(max) || 0;
+        const set_value = (control) => {
+            //===> Get Current Value <===//
+            let current = {"options": options, "features": features},
+                option_group = control.name.split(':')[0],
+                option_name = control.name.split(':')[1];
 
-            //===> Get Input Element <===//
-            let newVal = parseInt(input.value),
-                checkVal = (newVal >= minNum || newVal <= maxNum) ? newVal : 0;
+            //===> Set Current Value <===//
+            current[option_group][option_name] = control.value;
 
             //===> Set Data <===//
-            return onChange(checkVal);
+            return onChange(current);
         };
 
         //===> Output <===//

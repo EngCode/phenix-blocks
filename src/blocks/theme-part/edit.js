@@ -36,21 +36,7 @@ export default function Edit(props) {
     const set_part_name = part_name => setAttributes({ part_name });
 
     //===> Set Template Option <===//
-    const set_template_option = control => {
-        //===> Get Current Value <===//
-        let current = attributes.part_options,
-            option_group = control.name.split(':')[0],
-            option_name = control.name.split(':')[1];
-
-        //===> Create the Options Group if not Existed <===//
-        if (!current[option_group]) current[option_group] = {};
-        
-        //===> Set Current Value <===//
-        current[option_group][option_name] = control.value;
-
-        //===> Set Options <===//
-        setAttributes({ part_options: {...current} });
-    };
+    const set_template_option = part_options => setAttributes({ part_options });
 
     //===> Fetching Data <===//
     useEffect(() => {

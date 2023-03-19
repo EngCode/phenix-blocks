@@ -125,13 +125,6 @@
                     "icon"  => "far fa-layer-group",
                     "content" => 'pds_metabox_panel',
                 ),
-                //==> Templates Meta Panel <==//
-                array(
-                    "title" => "Templates Meta",
-                    "slug"  => "pds-templates-meta",
-                    "icon"  => "far fa-layer-group",
-                    "content" => 'pds_templates_meta',
-                ),
             ),
             //==> Hide Submit Button <==//
             false

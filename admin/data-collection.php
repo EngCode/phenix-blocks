@@ -78,21 +78,6 @@
         }
     }
 
-    //===> Templates Meta <===//
-    if (!function_exists('pds_templates_meta')) {
-        function pds_templates_meta() {
-            //===> Start Data <===//
-            $template_markup = '';
-            ob_start();
-            //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/templates-meta.php');
-            //===> Stop Data <===//
-            $template_output = ob_get_clean();
-            $template_markup .= $template_output;
-            return "{$template_markup}";
-        }
-    }
-
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//

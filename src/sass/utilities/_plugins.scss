@@ -176,6 +176,9 @@
     margin-right: calc(var(--container-padding) * -1);
 }
 
+/*==== Phenix Modal ====*/
+.px-modal[class*="overlay"]::before {height: calc(100vh *2);z-index: -1;}
+
 /*==== Custom Animations ====*/
 @-webkit-keyframes background_x {
     from {background-position: 0 0;}

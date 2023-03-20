@@ -49,16 +49,18 @@ PhenixElements.prototype.popup = function (options?:{
 
         //====> Popup CSS Classes <====//
         popup.classList.add(
-            'px-popup',
+            'pdy-30',
             'w-fluid',
             'h-100vh',
             'flexbox',
+            'px-popup',
+            'pos-top-0',
             'position-fx',
+            'pos-start-0',
+            'px-scrollbar',
             'overlay-dark',
             'z-index-modal',
-            'pos-top-0',
-            'pos-start-0',
-            'overflow-y-auto'
+            'overflow-y-auto',
         );
 
         popup.querySelector('.modal-content')?.classList.add('position-rv', 'z-index-header');

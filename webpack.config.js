@@ -18,7 +18,6 @@ module.exports = {
         'navigation': './src/blocks/navigation/index.js',
         'grid-column': './src/blocks/grid-column/index.js',
         'taxonomies': './src/blocks/taxonomies/index.js',
-        'taxonomies-list': './src/blocks/taxonomies-list/index.js',
         'inline-elements': './src/blocks/inline-elements/index.js',
         // 'pds-form': './src/blocks/pds-form/index.js',
         // 'custom-code': './src/blocks/custom-code/index.js',

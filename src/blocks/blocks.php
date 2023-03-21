@@ -60,11 +60,6 @@ if (!function_exists('phenix_blocks')) :
         }
 
         //====> Taxonomies List <====//
-        if (get_option('taxonomies_list_block')) {
-            wp_enqueue_script('taxonomies-list', $blocksPath.'taxonomies-list/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Taxonomies List <====//
         if (get_option('taxonomies_block')) {
             wp_enqueue_script('pds-taxonomies', $blocksPath.'taxonomies/index.js', $blocksDependencies, NULL , true);
         }
@@ -106,11 +101,6 @@ if (get_option('head_block')) {
 //====> Phenix Query <====//
 if (get_option('query_block')) {
     include(dirname(__FILE__) . '/query/index.php');
-}
-
-//====> Taxonomies List <====//
-if (get_option('taxonomies_list_block')) {
-    include(dirname(__FILE__) . '/taxonomies-list/index.php');
 }
 
 //====> Taxonomies List <====//

@@ -63,8 +63,9 @@ sup {top: -0.5rem;}
 
 /*==== Media ====*/
 img {
-    // height: auto;
+    height: auto;
     max-width: 100%;
+    max-height: 100%;
     border-style: none;
     @extend %inline-block;
 }

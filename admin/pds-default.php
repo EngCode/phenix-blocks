@@ -219,6 +219,7 @@ if (!function_exists('pds_get_default_options')) :
             'wpc7_cleaner' => "on",
             'adminbar_css' => "on",
             'comments_css' => "on",
+            'jquery_remove' => "on",
             'wpc7_rm_styles' => "on",
             'wpc7_rm_scripts' => "on",
             'blocks_optimizer' => "on",

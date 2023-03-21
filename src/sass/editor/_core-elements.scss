@@ -899,7 +899,7 @@ body, .welcome-panel, .welcome-panel h2, .wp-die-message, p {line-height: var(--
 
 #wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus, #wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus, #wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item, #wpadminbar .ab-top-menu > li.hover > .ab-item,
 #wpadminbar .quicklinks .menupop ul.ab-sub-secondary, #wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu,
-#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input {background-color: rgba(#000, 0.15);}
+#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input {background-color: var(--primary-dark);}
 
 /*==== Dark Mode ====*/
 .pds-force-dark {-webkit-filter: invert(85%);filter: invert(85%);}

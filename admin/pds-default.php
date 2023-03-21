@@ -41,7 +41,7 @@ if (!function_exists('pds_get_default_options')) :
                 "label" => "Services",
                 "singular" => "service",
                 "label_singular" => "Service",
-                "template" => "phenix/single-template",
+                "template" => "phenix/blog-example",
                 "menu_icon" => "megaphone",
                 "taxonomies" => array()
             ),
@@ -198,6 +198,30 @@ if (!function_exists('pds_get_default_options')) :
         } else {
             array_push($other_options, array('pds_core_woo' => "on"));
         }
+
+        //====> Add Default Pages <====//
+        $default_pages = array(
+            //===> CF7 Success <===//
+            'success' => array(
+                'title'=>'Forms Success', 
+                'content' => '<!-- wp:pattern {"slug":"phenix/header-standard"} /-->'
+            ),
+        );
+
+        //====> for Each Page <====//
+        foreach ($default_pages as $slug => $info) {
+            //===> if the page doesn't exist, create it <===//
+            if (!get_page_by_path($slug, OBJECT, 'page')) {
+                $new_page_id = wp_insert_post(array(
+                    'post_type'   =>'page',
+                    'post_name'   => $slug,
+                    'post_title'  => $info['title'], 
+                    'post_author' => 1,
+                    'post_status' =>'publish',
+                    'post_content' => $info['content'],
+                ));
+            };
+        };
 
         //====> Return Options <====//
         return array_merge(array(

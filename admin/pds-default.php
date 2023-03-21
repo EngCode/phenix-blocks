@@ -35,6 +35,16 @@ if (!function_exists('pds_get_default_options')) :
                 "menu_icon" => "cover-image",
                 "taxonomies" => array()
             ),
+            array(
+                'enable'=> true,
+                "name"  => "services",
+                "label" => "Services",
+                "singular" => "service",
+                "label_singular" => "Service",
+                "template" => "phenix/single-template",
+                "menu_icon" => "megaphone",
+                "taxonomies" => array()
+            ),
         );
 
         $default_patterns = array(

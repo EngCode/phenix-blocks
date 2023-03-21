@@ -247,10 +247,15 @@ Phenix(document).ready(ready => {
     if(document.querySelector('#wpadminbar')) {
         /*====> Remove Logo Submenu <====*/
         document.querySelector('#wp-admin-bar-wp-logo .ab-sub-wrapper')?.remove();
+        
         document.querySelector('#wp-admin-bar-customize')?.remove();
         let aboutLink = document.querySelector('#wpadminbar .ab-item[href*="about.php"]');
         if (aboutLink) aboutLink.setAttribute('href', aboutLink.getAttribute('href').replace('about.php', 'admin.php?page=pds-dashboard'));
 
+        document.querySelectorAll('#wp-admin-bar-wp-logo [title], #wp-admin-bar-wp-logo .screen-reader-text').forEach((element:HTMLElement) => {
+            if(element.getAttribute('title')) element.setAttribute('title', Phenix(document).direction() === "ltr" ? "Dashboard" : "لوحة التحكم");
+            if(element.matches('.screen-reader-text')) element.textContent = Phenix(document).direction() === "ltr" ? "Dashboard" : "لوحة التحكم";
+        });
         /*====> Fixes <====*/
         Phenix('a.ab-item, .ab-item a').forEach((link:HTMLElement) => link.setAttribute('rel', 'noopener'));
     }

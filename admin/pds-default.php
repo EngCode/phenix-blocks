@@ -203,7 +203,7 @@ if (!function_exists('pds_get_default_options')) :
         $default_pages = array(
             //===> CF7 Success <===//
             'success' => array(
-                'title'=>'Forms Success', 
+                'title'   => 'Forms Success', 
                 'content' => '<!-- wp:pattern {"slug":"phenix/header-standard"} /-->'
             ),
         );

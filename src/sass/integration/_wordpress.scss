@@ -1,3 +1,6 @@
+/*==== Adminbar ====*/
+#wpadminbar {background-color: #171D31!important;}
+
 /*==== Theme Options for WordPress ====*/
 body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-design:not(.wp-admin) {
     /*==== Global ====*/
@@ -56,3 +59,4 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 }
 
 .pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}
+

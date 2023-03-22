@@ -203,6 +203,7 @@ if (!function_exists('pds_get_default_options')) :
         $default_pages = array(
             //===> CF7 Success <===//
             'success' => array(
+                'type'    => 'page',
                 'title'   => 'Forms Success', 
                 'content' => '<!-- wp:pattern {"slug":"phenix/header-standard"} /-->'
             ),
@@ -211,14 +212,13 @@ if (!function_exists('pds_get_default_options')) :
         //====> for Each Page <====//
         foreach ($default_pages as $slug => $info) {
             //===> if the page doesn't exist, create it <===//
-            if (!get_page_by_path($slug, OBJECT, 'page')) {
+            if (!get_page_by_path($slug, OBJECT, $info['type'])) {
                 $new_page_id = wp_insert_post(array(
-                    'post_type'   =>'page',
                     'post_name'   => $slug,
+                    'post_type'   => $info['type'],
                     'post_title'  => $info['title'], 
-                    'post_author' => 1,
-                    'post_status' =>'publish',
-                    'post_content' => $info['content'],
+                    'post_status' => 'publish',
+                    'post_content'=> $info['content'],
                 ));
             };
         };

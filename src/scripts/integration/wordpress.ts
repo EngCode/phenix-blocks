@@ -82,7 +82,7 @@ Phenix(document).ready(ready => {
         //====> Links do not have a discernible name <====//
         Phenix('input:not([title]), select:not([title])').forEach((element:HTMLElement) => {
             //===> Define Data <===//
-            let element_label = element.tagName;
+            let element_label = element.getAttribute('placeholder') || element.getAttribute('data-placeholder') || element.tagName;
 
             //===> Get a Correct Title <===//
             let label = Phenix(element).prev('label') || Phenix(element).next('label');

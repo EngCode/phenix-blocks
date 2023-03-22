@@ -77,7 +77,7 @@ export default function Edit(props) {
 
         //===> Run Phenix Components <===//
         PhenixComponentsBuilder();
-    }, [state, attributes]);
+    }, []);
 
     //===> Render <===//
     return (<>
@@ -88,14 +88,20 @@ export default function Edit(props) {
                 {/*=== Template Name ===*/}
                 <label className='mb-5'>{__("Template Name", "phenix")}</label>
                 <div className='px-select'>
-                    <select onChange={set_part_name} className='px-select form-control pds-tm-control small radius-md' data-search="1" value={ attributes.part_name }>
+                    <select onChange={set_part_name} className='px-select form-control pds-tm-control small radius-md' data-search="1" defaultValue={ attributes.part_name }>
                         {state.template_list}
                     </select>
                 </div>
             </PanelBody>
             {/*=== Template Meta Panels ===*/}
             {state.templates_meta[attributes.part_name] ?
-                <TemplateOptions options={attributes.part_options?.options} features={attributes.part_options?.features} meta={state.templates_meta[attributes.part_name]} onChange={set_template_option} types={state.post_types.length > 0 ? state.post_types : null} taxonomies={state.taxonomies.length > 0 ? state.taxonomies : null} />
+                <TemplateOptions options={attributes.part_options?.options}
+                    features={attributes.part_options?.features}
+                    meta={state.templates_meta[attributes.part_name]}
+                    onChange={set_template_option}
+                    types={state.post_types.length > 0 ? state.post_types : null}
+                    taxonomies={state.taxonomies.length > 0 ? state.taxonomies : null} 
+                />
             : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

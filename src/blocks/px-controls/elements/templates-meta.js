@@ -98,7 +98,7 @@ export default class TemplateOptions extends Component {
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
-                        <select name={`options:${option}`} data-search="1" value={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        <select name={`options:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>
@@ -120,7 +120,7 @@ export default class TemplateOptions extends Component {
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
-                        <select name={`options:${option}`} data-search="1" value={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        <select name={`options:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
                         </select>
                     </div>
@@ -132,8 +132,20 @@ export default class TemplateOptions extends Component {
             }
         };
 
+        //===> Switch Buttons <===//
+        const switch_control = (option, option_meta) => {
+            let label = option.replace('-', ' ').toUpperCase();
+            //===> Label Correction <===//
+            if (option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
+
+            //===> Create Component <===//
+            <div className={`mb-5 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
+                <OptionControl name={`options:${option}`} checked={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
+            </div>;
+        };
+
         //===> Create the Template Meta Data <===//
-        if (meta && meta.length > 0) {
+        if (meta.hasOwnProperty('options')) {
             //===> Loop Through Template Options <===//
             Object.entries(meta['options']).forEach(([option, option_meta]) => {
                 //===> Define Element <===//
@@ -146,9 +158,7 @@ export default class TemplateOptions extends Component {
                 if (option_meta.type === "taxonomies") element = post_taxonomies_control(option, option_meta);
 
                 //===> Create Switch Button <===//
-                if(option_meta.type === "boolean") element = <div className={`mb-5 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
-                    <OptionControl name={`options:${option}`} checked={options[`${option}`] ? options[`${option}`] : option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{option.replace('-', ' ').toUpperCase()}</OptionControl>
-                </div>;
+                if(option_meta.type === "boolean") element = switch_control(option, option_meta);
 
                 //====> Group of Options <====//
                 if (option_meta.type === "options") {
@@ -158,25 +168,20 @@ export default class TemplateOptions extends Component {
                     //===> Create Sub-Options <===//
                     Object.entries(option_meta.value).forEach(([sub_option, sub_option_meta]) => {
                         //====> for the Status Controller and any Switch Button <====//
-                        if (sub_option === 'status' || options[`${option}-status`]) {
-                            //===> Create Switch Button <===//
-                            if(sub_option_meta.type === "boolean") {
-                                //===> Label Correction <===//
-                                let label = sub_option.replace('-', ' ');
-                                if (sub_option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
-    
-                                //===> Create the Element <===//
-                                sub_options.push(<div className={`mb-5 col-${sub_option_meta.size ? sub_option_meta.size : 12}`} key={`${option}-${sub_option}`}>
-                                    <OptionControl name={`options:${option}-${sub_option}`} checked={options[`${option}-${sub_option}`] ? options[`${option}-${sub_option}`] : sub_option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
-                                </div>);
-                            }
-                        }
+                        if (sub_option === 'status') sub_options.push(switch_control(sub_option, sub_option_meta));
+
                         //====> for the Others Controllers <====//
-                        if (options[`${option}-status`]) {
-                            //===> Create Post Types Select <===//
-                            if (sub_option_meta.type === "post-type") sub_options.push(post_types_control(sub_option, sub_option_meta));
-                            //===> Create Taxonomies Select <===//
-                            if (sub_option_meta.type === "taxonomies") sub_options.push(post_taxonomies_control(sub_option, sub_option_meta));
+                        if (options?.hasOwnProperty(`${option}`) && options[`${option}`].hasOwnProperty('status')) {
+                            if (options[`${option}`].status === true) {
+                                //===> Create Post Types Select <===//
+                                if (sub_option_meta.type === "post-type") sub_options.push(post_types_control(sub_option, sub_option_meta));
+
+                                //===> Create Taxonomies Select <===//
+                                if (sub_option_meta.type === "taxonomies") sub_options.push(post_taxonomies_control(sub_option, sub_option_meta));
+
+                                //===> Create Switch Buttons Select <===//
+                                if (sub_option_meta.type === "boolean") sub_options.push(switch_control(sub_option, sub_option_meta));
+                            }
                         }
                     });
 

@@ -20,7 +20,7 @@ import PhenixComponentsBuilder from '../panel-scripts';
 //===> Media Uploader <===//
 export default class TemplateOptions extends Component {
     //===> States <===//
-    state = {post_types : [], taxonomies: []};
+    state = {post_types : this.props.types || [], taxonomies: this.props.taxonomies || []};
 
     //===> Component Rendered Hook <===//
     componentDidMount() {
@@ -31,7 +31,7 @@ export default class TemplateOptions extends Component {
     //===> Render <===//
     render () {
         //===> Properties <===//
-        const {options, features, meta, onChange} = this.props;
+        const {options, features, meta, onChange, types, taxonomies} = this.props;
 
         //===> Fetch Post Types <===//
         if (this.state.post_types.length < 1) apiFetch({path: 'wp/v2/types'}).then(post_types => {
@@ -83,8 +83,9 @@ export default class TemplateOptions extends Component {
             } else {
                 current[option_group][option_name] = control.value;
             }
+
             //===> Set Data <===//
-            return onChange(current);
+            return onChange({...current});
         };
 
         //===> Post-Type Controls <===//
@@ -96,9 +97,11 @@ export default class TemplateOptions extends Component {
                     {/*===> Control Label <===*/}
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
-                    <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
-                        {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
-                    </select>
+                    <div className='px-select'>
+                        <select name={`options:${option}`} data-search="1" value={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                            {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
+                        </select>
+                    </div>
                 </div>;
             } else {
                 return <div key={option} className={`col-${option_meta.size ? option_meta.size : '12'}`}>
@@ -116,9 +119,11 @@ export default class TemplateOptions extends Component {
                     {/*===> Control Label <===*/}
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
-                    <select name={`options:${option}`} data-search="1" defaultValue={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
-                        {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
-                    </select>
+                    <div className='px-select'>
+                        <select name={`options:${option}`} data-search="1" value={options[`${option}`] ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                            {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
+                        </select>
+                    </div>
                 </div>;
             } else {
                 return <div key={option} className={`col-${option_meta.size ? option_meta.size : '12'}`}>

@@ -17,7 +17,14 @@ PhenixElements.prototype.select = function (options?:{
     //====> Loop Through Phenix Elements <====//
     this.forEach(select => {
         //====> Fallback Fix <====//
-        if(select.tagName !== "SELECT") return;
+        if(select.tagName !== "SELECT") {
+            let the_controller = select.querySelector('select.px-mounted');
+            if (the_controller) {
+                let update_event = new CustomEvent('update', {bubbles: true,cancelable: false});
+                the_controller.dispatchEvent(update_event);
+            }
+            return;
+        };
 
         //====> Get Options <====//
         let events_data:any = {},
@@ -31,12 +38,19 @@ PhenixElements.prototype.select = function (options?:{
         //====> Select Component <====//
         const select_create = () => {
             //====> Create Custom Select <====//
-            let new_select = Phenix(select).insert('before', `<div class="px-select flexbox position-rv" style="line-height:var(--height);cursor: pointer;"></div>`);
-    
+            let hasWrapper = Phenix(select).ancestor('.px-select'),
+                new_select = hasWrapper?.querySelector('.px-select-options') ? hasWrapper : null;
+
+            //====> Create Select wrapper if not existed <====//
+            if (hasWrapper && !new_select) {
+                new_select = Phenix(hasWrapper).css({"line-height": "var(--height)", "cursor": "pointer"}).addClass('flexbox').addClass('position-rv')[0];
+            } else {
+                new_select = Phenix(select).insert('before', `<div class="px-select flexbox position-rv" style="line-height:var(--height);cursor: pointer;"></div>`);
+            }
+            
             //====> Copy Select Classes and Prepare CSS <====//
             new_select.classList.add(...classes);
             new_select = Phenix(new_select);
-            select.classList.add('hidden', 'px-mounted');
 
             //====> Fix Padding for Single <====//
             if (!multiple) {
@@ -58,14 +72,12 @@ PhenixElements.prototype.select = function (options?:{
                 options_list = Phenix(options_list);
 
             //====> Wrap the Original Select <====//
-            select = new_select.insert('append', select);
+            select.classList.add('hidden', 'px-mounted');
+            if(!hasWrapper) select = new_select.insert('append', select);
 
             //===> Return new Data <===//
             return [new_select, options_list]
         };
-
-        //====> Select Options <====//
-        // const options_create = (select_element) => {};
 
         //====> if Not Mounted Create <====//
         if (!select.classList.contains('px-mounted')) {
@@ -329,12 +341,42 @@ PhenixElements.prototype.select = function (options?:{
             };
 
             //====> Create Custom Events <====//
-            const opened = new CustomEvent('opened', {detail: events_data}), //===> Fired when options list is opened
-                  change = new CustomEvent('change', {detail: events_data}), //===> Fired when select value is changed
-                  update = new CustomEvent('update', {detail: events_data}), //===> Fired when select value is changed
-                  typing = new CustomEvent('typing', {detail: events_data}), //===> Fired when typing in options search
-                  focus  = new CustomEvent('focus',  {detail: events_data}), //===> Fired when focused on options search
-                  closed = new CustomEvent('closed', {detail: events_data}); //===> Fired when options list is closed
+            //===> Fired when options list is opened
+            const opened = new CustomEvent('opened', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when select value is changed
+            change = new CustomEvent('change', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when select value is changed
+            update = new CustomEvent('update', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when typing in options search
+            typing = new CustomEvent('typing', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when focused on options search
+            focus  = new CustomEvent('focus',  {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when options list is closed
+                closed = new CustomEvent('closed', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }); 
 
             //====> Show Options <====//
             new_select[0].querySelector('.px-select-toggle')?.addEventListener('click', clicked => {
@@ -470,12 +512,6 @@ PhenixElements.prototype.select = function (options?:{
 
             //===> Update Value <==//
             select.addEventListener('update', isUpdated => get_default_value());
-        }
-
-        //====> if Already Mounted Update <====//
-        else {
-            //===> Define Data <===//
-            // let pds_options = select.
         }
     });
 

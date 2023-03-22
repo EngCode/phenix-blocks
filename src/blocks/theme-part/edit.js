@@ -34,7 +34,10 @@ export default function Edit(props) {
     });
 
     //===> Set Attributes <===//
-    const set_part_name = part_name => setAttributes({ part_name });
+    const set_part_name = changed => {
+        console.log(changed);
+        // setAttributes({ part_name: target.value });
+    };
 
     //===> Set Template Option <===//
     const set_template_option = value => setAttributes({ part_options: {...value} });
@@ -76,8 +79,8 @@ export default function Edit(props) {
         });
 
         //===> Run Phenix Components <===//
-        if(state.templates_meta.length > 0) PhenixComponentsBuilder();
-    }, []);
+        PhenixComponentsBuilder();
+    }, [state, attributes]);
 
     //===> Render <===//
     return (<>
@@ -87,13 +90,15 @@ export default function Edit(props) {
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*=== Template Name ===*/}
                 <label className='mb-5'>{__("Template Name", "phenix")}</label>
-                <select className='px-select form-control pds-tm-control small radius-md' data-search="1" defaultValue={ attributes.part_name } onChange={set_part_name} >
-                    {state.template_list}
-                </select>
+                <div className='px-select'>
+                    <select onChange={set_part_name} className='px-select form-control pds-tm-control small radius-md' data-search="1" value={ attributes.part_name }>
+                        {state.template_list}
+                    </select>
+                </div>
             </PanelBody>
             {/*=== Template Meta Panels ===*/}
             {state.templates_meta[attributes.part_name] ?
-                <TemplateOptions options={attributes.part_options?.options} features={attributes.part_options?.features} meta={state.templates_meta[attributes.part_name]} onChange={set_template_option} />
+                <TemplateOptions options={attributes.part_options?.options} features={attributes.part_options?.features} meta={state.templates_meta[attributes.part_name]} onChange={set_template_option} types={state.post_types.length > 0 ? state.post_types : null} taxonomies={state.taxonomies.length > 0 ? state.taxonomies : null} />
             : null}
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

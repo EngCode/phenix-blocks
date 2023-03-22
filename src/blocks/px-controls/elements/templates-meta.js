@@ -74,22 +74,51 @@ export default class TemplateOptions extends Component {
         const set_value = (control) => {
             //===> Get Current Value <===//
             let current = {"options": options, "features": features},
-                option_group = control.name.split(':')[0],
-                option_name = control.name.split(':')[1];
+                options_trail = control.name.split(':'),
+                trail_length = options_trail.length,
+                main_group = options_trail[0];
 
-            //===> Set Current Value <===//
-            if (control.getAttribute('type') === 'checkbox' || control.getAttribute('type') === 'radio') {
-                current[option_group][option_name] = control.checked;
-            } else {
-                current[option_group][option_name] = control.value;
-            }
+            //===> Get the Control Value <===//            
+            let value = control.value;
+            //===> for Check-Boxes <===//
+            if (control.getAttribute('type') === 'checkbox' || control.getAttribute('type') === 'radio') value = control.checked;
 
+            //===> Loop on the Options Trail <===//
+            options_trail.forEach((option, index) => {
+                //===> if its Main Group Pass it <===//
+                if (option === main_group) return;
+
+                //===> if its a Child of the Main Group Create a Key for it <===//
+                else if (trail_length > 2) {
+                    //====> Define Levels Objects <====//
+                    let level_1 = current[`${main_group}`],
+                        level_2 = level_1 ? level_1[`${option}`] : null,
+                        level_3 = level_2 ? level_2[`${option}`] : null,
+                        level_4 = level_3 ? level_3[`${option}`] : null;
+
+                    //====> Fucked-Up Logic until we Can think of a Better Way <====//
+                    if (index === 1 && !level_1?.hasOwnProperty(`${option}`)) {
+                        current[`${main_group}`] = {};
+                        current[`${main_group}`][`${option}`] = value;
+                    } else if (index === 2 && !level_2?.hasOwnProperty(`${option}`)) {
+                        current[`${main_group}`][`${options_trail[1]}`] = {};
+                        current[`${main_group}`][`${options_trail[1]}`][`${option}`] = value;
+                    } else if (index === 3 && !level_3?.hasOwnProperty(`${option}`)) {
+                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`] = {};
+                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${option}`] = value;
+                    } else if (index === 4 && !level_4?.hasOwnProperty(`${option}`)) {
+                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`] = {};
+                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`][`${option}`] = value;
+                    }
+                }
+            });
+            
             //===> Set Data <===//
             return onChange({...current});
         };
 
         //===> Post-Type Controls <===//
-        const post_types_control = (option, option_meta) => {
+        const post_types_control = (option, option_meta, group) => {
             //===> Create Post Types Select <===//
             if (this.state.post_types.length > 0) {
                 //===> Form Control <===//
@@ -98,7 +127,7 @@ export default class TemplateOptions extends Component {
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
-                        <select name={`options:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        <select name={`${group}:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
                         </select>
                     </div>
@@ -111,7 +140,7 @@ export default class TemplateOptions extends Component {
         };
 
         //===> Post-Type Controls <===//
-        const post_taxonomies_control = (option, option_meta) => {
+        const post_taxonomies_control = (option, option_meta, group) => {
             //===> Create Post Types Select <===//
             if (this.state.taxonomies.length > 0) {
                 //===> Form Control <===//
@@ -120,7 +149,7 @@ export default class TemplateOptions extends Component {
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
-                        <select name={`options:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        <select name={`${group}:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
                             {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
                         </select>
                     </div>
@@ -133,14 +162,14 @@ export default class TemplateOptions extends Component {
         };
 
         //===> Switch Buttons <===//
-        const switch_control = (option, option_meta) => {
+        const switch_control = (option, option_meta, group) => {
             let label = option.replace('-', ' ').toUpperCase();
             //===> Label Correction <===//
             if (option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
 
             //===> Create Component <===//
-            <div className={`mb-5 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
-                <OptionControl name={`options:${option}`} checked={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
+            return <div className={`mb-5 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
+                <OptionControl name={`${group}:${option}`} checked={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
             </div>;
         };
 
@@ -152,13 +181,13 @@ export default class TemplateOptions extends Component {
                 let element;
 
                 //===> Create Post Types Select <===//
-                if (option_meta.type === "post-type") element = post_types_control(option, option_meta);
+                if (option_meta.type === "post-type") element = post_types_control(option, option_meta, 'options');
 
                 //===> Create Taxonomies Select <===//
-                if (option_meta.type === "taxonomies") element = post_taxonomies_control(option, option_meta);
+                if (option_meta.type === "taxonomies") element = post_taxonomies_control(option, option_meta, 'options');
 
                 //===> Create Switch Button <===//
-                if(option_meta.type === "boolean") element = switch_control(option, option_meta);
+                if(option_meta.type === "boolean") element = switch_control(option, option_meta, 'options');
 
                 //====> Group of Options <====//
                 if (option_meta.type === "options") {
@@ -168,19 +197,19 @@ export default class TemplateOptions extends Component {
                     //===> Create Sub-Options <===//
                     Object.entries(option_meta.value).forEach(([sub_option, sub_option_meta]) => {
                         //====> for the Status Controller and any Switch Button <====//
-                        if (sub_option === 'status') sub_options.push(switch_control(sub_option, sub_option_meta));
+                        if (sub_option === 'status') sub_options.push(switch_control(sub_option, sub_option_meta, `options:${option}`));
 
                         //====> for the Others Controllers <====//
                         if (options?.hasOwnProperty(`${option}`) && options[`${option}`].hasOwnProperty('status')) {
                             if (options[`${option}`].status === true) {
                                 //===> Create Post Types Select <===//
-                                if (sub_option_meta.type === "post-type") sub_options.push(post_types_control(sub_option, sub_option_meta));
+                                if (sub_option_meta.type === "post-type") sub_options.push(post_types_control(sub_option, sub_option_meta, `options:${option}`));
 
                                 //===> Create Taxonomies Select <===//
-                                if (sub_option_meta.type === "taxonomies") sub_options.push(post_taxonomies_control(sub_option, sub_option_meta));
+                                if (sub_option_meta.type === "taxonomies") sub_options.push(post_taxonomies_control(sub_option, sub_option_meta, `options:${option}`));
 
-                                //===> Create Switch Buttons Select <===//
-                                if (sub_option_meta.type === "boolean") sub_options.push(switch_control(sub_option, sub_option_meta));
+                                //===> Create Switch Buttons <===//
+                                if (sub_option_meta.type === "boolean" && sub_option !== 'status') sub_options.push(switch_control(sub_option, sub_option_meta, `options:${option}`));
                             }
                         }
                     });

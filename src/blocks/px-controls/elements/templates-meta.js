@@ -100,13 +100,19 @@ export default class TemplateOptions extends Component {
                     if (index === 1 && !level_1?.hasOwnProperty(`${option}`)) {
                         current[`${main_group}`] = {};
                         current[`${main_group}`][`${option}`] = value;
-                    } else if (index === 2 && !level_2?.hasOwnProperty(`${option}`)) {
+                    }
+                    //====> Level 2 Options Object <====//
+                    else if (index === 2 && !level_2?.hasOwnProperty(`${option}`)) {
                         current[`${main_group}`][`${options_trail[1]}`] = {};
                         current[`${main_group}`][`${options_trail[1]}`][`${option}`] = value;
-                    } else if (index === 3 && !level_3?.hasOwnProperty(`${option}`)) {
+                    }
+                    //====> Level 3 Options Object <====//
+                    else if (index === 3 && !level_3?.hasOwnProperty(`${option}`)) {
                         current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`] = {};
                         current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${option}`] = value;
-                    } else if (index === 4 && !level_4?.hasOwnProperty(`${option}`)) {
+                    }
+                    //====> Level 4 Options Object <====//
+                    else if (index === 4 && !level_4?.hasOwnProperty(`${option}`)) {
                         current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`] = {};
                         current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`][`${option}`] = value;
                     }

@@ -115,22 +115,21 @@ export default class TemplateOptions extends Component {
             };
 
             //===> Set Data <===//
-            console.log(current, value);
             return onChange({...current});
         };
 
-        //===> Post-Type Controls <===//
+        //===> Taxonomies Controls <===//
         const post_types_control = (option, option_meta, group) => {
             //===> Create Post Types Select <===//
             if (this.state.post_types.length > 0) {
                 //===> Form Control <===//
-                return <div key={option} className={`mb-10 col-${option_meta.size ? option_meta.size : '12'}`}>
+                return <div key={option} className={`mb-15 col-${option_meta.size ? option_meta.size : '12'}`}>
                     {/*===> Control Label <===*/}
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
                         <select name={`${group}:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
-                            {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)};
+                            {this.state.post_types.map(post_type => <option key={post_type.value} value={post_type.value}>{post_type.label}</option>)}
                         </select>
                     </div>
                 </div>;
@@ -146,13 +145,13 @@ export default class TemplateOptions extends Component {
             //===> Create Post Types Select <===//
             if (this.state.taxonomies.length > 0) {
                 //===> Form Control <===//
-                return <div key={option} className={`mb-10 col-${option_meta.size ? option_meta.size : '12'}`}>
+                return <div key={option} className={`mb-15 col-${option_meta.size ? option_meta.size : '12'}`}>
                     {/*===> Control Label <===*/}
                     <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
                     {/*===> Control Element <===*/}
                     <div className='px-select'>
                         <select name={`${group}:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
-                            {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)};
+                            {this.state.taxonomies.map(taxonomy => <option key={taxonomy.value} value={taxonomy.value}>{taxonomy.label}</option>)}
                         </select>
                     </div>
                 </div>;
@@ -163,14 +162,29 @@ export default class TemplateOptions extends Component {
             }
         };
 
+        //===> Array Controls <===//
+        const post_array_control = (option, option_meta, group) => {
+            //===> Form Control <===//
+            return <div key={option} className={`mb-15 col-${option_meta.size ? option_meta.size : '12'}`}>
+                {/*===> Control Label <===*/}
+                <label className='mb-5 tx-capitalize'>{option.replace('-', ' ')}</label>
+                {/*===> Control Element <===*/}
+                <div className='px-select'>
+                    <select name={`${group}:${option}`} data-search="1" defaultValue={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : ""} multiple={option_meta.multiple ? option_meta.multiple : false} onChange={event => set_value(event.target)} className='px-select pds-tm-control form-control small radius-md'>
+                        {option_meta.value.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}
+                    </select>
+                </div>
+            </div>;
+        };
+
         //===> Switch Buttons <===//
         const switch_control = (option, option_meta, group) => {
             let label = option.replace('-', ' ').toUpperCase();
             //===> Label Correction <===//
-            if (option === 'status') label = `${__('Enable','phenix')} ${option.replace('-', ' ')}`;
+            if (option === 'status') label = `${__('Enable','phenix')} ${group.replace('-', ' ').replace('options:','')}`;
 
             //===> Create Component <===//
-            return <div className={`mb-5 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
+            return <div className={`mb-10 col-${option_meta.size ? option_meta.size : 12}`} key={`${option}`}>
                 <OptionControl name={`${group}:${option}`} checked={options?.hasOwnProperty(`${option}`) ? options[`${option}`] : option_meta.value} onChange={set_value} type='switch-checkbox' className='small me-5 tx-capitalize'>{label}</OptionControl>
             </div>;
         };
@@ -190,6 +204,9 @@ export default class TemplateOptions extends Component {
 
                 //===> Create Switch Button <===//
                 if(option_meta.type === "boolean") element = switch_control(option, option_meta, 'options');
+
+                //===> Create Array Controls <===//
+                if(option_meta.type === "select") element = post_array_control(option, option_meta, 'options');
 
                 //====> Group of Options <====//
                 if (option_meta.type === "options") {
@@ -212,6 +229,9 @@ export default class TemplateOptions extends Component {
 
                                 //===> Create Switch Buttons <===//
                                 if (sub_option_meta.type === "boolean" && sub_option !== 'status') sub_options.push(switch_control(sub_option, sub_option_meta, `options:${option}`));
+                                
+                                //===> Create Array Controls <===//
+                                if (sub_option_meta.type === "select") sub_options.push(post_array_control(sub_option, sub_option_meta, `options:${option}`));
                             }
                         }
                     });

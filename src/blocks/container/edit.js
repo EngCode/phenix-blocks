@@ -83,6 +83,25 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ typography : {...typography} });
     };
 
+    const font_sizes = [
+        {"label": 'Default', "value": '' },
+        {"label": "12px", "value": "fs-12" },
+        {"label": "13px", "value": "fs-13" },
+        {"label": "14px", "value": "fs-14" },
+        {"label": "15px", "value": "fs-15" },
+        {"label": "16px", "value": "fs-16" },
+        {"label": "17px", "value": "fs-17" },
+        {"label": "18px", "value": "fs-18" },
+        {"label": "19px", "value": "fs-19" },
+        {"label": "20px", "value": "fs-20" },
+        {"label": "22px", "value": "fs-22" },
+        {"label": "24px", "value": "fs-24" },
+        {"label": "25px", "value": "fs-25" },
+        {"label": "26px", "value": "fs-26" },
+        {"label": "28px", "value": "fs-28" },
+        {"label": "30px", "value": "fs-30" },
+    ];
+
     //==> Weight <==//
     const set_typography_weight = value => {
         //==> Get Current <==//
@@ -241,24 +260,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={[
-                            { label: 'Default',   value: '' },
-                            { label: '12px',   value: 'fs-12' },
-                            { label: '13px',   value: 'fs-13' },
-                            { label: '14px',   value: 'fs-14' },
-                            { label: '15px',   value: 'fs-15' },
-                            { label: '16px',   value: 'fs-16' },
-                            { label: '17px',   value: 'fs-17' },
-                            { label: '18px',   value: 'fs-18' },
-                            { label: '19px',   value: 'fs-19' },
-                            { label: '20px',   value: 'fs-20' },
-                            { label: '22px',   value: 'fs-22' },
-                            { label: '24px',   value: 'fs-24' },
-                            { label: '25px',   value: 'fs-25' },
-                            { label: '26px',   value: 'fs-26' },
-                            { label: '28px',   value: 'fs-28' },
-                            { label: '30px',   value: 'fs-30' },
-                        ]}/>
+                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={font_sizes} />
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>

@@ -133,7 +133,7 @@ export default class TemplateOptions extends Component {
         };
 
         //===> Create the Template Meta Data <===//
-        if (meta) {
+        if (meta && meta.length > 0) {
             //===> Loop Through Template Options <===//
             Object.entries(meta['options']).forEach(([option, option_meta]) => {
                 //===> Define Element <===//
@@ -158,7 +158,7 @@ export default class TemplateOptions extends Component {
                     //===> Create Sub-Options <===//
                     Object.entries(option_meta.value).forEach(([sub_option, sub_option_meta]) => {
                         //====> for the Status Controller and any Switch Button <====//
-                        if (sub_option === 'status' || options[`${option}-status`] === true) {
+                        if (sub_option === 'status' || options[`${option}-status`]) {
                             //===> Create Switch Button <===//
                             if(sub_option_meta.type === "boolean") {
                                 //===> Label Correction <===//
@@ -172,7 +172,7 @@ export default class TemplateOptions extends Component {
                             }
                         }
                         //====> for the Others Controllers <====//
-                        if (options[`${option}-status`] === true) {
+                        if (options[`${option}-status`]) {
                             //===> Create Post Types Select <===//
                             if (sub_option_meta.type === "post-type") sub_options.push(post_types_control(sub_option, sub_option_meta));
                             //===> Create Taxonomies Select <===//
@@ -185,7 +185,6 @@ export default class TemplateOptions extends Component {
                         <div className='row gpx-10'>{sub_options}</div>
                     </div>;
                 }
-
 
                 //===> Add the Element <===//
                 if (element) controls.push(element);

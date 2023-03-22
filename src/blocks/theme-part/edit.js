@@ -34,10 +34,7 @@ export default function Edit(props) {
     });
 
     //===> Set Attributes <===//
-    const set_part_name = changed => {
-        console.log(changed);
-        // setAttributes({ part_name: target.value });
-    };
+    const set_part_name = changed => setAttributes({ part_name: changed.target.value });
 
     //===> Set Template Option <===//
     const set_template_option = value => setAttributes({ part_options: {...value} });

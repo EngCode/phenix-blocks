@@ -73,53 +73,49 @@ export default class TemplateOptions extends Component {
         //===> Set Value <===//
         const set_value = (control) => {
             //===> Get Current Value <===//
-            let current = {"options": options, "features": features},
+            let current = {"options": options || {}, "features": features || {}},
                 options_trail = control.name.split(':'),
                 trail_length = options_trail.length,
-                main_group = options_trail[0];
+                zero = options_trail[0];
 
-            //===> Get the Control Value <===//            
-            let value = control.value;
+            //===> Define the Value <===//            
+            let value;
+            //===> Check for Array <===//
+            if (control.tagName === "SELECT" && control.getAttribute('multiple') !== null) {
+                //===> Get Multiple Value <===//
+                let values = Phenix(control).ancestor('.px-select').getAttribute('data-value').split(','),
+                    array_val = [];
+                //===> Get Current Values <===//
+                values.forEach(val => val !== "" ? array_val.push(val) : null);
+                //===> Set Array Value <===//
+                value = array_val;
+            }
             //===> for Check-Boxes <===//
-            if (control.getAttribute('type') === 'checkbox' || control.getAttribute('type') === 'radio') value = control.checked;
+            else if (control.getAttribute('type') === 'checkbox' || control.getAttribute('type') === 'radio') { value = control.checked; }
+            //===> Get Normal Value <===//
+            else { value = control.value; }
 
-            //===> Loop on the Options Trail <===//
-            options_trail.forEach((option, index) => {
-                //===> if its Main Group Pass it <===//
-                if (option === main_group) return;
+            //===> set the Value for Level 01 Options <===//
+            if (trail_length === 2) current[`${zero}`][`${options_trail[1]}`] = value;
 
-                //===> if its a Child of the Main Group Create a Key for it <===//
-                else if (trail_length > 2) {
-                    //====> Define Levels Objects <====//
-                    let level_1 = current[`${main_group}`],
-                        level_2 = level_1 ? level_1[`${option}`] : null,
-                        level_3 = level_2 ? level_2[`${option}`] : null,
-                        level_4 = level_3 ? level_3[`${option}`] : null;
+            //===> Manual Loop on the Options Trail <===//
+            else if (trail_length === 3) {
+                //====> Create Options Object <====//
+                if (!current[`${zero}`][`${options_trail[1]}`]) current[`${zero}`][`${options_trail[1]}`] = {};
+                //===> Set the Value <===//
+                current[`${zero}`][`${options_trail[1]}`][`${options_trail[2]}`] = value;
+            }
+            //===> Manual Loop on the Options Trail <===//
+            else if (trail_length === 4) {
+                //====> Create Options Object <====//
+                if (!current[`${zero}`][`${options_trail[1]}`]) current[`${zero}`][`${options_trail[1]}`] = {};
+                if (!current[`${zero}`][`${options_trail[1]}`][`${options_trail[2]}`]) current[`${zero}`][`${options_trail[1]}`][`${options_trail[2]}`] = {};
+                //===> Set the Value <===//
+                current[`${zero}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`] = value;
+            };
 
-                    //====> Fucked-Up Logic until we Can think of a Better Way <====//
-                    if (index === 1 && !level_1?.hasOwnProperty(`${option}`)) {
-                        current[`${main_group}`] = {};
-                        current[`${main_group}`][`${option}`] = value;
-                    }
-                    //====> Level 2 Options Object <====//
-                    else if (index === 2 && !level_2?.hasOwnProperty(`${option}`)) {
-                        current[`${main_group}`][`${options_trail[1]}`] = {};
-                        current[`${main_group}`][`${options_trail[1]}`][`${option}`] = value;
-                    }
-                    //====> Level 3 Options Object <====//
-                    else if (index === 3 && !level_3?.hasOwnProperty(`${option}`)) {
-                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`] = {};
-                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${option}`] = value;
-                    }
-                    //====> Level 4 Options Object <====//
-                    else if (index === 4 && !level_4?.hasOwnProperty(`${option}`)) {
-                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`] = {};
-                        current[`${main_group}`][`${options_trail[1]}`][`${options_trail[2]}`][`${options_trail[3]}`][`${option}`] = value;
-                    }
-                }
-            });
-            
             //===> Set Data <===//
+            console.log(current, value);
             return onChange({...current});
         };
 

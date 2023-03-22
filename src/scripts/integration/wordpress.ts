@@ -118,7 +118,7 @@ Phenix(document).ready(ready => {
             spamInput = `<input name="px-protection" title="px-prot" style="left:100%; opacity: 0; visibility: hidden; z-index: -1" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
 
         //===> Create Spam Inputs <===//
-        FormsSubmit.forEach(button => Phenix(button).insert('after', spamInput));
+        FormsSubmit.forEach(button => Phenix(button).insert('before', spamInput));
 
         //===> Add Spam Protection Filter <===//
         Phenix('form[action] [type="submit"]').on('click', isClicked => {

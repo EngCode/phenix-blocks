@@ -26,7 +26,7 @@ export default class OptionControl extends Component {
         };
 
         //===> Define Data <===//
-        let options = `option-control flexbox align-center-y`,
+        let options = `fs-12 option-control flexbox align-center-y`,
             attributes = {onChange: setValue};
 
         //===> Custom Classes <===//

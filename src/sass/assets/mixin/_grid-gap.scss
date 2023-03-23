@@ -11,7 +11,7 @@
     //====> Vertical Space <====//
     @if ($flow == 'y' or $flow == 'both') {
         /*==== Columns ====*/
-        > .col, > [class*="col-"], &[class*="row-cols"] > * { @include margin_block(#{$size}, 'end'); }
+        > *, > [class*="col-"], &[class*="row-cols"] > * { @include margin_block(#{$size}, 'end'); }
         /*==== Overflow Fix ====*/
         &.gpy-fix { @include margin_block(-#{$size}, 'end'); }
     }

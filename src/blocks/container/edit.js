@@ -367,6 +367,18 @@ export default function Edit({ attributes, setAttributes }) {
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+                {attributes.style.background?.type === "image" ? 
+                    <div className='mb-15 row gpx-15' style={{marginTop: -10}}>
+                        {/*===> Column <===*/}
+                        <div className='col-6'>
+                            <OptionControl name={`overlay`} value="overlay-dark" checked={attributes.style.overly || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlays", "phenix")}</OptionControl>
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-6'>
+                            <OptionControl name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Parallax BG", "phenix")}</OptionControl>
+                        </div>
+                    </div>
+                : null }
 
                 {/*===> Flexbox Properties <===*/}
                 {attributes.isFlexbox ?
@@ -398,12 +410,12 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Additional Styles <===*/}
                 <div className='row gpx-15 divider-t pdt-10'>
                     {/*===> Column <===*/}
-                    <div className='col-12 mb-15'>
-                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} />
+                    <div className='col-12 mb-5'>
+                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} />
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-12 mb-15'>
-                        <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlapped ?", "phenix")}</OptionControl>
+                    <div className='col-6'>
+                        <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlapped", "phenix")}</OptionControl>
                     </div>
                 </div>
             </PanelBody>

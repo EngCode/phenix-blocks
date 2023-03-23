@@ -89,6 +89,7 @@
 
     /*==== Gutters Vertical ====*/
     .gpy#{$infix}-0  {@include grid_gap(0, 'y')}
+    .gpy#{$infix}-5 {@include grid_gap(REM(5), 'y')}
     .gpy#{$infix}-10 {@include grid_gap(REM(10), 'y')}
     .gpy#{$infix}-15 {@include grid_gap(REM(15), 'y')}
     .gpy#{$infix}-20 {@include grid_gap(REM(20), 'y')}

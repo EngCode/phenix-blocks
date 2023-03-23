@@ -45,7 +45,7 @@ export default class FlexAlignment extends Component {
         return (<div className='components-flex-item flex-alignment-btns'>
             {/*===> Label <===*/}
             <div className={"flexbox align-between mb-5 align-center-y"}>
-                <label className='components-input-control__label components-flex-item weight-bold'>{label}</label>
+                <label className='fs-13 weight-bold'>{label}</label>
                 <button type="button" data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square far fa-redo' onClick={reset_align}></button>
             </div>
             {/*===> Counter Control <===*/}

@@ -61,7 +61,7 @@ export default class PhenixSelect extends Component {
         //===> Render Component <===//
         return <>
             {/*===> Control Label <===*/}
-            <label className='mb-5 tx-capitalize fs-12'>{`${label}`}</label>
+            <label className='mb-10 tx-capitalize fs-13'>{`${label}`}</label>
 
             {/*===> Control Element <===*/}
             <div className='px-select'>

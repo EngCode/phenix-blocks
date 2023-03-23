@@ -106,7 +106,7 @@ export default class PhenixColors extends Component {
         return (
             <div className={`px-gb-component${isSmall ? "":" position-rv "}${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
-                {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
+                {label ? <label className='mb-10 tx-UpperCase fs-13'>{label}</label> : null}
                 {/*===> Trigger <===*/}
                 <button onClick={showPanel} className={`options-toggle form-control small flexbox align-between align-center-y radius-md tx-align-start border-alpha-25 mb-5`} type="button">
                     <span className={`me-5 radius-circle inline-block ${value?.length > 0 ? value.replace("color-","bg-") : "bg-inherit"}`} style={{"width": "20px", "height": "20px"}}></span>

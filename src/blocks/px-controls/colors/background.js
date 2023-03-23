@@ -209,7 +209,7 @@ export default class PhenixBackground extends Component {
         return (
             <div className={`px-gb-component${isSmall ? "":" position-rv "}${label ? "mb-15" : ""}`}>
                 {/*===> Toggle Button <===*/}
-                {label ? <label className='mb-10 tx-UpperCase'>{label}</label> : null}
+                {label ? <label className='mb-10 tx-UpperCase fs-13'>{label}</label> : null}
                 {/*===> Group <===*/}
                 <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
                     {/*===> Panel Trigger */}

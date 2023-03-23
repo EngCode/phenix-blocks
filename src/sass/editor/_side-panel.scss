@@ -174,9 +174,9 @@ body[class*="block-editor"], body[class*="site-editor"] {
 
 	/*==== field label ====*/
 	.components-base-control__label, .components-input-control__label, label {
-		font-size: 12px!important;
 		font-weight: 500!important;
 		font-family: var(--secondary-font)!important;
+		&:not([class*="fs-"]) {font-size: 12px!important;}
 	}
 
 	/*==== Fix ToggleControl ====*/

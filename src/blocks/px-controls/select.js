@@ -34,16 +34,38 @@ export default class PhenixSelect extends Component {
         if (multiple) attributes.multiple = multiple;
         if (placeholder) attributes['data-placeholder'] = placeholder;
 
+        //===> Get Options List <===//
+        let options_list = [];
+
+        if (Array.isArray(options)) {
+            //===> Normal Lost of Options <===//
+            options.forEach(item => {
+                options_list.push(<option key={item.value} value={item.value}>{`${item.label}`}</option>);
+            });
+        } else {
+            //===> Grouped Options <===//
+            Object.entries(options).forEach(([key, options]) => {
+                //===> Define the Options List <===//
+                let group_list = [];
+                //===> Add Options to the Group <===//
+                options.forEach(item => {
+                    group_list.push(<option key={item.value} value={item.value}>{`${item.label}`}</option>);
+                });
+                //===> Create the Group <===//
+                let options_group = <optgroup key={`${key}-group`} label={`${key}`}>{group_list}</optgroup>;
+                //===> Add the Group <===//
+                options_list.push(options_group);
+            });
+        }
+
         //===> Render Component <===//
         return <>
             {/*===> Control Label <===*/}
-            <label className='mb-5 tx-capitalize'>{`${label}`}</label>
+            <label className='mb-5 tx-capitalize fs-12'>{`${label}`}</label>
 
             {/*===> Control Element <===*/}
             <div className='px-select'>
-                <select name={name} className={`px-select pds-tm-control form-control ${size ? size : "small"} radius-md`} {...attributes}>
-                    {options.map(item => <option key={item.value} value={item.value}>{`${item.label}`}</option>)}
-                </select>
+                <select name={name} className={`px-select pds-tm-control form-control ${size ? size : "small"} radius-md`} {...attributes}>{options_list}</select>
             </div>
         </>
     }

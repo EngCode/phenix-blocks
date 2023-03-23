@@ -27,20 +27,42 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set ID <===//
     const set_id = id => setAttributes({ id });
 
+    //===> Value Handler <===//
+    const valueHandler = (target) => {
+        //===> Define Array Type <===//
+        let single_val,
+            array_val = [],
+            type = target.getAttribute('type') || target.tagName;
+
+        //==> Add the Value <==//
+        if (type === 'checkbox' || type === 'radio') {
+            if (target.value === 'boolean') { single_val = target.checked; }
+            else { single_val = target.checked ? target.value : ""; }
+        }
+
+        else if (type === "SELECT" && target.hasAttribute('multiple')) {
+            //===> Get Multiple Value <===//
+            let values = target.parentNode.getAttribute('data-value').split(',');
+            //===> Get Current Values <===//
+            values.forEach(val => val !== "" ? array_val.push(val) : null);
+            //===> Set Array Value <===//
+            single_val = array_val;
+        }
+
+        else { single_val = target.value; }
+
+        //===> Return Value <===//
+        if(single_val) return single_val;
+    };
+
     //==> Set Normal Values Method <==//
     const set_normal_value = target => {
         //==> Get Current <==//
         let name = target.getAttribute('name'),
-            type = target.getAttribute('type') || tagName,
             attr = attributes;
 
         //==> Add the Value <==//
-        if (type === 'checkbox' || 'radio') {
-            if (target.value === 'boolean') { attr[`${name}`] = target.checked; } 
-            else { attr[`${name}`] = target.checked ? target.value : ""; }
-        } else {
-            attr[`${name}`] = target.value;
-        }
+        attr[`${name}`] = valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ ...attr });
@@ -50,16 +72,10 @@ export default function Edit({ attributes, setAttributes }) {
     const set_flexbox = target => {
         //==> Get Current <==//
         let name = target.getAttribute('name').replace('fx-', ''),
-            type = target.getAttribute('type') || tagName,
             flexbox = attributes.flexbox;
 
         //==> Add the Value <==//
-        if (type === 'checkbox' || 'radio') {
-            if (target.value === 'boolean') { flexbox[`${name}`] = target.checked; }
-            else { flexbox[`${name}`] = target.checked ? target.value : ""; }
-        } else {
-            flexbox[`${name}`] = target.value;
-        }
+        flexbox[`${name}`] = valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -79,16 +95,10 @@ export default function Edit({ attributes, setAttributes }) {
     const set_typography = target => {
         //==> Get Current <==//
         let name = target.getAttribute('name'),
-            type = target.getAttribute('type') || tagName,
             typography = attributes.typography;
 
         //==> Add the Value <==//
-        if (type === 'checkbox' || 'radio') {
-            if (target.value === 'boolean') { typography[`${name}`] = target.checked; }
-            else { typography[`${name}`] = target.checked ? target.value : ""; }
-        } else {
-            typography[`${name}`] = target.value;
-        }
+        typography[`${name}`] = valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -98,17 +108,11 @@ export default function Edit({ attributes, setAttributes }) {
     const set_style = target => {
         //==> Get Current <==//
         let name = target.getAttribute('name'),
-            type = target.getAttribute('type') || tagName,
             style = attributes.style;
 
-        //==> add the Value <==//
-        if (type === 'checkbox' || 'radio') {
-            if (target.value === 'boolean') { style[`${name}`] = target.checked; }
-            else { style[`${name}`] = target.checked ? target.value : ""; }
-        } else {
-            style[`${name}`] = target.value;
-        }
-        
+        //==> Add the Value <==//
+        style[`${name}`] = valueHandler(target);
+
         //==> Set Value <==//
         setAttributes({ style : {...style} });
     };
@@ -173,14 +177,41 @@ export default function Edit({ attributes, setAttributes }) {
         { "label": "Footer", "value": "footer"},
     ];
 
-    const display_options = [
-        { "label": "Flex", "value": "display-flex"},
-        { "label": "Grid", "value": "display-grid"},
-        { "label": "Block", "value": "display-block"},
-        { "label": "Inline-Block", "value": "inline-block"},
-        { "label": "Hidden", "value": "hidden"},
-        { "label": "Flexbox", "value": "flexbox"},
-    ];
+    const display_options = {
+        "Mobile Screens" : [
+            { "label": "Flex", "value": "display-flex"},
+            { "label": "Grid", "value": "display-grid"},
+            { "label": "Block", "value": "display-block"},
+            { "label": "Inline-Block", "value": "inline-block"},
+            { "label": "Hidden", "value": "hidden"},
+            { "label": "Hide SM Down", "value": "hidden-sm-down"},
+            { "label": "Flexbox", "value": "flexbox"},
+        ],
+        "Tablet Screens" : [
+            { "label": "Flex MD", "value": "display-md-flex"},
+            { "label": "Grid MD", "value": "display-md-grid"},
+            { "label": "Block MD", "value": "display-md-block"},
+            { "label": "Inline-Block MD", "value": "inline-block-md"},
+            { "label": "Hide MD Up", "value": "hidden-md-up"},
+            { "label": "Hide MD Down", "value": "hidden-md-down"},
+        ],
+        "Laptop Screens" : [
+            { "label": "Flex LG", "value": "display-lg-flex"},
+            { "label": "Grid LG", "value": "display-lg-grid"},
+            { "label": "Block LG", "value": "display-lg-block"},
+            { "label": "Inline-Block LG", "value": "inline-block-lg"},
+            { "label": "Hide LG Up", "value": "hidden-lg-up"},
+            { "label": "Hide LG Down", "value": "hidden-lg-down"},
+        ],
+        "Desktop Screens" : [
+            { "label": "Flex XL", "value": "display-xl-flex"},
+            { "label": "Grid XL", "value": "display-xl-grid"},
+            { "label": "Block XL", "value": "display-xl-block"},
+            { "label": "Inline-Block XG", "value": "inline-block-xl"},
+            { "label": "Hide XL Up", "value": "hidden-xl-up"},
+            { "label": "Hide XL Down", "value": "hidden-xl-down"},
+        ],
+    };
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -210,8 +241,9 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps;
 
     //===> Container Options <===//
+    console.log('Attribute :', `${attributes.style.display?.toString().replace(',', ' ')}`);
     if (attributes.size) container.className += ` ${attributes.size}`;
-    if (attributes.style.display) container.className += ` ${attributes.style.display}`;
+    if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
     if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
@@ -366,8 +398,8 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Additional Styles <===*/}
                 <div className='row gpx-15 divider-t pdt-10'>
                     {/*===> Column <===*/}
-                    <div className='col-6 mb-15'>
-                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} />
+                    <div className='col-12 mb-15'>
+                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-15'>

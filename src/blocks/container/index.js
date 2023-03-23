@@ -38,8 +38,12 @@ registerBlockType(metadata, {
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
         if (attributes.size) container += attributes.size;
-        if (attributes.style.display) container += ` ${attributes.style.display}`;
-        if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
+
+        //===> Style Properties <===//
+        if (attributes.style) {
+            if (attributes.style.display) container += ` ${attributes.style.display.toString().replace(',', ' ')}`;
+            if (attributes.style.overlapped) container += ` ${attributes.style.overlapped}`;
+        }
 
         //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {

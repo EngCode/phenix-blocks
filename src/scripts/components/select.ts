@@ -86,6 +86,44 @@ PhenixElements.prototype.select = function (options?:{
                 new_select = select_component[0],
                 options_list = select_component[1];
 
+            //====> Create Custom Events <====//
+            const opened = new CustomEvent('opened', {
+                //===> Fired when options list is opened
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when select value is changed
+            change = new CustomEvent('change', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when select value is changed
+            update = new CustomEvent('update', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when typing in options search
+            typing = new CustomEvent('typing', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when focused on options search
+            focus  = new CustomEvent('focus',  {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            }), 
+            //===> Fired when options list is closed
+            closed = new CustomEvent('closed', {
+                detail: events_data,
+                bubbles: true,
+                cancelable: false
+            });
+
             //====> Create Options List <====//
             select.querySelectorAll(':scope > *').forEach(option => {
                 //====> Get Option Data <====//
@@ -162,15 +200,25 @@ PhenixElements.prototype.select = function (options?:{
 
                         //===> Remove from Values <===//
                         select_values.forEach((val, index) => {
-                            if(val === tag_value) select_values = select_values.splice(index-1, 1);
+                            if(val === tag_value) {
+                                if (select_values.length === 1) {
+                                    select_values = "";
+                                } else {
+                                    select_values = select_values.splice(index-1, 1);
+                                }
+                            }
                         });
 
-                        //====> Set Default Values <====//
+                        //====> Set Values <====//
                         new_select[0].setAttribute('data-value', select_values);
                         select.value = select_values;
 
                         //====> Unselect Original Options <====//
                         select.querySelector(`[value="${tag_value}"]`)?.removeAttribute('selected');
+                        
+                        //===> Fire Events <===//
+                        new_select[0].dispatchEvent(change);
+                        select.dispatchEvent(change);
                     });
                 },
                 //====> Tag Remover Handler <====//
@@ -339,44 +387,6 @@ PhenixElements.prototype.select = function (options?:{
                 search  : new_select[0].querySelector('.px-select-search'),
                 value   : new_select[0].getAttribute('data-value'),
             };
-
-            //====> Create Custom Events <====//
-            //===> Fired when options list is opened
-            const opened = new CustomEvent('opened', {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }), 
-            //===> Fired when select value is changed
-            change = new CustomEvent('change', {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }), 
-            //===> Fired when select value is changed
-            update = new CustomEvent('update', {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }), 
-            //===> Fired when typing in options search
-            typing = new CustomEvent('typing', {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }), 
-            //===> Fired when focused on options search
-            focus  = new CustomEvent('focus',  {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }), 
-            //===> Fired when options list is closed
-                closed = new CustomEvent('closed', {
-                detail: events_data,
-                bubbles: true,
-                cancelable: false
-            }); 
 
             //====> Show Options <====//
             new_select[0].querySelector('.px-select-toggle')?.addEventListener('click', clicked => {

@@ -67,7 +67,7 @@
 			margin-bottom: 10px;
 			line-height: var(--line-height);
 			&:first-child {padding-top: 30px;}
-			&:last-child  {padding-bottom: 70px;}
+			&:last-child  {padding-bottom: 30px;}
 		}
 	}
 
@@ -87,7 +87,7 @@ body.block-editor-page {
 	/*==== Post Editor ====*/
 	.wp-block-post-content {
 		padding-top: 30px;
-		padding-bottom: 30px;
+		padding-bottom: 50px;
 		> *:not(.alignfull):not([class*="reusable-block-container"]) {
 			margin-left: auto;
 			margin-right: auto;

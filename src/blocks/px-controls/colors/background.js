@@ -115,7 +115,7 @@ export default class PhenixBackground extends Component {
         let options = {
             type: type,
             rotate: rotate,
-            value: value
+            value: value || "",
         };
 
         //===> Set Type <===//
@@ -215,8 +215,8 @@ export default class PhenixBackground extends Component {
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`w-max-150 fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
                         {type !== "image" ? <>
-                            <span className={`me-5 radius-circle inline-block ${value.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
-                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value.length > 0 ? value.replaceAll("-", " ").replace("bg","") : placeholder ? placeholder : "Default"}</span>
+                            <span className={`me-5 radius-circle inline-block ${value?.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
+                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value?.length > 0 ? value.replaceAll("-", " ").replace("bg","") : placeholder ? placeholder : "Default"}</span>
                         </> : <>
                         <span className={`me-5 radius-circle inline-block`} style={{"width": "22px", "height": "22px", "backgroundImage": `url(${value})`, "backgroundSize": "cover", "backgroundPosition": "center"}}></span>
                             <span className='col tx-nowrap pde-5'>{placeholder ? placeholder : __("Replace", "phenix")}</span>

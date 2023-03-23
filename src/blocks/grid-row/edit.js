@@ -18,7 +18,7 @@ import {
 import OptionControl from '../px-controls/switch';
 import FlexAlignment from '../px-controls/alignment';
 import PhenixNumber from "../px-controls/number";
-import ScreensTabs from "../px-controls/elements/tabs";
+import ScreensTabs from "../px-controls/tabs";
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

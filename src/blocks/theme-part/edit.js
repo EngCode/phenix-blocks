@@ -18,7 +18,7 @@ import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Components <====//
-import TemplateOptions from '../px-controls/elements/templates-meta';
+import TemplateOptions from '../px-controls/templates-meta';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//

@@ -60,10 +60,6 @@
     "responsive": {
       "type": "object",
       "default": {}
-    },
-    "isHidden": {
-      "type": "boolean",
-      "default": false
     }
   },
   "example": {

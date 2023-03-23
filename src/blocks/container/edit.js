@@ -4,9 +4,7 @@ import { __ } from '@wordpress/i18n';
 import {
     PanelBody,
     TextControl,
-    SelectControl,
     ToggleControl,
-    DropdownMenu,
 } from '@wordpress/components';
 
 import {
@@ -19,22 +17,56 @@ import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
 import PhenixColor from '../px-controls/colors/text';
+import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import FlexAlignment from '../px-controls/alignment';
 import PhenixBackground from '../px-controls/colors/background';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    //===> Set Settings <===//
+    //===> Set ID <===//
     const set_id = id => setAttributes({ id });
-    const set_size = size => setAttributes({ size });
-    const set_tagName = tagName => setAttributes({ tagName });
-    const set_isSection = isSection => setAttributes({ isSection });
-    const set_isFlexbox = isFlexbox => setAttributes({ isFlexbox });
-    const set_isHidden  = isHidden => setAttributes({ isHidden });
 
-    //===> Flexbox Options <===//
-    const set_alignment = alignment => {
+    //==> Set Normal Values Method <==//
+    const set_normal_value = target => {
+        //==> Get Current <==//
+        let name = target.getAttribute('name'),
+            type = target.getAttribute('type') || tagName,
+            attr = attributes;
+
+        //==> Add the Value <==//
+        if (type === 'checkbox' || 'radio') {
+            if (target.value === 'boolean') { attr[`${name}`] = target.checked; } 
+            else { attr[`${name}`] = target.checked ? target.value : ""; }
+        } else {
+            attr[`${name}`] = target.value;
+        }
+
+        //==> Set Value <==//
+        setAttributes({ ...attr });
+    };
+
+    //==> Set Flexbox Method <==//
+    const set_flexbox = target => {
+        //==> Get Current <==//
+        let name = target.getAttribute('name').replace('fx-', ''),
+            type = target.getAttribute('type') || tagName,
+            flexbox = attributes.flexbox;
+
+        //==> Add the Value <==//
+        if (type === 'checkbox' || 'radio') {
+            if (target.value === 'boolean') { flexbox[`${name}`] = target.checked; }
+            else { flexbox[`${name}`] = target.checked ? target.value : ""; }
+        } else {
+            flexbox[`${name}`] = target.value;
+        }
+
+        //==> Set Value <==//
+        setAttributes({ flexbox : {...flexbox} });
+    };
+
+    //===> Flexbox Alignment <===//
+    const set_flex_align = alignment => {
         //==> Get Current <==//
         let flex_ops = attributes.flexbox;
 
@@ -43,86 +75,45 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ flexbox : {...flex_ops} });
     };
 
-    //==> Flow <==//
-    const set_flex_flow = target => {
+    //==> Set Typography Method <==//
+    const set_typography = target => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target.getAttribute('name'),
+            type = target.getAttribute('type') || tagName,
+            typography = attributes.typography;
+
+        //==> Add the Value <==//
+        if (type === 'checkbox' || 'radio') {
+            if (target.value === 'boolean') { typography[`${name}`] = target.checked; }
+            else { typography[`${name}`] = target.checked ? target.value : ""; }
+        } else {
+            typography[`${name}`] = target.value;
+        }
 
         //==> Set Value <==//
-        flex_ops.flow = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flex_ops}});
-    };
-
-    //==> No-Wrap <==//
-    const set_flex_nowrap = target => {
-        //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
-
-        //==> Set Value <==//
-        flex_ops.nowrap = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flex_ops}});
-    };
-
-    //==> Flow Columns <==//
-    const set_flex_stacked = target => {
-        //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
-
-        //==> Set Value <==//
-        flex_ops.stacked = target.checked ? target.value : "";        
-        setAttributes({flexbox : {...flex_ops}});
-    };
-
-    //===> Typography Options <===//
-    const set_typography_size = value => {
-        //==> Get Current <==//
-        let typography = attributes.typography;
-
-        //==> Set Value <==//
-        typography.size = value;
         setAttributes({ typography : {...typography} });
     };
 
-    const font_sizes = [
-        {"label": 'Default', "value": '' },
-        {"label": "12px", "value": "fs-12" },
-        {"label": "13px", "value": "fs-13" },
-        {"label": "14px", "value": "fs-14" },
-        {"label": "15px", "value": "fs-15" },
-        {"label": "16px", "value": "fs-16" },
-        {"label": "17px", "value": "fs-17" },
-        {"label": "18px", "value": "fs-18" },
-        {"label": "19px", "value": "fs-19" },
-        {"label": "20px", "value": "fs-20" },
-        {"label": "22px", "value": "fs-22" },
-        {"label": "24px", "value": "fs-24" },
-        {"label": "25px", "value": "fs-25" },
-        {"label": "26px", "value": "fs-26" },
-        {"label": "28px", "value": "fs-28" },
-        {"label": "30px", "value": "fs-30" },
-    ];
-
-    //==> Weight <==//
-    const set_typography_weight = value => {
+    //==> Set Style Method <==//
+    const set_style = target => {
         //==> Get Current <==//
-        let typography = attributes.typography;
+        let name = target.getAttribute('name'),
+            type = target.getAttribute('type') || tagName,
+            style = attributes.style;
 
+        //==> add the Value <==//
+        if (type === 'checkbox' || 'radio') {
+            if (target.value === 'boolean') { style[`${name}`] = target.checked; }
+            else { style[`${name}`] = target.checked ? target.value : ""; }
+        } else {
+            style[`${name}`] = target.value;
+        }
+        
         //==> Set Value <==//
-        typography.weight = value;
-        setAttributes({ typography : {...typography} });
+        setAttributes({ style : {...style} });
     };
 
-    //==> Align <==//
-    const set_typography_align = target => {
-        //==> Get Current <==//
-        let typography = attributes.typography;
-
-        //==> Set Value <==//
-        typography.align = target.checked ? target.value : "";
-        setAttributes({ typography : {...typography} });
-    };
-
-    //==> Color <==//
+    //==> Set Color Method <==//
     const set_color = value => {
         //==> Get Current <==//
         let typography = attributes.typography;
@@ -141,6 +132,55 @@ export default function Edit({ attributes, setAttributes }) {
         styles.background = background;
         setAttributes({ style : {...attributes.style} });
     };
+
+    //===> Typography Options <===//
+    const font_sizes = [
+        {"label": "12px", "value": "fs-12" },
+        {"label": "13px", "value": "fs-13" },
+        {"label": "14px", "value": "fs-14" },
+        {"label": "15px", "value": "fs-15" },
+        {"label": "16px", "value": "fs-16" },
+        {"label": "17px", "value": "fs-17" },
+        {"label": "18px", "value": "fs-18" },
+        {"label": "19px", "value": "fs-19" },
+        {"label": "20px", "value": "fs-20" },
+        {"label": "22px", "value": "fs-22" },
+        {"label": "24px", "value": "fs-24" },
+        {"label": "25px", "value": "fs-25" },
+        {"label": "26px", "value": "fs-26" },
+        {"label": "28px", "value": "fs-28" },
+        {"label": "30px", "value": "fs-30" },
+    ];
+
+    const font_weights = [
+        { "label": "Thin",  "value": "weight-thin"},
+        { "label": "Light",  "value": "weight-light"},
+        { "label": "Extra Light",  "value": "weight-xlight"},
+        { "label": "Normal",  "value": "weight-normal"},
+        { "label": "Medium",  "value": "weight-medium"},
+        { "label": "Semi-Bold",  "value": "weight-bold"},
+        { "label": "Bold",  "value": "weight-strong"},
+        { "label": "Heavy",  "value": "weight-xbold"},
+        { "label": "Black",  "value": "weight-black"}
+    ];
+
+    const html_tags = [
+        { "label": "Div", "value": "div"},
+        { "label": "Main", "value": "main"},
+        { "label": "Aside", "value": "aside"},
+        { "label": "Section", "value": "section"},
+        { "label": "Header", "value": "header"},
+        { "label": "Footer", "value": "footer"},
+    ];
+
+    const display_options = [
+        { "label": "Flex", "value": "display-flex"},
+        { "label": "Grid", "value": "display-grid"},
+        { "label": "Block", "value": "display-block"},
+        { "label": "Inline-Block", "value": "inline-block"},
+        { "label": "Hidden", "value": "hidden"},
+        { "label": "Flexbox", "value": "flexbox"},
+    ];
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -171,7 +211,8 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Container Options <===//
     if (attributes.size) container.className += ` ${attributes.size}`;
-    if (attributes.isHidden) container.className += ' hidden';
+    if (attributes.style.display) container.className += ` ${attributes.style.display}`;
+    if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
     //===> Flexbox Properties <===//
@@ -219,8 +260,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="container_size" label={__("Container Size", "phenix")} value={attributes.size} onChange={set_size} options={[
-                            { label: 'None',   value: '' },
+                        <PhenixSelect name="size" placeholder={__("None", "phenix")} label={__("Container Size", "phenix")} value={attributes.size} onChange={set_normal_value} options={[
                             { label: 'Small',  value: 'container-sm' },
                             { label: 'Medium', value: 'container-md' },
                             { label: 'Normal', value: 'container' },
@@ -230,26 +270,19 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="tagName" label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_tagName} options={[
-                            { label: '<div>',  value: 'div' },
-                            { label: '<main>',  value: 'main' },
-                            { label: '<aside>',  value: 'aside' },
-                            { label: '<section>',  value: 'section' },
-                            { label: '<header>', value: 'header' },
-                            { label: '<footer>', value: 'footer' },
-                        ]}/>
+                        <PhenixSelect name="tagName" placeholder={__("Default", "phenix")} label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_normal_value} options={html_tags} />
                     </div>
                     {/*=== isSection ===*/}
-                    <div className='col-6 mb-5'>
-                        <ToggleControl label={__("Wrapper ?", "phenix")} checked={attributes.isSection} onChange={set_isSection}/>
+                    <div className='col-6 mb-10'>
+                        <OptionControl name={`isSection`} value="boolean" checked={attributes.isSection} onChange={set_normal_value} type='switch-checkbox' className='small'>{__("Wrapper ?", "phenix")}</OptionControl>
                     </div>
                     {/*===  isFlexbox ===*/}
-                    <div className='col-6 mb-5'>
-                        <ToggleControl key="isFlexbox" label={__("Flexbox", "phenix")} checked={attributes.isFlexbox} onChange={set_isFlexbox}/>
+                    <div className='col-6 mb-10'>
+                        <OptionControl name={`isFlexbox`} value="boolean" checked={attributes.isFlexbox} onChange={set_normal_value} type='switch-checkbox' className='small'>{__("Flexbox", "phenix")}</OptionControl>
                     </div>
                     {/*=== Container ID ===*/}
                     <div className='col-12'>
-                        <TextControl key="container_id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id}/>
+                        <TextControl name="id" label={__("HTML ID [Anchor]", "phenix")} value={ attributes.id } onChange={set_id} />
                     </div>
                     {/*===> // Column <===*/}
                 </div>
@@ -260,49 +293,40 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-size" label={__("Font Size", "phenix")} value={attributes.typography.size || ""} onChange={set_typography_size} options={font_sizes} />
+                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={set_typography} options={font_sizes} />
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="typography-weight" label={__("Font Weight", "phenix")} value={attributes.typography.weight || ""} onChange={set_typography_weight} options={[
-                            { label: 'Default',  value: '' },
-                            { label: 'Thin',  value: 'weight-thin'},
-                            { label: 'Light',  value: 'weight-light'},
-                            { label: 'Extra Light',  value: 'weight-xlight'},
-                            { label: 'Normal',  value: 'weight-normal'},
-                            { label: 'Medium',  value: 'weight-medium'},
-                            { label: 'Semi-Bold',  value: 'weight-bold'},
-                            { label: 'Bold',  value: 'weight-strong'},
-                            { label: 'Heavy',  value: 'weight-xbold'},
-                            { label: 'Black',  value: 'weight-black'},
-                        ]}/>
+                        <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={set_typography} options={font_weights}/>
                     </div>
                     {/*===> // Column <===*/}
                 </div>
+
                 {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color || ""} />
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color} />
+
                 {/*===> Label <===*/}
                 <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
                 {/*===> Elements Group <===*/}
                 <div className='flexbox'>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={!attributes.typography.align || attributes.typography.align === ""} value={""} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='text-align' checked={!attributes.typography.align || attributes.typography.align === ""} value={""} onChange={set_typography} type='button-radio' className='small me-5'>
                         <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography_align} type='button-radio' className='small me-5'>
+                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography} type='button-radio' className='small me-5'>
                         <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={attributes.typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography_align} type='button-radio' className='small'>
+                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography} type='button-radio' className='small'>
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                 </div>
@@ -317,31 +341,39 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className='row gpx-15 divider-t pdt-10'>
                         {/*===> Column <===*/}
                         <div className='col-12 mb-15'>
-                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={set_alignment}></FlexAlignment>
+                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={set_flex_align}></FlexAlignment>
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-12 flexbox align-between mb-15'>
                             {/*===> Label <===*/}
                             <label className='col-12 mb-5 tx-UpperCase'>{__("Flow Options", "phenix")}</label>
                             {/*===> Switch Button <===*/}
-                            <OptionControl name='flex-flow' value={!attributes.flexbox.stacked || attributes.flexbox.stacked === "" ? `flow-reverse` : "flow-columns-reverse"} checked={attributes.flexbox.flow?.length > 0} onChange={set_flex_flow} type='checkbox' className='tiny'>
+                            <OptionControl name='flow' value={!attributes.flexbox.stacked || attributes.flexbox.stacked === "" ? `flow-reverse` : "flow-columns-reverse"} checked={attributes.flexbox.flow?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
                             </OptionControl>
                             {/*===> Switch Button <===*/}
-                            <OptionControl name='flex-columns' value="flow-columns" checked={attributes.flexbox.stacked?.length > 0} onChange={set_flex_stacked} type='checkbox' className='tiny'>
+                            <OptionControl name='stacked' value="flow-columns" checked={attributes.flexbox.stacked?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Stacked", "phenix")}</span>
                             </OptionControl>
                             {/*===> Switch Button <===*/}
-                            <OptionControl name='flex-nowrap' value="flow-nowrap" checked={attributes.flexbox.nowrap?.length > 0} onChange={set_flex_nowrap} type='checkbox' className='tiny'>
+                            <OptionControl name='nowrap' value="flow-nowrap" checked={attributes.flexbox.nowrap?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
                                 <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
                             </OptionControl>
                         </div>
                         {/*===> // Column <===*/}
                     </div>
                 : null}
-
-                {/*===> Display <===*/}
-                <ToggleControl key="isHidden" label={__("Hidden Block ?", "phenix")} checked={attributes.isHidden} onChange={set_isHidden}/>
+                {/*===> Additional Styles <===*/}
+                <div className='row gpx-15 divider-t pdt-10'>
+                    {/*===> Column <===*/}
+                    <div className='col-6 mb-15'>
+                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} />
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-12 mb-15'>
+                        <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlapped ?", "phenix")}</OptionControl>
+                    </div>
+                </div>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

@@ -21,7 +21,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 //====> Phenix Modules <====//
 import PhenixNumber from "../px-controls/number";
 import OptionControl from '../px-controls/switch';
-import ScreensTabs from "../px-controls/elements/tabs";
+import ScreensTabs from "../px-controls/tabs";
 
 //====> Edit Mode <====//
 export default function Edit(props) {

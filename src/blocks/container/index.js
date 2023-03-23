@@ -38,7 +38,8 @@ registerBlockType(metadata, {
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
         if (attributes.size) container += attributes.size;
-        if (attributes.isHidden) container += ' hidden';
+        if (attributes.style.display) container += ` ${attributes.style.display}`;
+        if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
 
         //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {

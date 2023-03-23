@@ -60,18 +60,15 @@
         "responsive": {
             "type": "object",
             "default": {}
-        },
-
-        "isHidden" : {
-            "type": "boolean",
-            "default": false
         }
     },
+
     "example": {
         "attributes": {
             "preview": true
         }
     },
+
 	"textdomain": "phenix",
 	"editorScript": "file:./index.js"
 }

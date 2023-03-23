@@ -241,7 +241,6 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps;
 
     //===> Container Options <===//
-    console.log('Attribute :', `${attributes.style.display?.toString().replace(',', ' ')}`);
     if (attributes.size) container.className += ` ${attributes.size}`;
     if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
     if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;

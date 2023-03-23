@@ -4,6 +4,11 @@
 	// --wp--custom--spacing--outer: 2rem;
 	// > .is-root-container {--wp--custom--spacing--outer: 0;}
 
+	.has-background:not([class*="pd"]) {padding-top: revert;}
+	.has-background:not([class*="pd"]) {padding-bottom: revert;}
+	.has-background:not([class*="pd"]) {padding-#{$direction-start}: revert;}
+	.has-background:not([class*="pd"]) {padding-#{$direction-end}: revert;}
+
 	/*==== Editor Page Title ====*/
 	.edit-post-visual-editor__post-title-wrapper {
 		margin: 0;

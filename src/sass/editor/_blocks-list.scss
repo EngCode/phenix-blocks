@@ -96,9 +96,7 @@ body.block-editor-page {
 	}
 }
 
-// .edit-post-visual-editor {
-// 	+ .edit-post-layout__metaboxes {display: none;}
-// }
+.edit-post-visual-editor .edit-post-visual-editor__content-area > div {padding-bottom: 120px;}
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

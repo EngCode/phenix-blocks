@@ -49,6 +49,9 @@ if (!function_exists('phenix_core')) :
             'json' => esc_url_raw($assets_url."json"),
             'nonce' => wp_create_nonce('wp_rest'),
         ));
+
+        //====> Get the Translation Files <====//
+        wp_set_script_translations('pds-translation', 'phenix', plugin_dir_path(__FILE__).'languages');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_core');

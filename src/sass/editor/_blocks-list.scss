@@ -67,7 +67,7 @@
 			margin-bottom: 10px;
 			line-height: var(--line-height);
 			&:first-child {padding-top: 30px;}
-			&:last-child  {padding-bottom: 30px;}
+			&:last-child  {padding-bottom: 70px;}
 		}
 	}
 
@@ -96,7 +96,7 @@ body.block-editor-page {
 	}
 }
 
-.edit-post-visual-editor .edit-post-visual-editor__content-area > div {padding-bottom: 120px;}
+.edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

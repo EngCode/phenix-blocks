@@ -42,6 +42,7 @@ registerBlockType(metadata, {
             //===> Effects <===//
             if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
             if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
+            if (attributes.style && attributes.style['animated-childs']) blockProps.className += ` ${attributes.style['animated-childs']}`;
 
             //===> Text Color <===//
             if(attributes.typography?.color) container.className += ` ${attributes.typography.color}`;

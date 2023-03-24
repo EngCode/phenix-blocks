@@ -187,6 +187,8 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Text Color <===//
         if (attributes.typography?.color) innerBlocksProps.className += ` ${attributes.typography.color}`;
 
+        if (attributes.style && attributes.style['animated-childs']) innerBlocksProps.className += ` ${attributes.style['animated-childs']}`;
+
         //===> Render Background <===//
         if (attributes.style?.background?.value) {
             //===> Image Background <===//
@@ -213,6 +215,9 @@ export default function Edit({ attributes, setAttributes }) {
             //===> Otherwise is Class Name <===//
             else { innerBlocksProps.className += ` ${attributes.style.position}`; }
         }
+
+        //===> Text Color <===//
+        if (attributes.typography?.color) innerBlocksProps.className += ` ${attributes.typography.color}`;
     }
 
 
@@ -230,6 +235,10 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> Switch Button <===*/}
                     <OptionControl name='style-support' checked={attributes.flexbox['style-support']} onChange={set_flexbox} type='checkbox' className='tiny'>
                         <span className='fas fa-check radius-circle'>{__("Styles Support.", "phenix")}</span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='animated-childs' value="px-animate" checked={attributes.flexbox['animated-childs']} onChange={set_flexbox} type='checkbox' className='tiny'>
+                        <span className='fas fa-check radius-circle'>{__("Animate Childs.", "phenix")}</span>
                     </OptionControl>
                 </FlexboxSet>
             </PanelBody>

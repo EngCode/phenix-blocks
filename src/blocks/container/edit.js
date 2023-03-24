@@ -157,6 +157,7 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Effects <===//
         if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
         if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+        if (attributes.style && attributes.style['animated-childs']) blockProps.className += ` ${attributes.style['animated-childs']}`;
 
         //===> Text Color <===//
         if(attributes.typography?.color) container.className += ` ${attributes.typography.color}`;
@@ -251,7 +252,12 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*===> Layout Options <===*/}
             {attributes.isFlexbox ? <PanelBody title={__("Layout Settings", "phenix")} initialOpen={true}>
-                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} />
+                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} >
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='animated-childs' value="px-animate" checked={attributes.flexbox['animated-childs']} onChange={set_flexbox} type='checkbox' className='tiny'>
+                        <span className='fas fa-check radius-circle'>{__("Animate Childs.", "phenix")}</span>
+                    </OptionControl>
+                </FlexboxSet>
             </PanelBody> : null}
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>

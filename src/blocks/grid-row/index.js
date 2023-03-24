@@ -76,6 +76,8 @@ registerBlockType(metadata, {
             //===> Text Color <===//
             if (attributes.typography?.color) blockProps.className += ` ${attributes.typography.color}`;
 
+            if (attributes.style && attributes.style['animated-childs']) blockProps.className += ` ${attributes.style['animated-childs']}`;
+
             //===> Render Background <===//
             if (attributes.style?.background?.value) {
                 //===> Image Background <===//

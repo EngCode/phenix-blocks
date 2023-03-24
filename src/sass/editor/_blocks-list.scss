@@ -3,13 +3,14 @@
 
 .editor-styles-wrapper {
 	font-family: var(--secondary-font)!important;
-	// --wp--custom--spacing--outer: 2rem;
-	// > .is-root-container {--wp--custom--spacing--outer: 0;}
 
-	.has-background:not([class*="pd"]) {padding-top: revert;}
-	.has-background:not([class*="pd"]) {padding-bottom: revert;}
-	.has-background:not([class*="pd"]) {padding-#{$direction-start}: revert;}
-	.has-background:not([class*="pd"]) {padding-#{$direction-end}: revert;}
+	//=== Editor Titles Reset Fix ====//
+	h1:not([class*="fs-"]):not([class*="y-h"]),.h1:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(32);}
+    h2:not([class*="fs-"]):not([class*="y-h"]),.h2:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(28);}
+    h3:not([class*="fs-"]):not([class*="y-h"]),.h3:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(25);}
+    h4:not([class*="fs-"]):not([class*="y-h"]),.h4:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(23);}
+    h5:not([class*="fs-"]):not([class*="y-h"]),.h5:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(20);}
+    h6:not([class*="fs-"]):not([class*="y-h"]),.h6:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(17);}
 
 	/*==== Editor Page Title ====*/
 	.edit-post-visual-editor__post-title-wrapper {

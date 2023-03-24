@@ -157,7 +157,6 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Effects <===//
         if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
         if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
-        if (attributes.style && attributes.style['animated-childs']) blockProps.className += ` ${attributes.style['animated-childs']}`;
 
         //===> Text Color <===//
         if(attributes.typography?.color) container.className += ` ${attributes.typography.color}`;
@@ -197,6 +196,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
         if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
         if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
+        if (attributes.flexbox['animated-childs']) blocksProps.className += ` ${attributes.flexbox['animated-childs']}`;
     }
 
     //===> Typography Options <===//

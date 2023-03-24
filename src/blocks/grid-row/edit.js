@@ -149,6 +149,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox.nowrap) innerBlocksProps.className += ` ${attributes.flexbox.nowrap}`;
         if (attributes.flexbox.masonry) innerBlocksProps.className += ` ${attributes.flexbox.masonry}`;
         if (attributes.flexbox.equals && attributes.flexbox.cols) innerBlocksProps.className += ` row-cols-${attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"}`;
+        if (attributes.flexbox['animated-childs']) innerBlocksProps.className += ` ${attributes.flexbox['animated-childs']}`;
         //===> Responsive <===//
         screens.forEach(screen => {
             if (attributes.flexbox[`align-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
@@ -187,8 +188,6 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Text Color <===//
         if (attributes.typography?.color) innerBlocksProps.className += ` ${attributes.typography.color}`;
 
-        if (attributes.style && attributes.style['animated-childs']) innerBlocksProps.className += ` ${attributes.style['animated-childs']}`;
-
         //===> Render Background <===//
         if (attributes.style?.background?.value) {
             //===> Image Background <===//
@@ -219,7 +218,6 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Text Color <===//
         if (attributes.typography?.color) innerBlocksProps.className += ` ${attributes.typography.color}`;
     }
-
 
     //===> Render <===//
     return (<>

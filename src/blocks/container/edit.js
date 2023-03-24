@@ -18,12 +18,11 @@ import { useState, useEffect } from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
-import FlexAlignment from '../px-controls/alignment';
-import PhenixColor from '../px-controls/colors/text';
-import PhenixBackground from '../px-controls/colors/background';
 
-//====> Phenix Sets <=====//
+//====> Phenix Options Sets <=====//
+import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -58,8 +57,8 @@ export default function Edit({ attributes, setAttributes }) {
         if(single_val) return single_val;
     };
 
-    //==> Set Normal Values Method <==//
-    const set_normal_value = target => {
+    //==> Set Value Method <==//
+    const set_value = target => {
         //==> Get Current <==//
         let name = target.getAttribute('name'),
             attr = attributes;
@@ -74,24 +73,14 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Flexbox Method <==//
     const set_flexbox = target => {
         //==> Get Current <==//
-        let name = target.getAttribute('name').replace('fx-', ''),
+        let name = typeof(target) !== "string" ? target.getAttribute('name').replace('fx-', '') : "align",
             flexbox = attributes.flexbox;
 
-        //==> Add the Value <==//
-        flexbox[`${name}`] = valueHandler(target);
+        //==> Add the Value <==//        
+        flexbox[`${name}`] = name === "align" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
-    };
-
-    //===> Flexbox Alignment <===//
-    const set_flex_align = alignment => {
-        //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
-
-        //==> Set Value <==//
-        flex_ops.align = alignment;
-        setAttributes({ flexbox : {...flex_ops} });
     };
 
     //==> Set Typography Method <==//
@@ -140,37 +129,7 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ style : {...attributes.style} });
     };
 
-    //===> Typography Options <===//
-    const font_sizes = [
-        {"label": "12px", "value": "fs-12" },
-        {"label": "13px", "value": "fs-13" },
-        {"label": "14px", "value": "fs-14" },
-        {"label": "15px", "value": "fs-15" },
-        {"label": "16px", "value": "fs-16" },
-        {"label": "17px", "value": "fs-17" },
-        {"label": "18px", "value": "fs-18" },
-        {"label": "19px", "value": "fs-19" },
-        {"label": "20px", "value": "fs-20" },
-        {"label": "22px", "value": "fs-22" },
-        {"label": "24px", "value": "fs-24" },
-        {"label": "25px", "value": "fs-25" },
-        {"label": "26px", "value": "fs-26" },
-        {"label": "28px", "value": "fs-28" },
-        {"label": "30px", "value": "fs-30" },
-    ];
-
-    const font_weights = [
-        { "label": "Thin",  "value": "weight-thin"},
-        { "label": "Light",  "value": "weight-light"},
-        { "label": "Extra Light",  "value": "weight-xlight"},
-        { "label": "Normal",  "value": "weight-normal"},
-        { "label": "Medium",  "value": "weight-medium"},
-        { "label": "Semi-Bold",  "value": "weight-bold"},
-        { "label": "Bold",  "value": "weight-strong"},
-        { "label": "Heavy",  "value": "weight-xbold"},
-        { "label": "Black",  "value": "weight-black"}
-    ];
-
+    //===> Define Controls Options <===//
     const html_tags = [
         { "label": "Div", "value": "div"},
         { "label": "Main", "value": "main"},
@@ -179,42 +138,6 @@ export default function Edit({ attributes, setAttributes }) {
         { "label": "Header", "value": "header"},
         { "label": "Footer", "value": "footer"},
     ];
-
-    const display_options = {
-        "Mobile Screens" : [
-            { "label": "Flex", "value": "display-flex"},
-            { "label": "Grid", "value": "display-grid"},
-            { "label": "Block", "value": "display-block"},
-            { "label": "Flexbox", "value": "flexbox"},
-            { "label": "Inline-Block", "value": "inline-block"},
-            { "label": "Hidden SM <i class='fas fa-arrow-up'><i>", "value": "hidden"},
-            { "label": "Hidden SM <i class='fas fa-arrow-down'><i>", "value": "hidden-sm-down"},
-        ],
-        "Tablet Screens" : [
-            { "label": "Flex MD", "value": "display-md-flex"},
-            { "label": "Grid MD", "value": "display-md-grid"},
-            { "label": "Block MD", "value": "display-md-block"},
-            { "label": "Hidden MD <i class='fas fa-arrow-up'><i>", "value": "hidden-md-up"},
-            { "label": "Hidden MD <i class='fas fa-arrow-down'><i>", "value": "hidden-md-down"},
-            { "label": "Inline-Block MD", "value": "inline-block-md"},
-        ],
-        "Laptop Screens" : [
-            { "label": "Flex LG", "value": "display-lg-flex"},
-            { "label": "Grid LG", "value": "display-lg-grid"},
-            { "label": "Block LG", "value": "display-lg-block"},
-            { "label": "Hidden LG <i class='fas fa-arrow-up'><i>", "value": "hidden-lg-up"},
-            { "label": "Hidden LG <i class='fas fa-arrow-down'><i>", "value": "hidden-lg-down"},
-            { "label": "Inline-Block LG", "value": "inline-block-lg"},
-        ],
-        "Desktop Screens" : [
-            { "label": "Flex XL", "value": "display-xl-flex"},
-            { "label": "Grid XL", "value": "display-xl-grid"},
-            { "label": "Block XL", "value": "display-xl-block"},
-            { "label": "Hidden XL <i class='fas fa-arrow-up'><i>", "value": "hidden-xl-up"},
-            { "label": "Hidden XL <i class='fas fa-arrow-down'><i>", "value": "hidden-xl-down"},
-            { "label": "Inline-Block XG", "value": "inline-block-xl"},
-        ],
-    };
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -294,7 +217,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <PhenixSelect name="size" placeholder={__("None", "phenix")} label={__("Container Size", "phenix")} value={attributes.size} onChange={set_normal_value} options={[
+                        <PhenixSelect name="size" placeholder={__("None", "phenix")} label={__("Container Size", "phenix")} value={attributes.size} onChange={set_value} options={[
                             { label: 'Small',  value: 'container-sm' },
                             { label: 'Medium', value: 'container-md' },
                             { label: 'Normal', value: 'container' },
@@ -304,15 +227,15 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>
-                        <PhenixSelect name="tagName" placeholder={__("Default", "phenix")} label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_normal_value} options={html_tags} />
+                        <PhenixSelect name="tagName" placeholder={__("Default", "phenix")} label={__("HTML Tag", "phenix")} value={attributes.tagName} onChange={set_value} options={html_tags} />
                     </div>
                     {/*=== isSection ===*/}
                     <div className='col-6 mb-10'>
-                        <OptionControl name={`isSection`} value="boolean" checked={attributes.isSection} onChange={set_normal_value} type='switch-checkbox' className='small'>{__("Wrapper ?", "phenix")}</OptionControl>
+                        <OptionControl name={`isSection`} value="boolean" checked={attributes.isSection} onChange={set_value} type='switch-checkbox' className='small'>{__("Wrapper ?", "phenix")}</OptionControl>
                     </div>
                     {/*===  isFlexbox ===*/}
                     <div className='col-6 mb-10'>
-                        <OptionControl name={`isFlexbox`} value="boolean" checked={attributes.isFlexbox} onChange={set_normal_value} type='switch-checkbox' className='small'>{__("Flexbox", "phenix")}</OptionControl>
+                        <OptionControl name={`isFlexbox`} value="boolean" checked={attributes.isFlexbox} onChange={set_value} type='switch-checkbox' className='small'>{__("Flexbox", "phenix")}</OptionControl>
                     </div>
                     {/*=== Container ID ===*/}
                     <div className='col-12'>
@@ -322,84 +245,16 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
             </PanelBody>
             {/*===> Layout Options <===*/}
-            {attributes.isFlexbox ?
-            <PanelBody title={__("Layout Settings", "phenix")}>
-                {/*===> Flexbox Properties <===*/}
-                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} alignSetter={set_flex_align} />
-            </PanelBody>
-            : null}
+            {attributes.isFlexbox ? <PanelBody title={__("Layout Settings", "phenix")} initialOpen={true}>
+                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} />
+            </PanelBody> : null}
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
-                {/*===> Label <===*/}
-                <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
-                {/*===> Elements Group <===*/}
-                <div className='flexbox'>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name='text-align' checked={!attributes.typography.align || attributes.typography.align === ""} value={""} onChange={set_typography} type='button-radio' className='small me-5'>
-                        <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-start" ? true : false} value={"tx-align-start"} onChange={set_typography} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-justify" ? true : false} value={"tx-align-justify"} onChange={set_typography} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-center" ? true : false} value={"tx-align-center"} onChange={set_typography} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name='align' checked={attributes.typography.align === "tx-align-end" ? true : false} value={"tx-align-end"} onChange={set_typography} type='button-radio' className='small'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
-                    </OptionControl>
-                </div>
-                {/*===> Elements Group <===*/}
-                <div className='row gpx-20'>
-                    {/*===> Size <===*/}
-                    <div className='col-6 mb-10'>
-                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={set_typography} options={font_sizes} />
-                    </div>
-                    {/*===> HTML Tag <===*/}
-                    <div className='col-6 mb-10'>
-                        <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={set_typography} options={font_weights}/>
-                    </div>
-                    {/*===> // Column <===*/}
-                </div>
+                <TypographySet attributes={attributes} mainSetter={set_typography} />
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
-                {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color} />
-
-                {/*===> Background <===*/}
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
-
-                {attributes.style.background?.type === "image" ? 
-                    <div className='mb-15 row gpx-15' style={{marginTop: -10}}>
-                        {/*===> Column <===*/}
-                        <div className='col-6'>
-                            <OptionControl name={`overlay`} value="overlay-dark" checked={attributes.style.overly || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlays", "phenix")}</OptionControl>
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col-6'>
-                            <OptionControl name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Parallax BG", "phenix")}</OptionControl>
-                        </div>
-                    </div>
-                : null }
-
-                {/*===> Additional Styles <===*/}
-                <div className='row gpx-15 divider-t pdt-10'>
-                    {/*===> Column <===*/}
-                    <div className='col-12 mb-5'>
-                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} className="stacked-options" />
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6'>
-                        <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={set_style} type='switch-checkbox' className='small'>{__("Overlapped", "phenix")}</OptionControl>
-                    </div>
-                </div>
+                <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_color} backgroundSetter={set_background} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

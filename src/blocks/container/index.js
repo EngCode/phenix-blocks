@@ -29,11 +29,11 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        const TagName = attributes.tagName;
-
-        let container = attributes.isFlexbox ? "flexbox " : '',
-            background = attributes.style.background,
-            typography = attributes.typography;
+        const TagName = attributes.tagName,
+              background = attributes.style.background,
+              typography = attributes.typography;
+    
+        let container = attributes.isFlexbox ? "flexbox " : '';
 
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;

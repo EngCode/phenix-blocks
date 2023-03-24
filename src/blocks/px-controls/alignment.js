@@ -24,16 +24,24 @@ export default class FlexAlignment extends Component {
 
             //===> Loop on Values <===//
             val_split.forEach(value => {
-                //===> Type X Checker <===//
-                let checkX = value.includes('-x') || value.includes('between');
-                if (!checkX) checkX = value.includes('around');
-                if (align_type.includes('-x') && checkX === true) {align_val.replace(value, target.value);} 
-    
-                //===> Type Y Checker <===//
-                else if (align_type.includes('-y') && value.includes('-y')) {align_val.replace(value, target.value);}
-    
-                //===> New Type <===//
-                else {align_val += ` ${target.value}`;}
+                //===> Get the Type <===//
+                let replaceMode = false,
+                    valY = value.includes('-y'),
+                    typeY = align_type.includes('-y'),
+                    valX = value.includes('-x') || value.includes('between') || value.includes('around'),
+                    typeX = align_type.includes('-x') || align_type.includes('between') || align_type.includes('around');
+
+                //===> Get the Align Value <===//
+                if (typeX === true && valX === true || typeY === true && valY === true) replaceMode = true;
+
+                //===> if the value type already exists, replace it <===//
+                if (replaceMode) {
+                    align_val = align_val.replace(value, target.value);
+                }
+                //===> otherwise add new value <===//
+                else {
+                    align_val += ` ${target.value}`;
+                }
             });
 
             //===> Return new Value <===//

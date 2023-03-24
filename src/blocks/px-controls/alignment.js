@@ -15,7 +15,7 @@ export default class FlexAlignment extends Component {
         const {label, value, onChange} = this.props;
         let button_style = "btn tiny bg-transparent fs-12 square pxi";
 
-        //===> Align Handler <===//
+        //===> Value Handler <===//
         const set_alignment = target => {
             //===> Define Data <===//
             let align_val  = value,
@@ -48,7 +48,7 @@ export default class FlexAlignment extends Component {
             return onChange(align_val);
         },
 
-        //===> Set Align Y <===//
+        //===> Reset Value Method <===//
         reset_align = (clicked) => onChange("");
 
         //===> Output <===//

@@ -13,39 +13,39 @@ export default class FlexAlignment extends Component {
     render () {
         //===> Properties <===//
         const {label, value, onChange} = this.props;
-        let button_style = "btn tiny bg-transparent fs-12 square pxi";
+        const button_style = "btn tiny bg-transparent fs-12 square pxi";
 
         //===> Value Handler <===//
         const set_alignment = target => {
             //===> Define Data <===//
-            let align_val  = value,
-                align_type = target.getAttribute('name'),
-                val_split  = value.split(" ");
+            let align_val  = value;
+            const current_val = value.trim(),
+                  current_values  = current_val.split(" "),
+                  xTypes = ["-x", "between", "around"],
+                  allTypes = ["-x", "between", "around", "-y"];
 
-            //===> Loop on Values <===//
-            val_split.forEach(value => {
-                //===> Get the Type <===//
-                let replaceMode = false,
-                    valY = value.includes('-y'),
-                    typeY = align_type.includes('-y'),
-                    valX = value.includes('-x') || value.includes('between') || value.includes('around'),
-                    typeX = align_type.includes('-x') || align_type.includes('between') || align_type.includes('around');
+            //===> Check if the Value has an option with the same type as the target value <===//
+            const itHasType = allTypes.some(type => current_val.includes(type)),
+                  align_type = xTypes.some(type => target.getAttribute('name').includes(type)) ? "x" : "y",
+                  foundedType = xTypes.some(type => current_val.includes(type)) ? "x" : "y";
 
-                //===> Get the Align Value <===//
-                if (typeX === true && valX === true || typeY === true && valY === true) replaceMode = true;
-
-                //===> if the value type already exists, replace it <===//
-                if (replaceMode) {
-                    align_val = align_val.replace(value, target.value);
-                }
-                //===> otherwise add new value <===//
-                else {
-                    align_val += ` ${target.value}`;
-                }
-            });
+            //===> if the Value has an Option and the option type is the same as the target <===//
+            if (itHasType && align_type === foundedType) {
+                //===> Loop on Values <===//
+                current_values.forEach(current_value => {
+                    //===> if the Founded Type is the same is the Value, Replace the Value <===//
+                    if (current_value.includes(align_type)) {
+                        align_val = align_val.replace(current_value, target.value);
+                    }
+                });
+            }
+            //===> if its a new Value add it <===//
+            else {
+                align_val += ` ${target.value}`;
+            }
 
             //===> Return new Value <===//
-            return onChange(align_val);
+            return onChange(align_val.trim());
         },
 
         //===> Reset Value Method <===//

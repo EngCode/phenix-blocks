@@ -64,12 +64,12 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Flexbox Method <==//
     const set_flexbox = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
-            flexbox = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const flexbox = attributes.flexbox;
             
         //==> Add the Value <==//        
-        if(name.includes('-align-')) { name = "align" }
-        flexbox[`${name}`] = name === "align" ? target : valueHandler(target);
+        if(name.includes('align-')) { name = "align" }
+        flexbox[`${name}`] = typeof(name) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -78,15 +78,15 @@ export default function Edit({ attributes, setAttributes }) {
     //==> ..Responsive.. <==//
     const set_responsive_flexbox = (target, screen) => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
-            flexbox = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const flexbox = attributes.flexbox;
 
         //==> Add the Value <==//
-        if(name.includes('-align-')) {
+        if(name.includes('align-')) {
             name = `align`;
-            flexbox[`${name}-${screen}`] = target.replace('align-', `align-${screen}-`);
+            flexbox[`${name}-${screen}`] = target.replace("align-reset", "").replace('align-', `align-${screen}-`);
         } else {
-            flexbox[`${name}-${screen}`] = name === "string" ? target : valueHandler(target);
+            flexbox[`${name}-${screen}`] = typeof(name) === "string" ? target : valueHandler(target);
         }
 
         //==> Set Value <==//
@@ -96,11 +96,11 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Slider Method <==//
     const set_slider = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
-            slider = attributes.slider;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const slider = attributes.slider;
 
         //==> Add the Value <==//
-        slider[`${name}`] = name === "string" ? target : valueHandler(target);
+        slider[`${name}`] = typeof(name) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ slider : {...slider} });
@@ -109,11 +109,11 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Typography Method <==//
     const set_typography = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color",
-            typography = attributes.typography;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color";
+        const typography = attributes.typography;
 
         //==> Add the Value <==//
-        typography[`${name}`] = name === "color" ? target : valueHandler(target);
+        attributes.typography[`${name}`] = name === "color" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -122,8 +122,8 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Style Method <==//
     const set_style = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background",
-            style = attributes.style;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background";
+        const style = attributes.style;
 
         //==> Add the Value <==//
         style[`${name}`] = name === "background" ? target : valueHandler(target);
@@ -147,7 +147,7 @@ export default function Edit({ attributes, setAttributes }) {
     innerBlocksProps.className += ` ${blockProps.className}`;
     innerBlocksProps.className += ' row';
 
-    //===> Properties <===//
+    //===> Grid Options <===//
     if(!attributes.flexbox.slider) {
         if (attributes.flexbox.align)  innerBlocksProps.className += ` ${attributes.flexbox.align}`;
         if (attributes.flexbox.flow)   innerBlocksProps.className += ` ${attributes.flexbox.flow}`;
@@ -165,7 +165,7 @@ export default function Edit({ attributes, setAttributes }) {
         });
     }
 
-    //===> Slider <===//
+    //===> Slider Options <===//
     if (attributes.flexbox.slider && attributes.slider.preview) {
         //===> Add Slider Name <===//
         innerBlocksProps.className += ' px-slider';

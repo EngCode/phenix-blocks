@@ -62,8 +62,8 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Value Method <==//
     const set_value = target => {
         //==> Get Current <==//
-        let name = target.getAttribute('name'),
-            attr = attributes;
+        let name = target.getAttribute('name');
+        const attr = attributes;
 
         //==> Add the Value <==//
         attr[`${name}`] = valueHandler(target);
@@ -75,12 +75,12 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Flexbox Method <==//
     const set_flexbox = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
-            flexbox = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const flexbox = attributes.flexbox;
 
         //==> Add the Value <==//        
-        if(name.includes('-align-')) { name = "align" }
-        flexbox[`${name}`] = name === "align" ? target : valueHandler(target);
+        if(name.includes('align-')) { name = "align" }
+        flexbox[`${name}`] = name === "align" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -89,8 +89,8 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Typography Method <==//
     const set_typography = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color",
-            typography = attributes.typography;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color";
+        const typography = attributes.typography;
 
         //==> Add the Value <==//
         typography[`${name}`] = name === "color" ? target : valueHandler(target);
@@ -102,8 +102,8 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Style Method <==//
     const set_style = target => {
         //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background",
-            style = attributes.style;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background";
+        const style = attributes.style;
 
         //==> Add the Value <==//
         style[`${name}`] = name === "background" ? target : valueHandler(target);

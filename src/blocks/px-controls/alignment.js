@@ -49,7 +49,7 @@ export default class FlexAlignment extends Component {
         },
 
         //===> Reset Value Method <===//
-        reset_align = (clicked) => onChange("");
+        reset_align = (clicked) => onChange("align-reset");
 
         //===> Output <===//
         return (<div className='components-flex-item flex-alignment-btns'>

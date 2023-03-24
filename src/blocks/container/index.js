@@ -83,7 +83,7 @@ registerBlockType(metadata, {
             if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
             if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
             if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
-            if (attributes.flexbox['animated-childs']) blocksProps.className += ` ${attributes.flexbox['animated-childs']}`;
+            if (attributes.flexbox['animated-childs']) blocksProp.className += ` ${attributes.flexbox['animated-childs']}`;
         }
 
         //===> Typography Options <===//

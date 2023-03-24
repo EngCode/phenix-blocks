@@ -38,7 +38,7 @@ registerBlockType(metadata, {
             if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
             if (attributes.flexbox.masonry) blockProps.className += ` ${attributes.flexbox.masonry}`;
             if (attributes.flexbox.equals && attributes.flexbox.cols) blockProps.className += ` row-cols-${attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"}`;
-            if (attributes.flexbox['animated-childs']) blocksProps.className += ` ${attributes.flexbox['animated-childs']}`;
+            if (attributes.flexbox['animated-childs']) blockProps.className += ` ${attributes.flexbox['animated-childs']}`;
             //===> Responsive <===//
             screens.forEach(screen => {
                 if (attributes.flexbox[`align-${screen}`]) blockProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;

@@ -98,7 +98,10 @@ PhenixElements.prototype.slider = function (options?:{
             slider_list.setAttribute("class", "splide__list");
 
             Array.from(currentClasses).forEach((cl:any) => {
-                if (cl.includes('gp') || cl.includes('row')) slider_list.classList.add(cl);
+                if (cl.includes('gp') || cl.includes('row')) {
+                    slider_list.classList.add(cl);
+                    currentClasses.remove(cl);
+                }
             });
 
             //====> Append Elements <====//

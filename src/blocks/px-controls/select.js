@@ -64,7 +64,7 @@ export default class PhenixSelect extends Component {
             <label className='mb-10 tx-capitalize fs-13'>{`${label}`}</label>
 
             {/*===> Control Element <===*/}
-            <div className='px-select'>
+            <div className={`px-select ${className ? className : ""}`}>
                 <select name={name} className={`px-select pds-tm-control form-control ${size ? size : "small"} radius-md`} {...attributes}>{options_list}</select>
             </div>
         </>

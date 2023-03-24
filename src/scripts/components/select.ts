@@ -142,6 +142,9 @@ PhenixElements.prototype.select = function (options?:{
                     image_icon = `<img style="width:1em" alt="${option_text}" src="${source}" class="me-5">`;
                 }
 
+                //====> Set Selected Class <====//
+                if (option.hasAttribute('selected') && option.getAttribute('selected') === 'true') option_classes += ` px-selected`;
+
                 //====> Options Headline <====//
                 if (option.matches('optgroup')) {
                     //===> Create Option Group <===//
@@ -213,8 +216,9 @@ PhenixElements.prototype.select = function (options?:{
                         new_select[0].setAttribute('data-value', select_values);
                         select.value = select_values;
 
-                        //====> Unselect Original Options <====//
+                        //====> Unselect Option <====//
                         select.querySelector(`[value="${tag_value}"]`)?.removeAttribute('selected');
+                        new_select[0].querySelector(`[data-value="${tag_value}"]`)?.classList.remove('px-selected');
                         
                         //===> Fire Events <===//
                         new_select[0].dispatchEvent(change);
@@ -393,7 +397,7 @@ PhenixElements.prototype.select = function (options?:{
                 //===> if Disabled <====//
                 if (select.hasAttribute('disabled') || clicked.target.matches('.px-selected-value')) return;
                 //===> Show Options <===//
-                Phenix(options_list).dynamicPosition().fadeToggle();
+                Phenix(options_list).dynamicPosition().fadeToggle().toggleClass('is-opened');
                 //===> Fire Event <===//
                 events_data.value = new_select[0].getAttribute('data-value');
                 new_select[0].dispatchEvent(opened);
@@ -411,7 +415,7 @@ PhenixElements.prototype.select = function (options?:{
 
                 //====> if the target is not the current element or any of its children <====//
                 if (check_clicked && check_clicked_2) {
-                    Phenix(options_list).fadeOut();
+                    Phenix(options_list).fadeOut().removeClass('is-opened');
                     //===> Fire Event <===//
                     events_data.value = new_select[0].getAttribute('data-value');
                     new_select[0].dispatchEvent(closed);
@@ -498,6 +502,7 @@ PhenixElements.prototype.select = function (options?:{
 
                         //====> Select Original Options <====//
                         select.querySelector(`[value="${value}"]`)?.setAttribute('selected', true);
+                        options_list[0].querySelector(`[data-value="${value}"]`)?.classList.add('px-selected');
                     }
 
                     //===> Fire Event <===//

@@ -8,7 +8,7 @@
 import {Component} from '@wordpress/element';
 
 //===> Media Uploader <===//
-export default class FlexboxSet extends Component {
+export default class TypographySet extends Component {
     render () {
         //===> Properties <===//
         const {} = this.props;

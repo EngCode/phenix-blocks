@@ -290,4 +290,23 @@ body[class*="block-editor"], body[class*="site-editor"] {
 		h2 {font-size: 14px;text-align: center;}
 		&:not(:first-child) {border-top: 1px solid rgba(0,0,0, .15);}
 	}
+
+	/*==== Stacked Select Options ====*/
+	.px-select.stacked-options .px-select-options[style*="display: block"] {
+		flex-wrap: wrap;
+		text-align: center;
+		display: flex!important;
+		/*==== .... ====*/
+		.px-select-option {
+			flex-grow: 1;
+			font-size: 12px;
+			padding: 8px 10px;
+			min-width: 33.333%;
+			border-#{$direction-end}: 1px solid rgba(0,0,0, 0.1);
+			&.px-selected {opacity: 0.5;}
+		}
+		
+		/*==== .... ====*/
+		.px-select-group {width: 100%; clear: both;}
+	}
 }

@@ -182,10 +182,10 @@ export default function Edit({ attributes, setAttributes }) {
             { "label": "Flex", "value": "display-flex"},
             { "label": "Grid", "value": "display-grid"},
             { "label": "Block", "value": "display-block"},
-            { "label": "Inline-Block", "value": "inline-block"},
-            { "label": "Hidden", "value": "hidden"},
-            { "label": "Hide SM Down", "value": "hidden-sm-down"},
             { "label": "Flexbox", "value": "flexbox"},
+            { "label": "Hidden SM <i class='fas fa-arrow-up'><i>", "value": "hidden"},
+            { "label": "Hidden SM <i class='fas fa-arrow-down'><i>", "value": "hidden-sm-down"},
+            { "label": "Inline-Block", "value": "inline-block"},
         ],
         "Tablet Screens" : [
             { "label": "Flex MD", "value": "display-md-flex"},
@@ -320,22 +320,6 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
-                {/*===> Elements Group <===*/}
-                <div className='row gpx-20'>
-                    {/*===> Size <===*/}
-                    <div className='col-6 mb-10'>
-                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={set_typography} options={font_sizes} />
-                    </div>
-                    {/*===> HTML Tag <===*/}
-                    <div className='col-6 mb-10'>
-                        <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={set_typography} options={font_weights}/>
-                    </div>
-                    {/*===> // Column <===*/}
-                </div>
-
-                {/*===> Text Color <===*/}
-                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color} />
-
                 {/*===> Label <===*/}
                 <label className='col-12 mb-5 tx-UpperCase'>{__("Text Alignment", "phenix")}</label>
                 {/*===> Elements Group <===*/}
@@ -361,11 +345,27 @@ export default function Edit({ attributes, setAttributes }) {
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                 </div>
+                {/*===> Elements Group <===*/}
+                <div className='row gpx-20'>
+                    {/*===> Size <===*/}
+                    <div className='col-6 mb-10'>
+                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={set_typography} options={font_sizes} />
+                    </div>
+                    {/*===> HTML Tag <===*/}
+                    <div className='col-6 mb-10'>
+                        <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={set_typography} options={font_weights}/>
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                {/*===> Text Color <===*/}
+                <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={set_color} value={attributes.typography.color} />
+
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+
                 {attributes.style.background?.type === "image" ? 
                     <div className='mb-15 row gpx-15' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
@@ -410,7 +410,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-15 divider-t pdt-10'>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-5'>
-                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} />
+                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={set_style} options={display_options} multiple={true} className="stacked-options" />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>

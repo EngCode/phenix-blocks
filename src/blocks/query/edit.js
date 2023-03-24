@@ -19,35 +19,43 @@ import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //====> Phenix Modules <====//
+import ScreensTabs from "../px-controls/tabs";
 import PhenixNumber from "../px-controls/number";
 import OptionControl from '../px-controls/switch';
-import ScreensTabs from "../px-controls/tabs";
+import TemplateOptions from '../px-controls/templates-meta';
+import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
-    const [postTypes, setPostTypes] = useState([{"value": attributes.post_type, "label": __('Default', 'phenix')}]);
+    const [state, set_state] = useState({
+        post_types: [],
+        taxonomies: [],
+        templates_meta: {},
+        template_list: [<option key={__("Default", "phenix")} value="">{__("Default", "phenix")}</option>],
+    });
 
     //===> Query Options <===//
-    const set_order = order => setAttributes({ order }),
-        set_post_type  = post_type  => setAttributes({ post_type }),
-        set_grid_mode = grid_mode => setAttributes({ grid_mode }),
-        set_per_page   = per_page   => setAttributes({ per_page }),
-        set_pagination = pagination => setAttributes({ pagination }),
-        set_template_part = template_part => setAttributes({ template_part }),
-        set_slider_mode = value => {
-            //===> Define Data <===//
-            let options = attributes.grid;
+    const set_order = order => setAttributes({ order });
+    const set_post_type  = post_type  => setAttributes({ post_type });
+    const set_grid_mode = grid_mode => setAttributes({ grid_mode });
+    const set_per_page   = per_page   => setAttributes({ per_page });
+    const set_pagination = pagination => setAttributes({ pagination });
+    const set_template_part = changed => setAttributes({ template_part: changed.target.value });
 
-            //===> Convert Grid to Slider <===//
-            if (options.state && value) options.state = false;
-            if (options.cols && parseInt(options.cols) < 1) options.cols = 1;
+    const set_slider_mode = value => {
+        //===> Define Data <===//
+        let options = attributes.grid;
 
-            //===> Set Value <===//
-            setAttributes({slider_mode: value, grid: {...options}});
-        };
+        //===> Convert Grid to Slider <===//
+        if (options.state && value) options.state = false;
+        if (options.cols && parseInt(options.cols) < 1) options.cols = 1;
+
+        //===> Set Value <===//
+        setAttributes({slider_mode: value, grid: {...options}});
+    };
 
     //===> Grid Options <===//
     const set_grid_cols = value => {
@@ -159,6 +167,18 @@ export default function Edit(props) {
         setAttributes({slider : {...options}});
     };
 
+    //===> Responsive Options <===//
+    const responsive_options = (screen) => {
+        //===> Layout <===//
+        return <>
+            {/*===> Column <===*/}
+            <div className='col col-6 mb-15'>
+                <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid[`cols-${screen}`] || 0} onChange={value => set_grid_cols_resp(value, screen)} min={0} max={12}></PhenixNumber>
+            </div>
+            {/*===> // Column <===*/}
+        </>
+    };
+
     //===> Set Phenix Components <===//
     const setPhenixView = () => {
         //===> Get View iFrame <===//
@@ -206,38 +226,60 @@ export default function Edit(props) {
 
     useEffect(()=> { setPhenixView(); }, [attributes]);
 
-    //===> Fetch Data for Options <===//
-    useEffect(()=> {
+    //===> Fetching Data <===//
+    useEffect(() => {
         //===> Fetch Post Types <===//
-        if (postTypes.length < 2) apiFetch({path: 'wp/v2/types'}).then(post_types => {
-            //===> Reset Types <===//
-            let new_types = [{"value": "default", "label": "Default"}];
-
-            //===> Get Current Active Types <===//
-            for (const [key, value] of Object.entries(post_types)) {
-                //===> Exclude the Core Types <===//
-                if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-                    new_types.push({"value":key, "label":value.name});
+        if (state.post_types.length < 1) {
+            apiFetch({path: 'wp/v2/types'}).then(post_types => {
+                //===> Reset Types <===//
+                let new_state = state;
+        
+                //===> Get Current Active Types <===//
+                for (const [key, value] of Object.entries(post_types)) {
+                    //===> Exclude the Core Types <===//
+                    if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
+                        new_state.post_types.push({"value":key, "label":value.name});
+                    }
                 }
-            }
-    
-            //===> Set the new List if its Deferent <===//
-            if (new_types.length > 0) setPostTypes([...new_types]);
-        });
+
+                //===> Fetch PDS Options <===//
+                apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
+                    //===> Create New Array <===//
+                    let meta_templates = options.templates_meta,
+                        template_parts = options.theme_parts;
+
+                    //===> Loop Through Theme-Parts <===//
+                    Object.entries(template_parts).forEach(([key, value]) => {
+                        //===> if its direct theme-part <===//
+                        if(typeof(value) === 'string') {
+                            new_state.template_list.push(<option key={`${key}-${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
+                        }
+                        //===> if its nested theme-part in a directory <===//
+                        else {
+                            //===> Define Directory Files <===//
+                            let files_list = [];
+                            //===> Loop Through Files <===//
+                            Object.entries(value).forEach(([key2, value]) => {
+                                //===> add the file to the list <===//
+                                files_list.push(<option key={`${key2}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
+                            });
+                            //===> Push the Options Group <===//
+                            new_state.template_list.push(<optgroup key={`${key}-group`} label={`${key}`}>{files_list}</optgroup>);
+                        }
+                    });
+
+                    //===> Get Phenix Data <===//
+                    if(meta_templates !== state.templates_meta) new_state.templates_meta = meta_templates;
+
+                    //===> Set the new List if its Deferent <===//
+                    if (new_state !== state) set_state([...new_state]);
+                });
+            });
+        }
+
+        //===> Run Phenix Components <===//
+        PhenixComponentsBuilder();
     }, []);
-
-    //===> Responsive Options <===//
-    const responsive_options = (screen) => {
-        //===> Layout <===//
-        return <>
-            {/*===> Column <===*/}
-            <div className='col col-6 mb-15'>
-                <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.grid[`cols-${screen}`] || 0} onChange={value => set_grid_cols_resp(value, screen)} min={0} max={12}></PhenixNumber>
-            </div>
-            {/*===> // Column <===*/}
-        </>
-    };
-
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}
@@ -245,7 +287,7 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "phenix")} initialOpen={true}>
                 {/*===> Post Type <===*/}
-                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={postTypes}/>
+                <SelectControl label={__("Data Type", "phenix")} value={attributes.post_type} onChange={set_post_type} options={state.post_types} />
 
                 {/*===> Group <===*/}
                 {attributes.post_type !== 'default' ? 
@@ -265,7 +307,12 @@ export default function Edit(props) {
                 </div> : ""}
 
                 {/*=== Card Template ===*/}
-                <TextControl key="template-name" label={__("Card Template", "phenix")} value={ attributes.template_part } onChange={set_template_part}/>
+                <label className='mb-5'>{__("Card Template", "phenix")}</label>
+                <div className='px-select mb-15'>
+                    <select name="template-name" data-placeholder={__("Default", "phenix")} onChange={set_template_part} className='px-select form-control pds-tm-control small radius-md' data-search="1" defaultValue={ attributes.template_part }>
+                        {state.template_list}
+                    </select>
+                </div>
 
                 {/*===> Group <===*/}
                 <div className='row gpx-20 mb-15'>

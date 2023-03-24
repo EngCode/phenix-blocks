@@ -19,7 +19,7 @@
     },
     "template_part": {
       "type": "string",
-      "default": "pds/placeholder"
+      "default": "_placeholder"
     },
     "per_page": {
       "type": "number",

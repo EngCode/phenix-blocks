@@ -23,7 +23,7 @@
     },
     "template_part": {
       "type": "string",
-      "default": "pds/placeholder"
+      "default": "_placeholder"
     },
     "query_count": {
       "type": "number",

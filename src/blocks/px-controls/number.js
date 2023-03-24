@@ -11,7 +11,7 @@ import {Component} from '@wordpress/element';
 export default class PhenixNumber extends Component {
     render () {
         //===> Properties <===//
-        const {label, value, min, max, steps, icon, onChange} = this.props;
+        const {label, value, min, max, steps, icon, onChange, name} = this.props;
 
         //===> Set Value <===//
         const setNumber = (changed) => {
@@ -70,7 +70,7 @@ export default class PhenixNumber extends Component {
                 {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 
                 {/*===> Number Input <===*/}
-                <input type="number" min={min} max={max} value={parseInt(value) ? parseInt(value) : 0} className={"form-control small radius-sm reset-appearance"+(!icon ? " tx-align-center" : "")} onChange={setNumber} />
+                <input name={name} type="number" min={min} max={max} value={parseInt(value) ? parseInt(value) : 0} className={"form-control small radius-sm reset-appearance"+(!icon ? " tx-align-center" : "")} onChange={setNumber} />
 
                 {/*===> Button <===*/}
                 <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>

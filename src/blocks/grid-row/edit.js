@@ -15,221 +15,127 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import OptionControl from '../px-controls/switch';
 import FlexAlignment from '../px-controls/alignment';
-import PhenixNumber from "../px-controls/number";
+
+//====> Phenix Modules <====//
 import ScreensTabs from "../px-controls/tabs";
+import PhenixNumber from "../px-controls/number";
+import PhenixSelect from '../px-controls/select';
+import OptionControl from '../px-controls/switch';
+
+//====> Phenix Options Sets <=====//
+import StylesSet from '../px-controls/sets/styles';
+import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
+import SliderSet from '../px-controls/sets/slider';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    //===> Flexbox Options <===//
-    const set_alignment = alignment => {
-        //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+    //===> Value Handler <===//
+    const valueHandler = (target) => {
+        //===> Define Array Type <===//
+        let single_val,
+            array_val = [],
+            type = target.getAttribute('type') || target.tagName;
 
-        //==> Set Value <==//
-        flex_ops.align = alignment;
-        setAttributes({ flexbox : {...flex_ops} });
+        //==> for Boolean Values <==//
+        if (type === 'checkbox' || type === 'radio') {
+            if (target.value === 'boolean') { single_val = target.checked; }
+            else { single_val = target.checked ? target.value : ""; }
+        }
+
+        //===> for Value of Type Array <===//
+        else if (type === "SELECT" && target.hasAttribute('multiple')) {
+            //===> Get Multiple Value <===//
+            let values = target.parentNode.getAttribute('data-value').split(',');
+            //===> Get Current Values <===//
+            values.forEach(val => val !== "" ? array_val.push(val) : null);
+            //===> Set Array Value <===//
+            single_val = array_val;
+        }
+
+        //===> for Normal Values <===//
+        else { single_val = target.value; }
+
+        //===> Return Value <===//
+        if(single_val) return single_val;
     };
 
-    //==> Flow <==//
-    const set_flex_flow = target => {
+    //==> Set Flexbox Method <==//
+    const set_flexbox = target => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
+            flexbox = attributes.flexbox;
+            
+        //==> Add the Value <==//        
+        if(name.includes('-align-')) { name = "align" }
+        flexbox[`${name}`] = name === "align" ? target : valueHandler(target);
 
         //==> Set Value <==//
-        flex_ops.flow = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flex_ops}});
+        setAttributes({ flexbox : {...flexbox} });
     };
 
-    //==> No-Wrap <==//
-    const set_flex_nowrap = target => {
+    //==> ..Responsive.. <==//
+    const set_responsive_flexbox = (target, screen) => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
+            flexbox = attributes.flexbox;
+
+        //==> Add the Value <==//
+        if(name.includes('-align-')) {
+            name = `align`;
+            flexbox[`${name}-${screen}`] = target.replace('align-', `align-${screen}-`);
+        } else {
+            flexbox[`${name}-${screen}`] = name === "string" ? target : valueHandler(target);
+        }
 
         //==> Set Value <==//
-        flex_ops.nowrap = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flex_ops}});
+        setAttributes({ flexbox : {...flexbox} });
     };
 
-    //==> Masonry <==//
-    const set_flex_masonry = target => {
+    //==> Set Slider Method <==//
+    const set_slider = target => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
+            slider = attributes.slider;
+
+        //==> Add the Value <==//
+        slider[`${name}`] = name === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
-        flex_ops.masonry = target.checked ? target.value : "";
-        setAttributes({flexbox : {...flex_ops}});
+        setAttributes({ slider : {...slider} });
     };
 
-    //==> Equal Columns <==//
-    const set_flex_equals = target => {
+    //==> Set Typography Method <==//
+    const set_typography = target => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color",
+            typography = attributes.typography;
+
+        //==> Add the Value <==//
+        typography[`${name}`] = name === "color" ? target : valueHandler(target);
 
         //==> Set Value <==//
-        flex_ops.equals = target.checked;        
-        setAttributes({flexbox : {...flex_ops}});
+        setAttributes({ typography : {...typography} });
     };
 
-    //===> Columns Options <===//
-    const set_flexbox_cols = value => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops.cols = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    },
-
-    set_flexbox_cols_resp = (value, screen) => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops[`cols-${screen}`] = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    },
-
-    set_alignment_resp = (value, screen) => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops[`align-${screen}`] = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    },
-
-    set_flex_flow_resp = (value, screen) => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops[`flow-${screen}`] = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    },
-
-    set_flex_nowrap_resp = (value, screen) => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops[`nowrap-${screen}`] = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    },
-
-    set_flex_masonry_resp = (value, screen) => {
-        //===> Define Data <===//
-        let flexbox_ops = attributes.flexbox;
-        //===> Set Value <===//
-        flexbox_ops[`masonry-${screen}`] = value;
-        setAttributes({ flexbox: {...flexbox_ops} });
-    };
-
-    //==> Slider Mode <==//
-    const set_flex_slider = target => {
+    //==> Set Style Method <==//
+    const set_style = target => {
         //==> Get Current <==//
-        let flex_ops = attributes.flexbox;
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background",
+            style = attributes.style;
+
+        //==> Add the Value <==//
+        style[`${name}`] = name === "background" ? target : valueHandler(target);
 
         //==> Set Value <==//
-        flex_ops.slider = target.checked;        
-        setAttributes({flexbox : {...flex_ops}});
-    };
-
-    //===> Slider Options <===//
-    const set_slider_type = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.type = value;
-        setAttributes({ slider : {...options} });
-    },
-
-    set_slider_steps = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.steps = value;
-        setAttributes({ slider : {...options} });
-    },
-
-    set_slider_duration = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.duration = value;
-        setAttributes({ slider : {...options} });
-    },
-
-    set_slider_speed = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.speed = value;
-        setAttributes({ slider : {...options} });
-    },
-
-    set_slider_autoplay = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.autoplay = value;
-        setAttributes({slider : {...options}});
-    },
-
-    set_slider_controls = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.controls = value;
-        setAttributes({slider : {...options}});
-    },
-
-    set_slider_pagination = value => {
-        //==> Get Current <==//
-        let options = attributes.slider;
-
-        //==> Set Value <==//
-        options.pagination = value;
-        setAttributes({slider : {...options}});
+        setAttributes({ style : {...style} });
     };
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
         return <>
-            {/*===> Column <===*/}
-            {attributes.flexbox.equals || attributes.flexbox.slider ? <>
-                <div className='col col-6 mb-15'>
-                    <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.flexbox[`cols-${screen}`] ? attributes.flexbox[`cols-${screen}`] : 1} onChange={value => set_flexbox_cols_resp(value, screen)} min={1} max={12}></PhenixNumber>
-                </div>
-            </> : null}
-            {/*===> Flexbox Properties <===*/}
-            {!attributes.flexbox.slider ? <div className='row gpx-15 mb-10 divider-b'>
-                {/*===> Column <===*/}
-                <div className='col-12 mb-15'>
-                    <FlexAlignment label={__("Grid Alignment", "phenix")} value={attributes.flexbox[`align-${screen}`] || ""} onChange={value => set_alignment_resp(value.replace('align-', `align-${screen}-`), screen)}></FlexAlignment>
-                </div>
-                {/*===> Column <===*/}
-                <div className='col-12 flexbox mb-15'>
-                    {/*===> Label <===*/}
-                    <label className='col-12 mb-5 tx-UpperCase'>{__("Grid Options", "phenix")}</label>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`flex-${screen}-flow`} value={`flow-${screen}-reverse`} checked={attributes.flexbox[`flow-${screen}`]?.length > 0} onChange={value => set_flex_flow_resp(value, screen)} type='checkbox' className='tiny mb-5 me-10'>
-                        <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`flex-${screen}-nowrap`} value={`flow-${screen}-nowrap`} checked={attributes.flexbox[`nowrap-${screen}`]?.length > 0} onChange={value => set_flex_nowrap_resp(value, screen)} type='checkbox' className='tiny mb-5 me-10'>
-                        <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`flex-${screen}-masonry`} value={`px-masonry-${screen}`} checked={attributes.flexbox[`masonry-${screen}`]?.length > 0} onChange={value => set_flex_masonry_resp(value, screen)} type='checkbox' className='tiny mb-5'>
-                        <span className='fas fa-check radius-circle'>{__("Masonry", "phenix")}</span>
-                    </OptionControl>
-                </div>
-                {/*===> // Column <===*/}
-            </div> : null}
-            {/*===> // Column <===*/}
+            <FlexboxSet screen={`${screen}`} attributes={attributes} mainSetter={set_responsive_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>
         </>
     };
 
@@ -288,78 +194,17 @@ export default function Edit({ attributes, setAttributes }) {
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title={__("General Settings", "phenix")} initialOpen={attributes.flexbox.equals || attributes.flexbox.slider ? false : true}>
-                {/*===> Flexbox Properties <===*/}
-                <div className='row gpx-15 mb-10 divider-b'>
-                    {/*===> Column <===*/}
-                    <div className='col-12 mb-15'>
-                        <FlexAlignment label={__("Grid Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={set_alignment}></FlexAlignment>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-12 flexbox mb-15'>
-                        {/*===> Label <===*/}
-                        <label className='col-12 mb-5 tx-UpperCase'>{__("Grid Options", "phenix")}</label>
-                        {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-flow' value="flow-reverse" checked={attributes.flexbox.flow?.length > 0} onChange={set_flex_flow} type='checkbox' className='tiny mb-5 me-10'>
-                            <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
-                        </OptionControl>
-                        {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-nowrap' value="flow-nowrap" checked={attributes.flexbox.nowrap?.length > 0} onChange={set_flex_nowrap} type='checkbox' className='tiny mb-5 me-10'>
-                            <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
-                        </OptionControl>
-                        {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-masonry' value="px-masonry" checked={attributes.flexbox.masonry?.length > 0} onChange={set_flex_masonry} type='checkbox' className='tiny mb-5'>
-                            <span className='fas fa-check radius-circle'>{__("Masonry", "phenix")}</span>
-                        </OptionControl>
-                        {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-equals' checked={attributes.flexbox.equals} onChange={set_flex_equals} type='checkbox' className='tiny me-10'>
-                            <span className='fas fa-check radius-circle'>{__("Equal Columns.", "phenix")}</span>
-                        </OptionControl>
-                        {/*===> Switch Button <===*/}
-                        <OptionControl name='flex-slider' checked={attributes.flexbox.slider} onChange={set_flex_slider} type='checkbox' className='tiny'>
-                            <span className='fas fa-check radius-circle'>{__("Slider Mode.", "phenix")}</span>
-                        </OptionControl>
-                    </div>
-                    {/*===> // Column <===*/}
-                </div>
+            <PanelBody title={__("Layout Settings", "phenix")} initialOpen={true}>
+                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null} >
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='slider' checked={attributes.flexbox.slider} onChange={set_flexbox} type='checkbox' className='tiny'>
+                        <span className='fas fa-check radius-circle'>{__("Slider.", "phenix")}</span>
+                    </OptionControl>
+                </FlexboxSet>
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.flexbox.slider ? <PanelBody title={__("Slider Options", "phenix")} initialOpen={true}>
-                {/*===> Elements Group <===*/}
-                <div className='row gpx-20'>
-                    {/*===> Column <===*/}
-                    <div className='col-12 mb-15'>
-                        <SelectControl label={__("Type", "phenix")} value={attributes.slider_type} onChange={set_slider_type} options={[
-                            { label: __('Loop', "phenix"), value: 'loop' },
-                            { label: __('Fading', "phenix"),  value: 'fade' },
-                            { label: __('Sliding', "phenix"),  value: 'slide' },
-                        ]}/>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Columns No.", "phenix")} value={attributes.flexbox.cols ? attributes.flexbox.cols : 1} onChange={set_flexbox_cols} min={1} max={12}></PhenixNumber>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Steps", "phenix")} value={attributes.slider.steps || 1} onChange={set_slider_steps} min={1} max={12}></PhenixNumber>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Duration", "phenix")} value={attributes.slider.duration || 6000} onChange={set_slider_duration} min={3000} max={20000} steps={100}></PhenixNumber>
-                    </div>
-                    {/*===> Column <===*/}
-                    <div className='col-6 mb-15'>
-                        <PhenixNumber label={__("Speed", "phenix")} value={attributes.slider.speed || 700} onChange={set_slider_speed} min={300} max={3000} steps={100}></PhenixNumber>
-                    </div>
-                    {/*===> // Column <===*/}
-                </div>
-
-                {/*===> Switch Buttons <===*/}
-                <div className='pdt-15 divider-t'>
-                    <ToggleControl label={__("Enable Autoplay", "phenix")} checked={attributes.slider.autoplay || false} onChange={set_slider_autoplay}/>
-                    <ToggleControl label={__("Enable Arrows Buttons", "phenix")} checked={attributes.slider.controls || false} onChange={set_slider_controls}/>
-                    <ToggleControl label={__("Enable Bullet Pagination", "phenix")} checked={attributes.slider.pagination || false} onChange={set_slider_pagination}/>
-                </div>
+                <SliderSet attributes={attributes} mainSetter={set_slider} flexSetter={set_flexbox} />
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>

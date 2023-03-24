@@ -75,10 +75,11 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Flexbox Method <==//
     const set_flexbox = target => {
         //==> Get Current <==//
-        let name = typeof(target) !== "string" ? target.getAttribute('name').replace('fx-', '') : "align",
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "string",
             flexbox = attributes.flexbox;
 
         //==> Add the Value <==//        
+        if(name.includes('-align-')) { name = "align" }
         flexbox[`${name}`] = name === "align" ? target : valueHandler(target);
 
         //==> Set Value <==//
@@ -151,7 +152,7 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.size) container.className += ` ${attributes.size}`;
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
-    //===> Style Properties <===//
+    //===> Style Options <===//
     if (attributes.style) {
         //===> Effects <===//
         if (attributes.style.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
@@ -186,7 +187,7 @@ export default function Edit({ attributes, setAttributes }) {
         }
     }
 
-    //===> Flexbox Properties <===//
+    //===> Layout Options <===//
     if (attributes.isFlexbox) {
         if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align.trim()}`;
         if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
@@ -194,7 +195,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
     }
 
-    //===> Typography Properties <===//
+    //===> Typography Options <===//
     if (attributes.typography) {
         if(attributes.typography.size) container.className += ` ${attributes.typography.size}`;
         if(attributes.typography.color) container.className += ` ${attributes.typography.color}`;
@@ -203,11 +204,8 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     //===> General Options : for Section Convert <===//
-    if (attributes.isSection) {
-        innerBlocksProps.className += `${container.className}`;
-    } else {
-        blockProps.className += `${container.className}`;
-    }
+    if (attributes.isSection) innerBlocksProps.className += `${container.className}`; 
+    else blockProps.className += `${container.className}`;
 
     //===> Full Width Editing <===//
     if (!attributes.align) setAttributes({ align: 'full' });

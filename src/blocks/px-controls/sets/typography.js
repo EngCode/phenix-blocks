@@ -15,7 +15,7 @@ import OptionControl from '../switch';
 //===> Options List
 //=> align, size, weight
 
-//===> Media Uploader <===//
+//===> Component <===//
 export default class TypographySet extends Component {
     render () {
         //===> Properties <===//

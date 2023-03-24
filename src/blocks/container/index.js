@@ -37,7 +37,7 @@ registerBlockType(metadata, {
         if (attributes.id) blockProps['id'] = attributes.id;
         if (attributes.size) container.className += ` ${attributes.size}`;
 
-        //===> Style Properties <===//
+        //===> Style Options <===//
         if (attributes.style) {
             //===> Effects <===//
             if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
@@ -74,7 +74,7 @@ registerBlockType(metadata, {
             }
         }
 
-        //===> Flexbox Properties <===//
+        //===> Layout Options <===//
         if (attributes.isFlexbox) {
             if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align.trim()}`;
             if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
@@ -82,7 +82,7 @@ registerBlockType(metadata, {
             if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
         }
 
-        //===> Typography Properties <===//
+        //===> Typography Options <===//
         if (attributes.typography) {
             const typography = attributes.typography;
             if(typography.size) container.className += ` ${typography.size}`;

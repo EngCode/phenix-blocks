@@ -30,6 +30,12 @@ body[class*="block-editor"], body[class*="site-editor"] {
 				.components-flex-item {max-width: 110px!important;}
 				.components-input-control__container {max-width: 137px;}
 			}
+
+			/*==== Checkboxes ====*/
+			.option-control[data-type="checkbox"] input:checked + .fa-check::before {
+				color: #FFF;
+				background-color: var(--color-active);
+			}
 		}
 	}
 

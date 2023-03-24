@@ -17,7 +17,7 @@ import PhenixBackground from '../colors/background';
 //===> Options List
 //=> text-colors, background, display, overlapped, sticky
 
-//===> Media Uploader <===//
+//===> Component <===//
 export default class StylesSet extends Component {
     render () {
         //===> Properties <===//

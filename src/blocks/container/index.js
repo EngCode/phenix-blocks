@@ -33,32 +33,46 @@ registerBlockType(metadata, {
               background = attributes.style.background,
               typography = attributes.typography;
     
-        let container = attributes.isFlexbox ? "flexbox " : '';
+        const container = {className: attributes.isFlexbox ? "flexbox " : ''};
 
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
-        if (attributes.size) container += attributes.size;
+        if (attributes.size) container.className += attributes.size;
 
         //===> Style Properties <===//
         if (attributes.style) {
-            if (attributes.style.display) container += ` ${attributes.style.display.toString().replace(',', ' ')}`;
-            if (attributes.style.overlapped) container += ` ${attributes.style.overlapped}`;
+            //===> Effects <===//
+            if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
+            if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
+
+            //===> Position <===//
+            if (attributes.style.position) {
+                //===> if its Absolute Sticky <===//
+                if (attributes.style.position === "sticky-absolute") {
+                    blockProps["data-sticky"] = `absolute`;
+                    blockProps.className += ` position-rv fluid z-index-header`;
+                }
+                //===> Otherwise is Class Name <===//
+                else {
+                    blockProps.className += ` ${attributes.style.position}`;
+                }
+            }
         }
 
         //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {
-            if (attributes.flexbox.align)  container += ` ${attributes.flexbox.align}`;
-            if (attributes.flexbox.flow)   container += ` ${attributes.flexbox.flow}`;
-            if (attributes.flexbox.nowrap) container += ` ${attributes.flexbox.nowrap}`;
-            if (attributes.flexbox.stacked) container += ` ${attributes.flexbox.stacked}`;
+            if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
+            if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
+            if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
         }
 
         //===> Typography Properties <===//
         if (typography) {
-            if(typography.size) container += ` ${typography.size}`;
-            if(typography.color) container += ` ${typography.color}`;
-            if(typography.weight) container += ` ${typography.weight}`;
-            if(typography.align) container += ` ${typography.align}`;
+            if(typography.size) container.className += ` ${typography.size}`;
+            if(typography.color) container.className += ` ${typography.color}`;
+            if(typography.weight) container.className += ` ${typography.weight}`;
+            if(typography.align) container.className += ` ${typography.align}`;
         }
 
         //===> Render Background <===//
@@ -78,7 +92,7 @@ registerBlockType(metadata, {
         }
 
         //===> for Section Convert <===//
-        if (!attributes.isSection) blockProps.className += ` ${container}`;
+        if (!attributes.isSection) blockProps.className += ` ${container.className}`;
 
         //===> Render <===//
         return (

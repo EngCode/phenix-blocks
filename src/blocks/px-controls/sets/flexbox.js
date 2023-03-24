@@ -12,6 +12,9 @@ import {Component} from '@wordpress/element';
 import OptionControl from '../switch';
 import FlexAlignment from '../alignment';
 
+//===> Options List
+//=> align, flex-props
+
 //===> Media Uploader <===//
 export default class FlexboxSet extends Component {
     render () {
@@ -22,14 +25,14 @@ export default class FlexboxSet extends Component {
         return <>
             <div className={`row gpx-15 ${className ? className : ""}`}>
                 {/*===> Column <===*/}
-                {!options || options.contains("alignment") ? <>
+                {!options || options.includes("align") ? <>
                 <div className='col-12 mb-15'>
                     <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={mainSetter}></FlexAlignment>
                 </div>
                 </>: null}
                 {/*===> Column <===*/}
                 <div className='col-12 flexbox align-between mb-15'>
-                    {!options || options.contains("flex-props") ? <>
+                    {!options || options.includes("flex-props") ? <>
                         {/*===> Label <===*/}
                         <label className='col-12 mb-5 tx-UpperCase'>{__("Flow Options", "phenix")}</label>
                         {/*===> Switch Button <===*/}

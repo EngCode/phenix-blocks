@@ -11,10 +11,9 @@ import {Component} from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixSelect from '../select';
 import OptionControl from '../switch';
-import FlexAlignment from '../alignment';
-import PhenixColor from '../colors/text';
-import PhenixBackground from '../colors/background';
 
+//===> Options List
+//=> align, size, weight
 
 //===> Media Uploader <===//
 export default class TypographySet extends Component {
@@ -55,7 +54,7 @@ export default class TypographySet extends Component {
 
         //===> Output <===//
         return <>
-            {!options || options.contains("alignment") ? <>
+            {!options || options.includes("align") ? <>
                 {/*===> Label <===*/}
                 <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Alignment", "phenix")}</label>
                 {/*===> Elements Group <===*/}
@@ -85,13 +84,13 @@ export default class TypographySet extends Component {
             {/*===> Grouped Options <===*/}
             <div className='row gpx-20 gpy-fix'>
                 {/*===> Size <===*/}
-                {!options || options.contains("size") ? <>
+                {!options || options.includes("size") ? <>
                 <div className='col-6 mb-10'>
                     <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={mainSetter} options={font_sizes} />
                 </div>
                 </>: null}
                 {/*===> HTML Tag <===*/}
-                {!options || options.contains("weight") ? <>
+                {!options || options.includes("weight") ? <>
                 <div className='col-6 mb-10'>
                     <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={mainSetter} options={font_weights}/>
                 </div>

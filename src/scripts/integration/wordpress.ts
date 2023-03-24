@@ -9,7 +9,7 @@ declare var wp:any,
     window:any;
 
 /*====> D.O.M is Ready ? <====*/
-Phenix(document).ready(ready => {
+Phenix(window).on("load", (loaded) => {
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
         if (document.querySelector(".wpcf7-form")) {
@@ -168,10 +168,14 @@ Phenix(document).ready(ready => {
 
                     //===> Clear Timer <===//
                     clearInterval(loadAssetTimer);
+
+                    //===> Run Scripts <===//
+                    frameDoc.addEventListener('load', () => Phenix(document).init());
+                } else {
+                    //===> Increase Counter <===//
+                    trying_times += 1;
+                    if (trying_times > 100) clearInterval(loadAssetTimer);
                 }
-                //===> Increase Counter <===//
-                // trying_times += 1;
-                // if (trying_times > 30) clearInterval(loadAssetTimer);
             }, 300);
         };
 

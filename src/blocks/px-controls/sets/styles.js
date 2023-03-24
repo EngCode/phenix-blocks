@@ -14,11 +14,14 @@ import OptionControl from '../switch';
 import PhenixColor from '../colors/text';
 import PhenixBackground from '../colors/background';
 
+//===> Options List
+//=> text-colors, background, display, overlapped, sticky
+
 //===> Media Uploader <===//
 export default class StylesSet extends Component {
     render () {
         //===> Properties <===//
-        const {attributes, options, mainSetter, colorSetter, backgroundSetter} = this.props;
+        const {attributes, options, mainSetter, colorSetter} = this.props;
 
         //===> Define Controls Options <===//
         const display_options = {
@@ -57,16 +60,26 @@ export default class StylesSet extends Component {
             ],
         };
 
+        const position_options = [
+            { "label": "Default", "value": ""},
+            { "label": "Fixed", "value": "position-fx"},
+            { "label": "Static", "value": "position-none"},
+            { "label": "Sticky", "value": "position-st"},
+            { "label": "Absolute", "value": "position-ab"},
+            { "label": "Relative", "value": "position-rv"},
+            { "label": "Sticky(S)", "value": "sticky-absolute"},
+        ];
+
         //===> Output <===//
         return <>
             {/*===> Text Color <===*/}
-            {!options || options.contains("text-colors") ?
+            {!options || options.includes("text-colors") ?
                 <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={colorSetter} value={attributes.typography.color} />
             : null}
 
             {/*===> Background <===*/}
-            {!options || options.contains("background") ? <>
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={backgroundSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+            {!options || options.includes("background") ? <>
+                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={mainSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {attributes.style.background?.type === "image" ? 
                     <div className='mb-15 row gpx-15' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
@@ -83,18 +96,20 @@ export default class StylesSet extends Component {
 
             {/*===> Additional Styles <===*/}
             <div className='row gpx-15 divider-t pdt-15'>
-                {/*===> Display <===*/}
-                {!options || options.contains("display") ? <>
-                    <div className='col-12 mb-5'>
-                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={mainSetter} options={display_options} multiple={true} className="stacked-options" />
+                {/*===> Sticky Element <===*/}
+                {!options || options.includes("position") ? <>
+                    <div className='col col-6 mb-15'>
+                        <PhenixSelect name="position" placeholder={__("Default", "phenix")} label={__("Position Type", "phenix")} value={attributes.style.position} onChange={mainSetter} options={position_options} />
+                        {/*===> Overlapped <===*/}
+                        {!options || options.includes("overlapped") ? <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={mainSetter} type='switch-checkbox' className='small mt-5'>{__("Overlapped", "phenix")}</OptionControl> : null}
                     </div>
                 </>: null}
 
-                {/*===> Overlapped <===*/}
-                {!options || options.contains("overlapped") ? <>
-                <div className='col-6'>
-                    <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Overlapped", "phenix")}</OptionControl>
-                </div>
+                {/*===> Display <===*/}
+                {!options || options.includes("display") ? <>
+                    <div className='col-12 mb-5'>
+                        <PhenixSelect name="display" placeholder={__("Default", "phenix")} search={true} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={mainSetter} options={display_options} multiple={true} className="stacked-options" />
+                    </div>
                 </>: null}
             </div>
         </>

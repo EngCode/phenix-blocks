@@ -86,11 +86,11 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Typography Method <==//
     const set_typography = target => {
         //==> Get Current <==//
-        let name = target.getAttribute('name'),
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color",
             typography = attributes.typography;
 
         //==> Add the Value <==//
-        typography[`${name}`] = valueHandler(target);
+        typography[`${name}`] = name === "color" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -99,34 +99,14 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Style Method <==//
     const set_style = target => {
         //==> Get Current <==//
-        let name = target.getAttribute('name'),
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background",
             style = attributes.style;
 
         //==> Add the Value <==//
-        style[`${name}`] = valueHandler(target);
+        style[`${name}`] = name === "background" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ style : {...style} });
-    };
-
-    //==> Set Color Method <==//
-    const set_color = value => {
-        //==> Get Current <==//
-        let typography = attributes.typography;
-
-        //==> Set Value <==//
-        typography.color = value;
-        setAttributes({ typography : {...typography} });
-    };
-
-    //===> Set Background <===//
-    const set_background = background => {
-        //==> Get Current <==//
-        let styles = attributes.style;
-
-        //==> Set Value <==//
-        styles.background = background;
-        setAttributes({ style : {...attributes.style} });
     };
 
     //===> Define Controls Options <===//
@@ -163,14 +143,35 @@ export default function Edit({ attributes, setAttributes }) {
     useEffect(() => setPhenixView(), [attributes]);
 
     //===> for Section Convert <===//
-    let container = blockProps;
-    if (attributes.isSection || attributes.isFlexbox) container = innerBlocksProps;
+    if (attributes.isSection || attributes.isFlexbox) {
+        const container = innerBlocksProps;
+    } else {
+        const container = blockProps;
+    }
 
     //===> Container Options <===//
     if (attributes.size) container.className += ` ${attributes.size}`;
-    if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
-    if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
+
+    //===> Style Properties <===//
+    if (attributes.style) {
+        //===> Effects <===//
+        if (attributes.style.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
+        if (attributes.style.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+
+        //===> Position <===//
+        if (attributes.style.position) {
+            //===> if its Absolute Sticky <===//
+            if (attributes.style.position === "sticky-absolute") {
+                blockProps["data-sticky"] = ` ${attributes.style.position}`;
+                blockProps.className += ` position-rv fluid z-index-header`;
+            }
+            //===> Otherwise is Class Name <===//
+            else {
+                blockProps.className += ` ${attributes.style.position}`;
+            }
+        }
+    }
 
     //===> Flexbox Properties <===//
     if (attributes.isFlexbox) {
@@ -254,7 +255,7 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
-                <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_color} backgroundSetter={set_background} />
+                <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_typography} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

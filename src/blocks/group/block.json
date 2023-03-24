@@ -32,11 +32,6 @@
             "default": true
         },
 
-        "flex_align" : {
-            "type": "string",
-            "default": ""
-        },
-
         "flexbox": {
             "type": "object",
             "default": {}

@@ -25,7 +25,9 @@ export default class FlexAlignment extends Component {
             //===> Loop on Values <===//
             val_split.forEach(value => {
                 //===> Type X Checker <===//
-                if (align_type.includes('-x') && value.includes('-x' || 'between' || 'around')) {align_val.replace(value, target.value);} 
+                let checkX = value.includes('-x') || value.includes('between');
+                if (!checkX) checkX = value.includes('around');
+                if (align_type.includes('-x') && checkX === true) {align_val.replace(value, target.value);} 
     
                 //===> Type Y Checker <===//
                 else if (align_type.includes('-y') && value.includes('-y')) {align_val.replace(value, target.value);}

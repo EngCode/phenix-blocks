@@ -16,11 +16,14 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
-import PhenixColor from '../px-controls/colors/text';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import FlexAlignment from '../px-controls/alignment';
+import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
+
+//====> Phenix Sets <=====//
+import FlexboxSet from '../px-controls/sets/flexbox';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -183,33 +186,33 @@ export default function Edit({ attributes, setAttributes }) {
             { "label": "Grid", "value": "display-grid"},
             { "label": "Block", "value": "display-block"},
             { "label": "Flexbox", "value": "flexbox"},
+            { "label": "Inline-Block", "value": "inline-block"},
             { "label": "Hidden SM <i class='fas fa-arrow-up'><i>", "value": "hidden"},
             { "label": "Hidden SM <i class='fas fa-arrow-down'><i>", "value": "hidden-sm-down"},
-            { "label": "Inline-Block", "value": "inline-block"},
         ],
         "Tablet Screens" : [
             { "label": "Flex MD", "value": "display-md-flex"},
             { "label": "Grid MD", "value": "display-md-grid"},
             { "label": "Block MD", "value": "display-md-block"},
+            { "label": "Hidden MD <i class='fas fa-arrow-up'><i>", "value": "hidden-md-up"},
+            { "label": "Hidden MD <i class='fas fa-arrow-down'><i>", "value": "hidden-md-down"},
             { "label": "Inline-Block MD", "value": "inline-block-md"},
-            { "label": "Hide MD Up", "value": "hidden-md-up"},
-            { "label": "Hide MD Down", "value": "hidden-md-down"},
         ],
         "Laptop Screens" : [
             { "label": "Flex LG", "value": "display-lg-flex"},
             { "label": "Grid LG", "value": "display-lg-grid"},
             { "label": "Block LG", "value": "display-lg-block"},
+            { "label": "Hidden LG <i class='fas fa-arrow-up'><i>", "value": "hidden-lg-up"},
+            { "label": "Hidden LG <i class='fas fa-arrow-down'><i>", "value": "hidden-lg-down"},
             { "label": "Inline-Block LG", "value": "inline-block-lg"},
-            { "label": "Hide LG Up", "value": "hidden-lg-up"},
-            { "label": "Hide LG Down", "value": "hidden-lg-down"},
         ],
         "Desktop Screens" : [
             { "label": "Flex XL", "value": "display-xl-flex"},
             { "label": "Grid XL", "value": "display-xl-grid"},
             { "label": "Block XL", "value": "display-xl-block"},
+            { "label": "Hidden XL <i class='fas fa-arrow-up'><i>", "value": "hidden-xl-up"},
+            { "label": "Hidden XL <i class='fas fa-arrow-down'><i>", "value": "hidden-xl-down"},
             { "label": "Inline-Block XG", "value": "inline-block-xl"},
-            { "label": "Hide XL Up", "value": "hidden-xl-up"},
-            { "label": "Hide XL Down", "value": "hidden-xl-down"},
         ],
     };
 
@@ -318,6 +321,13 @@ export default function Edit({ attributes, setAttributes }) {
                     {/*===> // Column <===*/}
                 </div>
             </PanelBody>
+            {/*===> Layout Options <===*/}
+            {attributes.isFlexbox ?
+            <PanelBody title={__("Layout Settings", "phenix")}>
+                {/*===> Flexbox Properties <===*/}
+                <FlexboxSet attributes={attributes} mainSetter={set_flexbox} alignSetter={set_flex_align} />
+            </PanelBody>
+            : null}
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
                 {/*===> Label <===*/}
@@ -379,33 +389,6 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                 : null }
 
-                {/*===> Flexbox Properties <===*/}
-                {attributes.isFlexbox ?
-                    <div className='row gpx-15 divider-t pdt-10'>
-                        {/*===> Column <===*/}
-                        <div className='col-12 mb-15'>
-                            <FlexAlignment label={__("Flexbox Alignment", "phenix")} value={attributes.flexbox.align || ""} onChange={set_flex_align}></FlexAlignment>
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col-12 flexbox align-between mb-15'>
-                            {/*===> Label <===*/}
-                            <label className='col-12 mb-5 tx-UpperCase'>{__("Flow Options", "phenix")}</label>
-                            {/*===> Switch Button <===*/}
-                            <OptionControl name='flow' value={!attributes.flexbox.stacked || attributes.flexbox.stacked === "" ? `flow-reverse` : "flow-columns-reverse"} checked={attributes.flexbox.flow?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
-                                <span className='fas fa-check radius-circle'>{__("Reverse ", "phenix")}</span>
-                            </OptionControl>
-                            {/*===> Switch Button <===*/}
-                            <OptionControl name='stacked' value="flow-columns" checked={attributes.flexbox.stacked?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
-                                <span className='fas fa-check radius-circle'>{__("Stacked", "phenix")}</span>
-                            </OptionControl>
-                            {/*===> Switch Button <===*/}
-                            <OptionControl name='nowrap' value="flow-nowrap" checked={attributes.flexbox.nowrap?.length > 0} onChange={set_flexbox} type='checkbox' className='tiny'>
-                                <span className='fas fa-check radius-circle'>{__("Nowrap", "phenix")}</span>
-                            </OptionControl>
-                        </div>
-                        {/*===> // Column <===*/}
-                    </div>
-                : null}
                 {/*===> Additional Styles <===*/}
                 <div className='row gpx-15 divider-t pdt-10'>
                     {/*===> Column <===*/}

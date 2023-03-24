@@ -33,11 +33,11 @@ registerBlockType(metadata, {
               background = attributes.style.background,
               typography = attributes.typography;
     
-        const container = {className: attributes.isFlexbox ? "flexbox " : ''};
+        const container = {className: attributes.isFlexbox ? " flexbox" : ''};
 
         //===> Container Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
-        if (attributes.size) container.className += attributes.size;
+        if (attributes.size) container.className += ` ${attributes.size}`;
 
         //===> Style Properties <===//
         if (attributes.style) {
@@ -61,7 +61,7 @@ registerBlockType(metadata, {
 
         //===> Flexbox Properties <===//
         if (attributes.isFlexbox) {
-            if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align.trim()}`;
             if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
             if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
             if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
@@ -98,7 +98,7 @@ registerBlockType(metadata, {
         return (
             <TagName {...blockProps}>
                 {attributes.isSection ?
-                    <div className={container}>
+                    <div className={container.className}>
                         <InnerBlocks.Content />
                     </div>
                 :

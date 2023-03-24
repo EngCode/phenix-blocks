@@ -143,11 +143,7 @@ export default function Edit({ attributes, setAttributes }) {
     useEffect(() => setPhenixView(), [attributes]);
 
     //===> for Section Convert <===//
-    if (attributes.isSection || attributes.isFlexbox) {
-        const container = innerBlocksProps;
-    } else {
-        const container = blockProps;
-    }
+    const container = {className: attributes.isFlexbox ? " flexbox" : ''};
 
     //===> Container Options <===//
     if (attributes.size) container.className += ` ${attributes.size}`;
@@ -175,8 +171,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Flexbox Properties <===//
     if (attributes.isFlexbox) {
-        container.className += ' flexbox';
-        if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align}`;
+        if (attributes.flexbox.align)  container.className += ` ${attributes.flexbox.align.trim()}`;
         if (attributes.flexbox.flow)   container.className += ` ${attributes.flexbox.flow}`;
         if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
         if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
@@ -203,6 +198,13 @@ export default function Edit({ attributes, setAttributes }) {
 
         //===> Background Rotation <===//
         if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
+    }
+
+    //===> for Section Convert <===//
+    if (attributes.isSection) {
+        innerBlocksProps.className += `${container.className}`;
+    } else {
+        blockProps.className += `${container.className}`;
     }
 
     //===> Full Width Editing <===//

@@ -82,6 +82,7 @@ registerBlockType(metadata, {
                 if (attributes.style.background.type === 'image') {
                     blockProps.className += ` px-media`;
                     blockProps["data-src"] = attributes.style.background.value;
+                    if (attributes.style.parallax) blockProps.className += ` ${attributes.style.parallax}`;
                 }
 
                 //===> Name Background <===//

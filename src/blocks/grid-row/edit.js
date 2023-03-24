@@ -15,18 +15,12 @@ import {
 } from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
-import FlexAlignment from '../px-controls/alignment';
-
-//====> Phenix Modules <====//
 import ScreensTabs from "../px-controls/tabs";
-import PhenixNumber from "../px-controls/number";
-import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
-import TypographySet from '../px-controls/sets/typography';
 import SliderSet from '../px-controls/sets/slider';
 
 //====> Edit Mode <====//
@@ -199,6 +193,7 @@ export default function Edit({ attributes, setAttributes }) {
             if (attributes.style.background.type === 'image') {
                 innerBlocksProps.className += ` px-media`;
                 innerBlocksProps["data-src"] = attributes.style.background.value;
+                if (attributes.style.parallax) innerBlocksProps.className += ` ${attributes.style.parallax}`;
             }
 
             //===> Name Background <===//

@@ -15,7 +15,7 @@ import PhenixColor from '../colors/text';
 import PhenixBackground from '../colors/background';
 
 //===> Options List
-//=> text-colors, background, display, overlapped, sticky
+//=> text-colors, background, display, overlapped, position
 
 //===> Component <===//
 export default class StylesSet extends Component {
@@ -95,7 +95,7 @@ export default class StylesSet extends Component {
             </>: null}
 
             {/*===> Additional Styles <===*/}
-            <div className='row gpx-15 divider-t pdt-15'>
+            <div className={`row gpx-15 ${attributes.style.background?.type === "image" ? "divider-t pdt-15" : null}`}>
                 {/*===> Sticky Element <===*/}
                 {!options || options.includes("position") ? <>
                     <div className='col col-6 mb-15'>

@@ -66,7 +66,7 @@ export default function Edit({ attributes, setAttributes }) {
         const attr = attributes;
 
         //==> Add the Value <==//
-        attr[`${name}`] = valueHandler(target);
+        attr[`${name}`] = typeof(target) === "string"? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ ...attr });
@@ -80,7 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}`] = name === "align" ? target.replace("align-reset", "") : valueHandler(target);
+        flexbox[`${name}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -93,7 +93,7 @@ export default function Edit({ attributes, setAttributes }) {
         const typography = attributes.typography;
 
         //==> Add the Value <==//
-        typography[`${name}`] = name === "color" ? target : valueHandler(target);
+        typography[`${name}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -153,13 +153,16 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
     //===> Style Options <===//
-    if (attributes.style) {
+    if (attributes.style || attributes.typography?.color) {
         //===> Effects <===//
-        if (attributes.style.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
-        if (attributes.style.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+        if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
+        if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+
+        //===> Text Color <===//
+        if(attributes.typography?.color) container.className += ` ${attributes.typography.color}`;
 
         //===> Render Background <===//
-        if (attributes.style.background?.value) {
+        if (attributes.style?.background?.value) {
             //===> Image Background <===//
             if (attributes.style.background.type === 'image') {
                 blockProps.className += ` px-media`;
@@ -174,7 +177,7 @@ export default function Edit({ attributes, setAttributes }) {
         }
 
         //===> Position <===//
-        if (attributes.style.position) {
+        if (attributes.style?.position) {
             //===> if its Absolute Sticky <===//
             if (attributes.style.position === "sticky-absolute") {
                 blockProps["data-sticky"] = ` ${attributes.style.position}`;
@@ -198,7 +201,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Typography Options <===//
     if (attributes.typography) {
         if(attributes.typography.size) container.className += ` ${attributes.typography.size}`;
-        if(attributes.typography.color) container.className += ` ${attributes.typography.color}`;
         if(attributes.typography.weight) container.className += ` ${attributes.typography.weight}`;
         if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
     }

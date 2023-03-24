@@ -69,7 +69,7 @@ export default function Edit({ attributes, setAttributes }) {
             
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}`] = typeof(name) === "string" ? target.replace("align-reset", "") : valueHandler(target);
+        flexbox[`${name}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -86,7 +86,7 @@ export default function Edit({ attributes, setAttributes }) {
             name = `align`;
             flexbox[`${name}-${screen}`] = target.replace("align-reset", "").replace('align-', `align-${screen}-`);
         } else {
-            flexbox[`${name}-${screen}`] = typeof(name) === "string" ? target : valueHandler(target);
+            flexbox[`${name}-${screen}`] = typeof(target) === "string" ? target : valueHandler(target);
         }
 
         //==> Set Value <==//
@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
         const slider = attributes.slider;
 
         //==> Add the Value <==//
-        slider[`${name}`] = typeof(name) === "string" ? target : valueHandler(target);
+        slider[`${name}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ slider : {...slider} });
@@ -113,7 +113,7 @@ export default function Edit({ attributes, setAttributes }) {
         const typography = attributes.typography;
 
         //==> Add the Value <==//
-        attributes.typography[`${name}`] = name === "color" ? target : valueHandler(target);
+        attributes.typography[`${name}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -146,16 +146,16 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Properties <===//
     innerBlocksProps.className += ` ${blockProps.className}`;
     innerBlocksProps.className += ' row';
+    const screens = ["md", "lg", "xl"];
 
-    //===> Grid Options <===//
+    //===> Layout Options <===//
     if(!attributes.flexbox.slider) {
-        if (attributes.flexbox.align)  innerBlocksProps.className += ` ${attributes.flexbox.align}`;
+        if (attributes.flexbox.align)  innerBlocksProps.className += ` ${attributes.flexbox.align.trim()}`;
         if (attributes.flexbox.flow)   innerBlocksProps.className += ` ${attributes.flexbox.flow}`;
         if (attributes.flexbox.nowrap) innerBlocksProps.className += ` ${attributes.flexbox.nowrap}`;
         if (attributes.flexbox.masonry) innerBlocksProps.className += ` ${attributes.flexbox.masonry}`;
         if (attributes.flexbox.equals && attributes.flexbox.cols) innerBlocksProps.className += ` row-cols-${attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"}`;
         //===> Responsive <===//
-        let screens = ["md", "lg", "xl"];
         screens.forEach(screen => {
             if (attributes.flexbox[`align-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
             if (attributes.flexbox[`flow-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
@@ -182,12 +182,44 @@ export default function Edit({ attributes, setAttributes }) {
             else {innerBlocksProps['data-autoplay'] = 0;}
         }
         //===> Responsive <===//
-        let screens = ["md", "lg", "xl"];
         if (attributes.flexbox.cols) innerBlocksProps[`data-items`] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
         screens.forEach(screen => {
             if (attributes.flexbox[`cols-${screen}`] && attributes.flexbox[`cols-${screen}`] > 0) innerBlocksProps[`data-${screen}`] = attributes.flexbox[`cols-${screen}`];
         });
     }
+
+    //===> Style Options <===//
+    if (attributes.style || attributes.typography?.color) {
+        //===> Text Color <===//
+        if (attributes.typography?.color) innerBlocksProps.className += ` ${attributes.typography.color}`;
+
+        //===> Render Background <===//
+        if (attributes.style?.background?.value) {
+            //===> Image Background <===//
+            if (attributes.style.background.type === 'image') {
+                innerBlocksProps.className += ` px-media`;
+                innerBlocksProps["data-src"] = attributes.style.background.value;
+            }
+
+            //===> Name Background <===//
+            else innerBlocksProps.className += ` ${attributes.style.background.value}`;
+
+            //===> Background Rotation <===//
+            if (attributes.style.background.rotate) innerBlocksProps.className += ` ${attributes.style.background.rotate}`;
+        }
+
+        //===> Position <===//
+        if (attributes.style?.position) {
+            //===> if its Absolute Sticky <===//
+            if (attributes.style.position === "sticky-absolute") {
+                innerBlocksProps["data-sticky"] = ` ${attributes.style.position}`;
+                innerBlocksProps.className += ` position-rv fluid z-index-header`;
+            }
+            //===> Otherwise is Class Name <===//
+            else { innerBlocksProps.className += ` ${attributes.style.position}`; }
+        }
+    }
+
 
     //===> Render <===//
     return (<>
@@ -200,11 +232,19 @@ export default function Edit({ attributes, setAttributes }) {
                     <OptionControl name='slider' checked={attributes.flexbox.slider} onChange={set_flexbox} type='checkbox' className='tiny'>
                         <span className='fas fa-check radius-circle'>{__("Slider.", "phenix")}</span>
                     </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name='style-support' checked={attributes.flexbox['style-support']} onChange={set_flexbox} type='checkbox' className='tiny'>
+                        <span className='fas fa-check radius-circle'>{__("Styles Support.", "phenix")}</span>
+                    </OptionControl>
                 </FlexboxSet>
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.flexbox.slider ? <PanelBody title={__("Slider Options", "phenix")} initialOpen={true}>
                 <SliderSet attributes={attributes} mainSetter={set_slider} flexSetter={set_flexbox} />
+            </PanelBody> : null}
+            {/*===> Widget Panel <===*/}
+            {attributes.flexbox['style-support'] ? <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
+                <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background, position" />
             </PanelBody> : null}
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>

@@ -28,17 +28,17 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
+        const screens = ["md", "lg", "xl"];
         blockProps.className += ' row';
 
         //===> Properties <===//
         if(!attributes.flexbox.slider) {
-            if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align}`;
+            if (attributes.flexbox.align)  blockProps.className += ` ${attributes.flexbox.align.trim()}`;
             if (attributes.flexbox.flow)   blockProps.className += ` ${attributes.flexbox.flow}`;
             if (attributes.flexbox.nowrap) blockProps.className += ` ${attributes.flexbox.nowrap}`;
             if (attributes.flexbox.masonry) blockProps.className += ` ${attributes.flexbox.masonry}`;
             if (attributes.flexbox.equals && attributes.flexbox.cols) blockProps.className += ` row-cols-${attributes.flexbox.cols > 0 ? attributes.flexbox.cols : "auto"}`;
             //===> Responsive <===//
-            let screens = ["md", "lg", "xl"];
             screens.forEach(screen => {
                 if (attributes.flexbox[`align-${screen}`]) blockProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
                 if (attributes.flexbox[`flow-${screen}`]) blockProps.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
@@ -65,11 +65,42 @@ registerBlockType(metadata, {
                 else {blockProps['data-autoplay'] = 0;}
             }
             //===> Responsive <===//
-            let screens = ["md", "lg", "xl"];
             if (attributes.flexbox.cols) blockProps[`data-items`] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
             screens.forEach(screen => {
                 if (attributes.flexbox[`cols-${screen}`] && attributes.flexbox[`cols-${screen}`] > 0) blockProps[`data-${screen}`] = attributes.flexbox[`cols-${screen}`];
             });
+        }
+
+        //===> Style Options <===//
+        if (attributes.style || attributes.typography?.color) {
+            //===> Text Color <===//
+            if (attributes.typography?.color) blockProps.className += ` ${attributes.typography.color}`;
+
+            //===> Render Background <===//
+            if (attributes.style?.background?.value) {
+                //===> Image Background <===//
+                if (attributes.style.background.type === 'image') {
+                    blockProps.className += ` px-media`;
+                    blockProps["data-src"] = attributes.style.background.value;
+                }
+
+                //===> Name Background <===//
+                else blockProps.className += ` ${attributes.style.background.value}`;
+
+                //===> Background Rotation <===//
+                if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
+            }
+
+            //===> Position <===//
+            if (attributes.style?.position) {
+                //===> if its Absolute Sticky <===//
+                if (attributes.style.position === "sticky-absolute") {
+                    blockProps["data-sticky"] = ` ${attributes.style.position}`;
+                    blockProps.className += ` position-rv fluid z-index-header`;
+                }
+                //===> Otherwise is Class Name <===//
+                else { blockProps.className += ` ${attributes.style.position}`; }
+            }
         }
 
         //===> Render <===//

@@ -38,13 +38,16 @@ registerBlockType(metadata, {
         if (attributes.size) container.className += ` ${attributes.size}`;
 
         //===> Style Options <===//
-        if (attributes.style) {
+        if (attributes.style || attributes.typography?.color) {
             //===> Effects <===//
             if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
             if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
 
+            //===> Text Color <===//
+            if(attributes.typography?.color) container.className += ` ${attributes.typography.color}`;
+
             //===> Render Background <===//
-            if (attributes.style.background?.value) {
+            if (attributes.style?.background?.value) {
                 const background = attributes.style.background;
                 //===> Image Background <===//
                 if (background.type === 'image') {
@@ -61,7 +64,7 @@ registerBlockType(metadata, {
             }
 
             //===> Position <===//
-            if (attributes.style.position) {
+            if (attributes.style?.position) {
                 //===> if its Absolute Sticky <===//
                 if (attributes.style.position === "sticky-absolute") {
                     blockProps["data-sticky"] = `absolute`;
@@ -86,7 +89,6 @@ registerBlockType(metadata, {
         if (attributes.typography) {
             const typography = attributes.typography;
             if(typography.size) container.className += ` ${typography.size}`;
-            if(typography.color) container.className += ` ${typography.color}`;
             if(typography.weight) container.className += ` ${typography.weight}`;
             if(typography.align) container.className += ` ${typography.align}`;
         }

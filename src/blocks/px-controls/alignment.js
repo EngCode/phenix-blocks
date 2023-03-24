@@ -18,11 +18,10 @@ export default class FlexAlignment extends Component {
         //===> Align Handler <===//
         const set_alignment = target => {
             //===> Define Data <===//
-            let align_val = value,
+            let align_val  = value,
                 align_type = target.getAttribute('name'),
-                val_split = value.split(" "),
-                new_align_val = ""; //===> to store the new value
-        
+                val_split  = value.split(" ");
+
             //===> Loop on Values <===//
             val_split.forEach(value => {
                 //===> Get the Type <===//
@@ -31,25 +30,20 @@ export default class FlexAlignment extends Component {
                     typeY = align_type.includes('-y'),
                     valX = value.includes('-x') || value.includes('between') || value.includes('around'),
                     typeX = align_type.includes('-x') || align_type.includes('between') || align_type.includes('around');
-        
+
                 //===> Get the Align Value <===//
                 if (typeX === true && valX === true || typeY === true && valY === true) replaceMode = true;
-        
+
                 //===> if the value type already exists, replace it <===//
                 if (replaceMode) {
-                    // Add the target value to the new_align_val
-                    new_align_val += ` ${target.value}`;
+                    align_val = align_val.replace(value, target.value);
                 }
                 //===> otherwise add new value <===//
                 else {
-                    // Add the current value to the new_align_val
-                    new_align_val += ` ${value}`;
+                    align_val += ` ${target.value}`;
                 }
             });
-        
-            //===> Update align_val with new_align_val <===//
-            align_val = new_align_val.trim();
-        
+
             //===> Return new Value <===//
             return onChange(align_val);
         },

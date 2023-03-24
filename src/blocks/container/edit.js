@@ -36,12 +36,13 @@ export default function Edit({ attributes, setAttributes }) {
             array_val = [],
             type = target.getAttribute('type') || target.tagName;
 
-        //==> Add the Value <==//
+        //==> for Boolean Values <==//
         if (type === 'checkbox' || type === 'radio') {
             if (target.value === 'boolean') { single_val = target.checked; }
             else { single_val = target.checked ? target.value : ""; }
         }
 
+        //===> for Value of Type Array <===//
         else if (type === "SELECT" && target.hasAttribute('multiple')) {
             //===> Get Multiple Value <===//
             let values = target.parentNode.getAttribute('data-value').split(',');
@@ -51,6 +52,7 @@ export default function Edit({ attributes, setAttributes }) {
             single_val = array_val;
         }
 
+        //===> for Normal Values <===//
         else { single_val = target.value; }
 
         //===> Return Value <===//
@@ -145,7 +147,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> for Section Convert <===//
     const container = {className: attributes.isFlexbox ? " flexbox" : ''};
 
-    //===> Container Options <===//
+    //===> General Options <===//
     if (attributes.size) container.className += ` ${attributes.size}`;
     if (attributes.isFlexbox && !attributes.isSection && blockProps.className) container.className += ` ${blockProps.className}`;
 
@@ -154,6 +156,21 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Effects <===//
         if (attributes.style.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
         if (attributes.style.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+
+        //===> Render Background <===//
+        if (attributes.style.background?.value) {
+            //===> Image Background <===//
+            if (attributes.style.background.type === 'image') {
+                blockProps.className += ` px-media`;
+                blockProps["data-src"] = attributes.style.background.value;
+            }
+
+            //===> Name Background <===//
+            else blockProps.className += ` ${attributes.style.background.value}`;
+
+            //===> Background Rotation <===//
+            if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
+        }
 
         //===> Position <===//
         if (attributes.style.position) {
@@ -185,22 +202,7 @@ export default function Edit({ attributes, setAttributes }) {
         if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
     }
 
-    //===> Render Background <===//
-    if (attributes.style.background?.value) {
-        //===> Image Background <===//
-        if (attributes.style.background.type === 'image') {
-            blockProps.className += ` px-media`;
-            blockProps["data-src"] = attributes.style.background.value;
-        }
-
-        //===> Name Background <===//
-        else blockProps.className += ` ${attributes.style.background.value}`;
-
-        //===> Background Rotation <===//
-        if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
-    }
-
-    //===> for Section Convert <===//
+    //===> General Options : for Section Convert <===//
     if (attributes.isSection) {
         innerBlocksProps.className += `${container.className}`;
     } else {

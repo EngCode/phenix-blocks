@@ -29,13 +29,11 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        const TagName = attributes.tagName,
-              background = attributes.style.background,
-              typography = attributes.typography;
+        const TagName = attributes.tagName;
     
         const container = {className: attributes.isFlexbox ? " flexbox" : ''};
 
-        //===> Container Options <===//
+        //===> General Options <===//
         if (attributes.id) blockProps['id'] = attributes.id;
         if (attributes.size) container.className += ` ${attributes.size}`;
 
@@ -44,6 +42,23 @@ registerBlockType(metadata, {
             //===> Effects <===//
             if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
             if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
+
+            //===> Render Background <===//
+            if (attributes.style.background?.value) {
+                const background = attributes.style.background;
+                //===> Image Background <===//
+                if (background.type === 'image') {
+                    blockProps.className += ` px-media`;
+                    blockProps["data-src"] = background.value;
+                    if (attributes.style.parallax) blockProps.className += ` ${attributes.style.parallax}`;
+                }
+
+                //===> Name Background <===//
+                else blockProps.className += ` ${background.value}`;
+
+                //===> Background Rotation <===//
+                if (background.rotate) blockProps.className += ` ${background.rotate}`;
+            }
 
             //===> Position <===//
             if (attributes.style.position) {
@@ -68,30 +83,15 @@ registerBlockType(metadata, {
         }
 
         //===> Typography Properties <===//
-        if (typography) {
+        if (attributes.typography) {
+            const typography = attributes.typography;
             if(typography.size) container.className += ` ${typography.size}`;
             if(typography.color) container.className += ` ${typography.color}`;
             if(typography.weight) container.className += ` ${typography.weight}`;
             if(typography.align) container.className += ` ${typography.align}`;
         }
 
-        //===> Render Background <===//
-        if (background && background.value) {
-            //===> Image Background <===//
-            if (background.type === 'image') {
-                blockProps.className += ` px-media`;
-                blockProps["data-src"] = background.value;
-                if (attributes.style.parallax) blockProps.className += ` ${attributes.style.parallax}`;
-            }
-
-            //===> Name Background <===//
-            else blockProps.className += ` ${background.value}`;
-
-            //===> Background Rotation <===//
-            if (background.rotate) blockProps.className += ` ${background.rotate}`;
-        }
-
-        //===> for Section Convert <===//
+        //===> General Options : for Section Convert <===//
         if (!attributes.isSection) blockProps.className += ` ${container.className}`;
 
         //===> Render <===//

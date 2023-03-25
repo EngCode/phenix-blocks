@@ -9,14 +9,10 @@ import {
 } from '@wordpress/components';
 
 import {
-    RichText,
-    InnerBlocks,
     useBlockProps,
     useInnerBlocksProps,
     InspectorControls
 } from '@wordpress/block-editor';
-
-import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
 import PhenixColor from '../px-controls/colors/text';
@@ -125,24 +121,6 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
     const TagName = attributes.tagName;
-
-    //===> Set Phenix Components <===//
-    const setPhenixView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'],
-            blockElement = '.px-media';
-
-        //===> Correct Editor Target for Site-Editor <===//
-        if (siteEditor) {
-            blockElement = siteEditor.document.querySelectorAll('.px-media');
-            blockElement = [...blockElement];
-        }
-
-        //===> Set Background <===//
-        if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
-    }
-
-    useEffect(() => setPhenixView(), [attributes]);
 
     //===> Flexbox Options <===//
     let container = blockProps;

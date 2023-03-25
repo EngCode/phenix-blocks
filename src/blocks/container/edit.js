@@ -16,6 +16,7 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 
 //====> Phenix Modules <====//
+import ScreensTabs from "../px-controls/tabs";
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 
@@ -23,6 +24,7 @@ import OptionControl from '../px-controls/switch';
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
+import ResponsiveSet from '../px-controls/sets/responsive';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -73,14 +75,14 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //==> Set Flexbox Method <==//
-    const set_flexbox = target => {
+    const set_flexbox = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const flexbox = attributes.flexbox;
 
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
+        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "").replace('align-', `align-${screen?screen+'-':null}`) : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -112,6 +114,11 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ style : {...style} });
     };
 
+    //===> Responsive Options <===//
+    const responsive_options = (screen) => {
+        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
+    };
+
     //===> Define Controls Options <===//
     const html_tags = [
         { "label": "Div", "value": "div"},
@@ -123,27 +130,10 @@ export default function Edit({ attributes, setAttributes }) {
     ];
 
     //===> Get Block Properties <===//
+    const screens = ["md", "lg", "xl"];
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
     const TagName = attributes.tagName;
-
-    //===> Set Phenix Components <===//
-    const setPhenixView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'],
-            blockElement = '.px-media';
-
-        //===> Correct Editor Target for Site-Editor <===//
-        if (siteEditor) {
-            blockElement = siteEditor.document.querySelectorAll('.px-media');
-            blockElement = [...blockElement];
-        }
-
-        //===> Set Background <===//
-        if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
-    }
-
-    useEffect(() => setPhenixView(), [attributes]);
 
     //===> for Section Convert <===//
     const container = {className: attributes.isFlexbox ? " flexbox" : ''};
@@ -197,6 +187,13 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
         if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
         if (attributes.flexbox['animated-childs']) blocksProp.className += ` ${attributes.flexbox['animated-childs']}`;
+        //===> Responsive <===//
+        screens.forEach(screen => {
+            if (attributes.flexbox[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+            if (attributes.flexbox[`flow-${screen}`]) container.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
+            if (attributes.flexbox[`nowrap-${screen}`]) container.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
+            if (attributes.flexbox[`masonry-${screen}`]) container.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
+        });
     }
 
     //===> Typography Options <===//
@@ -266,6 +263,10 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Style Options <===*/}
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
                 <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_typography} />
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
+            <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>
+                <ScreensTabs md={responsive_options} lg={responsive_options} xl={responsive_options} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

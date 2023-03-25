@@ -1,14 +1,8 @@
 //====> WP Modules <====//
 import { __ } from '@wordpress/i18n';
+import {PanelBody} from '@wordpress/components';
 
 import {
-    PanelBody,
-    SelectControl,
-    ToggleControl
-} from '@wordpress/components';
-
-import {
-    InnerBlocks,
     useBlockProps,
     useInnerBlocksProps,
     InspectorControls
@@ -20,8 +14,9 @@ import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
 import StylesSet from '../px-controls/sets/styles';
-import FlexboxSet from '../px-controls/sets/flexbox';
 import SliderSet from '../px-controls/sets/slider';
+import FlexboxSet from '../px-controls/sets/flexbox';
+import ResponsiveSet from '../px-controls/sets/responsive';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -56,39 +51,21 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //==> Set Flexbox Method <==//
-    const set_flexbox = target => {
+    const set_flexbox = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const flexbox = attributes.flexbox;
-            
+
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
-
-        //==> Set Value <==//
-        setAttributes({ flexbox : {...flexbox} });
-    };
-
-    //==> ..Responsive.. <==//
-    const set_responsive_flexbox = (target, screen) => {
-        //==> Get Current <==//
-        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
-        const flexbox = attributes.flexbox;
-
-        //==> Add the Value <==//
-        if(name.includes('align-')) {
-            name = `align`;
-            flexbox[`${name}-${screen}`] = target.replace("align-reset", "").replace('align-', `align-${screen}-`);
-        } else {
-            flexbox[`${name}-${screen}`] = typeof(target) === "string" ? target : valueHandler(target);
-        }
+        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "").replace('align-', `align-${screen?screen+'-':null}`) : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
     };
 
     //==> Set Slider Method <==//
-    const set_slider = target => {
+    const set_slider = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const slider = attributes.slider;
@@ -101,7 +78,7 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //==> Set Typography Method <==//
-    const set_typography = target => {
+    const set_typography = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : "color";
         const typography = attributes.typography;
@@ -114,7 +91,7 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //==> Set Style Method <==//
-    const set_style = target => {
+    const set_style = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : "background";
         const style = attributes.style;
@@ -128,9 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return <>
-            <FlexboxSet screen={`${screen}`} attributes={attributes} mainSetter={set_responsive_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>
-        </>
+        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
     };
 
     //===> Get Block Properties <===//

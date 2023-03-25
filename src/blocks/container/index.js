@@ -28,9 +28,9 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
+        const screens = ["md", "lg", "xl"];
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
-    
         const container = {className: attributes.isFlexbox ? " flexbox" : ''};
 
         //===> General Options <===//
@@ -84,6 +84,13 @@ registerBlockType(metadata, {
             if (attributes.flexbox.nowrap) container.className += ` ${attributes.flexbox.nowrap}`;
             if (attributes.flexbox.stacked) container.className += ` ${attributes.flexbox.stacked}`;
             if (attributes.flexbox['animated-childs']) blocksProp.className += ` ${attributes.flexbox['animated-childs']}`;
+            //===> Responsive <===//
+            screens.forEach(screen => {
+                if (attributes.flexbox[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+                if (attributes.flexbox[`flow-${screen}`]) container.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
+                if (attributes.flexbox[`nowrap-${screen}`]) container.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
+                if (attributes.flexbox[`masonry-${screen}`]) container.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
+            });
         }
 
         //===> Typography Options <===//

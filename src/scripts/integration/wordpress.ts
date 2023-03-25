@@ -154,20 +154,18 @@ Phenix(window).on("load", (loaded) => {
                         if (!frameDoc.querySelector("#fontawesome-css")) {
                             let fontAwesome = document.querySelector("#fontawesome-css"),
                                 importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
-    
-                            if(importedEl && frameDoc.body.appendChild !== null) frameDoc.body.appendChild(document.importNode(fontAwesome, true));
+                            if(importedEl && frameDoc.body) frameDoc.body.appendChild(importedEl);
                         }
     
                         //===> Load Phenix Js <===//
                         if (!frameDoc.querySelector("#phenix-js")) {
                             let phenixJs = document.querySelector("#phenix-js"),
                                 importedEl = phenixJs ? document.importNode(phenixJs, true) : false;
-                            if(importedEl && frameDoc.body.appendChild !== null) frameDoc.body.appendChild(document.importNode(phenixJs, true));
+                            if(importedEl && frameDoc.body) frameDoc.body.appendChild(document.importNode(phenixJs, true));
                         }
+                        //===> Clear Timer <===//
+                        if(frameDoc.body) clearInterval(loadAssetTimer);
                     }
-
-                    //===> Clear Timer <===//
-                    clearInterval(loadAssetTimer);
 
                     //===> Run Scripts <===//
                     frameDoc.addEventListener('load', () => Phenix(document).init());

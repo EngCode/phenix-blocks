@@ -45,7 +45,7 @@ registerBlockType(metadata, {
                 if (attributes.flexbox[`flow${screen}`]) blockProps.className += ` ${attributes.flexbox[`flow${screen}`]}`;
                 if (attributes.flexbox[`nowrap${screen}`]) blockProps.className += ` ${attributes.flexbox[`nowrap${screen}`]}`;
                 if (attributes.flexbox[`masonry${screen}`]) blockProps.className += ` ${attributes.flexbox[`masonry${screen}`]}`;
-                if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) blockProps.className += ` row-cols${screen}-${attributes.flexbox[`cols${screen}`] > 0 ? attributes.flexbox[`cols${screen}`] : "auto"}`;
+                if (attributes.flexbox.equals && attributes.flexbox[`cols${screen}`]) blockProps.className += ` row-cols${screen}-${attributes.flexbox[`cols${screen}`] > 0 ? attributes.flexbox[`cols${screen}`] : "auto"}`;
             });
         }
 

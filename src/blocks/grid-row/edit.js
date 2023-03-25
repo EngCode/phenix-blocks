@@ -127,11 +127,11 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox['animated-childs']) innerBlocksProps.className += ` ${attributes.flexbox['animated-childs']}`;
         //===> Responsive <===//
         screens.forEach(screen => {
-            if (attributes.flexbox[`align-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
-            if (attributes.flexbox[`flow-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
-            if (attributes.flexbox[`nowrap-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
-            if (attributes.flexbox[`masonry-${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
-            if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) innerBlocksProps.className += ` row-cols-${screen}-${attributes.flexbox[`cols-${screen}`] > 0 ? attributes.flexbox[`cols-${screen}`] : "auto"}`;
+            if (attributes.flexbox[`align${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`align${screen}`]}`;
+            if (attributes.flexbox[`flow${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`flow${screen}`]}`;
+            if (attributes.flexbox[`nowrap${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`nowrap${screen}`]}`;
+            if (attributes.flexbox[`masonry${screen}`]) innerBlocksProps.className += ` ${attributes.flexbox[`masonry${screen}`]}`;
+            if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) innerBlocksProps.className += ` row-cols${screen}-${attributes.flexbox[`cols${screen}`] > 0 ? attributes.flexbox[`cols${screen}`] : "auto"}`;
         });
     }
 

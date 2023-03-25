@@ -36,6 +36,9 @@ export default class StylesSet extends Component {
 
         //===> Output <===//
         return <>
+            {/*===> Other Options <===*/}
+            {this.props.children ? this.props.children : null}
+
             {/*===> Text Color <===*/}
             {!options || options.includes("text-colors") ?
                 <PhenixColor key="px-color" label={__("Text Color", "phenix")} onChange={colorSetter} value={attributes.typography.color} />

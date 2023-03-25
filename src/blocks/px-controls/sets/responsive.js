@@ -66,9 +66,12 @@ export default class ResponsiveSet extends Component {
 
         //===> Output <===//
         return <>
+            {/*===> Other Options <===*/}
+            {this.props.children ? this.props.children : null}
+
             {/*===> Layouts Options <===*/}
             {!options || options.includes("flexbox") ?
-                <div className='mb-10'>
+                <div className={`mb-10 ${this.props.children?"divider-t":""}`}>
                     <FlexboxSet screen={screen} attributes={attributes} mainSetter={flexSetter} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : "flex-props, align"}></FlexboxSet>
                 </div>
             : null}
@@ -79,9 +82,6 @@ export default class ResponsiveSet extends Component {
                     <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="align" />
                 </div>
             : null}
-
-            {/*===> Other Options <===*/}
-            {this.props.children ? this.props.children : null}
 
             {/*===> Display <===*/}
             {!options || options.includes("display") ? <>

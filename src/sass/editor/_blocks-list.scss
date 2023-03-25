@@ -12,6 +12,17 @@
     h5:not([class*="fs-"]):not([class*="y-h"]),.h5:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(20);}
     h6:not([class*="fs-"]):not([class*="y-h"]),.h6:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(17);}
 
+	.wp-block-image {
+		&:not([class*="mb"]) {margin-bottom: 0;}
+
+		figcaption {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom: 0 !important;
+			white-space: nowrap !important;
+		}
+	}
+
 	/*==== Editor Page Title ====*/
 	.edit-post-visual-editor__post-title-wrapper {
 		margin: 0;

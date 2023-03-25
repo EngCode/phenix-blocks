@@ -187,6 +187,25 @@ export default function Edit({ attributes, setAttributes }) {
         { label: __("Icon Only", "phenix"), value: 'btn square' },
     ];
 
+    const btn_sizes = [
+        { label: __("Normal", "phenix"), value: '' },
+        { label: __("Tiny", "phenix"), value: 'tiny' },
+        { label: __("Small", "phenix"), value: 'small' },
+        { label: __("Large", "phenix"), value: 'large' },
+        { label: __("xLarge", "phenix"), value: 'xlarge' },
+    ];
+
+    const radius_sizes = [
+        { label: __("None", "phenix"), value: '' },
+        { label: __("Tiny", "phenix"), value: 'radius-sm' },
+        { label: __("Small", "phenix"), value: 'radius-md' },
+        { label: __("Medium", "phenix"), value: 'radius-lg' },
+        { label: __("Large", "phenix"), value: 'radius-xl' },
+        { label: __("xLarge", "phenix"), value: 'radius-xxl' },
+        { label: __("Circle", "phenix"), value: 'radius-circle' },
+        { label: __("Rounded", "phenix"), value: 'radius-height' },
+    ];
+
     //===> Label Element <===//
     const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
 
@@ -313,13 +332,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="type" label={__("Size", "phenix")} value={attributes.size} onChange={set_size} options={[
-                            { label: __("Normal", "phenix"), value: '' },
-                            { label: __("Tiny", "phenix"), value: 'tiny' },
-                            { label: __("Small", "phenix"), value: 'small' },
-                            { label: __("Large", "phenix"), value: 'large' },
-                            { label: __("xLarge", "phenix"), value: 'xlarge' },
-                        ]}/>
+                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Size", "phenix")} value={attributes.size} onChange={set_value} options={btn_sizes} />
                     </div>
                     {/*===> Column <===*/}
                     {attributes.isLink ? <div className='col col-6 mb-10'>
@@ -328,16 +341,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </div> : null}
                     {/*===> Column <===*/}
                     <div className='col col-6 mb-10'>
-                        <SelectControl key="radius" label={__("Radius Size", "phenix")} value={attributes.radius} onChange={set_radius} options={[
-                            { label: __("None", "phenix"), value: '' },
-                            { label: __("Tiny", "phenix"), value: 'radius-sm' },
-                            { label: __("Small", "phenix"), value: 'radius-md' },
-                            { label: __("Medium", "phenix"), value: 'radius-lg' },
-                            { label: __("Large", "phenix"), value: 'radius-xl' },
-                            { label: __("xLarge", "phenix"), value: 'radius-xxl' },
-                            { label: __("Circle", "phenix"), value: 'radius-circle' },
-                            { label: __("Rounded", "phenix"), value: 'radius-height' },
-                        ]}/>
+                        <PhenixSelect name="radius" placeholder={__("None", "phenix")} label={__("Radius Size", "phenix")} value={attributes.radius} onChange={set_value} options={btn_sizes} />
                     </div>
                     {/*===> Column <===*/}
                     {attributes.isLink ? <span style={{marginTop: "-10px"}} className='col-12 color-primary tx-icon far fa-link display-block mb-10'>{attributes.url}</span>: null}

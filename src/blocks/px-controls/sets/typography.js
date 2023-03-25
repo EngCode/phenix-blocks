@@ -23,15 +23,10 @@ export default class TypographySet extends Component {
 
         //===> Define Controls Options <===//
         const sizes_list = ["fs-12","fs-13","fs-14","fs-15","fs-16","fs-17","fs-18","fs-19","fs-20","fs-22","fs-24","fs-25","fs-26","fs-28","fs-30","h1","h2","h3","h4","h5","h6","display-h1", "display-h2", "display-h3", "display-h4","display-h5", "display-h6"],
-            font_sizes = {
-                "Mobile Screens" : [],
-                "Tablet Screens" : [],
-                "Laptop Screens" : [],
-                "Desktop Screens" : [],
-            };
-    
+              font_sizes = {"Mobile Screens": [], "Tablet Screens": [], "Laptop Screens": [], "Desktop Screens": []};
+
         //===> Generate Responsive Sizes <===//
-        Object.entries(font_sizes).forEach(([key, value]) => {            
+        Object.entries(font_sizes).forEach(([key, value]) => {
             //===> Define Screen Infix <===//
             let screen_name  = key,
                 screen_infix = key.includes('Tablet') ? "md" : key.includes('Laptop') ? "lg" : key.includes('Desktop') ? "xl" : "";
@@ -92,16 +87,16 @@ export default class TypographySet extends Component {
                 </div>
             </>: null}
             {/*===> Grouped Options <===*/}
-            <div className='row gpx-20 gpy-fix'>
+            <div className='row gpx-20 gpy-15 gpy-fix'>
                 {/*===> Size <===*/}
                 {!options || options.includes("size") ? <>
-                    <div className='col-12 mb-10'>
+                    <div className='col-12'>
                         <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={mainSetter} options={font_sizes} multiple={true} search={true} className="stacked-options" />
                     </div>
                 </>: null}
                 {/*===> HTML Tag <===*/}
                 {!options || options.includes("weight") ? <>
-                <div className='col-6 mb-10'>
+                <div className='col col-6'>
                     <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={mainSetter} options={font_weights}/>
                 </div>
                 </>: null}

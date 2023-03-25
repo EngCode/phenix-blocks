@@ -116,7 +116,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
+        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
     };
 
     //===> Define Controls Options <===//
@@ -201,6 +201,10 @@ export default function Edit({ attributes, setAttributes }) {
         if(attributes.typography.size) container.className += ` ${attributes.typography.size.toString().replace(',', ' ')}`;
         if(attributes.typography.weight) container.className += ` ${attributes.typography.weight}`;
         if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
+        //===> Responsive <===//
+        screens.forEach(screen => {
+            if (attributes.typography[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+        });
     }
 
     //===> General Options : for Section Convert <===//

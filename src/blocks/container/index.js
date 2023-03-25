@@ -99,6 +99,10 @@ registerBlockType(metadata, {
             if(typography.size) container.className += ` ${typography.size.toString().replace(',', ' ')}`;
             if(typography.weight) container.className += ` ${typography.weight}`;
             if(typography.align) container.className += ` ${typography.align}`;
+            //===> Responsive <===//
+            screens.forEach(screen => {
+                if (attributes.typography[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+            });
         }
 
         //===> General Options : for Section Convert <===//

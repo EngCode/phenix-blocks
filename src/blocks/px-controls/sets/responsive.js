@@ -19,7 +19,7 @@ import FlexboxSet from './flexbox';
 import TypographySet from './typography';
 
 //===> Options List
-//=> flexbox, display
+//=> flexbox, display, text-align
 
 //===> Component <===//
 export default class ResponsiveSet extends Component {
@@ -66,15 +66,26 @@ export default class ResponsiveSet extends Component {
 
         //===> Output <===//
         return <>
+            {/*===> Layouts Options <===*/}
             {!options || options.includes("flexbox") ?
-                <div className='mb-5'>
+                <div className='mb-10'>
                     <FlexboxSet screen={screen} attributes={attributes} mainSetter={flexSetter} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : "flex-props, align"}></FlexboxSet>
                 </div>
             : null}
 
+            {/*===> Text Options <===*/}
+            {!options || options.includes("text-align") ?
+                <div className='mb-15'>
+                    <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="align" />
+                </div>
+            : null}
+
+            {/*===> Other Options <===*/}
+            {this.props.children ? this.props.children : null}
+
             {/*===> Display <===*/}
             {!options || options.includes("display") ? <>
-                <div className='col-12 mb-5 divider-t pdt-15'>
+                <div className='col-12 mb-5'>
                     <PhenixSelect name="display" placeholder={__("Default", "phenix")} search={true} label={__("Responsive Display", "phenix")} value={attributes.style.display} onChange={styleSetter} options={display_options} multiple={true} className="stacked-options" />
                 </div>
             </>: null}

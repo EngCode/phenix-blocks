@@ -1,19 +1,7 @@
 //====> WP Modules <====//
-import { __ } from '@wordpress/i18n';
-
-import {
-    PanelBody,
-    TextControl,
-    ToggleControl,
-} from '@wordpress/components';
-
-import {
-    useBlockProps,
-    useInnerBlocksProps,
-    InspectorControls
-} from '@wordpress/block-editor';
-
-import { useState, useEffect } from '@wordpress/element';
+import {__} from '@wordpress/i18n';
+import {PanelBody, TextControl} from '@wordpress/components';
+import {useBlockProps, useInnerBlocksProps, InspectorControls} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import ScreensTabs from "../px-controls/tabs";
@@ -129,6 +117,14 @@ export default function Edit({ attributes, setAttributes }) {
         { "label": "Footer", "value": "footer"},
     ];
 
+    const container_sizes = [
+        { label: 'Small',  value: 'container-sm' },
+        { label: 'Medium', value: 'container-md' },
+        { label: 'Normal', value: 'container' },
+        { label: 'Large',  value: 'container-xl' },
+        { label: 'Full Width',  value: 'container-fluid' },
+    ];
+
     //===> Get Block Properties <===//
     const screens = ["-md", "-lg", "-xl"];
     const blockProps = useBlockProps();
@@ -224,13 +220,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Size <===*/}
                     <div className='col-6 mb-10'>
-                        <PhenixSelect name="size" placeholder={__("None", "phenix")} label={__("Container Size", "phenix")} value={attributes.size} onChange={set_value} options={[
-                            { label: 'Small',  value: 'container-sm' },
-                            { label: 'Medium', value: 'container-md' },
-                            { label: 'Normal', value: 'container' },
-                            { label: 'Large',  value: 'container-xl' },
-                            { label: 'Full Width',  value: 'container-fluid' },
-                        ]}/>
+                        <PhenixSelect name="size" placeholder={__("None", "phenix")} label={__("Container Size", "phenix")} value={attributes.size} onChange={set_value} options={container_sizes} />
                     </div>
                     {/*===> HTML Tag <===*/}
                     <div className='col-6 mb-10'>

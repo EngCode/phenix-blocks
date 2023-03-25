@@ -31,7 +31,7 @@ export default function Edit(props) {
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const [state, set_state] = useState({
-        post_types: [],
+        post_types: [{label: __("Default", "phenix"), value: ""}],
         taxonomies: [],
         templates_meta: {},
         template_list: [<option key={__("Default", "phenix")} value="">{__("Default", "phenix")}</option>],
@@ -229,7 +229,7 @@ export default function Edit(props) {
     //===> Fetching Data <===//
     useEffect(() => {
         //===> Fetch Post Types <===//
-        if (state.post_types.length < 1) {
+        if (state.post_types.length < 2) {
             apiFetch({path: 'wp/v2/types'}).then(post_types => {
                 //===> Reset Types <===//
                 let new_state = state;

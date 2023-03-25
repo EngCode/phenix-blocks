@@ -57,22 +57,6 @@
       "type": "boolean",
       "default": false
     },
-    "bg_type": {
-      "type": "string",
-      "default": "color"
-    },
-    "bg_rotate": {
-      "type": "string",
-      "default": ""
-    },
-    "background": {
-      "type": "string",
-      "default": "primary"
-    },
-    "color": {
-      "type": "string",
-      "default": ""
-    },
     "data_id": {
       "type": "string",
       "default": ""

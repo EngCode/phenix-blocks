@@ -1,34 +1,115 @@
 //====> WP Modules <====//
-import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import {__} from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
-
-import {
-    PanelBody,
-    SelectControl,
-    ToggleControl,
-    TextControl,
-    __experimentalRadio as Radio,
-    __experimentalRadioGroup as RadioGroup,
-} from '@wordpress/components';
-
-import {
-    RichText,
-    useBlockProps,
-    useInnerBlocksProps,
-    InspectorControls,
-    __experimentalLinkControlSearchInput as LinkControlSearchInput
-} from '@wordpress/block-editor';
+import {useState, useEffect } from '@wordpress/element';
+import {PanelBody, SelectControl, ToggleControl, TextControl} from '@wordpress/components';
+import {RichText, useBlockProps, InspectorControls, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
+import ScreensTabs from "../px-controls/tabs";
+import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
 import PhenixIcons from '../px-controls/icons';
 
+//====> Phenix Options Sets <=====//
+import StylesSet from '../px-controls/sets/styles';
+import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
+import ResponsiveSet from '../px-controls/sets/responsive';
+
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
+    //===> Value Handler <===//
+    const valueHandler = (target) => {
+        //===> Define Array Type <===//
+        let single_val,
+            array_val = [],
+            type = target.getAttribute('type') || target.tagName;
+
+        //==> for Boolean Values <==//
+        if (type === 'checkbox' || type === 'radio') {
+            if (target.value === 'boolean') { single_val = target.checked; }
+            else { single_val = target.checked ? target.value : ""; }
+        }
+
+        //===> for Value of Type Array <===//
+        else if (type === "SELECT" && target.hasAttribute('multiple')) {
+            //===> Get Multiple Value <===//
+            let values = target.parentNode.getAttribute('data-value').split(',');
+            //===> Get Current Values <===//
+            values.forEach(val => val !== "" ? array_val.push(val) : null);
+            //===> Set Array Value <===//
+            single_val = array_val;
+        }
+
+        //===> for Normal Values <===//
+        else { single_val = target.value; }
+
+        //===> Return Value <===//
+        if(single_val) return single_val;
+    };
+
+    //==> Set Value Method <==//
+    const set_value = target => {
+        //==> Get Current <==//
+        let name = target.getAttribute('name');
+        const attr = attributes;
+
+        //==> Add the Value <==//
+        attr[`${name}`] = typeof(target) === "string"? target : valueHandler(target);
+
+        //==> Set Value <==//
+        setAttributes({ ...attr });
+    };
+
+    //==> Set Flexbox Method <==//
+    const set_flexbox = (target, screen) => {
+        //==> Get Current <==//
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const flexbox = attributes.flexbox;
+
+        //==> Add the Value <==//        
+        if(name.includes('align-')) { name = "align" }
+        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
+
+        //==> Set Value <==//
+        setAttributes({ flexbox : {...flexbox} });
+    };
+
+    //==> Set Typography Method <==//
+    const set_typography = (target, screen) => {
+        //==> Get Current <==//
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "color";
+        const typography = attributes.typography;
+
+        //==> Add the Value <==//
+        typography[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target : valueHandler(target);
+
+        //==> Set Value <==//
+        setAttributes({ typography : {...typography} });
+    };
+
+    //==> Set Style Method <==//
+    const set_style = (target, screen) => {
+        //==> Get Current <==//
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : "background";
+        const style = attributes.style;
+
+        //==> Add the Value <==//
+        style[`${name}${screen?'-'+screen:""}`] = name === "background" ? target : valueHandler(target);
+
+        //==> Set Value <==//
+        setAttributes({ style : {...style} });
+    };
+
+    //===> Responsive Options <===//
+    const responsive_options = (screen) => {
+        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
+    };
+
     //===> Set Settings <===//
     const set_size = size => setAttributes({size});
     const set_type = type => setAttributes({type});
@@ -99,41 +180,33 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ style : {...styles} });
     };
 
+    //===> Define Controls Options <===//
+    const btn_types = [
+        { label: __("Default", "phenix"), value: 'btn' },
+        { label: __("Text/Icon", "phenix"), value: 'btn btn-icon' },
+        { label: __("Icon Only", "phenix"), value: 'btn square' },
+    ];
+
+    //===> Label Element <===//
+    const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
+
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
-    const innerBlocksProps = useInnerBlocksProps();
+    const screens = ["-md", "-lg", "-xl"];
     const [state, set_state] = useState({
         menus_list: [],
         icons_list: [],
         icons_file: "fa5-free",
         icons_version: "5-free",
     });
-    const labelControl = <RichText value={ attributes.label } onChange={set_label} tagName="span" placeholder="TXT" className="mg-0 pd-0"/>;
 
     //===> Sharp Icons Fallback <===//
-    let icon_ops = attributes.icon.split(" "),
-        icon_name = icon_ops[1],
-        icon_type = icon_ops[0];
-    
+    const icon_ops = attributes.icon.split(" ");
+    let icon_name = icon_ops[1], icon_type = icon_ops[0];
+ 
     if (attributes.icon.includes('fa-sharp')) {
-        icon_type = `${icon_ops[0]} ${icon_ops[1]}`,
         icon_name = icon_ops[2];
-    }
-
-    //===> Set Phenix Components <===//
-    const setPhenixView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'],
-            blockElement = '.px-media';
-
-        //===> Correct Editor Target for Site-Editor <===//
-        if (siteEditor) {
-            blockElement = siteEditor.document.querySelectorAll('.px-media');
-            blockElement = [...blockElement];
-        }
-
-        //===> Set Background <===//
-        if (attributes.style.background?.type === 'image') Phenix(blockElement).multimedia();
+        icon_type = `${icon_ops[0]} ${icon_ops[1]}`;
     }
 
     //===> Fetch Data <===//
@@ -168,10 +241,17 @@ export default function Edit({ attributes, setAttributes }) {
                 if(new_state !== state) set_state({...new_state});
             });
         });
+    }, []);
 
-        //===> Run Phenix Script <===//
-        setPhenixView();
-    }, [attributes]);
+    //===> General Options <===//
+    if (attributes.isLink) blockProps['href'] = "#none";
+    if (attributes.outline) blockProps.className += ` outline`;
+    if (attributes.size) blockProps.className += ` ${attributes.size}`;
+    if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
+    if (attributes.type) {
+        blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
+        if (attributes.type !== "btn" && attributes.icon) blockProps.className+= ` ${attributes.icon}`;
+    }
 
     //===> Typography Properties <===//
     if (attributes.typography) {
@@ -207,36 +287,15 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
     }
 
-    //===> Default Type <===//
-    if (attributes.type) blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
-
-    //===> Default Size <===//
-    if (attributes.size) blockProps.className += ` ${attributes.size}`;
-
-    //===> Default Radius <===//
-    if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
-
-    //===> Default Style <===//
-    if (attributes.outline) blockProps.className += ` outline`;
-
-    //===> Set JS URL <===//
-    if (attributes.isLink) blockProps['href'] = "#none";
-
-    //===> Set icon <===//
-    if (attributes.type !== "btn" && attributes.icon) blockProps.className+= ` ${attributes.icon}`;
-
     //===> URL Auto-Complete <===//
     const suggestionsRender = (props) => (
         <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
             {props.suggestions.map((suggestion, index) => {
-                    return (
-                        <li key={`link-sug-key-${index}`} className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
-                            <strong>{suggestion.title}</strong>
-                            <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
-                        </li>
-                    )
-                })
-            }
+                return (<li key={`link-sug-key-${index}`} className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
+                    <strong>{suggestion.title}</strong>
+                    <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
+                </li>)
+            })}
         </ul>
     );
 
@@ -250,11 +309,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='row gpx-20'>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
-                        <SelectControl key="type" label={__("Type", "phenix")} value={attributes.type} onChange={set_type} options={[
-                            { label: __("Default", "phenix"), value: 'btn' },
-                            { label: __("Text/Icon", "phenix"), value: 'btn btn-icon' },
-                            { label: __("Icon Only", "phenix"), value: 'btn square' },
-                        ]}/>
+                        <PhenixSelect name="type" placeholder={__("Default", "phenix")} label={__("Type", "phenix")} value={attributes.type} onChange={set_value} options={btn_types} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
@@ -419,16 +474,8 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        {attributes.preview ?
-            <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/buttons.jpg" alt="" className="fluid" />
-            :
-            <>
-            {attributes.isLink ? 
-                <a onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
-                :
-                <button { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</button>
-            }
-            </>
-        }
+        {attributes.preview ? <img src="https://raw.githubusercontent.com/EngCode/phenix-blocks/main/assets/img/prev/buttons.jpg" alt="" className="fluid" /> : <>
+            <a onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
+        </>}
     </>);
 }

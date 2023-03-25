@@ -10,12 +10,8 @@ import Edit from './edit';
 import metadata from './block.json';
 
 //===> WordPress Modules <===//
-import { registerBlockType } from '@wordpress/blocks';
-
-import {
-    InnerBlocks,
-    useBlockProps,
-} from '@wordpress/block-editor';
+import {registerBlockType} from '@wordpress/blocks';
+import {useBlockProps} from '@wordpress/block-editor';
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -27,9 +23,9 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const blockProps = useBlockProps.save();
-        let background = attributes.style.background,
-            typography = attributes.typography;
+        const blockProps = useBlockProps.save(),
+              background = attributes.style.background,
+              typography = attributes.typography;
 
         //===> Typography Properties <===//
         if (typography) {

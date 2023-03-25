@@ -45,7 +45,7 @@ export default class StylesSet extends Component {
             {!options || options.includes("background") ? <>
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={mainSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {attributes.style.background?.type === "image" ? 
-                    <div className='mb-15 row gpx-15' style={{marginTop: -10}}>
+                    <div className='row gpx-15 mb-5' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
                         <div className='col-6'>
                             <OptionControl name={`overlay`} value="overlay-dark" checked={attributes.style.overly || false} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Overlays", "phenix")}</OptionControl>
@@ -62,7 +62,7 @@ export default class StylesSet extends Component {
             <div className={`row gpx-15 ${attributes.style.background?.type === "image" ? "divider-t pdt-15" : null}`}>
                 {/*===> Sticky Element <===*/}
                 {!options || options.includes("position") ? <>
-                    <div className='col col-6 mb-15'>
+                    <div className='col col-6'>
                         <PhenixSelect name="position" placeholder={__("Default", "phenix")} label={__("Position Type", "phenix")} value={attributes.style.position} onChange={mainSetter} options={position_options} />
                         {/*===> Overlapped <===*/}
                         {!options || options.includes("overlapped") ? <OptionControl name={`overlapped`} value="pos-overlap" checked={attributes.style.overlapped || false} onChange={mainSetter} type='switch-checkbox' className='small mt-5'>{__("Overlapped", "phenix")}</OptionControl> : null}

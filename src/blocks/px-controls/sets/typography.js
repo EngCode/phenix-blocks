@@ -22,24 +22,34 @@ export default class TypographySet extends Component {
         const {attributes, options, mainSetter} = this.props;
 
         //===> Define Controls Options <===//
-        const font_sizes = [
-            {"label": "12px", "value": "fs-12" },
-            {"label": "13px", "value": "fs-13" },
-            {"label": "14px", "value": "fs-14" },
-            {"label": "15px", "value": "fs-15" },
-            {"label": "16px", "value": "fs-16" },
-            {"label": "17px", "value": "fs-17" },
-            {"label": "18px", "value": "fs-18" },
-            {"label": "19px", "value": "fs-19" },
-            {"label": "20px", "value": "fs-20" },
-            {"label": "22px", "value": "fs-22" },
-            {"label": "24px", "value": "fs-24" },
-            {"label": "25px", "value": "fs-25" },
-            {"label": "26px", "value": "fs-26" },
-            {"label": "28px", "value": "fs-28" },
-            {"label": "30px", "value": "fs-30" },
-        ];
+        const sizes_list = ["fs-12","fs-13","fs-14","fs-15","fs-16","fs-17","fs-18","fs-19","fs-20","fs-22","fs-24","fs-25","fs-26","fs-28","fs-30","h1","h2","h3","h4","h5","h6","display-h1", "display-h2", "display-h3", "display-h4","display-h5", "display-h6"],
+            font_sizes = {
+                "Mobile Screens" : [],
+                "Tablet Screens" : [],
+                "Laptop Screens" : [],
+                "Desktop Screens" : [],
+            };
     
+        //===> Generate Responsive Sizes <===//
+        Object.entries(font_sizes).forEach(([key, value]) => {            
+            //===> Define Screen Infix <===//
+            let screen_name  = key,
+                screen_infix = key.includes('Tablet') ? "md" : key.includes('Laptop') ? "lg" : key.includes('Desktop') ? "xl" : "";
+                
+            //===> Add Sizes to each Screen List <===//
+            sizes_list.forEach(size => {
+                //===> Filter Value and Label <===//
+                let true_label =`${size.replace('fs-', "").replace('display-',"D").replace('-','').replace('h', 'H')}${screen_infix.length < 1 && size.includes('fs-') ? 'px':''}${screen_infix.length > 1 ? `-${screen_infix.toUpperCase()}` : ""}`,
+                    true_value = size.replace(`fs-`, `fs-${screen_infix}-`).replace('display-',`display-${screen_infix}-`);
+    
+                //===> Correct Value for Headline Sizes <===//
+                if (!size.includes('fs-') || !size.includes('display-')) true_value = `${true_value}-${screen_infix}`;
+
+                font_sizes[screen_name].push({"label": true_label, "value": true_value});
+            });
+        });
+
+        //===> Weights List <===//
         const font_weights = [
             { "label": "Thin",  "value": "weight-thin"},
             { "label": "Light",  "value": "weight-light"},
@@ -85,9 +95,9 @@ export default class TypographySet extends Component {
             <div className='row gpx-20 gpy-fix'>
                 {/*===> Size <===*/}
                 {!options || options.includes("size") ? <>
-                <div className='col-6 mb-10'>
-                    <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={mainSetter} options={font_sizes} />
-                </div>
+                    <div className='col-12 mb-10'>
+                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={mainSetter} options={font_sizes} multiple={true} search={true} className="stacked-options" />
+                    </div>
                 </>: null}
                 {/*===> HTML Tag <===*/}
                 {!options || options.includes("weight") ? <>

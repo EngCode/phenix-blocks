@@ -96,7 +96,7 @@ registerBlockType(metadata, {
         //===> Typography Options <===//
         if (attributes.typography) {
             const typography = attributes.typography;
-            if(typography.size) container.className += ` ${typography.size}`;
+            if(typography.size) container.className += ` ${typography.size.toString().replace(',', ' ')}`;
             if(typography.weight) container.className += ` ${typography.weight}`;
             if(typography.align) container.className += ` ${typography.align}`;
         }

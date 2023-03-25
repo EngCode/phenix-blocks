@@ -198,7 +198,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Typography Options <===//
     if (attributes.typography) {
-        if(attributes.typography.size) container.className += ` ${attributes.typography.size}`;
+        if(attributes.typography.size) container.className += ` ${attributes.typography.size.toString().replace(',', ' ')}`;
         if(attributes.typography.weight) container.className += ` ${attributes.typography.weight}`;
         if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
     }

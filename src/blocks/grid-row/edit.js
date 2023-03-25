@@ -84,7 +84,7 @@ export default function Edit({ attributes, setAttributes }) {
         const typography = attributes.typography;
 
         //==> Add the Value <==//
-        attributes.typography[`${name}`] = typeof(target) === "string" ? target : valueHandler(target);
+        typography[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -97,7 +97,7 @@ export default function Edit({ attributes, setAttributes }) {
         const style = attributes.style;
 
         //==> Add the Value <==//
-        style[`${name}`] = name === "background" ? target : valueHandler(target);
+        style[`${name}${screen?'-'+screen:""}`] = name === "background" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ style : {...style} });
@@ -105,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
+        return <ResponsiveSet options={`flexbox, display`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
     };
 
     //===> Get Block Properties <===//

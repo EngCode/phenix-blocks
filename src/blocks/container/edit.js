@@ -102,13 +102,13 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //==> Set Style Method <==//
-    const set_style = target => {
+    const set_style = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : "background";
         const style = attributes.style;
 
         //==> Add the Value <==//
-        style[`${name}`] = name === "background" ? target : valueHandler(target);
+        style[`${name}${screen?'-'+screen:""}`] = name === "background" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ style : {...style} });

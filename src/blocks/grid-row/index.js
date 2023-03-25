@@ -28,7 +28,7 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const blockProps = useBlockProps.save();
-        const screens = ["md", "lg", "xl"];
+        const screens = ["-md", "-lg", "-xl"];
         blockProps.className += ' row';
 
         //===> Properties <===//
@@ -41,11 +41,11 @@ registerBlockType(metadata, {
             if (attributes.flexbox['animated-childs']) blockProps.className += ` ${attributes.flexbox['animated-childs']}`;
             //===> Responsive <===//
             screens.forEach(screen => {
-                if (attributes.flexbox[`align-${screen}`]) blockProps.className += ` ${attributes.flexbox[`align-${screen}`]}`;
-                if (attributes.flexbox[`flow-${screen}`]) blockProps.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
-                if (attributes.flexbox[`nowrap-${screen}`]) blockProps.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
-                if (attributes.flexbox[`masonry-${screen}`]) blockProps.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
-                if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) blockProps.className += ` row-cols-${screen}-${attributes.flexbox[`cols-${screen}`] > 0 ? attributes.flexbox[`cols-${screen}`] : "auto"}`;
+                if (attributes.flexbox[`align${screen}`]) blockProps.className += ` ${attributes.flexbox[`align${screen}`]}`;
+                if (attributes.flexbox[`flow${screen}`]) blockProps.className += ` ${attributes.flexbox[`flow${screen}`]}`;
+                if (attributes.flexbox[`nowrap${screen}`]) blockProps.className += ` ${attributes.flexbox[`nowrap${screen}`]}`;
+                if (attributes.flexbox[`masonry${screen}`]) blockProps.className += ` ${attributes.flexbox[`masonry${screen}`]}`;
+                if (attributes.flexbox.equals && attributes.flexbox[`cols-${screen}`]) blockProps.className += ` row-cols${screen}-${attributes.flexbox[`cols${screen}`] > 0 ? attributes.flexbox[`cols${screen}`] : "auto"}`;
             });
         }
 

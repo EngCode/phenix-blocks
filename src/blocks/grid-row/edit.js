@@ -58,7 +58,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "").replace('align-', `align-${screen?screen+'-':null}`) : valueHandler(target);
+        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
@@ -115,7 +115,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Set Properties <===//
     innerBlocksProps.className += ` ${blockProps.className}`;
     innerBlocksProps.className += ' row';
-    const screens = ["md", "lg", "xl"];
+    const screens = ["-md", "-lg", "-xl"];
 
     //===> Layout Options <===//
     if(!attributes.flexbox.slider) {
@@ -154,7 +154,7 @@ export default function Edit({ attributes, setAttributes }) {
         //===> Responsive <===//
         if (attributes.flexbox.cols) innerBlocksProps[`data-items`] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
         screens.forEach(screen => {
-            if (attributes.flexbox[`cols-${screen}`] && attributes.flexbox[`cols-${screen}`] > 0) innerBlocksProps[`data-${screen}`] = attributes.flexbox[`cols-${screen}`];
+            if (attributes.flexbox[`cols${screen}`] && attributes.flexbox[`cols${screen}`] > 0) innerBlocksProps[`data-${screen}`] = attributes.flexbox[`cols${screen}`];
         });
     }
 

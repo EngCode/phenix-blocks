@@ -12,7 +12,8 @@ import OptionControl from './switch';
 export default class FlexAlignment extends Component {
     render () {
         //===> Properties <===//
-        const {label, value, onChange} = this.props;
+        const {label, value, onChange, screen} = this.props;
+        const screenPoint = screen ? `-${screen}` : "";
         const button_style = "btn tiny bg-transparent fs-12 square pxi";
 
         //===> Value Handler <===//
@@ -63,38 +64,38 @@ export default class FlexAlignment extends Component {
                 {/*===> Radio Buttons <===*/}
                 <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-x' checked={value.includes("align-start-x")} value={"align-start-x"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-x${screenPoint}`} checked={value.includes(`align${screenPoint}-start-x`)} value={`align${screenPoint}-start-x`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span title="Start" className={`${button_style} pxi-align-x-start`}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-x' checked={value.includes("align-center-x")} value={"align-center-x"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-x${screenPoint}`} checked={value.includes(`align${screenPoint}-center-x`)} value={`align${screenPoint}-center-x`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-x-center`} title="Center"></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-x' checked={value.includes("align-between")} value={"align-between"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-x${screenPoint}`} checked={value.includes(`align${screenPoint}-between`)} value={`align${screenPoint}-between`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-x-between`} title="Between"></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-x' checked={value.includes("align-around")} value={"align-around"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-x${screenPoint}`} checked={value.includes(`align${screenPoint}-around`)} value={`align${screenPoint}-around`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-x-around`} title="Around"></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-x' checked={value.includes("align-end-x")} value={"align-end-x"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-x${screenPoint}`} checked={value.includes(`align${screenPoint}-end-x`)} value={`align${screenPoint}-end-x`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-x-end`} title="Around"></span>
                     </OptionControl>
                 </div>
                 {/*===> Radio Buttons <===*/}
                 <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-y' checked={value.includes("align-start-y")} value={"align-start-y"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-y${screenPoint}`} checked={value.includes(`align${screenPoint}-start-y`)} value={`align${screenPoint}-start-y`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-y-start`} title="Start"></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-y' checked={value.includes("align-center-y")} value={"align-center-y"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-y${screenPoint}`} checked={value.includes(`align${screenPoint}-center-y`)} value={`align${screenPoint}-center-y`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-y-center`} title="Center"></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name='flex-align-y' checked={value.includes("align-end-y")} value={"align-end-y"} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
+                    <OptionControl name={`flex-align-y${screenPoint}`} checked={value.includes(`align${screenPoint}-end-y`)} value={`align${screenPoint}-end-y`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-y-end`} title="End"></span>
                     </OptionControl>
                 </div>

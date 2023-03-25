@@ -82,20 +82,20 @@ export default function Edit({ attributes, setAttributes }) {
 
         //==> Add the Value <==//        
         if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "").replace('align-', `align-${screen?screen+'-':null}`) : valueHandler(target);
+        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ flexbox : {...flexbox} });
     };
 
     //==> Set Typography Method <==//
-    const set_typography = target => {
+    const set_typography = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : "color";
         const typography = attributes.typography;
 
         //==> Add the Value <==//
-        typography[`${name}`] = typeof(target) === "string" ? target : valueHandler(target);
+        typography[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
         setAttributes({ typography : {...typography} });
@@ -130,7 +130,7 @@ export default function Edit({ attributes, setAttributes }) {
     ];
 
     //===> Get Block Properties <===//
-    const screens = ["md", "lg", "xl"];
+    const screens = ["-md", "-lg", "-xl"];
     const blockProps = useBlockProps();
     const innerBlocksProps = useInnerBlocksProps();
     const TagName = attributes.tagName;
@@ -189,10 +189,10 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.flexbox['animated-childs']) blocksProp.className += ` ${attributes.flexbox['animated-childs']}`;
         //===> Responsive <===//
         screens.forEach(screen => {
-            if (attributes.flexbox[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
-            if (attributes.flexbox[`flow-${screen}`]) container.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
-            if (attributes.flexbox[`nowrap-${screen}`]) container.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
-            if (attributes.flexbox[`masonry-${screen}`]) container.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
+            if (attributes.flexbox[`align${screen}`]) container.className += ` ${attributes.flexbox[`align${screen}`]}`;
+            if (attributes.flexbox[`flow${screen}`]) container.className += ` ${attributes.flexbox[`flow${screen}`]}`;
+            if (attributes.flexbox[`nowrap${screen}`]) container.className += ` ${attributes.flexbox[`nowrap${screen}`]}`;
+            if (attributes.flexbox[`masonry${screen}`]) container.className += ` ${attributes.flexbox[`masonry${screen}`]}`;
         });
     }
 
@@ -200,10 +200,10 @@ export default function Edit({ attributes, setAttributes }) {
     if (attributes.typography) {
         if(attributes.typography.size) container.className += ` ${attributes.typography.size.toString().replace(',', ' ')}`;
         if(attributes.typography.weight) container.className += ` ${attributes.typography.weight}`;
-        if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
         //===> Responsive <===//
         screens.forEach(screen => {
-            if (attributes.typography[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+            if(attributes.typography.align) container.className += ` ${attributes.typography.align}`;
+            if (attributes.typography[`align${screen}`]) container.className += ` ${attributes.typography[`align${screen}`]}`;
         });
     }
 

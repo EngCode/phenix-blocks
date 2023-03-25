@@ -68,7 +68,7 @@ registerBlockType(metadata, {
             //===> Responsive <===//
             if (attributes.flexbox.cols) blockProps[`data-items`] = attributes.flexbox.cols > 0 ? attributes.flexbox.cols : 1;
             screens.forEach(screen => {
-                if (attributes.flexbox[`cols-${screen}`] && attributes.flexbox[`cols-${screen}`] > 0) blockProps[`data-${screen}`] = attributes.flexbox[`cols-${screen}`];
+                if (attributes.flexbox[`cols${screen}`] && attributes.flexbox[`cols${screen}`] > 0) blockProps[`data${screen}`] = attributes.flexbox[`cols${screen}`];
             });
         }
 

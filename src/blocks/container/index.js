@@ -28,7 +28,7 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const screens = ["md", "lg", "xl"];
+        const screens = ["-md", "-lg", "-xl"];
         const blockProps = useBlockProps.save();
         const TagName = attributes.tagName;
         const container = {className: attributes.isFlexbox ? " flexbox" : ''};
@@ -86,10 +86,10 @@ registerBlockType(metadata, {
             if (attributes.flexbox['animated-childs']) blocksProp.className += ` ${attributes.flexbox['animated-childs']}`;
             //===> Responsive <===//
             screens.forEach(screen => {
-                if (attributes.flexbox[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
-                if (attributes.flexbox[`flow-${screen}`]) container.className += ` ${attributes.flexbox[`flow-${screen}`]}`;
-                if (attributes.flexbox[`nowrap-${screen}`]) container.className += ` ${attributes.flexbox[`nowrap-${screen}`]}`;
-                if (attributes.flexbox[`masonry-${screen}`]) container.className += ` ${attributes.flexbox[`masonry-${screen}`]}`;
+                if (attributes.flexbox[`align${screen}`]) container.className += ` ${attributes.flexbox[`align${screen}`]}`;
+                if (attributes.flexbox[`flow${screen}`]) container.className += ` ${attributes.flexbox[`flow${screen}`]}`;
+                if (attributes.flexbox[`nowrap${screen}`]) container.className += ` ${attributes.flexbox[`nowrap${screen}`]}`;
+                if (attributes.flexbox[`masonry${screen}`]) container.className += ` ${attributes.flexbox[`masonry${screen}`]}`;
             });
         }
 
@@ -101,7 +101,7 @@ registerBlockType(metadata, {
             if(typography.align) container.className += ` ${typography.align}`;
             //===> Responsive <===//
             screens.forEach(screen => {
-                if (attributes.typography[`align-${screen}`]) container.className += ` ${attributes.flexbox[`align-${screen}`]}`;
+                if (attributes.typography[`align${screen}`]) container.className += ` ${attributes.flexbox[`align${screen}`]}`;
             });
         }
 

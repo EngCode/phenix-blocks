@@ -132,16 +132,6 @@ export default function Edit(props) {
         setAttributes({ style : {...styles} });
     };
 
-    //===> Sharp Icons Fallback <===//
-    let arrow_ops = attributes.arrow_icon.split(" "),
-        arrowIcon = arrow_ops[1],
-        arrowType = arrow_ops[0];
-
-    if (attributes.arrow_icon.includes('fa-sharp')) {
-        arrowType = `${arrow_ops[0]} ${arrow_ops[1]}`,
-        arrowIcon = arrow_ops[2];
-    }
-
     //===> Fetching Data <===//
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
@@ -302,7 +292,7 @@ export default function Edit(props) {
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
                     {/*=== Arrow Icon ===*/}
-                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" version={state.icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
+                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" version={state.icons_version} value={ attributes.arrow_icon } onChange={set_arrow_icon} />
                     
                     {/*===> Dropdown Hover <===*/}
                     <ToggleControl label="Support Hover" checked={attributes.hover} onChange={set_hover}/>

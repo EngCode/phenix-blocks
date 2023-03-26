@@ -217,16 +217,6 @@ export default function Edit({ attributes, setAttributes }) {
         icons_version: "5-free",
     });
 
-    //===> Sharp Icons Fallback <===//
-    const icon_ops = attributes.icon.split(" ");
-    let icon_name = icon_ops[1],
-        icon_type = icon_ops[0];
- 
-    if (attributes.icon.includes('fa-sharp')) {
-        icon_name = icon_ops[2];
-        icon_type = `${icon_ops[0]} ${icon_ops[1]}`;
-    }
-
     //===> Fetch Data <===//
     useEffect(() => {
         apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
@@ -344,7 +334,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {/*=== Icon ===*/}
-                <PhenixIcons key="icon" label="Button Icon" version={state.icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
+                <PhenixIcons key="icon" label="Button Icon" version={state.icons_version} value={ attributes.icon } onChange={set_icon} />
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>

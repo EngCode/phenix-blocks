@@ -1,15 +1,15 @@
 {
-  "name": "phenix-blocks",
-  "version": "0.5.3",
-  "description": "Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.",
+  "name": "phenix-ui",
+  "version": "0.6.5",
+  "description": "Phenix Design System User Interface / Front-End Framework - Extended From 'Tornado UI v2'.",
   "author": "Abdullah.Ramadan <elampratorabdallah14@gmail.com> (https://phenixthemes.com)",
-  "license": "GPL v3",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EngCode/phenix-blocks.git"
+    "url": "git+https://github.com/EngCode/phenix-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/EngCode/phenix-blocks/issues"
+    "url": "https://github.com/EngCode/phenix-ui/issues"
   },
   "homepage": "https://design.phenixthemes.com",
   "keywords": [
@@ -29,14 +29,7 @@
     "webpack",
     "sass",
     "rtl",
-    "typescript",
-    "wordpress",
-    "gutenberg",
-    "plugin",
-    "theme",
-    "editor",
-    "fontawesome",
-    "abdullah ramadan"
+    "typescript"
   ],
   "main": "/assets/css/phenix.css",
   "exports": {
@@ -55,7 +48,6 @@
     "phenix-start": "concurrently --kill-others \"npm run phenix-sass\" \"npm run phenix-ts\" \"npm run phenix-blocks\"",
     "phenix-ts": "npx webpack --config typescript.webpack.js --watch",
     "phenix-sass": "npx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
-    "animate-sass": "npx node-sass --watch src/animations/ -o assets/css/animations/ --output-style compressed --source-map false",
     "phenix-blocks": "wp-scripts start"
   },
   "devDependencies": {
@@ -63,19 +55,20 @@
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.19.3",
     "@babel/preset-react": "^7.18.6",
-    "@wordpress/scripts": "^17.1.0",
+    "@wordpress/scripts": "^23.7.0",
     "@wordpress/server-side-render": "^3.16.0",
     "babel-loader": "^8.2.5",
     "concurrently": "^6.5.1",
-    "node-sass": "^8.0.0",
+    "node-sass": "^7.0.3",
     "react": "^17.0.0",
     "ts-loader": "^7.0.5",
-    "typescript": "^3.9.10",
+    "typescript": "^5.0.2",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@types/babel__traverse": "^7.18.3",
     "@wordpress/blocks": "^11.17.0"
   }
 }

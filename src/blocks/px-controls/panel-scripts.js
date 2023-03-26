@@ -85,6 +85,9 @@ const PhenixComponentsBuilder = () => {
                 // Phenix(element).slider({autoplay: false});
             });
 
+            //===> Run Menus <===//
+            the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
+
             //====> Clear Timer <===//
             time_counter += 1; if (time_counter > 100) clearInterval(pds_elements_timer);
         }, 500);

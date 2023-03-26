@@ -14,17 +14,41 @@ import { useState, useEffect } from '@wordpress/element';
 
 //===> Phenix Icons <===//
 export default class PhenixIcons extends Component {
+    //===> States <===//
+    state = {
+        icons_file : "fa5-free.json",
+        icons_list : [],
+        icons_version : this.props.version?.replace("fontawesome-", "") || "5-free",
+    };
+
+    //===> Component Rendered Hook <===//
+    componentDidMount() {
+        //===> Get Current State <===//
+        let new_state = this.state;
+
+        //===> Define Icons File <===//
+        if (this.props.value?.includes('fab')) new_state.icons_file = new_state.icons_file = "fa5-brands.json";
+
+        //===> Version Correct <===//
+        if (this.props.version.includes('6') || this.props.version.includes('pro')) {
+            new_state.icons_file.replace("5", "6");
+            new_state.icons_file.replace("free", "pro");
+        };
+
+        //===> Start Fetching <===//
+        fetch(`${PDS_WP_KEY.json}/${new_state.icons_file}`).then(res => res.json()).then(json => {
+            //===> Assign Icons List <===//
+            if (json.icons !== new_state.icons_list) new_state.icons_list = json.icons;
+
+            //===> Set State <===//
+            if(this.state !== new_state) this.setState({...new_state});
+        });
+    };
+
     //===> Render <===//
     render () {
         //===> Properties <===//
-        const {
-            type,
-            label,
-            value,
-            icons,
-            version,
-            onChange
-        } = this.props;
+        const { type, label, value, icons, version, onChange } = this.props;
 
         //===> Returned Value <===//
         let options = {
@@ -48,6 +72,8 @@ export default class PhenixIcons extends Component {
         const set_type = value => {
             //===> Set Value <===//
             options.type = value;
+
+            value === "fab" ? options.value = "fa-wordpress" : options.value = "fa-icons";
 
             //===> Return Options <===//
             return onChange(options);
@@ -127,7 +153,7 @@ export default class PhenixIcons extends Component {
                 {/*===> Panel <===*/}
                 <div className={`overflow-y-auto flexbox options-list align-center tx-align-center px-scrollbar pdx-15 pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid`} style={{gap:"10px", maxHeight: "220px"}}>
                     <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "phenix")} />
-                    {makeButtons(icons, type)}
+                    {makeButtons(this.state.icons_list, type)}
                 </div>
             </div>
         )

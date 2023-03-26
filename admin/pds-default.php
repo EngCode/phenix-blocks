@@ -257,6 +257,9 @@ if (!function_exists('pds_get_default_options')) :
             'wpc7_rm_styles' => "on",
             'wpc7_rm_scripts' => "on",
             'blocks_optimizer' => "on",
+            'pds_icon_font' => "fontawesome-5-free",
+            'pds_primary_font' => "somar-rounded",
+            'pds_secondary_font' => "somar-rounded",
         ), $other_options);
     }
 endif;

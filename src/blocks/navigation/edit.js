@@ -32,8 +32,6 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
     const [state, set_state] = useState({
         menus_list: [],
-        icons_list: [],
-        icons_file: "fa5-free",
         icons_version: "5-free",
     });
 
@@ -138,7 +136,7 @@ export default function Edit(props) {
     let arrow_ops = attributes.arrow_icon.split(" "),
         arrowIcon = arrow_ops[1],
         arrowType = arrow_ops[0];
-    
+
     if (attributes.arrow_icon.includes('fa-sharp')) {
         arrowType = `${arrow_ops[0]} ${arrow_ops[1]}`,
         arrowIcon = arrow_ops[2];
@@ -151,32 +149,13 @@ export default function Edit(props) {
             let new_state = state,
                 locations = options.menu_locations,
                 menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
-            
+
             //===> Get Menu Locations <===//
             for (const [key, value] of Object.entries(locations)) menus_new_list.push({label: value, value: key});
             if (menus_new_list !== state.menus_list) new_state.menus_list = menus_new_list;
-
-            //===> Define Icons File <===//
-            if (attributes.arrowIcon?.split(" ")[0] === "fab") {
-                new_state.icons_file = new_state.icons_file.replace(new_state.icons_file.includes("free") ? "free" : "pro", "brands");
-            } else {
-                new_state.icons_file = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
-            }
-
-            //===> Version Correct <===//
-            if (new_state.icons_file.includes('6') || new_state.icons_file.includes('pro')) {
-                new_vers = new_vers.replace("5", "6");
-                new_vers = new_vers.replace("free", "pro");
-            }
-
-            //===> Start Fetching <===//
-            fetch(`${PDS_WP_KEY.json}/${new_state.icons_file}.json`).then(res => res.json()).then(json => {
-                if (json.icons !== new_state.icons_list) new_state.icons_list = json.icons;
-                //===> Set State <===//
-                if(new_state !== state) set_state({...new_state});
-            });
         });
     }, [attributes]);
+
     //===> Render <===//
     return (<>
         {/* //====> Controls Layout <====// */}
@@ -323,7 +302,7 @@ export default function Edit(props) {
                 {/*===> Widget Panel <===*/}
                 <PanelBody title="Dropdown Options" initialOpen={false}>
                     {/*=== Arrow Icon ===*/}
-                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" icons={state.icons_list} version={state.icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
+                    <PhenixIcons key="arrow_icon" label="Dropdown Icon" version={state.icons_version} type={ arrowType } value={ arrowIcon } onChange={set_arrow_icon} />
                     
                     {/*===> Dropdown Hover <===*/}
                     <ToggleControl label="Support Hover" checked={attributes.hover} onChange={set_hover}/>

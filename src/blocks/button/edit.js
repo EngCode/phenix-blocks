@@ -214,14 +214,13 @@ export default function Edit({ attributes, setAttributes }) {
     const screens = ["-md", "-lg", "-xl"];
     const [state, set_state] = useState({
         menus_list: [],
-        icons_list: [],
-        icons_file: "fa5-free",
         icons_version: "5-free",
     });
 
     //===> Sharp Icons Fallback <===//
     const icon_ops = attributes.icon.split(" ");
-    let icon_name = icon_ops[1], icon_type = icon_ops[0];
+    let icon_name = icon_ops[1],
+        icon_type = icon_ops[0];
  
     if (attributes.icon.includes('fa-sharp')) {
         icon_name = icon_ops[2];
@@ -236,29 +235,11 @@ export default function Edit({ attributes, setAttributes }) {
                 locations = options.menu_locations,
                 menus_new_list = [{label: __("Default", 'phenix'), value: ""}];
             
+            //===> Get Icons Version <===//
+            if (options.pds_icon_font) new_state.icons_version = options.pds_icon_font;
             //===> Get Menu Locations <===//
             for (const [key, value] of Object.entries(locations)) menus_new_list.push({label: value, value: key});
             if (menus_new_list !== state.menus_list) new_state.menus_list = menus_new_list;
-
-            //===> Define Icons File <===//
-            if (attributes.icon.split(" ")[0] === "fab") {
-                new_state.icons_file = new_state.icons_file.replace(new_state.icons_file.includes("free") ? "free" : "pro", "brands");
-            } else {
-                new_state.icons_file = `${options.pds_icon_font.replace("fontawesome-", "fa")}`;
-            }
-
-            //===> Version Correct <===//
-            if (new_state.icons_file.includes('6') || new_state.icons_file.includes('pro')) {
-                new_vers = new_vers.replace("5", "6");
-                new_vers = new_vers.replace("free", "pro");
-            }
-
-            //===> Start Fetching <===//
-            fetch(`${PDS_WP_KEY.json}/${new_state.icons_file}.json`).then(res => res.json()).then(json => {
-                if (json.icons !== new_state.icons_list) new_state.icons_list = json.icons;
-                //===> Set State <===//
-                if(new_state !== state) set_state({...new_state});
-            });
         });
     }, []);
 
@@ -363,7 +344,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Background <===*/}
                 <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={set_background} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {/*=== Icon ===*/}
-                <PhenixIcons key="icon" label="Button Icon" icons={state.icons_list} version={state.icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
+                <PhenixIcons key="icon" label="Button Icon" version={state.icons_version} type={ icon_type } value={ icon_name } onChange={set_icon} />
             </PanelBody>
             {/*===> Typography <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>

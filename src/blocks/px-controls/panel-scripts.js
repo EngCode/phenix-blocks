@@ -33,7 +33,7 @@ const PhenixComponentsBuilder = () => {
 
     //===> Get View iFrame <===//
     let viewScript = (the_document) => {
-        //===> Define Data <===// 
+        //===> Define Data <===//
         let time_counter = 0,
         //===> Timer Loop <===//
         pds_elements_timer = setInterval(() => {
@@ -59,7 +59,7 @@ const PhenixComponentsBuilder = () => {
                     if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
                     if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
                 }
-                
+
                 slider_cols_fixer(element);
 
                 //===> Stretch Fix <===//

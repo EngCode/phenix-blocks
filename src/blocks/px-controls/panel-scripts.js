@@ -51,37 +51,40 @@ const PhenixComponentsBuilder = () => {
                 //===> Disable Autoplay <===//
                 if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
 
+                //===> Replace Data Attributes with Row/Columns Classes <===//
+                const slider_cols_fixer = (row) => {
+                    //===> Contain the Slides in One Line <====//
+                    row.classList.add('flow-nowrap');
+                    if (element.getAttribute('data-md')) row.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
+                    if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
+                    if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
+                }
+
                 //===> Stretch Fix <===//
                 let slider_element = element.querySelector(".splide__list"),
-
                 //===> Slides List Finder <===//
                 slider_element_finder = setInterval(() => {
                     if (!slider_element) {
+                        slider_cols_fixer(element);
                         slider_element = element.querySelector(".splide__list");
                     } else {
-                        //===> Contain the Slides in One Line <====//
-                        slider_element.classList.add('flow-nowrap');
-                        element.querySelectorAll(".splide__arrows, .splide__track").forEach(element => element.classList.add("fluid"));
-
-                        //===> Replace Data Attributes with Row/Columns Classes <===//
-                        if (element.getAttribute('data-md')) element.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
-                        if (element.getAttribute('data-lg')) element.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
-
-                        //===> Assign a Max Height fo Stretch <===//
+                        //===> Assign a Max Height for Stretch <===//
                         slider_element.style.maxHeight = Phenix(slider_element).height();
+
+                        //===> Assign Columns Sizes <===//
+                        slider_cols_fixer(slider_element);
+                        element.classList.forEach(class_name => class_name.includes('row-cols') || class_name.includes('flow-') ? element.classList.remove(class_name) : null);
+
                         //===> Clear Timer <===//
                         clearInterval(slider_element_finder);
-                        if (element.getAttribute('data-xl')) element.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
                     }
                 }, 100);
-
-                
                 //===> Run the Slider <===//
                 Phenix(element).slider({autoplay: false});
             });
 
             //====> Clear Timer <===//
-            time_counter += 1; if (time_counter > 5000) clearInterval(pds_elements_timer);
+            time_counter += 1; if (time_counter > 100) clearInterval(pds_elements_timer);
         }, 500);
     };
 

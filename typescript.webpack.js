@@ -6,10 +6,13 @@ module.exports = {
     entry: path.join(__dirname, '/src/scripts/index.ts'),
     devtool: "source-map",
     output: {
-        filename: 'phenix.js',
-        path: path.join(__dirname, '/assets/js'),
+        filename: 'js/phenix.js',
+        path: path.join(__dirname, '/assets/'),
         globalObject: 'this',
-        library: {type: 'umd', name: 'Phenix'}
+        library: {
+            type: 'umd',
+            name: 'Phenix',
+        }
     },
     module: {
         rules: [

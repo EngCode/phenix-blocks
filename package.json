@@ -59,6 +59,7 @@
     "@wordpress/server-side-render": "^3.16.0",
     "babel-loader": "^8.2.5",
     "concurrently": "^6.5.1",
+    "eslint-plugin-react": "^7.32.2",
     "node-sass": "^7.0.3",
     "react": "^17.0.0",
     "ts-loader": "^7.0.5",

@@ -36,7 +36,7 @@ registerBlockType(metadata, {
         }
 
         //===> Render Background <===//
-        if (background?.value) {
+        if (background.value) {
             //===> Image Background <===//
             if (background.type === 'image') {
                 blockProps.className += ` px-media`;
@@ -94,7 +94,7 @@ registerBlockType(metadata, {
         if (attributes.type !== "btn" && attributes.icon) blockProps.className += ` ${attributes.icon}`;
 
         //===> Rendered Element <===//
-        let renderedElement = <button { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</button>;
+        let renderedElement = <button { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</button>;
         if (attributes.isLink) renderedElement = <a { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</a>;
 
         //===> Render <===//

@@ -1,0 +1,100 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/button",
+  "version": "0.1.0",
+  "title": "PDS Button",
+  "category": "design",
+  "description": "",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    },
+    "isLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "inNewTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconEnd": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string",
+      "default": "Button"
+    },
+    "url": {
+      "type": "string",
+      "default": "#none"
+    },
+    "type": {
+      "type": "string",
+      "default": "btn"
+    },
+    "icon": {
+      "type": "string",
+      "default": "far fa-icons"
+    },
+    "size": {
+      "type": "string",
+      "default": "normal"
+    },
+    "radius": {
+      "type": "string",
+      "default": "radius-none"
+    },
+    "outline": {
+      "type": "boolean",
+      "default": false
+    },
+    "data_id": {
+      "type": "string",
+      "default": ""
+    },
+    "data_modal": {
+      "type": "string",
+      "default": ""
+    },
+    "isLightBox": {
+      "type": "boolean",
+      "default": false
+    },
+    "lightbox_src": {
+      "type": "boolean",
+      "default": false
+    },
+    "lightbox_type": {
+      "type": "string",
+      "default": "image"
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "file:./index.js"
+}

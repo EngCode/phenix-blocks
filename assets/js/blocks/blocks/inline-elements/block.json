@@ -1,0 +1,39 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/inline",
+  "version": "0.1.0",
+  "title": "Inline Elements",
+  "keywords": [
+    "pds",
+    "phenix",
+    "inline",
+    "span",
+    "strong"
+  ],
+  "category": "design",
+  "description": "inline element for wrapping-up texts",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "span"
+    },
+    "content": {
+      "type": "string",
+      "default": "span"
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "phenix",
+  "editorScript": "file:./index.js"
+}

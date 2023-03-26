@@ -3,8 +3,8 @@
     "development"
   ],
   "hints": {
+    "asi": false,
     "typescript-config/strict": "off",
-    "compat-api/css": "off",
     "typescript-config/consistent-casing": "off",
     "axe/name-role-value": [
       "default",

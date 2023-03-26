@@ -59,28 +59,30 @@ const PhenixComponentsBuilder = () => {
                     if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
                     if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
                 }
+                
+                slider_cols_fixer(element);
 
                 //===> Stretch Fix <===//
-                let slider_element = element.querySelector(".splide__list"),
+                // let slider_element = element.querySelector(".splide__list"),
                 //===> Slides List Finder <===//
-                slider_element_finder = setInterval(() => {
-                    if (!slider_element) {
-                        slider_cols_fixer(element);
-                        slider_element = element.querySelector(".splide__list");
-                    } else {
-                        //===> Assign a Max Height for Stretch <===//
-                        slider_element.style.maxHeight = Phenix(slider_element).height();
+                // slider_element_finder = setInterval(() => {
+                //     if (!slider_element) {
+                //         slider_cols_fixer(element);
+                //         slider_element = element.querySelector(".splide__list");
+                //     } else {
+                //         //===> Assign a Max Height for Stretch <===//
+                //         slider_element.style.maxHeight = Phenix(slider_element).height();
 
-                        //===> Assign Columns Sizes <===//
-                        slider_cols_fixer(slider_element);
-                        element.classList.forEach(class_name => class_name.includes('row-cols') || class_name.includes('flow-') ? element.classList.remove(class_name) : null);
+                //         //===> Assign Columns Sizes <===//
+                //         slider_cols_fixer(slider_element);
+                //         element.classList.forEach(class_name => class_name.includes('row-cols') || class_name.includes('flow-') ? element.classList.remove(class_name) : null);
 
-                        //===> Clear Timer <===//
-                        clearInterval(slider_element_finder);
-                    }
-                }, 100);
+                //         //===> Clear Timer <===//
+                //         clearInterval(slider_element_finder);
+                //     }
+                // }, 100);
                 //===> Run the Slider <===//
-                Phenix(element).slider({autoplay: false});
+                // Phenix(element).slider({autoplay: false});
             });
 
             //====> Clear Timer <===//

@@ -154,28 +154,20 @@ Phenix(window).on("load", (loaded) => {
                         if (!frameDoc.querySelector("#fontawesome-css")) {
                             let fontAwesome = document.querySelector("#fontawesome-css"),
                                 importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+
                             if(importedEl && frameDoc.body) frameDoc.body.appendChild(importedEl);
                         }
-    
-                        //===> Load Phenix Js <===//
-                        if (!frameDoc.querySelector("#phenix-js")) {
-                            let phenixJs = document.querySelector("#phenix-js"),
-                                importedEl = phenixJs ? document.importNode(phenixJs, true) : false;
-                            if(importedEl && frameDoc.body) frameDoc.body.appendChild(document.importNode(phenixJs, true));
-                        }
+
                         //===> Clear Timer <===//
                         if(frameDoc.body) clearInterval(loadAssetTimer);
                     }
-
-                    //===> Run Scripts <===//
-                    frameDoc.addEventListener('load', () => Phenix(document).init());
                 } else {
                     //===> Increase Counter <===//
                     trying_times += 1;
                     if (trying_times > 100) clearInterval(loadAssetTimer);
                 }
             }, 300);
-        };
+        }
 
         //====> Add Design Options Classes <===//
         document.body.classList.add('phenix-wp-design');
@@ -217,7 +209,7 @@ Phenix(window).on("load", (loaded) => {
         Phenix(document).copyrights("Phenix Blocks").init();
     } 
     /*====> for Admin Panel <====*/
-    else {
+    if (document.body.classList.contains('wp-admin') && !document.body.getAttribute('class')?.includes('-editor')) {
         //===> Fix Tables Style <===//
         Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
             dateColumn.classList.add('tx-nowrap');

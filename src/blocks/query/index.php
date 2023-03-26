@@ -27,7 +27,7 @@ function px_query_render($block_attributes, $content) {
     $slider_opts = "";
     if ($options['slider_mode']) {
         //===>...<===//
-        $grid_opts .= " px-slider ";
+        $grid_opts .= "px-slider ";
         if (isset($slider['type'])) { $slider_opts .= ' data-type="'.$slider['type'].'"'; }
         if (isset($slider['steps'])) { $slider_opts .= ' data-steps="'.$slider['steps'].'"'; }
         if (isset($slider['speed'])) { $slider_opts .= ' data-speed="'.$slider['speed'].'"'; }

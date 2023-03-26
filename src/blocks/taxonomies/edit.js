@@ -51,30 +51,8 @@ export default function Edit(props) {
     //===> Slider Attributes <===//
     const set_slider_mode = slider_mode => setAttributes({ slider_mode });
 
-    //===> Set Phenix View <===//
-    const setPhenixView = () => {
-        //===> Check Site Editor <===//
-        let siteEditor = window.frames['editor-canvas'];
-
-        //===> Get the Element from Site Editor <===//
-        if (siteEditor) {
-            //===> Media Active <===//
-            let mediaElements = siteEditor.document.querySelectorAll('.px-media');
-            mediaElements = [...mediaElements];
-            Phenix(mediaElements).multimedia();
-        }
-
-        //===> Set Background <===//
-        if (!siteEditor) {
-            Phenix('.px-media').multimedia();
-        }
-    };
-
     //===> Update Phenix Elements <===//
     useEffect(()=> {
-        //===> Active Phenix Components <===//
-        setPhenixView();
-
         //===> Fetch Taxonomies <===//
         if (TaxonomyList.length < 2) apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
             //===> Define Types <===//

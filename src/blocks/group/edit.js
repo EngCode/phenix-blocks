@@ -63,7 +63,7 @@ export default function Edit({ attributes, setAttributes }) {
         let flex_ops = attributes.flexbox;
 
         //==> Set Value <==//
-        flex_ops.stacked = target.checked ? target.value : "";        
+        flex_ops.stacked = target.checked ? target.value : "";
         setAttributes({flexbox : {...flex_ops}});
     };
 

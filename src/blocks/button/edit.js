@@ -71,7 +71,7 @@ export default function Edit({ attributes, setAttributes }) {
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const flexbox = attributes.flexbox;
 
-        //==> Add the Value <==//        
+        //==> Add the Value <==//
         if(name.includes('align-')) { name = "align" }
         flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
@@ -107,7 +107,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
+        return (<ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : ""} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />);
     };
 
     //===> Set Settings <===//

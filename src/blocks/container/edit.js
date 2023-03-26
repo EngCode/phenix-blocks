@@ -1,5 +1,6 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
+import { useState, useEffect } from '@wordpress/element';
 import {PanelBody, TextControl} from '@wordpress/components';
 import {useBlockProps, useInnerBlocksProps, InspectorControls} from '@wordpress/block-editor';
 
@@ -13,6 +14,7 @@ import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
 import ResponsiveSet from '../px-controls/sets/responsive';
+import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -106,6 +108,9 @@ export default function Edit({ attributes, setAttributes }) {
     const responsive_options = (screen) => {
         return <ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : null} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />
     };
+
+    //===> View Script <===//
+    useEffect(() => PhenixComponentsBuilder(), []);
 
     //===> Define Controls Options <===//
     const html_tags = [

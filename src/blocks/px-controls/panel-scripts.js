@@ -11,114 +11,83 @@ import { __ } from '@wordpress/i18n';
 const PhenixComponentsBuilder = () => {
     //===> Create Time Loop to Find the Elements <===//
     let finder_counter = 0,
-    element_finder = setInterval(() => {
-        //===> Get Elements <===//
-        let elements = document.querySelectorAll('.pds-tm-control');
+        element_finder = setInterval(() => {
+            //===> Get Elements <===//
+            let elements = document.querySelectorAll('.pds-tm-control');
 
-        //===> Loop Through Elements <===//
-        elements.forEach(element => {
-            //===> Define Element Data <===//
-            let class_names = element.classList;
+            //===> Loop Through Elements <===//
+            elements.forEach(element => {
+                //===> Define Element Data <===//
+                let class_names = element.classList;
 
-            //===> for Selects <===//
-            if (class_names.contains('px-select')) Phenix(element).select();
-        });
+                //===> for Selects <===//
+                if (class_names.contains('px-select')) Phenix(element).select();
+            });
 
-        //===> Increase Counter <===//
-        finder_counter++;
+            //===> Increase Counter <===//
+            finder_counter++;
 
-        //===> Clear Timer Loop <===//
-        if (finder_counter > 30) clearInterval(element_finder);
-    }, 500);
+            //===> Clear Timer Loop <===//
+            if (finder_counter > 30) clearInterval(element_finder);
+        }, 500);
 
-    //===> Set Phenix Components <===//
-    const setPhenixView = () => {
-        //===> Create Time Loop to Find the Elements <===//
-        let finder_counter = 0,
-            frame_finder = setInterval(() => {
-                //===> Get Elements <===//
-                let elements = document.querySelectorAll('.pds-tm-control');
+    //===> Get View iFrame <===//
+    let viewScript = (the_document) => {
+        //===> Define Data <===// 
+        let time_counter = 0,
+        //===> Timer Loop <===//
+        pds_elements_timer = setInterval(() => {
+            //===> Run Multimedia <===//
+            the_document.querySelectorAll(".px-media").forEach(element => {
+                element.style.backgroundImage = null;
+                Phenix(element).multimedia();
+            });
 
-                //===> Loop Through Elements <===//
-                elements.forEach(element => {
-                    //===> Define Element Data <===//
-                    let class_names = element.classList;
+            //===> Run Sliders <===//
+            the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
+                //===> Mark as Editing Mode <===//
+                element.classList.add('edit-mode');
 
-                    //===> for Selects <===//
-                    if (class_names.contains('px-select')) Phenix(element).select();
-                });
+                //===> Disable Autoplay <===//
+                if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
 
-                //===> Increase Counter <===//
-                finder_counter++;
+                //===> Stretch Fix <===//
+                let slider_element = element.querySelector(".splide__list"),
 
-                //===> Clear Timer Loop <===//
-                if (finder_counter > 30) clearInterval(element_finder);
-            }, 500);
+                //===> Slides List Finder <===//
+                slider_element_finder = setInterval(() => {
+                    if (!slider_element) {
+                        slider_element = element.querySelector(".splide__list");
+                    } else {
+                        //===> Contain the Slides in One Line <====//
+                        slider_element.classList.add('flow-nowrap');
+                        element.querySelectorAll(".splide__arrows, .splide__track").forEach(element => element.classList.add("fluid"));
 
-        //===> Get View iFrame <===//
-        if (window.frames['editor-canvas']) {
-            //===> View Script <===//
-            let time_counter = 0,
-                frameDoc = window.frames['editor-canvas'].document,
-                pds_elements_timer = setInterval(() => {
-                    //===> Run Multimedia <===//
-                    frameDoc.querySelectorAll(".px-media").forEach(element => Phenix(element).multimedia());
+                        //===> Replace Data Attributes with Row/Columns Classes <===//
+                        if (element.getAttribute('data-md')) element.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
+                        if (element.getAttribute('data-lg')) element.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
 
-                    //===> Run Sliders <===//
-                    frameDoc.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
-                        element.classList.add('edit-mode');
-                        element.getAttribute('data-autoplay') ? element.setAttribute('data-autoplay', false) : null;
-                        Phenix(element).slider({autoplay: false});
-                        //===> Stretch Fix <===//
-                        let slider_element = element.querySelector(".splide__list");
-                        if (slider_element) {
-                            slider_element.classList.add('flow-nowrap');
-                            slider_element.style.maxHeight = Phenix(slider_element).height();
-                            if (element.getAttribute('data-md')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
-                            if (element.getAttribute('data-lg')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
-                            if (element.getAttribute('data-xl')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
-                        }
-                    });
+                        //===> Assign a Max Height fo Stretch <===//
+                        slider_element.style.maxHeight = Phenix(slider_element).height();
+                        //===> Clear Timer <===//
+                        clearInterval(slider_element_finder);
+                        if (element.getAttribute('data-xl')) element.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
+                    }
+                }, 100);
 
-                    //====> Clear Timer <===//
-                    time_counter += 1;
-                    if (time_counter > 100) clearInterval(pds_elements_timer);
-                }, 500);
-        } else {
-            //===> Timeout for Loading <===//
-            pds_elements_timer = setInterval(() => {
-                //===> Get Elements <===//
-                let Sliders  = Phenix('.px-slider:not(.block-editor-block-list__block)'),
-                    MediaEls = Phenix(".px-media");
-    
-                //===> Run Phenix Components <===//
-                if(MediaEls.length > 0) MediaEls.multimedia();
-                if(Sliders.length > 0) {
-                    Sliders.addClass('edit-mode').slider({autoplay: false});
-                    //===> Stretch Fix <===//
-                    Sliders.forEach(element => {
-                        //===> Disable Autoplay <===//
-                        let slider_element = element.querySelector(".splide__list");
-                        if(slider.getAttribute('data-autoplay')) slider.setAttribute('data-autoplay', false);
+                
+                //===> Run the Slider <===//
+                Phenix(element).slider({autoplay: false});
+            });
 
-                        if (slider_element) {
-                            slider_element.classList.add('flow-nowrap');
-                            slider_element.style.maxHeight = Phenix(slider_element).height();
-                            if (element.getAttribute('data-md')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
-                            if (element.getAttribute('data-lg')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
-                            if (element.getAttribute('data-xl')) slider_element.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
-                        }
-                    });
-                }
+            //====> Clear Timer <===//
+            time_counter += 1; if (time_counter > 5000) clearInterval(pds_elements_timer);
+        }, 500);
+    };
 
-                //====> Clear Timer <===//
-                time_counter += 1;
-                if (time_counter > 100) clearInterval(pds_elements_timer);
-            }, 500);
-        }
-    }
-
-    setPhenixView();
+    //===> Run View Script <===//
+    if (window.frames['editor-canvas']) viewScript(window.frames['editor-canvas'].document);
+    else viewScript(window.document);
 }
 
 export default PhenixComponentsBuilder;

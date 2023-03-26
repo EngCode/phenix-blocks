@@ -230,7 +230,7 @@ export default function Edit(props) {
 
         //===> Run Phenix Components <===//
         PhenixComponentsBuilder();
-    }, []);
+    }, [attributes, state]);
 
     //===> Render <===//
     return (<>

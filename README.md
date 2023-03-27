@@ -35,6 +35,8 @@ published as open-source project for web community benefits.
 
 ---
 
+#### Changelog Update v0.6.6 {Last Free Commit}
+
 #### 🚀 Phenix Blocks Key-Features
 
 <ul style="list-style:none;padding:0;margin:0 25px;">

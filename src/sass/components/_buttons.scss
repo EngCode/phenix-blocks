@@ -73,15 +73,12 @@
     }
 
     /*==== icons preset ====*/
-    &::before, .icon {
+    &::before, .icon, img {
         line-height: 1;
         @extend %inline-block;
     }
 
-    .icon {
-        top: -1px;
-        position: relative;
-    }
+    .icon, img {top: -1px; position: relative;}
     
     /*===== Button Sizes  ===*/
     @include make_button_sizes();
@@ -196,5 +193,12 @@
             }
         };
     }
+
+    &.fix-lineheight {line-height: calc(var(--height) - 2px);}
+}
+
+button.btn, input.btn, .fix-lineheight {
+    line-height: 1;
+    padding-bottom: 3px;
 }
 

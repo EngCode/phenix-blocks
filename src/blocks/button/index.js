@@ -47,6 +47,7 @@ registerBlockType(metadata, {
             if (attributes.style?.radius) blockProps.className += ` ${attributes.style.radius}`;
             if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
             if (attributes.style['icon-large']) blockProps.className += ` ${attributes.style['icon-large']}`;
+            if (attributes.style['fix-lineheight']) blockProps.className += ` ${attributes.style['fix-lineheight']}`;
             if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
 
             //===> Text Color <===//
@@ -98,13 +99,18 @@ registerBlockType(metadata, {
             });
         }
 
+        //===> Responsive Options <===//
+        if (attributes.responsive) screens.forEach(screen => {
+            if (attributes.responsive[`size${screen}`]) blockProps.className += ` ${attributes.responsive[`size${screen}`]}`;
+        });
+
         //===> Set Custom Data <===//
-        if (attributes.data_id.length > 1) {
+        if (attributes.data_modal) blockProps['data-modal'] = attributes.data_modal;
+
+        if (attributes.data_id) {
             blockProps['data-id'] = attributes.data_id;
             blockProps.className += ' menu-toggle';
         }
-
-        if (attributes.data_modal.length > 1) blockProps['data-modal'] = attributes.data_modal;
 
         if (attributes.isLightBox) {
             blockProps['href'] = attributes.url;

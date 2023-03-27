@@ -14,13 +14,13 @@ import OptionControl from '../switch';
 import PhenixNumber from "../number";
 
 //===> Options List
-//=> 
+//=>
 
 //===> Component <===//
 export default class SliderSet extends Component {
     render () {
         //===> Properties <===//
-        const {className, attributes, options, mainSetter, flexSetter} = this.props;
+        const {className, attributes, options, mainSetter, flexSetter, isGrid} = this.props;
 
         //===> Define Controls Options <===//
         const slider_types = [

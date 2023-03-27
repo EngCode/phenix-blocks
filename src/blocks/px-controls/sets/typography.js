@@ -24,7 +24,7 @@ export default class TypographySet extends Component {
 
         //===> Define Controls Options <===//
         const sizes_list = [],
-              origin_sizes = [
+            origin_sizes = [
                 `fs${screenPoint}-12`,
                 `fs${screenPoint}-13`,
                 `fs${screenPoint}-14`,
@@ -40,18 +40,8 @@ export default class TypographySet extends Component {
                 `fs${screenPoint}-26`,
                 `fs${screenPoint}-28`,
                 `fs${screenPoint}-30`,
-                `h1${screenPoint}`,
-                `h2${screenPoint}`,
-                `h3${screenPoint}`,
-                `h4${screenPoint}`,
-                `h5${screenPoint}`,
-                `h6${screenPoint}`,
-                `display${screenPoint}-h1`,
-                `display${screenPoint}-h2`,
-                `display${screenPoint}-h3`,
-                `display${screenPoint}-h4`,
-                `display${screenPoint}-h5`,
-                `display${screenPoint}-h6`
+                `h1${screenPoint}`, `h2${screenPoint}`, `h3${screenPoint}`, `h4${screenPoint}`, `h5${screenPoint}`, `h6${screenPoint}`,
+                `display${screenPoint}-h1`, `display${screenPoint}-h2`, `display${screenPoint}-h3`, `display${screenPoint}-h4`, `display${screenPoint}-h5`, `display${screenPoint}-h6`
             ];
 
         //===> Generate Responsive Sizes <===//
@@ -80,6 +70,21 @@ export default class TypographySet extends Component {
             {options && options.includes("size") ? <>
                 <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
             </>: null}
+            {/*===> Grouped Options <===*/}
+            {!options ? <div className='row gpx-20 gpy-15'>
+                {/*===> Size <===*/}
+                <div className='col col-6'>
+                    <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
+                </div>
+                {/*===> Weight <===*/}
+                <div className='col col-6'>
+                    <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={mainSetter} options={font_weights}/>
+                </div>
+                {/*===> Other Options <===*/}
+                {this.props.children ? this.props.children : null}
+                {/*===> // Column <===*/}
+            </div> : this.props.children ? this.props.children : null }
+            {/*===> Alignment Options <===*/}
             {!options || options.includes("align") ? <>
                 {/*===> Label <===*/}
                 <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Alignment", "phenix")}</label>
@@ -107,24 +112,6 @@ export default class TypographySet extends Component {
                     </OptionControl>
                 </div>
             </>: null}
-            {/*===> Grouped Options <===*/}
-            <div className='row gpx-20 gpy-15 gpy-fix'>
-                {/*===> Size <===*/}
-                {!options ? <>
-                    <div className='col col-6'>
-                        <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
-                    </div>
-                </>: null}
-                {/*===> HTML Tag <===*/}
-                {!options || options.includes("weight") ? <>
-                <div className='col col-6'>
-                    <PhenixSelect name="weight" placeholder={__("Default", "phenix")} label={__("Font Weight", "phenix")} value={attributes.typography.weight} onChange={mainSetter} options={font_weights}/>
-                </div>
-                </>: null}
-                {/*===> Other Options <===*/}
-                {this.props.children ? this.props.children : null}
-                {/*===> // Column <===*/}
-            </div>
         </>
     }
 }

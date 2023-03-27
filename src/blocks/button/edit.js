@@ -179,6 +179,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (attributes.style?.radius) blockProps.className += ` ${attributes.style.radius}`;
         if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
         if (attributes.style['icon-large']) blockProps.className += ` ${attributes.style['icon-large']}`;
+        if (attributes.style['fix-lineheight']) blockProps.className += ` ${attributes.style['fix-lineheight']}`;
         if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
 
         //===> Text Color <===//
@@ -230,6 +231,11 @@ export default function Edit({ attributes, setAttributes }) {
             if (attributes.typography[`size${screen}`]) blockProps.className += ` ${attributes.typography[`size${screen}`]}`;
         });
     }
+
+    //===> Responsive Options <===//
+    if (attributes.responsive) screens.forEach(screen => {
+        if (attributes.responsive[`size${screen}`]) blockProps.className += ` ${attributes.responsive[`size${screen}`]}`;
+    });
 
     //===> URL Auto-Complete <===//
     const suggestionsRender = (props) => (
@@ -292,6 +298,10 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> Option Control <===*/}
                         <OptionControl name={`has-animations`} value={`boolean`} checked={attributes['has-animations'] || false} onChange={set_value} type='checkbox' className='tiny'>
                             <span className='fas fa-check radius-circle'>{__("Animated", "phenix")}</span>
+                        </OptionControl>
+                        {/*===> Option Control <===*/}
+                        <OptionControl name={`fix-lineheight`} value={`fix-lineheight`} checked={attributes.style['fix-lineheight'] || false} onChange={set_style} type='checkbox' className='tiny'>
+                            <span className='fas fa-check radius-circle'>{__("Fix-LH", "phenix")}</span>
                         </OptionControl>
                     </div>
                     {/*===> Icon Selector <===*/}

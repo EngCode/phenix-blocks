@@ -86,7 +86,7 @@ export default class ResponsiveSet extends Component {
             : null}
 
             {/*===> Options Group <===*/}
-            <div className={`row gpx-20 gpy-15 ${options && !options.includes("display") ? "gpy-fix" : ""}`}>
+            <div className={`row gpx-20 gpy-15 ${!options || options.includes("display") ? "gpy-fix" : ""}`}>
                 {/*===> Sizes Options <===*/}
                 {options && options.includes("component-size") ?
                     <div className='col-6 col'>

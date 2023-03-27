@@ -40,6 +40,7 @@ registerBlockType(metadata, {
         //===> Style Options <===//
         if (attributes.style || attributes.typography?.color) {
             //===> Effects <===//
+            if (attributes.style?.radius) blockProps.className += ` ${attributes.style.radius}`;
             if (attributes.style.display) container.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
             if (attributes.style.overlapped) container.className += ` ${attributes.style.overlapped}`;
 

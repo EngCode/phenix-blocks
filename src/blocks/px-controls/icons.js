@@ -171,9 +171,9 @@ export default class PhenixIcons extends Component {
 
         //===> Component Design <===//
         return (
-            <div className='px-gb-component position-rv mb-15'>
+            <div className='px-gb-component position-rv mb-10'>
                 {/*===> Toggle Button <===*/}
-                <label className='mb-10 tx-UpperCase'>{label}</label>
+                <label className='mb-10 tx-UpperCase fs-13'>{label}</label>
 
                 {/*===> Group <===*/}
                 <div className='overflow-hidden form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>

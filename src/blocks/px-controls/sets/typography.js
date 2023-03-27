@@ -23,26 +23,16 @@ export default class TypographySet extends Component {
         const screenPoint = screen ? `-${screen}` : "";
 
         //===> Define Controls Options <===//
-        const sizes_list = ["fs-12","fs-13","fs-14","fs-15","fs-16","fs-17","fs-18","fs-19","fs-20","fs-22","fs-24","fs-25","fs-26","fs-28","fs-30","h1","h2","h3","h4","h5","h6","display-h1", "display-h2", "display-h3", "display-h4","display-h5", "display-h6"],
-              font_sizes = {"Mobile Screens": [], "Tablet Screens": [], "Laptop Screens": [], "Desktop Screens": []};
+        const sizes_list = [],
+              origin_sizes = ["fs-12", "fs-13", "fs-14", "fs-15", "fs-16", "fs-17", "fs-18", "fs-19", "fs-20", "fs-22", "fs-24", "fs-25", "fs-26", "fs-28", "fs-30", "h1", "h2", "h3", "h4", "h5", "h6", "display-h1", "display-h2", "display-h3", "display-h4", "display-h5", "display-h6"];
 
         //===> Generate Responsive Sizes <===//
-        Object.entries(font_sizes).forEach(([key, value]) => {
-            //===> Define Screen Infix <===//
-            let screen_name  = key,
-                screen_infix = key.includes('Tablet') ? "md" : key.includes('Laptop') ? "lg" : key.includes('Desktop') ? "xl" : "";
-                
-            //===> Add Sizes to each Screen List <===//
-            sizes_list.forEach(size => {
-                //===> Filter Value and Label <===//
-                let true_label =`${size.replace('fs-', "").replace('display-',"D").replace('-','').replace('h', 'H')}${screen_infix.length < 1 && size.includes('fs-') ? 'px':''}${screen_infix.length > 1 ? `-${screen_infix.toUpperCase()}` : ""}`,
-                    true_value = size.replace(`fs-`, `fs-${screen_infix}-`).replace('display-',`display-${screen_infix}-`);
-    
-                //===> Correct Value for Headline Sizes <===//
-                if (!size.includes('fs-') || !size.includes('display-')) true_value = `${true_value}-${screen_infix}`;
+        origin_sizes.forEach(size => {
+            //===> Filter Value and Label <===//
+            let true_label =`${size.replace('fs-', "").replace('display-',"D").replace('-','').replace('h', 'H')}${size.includes('fs-') ? 'px':''}`,
+                true_value = size.replace(`fs-`, `fs${screenPoint}-`).replace('display-',`display${screenPoint}-`);
 
-                font_sizes[screen_name].push({"label": true_label, "value": true_value});
-            });
+            sizes_list.push({"label": true_label, "value": true_value});
         });
 
         //===> Weights List <===//
@@ -91,8 +81,8 @@ export default class TypographySet extends Component {
             <div className='row gpx-20 gpy-15 gpy-fix'>
                 {/*===> Size <===*/}
                 {!options || options.includes("size") ? <>
-                    <div className='col-12'>
-                        <PhenixSelect name="size" placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography.size} onChange={mainSetter} options={font_sizes} multiple={true} search={true} className="stacked-options" />
+                    <div className='col col-6'>
+                        <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "phenix")} label={__("Font Size", "phenix")} value={attributes.typography[`size${screenPoint}`].toString()} onChange={mainSetter} options={sizes_list} search={true} />
                     </div>
                 </>: null}
                 {/*===> HTML Tag <===*/}

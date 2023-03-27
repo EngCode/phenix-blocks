@@ -146,6 +146,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Style Options <===//
     if (attributes.style || attributes.typography?.color) {
         //===> Effects <===//
+        if (attributes.style?.radius) blockProps.className += ` ${attributes.style.radius}`;
         if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
         if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
 

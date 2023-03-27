@@ -21,7 +21,7 @@ import PhenixBackground from '../colors/background';
 export default class StylesSet extends Component {
     render () {
         //===> Properties <===//
-        const {attributes, options, mainSetter, colorSetter} = this.props;
+        const {attributes, options, mainSetter, colorSetter, bgOnly} = this.props;
 
         //===> Define Controls Options <===//
         const position_options = [
@@ -32,6 +32,17 @@ export default class StylesSet extends Component {
             { "label": "Absolute", "value": "position-ab"},
             { "label": "Relative", "value": "position-rv"},
             { "label": "Sticky(S)", "value": "sticky-absolute"},
+        ];
+
+        const radius_sizes = [
+            { label: __("None", "phenix"), value: '' },
+            { label: __("Tiny", "phenix"), value: 'radius-sm' },
+            { label: __("Small", "phenix"), value: 'radius-md' },
+            { label: __("Medium", "phenix"), value: 'radius-lg' },
+            { label: __("Large", "phenix"), value: 'radius-xl' },
+            { label: __("xLarge", "phenix"), value: 'radius-xxl' },
+            { label: __("Circle", "phenix"), value: 'radius-circle' },
+            { label: __("Rounded", "phenix"), value: 'radius-height' },
         ];
 
         //===> Output <===//
@@ -46,7 +57,7 @@ export default class StylesSet extends Component {
 
             {/*===> Background <===*/}
             {!options || options.includes("background") ? <>
-                <PhenixBackground key="px-bg" label={__("Background", "phenix")}  onChange={mainSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+                <PhenixBackground colorsOnly={bgOnly.includes('colorsOnly') ? true : false} onlyCG={bgOnly.includes('onlyCG') ? true : false} key="px-bg" label={__("Background", "phenix")}  onChange={mainSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
                 {attributes.style.background?.type === "image" ? 
                     <div className='row gpx-15 mb-5' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
@@ -63,6 +74,11 @@ export default class StylesSet extends Component {
 
             {/*===> Additional Styles <===*/}
             <div className={`row gpx-15 ${attributes.style.background?.type === "image" ? "divider-t pdt-15" : null}`}>
+                {/*===> Border Radius <===*/}
+                {!options || options.includes("radius") ?<div className='col col-6'>
+                    <PhenixSelect name="radius" placeholder={__("None", "phenix")} label={__("Radius Size", "phenix")} value={attributes.style.radius} onChange={mainSetter} options={radius_sizes} />
+                </div>: null}
+
                 {/*===> Sticky Element <===*/}
                 {!options || options.includes("position") ? <>
                     <div className='col col-6'>

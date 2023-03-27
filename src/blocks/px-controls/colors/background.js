@@ -106,6 +106,7 @@ export default class PhenixBackground extends Component {
             label,
             rotate,
             colorsOnly,
+            onlyCG,
             isSmall,
             placeholder,
             onChange
@@ -224,12 +225,17 @@ export default class PhenixBackground extends Component {
                         {!isSmall ? <i className='fas fa-pencil fs-12 color-gray'></i> : null}
                     </button>
                     {/*===> Type Select <===*/}
-                    {!colorsOnly ? 
-                    <SelectControl key="bg-type" value={type || ""} onChange={set_type} options={[
-                        { label: 'color',   value: 'color' },
-                        { label: 'image',   value: 'image' },
-                        { label: 'gradient',   value: 'gradient' },
-                    ]}/>
+                    {!colorsOnly && !onlyCG ? 
+                        <SelectControl key="bg-type" value={type || ""} onChange={set_type} options={[
+                            { label: 'color',   value: 'color' },
+                            { label: 'image',   value: 'image' },
+                            { label: 'gradient',   value: 'gradient' },
+                        ]}/>
+                    : onlyCG ? 
+                        <SelectControl key="bg-type" value={type || ""} onChange={set_type} options={[
+                            { label: 'color',   value: 'color' },
+                            { label: 'gradient',   value: 'gradient' },
+                        ]}/>
                     : null}
                 </div>
                 {/*===> Panel <===*/}

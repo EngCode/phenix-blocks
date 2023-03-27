@@ -23,49 +23,79 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const blockProps = useBlockProps.save(),
-              background = attributes.style.background,
-              typography = attributes.typography;
+        const screens = ["-md", "-lg", "-xl"];
+        const blockProps = useBlockProps.save();
 
-        //===> Typography Properties <===//
-        if (typography) {
-            if(typography.size) blockProps.className += ` ${typography.size}`;
-            if(typography.color) blockProps.className += ` ${typography.color}`;
-            if(typography.weight) blockProps.className += ` ${typography.weight}`;
-            if(typography.align) blockProps.className += ` ${typography.align}`;
+        //===> General Options <===//
+        if (attributes.size) blockProps.className += ` ${attributes.size}`;
+        if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
+        if (attributes.outline) blockProps.className += ` ${attributes.outline}`;
+        if (attributes.type) {
+            blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
+            if (attributes.type !== "btn" && attributes.icon) blockProps.className+= ` ${attributes.icon}`;
         }
 
-        //===> Render Background <===//
-        if (background.value) {
-            //===> Image Background <===//
-            if (background.type === 'image') {
-                blockProps.className += ` px-media`;
-                blockProps["data-src"] = background.value;
-            }
-
-            //===> Name Background <===//
-            else {
-                //===> Adjust Primary Colors <===//
-                let isPrimary = false,
-                    primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
-
-                //===> Correct Colors <===//
-                primaryColors.forEach(color => background.value === color ? isPrimary = true : null);
-
-                //===> Set the Background <===//
-                if (isPrimary) { blockProps.className += ` ${background.value.replace('bg-', '')}`; }
-                else { blockProps.className += ` ${background.value}`; }
-            }
-
-            //===> Background Rotation <===//
-            if (background.rotate) blockProps.className += ` ${background.rotate}`;
-        }
-
-        //===> Set JS URL <===//
         if (attributes.isLink) {
             blockProps['href'] = attributes.url;
             blockProps['rel']  = "noopener";
             if (attributes.inNewTab) blockProps['target'] = "_blank";
+        }
+
+        //===> Style Options <===//
+        if (attributes.style || attributes.typography?.color) {
+            //===> Effects <===//
+            if (attributes.style?.radius) blockProps.className += ` ${attributes.style.radius}`;
+            if (attributes.style?.overlapped) blockProps.className += ` ${attributes.style.overlapped}`;
+            if (attributes.style['icon-large']) blockProps.className += ` ${attributes.style['icon-large']}`;
+            if (attributes.style?.display) blockProps.className += ` ${attributes.style.display.toString().replace(',', ' ')}`;
+
+            //===> Text Color <===//
+            if(attributes.typography?.color) blockProps.className += ` ${attributes.typography.color}`;
+
+            //===> Render Background <===//
+            if (attributes.style?.background?.value) {
+                //===> Adjust Primary Colors <===//
+                let isPrimary = false,
+                    primaryColors = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+
+                    //===> Correct Colors <===//
+                    primaryColors.forEach(color => attributes.style.background.value === color ? isPrimary = true : null);
+
+                    //===> Set the Background <===//
+                    if (isPrimary) {
+                        blockProps.className += ` ${attributes.style.background.value.replace('bg-', '')}`;
+                    } else {
+                        blockProps.className += ` ${attributes.style.background.value}`;
+                    }
+
+                //===> Background Rotation <===//
+                if (attributes.style.background.rotate) blockProps.className += ` ${attributes.style.background.rotate}`;
+            }
+
+            //===> Position <===//
+            if (attributes.style?.position) {
+                //===> if its Absolute Sticky <===//
+                if (attributes.style.position === "sticky-absolute") {
+                    blockProps["data-sticky"] = ` ${attributes.style.position}`;
+                    blockProps.className += ` position-rv fluid z-index-header`;
+                }
+                //===> Otherwise is Class Name <===//
+                else {
+                    blockProps.className += ` ${attributes.style.position}`;
+                }
+            }
+        }
+
+        //===> Typography Options <===//
+        if (attributes.typography) {
+            if(attributes.typography.size) blockProps.className += ` ${attributes.typography.size.toString().replace(',', ' ')}`;
+            if(attributes.typography.weight) blockProps.className += ` ${attributes.typography.weight}`;
+            if(attributes.typography.align) blockProps.className += ` ${attributes.typography.align}`;
+            //===> Responsive <===//
+            screens.forEach(screen => {
+                if (attributes.typography[`size${screen}`]) blockProps.className += ` ${attributes.typography[`size${screen}`]}`;
+                if (attributes.typography[`align${screen}`]) blockProps.className += ` ${attributes.typography[`align${screen}`]}`;
+            });
         }
 
         //===> Set Custom Data <===//
@@ -81,17 +111,6 @@ registerBlockType(metadata, {
             blockProps.className += ' px-lightbox';
             if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
         }
-
-        //===> Type <===//
-        if (attributes.type) blockProps.className += ` ${attributes.type.replace('normal', 'btn')}`;
-        //===> Size <===//
-        if (attributes.size) blockProps.className += ` ${attributes.size}`;
-        //===> Radius <===//
-        if (attributes.radius) blockProps.className += ` ${attributes.radius}`;
-        //===> Style <===//
-        if (attributes.outline) blockProps.className += ` outline`;
-        //===> Set icon <===//
-        if (attributes.type !== "btn" && attributes.icon) blockProps.className += ` ${attributes.icon}`;
 
         //===> Rendered Element <===//
         let renderedElement = <button { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</button>;

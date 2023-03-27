@@ -5,7 +5,7 @@
     </a>
 </p>
 
-<h2 align="center">Phenix WP Blocks</h2>
+<h2 align="center">Phenix WP Blocks (Free)</h2>
 
 <p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
 <p align="center">

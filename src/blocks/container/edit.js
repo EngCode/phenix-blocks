@@ -70,7 +70,7 @@ export default function Edit({ attributes, setAttributes }) {
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const flexbox = attributes.flexbox;
 
-        //==> Add the Value <==//        
+        //==> Add the Value <==//
         if(name.includes('align-')) { name = "align" }
         flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
 
@@ -102,6 +102,19 @@ export default function Edit({ attributes, setAttributes }) {
 
         //==> Set Value <==//
         setAttributes({ style : {...style} });
+    };
+
+    //==> Set Responsive Method <==//
+    const set_responsive = (target, screen) => {
+        //==> Get Current <==//
+        let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const responsive = attributes.responsive;
+
+        //==> Add the Value <==//
+        responsive[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target : valueHandler(target);
+
+        //==> Set Value <==//
+        setAttributes({ responsive : {...style} });
     };
 
     //===> Responsive Options <===//
@@ -256,7 +269,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </OptionControl>
                 </FlexboxSet>
             </PanelBody> : null}
-            {/*===> Typography <===*/}
+            {/*===> Typography Options <===*/}
             <PanelBody title={__("Typography", "phenix")} initialOpen={false}>
                 <TypographySet attributes={attributes} mainSetter={set_typography} />
             </PanelBody>
@@ -264,7 +277,7 @@ export default function Edit({ attributes, setAttributes }) {
             <PanelBody title={__("Style Options", "phenix")} initialOpen={false}>
                 <StylesSet attributes={attributes} mainSetter={set_style} colorSetter={set_typography} />
             </PanelBody>
-            {/*===> Widget Panel <===*/}
+            {/*===> Responsive Options <===*/}
             <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>
                 <ScreensTabs md={responsive_options} lg={responsive_options} xl={responsive_options} />
             </PanelBody>

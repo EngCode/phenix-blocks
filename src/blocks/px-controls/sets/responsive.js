@@ -26,6 +26,7 @@ export default class ResponsiveSet extends Component {
     render () {
         //===> Properties <===//
         const {attributes, options, screen, mainSetter, flexSetter, styleSetter, typoSetter} = this.props;
+        const screenPoint = screen ? `-${screen}` : "";
 
         //===> Define Controls Options <===//
         const display_options = {
@@ -64,6 +65,14 @@ export default class ResponsiveSet extends Component {
             ],
         };
 
+        const component_sizes = [
+            { label: __("Normal", "phenix"), value: '' },
+            { label: __("Tiny", "phenix"), value: 'tiny' },
+            { label: __("Small", "phenix"), value: 'small' },
+            { label: __("Large", "phenix"), value: 'large' },
+            { label: __("xLarge", "phenix"), value: 'xlarge' },
+        ];
+
         //===> Output <===//
         return <>
             {/*===> Other Options <===*/}
@@ -71,18 +80,32 @@ export default class ResponsiveSet extends Component {
 
             {/*===> Layouts Options <===*/}
             {!options || options.includes("flexbox") ?
-                <div className={`mb-10 ${this.props.children?"divider-t":""}`}>
+                <div className={`mb-10 pdb-5 ${this.props.children?"divider-y":"divider-b"}`}>
                     <FlexboxSet screen={screen} attributes={attributes} mainSetter={flexSetter} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : "flex-props, align"}></FlexboxSet>
                 </div>
             : null}
 
-            {/*===> Text Options <===*/}
-            {!options || options.includes("text-align") ?
-                <div className='mb-15'>
-                    <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="align" />
-                </div>
-            : null}
-
+            {/*===> Options Group <===*/}
+            <div className={`row gpx-20 gpy-15 ${options && !options.includes("display") ? "gpy-fix" : ""}`}>
+                {/*===> Sizes Options <===*/}
+                {options && options.includes("component-size") ?
+                    <div className='col-6 col'>
+                        <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "phenix")} label={__("Size", "phenix")} value={attributes.responsive[`size${screenPoint}`]} onChange={mainSetter} options={component_sizes} />
+                    </div>
+                : null}
+                {/*===> Text Size <===*/}
+                {options && options.includes("text-size") ?
+                    <div className='col-6 col'>
+                        <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="size" />
+                    </div>
+                : null}
+                {/*===> Text Align <===*/}
+                {!options || options.includes("text-align") ?
+                    <div className='col-12'>
+                        <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="align" />
+                    </div>
+                : null}
+            </div>
             {/*===> Display <===*/}
             {!options || options.includes("display") ? <>
                 <div className='col-12 mb-5'>

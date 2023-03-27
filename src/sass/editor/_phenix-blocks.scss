@@ -253,7 +253,7 @@
 		~ span {color: var(--typography-color);}
 		&::before {
 			border: 0 none;
-			margin-top: -1px;
+			margin-top: -0.5px;
 			box-shadow: unset;
 			#{$direction-start}: 3px;
 			width: calc(var(--height) / 2 - 6px);

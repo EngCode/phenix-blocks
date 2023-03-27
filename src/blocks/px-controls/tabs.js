@@ -31,7 +31,7 @@ export default class ScreensTabs extends Component {
         return (
             <div className='px-gb-tabs'>
                 {/*===> Tabs Buttons <===*/}
-                <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-20'>
+                <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-10'>
                     {this.props.sm ? <button key="mobile" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "sm" ? "bg-alpha-05" : "primary"} col far fa-mobile`} title={__("Mobile Screens", "phenix")}  data-options="sm"></button> : null}
                     {this.props.md ? <button key="tablet" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "md" ? "bg-alpha-05" : "primary"} col far fa-tablet`} title={__("Tablet Screens", "phenix")}  data-options="md"></button> : null}
                     {this.props.lg ? <button key="laptop" onClick={changeTab} className={`btn square tiny ${this.state.screen !== "lg" ? "bg-alpha-05" : "primary"} col far fa-laptop`} title={__("Desktop Screens", "phenix")} data-options="lg"></button> : null}

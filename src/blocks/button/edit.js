@@ -63,18 +63,17 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ ...attr });
     };
 
-    //==> Set Flexbox Method <==//
-    const set_flexbox = (target, screen) => {
+    //==> Set Responsive Method <==//
+    const set_responsive = (target, screen) => {
         //==> Get Current <==//
         let name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
-        const flexbox = attributes.flexbox;
+        const responsive = attributes.responsive;
 
         //==> Add the Value <==//
-        if(name.includes('align-')) { name = "align" }
-        flexbox[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target.replace("align-reset", "") : valueHandler(target);
+        responsive[`${name}${screen?'-'+screen:""}`] = typeof(target) === "string" ? target : valueHandler(target);
 
         //==> Set Value <==//
-        setAttributes({ flexbox : {...flexbox} });
+        setAttributes({ responsive : {...style} });
     };
 
     //==> Set Typography Method <==//
@@ -105,7 +104,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Responsive Options <===//
     const responsive_options = (screen) => {
-        return (<ResponsiveSet options={`${attributes.isFlexbox ? "flexbox," : ""} display, text-align`} flexSetter={set_flexbox} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />);
+        return (<ResponsiveSet options={`display, text-align, text-size, component-size`} mainSetter={set_responsive} styleSetter={set_style} typoSetter={set_typography} screen={screen} attributes={attributes} />);
     };
 
     //===> Set Settings <===//
@@ -362,6 +361,10 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     {/*===> // Column <===*/}
                 </div>
+            </PanelBody>
+            {/*===> Responsive Options <===*/}
+            <PanelBody title={__("Responsive Options", "phenix")} initialOpen={false}>
+                <ScreensTabs md={responsive_options} lg={responsive_options} xl={responsive_options} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

@@ -117,6 +117,7 @@ published as open-source project for web community benefits.
     <li>✅ Sidebar Options</li>
     <li>✅ Accessibility Support</li>
     <li>✅ Toolbar Options Support</li>
+    <li>⭐ Interaction Effects (Hover)</li>
     <li>⭐ Sidebar Data Collection Tools</li>
     <li>⭐ Sidebar Custom Metaboxes Fields</li>
     <li>✅ Advanced Background Controller [colors, gradients, images]</li>

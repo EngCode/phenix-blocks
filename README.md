@@ -82,6 +82,7 @@ published as open-source project for web community benefits.
     <li>⭐ [Feature] Custom Fonts for each Language</li>
     <li>✅ [Feature] Custom Fonts for each RTL/LTR Direction</li>
     <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
+    <li>✅ [Feature] Front-End Forms Validation and Spam Protection Layer.</li>
     <li>⭐ [Block] Responsive Multimedia Block w/ [Lightbox] and Embeddings</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
     <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>

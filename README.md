@@ -73,7 +73,8 @@ published as open-source project for web community benefits.
     <li>✅ [Feature] SEO Optimization Fallbacks</li>
     <li>✅ [Feature] WordPress Admin Panel Styling</li>
     <li>✅ [Feature] CSS and JavaScript Optimization</li>
-    <li>✅ [Feature] Custom Fonts for each RTL/LTR</li>
+    <li>⭐ [Feature] Custom Fonts for each Language</li>
+    <li>✅ [Feature] Custom Fonts for each RTL/LTR Direction</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
     <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>
     <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
@@ -83,14 +84,6 @@ published as open-source project for web community benefits.
 #### 🚀 Phenix Editor Components (⭐:PRO, ✅: FREE)
 
 <ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ Media Uploader</li>
-    <li>✅ Phenix Backgrounds</li>
-    <li>✅ Responsive Styling</li>
-    <li>✅ Responsive Typography</li>
-    <li>⭐ Show/Hide Animations</li>
-    <li>✅ Icons Selector Control</li>
-    <li>⭐ Position Controller</li>
-    <li>⭐ Cards Data Schema</li>
     <li>⭐ Element Effects
         <ul style="list-style:none;padding:0;margin:0 25px;">
             <li>⭐ Box Border</li>
@@ -100,6 +93,16 @@ published as open-source project for web community benefits.
             <li>⭐ Popup Trigger</li>
         </ul>
     </li>
+    <li>✅ Media Uploader</li>
+    <li>✅ Phenix Backgrounds</li>
+    <li>✅ Responsive Styling</li>
+    <li>✅ Coloring System Controller</li>
+    <li>⭐ Multimedia Backgrounds</li>
+    <li>✅ Responsive Typography</li>
+    <li>⭐ Show/Hide Animations</li>
+    <li>⭐ Position Controller</li>
+    <li>⭐ Cards Data Schema</li>
+    <li>✅ Icons Selector Controller</li>
     <li>⭐ Animations Utilities</li>
     <li>⭐ Element Size Utilities</li>
     <li>⭐ Custom Data Attributes</li>
@@ -108,6 +111,7 @@ published as open-source project for web community benefits.
     <li>✅ Toolbar Options Support</li>
     <li>⭐ Sidebar Data Collection Tools</li>
     <li>⭐ Sidebar Custom Metaboxes Fields</li>
+    <li>✅ Advanced Background Controller [colors, gradients, images]</li>
 </ul>
 ---
 

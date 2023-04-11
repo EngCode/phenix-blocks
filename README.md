@@ -470,24 +470,24 @@ this is a draft IDEA for how to create a meta-boxes for any Post Type or Taxonom
 ```jsx
 /*===> Metabox Syntax <====*/
 $metabox_template => array(
-		"type"  => $meta_field_type,
-		"data"  => $post_or_taxonomy,
-    "name"  => $uniuqe_string,
-		"label" => $label_string,
-		"enable" => $enable_disable,
-		"default"  => $default_value,
-		"position" => $panel_or_editor,
-		"data-set" => $types_or_taxonomies,
+    "type"  => $meta_field_type,
+    "data"  => $post_or_taxonomy,
+    "name"  => $unique_string,
+    "label" => $label_string,
+    "enable" => $enable_disable,
+    "default"  => $default_value,
+    "position" => $panel_or_editor,
+    "data-set" => $types_or_taxonomies,
 );
 
 /*===> Metabox Types <====*/
 $meta_types => array(
-		"number"  => array($type, $default_value), // for Number-Counter control
-		"array"   => array($type, $options_array, $multiple), // for select control
-		"string"  => array($type, $default_value), // for normal text input
-		"boolean" => array($type, $default_value), // for Switch Button control
-		"file"    => array($type, $default_value, $multiple), // for uploading files
-		"media"   => array($type, $default_value, $multiple), // for uploading Media
+    "number"  => array($type, $default_value), // for Number-Counter control
+    "array"   => array($type, $options_array, $multiple), // for select control
+    "string"  => array($type, $default_value), // for normal text input
+    "boolean" => array($type, $default_value), // for Switch Button control
+    "file"    => array($type, $default_value, $multiple), // for uploading files
+    "media"   => array($type, $default_value, $multiple), // for uploading Media
 );
 ```
 
@@ -503,40 +503,40 @@ $templates_meta => array(
     /*===> Settings Features <===*/
     "features" => array("grid", "spacing", "typography"),
 
-		/*===> a List of Options <===*/
-		"options" => array(
-				/*===> Define Option for the Part <===*/
-				"option-name" => array("type" => "string", "default" => "post"),
+    /*===> a List of Options <===*/
+    "options" => array(
+        /*===> Define Option for the Part <===*/
+        "option-name" => array("type" => "string", "default" => "post"),
 
-				/*===> Nested List of Options <===*/
-				"options-name" => array("type" => "options", "default" => array(
-						"enable" => array("type" => "boolean", "default" => false),
-				)),
-		)
+        /*===> Nested List of Options <===*/
+        "options-name" => array("type" => "options", "default" => array(
+                "enable" => array("type" => "boolean", "default" => false),
+        )),
+    )
 );
 
 /*===> Theme Parts Meta Types <====*/
 $meta_types => array(
-		"icon"    => array($type, $default_value), // for icon control selector
-		"number"  => array($type, $default_value), // for Number-Counter control
-		"files"   => array($type, $options_array, $multiple), // for uploader control
-		"array"   => array($type, $options_array, $multiple), // for select control
-		"string"  => array($type, $default_value), // for normal text input
-		"boolean" => array($type, $default_value), // for Switch Button control
-		"post-type" => array($type, $options_array, $multiple), // select from post-types
-		"taxonomy" => array($type, $options_array, $multiple), // select from taxonomies
+    "icon"    => array($type, $default_value), // for icon control selector
+    "number"  => array($type, $default_value), // for Number-Counter control
+    "files"   => array($type, $options_array, $multiple), // for uploader control
+    "array"   => array($type, $options_array, $multiple), // for select control
+    "string"  => array($type, $default_value), // for normal text input
+    "boolean" => array($type, $default_value), // for Switch Button control
+    "post-type" => array($type, $options_array, $multiple), // select from post-types
+    "taxonomy" => array($type, $options_array, $multiple), // select from taxonomies
     //===> to create nested options <===//
-		"options" => array($type, $options_list => array(
-				"option-name" => array($type, $default_value),
-		)),
+    "options" => array($type, $options_list => array(
+        "option-name" => array($type, $default_value),
+    )),
 );
 
 /*===> Theme Parts Meta Features <====*/
 $meta_features => array(
-		"grid" => "show the flexbox options like the grid-row block.",
-		"spacing" => "show the style options for [padding, margin].",
-		"background" => "show the style option for backgrounds.",
-		"typography" => "show the typography settings for text like [size, alignment, colors]",
+    "grid" => "show the flexbox options like the grid-row block.",
+    "spacing" => "show the style options for [padding, margin].",
+    "background" => "show the style option for backgrounds.",
+    "typography" => "show the typography settings for text like [size, alignment, colors]",
 );
 ```
 

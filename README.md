@@ -86,7 +86,7 @@ published as open-source project for web community benefits.
     <li>⭐ [Block] Responsive Multimedia Block w/ [Lightbox] and Embeddings</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
     <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>
-    <li>⭐ [Tool] Custom Metaboxes for PHP Templates for [Theme Parts, Dynamic Loops]</li>
+    <li>⭐ [Tool] Custom Metaboxes for PHP Templates in [Theme Parts, Dynamic Loops]</li>
 </ul>
 
 #### 🚀 Phenix Editor Components (⭐:PRO, ✅: FREE)

@@ -56,13 +56,12 @@ published as open-source project for web community benefits.
     <li>⭐ [Block] Accordion List</li>
     <li>⭐ [Block] Dropdown Button</li>
     <li>⭐ [Block] Tabs and Panels</li>
+    <li>⭐ [Block] Logical Content</li>
+    <li>⭐ [Block] Language Switcher</li>
     <li>⭐ [Block] Multimedia Block w/ [Lightbox]</li>
-    <li>⭐ [Block] Editable Card for [PostTypes/Taxonomies]</li>
-    <li style="height:1px;background-color: #CCC; margin: 10px 0;"></li>
-    <li>✅ [Tool] Create Custom Block Pattern</li>
+    <li>✅ [Tool] Create Custom Block Patterns</li>
     <li>✅ [Tool] Create Custom Post Types</li>
     <li>✅ [Tool] Create Custom Taxonomies</li>
-    <li>⭐ [Tool] Create Custom Metaboxes</li>
     <li>✅ [Tool] Create Custom Menu Locations</li>
     <li>✅ [Tool] Core GB Blocks Optimizer</li>
     <li>✅ [Tool] WordPress Optimizing Options</li>
@@ -74,7 +73,11 @@ published as open-source project for web community benefits.
     <li>✅ [Feature] SEO Optimization Fallbacks</li>
     <li>✅ [Feature] WordPress Admin Panel Styling</li>
     <li>✅ [Feature] CSS and JavaScript Optimization</li>
+    <li>✅ [Feature] Custom Fonts for each RTL/LTR</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
+    <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>
+    <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
+    <li>⭐ [Tool] Custom Metaboxes for PHP Templates for [Theme Parts, Dynamic Loops]</li>
 </ul>
 
 #### 🚀 Phenix Editor Components (⭐:PRO, ✅: FREE)
@@ -100,7 +103,11 @@ published as open-source project for web community benefits.
     <li>⭐ Animations Utilities</li>
     <li>⭐ Element Size Utilities</li>
     <li>⭐ Custom Data Attributes</li>
+    <li>✅ Sidebar Options</li>
     <li>✅ Accessibility Support</li>
+    <li>✅ Toolbar Options Support</li>
+    <li>⭐ Sidebar Data Collection Tools</li>
+    <li>⭐ Sidebar Custom Metaboxes Fields</li>
 </ul>
 ---
 

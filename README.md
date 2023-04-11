@@ -351,11 +351,11 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - [ ]  **Meta Boxes Creator**
 - [ ]  **Templates Meta Creator**
 - [x]  **Menu Locations Creator**
-- [ ]  **Fonts Full Integration**
+- [x]  **Fonts Full Integration**
     - [x]  **Font Awesome**
     - [x]  **Google and Custom**
-    - [ ]  **Multiple Fonts Mode**
-    - [ ]  **LTR/RTL Different Fonts**
+    - [x]  **Multiple Fonts Mode**
+    - [x]  **LTR/RTL Different Fonts**
 - [ ]  **Merlin Wizard Integration**
 - [x]  **Required Plugins in the Theme**
 - [x]  **API-Endpoint Creator `pds_add_api()`**

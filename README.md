@@ -326,6 +326,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [ ]  **Transition Speed**
 - [ ]  **Position Settings**
     - [x]  **Position Type**
+    - [x]  **Sticky Element**
     - [ ]  **Position z-index**
     - [ ]  **Position Directions**
 - [x]  **Phenix Backgrounds**

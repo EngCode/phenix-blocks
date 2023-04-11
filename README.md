@@ -5,7 +5,7 @@
     </a>
 </p>
 
-<h2 align="center">Phenix WP Blocks (PRO)</h2>
+<h2 align="center">Phenix WP Blocks (Free)</h2>
 
 <p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
 <p align="center">
@@ -51,18 +51,18 @@ published as open-source project for web community benefits.
     <li>✅ [Block] Inline elements</li>
     <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
     <li>✅ [Block] Taxonomies Links List</li>
-    <li>✴️ [Block] Icon Font (FontAwesome)</li>
-    <li>✴️ [Block] Modals/Popups</li>
-    <li>✴️ [Block] Accordion List</li>
-    <li>✴️ [Block] Dropdown Button</li>
-    <li>✴️ [Block] Tabs and Panels</li>
-    <li>✴️ [Block] Multimedia Block w/ [Lightbox]</li>
-    <li>✴️ [Block] Editable Card for [PostTypes/Taxonomies]</li>
+    <li>⭐ [Block] Icon Font (FontAwesome)</li>
+    <li>⭐ [Block] Modals/Popups</li>
+    <li>⭐ [Block] Accordion List</li>
+    <li>⭐ [Block] Dropdown Button</li>
+    <li>⭐ [Block] Tabs and Panels</li>
+    <li>⭐ [Block] Multimedia Block w/ [Lightbox]</li>
+    <li>⭐ [Block] Editable Card for [PostTypes/Taxonomies]</li>
     <li style="height:1px;background-color: #CCC; margin: 10px 0;"></li>
     <li>✅ [Tool] Create Custom Block Pattern</li>
     <li>✅ [Tool] Create Custom Post Types</li>
     <li>✅ [Tool] Create Custom Taxonomies</li>
-    <li>✴️ [Tool] Create Custom Metaboxes</li>
+    <li>⭐ [Tool] Create Custom Metaboxes</li>
     <li>✅ [Tool] Create Custom Menu Locations</li>
     <li>✅ [Tool] Core GB Blocks Optimizer</li>
     <li>✅ [Tool] WordPress Optimizing Options</li>
@@ -103,22 +103,6 @@ published as open-source project for web community benefits.
     <li>✅ Accessibility Support</li>
 </ul>
 ---
-
-#### Changelog Update v0.1.5 {WIP}
-
-```
-04 - [new] Theme Typography Options
-01 - [new] Custom Post-Types Generator
-02 - [new] Custom Meta-boxes Generator
-03 - [new] Custom Taxonomies Generator
-04 - [update] Phenix Row Block
-04 - [update] Phenix Column Block
-04 - [update] Phenix Navigation Block
-04 - [update] Phenix Query Block
-04 - [update] Phenix Taxonomies Block
-```
-
------------------------
 
 #### ### Where to Start ? : [Documentation](https://phenixthemes.com/pds-docs/wp-docs)
 

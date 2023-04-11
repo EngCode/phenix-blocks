@@ -64,7 +64,6 @@ published as open-source project for web community benefits.
         </ul>
     </li>
     <li>⭐ [Block] Language Switcher</li>
-    <li>⭐ [Block] Custom Code Designer</li>
     <li>✅ [Tool] Create Custom Block Patterns</li>
     <li>✅ [Tool] Create Custom Post Types</li>
     <li>✅ [Tool] Create Custom Taxonomies</li>
@@ -82,6 +81,7 @@ published as open-source project for web community benefits.
     <li>⭐ [Feature] Custom Fonts for each Language</li>
     <li>✅ [Feature] Custom Fonts for each RTL/LTR Direction</li>
     <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
+    <li>⭐ [Block] Custom Code Designer (HTML, CSS, JS) with Real Preview</li>
     <li>✅ [Feature] Front-End Forms Validation and Spam Protection Layer.</li>
     <li>⭐ [Block] Responsive Multimedia Block w/ [Lightbox] and Embeddings</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>

@@ -56,7 +56,13 @@ published as open-source project for web community benefits.
     <li>⭐ [Block] Accordion List</li>
     <li>⭐ [Block] Dropdown Button</li>
     <li>⭐ [Block] Tabs and Panels</li>
-    <li>⭐ [Block] Logical Content</li>
+    <li>⭐ [Block] Logical Content
+        <ul style="list-style:none;padding:0;margin:0 25px;">
+            <li>⭐ Show for Users Only</li>
+            <li>⭐ Show for Visitors Only</li>
+            <li>⭐ Show for Users from Rule #</li>
+        </ul>
+    </li>
     <li>⭐ [Block] Language Switcher</li>
     <li>⭐ [Block] Multimedia Block w/ [Lightbox]</li>
     <li>✅ [Tool] Create Custom Block Patterns</li>

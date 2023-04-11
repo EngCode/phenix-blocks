@@ -146,7 +146,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Typography Options**
     - [x]  **Support for Icons**
     - [ ]  **Hover Effects**
-    - [ ]  **Tooltip for icons**
+    - [x]  **Tooltip for icons**
     - [x]  **Animations Options**
     - [x]  **Responsive Options**
         - [x]  **Display**

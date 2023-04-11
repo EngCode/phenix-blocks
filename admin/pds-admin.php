@@ -117,14 +117,15 @@
         array('templates_meta', 'pds-data-collection', true),
 
         //===> General Settings <===//
-        array('pds_reset', 'pds-data-collection', true),
-        array('pds_admin_style', 'pds-admin'),
         array('pds_gfonts', 'pds-admin', true),
-        array('pds_icon_font', 'pds-admin', true),
-        array('pds_icon_font_key', 'pds-admin', true),
+        array('pds_admin_style', 'pds-admin'),
+        array('pds_template_parts', 'pds-general'),
         array('pds_primary_font', 'pds-admin', true),
         array('pds_secondary_font', 'pds-admin', true),
-        array('pds_template_parts', 'pds-admin'),
+        array('pds_fonts', 'pds-general', true),
+        array('pds_icon_font', 'pds-general', true),
+        array('pds_icon_font_key', 'pds-general', true),
+        array('pds_reset', 'pds-data-collection', true),
         
         //===> Optimization <===//
         array('pds_cdn', 'pds-admin', true),
@@ -154,6 +155,12 @@
         array('group_block', 'pds-admin'),
         array('inline_elements_block', 'pds-admin'),
         array('popups_block', 'pds-admin'),
+        array('pds_languages_block', 'pds-admin'),
+        array('media_element_block', 'pds-admin'),
+        array('icon_element_block', 'pds-admin'),
+        array('custom_code_block', 'pds-admin'),
+        array('pds_form_block', 'pds-admin'),
+        array('pds_logical_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),

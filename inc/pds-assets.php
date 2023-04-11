@@ -51,7 +51,7 @@ if (!function_exists('phenix_core')) :
         ));
 
         //====> Get the Translation Files <====//
-        wp_set_script_translations('pds-translation', 'phenix', plugin_dir_path(__FILE__).'languages');
+        wp_set_script_translations('phenix-js', 'pds-blocks', plugin_dir_path(__FILE__).'languages');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_core');
@@ -69,25 +69,61 @@ if (!function_exists('phenix_assets')) :
 
     function phenix_assets () {
         //====> define props <====//
+        $prim_font; $sec_font;
+        $final_files = array();
         $assets_path = plugin_dir_path(__DIR__);
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
-        $icons_font  = "fontawesome-5";
-        $pds_custom_fonts = ["somar-rounded", "somar-sans", "neo-sans-w23", "din-next-lt-arabic", "tarek-v"];
+        $icons_font  = get_option("pds_icon_font");
+        $fonts_list  = get_option("pds_fonts");
+        $custom_fonts = ["somar-rounded","somar-sans", "neo-sans-w23", "din-next-lt-arabic", "tarek-v"];
+
+        //====> Define the Fonts List <====//
         $current_fonts = [
-            "icon" => get_option("pds_icon_font"),
-            "primary" => get_option("pds_primary_font"),
-            "secondary" => get_option("pds_secondary_font"),
+            "icon" => $icons_font,
+            "text" => array(
+                "primary" => is_rtl() === true ? $fonts_list['primary_rtl'] : $fonts_list['primary'],
+                "secondary" => is_rtl() === true ? $fonts_list['secondary_rtl'] : $fonts_list['secondary']
+            ),
         ];
 
-        //===> Font Css Settings <===//
-        $prim_font = trim(str_replace("-", " ", $current_fonts['primary']));
-        $sec_font  = trim(str_replace("-", " ", $current_fonts['secondary']));
-        $icon_font = str_replace("-", " ", $current_fonts['icon']);
-        $icon_font = str_replace("fontawesome", "Font Awesome", $icon_font);
-        $icon_font = trim(preg_replace("/(free)/i", "pro", $icon_font));
+        //====> Correct Icons-Font Version <====//
+        if (strpos($current_fonts['icon'], "fontawesome-6") !== false) { $icons_font = str_replace("5", "6", $current_fonts['icon']); } 
+        else { $icons_font = $current_fonts['icon']; }
 
-        //====> Font-icon <====//
-        if (str_contains($current_fonts['icon'], "fontawesome-6")) : $icons_font = "fontawesome-6"; endif;
+        //===> Loop on the Fonts <===//
+        foreach ($current_fonts['text'] as $key => $value) {
+            //===> Define the Font File <===//
+            if (in_array($value, $custom_fonts, true)) {
+                $final_files[$key] = $assets_url. 'webfonts/'.$value.'.css';
+            } else if (get_option('pds_gfonts') == "on") {
+                $final_files[$key] = 'https://fonts.googleapis.com/css2?family='.str_replace(" ", "+", $value).':wght@100;200;300;400;500;600;700;800;900&display=swap';
+            }
+
+            //===> Define Font Css Settings <===//
+            if ($key === "primary") $prim_font = trim(str_replace("-", " ", $value));
+            if ($key === "secondary") $sec_font  = trim(str_replace("-", " ", $value));
+        }
+
+        //===> Add Fonts Names <===//
+        $final_files['primary_name'] = ucwords(str_replace("-", " ", $prim_font));
+        $final_files['secondary_name'] = ucwords(str_replace("-", " ", $sec_font));
+
+        //====> Filter Icons-Font Name <====//
+        $final_files['icons_name'] = str_replace("-", " ", $icons_font);
+        $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
+        $final_files['icons_name'] = ucwords(str_replace("free", "pro", $final_files['icons_name']));
+
+        //===> Load Icon Font <===//
+        $icons_font = trim(preg_replace("/(-free|-pro)/i", "", $icons_font));
+        $final_files['icons_font'] = $assets_url. 'webfonts/'.$icons_font.'.css';
+
+        //===> Return List of the Files <===//
+        return $final_files;
+    }
+
+    function pds_optimized_asset () {
+        //====> Get the Assets Files <====//
+        $assets_files = phenix_assets();
 
         //====> Google Fonts <====//
         if (get_option('pds_gfonts') == "on") {
@@ -96,42 +132,36 @@ if (!function_exists('phenix_assets')) :
         }
 
         //===> Load Primary Font <===//
-        if (get_option('pds_gfonts') == "on" && !in_array($current_fonts["primary"], $pds_custom_fonts, true)) {
-            $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['primary'];
-            wp_enqueue_style('pds-primary-font', $google_url, array('phenix'), null, 'screen and (min-width: 2500px)');
-        } else {
-            wp_enqueue_style('pds-primary-font', $assets_url. 'webfonts/'.$current_fonts['primary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
-        }
+        wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), null, 'screen and (min-width: 2500px)');
 
         //===> Load Secondary Font <===//
-        if ($current_fonts['primary'] !== $current_fonts['secondary']) {
-            if (get_option('pds_gfonts') == "on" && !in_array($current_fonts["secondary"], $pds_custom_fonts, true)) {
-                $google_url = 'https://fonts.googleapis.com/css2?family='.$current_fonts['secondary'];
-                wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), null, 'screen and (min-width: 2500px)');
-            } else {
-                wp_enqueue_style('pds-secondary-font', $assets_url. 'webfonts/'.$current_fonts['secondary'].'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
-            }
+        if (isset($assets_files['primary_font']) && $assets_files['primary_font'] !== $assets_files['secondary']) {
+            wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), null, 'screen and (min-width: 2500px)');
         }
-
-        //===> Set Font Css Settings <===//
-        $fonts_css_options = 'body {
-            --primary-font: '.ucwords($prim_font).';
-            --secondary-font: '.ucwords($sec_font).';
-        }';
-
-        wp_add_inline_style('pds-primary-font', $fonts_css_options);
-
-        //===> Load Icon Font <===//
-        wp_enqueue_style('fontawesome', $assets_url. 'webfonts/'.$icons_font.'.css', array('phenix'), false, 'screen and (min-width: 2500px)');
         
-        //===> Set Font Css Settings <===//
-        $icons_css_options = 'body { --icons-font: "'.ucwords($icon_font).'"; }';
-        wp_add_inline_style('fontawesome', $icons_css_options );
-    }
+        //===> Load Icons Font <===//
+        wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, null, 'screen and (min-width: 2500px)');
 
-    add_action('wp_enqueue_scripts', 'phenix_assets');
-    add_action('enqueue_block_editor_assets', 'phenix_assets');
-    add_action('login_enqueue_scripts', 'phenix_assets');
+        //===> Set Font Css Settings <===//
+        if ($assets_files['primary_name'] !== $assets_files['secondary_name']) {
+            wp_add_inline_style('pds-primary-font', 'body {
+                --primary-font: '.$assets_files['primary_name'].', '.$assets_files['secondary_name'].';
+                --secondary-font: '.$assets_files['secondary_name'].', '.$assets_files['primary_name'].';
+                --icons-font: "'.$assets_files['icons_name'].'";
+            }');
+        } else {
+            wp_add_inline_style('pds-primary-font', 'body {
+                --primary-font: '.$assets_files['primary_name'].';
+                --secondary-font: '.$assets_files['secondary_name'].';
+                --icons-font: "'.$assets_files['icons_name'].'";
+            }');
+        }
+    };
+
+    add_action('wp_enqueue_scripts', 'pds_optimized_asset');
+    add_action('login_enqueue_scripts', 'pds_optimized_asset');
+    add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
+    add_action('admin_enqueue_scripts', 'pds_optimized_asset');
 endif;
 
 //=====> Phenix Admin CSS <=====//
@@ -218,7 +248,7 @@ endif;
 //===> Loading Page <===//
 if (!function_exists('pds_loader_template')) :
 	function pds_loader_template() {
-		include(dirname(__FILE__) . '/loading.php');
+        get_template_part('template-parts/loading') === false ? include(dirname(__FILE__) . '/loading.php') : null;
 	}
 
 	add_action('wp_body_open', 'pds_loader_template');

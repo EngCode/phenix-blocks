@@ -30,7 +30,7 @@
 			
 		],
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "pds-blocks",
+		"liveServer.settings.multiRootWorkspaceName": "themes",
 		"liveServer.settings.port": 5502,
 	}
 }

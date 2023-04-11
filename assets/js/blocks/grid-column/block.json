@@ -5,7 +5,7 @@
   "title": "Grid Column",
   "keywords": [
     "pds",
-    "phenix",
+    "pds-blocks",
     "column",
     "group",
     "wrapper",
@@ -62,6 +62,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "file:./index.js"
 }

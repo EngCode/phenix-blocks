@@ -23,6 +23,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "px-head"
 }

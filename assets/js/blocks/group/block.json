@@ -2,10 +2,10 @@
   "apiVersion": 2,
   "name": "phenix/group",
   "version": "0.1.0",
-  "title": "PDS Group",
+  "title": "Group",
   "keywords": [
     "pds",
-    "phenix",
+    "pds-blocks",
     "group",
     "wrapper",
     "container"
@@ -58,6 +58,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "file:./index.js"
 }

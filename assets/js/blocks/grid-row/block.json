@@ -5,7 +5,7 @@
   "title": "Grid Row",
   "keywords": [
     "pds",
-    "phenix",
+    "pds-blocks",
     "section",
     "group",
     "wrapper",
@@ -54,6 +54,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "file:./index.js"
 }

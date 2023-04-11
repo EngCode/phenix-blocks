@@ -40,13 +40,16 @@ if (!function_exists('pds_tax_create')) :
 
             //==== CPT Options ====//
             $args = array(
-                'labels'            => $labels,
-                'public'            => true,
-                'hierarchical'      => true,
-                'show_admin_column' => true,
-                'show_in_rest'      => true,
-                'query_var'         => true,
-                'rewrite'           => array('slug' => $name),
+                'labels'             => $labels,
+                'public'             => true,
+                'hierarchical'       => true,
+                'show_admin_column'  => true,
+                'show_in_rest'       => true,
+                'query_var'          => true,
+                'show_ui'            => true,
+                'show_tagcloud'      => true,
+                'publicly_queryable' => true,
+                'rewrite'            => array('slug' => $name),
             );
 
             register_taxonomy ($name, $post_types, $options);

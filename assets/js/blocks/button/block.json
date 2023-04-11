@@ -1,8 +1,8 @@
 {
   "apiVersion": 2,
   "name": "phenix/button",
-  "version": "0.1.0",
-  "title": "PDS Button",
+  "version": "1.0.0",
+  "title": "Button",
   "category": "design",
   "description": "",
   "supports": {
@@ -49,13 +49,9 @@
       "type": "string",
       "default": "normal"
     },
-    "radius": {
-      "type": "string",
-      "default": "radius-none"
-    },
     "outline": {
-      "type": "boolean",
-      "default": false
+      "type": "string",
+      "default": ""
     },
     "data_id": {
       "type": "string",
@@ -95,6 +91,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "file:./index.js"
 }

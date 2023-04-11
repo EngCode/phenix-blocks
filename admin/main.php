@@ -73,13 +73,6 @@
             array(
                 //==> Tabs Panel <==//
                 array(
-                    "title" => "General Settings",
-                    "slug"  => "pds-settings",
-                    "icon"  => "far fa-cog",
-                    "content" => 'pds_settings_panel',
-                ),
-                //==> Tabs Panel <==//
-                array(
                     "title" => "Phenix Blocks",
                     "slug"  => "pds-blocks",
                     "icon"  => "far fa-layer-group",
@@ -100,6 +93,13 @@
                     "icon"  => "far fa-layer-group",
                     "content" => 'pds_core_blocks_panel',
                     "description" => 'by default phenix blocks disables the unnecessary default core blocks within gutenberg to replace it with its own, and in the options below you can choose which core blocks to enable, be sure to select only the blocks that you need and will use.',
+                ),
+                //==> Tabs Panel <==//
+                array(
+                    "title" => "General Settings",
+                    "slug"  => "pds-settings",
+                    "icon"  => "far fa-cog",
+                    "content" => 'pds_settings_panel',
                 ),
             ),
             //==> Show Submit Button <==//

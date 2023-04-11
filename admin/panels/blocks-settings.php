@@ -1,7 +1,7 @@
 <?php
     //====> Shared Options <====//
     $assets_url = plugin_dir_url(__FILE__);
-    $icons_url = str_replace('admin/panels', 'assets/img/blocks/core/', $assets_url);
+    $icons_url = str_replace('admin/panels', 'assets/img/blocks/pds/', $assets_url);
 ?>
 <!-- Grid -->
 <div class="row">
@@ -42,17 +42,17 @@
                 array(
                     "name"  => 'column_block',
                     "title" => 'Grid/Column',
-                    "icon"  => $icons_url.'columns.svg',
+                    "icon"  => $icons_url.'column.svg',
                 ),
                 array(
                     "name"  => 'inline_elements_block',
                     "title" => 'Inline Elements',
-                    "icon"  => $icons_url.'columns.svg',
+                    "icon"  => $icons_url.'inline-elements.svg',
                 ),
                 array(
                     "name"  => 'popups_block',
                     "title" => 'Popups Block',
-                    "icon"  => $icons_url.'latest-comments.svg',
+                    "icon"  => $icons_url.'popup.svg',
                 ),
             ));
         ?>
@@ -64,7 +64,7 @@
                 array(
                     "name"  => 'head_block',
                     "title" => 'Page Head',
-                    "icon"  => $icons_url.'header.svg',
+                    "icon"  => $icons_url.'page-head.svg',
                 ),
                 array(
                     "name"  => 'query_block',
@@ -72,19 +72,44 @@
                     "icon"  => $icons_url.'query-loop.svg',
                 ),
                 array(
-                    "name"  => 'taxonomies_list_block',
-                    "title" => 'Taxonomies List',
-                    "icon"  => $icons_url.'latest-posts.svg',
-                ),
-                array(
                     "name"  => 'taxonomies_block',
                     "title" => 'Taxonomies Query',
-                    "icon"  => $icons_url.'latest-posts.svg',
+                    "icon"  => $icons_url.'taxonomies.svg',
                 ),
                 array(
                     "name"  => 'theme_part_block',
                     "title" => 'Theme Part',
                     "icon"  => $icons_url.'theme-part.svg',
+                ),
+                array(
+                    "name"  => 'pds_languages_block',
+                    "title" => 'Language Switcher',
+                    "icon"  => $icons_url.'languages.svg',
+                ),
+                array(
+                    "name"  => 'media_element_block',
+                    "title" => 'Multimedia Element',
+                    "icon"  => $icons_url.'media-element.svg',
+                ),
+                array(
+                    "name"  => 'icon_element_block',
+                    "title" => 'Icon Block',
+                    "icon"  => $icons_url.'icon-element.svg',
+                ),
+                array(
+                    "name"  => 'custom_code_block',
+                    "title" => 'Design Code',
+                    "icon"  => $icons_url.'custom-code.svg',
+                ),
+                array(
+                    "name"  => 'pds_form_block',
+                    "title" => 'PDS Form',
+                    "icon"  => $icons_url.'form.svg',
+                ),
+                array(
+                    "name"  => 'pds_logical_block',
+                    "title" => 'Logical Content',
+                    "icon"  => $icons_url.'logical-block.svg',
                 ),
             ));
         ?>

@@ -1,0 +1,24 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/pds-form",
+  "version": "1.0.0",
+  "title": "PDS Form",
+  "category": "design",
+  "description": "",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "pds-blocks",
+  "editorScript": "file:./index.js"
+}

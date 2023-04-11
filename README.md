@@ -5,7 +5,7 @@
     </a>
 </p>
 
-<h2 align="center">Phenix WP Blocks (Free)</h2>
+<h2 align="center">Phenix WP Blocks (PRO)</h2>
 
 <p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
 <p align="center">
@@ -34,8 +34,6 @@ structure, fast execution, and performance is number One concern in mind it was 
 published as open-source project for web community benefits.
 
 ---
-
-#### Changelog Update v0.6.6 {Last Free Commit}
 
 #### 🚀 Phenix Blocks Key-Features
 

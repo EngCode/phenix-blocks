@@ -17,6 +17,7 @@
         "mocha": true
     },
     "extends": ["eslint:all", "plugin:react/all"],
+    "ignorePatterns": ["node_modules/"],
     "rules": {
         "quotes": "off",
         "semi": [2, "always"],

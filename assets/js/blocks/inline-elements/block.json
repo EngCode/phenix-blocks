@@ -2,10 +2,10 @@
   "apiVersion": 2,
   "name": "phenix/inline",
   "version": "0.1.0",
-  "title": "Inline Elements",
+  "title": "Inline Block",
   "keywords": [
     "pds",
-    "phenix",
+    "pds-blocks",
     "inline",
     "span",
     "strong"
@@ -34,6 +34,6 @@
       "preview": true
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "file:./index.js"
 }

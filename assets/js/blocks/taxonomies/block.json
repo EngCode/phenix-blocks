@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "phenix/taxonomies",
   "version": "0.1.0",
-  "title": "Taxonomies Loop",
+  "title": "Taxonomies",
   "category": "design",
   "description": "Custom Taxonomies & Categories Query Block.",
   "supports": {
@@ -74,6 +74,6 @@
       "default": false
     }
   },
-  "textdomain": "phenix",
+  "textdomain": "pds-blocks",
   "editorScript": "pds-taxonomies"
 }

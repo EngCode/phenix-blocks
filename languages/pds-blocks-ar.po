@@ -1,0 +1,946 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Phenix Blocks\n"
+"POT-Creation-Date: 2023-04-10 22:27+0200\n"
+"PO-Revision-Date: 2023-04-10 22:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: pds-blocks.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/modules/cpt-creator.php:46 admin/modules/cpt-creator.php:53
+#: admin/modules/tax-creator.php:29 admin/modules/tax-creator.php:36
+msgid "Add New "
+msgstr "اضافه "
+
+#: admin/modules/cpt-creator.php:47 admin/modules/tax-creator.php:30
+msgid "Edit "
+msgstr "تعديل "
+
+#: admin/modules/cpt-creator.php:48 admin/modules/tax-creator.php:31
+msgid "New "
+msgstr "جديد "
+
+#: admin/modules/cpt-creator.php:49 admin/modules/tax-creator.php:32
+msgid "All "
+msgstr "الكل "
+
+#: admin/modules/cpt-creator.php:50 admin/modules/tax-creator.php:33
+msgid "View "
+msgstr "عرض "
+
+#: admin/modules/cpt-creator.php:51 admin/modules/cpt-creator.php:55
+#: admin/modules/tax-creator.php:34 admin/modules/tax-creator.php:38
+msgid "No "
+msgstr "لا "
+
+#: admin/modules/cpt-creator.php:52 admin/modules/tax-creator.php:35
+msgid "Search "
+msgstr "بحث "
+
+#: admin/modules/page-layout.php:46
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: admin/panels/block-patterns.php:20
+msgid "Add New Pattern"
+msgstr "اضافه نمط جديد"
+
+#: admin/panels/block-patterns.php:21
+msgid "you can add/edit gutenberg block patterns from the next form."
+msgstr "يمكنك تعديل واضافة أنماط جديدة من النموذج أدناه."
+
+#: admin/panels/block-patterns.php:29 admin/panels/block-patterns.php:83
+#: admin/panels/metabox.php:32 admin/panels/metabox.php:108
+#: admin/panels/post-types.php:15 admin/panels/post-types.php:110
+#: admin/panels/taxonomies.php:22 admin/panels/taxonomies.php:90
+msgid "Label"
+msgstr "العنوان"
+
+#: admin/panels/block-patterns.php:36 admin/panels/block-patterns.php:84
+#: admin/panels/metabox.php:39 admin/panels/metabox.php:109
+#: admin/panels/post-types.php:22 admin/panels/post-types.php:111
+#: admin/panels/taxonomies.php:29 admin/panels/taxonomies.php:91
+msgid "Name"
+msgstr "الاسم"
+
+#: admin/panels/block-patterns.php:43
+msgid "Width"
+msgstr "حجم العرض"
+
+#: admin/panels/block-patterns.php:47
+msgid "Categories"
+msgstr "الاقسام"
+
+#: admin/panels/block-patterns.php:48
+msgid "Phenix"
+msgstr "فينكس"
+
+#: admin/panels/block-patterns.php:49
+msgid "Elements"
+msgstr "عناصر"
+
+#: admin/panels/block-patterns.php:50
+msgid "Cards"
+msgstr "كروت"
+
+#: admin/panels/block-patterns.php:51
+msgid "Sections"
+msgstr "اقسام"
+
+#: admin/panels/block-patterns.php:52
+msgid "Footers"
+msgstr "فوتر"
+
+#: admin/panels/block-patterns.php:53
+msgid "Headers"
+msgstr "هيدر"
+
+#: admin/panels/block-patterns.php:54
+msgid "General Pages"
+msgstr "صفحات عامة"
+
+#: admin/panels/block-patterns.php:55
+msgid "Single Pages"
+msgstr "صفحات داخلية"
+
+#: admin/panels/block-patterns.php:60
+msgid "Content"
+msgstr "محتوي"
+
+#: admin/panels/block-patterns.php:63
+msgid "Add Pattern"
+msgstr "اضافه نمط"
+
+#: admin/panels/block-patterns.php:74
+msgid "Patterns List"
+msgstr "قائمة الانماط"
+
+#: admin/panels/block-patterns.php:75
+msgid "in here you can manage the patterns created by phenix-blocks."
+msgstr "هنا يمكنك إدارة الأنماط التي تم انشائها."
+
+#: admin/panels/block-patterns.php:78
+msgid "Reset Patterns"
+msgstr "استعادة الافتراضي"
+
+#: admin/panels/fonts.php:4 admin/panels/fonts.php:7
+msgid "Primary Font"
+msgstr "الخط الأساسي"
+
+#: admin/panels/fonts.php:25
+msgid "Select a Primary Font for all Headlines and Titles."
+msgstr "الخط الأساسي مخصص عادتا للعناوين."
+
+#: admin/panels/fonts.php:28 admin/panels/fonts.php:31
+msgid "Secondary Font"
+msgstr "الخط الثانوي"
+
+#: admin/panels/fonts.php:49
+msgid "Select a Secondary Font for all other text on the website."
+msgstr "الخط الثانوي مخصص عادتا لكل المحتوي."
+
+#: admin/panels/fonts.php:52 admin/panels/fonts.php:55
+msgid "Icons Font"
+msgstr "خط الايقونات"
+
+#: admin/panels/fonts.php:65
+msgid "Select a Icons Font for all icons for the design system"
+msgstr "اختر خط للايقونات لجميع عناصر التصميم"
+
+#: admin/panels/fonts.php:65
+msgid "Note: you need a license to run the (PRO) version."
+msgstr "ملاحظة تحتاج الى رخصة لتشغيل النسخة المدفوعة من خط الايقونات."
+
+#: admin/panels/fonts.php:69
+msgid "Icons Font License"
+msgstr "مفتاح الترخيص لخط الايقونات"
+
+#: admin/panels/fonts.php:72
+msgid "license key"
+msgstr "مفتاح الترخيص"
+
+#: admin/panels/fonts.php:74
+msgid "please enter the license key for the (PRO) version."
+msgstr "من فضلك ادخل مفتاح الترخيص الخاص بك."
+
+#: admin/panels/locations.php:11
+msgid "Add New Location"
+msgstr "اضافه مكان جديد"
+
+#: admin/panels/locations.php:12
+msgid "you can add new menu locations from below form."
+msgstr "يمكنك إضافة أماكن جديدة لقوائمك من النموذج أدناه."
+
+#: admin/panels/locations.php:15 admin/panels/locations.php:37
+msgid "Location Title"
+msgstr "عنوان المكان"
+
+#: admin/panels/locations.php:19
+msgid "location-name"
+msgstr "اسم المكان"
+
+#: admin/panels/locations.php:22
+msgid "Add Location"
+msgstr "اضافه المكان"
+
+#: admin/panels/locations.php:30
+msgid "Menu Locations"
+msgstr "أماكن القوائم"
+
+#: admin/panels/locations.php:31
+msgid "in here you can manage the menu locations created by phenix-blocks."
+msgstr "هنا يمكنك إدارة الأماكن التي تم انشائها."
+
+#: admin/panels/locations.php:38
+msgid "Location Name"
+msgstr "اسم المكان"
+
+#: admin/panels/metabox.php:16
+msgid "This is a new Feature still under Development please use it carefully."
+msgstr "هذه خاصية جديد مازالت تحت التطوير ومتوفرة فقط عبر الكود."
+
+#: admin/panels/metabox.php:23
+msgid "Add New Metabox"
+msgstr "إضافة حقل ميتا جديد"
+
+#: admin/panels/metabox.php:24
+msgid "you can add/edit metaboxes from the next form."
+msgstr ""
+
+#: admin/panels/metabox.php:46
+msgid "Data Type"
+msgstr ""
+
+#: admin/panels/metabox.php:58
+msgid "Data Location"
+msgstr ""
+
+#: admin/panels/metabox.php:68 admin/panels/post-types.php:103
+#: admin/panels/taxonomies.php:50
+msgid "Post Types"
+msgstr ""
+
+#: admin/panels/metabox.php:84
+msgid "Enable this Metabox once added ?"
+msgstr ""
+
+#: admin/panels/metabox.php:87
+msgid "Add Metabox"
+msgstr ""
+
+#: admin/panels/metabox.php:101
+msgid "Metaboxes List"
+msgstr ""
+
+#: admin/panels/metabox.php:102
+msgid "in here you can manage the metaboxes created by phenix-blocks."
+msgstr ""
+
+#: admin/panels/metabox.php:110 admin/panels/taxonomies.php:92
+msgid "Types"
+msgstr ""
+
+#: admin/panels/post-types.php:6
+msgid "Add New Post Type"
+msgstr ""
+
+#: admin/panels/post-types.php:7
+msgid "you can add/edit custom post types from the next form."
+msgstr ""
+
+#: admin/panels/post-types.php:29 admin/panels/taxonomies.php:36
+msgid "singular Label"
+msgstr ""
+
+#: admin/panels/post-types.php:36 admin/panels/post-types.php:112
+#: admin/panels/taxonomies.php:43
+msgid "Singular"
+msgstr ""
+
+#: admin/panels/post-types.php:43
+msgid "Icon"
+msgstr ""
+
+#: admin/panels/post-types.php:50
+msgid "Pattern Template"
+msgstr ""
+
+#: admin/panels/post-types.php:51
+msgid "Default"
+msgstr ""
+
+#: admin/panels/post-types.php:65
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/panels/post-types.php:81
+msgid "is Hierarchical"
+msgstr ""
+
+#: admin/panels/post-types.php:86
+msgid "Enable Type ?"
+msgstr ""
+
+#: admin/panels/post-types.php:89
+msgid "Add Type"
+msgstr ""
+
+#: admin/panels/post-types.php:104
+msgid "in here you can manage the  post types created by phenix-blocks."
+msgstr ""
+
+#: admin/panels/taxonomies.php:13
+msgid "Add New Taxonomy"
+msgstr ""
+
+#: admin/panels/taxonomies.php:14
+msgid "you can add/edit taxonomies from the next form."
+msgstr ""
+
+#: admin/panels/taxonomies.php:66
+msgid "Enable this Taxonomy once added ?"
+msgstr ""
+
+#: admin/panels/taxonomies.php:69
+msgid "Add Taxonomy"
+msgstr ""
+
+#: admin/panels/taxonomies.php:83
+msgid "Taxonomies List"
+msgstr ""
+
+#: admin/panels/taxonomies.php:84
+msgid "in here you can manage the taxonomies created by phenix-blocks."
+msgstr ""
+
+#: admin/pds-admin.php:19 admin/pds-admin.php:20
+msgid "Home"
+msgstr ""
+
+#: admin/pds-admin.php:29
+msgid "Phenix Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: admin/pds-admin.php:30
+msgid "Phenix Blocks"
+msgstr ""
+
+#: admin/pds-admin.php:39
+msgid "Custom Data Collection"
+msgstr ""
+
+#: admin/pds-admin.php:40
+msgid "Data Collection"
+msgstr ""
+
+#: admin/pds-admin.php:78
+msgid "Plugins"
+msgstr ""
+
+#: admin/pds-admin.php:79
+msgid "Comments"
+msgstr ""
+
+#: admin/pds-admin.php:80
+msgid "Address Book"
+msgstr ""
+
+#: admin/pds-admin.php:81
+msgid "Media Uploads"
+msgstr ""
+
+#: admin/pds-admin.php:82
+msgid "Core Updates"
+msgstr ""
+
+#: admin/pds-admin.php:83
+msgid "WordPress"
+msgstr ""
+
+#: admin/pds-admin.php:84
+msgid "Inbox Messages"
+msgstr ""
+
+#: admin/pds-admin.php:352
+msgid "Reusable Blocks"
+msgstr ""
+
+#: admin/pds-admin.php:353
+msgid "Block"
+msgstr ""
+
+#: admin/pds-dashboard.php:16
+msgid "الدليل الارشادي السريع للاستخدام"
+msgstr ""
+
+#: admin/pds-dashboard.php:27
+msgid ""
+"هذا دليل ارشادي سريع لتعلم كيفية التعديل على قالب ووردبريس مبني بنظام تصميم "
+"فينكس, في هذة الصفحة ستتعرف سريعا على ادوات التعديل المتاحة فى الووردبريس "
+"ومدمجة مع نظام تصميم فينكس لتعديل كامل التصميم ومحتوي الموقع."
+msgstr ""
+
+#: admin/pds-dashboard.php:28
+msgid ""
+"اهلا بكم فى الحقبة الجديدة من الووردبريس بواسطة <a href='https://"
+"phenixthemes.com/pds-docs/'>Phenix Design System</a> لمعرفة المزيد اضغط علي "
+"<a href='#about'>المزيد عن نظام فينكس.</a>."
+msgstr ""
+
+#: admin/pds-dashboard.php:38
+msgid ""
+"اتبع التعليمات بالترتيب فى كل قسم من الصفحة فكل قسم يشرح كيفية تعديل جزء من "
+"النظام."
+msgstr ""
+
+#: admin/pds-dashboard.php:56
+msgid "الوان الهوية"
+msgstr ""
+
+#: admin/pds-dashboard.php:57
+msgid "الخطوط"
+msgstr ""
+
+#: admin/pds-dashboard.php:58
+msgid "القوائم"
+msgstr ""
+
+#: admin/pds-dashboard.php:59
+msgid "القطع والقوالب"
+msgstr ""
+
+#: admin/pds-dashboard.php:60
+msgid "المحتوي"
+msgstr ""
+
+#: admin/pds-dashboard.php:61
+msgid "الانماط"
+msgstr ""
+
+#: admin/pds-dashboard.php:62
+msgid "الترجمة"
+msgstr ""
+
+#: admin/pds-dashboard.php:63
+msgid "المكونات"
+msgstr ""
+
+#: admin/pds-dashboard.php:64
+msgid "البيانات"
+msgstr ""
+
+#: admin/pds-dashboard.php:65
+msgid "الاعدادات"
+msgstr ""
+
+#: admin/pds-dashboard.php:88
+msgid "المكونات والقوالب واجزاء القالب"
+msgstr ""
+
+#: admin/pds-dashboard.php:89 admin/pds-dashboard.php:137
+msgid ""
+"اليك بعض المصطلحات التي ستتعرض لها اثناء بنائك لمحتوي موقعك وعند استخدامك اى "
+"من الاشياء المذكورة اعلاه."
+msgstr ""
+
+#: admin/pds-dashboard.php:95 admin/pds-dashboard.php:140
+msgid "ماهية المكونات ؟"
+msgstr ""
+
+#: admin/pds-dashboard.php:96 admin/pds-dashboard.php:141
+msgid ""
+"المكونات هية اجزاء صغيرة من العناصر يتم التجميع بينها لبناء جزء من قالب او "
+"قالب كامل لصفحة ما او نوع بيانات يحتويه موقعك مثل الخدمات اشياء يتم الاشارة "
+"اليها كـ مكون او Block على سبيل المثال (صورة, عنوان, زرار, قائمة) هذة "
+"الاشياء يتم اعتبارها مكونات صغيرة وعندما تبنيها مع بعضها يتم تكوين ما نسمية "
+"بالنمط او جزء قالب."
+msgstr ""
+
+#: admin/pds-dashboard.php:99 admin/pds-dashboard.php:144
+msgid "ماهو جزء القالب ؟"
+msgstr ""
+
+#: admin/pds-dashboard.php:100 admin/pds-dashboard.php:145
+msgid ""
+"جزء قالب هو قطعة تم بنائها من عدة مكونات على سبيل المثال الهيدر هو جزء قالب "
+"مكون من شعار, قائمة, وازرار وهو جزء تستخدمه بشكل عام فى عدة قوالب وصفحات او "
+"جميعها وجزء القالب مختلف عن النمط حيث عند تعديل جزء قالب فهذا التعديل سيتم "
+"تطبيقه فى كل القوالب التي يتواجد بها هذا الجزء."
+msgstr ""
+
+#: admin/pds-dashboard.php:103
+msgid "ماهو القالب ؟"
+msgstr ""
+
+#: admin/pds-dashboard.php:104
+msgid ""
+"القالب هو تصميم نوع من انواع البيانات او تصميم خاص لصفحة معينة تم بناءة من "
+"عدة مكونات واجزاء قوالب لتظهر بشكل معين على سبيل المثال الرئيسية وصفحة "
+"الاخبار قوالب مختلفة فى طريقة عرضهم للمحتوي فكل منهم يعرض المحتوي بشكل مختلف "
+"والقالب عادتا يتم تطبيقه على جميع صفحات نوع المحتوي الذي تم تحديده للقالب "
+"فعلي سبيل المثال صفحة تفاصيل جميع الاخبار تظهر بتصميم واحد ولكن محتوي مختلف."
+msgstr ""
+
+#: admin/pds-dashboard.php:114
+msgid "لوحة التحكم وشريط المحرر"
+msgstr ""
+
+#: admin/pds-dashboard.php:120
+msgid "ماهو محرر الموقع ؟"
+msgstr ""
+
+#: admin/pds-dashboard.php:121
+msgid ""
+"محرر الموقع هو المحرر الذي تسطيع من خلاله التحكم وبناء تصميم الموقع العام "
+"وقوالب البيانات على سبيل المثال الشكل العام للصفحة الرئيسية او الشكل العام "
+"لصفحات عرض الاخبار او الخدمات او الشكل العام لصفحة محتوي تفاصيل الخدمة او "
+"الخبر او اى نوع من البيانات يحتويه موقعك وأيضا لتعديل القطع العامة فى هذة "
+"القوالب مثل الهيدر والفوتر وشعار الموقع الماثل عادتا فى جزء الهيدر.."
+msgstr ""
+
+#: admin/pds-dashboard.php:125
+msgid "ماهو محرر المحتوي ؟"
+msgstr ""
+
+#: admin/pds-dashboard.php:126
+msgid ""
+"اما محرر المحتوي فهو المحرر الذي تستطيع من خلالة تعديل محتوي البيانات مثل "
+"اضافة اخبار جديدة تعديل الاخبار الحالية اضافة خدمات او تعديل محتوي الخدمات "
+"او اى نوع اخر من انواع البيانات الذي يحتويه موقعك."
+msgstr ""
+
+#: admin/pds-dashboard.php:136
+msgid "المكونات واجزاء القالب"
+msgstr ""
+
+#: admin/pds-dashboard.php:158
+msgid ""
+"بعد ان تعرفت على المكونات واجزاء القالب ولوحة اعداداتهم اليك بعض التلميحات "
+"عن كيفية تعديل بعض من العناصر الشائع استخدامها"
+msgstr ""
+
+#: admin/pds-dashboard.php:169
+msgid "تعريف الانماط"
+msgstr ""
+
+#: admin/pds-dashboard.php:170
+msgid ""
+"الانماط هية قطع من المحتوي مثل اجزاء القالب باختلاف انك تستطيع استخدامها "
+"بشكل متكرر وتغيير محتواها واعداداتها بدون التأثير على باقي المحتوي وستجد "
+"العديد من الانماط حسب تصميم موقعك عادتا يتم تجهيز بعض الانماط مثل السلايدر, "
+"قطعة عرض خدمات او شعارات عملائك لكي تستطيع اعادة استخدامها فى صفحات جديدة من "
+"محتوي موقعك واليك بعض الانماط الشائع استخدامها :"
+msgstr ""
+
+#: admin/pds-dashboard.php:174
+msgid "الهيدر القياسي"
+msgstr ""
+
+#: admin/pds-dashboard.php:175
+msgid ""
+"الهيدر القياسي عادتا يكون نسخة من الهيدر الخاص بتصميم موقعك ليمكنك من صناعة "
+"نسخ مختلفة منه لتستخدمها فى صفحات مختلفة حسب حاجتك."
+msgstr ""
+
+#: admin/pds-dashboard.php:178
+msgid "الفوتر القياسي"
+msgstr ""
+
+#: admin/pds-dashboard.php:179
+msgid ""
+"الفوتر القياسي عادتا يكون نسخة من الفوتر الخاص بتصميم موقعك ليمكنك من صناعة "
+"نسخ مختلفة منه لتستخدمها فى صفحات مختلفة حسب حاجتك."
+msgstr ""
+
+#: admin/pds-dashboard.php:182
+msgid "السلايدر الرئيسي"
+msgstr ""
+
+#: admin/pds-dashboard.php:183
+msgid "قطعة لعرض شرائح مكونات من نوع بيانات الشرائح او السلايدر الرئيسي."
+msgstr ""
+
+#: admin/pds-dashboard.php:186
+msgid "سلايدر للخدمات او الاخبار"
+msgstr ""
+
+#: admin/pds-dashboard.php:187
+msgid ""
+"قطعة لعرض الخدمات او الاخبار حيث يمكنك تغيير مصدر البيانات المعروضة بسهولة "
+"من اعدادات المكون الخاص بالنظام الشبكي."
+msgstr ""
+
+#: admin/pds-dashboard.php:190
+msgid "محتوي مدونة افتراضي"
+msgstr ""
+
+#: admin/pds-dashboard.php:191
+msgid ""
+"هو عادة نمط لمحتوي مدونة افتراضي كمثال لمحررين المحتوي يمكن اتباعه فى انشاء "
+"المحتوي او تعديل المحتوي ليحافظ على بنية محتوي متوافقة بنسبة اكبر فى محركات "
+"البحث."
+msgstr ""
+
+#: admin/pds-dashboard.php:194
+msgid "محتوي خدمة افتراضي"
+msgstr ""
+
+#: admin/pds-dashboard.php:195
+msgid "نمط اخر مثل المدونة الافتراضية ولكن لنوع بيانات اخر مثل الخدمة."
+msgstr ""
+
+#: admin/pds-dashboard.php:218
+msgid "مكونات نظام التصميم"
+msgstr ""
+
+#: admin/pds-dashboard.php:219
+msgid ""
+"هنا ستجد قائمة بالمكونات المتوفرة ومفعلة بشكل افتراضي فى نظام تصميم فينكس "
+"بجانب المكونات الشائع استخدامها من نظام الووردبريس :"
+msgstr ""
+
+#: admin/pds-dashboard.php:228
+msgid "Phenix Logo - شعار الموقع"
+msgstr ""
+
+#: admin/pds-dashboard.php:230
+msgid ""
+"بهذا المكون يمكنك تعيين شعار اساسي لموقعك وايقونة لشريط الموقع ويتم استخدامه "
+"عاده فى اجزاء القالب مثل الهيدر وبه وضع تجاوبي لتغيير الشعار بواحد مناسب "
+"لاجهزة الجوال."
+msgstr ""
+
+#: admin/pds-dashboard.php:236
+msgid "Phenix Menu - عرض قائمة روابط"
+msgstr ""
+
+#: admin/pds-dashboard.php:238
+msgid ""
+"مكون القائمة من فينكس يسمح لك بعرض قائمة تم انشاءها عن طريق نظام قوائم "
+"الووردبريس الكلاسيكي وايضا بها وضع تجاوبي لاخفاء القائمة فى اجهزة الجوال "
+"واظهارها عبر مكون الازرار. "
+msgstr ""
+
+#: admin/pds-dashboard.php:244
+msgid "Container - حاوية"
+msgstr ""
+
+#: admin/pds-dashboard.php:246
+msgid ""
+"مكون الحاوية يسمح لك بانشاء عنصر خالي يستطيع ان يحتوي عدة مكونات اخري بداخلة "
+"مثل النظام الشبكي ويمتاز بخواصه التي تجعلك تستطيع ان تصمم به قوالب مقسمة "
+"لاقسام كل قسم يعرض نوع محتوي بشكل مختلف كما فى الرئيسية عاده."
+msgstr ""
+
+#: admin/pds-dashboard.php:252
+msgid "Grid Row - النظام الشبكي"
+msgstr ""
+
+#: admin/pds-dashboard.php:254
+msgid ""
+"مكون النظام الشبكي يجب استخدامه بداخل مكون الحاوية ويسمح لك بتقسيم المكونات "
+"بداخلة الى اعمدة بجانب بعضها البعض او تحتها بعضها ويمكن استخدام وضع الشرائح "
+"(Slider Mode) لتحويل النظام الشبكي الي سلايدر والتمتع بخواص عارض الشرائح "
+"المتجاوب."
+msgstr ""
+
+#: admin/pds-dashboard.php:260
+msgid "Grid Column - اعمدة للنظام الشبكي"
+msgstr ""
+
+#: admin/pds-dashboard.php:262
+msgid ""
+"مكون الاعمدة يتم استخدامه عادتا بداخل مكون النظام الشبكي لتحديد حجم للمحتوي "
+"داخل هذا المكون بشكل تجاوبي بحجم مختلف فى كل جهاز او حجم شاشة ويمكن "
+"الاستفادة منه خارج النظام الشبكي ايضاً لنفس الغرض."
+msgstr ""
+
+#: admin/pds-dashboard.php:268
+msgid "Theme Part - جزء قالب دينامكي"
+msgstr ""
+
+#: admin/pds-dashboard.php:270
+msgid ""
+"مكون جزء القالب الديناميكي يسمح لك باستدعاء قالب تم بناءة بلغة PHP ويجب ان "
+"يكون ملف هذا القالب بداخل مجلد (template-parts) داخل مجلد الـ Theme الخاص بك "
+"ويمكن الاستفادة به لتشغيل خواص وقطع تصميم تم بنائها بلغة PHP."
+msgstr ""
+
+#: admin/pds-dashboard.php:276
+msgid "PDS Button - مكون ازرار"
+msgstr ""
+
+#: admin/pds-dashboard.php:278
+msgid ""
+"مكون الازرار يسمح لك بانشاء عنصر زر يمكن استخدامه كرابط او زر لتفعيل شئ ما "
+"مثل ظهور نافذه مبوبه او اظهار قائمة متجاوبة والكثير من الامثلة التي يمكن "
+"استخدام عنصر الزر بها ويمكنك التحكم بكامل خواص الزر من الحجم والالوان بشكل "
+"متجاوب لكل جهاز او شاشه."
+msgstr ""
+
+#: admin/pds-dashboard.php:284
+msgid "PDS Group"
+msgstr ""
+
+#: admin/pds-dashboard.php:286
+msgid ""
+"مكون المجموعات هو عنصر يمكن استخدام لتجميع مكونات وعناصر اخري بداخلة كمجموعة "
+"محتوي مرتبطة ببعضها ويمتاز بخواص النظام الشبكي والاعمدة التجاوبي."
+msgstr ""
+
+#: admin/pds-dashboard.php:292
+msgid "Query Loop - عارض المقالات"
+msgstr ""
+
+#: admin/pds-dashboard.php:294
+msgid ""
+"مكون قائمة مقالات هو مكون لعرض قائمة لاى نوع محتوي على سبيل مثال عرض اخر "
+"الاخبار او جميع الخدمات ويجب ان يكون متوفر  بداخل Theme تصميم موقعك قالب PHP "
+"Template Part لنوع المحتوي ويمتاز ايضا بجميع خواص النظام الشبكي والسلايدر "
+"ويتم استخدامه عاده داخل مكون حاويه."
+msgstr ""
+
+#: admin/pds-dashboard.php:300
+msgid "Page Head - رأس الصفحة"
+msgstr ""
+
+#: admin/pds-dashboard.php:302
+msgid ""
+"مكون رأس الصفحة هو مكون تم اعداده برمجيا لعرض عنوان الصفحة الحالية و روابط "
+"تتبع بنية الصفحة Breadcrumb وهو مفيد ويجب ان يتواجد ف جميع الصفحات الداخلية "
+"لتوافق موقعك التام مع محركات البحث وارشفه المحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:308
+msgid "Popup/Modals - نافذه مبوبه"
+msgstr ""
+
+#: admin/pds-dashboard.php:310
+msgid ""
+"مكون النافذه المبوبه يسمح لك بانشاء قطعة مخفية مبنية من عدة مكونات اخري "
+"داخلها و تظهر عند الضغط على زر ما له نفس المعرف ID الخاص بالنافذة المبوبة."
+msgstr ""
+
+#: admin/pds-dashboard.php:320
+msgid "Taxonomies Loop - عارض الفئات"
+msgstr ""
+
+#: admin/pds-dashboard.php:322
+msgid ""
+"عارض الفئات هو مكون مثل مكون عارض المقالات باختلاف انه يسمح لك بعرض قائمة من "
+"الاقسام على سبيل المثال بتصميم خاص باستدعاء قالب Template Part من الـ Theme "
+"الخاص بك وهو ايضاً يحتوي على جميع مميزات مكون النظام الشبكي وعارض الشرائح "
+"Slider Mode التجاوبي."
+msgstr ""
+
+#: admin/pds-dashboard.php:328
+msgid "Inline elements - عناصر كتابية"
+msgstr ""
+
+#: admin/pds-dashboard.php:330
+msgid ""
+"مكون العنصر الكتابي هو مكون يسمح لك بانشاء محتوي كتابي بداخل عناصر لتمييز "
+"النصوص مثل strong, italic, span ويمكن الاستفادة به وبخواصه لتمييز بعض النصوص "
+"داخل محتوي صفحتك."
+msgstr ""
+
+#: admin/pds-dashboard.php:336
+msgid "Post Content - محتوي مقالة"
+msgstr ""
+
+#: admin/pds-dashboard.php:338
+msgid ""
+"مكون محتوي مقالة هو عنصر لعرض محتوي المقالة لنوع محتوي القالب الحالي ويتم "
+"استخدامه فقط فى قوالب انواع البيانات والمحتوى وهو برمجيا ينفذ وظيفة "
+"the_content();."
+msgstr ""
+
+#: admin/pds-dashboard.php:344
+msgid "Image - صورة"
+msgstr ""
+
+#: admin/pds-dashboard.php:346
+msgid ""
+"هو عنصر اساسي فى نظام الووردبريس ويسمح لك بوضع صور داخل محتوي صفحتك ويمكن "
+"استخدامه فى حالات لا حصر لها اثناء بناء التصميم او كتابه وتعديل المحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:352
+msgid "Paragraph - فقرة"
+msgstr ""
+
+#: admin/pds-dashboard.php:354
+msgid ""
+"مكون الفقرة هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء فقرات نصية "
+"وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع "
+"فى بناء التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:360
+msgid "Headline - عنوان"
+msgstr ""
+
+#: admin/pds-dashboard.php:362
+msgid ""
+"مكون العنوان هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء عناوين لفقراتك "
+"النصية وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل "
+"واسع فى بناء التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:368
+msgid "List - قائمة"
+msgstr ""
+
+#: admin/pds-dashboard.php:370
+msgid ""
+"مكون القائمة النصية هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء قوائم "
+"نصية لمحتواك وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم "
+"استخدامه بشكل واسع فى بناء التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:376
+msgid "Template Part - جزء قالب"
+msgstr ""
+
+#: admin/pds-dashboard.php:378
+msgid ""
+"مكون جزء قالب هو عنصر أساسي في نظام الووردبريس ويسمح لك باستدعاء أجزاء "
+"القالب التي تم بنائها فى محرر تصميم الموقع مثل الهيدر والفوتر ورأس الصفحة"
+msgstr ""
+
+#: admin/pds-dashboard.php:384
+msgid "Contact Form - نماذج الاتصال"
+msgstr ""
+
+#: admin/pds-dashboard.php:386
+msgid ""
+"مكون نماذج الاتصال هو عنصر يسمح لك باستدعاء نموذج تم بناء باضافة نماذج "
+"الاتصال مثل نموذج تواصل معنا او طلب الخدمة على سبيل المثال ويتواجد فقط عند "
+"استخدام اضافه Contact Form 7."
+msgstr ""
+
+#: admin/pds-dashboard.php:392
+msgid "Table - جدول"
+msgstr ""
+
+#: admin/pds-dashboard.php:394
+msgid ""
+"مكون الجدول هو عنصر أساسي في نظام الووردبريس ويسمح لك بانشاء جداول لمحتواك "
+"وتنسيقها كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع "
+"فى بناء التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:400
+msgid "Video - فيديو"
+msgstr ""
+
+#: admin/pds-dashboard.php:402
+msgid ""
+"مكون فيديو هو عنصر أساسي في نظام الووردبريس ويسمح لك بوضع فيديوهات لمحتواك "
+"كما تريد وهو أيضا من العناصر الحيوية والتي يتم استخدامه بشكل واسع فى بناء "
+"التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:408
+msgid "Audio - صوت"
+msgstr ""
+
+#: admin/pds-dashboard.php:410
+msgid ""
+"مكون صوت هو عنصر أساسي في نظام الووردبريس ويسمح لك بوضع ملفات صوتية في "
+"محتواك كما تريد وهو أيضا من العناصر الحيوية والذي يتم استخدامه فى بناء "
+"التصميم والمحتوي."
+msgstr ""
+
+#: admin/pds-dashboard.php:422
+msgid ""
+"تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس و ادارة البيانات "
+"وانواعها ننصحك بعدم تغيير اى شئ فى ادوات مجموعة البيانات ."
+msgstr ""
+
+#: admin/pds-dashboard.php:430
+msgid ""
+"تنبية! ان لم تكن لديك دراية بكيفية تطوير الووردبريس ننصحك بعدم تغيير اى من "
+"اعدادات الاضافة."
+msgstr ""
+
+#: admin/pds-dashboard.php:448
+msgid "هل تريد الاستماع الى شئ ممتع ؟ اضغط هنا"
+msgstr ""
+
+#: admin/pds-dashboard.php:457
+msgid "نبذة عن نظام فينكس"
+msgstr ""
+
+#: admin/pds-dashboard.php:466
+msgid ""
+"فينكس هو نظام تصميم وتطوير لـ واجهات المستخدم (UI/UX/Front-End) لبناء وتصميم "
+"تطبيقات الويب بمختلف انواعها وقد تم بناءة بمنطق بسيط لبناء تطبيقات ويب عالية "
+"الاداء والسرعة ولديه اكبر نسبة توافق ودعم لمحركات البحث وبه الكثير من "
+"المميزات التي تتيح لك بناء اى شئ بدون الحاجة الى اضافات اخري."
+msgstr ""
+
+#: admin/pds-dashboard.php:467
+msgid ""
+"و منذ مطلع عام 2018 وقد اتخذ الووردبريس طريق جديد فى كيفية إدارة وانشاء "
+"المحتوي عبر تبنى المحرر \"Gutenberg\" فى الإصدار الخامس بشكل رسمي والان فى "
+"عام 2023 بعد صدور الإصدار السادس من الووردبريس قد اكتمل هذا المحرر ليقدم "
+"تجربة مستخدم عظيمة واصبح ينتهج الووردبريس نهج بناء الموقع عبر المكونات"
+msgstr ""
+
+#: admin/pds-dashboard.php:468
+msgid ""
+"وهو أيضا نفس النهج والمفهوم الذي تم بناء نظام تصميم “Phenix” علية واصبح من "
+"الممكن نقل تجربة نظام التصميم الى الووردبريس بتكامل تام مما يضيف لموقعك جميع "
+"مميزات وقوة نظام التصميم من السرعة والأداء الى دعم وتجهيز موقعك لمحركات البحث"
+msgstr ""
+
+#: admin/pds-dashboard.php:469
+msgid ""
+"وليس على مستوي التحكم وبناء التصميم ومحتوي الموقع فقط بل أيضا على مستوي توسع "
+"وتطوير موقعك واضافة أنواع محتوي جديدة بسهولة عن طريق ادوات مجموعة البيانات "
+"من فينكس, ومع المكونات المجهزة خصيصا لنظام فينكس داخل محرر الووردبريس ستجد "
+"ان لديك تحكم كامل فى كل تفاصيل التصميم والمحتوي لبناء موقعك كما تشاء بحرية "
+"كاملة."
+msgstr ""
+
+#: admin/pds-dashboard.php:470
+msgid ""
+"تم بناء وتطوير نظام فينكس بواسطة <a href=\"mailto:abdullah@phenixthemes.com"
+"\" class=\"weight-medium color-danger\">عبدالله.رمضان</a>."
+msgstr ""
+
+#: inc/loading.php:9 inc/loading.php:11
+msgid "Loading"
+msgstr "حاري التحميل"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://phenixthemes.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based "
+"themes designed for phenix themes."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Abdullah.Ramadan"
+msgstr ""

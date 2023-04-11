@@ -1,0 +1,24 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/pds-languages",
+  "version": "1.0.0",
+  "title": "Languages",
+  "category": "design",
+  "description": "",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "pds-blocks",
+  "editorScript": "file:./index.js"
+}

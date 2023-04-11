@@ -1,14 +1,14 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks
+  * Plugin Name: Phenix Blocks Free
   * Plugin URI: https://phenixthemes.com
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 0.1
+  * Version: 0.7.6
   * Author: Abdullah.Ramadan
   * Author URI:https://phenixthemes.com
   * License: GPL2
   * License URI: https://www.gnu.org/licenses/gpl-2.0.html
-  * Text Domain: phenix
+  * Text Domain: pds-blocks
   * Domain Path: /languages
 **/
 

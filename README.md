@@ -35,7 +35,7 @@ published as open-source project for web community benefits.
 
 ---
 
-#### 🚀 Phenix Blocks Key-Features
+#### 🚀 Phenix Blocks Key-Features (⭐:PRO, ✅: FREE)
 
 <ul style="list-style:none;padding:0;margin:0 25px;">
     <li>✅ [Block] Responsive Logo</li>
@@ -77,29 +77,29 @@ published as open-source project for web community benefits.
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
 </ul>
 
-#### 🚀 Phenix Editor Components
+#### 🚀 Phenix Editor Components (⭐:PRO, ✅: FREE)
 
 <ul style="list-style:none;padding:0;margin:0 25px;">
     <li>✅ Media Uploader</li>
     <li>✅ Phenix Backgrounds</li>
     <li>✅ Responsive Styling</li>
     <li>✅ Responsive Typography</li>
-    <li>✴️ Show/Hide Animations</li>
+    <li>⭐ Show/Hide Animations</li>
     <li>✅ Icons Selector Control</li>
-    <li>✴️ Position Controller</li>
-    <li>✴️ Cards Data Schema</li>
-    <li>✴️ Element Effects
+    <li>⭐ Position Controller</li>
+    <li>⭐ Cards Data Schema</li>
+    <li>⭐ Element Effects
         <ul style="list-style:none;padding:0;margin:0 25px;">
-            <li>✴️ Box Border</li>
-            <li>✴️ Box Shadow</li>
-            <li>✴️ Transition Speed</li>
-            <li>✴️ Spaced icon/text</li>
-            <li>✴️ Popup Trigger</li>
+            <li>⭐ Box Border</li>
+            <li>⭐ Box Shadow</li>
+            <li>⭐ Transition Speed</li>
+            <li>⭐ Spaced icon/text</li>
+            <li>⭐ Popup Trigger</li>
         </ul>
     </li>
-    <li>✴️ Animations Utilities</li>
-    <li>✴️ Element Size Utilities</li>
-    <li>✴️ Custom Data Attributes</li>
+    <li>⭐ Animations Utilities</li>
+    <li>⭐ Element Size Utilities</li>
+    <li>⭐ Custom Data Attributes</li>
     <li>✅ Accessibility Support</li>
 </ul>
 ---

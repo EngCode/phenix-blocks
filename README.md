@@ -126,7 +126,7 @@ published as open-source project for web community benefits.
 
 #### ### Where to Start ? : [Documentation](https://phenixthemes.com/pds-docs/wp-docs)
 
-you can visit the offical website of phenix design system and read the documentation to master the frameowork :
+you can visit the official website of phenix design system and read the documentation to master the framework :
 [phenixthemes.com/pds-docs](https://phenixthemes.com/pds-docs) and then you can read the
 [Designer-Guide](https://phenixthemes.com/pds-docs/wp-docs/designer) of phenix blocks for more advanced development you
 can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/developer) for the Plugin and its Theme.
@@ -222,7 +222,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Size/Padding/Radius/Shadow/Border**
     - [ ]  **Responsive Options**
         - [ ]  **Collapsed Mode**
-        - [ ]  **Respawn Button [with settings]**
+        - [ ]  **Spawn Button [with settings]**
 - [x]  **Theme Part**
     - [ ]  **Meta Data**
     - [x]  ******************Select Part******************
@@ -248,7 +248,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - [x]  **Taxonomies List [Deprecated]**
 - [x]  **Popup/Modals**
     - [ ]  **Show By URL Hash**
-    - [ ]  **Respawn Close Button**
+    - [ ]  **Spawn Close Button**
     - [ ]  ******************************************Timed Hash Appearance******************************************
     - [ ]  **Show** **When Scroll to Some ID Element**
 - [x]  **Taxonomies Loop**
@@ -315,9 +315,9 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - [ ]  **Metabox Updater**
     - [ ]  **Metabox Select**
     - [ ]  **Post-Type [Auto-Detected]**
-    - [ ]  **(Updating Metaboxes with the {Holder} Block Content wich usualy a text-based block).**
+    - [ ]  **(Updating Metaboxes with the {Holder} Block Content which usually a text-based block).**
 - [ ]  **Element Effects**
-    - [x]  **Overlaped**
+    - [x]  **Overlapped**
     - [ ]  **Box Border**
     - [ ]  **Box Shadow**
     - [ ]  **Overlay Link**

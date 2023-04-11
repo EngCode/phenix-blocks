@@ -3,4 +3,5 @@ node_modules/
 node_modules.rar
 .vscode/
 _tools
+src
 dev.code-workspace

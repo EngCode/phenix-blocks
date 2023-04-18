@@ -34,7 +34,7 @@
     },
     "isFlexbox": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "flexbox": {
       "type": "object",

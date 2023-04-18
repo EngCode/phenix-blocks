@@ -20,7 +20,7 @@ if (!function_exists('pds_tax_create')) :
             $label = $options["label"];
             $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
             $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
-            $post_types = isset($options['post_types']) ? $options["post_types"] : array("tag");
+            $post_types = isset($options['post_types']) ? $options["post_types"] : array();
 
             //==== CPT Labels ====//
             $labels = array(
@@ -52,7 +52,7 @@ if (!function_exists('pds_tax_create')) :
                 'rewrite'            => array('slug' => $name),
             );
 
-            register_taxonomy ($name, $post_types, $options);
+            register_taxonomy ($name, $post_types, $args);
         });
     }
 endif;

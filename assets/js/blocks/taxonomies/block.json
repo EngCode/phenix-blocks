@@ -13,61 +13,37 @@
     "alignWide": true
   },
   "attributes": {
-    "taxonomy": {
-      "type": "string",
-      "default": "category"
-    },
-    "post_type": {
-      "type": "string",
-      "default": "post"
+    "query": {
+      "type": "object",
+      "default": {}
     },
     "template_part": {
       "type": "string",
       "default": "_placeholder"
     },
-    "query_count": {
-      "type": "number",
-      "default": 0
-    },
-    "order": {
-      "type": "string",
-      "default": "ASC"
-    },
-    "hide_empty": {
-      "type": "boolean",
-      "default": true
-    },
-    "grid_mode": {
+    "isFlexbox": {
       "type": "boolean",
       "default": false
     },
-    "grid_cols": {
-      "type": "string",
-      "default": "row-cols-auto"
+    "flexbox": {
+      "type": "object",
+      "default": {}
     },
-    "grid_cols_stat": {
-      "type": "boolean",
-      "default": true
+    "typography": {
+      "type": "object",
+      "default": {}
     },
-    "grid_flow": {
-      "type": "string",
-      "default": ""
+    "style": {
+      "type": "object",
+      "default": {}
     },
-    "grid_nowrap": {
-      "type": "string",
-      "default": ""
+    "responsive": {
+      "type": "object",
+      "default": {}
     },
-    "grid_masonry": {
-      "type": "string",
-      "default": ""
-    },
-    "grid_alignment": {
-      "type": "string",
-      "default": ""
-    },
-    "slider_mode": {
-      "type": "boolean",
-      "default": false
+    "slider": {
+      "type": "object",
+      "default": {}
     },
     "preview": {
       "type": "boolean",

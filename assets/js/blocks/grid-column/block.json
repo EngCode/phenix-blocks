@@ -24,6 +24,10 @@
     "alignWide": true
   },
   "attributes": {
+    "id": {
+      "type": "string",
+      "default": ""
+    },
     "tagName": {
       "type": "string",
       "default": "div"
@@ -33,8 +37,8 @@
       "default": false
     },
     "size": {
-      "type": "number",
-      "default": 0
+      "type": "string",
+      "default": "0"
     },
     "isFlexbox": {
       "type": "boolean",

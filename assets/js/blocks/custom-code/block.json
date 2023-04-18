@@ -12,6 +12,18 @@
     "preview": {
       "type": "boolean",
       "default": false
+    },
+    "type": {
+      "type": "string",
+      "default": "html"
+    },
+    "code": {
+      "type": "string",
+      "default": ""
+    },
+    "code_preview": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {

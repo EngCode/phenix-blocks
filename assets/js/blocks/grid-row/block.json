@@ -28,6 +28,10 @@
       "type": "boolean",
       "default": false
     },
+    "id": {
+      "type": "string",
+      "default": ""
+    },
     "flexbox": {
       "type": "object",
       "default": {}

@@ -3,5 +3,10 @@ node_modules/
 node_modules.rar
 .vscode/
 _tools
-src
+src/sass
+src/scripts
+src/*.js
+src/*/*.js
+src/*/*.json
+src/*.json
 dev.code-workspace

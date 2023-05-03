@@ -3,11 +3,9 @@ node_modules/
 node_modules.rar
 .vscode/
 _tools
-src/sass
+src/sass/*
 src/scripts
 dev.code-workspace
-src/*.js
-src/*/*.js
-src/*/*.json
-src/*.json
-src/block/px-controls
+src/blocks/*/*.js
+src/blocks/*/*.json
+src/blocks/px-controls

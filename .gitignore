@@ -3,7 +3,7 @@ node_modules/
 node_modules.rar
 .vscode/
 _tools
-src/sass/*
+src/sass
 src/scripts
 dev.code-workspace
 src/blocks/*/*.js

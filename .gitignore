@@ -5,6 +5,7 @@ node_modules.rar
 _tools
 src/sass
 src/scripts
+src/animations
 dev.code-workspace
 src/blocks/*/*.js
 src/blocks/*/*.json

@@ -5,8 +5,9 @@ node_modules.rar
 _tools
 src/sass
 src/scripts
+dev.code-workspace
 src/*.js
 src/*/*.js
 src/*/*.json
 src/*.json
-dev.code-workspace
+src/block/px-controls

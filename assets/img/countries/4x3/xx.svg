@@ -1,4 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-xx" viewBox="0 0 640 480">
-  <path fill="#fff" fill-rule="evenodd" stroke="#adb5bd" stroke-width="1.1" d="M.5.5h638.9v478.9H.5z"/>
-  <path fill="none" stroke="#adb5bd" stroke-width="1.1" d="m.5.5 639 479M639.5.5l-639 479"/>
+<svg width="640" height="480" viewBox="0 0 640 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1215_2493)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 0.5H639.4V479.4H0.5V0.5Z" fill="black" fill-opacity="0.05" stroke="#ADB5BD" stroke-width="1.1"/>
+<path d="M0.5 0.5L639.5 479.5M639.5 0.5L0.5 479.5" stroke="#ADB5BD" stroke-width="1.1"/>
+</g>
+<defs>
+<clipPath id="clip0_1215_2493">
+<rect width="640" height="480" fill="white"/>
+</clipPath>
+</defs>
 </svg>

@@ -5,7 +5,7 @@
     </a>
 </p>
 
-<h2 align="center">Phenix WP Blocks (PRO)</h2>
+<h2 align="center">Phenix WP Blocks (FREE)</h2>
 
 <p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
 <p align="center">
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/build-v0.1-blue.svg" alt="" />
+    <img src="https://img.shields.io/badge/build-v0.7.7-blue.svg" alt="" />
     <img src="https://img.shields.io/github/languages/code-size/EngCode/phenix-blocks.svg" alt="" />
     <img src="https://img.shields.io/github/repo-size/EngCode/phenix-blocks.svg" alt="" />
     <img src="https://img.shields.io/github/issues/EngCode/phenix-blocks.svg" alt="" />

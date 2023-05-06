@@ -1,6 +1,6 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks FREE
+  * Plugin Name: Phenix Blocks (FREE)
   * Plugin URI: https://phenixthemes.com
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
   * Version: 0.7.7
@@ -125,3 +125,15 @@ if (!function_exists('pds_var_dump')) :
 		echo '</pre>';
 	}
 endif;
+
+//===> Create Cron Jobs Scheduler <===//
+add_filter('cron_schedules', function($schedules) {
+    //===> Every 10 Minutes <===//
+    $schedules['pds_schedule'] = array(
+        'interval' => 600,
+        'display'  => __( 'Every 10 Minutes' ),
+    );
+
+    //===> .... <===//
+    return $schedules;
+});

@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "phenix/custom-code",
   "version": "1.0.0",
-  "title": "Design Code",
+  "title": "Custom Code",
   "category": "design",
   "description": "Inject Custom HTML/CSS/JavaScript code into your page",
   "supports": {
@@ -24,6 +24,10 @@
     "code_preview": {
       "type": "boolean",
       "default": false
+    },
+    "dev_preview": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {
@@ -32,5 +36,5 @@
     }
   },
   "textdomain": "pds-blocks",
-  "editorScript": "file:./index.js"
+  "editorScript": "custom-code"
 }

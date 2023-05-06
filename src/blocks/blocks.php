@@ -164,6 +164,11 @@ if (get_option('pds_users_query_block')) {
     include(dirname(__FILE__) . '/users-query/index.php');
 }
 
+//====> Custom Code <====//
+if (get_option('custom_code_block')) {
+    include(dirname(__FILE__) . '/custom-code/index.php');
+}
+
 //====> Helper Functions <====//
 if (!function_exists("isObjectVal")) :
     function isObjectVal($option_value) {

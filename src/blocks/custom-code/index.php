@@ -24,7 +24,7 @@ function px_custom_code_render($block_attributes, $content) {
         $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.$block_attributes['code'].'});</script>';
     }
     //===> Render [Shortcode] Code <===//
-    elseif ($block_attributes['type'] === "javascript") {
+    elseif ($block_attributes['type'] === "shortcode") {
         $markup .= do_shortcode($block_attributes['code']);
     }
 

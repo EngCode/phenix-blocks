@@ -5,6 +5,8 @@
  * @return void
 */
 
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+
 //=====> Enqueue Phenix Blocks <=====//
 if (!function_exists('phenix_blocks')) :
     function phenix_blocks() {
@@ -109,14 +111,19 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('pds-form', $blocksPath.'pds-form/index.js', $blocksDependencies, NULL , true);
         }
 
-        //====> PDS Form <====//
+        //====> Logical Block <====//
         if (get_option('pds_logical_block')) {
             wp_enqueue_script('logical-block', $blocksPath.'logical-block/index.js', $blocksDependencies, NULL , true);
         }
 
+        //====> Users Query <====//
+        if (get_option('pds_users_query_block')) {
+            wp_enqueue_script('users-query', $blocksPath.'users-query/index.js', $blocksDependencies, NULL , true);
+        }
+
         //====> Sidebar Options <====//
         wp_enqueue_script('pds-se-option', $blocksPath.'pds-se-option/index.js', array('wp-blocks', 'wp-element', 'wp-edit-site', 'wp-plugins'), NULL , true);
-        // wp_enqueue_script('pds-pe-options', $blocksPath.'pds-pe-options/index.js', array('wp-blocks', 'wp-element', 'wp-editor', 'wp-plugins'), NULL , true);
+        wp_enqueue_script('pds-pe-options', $blocksPath.'pds-pe-options/index.js', array('wp-blocks', 'wp-element', 'wp-editor', 'wp-plugins'), NULL , true);
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');
@@ -147,7 +154,43 @@ if (get_option('theme_part_block')) {
     include(dirname(__FILE__) . '/theme-part/index.php');
 }
 
-//====> Theme Part <====//
+//====> Logical Block <====//
 if (get_option('pds_logical_block')) {
     include(dirname(__FILE__) . '/logical-block/index.php');
 }
+
+//====> Users Query <====//
+if (get_option('pds_users_query_block')) {
+    include(dirname(__FILE__) . '/users-query/index.php');
+}
+
+//====> Helper Functions <====//
+if (!function_exists("isObjectVal")) :
+    function isObjectVal($option_value) {
+        return is_object($option_value) || is_array($option_value) && count($option_value) > 0;
+    }
+endif;
+
+if (!function_exists("isBooleanVal")) :
+    function isBooleanVal($option_value) {
+        return is_bool($option_value);
+    }
+endif;
+
+if (!function_exists("isNormalValue")) :
+    function isNormalValue($option_value) {
+        return is_string($option_value) || is_numeric($option_value);
+    }
+endif;
+
+if (!function_exists("colsRender")) :
+    function colsRender($size) {
+        if (intval($size) === 0) {
+            return "-auto";
+        } elseif (intval($size) === 13) {
+            return "";
+        } else {
+            return "-" . $size;
+        }
+    }
+endif;

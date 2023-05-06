@@ -5,43 +5,88 @@
  * @return void
 */
 
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+
 //==== Block Render ====//
 function pds_taxonomies_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
-    $markup = '';ob_start();
-    $options = $block_attributes;
+    $markup = ''; ob_start();
 
-    //===> Grid Options <===//
-    $grid_cols = ($options['grid_cols_stat']) ? "" : " ". $options['grid_cols'];
-    $grid_opts = ' '. $options['grid_flow'] .' '. $options['grid_masonry'] .' '. $options['grid_nowrap'] .' '. $options['grid_alignment'];
-    $is_slider = ($options['slider_mode'] == true) ? " px-slider" : "";
+    //===> Define Attributes <===//
+    $slider_attrs = ""; $grid_classes = "";
+    if (isset($block_attributes['className'])) { $grid_classes .= $block_attributes['className'].' '; }
 
-    //===> Custom Classes <===//
-    if(isset($options['className'])) {
-        $grid_opts = $grid_opts .' '. $options['className'];
+    //===> Dynamic Data Setter <===//
+    foreach ($block_attributes as $option_name => $option_value) {
+        //===> Exclude Options <===//
+        $excluded = ["preview", "query", "template_part"];
+        if (in_array($option_name, $excluded) || !isset($block_attributes[$option_name])) { continue; }
+
+        //===> if its a Normal Values that should be string <===//
+        elseif (isNormalValue($option_value)) {
+            //===> Classes Options <===//
+            $grid_classes .= ' ' . str_replace(',', ' ', $block_attributes[$option_name]);
+        }
+
+        //===> for Boolean Options <===//
+        elseif (isBooleanVal($option_value) && $block_attributes[$option_name]) {
+            if ($option_name === 'isFlexbox') { $grid_classes .= "row "; }
+        }
+
+        //===> if its object[group] Option like [style, typography, slider...] <===//
+        elseif (isObjectVal($option_value)) {
+            //===> loop on the Object Options <===//
+            foreach ($option_value as $sub_option => $sub_value) {
+                //===> Check if the attribute is Set <===//
+                if (!isset($block_attributes[$option_name][$sub_option])) { continue; }
+
+                //===> Checker for Slider Mode <===//
+                if ($option_name === 'slider') {
+                    //===> Add Slider Name <===//
+                    $grid_classes .= "px-slider ";
+                    //===> if not-related option return void <===//
+                    if (in_array($sub_option, ["align", "nowrap", "masonry"])) { continue; }
+                    //===> add data attributes <===//
+                    $slider_attrs .= 'data-'.$sub_option.'="'.$sub_value.'"';
+                }
+
+                //===> Flexbox Options <===//
+                elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
+                    //===> Slider Mode <===//
+                    if ($block_attributes['flexbox']['slider']) {
+                        $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
+                        $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
+                    } else {
+                        //===> add Classes <===//
+                        $grid_classes .= ' ' . str_replace('cols', 'row-cols', $sub_option) . colsRender($sub_value);
+                    }
+                }
+            }
+        };
     }
 
-    //===> Get Categories List <===//
-    $categories = get_categories( array(
-        'order'      => $options['order'],
-        'number'     => $options['query_count'],
-        'taxonomy'   => $options['taxonomy'],
-        'post_type'  => $options['post_type'],
-        'hide_empty' => $options['hide_empty'],
-    ));
+    //===> Create New Query <===//
+    $categories = get_categories($block_attributes['query']);
+
+    //===> Default Query <===//
+    $default_query = ["hide_empty"];
+    foreach ($default_query as $option_name) {
+        if (!isset($block_attributes['query'][$option_name])) {
+            if ($option_name === "hide_empty")  { $block_attributes['query'][$option_name] = false; }
+            else { $block_attributes['query'][$option_name] = ''; }
+        }
+    };
 
     //===> Grid Wrapper <===//
-    if ($options['grid_mode']) {
-        echo '<div class="row'. $grid_cols . $grid_opts . $is_slider .'">';
-    }
+    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
 
     //===> Loop Through Categories <===//
     foreach ($categories as $category) :
-        get_template_part("template-parts/".$options["template_part"], null, $category);
+        get_template_part("template-parts/".$block_attributes["template_part"], null, $category);
     endforeach;
 
     //===> End Grid Wrapper <===//
-    if ($options['grid_mode']) : echo '</div>'; endif;
+    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider'])) { echo '</div>'; }
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

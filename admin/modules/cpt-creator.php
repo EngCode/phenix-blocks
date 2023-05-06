@@ -5,6 +5,8 @@
  * @return void
 */
 
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+
 //====> Posts Type [Creation] <====//
 if (!function_exists('pds_cpt_create')) :
     /**

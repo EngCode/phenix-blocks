@@ -4,6 +4,7 @@
      * @since Phenix WP 1.0
      * @return void
     */
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 ?>
 <!-- Lightbox Popup -->
 <div class="px-modal hidden align-center" id="px-lightbox" data-type="lightbox">

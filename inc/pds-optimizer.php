@@ -14,7 +14,7 @@
  ** 05 - Contact Form 7 Optimizer
 */
 
-defined('ABSPATH') || exit;
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Optimize for Front-End Only <====//
 if (!is_admin()) {
@@ -119,7 +119,7 @@ if (!is_admin()) {
     //=====> Remove Admin Bar for Users <=====//
     if (!function_exists('adminbar_disable') && get_option("adminbar_disable") == "on") :
         function adminbar_disable() {
-            if (!current_user_can('edit_posts') && get_option('adminbar_disable')) {
+            if (!current_user_can('update_core')) {
                 show_admin_bar(false);
             }
         }

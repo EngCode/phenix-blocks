@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //===> Define Elements <===//
     $images_folder = plugin_dir_url(__DIR__).'/assets/img';
     $media_folder = plugin_dir_url(__DIR__).'/assets/media';

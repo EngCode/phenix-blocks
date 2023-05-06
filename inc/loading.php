@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //===> Define Elements <===//
     $plugin_url = plugin_dir_url(__DIR__);
 ?>

@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif; ?>
 <!-- Grid Layout -->
 <div class="row">
     <!-- Column -->

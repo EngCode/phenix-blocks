@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif; ?>
 <!-- Phenix Admin -->
 <div class="pds-10 pde-30 pde-lg-50 pds-lg-30 pdy-50">
     <!-- Page Title -->

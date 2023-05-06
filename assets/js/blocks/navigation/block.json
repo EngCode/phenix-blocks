@@ -17,15 +17,15 @@
       "type": "boolean",
       "default": false
     },
+    "menu_type": {
+      "type": "string",
+      "default": "classic"
+    },
     "tagName": {
       "type": "string",
       "default": "nav"
     },
     "menu_id": {
-      "type": "string",
-      "default": ""
-    },
-    "className": {
       "type": "string",
       "default": ""
     },
@@ -61,9 +61,25 @@
       "type": "object",
       "default": {}
     },
-    "responsive_ops": {
-      "type": "object",
-      "default": {}
+    "items_icon_op": {
+      "type": "boolean",
+      "default": false
+    },
+    "count_badge": {
+      "type": "boolean",
+      "default": false
+    },
+    "items_icon": {
+      "type": "string",
+      "default": "far fa-link"
+    },
+    "items_count": {
+      "type": "string",
+      "default": "8"
+    },
+    "post_type": {
+      "type": "string",
+      "default": "post"
     }
   },
   "example": {

@@ -16,6 +16,18 @@
     "preview": {
       "type": "boolean",
       "default": false
+    },
+    "mode": {
+      "type": "string",
+      "default": "title"
+    },
+    "title": {
+      "type": "object",
+      "default": {}
+    },
+    "breadcrumb": {
+      "type": "object",
+      "default": {}
     }
   },
   "example": {

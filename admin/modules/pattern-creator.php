@@ -5,6 +5,8 @@
  * @return void
 */
 
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+
 //===> Add Pattern Method <===//
 if (!function_exists('pds_add_pattern')) :
     /**

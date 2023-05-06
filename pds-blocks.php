@@ -1,9 +1,9 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks Free
+  * Plugin Name: Phenix Blocks FREE
   * Plugin URI: https://phenixthemes.com
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 0.7.6
+  * Version: 0.7.7
   * Author: Abdullah.Ramadan
   * Author URI:https://phenixthemes.com
   * License: GPL2
@@ -13,7 +13,7 @@
 **/
 
 //=====> Exit if accessed directly <=====//
-if (!defined('ABSPATH')) {exit;}
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //===> Activation <===//
 function pds_blocks_activate() {
@@ -81,4 +81,47 @@ if (!function_exists('pds_patterns_cats')) :
 	}
 
 	add_action('init', 'pds_patterns_cats');
+endif;
+
+//===> Get Post Views <===//
+if (!function_exists('get_post_views')) :
+	function get_post_views($post_id) {
+		//===> Define Counter <====//
+		$count_key = 'post_views_count';
+		$count = get_post_meta( $post_id, $count_key, true );
+		//===> if Count is Empty <===//
+		if ($count == '') {
+			//===> delete the meta data <====//
+			delete_post_meta($post_id, $count_key);
+			//===> set the count to 0 <====//
+			add_post_meta( $post_id, $count_key, '0' );
+			//===> Return Zero <===//
+			return "0";
+		}
+		//===> Return counting <===//
+		return $count;
+	}
+endif;
+
+//===> Navigation Menu Customizer <===//
+if (!function_exists('pds_menu_items_id_remover')) :
+	function pds_menu_items_id_remover($id, $item, $args ) { return ""; }
+	add_filter('nav_menu_item_id', 'pds_menu_items_id_remover', 10, 3);
+endif;
+
+if (!function_exists('pds_remove_nav_menu_id')) :
+	function pds_remove_nav_menu_id( $menu ) {
+		return preg_replace('/id=\"(.*)\"/U', '', $menu);
+	}
+
+	add_filter('wp_nav_menu', 'pds_remove_nav_menu_id');
+endif;
+
+//===> Debug Variables <===//
+if (!function_exists('pds_var_dump')) :
+	function pds_var_dump($variable) {
+		echo '<pre>';
+			highlight_string("<?php\n" . var_export($variable, true));
+		echo '</pre>';
+	}
 endif;

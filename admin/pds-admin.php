@@ -5,6 +5,8 @@
      * @return void
     */
 
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+    
     //=====> Phenix Blocks Admin <=====//
     if (!function_exists('pds_admin_menu')) :
         /**
@@ -108,8 +110,10 @@
     $pds_options_list = array(
         //===> Data Collection <===//
         array('pds_types', 'pds-data-collection', true),
+        array('users_roles', 'pds-data-collection', true),
         array('pds_metabox', 'pds-data-collection', true),
         array('theme_parts', 'pds-data-collection', true),
+        array('countries_list', 'pds-data-collection', true),
         array('pds_taxonomies', 'pds-data-collection', true),
         array('menu_locations', 'pds-data-collection', true),
         array('block_patterns', 'pds-data-collection', true),
@@ -161,6 +165,7 @@
         array('custom_code_block', 'pds-admin'),
         array('pds_form_block', 'pds-admin'),
         array('pds_logical_block', 'pds-admin'),
+        array('pds_users_query_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),
@@ -389,5 +394,62 @@
         }
 
         add_action('load-index.php', 'pds_dash_redirect');
+    endif;
+
+    //====> Setup Users Roles <====//
+    if (!function_exists('pds_users_roles_register')) :
+        function pds_users_roles_register() {
+            //===> Get Current Roles <===//
+            global $wp_roles;
+            $users_roles = $wp_roles->roles;
+
+            //===> Set Rules <===//
+            update_option("users_roles", $users_roles);
+        };
+
+        add_action('init', 'pds_users_roles_register');
+    endif;
+
+    //====> Setup Countries <====//
+    if (!function_exists('pds_countries_register')) :
+        function pds_countries_register() {
+            if (!get_option("countries_list")) {
+                //====> Get Countries JSON <====//
+                $countries_data = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/img/countries/country.json");
+                $countries_phone = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/img/countries/phone.json");
+    
+                //====> Convert the JSON data into a PHP object <====//
+                $phones_json = json_decode($countries_phone);
+                $countries_json = json_decode($countries_data);
+    
+                //====> Create new List <====//
+                $countries = array();
+    
+                //====> Loop through the JSON Object <====//
+                foreach ($countries_json as $country) {
+                    //===> Get Phone Number <===//
+                    $country_phone = "";
+                    foreach ($phones_json as $phone) {
+                        if (strtolower($country->code) == strtolower($phone->code)) { $country_phone = $phone->dial_code; }
+                    }
+    
+                    //===> add the Country to the List <===//
+                    $countries[strtolower($country->code)] = array(
+                        "iso" => $country->iso,
+                        "name" => $country->name,
+                        "code" => $country->code,
+                        "dial_code" => $country_phone,
+                        "capital" => isset($country->capital) ? $country->capital : $country->name,
+                        "flag" => plugins_url("pds-blocks/assets/img/countries/").$country->flag_4x3,
+                        "flag_1x1" => plugins_url("pds-blocks/assets/img/countries/").$country->flag_1x1,
+                    );
+                }
+    
+                //===> Set Rules <===//
+                update_option("countries_list", $countries);
+            }
+        };
+
+        add_action('init', 'pds_countries_register');
     endif;
 ?>

@@ -4,6 +4,7 @@
  * @since Phenix WP 1.0
  * @return void
 */
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //==== Block Render ====//
 function px_theme_part_render($block_attributes, $content) {

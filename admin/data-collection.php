@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //====> Shared Options <====//
     $assets_url = plugin_dir_url(__FILE__);
     $icons_url = str_replace('admin/', 'assets/img/blocks/core/', $assets_url);

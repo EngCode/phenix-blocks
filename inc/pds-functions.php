@@ -16,7 +16,7 @@
  ** 05 - Excerpt More
 */
 
-defined('ABSPATH') || exit;
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Delete "Archive" Prefix <====//
 if (!function_exists('refactor_archive_title')) :

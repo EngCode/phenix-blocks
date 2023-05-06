@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //===> Settings Panel <===//
     if (!function_exists('pds_settings_panel')) {
         function pds_settings_panel() {

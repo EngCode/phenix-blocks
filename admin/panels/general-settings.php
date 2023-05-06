@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //====> Shared Options <====//
     $current_dir = plugin_dir_url(__FILE__);
     $json_dir = str_replace('admin/panels', 'assets/json', $current_dir);

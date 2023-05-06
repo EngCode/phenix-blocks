@@ -13,6 +13,10 @@
     "alignWide": true
   },
   "attributes": {
+    "preview": {
+      "type": "boolean",
+      "default": false
+    },
     "align": {
       "type": "string",
       "default": "full"

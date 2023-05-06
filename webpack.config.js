@@ -18,6 +18,7 @@ module.exports = {
         'navigation': './src/blocks/navigation/index.js',
         'theme-part': './src/blocks/theme-part/index.js',
         'taxonomies': './src/blocks/taxonomies/index.js',
+        'users-query': './src/blocks/users-query/index.js',
         'grid-column': './src/blocks/grid-column/index.js',
         'custom-code': './src/blocks/custom-code/index.js',
         'icon-element': './src/blocks/icon-element/index.js',

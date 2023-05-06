@@ -1,8 +1,8 @@
 {
   "apiVersion": 2,
   "name": "phenix/query",
-  "version": "0.1.0",
-  "title": "Query Loop",
+  "version": "1.0.0",
+  "title": "Posts Query",
   "category": "design",
   "description": "Custom Query Posts Block.",
   "supports": {
@@ -13,47 +13,39 @@
     "alignWide": true
   },
   "attributes": {
-    "post_type": {
-      "type": "string",
-      "default": "default"
+    "preview": {
+      "type": "boolean",
+      "default": false
+    },
+    "query": {
+      "type": "object",
+      "default": {}
     },
     "template_part": {
       "type": "string",
       "default": "_placeholder"
     },
-    "per_page": {
-      "type": "number",
-      "default": 8
-    },
-    "order": {
-      "type": "string",
-      "default": "DESC"
-    },
-    "pagination": {
+    "isFlexbox": {
       "type": "boolean",
       "default": false
     },
-    "preview": {
-      "type": "boolean",
-      "default": false
-    },
-    "grid_mode": {
-      "type": "boolean",
-      "default": false
-    },
-    "grid": {
+    "flexbox": {
       "type": "object",
       "default": {}
     },
-    "slider_mode": {
-      "type": "boolean",
-      "default": false
+    "typography": {
+      "type": "object",
+      "default": {}
     },
-    "slider": {
+    "style": {
       "type": "object",
       "default": {}
     },
     "responsive": {
+      "type": "object",
+      "default": {}
+    },
+    "slider": {
       "type": "object",
       "default": {}
     }

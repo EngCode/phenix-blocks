@@ -1,3 +1,4 @@
+<?php if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif; ?>
 <!-- Column -->
 <div class="col-12 col-md-6" style="max-width: 420px">
     <!-- Control Label -->

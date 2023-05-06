@@ -5,48 +5,89 @@
  * @return void
 */
 
+if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+
 //==== Block Render ====//
 function px_navigation_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = ''; ob_start();
-    $options  = $block_attributes;
 
-    //===> Collect Options Data <===//
-    $menuClasses = "reset-list";
-    $menu_id = "data-id='{$options['menu_id']}'";
-    $effect_type = "data-effect='{$options['effect']}'";
-    $classNames  = "px-navigation {$options['className']}";
-    $mobile_mode = "data-mobile='{$options['mobile_mode']}'";
-    $arrow_icon  = "data-arrow='{$options['arrow_icon']}'";
-    $hover_mode  = "";
-    $nav_style   = "";
+    //===> Define Options Data <===//
+    $menuClasses = "reset-list"; $hover_mode = ""; $nav_style = ""; $menu_id = ""; $menu_attrs = ""; $count_badge = "";
+    $effect_type = ""; $classNames = "px-navigation"; $mobile_mode = ""; $arrow_icon = ""; $text_align = "";
 
-    //===> Collect Style Data <===//
-    $font_size = isset($options['typography']['size']) ? $options['typography']['size'] : false;
-    $font_weight = isset($options['typography']['weight']) ? $options['typography']['weight'] : false;
-    $font_height = isset($options['typography']['height']) ? $options['typography']['height'] : false;
-    $text_align = isset($options['typography']['align']) ? $options['typography']['align'] : "";
-    $text_color = isset($options['typography']['color']) ? $options['typography']['color'] : false;
-    $text_color_hvr = isset($options['typography']['color_hvr']) ? $options['typography']['color_hvr'] : false;
-    $background_color = isset($options['style']['background']) ? $options['style']['background']['value'] : false;
-    $background_color_hvr = isset($options['style']['background_hvr']) ? $options['style']['background_hvr']['value'] : false;
-    $style_padding = isset($options['style']['padding']) ? $options['style']['padding'] : false;
+    //===> Dynamic Data Setter <===//
+    foreach ($block_attributes as $option_name => $option_value) {
+        //===> Exclude Options <===//
+        $excluded = ["preview"];
+        if (in_array($option_name, $excluded) || !isset($block_attributes[$option_name])) { continue; }
+    
+        //===> if its a Normal Values that should be string <===//
+        elseif (isNormalValue($option_value)) {
+            //===> Menu ID <===//
+            if ($option_name === "menu_id") { $menu_id = "data-id='{$option_value}'"; }
+            //===> Wrapper Classes <===//
+            elseif ($option_name === "className") { $classNames .= " {$option_value}"; }
+            //===> Dropdown icon <===//
+            elseif ($option_name === "arrow_icon") { $arrow_icon  = "data-arrow='{$option_value}'"; }
+            //===> Direction <===//
+            elseif ($option_name === "direction") { 
+                if ($block_attributes['direction'] == 'px-vertical') { $classNames = $classNames.' '.$option_value; } 
+                else { $menuClasses = $menuClasses.' '.$option_value; }
+             }
+             //===> Icons Mode <===//
+             elseif ($option_name === "items_icon" && $block_attributes['items_icon_op'] === true) {
+                 $classNames .= " icons-list";
+                 $menu_attrs = " data-icon='{$option_value}'";
+            };
+            //===> Responsive Mode <===//
+            if ($block_attributes['responsive'] === true) {
+                //===> Mode <===//
+                if ($option_name === "mobile_mode") { $mobile_mode = "data-mobile='{$option_value}'"; }
+                //===> Effect <===//
+                elseif ($option_name === "effect") { $effect_type = "data-effect='{$option_value}'"; };
+            }
+        }
 
-    //===> Direction Mode <===//
-    if ($options['direction'] == 'px-vertical') {
-        $classNames = $classNames.' '.$options['direction'];
-    } else {
-        $menuClasses = $menuClasses.' '.$options['direction'];
-    }
+        //===> for Boolean Options <===//
+        elseif (isBooleanVal($option_value) && $block_attributes[$option_name]) {
+            //===> Dropdown Hover <===//
+            if ($option_name === "hover") { $hover_mode = "data-hover='{$option_value}'"; }
+            elseif ($option_name === "responsive") { $classNames = $classNames . " hidden-md-down"; }
+        }
 
-    //===> Responsive Classes <===//
-    if ($options['responsive'] == true) {
-        $classNames = $classNames . " hidden-md-down";
-    }
+        //===> if its object[group] Option like [style, typography, responsive] <===//
+        elseif (isObjectVal($option_value)) {
+            //===> loop on the Object Options <===//
+            foreach ($option_value as $sub_option => $sub_value) {
+                //===> Check if the attribute is Set <===//
+                if (!isset($block_attributes[$option_name][$sub_option])) { continue; }
 
-    //===> Hover Mode <===//
-    if ($options['hover'] === true) {
-        $hover_mode = "data-hover='{$hover_mode}'";
+                //===> Normal strings and Arrays <===//
+                elseif (isNormalValue($sub_value)) {
+                    //===> Typography <===//
+                    if ($option_name === "typography") {
+                        //===> Collect Style Data <===//
+                        if($sub_option === "size") { $font_size = $sub_value; } 
+                        elseif($sub_option === "weight") { $font_weight = $sub_value; } 
+                        elseif($sub_option === "height") { $font_height = $sub_value; } 
+                        elseif($sub_option === "align") { $text_align = $sub_value; } 
+                        elseif($sub_option === "color") { $text_color = $sub_value; } 
+                        elseif($sub_option === "color_hvr") { $text_color_hvr = $sub_value; }
+                    }
+
+                    elseif ($option_name === "style") {
+                        if($sub_option === "padding") { $style_padding = $sub_value; }
+                    }
+                }
+
+                //===> for Object Options <===//
+                elseif (isObjectVal($sub_value) && $option_name === "style") {
+                    if ($sub_option === "background") { $background_color = $sub_value['value']; }
+                    elseif ($sub_option === "background_hvr") { $background_color_hvr = $sub_value['value']; }
+                };
+            }
+        };
     }
 
     //===> Custom CSS Style <===//
@@ -57,22 +98,79 @@ function px_navigation_render($block_attributes, $content) {
     if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }
     if (isset($background_color) && $background_color) { $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$background_color).");"; }
     if (isset($background_color_hvr) && $background_color_hvr) { $nav_style .= "--background-hvr:".str_replace('bg-', 'var(--wp--preset--color--',$background_color_hvr).");"; }
-    if (isset($style_padding) && $style_padding) { $nav_style .= "--space-in :{$style_padding}px;"; }
+    if (isset($style_padding) && $style_padding) {
+        if ($block_attributes['items_icon_op'] === true) {
+            $nav_style .= "--space-in: 0px; padding-right:". $style_padding."px; padding-left:". $style_padding."px;";
+        } else {
+            $nav_style .= "--space-in:{$style_padding}px;";
+        }
+    };
 
     //===> Start Navigation Wrapper <===//
-    echo "<{$options['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>";
+    echo "<{$block_attributes['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_attrs} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>";
+        //===> Get Taxonomies Menu <===//
+        if ($block_attributes['menu_type'] === "taxonomies") {
+            //===> Create Menu <===//
+            echo '<ul class="'.$menuClasses.'">';
+                //===> Get Categories List <===//
+                $categories = get_categories(array(
+                    'hide_empty' => false,
+                    'taxonomy'   => 'category',
+                    'number'     => $block_attributes['items_count'],
+                    'post_type'  => $block_attributes['post_type'],
+                ));
 
-    //===> Get the Dynamic Menu <===//
-    echo wp_nav_menu(array(
-        'menu' => $options['menu_id'],
-        'menu_class' => $menuClasses,
-        'theme_location' => $options['menu_id'],
-        'container' => false,
-        'container_class' => false,
-    ));
+                //===> Create Categories <===//
+                foreach ($categories as $category) :
+                    //===> Add Badge <===//
+                    if ($block_attributes["count_badge"]) {
+                        $count_badge = ' <span class="posts-count float-end">'.$category->count.'</span>';
+                    };
+                    //===> Create Item <===//
+                    echo '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.$count_badge.'</a></li>';
+                endforeach;
+            echo '</ul>';
+        }
+        //===> Get Posts List Menu <===//
+        elseif ($block_attributes['menu_type'] === "posts") {
+            //===> Create Menu <===//
+            echo '<ul class="'.$menuClasses.'">';
+                //===> Create New Query <===//
+                $the_query = new WP_Query(array(
+                    'paged' => $paged,
+                    'post_type' => $block_attributes['post_type'],
+                    'posts_per_page' => $block_attributes['items_count'],
+                ));
 
+                //==== Start Query =====//
+                if ($the_query->have_posts() ) :
+                    //==== Loop Start ====//
+                    while ($the_query->have_posts()):
+                        //===> Add Badge <===//
+                        if ($block_attributes["count_badge"]) {
+                            $count_badge = '<span class="posts-count float-end">'.get_post_views($post->ID).'</span>';
+                        };
+                        //===> Create Item <===//
+                        echo '<li><a href="'.get_permalink().'">'.get_the_title().$count_badge.'</a></li>';
+                    endwhile;
+                    //=== Reset Query Data ===//
+                    wp_reset_postdata();
+                endif;
+                //==== End Query =====//
+            echo '</ul>';
+        } 
+        //===> Get Classic Menu <===//
+        else {
+            echo wp_nav_menu(array(
+                'menu' => $block_attributes['menu_id'],
+                'menu_class' => $menuClasses,
+                'theme_location' => $block_attributes['menu_id'],
+                'container' => false,
+                'container_class' => false,
+            ));
+        }
+    echo "</{$block_attributes['tagName']}>";
     //===> End Navigation Wrapper <===//
-    echo "</{$options['tagName']}>";
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

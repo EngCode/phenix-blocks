@@ -1,4 +1,5 @@
 <?php
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //====> Shared Options <====//
     $assets_url = plugin_dir_url(__FILE__);
     $icons_url = str_replace('admin/panels', 'assets/img/blocks/pds/', $assets_url);
@@ -110,6 +111,11 @@
                     "name"  => 'pds_logical_block',
                     "title" => 'Logical Content',
                     "icon"  => $icons_url.'logical-block.svg',
+                ),
+                array(
+                    "name"  => 'pds_users_query_block',
+                    "title" => 'Users Query',
+                    "icon"  => $icons_url.'users-query.svg',
                 ),
             ));
         ?>

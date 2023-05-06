@@ -38,17 +38,18 @@ published as open-source project for web community benefits.
 #### 🚀 Phenix Blocks Key-Features (⭐:PRO, ✅: FREE)
 
 <ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ [Block] Responsive Logo</li>
-    <li>✅ [Block] Responsive Container</li>
-    <li>✅ [Block] Responsive Grid Row</li>
-    <li>✅ [Block] Responsive Column</li>
-    <li>✅ [Block] Responsive Advanced Buttons</li>
-    <li>✅ [Block] Responsive Navigation Menu</li>
-    <li>✅ [Block] PostTypes Query</li>
-    <li>✅ [Block] Taxonomies Query</li>
-    <li>✅ [Block] Breadcrumb (Page-Head)</li>
     <li>✅ [Block] PHP Theme Part</li>
     <li>✅ [Block] Inline elements</li>
+    <li>✅ [Block] Responsive Logo</li>
+    <li>✅ [Block] Responsive Column</li>
+    <li>✅ [Block] Responsive Grid Row</li>
+    <li>✅ [Block] Responsive Container</li>
+    <li>✅ [Block] Advanced Users Query</li>
+    <li>✅ [Block] Responsive Advanced Buttons</li>
+    <li>✅ [Block] Responsive Navigation Menu</li>
+    <li>✅ [Block] Advanced PostTypes Query</li>
+    <li>✅ [Block] Advanced Taxonomies Query</li>
+    <li>✅ [Block] Breadcrumb (Page-Head)</li>
     <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
     <li>✅ [Block] Taxonomies Links List</li>
     <li>⭐ [Block] Icon Font (FontAwesome)</li>

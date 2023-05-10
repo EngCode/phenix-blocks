@@ -1,0 +1,87 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Tables CSS
+ * ===> 02 - Options
+ * ===> 03 - Baseline
+ * ===> 04 - Columns
+*/
+
+/*==== Tables CSS ====*/
+.table,.wp-block-table table {
+    /*==== Options ====*/
+    --table-background : inherit;
+    --table-head-bg    : inherit;
+    --table-striped    : #f4f4f4;
+    --table-border     : 1px solid rgba(0,0,0, 0.1);
+    --table-padding    : 15px;
+    --table-radius     : 5px;
+
+    /*==== Baseline ====*/
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    /*==== Row ====*/
+    tr {border-bottom: var(--table-border);}
+    
+    /*==== Columns [Cells] ====*/ 
+    td, th {
+        @include padding-inline(#{var(--table-padding)});
+    }
+
+    td {
+        @include padding-block(calc( var(--table-padding) / 2.25 ));
+    }
+    
+    /*==== Head Column ====*/
+    th {
+        text-align: inherit;
+        @include padding-block(calc( var(--table-padding) / 1.5 ));
+    }
+
+    /*==== Striped Mode ====*/
+    &.striped tbody tr:nth-child(even) {
+        background-color: var(--table-striped);
+    }
+
+    /*==== Bordered ====*/
+    &.bordered {
+        border: var(--table-border);
+        /*==== Row Reset ====*/
+        tr {border-bottom: 0 none;}
+
+        /*==== Columns [Cells] ====*/
+        td, th {
+            border: var(--table-border);
+            @include padding-inline(var(--table-padding));
+        }
+    }
+
+    /*==== Borderless ====*/
+    &.borderless tr {border-bottom: 0 none;}
+}
+
+/*==== Table Responsive ====*/
+@mixin make-table-responsive($infix:'', $size: 1024px) {
+    .table-responsive#{$infix} {
+        overflow-x: auto;
+        .table {width: #{$size};}
+    }
+}
+
+@include make-table-responsive('', 1100px);
+
+@include xlarge('down') { 
+    @include make-table-responsive('-xl', 1400px);
+}
+
+@include large('down') { 
+    @include make-table-responsive('-lg', 1200px);
+}
+
+@include medium('down') { 
+    @include make-table-responsive('-md', 1024px);
+}
+
+@include small('down') { 
+    @include make-table-responsive('-sm', 768px);
+}

@@ -1,0 +1,113 @@
+/*===================================
+=                                   =
+=  - !Hello There                   =
+=  - this is Your working space     =
+=  - here you can customize phenix  =
+=  - to your app ui design needs    =
+=  - Good Luck :)                   =
+=                                   =
+===================================*/
+
+/*==== Design Options ====*/
+:root {
+    /*==== Global ====*/
+    --body-bg : #f6f6f6;
+    --icons-font: "Font Awesome 5 Pro";
+
+    /*==== Primary Color ====*/
+    --primary-color   : #0C97F9;
+    --primary-hover   : #1A69F4;
+    --primary-dark    : #040f27;
+    --primary-reverse : #FFFFFF;
+    --primary-offwhite: #e1eef7;
+    --offwhite-border : #a8c2e0;
+
+    /*==== Secondary Color ====*/
+    --secondary-color   : #F8C25B;
+    --secondary-hover   : #FB955D;
+    --secondary-dark    : #b03513;
+    --secondary-reverse : #000000;
+    --secondary-offwhite: #fddfa8;
+
+    /*==== Gradients ====*/
+    --primary-gradient   : var(--primary-color), var(--primary-hover);
+    --secondary-gradient : var(--secondary-color), var(--secondary-hover);
+    --success-gradient   : #22B567, #00A186;
+    --warning-gradient   : #FAD934, #F49D1A;
+    --danger-gradient    : #FD875B, #F9515A, #F96AAC;
+    --water-gradient     : #00C4FF, #1A69F4;
+    --ice-gradient       : #54AEFC, #3289E9, #5848D2;
+    --fire-gradient      : #FFD500, #FAA10B, #F4291A;
+    --purple-gradient    : #8772F7, #5F48DD;
+    --primary-purple     : var(--primary-color), #5848D2;
+    --blue-white         : #e9f1ff, #FFFFFF;
+
+    /*==== Profilaat Colors ====*/
+    --blue-color      : #3289E9;
+    --blue-offwhite   : #A8CDFD;
+    --silver-gradient : #f1f1f1 , #FFFFFF;
+    --silver-gradient-2nd : #f6f6f6, #FFFFFF;
+
+    /*=== Assets Colors ====*/
+    --links-color   : var(--primary-color);
+    --info-color    : #816CF3;
+    --gray-color    : #868e96;
+    --dark-color    : #343a40;
+    --success-color : #22B567;
+    --danger-color  : #DE3131;
+    --warning-color : #FAD934;
+    --disable-color : #ebebeb;
+
+    /*=== Assets Lighter ====*/
+    --info-light    : #CECCF9;
+    --gray-light    : #d9dde1;
+    --dark-light    : #343a40;
+    --success-light : #C1EED9;
+    --danger-light  : #fbbbbb;
+    --warning-light : #FFE875;
+
+    /*==== Typography Colors ====*/
+    --typography-color : #111111;
+    --light-reverse    : #000000;
+    --dark-reverse     : #FFFFFF;
+
+    /*==== Index Order ====*/
+    --header-index : 999991;
+    --modal-index  : 999999;
+    --dropdown-index : 999998;
+
+    /*==== Directions [do not edit] ====*/
+    --direction: #{$direction};
+    --direction-reverse: #{$direction-reverse};
+    --direction-start: #{$direction-start};
+    --direction-end: #{$direction-end};
+}
+
+/*==== Integration ====*/
+@import 'integration/wordpress'; //===> WordPress
+@import 'integration/splide';    //===> Splide Slider
+
+/*==== Components Modules ====*/
+@import 'components/breadcrumb'; //===> Breadcrumb
+@import 'components/buttons';    //===> Buttons & Badges
+@import 'components/dropdown';   //===> Dropdown
+@import 'components/navbar';     //===> Phenix Navbar
+@import 'components/tables';     //===> Tables & Datatables
+@import 'components/tabs';       //===> Panels & Tabs
+@import 'components/slider';     //===> Phenix Sliders
+
+/*==== Form Components ====*/
+@import 'form/uploader';
+@import 'form/form-controls';
+
+/*==== Utilities Modules ====*/
+@import 'utilities/main';       //===> Custom Utilities
+@import 'utilities/position';   //===> Postion Utilites
+@import 'utilities/typography'; //===> Typography Utilites
+@import 'utilities/sizes';      //===> Sizing Utilities
+@import 'utilities/margin';     //===> Margin Utilites
+@import 'utilities/padding';    //===> Padding Utilites
+@import 'utilities/colors';     //===> CSS Coloring System
+@import 'utilities/borders';    //===> CSS Borders
+@import 'utilities/visibility'; //===> Visibility Utilities
+@import 'utilities/plugins';    //===> Phenix Plugins Assets

@@ -1,0 +1,41 @@
+{
+	"apiVersion": 2,
+	"name": "phenix/page-head",
+	"version": "0.1.0",
+	"title": "Page Head",
+	"category": "design",
+	"description": "Page Title and Breadcrumb.",
+	"supports": {
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
+	},
+	"attributes" : {
+		"preview" : {
+			"type": "boolean",
+			"default": false
+		},
+
+		"mode": {
+			"type": "string",
+			"default": "title"
+		},
+
+		"title": {
+			"type": "object",
+			"default": {}
+		},
+
+		"breadcrumb": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+	"textdomain": "pds-blocks",
+	"editorScript": "px-head"
+}

@@ -1,0 +1,113 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Headline Sizes
+ * ===> 02 - Paragraph Sizes
+ * ===> 03 - Text Utilities
+ * ===> 04 - Text Alignment
+ * ===> 05 - Font Weight
+ * ===> 06 - Text Sizes
+*/
+
+/*==== Font Families ====*/
+.primary-font {font-family: var(--primary-font);}
+.secondary-font {font-family: var(--secondary-font);}
+
+/*==== Headline Sizes ====*/
+h1 {font-size: REM(32);}
+h2 {font-size: REM(28);}
+h3 {font-size: REM(25);}
+h4 {font-size: REM(23);}
+h5 {font-size: REM(20);}
+h6 {font-size: REM(17);}
+
+/*==== Font Sizes ====*/
+@mixin make-font-sizes($infix:'') {
+    /*==== Headline Sizes ====*/
+    .h1#{$infix} {font-size: REM(32);}
+    .h2#{$infix} {font-size: REM(28);}
+    .h3#{$infix} {font-size: REM(25);}
+    .h4#{$infix} {font-size: REM(23);}
+    .h5#{$infix} {font-size: REM(20);}
+    .h6#{$infix} {font-size: REM(17);}
+    
+    /*==== Display Headlines ====*/
+    .display#{$infix}-h1 {font-size: REM(62);}
+    .display#{$infix}-h2 {font-size: REM(52);}
+    .display#{$infix}-h3 {font-size: REM(48);}
+    .display#{$infix}-h4 {font-size: REM(44);}
+    .display#{$infix}-h5 {font-size: REM(40);}
+    .display#{$infix}-h6 {font-size: REM(36);}
+
+    /*==== Text Sizes ====*/
+    .fs-inherit {font-size: inherit;}
+    .fs#{$infix}-12,.tiny-text#{$infix} {font-size: 12px;}
+    .fs#{$infix}-13 {font-size: 13px;}
+    .fs#{$infix}-14,.small-text#{$infix} {font-size: REM(14);}
+    .fs#{$infix}-15 {font-size: REM(15);}
+    .fs#{$infix}-16 {font-size: REM(16);}
+    .fs#{$infix}-17 {font-size: REM(17);}
+    .fs#{$infix}-18,.large-text#{$infix} {font-size: REM(18);}
+    .fs#{$infix}-19 {font-size: REM(19);}
+    .fs#{$infix}-20,.xlarge-text#{$infix} {font-size: REM(20);}
+    .fs#{$infix}-20 {font-size: REM(20);}
+    .fs#{$infix}-22 {font-size: REM(22);}
+    .fs#{$infix}-24 {font-size: REM(24);}
+    .fs#{$infix}-25 {font-size: REM(25);}
+    .fs#{$infix}-26 {font-size: REM(26);}
+    .fs#{$infix}-28 {font-size: REM(28);}
+    .fs#{$infix}-30 {font-size: REM(30);}
+
+    /*==== Text Alignment ====*/
+    .tx-align#{$infix}-end   {text-align:end;}
+    .tx-align#{$infix}-left  {text-align: left;}
+    .tx-align#{$infix}-right {text-align: right;}
+    .tx-align#{$infix}-start {text-align: start;}
+    .tx-align#{$infix}-center  {text-align: center;}
+    .tx-align#{$infix}-justify {text-align:justify;}
+    .tx#{$infix}-nowrap {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+/*==== Text Utilities ====*/
+.tx-uppercase  {text-transform: uppercase;}
+.tx-underline  {text-decoration: underline;}
+.tx-capitalize {text-transform: capitalize;}
+.tx-line-through {text-decoration: line-through;}
+
+/*==== Font Weight ====*/
+.weight-thin   {font-weight: var(--thin-weight);}
+.weight-light  {font-weight: var(--light-weight);}
+.weight-xlight {font-weight: var(--xlight-weight);}
+.weight-medium {font-weight: var(--medium-weight);}
+.weight-bold   {font-weight: var(--bold-weight);}
+.weight-strong {font-weight: var(--strong-weight);}
+.weight-xbold  {font-weight: var(--xbold-weight);}
+.weight-black  {font-weight: var(--black-weight);}
+.weight-normal  {font-weight: var(--normal-weight);}
+
+/*==== Line Height ====*/
+.lineheight-100 {line-height: 1;}
+.lineheight-120 {line-height: 1.2;}
+.lineheight-130 {line-height: 1.3;}
+.lineheight-150 {line-height: 1.5;}
+.lineheight-160 {line-height: 1.6;}
+.lineheight-170 {line-height: 1.7;}
+.lineheight-180 {line-height: 1.8;}
+.lineheight-inherit {line-height: inherit;}
+
+/*==== Create Responsive Sizes ====*/
+@include make-font-sizes();
+
+@include medium() {
+    @include make-font-sizes('-md');
+};
+
+@include large() {
+    @include make-font-sizes('-lg');
+};
+
+@include xlarge() {
+    @include make-font-sizes('-xl');
+};

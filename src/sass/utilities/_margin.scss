@@ -1,0 +1,87 @@
+
+/*==== Tools ====*/
+@import '../assets/mixin';
+
+$space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+
+/*==== Margin All ====*/
+@mixin make_margin($infix:'') {
+    /*==== Auto Margins ====*/
+    .mgx#{$infix}-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ms#{$infix}-auto {margin-#{$direction-start}: auto;}
+    .me#{$infix}-auto {margin-#{$direction-end}: auto;}
+}
+
+/*==== Margin Top ====*/
+@mixin make_margin_top($infix:'') {
+    @each $size in $space_range {
+        .mg#{$infix}-#{$size},
+        .my#{$infix}-#{$size},
+        .mt#{$infix}-#{$size} { @include margin-block(#{REM($size)}, 'start');}
+    }
+}
+
+/*==== Margin Bottom ====*/
+@mixin make_margin_bottom($infix:'') {
+    @each $size in $space_range {
+        .mg#{$infix}-#{$size},
+        .my#{$infix}-#{$size},
+        .mb#{$infix}-#{$size} { @include margin-block(#{REM($size)}, 'end');}
+    }
+}
+
+/*==== Margin Start ====*/
+@mixin make_margin_start($infix:'') {
+    @each $size in $space_range {
+        .mg#{$infix}-#{$size},
+        .mx#{$infix}-#{$size},
+        .ms#{$infix}-#{$size} { @include margin-inline(#{REM($size)}, 'start');}
+    }
+}
+
+/*==== Margin End ====*/
+@mixin make_margin_end($infix:'') {
+    @each $size in $space_range {
+        .mg#{$infix}-#{$size},
+        .mx#{$infix}-#{$size},
+        .me#{$infix}-#{$size} { @include margin-inline(#{REM($size)}, 'end');}
+    }
+}
+
+/*==== Base Screen ====*/
+@include make_margin();
+@include make_margin_top();
+@include make_margin_bottom();
+@include make_margin_start();
+@include make_margin_end();
+
+/*==== Medium Screen ====*/
+@include medium(){
+    @include make_margin('-md');
+    @include make_margin_top('-md');
+    @include make_margin_bottom('-md');
+    @include make_margin_start('-md');
+    @include make_margin_end('-md');
+};
+
+/*==== Large Screen ====*/
+@include large(){
+    @include make_margin('-lg');
+    @include make_margin_top('-lg');
+    @include make_margin_bottom('-lg');
+    @include make_margin_start('-lg');
+    @include make_margin_end('-lg');
+};
+
+/*==== xLarge Screen ====*/
+@include xlarge(){
+    @include make_margin('-xl');
+    @include make_margin_top('-xl');
+    @include make_margin_bottom('-xl');
+    @include make_margin_start('-xl');
+    @include make_margin_end('-xl');
+};

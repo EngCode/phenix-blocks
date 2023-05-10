@@ -1,0 +1,34 @@
+/**======> Referance <======
+ * ===> 01 - Padding Block
+ * ===> 02 - Padding Inline
+*/
+
+//====> Padding Block <====//
+@mixin padding_block($size, $flow:'both') {
+    //====> Both <====//
+    @if ($flow == 'both') {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+
+    //====> Start <====//
+    @else if ($flow == 'start') {padding-top: $size;}
+
+    //====> End <====//
+    @else if ($flow == 'end') {padding-bottom: $size;}
+}
+
+//====> Padding Inline <====//
+@mixin padding_inline($size, $flow:'both') {
+    //====> Both <====//
+    @if ($flow == 'both') {
+        padding-#{$direction-start}: $size;
+        padding-#{$direction-end}: $size;
+    }
+
+    //====> Start <====//
+    @else if ($flow == 'start') {padding-#{$direction-start}: $size;}
+
+    //====> End <====//
+    @else if ($flow == 'end') {padding-#{$direction-end}: $size;}
+}

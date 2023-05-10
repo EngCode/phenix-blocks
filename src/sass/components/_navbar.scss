@@ -1,0 +1,231 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Phenix Navigation 
+ * ===> 02 - CSS Options
+ * ===> 03 - Menu Items
+ * ===> 04 - Links
+ * ===> 05 - 
+ * ===> 06 - Hover & Active
+*/
+
+/*==== Utlites Repeaters ====*/
+@import '../assets/mixin';
+
+/*==== Phenix Navigation ====*/
+.px-navigation {
+    /*==== CSS Options ====*/
+    --font-size : 14px;
+    --space-in  : #{REM(10)};
+    --height : #{REM(34)};
+    --color  : var(--gray-color);
+    --color-hvr : var(--primary-color);
+    --background : transparent;
+    --background-hvr : transparent;
+    --font-weight : var(--bold-weight);
+
+    /*==== global options ====*/
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    
+    /*==== General Style ====*/
+    ul {
+        @extend %reset-list;
+        /*==== items ====*/
+        li {
+            /*==== inherited ====*/
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        /*==== Links ====*/
+        li > a {
+            display: block;
+            transition: none;
+            color: var(--color);
+            line-height: inherit;
+            transition: color 0.3s;
+            &:focus, &:active {outline: 0 none;}
+        }
+    }
+
+    /*==== Menu Theme ====*/
+    > ul > li {
+        /*==== Options ====*/
+        min-height: var(--height);
+        line-height: var(--height);
+        color: var(--color);
+        background-color: var(--background);
+        position: relative;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s, padding 0.3s;
+        @include padding_inline(var(--space-in));
+        /*==== Hover & Active ====*/
+        &:hover, &.px-item-active, &.px-submenu-active {
+            color: var(--color-hvr);
+            > a {color: var(--color-hvr);}
+            background-color: var(--background-hvr);
+        }
+    }
+
+    /*==== Submenu Theme ====*/
+    .submenu {
+        /*==== CSS Options ====*/
+        --height : 30px;
+        --radius : 5px;
+        --background : white;
+        --space-in : #{REM(15)};
+        --color : var(--gray-color);
+        --box-shadow : 3px 3px 8px 0 rgba(0,0,0, 0.05);
+        /*==== ... ====*/
+        color: var(--color);
+        font-weight : normal;
+        min-height: var(--height);
+        box-shadow: var(--box-shadow);
+        z-index: var(--dropdown-index);
+        background-color: var(--background);
+        @include padding-block(#{calc(var(--space-in)/1.5)});
+        border-radius: 0 0 var(--radius) var(--radius);
+        /*==== items ====*/
+        &:not(.megamenu) li {
+            position: relative;
+            line-height: var(--height);
+            ul {border-radius: var(--radius);}
+            @include padding-inline(var(--space-in));
+            transition: color 0.3s ease, background-color 0.3s;
+        }
+        /*==== hover ====*/
+        li:hover, li.px-item-active {
+            color: var(--color-hvr);
+            > a {color: var(--color-hvr);}
+        }
+    }
+
+    .arrow-icon::before {
+        line-height: inherit;
+        float: $direction-end;
+        margin-#{$direction-start}: 8px;
+    }
+
+    /*==== Submenu Prepare ====*/
+    @include large() {
+        &[data-hover] {
+            .submenu, .megamenu {
+                top: 100%;
+                width: 100%;
+                display: none;
+                margin-top: -2px;
+                position: absolute;
+                min-width: REM(190);
+                #{$direction-start}: 0;
+                /*==== Level-3+ ====*/
+                .submenu {top: 0;#{$direction-start}: 100%;}
+            }
+            
+            &.px-vertical {
+                .submenu, .megamenu {
+                    top: 0;
+                    #{$direction-start}: 100%;
+                    border-radius: var(--radius);
+                }
+            }
+        }
+    };
+
+    &:not([data-hover]) .submenu {
+        box-shadow: unset;
+        background-color: inherit;
+        @include padding-block(calc(var(--space-in)/2));
+    }
+
+    /*==== Show Submenu ====*/
+    .px-menu-active, &[data-hover] li:hover {
+        > .submenu, > .megamenu {display: block;}
+    }
+}
+
+/*==== Phenix Custom Menu ====*/
+.px-custom-menu {
+    /*==== CSS Options ====*/
+    --width : 300px;
+    /*==== Standard ====*/
+    position: fixed;
+    top: 0;
+    #{$direction-end}: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    opacity: 0;
+    z-index: var(--modal-index);
+    @extend .align-center-y;
+    @extend .align-center-x;
+    /*==== Activated ====*/
+    &.px-menu-active {
+        opacity: 1;
+        @extend %flexbox;
+    }
+    /*==== Menu Toggle ====*/
+    .menu-toggle {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.7;
+    }
+    /*==== Menu wrapper ====*/
+    .menu-wrapper {
+        background-color: #fff;
+        padding: REM(15) REM(25);
+        position: relative;
+        z-index: 1;
+        width: var(--width);
+        max-height: 95vh;
+        overflow-y: auto;
+        border-radius: 5px;
+        /*==== Submenu Arrow ====*/
+        .arrow-icon::before {
+            line-height: inherit;
+            float: $direction-end;
+        }
+
+        /*==== Menu ====*/
+        > ul {
+            font-size: 15px;
+            line-height: 35px;
+            /*==== Links ====*/
+            li > a {
+                color: inherit;
+                display: block;
+                &:focus, &:active {outline: 0 none;}
+            }
+            /*==== Items ====*/
+            > li {
+                font-weight: var(--medium-weight);
+            }
+            /*==== icons ====*/
+            .icon {
+                top: -1px;
+                line-height: 1;
+                font-size: 15px;
+                font-style: normal;
+                text-align: center;
+                position: relative;
+                @extend %inline-block;
+                color: var(--primary-color);
+                margin-#{$direction-end}: 5px;
+            }
+            /*==== Submenu ====*/
+            .submenu, .megamenu {
+                list-style: none;
+                margin: 0;
+                padding: 8px;
+                background-color: rgba(#000, 0.03);
+                display: none;
+                line-height: 28px;
+                font-size: 14px;
+                color: var(--gray-color);
+                font-weight: normal;
+                border-radius: 4px;
+            }
+        }
+    }
+}

@@ -53,7 +53,7 @@ function px_query_render($block_attributes, $content) {
                 //===> Flexbox Options <===//
                 elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
                     //===> Slider Mode <===//
-                    if ($block_attributes['flexbox']['slider']) {
+                    if (isset($block_attributes['flexbox']['slider'])) {
                         $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
                         $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
                     } else {

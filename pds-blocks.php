@@ -1,9 +1,9 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks (FREE)
+  * Plugin Name: Phenix Blocks
   * Plugin URI: https://phenixthemes.com
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 0.7.7
+  * Version: 0.7.6
   * Author: Abdullah.Ramadan
   * Author URI:https://phenixthemes.com
   * License: GPL2

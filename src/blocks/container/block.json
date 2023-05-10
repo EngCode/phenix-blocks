@@ -1,0 +1,75 @@
+{
+    "apiVersion": 2,
+	"name": "phenix/container",
+	"version": "1.0.0",
+	"title": "Container",
+    "keywords": ["pds", "pds-blocks", "section", "group", "wrapper", "container"],
+	"category": "design",
+	"description": "",
+	"supports": {
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
+	},
+
+    "attributes" : {
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+
+        "size" : {
+            "type": "string",
+            "default": ""
+        },
+
+        "isSection" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "isFlexbox" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "preview" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "flexbox": {
+            "type": "object",
+            "default": {}
+        },
+
+        "typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        }
+    },
+
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+
+	"textdomain": "pds-blocks",
+	"editorScript": "file:./index.js"
+}

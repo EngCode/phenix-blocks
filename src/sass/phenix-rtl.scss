@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/*!
+ * Phenix UI v0.7-beta (https://design.phenixthemes.com)
+ * Copyright 2012-2022 Abdullah.Ramadan
+ * Copyright 2020-2022 Phenix Themes.
+ * Licensed under MIT (https://github.com/EngCode/phenix-ui/blob/main/LICENSE)
+*/
+
+/*==== Direction Options ====*/
+$direction: rtl;
+$direction-reverse: ltr;
+$direction-start: right;
+$direction-end: left;
+
+/*==== Font Options ====*/
+:root {
+    //==== Font Families ====//
+    --primary-font: "Somar Rounded";
+    --secondary-font: "Somar Rounded";
+
+    //==== Font Weight ====//
+    --thin-weight   : 100;
+    --xlight-weight : 200;
+    --light-weight  : 300;
+    --normal-weight : 400;
+    --medium-weight : 500;
+    --bold-weight   : 600;
+    --strong-weight : 700;
+    --xbold-weight  : 800;
+    --black-weight  : 900;
+
+    /*==== Responsive REM:Base ====*/
+    --rem-xl : 16px; //===> xLarge Screens and Up
+    --rem-lg : 16px; //===> Large Screens and Up
+    --rem-md : 15px; //===> Medium Screens and Up
+    --rem-sm : 15px; //===> Small Screens and Up
+    --rem-xs : 15px; //===> Extra Small Screens and Up
+
+    //==== Standard Line-Height ====//
+    --line-height: 1.65;
+}
+
+/*==== Required Modules ====*/
+@import 'assets/mixin';     //===> SASS Mixin
+@import 'assets/selectors'; //===> SASS Selectors
+@import 'assets/reset';     //===> CSS RESET
+@import 'grid/main';        //===> Layout Grid System
+
+/*==== Customizer ====*/
+@import 'customize';

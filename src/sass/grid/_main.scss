@@ -1,0 +1,70 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Containers
+ * ===> 02 - Breakpoints Container
+ * ===> 03 - Flexbox Grid
+ * ===> 04 - Responsive Columns
+ * ===> 05 - Assets and Utilities
+*/
+
+/*==== Assets ====*/
+@import '../assets/selectors';
+@import '../assets/mixin';
+
+%container {
+    position: relative;
+    @include margin_inline(auto);
+    --container-padding: #{REM(15)};
+}
+
+/*==== Containers ====*/
+.container, .container-fluid, .container-xs,
+.container-sm, .container-md, .container-xl, .container-lg {
+    @extend %container;
+    @include padding_inline(var(--container-padding));
+}
+
+/*==== Containers ====*/
+.container, .container-xl, .container-lg {max-width: 1200px;}
+
+.container-fluid {
+    width:100%;
+    max-width: 100%;
+}
+
+/*==== Breakpoints Container ====*/
+.container-xs {
+    max-width: 360px;
+    @include small() { max-width: 480px; }
+}
+
+.container-sm {
+    max-width: 567px;
+    @include medium() { max-width: 640px; }
+}
+
+.container-md {
+    max-width: 768px;
+    @include large() { max-width: 1024px; }
+}
+
+@media screen and (min-width: 1450px) {
+    .container-xl, .container-lg, .container-fluid {--container-padding : #{REM(30)};}
+}
+
+.container-xl, .container-lg {
+    @media screen and (max-width: 1449px) {max-width: 90%;}
+    @media screen and (max-width: 1100px) {max-width: 100%;}
+    @media screen and (min-width: 1450px) {max-width: 1400px;}
+}
+
+/*==== Flexbox Grid ====*/
+.row {
+    @extend %flexbox;
+    @include grid_gap(REM(30), 'x');
+}
+
+/*==== Responsive Columns ====*/
+@import 'columns';
+
+/*==== Assets and Features ====*/
+@import 'utilities';

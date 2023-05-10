@@ -1,0 +1,146 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Borders Style
+ * ===> 02 - Borders Size
+ * ===> 03 - Dividers 
+ * ===> 04 - Radius 
+ * ===> 05 - Grouping 
+*/
+
+/*==== Dividers ====*/
+[class*="divider"] {
+    border-width: 0;
+    border-style: solid;
+    &:not([class*="border-"]) { border-color: rgba(#000, 0.1); }
+}
+
+.divider-b, .divider-y {border-bottom-width: 1px;}
+.divider-t, .divider-y {border-top-width: 1px;}
+.divider-s, .divider-x {border-#{$direction-start}-width: 1px;}
+.divider-e, .divider-x {border-#{$direction-end}-width: 1px;}
+.divider-b:last-child {border-width: 0;}
+
+/*==== Borders Style ====*/
+.border-reset {border-width: 0;}
+.border-solid {border-style: solid;}
+.border-dashed {border-style: dashed;}
+.border-dotted {border-style: dotted;}
+
+/*==== Borders Size ====*/
+@mixin make-borders ($infix:'') {
+    /*==== All ====*/
+    .border#{$infix}-1 {border-width: 1px;}
+    .border#{$infix}-2 {border-width: 2px;}
+    .border#{$infix}-3 {border-width: 3px;}
+    .border#{$infix}-4 {border-width: 4px;}
+    .border#{$infix}-5 {border-width: 5px;}
+    /*==== Bottom ====*/
+    .border#{$infix}-bottom-1 {border-bottom-width: 1px;}
+    .border#{$infix}-bottom-2 {border-bottom-width: 2px;}
+    .border#{$infix}-bottom-3 {border-bottom-width: 3px;}
+    .border#{$infix}-bottom-4 {border-bottom-width: 4px;}
+    .border#{$infix}-bottom-5 {border-bottom-width: 5px;}
+    /*==== Top ====*/
+    .border#{$infix}-top-1 {border-top-width: 1px;}
+    .border#{$infix}-top-2 {border-top-width: 2px;}
+    .border#{$infix}-top-3 {border-top-width: 3px;}
+    .border#{$infix}-top-4 {border-top-width: 4px;}
+    .border#{$infix}-top-5 {border-top-width: 5px;}
+    /*==== Start ====*/
+    .border#{$infix}-start-1 {border-#{$direction-start}-width: 1px;}
+    .border#{$infix}-start-2 {border-#{$direction-start}-width: 2px;}
+    .border#{$infix}-start-3 {border-#{$direction-start}-width: 3px;}
+    .border#{$infix}-start-4 {border-#{$direction-start}-width: 4px;}
+    .border#{$infix}-start-5 {border-#{$direction-start}-width: 5px;}
+    /*==== End ====*/
+    .border#{$infix}-end-1 {border-#{$direction-end}-width: 1px;}
+    .border#{$infix}-end-2 {border-#{$direction-end}-width: 2px;}
+    .border#{$infix}-end-3 {border-#{$direction-end}-width: 3px;}
+    .border#{$infix}-end-4 {border-#{$direction-end}-width: 4px;}
+    .border#{$infix}-end-5 {border-#{$direction-end}-width: 5px;}
+}
+
+@include make-borders();
+
+@include medium() {
+    @include make-borders('-md');
+};
+
+@include large() {
+    @include make-borders('-lg');
+};
+
+/*==== Radius Utilites ====*/
+.radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl, .radius-none, .radius-circle, .radius-height, .radius-rounded {
+    --radius : 0;
+    border-radius: var(--radius);
+}
+
+/*==== Radius Sizes ====*/
+.radius-sm      {--radius: 4px;}
+.radius-md      {--radius: 6px;}
+.radius-lg      {--radius: 8px;}
+.radius-xl      {--radius: 10px;}
+.radius-xxl     {--radius: 15px;}
+.radius-circle  {--radius: 50%;}
+.radius-height  {--radius: var(--height);}
+.radius-rounded {--radius: 62px;}
+
+/*==== Radius Position ====*/
+.radius-top     {border-radius: var(--radius) var(--radius) 0 0;}
+.radius-bottom  {border-radius: 0 0 var(--radius) var(--radius);}
+
+.radius-start {
+    @if ($direction == 'ltr') {border-radius: var(--radius) 0 0 var(--radius);} 
+    @else {border-radius: 0 var(--radius) var(--radius) 0;} 
+}
+
+.radius-top-start {
+    @if ($direction == 'ltr') {border-radius: var(--radius) 0 0 0;} 
+    @else {border-radius: 0 var(--radius) 0 0;} 
+}
+
+.radius-bottom-start {
+    @if ($direction == 'ltr') {border-radius: 0 0 0 var(--radius);} 
+    @else {border-radius: 0 0 var(--radius) 0;}
+}
+
+.radius-end {
+    @if ($direction == 'ltr') {border-radius: 0 var(--radius) var(--radius) 0;} 
+    @else {border-radius: var(--radius) 0 0 var(--radius);} 
+}
+
+.radius-top-end {
+    @if ($direction == 'ltr') {border-radius: 0 var(--radius) 0 0;} 
+    @else {border-radius: var(--radius) 0 0 0;} 
+}
+
+.radius-bottom-end {
+    @if ($direction == 'ltr') {border-radius: 0 0 0 var(--radius);} 
+    @else {border-radius: 0 0 var(--radius) 0;} 
+}
+
+/*==== Grouping ====*/
+.px-group {
+    /*==== Flex Grid ====*/
+    @extend .flexbox;
+    
+    /*==== First Child ====*/
+    > *:nth-child(1) ,> *:nth-child(1) > .form-control {
+        @if ($direction == 'ltr') {border-radius: var(--radius) 0 0 var(--radius);}
+        @else {border-radius: 0 var(--radius) var(--radius) 0;}
+    }
+    /*==== Last Child ====*/
+    > *:nth-last-child(1), > *:nth-last-child(1) > .form-control {
+        @if ($direction == 'rtl') {border-radius: var(--radius) 0 0 var(--radius);}
+        @else {border-radius: 0 var(--radius) var(--radius) 0;}
+    }
+    /*==== Middle Child's ====*/
+    > *:not(:nth-child(1)):not(:nth-last-child(1)):not(.px-dropdown-list) {border-radius: 0;}
+
+    /*==== Vertical ====*/
+    &.px-group-v {
+        flex-flow: column;
+        > *:nth-child(1) {@extend .radius-top;}
+        > *:nth-last-child(1) {@extend .radius-bottom;}
+    }
+}

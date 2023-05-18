@@ -141,6 +141,7 @@ can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/develope
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
 ---
+
 - **Components Progress**
     - [x]  **Phenix Colors**
     - [x]  **Phenix Select**
@@ -152,15 +153,15 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - **Position Controls**
         - [x]  **Position Type**
         - [ ]  **Element Index Order**
-        - [ ]  **Position Controller**
+        - [x]  **Position Controller**
     - **Phenix Backgrounds**
         - [ ]  **Video Background**
         - [x]  **Images/Colors/Gradients**
         - [x]  **Background CSS Utilities**
     - **Typography Settings**
-        - [ ]  **Line-Height**
-        - [ ]  **Underline/Line-Through**
-        - [ ]  **Transform (Uppercase, Capitalize)**
+        - [x]  **Line-Height**
+        - [x]  **Underline/Line-Through**
+        - [x]  **Transform (Uppercase, Capitalize)**
         - [x]  **Size/Color**/**Alignment/Weight**
     - **Meta-box Updater (PRO)**
         - [ ]  **Meta-box Select**
@@ -183,13 +184,13 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Position Controller**
             - [x]  **Position Type**
             - [ ]  **Position z-index**
-            - [ ]  **Position Directions (PRO)**
+            - [x]  **Position Directions (PRO)**
     - **Typography**
         - [x]  **Alignment**
         - [x]  **Size/Weight**
-        - [ ]  **Text Styles**
+        - [x]  **Text Styles**
         - [ ]  **Text Shadow**
-        - [ ]  **Text Direction**
+        - [x]  **Text Direction**
     - **Animations(PRO)**
         - [ ]  **Exit Animation**
         - [x]  **Inter Animation**
@@ -198,10 +199,10 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Styles**
         - [x]  **********************Flexbox**********************
         - [x]  **Typography**
-        - [ ]  **Compact Mode**
+        - [x]  **Compact Mode**
     - **Padding/Margin**
-        - [ ]  **Margin Controller**
-        - [ ]  **Padding Controller**
+        - [x]  **Margin Controller**
+        - [x]  **Padding Controller**
     - ******************************Slider Mode Set******************************
         - [ ]  **Controls Style**
         - [ ]  **Pagination Style**
@@ -212,24 +213,18 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Box Border**
         - [ ]  **Box Shadow**
         - [ ]  **Overlay Link**
-        - [ ]  **Popup Trigger**
         - [ ]  **Transition Speed**
 
 ---
 
 - **Blocks Progress & Tasks**
     - **Container**
+        - [ ]  **Shapes Dividers**
         - [x]  ****************************Styles Options****************************
-            - [ ]  **Padding/Margin**
-            - [ ]  **Shapes Dividers**
         - [x]  **Animations Effects**
         - [x]  ************************************Responsive Options************************************
-            - [x]  **Display**
-            - [x]  **Flexbox Set**
-            - [x]  **Typography**
-            - [ ]  **Padding/Margin**
     - **Grid Row**
-        - [ ]  **Columns Gutter**
+        - [x]  **Columns Gutter**
         - [x]  ****************************Styles Options****************************
         - [x]  **Slider Options**
         - [x]  **Responsive Options**
@@ -250,7 +245,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - **PDS Button**
         - [x]  **Trigger Data**
         - [x]  **Style Options**
-            - [ ]  **Padding/Margin**
+            - [x]  **Padding/Margin**
             - [ ]  **Dimensions Utile**
         - [x]  **Typography Options**
         - [x]  **Support for Icons**
@@ -267,17 +262,35 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Access Type : [Users Only, Everyone]**
         - [ ]  **Access Rule : [Admin, Editor, etc..]**
     - **Icon Element**
-        - [ ]  **Custom Icon**
-        - [ ]  **Font Awesome**
-        - [ ]  **Spacing Options**
-        - [ ]  **Typography Options**
-        - [ ]  **Dimensions Options**
-        - [ ]  **Responsive Options**
+        - [x]  **Custom Icon**
+        - [x]  **Font Awesome**
+        - [x]  **with URL**
+        - [x]  **Spacing Options**
+        - [x]  **Typography Options**
+        - [x]  **Dimensions Options**
+        - [x]  **Responsive Options**
+    - **Inline elements**
+        - [x]  ****************URL Link****************
+        - [x]  **With Icon**
+        - [x]  **Style Options**
+            - [x]  **Spacing**
+            - [ ]  **Colored Text**
+            - [ ]  **Gradient Text**
+        - [x]  **Typography Options**
+    - **Text elements**
+        - [x]  **Types**
+            - [x]  **Headlines**
+            - [x]  **Paragraph**
+            - [x]  **Text Lists**
+        - [x]  **With Icon**
+        - [x]  ****************URL Link****************
+        - [x]  **Style Options**
+            - [x]  **Spacing**
+            - [ ]  **Colored Text**
+            - [ ]  **Gradient Text**
+        - [x]  **Typography Options**
     - **Phenix Menu**
-        - [x]  **Data Type**
-            - [x]  **Menu**
-            - [x]  **Posts**
-            - [x]  **Taxonomies**
+        - [x]  **Multiple Data Type**
         - [ ]  **Items Options**
             - [ ]  **Animated**
             - [x]  **With icon**
@@ -330,70 +343,53 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Show By URL Hash (PRO)**
         - [ ]  **Timed Hash Appearance (PRO)**
         - [ ]  **Show** **When Scroll to Some ID Element (PRO)**
-    - **Inline elements**
-        - [x]  ****************URL Link****************
-        - [x]  **With Icon**
-        - [x]  **Style Options**
-            - [ ]  **Spacing**
-            - [ ]  **Colored Text**
-            - [ ]  **Gradient Text**
-        - [x]  **Typography Options**
-    - **Text elements**
-        - [x]  **Types**
-            - [x]  **Headlines**
-            - [x]  **Paragraph**
-            - [x]  **Text Lists**
-        - [x]  **With Icon**
-        - [x]  ****************URL Link****************
-        - [x]  **Style Options**
-            - [ ]  **Spacing**
-            - [ ]  **Colored Text**
-            - [ ]  **Gradient Text**
-        - [x]  **Typography Options**
     - **Media Element**
         - [ ]  ****************URL Link****************
+        - [ ]  **With Icon**
         - [ ]  **Media Size**
         - [ ]  **Media Type**
         - [ ]  **Element Type**
         - [ ]  **Lazy-loading**
+        - [ ]  **With Inner-Blocks**
         - [ ]  **Lightbox Player (PRO)**
         - [ ]  **Animations Effects (PRO)**
     - **PDS Form [CF7 Rendered] (PRO)**
         - [ ]  **Select the Form**
     - **Custom Code (PRO)**
         - [x]  **Preview/Edit in the Workspace.**
-        - [x]  **Type [HTML, CSS, JS, Short-Code, PHP!?]**
-    - **Table of Content (PRO)**
-        - [ ]  **a block to generate a list of the titles in the current page.**
-    - **Core Image (PRO)**
+        - [x]  **Type [HTML, CSS, JS, Short-Code]**
+    - **~~Table of Content (Pattern)~~**
+        - [x]  **a block to generate a list of the titles in the current page.**
+    - **~~Core Image (PRO)~~**
         - [ ]  **Sizing Options**
         - [ ]  **Animations Effects**
-    - **Core Paragraph (PRO)**
+    - **~~Core Paragraph (PRO)~~**
         - [ ]  **Styling Options**
         - [ ]  **Typography Options**
         - [ ]  **Max Length to Show**
         - [ ]  **Animations Effects**
         - [ ]  **Responsive Settings**
         - [ ]  **Popup/Modal Trigger [on-scroll/click]**
-    - **Core Headline (PRO)**
+    - **~~Core Headline (PRO)~~**
         - [ ]  **Colored Word**
         - [ ]  **Styling Options**
         - [ ]  **Typography Options**
         - [ ]  **Animations Effects**
         - [ ]  **Responsive Settings**
         - [ ]  **Popup/Modal Trigger [on-scroll/click]**
-    - **Core List (PRO)**
+    - **~~Core List (PRO)~~**
         - [ ]  **Icons Options**
         - [ ]  **Styling Options**
         - [ ]  **Typography Options**
         - [ ]  **Animations Effects**
         - [ ]  **Responsive Settings**
         - [ ]  **Slider/Grid Mode Support**
-    - **Core Table (PRO)**
+    - **~~Core Table (PRO)~~**
         - [ ]  **Styling Options**
         - [ ]  **Responsive Table**
         - [ ]  **Typography Options**
         - [ ]  **Data Table Mode Options**
+
 ---
 
 - **Developer Tools Progress**
@@ -464,6 +460,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - **Bugs and Issues Progress & Tasks**
     - [x]  **Patterns Preview Solution**
     - [ ]  **Dropdown Dynamic Positions**
+    - [ ]  **Number Input Increasing Steps**
     - [x]  **New Preview Examples for All Blocks**
     - [x]  **Sliders in Site Editor not running correctly**
 
@@ -514,199 +511,6 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  [**Gutenberg Editor Blocks**](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
     - [x]  [Gutenberg Editor Components](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
     - [x]  **Theme & Plugin Structure [[Files and Folders]](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)**
-
----
-
-- ************************************************Selecting React Elements [Tip]************************************************
-    
-    To select a React element, you would typically use the `useRef` hook. Here is an example of how to use it:
-    
-    ```jsx
-    import React, { useRef } from 'react';
-    
-    function MyComponent() {
-      const myRef = useRef(null);
-    
-      const handleClick = () => {
-        console.log(myRef.current);// logs the DOM node of the selected element
-      };
-    
-      return (
-        <div ref={myRef} onClick={handleClick}>
-          Click me!
-        </div>
-      );
-    }
-    ```
-    
-    In this example, `useRef` is used to create a reference to a `div` element. The `ref` prop is then set to the reference, which allows you to access the underlying DOM node of the element using the `.current` property of the reference. In the `handleClick` function, `myRef.current` is logged to the console, which logs the underlying `div` DOM node when the element is clicked.
-    
-- ******************************************************************Custom Query & Taxonomies Reference******************************************************************
-    
-    > In this example, we are querying for published posts of type 'post', and retrieving 10 posts per page. We are ordering the posts by date in descending order.
-    > 
-    
-    ```php
-    $the_query = new WP_Query( array(
-        ~~'post_type' => 'post',~~
-        'post_status' => 'publish',
-        ~~'posts_per_page' => 10,
-        'orderby' => 'date',
-        'order' => 'DESC',~~
-        'meta_query' => array(
-            array(
-                'key' => 'your_custom_field_name',
-                'value' => 'your_custom_field_value',
-                'compare' => '=',
-                'type' => 'CHAR',
-            ),
-        ),
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'your_taxonomy_name',
-                'field' => 'slug',
-                'terms' => array( 'term1', 'term2', 'term3' ),
-                'operator' => 'IN'
-            )
-        ),
-    ) );
-    ```
-    
-    ```php
-    $categories = get_categories( array(
-        ~~'orderby' => 'name',~~
-        ~~'order' => 'ASC',
-        'hide_empty' => false,~~
-        'exclude' => array(),
-        'include' => array(),
-        ~~'number' => '',~~
-        'fields' => 'all',
-        'slug' => '',
-        'parent' => '',
-        'hierarchical' => true,
-        'child_of' => 0,
-        'get' => '',
-        'name__like' => '',
-        'description__like' => '',
-        'pad_counts' => false,
-        'offset' => '',
-        'search' => '',
-        'cache_domain' => 'core',
-        ~~'name' => '',~~
-        'feed' => '',
-        'meta_key' => '',
-        'meta_value' => '',
-    ) );
-    ```
-    
-    ```php
-    $users = get_users(array(
-        'blog_id'            => $GLOBALS['blog_id'],
-        ~~'role'               => '',~~
-        'meta_key'           => '',
-        'meta_value'         => '',
-        'meta_compare'       => '',
-        'meta_query'         => array(),
-        'include'            => array(),
-        'exclude'            => array(),
-        ~~'orderby'            => 'login',
-        'order'              => 'ASC',~~
-        'offset'             => '',
-        'search'             => '',
-        ~~'number'             => '',~~
-        'count_total'        => false,
-        'fields'             => 'all',
-        'who'                => '',
-        ~~'has_published_posts' => null,~~
-        'date_query'         => array(),
-        'include_selected'   => false,
-    ));
-    ```
-    
-
----
-
-### Meta-Boxes Concepts Explain :
-
-this is a draft IDEA for how to create a meta-boxes for any Post Type or Taxonomy
-
-- ********Concept Code********
-    
-    ```jsx
-    /*===> Metabox Syntax <====*/
-    $metabox_template => array(
-    		"type"  => $meta_field_type,
-    		"data"  => $post_or_taxonomy,
-        "name"  => $uniuqe_string,
-    		"label" => $label_string,
-    		"enable" => $enable_disable,
-    		"default"  => $default_value,
-    		"position" => $panel_or_editor,
-    		"data-set" => $types_or_taxonomies,
-    );
-    
-    /*===> Metabox Types <====*/
-    $meta_types => array(
-    		"number"  => array($type, $default_value), // for Number-Counter control
-    		"array"   => array($type, $options_array, $multiple), // for select control
-    		"string"  => array($type, $default_value), // for normal text input
-    		"boolean" => array($type, $default_value), // for Switch Button control
-    		"file"    => array($type, $default_value, $multiple), // for uploading files
-    		"media"   => array($type, $default_value, $multiple), // for uploading Media
-    );
-    ```
-    
-
----
-
-### Templates Meta Concepts Explain :
-
-this how you create a meta-boxes for the PHP theme-parts that you call in the the “Theme Part” block and this options shows in the block settings panel and it generates dynamic options controls to pass it down to your theme-part and get creative.
-
-- ********Concept Code********
-    
-    ```jsx
-    /*===> Theme Parts Meta Syntax <====*/
-    $templates_meta => array(
-        /*===> Settings Features <===*/
-        "features" => array("grid", "spacing", "typography"),
-    
-    		/*===> a List of Options <===*/
-    		"options" => array(
-    				/*===> Define Option for the Part <===*/
-    				"option-name" => array("type" => "string", "default" => "post"),
-    
-    				/*===> Nested List of Options <===*/
-    				"options-name" => array("type" => "options", "default" => array(
-    						"enable" => array("type" => "boolean", "default" => false),
-    				)),
-    		)
-    );
-    
-    /*===> Theme Parts Meta Types <====*/
-    $meta_types => array(
-    		"icon"    => array($type, $default_value), // for icon control selector
-    		"number"  => array($type, $default_value), // for Number-Counter control
-    		"files"   => array($type, $options_array, $multiple), // for uploader control
-    		"array"   => array($type, $options_array, $multiple), // for select control
-    		"string"  => array($type, $default_value), // for normal text input
-    		"boolean" => array($type, $default_value), // for Switch Button control
-    		"post-type" => array($type, $options_array, $multiple), // select from post-types
-    		"taxonomy" => array($type, $options_array, $multiple), // select from taxonomies
-        //===> to create nested options <===//
-    		"options" => array($type, $options_list => array(
-    				"option-name" => array($type, $default_value),
-    		)),
-    );
-    
-    /*===> Theme Parts Meta Features <====*/
-    $meta_features => array(
-    		"grid" => "show the flexbox options like the grid-row block.",
-    		"spacing" => "show the style options for [padding, margin].",
-    		"background" => "show the style option for backgrounds.",
-    		"typography" => "show the typography settings for text like [size, alignment, colors]",
-    );
-    ```
 ---
 
 ### Credits

@@ -16,7 +16,16 @@ import OptionControl from '../px-controls/switch';
 import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
-import SliderSet from '../px-controls/sets/slider';
+import ScreensTabs from "../px-controls/tabs";
+import StylesSet from '../px-controls/sets/styles';
+import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
+import AnimationsSet from '../px-controls/sets/animations';
+import PhenixComponentsBuilder from '../px-controls/panel-scripts';
+
+import PaddingSet from '../px-controls/sets/padding';
+import MarginSet from '../px-controls/sets/margin';
+import PositionSet from '../px-controls/sets/position';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -124,18 +133,23 @@ export default function Edit(props) {
         <BlockControls>
             <Toolbar label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
-                {attributes.isFlexbox ? <PxDropDown title={__("Grid Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-container-storage divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        {attributes.flexbox?.equals || attributes.flexbox?.slider ? <>
-                            <label className='mb-10 fs-12 weight-medium'>{__("Columns Size", "pds-blocks")}</label>
-                            <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
-                            <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />
-                            <PhenixNumber name={`cols-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={set_flexbox} />
-                            <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
-                        </>: null}
-                        {!attributes.flexbox.slider ? <OptionControl key={`slider-${uniqueKey}`} name={`equals`} value="boolean" checked={attributes.flexbox.equals} onChange={set_flexbox} type='switch-checkbox' className='small'>{__("Equals Cols", "pds-blocks")}</OptionControl>:null}
-                        <OptionControl key={`slider-${uniqueKey}`} name={`flow`} value="flow-reverse" checked={attributes.flexbox.flow} onChange={set_flexbox} type='switch-checkbox' className='small'>{__("Reverse", "pds-blocks")}</OptionControl>
-                        <OptionControl key={`slider-${uniqueKey}`} name={`masonry`} value="px-masonry" checked={attributes.flexbox.masonry} onChange={set_flexbox} type='switch-checkbox' className='small'>{__("Masonry", "pds-blocks")}</OptionControl>
+                        <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
+                        <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />
+                        <PhenixNumber name={`cols-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={set_flexbox} />
+                        <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
+                    </li>
+                </PxDropDown>: null} 
+                {/*===> Dropdown Button <===*/}
+                {attributes.isFlexbox ? <PxDropDown title={__("Grid Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
+                            md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                            lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                            xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                        />
                     </li>
                 </PxDropDown>:null}
             </Toolbar>

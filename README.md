@@ -5,7 +5,7 @@
     </a>
 </p>
 
-<h2 align="center">Phenix WP Blocks (FREE)</h2>
+<h2 align="center">Phenix WP Blocks (PRO)</h2>
 
 <p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
 <p align="center">
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/build-v0.7.7-blue.svg" alt="" />
+    <img src="https://img.shields.io/badge/build-v0.1-blue.svg" alt="" />
     <img src="https://img.shields.io/github/languages/code-size/EngCode/phenix-blocks.svg" alt="" />
     <img src="https://img.shields.io/github/repo-size/EngCode/phenix-blocks.svg" alt="" />
     <img src="https://img.shields.io/github/issues/EngCode/phenix-blocks.svg" alt="" />
@@ -38,18 +38,18 @@ published as open-source project for web community benefits.
 #### 🚀 Phenix Blocks Key-Features (⭐:PRO, ✅: FREE)
 
 <ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ [Block] PHP Theme Part</li>
-    <li>✅ [Block] Inline elements</li>
     <li>✅ [Block] Responsive Logo</li>
-    <li>✅ [Block] Responsive Column</li>
-    <li>✅ [Block] Responsive Grid Row</li>
     <li>✅ [Block] Responsive Container</li>
-    <li>✅ [Block] Advanced Users Query</li>
+    <li>✅ [Block] Responsive Grid Row</li>
+    <li>✅ [Block] Responsive Column</li>
     <li>✅ [Block] Responsive Advanced Buttons</li>
     <li>✅ [Block] Responsive Navigation Menu</li>
+    <li>✅ [Block] Advanced Users Query</li>
     <li>✅ [Block] Advanced PostTypes Query</li>
     <li>✅ [Block] Advanced Taxonomies Query</li>
     <li>✅ [Block] Breadcrumb (Page-Head)</li>
+    <li>✅ [Block] PHP Theme Part</li>
+    <li>✅ [Block] Inline elements</li>
     <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
     <li>✅ [Block] Taxonomies Links List</li>
     <li>⭐ [Block] Icon Font (FontAwesome)</li>
@@ -82,11 +82,11 @@ published as open-source project for web community benefits.
     <li>⭐ [Feature] Custom Fonts for each Language</li>
     <li>✅ [Feature] Custom Fonts for each RTL/LTR Direction</li>
     <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
-    <li>⭐ [Block] Custom Code Designer (HTML, CSS, JS) with Real Preview</li>
     <li>✅ [Feature] Front-End Forms Validation and Spam Protection Layer.</li>
     <li>⭐ [Block] Responsive Multimedia Block w/ [Lightbox] and Embeddings</li>
     <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
     <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>
+    <li>⭐ [Block] Custom Code Designer (HTML, CSS, JS, Shortcode) with Real Preview</li>
     <li>⭐ [Tool] Custom Metaboxes for PHP Templates in [Theme Parts, Dynamic Loops]</li>
 </ul>
 
@@ -141,7 +141,6 @@ can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/develope
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
 ---
-
 - **Components Progress**
     - [x]  **Phenix Colors**
     - [x]  **Phenix Select**
@@ -149,6 +148,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Dropdown Buttons**
     - [x]  **Number Counter Input**
     - [x]  **Phenix Options Control**
+    - [x]  **Phenix Input/Text-area Controls**
     - **Position Controls**
         - [x]  **Position Type**
         - [ ]  **Element Index Order**
@@ -218,16 +218,6 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 ---
 
 - **Blocks Progress & Tasks**
-    - **PDS Button**
-        - [x]  **Trigger Data**
-        - [x]  **Style Options**
-            - [ ]  **Padding/Margin**
-        - [x]  **Typography Options**
-        - [x]  **Support for Icons**
-        - [x]  **Tooltip for icons**
-        - [x]  **Responsive Options**
-        - [ ]  **Hover Effects (PRO)**
-        - [x]  **Animations Options (PRO)**
     - **Container**
         - [x]  ****************************Styles Options****************************
             - [ ]  **Padding/Margin**
@@ -252,10 +242,22 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Animations Effects (PRO)**
     - **PDS Group**
         - [x]  **Styling Options**
+            - [ ]  **Dimensions Utile**
         - [x]  **Typography Options**
         - [x]  **Responsive Options**
         - [ ]  **Hover Effects (PRO)**
         - [x]  **Animations Effects (PRO)**
+    - **PDS Button**
+        - [x]  **Trigger Data**
+        - [x]  **Style Options**
+            - [ ]  **Padding/Margin**
+            - [ ]  **Dimensions Utile**
+        - [x]  **Typography Options**
+        - [x]  **Support for Icons**
+        - [x]  **Tooltip for icons**
+        - [x]  **Responsive Options**
+        - [ ]  **Hover Effects (PRO)**
+        - [x]  **Animations Options (PRO)**
     - **Phenix Logo**
         - [x]  ************************Width/Height************************
         - [x]  **Update Favicon**
@@ -269,6 +271,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Font Awesome**
         - [ ]  **Spacing Options**
         - [ ]  **Typography Options**
+        - [ ]  **Dimensions Options**
         - [ ]  **Responsive Options**
     - **Phenix Menu**
         - [x]  **Data Type**
@@ -306,6 +309,13 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Card Settings (PRO)**
         - [ ]  **Advanced Sorting (PRO)**
         - [ ]  **Animations Effects (PRO)**
+    - **Taxonomies Query**
+        - [x]  **************************Query Options**************************
+        - [x]  **Slider Mode**
+        - [x]  **Responsive Grid**
+        - [ ]  **Card Settings (PRO)**
+        - [ ]  **Advanced Sorting (PRO)**
+        - [ ]  **Animations Effects (PRO)**
     - **Page Head**
         - [ ]  **************Title Options**************
             - [ ]  **Show/Hide**
@@ -320,19 +330,28 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Show By URL Hash (PRO)**
         - [ ]  **Timed Hash Appearance (PRO)**
         - [ ]  **Show** **When Scroll to Some ID Element (PRO)**
-    - **Taxonomies Query**
-        - [x]  **************************Query Options**************************
-        - [x]  **Slider Mode**
-        - [x]  **Responsive Grid**
-        - [ ]  **Card Settings (PRO)**
-        - [ ]  **Advanced Sorting (PRO)**
-        - [ ]  **Animations Effects (PRO)**
     - **Inline elements**
-        - [ ]  **With Icon**
-        - [ ]  **Style Options**
-        - [ ]  **Typography Options**
-        - [ ]  **Popup/Modal Trigger (PRO)**
+        - [x]  ****************URL Link****************
+        - [x]  **With Icon**
+        - [x]  **Style Options**
+            - [ ]  **Spacing**
+            - [ ]  **Colored Text**
+            - [ ]  **Gradient Text**
+        - [x]  **Typography Options**
+    - **Text elements**
+        - [x]  **Types**
+            - [x]  **Headlines**
+            - [x]  **Paragraph**
+            - [x]  **Text Lists**
+        - [x]  **With Icon**
+        - [x]  ****************URL Link****************
+        - [x]  **Style Options**
+            - [ ]  **Spacing**
+            - [ ]  **Colored Text**
+            - [ ]  **Gradient Text**
+        - [x]  **Typography Options**
     - **Media Element**
+        - [ ]  ****************URL Link****************
         - [ ]  **Media Size**
         - [ ]  **Media Type**
         - [ ]  **Element Type**
@@ -341,9 +360,9 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Animations Effects (PRO)**
     - **PDS Form [CF7 Rendered] (PRO)**
         - [ ]  **Select the Form**
-    - **PDS Custom Code (PRO)**
-        - [ ]  **Type [HTML, CSS, JS, PHP!?]**
-        - [ ]  **Preview/Edit Tabs in the Workspace.**
+    - **Custom Code (PRO)**
+        - [x]  **Preview/Edit in the Workspace.**
+        - [x]  **Type [HTML, CSS, JS, Short-Code, PHP!?]**
     - **Table of Content (PRO)**
         - [ ]  **a block to generate a list of the titles in the current page.**
     - **Core Image (PRO)**
@@ -375,7 +394,6 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **Responsive Table**
         - [ ]  **Typography Options**
         - [ ]  **Data Table Mode Options**
-
 ---
 
 - **Developer Tools Progress**
@@ -446,7 +464,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - **Bugs and Issues Progress & Tasks**
     - [x]  **Patterns Preview Solution**
     - [ ]  **Dropdown Dynamic Positions**
-    - [ ]  **New Preview Examples for All Blocks**
+    - [x]  **New Preview Examples for All Blocks**
     - [x]  **Sliders in Site Editor not running correctly**
 
 ---
@@ -689,6 +707,7 @@ this how you create a meta-boxes for the PHP theme-parts that you call in the th
     		"typography" => "show the typography settings for text like [size, alignment, colors]",
     );
     ```
+---
 
 ### Credits
 

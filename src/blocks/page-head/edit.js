@@ -28,6 +28,12 @@ export default function Edit(props) {
 
     //===> Render <===//
     return (<>
+        {/*====> Settings Toolbar <====*/}
+        <BlockControls>
+            <Toolbar label={__("Quick Settings", "pds-blocks")}>
+
+            </Toolbar>
+        </BlockControls>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}

@@ -85,6 +85,11 @@ if (!function_exists('phenix_blocks')) :
         if (get_option('inline_elements_block')) {
             wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
         }
+
+        //====> Text Elements <====//
+        if (get_option('text_elements_block')) {
+            wp_enqueue_script('text-elements', $blocksPath.'text/index.js', $blocksDependencies, NULL , true);
+        }
         
         //====> Languages <====//
         if (get_option('pds_languages_block')) {

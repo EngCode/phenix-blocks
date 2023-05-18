@@ -133,9 +133,12 @@ function px_navigation_render($block_attributes, $content) {
         }
         //===> Get Posts List Menu <===//
         elseif ($block_attributes['menu_type'] === "posts") {
+            
             //===> Create Menu <===//
             echo '<ul class="'.$menuClasses.'">';
                 //===> Create New Query <===//
+                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
                 $the_query = new WP_Query(array(
                     'paged' => $paged,
                     'post_type' => $block_attributes['post_type'],

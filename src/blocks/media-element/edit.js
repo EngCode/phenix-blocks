@@ -69,10 +69,16 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Render <===//
     return (<>
+        {/*====> Settings Toolbar <====*/}
+        <BlockControls>
+            <Toolbar label={__("Quick Settings", "pds-blocks")}>
+
+            </Toolbar>
+        </BlockControls>
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}
-            <PanelBody title="General Settings" initialOpen={true}>
+            <PanelBody title="General Settings" initialOpen={false}>
                 
             </PanelBody>
         </InspectorControls>

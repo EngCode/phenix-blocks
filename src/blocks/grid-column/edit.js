@@ -19,6 +19,10 @@ import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
+import PaddingSet from '../px-controls/sets/padding';
+import MarginSet from '../px-controls/sets/margin';
+import PositionSet from '../px-controls/sets/position';
+
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set ID <===//
@@ -101,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
     //===> View Script <===//
-    useEffect(() => PhenixComponentsBuilder(), []);
+    // useEffect(() => PhenixComponentsBuilder(), []);
 
     //===> Define Controls Options <===//
     const html_tags = [
@@ -156,7 +160,7 @@ export default function Edit({ attributes, setAttributes }) {
             Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                 //===> Check if the attribute is Set <===//
                 if (!attributes[option_name][sub_option]) return;
-
+                
                 //===> if its a Object Value <===//
                 if (!isNormalValue(sub_value)) {
                     //===> Background Specials <===//
@@ -183,19 +187,29 @@ export default function Edit({ attributes, setAttributes }) {
                         sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
                         sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
                         sub_value['exit-name'] && (blockProps['data-animation-exit'] = sub_value['exit-name']);
-                    };
+                    }
+                    //===> Styles Support <===//
+                    else if (sub_option === "support") {
+                        sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
+                    }
+                    //===> Display Support <===//
+                    else if (sub_option === "display") blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
                 }
 
                 //===> for Normal strings and Arrays <===//
                 else if (isNormalValue(sub_value)) {
-                    //===> Styles Support <===//
-                    if (sub_option === "support") {
-                        sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
-                    }
                     //===> Postion Absolute Sticky <===//
-                    else if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
+                    if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
                     //===> Size <===//
                     else if (sub_option.includes("size")) blockProps.className += ` ${sub_option.replace('size', 'col') + sizeRender(sub_value)}`;
+                    //===> Padding Values <===//
+                    else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Margin Values <===//
+                    else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Positions Values <===//
+                    else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Layout Gap <===//
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
                     else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
@@ -268,6 +282,45 @@ export default function Edit({ attributes, setAttributes }) {
                         </li>
                     </PxDropDown>
                 :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-padding') ?
+                    <PxDropDown title={__("Padding Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-outer divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-padding" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-margin') ?
+                    <PxDropDown title={__("Margin Options", "pds-blocks")} button={`bg-transparent fs-16 square fal fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.position?.length > 0 ?
+                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
             </Toolbar>
         </BlockControls>
         {/*====> Controls Layout <====*/}
@@ -277,7 +330,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*=== Form Control  ===*/}
                 <TextControl name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={ attributes.id } onChange={set_id} />
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} options="support" />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

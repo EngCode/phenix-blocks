@@ -96,19 +96,31 @@ registerBlockType(metadata, {
                             sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
                             sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
                             sub_value['exit-name'] && (blockProps['data-animation-exit'] = sub_value['exit-name']);
-                        };
+                        }
+                        //===> Styles Support <===//
+                        else if (sub_option === "support") {
+                            sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
+                        }
+                        //===> Display Support <===//
+                        else if (sub_option === "display") blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
                     }
 
                     //===> for Normal strings and Arrays <===//
                     else if (isNormalValue(sub_value)) {
-                        //===> Styles Support <===//
-                        if (sub_option === "support") {
-                            sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
-                        }
                         //===> Postion Absolute Sticky <===//
-                        else if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
+                        if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
                         //===> Size <===//
                         else if (sub_option.includes("size")) blockProps.className += ` ${sub_option.replace('size', 'col') + sizeRender(sub_value)}`;
+                        //===> Size <===//
+                        else if (sub_option.includes("size")) blockProps.className += ` ${sub_option.replace('size', 'col') + sizeRender(sub_value)}`;
+                        //===> Padding Values <===//
+                        else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                        //===> Margin Values <===//
+                        else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                        //===> Positions Values <===//
+                        else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                        //===> Layout Gap <===//
+                        else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         //===> Other Values <===//
                         else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                     };

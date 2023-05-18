@@ -106,11 +106,6 @@ export default class PhenixIcons extends Component {
     //===> Fetch Data When Updated <===//
     componentDidUpdate() { this.reRender(); };
 
-    //===> Component Rendered when Props Change <===//
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.icon_type !== this.state.icon_type || nextProps.value !== this.props.value);
-    }
-
     //===> Render <===//
     render () {
         //===> Properties <===//

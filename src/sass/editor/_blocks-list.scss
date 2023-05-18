@@ -117,7 +117,7 @@ body.block-editor-page {
 	.wp-block-post-content {
 		padding-top: 30px;
 		padding-bottom: 50px;
-		> *:not(.alignfull):not([class*="reusable-block-container"]) {
+		> *:not(.alignfull):not([class*="reusable-block-container"]):not([class*="phenix-container"]) {
 			margin-left: auto;
 			margin-right: auto;
 			max-width: 960px!important;

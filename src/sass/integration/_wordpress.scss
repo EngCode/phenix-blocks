@@ -59,6 +59,7 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 /*==== Helpers Fixes ====*/
 .full-screen {min-height: 100vh;}
 .full-screen-wide {min-height: 85vh;}
+.entry-content {padding: 0!important;}
 .wp-block-phenix-popup .modal-content {pointer-events: none;}
 .wp-block-phenix-popup .modal-content > * {pointer-events: all;}
 .pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}
@@ -66,3 +67,13 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     > [class*="row"], > [class*="flexbox"] {min-height: inherit;}
 }
 
+/*==== Slider Animation ====*/
+.has-animated-childs:not(.edit-mode) .splide__slide:not(.block-editor-block-list__block) [data-animation] {
+    [data-animation] {visibility: hidden;}
+    /*==== Animations ====*/
+    &.is-active [data-animation] {
+        visibility: visible;
+        -webkit-animation: attr(data-animation) 1s both;
+            animation: attr(data-animation) 1s both;
+    }
+}

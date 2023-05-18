@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
   "name": "phenix/inline",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "Inline Block",
   "keywords": [
     "pds",
@@ -16,13 +16,33 @@
     "html": false
   },
   "attributes": {
+    "id": {
+      "type": "string",
+      "default": ""
+    },
     "tagName": {
       "type": "string",
-      "default": "span"
+      "default": "i"
     },
     "content": {
       "type": "string",
-      "default": "span"
+      "default": ""
+    },
+    "setting": {
+      "type": "object",
+      "default": {}
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
     },
     "preview": {
       "type": "boolean",

@@ -242,7 +242,7 @@ export default function Edit(props) {
                 </div>
                 //===> Menu Locations <====//
                 : <div className='mb-10'>
-                    <SelectFromData key={`data-id-${uniqueKey}`} options="menu-locations" name="menu_id" label={__("Post-Type", "pds-blocks")} value={attributes.menu_id} valueSetter={set_value} />
+                    <SelectFromData key={`data-id-${uniqueKey}`} options="menu-locations" name="menu_id" label={__("Menu-ID", "pds-blocks")} value={attributes.menu_id} valueSetter={set_value} />
                 </div>}
 
                 {/*=== Arrow Icon ===*/}

@@ -11,6 +11,7 @@ import {Component} from '@wordpress/element';
 //====> Phenix Modules <====//
 import OptionControl from '../switch';
 import FlexAlignment from '../alignment';
+import PhenixNumber from "../number";
 
 //===> Options List
 //=> align, flex-props, grid-props
@@ -32,6 +33,18 @@ export default class FlexboxSet extends Component {
                     <FlexAlignment screen={screen} label={__("Flexbox Alignment", "pds-blocks")} value={attributes.flexbox[`align${screenPoint}`] || ""} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)}></FlexAlignment>
                 </div>
                 </>: null}
+                {/*===> Group <===*/}
+                <div className='col-12 row gpx-10 pdt-5 mb-15'>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        <PhenixNumber label={__("Gap-Y Space", "pds-blocks")} name={`gpy${screenPoint}`} onChange={mainSetter} value={attributes.flexbox[`gpy${screenPoint}`] || 0} min={0} max={50} steps={5} />
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
+                        <PhenixNumber label={__("Gap-X Space", "pds-blocks")} name={`gpx${screenPoint}`} onChange={mainSetter} value={attributes.flexbox[`gpx${screenPoint}`] || 0} min={0} max={50} steps={5} />
+                    </div>
+                    {/*===> // Column <===*/}
+                </div>
                 {/*===> Column <===*/}
                 <div className='col-12 flexbox gpy-5'>
                     {/*===> Label <===*/}
@@ -56,6 +69,9 @@ export default class FlexboxSet extends Component {
                     {!options || options.includes("grid-props") && !attributes.flexbox?.slider ? <OptionControl name={`masonry${screenPoint}`} value={`px-masonry${screenPoint}`} checked={attributes.flexbox[`masonry${screenPoint}`]?.length > 0} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='checkbox' className='tiny me-15'>
                         <span className='fas fa-check radius-circle'>{__("Masonry", "pds-blocks")}</span>
                     </OptionControl>: null}
+                    <OptionControl name={`gpy-fix`} value={`gpy-fix`} checked={attributes.flexbox[`gpy-fix`]?.length > 0} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='checkbox' className='tiny me-15'>
+                        <span className='fas fa-check radius-circle'>{__("Gap Y fix", "pds-blocks")}</span>
+                    </OptionControl>
                     {/*===> Other Button <===*/}
                     {this.props.children ? this.props.children : null}
                 </div>

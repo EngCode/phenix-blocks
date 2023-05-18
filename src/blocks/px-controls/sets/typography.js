@@ -26,6 +26,7 @@ export default class TypographySet extends Component {
         //===> Define Controls Options <===//
         const sizes_list = [],
             origin_sizes = [
+                ``,
                 `fs${screenPoint}-12`,
                 `fs${screenPoint}-13`,
                 `fs${screenPoint}-14`,
@@ -49,11 +50,13 @@ export default class TypographySet extends Component {
         origin_sizes.forEach(size => {
             //===> Filter Value and Label <===//
             let true_label =`${size.replace(`fs${screenPoint}-`, "").replace(`display${screenPoint}-`,"D").replace(screenPoint, '').replace('-','').replace(`h`, 'H')}${size.includes(`fs${screenPoint}-`) ? 'px':''}`;
+            if (size === "") true_label = __("Default", "pds-blocks");
             sizes_list.push({"label": true_label, "value": size});
         });
 
         //===> Weights List <===//
         const font_weights = [
+            { "label": "Default",  "value": ""},
             { "label": "Thin",  "value": "weight-thin"},
             { "label": "Light",  "value": "weight-light"},
             { "label": "Extra Light",  "value": "weight-xlight"},
@@ -63,6 +66,19 @@ export default class TypographySet extends Component {
             { "label": "Bold",  "value": "weight-strong"},
             { "label": "Heavy",  "value": "weight-xbold"},
             { "label": "Black",  "value": "weight-black"}
+        ];
+
+        //===> Lineheight List <===//
+        const font_lineheight = [
+            { "label": "Default",  "value": ""},
+            { "label": "130%",  "value": "lineheight-100"},
+            { "label": "130%",  "value": "lineheight-120"},
+            { "label": "130%",  "value": "lineheight-130"},
+            { "label": "150%",  "value": "lineheight-150"},
+            { "label": "160%",  "value": "lineheight-160"},
+            { "label": "170%",  "value": "lineheight-170"},
+            { "label": "180%",  "value": "lineheight-180"},
+            { "label": "inherit",  "value": "lineheight-inherit"},
         ];
 
         //===> Output <===//
@@ -80,6 +96,10 @@ export default class TypographySet extends Component {
                 {/*===> Weight <===*/}
                 <div className='col col-6'>
                     <PhenixSelect name="weight" placeholder={__("Default", "pds-blocks")} label={__("Font Weight", "pds-blocks")} value={attributes.typography.weight} onChange={mainSetter} options={font_weights}/>
+                </div>
+                {/*===> Weight <===*/}
+                <div className='col col-6'>
+                    <PhenixSelect name="lineheight" placeholder={__("Default", "pds-blocks")} label={__("Line Height", "pds-blocks")} value={attributes.typography.lineheight} onChange={mainSetter} options={font_lineheight}/>
                 </div>
                 {/*===> Other Options <===*/}
                 {this.props.children ? this.props.children : null}
@@ -110,6 +130,35 @@ export default class TypographySet extends Component {
                     {/*===> Switch Button <===*/}
                     <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-end` ? true : false} value={`tx-align${screenPoint}-end`} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-radio' className='small'>
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                    </OptionControl>
+                </div>
+                {/*===> Style Options <===*/}
+                <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Style", "pds-blocks")}</label>
+                {/*===> Elements Group <===*/}
+                <div className='flexbox mb-15'>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-capitalize`} checked={attributes.typography[`tx-capitalize`]} value={"tx-capitalize"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-font-case radius-sm' data-title={__("Capitalize","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-uppercase`} checked={attributes.typography[`tx-uppercase`]} value={"tx-uppercase"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-text radius-sm' data-title={__("Uppercase","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-underline`} checked={attributes.typography[`tx-underline`]} value={"tx-underline"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-underline radius-sm' data-title={__("Underline","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-line-through`} checked={attributes.typography[`tx-line-through`]} value={"tx-line-through"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-strikethrough radius-sm' data-title={__("Strikethrough","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "ltr"} value={"ltr"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-radio' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-paragraph radius-sm' data-title={__("LTR","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "rtl"} value={"rtl"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-radio' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-paragraph-rtl radius-sm' data-title={__("RTL","pds-blocks")}></span>
                     </OptionControl>
                 </div>
             </>: null}

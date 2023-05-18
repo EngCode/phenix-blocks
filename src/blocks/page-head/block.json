@@ -29,7 +29,22 @@
 		"breadcrumb": {
 			"type": "object",
 			"default": {}
-		}
+		},
+
+		"typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        }
 	},
 	"example": {
         "attributes": {

@@ -1,0 +1,65 @@
+{
+    "apiVersion": 2,
+	"name": "phenix/text",
+	"version": "1.0.0",
+	"title": "Text Elements",
+    "keywords": ["pds", "pds-blocks", "inline", "headline", "paragraph", "title", "text"],
+	"category": "design",
+	"description": "Text elements for Headlines/Titles and Paragraphs or Lists.",
+	"supports": {
+		"html": false
+	},
+    "attributes" : {
+        "id": {
+			"type": "string",
+			"default": ""
+		},
+
+        "type": {
+            "type": "string",
+            "default": "paragraph"
+        },
+
+		"tagName": {
+			"type": "string",
+			"default": "p"
+		},
+
+		"content": {
+			"type": "string",
+			"default": ""
+		},
+
+		"setting": {
+            "type": "object",
+            "default": {}
+        },
+
+		"typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        },
+
+        "preview" : {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+	"textdomain": "pds-blocks",
+	"editorScript": "file:./index.js"
+}

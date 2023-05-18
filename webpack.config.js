@@ -6,6 +6,7 @@ module.exports = {
     ...defaultConfig,
     mode: "production",
     entry: {
+        'text': './src/blocks/text/index.js',
         'logo': './src/blocks/logo/index.js',
         'group': './src/blocks/group/index.js',
         'query': './src/blocks/query/index.js',

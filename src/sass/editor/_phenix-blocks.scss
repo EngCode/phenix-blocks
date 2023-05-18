@@ -198,8 +198,8 @@
 	/*====  ====*/
 	&[class*="fa-"] {
 		input[type="number"] {
-			padding-left: 2rem;
-			padding-right: 4rem;
+			padding-#{$direction-start}: 2rem;
+			padding-#{$direction-end}: 4rem;
 		}
 
 		&::before {

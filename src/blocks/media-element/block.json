@@ -9,6 +9,25 @@
 		"html": false
 	},
     "attributes" : {
+		"setting": {
+            "type": "object",
+            "default": {}
+        },
+
+		"typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        },
 		"preview" : {
 			"type": "boolean",
 			"default": false

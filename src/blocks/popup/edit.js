@@ -1,19 +1,22 @@
 //====> WP Modules <====//
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
+import {useEffect} from '@wordpress/element';
+import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 
-import {
-    PanelBody,
-    TextControl,
-} from '@wordpress/components';
-
-import {
-    InnerBlocks,
-    useBlockProps,
-    useInnerBlocksProps,
-    InspectorControls
-} from '@wordpress/block-editor';
-
+//====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
+import ScreensTabs from "../px-controls/tabs";
+import PxDropDown from '../px-controls/dropdown';
+import PhenixSelect from '../px-controls/select';
+import OptionControl from '../px-controls/switch';
+
+//====> Phenix Options Sets <=====//
+import StylesSet from '../px-controls/sets/styles';
+import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
+import AnimationsSet from '../px-controls/sets/animations';
+import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -32,6 +35,12 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Render <===//
     return (<>
+        {/*====> Settings Toolbar <====*/}
+        <BlockControls>
+            <Toolbar label={__("Quick Settings", "pds-blocks")}>
+                
+            </Toolbar>
+        </BlockControls>
         {/*====> Controls Layout <====*/}
         <InspectorControls key="inspector">
             {/*===> Widget Panel <===*/}

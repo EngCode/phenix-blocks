@@ -61,6 +61,22 @@ function px_users_query_render($block_attributes, $content) {
                         $grid_classes .= ' ' . str_replace('cols', 'row-cols', $sub_option) . colsRender($sub_value);
                     }
                 }
+
+                //===> Other Options <===//
+                elseif ($option_name === "flexbox" || $option_name === "style" || $option_name === "typography") {
+                    //===> Postion Absolute Sticky <===//
+                    if ($sub_option === "position" && $sub_value === "sticky-absolute") {$block_attributes["data-sticky"] = $sub_value;} 
+                    //===> Padding Values <===//
+                    elseif (strpos($sub_option, 'pdt') !== false || strpos($sub_option, 'pds') !== false || strpos($sub_option, 'pde') !== false || strpos($sub_option, 'pdb') !== false) {$block_attributes['className'] .= " $sub_option-$sub_value";}
+                    //===> Margin Values <===//
+                    elseif (strpos($sub_option, 'mt') !== false || strpos($sub_option, 'ms') !== false || strpos($sub_option, 'me') !== false || strpos($sub_option, 'mb') !== false) {$block_attributes['className'] .= " $sub_option-$sub_value";}
+                    //===> Positions Values <===//
+                    elseif (strpos($sub_option, 'pos-') !== false) {$block_attributes['className'] .= " $sub_option-$sub_value";}
+                    //===> Layout Gap <===//
+                    elseif (strpos($sub_option, 'gpx') !== false || strpos($sub_option, 'gpy') !== false) {$block_attributes['className'] .= " $sub_option-$sub_value";}
+                    //===> Other Values <===//
+                    else {$block_attributes['className'] .= " " . str_replace(',', ' ', $sub_value) . " ";}
+                };
             }
         };
     }

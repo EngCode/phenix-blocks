@@ -172,19 +172,29 @@ export default function Edit({ attributes, setAttributes }) {
                         sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
                         sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
                         sub_value['exit-name'] && (blockProps['data-animation-exit'] = sub_value['exit-name']);
-                    };
+                    }
+                    //===> Styles Support <===//
+                    else if (sub_option === "support") {
+                        sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
+                    }
+                    //===> Display Support <===//
+                    else if (sub_option === "display") blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
                 }
 
                 //===> for Normal strings and Arrays <===//
                 else if (isNormalValue(sub_value)) {
-                    //===> Styles Support <===//
-                    if (sub_option === "support") {
-                        sub_value.forEach(property => !property.includes('enable-') ? innerBlocksProps.className += ` ${property}` : null);
-                    }
                     //===> Postion Absolute Sticky <===//
-                    else if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
+                    if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
                     //===> Size <===//
                     else if (sub_option.includes("size")) innerBlocksProps.className += ` ${sub_option.replace('size', 'col') + colsRender(sub_value)}`;
+                    //===> Layout Gap <===//
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Padding Values <===//
+                    else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Margin Values <===//
+                    else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    //===> Positions Values <===//
+                    else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
                     else {innerBlocksProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
@@ -198,7 +208,7 @@ export default function Edit({ attributes, setAttributes }) {
         <BlockControls>
             <Toolbar label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
-                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Size", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
                         <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />

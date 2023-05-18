@@ -114,6 +114,13 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     //====> Validation Demo <====//
     Phenix('.wpcf7-form, .px-form-validation').validation();
 
+    //===> Move Header <===//
+    const main_header = document.querySelector('.main-header'),
+          header_holder = document.querySelector('#header-holder');
+
+    //====> Header Holders <====//
+    if (main_header && header_holder) header_holder.prepend(main_header);
+
     //====> Sticky Header Fixes <====//    
     if (Phenix('[data-sticky="absolute"]')[0]) {
         //===> Define Data <===//
@@ -184,6 +191,47 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //===> Animations <===//
     Phenix('[data-animation], .px-animate').animations({animateCSS: ["all"]});
+
+    /*===> Table of contents Menu <===*/
+    let postContent = document.querySelector(".entry-content"), last_title,
+        content_menu = document.querySelector('#table-of-content-list');
+
+    /*===> Loop Through Titles <===*/
+    if (postContent && content_menu) {
+        //===> Get Headlines <===//
+        let headlines = postContent.querySelectorAll('h1, h2, h3, h4');
+        //===> Reset List <===//
+        content_menu.innerHTML = "";
+        //===> for Each Headline <===//
+        headlines.forEach((element:HTMLElement, index) => {
+            //====> Get Data <====//
+            let title = element.textContent,
+                itemHtml = `<li class="tx-nowrap"><a href="#section-${index}" class="smoth-scroller">${title}</a></li>`;
+    
+            //====> Set ID <====//
+            element.setAttribute('id', `section-${index}`);
+
+            //====> Sub-Titles <====//
+            if (element.matches('h3' || 'h4')) {
+                //===> ... <===//
+                let last_item = content_menu.querySelector('li:last-child'),
+                    last_list = last_item.querySelector('ul');
+                //====> Create new Menu <====//
+                if (!last_list) last_list = Phenix(last_item).insert('append', '<ul class="reset-list pdx-10"></ul>');
+    
+                //====> Create as Menu Item <====//
+                Phenix(last_list).insert('append', itemHtml);
+            }
+            //====> Create as Main Title <====//
+            else Phenix(content_menu).insert('append', itemHtml);
+    
+            //====> Assign Last Title <====//
+            last_title = element;
+        });
+    }
+
+    //===> .Scrollspy. <===//
+    Phenix(".scrollspy-menu").scrollSpy();
 
     //===> .Others. <===//
     Phenix(document).utilities();

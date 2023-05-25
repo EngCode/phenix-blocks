@@ -91,7 +91,7 @@ function px_navigation_render($block_attributes, $content) {
     }
 
     //===> Custom CSS Style <===//
-    if (isset($font_size) && $font_size) { $nav_style .= "--font-size:{$font_size};"; }
+    if (isset($font_size) && $font_size) { $nav_style .= "--font-size:".str_replace("fs-", "", $font_size)."px;"; }
     if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
     if (isset($font_height) && $font_height) { $nav_style .= "--height: {$font_height}px;"; }
     if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
@@ -111,11 +111,11 @@ function px_navigation_render($block_attributes, $content) {
         //===> Get Taxonomies Menu <===//
         if ($block_attributes['menu_type'] === "taxonomies") {
             //===> Create Menu <===//
-            echo '<ul class="'.$menuClasses.'">';
+            echo '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">';
                 //===> Get Categories List <===//
                 $categories = get_categories(array(
                     'hide_empty' => false,
-                    'taxonomy'   => 'category',
+                    'taxonomy'   => $block_attributes['menu_id'],
                     'number'     => $block_attributes['items_count'],
                     'post_type'  => $block_attributes['post_type'],
                 ));
@@ -133,29 +133,28 @@ function px_navigation_render($block_attributes, $content) {
         }
         //===> Get Posts List Menu <===//
         elseif ($block_attributes['menu_type'] === "posts") {
+            //===> Create New Query <===//
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+            $menu_query = new WP_Query(array(
+                'paged' => $paged,
+                'post_type' => $block_attributes['menu_id'],
+                'per_page'  => $block_attributes['items_count'],
+            ));
             
             //===> Create Menu <===//
-            echo '<ul class="'.$menuClasses.'">';
-                //===> Create New Query <===//
-                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-                $the_query = new WP_Query(array(
-                    'paged' => $paged,
-                    'post_type' => $block_attributes['post_type'],
-                    'posts_per_page' => $block_attributes['items_count'],
-                ));
-
+            echo '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">';
                 //==== Start Query =====//
-                if ($the_query->have_posts() ) :
+                if ($menu_query->have_posts()) :
                     //==== Loop Start ====//
-                    while ($the_query->have_posts()):
+                    foreach ($menu_query->posts as $post) {
                         //===> Add Badge <===//
                         if ($block_attributes["count_badge"]) {
                             $count_badge = '<span class="posts-count float-end">'.get_post_views($post->ID).'</span>';
                         };
                         //===> Create Item <===//
-                        echo '<li><a href="'.get_permalink().'">'.get_the_title().$count_badge.'</a></li>';
-                    endwhile;
+                        echo '<li><a href="'.get_permalink($post->ID).'">'.get_the_title($post->ID).$count_badge.'</a></li>';
+                    }
                     //=== Reset Query Data ===//
                     wp_reset_postdata();
                 endif;

@@ -136,7 +136,7 @@ can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/develope
 
 ---
 
-### Phenix Blocks WordPress Plugin (Progress)
+### Phenix Blocks WordPress Plugin
 
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
@@ -152,10 +152,10 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Phenix Input/Text-area Controls**
     - **Position Controls**
         - [x]  **Position Type**
-        - [ ]  **Element Index Order**
+        - [x]  **Element Index Order**
         - [x]  **Position Controller**
     - **Phenix Backgrounds**
-        - [ ]  **Video Background**
+        - [x]  **Video Background**
         - [x]  **Images/Colors/Gradients**
         - [x]  **Background CSS Utilities**
     - **Typography Settings**
@@ -174,27 +174,33 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - **********************Flexbox Set**********************
         - [x]  **Alignment**
         - [x]  **Flex Utilities**
+    - **Typography**
+        - [x]  **Clip Text**
+        - [x]  **Alignment**
+        - [x]  **Size/Weight**
+        - [x]  **Text Styles**
+        - [x]  **Text Shadow**
+        - [x]  **Colored Words**
+        - [x]  **Gradient Words**
+        - [x]  **Text Direction**
     - **Styles Set**
         - [x]  **Text Color**
         - [x]  **Background**
             - [x]  **Overlay Layer**
-            - [ ]  **Custom Overlay**
-            - [ ]  **Video Background**
+            - [x]  **Video Background**
         - [x]  **Border Radius**
         - [x]  **Position Controller**
-            - [x]  **Position Type**
-            - [ ]  **Position z-index**
-            - [x]  **Position Directions (PRO)**
-    - **Typography**
-        - [x]  **Alignment**
-        - [x]  **Size/Weight**
-        - [x]  **Text Styles**
-        - [ ]  **Text Shadow**
-        - [x]  **Text Direction**
+    - **Element Effects (PRO)**
+        - [x]  **Box Shadow**
+        - [x]  **Overlapped**
+        - [x]  **Hover Effects**
+        - [x]  **Animated Effects**
     - **Animations(PRO)**
-        - [ ]  **Exit Animation**
         - [x]  **Inter Animation**
         - [x]  **Speed/Duration/Delay**
+    - ******************************Slider Mode Set******************************
+        - [x]  **************************************Grid based Columns**************************************
+        - [x]  **Show/Hide Controls**
     - **Responsive**
         - [x]  **Styles**
         - [x]  **********************Flexbox**********************
@@ -203,65 +209,50 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - **Padding/Margin**
         - [x]  **Margin Controller**
         - [x]  **Padding Controller**
-    - ******************************Slider Mode Set******************************
-        - [ ]  **Controls Style**
-        - [ ]  **Pagination Style**
-        - [x]  **************************************Grid based Columns**************************************
-        - [x]  **Show/Hide Controls**
-    - **Element Effects (PRO)**
-        - [x]  **Overlapped**
-        - [ ]  **Box Border**
-        - [ ]  **Box Shadow**
-        - [ ]  **Overlay Link**
-        - [ ]  **Transition Speed**
 
 ---
 
 - **Blocks Progress & Tasks**
-    - **Container**
-        - [ ]  **Shapes Dividers**
+    - **Container [Done]**
         - [x]  ****************************Styles Options****************************
         - [x]  **Animations Effects**
         - [x]  ************************************Responsive Options************************************
-    - **Grid Row**
+    - **Grid Row [Done]**
         - [x]  **Columns Gutter**
         - [x]  ****************************Styles Options****************************
         - [x]  **Slider Options**
         - [x]  **Responsive Options**
         - [x]  **Animations Effects (PRO)**
-    - **Grid Column**
+    - **Grid Column [Done]**
         - [x]  **Styling Options**
         - [x]  **Typography Options**
         - [x]  **Responsive Options**
-        - [ ]  **Hover Effects (PRO)**
+        - [x]  **Hover Effects (PRO)**
         - [x]  **Animations Effects (PRO)**
-    - **PDS Group**
+    - **PDS Group [Done]**
         - [x]  **Styling Options**
-            - [ ]  **Dimensions Utile**
         - [x]  **Typography Options**
         - [x]  **Responsive Options**
-        - [ ]  **Hover Effects (PRO)**
+        - [x]  **Hover Effects (PRO)**
         - [x]  **Animations Effects (PRO)**
-    - **PDS Button**
+    - **PDS Button [Done]**
         - [x]  **Trigger Data**
         - [x]  **Style Options**
-            - [x]  **Padding/Margin**
-            - [ ]  **Dimensions Utile**
         - [x]  **Typography Options**
         - [x]  **Support for Icons**
         - [x]  **Tooltip for icons**
         - [x]  **Responsive Options**
-        - [ ]  **Hover Effects (PRO)**
+        - [x]  **Hover Effects (PRO)**
         - [x]  **Animations Options (PRO)**
-    - **Phenix Logo**
+    - **Custom Code [Done]**
+        - [x]  **Preview/Edit in the Workspace.**
+        - [x]  **Type [HTML, CSS, JS, Short-Code]**
+    - **Phenix Logo [Done]**
         - [x]  ************************Width/Height************************
         - [x]  **Update Favicon**
         - [x]  ******************************Responsive Logo******************************
         - [x]  ********************************Update Site Logo********************************
-    - **Logical Content (PRO)**
-        - [x]  **Access Type : [Users Only, Everyone]**
-        - [ ]  **Access Rule : [Admin, Editor, etc..]**
-    - **Icon Element**
+    - **Icon Element [Done]**
         - [x]  **Custom Icon**
         - [x]  **Font Awesome**
         - [x]  **with URL**
@@ -269,15 +260,13 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Typography Options**
         - [x]  **Dimensions Options**
         - [x]  **Responsive Options**
-    - **Inline elements**
+    - **Inline elements [Done]**
         - [x]  ****************URL Link****************
         - [x]  **With Icon**
         - [x]  **Style Options**
             - [x]  **Spacing**
-            - [ ]  **Colored Text**
-            - [ ]  **Gradient Text**
         - [x]  **Typography Options**
-    - **Text elements**
+    - **Text elements [Done]**
         - [x]  **Types**
             - [x]  **Headlines**
             - [x]  **Paragraph**
@@ -286,127 +275,220 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  ****************URL Link****************
         - [x]  **Style Options**
             - [x]  **Spacing**
-            - [ ]  **Colored Text**
-            - [ ]  **Gradient Text**
+            - [x]  **Colored Text**
+            - [x]  **Gradient Text**
         - [x]  **Typography Options**
-    - **Phenix Menu**
+    - **Logical Content [Done]**
+        - [x]  **Access Type : [Users Only, Everyone]**
+        - [ ]  **Access Rule : [Admin, Editor, etc..]**
+    - **Phenix Menu [Done]**
         - [x]  **Multiple Data Type**
-        - [ ]  **Items Options**
-            - [ ]  **Animated**
+        - [x]  **Items Options**
             - [x]  **With icon**
             - [x]  **Count Badge**
-        - [ ]  **Dropdown Options**
-            - [ ]  **Animations Effects**
-            - [ ]  **Background Normal, Hover**
-            - [ ]  **Text Color, Hover […Typography]**
-            - [ ]  **Size/Padding/Radius/Shadow/Border**
-        - [ ]  **Responsive Options**
-            - [ ]  **Collapsed Mode**
-            - [ ]  **Respawn Button [with settings]**
-    - **Theme Part**
+    - **Theme Part [Done]**
         - [x]  ******************Select Part******************
-        - [ ]  **Custom Classes**
-        - [ ]  **Meta Data (PRO)**
-        - [ ]  **Animations Effects (PRO)**
-    - **Posts Query**
+    - **Posts Query [Done]**
         - [x]  **************************Query Options**************************
         - [x]  **Slider Options**
         - [x]  **Responsive Grid**
-        - [ ]  **Card Settings (PRO)**
-        - [ ]  **Advanced Sorting (PRO)**
-        - [ ]  **Animations Effects (PRO)**
-    - **Users Query**
+    - **Users Query [Done]**
         - [x]  **************************Query Options**************************
         - [x]  **Slider Options**
         - [x]  **Responsive Grid**
-        - [ ]  **Card Settings (PRO)**
-        - [ ]  **Advanced Sorting (PRO)**
-        - [ ]  **Animations Effects (PRO)**
-    - **Taxonomies Query**
+    - **Taxonomies Query [Done]**
         - [x]  **************************Query Options**************************
         - [x]  **Slider Mode**
         - [x]  **Responsive Grid**
-        - [ ]  **Card Settings (PRO)**
-        - [ ]  **Advanced Sorting (PRO)**
-        - [ ]  **Animations Effects (PRO)**
-    - **Page Head**
-        - [ ]  **************Title Options**************
-            - [ ]  **Show/Hide**
-            - [ ]  **************Typography**************
-            - [ ]  **Force One Line**
-        - [ ]  **Enable Breadcrumb**
-            - [ ]  **Breadcrumb Separator**
-            - [ ]  ******************************************Breadcrumb Typography******************************************
-            - [ ]  ****************************************Breadcrumb Flexbox Options****************************************
-    - **Popup/Modals**
-        - [ ]  **Respawn Close Button**
-        - [ ]  **Show By URL Hash (PRO)**
-        - [ ]  **Timed Hash Appearance (PRO)**
-        - [ ]  **Show** **When Scroll to Some ID Element (PRO)**
-    - **Media Element**
-        - [ ]  ****************URL Link****************
-        - [ ]  **With Icon**
-        - [ ]  **Media Size**
-        - [ ]  **Media Type**
-        - [ ]  **Element Type**
-        - [ ]  **Lazy-loading**
-        - [ ]  **With Inner-Blocks**
-        - [ ]  **Lightbox Player (PRO)**
-        - [ ]  **Animations Effects (PRO)**
-    - **PDS Form [CF7 Rendered] (PRO)**
-        - [ ]  **Select the Form**
-    - **Custom Code (PRO)**
-        - [x]  **Preview/Edit in the Workspace.**
-        - [x]  **Type [HTML, CSS, JS, Short-Code]**
-    - **~~Table of Content (Pattern)~~**
+    - **Page Head [Done]**
+        - [x]  **************Typography**************
+        - [x]  **************Title / Breadcrumb Options**************
+    - **Popup/Modals [Done]**
+        - [x]  **Respawn Close Button**
+        - [x]  **Show By URL Hash (PRO)**
+        - [x]  **Timed Hash Appearance (PRO)**
+        - [x]  **Show** **When Scroll to Some ID Element (PRO)**
+    - **Media Element [Done]**
+        - [x]  ****************URL Link****************
+        - [x]  **With Icon**
+        - [x]  **Media Size**
+        - [x]  **Media Type**
+        - [x]  **Lazy-loading**
+        - [x]  **With Inner-Blocks**
+        - [x]  **Animations Effects (PRO)**
+    - **~~Table of Content (Pattern)~~ [Done]**
         - [x]  **a block to generate a list of the titles in the current page.**
-    - **~~Core Image (PRO)~~**
-        - [ ]  **Sizing Options**
-        - [ ]  **Animations Effects**
-    - **~~Core Paragraph (PRO)~~**
-        - [ ]  **Styling Options**
-        - [ ]  **Typography Options**
-        - [ ]  **Max Length to Show**
-        - [ ]  **Animations Effects**
-        - [ ]  **Responsive Settings**
-        - [ ]  **Popup/Modal Trigger [on-scroll/click]**
-    - **~~Core Headline (PRO)~~**
-        - [ ]  **Colored Word**
-        - [ ]  **Styling Options**
-        - [ ]  **Typography Options**
-        - [ ]  **Animations Effects**
-        - [ ]  **Responsive Settings**
-        - [ ]  **Popup/Modal Trigger [on-scroll/click]**
-    - **~~Core List (PRO)~~**
-        - [ ]  **Icons Options**
-        - [ ]  **Styling Options**
-        - [ ]  **Typography Options**
-        - [ ]  **Animations Effects**
-        - [ ]  **Responsive Settings**
-        - [ ]  **Slider/Grid Mode Support**
-    - **~~Core Table (PRO)~~**
-        - [ ]  **Styling Options**
-        - [ ]  **Responsive Table**
-        - [ ]  **Typography Options**
-        - [ ]  **Data Table Mode Options**
+    - **Plugin Upgrades for Version v1.1**
+        - **General**
+            - [ ]  **Border Styling**
+            - [ ]  **Exit Animation**
+            - [ ]  **Text Animations**
+            - [ ]  **Mixed Backgrounds**
+            - [ ]  **Custom BG Overlay Color**
+            - [ ]  **Data Schema Selectors**
+        - **Form Builder**
+            - **************General Options**************
+                - [ ]  **Name [*]**
+                - [ ]  **Validation**
+                - [ ]  **Placeholder**
+                - [ ]  **Limited Length**
+                - [ ]  **Disabled/Hidden**
+                - [ ]  **Label Element [Before, After]**
+            - **Control Type**
+                - [ ]  **Text**
+                - [ ]  ************Number************
+                    - [ ]  **Min/Max**
+                - [ ]  ******************Date/Time******************
+                - [ ]  ******************Text-Area******************
+                - [ ]  **Checkbox/Radio Buttons**
+                - [ ]  ******************Advanced Select Control******************
+                    - [ ]  ********************Searchable********************
+                    - [ ]  **With Icons**
+                    - [ ]  **With Images**
+                    - [ ]  **************************Multiple Mode**************************
+                        - [ ]  **Min/Max**
+                        - [ ]  **Tags Mode**
+                    - [ ]  **Search Placeholder**
+                    - [ ]  **With Data Options**
+                - [ ]  **Advanced File Uploader**
+                    - [ ]  **************************Standard Mode**************************
+                        - [ ]  **Button / Placeholder**
+                    - [ ]  **Upload to Media**
+                    - [ ]  **Drag & Drop Mode**
+                - [ ]  **********************************Rating Controller**********************************
+                    - [ ]  **************Maximum Value**************
+                    - [ ]  **With Icon/Image**
+                - [ ]  **********************************Range Slider Control**********************************
+            - **************************Control Data**************************
+                - [ ]  **Posts List**
+                - [ ]  ********************Taxonomies********************
+                - [ ]  **Menu Items**
+                - [ ]  **JSON File [BY URL]**
+                - [ ]  **Custom Data [Writing]**
+                - [ ]  **Option Meta [array from plugin options]**
+            - ********************Controls Styling********************
+                - [ ]  **With Icon**
+                    - [ ]  **Icon Position**
+                - [ ]  **Status Styling**
+                - [ ]  **Responsive Size**
+                - [ ]  **Options Sets [Typography, Styles]**
+            - [ ]  **************************************From Repeater Block**************************************
+        - ******************************Progress Block******************************
+            - [ ]  **Color**
+            - [ ]  **Background**
+            - [ ]  ************Label, Value************
+            - [ ]  ************Progress Size************
+            - [ ]  ************Lazy-loading************
+            - [ ]  **Options Sets [Typography, Styles]**
+            - [ ]  ****************************************************Progress Types [Bar, Circle, Radial]****************************************************
+        - **Languages Block**
+            - [ ]  **Plugin Name**
+            - [ ]  **The Other Language**
+            - [ ]  **List of Languages**
+        - **Google Maps Block**
+            - [ ]  **Location Select**
+            - [ ]  **Multiple Locations**
+            - [ ]  **Associate with Data Types**
+                - [ ]  **********************************************************************************************Show a List of Hotels in the Map Area [Example]**********************************************************************************************
+        - **Countdown Timer**
+            - [ ]  **Stop-Watch**
+            - [ ]  **Count-Down**
+            - [ ]  **Date Picker**
+        - ******************************Dropdown Button******************************
+            - [ ]  **Effect**
+            - [ ]  **Position**
+            - [ ]  **Hover Mode**
+            - [ ]  **List Block**
+            - [ ]  **Button Block**
+        - **Patterns Assemble**
+            - ************************************Accordion Assemble************************************
+                - [ ]  **Grid & Columns**
+                - [ ]  **Group for Boxing**
+                - [ ]  ****************************************Trigger Headline****************************************
+                - [ ]  **Rich-Text Content**
+            - ************************************Tabs & Panels Assemble************************************
+                - [ ]  ****************************Main Container****************************
+                - [ ]  **Tabs Buttons**
+                - [ ]  **Panels Group**
+                - [ ]  **********************Free Blocks Panels**********************
+            - **Alerts with Dismiss Button**
+                - [ ]  ********************************************Boxing Group********************************************
+                - [ ]  ************************Close Button************************
+                - [ ]  **Rich-Text Content**
+        - **Slider Set Features**
+            - [ ]  **Controls Style**
+            - [ ]  **Pagination Style**
+        - **Theme Part Features**
+            - [ ]  **Custom Classes**
+            - [ ]  **Meta Data (PRO)**
+            - [ ]  **Animations Effects (PRO)**
+        - **Query Blocks Features**
+            - [ ]  **Card Settings (PRO)**
+            - [ ]  **Advanced Sorting (PRO)**
+            - [ ]  **Animations Effects (PRO)**
+        - [ ]  **Container Shapes Dividers**
+        - [ ]  **Animations Effects ⇒ [Popups]**
+        - [ ]  **Page Head Breadcrumb Separator**
+        - [ ]  **Text elements List Mode Icons Fixer**
+        - **Phenix Menu Features**
+            - [ ]  **Dropdown Options**
+                - [ ]  **Animations Effects**
+                - [ ]  **Background Normal, Hover**
+                - [ ]  **Text Color, Hover […Typography]**
+                - [ ]  **Size/Padding/Radius/Shadow/Border**
+            - [ ]  **Responsive Options**
+                - [ ]  **Collapsed Mode**
+                - [ ]  **Respawn Button [with settings]**
+        - [ ]  **Meta Boxes Creator**
+        - [ ]  **Templates Meta Creator**
+        - [ ]  **Meta Boxes Sidebar Options**
 
 ---
 
 - **Developer Tools Progress**
-    - ******************************Loading Screen******************************
+    - [ ]  **New Dashboard**
+        - **********************CTA Banners**********************
+            - [ ]  **************************Documentation**************************
+            - [ ]  **************************Phenix Themes**************************
+            - [ ]  **Discover New Themes**
+            - [ ]  ********************************Phenix Design System********************************
+        - **Startup Guide**
+            - [ ]  **************************Blocks**************************
+            - [ ]  ****************Patterns****************
+            - [ ]  ************************Site Editor************************
+            - [ ]  **************************Template Part**************************
+            - [ ]  **Content Editor**
+            - [ ]  **Multi-Language**
+            - [ ]  ******************************Phenix Controls******************************
+            - [ ]  ************************Developer Guide************************
+    - [ ]  ******************************Loading Options******************************
         - [ ]  **************************Loading Image**************************
         - [ ]  ****************************Loading String****************************
         - [ ]  ******Background Color******
+    - **Site-Editor Sidebar**
+        - [ ]  ************************Blocks Options************************
+        - **Font Options**
+            - [ ]  **LTR Fonts**
+            - [ ]  **RTL Fonts**
+            - [ ]  **Font-Awesome**
+        - ******************************Data Collection******************************
+            - [ ]  **Block Patterns**
+            - [ ]  **********************************Custom Post-Types**********************************
+            - [ ]  **********************************Custom Taxonomies**********************************
+            - [ ]  ************************Custom Meta-Fields************************
+            - [ ]  ********************************Custom Meta-Templates********************************
+        - **Query Pagination Styles**
+            - [ ]  **Normal Color**
+            - [ ]  **Active Color**
+            - [ ]  **********************BTN’s Size/Gap**********************
+            - [ ]  **Next icon/Text**
+            - [ ]  **Previous icon/Text**
     - [x]  **Post Type Creator**
     - [x]  **Taxonomies Creator**
-    - [ ]  **Meta Boxes Creator**
-    - [ ]  **Templates Meta Creator**
     - [x]  **Menu Locations Creator**
-    - **Fonts Full Integration**
-        - [x]  **Font Awesome**
-        - [x]  **Google and Custom**
-        - [ ]  **Multiple Fonts Mode**
-        - [ ]  **LTR/RTL Different Fonts**
+    - [x]  **Font Awesome**
+    - [x]  **Google and Custom**
+    - [x]  **LTR/RTL Different Fonts**
     - [ ]  **Merlin Wizard Integration**
     - [x]  **Required Plugins in the Theme**
     - [x]  **API-Endpoint Creator `pds_add_api()`**
@@ -415,20 +497,6 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Add new Options `[pds-admin.php -> $pds_options_list]`**
     - [x]  **Plugin Data API `[yoursite.com/wp-json/pds-blocks/v2]`**
     - [x]  **Create new Admin Pages `pds_add_admin_page($params)`**
-    - **Site-Editor Sidebar**
-        - [ ]  ************************Blocks Options************************
-        - [ ]  **Font Options**
-            - [ ]  **LTR Fonts**
-            - [ ]  **RTL Fonts**
-            - [ ]  **Font-Awesome**
-        - [ ]  ******************************Data Collection******************************
-            - [ ]  **Block Patterns**
-            - [ ]  **********************************Custom Post-Types**********************************
-            - [ ]  **********************************Custom Taxonomies**********************************
-            - [ ]  ************************Custom Meta-Fields************************
-            - [ ]  ********************************Custom Meta-Templates********************************
-    - **Post-Editor Sidebar**
-        - [ ]  **Meta Boxes Sidebar [IDEA]**
 
 ---
 
@@ -460,7 +528,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 - **Bugs and Issues Progress & Tasks**
     - [x]  **Patterns Preview Solution**
     - [ ]  **Dropdown Dynamic Positions**
-    - [ ]  **Number Input Increasing Steps**
+    - [x]  **Number Input Increasing Steps**
     - [x]  **New Preview Examples for All Blocks**
     - [x]  **Sliders in Site Editor not running correctly**
 
@@ -511,7 +579,199 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  [**Gutenberg Editor Blocks**](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
     - [x]  [Gutenberg Editor Components](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
     - [x]  **Theme & Plugin Structure [[Files and Folders]](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)**
+
 ---
+
+- ************************************************Selecting React Elements [Tip]************************************************
+    
+    To select a React element, you would typically use the `useRef` hook. Here is an example of how to use it:
+    
+    ```jsx
+    import React, { useRef } from 'react';
+    
+    function MyComponent() {
+      const myRef = useRef(null);
+    
+      const handleClick = () => {
+        console.log(myRef.current);// logs the DOM node of the selected element
+      };
+    
+      return (
+        <div ref={myRef} onClick={handleClick}>
+          Click me!
+        </div>
+      );
+    }
+    ```
+    
+    In this example, `useRef` is used to create a reference to a `div` element. The `ref` prop is then set to the reference, which allows you to access the underlying DOM node of the element using the `.current` property of the reference. In the `handleClick` function, `myRef.current` is logged to the console, which logs the underlying `div` DOM node when the element is clicked.
+    
+- ******************************************************************Custom Query & Taxonomies Reference******************************************************************
+    
+    > In this example, we are querying for published posts of type 'post', and retrieving 10 posts per page. We are ordering the posts by date in descending order.
+    > 
+    
+    ```php
+    $the_query = new WP_Query( array(
+        ~~'post_type' => 'post',~~
+        'post_status' => 'publish',
+        ~~'posts_per_page' => 10,
+        'orderby' => 'date',
+        'order' => 'DESC',~~
+        'meta_query' => array(
+            array(
+                'key' => 'your_custom_field_name',
+                'value' => 'your_custom_field_value',
+                'compare' => '=',
+                'type' => 'CHAR',
+            ),
+        ),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'your_taxonomy_name',
+                'field' => 'slug',
+                'terms' => array( 'term1', 'term2', 'term3' ),
+                'operator' => 'IN'
+            )
+        ),
+    ) );
+    ```
+    
+    ```php
+    $categories = get_categories( array(
+        ~~'orderby' => 'name',~~
+        ~~'order' => 'ASC',
+        'hide_empty' => false,~~
+        'exclude' => array(),
+        'include' => array(),
+        ~~'number' => '',~~
+        'fields' => 'all',
+        'slug' => '',
+        'parent' => '',
+        'hierarchical' => true,
+        'child_of' => 0,
+        'get' => '',
+        'name__like' => '',
+        'description__like' => '',
+        'pad_counts' => false,
+        'offset' => '',
+        'search' => '',
+        'cache_domain' => 'core',
+        ~~'name' => '',~~
+        'feed' => '',
+        'meta_key' => '',
+        'meta_value' => '',
+    ) );
+    ```
+    
+    ```php
+    $users = get_users(array(
+        'blog_id'            => $GLOBALS['blog_id'],
+        ~~'role'               => '',~~
+        'meta_key'           => '',
+        'meta_value'         => '',
+        'meta_compare'       => '',
+        'meta_query'         => array(),
+        'include'            => array(),
+        'exclude'            => array(),
+        ~~'orderby'            => 'login',
+        'order'              => 'ASC',~~
+        'offset'             => '',
+        'search'             => '',
+        ~~'number'             => '',~~
+        'count_total'        => false,
+        'fields'             => 'all',
+        'who'                => '',
+        ~~'has_published_posts' => null,~~
+        'date_query'         => array(),
+        'include_selected'   => false,
+    ));
+    ```
+    
+
+---
+
+### Meta-Boxes Concepts Explain :
+
+this is a draft IDEA for how to create a meta-boxes for any Post Type or Taxonomy
+
+- ********Concept Code********
+    
+    ```jsx
+    /*===> Metabox Syntax <====*/
+    $metabox_template => array(
+    		"type"  => $meta_field_type,
+    		"data"  => $post_or_taxonomy,
+        "name"  => $uniuqe_string,
+    		"label" => $label_string,
+    		"enable" => $enable_disable,
+    		"default"  => $default_value,
+    		"position" => $panel_or_editor,
+    		"data-set" => $types_or_taxonomies,
+    );
+    
+    /*===> Metabox Types <====*/
+    $meta_types => array(
+    		"number"  => array($type, $default_value), // for Number-Counter control
+    		"array"   => array($type, $options_array, $multiple), // for select control
+    		"string"  => array($type, $default_value), // for normal text input
+    		"boolean" => array($type, $default_value), // for Switch Button control
+    		"file"    => array($type, $default_value, $multiple), // for uploading files
+    		"media"   => array($type, $default_value, $multiple), // for uploading Media
+    );
+    ```
+    
+
+---
+
+### Templates Meta Concepts Explain :
+
+this how you create a meta-boxes for the PHP theme-parts that you call in the the “Theme Part” block and this options shows in the block settings panel and it generates dynamic options controls to pass it down to your theme-part and get creative.
+
+- ********Concept Code********
+    
+    ```jsx
+    /*===> Theme Parts Meta Syntax <====*/
+    $templates_meta => array(
+        /*===> Settings Features <===*/
+        "features" => array("grid", "spacing", "typography"),
+    
+    		/*===> a List of Options <===*/
+    		"options" => array(
+    				/*===> Define Option for the Part <===*/
+    				"option-name" => array("type" => "string", "default" => "post"),
+    
+    				/*===> Nested List of Options <===*/
+    				"options-name" => array("type" => "options", "default" => array(
+    						"enable" => array("type" => "boolean", "default" => false),
+    				)),
+    		)
+    );
+    
+    /*===> Theme Parts Meta Types <====*/
+    $meta_types => array(
+    		"icon"    => array($type, $default_value), // for icon control selector
+    		"number"  => array($type, $default_value), // for Number-Counter control
+    		"files"   => array($type, $options_array, $multiple), // for uploader control
+    		"array"   => array($type, $options_array, $multiple), // for select control
+    		"string"  => array($type, $default_value), // for normal text input
+    		"boolean" => array($type, $default_value), // for Switch Button control
+    		"post-type" => array($type, $options_array, $multiple), // select from post-types
+    		"taxonomy" => array($type, $options_array, $multiple), // select from taxonomies
+        //===> to create nested options <===//
+    		"options" => array($type, $options_list => array(
+    				"option-name" => array($type, $default_value),
+    		)),
+    );
+    
+    /*===> Theme Parts Meta Features <====*/
+    $meta_features => array(
+    		"grid" => "show the flexbox options like the grid-row block.",
+    		"spacing" => "show the style options for [padding, margin].",
+    		"background" => "show the style option for backgrounds.",
+    		"typography" => "show the typography settings for text like [size, alignment, colors]",
+    );
+    ```
 
 ### Credits
 

@@ -29,6 +29,10 @@
       "type": "object",
       "default": {}
     },
+    "flexbox": {
+      "type": "object",
+      "default": {}
+    },
     "typography": {
       "type": "object",
       "default": {}

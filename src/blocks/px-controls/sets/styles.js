@@ -25,6 +25,23 @@ export default class StylesSet extends Component {
         const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-styles-option`;
 
         //===> Define Controls Options <===//
+        const zindex_options = [
+            { "label": "Default", "value": ""},
+            { "label": "Level.1", "value": "z-index-1"},
+            { "label": "Level.2", "value": "z-index-2"},
+            { "label": "Level.3", "value": "z-index-3"},
+            { "label": "Level.4", "value": "z-index-4"},
+            { "label": "Level.5", "value": "z-index-5"},
+            { "label": "Level.6", "value": "z-index-6"},
+            { "label": "Level.7", "value": "z-index-7"},
+            { "label": "Level.8", "value": "z-index-8"},
+            { "label": "Level.9", "value": "z-index-9"},
+            { "label": "Level.10", "value": "z-index-10"},
+            { "label": "Lvl.Header", "value": "z-index-header"},
+            { "label": "Lvl.Popups", "value": "z-index-modal"},
+            { "label": "Lvl.Dropdowns", "value": "z-index-dropdown"},
+        ];
+
         const position_options = [
             { "label": "Default", "value": ""},
             { "label": "Fixed", "value": "position-fx"},
@@ -89,8 +106,9 @@ export default class StylesSet extends Component {
             { label: __("Display", "pds-blocks"), value: 'enable-display' },
             { label: __("Position", "pds-blocks"), value: 'enable-position' },
             { label: __("Animations", "pds-blocks"), value: 'enable-animations' },
+            { label: __("Effects", "pds-blocks"), value: 'enable-effects' },
             { label: __("Animated Childs", "pds-blocks"), value: 'px-animate' },
-            { label: __("Overlapped", "pds-blocks"), value: 'overlapped' },
+            { label: __("Overlapped", "pds-blocks"), value: 'pos-overlap' },
         ];
 
         const background_options = {
@@ -208,6 +226,9 @@ export default class StylesSet extends Component {
                         {attributes.style.support?.includes('enable-position') ? <>
                             <div className='col col-6'>
                                 <PhenixSelect key={`position-${uniqueKey}`} name="position" placeholder={__("Default", "pds-blocks")} label={__("Position Type", "pds-blocks")} value={attributes.style.position} onChange={mainSetter} options={position_options} />
+                            </div>
+                            <div className='col col-6'>
+                                <PhenixSelect key={`position-index-${uniqueKey}`} name="z-index" placeholder={__("Default", "pds-blocks")} label={__("Index Order", "pds-blocks")} value={attributes.style['z-index']} onChange={mainSetter} options={zindex_options} />
                             </div>
                         </>: null}
 

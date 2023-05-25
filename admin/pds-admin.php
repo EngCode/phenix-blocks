@@ -167,6 +167,9 @@
         array('pds_logical_block', 'pds-admin'),
         array('pds_users_query_block', 'pds-admin'),
         array('text_elements_block', 'pds-admin'),
+        array('tabs_block', 'pds-admin'),
+        array('dropdowns_block', 'pds-admin'),
+        array('accordion_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),
@@ -350,17 +353,6 @@
             }
         }
     endif;
-
-    //===> Add Reusable Blocks <===//
-    // pds_cpt_create(array(
-    //     'enable'=> true,
-    //     "name"  => "wp_block",
-    //     "label" =>  __('Reusable Blocks', 'phenix'),
-    //     "label_singular" => __('Block', 'phenix'),
-    //     "menu_icon" => "welcome-view-site",
-    //     "taxonomies" => array(),
-    //     "menu_position" => 35
-    // ));
 
     //===> Set Taxonomies <===//
     if (get_option('pds_taxonomies')) :

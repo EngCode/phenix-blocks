@@ -126,6 +126,10 @@
 .bg-grade-warning   {background-image: linear-gradient(var(--gradient-rotation) ,var(--warning-gradient));}
 .bg-grade-success   {background-image: linear-gradient(var(--gradient-rotation) ,var(--success-gradient));}
 .bg-grade-secondary {background-image: linear-gradient(var(--gradient-rotation) ,var(--secondary-gradient));}
+.bg-grade-alpha-dark {background-image: linear-gradient(var(--gradient-rotation) , rgba(#000, 0), rgba(#000, 0.5));}
+.bg-grade-alpha-light {background-image: linear-gradient(var(--gradient-rotation) , rgba(#FFF, 0), rgba(#FFF, 0.5));}
+.bg-grade-alpha-darker {background-image: linear-gradient(var(--gradient-rotation) , rgba(#000, 0), rgba(#000, 0.75));}
+.bg-grade-alpha-lighter {background-image: linear-gradient(var(--gradient-rotation) , rgba(#FFF, 0), rgba(#FFF, 0.75));}
 
 /*==== Mixed Gradient ====*/
 .bg-grade-danger-purple   {background-image: linear-gradient(var(--gradient-rotation) ,var(--danger-color), #5848D2);}

@@ -2,7 +2,7 @@
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
 import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps, InnerBlocks} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.png';
@@ -10,6 +10,7 @@ import ScreensTabs from "../px-controls/tabs";
 import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
+import PhenixInput from '../px-controls/input';
 
 //====> Phenix Options Sets <=====//
 import StylesSet from '../px-controls/sets/styles';
@@ -21,12 +22,10 @@ import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 import PaddingSet from '../px-controls/sets/padding';
 import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
+import EffectsSet from '../px-controls/sets/effects';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    //===> Set Settings <===//
-    const set_id = id => setAttributes({ id });
-
     //===> Value Handler <===//
     const valueHandler = (target) => {
         //===> Define Array Type <===//
@@ -115,6 +114,48 @@ export default function Edit({ attributes, setAttributes }) {
         { "label": "Listing", "value": "ul"},
     ];
 
+    const max_size_util = [
+        { "label": "1920", "value": "w-max-1920"},
+        { "label": "1600", "value": "w-max-1600"},
+        { "label": "1400", "value": "w-max-1400"},
+        { "label": "1366", "value": "w-max-1366"},
+        { "label": "1200", "value": "w-max-1200"},
+        { "label": "1100", "value": "w-max-1100"},
+        { "label": "768", "value": "w-max-768"},
+        { "label": "640", "value": "w-max-640"},
+        { "label": "570", "value": "w-max-570"},
+        { "label": "480", "value": "w-max-480"},
+        { "label": "420", "value": "w-max-420"},
+        { "label": "390", "value": "w-max-390"},
+        { "label": "360", "value": "w-max-360"},
+        { "label": "320", "value": "w-max-320"},
+        { "label": "280", "value": "w-max-280"},
+        { "label": "260", "value": "w-max-260"},
+        { "label": "200", "value": "w-max-200"},
+        { "label": "180", "value": "w-max-180"},
+    ];
+
+    const min_size_util = [
+        { "label": "1920", "value": "w-min-1920"},
+        { "label": "1600", "value": "w-min-1600"},
+        { "label": "1400", "value": "w-min-1400"},
+        { "label": "1366", "value": "w-min-1366"},
+        { "label": "1200", "value": "w-min-1200"},
+        { "label": "1100", "value": "w-min-1100"},
+        { "label": "768", "value": "w-min-768"},
+        { "label": "640", "value": "w-min-640"},
+        { "label": "570", "value": "w-min-570"},
+        { "label": "480", "value": "w-min-480"},
+        { "label": "420", "value": "w-min-420"},
+        { "label": "390", "value": "w-min-390"},
+        { "label": "360", "value": "w-min-360"},
+        { "label": "320", "value": "w-min-320"},
+        { "label": "280", "value": "w-min-280"},
+        { "label": "260", "value": "w-min-260"},
+        { "label": "200", "value": "w-min-200"},
+        { "label": "180", "value": "w-min-180"},
+    ];
+
     //===> Get Block Properties <===//
     const TagName = attributes.tagName;
     const blockProps = useBlockProps();
@@ -170,6 +211,16 @@ export default function Edit({ attributes, setAttributes }) {
                             blockProps.className += ` px-media`;
                             blockProps["data-src"] = attributes.style.background.value;
                         }
+                        //===> Video Background <===//
+                        else if (attributes.style.background.type === 'video') {
+                            blockProps.className += ` px-media pds-video-bg`;
+                            blockProps["data-type"] = "embed";
+                            blockProps["data-embed"]="video";
+                            blockProps["data-autoplay"]="1";
+                            blockProps["data-loop"]="1";
+                            blockProps["data-muted"]="1";
+                            blockProps["data-src"] = attributes.style.background.value;
+                        }
                         //===> Name Background <===//
                         else {
                             blockProps['style'] = null; blockProps['data-src'] = null;
@@ -207,14 +258,14 @@ export default function Edit({ attributes, setAttributes }) {
                     //===> Positions Values <===//
                     else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Layout Gap <===//
-                    else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('gpy-fix')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
                     else {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
             });
         };
     });
-    // <ul id="table-of-content-list" class="scrollspy-menu"></ul>
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -223,6 +274,14 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip w-75' data-title={__("HTML Tag", "pds-blocks")}>
                     <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={html_tags} />
+                </div>
+                {/*===> Select Control <===*/}
+                <div className='inline-block inline-select tooltip w-100' data-title={__("Max Size", "pds-blocks")}>
+                    <PhenixSelect name="max_size" placeholder={__("Max Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.style.max_size} onChange={set_style} options={max_size_util} />
+                </div>
+                {/*===> Select Control <===*/}
+                <div className='inline-block inline-select tooltip w-100' data-title={__("Min Size", "pds-blocks")}>
+                    <PhenixSelect name="min_size" placeholder={__("Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.style.min_size} onChange={set_style} options={min_size_util} />
                 </div>
                 {/*===> Dropdown Button <===*/}
                 {attributes.isFlexbox? <PxDropDown title={__("Layout Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280" dataPosition={`bottom, end`}>
@@ -310,6 +369,14 @@ export default function Edit({ attributes, setAttributes }) {
                         </li>
                     </PxDropDown>
                 :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-effects') ?
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <EffectsSet attributes={attributes} mainSetter={set_style} />
+                        </li>
+                    </PxDropDown>
+                :null}
             </Toolbar>
         </BlockControls>
         {/*====> Controls Layout <====*/}
@@ -317,7 +384,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> General Options <===*/}
             <PanelBody title={__("General Options", "pds-blocks")} initialOpen={true}>
                 {/*=== Form Control  ===*/}
-                <TextControl name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={ attributes.id } onChange={set_id} />
+                <PhenixInput name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={attributes.id} onChange={set_value} />
                 {/*===> Styles Options <===*/}
                 <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>

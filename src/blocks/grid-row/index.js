@@ -112,7 +112,7 @@ registerBlockType(metadata, {
                         //===> Postion Absolute Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;} 
                         //===> Layout Gap <===//
-                        else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                        else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         //===> Padding Values <===//
                         else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         //===> Margin Values <===//

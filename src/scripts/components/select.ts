@@ -304,7 +304,7 @@ PhenixElements.prototype.select = function (options?:{
                 </button>`;
 
                 //===> Create Values Group <===//
-                new_value_group = new_select.insert('prepend', `<div class="px-selected-values pdt-5 px-select-toggle col-12 flexbox align-center-y">
+                new_value_group = new_select.insert('prepend', `<div class="px-selected-values pdt-5 px-select-toggle tx-nowrap col-12 flexbox align-center-y">
                     <input class="px-select-search col w-50 reset-input input-inherit mb-5" placeholder="${first_label}" />
                 </div>`);
             }
@@ -316,7 +316,7 @@ PhenixElements.prototype.select = function (options?:{
                     holder_image   = select.getAttribute('data-image');
 
                 //===> Create Placeholder <===//
-                new_select_value = new_select.insert('prepend', `<button type="button" class="reset-button h-min-100 px-select-toggle col ${first_classes(holder_classes)}">${first_image(holder_image,first_label)}${first_label}</button>`);
+                new_select_value = new_select.insert('prepend', `<button type="button" class="reset-button h-min-100 px-select-toggle tx-nowrap col ${first_classes(holder_classes)}">${first_image(holder_image,first_label)}${first_label}</button>`);
 
                 //===> Set First Option as Value <===//
                 new_select[0].setAttribute('data-value', `${first_option ? first_option.getAttribute('value') : ''}`);

@@ -76,6 +76,16 @@ registerBlockType(metadata, {
                                 blockProps.className += ` px-media`;
                                 blockProps["data-src"] = attributes.style.background.value;
                             }
+                            //===> Video Background <===//
+                            else if (attributes.style.background.type === 'video') {
+                                blockProps.className += ` px-media pds-video-bg`;
+                                blockProps["data-type"] = "embed";
+                                blockProps["data-embed"]="video";
+                                blockProps["data-autoplay"]="1";
+                                blockProps["data-loop"]="1";
+                                blockProps["data-muted"]="1";
+                                blockProps["data-src"] = attributes.style.background.value;
+                            }
                             //===> Name Background <===//
                             else {
                                 blockProps['style'] = null; blockProps['data-src'] = null;
@@ -113,7 +123,7 @@ registerBlockType(metadata, {
                         //===> Positions Values <===//
                         else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         //===> Layout Gap <===//
-                        else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
+                        else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('gpy-fix')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
                         //===> Other Values <===//
                         else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                     };

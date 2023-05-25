@@ -74,25 +74,61 @@ PhenixElements.prototype.utilities = function (options?:{
     });
 
     //====> Dynamic Word Coloring <====//
-    if (type.includes("text") || type === "all") Phenix('body:not(.wp-admin) .colored-word').forEach((title:HTMLElement) => {
-        //====> Setup Properties <====//
-        var titleContent = title.innerHTML,
-            word_array = titleContent.split(/[ ]+/),
-            lastWord  = word_array.splice(-1);
-        //====> Return Title <====//
-        let theResult = `${word_array} <span class="color-primary">${lastWord}</span>`;
-        title.innerHTML = theResult.replace(/,/g, ' ');
-    });
+    if (type.includes("text") || type === "all") {
+        //====> Dynamic Word Coloring <====//
+        Phenix('body:not(.wp-admin) .colored-word').forEach((title:HTMLElement) => {
+            //====> Setup Properties <====//
+            var titleContent = title.innerHTML,
+                word_array = titleContent.split(/[ ]+/),
+                lastWord  = word_array.splice(-1);
+            //====> Return Title <====//
+            let theResult = `${word_array} <span class="color-primary">${lastWord}</span>`;
+            title.innerHTML = theResult.replace(/,/g, ' ');
+        });
+        //====> Max Text Length <====//
+        Phenix('[data-max-text]').forEach((element:any) => {
+            //===> Element Data <===//
+            let text = element.textContent,
+                max  = parseInt(element.getAttribute('data-max-text'));
+    
+            //===> check count <===//
+            if (text.length > max) element.textContent = text.slice(0, max);
+        });
 
-    //====> Max Text Length <====//
-    if (type.includes("text") || type === "all") Phenix('[data-max-text]').forEach((element:any) => {
-        //===> Element Data <===//
-        let text = element.textContent,
-            max  = parseInt(element.getAttribute('data-max-text'));
+        //====> Custom Colored Titles <====//
+        const pds_words_wrapper = (str, classes, num) => {
+            //===> Split String <===//
+            const words = str.split(' ');
+        
+            //===> make sure its valid request <===//
+            if (!num) num = 2;
+            if (words.length < num) { return str; }
 
-        //===> check count <===//
-        if (text.length > max) element.textContent = text.slice(0, max);
-    });
+            //===> Get the last two words <===//
+            const lastTwoWords = words.slice(-num);
+        
+            //===> Join the words back together with a space between them, and wrap in a span element <===//
+            const wrappedWords = `<span class="${classes}">${lastTwoWords.join(' ')}</span>`;
+        
+            //===> Replace the last two words in the original string with the wrapped words <===//
+            return str.replace(lastTwoWords.join(' '), wrappedWords);
+        };
+
+        Phenix('.gradient-text').forEach((title:HTMLElement) => {
+        //===> Get the Title Content <===//
+        let title_content = title.textContent,
+            gradient_name = "";
+
+        //===> get the title background name <===//
+        title.classList.forEach(className => {
+            if (className.includes('grade-')) gradient_name += ` ${className.includes('bg-') ? "" : "bg-"}${className}`;
+        });
+
+        //====> Set the Title Content <====//
+        title.innerHTML = pds_words_wrapper(title_content, `bg-clip-text ${gradient_name.length < 1 ? "bg-grade-45 bg-grade-primary-secondary" : gradient_name.trim()}`, title_content.split(' ').length - 1);
+        });
+    }
+
 
     //====> icons List <====//
     if (type.includes("icons") || type === "all") Phenix('.icons-list').forEach((list:HTMLElement) => {

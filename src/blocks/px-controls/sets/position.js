@@ -37,24 +37,24 @@ export default class PositionSet extends Component {
         //===> Output <===//
         return <div className={`padding-controller mgx-auto`}>
             {/*===> Top Controller <===*/}
-            <div className='mgx-auto mb-15' style={{width: 30}}>
+            <div className='mgx-auto mb-15' style={{width: 100}}>
                 <PhenixNumber name={`pos-top${screen}`} onChange={mainSetter} value={attributes.style[`pos-top${screen}`] || 0} min={0} max={30} steps={5} />
             </div>
             {/*===> X Controls <===*/}
             <div className={`flexbox align-between align-center-y mb-15`}>
                 {/*===> Start Button <===*/}
-                <div style={{width: 30}}>
+                <div style={{width: 100}}>
                     <PhenixNumber name={`pos-start${screen}`} onChange={mainSetter} value={attributes.style[`pos-start${screen}`] || 0} min={0} max={30} steps={5} />
                 </div>
                 {/*===> Reset Button <===*/}
                 <button name="reset-padding" onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
-                <div style={{width: 30}}>
+                <div style={{width: 100}}>
                     <PhenixNumber name={`pos-end${screen}`} onChange={mainSetter} value={attributes.style[`pos-end${screen}`] || 0} min={0} max={30} steps={5} />
                 </div>
             </div>
             {/*===> Bottom Controller <===*/}
-            <div className='mgx-auto' style={{width: 30}}>
+            <div className='mgx-auto' style={{width: 100}}>
                 <PhenixNumber name={`pos-bottom${screen}`} onChange={mainSetter} value={attributes.style[`pos-bottom${screen}`] || 0} min={0} max={30} steps={5} />
             </div>
             {/*===> Other Options <===*/}

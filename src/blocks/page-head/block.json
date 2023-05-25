@@ -18,15 +18,10 @@
 
 		"mode": {
 			"type": "string",
-			"default": "title"
+			"default": "title-breadcrumb"
 		},
 
-		"title": {
-			"type": "object",
-			"default": {}
-		},
-
-		"breadcrumb": {
+		"setting": {
 			"type": "object",
 			"default": {}
 		},

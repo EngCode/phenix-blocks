@@ -9,6 +9,10 @@
     "html": false
   },
   "attributes": {
+    "main": {
+      "type": "string",
+      "default": "px-media"
+    },
     "setting": {
       "type": "object",
       "default": {}

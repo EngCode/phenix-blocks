@@ -48,7 +48,8 @@
     "phenix-start": "concurrently --kill-others \"npm run phenix-sass\" \"npm run phenix-ts\" \"npm run phenix-blocks\"",
     "phenix-ts": "npx webpack --config typescript.webpack.js --watch",
     "phenix-sass": "npx node-sass --watch src/sass -o assets/css --output-style compressed --source-map true",
-    "phenix-blocks": "wp-scripts start"
+    "phenix-blocks": "wp-scripts start",
+    "animate-sass": "npx node-sass --watch src/animations/ -o assets/css/animations/ --output-style compressed"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

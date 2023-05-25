@@ -7,9 +7,9 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 ?>
 <!-- Lightbox Popup -->
-<div class="px-modal hidden align-center" id="px-lightbox" data-type="lightbox">
+<div class="px-modal hidden h-max-100vh align-center" id="px-lightbox" data-type="lightbox" style="--opacity:0.75; overflow: hidden;">
     <!-- Container -->
-    <div class="modal-content bg-white radius-sm">
+    <div class="modal-content bg-white radius-sm px-scrollbar" style="max-height: calc(100vh - 50px);">
         <!-- Close Button -->
         <button class="modal-close far fa-times btn square ms-15 radius-circle tiny danger position-ab pos-top-10 pos-end-10"></button>
         

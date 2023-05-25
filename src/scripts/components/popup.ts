@@ -139,7 +139,7 @@ PhenixElements.prototype.popup = function (options?:{
                     //===> Embed Type <===//
                     else if (media_type === 'embed') {
                         //===> Width Fix <===//
-                        lightbox_wrapper.classList.add('col-11', 'w-max-768');
+                        lightbox_wrapper.classList.add('col-11');
 
                         //===> Cleanup URL <===//
                         if (url.includes('youtube.com')) url = url.replace('watch?v=', 'embed/');
@@ -153,7 +153,7 @@ PhenixElements.prototype.popup = function (options?:{
 
                     //===> Image Type <===//
                     else {
-                        return `<img src="${url}" alt="Full Size Image" class="px-lightbox-media h-max-100vh" />`;
+                        return `<img src="${url}" alt="Full Size Image" class="px-lightbox-media" />`;
                     }
                 }
 

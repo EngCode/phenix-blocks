@@ -13,11 +13,17 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
+    //===> Lazy Backgrounds <===//
+    Phenix('.wp-block-phenix-container[data-src]').forEach((container:HTMLElement) => {
+        container.setAttribute('data-lazyloading', "true");
+    });
+
     //===> Lightbox Images <===//
     Phenix('.lightbox-image img').forEach((image:HTMLElement) => {
         image.classList.add('px-lightbox');
         image.classList.add('mouse-pointer');
-        image.setAttribute('data-src', image.getAttribute('src'));
+        let fileType = image.classList.contains('jpg') ? "jpg" : "png";
+        image.setAttribute('data-src', image.getAttribute('src').replace('.webp', fileType));
     });
 
     //====> .Number Counter. <====//
@@ -48,45 +54,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     //===> Smooth Scroll <====//
     Phenix('body:not(.wp-admin) a[href*="#"]').smothScroll();
 
-    //====> Custom Colored Titles <====//
-    const pds_words_wrapper = (str, classes, num) => {
-        //===> Split String <===//
-        const words = str.split(' ');
-      
-        //===> make sure its valid request <===//
-        if (!num) num = 2;
-        if (words.length < num) { return str; }
-
-        //===> Get the last two words <===//
-        const lastTwoWords = words.slice(-num);
-      
-        //===> Join the words back together with a space between them, and wrap in a span element <===//
-        const wrappedWords = `<span class="${classes}">${lastTwoWords.join(' ')}</span>`;
-      
-        //===> Replace the last two words in the original string with the wrapped words <===//
-        return str.replace(lastTwoWords.join(' '), wrappedWords);
-    };
-
-    Phenix('.gradient-title').forEach((title:HTMLElement) => {
-       //===> Get the Title Content <===//
-       let title_content = title.textContent,
-           gradient_name = "";
-
-       //===> get the title background name <===//
-       title.classList.forEach(className => {
-           if (className.includes('grade-')) gradient_name += ` ${className.includes('bg-') ? "" : "bg-"}${className}`;
-       });
-
-       //====> Set the Title Content <====//
-       title.innerHTML = pds_words_wrapper(title_content, `bg-clip-text ${gradient_name.length < 1 ? "bg-grade-45 bg-grade-primary-secondary" : gradient_name.trim()}`, title_content.split(' ').length - 1);
-    });
-
-    //===> Move Elements to Sibling Grid <===//
-    Phenix('.move-to-grid').forEach(element => {
-        let grid_element = Phenix(element).siblings('.row')[0];
-        Phenix(grid_element).insert("append", element);
-    });
-
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
         //===> Get Data Options <====//
@@ -99,6 +66,12 @@ PhenixElements.prototype.init = function (scripts?:[]) {
                 Object.entries(options).forEach(([attribute, value]) => item.setAttribute(`${attribute}`, value));
             });
         });
+    });
+
+    //===> Move Elements to Sibling Grid <===//
+    Phenix('.move-to-grid').forEach(element => {
+        let grid_element = Phenix(element).siblings('.row')[0];
+        Phenix(grid_element).insert("append", element);
     });
 
     //===> Element Overlap <===//
@@ -199,7 +172,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     /*===> Loop Through Titles <===*/
     if (postContent && content_menu) {
         //===> Get Headlines <===//
-        let headlines = postContent.querySelectorAll('h1, h2, h3, h4');
+        let headlines = postContent.querySelectorAll('h2, h3, h4');
         //===> Reset List <===//
         content_menu.innerHTML = "";
         //===> for Each Headline <===//
@@ -217,7 +190,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
                 let last_item = content_menu.querySelector('li:last-child'),
                     last_list = last_item.querySelector('ul');
                 //====> Create new Menu <====//
-                if (!last_list) last_list = Phenix(last_item).insert('append', '<ul class="reset-list pdx-10"></ul>');
+                if (!last_list) last_list = Phenix(last_item).insert('append', '<ul class="table-of-content-menu pdx-15"></ul>');
     
                 //====> Create as Menu Item <====//
                 Phenix(last_list).insert('append', itemHtml);

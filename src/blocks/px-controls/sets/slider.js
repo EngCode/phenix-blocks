@@ -52,6 +52,7 @@ export default class SliderSet extends Component {
                     <OptionControl name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
                     <OptionControl name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
                     <OptionControl name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
+                    <OptionControl name={`animate-elements`} value="has-animated-childs" checked={attributes.flexbox['animate-elements'] || false} onChange={flexSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Animated Elements", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
                 {attributes.slider.pagination ? <div className='col-12'>

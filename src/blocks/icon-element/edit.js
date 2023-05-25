@@ -21,7 +21,7 @@ import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
-import AnimationsSet from '../px-controls/sets/animations';
+import EffectsSet from '../px-controls/sets/effects';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -149,6 +149,7 @@ export default function Edit({ attributes, setAttributes }) {
                         //===> Image Background <===//
                         if (attributes.style.background.type === 'image') {
                             blockProps.className += ` px-media`;
+                            blockProps["data-type"] = "image";
                             blockProps["data-src"] = attributes.style.background.value;
                         }
                         //===> Name Background <===//
@@ -205,7 +206,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Default Options <===//
     let iconURl = "https://via.placeholder.com/50x50.webp";
     blockProps.className += ` tx-align-center inline-block`;
-    if (attributes.style.isLink) blockProps.href = attributes.style.url || "#";
     if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 
     if (!attributes.style.dimensions) {
@@ -235,6 +235,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='inline-block inline-select tooltip w-150' data-title={__("Text Type", "pds-blocks")}>
                     <PhenixSelect name="type" placeholder={__("FontAwesome", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.type} onChange={set_value} options={types_options} />
                 </div>
+                {/*===> Icon Control <===*/}
                 {attributes.type === "font" ? 
                     <PxDropDown title={__("Change Icon", "pds-blocks")} button={`bg-transparent fs-16 square ${attributes.style?.icon || "far fa-icons"} divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="icons" className='pd-10'>
@@ -341,6 +342,14 @@ export default function Edit({ attributes, setAttributes }) {
                                 lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                 xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                             />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-effects') ?
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <EffectsSet attributes={attributes} mainSetter={set_style} />
                         </li>
                     </PxDropDown>
                 :null}

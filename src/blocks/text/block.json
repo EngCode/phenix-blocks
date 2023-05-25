@@ -2,7 +2,7 @@
     "apiVersion": 2,
 	"name": "phenix/text",
 	"version": "1.0.0",
-	"title": "Text Elements",
+	"title": "PDS Text",
     "keywords": ["pds", "pds-blocks", "inline", "headline", "paragraph", "title", "text"],
 	"category": "design",
 	"description": "Text elements for Headlines/Titles and Paragraphs or Lists.",

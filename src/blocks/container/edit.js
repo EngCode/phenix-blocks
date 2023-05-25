@@ -1,8 +1,8 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -11,6 +11,7 @@ import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import PhenixNumber from "../px-controls/number";
+import PhenixInput from "../px-controls/input";
 
 //====> Phenix Options Sets <=====//
 import PaddingSet from '../px-controls/sets/padding';
@@ -21,6 +22,7 @@ import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
+import EffectsSet from '../px-controls/sets/effects';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
@@ -179,6 +181,16 @@ export default function Edit({ attributes, setAttributes }) {
                             blockProps.className += ` px-media`;
                             blockProps["data-src"] = attributes.style.background.value;
                         }
+                        //===> Video Background <===//
+                        else if (attributes.style.background.type === 'video') {
+                            blockProps.className += ` px-media pds-video-bg`;
+                            blockProps["data-type"] = "embed";
+                            blockProps["data-embed"]="video";
+                            blockProps["data-autoplay"]="1";
+                            blockProps["data-loop"]="1";
+                            blockProps["data-muted"]="1";
+                            blockProps["data-src"] = attributes.style.background.value;
+                        }
                         //===> Name Background <===//
                         else {
                             blockProps['style'] = null; blockProps['data-src'] = null;
@@ -216,9 +228,11 @@ export default function Edit({ attributes, setAttributes }) {
                     //===> Positions Values <===//
                     else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Layout Gap <===//
-                    else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { container.className += ` ${sub_option}-${sub_value}`; }
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) { container.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
-                    else {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    //===> Other Values <===//
+                    else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
             });
         };
@@ -334,6 +348,14 @@ export default function Edit({ attributes, setAttributes }) {
                         </li>
                     </PxDropDown>
                 :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-effects') ?
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <EffectsSet attributes={attributes} mainSetter={set_style} />
+                        </li>
+                    </PxDropDown>
+                :null}
             </Toolbar>
         </BlockControls>
         {/*====> Controls Layout <====*/}
@@ -341,7 +363,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> General Options <===*/}
             <PanelBody title={__("General Options", "pds-blocks")} initialOpen={true}>
                 {/*=== Form Control  ===*/}
-                <TextControl name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={ attributes.id } onChange={set_id} />
+                <PhenixInput name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={attributes.id} onChange={set_value} />
                 {/*===> Styles Options <===*/}
                 <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>

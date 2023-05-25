@@ -22,6 +22,7 @@ import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 import PaddingSet from '../px-controls/sets/padding';
 import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
+import EffectsSet from '../px-controls/sets/effects';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -170,6 +171,16 @@ export default function Edit({ attributes, setAttributes }) {
                             blockProps.className += ` px-media`;
                             blockProps["data-src"] = attributes.style.background.value;
                         }
+                        //===> Video Background <===//
+                        else if (attributes.style.background.type === 'video') {
+                            blockProps.className += ` px-media pds-video-bg`;
+                            blockProps["data-type"] = "embed";
+                            blockProps["data-embed"]="video";
+                            blockProps["data-autoplay"]="1";
+                            blockProps["data-loop"]="1";
+                            blockProps["data-muted"]="1";
+                            blockProps["data-src"] = attributes.style.background.value;
+                        }
                         //===> Name Background <===//
                         else {
                             blockProps['style'] = null; blockProps['data-src'] = null;
@@ -209,7 +220,7 @@ export default function Edit({ attributes, setAttributes }) {
                     //===> Positions Values <===//
                     else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Layout Gap <===//
-                    else if (sub_option.includes('gpx') || sub_option.includes('gpy')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('gpy-fix')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
                     else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
@@ -318,6 +329,14 @@ export default function Edit({ attributes, setAttributes }) {
                                 lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                 xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                             />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-effects') ?
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <EffectsSet attributes={attributes} mainSetter={set_style} />
                         </li>
                     </PxDropDown>
                 :null}

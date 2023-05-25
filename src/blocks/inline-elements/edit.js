@@ -20,6 +20,7 @@ import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
+import EffectsSet from '../px-controls/sets/effects';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -288,6 +289,14 @@ export default function Edit({ attributes, setAttributes }) {
                                     lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                     xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                 />
+                            </li>
+                        </PxDropDown>
+                    :null}
+                    {/*===> Dropdown Button <===*/}
+                    {attributes.style?.support?.includes('enable-effects') ?
+                        <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                            <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                                <EffectsSet attributes={attributes} mainSetter={set_style} />
                             </li>
                         </PxDropDown>
                     :null}

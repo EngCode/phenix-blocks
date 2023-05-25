@@ -71,8 +71,8 @@ export default class TypographySet extends Component {
         //===> Lineheight List <===//
         const font_lineheight = [
             { "label": "Default",  "value": ""},
-            { "label": "130%",  "value": "lineheight-100"},
-            { "label": "130%",  "value": "lineheight-120"},
+            { "label": "100%",  "value": "lineheight-100"},
+            { "label": "120%",  "value": "lineheight-120"},
             { "label": "130%",  "value": "lineheight-130"},
             { "label": "150%",  "value": "lineheight-150"},
             { "label": "160%",  "value": "lineheight-160"},
@@ -81,12 +81,32 @@ export default class TypographySet extends Component {
             { "label": "inherit",  "value": "lineheight-inherit"},
         ];
 
+        const text_shadows = {
+            "Standard" : [
+                { "label": "Standard", "value": "tx-shadow-dp-1"},
+                { "label": "Small", "value": "tx-shadow-dp-2"},
+                { "label": "Medium", "value": "tx-shadow-dp-3"},
+                { "label": "Large", "value": "tx-shadow-dp-4"},
+                { "label": "xLarge", "value": "tx-shadow-dp-5"},
+                { "label": "Huge", "value": "tx-shadow-dp-x"},
+            ],
+            "TailWind" : [
+                { "label": "Standard", "value": "tx-shadow"},
+                { "label": "Small", "value": "tx-shadow-sm"},
+                { "label": "Medium", "value": "tx-shadow-md"},
+                { "label": "Large", "value": "tx-shadow-lg"},
+                { "label": "xLarge", "value": "tx-shadow-xl"},
+                { "label": "Huge", "value": "tx-shadow-xxl"},
+            ],
+        };
+
         //===> Output <===//
         return <>
             {/*===> Size Only <===*/}
             {options && options.includes("size") ? <>
-                <PhenixSelect className="mb-10" name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
-            </>: null}
+                {/*===> Size <===*/}
+                <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
+            </> : null}
             {/*===> Grouped Options <===*/}
             {!options ? <div className='row gpx-20 gpy-15'>
                 {/*===> Size <===*/}
@@ -100,6 +120,10 @@ export default class TypographySet extends Component {
                 {/*===> Weight <===*/}
                 <div className='col col-6'>
                     <PhenixSelect name="lineheight" placeholder={__("Default", "pds-blocks")} label={__("Line Height", "pds-blocks")} value={attributes.typography.lineheight} onChange={mainSetter} options={font_lineheight}/>
+                </div>
+                {/*===> Shadow <===*/}
+                <div className='col col-6'>
+                    <PhenixSelect name="text-shadow" placeholder={__("None", "pds-blocks")} label={__("Text Shadow", "pds-blocks")} value={attributes.style['text-shadow']} onChange={mainSetter} options={text_shadows} />
                 </div>
                 {/*===> Other Options <===*/}
                 {this.props.children ? this.props.children : null}
@@ -135,7 +159,7 @@ export default class TypographySet extends Component {
                 {/*===> Style Options <===*/}
                 <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Style", "pds-blocks")}</label>
                 {/*===> Elements Group <===*/}
-                <div className='flexbox mb-15'>
+                <div className='flexbox gpy-10'>
                     {/*===> Switch Button <===*/}
                     <OptionControl name={`tx-capitalize`} checked={attributes.typography[`tx-capitalize`]} value={"tx-capitalize"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-font-case radius-sm' data-title={__("Capitalize","pds-blocks")}></span>
@@ -153,12 +177,28 @@ export default class TypographySet extends Component {
                         <span className='btn small square tooltip-bottom outline gray fas fa-strikethrough radius-sm' data-title={__("Strikethrough","pds-blocks")}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "ltr"} value={"ltr"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-radio' className='small me-5'>
+                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "ltr"} value={"ltr"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-paragraph radius-sm' data-title={__("LTR","pds-blocks")}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "rtl"} value={"rtl"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-radio' className='small me-5'>
+                    <OptionControl name={`tx-direction`} checked={attributes.typography[`tx-direction`] === "rtl"} value={"rtl"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-paragraph-rtl radius-sm' data-title={__("RTL","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`tx-nowrap`} checked={attributes.typography[`tx-nowrap`]} value={"tx-nowrap"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-ellipsis-h radius-sm' data-title={__("Nowrap","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`bg-clip-text`} checked={attributes.typography[`bg-clip-text`]} value={"bg-clip-text"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-box-heart radius-sm' data-title={__("Clip Text","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`colored-word`} checked={attributes.typography[`colored-word`]} value={"colored-word"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-tint radius-sm' data-title={__("Colored Words","pds-blocks")}></span>
+                    </OptionControl>
+                    {/*===> Switch Button <===*/}
+                    <OptionControl name={`gradient-text`} checked={attributes.typography[`gradient-text`]} value={"gradient-text"} onChange={!screen ? mainSetter : (target) => mainSetter(target, screen)} type='button-checkbox' className='small me-5'>
+                        <span className='btn small square tooltip-bottom outline gray fas fa-brush radius-sm' data-title={__("Gradient Words","pds-blocks")}></span>
                     </OptionControl>
                 </div>
             </>: null}

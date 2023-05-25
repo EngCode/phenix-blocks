@@ -2,7 +2,9 @@
 .interface-interface-skeleton__html-container {overflow: hidden;}
 
 .editor-styles-wrapper {
+	background-color: var(--body-bg)!important;
 	font-family: var(--secondary-font)!important;
+	.block-editor-rich-text__editable:not([class*="color-"]) {color: inherit!important;}
 
 	//=== Editor Titles Reset Fix ====//
 	h1:not([class*="fs-"]):not([class*="y-h"]),.h1:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(32);}
@@ -11,6 +13,12 @@
     h4:not([class*="fs-"]):not([class*="y-h"]),.h4:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(23);}
     h5:not([class*="fs-"]):not([class*="y-h"]),.h5:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(20);}
     h6:not([class*="fs-"]):not([class*="y-h"]),.h6:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(17);}
+	
+	h1:not([class*="mt-"]), h2:not([class*="mt-"]), h3:not([class*="mt-"]),
+	h4:not([class*="mt-"]), h5:not([class*="mt-"]), h6:not([class*="mt-"]) {margin-top: 0;}
+	
+	h1:not([class*="mb-"]), h2:not([class*="mb-"]), h3:not([class*="mb-"]),
+	h4:not([class*="mb-"]), h5:not([class*="mb-"]), h6:not([class*="mb-"]) {margin-bottom: 15px;}
 
 	.wp-block-image {
 		&:not([class*="mb"]) {margin-bottom: 0;}
@@ -21,7 +29,11 @@
 			margin-bottom: 0 !important;
 			white-space: nowrap !important;
 		}
+
+		img {max-width: 100%!important; height: auto!important;}
+		.components-resizable-box__container {max-width: 100%!important; height: auto!important;}
 	}
+
 
 	/*==== Editor Page Title ====*/
 	.edit-post-visual-editor__post-title-wrapper {
@@ -41,9 +53,6 @@
 		opacity: 0.7;
 		display: block!important;
 	}
-
-	/*==== Temporary Fixes ====*/
-	.wp-block.position-fx {position: static;}
 	
 	/*==== Layouts Wrapper ====*/
 	.block-editor-block-list__layout {
@@ -100,8 +109,7 @@
 	/*==== Position ====*/
 	.position-ab  {position: absolute!important;}
 	.position-rv  {position: relative!important;}
-	.position-fx  {position: fixed!important;}
-	.position-st  {position: -webkit-sticky!important;position: sticky!important;}
+	.position-fx  {position: absolute!important;}
 	.position-none  {position: static!important;}
 
 	/*==== Template Part ====*/
@@ -113,6 +121,7 @@
 
 /*==== Post Editor Wrapper ====*/
 body.block-editor-page {
+	background-color: var(--body-bg)!important;
 	/*==== Post Editor ====*/
 	.wp-block-post-content {
 		padding-top: 30px;
@@ -153,6 +162,8 @@ body.block-editor-page {
 			@else  {border-radius: 0 var(--radius) var(--radius) 0;}
 		}
 	}
+	
+	.px-media .px-media-img {opacity: 1;}
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}

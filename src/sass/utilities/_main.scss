@@ -32,13 +32,15 @@
 
 /*==== Overlay Layer ====*/
 .overlay-dark {
+    --opacity: 0.5;
     @extend %overlay;
-    &::before {background-color: #000;}
+    &::before {background-color: #000;opacity: var(--opacity);}
 }
 
 .overlay-light {
+    --opacity: 0.3;
     @extend %overlay;
-    &::before {background-color: #FFF;}
+    &::before {background-color: #FFF;opacity: var(--opacity);}
 }
 
 /*==== Directions ====*/
@@ -80,11 +82,17 @@
 .tx-shadow-dp1 {text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);}
 .tx-shadow-dp2 {text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);}
 .tx-shadow-dp3 {text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16);}
+.tx-shadow-dp-4 {text-shadow: 10px 10px 20px rgba(#000, 0.1);}
+.tx-shadow-dp-5 {text-shadow: 0 0 30px rgba(#000, 0.1);}
+.tx-shadow-dp-x {text-shadow: 5px 5px 10px rgba(0,0,0,0.05);}
 
-/*==== Transition ====*/
-.transition-fast {@extend %fast-motion;}
-.transition-smooth {@extend %smooth-motion;}
-.transition-slow {@extend %slow-motion;}
+//====> TailWind Text Shadows <====//
+.tx-shadow {text-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);}
+.tx-shadow-sm  {text-shadow: 0px 1px 2px rgba(#000, 0.05);}
+.tx-shadow-xxl {text-shadow: 0px 25px 50px -12px rgba(#000, 0.25);}
+.tx-shadow-md  {text-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);}
+.tx-shadow-lg  {text-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);}
+.tx-shadow-xl  {text-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);}
 
 /*==== Sticky Elements ====*/
 .is-sticky {
@@ -108,6 +116,7 @@
 
 /*==== Custom Scrollbar ====*/
 .px-scrollbar {
+    overflow: auto;
     --scrollbar-color : var(--gray-color);
     --scrollbar-thumb : var(--dark-color);
 
@@ -155,9 +164,9 @@
 /*==== Icons List ====*/
 .icons-list li {
     position: relative;
-    padding-#{$direction-start}: calc(1em + 8px);
+    padding-#{$direction-start}: calc(1em + 8px)!important;
     &::before {
-        top: 4px;
+        top: 0;
         position: absolute;
         #{$direction-start}:0;
     }

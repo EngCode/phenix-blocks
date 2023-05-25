@@ -185,7 +185,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                     let iframe = element.querySelector('iframe');
                     //===> Create View <===//
                     if (!iframe) {
-                        Phenix(element).insert('append', `<iframe src="${src}" frameborder="0" ${lazy ? 'loading="lazy"' : ''} allowfullscreen></iframe>`);
+                        Phenix(element).insert('append', `<iframe src="${src}" frameborder="0" ${lazy ? 'loading="lazy"' : ''} allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>`);
                     }
                     //===> Mark as Done <===//
                     mediaDone = true;

@@ -58,10 +58,18 @@
 }
 
 /*==== Sticky ====*/
+[data-sticky*="absolute"]:not(.is-sticky) {
+    position: relative;
+    z-index: var(--header-index);
+}
+
 .is-sticky {
     z-index: var(--header-index);
     /*==== Absolute ====*/
-    &[data-sticky*="absolute"] {position: fixed;}
+    &[data-sticky*="absolute"] {
+        position: fixed;
+        width: 100%;
+    }
     /*==== Native ====*/
     [data-sticky*="inner"].is-sticky {
         position: -webkit-sticky;

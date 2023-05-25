@@ -224,14 +224,14 @@ export default function Edit(props) {
                 {/*=== Menu ID [Taxonomies/Posts] ===*/}
                 {attributes.menu_type === "posts" || attributes.menu_type === "taxonomies" ? <div className={`row gpx-15`}>
                     {/*===> Column <===*/}
-                    <div className='col col-6 mb-10'>
+                    <div className='col col-12 mb-10'>
                         {attributes.menu_type === "taxonomies" ? <SelectFromData key={`data-id-${uniqueKey}`} options="taxonomies" name="menu_id" label={__("Taxonomy", "pds-blocks")} value={attributes.menu_id} valueSetter={set_value} /> : 
                             <SelectFromData key={`data-id-${uniqueKey}`} options="post-types" name="menu_id" label={__("Post Type", "pds-blocks")} value={attributes.menu_id} valueSetter={set_value} />
                         }
                     </div>
                     {/*===> Column <===*/}
                     {attributes.menu_type === "taxonomies" ?  
-                        <div className='col col-6 mb-10'>
+                        <div className='col col-12 mb-10'>
                             <SelectFromData key={`data-type-${uniqueKey}`} options="post-types" name="post_type" label={__("Post Type", "pds-blocks")} value={attributes.post_type} valueSetter={set_value} />
                         </div>
                     : null }

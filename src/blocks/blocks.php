@@ -92,9 +92,9 @@ if (!function_exists('phenix_blocks')) :
         }
         
         //====> Languages <====//
-        if (get_option('pds_languages_block')) {
-            wp_enqueue_script('pds-languages', $blocksPath.'pds-languages/index.js', $blocksDependencies, NULL , true);
-        }
+        // if (get_option('pds_languages_block')) {
+        //     wp_enqueue_script('pds-languages', $blocksPath.'pds-languages/index.js', $blocksDependencies, NULL , true);
+        // }
         
         //====> Media Element <====//
         if (get_option('media_element_block')) {
@@ -112,9 +112,9 @@ if (!function_exists('phenix_blocks')) :
         }
         
         //====> PDS Form <====//
-        if (get_option('pds_form_block')) {
-            wp_enqueue_script('pds-form', $blocksPath.'pds-form/index.js', $blocksDependencies, NULL , true);
-        }
+        // if (get_option('pds_form_block')) {
+        //     wp_enqueue_script('pds-form', $blocksPath.'pds-form/index.js', $blocksDependencies, NULL , true);
+        // }
 
         //====> Logical Block <====//
         if (get_option('pds_logical_block')) {
@@ -124,6 +124,21 @@ if (!function_exists('phenix_blocks')) :
         //====> Users Query <====//
         if (get_option('pds_users_query_block')) {
             wp_enqueue_script('users-query', $blocksPath.'users-query/index.js', $blocksDependencies, NULL , true);
+        }
+
+        //====> Tabs <====//
+        if (get_option('tabs_block')) {
+            wp_enqueue_script('pds-tabs', $blocksPath.'pds-tabs/index.js', $blocksDependencies, NULL , true);
+        }
+
+        //====> Dropdowns <====//
+        if (get_option('dropdowns_block')) {
+            wp_enqueue_script('pds-dropdowns', $blocksPath.'pds-dropdowns/index.js', $blocksDependencies, NULL , true);
+        }
+
+        //====> Accordions <====//
+        if (get_option('accordion_block')) {
+            wp_enqueue_script('pds-accordion', $blocksPath.'pds-accordion/index.js', $blocksDependencies, NULL , true);
         }
 
         //====> Sidebar Options <====//

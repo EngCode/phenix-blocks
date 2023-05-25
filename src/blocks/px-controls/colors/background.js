@@ -186,7 +186,7 @@ export default class PhenixBackground extends Component {
                 value  = button?.getAttribute('data-value');
 
             //===> Colors & Gradients <===//
-            if (type !== 'image') {options.value = value;}
+            if (type !== 'image' && type !== "video") {options.value = value;}
             //===> Image Type <===//
             else {options.value = clicked.url;}
 
@@ -247,7 +247,7 @@ export default class PhenixBackground extends Component {
                 <div className='form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`col fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
-                        {type !== "image" ? <>
+                        {type !== "image" && type !== "video" ? <>
                             <span className={`me-5 radius-circle inline-block ${value?.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
                             <span className='col tx-nowrap pde-5 tx-capitalize'>{value?.length > 0 ? value.replaceAll("-", " ").replace("bg","") : placeholder ? placeholder : "Default"}</span>
                         </> : <>
@@ -262,6 +262,7 @@ export default class PhenixBackground extends Component {
                             { label: 'color',   value: 'color' },
                             { label: 'image',   value: 'image' },
                             { label: 'gradient',   value: 'gradient' },
+                            { label: 'video',   value: 'video' },
                         ]}/>
                     : onlyCG ? 
                         <PhenixSelect key="bg-type" className="col-5" name="bg-type" value={type || ""} onChange={(target) => set_type(target.value)} options={[
@@ -271,9 +272,9 @@ export default class PhenixBackground extends Component {
                     : null}
                 </div>
                 {/*===> Panel <===*/}
-                <div className={`flexbox options-list align-between ${type !== "image" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: 150}}>
+                <div className={`flexbox options-list align-between ${type !== "image"  && type !== "video" && type !== "embed" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: 150}}>
                     {type === "color" ? makeButtons(this.state.colors) : type === "gradient" ? makeButtons(this.state.gradients) : null}
-                    {type === "image" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
+                    {type === "image" || type === "video" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
                 </div>
                 {/*===> Rotation Select <===*/}
                 {type === "gradient" ? <div className='divider-t pdt-15 col-12'>

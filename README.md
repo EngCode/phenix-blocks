@@ -12,7 +12,7 @@
     <a href="https://phenixthemes.com/pds-docs"><strong>Explore Phenix Docs »</strong></a>
 </p>
 <p align="center">
-    <a href="https://github.com/EngCode/phenix-wp">you need the (Block Theme) for this plugin to run correctly</a>
+    <a href="https://github.com/EngCode/pds-starter-free">you need the (Block Theme) for this plugin to run correctly</a>
 </p>
 
 <p align="center">

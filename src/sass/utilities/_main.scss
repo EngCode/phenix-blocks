@@ -44,8 +44,8 @@
 }
 
 /*==== Directions ====*/
-.ltr { direction: ltr; }
-.rtl { direction: rtl; }
+.ltr { direction: ltr!important; }
+.rtl { direction: rtl!important; }
 
 /*==== zIndex ====*/
 .z-index-header {z-index: var(--header-index);}

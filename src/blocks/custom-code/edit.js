@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
         {/*===> Modal Component <===*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : <div {...blockProps}>
             {/*===> Coding Mode <===*/}
-            {attributes.dev_preview || !attributes.code_preview ? <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} className={`position-rv z-index-3 mb-15`} /> : null}
+            {attributes.dev_preview || !attributes.code_preview ? <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} className={`position-rv z-index-3 mb-15 ltr`} /> : null}
             {/*===> Preview Mode <===*/}
             {attributes.dev_preview || attributes.code_preview ? <ServerSideRender block="phenix/custom-code" attributes={attributes}  /> : null}
         </div>}

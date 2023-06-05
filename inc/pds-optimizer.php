@@ -166,6 +166,7 @@ if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer') == "o
         wp_dequeue_style('wp-block-paragraph');
         wp_dequeue_style('wp-block-template-part');
         wp_dequeue_style('wp-block-library-theme');
+        wp_deregister_style('wp-reset-editor-styles');
         // wp_dequeue_style('wc-blocks-style'); //===> WooCommerce
         // wp_dequeue_script('tnp-blocks'); //===> Newsletter
         // wp_dequeue_script('pll_blocks'); //===> PolyLang

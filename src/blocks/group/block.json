@@ -1,0 +1,62 @@
+{
+    "apiVersion": 2,
+	"name": "phenix/group",
+	"version": "0.1.0",
+	"title": "Group",
+    "keywords": ["pds", "pds-blocks", "group", "wrapper", "container"],
+	"category": "design",
+	"description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
+	"supports": {
+		"html": false,
+        "align": ["full"],
+        "alignWide": true
+	},
+    "attributes" : {
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+
+		"tagName": {
+			"type": "string",
+			"default": "div"
+		},
+
+        "preview" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "isFlexbox" : {
+            "type": "boolean",
+            "default": false
+        },
+
+        "flexbox": {
+            "type": "object",
+            "default": {}
+        },
+
+        "typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        }
+    },
+    "example": {
+        "attributes": {
+            "preview": true
+        }
+    },
+	"textdomain": "pds-blocks",
+	"editorScript": "file:./index.js"
+}

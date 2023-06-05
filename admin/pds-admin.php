@@ -73,11 +73,12 @@
                 ['blocks-product-editor-for-woocommerce', 'contact'],
                 ['blocks-product-editor-for-woocommerce', 'wp-support-forum'],
             ];
+
             foreach ($removable_sub as $item) { remove_submenu_page(...$item); }
 
             //===> Organize Menu Items <===//
             $movable = [
-                ['themes.php', null, __('Plugins', 'phenix'), 'manage_options', 'plugins.php'],
+                ['tools.php', null, __('Plugins', 'phenix'), 'manage_options', 'plugins.php'],
                 ['users.php', null, __('Comments', 'phenix'), 'manage_options', 'edit-comments.php'],
                 ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
                 ['tools.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
@@ -126,11 +127,11 @@
         array('pds_template_parts', 'pds-general'),
         array('pds_primary_font', 'pds-admin', true),
         array('pds_secondary_font', 'pds-admin', true),
-        array('pds_fonts', 'pds-general', true),
-        array('pds_icon_font', 'pds-general', true),
-        array('pds_icon_font_key', 'pds-general', true),
+        array('pds_fonts', 'pds-admin', true),
+        array('pds_icon_font', 'pds-admin', true),
+        array('pds_icon_font_key', 'pds-admin', true),
         array('pds_reset', 'pds-data-collection', true),
-        
+
         //===> Optimization <===//
         array('pds_cdn', 'pds-admin', true),
         array('head_cleaner', 'pds-admin'),
@@ -159,17 +160,22 @@
         array('group_block', 'pds-admin'),
         array('inline_elements_block', 'pds-admin'),
         array('popups_block', 'pds-admin'),
-        array('pds_languages_block', 'pds-admin'),
         array('media_element_block', 'pds-admin'),
         array('icon_element_block', 'pds-admin'),
         array('custom_code_block', 'pds-admin'),
-        array('pds_form_block', 'pds-admin'),
         array('pds_logical_block', 'pds-admin'),
         array('pds_users_query_block', 'pds-admin'),
         array('text_elements_block', 'pds-admin'),
+        
+        array('search_query_block', 'pds-admin'),
         array('tabs_block', 'pds-admin'),
+        array('pds_form_block', 'pds-admin'),
         array('dropdowns_block', 'pds-admin'),
         array('accordion_block', 'pds-admin'),
+        array('pds_gmaps_block', 'pds-admin'),
+        array('pds_progress_block', 'pds-admin'),
+        array('pds_languages_block', 'pds-admin'),
+        array('pds_timer_block', 'pds-admin'),
 
         //===> Core Blocks <===//
         array('pds_core_quote', 'pds-admin'),

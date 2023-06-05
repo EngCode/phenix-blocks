@@ -2,7 +2,7 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //====> Shared Options <====//
     $assets_url = plugin_dir_url(__FILE__);
-    $icons_url = str_replace('admin/panels', 'assets/img/blocks/pds/', $assets_url);
+    $icons_url = str_replace('admin/panels', 'assets/img/blocks/pds', $assets_url);
 ?>
 <!-- Grid -->
 <div class="row">
@@ -45,16 +45,6 @@
                     "title" => 'Grid/Column',
                     "icon"  => $icons_url.'column.svg',
                 ),
-                array(
-                    "name"  => 'inline_elements_block',
-                    "title" => 'Inline Elements',
-                    "icon"  => $icons_url.'inline-elements.svg',
-                ),
-                array(
-                    "name"  => 'popups_block',
-                    "title" => 'Popups Block',
-                    "icon"  => $icons_url.'popup.svg',
-                ),
             ));
         ?>
     </div>
@@ -83,11 +73,6 @@
                     "icon"  => $icons_url.'theme-part.svg',
                 ),
                 array(
-                    "name"  => 'pds_languages_block',
-                    "title" => 'Language Switcher',
-                    "icon"  => $icons_url.'languages.svg',
-                ),
-                array(
                     "name"  => 'media_element_block',
                     "title" => 'Multimedia Element',
                     "icon"  => $icons_url.'media-element.svg',
@@ -98,14 +83,21 @@
                     "icon"  => $icons_url.'icon-element.svg',
                 ),
                 array(
+                    "name"  => 'text_elements_block',
+                    "title" => 'Text Elements',
+                    "icon"  => $icons_url.'inline-elements.svg',
+                ),
+            ));
+        ?>
+    </div>
+    <!-- Column -->
+    <div class="col-12 col-md-3 divider-e">
+        <?php
+            echo pds_toggle_controls(array(
+                array(
                     "name"  => 'custom_code_block',
                     "title" => 'Design Code',
                     "icon"  => $icons_url.'custom-code.svg',
-                ),
-                array(
-                    "name"  => 'pds_form_block',
-                    "title" => 'PDS Form',
-                    "icon"  => $icons_url.'form.svg',
                 ),
                 array(
                     "name"  => 'pds_logical_block',
@@ -116,6 +108,68 @@
                     "name"  => 'pds_users_query_block',
                     "title" => 'Users Query',
                     "icon"  => $icons_url.'users-query.svg',
+                ),
+                array(
+                    "name"  => 'inline_elements_block',
+                    "title" => 'Inline Elements',
+                    "icon"  => $icons_url.'inline-elements.svg',
+                ),
+                array(
+                    "name"  => 'popups_block',
+                    "title" => 'Popups Block',
+                    "icon"  => $icons_url.'popup.svg',
+                ),
+                array(
+                    "name"  => 'tabs_block',
+                    "title" => 'Tabs Block',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'search_query_block',
+                    "title" => 'Search Query',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+            ));
+            ?>
+    </div>
+    <!-- Column -->
+    <div class="col-12 col-md-3 divider-e">
+        <?php
+            echo pds_toggle_controls(array(
+                array(
+                    "name"  => 'accordion_block',
+                    "title" => 'Accordion Block',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'dropdowns_block',
+                    "title" => 'Dropdown Block',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'pds_progress_block',
+                    "title" => 'Progress Block',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'pds_gmaps_block',
+                    "title" => 'Google Maps',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'pds_timer_block',
+                    "title" => 'Countdown Timer',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'pds_form_block',
+                    "title" => 'PDS Form',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'pds_languages_block',
+                    "title" => 'Language Switcher',
+                    "icon"  => $icons_url.'under-dev.svg',
                 ),
             ));
         ?>

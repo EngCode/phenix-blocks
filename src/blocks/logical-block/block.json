@@ -1,0 +1,24 @@
+{
+	"apiVersion": 2,
+	"name": "phenix/logical-block",
+	"version": "1.0.0",
+	"title": "Logic Content",
+	"category": "design",
+	"description": "Show and Hide Blocks with Logical Conditions",
+	"supports": {"html": false},
+    "attributes" : {
+		"logic": {
+			"type": "object",
+			"default": {}
+		},
+		"preview" : {
+			"type": "boolean",
+			"default": false
+		}
+    },
+	"example": {
+        "attributes": {"preview": true}
+    },
+	"textdomain": "pds-blocks",
+	"editorScript": "file:./index.js"
+}

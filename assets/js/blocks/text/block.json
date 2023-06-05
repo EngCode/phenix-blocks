@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "phenix/text",
   "version": "1.0.0",
-  "title": "PDS Text",
+  "title": "Text Element",
   "keywords": [
     "pds",
     "pds-blocks",

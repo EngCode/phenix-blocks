@@ -11,7 +11,7 @@
         "neo-sans-w23" => "Neo Sans W23",
         "din-next-lt-arabic" => "DIN Next LT Arabic",
         "tarek-v" => "Tarek V",
-        // "biosans" => "Bio Sans [EN]",
+        "biosans" => "Bio Sans [EN]",
     ];
 
     $fonts_list_icon = [
@@ -21,11 +21,8 @@
         "fontawesome-6-pro" => "Font Awesome 6.3 Pro",
     ];
 
-    $current_fonts = [
-        "icon" => get_option("pds_icon_font"),
-        "primary" => get_option("pds_primary_font"),
-        "secondary" => get_option("pds_secondary_font"),
-    ];
+    $current_fonts = get_option("pds_fonts");
+    $current_fonts['icon'] = get_option("pds_icon_font");
 
     $google_fonts = [];
 
@@ -44,7 +41,15 @@
 <!-- Grid -->
 <div class="row">
     <!-- Column -->
-    <div class="col-12 col-md-4 border-reset divider-s ms-10">
+    <div class="col-12 col-md-4 border-reset divider-s">
+        <?php include(dirname(__FILE__) . './fonts.php'); ?>
+    </div>
+    <!-- Column -->
+    <div class="col-12 col-md-4 border-reset divider-s">
+        <?php include(dirname(__FILE__) . './fonts-rtl.php'); ?>
+    </div>
+    <!-- Column -->
+    <div class="col-12 col-md-4 border-reset divider-s">
         <?php
             echo pds_toggle_controls(array(
                 array(
@@ -56,15 +61,38 @@
                     "title" => 'Enable Google Fonts',
                 ),
                 array(
-                    "name"  => 'pds_cdn',
-                    "title" => 'Enable CDN Links',
-                ),
-                array(
                     "name"  => 'adminbar_disable',
                     "title" => 'Disable Admin-Bar for Users',
                 ),
             ));
         ?>
+        <!-- Divider -->
+        <div class="pdt-10 mb-10 divider-b"></div>
+        <!-- Control Label -->
+        <label class="mb-5 weight-medium"><?php echo __("Icons Font", "phenix"); ?></label>
+        <!-- Form Control -->
+        <div class="control-icon far fa-star-half-alt mb-5">
+            <select name="pds_icon_font" value="<?php echo get_option("pds_icon_font");?>" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Icons Font' ,'phenix'); ?>">
+                <?php 
+                    foreach ($fonts_list_icon as $key => $value) {
+                        $is_selected = "";
+                        if ($current_fonts["icon"] === $key) { $is_selected = "selected"; }
+                        echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        <p class="control-hint"><?php echo __("Select a Icons Font for all icons for the design system", "phenix"). "<br /><span class='fs-12 color-danger'>";?></p>
+        <!--  .__("Note: you need a license to run the (PRO) version.","phenix"). "</span>" -->
+        <?php if (str_contains($current_fonts['icon'], "-pro")) : ?>
+            <!-- Control Label -->
+            <!-- <label class="mb-5 weight-medium"><?php echo __("Icons Font License", "phenix"); ?></label> -->
+            <!-- Form Control -->
+            <!-- <div class="control-icon far fa-lock mb-5">
+                <input type="text" name="pds_icon_font_key" class="form-control radius-sm fs-13" placeholder="<?php echo __('license key', 'phenix');?>">
+            </div>
+            <p class="control-hint"><?php echo __("please enter the license key for the (PRO) version.", "phenix");?></p> -->
+        <?php endif; ?>
     </div>
     <!-- // Column -->
 </div>

@@ -56,6 +56,14 @@ if (!function_exists('pagination')) :
 	*/
 
 	function pagination($query) {
+		//===> Buttons Styles <===//
+		$list_style = "align-center mb-30";
+		$active_btn = "primary active me-10";
+		$normal_btn = "light border-1 border-solid border-alpha-10";
+		$main_style = "btn square small weight-medium radius-sm me-10";
+		$next_btn = !is_rtl() ? sprintf('%1$s<i class="fas fa-angle-right"></i>', "") : sprintf('<i class="fas fa-angle-left"></i>%1$s', "");
+		$prev_btn = is_rtl() ? sprintf('%1$s<i class="fas fa-angle-right"></i>', "") : sprintf('<i class="fas fa-angle-left"></i>%1$s', "");
+
 		//===> Configuration <===//
 		$pages = paginate_links( array(
 			'end_size'     => 2,
@@ -66,25 +74,25 @@ if (!function_exists('pagination')) :
 			'format'       => '?page=%#%',
 			'total'        => $query->max_num_pages,
 			'current'      => max(1, get_query_var('paged')),
-			'prev_text'    => sprintf('<i class="fas fa-angle-left"></i>%1$s', ""),
-			'next_text'    => sprintf('%1$s<i class="fas fa-angle-right"></i>', ""),
+			'prev_text'    => $prev_btn,
+			'next_text'    => $next_btn,
 			'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
 		));
 	
 		//===> Generate <===//
 		if(is_array($pages)) {
 			//===> List <===//
-			echo '<ul class="reset-list pagination flexbox align-center col-12 mb-30">';
+			echo '<ul class="reset-list pagination flexbox '.$list_style.'">';
 			//===> Pages Start <===//
 			foreach ($pages as $page) {
 				//===> if its the Current Page <===//
 				if (strpos($page, 'current') !== false) {
 					$page = str_replace("span", "a", $page);
-					echo "<li class='btn square small weight-medium radius-sm primary active me-10'>$page</li>";
+					echo "<li class='".$main_style." ".$active_btn."'>$page</li>";
 				}
 				//===> else other pages <===//
 				else {
-					echo "<li class='btn square light small weight-medium radius-sm me-10 border-1 border-solid border-alpha-10'>$page</li>";
+					echo "<li class='".$main_style." ".$normal_btn."'>$page</li>";
 				}
 			}
 			//===> Pages End <===//

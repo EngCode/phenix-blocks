@@ -28,16 +28,16 @@ if (!function_exists('pds_tax_create')) :
             $labels = array(
                 'name'               => $label,
                 'menu_name'          => $label,
-                'add_new'            => __('Add New '.$singular, 'phenix'),
-                'edit_item'          => __('Edit '.$singular, 'phenix'),
-                'new_item'           => __('New '.$singular, 'phenix'),
-                'all_items'          => __('All '.$label_singular, 'phenix'),
-                'view_item'          => __('View '.$singular, 'phenix'),
-                'not_found'          => __('No '.$label_singular.' found', 'phenix'),
-                'search_items'       => __('Search '.$label, 'phenix'),
-                'add_new_item'       => __('Add New '.$singular, 'phenix'),
-                'singular_name'      => __($singular, 'phenix'),
-                'not_found_in_trash' => __('No '.$label_singular.' found in the Trash', 'phenix'), 
+                'add_new'            => __('Add New '.$singular, 'pds-blocks'),
+                'edit_item'          => __('Edit '.$singular, 'pds-blocks'),
+                'new_item'           => __('New '.$singular, 'pds-blocks'),
+                'all_items'          => __('All '.$label_singular, 'pds-blocks'),
+                'view_item'          => __('View '.$singular, 'pds-blocks'),
+                'not_found'          => __('No '.$label_singular.' found', 'pds-blocks'),
+                'search_items'       => __('Search '.$label, 'pds-blocks'),
+                'add_new_item'       => __('Add New '.$singular, 'pds-blocks'),
+                'singular_name'      => __($singular, 'pds-blocks'),
+                'not_found_in_trash' => __('No '.$label_singular.' found in the Trash', 'pds-blocks'), 
             );
 
             //==== CPT Options ====//

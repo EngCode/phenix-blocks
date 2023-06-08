@@ -221,7 +221,6 @@
                 'media_element_block' => "on",
                 'icon_element_block' => "on",
                 'custom_code_block' => "on",
-                'pds_form_block' => "on",
                 'pds_logical_block' => "on",
                 'pds_users_query_block' => "on",
                 'text_elements_block' => "on",

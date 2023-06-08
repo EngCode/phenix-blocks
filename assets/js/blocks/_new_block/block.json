@@ -1,0 +1,50 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/newBlockName",
+  "version": "1.0.0",
+  "title": "newBlockTitle",
+  "keywords": [
+    "pds",
+    "pds-blocks",
+    "block",
+    "phenix"
+  ],
+  "category": "design",
+  "description": "newBlock.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "id": {
+      "type": "string",
+      "default": ""
+    },
+    "setting": {
+      "type": "object",
+      "default": {}
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "pds-blocks",
+  "editorScript": "file:./index.js"
+}

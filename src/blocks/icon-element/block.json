@@ -1,0 +1,45 @@
+{
+	"apiVersion": 2,
+	"name": "phenix/icon-element",
+	"version": "1.0.0",
+	"title": "Icon Element",
+	"category": "design",
+	"description": "",
+	"supports": {"html": false},
+    "attributes" : {
+        "type": {
+            "type": "string",
+            "default": "font"
+        },
+
+		"setting": {
+            "type": "object",
+            "default": {}
+        },
+
+		"typography": {
+            "type": "object",
+            "default": {}
+        },
+
+        "style": {
+            "type": "object",
+            "default": {}
+        },
+
+        "responsive": {
+            "type": "object",
+            "default": {}
+        },
+
+		"preview" : {
+			"type": "boolean",
+			"default": false
+		}
+    },
+	"example": {
+        "attributes": {"preview": true}
+    },
+	"textdomain": "pds-blocks",
+	"editorScript": "file:./index.js"
+}

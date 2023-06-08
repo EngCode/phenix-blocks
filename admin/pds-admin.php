@@ -357,6 +357,12 @@
             if(isset($post_type['enable']) && $post_type['enable'] == true) {
                 pds_cpt_create($post_type);
             }
+
+            //===> Register String for Translation <===//
+            if (function_exists('pll_register_string')) {
+                pll_register_string("pds-blocks", $post_type["label"]);
+                pll_register_string("pds-blocks", $post_type["label_singular"]);
+            }
         }
     endif;
 
@@ -365,6 +371,11 @@
         foreach(get_option('pds_taxonomies') as $taxonomy) {
             //===> if the Post-Type is Enabled <===//
             if(isset($taxonomy['enable']) && $taxonomy['enable'] == true) { pds_tax_create($taxonomy); }
+            //===> Register String for Translation <===//
+            if (function_exists('pll_register_string')) {
+                pll_register_string("pds-blocks", $post_type["label"]);
+                pll_register_string("pds-blocks", $post_type["label_singular"]);
+            }
         }
     endif;
 

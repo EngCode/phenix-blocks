@@ -88,17 +88,36 @@ function px_query_render($block_attributes, $content) {
     //===> Get Current Global Query <===//
     global $wp_query;
 
-    /*===> Query Defaults <===*/
+    /*===> Query Items <===*/
     if(!isset($query['per_page'])) { $query['per_page'] = 5; }
+
+    /*===> Check Pagination <===*/
     if (isset($query['pagination']) && $query['pagination'] === true) {
         $query['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
     }
+
+    //===> Check for Search Query <===//
+    if (isset($query['s'])) {
+        //===> if Search is Enable <===//
+        if ($query['s'] === true && isset($_GET["s"])) {
+            //===> Get Search Keywords <===//
+            $query['s'] = $_GET["s"];
+
+            //===> Get the Post Type <===//
+            if (isset($_GET["post_type"])) { $query['post_type'] = $_GET["post_type"]; }
+
+            //===> Set Default Type <===//
+            else if (!isset($query['post_type']) || empty($query['post_type'])) { $query['post_type'] = "post"; };
+        }
+        //===> if its Disable Delete the Prop <===//
+        else { unset($query['s']); }
+    };
 
     //===> Create New Query <===//
     if (isset($query['post_type'])) { $the_query = new WP_Query($query); }
 
     //==== Start Query =====//
-    if ($the_query->have_posts() || have_posts()) {
+    if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
 

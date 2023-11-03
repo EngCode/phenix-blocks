@@ -1,0 +1,252 @@
+/*==== Phenix Blocks ====*/
+.wp-block-phenix-column, .wp-block-phenix-row[data-type="phenix/row"] {
+	&.block-editor-block-list__block, &[data-block] {
+		min-width: 75px;
+		padding-top: min(5px, 150px);
+		padding-bottom: min(5px, 150px);
+	}
+}
+
+/*==== Container Block ====*/
+.wp-block-phenix-container[data-block]:not([class*="h-"]) {
+	min-height: 2.5rem;
+	outline: 1px dashed var(--primary-color);
+}
+
+/*==== Inline Elements Blocks ====*/
+.wp-block-phenix-inline[data-block] {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap!important;
+}
+
+/*==== Grid Blocks ====*/
+.col-adaptive {flex: 1 1 0;}
+.wp-block-phenix-column.block-editor-block-list__block,
+.wp-block-phenix-column[data-block] {outline: 1px dashed var(--secondary-color);}
+
+/*==== Popup Modal ====*/
+.wp-block-phenix-popup {
+	padding: 2rem;
+	min-height: 50vh;
+	background-color: rgba(#000, 0.75);
+	.modal-content {pointer-events: none;}
+}
+
+/*==== General Component ====*/
+.px-gb-component {
+	//===> Chessboard Backgrounds <===//
+	&.colors-selector {
+		.bg-inherit:not(ul), .bg-transparent, .bg-white, [class*="bg-revert"] {border: 1px solid rgba(#000, 0.2);}
+		.bg-inherit:not(ul) 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
+		.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
+	}
+
+	/*==== Borders ====*/
+	.options-list {
+		.px-active {outline: 1px dashed var(--primary-color);border-color: var(--primary-color);}
+	}
+
+	.borderd-group .btn:not(:last-child):not(.outline) {border-#{$direction-end}: 1px solid rgba(#000, 0.2);}
+
+	/*==== Select Buttons ====*/
+	.option-control[data-type="button"] .btn, .icon-btns {
+		button i {pointer-events: none;}
+		.px-active {
+			outline: 0 none;
+			color: var(--primary-color);
+		}
+	}
+
+	.option-control[data-type="button"] .btn {
+		width: 100%;
+		&::before {top: 1px;}
+	}
+
+	.option-control[data-type="button"] input:checked ~ .btn {
+		color: var(--primary-reverse);
+		background-color: var(--primary-color);
+	}
+
+	.lined-tabs .btn.outline {
+		border: 0px none!important;
+		border-bottom: 1px solid var(--dark-color)!important;
+		&.primary {
+			border-width: 0px!important;
+			border-color: var(--primary-color);
+			border-bottom-width: 1px!important;
+		}
+	}
+
+	/*==== Checkboxes ====*/
+	.option-control[data-type="checkbox"] input:checked + span {
+		color : var(--success-color);
+		&::before {--border-color: var(--success-color);}
+	}
+
+	.options-toggle span {pointer-events: none;}
+
+	/*==== Options Panels ====*/
+	.options-list {
+		.radius-sm {--radius: 3px;}
+		.components-flex {gap: calc(5px);}
+		.components-input-control__label {font-size: 10px!important;}
+		.components-base-control, .components-base-control .components-base-control__field {margin-bottom: 0!important;}
+	}
+
+	/*==== Colors Controls ====*/
+	.form-control {
+		/*==== Fix GB Select ====*/
+		.block-editor-block-inspector .components-base-control:last-child,
+		.components-base-control {
+			margin-bottom: 0!important;
+			.components-input-control__container {border-radius: 0!important;}
+			.components-select-control__input {padding: 0 12px!important;}
+
+			.components-input-control-suffix-wrapper {
+				padding-#{$direction-end}: 10px;
+				padding-#{$direction-start}: 4px;
+			}
+			.components-base-control__field {
+				margin-bottom: 0!important;
+				.components-input-control__backdrop {border: 0 none!important;}
+			}
+		}
+
+		&.flexbox .components-base-control {min-width: 100px;}
+	}
+
+	.pds-icon-preview {
+		top: 3px;
+		width: 17px;
+		height: 17px;
+		overflow: hidden;
+		&::before {
+			top: 50%;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
+
+	&.overlay-panel {
+		height: 215px;
+		transition: height 0.3s ease;
+		.options-list {
+			top: 45px;
+			left: #{REM(15)};
+			right: #{REM(5)};
+			width: calc(100% - #{REM(10)});
+			z-index: 99999;
+			position: absolute;
+		}
+	}
+}
+
+.px-gb-tabs .options-tabs {
+	margin-top: -15px;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+/*==== Block Icons ====*/
+.pxi {
+	position: relative;
+	&::before {
+		top: 0;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-size: 1em;
+		background-position: center;
+		background-repeat: no-repeat;
+		transition: -webkit-filter 0.3s;
+		transition: filter 0.3s;
+		transition: filter 0.3s, -webkit-filter 0.3s;
+	}
+}
+
+.pxi.px-active::before, .pxi.active::before,.option-control[data-type="button"] input:checked ~ .pxi::before {
+	-webkit-filter: invert(64%) sepia(15%) saturate(2099%) hue-rotate(95deg) brightness(88%) contrast(87%);
+	        filter: invert(64%) sepia(15%) saturate(2099%) hue-rotate(95deg) brightness(88%) contrast(87%);
+}
+
+/*==== Counter Input ====*/
+.px-counter-input {
+	top: -1px;
+
+	.pos-bottom-0 {bottom: -1px;}
+	
+	.btn.square {
+		width: REM(28);
+		font-size: 0.75em;
+		background-color: transparent;
+	}
+
+	/*==== Reset Input ====*/
+	input[type="number"] {
+		border-color: rgba(#000, 0.1)!important;
+		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+			-webkit-appearance: none!important;
+			-moz-appearance: none!important;
+					appearance: none!important;
+		}
+	}
+
+	/*====  ====*/
+	&[class*="fa-"] {
+		input[type="number"] {
+			padding-#{$direction-start}: 2rem;
+			padding-#{$direction-end}: 4rem;
+		}
+
+		&::before {
+			top: 0;
+			position: absolute;
+			line-height: REM(34);
+			#{$direction-start}: REM(15);
+		}
+	}
+}
+
+.flex-alignment-btns .btn.tiny {width: 1.65rem;}
+
+.flex-gap-fix {gap: calc(7px);}
+
+/*==== Form Highlight ====*/
+.form-highlight .form-control {
+	-webkit-animation: controlHighlight 500ms linear infinite;
+	        animation: controlHighlight 500ms linear infinite;
+}
+
+@-webkit-keyframes controlHighlight {
+	from {box-shadow: revert;}
+	50% {box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {box-shadow: revert;}
+}
+
+@keyframes controlHighlight {
+	from {box-shadow: revert;}
+	50% {box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {box-shadow: revert;}
+}
+
+/*==== Align Icons ====*/
+.pxi-align-x-start::before   {background-image: url('../img/blocks/align-x-#{$direction-start}.svg');}
+.pxi-align-x-center::before  {background-image: url('../img/blocks/align-x-center.svg');}
+.pxi-align-x-between::before {background-image: url('../img/blocks/align-x-between.svg');}
+.pxi-align-x-around::before  {background-image: url('../img/blocks/align-x-around.svg');}
+.pxi-align-x-end::before     {background-image: url('../img/blocks/align-x-#{$direction-end}.svg');}
+.pxi-align-y-start::before   {background-image: url('../img/blocks/align-y-start.svg');}
+.pxi-align-y-center::before  {background-image: url('../img/blocks/align-y-center.svg');}
+.pxi-align-y-end::before     {background-image: url('../img/blocks/align-y-end.svg');}
+.pxi-arrows-y::before {background-image: url('../img/blocks/arrows-y.png');}
+.pxi-arrows-x::before {background-image: url('../img/blocks/arrows-x.png');}
+.pxi-arrow-top::before {background-image: url('../img/blocks/arrows-top.png');}
+.pxi-arrow-bottom::before {background-image: url('../img/blocks/arrows-bottom.png');}
+.pxi-arrow-start::before {background-image: url('../img/blocks/arrows-#{$direction-start}.png');}
+.pxi-arrow-end::before {background-image: url('../img/blocks/arrows-#{$direction-end}.png');}
+.pxi-outline-btn::before {background-image: url('../img/blocks/outline-btn.svg');}
+.pxi-lightbox-btn::before {background-image: url('../img/blocks/lightbox-btn.svg');}

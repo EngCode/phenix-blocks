@@ -1,0 +1,236 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Buttons 
+ * ===> 02 - Options
+ * ===> 03 - Standard
+ * ===> 04 - Button Sizes
+ * ===> 05 - Outline
+ * ===> 06 - Icons for Button
+ * ===> 07 - Badges
+ * ===> 08 - Coloring
+*/
+
+/*==== Utlites ====*/
+@import '../assets/mixin';
+
+/*==== Make Sizes ====*/
+@mixin make_button_sizes ($infix:'') {
+    /*=== Sizes ===*/
+    &.tiny#{$infix} {
+        --height    : #{REM(30)};
+        --padding   : #{REM(15)};
+        --text-size : #{REM(13)};
+    }
+
+    &.small#{$infix} {
+        --height    : #{REM(36)};
+        --padding   : #{REM(20)};
+        --text-size : #{REM(14)};
+    }
+
+    &.large#{$infix} {
+        --height    : #{REM(52)};
+        --padding   : #{REM(25)};
+        --text-size : #{REM(17)};
+    }
+
+    &.xlarge#{$infix} {
+        --height    : #{REM(62)};
+        --padding   : #{REM(35)};
+        --text-size : #{REM(18)};
+    }
+}
+
+/*==== Buttons ====*/
+.btn {
+    /*==== Options ====*/
+    --padding : #{REM(20)};
+    --text-weight : var(--normal-weight);
+    /*==== Size Options ====*/
+    --height : #{REM(42)};
+    --text-size : #{REM(16)};
+    --border-size : 0;
+    /*==== Colors Options ====*/
+    --color : var(--dark-color);
+    --background : var(--primary-offwhite);
+    --border-color : transparent;
+    /*==== Hover Options ====*/
+    --color-hvr : var(--primary-color);
+    --border-hvr : var(--border-color);
+    --background-hvr : var(--primary-reverse);
+
+    /*==== Standard ====*/
+    border : var(--border-size) solid var(--border-color);
+    color  : var(--color);
+    height : var(--height);
+    text-align  : center;
+    font-size   : var(--text-size);
+    font-weight : var(--text-weight);
+    line-height : var(--height);
+    background-color : var(--background);
+    @extend %inline-block;
+    @include padding-inline(var(--padding), 'both');
+    transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
+    
+    a {
+        color : inherit;
+        display: block;
+    }
+
+    /*==== icons preset ====*/
+    &::before, .icon, img {
+        line-height: inherit;
+        @extend %inline-block;
+    }
+
+    // .icon, img {top: -1px; position: relative;}
+    
+    /*===== Button Sizes  ===*/
+    @include make_button_sizes();
+
+    /*==== xLarge Screen ====*/
+    @include xlarge(){
+        @include make_button_sizes('-xl');
+    };
+
+    /*==== Large Screen ====*/
+    @include large(){
+        @include make_button_sizes('-lg');
+    };
+
+    /*==== Medium Screen ====*/
+    @include medium(){
+        @include make_button_sizes('-md');
+    };
+
+    /*==== Medium Screen ====*/
+    @include small(){
+        @include make_button_sizes('-sm');
+    };
+
+    /*===== Icons for Button ===*/
+    &.square {
+        width: var(--height);
+        @include padding-inline(0, 'both');
+    }
+
+    /*===== Outline ===*/
+    &.outline {
+        --border-size  : 2px;
+        --border-color : rgba(0,0,0, 0.1);
+        --background : transparent;
+        line-height : calc(var(--height) - 3px);
+    }
+
+    &.btn-icon {line-height: calc(var(--height) - 2px);}
+
+    &.btn-icon{
+        /*==== icon ====*/
+        &::before, .icon {@include margin-inline(calc(var(--padding) / 2) ,'end');}
+        /*==== Labeled ====*/
+        &.labeled {padding-#{$direction-start}: 0;}
+    }
+
+    &.btn-icon-end {
+        /*==== icon ====*/
+        &::before, .icon {
+            float: $direction-end;
+            @include margin-inline(calc(var(--padding) / 2) ,'start');
+        }
+        /*==== Labeled ====*/
+        &.labeled {padding-#{$direction-end}: 0;}
+    }
+
+    &.labeled::before, &.labeled .icon {
+        width: var(--height);
+        height: var(--height);
+        background-color: rgba(#000, 0.1);
+        line-height: calc(var(--height) - 3px);
+    }
+
+    @mixin make-color($prefix, $hover, $text:'dark-reverse') {
+        --color  : var(#{'--'+$text});
+        --color-hvr  : var(#{'--'+$text});
+        --background : var(#{'--'+$prefix+'-color'});
+        --border-hvr : var(#{'--'+$prefix+'-'+$hover});
+        --background-hvr : var(#{'--'+$prefix+'-'+$hover});
+        &.outline {
+            --background : transparent;
+            --color-hvr : var(#{'--'+$text});
+            --color : var(#{'--'+$prefix+'-color'});
+            --border-color: var(#{'--'+$prefix+'-color'});
+            --background-hvr: var(#{'--'+$prefix+'-color'});
+        }
+    }
+
+    /*==== Prime Colors ===*/
+    &.primary { @include make-color('primary','hover','primary-reverse'); }
+    &.secondary { @include make-color('secondary','hover','secondary-reverse'); }
+    
+    /*==== Assets Colors ===*/
+    &.info { @include make-color('info','color'); }
+    &.gray { @include make-color('gray','color'); }
+    &.dark { @include make-color('dark','color'); }
+    &.success { @include make-color('success','color'); }
+    &.danger  { @include make-color('danger','color'); }
+    &.warning { @include make-color('warning','color', 'dark-color'); }
+    &.warning { @include make-color('warning','color', 'dark-color'); }
+    &.disabled, &[disabled], &:disabled {@include make-color('disable', 'color', 'gray-color');}
+
+    /*==== White Button ====*/
+    &.light, &.white {
+        --color : var(--dark-color);
+        --color-hvr  : var(--dark-color);
+        --background   : white;
+        --background-hvr : #f1f1f1;
+        --border-color : white;
+        --border-hvr : white;
+
+        &.outline {
+            --color : white;
+            --color-hvr : var(--dark-color);
+            --background : transparent;
+            --border-color: white;
+            --background-hvr: white;
+        }
+    }
+
+    /*==== Mobile Only ====*/
+    &.responsive-btn, &.btn-responsive {
+        @include small('down') {
+            --padding: 0;
+            overflow: hidden;
+            width: var(--height);
+            &::before {
+                display: block;
+                line-height: inherit;
+                margin-#{$direction-end}: 0;
+            }
+        };
+    }
+
+    &.fix-lineheight {line-height: calc(var(--height) - 3px);}
+    &.fix-icon::before {transform: translateY(-15%);}
+
+    /*==== Standard Hover ===*/
+    &:hover,&.active,&.px-active, &.is-active {
+        --color : var(--color-hvr);
+        --background : var(--background-hvr);
+        /*==== Outline ====*/
+        &.outline {
+            --border-color : transparent;
+            --color : var(--color-hvr);
+            --background : var(--background-hvr);
+        }
+    }
+}
+
+button, input {
+    &.btn, &.btn.outline {
+        line-height: normal;
+        &:not(.labeled)::before {
+            top: -1px;
+            line-height: 1;
+            position: relative;
+        }
+    }
+}

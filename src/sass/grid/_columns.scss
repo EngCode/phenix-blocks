@@ -1,0 +1,60 @@
+/**======> Referance By Comment <======
+ * ===> 00 - Layouts Mixin
+ * ===> 01 - xSmall Layouts
+ * ===> 02 - Small Layouts
+ * ===> 03 - Medium Layouts
+ * ===> 04 - Large Layouts
+ * ===> 05 - xLarge Layouts
+*/
+
+/*==== Assets ====*/
+@import '../assets/mixin';
+
+/*==== Layouts Mixin ====*/
+@mixin make-columns($columns:12, $infix:'') {
+    /*==== Auto Columns ====*/
+    .col#{$infix}-auto {
+        width: auto;
+        max-width: 100%;
+    }
+
+    .col#{$infix}, .col#{$infix}-adaptive {
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    /*==== Flex-Box Columns ====*/
+    @for $i from 1 through $columns { 
+        /*==== Columns ====*/
+        .col#{$infix}-#{$i} {width: percentage($i / $columns);}
+        /*==== Row Columns ====*/
+        .row-cols#{$infix}-#{$i}:not(.row-cols#{$infix}-auto) > * {width: (100% / $i);}
+    }
+}
+
+/*==== xSmall Screens ====*/
+@include make-columns();
+
+/*==== Small Screens ====*/
+@include small() {
+    /*==== Columns ====*/
+    @include make-columns(12, '-sm');
+}
+
+/*==== Medium Screens ====*/
+@include medium() {
+    /*==== Columns ====*/
+    @include make-columns(12, '-md');
+}
+
+/*==== Large Screens ====*/
+@include large() {
+    /*==== Columns ====*/
+    @include make-columns(12, '-lg');
+}
+
+/*==== xLarge Screens ====*/
+@include xlarge() {
+    /*==== Columns ====*/
+    @include make-columns(12, '-xl');
+}

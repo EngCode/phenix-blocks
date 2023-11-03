@@ -1,0 +1,23 @@
+/**======> Referance <======
+ * ===> 01 - Utilities Repeater
+ * ===> 02 - REM Calculator
+ * ===> 00 - 
+*/
+
+//==== Utilities Repeater ====//
+@mixin Repeater ($index, $cond, $name ,$prop, $unite, $increase) {
+    /*==== Repeater Loop ====*/
+    @while $index <= $cond {
+        .#{$name}-#{$index} {
+            #{$prop} : #{$index+$unite};
+        }
+        /*==== Increase ====*/
+        $index : ($index + $increase);
+    }
+}
+
+//====> REM Calculator <====//
+@function REM($size, $base:16) {
+    //====> Return REM Size <====//
+    @return ($size / $base * 1)+rem;
+}

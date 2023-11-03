@@ -1,0 +1,88 @@
+/**======> Reference By Comment <======
+ * ===> 01 - 
+*/
+
+/*==== Transition ====*/
+.transition-fast {@extend %fast-motion;}
+.transition-smooth {@extend %smooth-motion;}
+.transition-slow {@extend %slow-motion;}
+
+/*==== Scalers ====*/
+body:not(.block-editor-page):not(.editor-styles-wrapper) {
+    .pds-hvr-scale-10:hover {transform: scale(1.10);}
+    .pds-hvr-scale-15:hover {transform: scale(1.15);}
+    .pds-hvr-scale-25:hover {transform: scale(1.25);}
+    .pds-hvr-scale-10, .pds-hvr-scale-15, .pds-hvr-scale-25 {transition: transform 0.3s ease-in-out;}
+    
+    /*==== Attention ====*/
+    *:has(> .pds-hvr-highlight) > * {transition: opacity 0.3s ease-in-out;}
+    *:has(> .pds-hvr-highlight:is(:hover)) > *:not(.pds-hvr-highlight)  {opacity: 0.5;}
+    
+    /*==== Floating Effect ====*/
+    .pds-hvr-floating:hover, .pds-animate-floating {
+        -webkit-animation: floating 2s ease-in-out infinite;
+        animation: floating 2s ease-in-out infinite;
+    }
+    
+    /*==== Ringing Effect ====*/
+    .pds-animate-ringing {-webkit-animation: shakingInf 3s ease-in-out infinite;animation: shakingInf 3s ease-in-out infinite;}
+    .pds-hvr-ringing:hover {-webkit-animation: shaking 0.5s ease-in-out;animation: shaking 0.5s ease-in-out;}
+    
+    /*==== Hover Effects ====*/
+    .pds-hvr-tada:hover    {-webkit-animation: tada 0.7s ease-in-out;animation: tada 0.7s ease-in-out;}
+    .pds-hvr-flash:hover   {-webkit-animation: flash 0.7s ease-in-out;animation: flash 0.7s ease-in-out;}
+    .pds-hvr-pulse:hover   {-webkit-animation: pulse 0.3s ease-in-out;animation: pulse 0.3s ease-in-out;}
+    .pds-hvr-jello:hover   {-webkit-animation: jello 0.7s ease-in-out;animation: jello 0.7s ease-in-out;}
+    .pds-hvr-shakeY:hover  {-webkit-animation: shakeY 0.7s ease-in-out;animation: shakeY 0.7s ease-in-out;}
+    .pds-hvr-shakeX:hover  {-webkit-animation: shakeX 0.7s ease-in-out;animation: shakeX 0.7s ease-in-out;}
+    .pds-hvr-bounce:hover  {-webkit-animation: bounce 1s ease-in-out;animation: bounce 1s ease-in-out;}
+    .pds-hvr-rubberBand:hover {-webkit-animation: rubberBand 0.7s ease-in-out;animation: rubberBand 0.7s ease-in-out;}
+}
+
+/*==== Animations Effect ====*/
+@-webkit-keyframes floating {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+@keyframes floating {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+@-webkit-keyframes shaking {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-10px) rotate(-5deg);}
+    50% {transform: translateX(10px) rotate(5deg);}
+    75% {transform: translateX(-10px) rotate(-5deg);}
+    100% {transform: translateX(0);}
+}
+
+
+@keyframes shaking {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-10px) rotate(-5deg) scale(1.01);}
+    50% {transform: translateX(10px) rotate(5deg) scale(1.03);}
+    75% {transform: translateX(-10px) rotate(-5deg) scale(1.05);}
+    100% {transform: translateX(0);}
+}
+
+@-webkit-keyframes shakingInf {
+    0% {transform: translateX(0);}
+    6% {transform: translateX(-5px) rotate(-3deg) scale(1.01);}
+    10% {transform: translateX(5px) rotate(3deg) scale(1.03);}
+    20% {transform: translateX(-5px) rotate(-3deg) scale(1.05);}
+    30% {transform: translateX(0);}
+    100% {transform: translateX(0);}
+}
+
+@keyframes shakingInf {
+    0% {transform: translateX(0);}
+    6% {transform: translateX(-5px) rotate(-3deg) scale(1.01);}
+    10% {transform: translateX(5px) rotate(3deg) scale(1.03);}
+    20% {transform: translateX(-5px) rotate(-3deg) scale(1.05);}
+    30% {transform: translateX(0);}
+    100% {transform: translateX(0);}
+}

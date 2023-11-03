@@ -1,0 +1,276 @@
+/**======> Referance By Comment <======
+ * ===> 01 - Theme Variables
+ * ===> 02 - Theme Selector Variables
+ * ===> 03 - Shared Theme
+ * ===> 04 - Input Theme
+ * ===> 05 - Textarea Theme
+ * ===> 06 - Checkbox/Radio Theme
+ * ===> 07 - Label Theme
+ * ===> 08 - Standalone Control
+ * ===> 09 - Form UI Controls
+ * ===> 10 - Validation Message
+ * ===> 11 - Tornado Select
+ * ===> 12 - File Upload Input
+ * ===> 13 - Checkbox
+ * ===> 14 - Radio Button
+ * ===> 15 - Switch Button
+ * ===> 16 - Control W/ Icons
+ * ===> 17 - Advanced Uploader
+ * ===> 18 - Form Repeater
+ * ===> 19 - Alert Boxes
+ * ===> 20 - Progress Component
+ * ===> 23 - Form Rating Control
+ * ===> 24 - Form Groups
+ * ===> 25 - Pagination
+*/
+
+/*======== Advanced Uploader ========*/
+.px-uploader[data-uploader="advanced"] {
+    position: relative;
+    margin-bottom: var(--forms-gutter);
+    background-size:cover;
+    background-position: center;
+    overflow: hidden;
+    @extend %fast-motion;
+    /*======== Theme ========*/
+    padding: 30px;
+    background-color:var(--forms-darker-bg);
+    text-align: center;
+    font-size:13px;
+    /*======== Hidden Input ========*/
+    input[type="file"] {
+        position:absolute;
+        top:15px;
+        #{$direction-start}:0;
+        #{$direction-end}:0;
+        cursor:pointer;
+        margin:0;
+        width:auto;
+        height: 88px;
+        max-height: 100%;
+        z-index:5;
+        opacity: 0;
+    }
+    /*======== Border ========*/
+    &::after {
+        position: absolute;
+        z-index: 1;
+        content:'';
+        display: block;
+        top:15px;
+        bottom: 15px;
+        #{$direction-start}:15px;
+        #{$direction-end}:15px;
+        max-height: 95px;
+        border:var(--forms-border);
+    }
+    /*======== icon ========*/
+    &::before {
+        display: block;
+        margin: auto;
+        font-size:1.75rem;
+        width:40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    /*======== Text ========*/
+    span {
+        display: block;
+        height: 25px;
+        @extend %nowrap;
+    }
+    /*======== Heighlight ========*/
+    &.highlight {
+        background-color: #fff;
+        color:var(--primary-color);
+        &::after {border-color:var(--primary-color);}
+    }
+    /*==== Preview Mode ====*/
+    &.image-mode,&.video-mode {
+        &::before,span,&::after{display: none;}
+        /*==== Size ====*/
+        &[data-size="hd"] {padding-bottom: 56.25%;}
+        &[data-size="square"] {padding-bottom:100%;}
+        /*==== Resize Fix ====*/
+        &[data-size] {
+            height: 125px;
+            input[type="file"] {height: 100%;}
+            .files {
+                #{$direction-start}:0;
+                #{$direction-end}:0;
+                position: absolute;
+                bottom: 0;
+                margin: 0;
+                li{padding: 0 15px;}
+            }
+        }
+    }
+    /*==== Video Mode ====*/
+    &.video-mode {
+        overflow: hidden;
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+            height: 100%;
+            -o-object-fit: cover;
+               object-fit: cover;
+        }
+    }
+    /*======== Files ========*/
+    .files {
+        @extend %reset-space;
+        margin: 0 -15px;
+        margin-bottom: -25px;
+        margin-top: 25px;
+        li {
+            @extend %nowrap;
+            text-align: $direction;
+            line-height: 25px;
+            color:var(--primary-color);
+            background-color: #fff;
+            padding:0;
+            margin-bottom: 10px;
+            &:not(:last-child){border-bottom: 1px solid rgba(#000,0.1);}
+            &::before {
+                font-family: var(--icons-font);
+                margin-#{$direction-end}:5px;
+                position: relative;
+                top:-1px;
+                @extend %inline-block;
+                // @extend %ti-file-new,:before;
+            }
+        }
+    }
+}
+
+/*======== Form Repeater ========*/
+.form-repeater {
+    position: relative;
+    .repeater-item {
+        @extend %flexbox;
+        @extend .align-between;
+        /*==== Controls ====*/
+        .controls-wrap {
+            @extend .col-auto;
+            padding-#{$direction-end}:15px;
+        }
+        /*==== Button ====*/
+        .add-item,.remove-item {
+            width: var(--forms-height);
+            height: var(--forms-height);
+            line-height: var(--forms-height);
+            text-align: center;
+            border-radius: var(--forms-radius);
+            color:#FFF;
+            &::before{top:-2px;}
+        }
+        /*==== Button Colors ====*/
+        .add-item{background:var(--success-color);}
+        .remove-item{background:var(--danger-color);}
+    }
+    /*==== Sizes ====*/
+    &.large .repeater-item {
+        .add-item,.remove-item {
+            width: var(--forms-height-large);
+            height: var(--forms-height-large);
+            line-height: var(--forms-height-large);
+        }
+    }
+
+    &.small .repeater-item {
+        .add-item,.remove-item {
+            width: var(--forms-height-small);
+            height: var(--forms-height-small);
+            line-height: var(--forms-height-small);
+        }
+    }
+}
+
+/*======== Form Rating Control ========*/
+.rating-control {
+    @extend %inline-block;
+    position: relative;
+    #{$input_elements} {display: none;}
+    height: var(--forms-height);
+    line-height: var(--forms-height);
+    /*==== Icons ====*/
+    .rate-icon,.text {
+        @extend %inline-block;
+        color:var(--gray-color);
+        font-size:17px;
+        margin-#{$direction-end}:5px;
+        &::before{top:-3px;}
+        &.active {color:var(--warning-color);}
+    }
+    /*==== Sizes ====*/
+    &.small {
+        height: var(--forms-height-small);
+        line-height: var(--forms-height-small);
+        font-size:15px;
+    }
+    /*==== Sizes ====*/
+    &.large {
+        height: var(--forms-height-large);
+        line-height: var(--forms-height-large);
+        font-size:20px;
+    }
+}
+
+/*======== Form Groups ========*/
+.form-group {
+    @extend %flexbox;
+
+    /*==== Reset Controls ====*/
+    #{$input_elements},.btn {border-radius: 0;}
+
+    /*==== Normal Controls ====*/
+    > #{$input_elements},> .btn {   
+        &:not(.form-control):first-child {
+            @if ($direction == 'ltr') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+
+        &:not(.form-control):last-child  {
+            @if ($direction == 'rtl') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+    }
+
+    /*==== Select ====*/
+    > .tornado-select:first-child .selected-option {
+        @if ($direction == 'ltr') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+        @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+    }
+
+    > .tornado-select:last-child .selected-option {
+        @if ($direction == 'rtl') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+        @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+    }
+
+    /*==== Iconic Controls ====*/
+    .control-icon {
+        &:first-child #{$input_elements}:not(.form-control) {
+            @if ($direction == 'ltr') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+
+        &:last-child #{$input_elements}:not(.form-control) {
+            @if ($direction == 'rtl') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+
+        /*==== Select ====*/
+        > .tornado-select:first-child .selected-option {
+            @if ($direction == 'ltr') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+
+        > .tornado-select:last-child .selected-option {
+            @if ($direction == 'rtl') {border-radius: var(--forms-radius) 0 0 var(--forms-radius);}
+            @else {border-radius: 0 var(--forms-radius) var(--forms-radius) 0;}
+        }
+    }
+}

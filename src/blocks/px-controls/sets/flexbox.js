@@ -22,11 +22,11 @@ export default class FlexboxSet extends Component {
         //===> Properties <===//
         const {className, attributes, options, mainSetter, screen} = this.props;
         const screenPoint = screen ? `-${screen}` : "";
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
+        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screenPoint}-option`;
 
         //===> Output <===//
         return <>
-            <div className={`row gpx-15 ${className ? className : ""}`}>
+            <div className={`row gpx-15 ${className ? className : ""}`} key={uniqueKey}>
                 {/*===> Column <===*/}
                 {!options || options.includes("align") ? <>
                 <div className='col-12 mb-15'>

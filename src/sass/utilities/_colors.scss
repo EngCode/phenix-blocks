@@ -1,0 +1,282 @@
+/**======> Reference By Comment <======
+* ===> 01 - Colors
+* ===> 02 - Backgrounds
+* ===> 03 - Borders
+*/
+
+//==== Brands Variables ====//
+:root {
+    --facebook-color :#505cd6;
+    --twitter-color  :#1da1f2;
+    --youtube-color  :#e43e3c;
+    --instagram-color:#d43f8d;
+    --whatsapp-color :#10d058;
+    --pinterest-color:#bd081c;
+    --linkedin-color :#0077b5;
+    --behance-color  :#1769ff;
+    --dribbble-color :#ea4c89;
+    --flicker-color  :#0063dc;
+    --snapchat-color :#e2e62c;
+    --google-red-color :#ea4335;
+}
+
+/*==== Assets Colors ====*/
+.color-inherit {color: inherit;}
+.color-transparent {color: transparent;}
+.color-primary  {color: var(--primary-color);}
+.color-secondary{color: var(--secondary-color);}
+.color-primary-dark {color: var(--primary-dark);}
+.color-secondary-dark {color: var(--secondary-dark);}
+.color-success  {color: var(--success-color);}
+.color-danger   {color: var(--danger-color);}
+.color-warning  {color: var(--warning-color);}
+.color-info     {color: var(--info-color);}
+.color-gray     {color: var(--gray-color);}
+.color-dark     {color: var(--dark-color);}
+.color-white    {color: white;}
+
+/*==== Brands Colors ====*/
+.color-facebook {color: var(--facebook-color);}
+.color-twitter  {color: var(--twitter-color);}
+.color-youtube  {color: var(--youtube-color);}
+.color-instagram{color: var(--instagram-color);}
+.color-snapchat {color: var(--snapchat-color);}
+.color-whatsapp {color: var(--whatsapp-color);}
+.color-pinterest{color: var(--pinterest-color);}
+.color-linkedin {color: var(--linkedin-color);}
+.color-behance  {color: var(--behance-color);}
+.color-dribbble {color: var(--dribbble-color);}
+.color-flicker  {color: var(--flicker-color);}
+
+/*==== Assets Backgrounds ====*/
+.bg-parallax {background-attachment: fixed; background-position: center;}
+.bg-inherit  {background-color: inherit;}
+.bg-transparent {background-color: transparent;}
+.bg-primary   {background-color: var(--primary-color);}
+.bg-secondary {background-color: var(--secondary-color);}
+.bg-primary-dark {background-color: var(--primary-dark);}
+.bg-secondary-dark {background-color: var(--secondary-dark);}
+.bg-success {background-color: var(--success-color);}
+.bg-danger {background-color: var(--danger-color);}
+.bg-warning {background-color: var(--warning-color);}
+.bg-info {background-color: var(--info-color);}
+.bg-gray {background-color: var(--gray-color);}
+.bg-gray-lighter {background-color: #F9F9F9;}
+.bg-dark {background-color: var(--dark-color);}
+.bg-white {background-color: white;}
+.bg-alpha-05  {background-color: rgba(#000, 0.05);}
+.bg-alpha-10  {background-color: rgba(#000, 0.10);}
+.bg-alpha-15  {background-color: rgba(#000, 0.15);}
+.bg-alpha-25  {background-color: rgba(#000, 0.25);}
+.bg-alpha-50  {background-color: rgba(#000, 0.50);}
+.bg-alpha-75  {background-color: rgba(#000, 0.75);}
+.bg-revert-05  {background-color: rgba(#FFF, 0.05);}
+.bg-revert-10  {background-color: rgba(#FFF, 0.10);}
+.bg-revert-15  {background-color: rgba(#FFF, 0.15);}
+.bg-revert-25  {background-color: rgba(#FFF, 0.25);}
+.bg-revert-50  {background-color: rgba(#FFF, 0.50);}
+.bg-revert-75  {background-color: rgba(#FFF, 0.75);}
+
+/*==== Brands Backgrounds ====*/
+.bg-facebook {background-color: var(--facebook-color);}
+.bg-twitter {background-color: var(--twitter-color);}
+.bg-google-red {background-color: var(--google-red);}
+.bg-youtube {background-color: var(--youtube-color);}
+.bg-instagram {background-color: var(--instagram-color);}
+.bg-snapchat {background-color: var(--snapchat-color);}
+.bg-whatsapp {background-color: var(--whatsapp-color);}
+.bg-pinterest {background-color: var(--pinterest-color);}
+.bg-linkedin {background-color: var(--linkedin-color);}
+.bg-behance {background-color: var(--behance-color);}
+.bg-dribbble {background-color: var(--dribbble-color);}
+.bg-flicker {background-color: var(--flicker-color);}
+
+/*==== Offwhite Backgrounds ====*/
+.bg-offwhite-primary {background-color: var(--primary-offwhite);}
+.bg-offwhite-secondary {background-color: var(--secondary-offwhite);}
+.bg-offwhite-info {background-color: var(--info-light);}
+.bg-offwhite-gray {background-color: var(--gray-light);}
+.bg-offwhite-dark {background-color: var(--dark-light);}
+.bg-offwhite-success {background-color: var(--success-light);}
+.bg-offwhite-danger {background-color: var(--danger-light);}
+.bg-offwhite-warning {background-color: var(--warning-light);}
+.bg-offwhite-smoke {background-color: #F5F5F5;}
+.bg-offwhite-snow {background-color: #FFFAFA;}
+.bg-offwhite-honeydew {background-color: #F0FFF0;}
+.bg-offwhite-mintcream {background-color: #F5FFFA;}
+.bg-offwhite-azure {background-color: #F0FFFF;}
+.bg-offwhite-aliceblue {background-color: #F0F8FF;}
+.bg-offwhite-ghost {background-color: #F8F8FF;}
+.bg-offwhite-seashell {background-color: #FFF5EE;}
+.bg-offwhite-beige {background-color: #F5F5DC;}
+.bg-offwhite-oldlace {background-color: #FDF5E6;}
+.bg-offwhite-floral {background-color: #FFFAF0;}
+.bg-offwhite-ivory {background-color: #FFFFF0;}
+.bg-offwhite-antique {background-color: #FAEBD7;}
+.bg-offwhite-linen {background-color: #FAF0E6;}
+.bg-offwhite-lavenderblush {background-color: #FFF0F5;}
+
+/*==== Gradients ====*/
+.bg-grade-ice       {background-image: linear-gradient(var(--gradient-rotation) ,var(--ice-gradient));}
+.bg-grade-fire      {background-image: linear-gradient(var(--gradient-rotation) ,var(--fire-gradient));}
+.bg-grade-water     {background-image: linear-gradient(var(--gradient-rotation) ,var(--water-gradient));}
+.bg-grade-danger    {background-image: linear-gradient(var(--gradient-rotation) ,var(--danger-gradient));}
+.bg-grade-purple    {background-image: linear-gradient(var(--gradient-rotation) ,var(--purple-gradient));}
+.bg-grade-primary   {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-gradient));}
+.bg-grade-warning   {background-image: linear-gradient(var(--gradient-rotation) ,var(--warning-gradient));}
+.bg-grade-success   {background-image: linear-gradient(var(--gradient-rotation) ,var(--success-gradient));}
+.bg-grade-secondary {background-image: linear-gradient(var(--gradient-rotation) ,var(--secondary-gradient));}
+.bg-grade-alpha-dark {background-image: linear-gradient(var(--gradient-rotation) , rgba(#000, 0), rgba(#000, 0.5));}
+.bg-grade-alpha-light {background-image: linear-gradient(var(--gradient-rotation) , rgba(#FFF, 0), rgba(#FFF, 0.5));}
+.bg-grade-alpha-darker {background-image: linear-gradient(var(--gradient-rotation) , rgba(#000, 0), rgba(#000, 0.75));}
+.bg-grade-alpha-lighter {background-image: linear-gradient(var(--gradient-rotation) , rgba(#FFF, 0), rgba(#FFF, 0.75));}
+
+/*==== Mixed Gradient ====*/
+.bg-grade-danger-purple   {background-image: linear-gradient(var(--gradient-rotation) ,var(--danger-color), #5848D2);}
+.bg-grade-primary-purple   {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-purple));}
+.bg-grade-primary-offwhite {background-image: linear-gradient(var(--gradient-rotation) ,#FFF, var(--primary-offwhite));}
+.bg-grade-secondary-offwhite {background-image: linear-gradient(var(--gradient-rotation) ,#FFF, var(--secondary-offwhite));}
+.bg-grade-primary-secondary {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-color), var(--secondary-color));}
+.bg-grade-primary-secondary-2nd {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-hover), var(--secondary-hover));}
+
+/*==== Offwhite Gradients ====*/
+.bg-grade-silver {background-image: linear-gradient(var(--gradient-rotation), var(--silver-gradient));}
+.bg-grade-silver-2nd {background-image: linear-gradient(var(--gradient-rotation), var(--silver-gradient-2nd));}
+.bg-grade-offwhite-red    {background-image: linear-gradient(var(--gradient-rotation), #FFE7E7, White);}
+.bg-grade-offwhite-blue   {background-image: linear-gradient(var(--gradient-rotation) ,var(--blue-white));}
+.bg-grade-offwhite-green  {background-image: linear-gradient(var(--gradient-rotation), #DAEEE5, White);}
+.bg-grade-offwhite-yellow {background-image: linear-gradient(var(--gradient-rotation), #FDF5E8, White);}
+.bg-grade-offwhite-silver {background-image: linear-gradient(var(--gradient-rotation), #E1E8F7, White);}
+.bg-grade-offwhite-info   {background-image: linear-gradient(var(--gradient-rotation), var(--info-light), White);}
+.bg-grade-offwhite-purple {background-image: linear-gradient(var(--gradient-rotation), #E1E1F7, White);}
+.bg-grade-offwhite-danger {background-image: linear-gradient(var(--gradient-rotation), var(--danger-light), White);}
+.bg-grade-offwhite-yellow-2nd  {background-image: linear-gradient(var(--gradient-rotation), #F6F7E1, White);}
+.bg-grade-offwhite-blue-2nd {background-image: linear-gradient(var(--gradient-rotation), #E9F1FF, White);}
+.bg-grade-offwhite-blue-3rd {background-image: linear-gradient(var(--gradient-rotation), #A7C4FF, White);}
+.bg-grade-offwhite-blue-4th {background-image: linear-gradient(var(--gradient-rotation), White, #E9F1FF, White);}
+
+/*==== Gradients Rotation ====*/
+[class*="bg-grade-"] {
+    --gradient-rotation: 0;
+    background-repeat: no-repeat;
+}
+
+/*==== Gradients Rotations ====*/
+.bg-grade-45   {--gradient-rotation : 45deg;}
+.bg-grade-90   {--gradient-rotation : 90deg;}
+.bg-grade-120  {--gradient-rotation : 120deg;}
+.bg-grade-180  {--gradient-rotation : 180deg;}
+.bg-grade-45n  {--gradient-rotation : -45deg;}
+.bg-grade-90n  {--gradient-rotation : -90deg;}
+.bg-grade-120n {--gradient-rotation : -120deg;}
+.bg-grade-180n {--gradient-rotation : -180deg;}
+
+/*==== Border Colors ====*/
+.border-primary    {border-color: var(--primary-color);}
+.border-secondary  {border-color: var(--secondary-color);}
+.border-success    {border-color: var(--success-color);}
+.border-danger     {border-color: var(--danger-color);}
+.border-warning    {border-color: var(--warning-color);}
+.border-light      {border-color: var(--dark-reverse);}
+.border-info       {border-color: var(--info-color);}
+.border-gray       {border-color: var(--gray-color);}
+.border-gray-light {border-color: var(--gray-light);}
+.border-dark       {border-color: var(--dark-color);}
+.border-white      {border-color: white;}
+.border-alpha-10   {border-color: rgba(#000, 0.1);}
+.border-alpha-15   {border-color: rgba(#000, 0.15);}
+.border-alpha-25   {border-color: rgba(#000, 0.25);}
+.border-alpha-50   {border-color: rgba(#000, 0.50);}
+.border-alpha-75   {border-color: rgba(#000, 0.75);}
+.border-revert-10   {border-color: rgba(#FFF, 0.1);}
+.border-revert-15   {border-color: rgba(#FFF, 0.15);}
+.border-revert-25   {border-color: rgba(#FFF, 0.25);}
+.border-revert-50   {border-color: rgba(#FFF, 0.50);}
+.border-revert-75   {border-color: rgba(#FFF, 0.75);}
+
+/*==== Brands Borders ====*/
+.border-facebook  {border-color: var(--facebook-color);}
+.border-twitter   {border-color: var(--twitter-color);}
+.border-youtube   {border-color: var(--youtube-color);}
+.border-linkedin  {border-color: var(--linkedin-color);}
+.border-behance   {border-color: var(--behance-color);}
+.border-dribbble  {border-color: var(--dribbble-color);}
+.border-flicker   {border-color: var(--flicker-color);}
+.border-snapchat  {border-color: var(--snapchat-color);}
+.border-instagram {border-color: var(--instagram-color);}
+.border-whatsapp  {border-color: var(--whatsapp-color);}
+.border-pinterest {border-color: var(--pinterest-color);}
+
+/*==== Background Utilites ====*/
+.bgs-100 {background-size: 100%;}
+.bgs-auto {background-size: auto;}
+/*==== Width ====*/
+.bgw-25 {background-size: 25% auto;}
+.bgw-50 {background-size: 50% auto;}
+.bgw-75 {background-size: 75% auto;}
+.bgw-90 {background-size: 90% auto;}
+.bgw-100 {background-size: 100% auto;}
+/*==== Height ====*/
+.bgh-25 {background-size: auto 25%;}
+.bgh-50 {background-size: auto 50%;}
+.bgh-75 {background-size: auto 75%;}
+.bgh-90 {background-size: auto 90%;}
+.bgh-100 {background-size: auto 100%;}
+/*==== Repeat ====*/
+.bgr {background-repeat: repeat;}
+.bgr-x {background-repeat: repeat-x;}
+.bgr-y {background-repeat: repeat-y;}
+.bgr-n {background-repeat: no-repeat;}
+/*==== Position ====*/
+.bgp-cs {background-position: center #{$direction-start};}
+.bgp-ce {background-position: center #{$direction-end};}
+.bgp-cc {background-position: center;}
+/*==== .Top. ====*/
+.bgp-ts {background-position: #{$direction-start} top;}
+.bgp-tc {background-position: center top;}
+.bgp-te {background-position: #{$direction-end} top;}
+/*==== .Bottom. ====*/
+.bgp-bs {background-position: #{$direction-start} bottom;}
+.bgp-bc {background-position: center bottom;}
+.bgp-be {background-position: #{$direction-end} bottom;}
+
+/*==== Background Animations ====*/
+.bg-animated-x {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_x var(--duration) linear infinite;
+            animation: background_x var(--duration) linear infinite;
+}
+
+.bg-animated-y {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_y var(--duration) linear infinite;
+            animation: background_y var(--duration) linear infinite;
+}
+
+.bg-animated-zoom {
+    -webkit-animation: bgZoomInOut 30s linear infinite;
+        animation: bgZoomInOut 30s linear infinite;
+}
+
+/*==== Custom Animations ====*/
+@-webkit-keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@-webkit-keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}
+
+@keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}

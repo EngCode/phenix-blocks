@@ -1,0 +1,42 @@
+/**======> Referance <======
+ * ===> 01 - Padding Block
+ * ===> 02 - Padding Inline
+*/
+
+@import './margin';
+@import './padding';
+
+//====> Grid Gap <====//
+@mixin grid_gap($size:0, $flow:'both') {
+    //====> Vertical Space <====//
+    @if ($flow == 'y' or $flow == 'both') {
+        /*==== Columns ====*/
+        > *, > [class*="col-"], &[class*="row-cols"] > * { @include margin_block(#{$size}, 'end'); }
+        /*==== Overflow Fix ====*/
+        &.gpy-fix { @include margin_block(-#{$size}, 'end'); }
+    }
+
+    //====> Horizontal/Row <====//
+    @if ($flow == 'x' or $flow == 'both') {
+        /*==== Negative Margin ====*/
+        @if($size != 0) {
+            @include margin_inline(calc(-#{$size} / 2));
+        }
+        /*==== for Zero Fix ====*/
+        @else {
+            @include margin_inline($size);
+        }
+
+        /*==== Columns ====*/
+        > .col, > [class*="col-"], &[class*="row-cols"] > * {
+            /*==== Padding Space ====*/
+            @if($size != 0) {
+                @include padding_inline(calc(#{$size} / 2));
+            }
+            /*==== for Zero Fix ====*/
+            @else {
+                @include padding_inline($size);
+            }
+        }
+    }
+}

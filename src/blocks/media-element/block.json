@@ -13,6 +13,7 @@
             "type": "string",
             "default": "px-media"
         },
+
 		"setting": {
             "type": "object",
             "default": {}
@@ -32,6 +33,26 @@
             "type": "object",
             "default": {}
         },
+
+        "url": {
+			"type": "string",
+			"default": "#none"
+		},
+
+        "isLightBox" : {
+            "type" : "boolean",
+            "default" : false
+        },
+
+		"lightbox_src" : {
+			"type": "boolean",
+			"default" : false
+		},
+
+		"lightbox_type" : {
+			"type": "string",
+			"default" : "image"
+		},
 
 		"preview" : {
 			"type": "boolean",

@@ -1,0 +1,85 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Overflow
+ * ===> 02 - Float Elements
+ * ===> 03 - Overlay Layer
+ * ===> 04 - Position
+ * ===> 05 - Directions
+ * ===> 06 - zIndex
+ * ===> 07 - Sticky Elements
+ * ===> 08 - Phenix Media
+ * ===> 09 - Aspect Ratio
+ * ===> 10 - Lazy Loader
+ * ===> 11 - Assets
+*/
+
+/*==== SASS Selectors ====*/
+@import './../assets/selectors';
+
+/*==== Position ====*/
+.position-ab  {position: absolute;}
+.position-rv  {position: relative;}
+.position-fx  {position: fixed;}
+.position-st  {position: -webkit-sticky;position: sticky;}
+.position-none  {position: static;}
+
+/*==== Center ====*/
+.position-full, .pos-full {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pos-center {
+    top: 50%;
+    left: 50%;
+    @extend %position-center;
+}
+
+.pos-center-y {
+    top: 50%;
+    @extend %position-center-y;
+}
+
+.pos-center-x {
+    left: 50%;
+    @extend %position-center-x;
+}
+
+.pos-after-y  {top: 100%;}
+.pos-before-y {bottom: 100%;}
+.pos-after-x  {#{$direction-start}: 100%;}
+.pos-before-x {#{$direction-end}: 100%;}
+
+/*==== Top ====*/
+.pos-top-0  {top: REM(0);}
+.pos-top-5  {top: REM(5);}
+.pos-top-10 {top: REM(10);}
+.pos-top-15 {top: REM(15);}
+.pos-top-20 {top: REM(20);}
+.pos-top-25 {top: REM(25);}
+.pos-top-30 {top: REM(30);}
+/*==== Bottom ====*/
+.pos-bottom-0  {bottom: REM(0);}
+.pos-bottom-5  {bottom: REM(5);}
+.pos-bottom-10 {bottom: REM(10);}
+.pos-bottom-15 {bottom: REM(15);}
+.pos-bottom-20 {bottom: REM(20);}
+.pos-bottom-25 {bottom: REM(25);}
+.pos-bottom-30 {bottom: REM(30);}
+/*==== Start ====*/
+.pos-start-0  {#{$direction-start}: REM(0);}
+.pos-start-5  {#{$direction-start}: REM(5);}
+.pos-start-10 {#{$direction-start}: REM(10);}
+.pos-start-15 {#{$direction-start}: REM(15);}
+.pos-start-20 {#{$direction-start}: REM(20);}
+.pos-start-25 {#{$direction-start}: REM(25);}
+.pos-start-30 {#{$direction-start}: REM(30);}
+/*==== End ====*/
+.pos-end-0  {#{$direction-end}: REM(0);}
+.pos-end-5  {#{$direction-end}: REM(5);}
+.pos-end-10 {#{$direction-end}: REM(10);}
+.pos-end-15 {#{$direction-end}: REM(15);}
+.pos-end-20 {#{$direction-end}: REM(20);}
+.pos-end-25 {#{$direction-end}: REM(25);}
+.pos-end-30 {#{$direction-end}: REM(30);}

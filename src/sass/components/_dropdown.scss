@@ -1,0 +1,27 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Dropdown Hover 
+ * ===> 02 - Dropdown List
+*/
+
+/*==== Dropdown Hover  ====*/
+.px-dropdown {
+    @extend %inline-block;
+    &[data-hover]:hover .px-dropdown-list {display: block!important;}
+}
+
+/*==== Dropdown List ====*/
+.px-dropdown-list {
+    min-width: 100%;
+    /*==== items ====*/
+    li {
+        &:not([class*="pd"]) {padding: #{REM(8)} 15px;}
+        &:not(:last-child) {border-bottom: 1px solid rgba(#000, 0.1);}
+
+        &:has(a):has(button) {
+            padding: 0;
+            > *{padding: 10px 15px;}
+        }
+    }
+    /*==== links ====*/
+    a {color: inherit;}
+}

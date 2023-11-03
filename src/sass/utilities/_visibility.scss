@@ -1,0 +1,99 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Screen Reader Only
+ * ===> 02 - Visibility
+ * ===> 03 - Display
+ * ===> 04 - Hidden
+*/
+
+/*==== Opacity Assets ====*/
+.opacity-0 {opacity: 0;}
+.opacity-10 {opacity: 0.1;}
+.opacity-15 {opacity: 0.15;}
+.opacity-20 {opacity: 0.20;}
+.opacity-25 {opacity: 0.25;}
+.opacity-50 {opacity: 0.50;}
+.opacity-75 {opacity: 0.75;}
+.opacity-90 {opacity: 0.90;}
+
+/*==== Screen Reader Only ====*/
+.visually-hidden, .visually-hidden-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.flexbox { @extend %flexbox; }
+
+@mixin make-visibility ($infix:'') {
+    /*==== Visibility ====*/
+    .visibility#{$infix}-hidden {visibility: hidden;}
+    .visibility#{$infix}-visible {visibility: visible;}
+    .visibility#{$infix}-collapse {visibility: collapse;}
+    
+    /*==== Display ====*/
+    .inline-block#{$infix}  {display: inline-block;}
+    .display#{$infix}-block {display: block;}
+    .display#{$infix}-grid  {display: grid;}
+    .display#{$infix}-flex  {display: flex;}
+}
+
+@include make-visibility();
+
+@include small() {
+    @include make-visibility('-sm');
+};
+
+@include medium() {
+    @include make-visibility('-md');
+};
+
+@include large() {
+    @include make-visibility('-lg');
+};
+
+@include xlarge() {
+    @include make-visibility('-xl');
+};
+
+/*==== Hidden ====*/
+.hidden {
+    display: none;
+    /*==== Small ====*/
+    @include small() {
+        &-sm-up {display: none;}
+    };
+
+    @include small('down') {
+        &-sm-down {display: none;}
+    };
+    /*==== Medium ====*/
+    @include medium() {
+        &-md-up {display: none;}
+    };
+
+    @include medium('down') {
+        &-md-down {display: none;}
+    };
+    /*==== Large ====*/
+    @include large() {
+        &-lg-up {display: none;}
+    };
+
+    @include large('down') {
+        &-lg-down {display: none;}
+    };
+    /*==== xLarge ====*/
+    @include xlarge() {
+        &-xl-up {display: none;}
+    };
+
+    @include xlarge('down') {
+        &-xl-down {display: none;}
+    };
+}

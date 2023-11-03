@@ -137,3 +137,18 @@ add_filter('cron_schedules', function($schedules) {
     //===> .... <===//
     return $schedules;
 });
+
+//===> Plugins Fallback <===//
+function check_other_plugins() {
+	//===> ACF <===//
+	if (!is_plugin_active('advanced-custom-fields/acf.php') || !is_plugin_active('advanced-custom-fields-pro/acf.php')) {
+		if(!function_exists('get_field'))  {
+			function get_field() { return 'ACF is Not Enabled.'; }
+		}
+		if(!function_exists('the_field'))  {
+			function the_field() { return 'ACF is Not Enabled.'; }
+		}
+	}
+}
+
+// add_action('admin_init', 'check_other_plugins', 999999999999);

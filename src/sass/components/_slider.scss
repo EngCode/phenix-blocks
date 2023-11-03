@@ -1,0 +1,40 @@
+/**======> Reference By Comment <======
+ * ===> 01 - Progress
+ * ===> 02 - Sticky
+ * ===> 03 - Multi-Media
+ * ===> 04 - Aspect Ratio
+ * ===> 05 - Lazy Loader
+ * ===> 06 - Background X
+*/
+
+/*==== Phenix Slider ====*/
+.px-slider {
+    /*==== Fix Row ====*/
+    .splide__list {flex-wrap: nowrap;}
+
+    /*==== Controls ====*/
+    .px-slider-controls, .px-slider-pagination {z-index: 100;}
+
+    /*==== Arrows ====*/
+    .px-slider-controls {
+        pointer-events: none;
+        > * {pointer-events: all;}
+        /*==== Directions Fix ====*/
+        @if ($direction == 'rtl') {
+            .px-next svg {transform: rotate(180deg);}
+        } @else {
+            .px-prev svg {transform: rotate(180deg);}
+        }
+        //====> Arrow Icons <====//
+        svg {
+            max-width: 1em;
+            max-height: 1em;
+            @extend %inline-block;
+        }
+        /*==== Buttons ====*/
+        button svg {fill: var(--color);}
+    }
+
+    /*==== Pagination ====*/
+    .px-slider-pagination .px-slider-page:not(.is-active) {opacity: 0.5;}
+}

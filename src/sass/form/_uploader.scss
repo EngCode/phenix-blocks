@@ -1,0 +1,44 @@
+/**======> Reference By Comment <======
+ * ===> 01 - File Upload Input
+*/
+
+/*==== File Upload Input ====*/
+.px-uploader{
+    overflow: hidden;
+    position:relative;
+    /*==== Standard Input ====*/
+    &:not([data-uploader="advanced"]) {
+        @extend .form-control;
+        line-height: calc(var(--height) - 3px);
+        /*==== Value Text ====*/ 
+        &::before {
+            line-height: inherit;
+            content: attr(data-placeholder);
+        }
+    
+        /*==== Browse Button ====*/
+        &::after {
+            top:0;
+            height: 100%;
+            position: absolute;
+            #{$direction-end}:0;
+            content:attr(data-btn);
+            padding: 0 var(--padding);
+            color:var(--primary-reverse);
+            background-color: var(--primary-color);
+            line-height: calc(var(--height) - 3px);
+        }
+    }
+
+    /*==== Upload Input ====*/ 
+    input[type="file"] {
+        top:0;
+        margin:0;
+        z-index:1;
+        opacity:0;
+        width: 100%;
+        height: 100%;
+        position:absolute;
+        #{$direction-start}:0;
+    }
+}

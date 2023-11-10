@@ -152,7 +152,7 @@ Phenix(window).on("load", (loaded) => {
     };
 
     /*====> Change Scrollbar <====*/
-    document.querySelector('html').classList.add('px-scrollbar');
+    // document.querySelector('html').classList.add('px-scrollbar');
     document.querySelector('#phenix-js')?.removeAttribute('async');
 
     /*====> Unblock Fonts <====*/

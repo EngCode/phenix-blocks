@@ -10,7 +10,7 @@
 */
 
 /*==== Box Resize for All Elements ====*/
-*, *:before, *:after {box-sizing: border-box;}
+*, *:before, *:after {-webkit-box-sizing: border-box;box-sizing: border-box;}
 
 /*==== Display Resets ====*/
 summary {display: list-item;}

@@ -204,6 +204,8 @@ body.block-editor-page {
 			@else  {border-radius: 0 var(--radius) var(--radius) 0;}
 		}
 	}
+
+	.px-select .options-list.px-active {overflow: auto!important;}
 	
 	.px-media .px-media-img {opacity: 1;}
 
@@ -228,7 +230,8 @@ body.block-editor-page {
 		top: 0px!important;
 		position: fixed!important;
 		#{$direction-start}: 0!important;
-		transform: translateX(0%) translateY(68%) translateZ(0px) !important;
+		-webkit-transform: translateX(0%) translateY(68%) translateZ(0px) !important;
+		        transform: translateX(0%) translateY(68%) translateZ(0px) !important;
 	}
 }
 

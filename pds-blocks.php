@@ -40,9 +40,9 @@ if (!function_exists('pds_textdomain')) {
 	*/
 
 	function pds_textdomain() {
-		$testing = dirname(plugin_basename(__FILE__)). '/languages';
-		load_plugin_textdomain('phenix', false, $testing);
-		load_plugin_textdomain('newsletter', false, $testing);
+		$languages = dirname(plugin_basename(__FILE__)). '/languages';
+		load_plugin_textdomain('phenix', false, $languages);
+		load_plugin_textdomain('newsletter', false, $languages);
 	}
 
 	add_action('init', 'pds_textdomain');

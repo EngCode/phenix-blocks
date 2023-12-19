@@ -5,7 +5,7 @@ import PhenixComponentsBuilder from './panel-scripts';
 //===> Phenix Form Control <===//
 export default class PxDropDown extends Component {
     //===> States <===//
-    state = {};
+    state = {opened:false};
 
     //===> Component Rendered Hooks <===//
     componentDidMount() { PhenixComponentsBuilder(); };
@@ -25,7 +25,6 @@ export default class PxDropDown extends Component {
         } = this.props;
 
         const attributes = {};
-
 
         if (support?.includes("hover")) attributes["data-hover"] = "true";
         if (dataPosition) attributes["data-position"] = dataPosition;

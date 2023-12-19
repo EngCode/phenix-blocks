@@ -80,7 +80,7 @@ Phenix(window).on("load", (loaded) => {
             // if(!link.getAttribute('placeholder') || link.getAttribute('placeholder') === "") link.setAttribute('placeholder', `${elTitle} ${elType} Element`);
         });
         
-        //====> Links do not have a discernible name <====//
+        //====> Inputs do not have a discernible name <====//
         Phenix('input:not([title]), select:not([title])').forEach((element:HTMLElement) => {
             //===> Define Data <===//
             let element_label = element.getAttribute('placeholder') || element.getAttribute('data-placeholder') || element.tagName;
@@ -151,8 +151,7 @@ Phenix(window).on("load", (loaded) => {
         Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     };
 
-    /*====> Change Scrollbar <====*/
-    // document.querySelector('html').classList.add('px-scrollbar');
+    /*====> Unblock Phenix <====*/
     document.querySelector('#phenix-js')?.removeAttribute('async');
 
     /*====> Unblock Fonts <====*/
@@ -203,26 +202,10 @@ Phenix(window).on("load", (loaded) => {
     if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
         //===> Editor Assets <====//
         window.onload = editorAssets();
-        let cf7Cleaner = setInterval(() => fixCF7(), 1000);
-        setTimeout(() => clearInterval(cf7Cleaner), 10000);
+        // let cf7Cleaner = setInterval(() => fixCF7(), 1000);
+        // setTimeout(() => clearInterval(cf7Cleaner), 10000);
 
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
-    }
-
-    /*====> for Adminbar <====*/
-    if(document.querySelector('#wpadminbar')) {
-        /*====> Remove Logo Submenu <====*/
-        document.querySelector('#wp-admin-bar-customize')?.remove();
-        document.querySelector('#wp-admin-bar-wp-logo .ab-sub-wrapper')?.remove();
-        // let aboutLink = document.querySelector('#wpadminbar .ab-item[href*="about.php"]');
-        // if (aboutLink) aboutLink.setAttribute('href', aboutLink.getAttribute('href').replace('about.php', 'admin.php?page=pds-dashboard'));
-
-        document.querySelectorAll('#wp-admin-bar-wp-logo [title], #wp-admin-bar-wp-logo .screen-reader-text').forEach((element:HTMLElement) => {
-            if(element.getAttribute('title')) element.setAttribute('title', Phenix(document).direction() === "ltr" ? "Dashboard" : "لوحة التحكم");
-            if(element.matches('.screen-reader-text')) element.textContent = Phenix(document).direction() === "ltr" ? "Dashboard" : "لوحة التحكم";
-        });
-        /*====> Fixes <====*/
-        Phenix('a.ab-item, .ab-item a').forEach((link:HTMLElement) => link.setAttribute('rel', 'noopener'));
     }
 });

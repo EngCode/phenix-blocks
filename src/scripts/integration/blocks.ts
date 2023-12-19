@@ -36,7 +36,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     });
 
     //===> Smooth Scroll <====//
-    // Phenix('body:not(.wp-admin) a[href*="#"]').smothScroll();
+    Phenix('body:not(.wp-admin) *:not(.scrollspy-menu) a[href*="#"]').smothScroll();
 
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
@@ -68,7 +68,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         if(nextEl) Phenix(nextEl).css({'padding-top': `${height+parseInt(nextElPadding)}px`});
     });
 
-    //====> Validation Demo <====//
+    //====> Forms Validation <====//
     Phenix('.wpcf7-form, .px-form-validation').validation();
 
     //===> Move Header <===//
@@ -172,9 +172,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
             if (element.matches('h3' || 'h4')) {
                 //===> ... <===//
                 let last_item = content_menu.querySelector('li:last-child'),
-                    last_list = last_item.querySelector('ul');
+                    last_list = last_item?.querySelector('ul') || content_menu;
                 //====> Create new Menu <====//
-                if (!last_list) last_list = Phenix(last_item).insert('append', '<ul class="table-of-content-menu pdx-15"></ul>');
+                if (!last_list && last_item) last_list = Phenix(last_item).insert('append', '<ul class="table-of-content-menu pdx-15"></ul>');
     
                 //====> Create as Menu Item <====//
                 Phenix(last_list).insert('append', itemHtml);

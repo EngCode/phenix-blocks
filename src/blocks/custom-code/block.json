@@ -7,6 +7,10 @@
 	"description": "Inject Custom HTML/CSS/JavaScript code into your page",
 	"supports": {"html": false},
     "attributes" : {
+		"metadata": {
+            "type": "object",
+            "default": {}
+        },
 		"preview" : {
 			"type": "boolean",
 			"default": false

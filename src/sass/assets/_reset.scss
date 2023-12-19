@@ -10,7 +10,11 @@
 */
 
 /*==== Box Resize for All Elements ====*/
-*, *:before, *:after {-webkit-box-sizing: border-box;box-sizing: border-box;}
+*, *:before, *:after {
+    min-width: 0;
+    -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
 
 /*==== Display Resets ====*/
 summary {display: list-item;}
@@ -191,6 +195,7 @@ body {
     padding: 0;
     position: relative;
     background: var(--body-bg);
+    color: var(--typography-color);
 }
 
 iframe {

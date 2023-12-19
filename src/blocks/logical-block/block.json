@@ -7,6 +7,10 @@
 	"description": "Show and Hide Blocks with Logical Conditions",
 	"supports": {"html": false},
     "attributes" : {
+		"metadata": {
+            "type": "object",
+            "default": {}
+        },
 		"logic": {
 			"type": "object",
 			"default": {}

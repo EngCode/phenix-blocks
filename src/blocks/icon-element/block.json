@@ -7,6 +7,11 @@
 	"description": "",
 	"supports": {"html": false},
     "attributes" : {
+        "metadata": {
+            "type": "object",
+            "default": {}
+        },
+        
         "type": {
             "type": "string",
             "default": "font"

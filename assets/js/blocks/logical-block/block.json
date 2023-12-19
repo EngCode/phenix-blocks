@@ -9,6 +9,10 @@
     "html": false
   },
   "attributes": {
+    "metadata": {
+      "type": "object",
+      "default": {}
+    },
     "logic": {
       "type": "object",
       "default": {}

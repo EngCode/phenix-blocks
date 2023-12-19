@@ -108,6 +108,7 @@ PhenixElements.prototype.utilities = function (options?:{
             let theResult = `${word_array} <span class="color-primary">${lastWord}</span>`;
             title.innerHTML = theResult.replace(/,/g, ' ');
         });
+
         //====> Max Text Length <====//
         Phenix('[data-max-text]').forEach((element:any) => {
             //===> Element Data <===//
@@ -117,6 +118,7 @@ PhenixElements.prototype.utilities = function (options?:{
             //===> check count <===//
             if (text.length > max) element.textContent = text.slice(0, max) + '...';
         });
+
         //====> Custom Colored Titles <====//
         const pds_words_wrapper = (str, classes, num) => {
             //===> Split String <===//
@@ -137,20 +139,19 @@ PhenixElements.prototype.utilities = function (options?:{
         };
 
         Phenix('.gradient-text').forEach((title:HTMLElement) => {
-        //===> Get the Title Content <===//
-        let title_content = title.textContent,
-            gradient_name = "";
+            //===> Get the Title Content <===//
+            let title_content = title.textContent,
+                gradient_name = "";
 
-        //===> get the title background name <===//
-        title.classList.forEach(className => {
-            if (className.includes('grade-')) gradient_name += ` ${className.includes('bg-') ? "" : "bg-"}${className}`;
-        });
+            //===> get the title background name <===//
+            title.classList.forEach(className => {
+                if (className.includes('grade-')) gradient_name += ` ${className.includes('bg-') ? "" : "bg-"}${className}`;
+            });
 
-        //====> Set the Title Content <====//
-        title.innerHTML = pds_words_wrapper(title_content, `bg-clip-text ${gradient_name.length < 1 ? "bg-grade-45 bg-grade-primary-secondary" : gradient_name.trim()}`, title_content.split(' ').length - 1);
+            //====> Set the Title Content <====//
+            title.innerHTML = pds_words_wrapper(title_content, `bg-clip-text ${gradient_name.length < 1 ? "bg-grade-45 bg-grade-primary-secondary" : gradient_name.trim()}`, title_content.split(' ').length - 1);
         });
     }
-
 
     //====> icons List <====//
     if (type.includes("icons") || type === "all") Phenix('.icons-list').forEach((list:HTMLElement) => {

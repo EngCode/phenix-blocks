@@ -9,6 +9,11 @@
 		"html": false
 	},
     "attributes" : {
+		"metadata": {
+            "type": "object",
+            "default": {}
+        },
+
 		"main": {
             "type": "string",
             "default": "px-media"

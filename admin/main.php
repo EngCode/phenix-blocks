@@ -1,13 +1,13 @@
 <?php
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //===> Settings Panel <===//
-    if (!function_exists('pds_settings_panel')) {
-        function pds_settings_panel() {
+    if (!function_exists('pds_fonts_panel')) {
+        function pds_fonts_panel() {
             //===> Start Data <===//
             $template_markup = '';
             ob_start();
             //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/general-settings.php');
+            include(dirname(__FILE__) . '/panels/fonts-settings.php');
             //===> Stop Data <===//
             $template_output = ob_get_clean();
             $template_markup .= $template_output;
@@ -74,10 +74,10 @@
             array(
                 //==> Tabs Panel <==//
                 array(
-                    "title" => "General Settings",
+                    "title" => "Design Fonts",
                     "slug"  => "pds-settings",
-                    "icon"  => "far fa-cog",
-                    "content" => 'pds_settings_panel',
+                    "icon"  => "far fa-font",
+                    "content" => 'pds_fonts_panel',
                 ),
                 //==> Tabs Panel <==//
                 array(

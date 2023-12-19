@@ -59,6 +59,7 @@
 
 /*==== Flexbox Grid ====*/
 .row {
+    > * {-ms-flex-negative: 0;flex-shrink: 0;}
     @extend %flexbox;
     @include grid_gap(REM(30), 'x');
 }

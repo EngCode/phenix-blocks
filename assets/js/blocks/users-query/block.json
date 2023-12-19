@@ -13,6 +13,10 @@
     "alignWide": true
   },
   "attributes": {
+    "metadata": {
+      "type": "object",
+      "default": {}
+    },
     "query": {
       "type": "object",
       "default": {}

@@ -21,7 +21,7 @@
 }
 
 /*==== Grid Blocks ====*/
-.col-adaptive {flex: 1 1 0;}
+.col-adaptive {-webkit-box-flex: 1;-ms-flex: 1 1 0px;flex: 1 1 0;}
 .wp-block-phenix-column.block-editor-block-list__block,
 .wp-block-phenix-column[data-block] {outline: 1px dashed var(--secondary-color);}
 
@@ -41,6 +41,12 @@
 		.bg-inherit:not(ul) 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
 		.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
 	}
+
+
+	/*==== Colors Fixes ====*/
+	[data-value="color-component-lvl-1"] {background-color: var(--component-tx-lvl-1);}
+	[data-value="color-component-lvl-2"] {background-color: var(--component-tx-lvl-2);}
+	[data-value="color-component-lvl-3"] {background-color: var(--component-tx-lvl-3);}
 
 	/*==== Borders ====*/
 	.options-list {
@@ -125,12 +131,14 @@
 			top: 50%;
 			left: 50%;
 			position: absolute;
-			transform: translateX(-50%) translateY(-50%);
+			-webkit-transform: translateX(-50%) translateY(-50%);
+			        transform: translateX(-50%) translateY(-50%);
 		}
 	}
 
 	&.overlay-panel {
 		height: 215px;
+		-webkit-transition: height 0.3s ease;
 		transition: height 0.3s ease;
 		.options-list {
 			top: 45px;
@@ -163,6 +171,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		transition: -webkit-filter 0.3s;
+		-webkit-transition: -webkit-filter 0.3s;
 		transition: filter 0.3s;
 		transition: filter 0.3s, -webkit-filter 0.3s;
 	}
@@ -222,15 +231,15 @@
 }
 
 @-webkit-keyframes controlHighlight {
-	from {box-shadow: revert;}
-	50% {box-shadow: 0 0 0 2px var(--primary-color);}
-	100% {box-shadow: revert;}
+	from {-webkit-box-shadow: revert;box-shadow: revert;}
+	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {-webkit-box-shadow: revert;box-shadow: revert;}
 }
 
 @keyframes controlHighlight {
-	from {box-shadow: revert;}
-	50% {box-shadow: 0 0 0 2px var(--primary-color);}
-	100% {box-shadow: revert;}
+	from {-webkit-box-shadow: revert;box-shadow: revert;}
+	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
+	100% {-webkit-box-shadow: revert;box-shadow: revert;}
 }
 
 /*==== Align Icons ====*/

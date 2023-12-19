@@ -5,9 +5,9 @@
     $icons_url  = str_replace('admin/panels', 'assets/img/blocks/core/', $assets_url);
 ?>
 <!-- Grid Layout -->
-<div class="row">
+<div class="row" id="menu_locations_form">
     <!-- Column -->
-    <div class="col-12 col-lg-5 pdy-10 me-lg-20 collection-form" data-type="menu-locations">
+    <div class="col-12 col-lg-5 me-lg-20 collection-form" data-type="menu_locations">
         <!-- Area Title -->
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Add New Location', 'phenix'); ?></h3>
         <p class="mb-20 fs-14"><?php echo __('you can add new menu locations from below form.', 'phenix'); ?></p>
@@ -23,7 +23,7 @@
         <button type="button" class="add-item btn primary radius-sm small ms-auto display-block"><?php echo __('Add Location', 'phenix'); ?></button>
     </div>
     <!-- Column -->
-    <div class="col col-lg-6 pdy-10">
+    <div class="col col-lg-6">
         <!-- Layouts -->
         <div class="flexbox align-between align-center-y mb-20">
             <!-- Area Head -->
@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- Locations List -->
-        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm locations-list fs-14">
+        <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm menu_locations_list fs-14" data-type="menu_locations">
             <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
                 <span class="col-5"><?php echo __('Location Title', 'phenix'); ?></span>
                 <span class="col-5"><?php echo __('Location Name', 'phenix'); ?></span>

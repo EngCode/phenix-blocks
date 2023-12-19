@@ -6,6 +6,7 @@
 */
 
 //===> WordPress Modules <===//
+import { __ } from '@wordpress/i18n';
 import {Component} from '@wordpress/element';
 
 //===> Phenix Background <===//
@@ -23,33 +24,47 @@ export default class PhenixColors extends Component {
         const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
 
         //===> Colors List <===//
-        const pxPallete = [
-            "color-inherit",
-            "color-transparent",
-            "color-primary",
-            "color-primary-dark",
-            "color-secondary",
-            "color-secondary-dark",
-            "color-gray",
-            "color-dark",
-            "color-white",
-            "color-success",
-            "color-danger",
-            "color-warning",
-            "color-info",
-            "color-facebook",
-            "color-twitter",
-            "color-youtube",
-            "color-instagram",
-            "color-snapchat",
-            "color-whatsapp",
-            "color-pinterest",
-            "color-linkedin",
-            "color-behance",
-            "color-dribbble",
-            "color-flicker",
-            "fas fa-redo tx-align-center"
-        ];
+        const pxPallete = {
+            main: [
+                "color-inherit",
+                "color-transparent",
+                "color-primary",
+                "color-primary-dark",
+                "color-secondary",
+                "color-secondary-dark",
+                "color-gray",
+                "color-dark",
+                "color-white",
+                "fas fa-redo tx-align-center"
+            ],
+
+            status: [
+                "color-success",
+                "color-danger",
+                "color-warning",
+                "color-info",
+            ],
+
+            social: [
+                "color-facebook",
+                "color-twitter",
+                "color-youtube",
+                "color-instagram",
+                "color-snapchat",
+                "color-whatsapp",
+                "color-pinterest",
+                "color-linkedin",
+                "color-behance",
+                "color-dribbble",
+                "color-flicker",
+            ],
+
+            components: [
+                "color-component-lvl-1",
+                "color-component-lvl-2",
+                "color-component-lvl-3"
+            ]
+        };
 
         //===> Set Color <===//
         const setColor = clicked => {
@@ -61,7 +76,7 @@ export default class PhenixColors extends Component {
         };
 
         //===> Buttons Creator <===//
-        const makeButtons = (list) => {
+        const makeButtons = (list, classes) => {
             let output = [];
             //===> for each item <===//
             for (let index = 0; index < list.length; index++) {
@@ -80,7 +95,7 @@ export default class PhenixColors extends Component {
                     });
                 } else title = "Reset";
 
-                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setColor} title={title} data-value={isColor ? name : ""} className={`${isColor ? name.replace('color-','bg-') : `${name} color-gray fs-12`} reset-button ${value === name ? 'px-active' : null}`} style={{"width":"30px","height":"16px","borderRadius":"16px"}}></button>);
+                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setColor} title={title} data-value={isColor ? name : ""} className={`${isColor ? name.replace('color-','bg-') : `${name} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : null}  ${classes?classes:""}`} style={{"width":"30px","height":"16px"}}></button>);
             }
 
             //===> Return Buttons <===//
@@ -116,8 +131,18 @@ export default class PhenixColors extends Component {
                     {!isSmall ? <i className='fas fa-pencil'></i> : null}
                 </button>
                 {/*===> Panel <===*/}
-                <div className='flexbox px-scrollbar overflow-y-auto options-list align-between pd-20 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid' style={{gap:"10px", maxHeight: 150}}>
-                    {makeButtons(pxPallete)}
+                <div className='flexbox px-scrollbar overflow-y-auto options-list pdy-20 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom hidden fluid' style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
+                    <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
+                    {makeButtons(pxPallete.main, "radius-xxl")}
+
+                    <label className='tx-align-center divider-b mb-0 mt-10 tx-UpperCase fs-12 col-12'>{__("Components Colors", "pds-blocks")}</label>
+                    {makeButtons(pxPallete.components, "radius-xxl border-1 border-alpha-15 border-solid")}
+
+                    <label className='tx-align-center divider-b mb-0 mt-10 tx-UpperCase fs-12 col-12'>{__("Status Colors", "pds-blocks")}</label>
+                    {makeButtons(pxPallete.status, "radius-xxl")}
+
+                    <label className='tx-align-center divider-b mb-0 mt-10 tx-UpperCase fs-12 col-12'>{__("Brand Colors", "pds-blocks")}</label>
+                    {makeButtons(pxPallete.social, "radius-xxl")}
                 </div>
             </div>
         )

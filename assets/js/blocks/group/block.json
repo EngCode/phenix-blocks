@@ -20,6 +20,10 @@
     "alignWide": true
   },
   "attributes": {
+    "metadata": {
+      "type": "object",
+      "default": {}
+    },
     "id": {
       "type": "string",
       "default": ""

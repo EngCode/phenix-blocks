@@ -152,3 +152,94 @@ function check_other_plugins() {
 }
 
 // add_action('admin_init', 'check_other_plugins', 999999999999);
+
+//===> Blocks to Disable <===//
+// function pds_blocks_allowed_block_types($allowed_blocks, $post ) {
+// 	//===> Blocks to Disable <===//
+// 	$blocks_to_disable = array();
+
+// 	//===> Options List <===//
+// 	$pds_core_blocks = array(
+// 		"pds_core_quote" => "core/quote",
+// 		"pds_core_preformatted" => "core/preformatted",
+// 		"pds_core_code" => "core/code",
+// 		"pds_core_pullquote" => "core/pullquote",
+// 		"pds_core_verse" => "core/verse",
+// 		"pds_core_gallery" => "core/gallery",
+// 		"pds_core_file" => "core/file",
+// 		"pds_core_mediatext" => "core/media-text",
+// 		"pds_core_cover" => "core/cover",
+// 		"pds_core_buttons" => "core/buttons",
+// 		"pds_core_columns" => "core/columns",
+// 		"pds_core_group" => "core/group",
+// 		"pds_core_more" => "core/more",
+// 		"pds_core_nextpage" => "core/nextpage",
+// 		"pds_core_separator" => "core/separator",
+// 		"pds_core_spacer" => "core/spacer",
+// 		"pds_core_embed" => "core/embed",
+// 		"pds_core_logo" => "core/site-logo",
+// 		"pds_core_title" => "core/site-title",
+// 		"pds_core_tagline" => "core/site-tagline",
+// 		"pds_core_query" => "core/query",
+// 		"pds_core_navigation" => "core/navigation",
+// 		"pds_core_avatar" => "core/avatar",
+// 		"pds_core_loginout" => "core/loginout",
+// 		"pds_core_tag_cloud" => "core/tag-cloud",
+// 		"pds_core_post_elements" => array(
+// 			"core/post-title",
+// 			"core/post-excerpt",
+// 			"core/post-author",
+// 			"core/post-featured-image",
+// 			"core/post-date",
+// 			"core/post-terms",
+// 			"core/post-navigation-link",
+// 			"core/read-more",
+// 			"core/post-comments-form",
+// 			"core/term-description",
+// 			"core/query-title",
+// 			"core/post-author-biography",
+// 		),
+// 		"pds_core_widgets_blocks" => array(
+// 			"core/rss",
+// 			"core/search",
+// 			"core/latest-posts",
+// 			"core/social-links",
+// 			"core/latest-comments",
+// 			"core/archives",
+// 			"core/page-list",
+// 		),
+// 		"pds_core_woo" => array()
+// 	);
+
+// 	//===> Check for Each Option <===//
+// 	foreach ($pds_core_blocks as $option => $blocks) {
+// 		//===> Check if the Option is Enabled <===//
+// 		if (get_option($option) !== "on") {
+// 			//===> if the Option is an Array <===//
+// 			if (is_array($blocks)) {
+// 				//===> Add Each Sub-Block to the List <===//
+// 				foreach ($blocks as $block) {
+// 					array_push($blocks_to_disable, $block);
+// 				}
+// 			} else {
+// 				//===> Add the Block to the List <===//
+// 				array_push($blocks_to_disable, $blocks);
+// 			}
+// 		}
+// 	}
+
+// 	var_dump($blocks_to_disable);
+
+// 	//===> Remove the Blocks <===//
+// 	if (is_array( $allowed_blocks) ) {
+// 		foreach ($blocks_to_disable as $block ) {
+// 			if (($key = array_search($block, $allowed_blocks)) !== false) {
+// 				unset($allowed_blocks[$key]);
+// 			}
+// 		}
+// 	}
+
+// 	return $allowed_blocks;
+// }
+
+// add_filter('allowed_block_types_all', 'pds_blocks_allowed_block_types', 10, 2);

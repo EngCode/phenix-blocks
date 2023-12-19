@@ -58,6 +58,11 @@
             "default": {}
         },
 
+        "metadata": {
+            "type": "object",
+            "default": {}
+        },
+
         "responsive": {
             "type": "object",
             "default": {}

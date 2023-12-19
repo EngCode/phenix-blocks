@@ -38,6 +38,12 @@ function px_head_render($block_attributes, $content) {
                     if ($sub_option === "position" && $sub_value === "sticky-absolute") {$block_attributes["data-sticky"] = $sub_value;} 
                     //===> Positions Values <===//
                     elseif (strpos($sub_option, 'pos-') !== false) {$class_names .= " $sub_option-$sub_value";}
+                    //====> Other Classes <===//
+                    else {
+                        $sub_value = str_replace(',', ' ', (string) $sub_value);
+                        $sub_value = trim($sub_value);
+                        $class_names .= " " . $sub_value;
+                    }
                 };
             }
         };

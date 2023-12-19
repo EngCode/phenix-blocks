@@ -8,6 +8,7 @@
 //===> WordPress Modules <===//
 import { __ } from '@wordpress/i18n';
 import {Component} from '@wordpress/element';
+import { select } from '@wordpress/data';
 
 //====> Phenix Modules <====//
 import PhenixSelect from '../select';
@@ -17,70 +18,88 @@ import MediaUploader from '../uploader';
 export default class PhenixBackground extends Component {
     //===> States <===//
     state = {
-        colors : [
-            "fas fa-redo tx-align-center",
+        colors : {
+            main : [
+                "fas fa-redo tx-align-center",
+                "bg-inherit",
+                "bg-transparent",
+                "bg-primary",
+                "bg-primary-dark",
+                "bg-secondary",
+                "bg-secondary-dark",
+                "bg-gray",
+                "bg-dark",
+                "bg-white",
+            ],
 
-            "bg-inherit",
-            "bg-transparent",
-            "bg-primary",
-            "bg-primary-dark",
-            "bg-secondary",
-            "bg-secondary-dark",
-            "bg-gray",
-            "bg-dark",
-            "bg-white",
-            "bg-success",
-            "bg-danger",
-            "bg-warning",
-            "bg-info",
+            status: [
+                "bg-success",
+                "bg-danger",
+                "bg-warning",
+                "bg-info",
 
-            "bg-offwhite-primary",
-            "bg-offwhite-secondary",
-            "bg-offwhite-info",
-            "bg-offwhite-success",
-            "bg-offwhite-danger",
-            "bg-offwhite-warning",
+                "bg-offwhite-primary",
+                "bg-offwhite-secondary",
+                "bg-offwhite-info",
+                "bg-offwhite-success",
+                "bg-offwhite-danger",
+                "bg-offwhite-warning",
+            ],
 
-            "bg-offwhite-smoke",
-            "bg-offwhite-gray",
-            "bg-offwhite-snow",
-            "bg-offwhite-honeydew",
-            "bg-offwhite-aliceblue",
-            "bg-offwhite-ghost",
-            "bg-offwhite-seashell",
-            "bg-offwhite-beige",
-            "bg-offwhite-oldlace",
-            "bg-offwhite-floral",
-            "bg-offwhite-antique",
-            "bg-offwhite-linen",
-            "bg-offwhite-lavenderblush",
+            offwhite: [
+                "bg-offwhite-smoke",
+                "bg-offwhite-gray",
+                "bg-offwhite-snow",
+                "bg-offwhite-honeydew",
+                "bg-offwhite-aliceblue",
+                "bg-offwhite-ghost",
+                "bg-offwhite-seashell",
+                "bg-offwhite-beige",
+                "bg-offwhite-oldlace",
+                "bg-offwhite-floral",
+                "bg-offwhite-antique",
+                "bg-offwhite-linen",
+                "bg-offwhite-lavenderblush",
+            ],
+            
+            brands: [
+                "bg-facebook",
+                "bg-twitter",
+                "bg-youtube",
+                "bg-instagram",
+                "bg-snapchat",
+                "bg-whatsapp",
+                "bg-pinterest",
+                "bg-linkedin",
+                "bg-behance",
+                "bg-dribbble",
+                "bg-flicker",
+            ],
 
-            "bg-facebook",
-            "bg-twitter",
-            "bg-youtube",
-            "bg-instagram",
-            "bg-snapchat",
-            "bg-whatsapp",
-            "bg-pinterest",
-            "bg-linkedin",
-            "bg-behance",
-            "bg-dribbble",
-            "bg-flicker",
+            darkAlpha: [
+                "bg-alpha-05",
+                "bg-alpha-10",
+                "bg-alpha-15",
+                "bg-alpha-25",
+                "bg-alpha-50",
+                "bg-alpha-75",
+            ],
 
-            "bg-alpha-05",
-            "bg-alpha-10",
-            "bg-alpha-15",
-            "bg-alpha-25",
-            "bg-alpha-50",
-            "bg-alpha-75",
+            lightAlpha: [
+                "bg-revert-05",
+                "bg-revert-10",
+                "bg-revert-15",
+                "bg-revert-25",
+                "bg-revert-50",
+                "bg-revert-75",
+            ],
 
-            "bg-revert-05",
-            "bg-revert-10",
-            "bg-revert-15",
-            "bg-revert-25",
-            "bg-revert-50",
-            "bg-revert-75",
-        ],
+            components: [
+                "bg-component-lvl-1",
+                "bg-component-lvl-2",
+                "bg-component-lvl-3"
+            ]
+        },
 
         gradients: [
             "bg-grade-primary",
@@ -195,7 +214,7 @@ export default class PhenixBackground extends Component {
         };
 
         //===> Buttons Creator <===//
-        const makeButtons = (list, type) => {
+        const makeButtons = (list, classes) => {
             let output = [];
             //===> for each item <===//
             for (let index = 0; index < list.length; index++) {
@@ -214,7 +233,7 @@ export default class PhenixBackground extends Component {
                     });
                 } else title = "Reset";
 
-                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : ""}`} style={{"width":"30px","height":"16px","borderRadius":"16px"}}></button>);
+                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : ""} ${classes?classes:""}`} style={{"width":"30px","height":"16px"}}></button>);
             }
             //===> Return Buttons <===//
             return output;
@@ -272,8 +291,36 @@ export default class PhenixBackground extends Component {
                     : null}
                 </div>
                 {/*===> Panel <===*/}
-                <div className={`flexbox options-list align-between ${type !== "image"  && type !== "video" && type !== "embed" ? 'pd-15 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: 150}}>
-                    {type === "color" ? makeButtons(this.state.colors) : type === "gradient" ? makeButtons(this.state.gradients) : null}
+                <div className={`flexbox options-list ${type !== "image"  && type !== "video" && type !== "embed" ? 'pdy-15 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
+                    {type === "color" ? <>
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
+                        {makeButtons(this.state.colors.main, "radius-xxl")}
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
+                        {makeButtons(this.state.colors.components, "radius-xxl border-1 border-alpha-15 border-solid")}
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
+                        {makeButtons(this.state.colors.status, "radius-xxl")}
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
+                        {makeButtons(this.state.colors.offwhite, "radius-xxl")}
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
+                        {makeButtons(this.state.colors.brands, "radius-xxl")}
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
+                        <div className='pd-5 radius-sm bg-white fluid flexbox align-between'>
+                            {makeButtons(this.state.colors.darkAlpha, "")}
+                        </div>
+
+                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
+                        <div className='pd-5 radius-sm bg-dark fluid flexbox align-between'>
+                            {makeButtons(this.state.colors.lightAlpha, "")}
+                        </div>
+                    </>
+                    : type === "gradient" ? 
+                        makeButtons(this.state.gradients, "radius-xxl") : 
+                    null}
                     {type === "image" || type === "video" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
                 </div>
                 {/*===> Rotation Select <===*/}

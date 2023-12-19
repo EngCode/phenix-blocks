@@ -50,9 +50,7 @@
                 'flamingo',
                 'index.php',
                 'upload.php',
-                'plugins.php',
                 'edit-comments.php',
-                // 'blocks-product-editor-for-woocommerce',
             ];
 
             foreach ($removable as $item) { remove_menu_page($item); }
@@ -78,15 +76,12 @@
 
             //===> Organize Menu Items <===//
             $movable = [
-                ['tools.php', null, __('Plugins', 'phenix'), 'manage_options', 'plugins.php'],
                 ['users.php', null, __('Comments', 'phenix'), 'manage_options', 'edit-comments.php'],
                 ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
                 ['tools.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
                 ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'update-core.php'],
                 ['pds-dashboard', null, __('WordPress', 'phenix'), 'edit_posts', 'about.php'],
                 ['wpcf7', null, __('Inbox Messages', 'phenix'), 'edit_posts', 'admin.php?page=flamingo_inbound'],
-                // ['pds-dashboard', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
-                // ['pds-admin', __('Reusable Blocks', 'phenix'), __('Reusable Blocks', 'phenix'), 'edit_posts', 'edit.php?post_type=wp_block'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }
@@ -100,6 +95,7 @@
     include(dirname(__FILE__) . '/modules/cpt-creator.php');
     include(dirname(__FILE__) . '/modules/tax-creator.php');
     include(dirname(__FILE__) . '/modules/page-creator.php');
+    include(dirname(__FILE__) . '/modules/metabox-creator.php');
     include(dirname(__FILE__) . '/modules/toggle-controls.php');
     include(dirname(__FILE__) . '/modules/pattern-creator.php');
 
@@ -255,6 +251,7 @@
          * @return void
         */
 
+        //===> Data Collection <===//
         function pds_data_collection () {
             include(dirname(__FILE__) . '/data-collection.php');
         };
@@ -340,7 +337,10 @@
 
     //====> Set Menu Locations <====//
     if (get_option('menu_locations')) :
-        register_nav_menus( get_option('menu_locations') );
+        $menu_locations = get_option('menu_locations');
+        foreach ($menu_locations as $location) {
+            register_nav_menu($location['name'], $location['title']);
+        }
     endif;
 
     //===> Set Post-Types <===//

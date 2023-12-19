@@ -188,3 +188,44 @@
 .scale-150 {-webkit-transform: scale(1.50);transform: scale(1.50);}
 .scale-175 {-webkit-transform: scale(1.75);transform: scale(1.75);}
 .scale-200 {-webkit-transform: scale(2);transform: scale(2);}
+
+/*==== Background Animations ====*/
+.bg-animated-x {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_x var(--duration) linear infinite;
+            animation: background_x var(--duration) linear infinite;
+}
+
+.bg-animated-y {
+    --duration : 60s;
+    background-repeat: repeat-x;
+    -webkit-animation: background_y var(--duration) linear infinite;
+            animation: background_y var(--duration) linear infinite;
+}
+
+.bg-animated-zoom {
+    -webkit-animation: bgZoomInOut 30s linear infinite;
+        animation: bgZoomInOut 30s linear infinite;
+}
+
+/*==== Custom Animations ====*/
+@-webkit-keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@-webkit-keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}
+
+@keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
+}

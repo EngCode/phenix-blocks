@@ -239,3 +239,6 @@ body.block-editor-page {
 .block-editor-rich-text__editable.rich-text {cursor: text;}
 .tx-icon .block-editor-rich-text__editable.rich-text {display: inline-block;}
 .components-popover__content {width: auto!important;max-width: 280px;}
+
+/*==== Pattern Editor Wrapper ====*/
+.edit-site-visual-editor.is-focus-mode .components-resizable-box__container {height: auto!important;}

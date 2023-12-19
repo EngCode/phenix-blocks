@@ -24,7 +24,11 @@
                 array(
                     "name"  => 'adminbar_css',
                     "title" => 'Clean Admin-Bar CSS',
-                )
+                ),
+                array(
+                    "name"  => 'adminbar_disable',
+                    "title" => 'Disable Admin-Bar for Users',
+                ),
             ));
         ?>
     </div>

@@ -94,7 +94,7 @@ export default function Edit(props) {
     const set_arrow_icon = icon => setAttributes({ arrow_icon: `${icon.type} ${icon.value}`});
     const set_items_icon = icon => setAttributes({ items_icon: `${icon.type} ${icon.value}`});
 
-    //==> Ser Colors <==//
+    //==> Set Colors <==//
     const set_color = value => {
         //==> Get Current <==//
         let typography = attributes.typography;

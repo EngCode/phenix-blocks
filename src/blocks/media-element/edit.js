@@ -158,7 +158,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
         //===> Exclude Options <===//
-        const excluded = ["tagName", "className", "align", "content", "lightbox_type"];
+        const excluded = ["tagName", "className", "align", "content", "lightbox_type", "metadata"];
         if (excluded.some(opt => opt === option_name)) return;
 
         //===> if its a Normal Values that should be string <===//

@@ -28,7 +28,10 @@
     border-width: 0;
 }
 
-.flexbox { @extend %flexbox; }
+.flexbox {
+    @extend %flexbox;
+    > * {-ms-flex-negative: 0;flex-shrink: 0;}
+}
 
 @mixin make-visibility ($infix:'') {
     /*==== Visibility ====*/
@@ -40,7 +43,12 @@
     .inline-block#{$infix}  {display: inline-block;}
     .display#{$infix}-block {display: block;}
     .display#{$infix}-grid  {display: grid;}
-    .display#{$infix}-flex  {display: flex;}
+    .display#{$infix}-flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        > * {-ms-flex-negative: 0;flex-shrink: 0;}
+    }
 }
 
 @include make-visibility();

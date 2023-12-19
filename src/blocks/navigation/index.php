@@ -13,7 +13,7 @@ function px_navigation_render($block_attributes, $content) {
     $markup = ''; ob_start();
 
     //===> Define Options Data <===//
-    $menuClasses = "reset-list"; $hover_mode = ""; $nav_style = ""; $menu_id = ""; $menu_attrs = ""; $count_badge = "";
+    $menuClasses = " reset-list"; $hover_mode = ""; $nav_style = ""; $menu_id = ""; $menu_attrs = ""; $count_badge = "";
     $effect_type = ""; $classNames = "px-navigation"; $mobile_mode = ""; $arrow_icon = ""; $text_align = "";
 
     //===> Dynamic Data Setter <===//
@@ -29,11 +29,11 @@ function px_navigation_render($block_attributes, $content) {
             //===> Wrapper Classes <===//
             elseif ($option_name === "className") { $classNames .= " {$option_value}"; }
             //===> Dropdown icon <===//
-            elseif ($option_name === "arrow_icon") { $arrow_icon  = "data-arrow='{$option_value}'"; }
+            elseif ($option_name === "arrow_icon") { $arrow_icon = "data-arrow='{$option_value}'"; }
             //===> Direction <===//
             elseif ($option_name === "direction") { 
-                if ($block_attributes['direction'] == 'px-vertical') { $classNames = $classNames.' '.$option_value; } 
-                else { $menuClasses = $menuClasses.' '.$option_value; }
+                if ($block_attributes['direction'] == 'px-vertical') { $classNames .= ' '.$option_value; } 
+                else { $menuClasses .= ' '.$option_value; }
              }
              //===> Icons Mode <===//
              elseif ($option_name === "items_icon" && $block_attributes['items_icon_op'] === true) {
@@ -74,8 +74,14 @@ function px_navigation_render($block_attributes, $content) {
                         elseif($sub_option === "align") { $text_align = $sub_value; } 
                         elseif($sub_option === "color") { $text_color = $sub_value; } 
                         elseif($sub_option === "color_hvr") { $text_color_hvr = $sub_value; }
+                        //====> Other Classes <===//
+                        else {
+                            $sub_value = str_replace(',', ' ', (string) $sub_value);
+                            $sub_value = trim($sub_value);
+                            $menuClasses .= " " . $sub_value;
+                        }
                     }
-
+                    //====> Style <===//
                     elseif ($option_name === "style") {
                         if($sub_option === "padding") { $style_padding = $sub_value; }
                     }

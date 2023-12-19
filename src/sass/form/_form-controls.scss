@@ -50,9 +50,9 @@
     --height    : #{REM(42)};
     --text-size : #{REM(14)};
     /*=== Colors Options ===*/
-    --color : var(--dark-color);
+    --color : var(--component-tx-lvl-1);
     --box-shadow   : unset;
-    --background   : #FFFFFF;
+    --background   : var(--component-bg-lvl-1);
     --border-size  : 1px;
     --border-color : #{rgba(#000, 0.1)};
 

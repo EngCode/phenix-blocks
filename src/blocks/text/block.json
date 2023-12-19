@@ -10,6 +10,11 @@
 		"html": false
 	},
     "attributes" : {
+        "metadata": {
+            "type": "object",
+            "default": {}
+        },
+        
         "id": {
 			"type": "string",
 			"default": ""

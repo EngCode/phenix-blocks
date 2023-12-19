@@ -1,144 +1,184 @@
-<p align="center">
-    <a href="https://phenixthemes.com/pds-docs">
-        <img src="https://phenixthemes.com/pds-docs/wp-content/uploads/sites/2/2022/09/phenix-design-icon.svg"
-            alt="Phenix Design logo" width="175" height="162">
-    </a>
-</p>
+# Introduction
 
-<h2 align="center">Phenix WP Blocks (PRO)</h2>
+**[Phenix Design System](https://phenixthemes.com/pds-docs)** is lightweight user-interface framework build for simple structure, fast execution, and performance is number One concern in mind it was build for personal use and later published as open-source project for web community benefits.
 
-<p align="center">Phenix WP Blocks is Gutenberg Integration with Phenix Design System Framework.</p>
-<p align="center">
-    <a href="https://phenixthemes.com/pds-docs"><strong>Explore Phenix Docs »</strong></a>
-</p>
-<p align="center">
-    <a href="https://github.com/EngCode/pds-starter-free">you need the (Block Theme) for this plugin to run correctly</a>
-</p>
+this project is a full-integration for the design system with WordPress with helpful Developers Toolbox to extend and grow your websites as needed
 
-<p align="center">
-    <img src="https://img.shields.io/badge/build-v0.1-blue.svg" alt="" />
-    <img src="https://img.shields.io/github/languages/code-size/EngCode/phenix-blocks.svg" alt="" />
-    <img src="https://img.shields.io/github/repo-size/EngCode/phenix-blocks.svg" alt="" />
-    <img src="https://img.shields.io/github/issues/EngCode/phenix-blocks.svg" alt="" />
-    <img src="https://img.shields.io/badge/wordpress-v5.9-blue.svg" alt="" />
-    <img src="https://img.shields.io/badge/php->%3D7.4.1-blue.svg" alt="" />
-</p>
-</div>
+[Design System – Phenix UI Framework](https://phenixthemes.com/pds-docs/)
 
 ---
 
-### About Phenix Design System
-
-**[Phenix DS](https://phenixthemes.com/pds-docs "About Phenix")** is lightweight user-interface framework build for simple
-structure, fast execution, and performance is number One concern in mind it was build for personal use and later
-published as open-source project for web community benefits.
-
----
-
-#### 🚀 Phenix Blocks Key-Features (⭐:PRO, ✅: FREE)
-
-<ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>✅ [Block] Responsive Logo</li>
-    <li>✅ [Block] Responsive Container</li>
-    <li>✅ [Block] Responsive Grid Row</li>
-    <li>✅ [Block] Responsive Column</li>
-    <li>✅ [Block] Responsive Advanced Buttons</li>
-    <li>✅ [Block] Responsive Navigation Menu</li>
-    <li>✅ [Block] Advanced Users Query</li>
-    <li>✅ [Block] Advanced PostTypes Query</li>
-    <li>✅ [Block] Advanced Taxonomies Query</li>
-    <li>✅ [Block] Breadcrumb (Page-Head)</li>
-    <li>✅ [Block] PHP Theme Part</li>
-    <li>✅ [Block] Inline elements</li>
-    <li>✅ [Block] PDS Group (Flexbox Wrapper)</li>
-    <li>✅ [Block] Taxonomies Links List</li>
-    <li>⭐ [Block] Icon Font (FontAwesome)</li>
-    <li>⭐ [Block] Modals/Popups</li>
-    <li>⭐ [Block] Accordion List</li>
-    <li>⭐ [Block] Dropdown Button</li>
-    <li>⭐ [Block] Tabs and Panels</li>
-    <li>⭐ [Block] Logical Content
-        <ul style="list-style:none;padding:0;margin:0 25px;">
-            <li>⭐ Show for Users Only</li>
-            <li>⭐ Show for Visitors Only</li>
-            <li>⭐ Show for Users from Rule #</li>
-        </ul>
-    </li>
-    <li>⭐ [Block] Language Switcher</li>
-    <li>✅ [Tool] Create Custom Block Patterns</li>
-    <li>✅ [Tool] Create Custom Post Types</li>
-    <li>✅ [Tool] Create Custom Taxonomies</li>
-    <li>✅ [Tool] Create Custom Menu Locations</li>
-    <li>✅ [Tool] Core GB Blocks Optimizer</li>
-    <li>✅ [Tool] WordPress Optimizing Options</li>
-    <li>✅ [Tool] Full Support for Google Fonts</li>
-    <li>✅ [Tool] Full Support for Fontawesome 5/6</li>
-    <li>✅ [Feature] Animated Loading Screen</li>
-    <li>✅ [Feature] Site-Editor Full Integration</li>
-    <li>✅ [Feature] Multilangauge Full Support</li>
-    <li>✅ [Feature] SEO Optimization Fallbacks</li>
-    <li>✅ [Feature] WordPress Admin Panel Styling</li>
-    <li>✅ [Feature] CSS and JavaScript Optimization</li>
-    <li>⭐ [Feature] Custom Fonts for each Language</li>
-    <li>✅ [Feature] Custom Fonts for each RTL/LTR Direction</li>
-    <li>⭐ [Tool] Create Custom Metaboxes for (Post-Types/Taxonomies)</li>
-    <li>✅ [Feature] Front-End Forms Validation and Spam Protection Layer.</li>
-    <li>⭐ [Block] Responsive Multimedia Block w/ [Lightbox] and Embeddings</li>
-    <li>✅ [Feature] Responsive Slider With [Grid/PostTypes/Taxonomies] Blocks</li>
-    <li>⭐ [Feature] Editable PHP Card for [PostTypes/Taxonomies] with Metaboxes</li>
-    <li>⭐ [Block] Custom Code Designer (HTML, CSS, JS, Shortcode) with Real Preview</li>
-    <li>⭐ [Tool] Custom Metaboxes for PHP Templates in [Theme Parts, Dynamic Loops]</li>
-</ul>
-
-#### 🚀 Phenix Editor Components (⭐:PRO, ✅: FREE)
-
-<ul style="list-style:none;padding:0;margin:0 25px;">
-    <li>⭐ Element Effects
-        <ul style="list-style:none;padding:0;margin:0 25px;">
-            <li>⭐ Box Border</li>
-            <li>⭐ Box Shadow</li>
-            <li>⭐ Popup Trigger</li>
-            <li>⭐ Transition Speed</li>
-            <li>⭐ Spaced icon/text</li>
-            <li>⭐ Text Words Coloring</li>
-            <li>⭐ Text Gradient Coloring</li>
-        </ul>
-    </li>
-    <li>✅ Media Uploader</li>
-    <li>✅ Phenix Backgrounds</li>
-    <li>✅ Responsive Styling</li>
-    <li>✅ Coloring System Controller</li>
-    <li>⭐ Multimedia Backgrounds</li>
-    <li>✅ Responsive Typography</li>
-    <li>⭐ Show/Hide Animations</li>
-    <li>⭐ Position Controller</li>
-    <li>⭐ Cards Data Schema</li>
-    <li>✅ Icons Selector Controller</li>
-    <li>⭐ Animations Utilities</li>
-    <li>⭐ Element Size Utilities</li>
-    <li>⭐ Custom Data Attributes</li>
-    <li>✅ Sidebar Options</li>
-    <li>✅ Accessibility Support</li>
-    <li>✅ Toolbar Options Support</li>
-    <li>⭐ Interaction Effects (Hover)</li>
-    <li>⭐ Sidebar Data Collection Tools</li>
-    <li>⭐ Sidebar Custom Metaboxes Fields</li>
-    <li>✅ Advanced Background Controller [colors, gradients, images]</li>
-</ul>
----
-
-#### ### Where to Start ? : [Documentation](https://phenixthemes.com/pds-docs/wp-docs)
-
-you can visit the official website of phenix design system and read the documentation to master the framework :
-[phenixthemes.com/pds-docs](https://phenixthemes.com/pds-docs) and then you can read the
-[Designer-Guide](https://phenixthemes.com/pds-docs/wp-docs/designer) of phenix blocks for more advanced development you
-can read the [Developer Docs](https://phenixthemes.com/pds-docs/wp-docs/developer) for the Plugin and its Theme.
-
----
-
-### Phenix Blocks WordPress Plugin
+## Phenix Blocks WordPress Plugin
 
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
+
+---
+
+**[Phenix Blocks](https://www.notion.so/Phenix-Blocks-305d91666cda4b718586cf3a7e142768?pvs=21) Development Progress Report**
+
+---
+
+### 🚀 Blocks List
+
+- ✅ PDS Group
+- ✅ Responsive Container
+- ✅ Responsive Grid Row
+- ✅ Responsive Column
+- ✅ Responsive Advanced Buttons
+- ✅ Responsive Navigation Menu
+- ✅ Advanced Users Query
+- ✅ Advanced Post Types Query
+- ✅ Advanced Taxonomies Query
+- ✅ Breadcrumb (Page-Head)
+- ✅ PHP Theme Part
+- ✅ Inline elements
+- ✅ Taxonomies Links List
+
+- ✅ Icon Font (Font Awesome)
+- ✅ Modals/Popups
+- ✅ Accordion List
+- ✅ Dropdown Button
+- ✅ Tabs and Panels
+- ✅ Logical Content
+- ✅ Language Switcher
+- ✅ Responsive Logo
+- ✅ Responsive Multimedia w/ [Lightbox]
+- ✅ Custom Code Embedding
+
+### 🚀 Built-in Developer Tools
+
+- ✅ Create Custom Block Patterns
+- ✅ Create Custom Post Types
+- ✅ Create Custom Taxonomies
+- ✅ Create Custom Menu Locations
+- ✅ Create Custom Metaboxes
+
+- ✅ Core GB Blocks Optimizer
+- ✅ WordPress Optimizing Options
+- ✅ Full Support for Google Fonts
+- ✅ Full Support for Font awesome 5/6
+- ✅ Custom Metaboxes for PHP Templates
+
+### 🚀 Built-in Features
+
+- ✅ Multilanguage Support
+- ✅ SEO Optimization
+- ✅ Admin Panel Styling
+- ✅ CSS and JS Optimization
+- ✅ Custom Fonts for each Language
+- ✅ Animated Loading Screen
+
+- ✅ Site-Editor Full Integration
+- ✅ Forms Validation and Spam Protection.
+- ✅ Responsive Slider Blocks
+- ✅ Editable PHP Cards
+- ✅ Custom Fonts for each RTL/LTR
+
+### 🚀 Editor Components
+
+- ✅ Element Effects
+    - ✅ Box Border
+    - ✅ Box Shadow
+    - ✅ Popup Trigger
+    - ✅ Transition Speed
+    - ✅ Spaced icon/text
+    - ✅ Text Words Coloring
+    - ✅ Text Gradient Coloring
+- ✅ Animations Utilities
+- ✅ Toolbar Options Support
+- ✅ Interaction Effects (Hover)
+- ✅ Sidebar Data Collection Tools
+- ✅ Sidebar Custom Meta-boxes Fields
+- ✅ Advanced Background Controller
+
+- ✅ Media Uploader
+- ✅ Phenix Backgrounds
+- ✅ Responsive Styling
+- ✅ Coloring System Controller
+- ✅ Multimedia Backgrounds
+- ✅ Responsive Typography
+- ✅ Show/Hide Animations
+- ✅ Position Controller
+- ✅ Cards Data Schema
+- ✅ Icons Selector Controller
+- ✅ Element Size Utilities
+- ✅ Custom Data Attributes
+- ✅ Sidebar Options
+- ✅ Accessibility Support
+
+## 📘 Documentation
+
+### 🍳 Getting Start
+
+[Installation](https://www.notion.so/Installation-9d2d6500823e42eb9d727ba961d7cb7d?pvs=21)
+
+[General Settings](https://www.notion.so/General-Settings-241b32bdfdf4449c924034a2c3a259a8?pvs=21)
+
+[Theme Customizing](https://www.notion.so/Theme-Customizing-c897c3c34dec47bbb26d3738389e9cfa?pvs=21)
+
+### Theme Customize
+
+[Header & Footer](https://www.notion.so/Header-Footer-935ca7efff0d420d9a032b3942e899e8?pvs=21)
+
+[Fonts & Typography](https://www.notion.so/Fonts-Typography-e1e117e11cd14b6aa667046bc3ceb8c7?pvs=21)
+
+### Developers Tools
+
+- 
+
+[Restful API](https://www.notion.so/Restful-API-d964c2128f394990b3a7c423a451bfd5?pvs=21)
+
+[API Creator](https://www.notion.so/API-Creator-b5d0349c17a54437b9e4cfd582d360b7?pvs=21)
+
+[Custom Post Types](https://www.notion.so/Custom-Post-Types-f18648811d4f47e899b2778435a6503b?pvs=21)
+
+[Admin Page Creator](https://www.notion.so/Admin-Page-Creator-5e21f85212c04698ad5d8529b84f54d9?pvs=21)
+
+[Custom Taxonomies](https://www.notion.so/Custom-Taxonomies-5458f5110bc544ba886a3f39ff306721?pvs=21)
+
+[Custom Meta-Boxes](https://www.notion.so/Custom-Meta-Boxes-a8416531e3684237846762dc6692226f?pvs=21)
+
+### Editor Blocks
+
+[Group Block](https://www.notion.so/Group-Block-bf03aa965f284cf49749da4566a4bd5c?pvs=21)
+
+[Container Block](https://www.notion.so/Container-Block-50cb3f9e669640ebb6283fafaef72d24?pvs=21)
+
+[Grid Row Block](https://www.notion.so/Grid-Row-Block-2b71d3bd2ebd45bb86a9ed294eabb5b1?pvs=21)
+
+[Grid Column Block](https://www.notion.so/Grid-Column-Block-15316fd988d44506a6e863794d90f407?pvs=21)
+
+- 
+
+### Editor Components
+
+- 
+
+### General Options
+
+[Core Blocks Settings](https://www.notion.so/Core-Blocks-Settings-cc5e0f42c8b64a3cbefe34530d508878?pvs=21)
+
+[Phenix Blocks Settings](https://www.notion.so/Phenix-Blocks-Settings-1a38256cde534e35a175bb2f528c0368?pvs=21)
+
+### How to Wiki
+
+[**How to Create Sliders**](https://www.notion.so/How-to-Create-Sliders-f88d1a33827a4ee4a994432b18c561ff?pvs=21)
+
+### Credits
+
+this project was created in 2021 as part of **[Phenix Themes](https://phenixthemes.com/)** Tools and Design System.
+
+- [Abdullah Ramadan](https://www.facebook.com/Eng.AbdallahPS) - Phenix Founder
+- Naotoshi Fujita - SplideJS Creator
+- Daniel Eden - [Animate.css](https://animate.style/) Creator
+
+---
+
+### License
+
+Copyright (c) 2016-present, [Abdullah Ramadan](https://www.facebook.com/Eng.AbdallahPS). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Reference
 
 ---
 
@@ -150,15 +190,19 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Number Counter Input**
     - [x]  **Phenix Options Control**
     - [x]  **Phenix Input/Text-area Controls**
-    - **Position Controls**
+    - ****************************************************************Custom Attributes and Properties****************************************************************
+        - [ ]  **********************************************Group**********************************************
+        - [ ]  **********************************Buttons**********************************
+        - [ ]  **********************************************Container**********************************************
+    - **~~Position Controls~~**
         - [x]  **Position Type**
         - [x]  **Element Index Order**
         - [x]  **Position Controller**
-    - **Phenix Backgrounds**
+    - **~~Phenix Backgrounds~~**
         - [x]  **Video Background**
         - [x]  **Images/Colors/Gradients**
         - [x]  **Background CSS Utilities**
-    - **Typography Settings**
+    - **~~Typography Settings~~**
         - [x]  **Line-Height**
         - [x]  **Underline/Line-Through**
         - [x]  **Transform (Uppercase, Capitalize)**
@@ -171,10 +215,10 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 ---
 
 - **Options Sets Progress**
-    - **********************Flexbox Set**********************
+    - **~~Flexbox Set~~**
         - [x]  **Alignment**
         - [x]  **Flex Utilities**
-    - **Typography**
+    - **~~Typography~~**
         - [x]  **Clip Text**
         - [x]  **Alignment**
         - [x]  **Size/Weight**
@@ -183,30 +227,30 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [x]  **Colored Words**
         - [x]  **Gradient Words**
         - [x]  **Text Direction**
-    - **Styles Set**
+    - **~~Styles Set~~**
         - [x]  **Text Color**
         - [x]  **Background**
             - [x]  **Overlay Layer**
             - [x]  **Video Background**
         - [x]  **Border Radius**
         - [x]  **Position Controller**
-    - **Element Effects (PRO)**
+    - **~~Element Effects (PRO)~~**
         - [x]  **Box Shadow**
         - [x]  **Overlapped**
         - [x]  **Hover Effects**
         - [x]  **Animated Effects**
-    - **Animations(PRO)**
+    - **~~Animations(PRO)~~**
         - [x]  **Inter Animation**
         - [x]  **Speed/Duration/Delay**
-    - ******************************Slider Mode Set******************************
+    - **~~Slider Mode Set~~**
         - [x]  **************************************Grid based Columns**************************************
         - [x]  **Show/Hide Controls**
-    - **Responsive**
+    - **~~Responsive~~**
         - [x]  **Styles**
         - [x]  **********************Flexbox**********************
         - [x]  **Typography**
         - [x]  **Compact Mode**
-    - **Padding/Margin**
+    - **~~Padding/Margin~~**
         - [x]  **Margin Controller**
         - [x]  **Padding Controller**
 
@@ -415,6 +459,8 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
                 - [ ]  ********************************************Boxing Group********************************************
                 - [ ]  ************************Close Button************************
                 - [ ]  **Rich-Text Content**
+        - **Search Query Block**
+            - [ ]  **Multiple Cards Settings**
         - **Slider Set Features**
             - [ ]  **Controls Style**
             - [ ]  **Pagination Style**
@@ -446,12 +492,12 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 ---
 
 - **Developer Tools Progress**
-    - [ ]  **New Dashboard**
+    - [x]  **New Dashboard**
         - **********************CTA Banners**********************
-            - [ ]  **************************Documentation**************************
-            - [ ]  **************************Phenix Themes**************************
-            - [ ]  **Discover New Themes**
-            - [ ]  ********************************Phenix Design System********************************
+            - [x]  **************************Documentation**************************
+            - [x]  **************************Phenix Themes**************************
+            - [x]  **Discover New Themes**
+            - [x]  ********************************Phenix Design System********************************
         - **Startup Guide**
             - [ ]  **************************Blocks**************************
             - [ ]  ****************Patterns****************
@@ -489,7 +535,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     - [x]  **Font Awesome**
     - [x]  **Google and Custom**
     - [x]  **LTR/RTL Different Fonts**
-    - [ ]  **Merlin Wizard Integration**
+    - [x]  **Merlin Wizard Integration**
     - [x]  **Required Plugins in the Theme**
     - [x]  **API-Endpoint Creator `pds_add_api()`**
     - [ ]  **Creating Demo Data Integration with Merlin.**
@@ -527,7 +573,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 
 - **Bugs and Issues Progress & Tasks**
     - [x]  **Patterns Preview Solution**
-    - [ ]  **Dropdown Dynamic Positions**
+    - [x]  **Dropdown Dynamic Positions**
     - [x]  **Number Input Increasing Steps**
     - [x]  **New Preview Examples for All Blocks**
     - [x]  **Sliders in Site Editor not running correctly**
@@ -535,7 +581,7 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 ---
 
 - **User Documentation Progress & Tasks**
-    - [ ]  **How to Add Content**
+    - [ ]  **How to Add Content (Dashboard)**
     - **How to Use the Editor**
         - [ ]  **Blocks**
         - [ ]  **Patterns**
@@ -576,36 +622,12 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
         - [ ]  **How to Use the Plugin API `[yoursite.com/wp-json/pds-blocks/v2]`**
         - [ ]  **How to Create Admin Pages `pds_add_admin_page($params)`**
     - [x]  **[Design System Framework](https://phenixthemes.com/pds-docs)**
-    - [x]  [**Gutenberg Editor Blocks**](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
-    - [x]  [Gutenberg Editor Components](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)
-    - [x]  **Theme & Plugin Structure [[Files and Folders]](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c)**
+    - [x]  [**Gutenberg Editor Blocks**](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c?pvs=21)
+    - [x]  [Gutenberg Editor Components](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c?pvs=21)
+    - [x]  **Theme & Plugin Structure [[Files and Folders]](https://www.notion.so/Blocks-Quick-Docs-7ef6dce9a07c42ba9257304056a9b08c?pvs=21)**
 
 ---
 
-- ************************************************Selecting React Elements [Tip]************************************************
-    
-    To select a React element, you would typically use the `useRef` hook. Here is an example of how to use it:
-    
-    ```jsx
-    import React, { useRef } from 'react';
-    
-    function MyComponent() {
-      const myRef = useRef(null);
-    
-      const handleClick = () => {
-        console.log(myRef.current);// logs the DOM node of the selected element
-      };
-    
-      return (
-        <div ref={myRef} onClick={handleClick}>
-          Click me!
-        </div>
-      );
-    }
-    ```
-    
-    In this example, `useRef` is used to create a reference to a `div` element. The `ref` prop is then set to the reference, which allows you to access the underlying DOM node of the element using the `.current` property of the reference. In the `handleClick` function, `myRef.current` is logged to the console, which logs the underlying `div` DOM node when the element is clicked.
-    
 - ******************************************************************Custom Query & Taxonomies Reference******************************************************************
     
     > In this example, we are querying for published posts of type 'post', and retrieving 10 posts per page. We are ordering the posts by date in descending order.
@@ -689,102 +711,173 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
     ```
     
 
----
+### 👨‍💻 Admin Modules
 
-### Meta-Boxes Concepts Explain :
+a list of the Phenix Blocks Admin back-end modules files you can find the source code in **“📁admin”** folder
 
-this is a draft IDEA for how to create a meta-boxes for any Post Type or Taxonomy
+<aside>
+🗒️ **Plugin Options** `[pds-admin.php]`
 
-- ********Concept Code********
-    
-    ```jsx
-    /*===> Metabox Syntax <====*/
-    $metabox_template => array(
-    		"type"  => $meta_field_type,
-    		"data"  => $post_or_taxonomy,
-        "name"  => $uniuqe_string,
-    		"label" => $label_string,
-    		"enable" => $enable_disable,
-    		"default"  => $default_value,
-    		"position" => $panel_or_editor,
-    		"data-set" => $types_or_taxonomies,
-    );
-    
-    /*===> Metabox Types <====*/
-    $meta_types => array(
-    		"number"  => array($type, $default_value), // for Number-Counter control
-    		"array"   => array($type, $options_array, $multiple), // for select control
-    		"string"  => array($type, $default_value), // for normal text input
-    		"boolean" => array($type, $default_value), // for Switch Button control
-    		"file"    => array($type, $default_value, $multiple), // for uploading files
-    		"media"   => array($type, $default_value, $multiple), // for uploading Media
-    );
-    ```
-    
+the admin modules starts in this file `[admin/pds-admin.php]`, you can add new options to register by using `$pds_options_list` each option requires `name`, `page` and optional `rest-api` support
 
----
+</aside>
 
-### Templates Meta Concepts Explain :
+<aside>
+🗒️ **Default Options** `[pds-default.php]`
 
-this how you create a meta-boxes for the PHP theme-parts that you call in the the “Theme Part” block and this options shows in the block settings panel and it generates dynamic options controls to pass it down to your theme-part and get creative.
+if you used `$pds_options_list` to create new plugin options make sure to register a default value for those options you have created in `admin/pds-default.php` file.
 
-- ********Concept Code********
-    
-    ```jsx
-    /*===> Theme Parts Meta Syntax <====*/
-    $templates_meta => array(
-        /*===> Settings Features <===*/
-        "features" => array("grid", "spacing", "typography"),
-    
-    		/*===> a List of Options <===*/
-    		"options" => array(
-    				/*===> Define Option for the Part <===*/
-    				"option-name" => array("type" => "string", "default" => "post"),
-    
-    				/*===> Nested List of Options <===*/
-    				"options-name" => array("type" => "options", "default" => array(
-    						"enable" => array("type" => "boolean", "default" => false),
-    				)),
-    		)
-    );
-    
-    /*===> Theme Parts Meta Types <====*/
-    $meta_types => array(
-    		"icon"    => array($type, $default_value), // for icon control selector
-    		"number"  => array($type, $default_value), // for Number-Counter control
-    		"files"   => array($type, $options_array, $multiple), // for uploader control
-    		"array"   => array($type, $options_array, $multiple), // for select control
-    		"string"  => array($type, $default_value), // for normal text input
-    		"boolean" => array($type, $default_value), // for Switch Button control
-    		"post-type" => array($type, $options_array, $multiple), // select from post-types
-    		"taxonomy" => array($type, $options_array, $multiple), // select from taxonomies
-        //===> to create nested options <===//
-    		"options" => array($type, $options_list => array(
-    				"option-name" => array($type, $default_value),
-    		)),
-    );
-    
-    /*===> Theme Parts Meta Features <====*/
-    $meta_features => array(
-    		"grid" => "show the flexbox options like the grid-row block.",
-    		"spacing" => "show the style options for [padding, margin].",
-    		"background" => "show the style option for backgrounds.",
-    		"typography" => "show the typography settings for text like [size, alignment, colors]",
-    );
-    ```
+</aside>
 
-### Credits
+<aside>
+🗒️ **API End-Point Creator** `[modules/api-creator.php]`
 
-this project was created in 2021 as part of **[Phenix Themes](https://phenixthemes.com/ "https://phenixthemes.com")**
-Tools and Design System.
+with this module `pds_add_api(array)` you can easily create custom end-point to your options and data in `yoursite.com/wp-json/pds-blocks/v2` and it take up to 6 parameters `api_slug` the path in the api url,  `read_prem`,`write_prem` to define and set `Permission` for Reading or Writing Data,
 
-- [Abdullah Ramadan](https://www.facebook.com/Eng.AbdallahPS) - Phenix Founder
-- Naotoshi Fujita - [SplideJS]([](https://github.com/Splidejs/splide)) Creator
-- Daniel Eden - [Animate.css](https://animate.style/) Creator
+and `api_props` to define and validate the end-point data type, `get_method` the function to run when you send a GET request to the end-point, `set_method` the function to run when you send a SET request to the end-point.
 
---------------------
+</aside>
 
-### License
+<aside>
+🗒️ **Switch Buttons** `[modules/toggle-controls.php]`
 
-Copyright (c) 2016-present, [Abdullah Ramadan](https://www.facebook.com/Eng.AbdallahPS). Licensed under the terms of the
-[MIT License](https://opensource.org/licenses/MIT).
+with this `pds_toggle_controls($controls_list)` module you can create a list of boolean options as switch buttons and it take an array of options each have and array with with 3 parameters `name`, the option slug name as registered in options, `title` for the option and svg `icon` image.
+
+</aside>
+
+<aside>
+🗒️ **JS Scripts** `[modules/scripts.php]`
+
+in this file you can run custom javascript code in the admin pages you create with the plugin modules, which can be used to run phenix design system components and use them to build custom option controls.
+
+</aside>
+
+<aside>
+🗒️ **Page Creator** `[modules/page-creator.php]`, `[page-layout.php]`
+
+with this module `pds_add_admin_page($params)` you can create custom admin pages for settings and options it create an admin page like the pre build ones in the plugin and it takes up to 5 parameters `title` and `description` for the page, form action `slug`,
+
+`panels` array to create tabs and panels to organize your options, and each panel is an array of `title`, `description` slug `id`, and `icon` class names, `content` for the panel callback function that build the panels elements ,
+
+and the last parameter in the page options is enable or disable the default submit button with a `boolean` true of false.
+
+</aside>
+
+<aside>
+🗒️ **Options Panels** `[admin/main.php]`, `[admin/panels]`
+
+in the panel folder you can find all the options created in the plugin using the above modules to create `[blocks-settings.php]`, `[core-blocks.php]`, `[general-settings.php]`, `[optimization.php]` panels for enabling and disabling the plugin features.
+
+</aside>
+
+<aside>
+🗒️ **Menu Locations** `[admin/menu-locations.php]`, `[panels/locations.php]`
+
+the menu locations generator is a page created with combining all the above modules to create a dynamic menu locations generator.
+
+</aside>
+
+### ⚡ Global Functions
+
+a list of Phenix Blocks global functions and helpers to optimize the CMS,
+you can find the source code in **“📁inc”** folder
+
+<aside>
+🗒️ **Assets** `[pds-assets.php]`
+
+in this file you can find all the loaded css and js assets for the front-end and the back-end and it includes : [ **phenix design system, fonts, admin new styles** ]
+
+</aside>
+
+<aside>
+🗒️ **Optimizations** `[pds-optimizer.php]`
+
+in this file you can find all the optimization functions and options and almost all of it has options to enable/disable them from the wp-admin
+
+</aside>
+
+<aside>
+🗒️ **Functions** `[pds-functions.php]`
+
+in this file you can find all the functions that help create some stuff in the theme like pagination structure, cleaning suffix, prefix strings, excerpt limitation etc.
+
+</aside>
+
+### 🧩 Gutenberg Blocks List
+
+a list of the Phenix Blocks for Gutenberg Editor, which is build for Phenix Design System and you can find the source code in **“📁src”** folder, and to **add new block follow this steps :**
+
+1. create a new block source code following any of the existing blocks in `src/blocks`
+2. after creating the block source files register your block in `webpack.config.js`
+3. include your block assets in `src/blocks/blocks.php`
+4. create a Switch option for the block in `admin/pds-admin.php -> $pds_options_list`
+5. set a default value for the switch button in `admin/pds-default.php` to enable your block by default.
+
+<aside>
+🗒️ **Grid Container** [blocks/container]
+
+the container block is very important block and can be used as the zero base wrapper for any layout structure you need to build using it with the grid row and columns.
+
+</aside>
+
+<aside>
+🗒️ **Row Block** [blocks/row]
+
+create a grid system row to contain responsive columns that change size on each screen from 5 responsive breakpoints with all the Flex-Box Grid properties and features and you can use to create sliders or list a dynamic data from the query loop.
+
+</aside>
+
+<aside>
+🗒️ **Column Block** [blocks/column]
+
+to create responsive columns for the grid system Row and Container and can be used to group and wrap any other elements and blocks.
+
+</aside>
+
+<aside>
+🗒️ **Query Loop** [blocks/query]
+
+the query block let you fetch dynamic data from any post types with various options to set the loop card template, items count, pagination and sorting and its better to use it inside container and grid system blocks.
+
+</aside>
+
+<aside>
+🗒️ **Navigation Menu** [blocks/navigation]
+
+the navigation menu block let you create dynamic responsive menus, from the menu post type and assign a unique location for it with the help of the PDS Locations Creator.
+
+</aside>
+
+<aside>
+🗒️ **Responsive Logo** [blocks/logo]
+
+creating responsive and dynamic logo for your website with this small block component, it works just like the core "site-logo" block with extra feature to make it change in the mobile screen to the favicon or custom small icon.
+
+</aside>
+
+### ⚙ PDS Editor Components
+
+a list of the Phenix Blocks for Gutenberg Editor, which is build for Phenix Design System in you can find the source code in **“📁src/blocks/px-controls/”** folder
+
+<aside>
+🗒️ **Phenix Number Counter** [form/num-counter]
+
+a component to create a number counter input with nice ui design and can take 6 attributes as options a `label`, `value`, `minimum` value, `maximum` value, and the `steps` of how match to increase or decrease the value and here is example for it :
+
+`<PhenixNumber label="Label" value="0" onChange={(new_value) => {}} min={3} max={36} steps={1} />`
+
+</aside>
+
+<aside>
+🗒️ **Phenix Color Picker** [typography/px-color]
+
+a text color picker from the design system colors schema for the current theme.
+
+</aside>
+
+<aside>
+🗒️ **Phenix Background** [elements/px-background]
+
+a component that make you change the background of an element to a color or gradient from the design system or custom images
+
+</aside>

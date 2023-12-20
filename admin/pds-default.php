@@ -143,6 +143,14 @@
                 'wpc7_rm_styles' => "on",
                 'wpc7_rm_scripts' => "on",
                 'blocks_optimizer' => "on",
+                'pds_loading' => array(
+                    "code" => "",
+                    "type" => "image",
+                    "showText" => "on",
+                    "background" => "var(--body-bg)",
+                    "text" => __('Loading', "pds-blocks"),
+                    "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
+                ),
 
                 //===> Multiple Fonts <===//
                 'pds_fonts' => array(
@@ -191,3 +199,16 @@
 
         add_action('init', 'pds_blocks_default_values');
     endif;
+
+
+    //====> Temporary Fallbacks <====//
+    if (!is_array(get_option("pds_loading"))) {
+        update_option("pds_loading", array(
+            "code" => "",
+            "type" => "image",
+            "showText" => "on",
+            "background" => "var(--body-bg)",
+            "text" => __('Loading', "pds-blocks"),
+            "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
+        ));
+    }

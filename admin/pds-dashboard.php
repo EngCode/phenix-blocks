@@ -128,5 +128,4 @@
         <!-- // CTA Links -->
     </div>
 </div>
-<!-- JS Scripts -->
-<?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>
+<!-- // Dashboard Wrapper -->

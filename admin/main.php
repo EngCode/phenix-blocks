@@ -108,6 +108,8 @@
         );
     endif;
 
-    //===> Get Script <===//
-    include(dirname(__FILE__) . '/modules/scripts.php');
+    //====> Load Media Uploader <====//
+    wp_enqueue_media();
 ?>
+<!-- Phenix Script -->
+<script src="<?php echo plugin_dir_url(__FILE__).'/modules/scripts.js';?>" defer></script>

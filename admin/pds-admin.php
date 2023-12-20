@@ -18,8 +18,8 @@
         function pds_admin_menu() {
             //===> Dashboard Settings <===//
             add_menu_page(
-                __('Home', 'phenix'),
-                __('Home', 'phenix'),
+                __('Home', "pds-blocks"),
+                __('Home', "pds-blocks"),
                 'edit_posts',
                 'pds-dashboard',
                 'pds_dash_page',
@@ -28,8 +28,8 @@
 
             //===> General Settings <===//
             add_menu_page(
-                __('Phenix Settings', 'phenix'),
-                __('Phenix Blocks', 'phenix'),
+                __('Phenix Settings', "pds-blocks"),
+                __('Phenix Blocks', "pds-blocks"),
                 'manage_options',
                 'pds-admin',
                 'pds_admin_page',
@@ -38,8 +38,8 @@
 
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
-                __('Custom Data Collection', 'phenix'),
-                __('Data Collection', 'phenix'),
+                __('Custom Data Collection', "pds-blocks"),
+                __('Data Collection', "pds-blocks"),
                 'manage_options',
                 'pds-data-collection',
                 'pds_data_collection'
@@ -76,12 +76,12 @@
 
             //===> Organize Menu Items <===//
             $movable = [
-                ['users.php', null, __('Comments', 'phenix'), 'manage_options', 'edit-comments.php'],
-                ['wpcf7', null, __('Address Book', 'phenix'), 'manage_options', 'admin.php?page=flamingo'],
-                ['tools.php', null, __('Media Uploads', 'phenix'), 'manage_options', 'upload.php'],
-                ['options-general.php', null, __('Core Updates', 'phenix'), 'manage_options', 'update-core.php'],
-                ['pds-dashboard', null, __('WordPress', 'phenix'), 'edit_posts', 'about.php'],
-                ['wpcf7', null, __('Inbox Messages', 'phenix'), 'edit_posts', 'admin.php?page=flamingo_inbound'],
+                ['users.php', null, __('Comments', "pds-blocks"), 'manage_options', 'edit-comments.php'],
+                ['wpcf7', null, __('Address Book', "pds-blocks"), 'manage_options', 'admin.php?page=flamingo'],
+                ['tools.php', null, __('Media Uploads', "pds-blocks"), 'manage_options', 'upload.php'],
+                ['options-general.php', null, __('Core Updates', "pds-blocks"), 'manage_options', 'update-core.php'],
+                ['pds-dashboard', null, __('WordPress', "pds-blocks"), 'edit_posts', 'about.php'],
+                ['wpcf7', null, __('Inbox Messages', "pds-blocks"), 'edit_posts', 'admin.php?page=flamingo_inbound'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }
@@ -140,6 +140,7 @@
         array('newsletter_css', 'pds-admin'),
         array('jquery_remove', 'pds-admin'),
         array('blocks_optimizer', 'pds-admin'),
+        array('pds_loading', 'pds-admin'),
 
         //===> Phenix Blocks <===//
         array('container_block', 'pds-admin'),

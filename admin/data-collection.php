@@ -144,4 +144,4 @@
 <!-- Form Script -->
 <script src="<?php echo $assets_url.'/data-collection.js';?>" defer></script>
 <!-- Phenix Script -->
-<?php include(dirname(__FILE__) . '/modules/scripts.php'); ?>
+<script src="<?php echo $assets_url.'/modules/scripts.js';?>" defer></script>

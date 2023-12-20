@@ -48,3 +48,6 @@
     <!-- // Setting Wrapper -->
 </div>
 <!-- // Phenix Admin -->
+
+<!-- Phenix Script -->
+<script src="<?php echo plugin_dir_url(__FILE__).'/scripts.js';?>" defer></script>

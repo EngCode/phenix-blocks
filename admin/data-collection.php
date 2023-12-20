@@ -134,5 +134,3 @@
 ?>
 <!-- Form Script -->
 <script src="<?php echo $assets_url.'/data-collection.js';?>" defer></script>
-<!-- Phenix Script -->
-<script src="<?php echo $assets_url.'/modules/scripts.js';?>" defer></script>

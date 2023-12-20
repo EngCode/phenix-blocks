@@ -18,7 +18,7 @@
         ?>
         <!-- Paragraph -->
         <?php if ($showLoadingText == "on") : ?>
-        <p style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;">---<?php echo get_option('pds_loading')["text"]; ?>---</p>
+        <p style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo get_option('pds_loading')["text"]; ?></p>
         <?php endif; ?>
     </div>
     <!-- // Content Box -->

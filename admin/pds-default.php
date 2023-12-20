@@ -212,3 +212,12 @@
             "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
         ));
     }
+
+    //===> Menu Locations Fallback <===//
+    if (get_option("menu_locations") && !is_array( get_option("menu_locations")[0])) {
+        $current_locations = get_option("menu_locations");
+        $menu_locations = array();
+        foreach ($current_locations as $key => $value) {
+            $menu_locations[] = array('title' => $value, 'name'  => $key);
+        }
+    }

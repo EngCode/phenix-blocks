@@ -37,15 +37,6 @@
     //===> Locations Panel <===//
     if (!function_exists('pds_menus_locations_panel')) {
         function pds_menus_locations_panel() {
-            //===> Menu Locations Fallback <===//
-            if (get_option("menu_locations") && !is_array( get_option("menu_locations")[0] )) {
-                $current_locations = get_option("menu_locations");
-                $menu_locations = array();
-                foreach ($current_locations as $key => $value) {
-                    $menu_locations[] = array('title' => $value, 'name'  => $key);
-                }
-            }
-
             //===> Start Data <===//
             $template_markup = '';
             ob_start();

@@ -73,7 +73,7 @@
                             <?php echo get_option('pds_loading')["code"]; ?>
                         </div>
                         <!-- Paragraph -->
-                        <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;">---<?php echo get_option('pds_loading')["text"]; ?>---</p>
+                        <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo get_option('pds_loading')["text"]; ?></p>
                     </div>
                 </div>
             </div>

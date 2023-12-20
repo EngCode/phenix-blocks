@@ -3,7 +3,7 @@
   * Plugin Name: Phenix Blocks
   * Plugin URI: https://phenixthemes.com
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 0.9.0
+  * Version: 0.9.7
   * Author: Abdullah.Ramadan
   * Author URI:https://phenixthemes.com
   * License: GPL2

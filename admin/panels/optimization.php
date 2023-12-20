@@ -63,8 +63,8 @@
         <h3 class="fs-16 mb-10"><?php echo __("Loading Screen", "pds-blocks");?></h3>
         <div class="row">
             <!-- Preview -->
-            <div class="col-6">
-                <div class="loading-preview position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo get_option('pds_loading')["background"]; ?>;">
+            <div class="col-12 col-md-5 col-xl-6">
+                <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo get_option('pds_loading')["background"]; ?>;">
                     <div class="loading-content position-ab pos-center">
                         <!-- Image -->
                         <img class="loading-image <?php if (get_option("pds_loading")["type"] == "code") { echo "hidden"; } ?>" style="opacity: 0.5" width="32" src="<?php echo get_option('pds_loading')["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
@@ -76,9 +76,11 @@
                         <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo get_option('pds_loading')["text"]; ?></p>
                     </div>
                 </div>
+                <!-- Note -->
+                <p class="fs-12 color-gray"><?php echo __("Loading Screen Live Preview." ,"pds-blocks"); ?></p>
             </div>
             <!-- Controls -->
-            <div class="col-6">
+            <div class="col-12 col-md-7 col-xl-6">
                 <div class="pd-25 radius-sm bg-alpha-05">
                     <!-- Type and Image -->
                     <label class="fs-14 weight-strong mb-5"><?php echo __("Type", "pds-blocks"); ?></label>

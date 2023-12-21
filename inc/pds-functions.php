@@ -111,7 +111,7 @@ remove_filter('the_excerpt', 'wpautop');
 
 //====> Limited Excerpt <====//
 function px_excerpt_length($length) {return 18;}
-add_filter('excerpt_length', 'px_excerpt_length', 175);
+add_filter('excerpt_length', 'px_excerpt_length', get_option("excerpt_length") ? get_option("excerpt_length") : 175);
 
 //====> Excerpt More <====//
 function wpdocs_excerpt_more($more) {return '...';}
@@ -211,7 +211,7 @@ if (!function_exists('pds_get_theme_parts_select')) :
 	}
 endif;
 
-//===> Get Templates Parts Select <===//
+//===> Restrict Login Attempts <===//
 if (!function_exists('pds_limit_login_attempts')) :
 	/**
 	 * @since Phenix WP 1.0

@@ -141,6 +141,7 @@
         array('jquery_remove', 'pds-admin'),
         array('blocks_optimizer', 'pds-admin'),
         array('pds_loading', 'pds-admin'),
+        array('excerpt_length', 'pds-admin'),
 
         //===> Phenix Blocks <===//
         array('container_block', 'pds-admin'),

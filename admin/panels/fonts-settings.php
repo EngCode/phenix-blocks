@@ -150,9 +150,13 @@
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset divider-s">
         <!-- Control Label -->
+        <label class="mb-10 weight-medium fs-14"><?php echo __("Post Excerpt Length", "phenix"); ?></label>
+        <!-- Form Control -->
+        <input type="number" class="form-control radius-sm fs-13 mb-20" name="excerpt_length" value="<?php echo get_option("excerpt_length") ? get_option("excerpt_length") : 175; ?>" />
+        <!-- Control Label -->
         <label class="mb-10 weight-medium fs-14"><?php echo __("Icons Font", "phenix"); ?></label>
         <!-- Form Control -->
-        <div class="control-icon far fa-star-half-alt mb-5">
+        <div class="control-icon far fa-star-half-alt mb-15">
             <select name="pds_icon_font" value="<?php echo get_option("pds_icon_font");?>" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Icons Font' ,'phenix'); ?>">
                 <?php 
                     foreach ($fonts_list_icon as $key => $value) {
@@ -163,8 +167,6 @@
                 ?>
             </select>
         </div>
-        <!-- Control Hint -->
-        <p class="control-hint color-gray fs-12"><?php echo __("Select a Icons Font for all icons for the design system", "phenix"). "<br /><span class='fs-12 color-danger'>";?></p>
         <!-- Divider -->
         <div class="pdt-10 mb-10 divider-b"></div>
         <?php

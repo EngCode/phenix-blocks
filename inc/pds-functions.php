@@ -61,8 +61,8 @@ if (!function_exists('pagination')) :
 		$main_style = $options["buttons"] ? $options["buttons"] : "border-1 border-solid border-alpha-10 me-10";
 		$normal_btn = $options["normal_btn"] ? $options["normal_btn"] : "light";
 		$active_btn = $options["active_btn"] ? $options["active_btn"] : "primary active";
-		$icon_right = $options["next_icon"] ? $options["next_icon"] :"fas fa-angle-right";
-		$icon_left  = $options["prev_icon"] ? $options["prev_icon"] :"fas fa-angle-left";
+		$icon_right = $options["next_icon"] ? $options["next_icon"] : "fas fa-angle-right";
+		$icon_left  = $options["prev_icon"] ? $options["prev_icon"] : "fas fa-angle-left";
 
 		//===> Create Next and Prev Buttons <===//
 		$next_btn = !is_rtl() ? sprintf('%1$s<i class="'.$icon_right.'"></i>', "") : sprintf('<i class="'.$icon_left.'"></i>%1$s', "");

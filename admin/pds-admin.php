@@ -478,7 +478,4 @@
 
         add_action('pds_blocks_active', 'pds_countries_register');
     endif;
-    
-    $block_editor_settings = get_block_editor_settings();
-    var_dump($block_editor_settings);
 ?>

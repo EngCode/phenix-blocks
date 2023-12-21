@@ -67,7 +67,7 @@
                 <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo get_option('pds_loading')["background"]; ?>;">
                     <div class="loading-content position-ab pos-center">
                         <!-- Image -->
-                        <img class="loading-image <?php if (get_option("pds_loading")["type"] == "code") { echo "hidden"; } ?>" style="opacity: 0.5" width="32" src="<?php echo get_option('pds_loading')["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
+                        <img class="loading-image <?php if (get_option("pds_loading")["type"] == "code") { echo "hidden"; } ?>" width="36" src="<?php echo get_option('pds_loading')["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
                         <!-- Code -->
                         <div class="loading-code <?php if (get_option("pds_loading")["type"] == "image") { echo "hidden"; } ?>">
                             <?php echo get_option('pds_loading')["code"]; ?>

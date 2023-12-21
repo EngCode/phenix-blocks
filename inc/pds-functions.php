@@ -206,3 +206,41 @@ if (!function_exists('pds_get_theme_parts_select')) :
         echo '</select>';
 	}
 endif;
+
+//===> Get Templates Parts Select <===//
+if (!function_exists('pds_limit_login_attempts')) :
+	/**
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function pds_limit_login_attempts() {
+		//===> Max Attempts <===//
+		$login_attempts = 3;
+		//===> Lockout Duration <===//
+		$lockout_duration = 300;
+		//===> Check if the Cookie is Set <===//
+		if (isset($_COOKIE['login_attempts']) && $_COOKIE['login_attempts'] >= $login_attempts) {
+			//===> Check if the Lockout Duration is Over <===//
+			header('HTTP/1.1 403 Forbidden');
+			//===> Display the Error Message <===//
+			echo 'Forbidden';
+			//===> Exit <===//
+			exit;
+		}
+
+		//===> Check if the Login Form is Submitted <===//
+		if (isset($_POST['log'])) {
+			//===> Check if the Cookie is Set <===//
+			if (!isset($_COOKIE['login_attempts'])) {
+				//===> Set the Cookie <===//
+				setcookie('login_attempts', 1, time() + $lockout_duration, '/');
+			} else {
+				//===> Increase the Cookie Value <===//
+				setcookie('login_attempts', $_COOKIE['login_attempts'] + 1, time() + $lockout_duration, '/');
+			}
+		}
+	}
+
+	add_action('wp_login_failed', 'pds_limit_login_attempts'); // Hook to login failed event
+endif;

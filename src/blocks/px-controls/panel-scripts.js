@@ -11,32 +11,27 @@ import { useState, useEffect } from '@wordpress/element';
 
 //===> Script Runner <===//
 const PhenixComponentsBuilder = () => {
-    //===> Create Time Loop to Find the Elements <===//
-    let finder_counter = 0,
-        element_finder = setInterval(() => {
-            //===> Get Elements <===//
-            let elements = document.querySelectorAll('.pds-tm-control');
+    //===> Create Timestamp to Find the Elements <===//
+    setTimeout(() => {
+        //===> Get Elements <===//
+        let elements = document.querySelectorAll('.pds-tm-control');
 
-            //===> Loop Through Elements <===//
-            elements.forEach(element => {
-                //===> Define Element Data <===//
-                let class_names = element.classList;
+        //===> Loop Through Elements <===//
+        elements.forEach(element => {
+            //===> Define Element Data <===//
+            let class_names = element.classList;
 
-                //===> for Selects <===//
-                if (class_names.contains('px-select') && !Phenix(element).ancestor('.px-dropdown')) {
-                    Phenix(element).select();
-                } else if (class_names.contains('px-dropdown')) {
-                    Phenix(element).dropdown();
-                    element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
-                }
-            });
-
-            //===> Increase Counter <===//
-            finder_counter++;
-
-            //===> Clear Timer Loop <===//
-            if (finder_counter > 30) clearInterval(element_finder);
-        }, 500);
+            //===> for Selects <===//
+            if (class_names.contains('px-select') && !Phenix(element).ancestor('.px-dropdown')) {
+                Phenix(element).select();
+            }
+            //===> for Dropdowns <===//
+            else if (class_names.contains('px-dropdown')) {
+                Phenix(element).dropdown();
+                element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
+            }
+        });
+    }, 1000);
 
     //===> Get View iFrame <===//
     let viewScript = (the_document) => {
@@ -96,7 +91,8 @@ const PhenixComponentsBuilder = () => {
             the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
 
             //====> Clear Timer <===//
-            time_counter += 1; if (time_counter > 100) clearInterval(pds_elements_timer);
+            time_counter += 1;
+            if (time_counter > 25) clearInterval(pds_elements_timer);
         }, 500);
     };
 
@@ -104,36 +100,37 @@ const PhenixComponentsBuilder = () => {
     if (window.frames['editor-canvas']) {
         viewScript(window.frames['editor-canvas'].document);
         //===> Load Assets in Frame <====//
-        let trying_times = 0, loadAssetTimer = setInterval(()=> {
-            //====> if the Document unloaded clear the timer <====//
-            if (!window.frames['editor-canvas'] || !window.frames['editor-canvas'].document) {
-                clearInterval(loadAssetTimer);
-                return;
-            } else {
-                //===> When the Frame is Found <===//
-                if (!window.frames['editor-canvas'].document.querySelector("#fontawesome-css")) {
-                    //===> Check in the Editor <===//
-                    let frameDoc = window.frames['editor-canvas'].document,
-                        fontAwesome = document.querySelector("#fontawesome-css"),
-                        importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
-    
-                    //===> Load Font <===//
-                    if(importedEl && frameDoc.body) {
-                        frameDoc.body.appendChild(importedEl);
-                        clearInterval(loadAssetTimer);
-                    }
-                    
-                    //===> Add Scrollbar <===//
-                    if (frameDoc && frameDoc.querySelector('html')) {
-                        frameDoc.querySelector('html')?.classList.add('px-scrollbar');
-                    };
+        let trying_times = 0,
+            loadAssetTimer = setInterval(()=> {
+                //====> if the Document unloaded clear the timer <====//
+                if (!window.frames['editor-canvas'] || !window.frames['editor-canvas'].document) {
+                    clearInterval(loadAssetTimer);
+                    return;
                 } else {
-                    //===> Increase Counter <===//
-                    trying_times += 1;
-                    if (trying_times > 10) clearInterval(loadAssetTimer);
+                    //===> When the Frame is Found <===//
+                    if (!window.frames['editor-canvas'].document.querySelector("#fontawesome-css")) {
+                        //===> Check in the Editor <===//
+                        let frameDoc = window.frames['editor-canvas'].document,
+                            fontAwesome = document.querySelector("#fontawesome-css"),
+                            importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+        
+                        //===> Load Font <===//
+                        if(importedEl && frameDoc.body) {
+                            frameDoc.body.appendChild(importedEl);
+                            clearInterval(loadAssetTimer);
+                        }
+                        
+                        //===> Add Scrollbar <===//
+                        if (frameDoc && frameDoc.querySelector('html')) {
+                            frameDoc.querySelector('html')?.classList.add('px-scrollbar');
+                        };
+                    } else {
+                        //===> Increase Counter <===//
+                        trying_times += 1;
+                        if (trying_times > 10) clearInterval(loadAssetTimer);
+                    }
                 }
-            }
-        }, 300);
+            }, 300);
     } else if (window.Phenix) {
         window.document ? viewScript(window.document) : null;
     }

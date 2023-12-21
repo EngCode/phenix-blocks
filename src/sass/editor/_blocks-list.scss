@@ -235,6 +235,17 @@ body.block-editor-page {
 	}
 }
 
+.interface-interface-skeleton__secondary-sidebar ~ .interface-interface-skeleton__content {
+	.edit-site-visual-editor, .edit-post-visual-editor {
+		.components-popover.block-editor-block-popover .components-popover__content {
+			margin-#{$direction-start}: auto!important;
+			margin-#{$direction-end}: 0!important;
+			-webkit-transform: translateX(-190%);
+			        transform: translateX(-190%);
+		}
+	}
+}
+
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}
 .tx-icon .block-editor-rich-text__editable.rich-text {display: inline-block;}

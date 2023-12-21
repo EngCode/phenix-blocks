@@ -150,10 +150,6 @@
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset divider-s">
         <!-- Control Label -->
-        <label class="mb-10 weight-medium fs-14"><?php echo __("Post Excerpt Length", "phenix"); ?></label>
-        <!-- Form Control -->
-        <input type="number" class="form-control radius-sm fs-13 mb-20" name="excerpt_length" value="<?php echo get_option("excerpt_length") ? get_option("excerpt_length") : 175; ?>" />
-        <!-- Control Label -->
         <label class="mb-10 weight-medium fs-14"><?php echo __("Icons Font", "phenix"); ?></label>
         <!-- Form Control -->
         <div class="control-icon far fa-star-half-alt mb-15">

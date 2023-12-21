@@ -191,21 +191,23 @@ Phenix(window).on("load", (loaded) => {
         
         //===> Run Scripts <===//
         Phenix(document).init();
-        Phenix("#menu-settings li a").forEach((link:HTMLElement) => {
-            if (link.getAttribute("href").includes("blocks-product-editor-for-woocommerce")) {
-                Phenix(link.parentNode).css({"display": "none"});
-            }
-        });
+
+        //====> ???? <====//
+        // Phenix("#menu-settings li a").forEach((link:HTMLElement) => {
+        //     if (link.getAttribute("href").includes("blocks-product-editor-for-woocommerce")) {
+        //         Phenix(link.parentNode).css({"display": "none"});
+        //     }
+        // });
     }
 
     /*====> for Block Editor <====*/
-    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
-        //===> Editor Assets <====//
-        window.onload = editorAssets();
-        // let cf7Cleaner = setInterval(() => fixCF7(), 1000);
-        // setTimeout(() => clearInterval(cf7Cleaner), 10000);
+    // if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+    //     //===> Editor Assets <====//
+    //     window.onload = editorAssets();
+    //     // let cf7Cleaner = setInterval(() => fixCF7(), 1000);
+    //     // setTimeout(() => clearInterval(cf7Cleaner), 10000);
 
-        //====> Disable Links <====//
-        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
-    }
+    //     //====> Disable Links <====//
+    //     Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+    // }
 });

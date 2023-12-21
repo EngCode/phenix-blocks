@@ -3,7 +3,7 @@
     $showLoadingText = get_option('pds_loading')["showText"];
 ?>
 <!-- Grid -->
-<div class="row">
+<div class="row gpx-md-40 gpx-lg-50">
     <!-- Column -->
     <div class="col-12 col-md-4 w-max-320 divider-e">
         <h3 class="fs-16 mb-10"><?php echo __("Core Optimization", "pds-blocks");?></h3>
@@ -60,8 +60,9 @@
     </div>
     <!-- Column -->
     <div class="col col-12 col-md-8">
+        <!-- Loading Screen -->
         <h3 class="fs-16 mb-10"><?php echo __("Loading Screen", "pds-blocks");?></h3>
-        <div class="row">
+        <div class="row gpy-30">
             <!-- Preview -->
             <div class="col-12 col-md-5 col-xl-6">
                 <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo get_option('pds_loading')["background"]; ?>;">
@@ -134,6 +135,22 @@
                 </div>
             </div>
             <!-- // Controls -->
+        </div>
+
+        <!-- Other Options -->
+        <div class="pdt-20 divider-t">
+            <h3 class="fs-16 mb-10"><?php echo __("Other Options", "pds-blocks");?></h3>
+            <!-- Row -->
+            <div class="row gpy-20">
+                <!-- Column -->
+                <div class="col-4">
+                    <!-- Control Label -->
+                    <label class="mb-10 weight-medium fs-14"><?php echo __("Post Excerpt Length", "phenix"); ?></label>
+                    <!-- Form Control -->
+                    <input type="number" class="form-control radius-sm fs-13" name="excerpt_length" value="<?php echo get_option("excerpt_length") ? get_option("excerpt_length") : 175; ?>" />
+                </div>
+                <!-- // Column -->
+            </div>
         </div>
     </div>
     <!-- // Column -->

@@ -257,6 +257,10 @@ export default class PhenixBackground extends Component {
             }
         };
 
+        //===> Get Custom Colors and Gradients <===//
+        const settings = wp.data.select('core/block-editor').getSettings();
+        console.log(settings.colors, settings.gradients);
+
         //===> Component Design <===//
         return (
             <div className={`colors-selector px-gb-component ${isSmall ? "":" position-rv "}${label ? "mb-10" : ""}`}>

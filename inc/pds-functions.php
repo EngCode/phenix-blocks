@@ -58,7 +58,7 @@ if (!function_exists('pagination')) :
 	function pagination($query, $options = array()) {
 		//===> Options and  Styles <===//
 		$list_style = $options["container"] ? $options["container"] : "flexbox align-center mb-30";
-		$main_style = $options["buttons"] ? $options["buttons"] : "border-1 border-solid border-alpha-10 me-10";
+		$main_style = $options["buttons"] ? $options["buttons"] : "btn small square border-1 border-solid border-alpha-10 me-10";
 		$normal_btn = $options["normal_btn"] ? $options["normal_btn"] : "light";
 		$active_btn = $options["active_btn"] ? $options["active_btn"] : "primary active";
 		$icon_right = $options["next_icon"] ? $options["next_icon"] : "fas fa-angle-right";

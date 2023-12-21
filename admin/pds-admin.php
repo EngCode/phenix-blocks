@@ -116,6 +116,7 @@
         array('block_patterns', 'pds-data-collection', true),
         array('theme_templates', 'pds-data-collection', true),
         array('templates_meta', 'pds-data-collection', true),
+        array('pds_custom_pallete', 'pds-data-collection', true),
 
         //===> General Settings <===//
         array('pds_gfonts', 'pds-admin', true),

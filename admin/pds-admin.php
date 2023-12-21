@@ -337,12 +337,27 @@
     });
 
     //====> Set Menu Locations <====//
-    if (get_option('menu_locations')) :
-        $menu_locations = get_option('menu_locations');
-        foreach ($menu_locations as $location) {
-            register_nav_menu($location['name'], $location['title']);
+    if (get_option("menu_locations")) {
+        //===> Get Current Locations
+        $current_locations = get_option("menu_locations");
+
+        //===> Menu Locations Fallback <===//
+        if (!$current_locations[0]) {
+            //===> Create new Menu Format <====//
+            $menu_locations = array();
+            //===> Add the Previous Menu Data <===//
+            foreach ($current_locations as $key => $value) {
+                array_push($menu_locations, array('title' => $value, 'name'  => $key));
+            }
+            //===> Update the Menu Locations <===//
+            update_option("menu_locations", $menu_locations);
+        } else {
+            //====> Set Menu Locations <====//
+            foreach ($current_locations as $location) {
+                register_nav_menu($location['name'], $location['title']);
+            }
         }
-    endif;
+    }
 
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :

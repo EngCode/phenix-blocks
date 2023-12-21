@@ -82,9 +82,9 @@ if (!function_exists('phenix_blocks')) :
         }
         
         //====> Inline Elements <====//
-        if (get_option('inline_elements_block')) {
-            wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
-        }
+        // if (get_option('inline_elements_block')) {
+        //     wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
+        // }
 
         //====> Text Elements <====//
         if (get_option('text_elements_block')) {

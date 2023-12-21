@@ -200,8 +200,7 @@
         add_action('init', 'pds_blocks_default_values');
     endif;
 
-
-    //====> Temporary Fallbacks <====//
+    //====> Temporary Fallbacks (Loading Screen) <====//
     if (!is_array(get_option("pds_loading"))) {
         update_option("pds_loading", array(
             "code" => "",
@@ -211,13 +210,4 @@
             "text" => __('Loading', "pds-blocks"),
             "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
         ));
-    }
-
-    //===> Menu Locations Fallback <===//
-    if (get_option("menu_locations") && !is_array( get_option("menu_locations")[0])) {
-        $current_locations = get_option("menu_locations");
-        $menu_locations = array();
-        foreach ($current_locations as $key => $value) {
-            $menu_locations[] = array('title' => $value, 'name'  => $key);
-        }
     }

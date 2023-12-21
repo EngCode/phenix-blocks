@@ -30,7 +30,6 @@
 
 .flexbox {
     @extend %flexbox;
-    > * {-ms-flex-negative: 0;flex-shrink: 0;}
 }
 
 @mixin make-visibility ($infix:'') {

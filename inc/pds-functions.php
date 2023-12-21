@@ -55,19 +55,23 @@ if (!function_exists('pagination')) :
 	 ** 02 - CF7 Customize
 	*/
 
-	function pagination($query) {
-		//===> Buttons Styles <===//
-		$list_style = "align-center mb-30";
-		$active_btn = "primary active me-10";
-		$normal_btn = "light border-1 border-solid border-alpha-10";
-		$main_style = "btn square small weight-medium radius-sm me-10";
-		$next_btn = !is_rtl() ? sprintf('%1$s<i class="fas fa-angle-right"></i>', "") : sprintf('<i class="fas fa-angle-left"></i>%1$s', "");
-		$prev_btn = is_rtl() ? sprintf('%1$s<i class="fas fa-angle-right"></i>', "") : sprintf('<i class="fas fa-angle-left"></i>%1$s', "");
+	function pagination($query, $options = array()) {
+		//===> Options and  Styles <===//
+		$list_style = $options["container"] ? $options["container"] : "flexbox align-center mb-30";
+		$main_style = $options["buttons"] ? $options["buttons"] : "border-1 border-solid border-alpha-10 me-10";
+		$normal_btn = $options["normal_btn"] ? $options["normal_btn"] : "light";
+		$active_btn = $options["active_btn"] ? $options["active_btn"] : "primary active";
+		$icon_right = $options["next_icon"] ? $options["next_icon"] :"fas fa-angle-right";
+		$icon_left  = $options["prev_icon"] ? $options["prev_icon"] :"fas fa-angle-left";
+
+		//===> Create Next and Prev Buttons <===//
+		$next_btn = !is_rtl() ? sprintf('%1$s<i class="'.$icon_right.'"></i>', "") : sprintf('<i class="'.$icon_left.'"></i>%1$s', "");
+		$prev_btn = is_rtl() ? sprintf('%1$s<i class="'.$icon_left.'"></i>', "") : sprintf('<i class="'.$icon_right.'"></i>%1$s', "");
 
 		//===> Configuration <===//
 		$pages = paginate_links( array(
 			'end_size'     => 2,
-			'mid_size'     => 1,
+			'mid_size'     => 2,
 			'prev_next'    => true,
 			'show_all'     => false,
 			'type'         => 'array',
@@ -82,7 +86,7 @@ if (!function_exists('pagination')) :
 		//===> Generate <===//
 		if(is_array($pages)) {
 			//===> List <===//
-			echo '<ul class="reset-list pagination flexbox '.$list_style.'">';
+			echo '<ul class="reset-list pagination '.$list_style.'">';
 			//===> Pages Start <===//
 			foreach ($pages as $page) {
 				//===> if its the Current Page <===//
@@ -217,8 +221,10 @@ if (!function_exists('pds_limit_login_attempts')) :
 	function pds_limit_login_attempts() {
 		//===> Max Attempts <===//
 		$login_attempts = 3;
+
 		//===> Lockout Duration <===//
 		$lockout_duration = 300;
+
 		//===> Check if the Cookie is Set <===//
 		if (isset($_COOKIE['login_attempts']) && $_COOKIE['login_attempts'] >= $login_attempts) {
 			//===> Check if the Lockout Duration is Over <===//
@@ -242,5 +248,5 @@ if (!function_exists('pds_limit_login_attempts')) :
 		}
 	}
 
-	add_action('wp_login_failed', 'pds_limit_login_attempts'); // Hook to login failed event
+	add_action('wp_login_failed', 'pds_limit_login_attempts');
 endif;

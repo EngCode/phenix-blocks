@@ -25,6 +25,7 @@ export default class EffectsSet extends Component {
 
         //===> Define Controls Options <===//
         const hover_effect = {
+            "Default": [{ "label": "None", "value": ""}],
             "Cool & Slow" : [
                 { "label": "ScaleBy 10%", "value": "pds-hvr-scale-10"},
                 { "label": "ScaleBy 15%", "value": "pds-hvr-scale-15"},
@@ -47,6 +48,7 @@ export default class EffectsSet extends Component {
         };
 
         const animations_effect = {
+            "Default": [{ "label": "None", "value": ""}],
             "Moving Effects" : [
                 { "label": "Floating", "value": "pds-animate-floating"},
                 { "label": "Ringing", "value": "pds-animate-ringing"},
@@ -60,6 +62,7 @@ export default class EffectsSet extends Component {
         };
 
         const box_shadows = {
+            "Default": [{ "label": "None", "value": ""}],
             "Standard" : [
                 { "label": "Standard", "value": "bx-shadow-dp-1"},
                 { "label": "Small", "value": "bx-shadow-dp-2"},

@@ -31,9 +31,10 @@ export default class ResponsiveSet extends Component {
 
         //===> Define Controls Options <===//
         const component_sizes = [
-            { label: __("Normal", "pds-blocks"), value: '' },
+            { label: __("Default", "pds-blocks"), value: '' },
             { label: __("Tiny", "pds-blocks"), value: 'tiny' },
             { label: __("Small", "pds-blocks"), value: 'small' },
+            { label: __("Normal", "pds-blocks"), value: 'medium' },
             { label: __("Large", "pds-blocks"), value: 'large' },
             { label: __("xLarge", "pds-blocks"), value: 'xlarge' },
         ];

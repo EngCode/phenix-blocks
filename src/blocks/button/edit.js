@@ -410,7 +410,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-effects') ?
-                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <EffectsSet attributes={attributes} mainSetter={set_style} />
                         </li>

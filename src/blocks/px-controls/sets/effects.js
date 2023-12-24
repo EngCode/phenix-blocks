@@ -26,6 +26,7 @@ export default class EffectsSet extends Component {
         //===> Define Controls Options <===//
         const hover_effect = {
             "Default": [{ "label": "None", "value": ""}],
+
             "Cool & Slow" : [
                 { "label": "ScaleBy 10%", "value": "pds-hvr-scale-10"},
                 { "label": "ScaleBy 15%", "value": "pds-hvr-scale-15"},
@@ -49,20 +50,22 @@ export default class EffectsSet extends Component {
 
         const animations_effect = {
             "Default": [{ "label": "None", "value": ""}],
-            "Moving Effects" : [
+
+            "Moving" : [
                 { "label": "Floating", "value": "pds-animate-floating"},
                 { "label": "Ringing", "value": "pds-animate-ringing"},
             ],
 
-            "Background Effects" : [
-                { "label": "BG-X", "value": "bg-animated-x"},
-                { "label": "BG-Y", "value": "bg-animated-y"},
-                { "label": "BG-Zoom", "value": "bg-animated-zoom"},
+            "Background" : [
+                { "label": "Zooming", "value": "bg-animated-zoom"},
+                { "label": "Animate-X", "value": "bg-animated-x"},
+                { "label": "Animate-Y", "value": "bg-animated-y"},
             ],
         };
 
         const box_shadows = {
             "Default": [{ "label": "None", "value": ""}],
+            
             "Standard" : [
                 { "label": "Standard", "value": "bx-shadow-dp-1"},
                 { "label": "Small", "value": "bx-shadow-dp-2"},
@@ -71,6 +74,7 @@ export default class EffectsSet extends Component {
                 { "label": "xLarge", "value": "bx-shadow-dp-5"},
                 { "label": "Huge", "value": "bx-shadow-dp-x"},
             ],
+
             "TailWind" : [
                 { "label": "Standard", "value": "bx-shadow"},
                 { "label": "Small", "value": "bx-shadow-sm"},
@@ -78,6 +82,11 @@ export default class EffectsSet extends Component {
                 { "label": "Large", "value": "bx-shadow-lg"},
                 { "label": "xLarge", "value": "bx-shadow-xl"},
                 { "label": "Huge", "value": "bx-shadow-xxl"},
+            ],
+
+            "Glass" : [
+                { "label": "Small", "value": "px-glass-sm"},
+                { "label": "Medium", "value": "px-glass-md"},
             ],
         };
 
@@ -90,15 +99,15 @@ export default class EffectsSet extends Component {
             <div className={`row gpx-10 gpy-15`}>
                 {/*===> Hover Effects <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name="hover-effect" placeholder={__("None", "pds-blocks")} search={true} label={__("Hover", "pds-blocks")} value={attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
+                    <PhenixSelect name="hover-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} label={__("Hover", "pds-blocks")} value={attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
                 </div>
                 {/*===> Animation Effects <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name="animated-effect" placeholder={__("None", "pds-blocks")} search={true} label={__("Animated", "pds-blocks")} value={attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
+                    <PhenixSelect name="animated-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} label={__("Animated", "pds-blocks")} value={attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
                 </div>
                 {/*===> Box Shadow <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name="box-shadow" placeholder={__("None", "pds-blocks")} label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
+                    <PhenixSelect name="box-shadow" size="normal" placeholder={__("None", "pds-blocks")} label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
                 </div>
             </div>
             {/*===> // Layout Group <===*/}

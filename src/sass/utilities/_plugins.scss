@@ -112,7 +112,39 @@
 
 .object-fit {-o-object-fit: cover;object-fit: cover;}
 
-/*==== Aspect Ratio ====*/
+/*==== Lazy Loader ====*/
+.px-loader {
+    -o-object-fit: contain;
+       object-fit: contain;
+    background-size: auto 100%;
+    background-color: #F1F2F3;
+}
+
+/*==== Phenix Animations ====*/
+.px-animate, [data-animation] {
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}
+
+/*==== Row Fix ====*/
+.container-fluid > .row {
+    margin-left: calc(var(--container-padding) * -1);
+    margin-right: calc(var(--container-padding) * -1);
+}
+
+/*==== Phenix Modal ====*/
+.px-modal[class*="overlay"]::before {display: none!important;}
+
+/*==== Scaling ====*/
+.scale-050 {transform: scale(0.50);}
+.scale-075 {transform: scale(0.75);}
+.scale-110 {transform: scale(1.10);}
+.scale-125 {transform: scale(1.25);}
+.scale-150 {transform: scale(1.50);}
+.scale-175 {transform: scale(1.75);}
+.scale-200 {transform: scale(2);}
+
+/*==== Multi-Media Aspect Ratio ====*/
 [class*="ratio"] {
     --ratio-size : initial;
     padding-bottom: var(--ratio-size);
@@ -150,63 +182,3 @@
 @include xlarge(){
     @include make_ratio('-xl');
 };
-
-/*==== Lazy Loader ====*/
-.px-loader {
-    -o-object-fit: contain;
-       object-fit: contain;
-    background-size: auto 100%;
-    background-color: #F1F2F3;
-}
-
-/*==== Phenix Animations ====*/
-.px-animate, [data-animation] {
-    animation-fill-mode: both;
-    animation-duration: 1s;
-}
-
-/*==== Row Fix ====*/
-.container-fluid > .row {
-    margin-left: calc(var(--container-padding) * -1);
-    margin-right: calc(var(--container-padding) * -1);
-}
-
-/*==== Phenix Modal ====*/
-.px-modal[class*="overlay"]::before {display: none!important;}
-
-/*==== Scaling ====*/
-.scale-050 {transform: scale(0.50);}
-.scale-075 {transform: scale(0.75);}
-.scale-110 {transform: scale(1.10);}
-.scale-125 {transform: scale(1.25);}
-.scale-150 {transform: scale(1.50);}
-.scale-175 {transform: scale(1.75);}
-.scale-200 {transform: scale(2);}
-
-/*==== Background Animations ====*/
-.bg-animated-x {
-    --duration : 60s;
-    background-repeat: repeat-x;
-    animation: background_x var(--duration) linear infinite;
-}
-
-.bg-animated-y {
-    --duration : 60s;
-    background-repeat: repeat-x;
-    animation: background_y var(--duration) linear infinite;
-}
-
-.bg-animated-zoom {
-    animation: bgZoomInOut 30s linear infinite;
-}
-
-/*==== Custom Animations ====*/
-@keyframes background_x {
-    from {background-position: 0 0;}
-    to {background-position: 100% 0;}
-}
-
-@keyframes background_y {
-    from {background-position: 0 0;}
-    to {background-position: 0 100%;}
-}

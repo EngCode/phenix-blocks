@@ -7,7 +7,7 @@
 .transition-smooth {@extend %smooth-motion;}
 .transition-slow {@extend %slow-motion;}
 
-/*==== Scalers ====*/
+/*==== Animated Effects [for Front-End Only] ====*/
 body:not(.block-editor-page):not(.editor-styles-wrapper) {
     .pds-hvr-scale-10:hover {transform: scale(1.10);}
     .pds-hvr-scale-15:hover {transform: scale(1.15);}
@@ -17,14 +17,14 @@ body:not(.block-editor-page):not(.editor-styles-wrapper) {
     /*==== Attention ====*/
     *:has(> .pds-hvr-highlight) > * {transition: opacity 0.3s ease-in-out;}
     *:has(> .pds-hvr-highlight:is(:hover)) > *:not(.pds-hvr-highlight)  {opacity: 0.5;}
-    
+
     /*==== Floating Effect ====*/
     .pds-hvr-floating:hover, .pds-animate-floating {animation: floating 2s ease-in-out infinite;}
-    
+
     /*==== Ringing Effect ====*/
     .pds-animate-ringing {animation: shakingInf 3s ease-in-out infinite;}
     .pds-hvr-ringing:hover {animation: shaking 0.5s ease-in-out;}
-    
+
     /*==== Hover Effects ====*/
     .pds-hvr-tada:hover    {animation: tada 0.7s ease-in-out;}
     .pds-hvr-flash:hover   {animation: flash 0.7s ease-in-out;}
@@ -34,7 +34,29 @@ body:not(.block-editor-page):not(.editor-styles-wrapper) {
     .pds-hvr-shakeX:hover  {animation: shakeX 0.7s ease-in-out;}
     .pds-hvr-bounce:hover  {animation: bounce 1s ease-in-out;}
     .pds-hvr-rubberBand:hover {animation: rubberBand 0.7s ease-in-out;}
+
+    /*==== Background Animations ====*/
+    .bg-animated-x {
+        background-repeat: repeat-x;
+        animation: background_x var(--duration, 60s) linear infinite;
+    }
+
+    .bg-animated-y {
+        background-repeat: repeat-x;
+        animation: background_y var(--duration, 60s) linear infinite;
+    }
+
+    .bg-animated-zoom {animation: bgZoomInOut 30s linear infinite;}
 }
+
+/*==== Glass Effects ====*/
+[class*="px-glass-"] {
+    backdrop-filter: blur(2px);
+    box-shadow: var(--box-shadow);
+}
+
+.px-glass-sm {--box-shadow: -4px -4px 12px 0px rgba(0, 0, 0, 0.15) inset, 5px 4px 15px 0px rgba(255, 255, 255, 0.10) inset, 2px 4px 8px 0px rgba(0, 0, 0, 0.16), 2px 2px 1px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.06) inset;}
+.px-glass-md {--box-shadow: -8px -8px 12px 0px rgba(0, 0, 0, 0.25) inset, 5px 4px 15px 0px rgba(255, 255, 255, 0.10) inset, 4px 8px 8px 0px rgba(0, 0, 0, 0.16), 3px 3px 1px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.06) inset;}
 
 /*==== Animations Effect ====*/
 @keyframes floating {
@@ -58,4 +80,14 @@ body:not(.block-editor-page):not(.editor-styles-wrapper) {
     20% {transform: translateX(-5px) rotate(-3deg) scale(1.05);}
     30% {transform: translateX(0);}
     100% {transform: translateX(0);}
+}
+
+@keyframes background_x {
+    from {background-position: 0 0;}
+    to {background-position: 100% 0;}
+}
+
+@keyframes background_y {
+    from {background-position: 0 0;}
+    to {background-position: 0 100%;}
 }

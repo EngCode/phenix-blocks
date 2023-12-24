@@ -80,9 +80,9 @@
     --component-tx-lvl-3 : var(--dark-light);
 
     /*==== Index Order ====*/
-    --header-index : 999991;
-    --modal-index  : 999999;
-    --dropdown-index : 999998;
+    --header-index : 9991;
+    --modal-index  : 9999;
+    --dropdown-index : 9998;
 
     /*==== Directions [do not edit] ====*/
     --direction: #{$direction};
@@ -122,4 +122,4 @@
 @import 'utilities/borders';    //===> CSS Borders
 @import 'utilities/visibility'; //===> Visibility Utilities
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
-@import 'utilities/hovers';     //===> Phenix Plugins Assets
+@import 'utilities/effects';    //===> Phenix Effects Assets

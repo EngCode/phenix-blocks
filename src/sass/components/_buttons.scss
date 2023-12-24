@@ -27,6 +27,12 @@
         --text-size : #{REM(14)};
     }
 
+    &.medium#{$infix} {
+        --height    : #{REM(42)};
+        --padding   : #{REM(20)};
+        --text-size : #{REM(16)};
+    }
+
     &.large#{$infix} {
         --height    : #{REM(52)};
         --padding   : #{REM(25)};

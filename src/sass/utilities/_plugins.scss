@@ -34,22 +34,19 @@
     .px-progress-bar[data-label="value"]::before {content: attr(data-value) "%";}
 
     //====> Circle Mode <====//
-    &[data-type="circle"] svg path {-webkit-transition: stroke-dasharray 850ms ease-in-out;transition: stroke-dasharray 850ms ease-in-out;}
+    &[data-type="circle"] svg path {transition: stroke-dasharray 850ms ease-in-out;}
 
     //====> Radial Mode <====//
     &[data-type="radial"] {
         /*==== Label ====*/
         &[data-label]::before {
             top: 100%;
-            -webkit-transform: translateY(-150%);
-                    transform: translateY(-150%);
+            transform: translateY(-150%);
         }
         /*==== SVG ====*/
         svg path {
-            -webkit-transition: stroke-dashoffset 850ms ease-in-out;
             transition: stroke-dashoffset 850ms ease-in-out;
-            -webkit-transform: scale(1.19) translateY(-8%) translateX(-8%);
-                    transform: scale(1.19) translateY(-8%) translateX(-8%);
+            transform: scale(1.19) translateY(-8%) translateX(-8%);
         }
     }
 }
@@ -57,8 +54,7 @@
 /*==== Progress Circle Fix ====*/
 .px-progress-circle {
     border-radius: 50%;
-    -webkit-box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 12px rgba(#000, 0.30);
-            box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 12px rgba(#000, 0.30);
+    box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 12px rgba(#000, 0.30);
 }
 
 /*==== Sticky ====*/
@@ -165,10 +161,8 @@
 
 /*==== Phenix Animations ====*/
 .px-animate, [data-animation] {
-    -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-    -webkit-animation-duration: 1s;
-            animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-duration: 1s;
 }
 
 /*==== Row Fix ====*/
@@ -181,48 +175,35 @@
 .px-modal[class*="overlay"]::before {display: none!important;}
 
 /*==== Scaling ====*/
-.scale-050 {-webkit-transform: scale(0.50);transform: scale(0.50);}
-.scale-075 {-webkit-transform: scale(0.75);transform: scale(0.75);}
-.scale-110 {-webkit-transform: scale(1.10);transform: scale(1.10);}
-.scale-125 {-webkit-transform: scale(1.25);transform: scale(1.25);}
-.scale-150 {-webkit-transform: scale(1.50);transform: scale(1.50);}
-.scale-175 {-webkit-transform: scale(1.75);transform: scale(1.75);}
-.scale-200 {-webkit-transform: scale(2);transform: scale(2);}
+.scale-050 {transform: scale(0.50);}
+.scale-075 {transform: scale(0.75);}
+.scale-110 {transform: scale(1.10);}
+.scale-125 {transform: scale(1.25);}
+.scale-150 {transform: scale(1.50);}
+.scale-175 {transform: scale(1.75);}
+.scale-200 {transform: scale(2);}
 
 /*==== Background Animations ====*/
 .bg-animated-x {
     --duration : 60s;
     background-repeat: repeat-x;
-    -webkit-animation: background_x var(--duration) linear infinite;
-            animation: background_x var(--duration) linear infinite;
+    animation: background_x var(--duration) linear infinite;
 }
 
 .bg-animated-y {
     --duration : 60s;
     background-repeat: repeat-x;
-    -webkit-animation: background_y var(--duration) linear infinite;
-            animation: background_y var(--duration) linear infinite;
+    animation: background_y var(--duration) linear infinite;
 }
 
 .bg-animated-zoom {
-    -webkit-animation: bgZoomInOut 30s linear infinite;
-        animation: bgZoomInOut 30s linear infinite;
+    animation: bgZoomInOut 30s linear infinite;
 }
 
 /*==== Custom Animations ====*/
-@-webkit-keyframes background_x {
-    from {background-position: 0 0;}
-    to {background-position: 100% 0;}
-}
-
 @keyframes background_x {
     from {background-position: 0 0;}
     to {background-position: 100% 0;}
-}
-
-@-webkit-keyframes background_y {
-    from {background-position: 0 0;}
-    to {background-position: 0 100%;}
 }
 
 @keyframes background_y {

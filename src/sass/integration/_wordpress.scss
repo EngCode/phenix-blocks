@@ -81,33 +81,32 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     /*==== Animations ====*/
     &.is-active [data-animation] {
         visibility: visible;
-        -webkit-animation: attr(data-animation) 1s both;
-            animation: attr(data-animation) 1s both;
+        animation: attr(data-animation) 1s both;
     }
 }
 
 /*==== Page Head ====*/
 .pds-page-head {
     /*==== Alignment ====*/
-    &.tx-align-end .px-breadcrumb { -webkit-box-pack: end; -ms-flex-pack: end; justify-content: end; }
-    &.tx-align-center .px-breadcrumb { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+    &.tx-align-end .px-breadcrumb { justify-content: end; }
+    &.tx-align-center .px-breadcrumb { justify-content: center; }
 
     /*==== MS ====*/
     @include medium() {
         /*==== Alignment ====*/
-        &.tx-align-md-end .px-breadcrumb { -webkit-box-pack: end; -ms-flex-pack: end; justify-content: end; }
-        &.tx-align-md-center .px-breadcrumb { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+        &.tx-align-md-end .px-breadcrumb { justify-content: end; }
+        &.tx-align-md-center .px-breadcrumb { justify-content: center; }
     };
     /*==== LS ====*/
     @include large() {
         /*==== Alignment ====*/
-        &.tx-align-lg-end .px-breadcrumb { -webkit-box-pack: end; -ms-flex-pack: end; justify-content: end; }
-        &.tx-align-lg-center .px-breadcrumb { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+        &.tx-align-lg-end .px-breadcrumb { justify-content: end; }
+        &.tx-align-lg-center .px-breadcrumb { justify-content: center; }
     };
     /*==== XLS ====*/
     @include xlarge() {
         /*==== Alignment ====*/
-        &.tx-align-xl-end .px-breadcrumb { -webkit-box-pack: end; -ms-flex-pack: end; justify-content: end; }
-        &.tx-align-xl-center .px-breadcrumb { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+        &.tx-align-xl-end .px-breadcrumb { justify-content: end; }
+        &.tx-align-xl-center .px-breadcrumb { justify-content: center; }
     };
 }

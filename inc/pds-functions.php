@@ -55,14 +55,21 @@ if (!function_exists('pagination')) :
 	 ** 02 - CF7 Customize
 	*/
 
-	function pagination($query, $options = array()) {
+	function pagination($query, $options = array(
+		"container"  => "flexbox align-center mb-30",
+		"buttons"    => "btn small square border-1 border-solid border-alpha-10 me-10",
+		"normal_btn" => "light",
+		"active_btn" => "primary active",
+		"next_icon"  => "fas fa-angle-right",
+		"prev_icon"  => "fas fa-angle-left",
+	)) {
 		//===> Options and  Styles <===//
-		$list_style = $options["container"] ? $options["container"] : "flexbox align-center mb-30";
-		$main_style = $options["buttons"] ? $options["buttons"] : "btn small square border-1 border-solid border-alpha-10 me-10";
-		$normal_btn = $options["normal_btn"] ? $options["normal_btn"] : "light";
-		$active_btn = $options["active_btn"] ? $options["active_btn"] : "primary active";
-		$icon_right = $options["next_icon"] ? $options["next_icon"] : "fas fa-angle-right";
-		$icon_left  = $options["prev_icon"] ? $options["prev_icon"] : "fas fa-angle-left";
+		$list_style = $options["container"];
+		$main_style = $options["buttons"];
+		$normal_btn = $options["normal_btn"];
+		$active_btn = $options["active_btn"];
+		$icon_right = $options["next_icon"];
+		$icon_left  = $options["prev_icon"];
 
 		//===> Create Next and Prev Buttons <===//
 		$next_btn = !is_rtl() ? sprintf('%1$s<i class="'.$icon_right.'"></i>', "") : sprintf('<i class="'.$icon_left.'"></i>%1$s', "");

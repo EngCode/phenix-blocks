@@ -63,20 +63,20 @@
 .z-index-10 {z-index: 10;}
 
 /*==== Shadows ====*/
-.bx-shadow-dp-1 {-webkit-box-shadow: 3px 3px 6px rgba(#000, 0.06);box-shadow: 3px 3px 6px rgba(#000, 0.06);}
-.bx-shadow-dp-2 {-webkit-box-shadow: 5px 5px 10px rgba(#000, 0.1);box-shadow: 5px 5px 10px rgba(#000, 0.1);}
-.bx-shadow-dp-3 {-webkit-box-shadow: 0 0 15px rgba(#000, 0.1);box-shadow: 0 0 15px rgba(#000, 0.1);}
-.bx-shadow-dp-4 {-webkit-box-shadow: 10px 10px 20px rgba(#000, 0.1);box-shadow: 10px 10px 20px rgba(#000, 0.1);}
-.bx-shadow-dp-5 {-webkit-box-shadow: 0 0 30px rgba(#000, 0.1);box-shadow: 0 0 30px rgba(#000, 0.1);}
-.bx-shadow-dp-x {-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.05);box-shadow: 5px 5px 10px rgba(0,0,0,0.05);}
+.bx-shadow-dp-1 {box-shadow: 3px 3px 6px rgba(#000, 0.06);}
+.bx-shadow-dp-2 {box-shadow: 5px 5px 10px rgba(#000, 0.1);}
+.bx-shadow-dp-3 {box-shadow: 0 0 15px rgba(#000, 0.1);}
+.bx-shadow-dp-4 {box-shadow: 10px 10px 20px rgba(#000, 0.1);}
+.bx-shadow-dp-5 {box-shadow: 0 0 30px rgba(#000, 0.1);}
+.bx-shadow-dp-x {box-shadow: 5px 5px 10px rgba(0,0,0,0.05);}
 
 //====> TailWind Shadows <====//
-.bx-shadow {-webkit-box-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);box-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);}
-.bx-shadow-sm  {-webkit-box-shadow: 0px 1px 2px rgba(#000, 0.05);box-shadow: 0px 1px 2px rgba(#000, 0.05);}
-.bx-shadow-md  {-webkit-box-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);box-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);}
-.bx-shadow-lg  {-webkit-box-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);box-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);}
-.bx-shadow-xl  {-webkit-box-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);box-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);}
-.bx-shadow-xxl {-webkit-box-shadow: 0px 25px 50px -12px rgba(#000, 0.25);box-shadow: 0px 25px 50px -12px rgba(#000, 0.25);}
+.bx-shadow {box-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);}
+.bx-shadow-sm  {box-shadow: 0px 1px 2px rgba(#000, 0.05);}
+.bx-shadow-md  {box-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);}
+.bx-shadow-lg  {box-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);}
+.bx-shadow-xl  {box-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);}
+.bx-shadow-xxl {box-shadow: 0px 25px 50px -12px rgba(#000, 0.25);}
 
 /*==== Text Shadows ====*/
 .tx-shadow-dp-1 {text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);}
@@ -112,6 +112,7 @@
 .mouse-pointer {cursor: pointer;}
 .links-inherit a {color: inherit;}
 .mouse-no-events {pointer-events: none;}
+.mouse-all-events {pointer-events: all;}
 .tx-icon::before {margin-#{$direction-end}: 7px;}
 
 /*==== Custom Scrollbar ====*/
@@ -126,8 +127,7 @@
     &::-webkit-scrollbar-thumb {background-color: var(--scrollbar-thumb);}
     &::-webkit-scrollbar {
         width: 10px;
-        -webkit-box-shadow: inset 1px 0 0 0 1px rgba(#000, 0.1);
-                box-shadow: inset 1px 0 0 0 1px rgba(#000, 0.1);
+        box-shadow: inset 1px 0 0 0 1px rgba(#000, 0.1);
     }
 }
 
@@ -189,7 +189,6 @@
         border-radius: 5px;
         visibility: hidden;
         opacity: 0;
-        -webkit-transition: opacity 0.3s ease;
         transition: opacity 0.3s ease;
     }
     

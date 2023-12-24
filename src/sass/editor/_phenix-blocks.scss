@@ -2,8 +2,10 @@
 .wp-block-phenix-column, .wp-block-phenix-row[data-type="phenix/row"] {
 	&.block-editor-block-list__block, &[data-block] {
 		min-width: 75px;
-		padding-top: min(5px, 150px);
-		padding-bottom: min(5px, 150px);
+		&:not([class*="pdt-"]):not([class*="pdb-"]) {
+			padding-top: min(5px, 150px);
+			padding-bottom: min(5px, 150px);
+		}
 	}
 }
 
@@ -14,11 +16,11 @@
 }
 
 /*==== Inline Elements Blocks ====*/
-.wp-block-phenix-inline[data-block] {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap!important;
-}
+// .wp-block-phenix-inline[data-block] {
+// 	overflow: hidden;
+// 	text-overflow: ellipsis;
+// 	white-space: nowrap!important;
+// }
 
 /*==== Grid Blocks ====*/
 .col-adaptive {-webkit-box-flex: 1;-ms-flex: 1 1 0px;flex: 1 1 0;}
@@ -41,7 +43,6 @@
 		.bg-inherit:not(ul) 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
 		.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
 	}
-
 
 	/*==== Colors Fixes ====*/
 	[data-value="color-component-lvl-1"] {background-color: var(--component-tx-lvl-1);}
@@ -225,22 +226,22 @@
 .flex-gap-fix {gap: calc(7px);}
 
 /*==== Form Highlight ====*/
-.form-highlight .form-control {
-	-webkit-animation: controlHighlight 500ms linear infinite;
-	        animation: controlHighlight 500ms linear infinite;
-}
+// .form-highlight .form-control {
+// 	-webkit-animation: controlHighlight 500ms linear infinite;
+// 	        animation: controlHighlight 500ms linear infinite;
+// }
 
-@-webkit-keyframes controlHighlight {
-	from {-webkit-box-shadow: revert;box-shadow: revert;}
-	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
-	100% {-webkit-box-shadow: revert;box-shadow: revert;}
-}
+// @-webkit-keyframes controlHighlight {
+// 	from {-webkit-box-shadow: revert;box-shadow: revert;}
+// 	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
+// 	100% {-webkit-box-shadow: revert;box-shadow: revert;}
+// }
 
-@keyframes controlHighlight {
-	from {-webkit-box-shadow: revert;box-shadow: revert;}
-	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
-	100% {-webkit-box-shadow: revert;box-shadow: revert;}
-}
+// @keyframes controlHighlight {
+// 	from {-webkit-box-shadow: revert;box-shadow: revert;}
+// 	50% {-webkit-box-shadow: 0 0 0 2px var(--primary-color);box-shadow: 0 0 0 2px var(--primary-color);}
+// 	100% {-webkit-box-shadow: revert;box-shadow: revert;}
+// }
 
 /*==== Align Icons ====*/
 .pxi-align-x-start::before   {background-image: url('../img/blocks/align-x-#{$direction-start}.svg');}

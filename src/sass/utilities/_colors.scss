@@ -147,6 +147,8 @@
 .bg-grade-secondary-offwhite {background-image: linear-gradient(var(--gradient-rotation) ,#FFF, var(--secondary-offwhite));}
 .bg-grade-primary-secondary {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-color), var(--secondary-color));}
 .bg-grade-primary-secondary-2nd {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-hover), var(--secondary-hover));}
+.bg-grade-primary-dark {background-image: linear-gradient(var(--gradient-rotation) ,var(--primary-color), var(--primary-dark));}
+.bg-grade-secondary-dark {background-image: linear-gradient(var(--gradient-rotation) ,var(--secondary-color), var(--secondary-dark));}
 
 /*==== Offwhite Gradients ====*/
 .bg-grade-silver {background-image: linear-gradient(var(--gradient-rotation), var(--silver-gradient));}

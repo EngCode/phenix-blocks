@@ -12,7 +12,7 @@ import { useState } from 'react';
 //===> Phenix Background <===//
 export default function ScreensTabs(props) {
     //===> States <===//
-    const [screen, setScreen] = useState("sm");
+    const [screen, setScreen] = props.sm ? useState("sm") : useState("md");
 
     //===> Tab Buttons <====//
     const buttons = {
@@ -31,7 +31,7 @@ export default function ScreensTabs(props) {
             <div className='options-tabs px-group borderd-group divider-b border-alpha-15 mb-10' style={{"--radius": 0}}>
                 {buttons.opts.map((opt) => {
                     if (props[opt]) {
-                        return <button key={buttons[opt].key} onClick={() => setScreen(opt)} className={`${buttons.classes} ${screen !== opt ? "bg-alpha-05" : "primary"} fa-${buttons[opt].key}`} title={buttons[opt].title}  data-options={opt}></button>
+                        return <button key={buttons[opt].key} onClick={() => setScreen(opt)} className={`${buttons.classes} ${screen !== opt ? "bg-alpha-05" : "primary"} fa-${buttons[opt].key}`} title={buttons[opt].title} data-options={opt}></button>
                     }
                 })}
             </div>

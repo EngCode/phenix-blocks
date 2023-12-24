@@ -112,7 +112,9 @@ export default class PhenixBackground extends Component {
             "bg-grade-fire",
             "bg-grade-purple",
             "bg-grade-primary-offwhite",
+            "bg-grade-primary-dark",
             "bg-grade-secondary-offwhite",
+            "bg-grade-secondary-dark",
             "bg-grade-primary-secondary",
             "bg-grade-primary-secondary-2nd",
             "bg-grade-danger-purple",
@@ -258,8 +260,8 @@ export default class PhenixBackground extends Component {
         };
 
         //===> Get Custom Colors and Gradients <===//
-        const settings = wp.data.select('core/block-editor').getSettings();
-        console.log(settings.colors, settings.gradients);
+        // const settings = wp.data.select('core/block-editor').getSettings();
+        // console.log(settings.colors, settings.gradients);
 
         //===> Component Design <===//
         return (

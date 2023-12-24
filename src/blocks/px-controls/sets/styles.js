@@ -158,7 +158,49 @@ export default class StylesSet extends Component {
                 { label:"Light", value: "overlay-light"},
                 { label:"Custom", value: "overlay-custom"},
             ],
-        }
+        };
+
+        const max_size_util = [
+            { "label": "1920", "value": "w-max-1920"},
+            { "label": "1600", "value": "w-max-1600"},
+            { "label": "1400", "value": "w-max-1400"},
+            { "label": "1366", "value": "w-max-1366"},
+            { "label": "1200", "value": "w-max-1200"},
+            { "label": "1100", "value": "w-max-1100"},
+            { "label": "768", "value": "w-max-768"},
+            { "label": "640", "value": "w-max-640"},
+            { "label": "570", "value": "w-max-570"},
+            { "label": "480", "value": "w-max-480"},
+            { "label": "420", "value": "w-max-420"},
+            { "label": "390", "value": "w-max-390"},
+            { "label": "360", "value": "w-max-360"},
+            { "label": "320", "value": "w-max-320"},
+            { "label": "280", "value": "w-max-280"},
+            { "label": "260", "value": "w-max-260"},
+            { "label": "200", "value": "w-max-200"},
+            { "label": "180", "value": "w-max-180"},
+        ];
+    
+        const min_size_util = [
+            { "label": "1920", "value": "w-min-1920"},
+            { "label": "1600", "value": "w-min-1600"},
+            { "label": "1400", "value": "w-min-1400"},
+            { "label": "1366", "value": "w-min-1366"},
+            { "label": "1200", "value": "w-min-1200"},
+            { "label": "1100", "value": "w-min-1100"},
+            { "label": "768", "value": "w-min-768"},
+            { "label": "640", "value": "w-min-640"},
+            { "label": "570", "value": "w-min-570"},
+            { "label": "480", "value": "w-min-480"},
+            { "label": "420", "value": "w-min-420"},
+            { "label": "390", "value": "w-min-390"},
+            { "label": "360", "value": "w-min-360"},
+            { "label": "320", "value": "w-min-320"},
+            { "label": "280", "value": "w-min-280"},
+            { "label": "260", "value": "w-min-260"},
+            { "label": "200", "value": "w-min-200"},
+            { "label": "180", "value": "w-min-180"},
+        ];
 
         //====> Support Options Checker <====//
         let showSupportOpts = false;

@@ -13,6 +13,42 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
+    //===> Colors Variants for Elements <===//
+    Phenix("[class*='px-glass-'], .pds-colors-vars").forEach((element:HTMLElement) => {
+        //====> Color Transformer <====//
+        const transformColor = (color: string, amount: number) => {
+            let rgb = color.match(/\d+/g).map(Number);
+            return rgb.map(c => Math.max(0, Math.min(255, c + amount))).join(', ');
+        };
+
+        //====> get the Background Color <====//
+        let bgColor = window.getComputedStyle(element).backgroundColor,
+            bgImage = window.getComputedStyle(element).backgroundImage,
+            darkerRgb:any = "0,0,0",
+            lighterRgb:any = "255,255,255";
+
+        //====> Check if has Background Gradient <====//
+        if (bgImage && bgImage.includes('gradient') && bgImage.match(/gradient\((.*?)\)/)) {
+            //===> Check for gradient Match colors <===//
+            let colors = bgImage.match(/gradient\((.*?)\)/)[1]?.split(', '); 
+            //===> Get the colors from the gradient <===//
+            lighterRgb = transformColor(colors[0], -90),
+            darkerRgb  = transformColor(colors[colors.length - 1], 80);
+        }
+
+        //====> Check if has Background Color <====//
+        else if (bgColor) {
+            //====> Create a darker shade by subtracting 90 from each color component <====//
+            darkerRgb = transformColor(bgColor, -90);
+            //====> Create a lighter shade by adding 80 to each color component <====//
+            lighterRgb = transformColor(bgColor, 80);
+        }
+
+        //====> Add the Colors to the CSS Properties <====//
+        element.style.setProperty('--bg-color-darker', darkerRgb);
+        element.style.setProperty('--bg-color-lighter', lighterRgb);
+    });
+
     //===> Lazy Backgrounds <===//
     Phenix('.wp-block-phenix-container[data-src]').forEach((container:HTMLElement) => {
         container.setAttribute('data-lazyloading', "true");

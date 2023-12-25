@@ -53,10 +53,18 @@ body:not(.block-editor-page):not(.editor-styles-wrapper) {
 [class*="px-glass-"] {
     backdrop-filter: blur(2px);
     box-shadow: var(--box-shadow);
+    /*==== Fallback ====*/
+    --bg-color-darker: 0,0,0;
+    --bg-color-lighter: 255,255,255;
 }
 
-.px-glass-sm {--box-shadow: -4px -4px 12px 0px rgba(0, 0, 0, 0.15) inset, 5px 4px 15px 0px rgba(255, 255, 255, 0.10) inset, 2px 4px 8px 0px rgba(0, 0, 0, 0.16), 2px 2px 1px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.06) inset;}
-.px-glass-md {--box-shadow: -8px -8px 12px 0px rgba(0, 0, 0, 0.25) inset, 5px 4px 15px 0px rgba(255, 255, 255, 0.10) inset, 4px 8px 8px 0px rgba(0, 0, 0, 0.16), 3px 3px 1px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.06) inset;}
+.px-glass-sm {
+    --box-shadow: -4px -4px 12px 0px rgba(var(--bg-color-darker), 0.3) inset, 5px 4px 15px 0px rgba(var(--bg-color-lighter), 0.3) inset, 2px 4px 8px 0px rgba(var(--bg-color-darker), 0.4), 2px 2px 1px 0px rgba(var(--bg-color-lighter), 0.5) inset, -2px -2px 1px 0px rgba(var(--bg-color-lighter), 0.3) inset;
+}
+
+.px-glass-md {
+    --box-shadow: -8px -8px 12px 0px rgba(var(--bg-color-darker), 0.5) inset, 5px 4px 15px 0px rgba(var(--bg-color-lighter), 0.3) inset, 4px 8px 8px 0px rgba(var(--bg-color-darker), 0.4), 3px 3px 1px 0px rgba(var(--bg-color-lighter), 0.5) inset, -2px -2px 1px 0px rgba(var(--bg-color-lighter), 0.3) inset;
+}
 
 /*==== Animations Effect ====*/
 @keyframes floating {

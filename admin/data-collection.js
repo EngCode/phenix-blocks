@@ -363,7 +363,8 @@ document.addEventListener('DOMContentLoaded', ready => {
 
                     //===> Update the List <===//
                     if (new_item['name'] && !new_item['enable']) {
-                        update_list(data_type, `.${data_type}_list`, type_template);
+                        update_list(current[data_type], `.${data_type}_list`, type_template);
+                        Phenix('.px-modal.active').fadeOut(500).removeClass('active');
                     } else if (new_item['enable']) {
                         window.location.reload();
                     }

@@ -121,8 +121,6 @@ export default function Edit(props) {
         { label: __('None', 'pds-blocks'), value: 'none' },
     ];
 
-    console.log(attributes.slider);
-
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}

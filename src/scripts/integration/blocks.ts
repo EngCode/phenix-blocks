@@ -57,8 +57,8 @@ PhenixElements.prototype.init = function (scripts?:[]) {
                   colorTwo = isLightOrDark(colors[0]);
 
             //===> Set the Colors <===//
-            darkerRgb  = transformColor(colorOne > colorTwo ? colors[colors.length - 1] : colors[0], -95);
-            lighterRgb = transformColor(colorOne < colorTwo ? colors[colors.length - 1] : colors[0], 95);
+            darkerRgb  = transformColor(colorOne < colorTwo ? colors[colors.length - 1] : colors[0], -95);
+            lighterRgb = transformColor(colorOne > colorTwo ? colors[colors.length - 1] : colors[0], 95);
         }
 
         //====> Check if has Background Color <====//

@@ -63,6 +63,11 @@
     display: block
 }
 
+.splide--fade {
+    direction: ltr;
+    .splide__slide {direction: $direction;}
+}
+
 .splide__pagination {
     align-items: center;
     display: flex;

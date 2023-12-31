@@ -213,6 +213,9 @@ export default function Edit({ attributes, setAttributes }) {
         };
     });
 
+    //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
+    if (attributes.flexbox?.slider?.type === "fade") innerBlocksProps.className.replace('row', '');
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}

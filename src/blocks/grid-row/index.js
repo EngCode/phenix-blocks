@@ -126,6 +126,9 @@ registerBlockType(metadata, {
             };
         });
 
+        //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
+        if (attributes.flexbox?.slider?.type === "fade") blockProps.className.replace('row', '');
+
         //===> Render <===//
         return (
             <div {...blockProps}>

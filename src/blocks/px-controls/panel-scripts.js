@@ -40,7 +40,7 @@ const PhenixComponentsBuilder = () => {
         //===> Timer Loop <===//
         pds_elements_timer = setInterval(() => {
             //===> Run Multimedia <===//
-            the_document.querySelectorAll(`.px-media:not([style*="background-image"])`).forEach(element => {
+            the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
                 element.style.backgroundImage = null;
                 Phenix(element).multimedia();
             });
@@ -119,11 +119,6 @@ const PhenixComponentsBuilder = () => {
                             frameDoc.body.appendChild(importedEl);
                             clearInterval(loadAssetTimer);
                         }
-                        
-                        //===> Add Scrollbar <===//
-                        if (frameDoc && frameDoc.querySelector('html')) {
-                            frameDoc.querySelector('html')?.classList.add('px-scrollbar');
-                        };
                     } else {
                         //===> Increase Counter <===//
                         trying_times += 1;

@@ -63,6 +63,18 @@ export default class StylesSet extends Component {
             { label: __("Rounded", "pds-blocks"), value: 'radius-height' },
         ];
 
+        const radius_directions = [
+            { label: __("Default", "pds-blocks"), value: '' },
+            { label: __("Top", "pds-blocks"), value: 'radius-top' },
+            { label: __("Bottom", "pds-blocks"), value: 'radius-bottom' },
+            { label: __("Start", "pds-blocks"), value: 'radius-start' },
+            { label: __("End", "pds-blocks"), value: 'radius-end' },
+            { label: __("Top/Start", "pds-blocks"), value: 'radius-top-start' },
+            { label: __("Bottom/Start", "pds-blocks"), value: 'radius-bottom-start' },
+            { label: __("Top/End", "pds-blocks"), value: 'radius-top-end' },
+            { label: __("Bottom/End", "pds-blocks"), value: 'radius-bottom-end' },
+        ];
+
         const display_options = {
             "Mobile Screens" : [
                 { "label": "Flex", "value": "display-flex"},
@@ -260,9 +272,14 @@ export default class StylesSet extends Component {
                 {showSupportOpts === true ? <>
                     <div className={`row gpx-15 gpy-15`}>
                         {/*===> Border Radius <===*/}
-                        {attributes.style.support?.includes('enable-radius') ? <div className='col col-6'>
-                            <PhenixSelect key={`radius-${uniqueKey}`} name="radius" placeholder={__("None", "pds-blocks")} label={__("Radius Size", "pds-blocks")} value={attributes.style.radius} onChange={mainSetter} options={radius_sizes} />
-                        </div> : null}
+                        {attributes.style.support?.includes('enable-radius') ? <>
+                            <div className='col col-6'>
+                                <PhenixSelect key={`radius-${uniqueKey}`} name="radius" placeholder={__("None", "pds-blocks")} label={__("Radius Size", "pds-blocks")} value={attributes.style.radius} onChange={mainSetter} options={radius_sizes} />
+                            </div>
+                            <div className='col col-6'>
+                                <PhenixSelect key={`radius-direction-${uniqueKey}`} name="radius-direction" placeholder={__("Default", "pds-blocks")} label={__("Radius Direction", "pds-blocks")} value={attributes.style['radius-direction']} onChange={mainSetter} options={radius_directions} />
+                            </div>
+                        </> : null}
 
                         {/*===> Sticky Element <===*/}
                         {attributes.style.support?.includes('enable-position') ? <>

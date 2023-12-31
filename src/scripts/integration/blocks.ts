@@ -14,7 +14,10 @@ import Phenix, { PhenixElements } from "..";
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
     //===> Colors Variants for Elements <===//
-    Phenix("[class*='px-glass-'], .pds-colors-vars").forEach((element:HTMLElement) => {
+    Phenix("[class*='px-glass-'], .pds-sc-props").forEach((element:HTMLElement) => {
+        //===> Already Done <===//
+        if (element.matches('.pds-sc-props-done')) return;
+
         //====> Color Transformer <====//
         const transformColor = (color: string, amount: number) => {
             let rgb = color.match(/\d+/g).map(Number);
@@ -45,8 +48,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         }
 
         //====> Add the Colors to the CSS Properties <====//
-        element.style.setProperty('--bg-color-darker', darkerRgb);
-        element.style.setProperty('--bg-color-lighter', lighterRgb);
+        element.style.setProperty('--shadow-color-dark', darkerRgb);
+        element.style.setProperty('--shadow-color-light', lighterRgb);
+        element.classList.add('pds-sc-props-done');
     });
 
     //===> Lazy Backgrounds <===//

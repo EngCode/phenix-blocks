@@ -67,26 +67,26 @@ export default class EffectsSet extends Component {
             "Default": [{ "label": "None", "value": ""}],
             
             "Standard" : [
-                { "label": "Standard", "value": "bx-shadow-dp-1"},
-                { "label": "Small", "value": "bx-shadow-dp-2"},
-                { "label": "Medium", "value": "bx-shadow-dp-3"},
-                { "label": "Large", "value": "bx-shadow-dp-4"},
-                { "label": "xLarge", "value": "bx-shadow-dp-5"},
-                { "label": "Huge", "value": "bx-shadow-dp-x"},
+                { "label": "DP-1", "value": "bx-shadow-dp-1"},
+                { "label": "DP-2", "value": "bx-shadow-dp-2"},
+                { "label": "DP-3", "value": "bx-shadow-dp-3"},
+                { "label": "DP-4", "value": "bx-shadow-dp-4"},
+                { "label": "DP-5", "value": "bx-shadow-dp-5"},
+                { "label": "DP-1Y", "value": "bx-shadow-dp-1y"},
+            ],
+
+            "Glass Effects" : [
+                { "label": "Small", "value": "bx-shadow-gls-dp-1"},
+                { "label": "Medium", "value": "bx-shadow-gls-dp-2"},
             ],
 
             "TailWind" : [
-                { "label": "Standard", "value": "bx-shadow"},
-                { "label": "Small", "value": "bx-shadow-sm"},
-                { "label": "Medium", "value": "bx-shadow-md"},
-                { "label": "Large", "value": "bx-shadow-lg"},
-                { "label": "xLarge", "value": "bx-shadow-xl"},
-                { "label": "Huge", "value": "bx-shadow-xxl"},
-            ],
-
-            "Glass" : [
-                { "label": "Small", "value": "px-glass-sm"},
-                { "label": "Medium", "value": "px-glass-md"},
+                { "label": "Standard", "value": "bx-shadow-tw"},
+                { "label": "Small", "value": "bx-shadow-tw-sm"},
+                { "label": "Medium", "value": "bx-shadow-tw-md"},
+                { "label": "Large", "value": "bx-shadow-tw-lg"},
+                { "label": "xLarge", "value": "bx-shadow-tw-xl"},
+                { "label": "Huge", "value": "bx-shadow-tw-xxl"},
             ],
         };
 

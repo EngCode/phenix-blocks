@@ -70,12 +70,13 @@
 };
 
 /*==== Radius Utilites ====*/
-.radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl, .radius-none, .radius-circle, .radius-height, .radius-rounded {
-    --radius : 0;
-    border-radius: var(--radius);
+.radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl,
+.radius-none, .radius-circle, .radius-height, .radius-rounded {
+    border-radius: var(--radius, 0);
 }
 
 /*==== Radius Sizes ====*/
+.radius-ty      {--radius: 2px;}
 .radius-sm      {--radius: 4px;}
 .radius-md      {--radius: 6px;}
 .radius-lg      {--radius: 8px;}

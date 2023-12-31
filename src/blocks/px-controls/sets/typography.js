@@ -83,20 +83,22 @@ export default class TypographySet extends Component {
 
         const text_shadows = {
             "Standard" : [
-                { "label": "Standard", "value": "tx-shadow-dp-1"},
-                { "label": "Small", "value": "tx-shadow-dp-2"},
-                { "label": "Medium", "value": "tx-shadow-dp-3"},
-                { "label": "Large", "value": "tx-shadow-dp-4"},
-                { "label": "xLarge", "value": "tx-shadow-dp-5"},
-                { "label": "Huge", "value": "tx-shadow-dp-x"},
+                { "label": "None",  "value": ""},
+                { "label": "DP-1", "value": "tx-shadow-dp-1"},
+                { "label": "DP-2", "value": "tx-shadow-dp-2"},
+                { "label": "DP-3", "value": "tx-shadow-dp-3"},
+                { "label": "DP-4", "value": "tx-shadow-dp-4"},
+                { "label": "DP-5", "value": "tx-shadow-dp-5"},
+                { "label": "DP-1Y", "value": "tx-shadow-dp-1y"},
             ],
+
             "TailWind" : [
-                { "label": "Standard", "value": "tx-shadow"},
-                { "label": "Small", "value": "tx-shadow-sm"},
-                { "label": "Medium", "value": "tx-shadow-md"},
-                { "label": "Large", "value": "tx-shadow-lg"},
-                { "label": "xLarge", "value": "tx-shadow-xl"},
-                { "label": "Huge", "value": "tx-shadow-xxl"},
+                { "label": "Standard", "value": "tx-shadow-tw"},
+                { "label": "Small", "value": "tx-shadow-tw-sm"},
+                { "label": "Medium", "value": "tx-shadow-tw-md"},
+                { "label": "Large", "value": "tx-shadow-tw-lg"},
+                { "label": "xLarge", "value": "tx-shadow-tw-xl"},
+                { "label": "TW-2XL", "value": "tx-shadow-tw-2xl"},
             ],
         };
 

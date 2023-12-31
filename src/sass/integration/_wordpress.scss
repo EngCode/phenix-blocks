@@ -91,16 +91,6 @@ body:not([class*="editor"]):not([class*="wp-admin"]) {
         position: absolute;
         z-index: var(--header-index);
     }
-    
-    /*==== Slider Animation ====*/
-    .has-animated-childs .splide__slide [data-animation] {
-        [data-animation] {visibility: hidden;}
-        /*==== Animations ====*/
-        &.is-active [data-animation] {
-            visibility: visible;
-            animation: attr(data-animation) 1s both;
-        }
-    }
 }
 
 /*==== Page Head ====*/

@@ -111,6 +111,20 @@
     list-style-type: none !important;
     margin: 0;
     position: relative
+
+    /*==== Animated Childs ====*/
+    [data-animation] {
+        visibility: hidden!important;
+        animation-name: var(--animation-exit, 'fadeOut');
+        animation-delay: var(--animation-delay, 0);
+        animation-duration: var(--animate-duration, 1s);
+    }
+
+    /*==== Animations ====*/
+    &.is-active [data-animation] {
+        visibility: visible!important;
+        animation-name: var(--animation-name, 'fadeIn');
+    }
 }
 
 .splide__slide img {

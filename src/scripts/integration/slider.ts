@@ -65,6 +65,9 @@ PhenixElements.prototype.slider = function (options?:{
                 breakpoints = options?.breakpoints || {},
                 direction = inline('data-direction') || options?.direction || Phenix(document).direction();
 
+            //====> Rewind Sliding and Fading <=====//
+            if (!rewind && type === "fade" || type === "slide") rewind = true;
+
             //====> Vertical Mode Fix <====//
             let verticalFix = (slides) => {
                 if (direction == 'ttb') {

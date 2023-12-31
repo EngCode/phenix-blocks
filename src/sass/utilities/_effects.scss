@@ -74,8 +74,9 @@ body:not(.block-editor-page):not(.editor-styles-wrapper) {
 
 /*==== Glass Shadows Effects ====*/
 [class*="bx-shadow-gls"] {backdrop-filter: blur(2px);}
-.bx-shadow-gls-dp-1 {--box-shadow: -4px -4px 12px 0px rgba(var(--shadow-color-dark), 0.3) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 2px 4px 8px 0px rgba(var(--shadow-color-dark), 0.4), 2px 2px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
-.bx-shadow-gls-dp-2 {--box-shadow: -8px -8px 12px 0px rgba(var(--shadow-color-dark), 0.5) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 4px 8px 8px 0px rgba(var(--shadow-color-dark), 0.4), 3px 3px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-1 {--box-shadow: -4px -4px 8px 0px rgba(var(--shadow-color-dark), 0.2) inset, 3px 3px 10px -1px rgba(var(--shadow-color-dark), 0.3), 1px 1px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -1px -1px 0px 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-2 {--box-shadow: -4px -4px 12px 0px rgba(var(--shadow-color-dark), 0.3) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 2px 4px 8px 0px rgba(var(--shadow-color-dark), 0.4), 2px 2px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-3 {--box-shadow: -8px -8px 12px 0px rgba(var(--shadow-color-dark), 0.5) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 4px 8px 8px 0px rgba(var(--shadow-color-dark), 0.4), 3px 3px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
 
 /*==== Text Shadows ====*/
 .tx-shadow-dp-1  {text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);}

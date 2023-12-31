@@ -14,15 +14,27 @@ import Phenix, { PhenixElements } from "..";
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
     //===> Colors Variants for Elements <===//
-    Phenix("[class*='px-glass-'], .pds-sc-props").forEach((element:HTMLElement) => {
+    Phenix("[class*='bx-shadow-gls'], .pds-sc-props").forEach((element:HTMLElement) => {
         //===> Already Done <===//
         if (element.matches('.pds-sc-props-done')) return;
 
         //====> Color Transformer <====//
         const transformColor = (color: string, amount: number) => {
             let rgb = color.match(/\d+/g).map(Number);
+            if (rgb.length > 4) rgb.splice(-(rgb.length - 3));
             return rgb.map(c => Math.max(0, Math.min(255, c + amount))).join(', ');
         };
+
+        //====> Color Contrast Checker <====//
+        const isLightOrDark = (color:string) => {
+            //===> get Colors Range <====//
+            let all = color.split(','),
+                r = parseInt(all[0]), g = parseInt(all[1]), b = parseInt(all[2]);
+            //===> Calculate the luminance of the color <===//
+            let luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            //===> Return 'light' or 'dark' based on the luminance <===//
+            return luminance;
+        }
 
         //====> get the Background Color <====//
         let bgColor = window.getComputedStyle(element).backgroundColor,
@@ -33,18 +45,28 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         //====> Check if has Background Gradient <====//
         if (bgImage && bgImage.includes('gradient') && bgImage.match(/gradient\((.*?)\)/)) {
             //===> Check for gradient Match colors <===//
-            let colors = bgImage.match(/gradient\((.*?)\)/)[1]?.split(', '); 
+            let colors = [];
+
+            //===> Get Colors <===//
+            bgImage.match(/rgb\(\d{1,3}, \d{1,3}, \d{1,3}\)/g).forEach((color:string) => {
+                colors.push(color.replace('rgb', '').replace('(', '').replace(')', ''));
+            });
+
             //===> Get the colors from the gradient <===//
-            lighterRgb = transformColor(colors[0], -90),
-            darkerRgb  = transformColor(colors[colors.length - 1], 80);
+            const colorOne = isLightOrDark(colors[colors.length - 1]),
+                  colorTwo = isLightOrDark(colors[0]);
+
+            //===> Set the Colors <===//
+            darkerRgb  = transformColor(colorOne > colorTwo ? colors[colors.length - 1] : colors[0], -95);
+            lighterRgb = transformColor(colorOne < colorTwo ? colors[colors.length - 1] : colors[0], 95);
         }
 
         //====> Check if has Background Color <====//
         else if (bgColor) {
             //====> Create a darker shade by subtracting 90 from each color component <====//
-            darkerRgb = transformColor(bgColor, -90);
+            darkerRgb = transformColor(bgColor, -95);
             //====> Create a lighter shade by adding 80 to each color component <====//
-            lighterRgb = transformColor(bgColor, 80);
+            lighterRgb = transformColor(bgColor, 95);
         }
 
         //====> Add the Colors to the CSS Properties <====//

@@ -82,9 +82,9 @@ PhenixElements.prototype.animations = function (options?:{
                 //====> Animations Classes <====//
                 element.classList.add('view-active', animation);
                 //====> Check if the Animation Ended <====//
-                element.addEventListener('animationend', function() {
+                setTimeout(function() {
                     element.classList.remove(animation);
-                });
+                }, duration+1000);
             }
 
             //====> Check for View <====//

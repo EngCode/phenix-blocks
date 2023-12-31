@@ -44,22 +44,22 @@ function pds_taxonomies_render($block_attributes, $content) {
                 if ($option_name === 'slider') {
                     //===> Add Slider Name <===//
                     $grid_classes .= "px-slider ";
-                    //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
-                    if (!isset($block_attributes['slider']['type']) || $block_attributes['slider']['type'] === 'fade') {
-                        $grid_classes = str_replace('row', '', $grid_classes);
-                    }
                     //===> if not-related option return void <===//
                     if (in_array($sub_option, ["align", "nowrap", "masonry"])) { continue; }
                     //===> add data attributes <===//
                     $slider_attrs .= 'data-'.$sub_option.'="'.$sub_value.'"';
                 }
-
+                
                 //===> Flexbox Options <===//
                 elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
                     //===> Slider Mode <===//
                     if (isset($block_attributes['flexbox']['slider']))  {
                         $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
                         $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
+                        //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
+                        if (!isset($block_attributes['slider']['type']) || $block_attributes['slider']['type'] === 'fade') {
+                            $grid_classes = str_replace('row', '', $grid_classes);
+                        }
                     } else {
                         //===> add Classes <===//
                         $grid_classes .= ' ' . str_replace('cols', 'row-cols', $sub_option) . colsRender($sub_value);

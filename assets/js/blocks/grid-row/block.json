@@ -24,10 +24,6 @@
     "alignWide": true
   },
   "attributes": {
-    "metadata": {
-      "type": "object",
-      "default": {}
-    },
     "preview": {
       "type": "boolean",
       "default": false

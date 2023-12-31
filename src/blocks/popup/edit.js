@@ -88,11 +88,12 @@ export default function Edit({ attributes, setAttributes }) {
     const set_flexbox = (target, screen) => {
         //==> Get Current <==//
         const name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
-        const flexbox = attributes.flexbox;
+        const flexbox = { ...attributes.flexbox };
         //==> Add the Value <==//
         flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : valueHandler(target);
         //==> Set Value <==//
-        setAttributes({ flexbox: {...flexbox} });
+        const newAttributes = { ...attributes, flexbox: flexbox };
+        setAttributes(newAttributes);
     };
 
     //===> View Script <===//

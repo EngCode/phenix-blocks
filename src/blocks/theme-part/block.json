@@ -11,19 +11,16 @@
         "alignWide": true
 	},
     "attributes" : {
-        "metadata": {
-            "type": "object",
-            "default": {}
-        },
         "preview" : {
             "type": "boolean",
             "default": false
         },
+
         "part_name" : {
             "type": "string",
             "default": "_placeholder"
         },
-		
+
 		"part_options" : {
 			"type": "object",
 			"default": {}

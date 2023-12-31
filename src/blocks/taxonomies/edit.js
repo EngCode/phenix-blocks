@@ -14,15 +14,7 @@ import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
 import ScreensTabs from "../px-controls/tabs";
-import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
-import TypographySet from '../px-controls/sets/typography';
-import AnimationsSet from '../px-controls/sets/animations';
-import PhenixComponentsBuilder from '../px-controls/panel-scripts';
-
-import PaddingSet from '../px-controls/sets/padding';
-import MarginSet from '../px-controls/sets/margin';
-import PositionSet from '../px-controls/sets/position';
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -95,11 +87,12 @@ export default function Edit(props) {
     const set_flexbox = (target, screen) => {
         //==> Get Current <==//
         const name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
-        const flexbox = attributes.flexbox;
+        const flexbox = { ...attributes.flexbox };
         //==> Add the Value <==//
         flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : valueHandler(target);
         //==> Set Value <==//
-        setAttributes({ flexbox: {...flexbox} });
+        const newAttributes = { ...attributes, flexbox: flexbox };
+        setAttributes(newAttributes);
     };
 
     //===> Get Properties <===//

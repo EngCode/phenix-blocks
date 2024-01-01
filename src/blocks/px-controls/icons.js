@@ -33,6 +33,7 @@ export default class PhenixIcons extends Component {
             { value: 'fass', label: 'Sharp Solid' },
             { value: 'fasr', label: 'Sharp Regular' },
         ],
+
         icons_version : "fa6",
         return_type: null
     };
@@ -49,7 +50,7 @@ export default class PhenixIcons extends Component {
 
             //===> Get Icons Version <===//
             if (options.pds_icon_font) {
-                icons_version = options.pds_icon_font.replace("fontawesome-", "fa");
+                icons_version = options.pds_icon_font.replace("fontawesome-", "fa").replace("-free","").replace("-pro","");
             }
 
             //===> Define Icons File <===//

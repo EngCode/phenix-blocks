@@ -271,26 +271,26 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> Options Group <===*/}
                         <div className='flexbox gpy-5 gpy-fix pdx-5'>
                             {/*===> Option Control <===*/}
-                            <OptionControl key={`icon-large-${uniqueKey}`} name={`icon-large`} value="icon-lg" checked={attributes.style['icon-large'] || false} onChange={set_style} type='checkbox' className='tiny me-10'>
+                            <OptionControl key={`icon-large-${uniqueKey}`} name={`icon-large`} value="icon-lg" checked={attributes.style['icon-large'] || false} onChange={set_style} type='checkbox' className='small me-10'>
                                 <span className='fas fa-check radius-circle'>{__("Large", "pds-blocks")}</span>
                             </OptionControl>
-                            {attributes.type.includes('icon') ? <>
+                            {attributes.type.includes('icon') || attributes.type.includes('square') ? <>
                                 {/*===> Option Control <===*/}
-                                <OptionControl key={`iconLabel-${uniqueKey}`} name={`iconLabel`} value="boolean" checked={attributes.iconLabel || false} onChange={set_value} type='checkbox' className='tiny me-10'>
+                                <OptionControl key={`iconLabel-${uniqueKey}`} name={`iconLabel`} value="boolean" checked={attributes.iconLabel || false} onChange={set_value} type='checkbox' className='small me-10'>
                                     <span className='fas fa-check radius-circle'>{__("Labeled", "pds-blocks")}</span>
                                 </OptionControl>
                                 {/*===> Option Control <===*/}
-                                <OptionControl key={`responsive-btn-${uniqueKey}`} name={`responsive-btn`} value="responsive-btn" checked={attributes.style['responsive-btn'] || false} onChange={set_style} type='checkbox' className='tiny'>
+                                <OptionControl key={`responsive-btn-${uniqueKey}`} name={`responsive-btn`} value="responsive-btn" checked={attributes.style['responsive-btn'] || false} onChange={set_style} type='checkbox' className='small'>
                                     <span className='fas fa-check radius-circle'>{__("Responsive", "pds-blocks")}</span>
                                 </OptionControl>
                                 {/*===> Option Control <===*/}
-                                <OptionControl key={`iconEnd-${uniqueKey}`} name={`iconEnd`} value="boolean" checked={attributes.iconEnd || false} onChange={set_value} type='checkbox' className='tiny me-10'>
-                                    <span className='fas fa-check radius-circle'>{__("Revers POS", "pds-blocks")}</span>
+                                <OptionControl key={`iconEnd-${uniqueKey}`} name={`iconEnd`} value="boolean" checked={attributes.iconEnd || false} onChange={set_value} type='checkbox' className='small me-10'>
+                                    <span className='fas fa-check radius-circle'>{__("Reverse Position", "pds-blocks")}</span>
                                 </OptionControl>
                             </> : null }
                         </div>
                         {/*===> Label Input <===*/}
-                        {attributes.type.includes('square') ? <div className='mb-15'>
+                        {attributes.type.includes('square') ? <div className='mb-15 mt-15'>
                             <TextControl key={`label-${uniqueKey}`} label={__("Label Text", "pds-blocks")} value={ attributes.label } onChange={set_label} />
                         </div> : null }
                     </li>

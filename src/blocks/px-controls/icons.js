@@ -17,14 +17,23 @@ export default class PhenixIcons extends Component {
     state = {
         icon_type : "far",
         icon_name : "fa-icons",
-        icons_file : "fa5-free.json",
+        icons_file : "fa6-pro.json",
         icons_list : [],
         icons_types : [
-            { value: 'far',   label: 'Regular' },
-            { value: 'fas',   label: 'Solid' },
-            { value: 'fab',   label: 'Brands' }
+            { value: 'fab', label: 'Brands' },
+
+            { value: 'fat', label: 'Thin' },
+            { value: 'fal', label: 'Light' },
+            { value: 'far', label: 'Regular' },
+            { value: 'fas', label: 'Solid' },
+            { value: 'fad', label: 'Duotone' },
+
+            { value: 'fast', label: 'Sharp Thin' },
+            { value: 'fasl', label: 'Sharp Light' },
+            { value: 'fass', label: 'Sharp Solid' },
+            { value: 'fasr', label: 'Sharp Regular' },
         ],
-        icons_version : "5-free",
+        icons_version : "fa6",
         return_type: null
     };
 
@@ -39,57 +48,35 @@ export default class PhenixIcons extends Component {
                 icons_list = this.state.icons_list;
 
             //===> Get Icons Version <===//
-            if (options.pds_icon_font) icons_version = options.pds_icon_font.replace("fontawesome-", "");
+            if (options.pds_icon_font) {
+                icons_version = options.pds_icon_font.replace("fontawesome-", "fa");
+            }
 
             //===> Define Icons File <===//
-            if (this.props.value.includes("fab")) { icons_file = "fa5-brands.json"; } 
-            else { icons_file = "fa5-free.json"; }
+            if (this.props.value.includes("fab")) {
+                icons_file = `${icons_version}-brands.json`;
+            } else {
+                icons_file = `${icons_version}-pro.json`;
+            }
 
             //===> Version Correct <===//
             if(icons_version.includes("6")) icons_file = icons_file.replace("5", "6");
-            if(icons_version.includes("pro")) icons_file = icons_file.replace("free", "pro");
 
             //===> Set Icon Type <===//
             const icon_value = this.props.value.split(" ");
 
-            //===> Sharp Type Fallback <===//
-            if (icon_value.includes("fa-sharp")) {
-                //===> Reset Icons List <===//
-                if (icon_type !== `${icon_value[0]} ${icon_value[1]}`) icons_list = [];
+            //===> Reset Icons List <===//
+            if (icon_type !== icon_value[0]) icons_list = [];
 
-                //===> Set Icon Type <===//
-                icon_name = icon_value[2];
-                icon_type = `${icon_value[0]} ${icon_value[1]}`;
-            } else {
-                //===> Reset Icons List <===//
-                if (icon_type !== icon_value[0]) icons_list = [];
-
-                //===> Set Icon Type <===//
-                icon_name = icon_value[1];
-                icon_type = icon_value[0];
-            }
-
-            //===> Add the Pro Types <===//
-            if (icons_file.includes("pro") && this.state.icons_types.length < 3) {
-                let icons_types = this.state.icons_types.slice();
-                icons_types.push({ value: "fal", label: "Light" });
-                icons_types.push({ value: "fad", label: "Duotone" });
-                icons_types = icons_types.filter((item,index) => icons_types.indexOf(item) === index);
-                //===> for Version 6 <===//
-                if (icons_file.includes("6")) {
-                    icons_types.push({value: "fa-sharp fa-regular", label: "Regular Sharp"});
-                    icons_types.push({value: "fa-sharp fa-solid", label: "Solid Sharp" });
-                }
-
-                this.setState({ icons_types });
-            }
+            //===> Set Icon Type <===//
+            icon_name = icon_value[1];
+            icon_type = icon_value[0];
 
             //===> Start Fetching <===//
             if (icons_list.length < 1) {
                 fetch(`${PDS_WP_KEY.json}/${icons_file}`).then((res) => res.json()).then((json) => {
                     //===> Assign Icons List <===//
                     if (json.icons !== icons_list) icons_list = json.icons;
-        
                     //===> Update State <===//
                     this.setState({icon_type, icon_name, icons_file, icons_list, icons_version});
                 });
@@ -109,7 +96,6 @@ export default class PhenixIcons extends Component {
     render () {
         //===> Properties <===//
         const { label, value, version, onChange } = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
 
         //===> Returned Value <===//
         let options = {type: this.state.icon_type, value: this.state.icon_name};

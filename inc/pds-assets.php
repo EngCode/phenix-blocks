@@ -90,10 +90,6 @@ if (!function_exists('phenix_assets')) :
             ),
         ];
 
-        //====> Correct Icons-Font Version <====//
-        if (strpos($current_fonts['icon'], "fontawesome-6") !== false) { $icons_font = str_replace("5", "6", $current_fonts['icon']); } 
-        else { $icons_font = $current_fonts['icon']; }
-
         //===> Loop on the Fonts <===//
         foreach ($current_fonts['text'] as $key => $value) {
             //===> Define the Font File <===//
@@ -108,14 +104,21 @@ if (!function_exists('phenix_assets')) :
             if ($key === "secondary") $sec_font  = trim(str_replace("-", " ", $value));
         }
 
-        //===> Add Fonts Names <===//
+        //===> Validate and Clean-up Files Names from Spaces and replace it with dash (-) <===//
+        $final_files['icons_name'] = str_replace("-", " ", $icons_font);
         $final_files['primary_name'] = ucwords(str_replace("-", " ", $prim_font));
         $final_files['secondary_name'] = ucwords(str_replace("-", " ", $sec_font));
 
-        //====> Filter Icons-Font Name <====//
-        $final_files['icons_name'] = str_replace("-", " ", $icons_font);
-        $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
-        $final_files['icons_name'] = ucwords(str_replace("free", "pro", $final_files['icons_name']));
+        //===> Fix Fontawesome Family Name <===//
+        if (strpos($current_fonts['icon'], "fontawesome") !== false) {
+            //====> Filter Icons-Font Name <====//
+            $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
+            //===> Check if the Font is Pro Family and fix it <===//
+            if (strpos($current_fonts['icon'], "pro") === false) {
+                $final_files['icons_name'] = $final_files['icons_name']." Pro";
+                $final_files['icons_name'] = ucwords(str_replace("free", "pro", $final_files['icons_name']));
+            }
+        }
 
         //===> Load Icon Font <===//
         $icons_font = trim(preg_replace("/(-free|-pro)/i", "", $icons_font));

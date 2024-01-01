@@ -16,10 +16,8 @@
 
     //===> Icon Fonts <===//
     $fonts_list_icon = [
-        "fontawesome-5-free" => "Font Awesome 5.14 Free",
-        "fontawesome-5-pro" => "Font Awesome 5.14 Pro",
-        "fontawesome-6-free" => "Font Awesome 6.3 Free",
-        "fontawesome-6-pro" => "Font Awesome 6.3 Pro",
+        "fontawesome-5-pro" => "Font Awesome v5.14",
+        "fontawesome-6-pro" => "Font Awesome v6.5.1",
     ];
 
     //===> Get Current Fonts <===//

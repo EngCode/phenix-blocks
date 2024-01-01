@@ -98,8 +98,6 @@ PhenixElements.prototype.animations = function (options?:{
                 current_delay = 0;
     
             group?.querySelectorAll('[data-animation]:not([data-delay])').forEach((item, index) => {
-                let prev_item = index-1;
-    
                 if (item !== element) {
                     if (!item.style.animationDelay) {
                         current_delay += duration;
@@ -140,12 +138,10 @@ PhenixElements.prototype.animations = function (options?:{
         //===> Append Script <===//
         document.head.appendChild(animations_loader);
 
-        //====> When Loaded Run Sliders <====//
+        //====> When Loaded Run <====//
         animations_loader.addEventListener("load", () => {
             viewPort_Handler;
-            /*====> Unblock Fonts <====*/
             animations_loader.setAttribute('media', 'all');
-            // document.head.querySelectorAll('.px-css-file').forEach(style => style.setAttribute('media', 'all'));
         });
 
         //====> When Error Re-Load <====//

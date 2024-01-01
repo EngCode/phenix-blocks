@@ -32,15 +32,26 @@ export default class EffectsSet extends Component {
                 { "label": "Gradient-R", "value": "pds-hvr-gradient-move-revert"},
             ],
 
-            "Scaling" : [
-                { "label": "ScaleBy 10%", "value": "pds-hvr-scale-10"},
-                { "label": "ScaleBy 15%", "value": "pds-hvr-scale-15"},
-                { "label": "ScaleBy 25%", "value": "pds-hvr-scale-25"},
+            "Scale Up" : [
+                { "label": "Grow-05%", "value": "pds-hvr-scale-05"},
+                { "label": "Grow-10%", "value": "pds-hvr-scale-10"},
+                { "label": "Grow-15%", "value": "pds-hvr-scale-15"},
+                { "label": "Grow-25%", "value": "pds-hvr-scale-25"},
             ],
-            
+
+            "Shrink Down" : [
+                { "label": "Shrink-05%", "value": "pds-hvr-scale--05"},
+                { "label": "Shrink-10%", "value": "pds-hvr-scale--10"},
+                { "label": "Shrink-15%", "value": "pds-hvr-scale--15"},
+                { "label": "Shrink-25%", "value": "pds-hvr-scale--25"},
+            ],
+
+            "Attention" : [
+                { "label": "Highlight", "value": "pds-hvr-highlight"},
+            ],
+
             "Animate CSS" : [
                 { "label": "Floating", "value": "pds-hvr-floating"},
-                { "label": "Highlight", "value": "pds-hvr-highlight"},
                 { "label": "Shaking", "value": "pds-hvr-ringing"},
                 { "label": "Bounce", "value": "pds-hvr-bounce"},
                 { "label": "Flash", "value": "pds-hvr-flash"},
@@ -105,15 +116,15 @@ export default class EffectsSet extends Component {
             <div className={`row gpx-10 gpy-15`}>
                 {/*===> Hover Effects <===*/}
                 <div className='col col-12'>
-                    <PhenixSelect name="hover-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} multiple={true} label={__("Hover Effects", "pds-blocks")} value={typeof(attributes.style['hover-effect']) === 'string' ? [attributes.style['hover-effect']] : attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
+                    <PhenixSelect name="hover-effect" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" search={true} multiple={true} label={__("Hover Effects", "pds-blocks")} value={typeof(attributes.style['hover-effect']) === 'string' ? [attributes.style['hover-effect']] : attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
                 </div>
                 {/*===> Animation Effects <===*/}
                 <div className='col col-12'>
-                    <PhenixSelect name="animated-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} multiple={true} label={__("Always Animated", "pds-blocks")} value={typeof(attributes.style['animated-effect']) === 'string' ? [attributes.style['animated-effect']] : attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
+                    <PhenixSelect name="animated-effect" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" search={true} multiple={true} label={__("Always Animated", "pds-blocks")} value={typeof(attributes.style['animated-effect']) === 'string' ? [attributes.style['animated-effect']] : attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
                 </div>
                 {/*===> Box Shadow <===*/}
                 <div className='col col-12'>
-                    <PhenixSelect name="box-shadow" size="normal" placeholder={__("None", "pds-blocks")} label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
+                    <PhenixSelect name="box-shadow" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
                 </div>
             </div>
             {/*===> // Layout Group <===*/}

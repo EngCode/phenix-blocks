@@ -6,27 +6,26 @@
 .transition-fast {@extend %fast-motion;}
 .transition-smooth {@extend %smooth-motion;}
 .transition-slow {@extend %slow-motion;}
+[class*="pds-hvr"] {transition: all 0.3s ease-in-out;}
 
 /*==== Scaling Hover Effects ====*/
+.pds-hvr-scale-05:hover {transform: scale(1.05);}
 .pds-hvr-scale-10:hover {transform: scale(1.10);}
 .pds-hvr-scale-15:hover {transform: scale(1.15);}
 .pds-hvr-scale-25:hover {transform: scale(1.25);}
-.pds-hvr-scale-10, .pds-hvr-scale-15, .pds-hvr-scale-25 {transition: transform 0.3s ease-in-out;}
+.pds-hvr-scale--05:hover {transform: scale(0.95);}
+.pds-hvr-scale--10:hover {transform: scale(0.90);}
+.pds-hvr-scale--15:hover {transform: scale(0.85);}
+.pds-hvr-scale--25:hover {transform: scale(0.75);}
 
 /*==== Background Hover Effects ====*/
-.pds-hvr-gradient-move {
+.pds-hvr-gradient-move, .pds-hvr-gradient-move-revert {
     background-size: 100%;
     background-position: 0 0;
-    transition: all 0.3s linear;
-    &:hover {background-size: 300%;}
 }
 
-.pds-hvr-gradient-move-revert {
-    background-size: 100%;
-    background-position: 0 0;
-    transition: all 0.3s linear;
-    &:hover {background-size: 200%; background-position: 100% 0;}
-}
+.pds-hvr-gradient-move:hover {background-size: 300%;}
+.pds-hvr-gradient-move-revert:hover {background-size: 200%; background-position: 100% 0;}
 
 /*==== Attention ====*/
 *:has(> .pds-hvr-highlight) > * {transition: opacity 0.3s ease-in-out;}
@@ -37,7 +36,7 @@
 
 /*==== Ringing Effect ====*/
 .pds-hvr-ringing:hover {animation: shaking 0.5s ease-in-out;}
-.pds-animate-ringing {animation: shakingInf 3s ease-in-out infinite;}
+.pds-animate-ringing   {animation: shakingInf 3s ease-in-out infinite;}
 
 /*==== Hover Effects ====*/
 .pds-hvr-tada:hover    {animation: tada 0.7s ease-in-out;}

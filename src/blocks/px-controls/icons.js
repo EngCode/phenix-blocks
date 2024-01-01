@@ -19,6 +19,7 @@ export default class PhenixIcons extends Component {
         icon_name : "fa-icons",
         icons_file : "fa6-pro.json",
         icons_list : [],
+
         icons_types : [
             { value: 'fab', label: 'Brands' },
 
@@ -67,7 +68,8 @@ export default class PhenixIcons extends Component {
             const icon_value = this.props.value.split(" ");
 
             //===> Reset Icons List <===//
-            if (icon_type !== icon_value[0]) icons_list = [];
+            if (icon_type.includes('fab') && !icon_value[0].includes('fab')) icons_list = [];
+            // if (icon_type !== icon_value[0]) icons_list = [];
 
             //===> Set Icon Type <===//
             icon_name = icon_value[1];

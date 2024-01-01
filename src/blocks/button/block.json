@@ -56,7 +56,7 @@
 
 		"size": {
 			"type": "string",
-			"default": "normal"
+			"default": "medium"
 		},
 
 		"outline": {

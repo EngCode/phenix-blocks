@@ -121,7 +121,7 @@ export default function Edit({ attributes, setAttributes }) {
     const btn_sizes = [
         { label: __("XS", "pds-blocks"), value: 'tiny' },
         { label: __("SM", "pds-blocks"), value: 'small' },
-        { label: __("MD", "pds-blocks"), value: '' },
+        { label: __("MD", "pds-blocks"), value: 'medium' },
         { label: __("LG", "pds-blocks"), value: 'large' },
         { label: __("XL", "pds-blocks"), value: 'xlarge' },
     ];

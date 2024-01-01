@@ -27,15 +27,20 @@ export default class EffectsSet extends Component {
         const hover_effect = {
             "Default": [{ "label": "None", "value": ""}],
 
-            "Cool & Slow" : [
+            "Background" : [
+                { "label": "Gradient-L", "value": "pds-hvr-gradient-move"},
+                { "label": "Gradient-R", "value": "pds-hvr-gradient-move-revert"},
+            ],
+
+            "Scaling" : [
                 { "label": "ScaleBy 10%", "value": "pds-hvr-scale-10"},
                 { "label": "ScaleBy 15%", "value": "pds-hvr-scale-15"},
                 { "label": "ScaleBy 25%", "value": "pds-hvr-scale-25"},
-                { "label": "Highlight", "value": "pds-hvr-highlight"},
-                { "label": "Floating", "value": "pds-hvr-floating"},
             ],
-
-            "Attention Seekers" : [
+            
+            "Animate CSS" : [
+                { "label": "Floating", "value": "pds-hvr-floating"},
+                { "label": "Highlight", "value": "pds-hvr-highlight"},
                 { "label": "Shaking", "value": "pds-hvr-ringing"},
                 { "label": "Bounce", "value": "pds-hvr-bounce"},
                 { "label": "Flash", "value": "pds-hvr-flash"},
@@ -76,8 +81,9 @@ export default class EffectsSet extends Component {
             ],
 
             "Glass Effects" : [
-                { "label": "Small", "value": "bx-shadow-gls-dp-1"},
-                { "label": "Medium", "value": "bx-shadow-gls-dp-2"},
+                { "label": "Tiny", "value": "bx-shadow-gls-dp-1"},
+                { "label": "Small", "value": "bx-shadow-gls-dp-2"},
+                { "label": "Medium", "value": "bx-shadow-gls-dp-3"},
             ],
 
             "TailWind" : [
@@ -98,15 +104,15 @@ export default class EffectsSet extends Component {
             {/*===> Layout Group <===*/}
             <div className={`row gpx-10 gpy-15`}>
                 {/*===> Hover Effects <===*/}
-                <div className='col col-6'>
-                    <PhenixSelect name="hover-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} label={__("Hover", "pds-blocks")} value={attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
+                <div className='col col-12'>
+                    <PhenixSelect name="hover-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} multiple={true} label={__("Hover Effects", "pds-blocks")} value={typeof(attributes.style['hover-effect']) === 'string' ? [attributes.style['hover-effect']] : attributes.style['hover-effect']} onChange={mainSetter} options={hover_effect} />
                 </div>
                 {/*===> Animation Effects <===*/}
-                <div className='col col-6'>
-                    <PhenixSelect name="animated-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} label={__("Animated", "pds-blocks")} value={attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
+                <div className='col col-12'>
+                    <PhenixSelect name="animated-effect" size="normal" placeholder={__("None", "pds-blocks")} search={true} multiple={true} label={__("Always Animated", "pds-blocks")} value={typeof(attributes.style['animated-effect']) === 'string' ? [attributes.style['animated-effect']] : attributes.style['animated-effect']} onChange={mainSetter} options={animations_effect} />
                 </div>
                 {/*===> Box Shadow <===*/}
-                <div className='col col-6'>
+                <div className='col col-12'>
                     <PhenixSelect name="box-shadow" size="normal" placeholder={__("None", "pds-blocks")} label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
                 </div>
             </div>

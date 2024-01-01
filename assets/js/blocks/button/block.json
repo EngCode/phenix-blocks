@@ -47,7 +47,7 @@
     },
     "size": {
       "type": "string",
-      "default": "normal"
+      "default": "medium"
     },
     "outline": {
       "type": "string",

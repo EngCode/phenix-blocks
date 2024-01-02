@@ -133,7 +133,10 @@
 }
 
 /*==== Phenix Modal ====*/
-.px-modal[class*="overlay"]::before {display: none!important;}
+.px-modal {
+    overscroll-behavior: none;
+    &[class*="overlay"]::before {display: none!important;}
+}
 
 /*==== Scaling ====*/
 .scale-050 {transform: scale(0.50);}

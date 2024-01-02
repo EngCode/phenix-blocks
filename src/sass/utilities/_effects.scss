@@ -8,6 +8,13 @@
 .transition-slow {@extend %slow-motion;}
 [class*="pds-hvr"] {transition: all 0.3s ease-in-out;}
 
+/*==== Scrolling Effects ====*/
+.px-section-snap {
+    overflow-y: auto;
+    scroll-snap-align: start;
+    scroll-snap-type: y mandatory;
+}
+
 /*==== Scaling Hover Effects ====*/
 .pds-hvr-scale-05:hover {transform: scale(1.05);}
 .pds-hvr-scale-10:hover {transform: scale(1.10);}

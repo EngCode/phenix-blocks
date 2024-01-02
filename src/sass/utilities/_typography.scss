@@ -75,6 +75,13 @@ h6 {font-size: REM(17);}
 .tx-underline  {text-decoration: underline;}
 .tx-capitalize {text-transform: capitalize;}
 .tx-line-through {text-decoration: line-through;}
+.tx-line-clamp {
+    --max-lines: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-lines);
+        overflow: hidden;
+}
 
 /*==== Font Weight ====*/
 .weight-thin   {font-weight: var(--thin-weight);}

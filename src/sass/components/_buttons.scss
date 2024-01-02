@@ -163,7 +163,7 @@
             --background : transparent;
             --color-hvr : var(#{'--'+$text});
             --color : var(#{'--'+$prefix+'-color'});
-            --border-color: var(#{'--'+$prefix+'-color'});
+            --border-color: currentColor;
             --background-hvr: var(#{'--'+$prefix+'-color'});
         }
     }
@@ -195,7 +195,7 @@
             --color : white;
             --color-hvr : var(--dark-color);
             --background : transparent;
-            --border-color: white;
+            --border-color: currentColor;
             --background-hvr: white;
         }
     }

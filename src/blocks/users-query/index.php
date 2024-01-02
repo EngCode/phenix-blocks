@@ -57,7 +57,7 @@ function px_users_query_render($block_attributes, $content) {
                         $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
                         $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
                         //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
-                        if (!isset($block_attributes['slider']['type']) || $block_attributes['slider']['type'] === 'fade') {
+                        if (isset($block_attributes['slider']['type']) && $block_attributes['slider']['type'] === 'fade') {
                             $grid_classes = str_replace('row', '', $grid_classes);
                         }
                     } else {

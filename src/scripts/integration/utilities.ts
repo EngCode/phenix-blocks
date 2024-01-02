@@ -110,14 +110,14 @@ PhenixElements.prototype.utilities = function (options?:{
         });
 
         //====> Max Text Length <====//
-        Phenix('[data-max-text]').forEach((element:any) => {
-            //===> Element Data <===//
-            let text = element.textContent,
-                max  = parseInt(element.getAttribute('data-max-text'));
+        // Phenix('[data-max-text]').forEach((element:any) => {
+        //     //===> Element Data <===//
+        //     let text = element.textContent,
+        //         max  = parseInt(element.getAttribute('data-max-text'));
     
-            //===> check count <===//
-            if (text.length > max) element.textContent = text.slice(0, max) + '...';
-        });
+        //     //===> check count <===//
+        //     if (text.length > max) element.textContent = text.slice(0, max) + '...';
+        // });
 
         //====> Custom Colored Titles <====//
         const pds_words_wrapper = (str, classes, num) => {

@@ -1,7 +1,7 @@
 <?php
 /**
   * Plugin Name: Phenix Blocks
-  * Plugin URI: https://github.com/EngCode/phenix-blockss
+  * Plugin URI: https://github.com/EngCode/phenix-blocks
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
   * Version: 0.9.9
   * Author: Abdullah.Ramadan
@@ -10,7 +10,7 @@
   * License URI: https://www.gnu.org/licenses/gpl-2.0.html
   * Text Domain: pds-blocks
   * Domain Path: /languages
-  **/
+**/
   
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;

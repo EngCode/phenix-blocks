@@ -186,6 +186,7 @@ html, body {
     font-size: var(--current-rem);
     line-height: var(--line-height);
     font-family: var(--secondary-font), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-variant-numeric: tabular-nums;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }

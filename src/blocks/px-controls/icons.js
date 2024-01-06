@@ -57,14 +57,14 @@ export default class PhenixIcons extends Component {
                 icons_version = options.pds_icon_font.replace("fontawesome-", "fa").replace("-free","").replace("-pro","");
             }
 
-            //===> Define Icons File <===//
+            //===> Define FontAwesome Icons File <===//
             if (this.props.value.includes("fab")) {
                 icons_file = `${icons_version}-brands.json`;
             } else {
                 icons_file = `${icons_version}-pro.json`;
             }
 
-            //===> Version Correct <===//
+            //===> FontAwesome Version Correct <===//
             if(icons_version.includes("6")) icons_file = icons_file.replace("5", "6");
 
             //===> Set Icon Type <===//
@@ -210,11 +210,15 @@ export default class PhenixIcons extends Component {
         const iconsFilter = changed => {
             //===> Define Data <===//
             let input = changed.target,
-                value = input.value,
-                options = Phenix(input).ancestor(".options-list"),
-                buttons = options.querySelectorAll(".icon-btn-item");
-            //===> Find the searched icon and hide the rest <===//
-            buttons.forEach(button => button.getAttribute('data-value').includes(value) ? button.classList.remove("hidden") : button.classList.add("hidden"));
+                icons_list = this.state.icons_list,
+                value = input.value;
+
+            //===> Find the searched icon and remove the reset <===//
+            let searchedList = icons_list.filter(icon => icon.includes(value));
+            
+            //===> Set the New List <===//
+            if (value.length > 0)  this.setState({icons_list: searchedList, icons_page: 1});
+            else this.setState({icons_list: [], icons_page: 1});
         };
 
         //===> Component Design <===//
@@ -239,11 +243,11 @@ export default class PhenixIcons extends Component {
 
                 {/*===> Panel <===*/}
                 <div className={`flexbox align-center tx-align-center options-list pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-25 radius-md radius-bottom hidden fluid`}>
-                    <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center mb-5' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
+                    <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
                     {/*===> Buttons List <===*/}
-                    <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-b" style={{gap:"10px", maxHeight: "220px"}}>
+                    <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-y" style={{gap:"10px", maxHeight: "220px"}}>
                         {this.state.icons_list.length > 0 ? 
-                            makeButtons(this.state.icons_pages[this.state.icons_page], this.state.icon_type) : "Loading..."
+                            makeButtons(this.state.icons_pages[this.state.icons_page], this.state.icon_type) : "No Icons Found."
                         }
                     </div>
                     {/*===> Pagination <===*/}

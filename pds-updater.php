@@ -36,7 +36,7 @@ class PDS_GitHub_Updater {
         //===> Set Options <===//
 		$this->set_defaults();
 
-        //===> Check for Site Update Plugins <===//
+        //===> Hook into Site Update Plugins <===//
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'api_check'));
 		//===> Hook into the plugin details screen <===//
 		add_filter( 'plugins_api', array($this, 'get_plugin_info'), 10, 3);

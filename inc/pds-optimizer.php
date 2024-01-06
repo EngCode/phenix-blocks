@@ -12,6 +12,10 @@
  ** 03 - Styles Optimizer
  ** 04 - Remove Admin Bar for Users
  ** 05 - Contact Form 7 Optimizer
+ ** 06 - Remove Emoji Support
+ ** 07 - Restrict Login Attempts
+ ** 08 - S.E.O. Images Metadata Generator
+ ** 09 - Cleanup Navigation Menus
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -154,6 +158,20 @@ if (!is_admin()) {
  
         add_action('wp_enqueue_scripts', 'wpcf7_deregister_scripts', 100);
     }
+
+    //===> Cleanup Navigation Menus <===//
+    if (!function_exists('pds_menu_items_id_remover')) :
+        function pds_menu_items_id_remover($id, $item, $args ) { return ""; }
+        add_filter('nav_menu_item_id', 'pds_menu_items_id_remover', 10, 3);
+    endif;
+
+    if (!function_exists('pds_remove_nav_menu_id')) :
+        function pds_remove_nav_menu_id( $menu ) {
+            return preg_replace('/id=\"(.*)\"/U', '', $menu);
+        }
+
+        add_filter('wp_nav_menu', 'pds_remove_nav_menu_id');
+    endif;
 }
 
 //=====> Gutenberg Optimizer <=====//
@@ -222,3 +240,69 @@ if (!function_exists('woo_scripts_optimize')) :
     // add_action('after_setup_theme', 'woo_patterns_remove', 999);
     add_action('wp_enqueue_scripts', 'woo_scripts_optimize', 99);
 endif;
+
+//===> Restrict Login Attempts <===//
+if (!function_exists('pds_limit_login_attempts')) :
+	/**
+	 * @since Phenix WP 1.0
+	 * @return void
+	*/
+
+	function pds_limit_login_attempts() {
+		//===> Max Attempts <===//
+		$login_attempts = 3;
+
+		//===> Lockout Duration <===//
+		$lockout_duration = 300;
+
+		//===> Check if the Cookie is Set <===//
+		if (isset($_COOKIE['login_attempts']) && $_COOKIE['login_attempts'] >= $login_attempts) {
+			//===> Check if the Lockout Duration is Over <===//
+			header('HTTP/1.1 403 Forbidden');
+			//===> Display the Error Message <===//
+			echo 'Forbidden';
+			//===> Exit <===//
+			exit;
+		}
+
+		//===> Check if the Login Form is Submitted <===//
+		if (isset($_POST['log'])) {
+			//===> Check if the Cookie is Set <===//
+			if (!isset($_COOKIE['login_attempts'])) {
+				//===> Set the Cookie <===//
+				setcookie('login_attempts', 1, time() + $lockout_duration, '/');
+			} else {
+				//===> Increase the Cookie Value <===//
+				setcookie('login_attempts', $_COOKIE['login_attempts'] + 1, time() + $lockout_duration, '/');
+			}
+		}
+	}
+
+	add_action('wp_login_failed', 'pds_limit_login_attempts');
+endif;
+
+//====> S.E.O. Images Metadata Generator <====//
+add_action('add_attachment', function ($post_ID) {
+	//====> Check if uploaded file is an image <====//
+	if (wp_attachment_is_image($post_ID)) {
+        //===> Get Image Title <===//
+		$image_title = get_post($post_ID)->post_title;
+		//===> Sanitize the title:  remove (hyphens, underscores, spaces) <===//
+		$image_title = preg_replace( '%\s*[-_\s]+\s*%', ' ',  $image_title );
+		//===> Sanitize the title:  capitalize first letter of every word <===//
+		$image_title = ucwords(strtolower($image_title));
+		//===> Create Image Metadata <===//
+		$my_image_meta = array(
+			'ID' => $post_ID,
+			'post_title' => $image_title,
+			'post_excerpt' => $image_title,
+			'post_content' => $image_title,
+		);
+		//===> Set the image Alt-Text <===//
+		update_post_meta( $post_ID, '_wp_attachment_image_alt', $image_title );
+		//===> Set the image meta (e.g. Title, Excerpt, Content) <===//
+		wp_update_post( $my_image_meta );
+    }
+});
+
+

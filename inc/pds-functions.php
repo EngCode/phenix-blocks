@@ -14,6 +14,11 @@
  ** 03 - Excerpt Striper
  ** 04 - Limited Excerpt 
  ** 05 - Excerpt More
+ ** 06 - Get Patterns
+ ** 07 - Get Templates Part
+ ** 08 - Get Templates Parts Select
+ ** 09 - Debug Variables
+ ** 10 - Get Post Views
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -124,7 +129,7 @@ add_filter('excerpt_length', 'px_excerpt_length', get_option("excerpt_length") ?
 function wpdocs_excerpt_more($more) {return '...';}
 add_filter('excerpt_more', 'wpdocs_excerpt_more');
 
-//===> Get Patterns Function <===//
+//===> Get Patterns <===//
 if (!function_exists('pds_get_patterns')) :
 	/**
 	 * @since Phenix WP 1.0
@@ -218,42 +223,31 @@ if (!function_exists('pds_get_theme_parts_select')) :
 	}
 endif;
 
-//===> Restrict Login Attempts <===//
-if (!function_exists('pds_limit_login_attempts')) :
-	/**
-	 * @since Phenix WP 1.0
-	 * @return void
-	*/
-
-	function pds_limit_login_attempts() {
-		//===> Max Attempts <===//
-		$login_attempts = 3;
-
-		//===> Lockout Duration <===//
-		$lockout_duration = 300;
-
-		//===> Check if the Cookie is Set <===//
-		if (isset($_COOKIE['login_attempts']) && $_COOKIE['login_attempts'] >= $login_attempts) {
-			//===> Check if the Lockout Duration is Over <===//
-			header('HTTP/1.1 403 Forbidden');
-			//===> Display the Error Message <===//
-			echo 'Forbidden';
-			//===> Exit <===//
-			exit;
-		}
-
-		//===> Check if the Login Form is Submitted <===//
-		if (isset($_POST['log'])) {
-			//===> Check if the Cookie is Set <===//
-			if (!isset($_COOKIE['login_attempts'])) {
-				//===> Set the Cookie <===//
-				setcookie('login_attempts', 1, time() + $lockout_duration, '/');
-			} else {
-				//===> Increase the Cookie Value <===//
-				setcookie('login_attempts', $_COOKIE['login_attempts'] + 1, time() + $lockout_duration, '/');
-			}
-		}
+//===> Debug Variables <===//
+if (!function_exists('pds_var_dump')) :
+	function pds_var_dump($variable) {
+		echo '<pre>';
+			highlight_string("<?php\n" . var_export($variable, true));
+		echo '</pre>';
 	}
+endif;
 
-	add_action('wp_login_failed', 'pds_limit_login_attempts');
+//===> Get Post Views <===//
+if (!function_exists('get_post_views')) :
+	function get_post_views($post_id) {
+		//===> Define Counter <====//
+		$count_key = 'post_views_count';
+		$count = get_post_meta( $post_id, $count_key, true );
+		//===> if Count is Empty <===//
+		if ($count == '') {
+			//===> delete the meta data <====//
+			delete_post_meta($post_id, $count_key);
+			//===> set the count to 0 <====//
+			add_post_meta( $post_id, $count_key, '0' );
+			//===> Return Zero <===//
+			return "0";
+		}
+		//===> Return counting <===//
+		return $count;
+	}
 endif;

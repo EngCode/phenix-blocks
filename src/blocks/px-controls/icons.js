@@ -241,7 +241,7 @@ export default class PhenixIcons extends Component {
                 <div className={`flexbox align-center tx-align-center options-list pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-25 radius-md radius-bottom hidden fluid`}>
                     <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center mb-5' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
                     {/*===> Buttons List <===*/}
-                    <div className="bg-alpha-05 fluid pdx-15 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-b" style={{gap:"10px", maxHeight: "220px"}}>
+                    <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-b" style={{gap:"10px", maxHeight: "220px"}}>
                         {this.state.icons_list.length > 0 ? 
                             makeButtons(this.state.icons_pages[this.state.icons_page], this.state.icon_type) : "Loading..."
                         }

@@ -147,6 +147,7 @@ export default class PhenixIcons extends Component {
             if (this.props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
 
             //===> Return Options <===//
+            this.setState({icon_type: value, icons_list: []});
             return onChange(options);
         };
 
@@ -253,7 +254,7 @@ export default class PhenixIcons extends Component {
                     {/*===> Pagination <===*/}
                     <div className='fluid flexbox align-between align-center-y pagination-btns pdx-15'>
                         <button onClick={travelingButton} type="button" data-travel="next" className="btn tiny fs-12 radius-sm primary">{__("Next", "pds-blocks")}</button> 
-                        <span class="fs-14 weight-medium">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
+                        <span className="fs-14 weight-medium">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
                         <button onClick={travelingButton} type="button" data-travel="previous" className="btn tiny fs-12 radius-sm gray">{__("Previous", "pds-blocks")}</button> 
                     </div>
                     {/*===> // Pagination <===*/}

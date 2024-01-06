@@ -147,7 +147,7 @@ export default class PhenixIcons extends Component {
             if (this.props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
 
             //===> Return Options <===//
-            this.setState({icon_type: value, icons_list: [], icons_pages: {}});
+            this.setState({icon_type: value, icons_list: [], icons_pages: {}, icons_page: 1});
             return onChange(options);
         };
 

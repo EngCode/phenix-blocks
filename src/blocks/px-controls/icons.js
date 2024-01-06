@@ -119,8 +119,8 @@ export default class PhenixIcons extends Component {
 
         //===> Returned Value <===//
         let options = {
-            type: this.state.icon_type,
-            value: this.state.icon_name,
+            type: value.split(" ")[0],
+            value: value.split(" ")[1],
         };
 
         //===> Set Type <===//
@@ -240,7 +240,7 @@ export default class PhenixIcons extends Component {
                         <i className='fas fa-pencil fs-12 color-gray'></i>
                     </button>
                     {/*===> Type Select <===*/}
-                    <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={this.state.icon_type} onChange={(target) => set_type(target.value)} options={this.state.icons_types} />
+                    <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={value.split(" ")[0]} onChange={(target) => set_type(target.value)} options={this.state.icons_types} />
                 </div>
 
                 {/*===> Panel <===*/}

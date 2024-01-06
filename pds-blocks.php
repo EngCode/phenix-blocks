@@ -20,10 +20,10 @@ include_once(dirname(__FILE__) . '/pds-updater.php');
 
 if (is_admin()) {
 	new PDS_GitHub_Updater(array(
-		'slug' => plugin_basename(__FILE__),
-		'tested' => '6.4',
-		'requires' => '6.0',
-		'github_user'=> 'EngCode',
+		'slug'        => plugin_basename(__FILE__),
+		'tested'      => '6.4',
+		'requires'    => '6.0',
+		'github_user' => 'EngCode',
 		'github_repo' => 'phenix-blocks',
 	));
 }

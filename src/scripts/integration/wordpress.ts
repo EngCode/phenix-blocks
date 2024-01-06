@@ -54,8 +54,11 @@ Phenix(window).on("load", (loaded) => {
 
     //====> S.E.O : Fixes <====//
     fixSEO = () => {
+        //====> Schema Meta Data Set <====//
         document.body.setAttribute('itemscope', "");
         document.body.setAttribute('itemtype', "https://schema.org/WebPage");
+
+        //====> Check for Headline Level 1 <====//
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> S.E.O : Missing Meta <====//
@@ -65,19 +68,18 @@ Phenix(window).on("load", (loaded) => {
         //====> Links do not have a discernible name <====//
         Phenix('a:empty, button:empty').forEach((link:HTMLElement) => {
             //===> Define Data <===//
-            let elTitle:string,
-                elType = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
+            let elTitle = "",
+                elType  = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
 
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
             if (parent && parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type')[0]) {
                 parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : null);
-            } else elTitle = document.title;
+            }
 
             //===> Set Attributes <===//
             if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Element`);
             if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${link.getAttribute('title') || elTitle} ${elType} Element`);
-            // if(!link.getAttribute('placeholder') || link.getAttribute('placeholder') === "") link.setAttribute('placeholder', `${elTitle} ${elType} Element`);
         });
         
         //====> Inputs do not have a discernible name <====//
@@ -115,14 +117,14 @@ Phenix(window).on("load", (loaded) => {
 
     spamBlock = () => {
         //===> Form Spam Protection <===//
-        let FormsSubmit = Phenix('form[action] [type="submit"]'),
+        let FormsSubmit = Phenix('form [type="submit"]'),
             spamInput = `<input name="px-protection" title="px-prot" style="left:100%; opacity: 0; visibility: hidden; z-index: -1" class="hidden position-ab" type="text" name="px-prot" value="" tabindex="-1" autocomplete="off" />`;
 
         //===> Create Spam Inputs <===//
         FormsSubmit.forEach(button => Phenix(button).insert('before', spamInput));
 
         //===> Add Spam Protection Filter <===//
-        Phenix('form[action] [type="submit"]').on('click', isClicked => {
+        Phenix('form [type="submit"]').on('click', isClicked => {
             //===> Get Form <===//
             let button = isClicked.target,
                 form = Phenix(button).ancestor('form'),
@@ -132,9 +134,9 @@ Phenix(window).on("load", (loaded) => {
         });
 
         //===> Extra Spam Protection <===//
-        document.querySelectorAll("form[action]").forEach((form:any) => form.addEventListener('submit', submit => {
+        document.querySelectorAll("form").forEach((form:any) => form.addEventListener('submit', submit => {
             let value = form.querySelector('[name="px-protection"]')?.value;
-            if(value && value !== "") submit.preventDefault();
+            if (value && value !== "") submit.preventDefault();
         }));
     },
 
@@ -192,7 +194,7 @@ Phenix(window).on("load", (loaded) => {
         //===> Run Scripts <===//
         Phenix(document).init();
 
-        //====> ???? <====//
+        //====> Hide WooCommerce Blocks <====//
         // Phenix("#menu-settings li a").forEach((link:HTMLElement) => {
         //     if (link.getAttribute("href").includes("blocks-product-editor-for-woocommerce")) {
         //         Phenix(link.parentNode).css({"display": "none"});

@@ -185,6 +185,7 @@ html, body {
     direction: $direction;
     font-size: var(--current-rem);
     line-height: var(--line-height);
+    hanging-punctuation: first last;
     font-family: var(--secondary-font), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-variant-numeric: tabular-nums;
     -moz-osx-font-smoothing: grayscale;

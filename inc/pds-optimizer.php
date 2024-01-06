@@ -304,5 +304,3 @@ add_action('add_attachment', function ($post_ID) {
 		wp_update_post( $my_image_meta );
     }
 });
-
-

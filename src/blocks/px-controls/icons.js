@@ -253,6 +253,7 @@ export default class PhenixIcons extends Component {
                     {/*===> Pagination <===*/}
                     <div className='fluid flexbox align-between pagination-btns pdx-15'>
                         <button onClick={travelingButton} type="button" data-travel="next" className="btn tiny fs-12 radius-sm primary">{__("Next", "pds-blocks")}</button> 
+                        <span class="fs-12">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
                         <button onClick={travelingButton} type="button" data-travel="previous" className="btn tiny fs-12 radius-sm gray">{__("Previous", "pds-blocks")}</button> 
                     </div>
                     {/*===> // Pagination <===*/}

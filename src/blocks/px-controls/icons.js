@@ -147,7 +147,7 @@ export default class PhenixIcons extends Component {
             if (this.props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
 
             //===> Return Options <===//
-            this.setState({icon_type: value, icons_list: []});
+            this.setState({icon_type: value, icons_list: [], icons_pages: {}});
             return onChange(options);
         };
 
@@ -218,8 +218,8 @@ export default class PhenixIcons extends Component {
             let searchedList = icons_list.filter(icon => icon.includes(value));
             
             //===> Set the New List <===//
-            if (value.length > 0)  this.setState({icons_list: searchedList, icons_page: 1});
-            else this.setState({icons_list: [], icons_page: 1});
+            if (value.length > 0)  this.setState({icons_list: searchedList, icons_page: 1, icons_pages: {}});
+            else this.setState({icons_list: [], icons_page: 1, icons_pages: {}});
         };
 
         //===> Component Design <===//

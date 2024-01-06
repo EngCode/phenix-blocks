@@ -251,9 +251,9 @@ export default class PhenixIcons extends Component {
                         }
                     </div>
                     {/*===> Pagination <===*/}
-                    <div className='fluid flexbox align-between pagination-btns pdx-15'>
+                    <div className='fluid flexbox align-between align-center-y pagination-btns pdx-15'>
                         <button onClick={travelingButton} type="button" data-travel="next" className="btn tiny fs-12 radius-sm primary">{__("Next", "pds-blocks")}</button> 
-                        <span class="fs-12">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
+                        <span class="fs-14 weight-medium">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
                         <button onClick={travelingButton} type="button" data-travel="previous" className="btn tiny fs-12 radius-sm gray">{__("Previous", "pds-blocks")}</button> 
                     </div>
                     {/*===> // Pagination <===*/}

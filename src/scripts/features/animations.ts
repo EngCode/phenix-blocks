@@ -67,7 +67,7 @@ PhenixElements.prototype.animations = function (options?:{
         //===> Set the Animation Name as CSS Variable <====//
         element.style.setProperty('--animation-name', animation);
         element.style.setProperty('--animation-duration', duration);
-        element.style.setProperty('--animation-delay', delay);
+        element.style.setProperty('--animation-delay', delay||0);
 
         //====> if the Element in view Show it <====//
         let isInView = () => {
@@ -79,6 +79,8 @@ PhenixElements.prototype.animations = function (options?:{
             let animate = () => {
                 //====> Show the Element <====//
                 Phenix(element).removeClass('visibility-hidden');
+                //====> Slider Fallback <====//
+                if (Phenix(element).ancestor('.px-slider')) return;
                 //====> Animations Classes <====//
                 element.classList.add('view-active', animation);
             }

@@ -46,7 +46,7 @@ body.wp-admin[class*="taxonomy-"] {
 			-ms-flex-wrap: wrap;
 			    flex-wrap: wrap;
 				gap: 15px;
-			> div {
+			> div:not(.fluid):not(.term-description-wrap) {
 				-webkit-box-flex: 1;
 				    -ms-flex-positive: 1;
 				        flex-grow: 1;
@@ -67,8 +67,10 @@ body.wp-admin[class*="taxonomy-"] {
 			margin-bottom: 0!important;
 			label {font-size: 13px; font-weight: var(--strong-weight);}
 			/*==== Fields ====*/
-			select, input, textarea {width: 100%; max-width: 100%;}
-			input, select, textarea {margin-bottom: 0!important;}
+			select, input, textarea, .form-control, .px-select {width: 100%; max-width: 100%;}
+			input, select, textarea, .form-control, .px-select {
+				&:not([class*="mb-"]) {margin-bottom: 0!important;}
+			}
 			//=== Taxonomy Field Description ===//
 			p[id*="description"] {display: none;}
 		}

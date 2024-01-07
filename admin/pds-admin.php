@@ -482,26 +482,6 @@
     endif;
 
     //====> Set Custom Metaboxes <====//
-    if (!function_exists("pds_metabox_register")) :
-        function pds_metabox_register() {
-            //===> Set Example Metabox <===//
-            update_option('pds_metabox', array(
-                array(
-                    "datatype" => "post-type",
-                    "name" => "custom_metabox_group_key",
-                    "label" => "Custom Meta Group Example",
-                    "post_types" => array("post", "page"),
-                    "fields" => array(
-                        array("type" => "text", "name" => "custom_field_name", "label" => "Custom Field Example"),
-                        array("type" => "number", "name" => "custom_field_name2", "label" => "Custom Field Example 2"),
-                    ),
-                ),
-            ));
-
-            $metaboxes = get_option('pds_metabox');
-            if ($metaboxes): pds_metabox_create($metaboxes); endif;
-        };
-
-        add_action('init', 'pds_metabox_register');
-    endif;
+    $metaboxes = get_option('pds_metabox');
+    if ($metaboxes): pds_metabox_create($metaboxes); endif;
 ?>

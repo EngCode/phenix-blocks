@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', ready => {
 
     //===> Metabox Template <===//
     metabox_template = (metabox) => {
-        return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
+        return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0 flow-nowrap">
             <!-- Label -->
             <span class="tx-icon far fa-boxes col-3 tx-nowrap item-label">${metabox.label}</span>
 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', ready => {
             <span class="tx-icon far fa-link w-150 item-name">${metabox.datatype}</span>
 
             <!-- Data Locations -->
-            <span class="col tx-icon far fa-link col-3 w-max-225 item-name">${metabox.post_types || metabox.taxonomies}</span>
+            <span class="col tx-icon far fa-link col-3 item-name">${metabox.post_types || metabox.taxonomies}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">

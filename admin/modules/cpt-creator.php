@@ -70,7 +70,7 @@ if (!function_exists('pds_cpt_create')) :
                 'hierarchical'  => $hierarchical,
                 'template'      => $template,
                 'taxonomies'    => $taxonomies,
-                'supports'      => array('title', 'editor', 'thumbnail', 'excerpt'),
+                'supports'      => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'revisions', 'comments'),
             );
 
             register_post_type($name, $args);

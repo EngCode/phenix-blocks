@@ -81,15 +81,13 @@ PhenixElements.prototype.animations = function (options?:{
                 Phenix(element).removeClass('visibility-hidden');
                 //====> Animations Classes <====//
                 element.classList.add('view-active', animation);
-                //====> Check if the Animation Ended <====//
-                setTimeout(function() {
-                    element.classList.remove(animation);
-                }, duration+1000);
             }
 
-            //====> Check for View <====//
+            //====> Animate if it is in ViewPort <====//
             if (Phenix(element).inView({offset:offset, into: into, flow: flow})) animate();
-            else {element.classList.remove('view-active');}
+
+            //===> When is out of view Reset <===//
+            else element.classList.remove('view-active', animation);
         };
 
         //====> Lazyloading <====//

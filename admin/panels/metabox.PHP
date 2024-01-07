@@ -15,10 +15,11 @@
 <!-- metabox List -->
 <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 pds_metabox_list" data-type="pds_metabox">
     <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-        <span class="col w-max-260"><?php echo __('Label', "pds-blocks"); ?></span>
-        <span class="col w-max-200"><?php echo __('Name', "pds-blocks"); ?></span>
-        <span class="col w-max-200"><?php echo __('Types', "pds-blocks"); ?></span>
-        <span class="col w-max-200"><?php echo __('Field Group', "pds-blocks"); ?></span>
+        <span class="col-3"><?php echo __('Label', "pds-blocks"); ?></span>
+        <span class="col-3 w-max-200"><?php echo __('Name', "pds-blocks"); ?></span>
+        <span class="w-100 pds-15"><?php echo __('Fields', "pds-blocks"); ?></span>
+        <span class="w-150"><?php echo __('Data', "pds-blocks"); ?></span>
+        <span class="col col-3"><?php echo __('Locations', "pds-blocks"); ?></span>
     </li>
 </ul>
 <!-- Pagination Buttons -->
@@ -31,7 +32,7 @@
 <!-- Modal Component -->
 <div class="px-modal hidden align-center" id="pds_metabox_form">
     <!-- Container -->
-    <div class="modal-content w-max-480 bg-white radius-sm collection-form" data-type="pds_metabox">
+    <div class="modal-content w-max-640 bg-white radius-sm collection-form" data-type="pds_metabox">
         <!-- Headline -->
         <h4 class="fs-15 pdx-20 pdy-10 divider-b"><?php echo __('Add New Metabox', "pds-blocks"); ?></h4>
         <!-- Close Button -->
@@ -44,6 +45,7 @@
             <div class="row gpx-15 gpy-15">
                 <!-- Column -->
                 <div class="col-12 col-md-6">
+                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Group Title", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-text">
                         <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
@@ -51,37 +53,27 @@
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
+                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Group Name/Key", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-link">
                         <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col-12 col-md-6">
+                <div class="col-12">
+                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Data Types", "pds-blocks"); ?></label>
                     <!-- Form Control -->
-                    <div class="control-icon far fa-link">
-                        <select name="field_type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Type', "pds-blocks");?>">
-                            <option value="text">Text</option>
-                            <option value="file">Files</option>
-                            <option value="array">Array</option>
-                            <option value="number">Numbers</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Column -->
-                <div class="col-12 col-md-6">
-                    <!-- Form Control -->
-                    <div class="control-icon far fa-map-marker-alt">
-                        <select name="field_data" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Location', "pds-blocks");?>">
+                    <div class="control-icon far fa-cube">
+                        <select name="datatype" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Location', "pds-blocks");?>" multiple>
                             <option value="post-type" selected>Post Type</option>
                             <option value="taxonomy">Taxonomy</option>
                         </select>
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col-12">
+                <div class="col col-md-6 post-types-select">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-cube mb-15 post-types-select hidden">
+                    <div class="control-icon fas fa-map-marker-alt mb-15">
                         <select name="post_types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', "pds-blocks");?>" multiple>
                             <?php
                                 $post_types = get_post_types(array('public'=> true), 'objects');
@@ -93,9 +85,12 @@
                             ?>
                         </select>
                     </div>
+                </div>
+                <!-- Column -->
+                <div class="col col-md-6 taxonomies-select">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-cube mb-15 taxonomies-select hidden">
-                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', "pds-blocks");?>" multiple>
+                    <div class="control-icon far fa-map-marker-alt mb-15">
+                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', "pds-blocks");?>" multiple disabled>
                             <?php
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
@@ -106,16 +101,43 @@
                             ?>
                         </select>
                     </div>
-                    <!-- Elements Group -->
-                    <div class="flexbox align-between align-center-y">
-                        <!-- Form Control -->
-                        <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
-                            <input type="checkbox" name="enable" checked />
-                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable this Metabox once added ?", "pds-blocks"); ?></span>
-                        </label>
-                        <!-- Form Control -->
+                    <!-- // Form Control -->
+                </div>
+                <!-- // Column -->
+
+                <!-- Column -->
+                <div class="col-12 px-form-repeater" data-fields-key="fields">
+                    <!-- Headline -->
+                    <h5 class="fs-13 mb-10 weight-bold flexbox align-center-y align-between bg-offwhite-primary border-1 border-alpha-05 pd-10 pds-20 radius-sm">
+                        <?php echo __("Custom Fields List", "pds-blocks"); ?>
+                        <button type="button" class="btn tiny primary square radius-sm px-repeater-add fas fa-plus"></button>
+                    </h5>
+                    <!-- Repeater Items -->
+                    <div class="px-repeater-items gpy-15">
+                        <!-- Repeater Row -->
+                        <div class="px-form-repeater-fields px-group flow-nowrap" data-item-key="1">
+                            <!-- Form Control -->
+                            <div class="col-4 control-icon far fa-text">
+                                <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
+                            </div>
+                            <!-- Form Control -->
+                            <div class="col-4 control-icon far fa-link">
+                                <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', "pds-blocks");?>">
+                            </div>
+                            <!-- Form Control -->
+                            <div class="col-4 control-icon far fa-pen-field">
+                                <select name="type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Type', "pds-blocks");?>">
+                                    <option value="text">Text</option>
+                                    <option value="file">Files</option>
+                                    <option value="array">Array</option>
+                                    <option value="number">Numbers</option>
+                                </select>
+                            </div>
+                            <!-- // Form Control -->
+                        </div>
+                        <!-- // Repeater Row -->
                     </div>
-                    <!-- // Elements Group -->
+                    <!-- // Repeater Items -->
                 </div>
                 <!-- // Column -->
             </div>

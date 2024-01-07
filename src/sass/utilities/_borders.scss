@@ -136,7 +136,8 @@
         @else {border-radius: 0 var(--radius) var(--radius) 0;}
     }
     /*==== Middle Child's ====*/
-    > *:not(:nth-child(1)):not(:nth-last-child(1)):not(.px-dropdown-list) {border-radius: 0;}
+    > *:not(:nth-child(1)):not(:nth-last-child(1)):not(.px-dropdown-list),
+    > *:not(:nth-child(1)):not(:nth-last-child(1)):not(.px-dropdown-list) > .form-control {border-radius: 0;}
 
     /*==== Vertical ====*/
     &.px-group-v {

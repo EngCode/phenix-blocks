@@ -123,7 +123,7 @@
                 array(
                     "title" => "Metaboxes",
                     "slug"  => "pds-metabox",
-                    "icon"  => "far fa-layer-group",
+                    "icon"  => "far fa-pen-field",
                     "content" => 'pds_metabox_panel',
                 ),
             ),

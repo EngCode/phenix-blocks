@@ -43,6 +43,89 @@ PhenixElements.prototype.utilities = function (options?:{
                     type !== 'submit' || 'button' || 'radio' || 'checkbox' ? controler.classList.add('form-control', size) : '';
             });
         });
+
+        //====> Form Repeater <====//
+        Phenix(".px-form-repeater").forEach((repeater_container:Element) => {
+            //====> Define Data <====//
+            const add_btn  = repeater_container.querySelector(".px-repeater-add"),
+                  fields_key = repeater_container.getAttribute("data-fields-key"),
+                  items_list = repeater_container.querySelector(".px-repeater-items"),
+                  original_row = items_list.querySelector(".px-form-repeater-fields");
+
+            //===> Set a Number for the Original Row <===//
+            if(!original_row.getAttribute('data-item-key')) original_row.setAttribute("data-item-key", "1");
+
+            //===> Correct the name of the Fields <===//
+            original_row.querySelectorAll("[name]").forEach((element:HTMLElement) => {
+                //====> Get the Name <====//
+                let name = element.getAttribute("name");
+                //====> Correct the Name <====//
+                element.setAttribute("name", `${fields_key}[${original_row.getAttribute('data-item-key')}][${name}]`);
+            });
+
+            //===> Take a Deep Clone from the Original Row <===//
+            const original_row_clone = original_row.cloneNode(true);
+            
+            //====> Add New Item <====//
+            add_btn.addEventListener("click", (event:any) => {
+                //===> Create new Row <===//
+                const newRow:any = items_list.appendChild(original_row.cloneNode(true)),
+                      currentRows = items_list.querySelectorAll(".px-form-repeater-fields").length;
+
+                //===> Increase the Row Number <===//
+                newRow.setAttribute("data-item-key", currentRows);
+
+                //===> Change the Fields Name <===//
+                newRow.querySelectorAll("[name]").forEach((element:any) => {
+                    //====> Get the Name <====//
+                    let name = element.getAttribute("name");
+                    
+                    //====> Correct the Name <====//
+                    element.setAttribute("name", name.replace(`[${currentRows-1}]`, `[${currentRows}]`));
+
+                    //====> Cleanup Any Values <====//
+                    if (element.value) element.value = "";
+                    if (element.tagName === "TEXTAREA") element.innerHTML = "";
+
+                    //====> Clean Up Select Options <====//
+                    if (element.tagName === "SELECT") {
+                        element.querySelectorAll('[selected]').forEach(option => option.removeAttribute('selected'));
+                        //====> Advanced Select Rebuild <====//
+                        if (element.classList.contains('px-select')) {
+                            //====> Get the Select Wrapper <====//
+                            let selectWrapper = Phenix(element).ancestor('.px-select');
+                            //====> Remove Mounted Class <====//
+                            element.classList.remove('px-mounted', 'hidden');
+                            //====> Move the Select Element and Remove the Select Wrapper <====//
+                            Phenix(selectWrapper).insert('before', element);
+                            selectWrapper.remove();
+                            //====> Rebuild the Select Element <====//
+                            Phenix(element).select();
+                        }
+                    }
+                });
+
+                //===> Create Remove Button <===//
+                const removeBtn = add_btn.cloneNode(false);
+
+                //===> Insert the Remove Button <===//
+                const currentRemoveBtn = newRow.appendChild(removeBtn);
+
+                //===> Change the Button Style <===//
+                currentRemoveBtn.classList.remove("fa-plus", "tiny", "small", "large", "xlarge");
+                currentRemoveBtn.classList.add('fa-minus', 'danger');
+
+                //====> Correct Button Size <====//
+                if (newRow.querySelector(".form-control")) {
+                    let classNames = newRow.querySelector(".form-control").classList;
+                    let sizes = ["tiny", "small", "large", "xlarge"];
+                    sizes.some(size => classNames.contains(size) ? currentRemoveBtn.classList.add(size) : '');
+                }
+
+                //====> Remove the Item <====//
+                currentRemoveBtn.addEventListener("click", (event:any) => Phenix(event.target).ancestor(".px-form-repeater-fields").remove());
+            });
+        });
     }
 
     //====> Others <====//

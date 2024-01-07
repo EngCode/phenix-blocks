@@ -137,6 +137,7 @@ export default function Edit({ attributes, setAttributes }) {
     ];
 
     const size_options_res = [
+        { "label": "Default", "value": ""},
         { "label": "None", "value": "none"},
         { "label": "Ratio 1x1", "value": "1x1"},
         { "label": "Ratio 4x3", "value": "4x3"},

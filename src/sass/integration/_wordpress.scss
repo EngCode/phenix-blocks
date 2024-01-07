@@ -61,18 +61,18 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     --blue-white         : #e9f1ff, #FFFFFF;
 
     /*==== Custom Colors ====*/
-    --wp--preset--color--revert-05: rgba(255, 255, 255, 0.05);
-    --wp--preset--color--revert-10: rgba(255, 255, 255, 0.10);
-    --wp--preset--color--revert-15: rgba(255, 255, 255, 0.15);
-    --wp--preset--color--revert-25: rgba(255, 255, 255, 0.25);
-    --wp--preset--color--revert-50: rgba(255, 255, 255, 0.50);
-    --wp--preset--color--revert-75: rgba(255, 255, 255, 0.75);
     --wp--preset--color--alpha-05: rgba(0,0,0, 0.05);
     --wp--preset--color--alpha-10: rgba(0,0,0, 0.10);
     --wp--preset--color--alpha-15: rgba(0,0,0, 0.15);
     --wp--preset--color--alpha-25: rgba(0,0,0, 0.25);
     --wp--preset--color--alpha-50: rgba(0,0,0, 0.50);
     --wp--preset--color--alpha-75: rgba(0,0,0, 0.75);
+    --wp--preset--color--revert-05: rgba(255,255,255, 0.05);
+    --wp--preset--color--revert-10: rgba(255,255,255, 0.10);
+    --wp--preset--color--revert-15: rgba(255,255,255, 0.15);
+    --wp--preset--color--revert-25: rgba(255,255,255, 0.25);
+    --wp--preset--color--revert-50: rgba(255,255,255, 0.50);
+    --wp--preset--color--revert-75: rgba(255,255,255, 0.75);
 }
 
 /*==== Helpers Fixes ====*/

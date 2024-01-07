@@ -89,6 +89,7 @@ export default class EffectsSet extends Component {
                 { "label": "DP-4", "value": "bx-shadow-dp-4"},
                 { "label": "DP-5", "value": "bx-shadow-dp-5"},
                 { "label": "DP-1Y", "value": "bx-shadow-dp-1y"},
+                { "label": "DP-2Y", "value": "bx-shadow-dp-2y"},
             ],
 
             "Glass Effects" : [

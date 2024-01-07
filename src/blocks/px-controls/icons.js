@@ -179,7 +179,7 @@ export default class PhenixIcons extends Component {
         //===> Buttons Creator <===//
         const makeButtons = (list, type) => {
             //===> Exit if has no items <===//
-            if (list.length < 1) return;
+            if (!list || list.length < 1) return;
 
             //===> Define Data <===//
             let buttonsList  = [],

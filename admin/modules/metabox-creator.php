@@ -83,9 +83,10 @@ if (!function_exists('pds_metabox_create')) :
                 });
             } 
 
+            //===> Register Taxonomies Metaboxes <===//
             if (in_array("taxonomies", $metabox_group["datatype"])) {
                 foreach ($metabox_group["taxonomies"] as $taxonomy) {
-                    //====> Display Metaboxes <=====//
+                    //====> Display Metaboxes in Edit Mode  <=====//
                     add_action($taxonomy . '_edit_form_fields', function($term) use ($metabox_group) {
                         //===> Create Nonce Field <===//
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
@@ -94,7 +95,7 @@ if (!function_exists('pds_metabox_create')) :
                         echo '<td>' . pds_metabox_fields_create($metabox_group) . '</td></tr>';
                     });
         
-                    //====> Display Metaboxes <=====//
+                    //====> Display Metaboxes in Creating Mode<=====//
                     add_action($taxonomy . '_add_form_fields', function($term) use ($metabox_group) {
                         //===> Create Nonce Field <===//
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');

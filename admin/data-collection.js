@@ -174,13 +174,25 @@ document.addEventListener('DOMContentLoaded', ready => {
         form_Controls.forEach(control => {
             //===> Define Data <===//
             let control_name = control.getAttribute('name'),
+                isFormRepeater = Phenix(control).ancestor('.px-form-repeater') || false,
                 control_value = getControlValue(control);
 
             //===> Validate Name as ID <===//
             if (control_name === 'name')  control_value = control_value.toLowerCase().replaceAll(' ','-');
 
-            //===> Set Data <===//
-            new_item[control_name] = control_value;
+            //===> if Repeater Array <===//
+            if (isFormRepeater) {
+                //===> Convert to Keys <===//
+                let control_keys = control_name.split('[').map(key => key.replace(']', ''));
+                //===> Create the keys if not exist <===//
+                if (!new_item[control_keys[0]]) new_item[control_keys[0]] = [];
+                if (!new_item[control_keys[1]]) new_item[control_keys[0]][parseInt(control_keys[1])] = {};
+                //===> Set Data <===//
+                new_item[control_keys[0]][control_keys[1]][control_keys[2]] = control_value;
+            } else {
+                //===> Set Data <===//
+                new_item[control_name] = control_value;
+            }
         });
 
         //===> Return Data <===//

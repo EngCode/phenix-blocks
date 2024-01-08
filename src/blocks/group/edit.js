@@ -262,7 +262,9 @@ export default function Edit({ attributes, setAttributes }) {
                     //===> Layout Gap <===//
                     else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('gpy-fix')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Other Values <===//
-                    else {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    //===> Other Values <===//
+                    else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                 };
             });
         };

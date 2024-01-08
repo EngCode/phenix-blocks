@@ -50,10 +50,10 @@ PhenixElements.prototype.utilities = function (options?:{
             const add_btn  = repeater_container.querySelector(".px-repeater-add"),
                   fields_key = repeater_container.getAttribute("data-fields-key"),
                   items_list = repeater_container.querySelector(".px-repeater-items"),
-                  original_row = items_list.querySelector(".px-form-repeater-fields");
+                  original_row = items_list.querySelector("[data-item-key]");
 
             //===> Set a Number for the Original Row <===//
-            if(!original_row.getAttribute('data-item-key')) original_row.setAttribute("data-item-key", "1");
+            if(!original_row.getAttribute('data-item-key')) original_row.setAttribute("data-item-key", "0");
 
             //===> Correct the name of the Fields <===//
             original_row.querySelectorAll("[name]").forEach((element:HTMLElement) => {
@@ -70,7 +70,7 @@ PhenixElements.prototype.utilities = function (options?:{
 
                 //===> Change the Button Style <===//
                 currentRemoveBtn.classList.remove("fa-plus", "tiny", "small", "large", "xlarge");
-                currentRemoveBtn.classList.add('fa-minus', 'danger');
+                currentRemoveBtn.classList.add('fa-minus', 'danger', 'px-repeater-remove');
 
                 //====> Correct Button Size <====//
                 if (repeater_row.querySelector(".form-control")) {
@@ -86,8 +86,8 @@ PhenixElements.prototype.utilities = function (options?:{
             //====> Add New Item (Remove Item Method Included) <====//
             add_btn.addEventListener("click", (event:any) => {
                 //===> Create new Row <===//
-                const newRow:any = items_list.appendChild(original_row.cloneNode(true)),
-                      currentRows = items_list.querySelectorAll(".px-form-repeater-fields").length;
+                const newRow:any  = items_list.appendChild(original_row.cloneNode(true)),
+                      currentRows = items_list.querySelectorAll("[data-item-key]").length;
 
                 //===> Increase the Row Number <===//
                 newRow.setAttribute("data-item-key", currentRows);
@@ -115,6 +115,14 @@ PhenixElements.prototype.utilities = function (options?:{
                 //===> Create Remove Button <===//
                 create_remove_btn(newRow);
             });
+
+            //====> Create Remove Button Whenever it is not found <====//
+            setInterval(() => {
+                //====> Get the Rows <====//
+                let rows = repeater_container.querySelectorAll('[data-item-key]:not([data-item-key="0"])');
+                //====> Create Remove Button <====//
+                if (rows) rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
+            }, 1000);
 
             //====> Get Pre-Set Data <====//
             // let repeaterObj = [

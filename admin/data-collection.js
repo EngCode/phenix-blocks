@@ -184,11 +184,16 @@ document.addEventListener('DOMContentLoaded', ready => {
             if (isFormRepeater) {
                 //===> Convert to Keys <===//
                 let control_keys = control_name.split('[').map(key => key.replace(']', ''));
+
                 //===> Create the keys if not exist <===//
-                if (!new_item[control_keys[0]]) new_item[control_keys[0]] = [];
-                if (!new_item[control_keys[1]]) new_item[control_keys[0]][parseInt(control_keys[1])] = {};
+                let fields_key = control_keys[0],
+                    fields_row = control_keys[1],
+                    field_name  = control_keys[2];
+                if (!new_item[fields_key]) new_item[fields_key] = [];
+                if (!new_item[fields_row]) new_item[fields_key][parseInt(fields_row)] = {};
+
                 //===> Set Data <===//
-                new_item[control_keys[0]][control_keys[1]][control_keys[2]] = control_value;
+                new_item[fields_key][parseInt(fields_row)][field_name] = control_value;
             } else {
                 //===> Set Data <===//
                 new_item[control_name] = control_value;
@@ -224,17 +229,29 @@ document.addEventListener('DOMContentLoaded', ready => {
     //===> Update Controls Method <===//
     update_controls = (FormControls) => FormControls.forEach(control => {
         //===> Define Data <===//
-        let control_name = control.getAttribute('name'),
+        let isFormRepeater = Phenix(control).ancestor('.px-form-repeater') || false,
+            control_name = control.getAttribute('name'),
             control_tag  = control.tagName,
+            control_data = dataItem[control_name],
             control_type = control.getAttribute('type');
 
+        //===> Check if its a Repeater Control <===//
+        if (isFormRepeater) {
+            //===> Get Data <===//
+            let repeaterKey = isFormRepeater.getAttribute('data-fields-key'),
+                repeaterRow = Phenix(control).ancestor(`.px-form-repeater-fields`).getAttribute('data-item-key'),
+                real_name   = control_name.replace(`${repeaterKey}`, '').replace(`[${repeaterRow}]`, '').replace('[', '').replace(']', '');
+            //===> Correct Data <===//
+            control_data = dataItem[repeaterKey][parseInt(repeaterRow)][real_name];
+        }
+
         //===> Check for Data <===//
-        if (control_name && dataItem[control_name]) {
+        if (control_name && control_data) {
             //===> Select Controls <===//
             if (control_tag === 'SELECT') {
                 //===> Define Data <===//
                 let pds_select = Phenix(control).ancestor('.px-select'),
-                    data_value = typeof(dataItem[control_name]) === 'string' ? dataItem[control_name].split(' ') : dataItem[control_name];
+                    data_value = typeof(control_data) === 'string' ? control_data.split(' ') : control_data;
 
                 //===> Select the Options <===//
                 control.querySelectorAll('option').forEach(option => {
@@ -243,59 +260,64 @@ document.addEventListener('DOMContentLoaded', ready => {
                 });
 
                 //===> Set the Value <===//
-                control.value = dataItem[control_name];
+                control.value = control_data;
                 
                 //===> Update PDS : Select <===//
-                if (pds_select) {
-                    pds_select.setAttribute('data-value', dataItem[control_name]);
-                    control.dispatchEvent(new Event('update'));
-                }
+                if (pds_select) Phenix(control).rebuildSelect();
             }
             //===> Textarea Controls <===//
             else if (control_tag === 'TEXTAREA') {
-                control.value = dataItem[control_name];
-                control.textContent = dataItem[control_name];
+                control.value = control_data;
+                control.textContent = control_data;
             }
             //===> Normal Controls <===//
             else {
                 //===> Checkbox Controls <===//
-                if(control_type === 'checkbox') control.checked = dataItem[control_name];
+                if(control_type === 'checkbox') control.checked = control_data;
                 //===> Normal Inputs <===//
-                else {control.value = dataItem[control_name];}
+                else {control.value = control_data;}
             }
         }
     }),
 
     //===> Reset Controls Method <===//
-    reset_controls = (FormControls) => FormControls.forEach(control => {
-        //===> Define Data <===//
-        let control_tag = control.tagName;
+    reset_controls = (FormControls, FormElement) => {
+        //===> Repeater Reset <====//
+        FormElement.querySelectorAll('[data-item-key]').forEach(repeater => {
+            if (parseInt(repeater.getAttribute('data-item-key')) > 1) repeater.remove();
+        });
 
-        //===> Reset Value <===//
-        if (control_tag === 'SELECT') {
-            //===> Check for PDS <===//
-            let pds_select = Phenix(control).ancestor('.px-select');
-
-            //===> Unselect the Options <===//
-            control.querySelectorAll('option[selected]').forEach(option => option.removeAttribute('selected'));
-
+        //===> Reset Controls <====//
+        FormControls.forEach(control => {
+            //===> Define Data <===//
+            let control_tag = control.tagName;
+    
             //===> Reset Value <===//
-            if (pds_select) {
+            if (control_tag === 'SELECT') {
+                //===> Check for PDS <===//
+                let pds_select = Phenix(control).ancestor('.px-select');
+    
+                //===> Unselect the Options <===//
+                control.querySelectorAll('option[selected]').forEach(option => option.removeAttribute('selected'));
+    
+                //===> Reset Value <===//
+                if (pds_select) {
+                    control.value = "";
+                    pds_select.setAttribute('data-value', "");
+                    control.dispatchEvent(new Event('update'));
+                } else control.value = "";
+            } 
+    
+            //===> Textarea Controls <===//
+            else if (control_tag === 'TEXTAREA') {
                 control.value = "";
-                pds_select.setAttribute('data-value', "");
-                control.dispatchEvent(new Event('update'));
-            } else control.value = "";
-        } 
-
-        //===> Textarea Controls <===//
-        else if (control_tag === 'TEXTAREA') {
-            control.value = "";
-            control.textContent = "";
-        }
-
-        //===> Other Controls <===//
-        else control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
-    });
+                control.textContent = "";
+            }
+    
+            //===> Other Controls <===//
+            else control.getAttribute('type') === 'checkbox' ?  control.checked = false : control.value = "";
+        });
+    }
 
     //===> Update List Method <===//
     const update_list = (type, list, template) => {
@@ -420,8 +442,10 @@ document.addEventListener('DOMContentLoaded', ready => {
             update_options(current).then(succuss => {
                 //===> Show Notification <===//
                 data_success("the Item has been Deleted.");
+                //===> Get the Correct Template <===//
+                let correct_template = data_type === "pds_types" ? type_template : data_type === "pds_taxonomies" ? taxonomy_template : data_type === "block_patterns" ? pattern_template : data_type === "pds_metabox" ? metabox_template : location_template;
                 //===> Update the List <===//
-                item_stats ? location.reload() : update_list(data_type, `.${data_type}_list`, type_template);
+                item_stats ? location.reload() : update_list(data_type, `.${data_type}_list`, correct_template);
             }).catch(error => {error.message});
         });
     },
@@ -491,7 +515,7 @@ document.addEventListener('DOMContentLoaded', ready => {
         let FormControls = data_form[0].querySelectorAll('input, select, textarea');
 
         //===> Reset Controls <===//
-        reset_controls(FormControls);
+        reset_controls(FormControls, data_form[0]);
 
         //===> Get Data from Rest-API <===//
         get_options().then(options => {
@@ -500,9 +524,40 @@ document.addEventListener('DOMContentLoaded', ready => {
             //===> Get the Required Item <===//
             dataItem = current[dataType].find(item => item.name === item_name);
 
+            //===> Metaboxes Repeater Pre-Set Data <===//
+            if (dataType === "pds_metabox") {
+                //===> Get the Fields List <===//
+                let fields = dataItem.fields;
+                //===> Get the First Row of the Repeater <===//
+                let fields_row = Phenix('[data-fields-key="fields"] [data-item-key="0"]')[0];
+
+                //===> Clone the Row as much as Fields <===//
+                for (let index = 1; index < fields.length; index++) {
+                    //===> Create New Row <===//
+                    let newRow = fields_row.parentNode.appendChild(fields_row.cloneNode(true));
+
+                    //===> Increase the Row Number <===//
+                    newRow.setAttribute("data-item-key", index);
+
+                    //===> Change the Fields Name <===//
+                    newRow.querySelectorAll("[name]").forEach((element) => {
+                        //====> Get the Name <====//
+                        let name = element.getAttribute("name");
+                        //====> Correct the Name <====//
+                        element.setAttribute("name", name.replace(`[${index-1}]`, `[${index}]`));
+                    });
+                }
+            };
+
             //===> Check for Data Item <===//
             if (dataItem) {
+                //====> Re-Select Controls <====//
+                FormControls = data_form[0].querySelectorAll('input, select, textarea');
+
+                //====> Update Controls Values <===//
                 update_controls(FormControls);
+
+                //===> Show the Form <===//
                 data_form.addClass('active').removeClass('hidden').fadeIn(500, 'flex');
             }
         });

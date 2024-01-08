@@ -57,7 +57,7 @@
 	
 	/*==== Layouts Wrapper ====*/
 	.block-editor-block-list__layout {
-		position: static;
+		// &:not(.block-library-block__reusable-block-container) {position: static;}
 		/*==== Reset Blocks ====*/
 		.wp-block-cover {overflow: hidden;}
 		.gpy-fix, .last-row {margin-bottom: 0;}
@@ -71,6 +71,9 @@
 
 	/*==== Core Block Style ====*/
 	.block-editor-block-list__block {
+		//====> Position Fix in Editor <====//
+		> .block-editor-block-list__layout.position-rv {position: static!important;}
+
 		/*==== Blocks Placeholder ====*/
 		.components-placeholder {
 			min-height: 0;

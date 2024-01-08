@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', ready => {
                     //===> Update the List <===//
                     if (new_item['name'] && !new_item['enable']) {
                         //===> Get the Correct Template <===//
-                        let correct_template = data_type === "pds_types" ? type_template : data_type === "pds_taxonomies" ? taxonomy_template : data_type === "block_patterns" ? pattern_template : data_type === "pds_metabox" ? metabox_template : location_template;
+                        let correct_template = current[data_type] === "pds_types" ? type_template : current[data_type] === "pds_taxonomies" ? taxonomy_template : current[data_type] === "block_patterns" ? pattern_template : current[data_type] === "pds_metabox" ? metabox_template : location_template;
                         //===> Update the List <===//
                         update_list(current[data_type], `.${data_type}_list`, correct_template);
                         //===> Close the Form <===//

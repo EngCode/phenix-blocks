@@ -32,9 +32,7 @@ module.exports = {
         // 'pds-dropdowns': './src/blocks/pds-dropdowns/index.js',
         // 'pds-languages': './src/blocks/pds-languages/index.js',
         // 'inline-elements': './src/blocks/inline-elements/index.js',
-        // 'pds-se-option': './src/blocks/pds-options/site-editor.js',
         // 'pds-google-maps': './src/blocks/pds-google-maps/index.js',
-        // 'pds-pe-options': './src/blocks/pds-options/post-editor.js',
         // 'pds-search-query': './src/blocks/pds-search-query/index.js',
     },
 

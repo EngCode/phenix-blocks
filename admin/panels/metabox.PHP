@@ -65,15 +65,15 @@
                     <!-- Form Control -->
                     <div class="control-icon far fa-cube">
                         <select name="datatype" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Location', "pds-blocks");?>" multiple>
-                            <option value="post-type" selected>Post Type</option>
-                            <option value="taxonomy">Taxonomy</option>
+                            <option value="post_types" selected>Post Type</option>
+                            <option value="taxonomies">Taxonomy</option>
                         </select>
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col col-md-6 post-types-select">
+                <div class="col post-types-select">
                     <!-- Form Control -->
-                    <div class="control-icon fas fa-map-marker-alt mb-15">
+                    <div class="control-icon fas fa-map-marker-alt">
                         <select name="post_types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', "pds-blocks");?>" multiple>
                             <?php
                                 $post_types = get_post_types(array('public'=> true), 'objects');
@@ -87,10 +87,10 @@
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col col-md-6 taxonomies-select">
+                <div class="col taxonomies-select">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-map-marker-alt mb-15">
-                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', "pds-blocks");?>" multiple disabled>
+                    <div class="control-icon far fa-map-marker-alt">
+                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', "pds-blocks");?>" multiple>
                             <?php
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
@@ -115,7 +115,7 @@
                     <!-- Repeater Items -->
                     <div class="px-repeater-items gpy-15">
                         <!-- Repeater Row -->
-                        <div class="px-form-repeater-fields px-group flow-nowrap" data-item-key="1">
+                        <div class="px-form-repeater-fields px-group flow-nowrap" data-item-key="0">
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-text">
                                 <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
@@ -128,9 +128,17 @@
                             <div class="col-4 control-icon far fa-pen-field">
                                 <select name="type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Type', "pds-blocks");?>">
                                     <option value="text">Text</option>
-                                    <option value="file">Files</option>
-                                    <option value="array">Array</option>
+                                    <option value="date">Date</option>
+                                    <option value="time">Time</option>
+                                    <option value="email">Email</option>
                                     <option value="number">Numbers</option>
+                                    <option value="textarea">Textarea</option>
+                                    <!-- <option value="select">Select</option> -->
+                                    <!-- <option value="media-file">Media File</option> -->
+                                    <!-- <option value="multi-select">Multi-Select</option> -->
+                                    <!-- <option value="option-radio">Radio button</option> -->
+                                    <option value="option-checkbox">Checkbox</option>
+                                    <option value="option-switch">Switch button</option>
                                 </select>
                             </div>
                             <!-- // Form Control -->

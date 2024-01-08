@@ -322,8 +322,8 @@ PhenixElements.prototype.utilities = function (options?:{
         //====> Images SEO/Performance <====//
         Phenix('img').forEach((img:any) => {
             //===> Get Image Data <===//
-            let img_width = img.getAttribute('width') || img.style.width,
-                img_height = img.getAttribute('height') || img.style.height,
+            let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
+                img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
                 parent_width = img.parentNode.clientWidth,
                 parent_height = img.parentNode.clientHeight;
             //===> Set Width and Height <===//
@@ -336,7 +336,9 @@ PhenixElements.prototype.utilities = function (options?:{
         //====> Links SEO <====//
         Phenix('a[href]').forEach((link:any) => {
             //===> Alternative Text <===//
-            if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', link.textContent.trim());
+            if (!link.getAttribute('title') || link.getAttribute('title') === "") {
+                link.setAttribute('title', link.textContent.trim() || link.getAttribute('data-title'));
+            }
         });
     }
 

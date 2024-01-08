@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', ready => {
         </li>`);
     },
 
-    //===> Taxonomies Template <===//
+    //===> Pattern Template <===//
     pattern_template = (pattern) => {
         return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
             <!-- Label -->
@@ -188,9 +188,10 @@ document.addEventListener('DOMContentLoaded', ready => {
                 //===> Create the keys if not exist <===//
                 let fields_key = control_keys[0],
                     fields_row = control_keys[1],
-                    field_name  = control_keys[2];
+                    field_name = control_keys[2];
+
                 if (!new_item[fields_key]) new_item[fields_key] = [];
-                if (!new_item[fields_row]) new_item[fields_key][parseInt(fields_row)] = {};
+                if (!new_item[fields_row][parseInt(fields_row)]) new_item[fields_key][parseInt(fields_row)] = {};
 
                 //===> Set Data <===//
                 new_item[fields_key][parseInt(fields_row)][field_name] = control_value;
@@ -558,7 +559,7 @@ document.addEventListener('DOMContentLoaded', ready => {
                 update_controls(FormControls);
 
                 //===> Show the Form <===//
-                data_form.addClass('active').removeClass('hidden').fadeIn(500, 'flex');
+                data_form.addClass('active').removeClass('hidden').fadeIn(500, 0, 'flex');
             }
         });
     };

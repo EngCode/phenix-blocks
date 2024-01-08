@@ -138,26 +138,26 @@ Phenix(window).on("load", (loaded) => {
             let value = form.querySelector('[name="px-protection"]')?.value;
             if (value && value !== "") submit.preventDefault();
         }));
-    },
-
-    editorAssets = () => {
-        //====> Add Design Options Classes <===//
-        document.body.classList.add('phenix-wp-design');
-
-        //===> Removes Editor Reset styles <===//
-        let common_css    = `#common-rtl-css, #common-css`,
-            reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,
-            block_library = `#wp-block-library-theme-css, #wp-block-library-theme-rtl-css`;
-
-        //===> Run Files Remover <===//
-        Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
     };
+
+    // editorAssets = () => {
+    //     //====> Add Design Options Classes <===//
+    //     document.body.classList.add('phenix-wp-design');
+
+    //     //===> Removes Editor Reset styles <===//
+    //     let common_css    = `#common-rtl-css, #common-css`,
+    //         reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,
+    //         block_library = `#wp-block-library-theme-css, #wp-block-library-theme-rtl-css`;
+
+    //     //===> Run Files Remover <===//
+    //     Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
+    // };
 
     /*====> Unblock Phenix <====*/
     document.querySelector('#phenix-js')?.removeAttribute('async');
 
     /*====> Unblock Fonts <====*/
-    Phenix('#fontawesome-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
+    Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {

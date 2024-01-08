@@ -344,7 +344,6 @@ document.addEventListener('DOMContentLoaded', ready => {
 
             //===> Activate Toggle Method <===//
             Phenix(`${list} input[name="item-status"]`).on('change', event => toggle_item(event.target));
-            
         }).then(response => {}).catch(error => {error.message});
     },
 
@@ -384,7 +383,11 @@ document.addEventListener('DOMContentLoaded', ready => {
 
                     //===> Update the List <===//
                     if (new_item['name'] && !new_item['enable']) {
-                        update_list(current[data_type], `.${data_type}_list`, type_template);
+                        //===> Get the Correct Template <===//
+                        let correct_template = data_type === "pds_types" ? type_template : data_type === "pds_taxonomies" ? taxonomy_template : data_type === "block_patterns" ? pattern_template : data_type === "pds_metabox" ? metabox_template : location_template;
+                        //===> Update the List <===//
+                        update_list(current[data_type], `.${data_type}_list`, correct_template);
+                        //===> Close the Form <===//
                         Phenix('.px-modal.active').fadeOut(500).removeClass('active');
                     } else if (new_item['enable']) {
                         window.location.reload();

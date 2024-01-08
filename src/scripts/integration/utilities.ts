@@ -63,10 +63,27 @@ PhenixElements.prototype.utilities = function (options?:{
                 element.setAttribute("name", `${fields_key}[${original_row.getAttribute('data-item-key')}][${name}]`);
             });
 
-            //===> Take a Deep Clone from the Original Row <===//
-            const original_row_clone = original_row.cloneNode(true);
-            
-            //====> Add New Item <====//
+            //===> Remove Button Creator <===//
+            const create_remove_btn = (repeater_row:any) => {
+                //===> Insert the Remove Button <===//
+                const currentRemoveBtn = repeater_row.appendChild(add_btn.cloneNode(false));
+
+                //===> Change the Button Style <===//
+                currentRemoveBtn.classList.remove("fa-plus", "tiny", "small", "large", "xlarge");
+                currentRemoveBtn.classList.add('fa-minus', 'danger');
+
+                //====> Correct Button Size <====//
+                if (repeater_row.querySelector(".form-control")) {
+                    let classNames = repeater_row.querySelector(".form-control").classList;
+                    let sizes = ["tiny", "small", "large", "xlarge"];
+                    sizes.some(size => classNames.contains(size) ? currentRemoveBtn.classList.add(size) : '');
+                }
+
+                //====> Remove the Item <====//
+                currentRemoveBtn.addEventListener("click", (event:any) => Phenix(event.target).ancestor(".px-form-repeater-fields").remove());
+            };
+
+            //====> Add New Item (Remove Item Method Included) <====//
             add_btn.addEventListener("click", (event:any) => {
                 //===> Create new Row <===//
                 const newRow:any = items_list.appendChild(original_row.cloneNode(true)),
@@ -106,25 +123,13 @@ PhenixElements.prototype.utilities = function (options?:{
                 });
 
                 //===> Create Remove Button <===//
-                const removeBtn = add_btn.cloneNode(false);
-
-                //===> Insert the Remove Button <===//
-                const currentRemoveBtn = newRow.appendChild(removeBtn);
-
-                //===> Change the Button Style <===//
-                currentRemoveBtn.classList.remove("fa-plus", "tiny", "small", "large", "xlarge");
-                currentRemoveBtn.classList.add('fa-minus', 'danger');
-
-                //====> Correct Button Size <====//
-                if (newRow.querySelector(".form-control")) {
-                    let classNames = newRow.querySelector(".form-control").classList;
-                    let sizes = ["tiny", "small", "large", "xlarge"];
-                    sizes.some(size => classNames.contains(size) ? currentRemoveBtn.classList.add(size) : '');
-                }
-
-                //====> Remove the Item <====//
-                currentRemoveBtn.addEventListener("click", (event:any) => Phenix(event.target).ancestor(".px-form-repeater-fields").remove());
+                create_remove_btn(newRow);
             });
+
+            //====> Get Pre-Set Data <====//
+            // let repeaterObj = [
+            //     {},
+            // ];
         });
     }
 

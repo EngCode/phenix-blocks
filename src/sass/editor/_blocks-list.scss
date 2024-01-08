@@ -109,7 +109,11 @@
 	.wp-block-phenix-button {pointer-events: all!important;}
 
 	/*==== Full Screen Fix ====*/
-    .px-slider .splide__list {max-height: 100vh;}
+    .px-slider {
+		overflow-x: hidden;
+		.splide__list {max-height: 100vh;}
+		&:not([data-items]), &:not([data-md]), &:not([data-lg]), &:not([data-xl]) {margin-left: 0; margin-right: 0;}
+	}
 
 	/*==== Position ====*/
 	.position-ab  {position: absolute!important;}

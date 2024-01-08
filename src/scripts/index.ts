@@ -603,7 +603,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     /*====> Define Components <====*/
     dropdown; tabs; collapse; connect;
     popup; lightbox; menu; datatable;
-    validation; uploader; progress;
+    validation; uploader; progress; rebuildSelect
     select; repeater; rating; seo; loader;
     slider; utilities; notifications; init;
 }

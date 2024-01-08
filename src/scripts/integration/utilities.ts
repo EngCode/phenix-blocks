@@ -108,17 +108,7 @@ PhenixElements.prototype.utilities = function (options?:{
                     if (element.tagName === "SELECT") {
                         element.querySelectorAll('[selected]').forEach(option => option.removeAttribute('selected'));
                         //====> Advanced Select Rebuild <====//
-                        if (element.classList.contains('px-select')) {
-                            //====> Get the Select Wrapper <====//
-                            let selectWrapper = Phenix(element).ancestor('.px-select');
-                            //====> Remove Mounted Class <====//
-                            element.classList.remove('px-mounted', 'hidden');
-                            //====> Move the Select Element and Remove the Select Wrapper <====//
-                            Phenix(selectWrapper).insert('before', element);
-                            selectWrapper.remove();
-                            //====> Rebuild the Select Element <====//
-                            Phenix(element).select();
-                        }
+                        if (element.classList.contains('px-select')) Phenix(element).rebuildSelect();
                     }
                 });
 

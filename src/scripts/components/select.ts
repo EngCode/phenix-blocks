@@ -83,23 +83,24 @@ PhenixElements.prototype.select = function (options?:{
         //====> Rebuild from Scratch <====//
         if (select.classList.contains('px-mounted')) {
             select.addEventListener('update', isUpdated => {
+                Phenix(isUpdated.target).rebuildSelect();
                 //===> Get Options <====//
-                const original_options = select.querySelectorAll('option'),
-                      select_wrapper =  Phenix(select).ancestor('.px-select'),
-                      new_select_options = select_wrapper.querySelectorAll('.px-select-options .px-select-option');
+                // const original_options = select.querySelectorAll('option'),
+                //       select_wrapper =  Phenix(select).ancestor('.px-select'),
+                //       new_select_options = select_wrapper.querySelectorAll('.px-select-options .px-select-option');
                 
-                //===> if there is a new Items Rebuild <====/
-                if (original_options.length !== new_select_options.length) {
-                    //===> Remove Classes <===//
-                    select.classList.remove('px-mounted');
-                    select_wrapper.classList.remove('px-mounted');
+                // //===> if there is a new Items Rebuild <====/
+                // if (original_options.length !== new_select_options.length) {
+                //     //===> Remove Classes <===//
+                //     select.classList.remove('px-mounted');
+                //     select_wrapper.classList.remove('px-mounted');
 
-                    //===> Remove Elements <===//
-                    select_wrapper.querySelectorAll('.px-select-toggle, .px-select-options').forEach((element:HTMLElement) => element.remove());
+                //     //===> Remove Elements <===//
+                //     select_wrapper.querySelectorAll('.px-select-toggle, .px-select-options').forEach((element:HTMLElement) => element.remove());
 
-                    //===> Rebuild the Component <====//
-                    Phenix(select).select();
-                }
+                //     //===> Rebuild the Component <====//
+                //     Phenix(select).select();
+                // }
             });
         }
 
@@ -514,6 +515,28 @@ PhenixElements.prototype.select = function (options?:{
             //===> Update Value <==//
             select.addEventListener('update', isUpdated => get_default_value());
         }
+    });
+
+    //====> Return Phenix <====//
+    return this;
+}
+
+//====> Rebuild Select Method <====//
+PhenixElements.prototype.rebuildSelect = function () {
+    //====> Loop Through Phenix Elements <====//
+    this.forEach(select => {
+        //====> Get the Select Wrapper <====//
+        let selectWrapper = Phenix(select).ancestor('.px-select');
+
+        //====> Remove Mounted Class <====//
+        select.classList.remove('px-mounted', 'hidden');
+
+        //====> Move the Select Element and Remove the Select Wrapper <====//
+        Phenix(selectWrapper).insert('before', select);
+        selectWrapper.remove();
+
+        //====> Rebuild the Select Element <====//
+        Phenix(select).select();
     });
 
     //====> Return Phenix <====//

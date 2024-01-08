@@ -7,7 +7,9 @@
 	"category": "design",
 	"description": "Text elements for Headlines/Titles and Paragraphs or Lists.",
 	"supports": {
-		"html": false
+		"html": false,
+        "__experimentalOnEnter": true,
+		"__experimentalMetadata": true
 	},
     "attributes" : {
         "id": {

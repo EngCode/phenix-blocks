@@ -9,7 +9,9 @@
 	"supports": {
 		"html": false,
         "align": ["full"],
-        "alignWide": true
+        "alignWide": true,
+        "__experimentalOnEnter": true,
+		"__experimentalMetadata": true
 	},
 
     "attributes" : {

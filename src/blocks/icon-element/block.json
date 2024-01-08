@@ -5,7 +5,11 @@
 	"title": "Icon Element",
 	"category": "design",
 	"description": "",
-	"supports": {"html": false},
+	"supports": {
+        "html": false,
+        "__experimentalOnEnter": true,
+		"__experimentalMetadata": true
+    },
     "attributes" : {
         "type": {
             "type": "string",

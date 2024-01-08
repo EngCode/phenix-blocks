@@ -26,7 +26,7 @@ import EffectsSet from '../px-controls/sets/effects';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, name, setAttributes, clientId }) {
     //===> Set ID <===//
     const set_id = id => setAttributes({ id });
 
@@ -135,7 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
     const innerBlocksProps = useInnerBlocksProps();
-
+    
     //===> Rendering Checkers <===//
     const isObjectVal = (option_value) => {return typeof option_value === 'object'},
         isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
@@ -144,7 +144,7 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
         //===> Exclude Options <===//
-        const excluded = ["tagName", "className", "align", "metadata"];
+        const excluded = ["tagName", "className", "align", "metadata", "name"];
         if (excluded.some(opt => opt === option_name)) return;
 
         //===> if its a Normal Values that should be string <===//

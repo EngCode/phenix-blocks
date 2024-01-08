@@ -6,7 +6,9 @@
   "category": "design",
   "description": "Inject Custom HTML/CSS/JavaScript code into your page",
   "supports": {
-    "html": false
+    "html": false,
+    "__experimentalOnEnter": true,
+    "__experimentalMetadata": true
   },
   "attributes": {
     "preview": {

@@ -6,7 +6,11 @@
   "category": "design",
   "description": "",
   "supports": {
-    "html": false
+    "html": false,
+    "anchor": false,
+    "ariaLabel": true,
+    "__experimentalOnEnter": true,
+    "__experimentalMetadata": true
   },
   "attributes": {
     "preview": {

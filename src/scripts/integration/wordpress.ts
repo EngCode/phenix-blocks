@@ -74,12 +74,14 @@ Phenix(window).on("load", (loaded) => {
             //===> Get a Correct Title <===//
             let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
             if (parent && parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type')[0]) {
-                parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : null);
+                parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : "");
             }
 
+            if (elTitle === "") elTitle = link.querySelector('*')?.textContent ? link.querySelector('*').textContent.trim() : "";
+
             //===> Set Attributes <===//
-            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle} ${elType} Element`);
-            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${link.getAttribute('title') || elTitle} ${elType} Element`);
+            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle}`);
+            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${link.getAttribute('title') || elTitle}`);
         });
         
         //====> Inputs do not have a discernible name <====//

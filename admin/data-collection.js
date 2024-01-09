@@ -326,38 +326,75 @@ document.addEventListener('DOMContentLoaded', ready => {
         get_options().then(options => {
             //===> Define Data <===//
             let current = options,
-                theData = current[type],
+                theData  = current[type],
                 dataList = document.querySelector(list),
-                currentPage = 0,
-                itemsShows  = theData.length > 9 ? 9 : theData.length,
-                currentShow = itemsShows;
+                currentPage = parseInt(dataList.getAttribute('data-current-page')) || 1,
+                dataPages   = {},
+                itemsShows  = theData.length > 10 ? 10 : theData.length;
+
+            //===> Create Pagination from the Data <===//
+            for(let item = 0; item < theData.length; item += itemsShows) {
+                //===> Define Page Number <===//
+                let pageNumber = Math.floor(item / itemsShows) + 1;
+
+                //===> Add item to Pages Object <===//
+                dataPages[pageNumber] = theData.slice(item, item + itemsShows);
+            }
+
+            //===> if it is only one page hide the pagination <===//
+            if (Object.keys(dataPages).length === 1) dataList.parentNode.querySelector('.data-pagination')?.classList.add('hidden');
+
+            //===> show pagination if its more then one page <===//
+            else if (Object.keys(dataPages).length > 1) dataList.parentNode.querySelector('.data-pagination')?.classList.remove('hidden');
+
+            //===> Set Current Page to the List <===//
+            dataList.setAttribute('data-current-page', currentPage);
+
+            //===> Pagination Method <===//
+            const paginationButton = (event) => {
+                //===> Get the icons List Wrapper <====//
+                let element = event.target,
+                    buttonTarget = element.getAttribute('data-page');
+
+                //===> Get Next Page <===//
+                if (buttonTarget === 'next') {
+                    //===> Exit if Last Page <===//
+                    if (currentPage === Object.keys(dataPages).length) return;
+
+                    //===> Change to Next Page <===//
+                    currentPage = currentPage + 1;
+
+                    //===> Clear Current Page <===//
+                    dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
+
+                    //===> Create Page <===//
+                    dataPages[currentPage].forEach(item => Phenix(dataList).insert('append', template(item)));
+                }
+    
+                //===> Get Previous Page <===//
+                else if (buttonTarget === 'previous') {
+                    //===> Exit if First Page <===//
+                    if (currentPage === 1) return;
+                    //===> Change to Previous Page <===//
+                    currentPage = currentPage - 1;
+                    //===> Clear Current Page <===//
+                    dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
+                    //===> Create Page <===//
+                    dataPages[currentPage].forEach(item => Phenix(dataList).insert('append', template(item)));
+                }
+            };
 
             //===> Clear Current Data List <===//
             dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
 
             //===> Create First Page <===//
-            for (let index = 0; index < itemsShows; index++) Phenix(dataList).insert('append', template(theData[index]));
+            dataPages[currentPage].forEach(item => Phenix(dataList).insert('append', template(item)));
 
             //===> Activate Next Page Button <===//
-            dataList.parentNode.querySelector('.next-btn')?.addEventListener('click', () => {
-                //===> Clear Current Data List <===//
-                dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
-                //===> Create New List <===//
-                if (currentShow < theData.length) {
-                    for (let index = currentShow; index < currentShow+9; index++) Phenix(dataList).insert('append', template(theData[index]));
-                }
-            });
+            dataList.parentNode.querySelector('.next-btn')?.addEventListener('click', paginationButton);
 
             //===> Activate Prev Page Button <===//
-            dataList.parentNode.querySelector('.prev-btn')?.addEventListener('click', () => {
-                //===> Clear Current Data List <===//
-                dataList?.querySelectorAll(':scope > li:not(.list-head)').forEach(item => item.remove());
-
-                //===> Create New List <===//
-                if (currentShow > 9) {
-                    for (let index = currentShow; index < currentShow-9; index--) Phenix(dataList).insert('append', template(theData[index]));
-                }
-            });
+            dataList.parentNode.querySelector('.prev-btn')?.addEventListener('click', paginationButton);
 
             //===> Activate Edit Method <===//
             Phenix(`${list} .edit-item`).on('click', event => edit_item(event.target));
@@ -407,9 +444,15 @@ document.addEventListener('DOMContentLoaded', ready => {
                     //===> Update the List <===//
                     if (new_item['name'] && !new_item['enable']) {
                         //===> Get the Correct Template <===//
-                        let correct_template = current[data_type] === "pds_types" ? type_template : current[data_type] === "pds_taxonomies" ? taxonomy_template : current[data_type] === "block_patterns" ? pattern_template : current[data_type] === "pds_metabox" ? metabox_template : location_template;
+                        let correct_template = location_template;
+                        if (current[data_type] === "pds_taxonomies") correct_template = taxonomy_template;
+                        else if (current[data_type] === "block_patterns") correct_template = pattern_template;
+                        else if (current[data_type] === "pds_metabox") correct_template = metabox_template;
+                        else if (current[data_type] === "pds_types") correct_template = type_template;
+                        
                         //===> Update the List <===//
                         update_list(current[data_type], `.${data_type}_list`, correct_template);
+
                         //===> Close the Form <===//
                         Phenix('.px-modal.active').fadeOut(500).removeClass('active');
                     } else if (new_item['enable']) {
@@ -424,7 +467,7 @@ document.addEventListener('DOMContentLoaded', ready => {
     remove_item = (trigger) => {
         //===> Define Elements <===//
         let menu_item = Phenix(trigger).ancestor('li'),
-            item_stats = menu_item.querySelector(`[name="item-status"]`)?.checked,
+            item_stats = menu_item.querySelector(`[name="item-status"]`)?.checked || false,
             item_name = Phenix(trigger).ancestor('li').querySelector('.item-name')?.textContent;
 
         //===> Set Loading Mode <===//
@@ -444,7 +487,12 @@ document.addEventListener('DOMContentLoaded', ready => {
                 //===> Show Notification <===//
                 data_success("the Item has been Deleted.");
                 //===> Get the Correct Template <===//
-                let correct_template = data_type === "pds_types" ? type_template : data_type === "pds_taxonomies" ? taxonomy_template : data_type === "block_patterns" ? pattern_template : data_type === "pds_metabox" ? metabox_template : location_template;
+                let correct_template = location_template;
+                if (current[data_type] === "pds_taxonomies") correct_template = taxonomy_template;
+                else if (current[data_type] === "block_patterns") correct_template = pattern_template;
+                else if (current[data_type] === "pds_metabox") correct_template = metabox_template;
+                else if (current[data_type] === "pds_types") correct_template = type_template;
+
                 //===> Update the List <===//
                 item_stats ? location.reload() : update_list(data_type, `.${data_type}_list`, correct_template);
             }).catch(error => {error.message});

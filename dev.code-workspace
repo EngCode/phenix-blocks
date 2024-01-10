@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../../themes"
+		},
+		{
+			"path": "../../../../_FE_Projects/SugarWorldPlatform"
 		}
 	],
 	"settings": {
@@ -30,7 +33,7 @@
 			
 		],
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "pds-blocks",
+		"liveServer.settings.multiRootWorkspaceName": "SugarWorldPlatform",
 		"liveServer.settings.port": 5502,
 	}
 }

@@ -142,7 +142,7 @@ if (!function_exists('phenix_assets')) :
         wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), null, 'screen and (min-width: 2500px)');
 
         //===> Load Secondary Font <===//
-        if (isset($assets_files['primary_font']) && $assets_files['primary_font'] !== $assets_files['secondary']) {
+        if (isset($assets_files['primary']) && $assets_files['primary'] !== $assets_files['secondary']) {
             wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), null, 'screen and (min-width: 2500px)');
         }
         

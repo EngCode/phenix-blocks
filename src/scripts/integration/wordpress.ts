@@ -66,22 +66,19 @@ Phenix(window).on("load", (loaded) => {
         if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
         
         //====> Links do not have a discernible name <====//
-        Phenix('a:empty, button:empty').forEach((link:HTMLElement) => {
-            //===> Define Data <===//
-            let elTitle = "",
-                elType  = link.classList.contains('btn') || link.tagName === "BUTTON" ? "Button" : link.classList.contains('media') ? "Media" : "Resource";
-
-            //===> Get a Correct Title <===//
-            let parent = Phenix(link).ancestor('[class*="col"]') || Phenix(link).ancestor('[class*="row"]') || Phenix(link).ancestor('[class*="container"]');
-            if (parent && parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type')[0]) {
-                parent.querySelectorAll('h2:first-of-type, h3:first-of-type, h4:first-of-type, p:first-of-type').forEach(element => !elTitle && element.textContent ? elTitle = element.textContent.trim() : "");
-            }
-
-            if (elTitle === "") elTitle = link.querySelector('*')?.textContent ? link.querySelector('*').textContent.trim() : "";
-
-            //===> Set Attributes <===//
-            if(!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', `${elTitle}`);
-            if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${link.getAttribute('title') || elTitle}`);
+        Phenix('a:empty:not(.px-media), button:empty').forEach((link:HTMLElement) => {
+            setTimeout(() => {
+                //===> Get the Title from the Closest Text Element <===//
+                let closestElement = link.closest('h2, h3, h4, p, a, img'),
+                    elTitle:string = closestElement?.textContent.trim() || link.getAttribute('title') || "";
+    
+                //===> Get from an Attributes <===//
+                if (!elTitle || elTitle === "null") elTitle = closestElement?.getAttribute('alt') || closestElement?.getAttribute('title') || "";
+    
+                //===> Set Attributes <===//
+                if(!link.getAttribute('title')) link.setAttribute('title', `${elTitle}`);
+                if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle}`);
+            }, 1000);
         });
         
         //====> Inputs do not have a discernible name <====//

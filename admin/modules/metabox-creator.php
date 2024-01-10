@@ -24,7 +24,6 @@ if (!function_exists('pds_metabox_create')) :
             //===> Create Fields <===//
             foreach($metabox_group["fields"] as $metabox) {
                 //===> Get Current Value <===//
-                var_dump($metabox);
                 $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
 
                 //===> Type Check Points <===//

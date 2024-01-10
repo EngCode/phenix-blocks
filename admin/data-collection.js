@@ -191,10 +191,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                     field_name = control_keys[2];
 
                 if (!new_item[fields_key]) new_item[fields_key] = [];
-                if (!new_item[fields_row][parseInt(fields_row)]) new_item[fields_key][parseInt(fields_row)] = {};
 
                 //===> Set Data <===//
-                new_item[fields_key][parseInt(fields_row)][field_name] = control_value;
+                new_item[fields_key].push({[field_name]: control_value});
             } else {
                 //===> Set Data <===//
                 new_item[control_name] = control_value;

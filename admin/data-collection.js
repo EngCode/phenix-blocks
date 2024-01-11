@@ -456,6 +456,8 @@ document.addEventListener('DOMContentLoaded', ready => {
 
                         //===> Close the Form <===//
                         Phenix('.px-modal.active').fadeOut(500).removeClass('active');
+                        //===> Refresh <===//
+                        setTimeout(()=>window.location.reload(), 500);
                     } else if (new_item['enable']) {
                         window.location.reload();
                     }

@@ -28,7 +28,7 @@ export default class SelectFromData extends Component {
         
                     //===> add Locations to a List <===//
                     for (const [key, item] of Object.entries(locations)) {
-                        new_options_list.push(location);
+                        new_options_list.push({label: item.title, value: item.name});
                     }
     
                     //===> Set new Options List <===//

@@ -27,8 +27,8 @@ export default class SelectFromData extends Component {
                         new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
         
                     //===> add Locations to a List <===//
-                    for (const [key, value] of Object.entries(locations)) {
-                        new_options_list.push({label: value, value: key});
+                    for (const [key, item] of Object.entries(locations)) {
+                        new_options_list.push(location);
                     }
     
                     //===> Set new Options List <===//

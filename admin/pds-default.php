@@ -175,8 +175,8 @@
 
         //===> Set default values here <===//
         function pds_blocks_default_values() {
-            if (function_exists('phenix_support')) {
-                //===> Get Default Options <===//
+            
+            //===> Get Default Options <===//
                 $default_options = pds_get_default_options();
                 $is_reset_mode = get_option('pds_reset');
         
@@ -190,11 +190,12 @@
                     //===> Turn Off Reset <===//
                     update_option("pds_reset", "off");
                 }
-        
-                //===> Set Templates Parts <===//
-                $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
-                update_option('theme_parts', $current_theme_parts);
-            }
+
+                if (function_exists('phenix_support')) {
+                    //===> Set Templates Parts <===//
+                    $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
+                    update_option('theme_parts', $current_theme_parts);
+                }
         }
 
         add_action('init', 'pds_blocks_default_values');

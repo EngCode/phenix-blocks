@@ -16,6 +16,7 @@
  ** 07 - Restrict Login Attempts
  ** 08 - S.E.O. Images Metadata Generator
  ** 09 - Cleanup Navigation Menus
+ ** 10 - Disable Thumbnails Generating
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -302,5 +303,22 @@ add_action('add_attachment', function ($post_ID) {
 		update_post_meta( $post_ID, '_wp_attachment_image_alt', $image_title );
 		//===> Set the image meta (e.g. Title, Excerpt, Content) <===//
 		wp_update_post( $my_image_meta );
+    }
+});
+
+//===> Disable Thumbnails Generating <===//
+add_action('init', function() {
+    foreach ( ['thumbnail', 'medium', 'large'] as $size ) {
+        update_option( "{$size}_size_w", 0 );
+        update_option( "{$size}_size_h", 0 );
+    }
+});
+
+add_action('init', function () {
+    foreach ( get_intermediate_image_sizes() as $size ) {
+        if ( in_array( $size, ['thumbnail', 'medium', 'medium_large', 'large'] ) ) {
+            continue;
+        }
+        remove_image_size( $size );
     }
 });

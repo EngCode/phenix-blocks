@@ -93,7 +93,7 @@ if (!function_exists('phenix_assets')) :
         //===> Loop on the Fonts <===//
         foreach ($current_fonts['text'] as $key => $value) {
             //===> Define the Font File <===//
-            if (in_array($value, $custom_fonts, true)) {
+            if (is_array($fonts_list) && in_array($value, $custom_fonts, true)) {
                 $final_files[$key] = $assets_url. 'webfonts/'.$value.'.css';
             } else if (get_option('pds_gfonts') == "on") {
                 $final_files[$key] = 'https://fonts.googleapis.com/css2?family='.str_replace(" ", "+", $value).':wght@100;200;300;400;500;600;700;800;900&display=swap';

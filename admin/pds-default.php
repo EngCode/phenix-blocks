@@ -175,27 +175,27 @@
 
         //===> Set default values here <===//
         function pds_blocks_default_values() {
-            
             //===> Get Default Options <===//
-                $default_options = pds_get_default_options();
-                $is_reset_mode = get_option('pds_reset');
-        
-                //===> Add Options if not Exist <===//
-                foreach ($default_options as $key => $value) { add_option($key, $value); }
-        
-                //===> Reset Options <===//
-                if (isset($is_reset_mode) && $is_reset_mode !== "off") {
-                    //===> Reset Data <===//
-                    update_option($is_reset_mode, $default_options[$is_reset_mode]);
-                    //===> Turn Off Reset <===//
-                    update_option("pds_reset", "off");
-                }
+            $default_options = pds_get_default_options();
+            $is_reset_mode = get_option('pds_reset');
+    
+            //===> Add Options if not Exist <===//
+            foreach ($default_options as $key => $value) { add_option($key, $value); }
+    
+            //===> Reset Options <===//
+            if (isset($is_reset_mode) && $is_reset_mode !== "off") {
+                //===> Reset Data <===//
+                update_option($is_reset_mode, $default_options[$is_reset_mode]);
+                //===> Turn Off Reset <===//
+                update_option("pds_reset", "off");
+            }
 
-                if (function_exists('phenix_support')) {
-                    //===> Set Templates Parts <===//
-                    $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
-                    update_option('theme_parts', $current_theme_parts);
-                }
+            //===> Get Theme Template Parts <===//
+            if (function_exists('phenix_support')) {
+                //===> Set Templates Parts <===//
+                $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
+                update_option('theme_parts', $current_theme_parts);
+            }
         }
 
         add_action('init', 'pds_blocks_default_values');

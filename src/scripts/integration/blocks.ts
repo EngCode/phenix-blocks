@@ -79,9 +79,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     if (main_header && header_holder) header_holder.prepend(main_header);
 
     //====> Sticky Header Fixes <====//    
-    if (Phenix('[data-sticky="absolute"]')[0]) {
+    if (Phenix('[data-sticky="absolute"], .main-header.position-st')[0]) {
         //===> Define Data <===//
-        const stickyHeader = Phenix('[data-sticky="absolute"]'),
+        const stickyHeader = Phenix('[data-sticky="absolute"], .main-header.position-st'),
               headerHeight = stickyHeader.height();
 
         //====> Full Screen Fixes <====//
@@ -110,7 +110,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     }
 
     //===> Sticky Elements <====//
-    Phenix("[data-sticky").sticky();
+    Phenix("[data-sticky], .main-header.position-st").sticky();
 
     //====> Sliders <====//
     Phenix('.px-slider').slider();

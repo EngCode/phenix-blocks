@@ -77,8 +77,10 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 
 /*==== Helpers Fixes ====*/
 .entry-content {padding: 0!important;}
+
 .wp-block-image > a {display: block;width: inherit;}
 .wp-block-phenix-icon-element img {border-radius: inherit;}
+.main-header.position-st.is-sticky {position: fixed; width: 100%;}
 .wp-block-phenix-popup .modal-content {pointer-events: none;}
 .wp-block-phenix-popup .modal-content > * {pointer-events: all;}
 .pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}
@@ -93,18 +95,6 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 .wp-block-phenix-container > [class*="container"]:not(.wp-block-phenix-container) {
     height: inherit;
     min-height: inherit;
-}
-
-/*==== Front-End and Editor Content only ====*/
-body:not([class*="editor"]):not([class*="wp-admin"]) {
-    /*==== Header Position ====*/
-    .has-header .main-header {
-        left: 0;
-        right: 0;
-        top: 20px;
-        position: absolute;
-        z-index: var(--header-index);
-    }
 }
 
 /*==== Page Head ====*/

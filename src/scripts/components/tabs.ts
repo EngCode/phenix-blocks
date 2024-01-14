@@ -68,7 +68,8 @@ PhenixElements.prototype.tabs = function (options?:{
 
                 //====> Add to URL <====//
                 if (hash_url && hash_url !== '0' || hash_url !== 'false') {
-                    window.history.replaceState({ additionalInformation: 'Updated the URL with JS' }, document.title, window.location.href.replace(location.hash, "")+`#${tab_id}`);
+                    const url = window.location.href.replace(location.hash, "") + `#${tab_id}`;
+                    history.pushState({ additionalInformation: 'Updated the URL with JS' }, document.title, url);
                 }
 
                 //====> Active the Button <====//

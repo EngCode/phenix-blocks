@@ -92,8 +92,8 @@ const PhenixComponentsBuilder = () => {
 
             //====> Clear Timer <===//
             time_counter += 1;
-            if (time_counter > 25) clearInterval(pds_elements_timer);
-        }, 500);
+            if (time_counter > 5) clearInterval(pds_elements_timer);
+        }, 300);
     };
 
     //===> Run View Script <===//

@@ -122,7 +122,7 @@ const PhenixComponentsBuilder = () => {
                     } else {
                         //===> Increase Counter <===//
                         trying_times += 1;
-                        if (trying_times > 20) clearInterval(loadAssetTimer);
+                        if (trying_times > 3) clearInterval(loadAssetTimer);
                     }
                 }
             }, 300);

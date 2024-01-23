@@ -11,7 +11,7 @@
     <!-- Buttons -->
     <div class="flexbox px-group radius-sm">
         <!-- Import File -->
-        <label class="px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import Options', "pds-blocks"); ?>">
+        <label class="px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
             <input type="file" id="import-pds-data-uploader" class="hidden" />
         </label>
         <!-- Button -->
@@ -24,7 +24,7 @@
 <style>
     #pds-import-export .px-group .px-uploader {--text-size: inherit; border: 0 none;}
     #pds-import-export .px-group .px-uploader::before {display: none;}
-    #pds-import-export .px-group .px-uploader::after {text-align: center; }
+    #pds-import-export .px-group .px-uploader::after {text-align: center; width: 100%;}
 </style>
 
 <!-- Demo Templates -->

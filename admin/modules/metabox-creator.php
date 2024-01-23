@@ -62,6 +62,7 @@ if (!function_exists('pds_metabox_create')) :
                     $field_html = $label_html;
                     $field_html .= '<input type="'.$metabox["type"].'" name="'.$metabox["name"].'" value="'.$current_value.'" class="'.$input_classes.'" />';
                 }
+
                 //===> Return Final HTML <===//
                 $output .= $field_html;
             }

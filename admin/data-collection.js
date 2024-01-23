@@ -689,4 +689,59 @@ document.addEventListener('DOMContentLoaded', ready => {
             }
         }
     });
+
+    //===> Export PDS Patterns <===//
+    Phenix('#export-pds-patterns-btn').on('click', event => {
+        //===> ...Default... <===//
+        event.preventDefault();
+
+        //===> Get Data from Rest-API <===//
+        get_options().then(options => {
+            //===> Define Data <===//
+            let current = options,
+                data = JSON.stringify(current['block_patterns']);
+
+            //===> Create the Element <===//
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+            element.setAttribute('download', 'pds-patterns.json');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }).catch(error => {error.message});
+    });
+
+    //===> Import PDS Options <===//
+    Phenix('#import-pds-patterns-uploader').on('change', event => {
+        //===> Get the File <===//
+        let file = event.target.files[0];
+
+        //===> Check for File <===//
+        if (file) {
+            //===> Define Data <===//
+            let reader = new FileReader();
+
+            //===> Read the File <===//
+            reader.readAsText(file, "UTF-8");
+
+            //===> On Load <===//
+            reader.onload = (event) => {
+                //===> Get Data from Rest-API <===//
+                get_options().then(options => {
+                    //===> Define Data <===//
+                    let current = options;
+                    current['block_patterns'] = JSON.parse(event.target.result);
+
+                    //===> Update Options <===//
+                    update_options(current).then(response => {
+                        //===> Show Notification <===//
+                        data_success("the Data has been Imported.");
+                        //===> Reload Page <===//
+                        location.reload();
+                    }).catch(error => {error.message});
+                }).catch(error => {error.message});
+            }
+        }
+    });
 });

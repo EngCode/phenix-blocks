@@ -21,10 +21,10 @@ if (!function_exists('pds_cpt_create')) :
             $name = $options["name"];
             $label = $options["label"];
             $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
-            $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
+            $label_singular = isset($options['label-singular']) ? $options["label-singular"] : $options["label"];
             $template = isset($options['template']) ? $options["template"] : "";
             $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
-            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 19;
+            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 17;
             $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
             $hierarchical = isset($options['hierarchical']) ? $options["hierarchical"] : false;
 

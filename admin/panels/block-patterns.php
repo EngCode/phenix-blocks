@@ -61,7 +61,7 @@
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
                     <div class="control-icon far fa-text">
-                        <input type="text" name="title" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
+                        <input type="text" name="title" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
@@ -92,7 +92,7 @@
                     </div>
                     <!-- Form Control -->
                     <div class="control-icon far fa-file large">
-                        <textarea name="content" class="form-control large radius-sm fs-13 mb-15" placeholder="<?php echo __('Content', "pds-blocks");?>" required></textarea>
+                        <textarea name="content" class="form-control large radius-sm fs-13 mb-15" placeholder="<?php echo __('Content', "pds-blocks");?>"></textarea>
                     </div>
                 </div>
             </div>

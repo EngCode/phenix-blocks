@@ -178,7 +178,7 @@
             //===> Get Default Options <===//
             $default_options = pds_get_default_options();
             $is_reset_mode = get_option('pds_reset');
-    
+
             //===> Add Options if not Exist <===//
             foreach ($default_options as $key => $value) { add_option($key, $value); }
     

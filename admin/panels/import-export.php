@@ -15,14 +15,14 @@
             <input type="file" id="import-pds-data-uploader" class="hidden" />
         </label>
         <!-- Button -->
-        <button id="export-pds-data-btn" type="button" class="btn success radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <button id="export-pds-data-btn" type="button" class="btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
     </div>
 </div>
 <!-- // Layouts -->
 
 <!-- Button Uploader -->
 <style>
-    #pds-import-export .px-group .px-uploader {--text-size: inherit;}
+    #pds-import-export .px-group .px-uploader {--text-size: inherit; border: 0 none;}
     #pds-import-export .px-group .px-uploader::before {display: none;}
     #pds-import-export .px-group .px-uploader::after {text-align: center; }
 </style>

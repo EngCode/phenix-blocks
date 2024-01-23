@@ -430,10 +430,15 @@ document.addEventListener('DOMContentLoaded', ready => {
             get_options().then(options => {
                 //===> Define Data <===//
                 let current = options;
+
+                //===> Fix Empty Array <===//
+                if (typeof(current[data_type]) === "string") current[data_type] = [];
+
                 //===> Find the item and Excluded from the new List <===//
                 current[data_type] = current[data_type].filter(item => item['name'] !== new_item['name']);
                 //===> Add the new Item <===//
                 current[data_type].push(new_item);
+
                 //===> Update Options <===//
                 update_options(current).then(response => {
                     //===> Reset Loading Mode <===//
@@ -624,9 +629,9 @@ document.addEventListener('DOMContentLoaded', ready => {
 
     //===> Add Item Trigger <===//
     Phenix('.collection-form .add-item').on('click', event => add_item(event.target));
+
     //===> Reset Data Trigger <===//
     Phenix('.pds-reset-data').on('click', event => reset_item(event.target));
-
 
     //===> Export PDS Options <===//
     Phenix('#export-pds-data-btn').on('click', event => {

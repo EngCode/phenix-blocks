@@ -13,7 +13,7 @@
         <p class="mb-20 fs-14"><?php echo __('you can add new menu locations from below form.', "pds-blocks"); ?></p>
         <!-- Form Control -->
         <div class="control-icon far fa-list mb-15">
-            <input type="text" name="title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Location Title', "pds-blocks");?>" required>
+            <input type="text" name="title" class="form-control radius-md border-alpha-10" placeholder="<?php echo __('Location Title', "pds-blocks");?>">
         </div>
         <!-- Form Control -->
         <div class="control-icon far fa-location mb-15">

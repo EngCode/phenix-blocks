@@ -51,7 +51,7 @@
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
                     <div class="control-icon far fa-text">
-                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
+                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->

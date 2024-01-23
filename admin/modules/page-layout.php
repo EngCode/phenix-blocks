@@ -2,7 +2,8 @@
 <!-- Phenix Admin -->
 <div class="bg-white pds-admin-page px-tabs" data-hash="1" data-active="0" data-navigation=".tabs-navigation">
     <!-- Setting Wrapper -->
-    <form method="post" action="options.php" id="pds-form" class="pds-form">
+
+    <?php if (isset($submit_button) && $submit_button) : ?> <form method="post" action="options.php" id="pds-form" class="pds-form"> <?php else:?> <div> <?php endif; ?>
         <?php
             //===> Hidden Inputs Handler for WP Options Register <===//
             settings_fields($form_page);
@@ -44,7 +45,11 @@
             <?php endif; ?>
         </div>
         <!-- // Panels Group -->
-    </form>
+        <?php if (isset($submit_button) && $submit_button) : ?>
+        </form>
+        <?php else:?>
+            </div>
+        <?php endif; ?>
     <!-- // Setting Wrapper -->
 </div>
 <!-- // Phenix Admin -->

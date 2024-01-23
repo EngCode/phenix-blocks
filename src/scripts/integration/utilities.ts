@@ -87,7 +87,7 @@ PhenixElements.prototype.utilities = function (options?:{
             add_btn.addEventListener("click", (event:any) => {
                 //===> Create new Row <===//
                 const newRow:any  = items_list.appendChild(original_row.cloneNode(true)),
-                      currentRows = items_list.querySelectorAll("[data-item-key]").length;
+                      currentRows = items_list.querySelectorAll("[data-item-key]").length-1;
 
                 //===> Increase the Row Number <===//
                 newRow.setAttribute("data-item-key", currentRows);

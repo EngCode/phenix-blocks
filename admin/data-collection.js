@@ -383,6 +383,13 @@ document.addEventListener('DOMContentLoaded', ready => {
                     //===> Create Page <===//
                     dataPages[currentPage].forEach(item => Phenix(dataList).insert('append', template(item)));
                 }
+
+                //===> Activate Edit Method <===//
+                dataList.querySelectorAll(".edit-item").addEventListener('click', event => edit_item(event.target));
+                //===> Activate Remove Method <===//
+                dataList.querySelectorAll(".remove-item").addEventListener('click', event => remove_item(event.target));
+                //===> Activate Toggle Method <===//
+                dataList.querySelectorAll("input[name='item-status']").forEach(item => item.addEventListener('change', event => toggle_item(event.target)));
             };
 
             //===> Clear Current Data List <===//
@@ -399,10 +406,8 @@ document.addEventListener('DOMContentLoaded', ready => {
 
             //===> Activate Edit Method <===//
             Phenix(`${list} .edit-item`).on('click', event => edit_item(event.target));
-            
             //===> Activate Remove Method <===//
             Phenix(`${list} .remove-item`).on('click', event => remove_item(event.target));
-
             //===> Activate Toggle Method <===//
             Phenix(`${list} input[name="item-status"]`).on('change', event => toggle_item(event.target));
         }).then(response => {}).catch(error => {error.message});

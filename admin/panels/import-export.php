@@ -6,7 +6,7 @@
     <!-- Area Head -->
     <div class="col">
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Import/Export Phenix Options', "pds-blocks"); ?></h3>
-        <p class="fs-14"><?php echo __('in this simple page you can Import and Export Phenix Design System Data', "pds-blocks"); ?></p>
+        <p class="fs-14"><?php echo __('from this two buttons you can import and export all phenix blocks options and data collection.', "pds-blocks"); ?></p>
     </div>
     <!-- Buttons -->
     <div class="flexbox px-group radius-sm">

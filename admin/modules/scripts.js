@@ -7,4 +7,7 @@ document.addEventListener('DOMContentLoaded', ready => {
     
     //===> Validation <===//
     Phenix('.pds-form').validation();
+
+    //====> Phenix Uploader <====//
+    Phenix('.px-uploader').uploader();
 });

@@ -79,6 +79,21 @@
         }
     }
 
+    //===> Import / Export Panel <===//
+    if (!function_exists('pds_import_export_panel')) {
+        function pds_import_export_panel() {
+            //===> Start Data <===//
+            $template_markup = '';
+            ob_start();
+            //===> Get Panel Template <===//
+            include(dirname(__FILE__) . '/panels/import-export.php');
+            //===> Stop Data <===//
+            $template_output = ob_get_clean();
+            $template_markup .= $template_output;
+            return "{$template_markup}";
+        }
+    }
+
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
@@ -125,6 +140,13 @@
                     "slug"  => "pds-metabox",
                     "icon"  => "far fa-pen-field",
                     "content" => 'pds_metabox_panel',
+                ),
+                //==> Import/Export Panel <==//
+                array(
+                    "title" => "Import/Export",
+                    "slug"  => "pds-import-export",
+                    "icon"  => "far fa-floppy-disk",
+                    "content" => 'pds_import_export_panel',
                 ),
             ),
             //==> Hide Submit Button <==//

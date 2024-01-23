@@ -626,4 +626,56 @@ document.addEventListener('DOMContentLoaded', ready => {
     Phenix('.collection-form .add-item').on('click', event => add_item(event.target));
     //===> Reset Data Trigger <===//
     Phenix('.pds-reset-data').on('click', event => reset_item(event.target));
+
+
+    //===> Export PDS Options <===//
+    Phenix('#export-pds-data-btn').on('click', event => {
+        //===> ...Default... <===//
+        event.preventDefault();
+
+        //===> Get Data from Rest-API <===//
+        get_options().then(options => {
+            //===> Define Data <===//
+            let current = options,
+                data = JSON.stringify(current);
+
+            //===> Create the Element <===//
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+            element.setAttribute('download', 'pds-options.json');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }).catch(error => {error.message});
+    });
+
+    //===> Import PDS Options <===//
+    Phenix('#import-pds-data-uploader').on('change', event => {
+        //===> Get the File <===//
+        let file = event.target.files[0];
+
+        //===> Check for File <===//
+        if (file) {
+            //===> Define Data <===//
+            let reader = new FileReader();
+
+            //===> Read the File <===//
+            reader.readAsText(file, "UTF-8");
+
+            //===> On Load <===//
+            reader.onload = (event) => {
+                //===> Define Data <===//
+                let data = JSON.parse(event.target.result);
+
+                //===> Update Options <===//
+                update_options(data).then(response => {
+                    //===> Show Notification <===//
+                    data_success("the Data has been Imported.");
+                    //===> Reload Page <===//
+                    location.reload();
+                }).catch(error => {error.message});
+            }
+        }
+    });
 });

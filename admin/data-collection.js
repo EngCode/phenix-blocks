@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', ready => {
             <span class="tx-icon far fa-link w-150 item-name">${metabox.datatype}</span>
 
             <!-- Data Locations -->
-            <span class="col tx-icon far fa-link col-3 item-name">${metabox.post_types || metabox.taxonomies}</span>
+            <span class="col tx-icon far fa-link col-3 item-name">${metabox.post_types.length > 0 ? metabox.post_types : metabox.taxonomies}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">

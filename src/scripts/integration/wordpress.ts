@@ -211,4 +211,25 @@ Phenix(window).on("load", (loaded) => {
     //     //====> Disable Links <====//
     //     Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     // }
+
+    //===> WP Media Uploader <===//
+    Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {
+        //===> Prevent Default <===//
+        isClicked.preventDefault();
+        let input = Phenix(isClicked.target).next(".uploader-input");
+        
+        //===> Open Media Uploader <===//
+        console.log(wp.media);
+        var image = wp.media({
+            title: "Upload Image",
+            multiple: false
+        }).open().on("select", isSelect => {
+            //===> Get the Image URL <===//
+            var uploaded_image = image.state().get("selection").first();
+            //===> Set the URL to the Input <===//
+            input.value = uploaded_image.toJSON().url;
+            //===> Preview <===//
+            input.parentNode.querySelector(".input-value").innerHTML = new URL(uploaded_image.toJSON().url).pathname.split("/").pop();
+        });
+    });
 });

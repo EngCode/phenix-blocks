@@ -269,3 +269,8 @@ if (!function_exists('pds_lightbox_template')) :
 
 	add_action('wp_footer', 'pds_lightbox_template');
 endif;
+
+//===> Loading Media Library Scripts <===//
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_media();
+});

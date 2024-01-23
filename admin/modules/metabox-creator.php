@@ -28,23 +28,42 @@ if (!function_exists('pds_metabox_create')) :
 
                 //===> Type Check Points <===//
                 $type_checkpoints = array(
-                    "isSelect" => substr($metabox["type"], 0) === "select",
-                    "isMedia"  => substr($metabox["type"], 0) === "media",
-                    "isTextarea" => substr($metabox["type"], 0) === "textarea",
-                    "isOption" => substr($metabox["type"], 0) === "option",
+                    "isMedia"    => $metabox["type"] === "media-file",
+                    "isSelect"   => $metabox["type"] === "select" || $metabox["type"] === "multi-select",
+                    "isTextarea" => $metabox["type"] === "textarea",
+                    "isRadio"    => $metabox["type"] === "option-radio",
+                    "isSwitch"   => $metabox["type"] === "option-switch",
+                    "isCheckbox" => $metabox["type"] === "option-checkbox",
                 );
 
                 //===> Create Field Label <===//
                 $label_html = '<label class="fs-14 mb-5">' . $metabox["label"] . '</label>';
+                $input_classes = "form-control radius-sm fs-13 mb-20";
                 $field_html = '';
 
-                //===> for Text Field Type <===//
-                if (!$type_checkpoints["isOption"] || !$type_checkpoints["isSelect"] || !$type_checkpoints["isMedia"] || !$type_checkpoints["isTextarea"]) {
-                    $field_html = '<input type="'.$metabox["type"].'" name="'.$metabox["name"].'" value="'.$current_value.'" class="form-control radius-sm fs-13 mb-20" />';
+                //===> for Textarea Type <===//
+                if ($type_checkpoints["isTextarea"]) {
+                    $field_html = $label_html;
+                    $field_html .= '<textarea name="'.$metabox["name"].'" class="'.$input_classes.'">'.$current_value.'</textarea>';
                 }
 
+                //===> for Media Uploader Type <===//
+                else if ($type_checkpoints["isMedia"]) {
+                    $field_html =  '<label class="fs-14 mb-5">'.$metabox["label"].'</label>';
+                    $field_html .= '<div class="col-auto px-custom-uploader flexbox align-between border-1 border-solid border-alpha-10 bg-white radius-sm pds-15 align-center-y">';
+                        $field_html .=  '<span class="input-value">' . basename($current_value) . '</span>';
+                        $field_html .=  '<button type="button" class="uploader-btn btn gray small radius-sm radius-end">'.__("Change Image", "pds-blocks").'</button>';
+                        $field_html .=  '<input type="hidden" name="'.$metabox["name"].'" class="uploader-input" value="'.$current_value.'" />';
+                    $field_html .= '</div>';
+                }
+
+                //===> for Input Field Type <===//
+                else {
+                    $field_html = $label_html;
+                    $field_html .= '<input type="'.$metabox["type"].'" name="'.$metabox["name"].'" value="'.$current_value.'" class="'.$input_classes.'" />';
+                }
                 //===> Return Final HTML <===//
-                $output .= $label_html . $field_html;
+                $output .= $field_html;
             }
 
             return $output;

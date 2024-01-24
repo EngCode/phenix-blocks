@@ -36,7 +36,10 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     });
 
     //===> Smooth Scroll <====//
-    Phenix('body:not(.wp-admin) *:not(.scrollspy-menu) a[href*="#"]').smothScroll();
+    Phenix('body:not(.wp-admin) a[href*="#"]').forEach((link:HTMLElement) => {
+        let ancestorIs = Phenix(link).ancestor('.px-tabs') || Phenix(link).ancestor('.scrollspy-menu');
+        if (!ancestorIs) Phenix(link).smothScroll();
+    });
 
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {

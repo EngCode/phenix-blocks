@@ -39,13 +39,13 @@
     &.large#{$infix} {
         --padding   : #{REM(20)};
         --height    : #{REM(52)};
-        --text-size : #{REM(17)};
+        --text-size : #{REM(15)};
     }
 
     &.xlarge#{$infix} {
         --padding   : #{REM(25)};
         --height    : #{REM(62)};
-        --text-size : #{REM(18)};
+        --text-size : #{REM(16)};
     }
 }
 
@@ -180,7 +180,7 @@ label,legend  {@extend %inline-block;}
 .control-icon {
     position: relative;
     color: var(--color);
-    --white-space : calc(var(--padding)*2.5);
+    --white-space : calc(var(--padding)*2.1);
     /*==== icons ====*/
     &::before {
         top: 0;
@@ -319,7 +319,7 @@ label,legend  {@extend %inline-block;}
 
 /*==== Forms [Gray Mode] ====*/
 .gray-form {
-    .form-control,.option-control {
+    .form-control, .option-control {
         --background   : #F5F5F5;
         --border-color : #f1f1f1;
     }
@@ -327,11 +327,11 @@ label,legend  {@extend %inline-block;}
 
 /*==== Forms [Dark Mode] ====*/
 .dark-form {
-    .control-icon, .form-control,.option-control {--color : #FFFF;}
-    .form-control,.option-control {--background : var(--dark-color);}
+    .control-icon, .form-control, .option-control {--color : #FFFF;}
+    .form-control, .option-control {--background : var(--dark-color);}
 }
 
 /*==== Forms [No Border] ====*/
 .form-borderless {
-    .form-control,.option-control {--border-size : 0;}
+    .form-control, .option-control {--border-size : 0;}
 }

@@ -133,7 +133,7 @@
     &::after {
         content: var(--title-content);
         position: absolute;
-        font-size:12px;
+        font-size: 12px;
         line-height: 27px;
         @extend %nowrap;
         background:rgba(0,0,0,0.75);
@@ -142,6 +142,7 @@
         border-radius: 5px;
         visibility: hidden;
         opacity: 0;
+        font-family: var(--secondary-font);
         transition: opacity 0.3s ease;
     }
     

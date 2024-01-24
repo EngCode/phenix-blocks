@@ -23,22 +23,15 @@
     <!-- Buttons -->
     <div class="flexbox px-group radius-sm">
         <!-- Import File -->
-        <label class="px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
-            <input type="file" id="import-pds-patterns-uploader" class="hidden" />
+        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
+            <input type="file" class="hidden pds-data-importer" data-target="block_patterns" />
         </label>
         <!-- Button -->
-        <button id="export-pds-patterns-btn" type="button" class="btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <button data-target="block_patterns" type="button" class="pds-data-exporter btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
         <!-- Button -->
         <button type="button" class="btn success radius-sm" data-modal="block_patterns_form"><?php echo __('Add New', "pds-blocks"); ?></button>
     </div>
 </div>
-
-<!-- Button Uploader -->
-<style>
-    #pds-patterns .px-group .px-uploader {--text-size: inherit; border: 0 none;}
-    #pds-patterns .px-group .px-uploader::before {display: none;}
-    #pds-patterns .px-group .px-uploader::after {text-align: center; width: 100%; }
-</style>
 
 <!-- metabox List -->
 <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 block_patterns_list" data-type="block_patterns">

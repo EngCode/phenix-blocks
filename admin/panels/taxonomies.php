@@ -15,8 +15,17 @@
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Taxonomies List', "pds-blocks"); ?></h3>
         <p class="fs-14"><?php echo __('in here you can manage the taxonomies created by phenix-blocks.', "pds-blocks"); ?></p>
     </div>
-    <!-- Button -->
-    <button type="button" class="btn success radius-sm" data-modal="pds_taxonomies_form"><?php echo __('Add New', "pds-blocks"); ?></button>
+    <!-- Buttons -->
+    <div class="flexbox px-group radius-sm">
+        <!-- Import File -->
+        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
+            <input type="file" class="hidden pds-data-importer" data-target="pds_taxonomies" />
+        </label>
+        <!-- Button -->
+        <button data-target="pds_taxonomies" type="button" class="pds-data-exporter btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <!-- Button -->
+        <button type="button" class="btn success radius-sm" data-modal="pds_taxonomies_form"><?php echo __('Add New', "pds-blocks"); ?></button>
+    </div>
 </div>
 <!-- taxonomies List -->
 <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 pds_taxonomies_list" data-type="pds_taxonomies">

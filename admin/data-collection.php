@@ -154,5 +154,11 @@
         );
     endif;
 ?>
+<!-- Button Uploader -->
+<style>
+    .px-uploader.pds-data-importer-wrapper {--text-size: inherit; border: 0 none;}
+    .px-uploader.pds-data-importer-wrapper::before {display: none;}
+    .px-uploader.pds-data-importer-wrapper::after {text-align: center; width: 100%; }
+</style>
 <!-- Form Script -->
 <script src="<?php echo $assets_url.'/data-collection.js';?>" defer></script>

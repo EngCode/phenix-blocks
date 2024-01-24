@@ -69,7 +69,7 @@ function px_navigation_render($block_attributes, $content) {
                     if ($option_name === "typography") {
                         //===> Collect Style Data <===//
                         if($sub_option === "size") { $font_size = $sub_value; } 
-                        elseif($sub_option === "weight") { $font_weight = $sub_value; } 
+                        // elseif($sub_option === "weight") { $font_weight = $sub_value; }
                         elseif($sub_option === "height") { $font_height = $sub_value; } 
                         elseif($sub_option === "align") { $text_align = $sub_value; } 
                         elseif($sub_option === "color") { $text_color = $sub_value; } 
@@ -98,7 +98,7 @@ function px_navigation_render($block_attributes, $content) {
 
     //===> Custom CSS Style <===//
     if (isset($font_size) && $font_size) { $nav_style .= "--font-size:".str_replace("fs-", "", $font_size)."px;"; }
-    if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
+    // if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
     if (isset($font_height) && $font_height) { $nav_style .= "--height: {$font_height}px;"; }
     if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
     if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }

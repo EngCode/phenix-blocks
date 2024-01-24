@@ -386,9 +386,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                 }
 
                 //===> Activate Edit Method <===//
-                dataList.querySelectorAll(".edit-item").addEventListener('click', event => edit_item(event.target));
+                dataList.querySelectorAll(".edit-item").forEach(item => item.addEventListener('click', event => edit_item(event.target)));
                 //===> Activate Remove Method <===//
-                dataList.querySelectorAll(".remove-item").addEventListener('click', event => remove_item(event.target));
+                dataList.querySelectorAll(".remove-item").forEach(item => item.addEventListener('click', event => remove_item(event.target)));
                 //===> Activate Toggle Method <===//
                 dataList.querySelectorAll("input[name='item-status']").forEach(item => item.addEventListener('change', event => toggle_item(event.target)));
             };
@@ -639,6 +639,65 @@ document.addEventListener('DOMContentLoaded', ready => {
     //===> Reset Data Trigger <===//
     Phenix('.pds-reset-data').on('click', event => reset_item(event.target));
 
+    //===> Data Exporter <===//
+    Phenix('.pds-data-exporter').on('click', event => {
+        //===> ...Default... <===//
+        event.preventDefault();
+        let dataTarget = event.target.getAttribute('data-target');
+
+        //===> Get Data from Rest-API <===//
+        get_options().then(options => {
+            //===> Define Data <===//
+            let current = options,
+                data = JSON.stringify(current[dataTarget]);
+
+            //===> Create the Element <===//
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+            element.setAttribute('download', `${dataTarget}.json`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }).catch(error => {error.message});
+    });
+
+    //===> Data Importer <===//
+    Phenix('.pds-data-importer').on('change', event => {
+        //===> Get the File <===//
+        let file = event.target.files[0],
+            dataTarget = event.target.getAttribute('data-target');
+
+        //===> Check for File <===//
+        if (file) {
+            //===> Define Data <===//
+            let reader = new FileReader();
+
+            //===> Read the File <===//
+            reader.readAsText(file, "UTF-8");
+
+            //===> On Load <===//
+            reader.onload = (event) => {
+                //===> Get Data from Rest-API <===//
+                get_options().then(options => {
+                    //===> Define Data <===//
+                    let current = options;
+
+                    //===> Replace Data <====//
+                    current[dataTarget] = JSON.parse(event.target.result);
+
+                    //===> Update Options <===//
+                    update_options(current).then(response => {
+                        //===> Show Notification <===//
+                        data_success("the Data has been Imported.");
+                        //===> Reload Page <===//
+                        location.reload();
+                    }).catch(error => {error.message});
+                }).catch(error => {error.message});
+            }
+        }
+    });
+
     //===> Export PDS Options <===//
     Phenix('#export-pds-data-btn').on('click', event => {
         //===> ...Default... <===//
@@ -685,61 +744,6 @@ document.addEventListener('DOMContentLoaded', ready => {
                     data_success("the Data has been Imported.");
                     //===> Reload Page <===//
                     location.reload();
-                }).catch(error => {error.message});
-            }
-        }
-    });
-
-    //===> Export PDS Patterns <===//
-    Phenix('#export-pds-patterns-btn').on('click', event => {
-        //===> ...Default... <===//
-        event.preventDefault();
-
-        //===> Get Data from Rest-API <===//
-        get_options().then(options => {
-            //===> Define Data <===//
-            let current = options,
-                data = JSON.stringify(current['block_patterns']);
-
-            //===> Create the Element <===//
-            let element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-            element.setAttribute('download', 'pds-patterns.json');
-            element.style.display = 'none';
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }).catch(error => {error.message});
-    });
-
-    //===> Import PDS Options <===//
-    Phenix('#import-pds-patterns-uploader').on('change', event => {
-        //===> Get the File <===//
-        let file = event.target.files[0];
-
-        //===> Check for File <===//
-        if (file) {
-            //===> Define Data <===//
-            let reader = new FileReader();
-
-            //===> Read the File <===//
-            reader.readAsText(file, "UTF-8");
-
-            //===> On Load <===//
-            reader.onload = (event) => {
-                //===> Get Data from Rest-API <===//
-                get_options().then(options => {
-                    //===> Define Data <===//
-                    let current = options;
-                    current['block_patterns'] = JSON.parse(event.target.result);
-
-                    //===> Update Options <===//
-                    update_options(current).then(response => {
-                        //===> Show Notification <===//
-                        data_success("the Data has been Imported.");
-                        //===> Reload Page <===//
-                        location.reload();
-                    }).catch(error => {error.message});
                 }).catch(error => {error.message});
             }
         }

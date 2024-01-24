@@ -2,26 +2,26 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 ?>
 <!-- Layouts -->
-<div class="flexbox align-between align-center-y mb-20 divider-b pdb-15">
+<div class="flexbox align-center align-center-y pdb-15">
     <!-- Area Head -->
-    <div class="col">
-        <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Import/Export Phenix Options', "pds-blocks"); ?></h3>
-        <p class="fs-14"><?php echo __('from this two buttons you can import and export all phenix blocks options and data collection.', "pds-blocks"); ?></p>
+    <div class="col-12 tx-align-center mb-15">
+        <h3 class="fs-18 mb-10 weight-medium"><?php echo __('Import/Export Phenix Options', "pds-blocks"); ?></h3>
+        <p class="fs-16"><?php echo __('from this two buttons you can import and export all phenix blocks options and data collection.', "pds-blocks"); ?></p>
     </div>
     <!-- Buttons -->
-    <div class="flexbox px-group radius-sm">
+    <div class="flexbox px-group radius-sm w-250">
         <!-- Import File -->
-        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
+        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-6 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
             <input type="file" id="import-pds-data-uploader" class="hidden" />
         </label>
         <!-- Button -->
-        <button id="export-pds-data-btn" type="button" class="btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <button id="export-pds-data-btn" type="button" class="btn dark radius-sm col-6"><?php echo __('Export', "pds-blocks"); ?></button>
     </div>
 </div>
 <!-- // Layouts -->
 
 <!-- Demo Templates -->
-<div class="pdy-10">
+<div class="pdy-10 hidden">
     <!-- Title -->
     <h3 class="fs-18 mb-0"><?php echo __("Import Theme Demo", "pds-blocks"); ?></h3>
     <p class="fs-14"><?php echo __('you can also choose one of the current Theme Demos to startup you website.', "pds-blocks"); ?></p>

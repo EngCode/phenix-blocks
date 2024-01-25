@@ -9,8 +9,17 @@
         <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Metaboxes List', "pds-blocks"); ?></h3>
         <p class="fs-14"><?php echo __('in here you can manage the metaboxes created by phenix-blocks.', "pds-blocks"); ?></p>
     </div>
-    <!-- Button -->
-    <button type="button" class="btn success radius-sm" data-modal="pds_metabox_form"><?php echo __('Add New', "pds-blocks"); ?></button>
+    <!-- Buttons -->
+    <div class="flexbox px-group radius-sm">
+        <!-- Import File -->
+        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
+            <input type="file" class="hidden pds-data-importer" data-target="pds_metabox" />
+        </label>
+        <!-- Button -->
+        <button data-target="pds_metabox" type="button" class="pds-data-exporter btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <!-- Button -->
+        <button type="button" class="btn success radius-sm" data-modal="pds_metabox_form"><?php echo __('Add New', "pds-blocks"); ?></button>
+    </div>
 </div>
 <!-- metabox List -->
 <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 pds_metabox_list" data-type="pds_metabox">
@@ -48,7 +57,7 @@
                     <label class="fs-13 mb-5 weight-bold"><?php echo __("Group Title", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-text">
-                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
+                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
@@ -118,7 +127,7 @@
                         <div class="px-form-repeater-fields px-group flow-nowrap" data-item-key="0">
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-text">
-                                <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>" required>
+                                <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
                             </div>
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-link">
@@ -133,10 +142,10 @@
                                     <option value="email">Email</option>
                                     <option value="number">Numbers</option>
                                     <option value="textarea">Textarea</option>
-                                    <!-- <option value="select">Select</option> -->
-                                    <!-- <option value="media-file">Media File</option> -->
-                                    <!-- <option value="multi-select">Multi-Select</option> -->
-                                    <!-- <option value="option-radio">Radio button</option> -->
+                                    <option value="select">Select</option>
+                                    <option value="media-file">Media File</option>
+                                    <option value="multi-select">Multi-Select</option>
+                                    <option value="option-radio">Radio button</option>
                                     <option value="option-checkbox">Checkbox</option>
                                     <option value="option-switch">Switch button</option>
                                 </select>

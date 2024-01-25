@@ -127,7 +127,7 @@ export default function Edit(props) {
         <BlockControls>
             <Toolbar label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
-                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-container-storage divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
                         <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />
@@ -135,17 +135,6 @@ export default function Edit(props) {
                         <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
                     </li>
                 </PxDropDown>: null} 
-                {/*===> Dropdown Button <===*/}
-                {attributes.isFlexbox ? <PxDropDown title={__("Grid Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
-                    <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>
-                        <ScreensTabs
-                            sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
-                            md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                            lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                            xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                        />
-                    </li>
-                </PxDropDown>:null}
             </Toolbar>
         </BlockControls>
         {/* //====> Controls Layout <====// */}
@@ -183,7 +172,7 @@ export default function Edit(props) {
                     </div> : null}
                     {/*===> Column <===*/}
                     <div className='col-6'>
-                        <OptionControl name={`s`} value="boolean" checked={attributes.query?.s} onChange={set_query} type='switch-checkbox' className='small'>{__("Search Query", "pds-blocks")}</OptionControl>
+                        <OptionControl name={`s`} value="boolean" checked={attributes.query?.s} onChange={set_query} type='switch-checkbox' className='small'>{__("IS Search", "pds-blocks")}</OptionControl>
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
@@ -191,10 +180,19 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
-                        <OptionControl name={`slider`} value="boolean" checked={attributes.flexbox.slider} onChange={set_flexbox} type='switch-checkbox' className='small'>{__("Slider Mode", "pds-blocks")}</OptionControl>
+                        <OptionControl name={`slider`} value="boolean" checked={attributes.flexbox.slider} onChange={set_flexbox} type='switch-checkbox' className='small'>{__("IS Slider", "pds-blocks")}</OptionControl>
                     </div>
                     {/*===> // Column <===*/}
                 </div>
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
+            <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>
+                <ScreensTabs
+                    sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
+                    md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                    lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                    xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.flexbox.slider ? <PanelBody title={__("Slider Options", "pds-blocks")} initialOpen={true}>

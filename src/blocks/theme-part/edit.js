@@ -60,32 +60,17 @@ export default function Edit(props) {
 
     //===> Render <===//
     return (<>
-    {/*====> Settings Toolbar <====*/}
+        {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
-                {/*===> Select Control <===*/}
-                <div className='inline-block inline-select tooltip' style={{width: 175}} data-title={__("Template Name", "pds-blocks")}>
-                    <SelectFromData key={"part_name"} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
-                </div>
-            </Toolbar>
+            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}></Toolbar>
         </BlockControls>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key={`${uniqueKey}-inspector`}>
             {/*===> Widget Panel <===*/}
-            {/* <PanelBody title={__("General Setting", "pds-blocks")} initialOpen={true}> */}
+            <PanelBody title={__("General Setting", "pds-blocks")} initialOpen={true}>
                 {/*=== Template Name ===*/}
-                
-            {/* </PanelBody> */}
-            {/*=== Template Meta Panels ===*/}
-            {/* {state.templates_meta[attributes.part_name] ?
-                <TemplateOptions options={attributes.part_options?.options}
-                    features={attributes.part_options?.features}
-                    meta={state.templates_meta[attributes.part_name]}
-                    onChange={set_template_option}
-                    types={state.post_types.length > 0 ? state.post_types : null}
-                    taxonomies={state.taxonomies.length > 0 ? state.taxonomies : null} 
-                />
-            : null} */}
+                <SelectFromData key={"part_name"} label={__("Template Name", "pds-blocks")} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
+            </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>
 

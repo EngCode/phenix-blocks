@@ -254,10 +254,10 @@ export default function Edit(props) {
                 : null}
 
                 {/*===> Toggle Options <===*/}
-                <OptionControl name={`hover`} value="boolean" checked={attributes.hover} onChange={set_value} type='switch-checkbox' className='small me-10 inline-block'>{__("Hover=>Drop", "pds-blocks")}</OptionControl>
-                <OptionControl name={`responsive`} value="boolean" checked={attributes.responsive} onChange={set_value} type='switch-checkbox' className='small inline-block'>{__("Responsive", "pds-blocks")}</OptionControl>
-                <OptionControl name={`items_icon_op`} value="boolean" checked={attributes.items_icon_op} onChange={set_value} type='switch-checkbox' className='small me-10 inline-block'>{__("with Icons", "pds-blocks")}</OptionControl>
-                <OptionControl name={`count_badge`} value="boolean" checked={attributes.count_badge} onChange={set_value} type='switch-checkbox' className='small inline-block'>{__("Count Badge", "pds-blocks")}</OptionControl>
+                <OptionControl name={`hover`} value="boolean" checked={attributes.hover} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("Hover=>Drop", "pds-blocks")}</OptionControl>
+                <OptionControl name={`responsive`} value="boolean" checked={attributes.responsive} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("Responsive", "pds-blocks")}</OptionControl>
+                <OptionControl name={`items_icon_op`} value="boolean" checked={attributes.items_icon_op} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("with Icons", "pds-blocks")}</OptionControl>
+                <OptionControl name={`count_badge`} value="boolean" checked={attributes.count_badge} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("Count Items", "pds-blocks")}</OptionControl>
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.responsive ? <>

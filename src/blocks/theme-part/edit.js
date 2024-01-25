@@ -62,7 +62,12 @@ export default function Edit(props) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}></Toolbar>
+            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
+                {/*===> Select Control <===*/}
+                <div className='inline-block inline-select tooltip' style={{width: 175}} data-title={__("Template Name", "pds-blocks")}>
+                    <SelectFromData key={"part_name"} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
+                </div>
+            </Toolbar>
         </BlockControls>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key={`${uniqueKey}-inspector`}>

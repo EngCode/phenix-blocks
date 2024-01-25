@@ -14,15 +14,8 @@ import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
 import ScreensTabs from "../px-controls/tabs";
-import StylesSet from '../px-controls/sets/styles';
+import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
-import TypographySet from '../px-controls/sets/typography';
-import AnimationsSet from '../px-controls/sets/animations';
-import PhenixComponentsBuilder from '../px-controls/panel-scripts';
-
-import PaddingSet from '../px-controls/sets/padding';
-import MarginSet from '../px-controls/sets/margin';
-import PositionSet from '../px-controls/sets/position';
 
 //====> Edit Mode <====//
 export default function Edit(props) {

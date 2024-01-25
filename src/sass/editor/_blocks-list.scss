@@ -50,7 +50,7 @@
 	}
 
 	/*==== Hidden Blocks ====*/
-	.wp-block[class*="hidden"] {
+	.wp-block[class*="hidden-"], .wp-block.hidden {
 		opacity: 0.7;
 		display: block!important;
 	}
@@ -117,8 +117,9 @@
 
 	/*==== Position ====*/
 	.position-ab  {position: absolute!important;}
+	.position-st  {position: sticky!important;}
 	.position-rv  {position: relative!important;}
-	.position-fx  {position: absolute!important;}
+	.position-fx  {position: fixed!important;}
 	.position-none  {position: static!important;}
 
 	/*==== Template Part ====*/

@@ -65,6 +65,7 @@
 
 .splide--fade {
     direction: ltr;
+    .splide__pagination, .splide__arrows,
     .splide__slide {direction: $direction;}
 }
 

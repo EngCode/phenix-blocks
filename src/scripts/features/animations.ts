@@ -89,7 +89,7 @@ PhenixElements.prototype.animations = function (options?:{
             if (Phenix(element).inView({offset:offset, into: into, flow: flow})) animate();
 
             //===> When is out of view Reset <===//
-            else element.classList.remove('view-active', animation);
+            // else element.classList.remove('view-active', animation);
         };
 
         //====> Lazyloading <====//

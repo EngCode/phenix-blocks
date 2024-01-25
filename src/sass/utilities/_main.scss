@@ -151,7 +151,7 @@
         opacity: 1;
     }
 
-    &[class*="tooltip"][title]:not([data-title]) {--title-content: attr(title);}
+    &[title]:not([data-title]) {--title-content: attr(title);}
 }
 
 /*==== Default Tooltip ====*/

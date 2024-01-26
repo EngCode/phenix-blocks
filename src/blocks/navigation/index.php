@@ -69,9 +69,7 @@ function px_navigation_render($block_attributes, $content) {
                     if ($option_name === "typography") {
                         //===> Collect Style Data <===//
                         if($sub_option === "size") { $font_size = $sub_value; } 
-                        // elseif($sub_option === "weight") { $font_weight = $sub_value; }
                         elseif($sub_option === "height") { $font_height = $sub_value; } 
-                        elseif($sub_option === "align") { $text_align = $sub_value; } 
                         elseif($sub_option === "color") { $text_color = $sub_value; } 
                         elseif($sub_option === "color_hvr") { $text_color_hvr = $sub_value; }
                         //====> Other Classes <===//

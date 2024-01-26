@@ -152,6 +152,6 @@ if (!function_exists('pds_metabox_create')) :
                     });
                 }
             }
-        }
+        };
     }
 endif;

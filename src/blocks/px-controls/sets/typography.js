@@ -102,6 +102,12 @@ export default class TypographySet extends Component {
             ],
         };
 
+        const font_families = [
+            { "label": "Default",  "value": ""},
+            { "label": "Primary Font",  "value": "primary-font"},
+            { "label": "Secondary Font",  "value": "secondary-font"},
+        ];
+
         //===> Output <===//
         return <>
             {/*===> Size Only <===*/}
@@ -111,6 +117,10 @@ export default class TypographySet extends Component {
             </> : null}
             {/*===> Grouped Options <===*/}
             {!options ? <div className='row gpx-20 gpy-15'>
+                {/*===> Family <===*/}
+                <div className='col col-6'>
+                    <PhenixSelect name={`family`} placeholder={__("Default", "pds-blocks")} label={__("Font Family", "pds-blocks")} value={attributes.typography[`family`]} onChange={mainSetter} options={font_families} />
+                </div>
                 {/*===> Size <===*/}
                 <div className='col col-6'>
                     <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />

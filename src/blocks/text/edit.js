@@ -68,6 +68,7 @@ export default function Edit({ attributes, setAttributes }) {
         if (name === "type") {
             if (value === "paragraph") newTag = "p";
             else if (value === "list") newTag = "ul";
+            else if (value === "list-numbers") newTag = "ol";
             else if (value === "headline") newTag = "h3";
         }
         //===> Set new Attributes <===//
@@ -109,7 +110,8 @@ export default function Edit({ attributes, setAttributes }) {
     const types_options = [
         { "label": "Headline", "value": "headline"},
         { "label": "Paragraph", "value": "paragraph"},
-        { "label": "Listing", "value": "list"},
+        { "label": "List Bullets", "value": "list"},
+        { "label": "List Numbers", "value": "list-numbers"},
     ];
 
     const headlines_tags = [
@@ -341,7 +343,9 @@ export default function Edit({ attributes, setAttributes }) {
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
             <>{attributes.type === "list" ?
                 <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ul"} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
-                : 
+            : attributes.type === "list-numbers" ?
+                <RichText.Content {...blockProps} multiline="li" tagName={"ol"} value={attributes.content} />
+            : 
                 <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>
         }

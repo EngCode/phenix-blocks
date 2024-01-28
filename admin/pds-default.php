@@ -160,7 +160,7 @@
                     "secondary_rtl" => 'somar-rounded',
                 ),
 
-                'pds_icon_font' => "fontawesome-6-pro",
+                'pds_icon_font' => "fontawesome-6",
             ), $other_options);
         }
     endif;

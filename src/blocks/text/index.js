@@ -118,7 +118,9 @@ registerBlockType(metadata, {
         return (<>
             {attributes.type === "list" ?
                 <RichText.Content {...blockProps} multiline="li" tagName={"ul"} value={attributes.content} />
-                : 
+            : attributes.type === "list-numbers" ?
+                <RichText.Content {...blockProps} multiline="li" tagName={"ol"} value={attributes.content} />
+            : 
                 <RichText.Content {...blockProps} tagName={TagName} value={attributes.content} />
             }
         </>);

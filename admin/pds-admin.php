@@ -441,10 +441,13 @@
     //====> Setup Countries <====//
     if (!function_exists('pds_countries_register')) :
         function pds_countries_register() {
+            //===> CDN URL <===//
+            $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets";
+
             if (!get_option("countries_list")) {
                 //====> Get Countries JSON <====//
-                $countries_data = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/img/countries/country.json");
-                $countries_phone = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/img/countries/phone.json");
+                $countries_data = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/countries.json");
+                $countries_phone = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/countries-phones.json");
     
                 //====> Convert the JSON data into a PHP object <====//
                 $phones_json = json_decode($countries_phone);
@@ -468,8 +471,8 @@
                         "code" => $country->code,
                         "dial_code" => $country_phone,
                         "capital" => isset($country->capital) ? $country->capital : $country->name,
-                        "flag" => plugins_url("pds-blocks/assets/img/countries/").$country->flag_4x3,
-                        "flag_1x1" => plugins_url("pds-blocks/assets/img/countries/").$country->flag_1x1,
+                        "flag" => $px_cdn_assets."/img/countries/".$country->flag_4x3,
+                        "flag_1x1" => $px_cdn_assets."/img/countries/".$country->flag_1x1,
                     );
                 }
     

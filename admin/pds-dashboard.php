@@ -1,8 +1,11 @@
 <?php
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+    //===> CDN URL <===//
+    $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets";
+
     //===> Define Elements <===//
-    $images_folder = plugin_dir_url(__DIR__).'/assets/img';
-    $media_folder = plugin_dir_url(__DIR__).'/assets/media';
+    $images_folder = $px_cdn_assets.'/img';
+    $media_folder = $px_cdn_assets.'/media';
 ?>
 <!-- Dashboard Wrapper -->
 <div class="pds-dashboard me-30 mgx-xl-auto pdy-50" style="max-width: 1100px; direction: ltr">
@@ -63,69 +66,6 @@
             <!-- // Column -->
         </div>
         <!-- // CTA Sections -->
-
-        <!-- CTA Links -->
-        <div class="row hidden">
-            <!-- Column -->
-            <div class="col-12 col-md-4">
-                <div class="bg-white pd-25 radius-md border-1 border-solid border-alpha-15">
-                    <!-- Title -->
-                    <h3 class="fs-17 mb-15 lineheight-100 color-primary tx-uppercase">Quick Tutorials</h3>
-                    <!-- List -->
-                    <ul class="reset-list icons-list fs-13 links-inherit color-gray" data-icon="far fa-file-invoice">
-                        <li><a href="#">How to Edit Themes Colors</a></li>
-                        <li><a href="#">How to Edit Header and Footer</a></li>
-                        <li><a href="#">How to Edit Menus and Links</a></li>
-                        <li><a href="#">How to Edit Data-Types Templates</a></li>
-                        <li><a href="#">How to Edit Contact & Orders Forms</a></li>
-                        <li><a href="#">How to add New Data-Types</a></li>
-                        <li><a href="#">How to Translate your Website</a></li>
-                        <li><a href="#">How to Edit Fonts and Google Fonts</a></li>
-                    </ul>
-                    <!-- // List -->
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-12 col-md-4">
-                <div class="bg-grade-purple bg-grade-180 pd-25 radius-md border-1 border-solid border-alpha-15">
-                    <!-- Title -->
-                    <h3 class="fs-17 mb-15 lineheight-100 color-white tx-uppercase">for Developers</h3>
-                    <!-- List -->
-                    <ul class="reset-list icons-list fs-13 links-inherit color-white" data-icon="far fa-file-invoice">
-                        <li><a href="#">How to Add new Post-Types</a></li>
-                        <li><a href="#">How to Use Theme Parts</a></li>
-                        <li><a href="#">How to Use Logical Content</a></li>
-                        <li><a href="#">How do Templates Meta Works</a></li>
-                        <li><a href="#">How to Add Custom Taxonomies</a></li>
-                        <li><a href="#">How to Create new Template Parts</a></li>
-                        <li><a href="#">How to Use Phenix Blocks Data API</a></li>
-                        <li><a href="#">How to Add Custom Meta-Tags</a></li>
-                    </ul>
-                    <!-- // List -->
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-12 col-md-4">
-                <div class="bg-white pd-25 radius-md border-1 border-solid border-alpha-15">
-                    <!-- Title -->
-                    <h3 class="fs-17 mb-15 lineheight-100 color-primary tx-uppercase">Powerful Features</h3>
-                    <!-- List -->
-                    <ul class="reset-list icons-list fs-13 links-inherit color-gray" data-icon="far fa-file-invoice">
-                        <li><a href="#">How to Use Phenix Blocks</a></li>
-                        <li><a href="#">How to Use Editor Components</a></li>
-                        <li><a href="#">How to Edit Cards Templates</a></li>
-                        <li><a href="#">How to Use Patterns & Template Parts</a></li>
-                        <li><a href="#">How to Add new Admin Pages</a></li>
-                        <li><a href="#">Add Custom Post-Types & Taxonomies</a></li>
-                        <li><a href="#">Add new Custom Fields for Any Data</a></li>
-                        <li><a href="#">Create new Patterns & Template Parts</a></li>
-                    </ul>
-                    <!-- // List -->
-                </div>
-            </div>
-            <!-- // Column -->
-        </div>
-        <!-- // CTA Links -->
     </div>
 </div>
 <!-- // Dashboard Wrapper -->

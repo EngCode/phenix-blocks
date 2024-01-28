@@ -10,9 +10,8 @@ this project is a full-integration for the design system with WordPress with hel
 
 
 ## Phenix Blocks WordPress Plugin
-
-Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-01.png)
+Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
 ----------
 ### **References**

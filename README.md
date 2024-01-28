@@ -1,32 +1,18 @@
 
   
-
-# Introduction
-
-![enter image description here](https://phenixthemes.com/px-plugins/design-showcase.jpg)
-
   
-
-**[Phenix Design System](https://phenixthemes.com/demo/)** is lightweight user-interface framework build for simple structure, fast execution, and performance is number One concern in mind it was build for personal use and later published as open-source project for web community benefits.
-
-  
-
-this project is a full-integration for the design system with WordPress with helpful Developers Toolbox to extend and grow your websites as needed
-
-  
-
-[Design System – Phenix UI Framework](https://phenixthemes.com/demo/design/)
-
-  
-  
-
 ## Phenix Blocks WordPress Plugin
 
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-01.png)
 
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
-  
+  ## Core Design System
+
+![enter image description here](https://phenixthemes.com/px-plugins/design-showcase.jpg)
+**[Phenix Design System](https://phenixthemes.com/demo/)** is lightweight user-interface framework build for simple structure, fast execution, and performance is number One concern in mind it was build for personal use and later published as open-source project for web community benefits.
+
+this project is a full-integration for the design system with WordPress with helpful Developers Toolbox to extend and grow your websites as needed
 
 ----------
 

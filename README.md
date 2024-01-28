@@ -70,11 +70,22 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 
 ![enter image description here](https://phenixthemes.com/px-plugins/toolbar.png)
 
-  
+  ----------
+
+### Developer and Data Tools
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-09.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-10.jpeg)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-11.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-12.jpeg)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-13.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-15.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-16.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-17.png)
+![enter image description here](https://phenixthemes.com/px-plugins/pdb-18.png)
 
 ----------
 
-### Wanning Read Carefully
+### Warning Read Carefully
 
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-07.jpeg)
 

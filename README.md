@@ -44,3 +44,6 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 
 ----
 
+### License
+
+Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah-ramadan). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).

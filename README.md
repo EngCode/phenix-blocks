@@ -20,6 +20,12 @@ Phenix Blocks is a WordPress plugin that allows users to easily build custom web
 --- | --- | --- | ---
 🧩 [Phenix Blocks](https://github.com/EngCode/phenix-blocks) |🎨 [Starter Theme](https://github.com/EngCode/pds-starter-free) | 📖 [Blocks Docs](https://www.notion.so/phenixthemes/Installation-9d2d6500823e42eb9d727ba961d7cb7d?pvs=4) | 📘 [Developers Docs](https://phenixthemes.notion.site/Phenix-Design-System-efcfa4d3839946989a4f94ee5e0480c3?pvs=74)
 ----------
+### **Features List**
+![enter image description here](https://phenixthemes.com/px-plugins/block-list.png)
+![enter image description here](https://phenixthemes.com/px-plugins/features-1.png)
+![enter image description here](https://phenixthemes.com/px-plugins/features-2.png)
+
+----------
 ### **Screenshots**
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-08.png)
 

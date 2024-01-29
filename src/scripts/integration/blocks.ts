@@ -127,7 +127,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     //====> Activate Select <====//
     Phenix('.px-select').select();
     
-    //===> Phenix Menu <===//
+    //===> Unlocated Menu fallback style. <===//
     Phenix('.px-navigation > div.reset-list').forEach((element:HTMLElement) => {
         //===> Define Elements <===//
         let parent:any = Phenix(element).ancestor(".px-navigation"),
@@ -142,7 +142,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         //===> Remove Element <===//
         element.remove();
     });
-
+    //===> Phenix Menu <===//
     Phenix('.px-navigation').menu();
 
     //====> Multimedia <====//

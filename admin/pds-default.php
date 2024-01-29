@@ -14,12 +14,11 @@
          * @return void
         */
         
-        function pds_get_default_options() {
+        function pds_get_default_options($json_url = WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json") {
             //====> Define Options Data <====//
-            $default_options = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json");
+            $default_options = file_get_contents($json_url);
             $default_options = json_decode($default_options);
             $default_options = (array) $default_options;
-
 
             //====> Add WooCommerce Option <====//
             if (class_exists("woocommerce")) {
@@ -58,7 +57,19 @@
                 update_option("pds_reset", "off");
             }
 
-            //===> Get Theme Template Parts <===//
+            //====> Default (Loading Screen) <====//
+            if (!is_array(get_option("pds_loading"))) {
+                add_option("pds_loading", array(
+                    "code" => "",
+                    "type" => "image",
+                    "showText" => "on",
+                    "background" => "var(--body-bg)",
+                    "text" => __('Loading', "pds-blocks"),
+                    "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
+                ));
+            }
+
+            //===> Update Theme Template Parts <===//
             if (function_exists('phenix_support')) {
                 //===> Set Templates Parts <===//
                 $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
@@ -68,15 +79,3 @@
 
         add_action('init', 'pds_blocks_default_values');
     endif;
-
-    //====> Default (Loading Screen) <====//
-    if (!is_array(get_option("pds_loading"))) {
-        update_option("pds_loading", array(
-            "code" => "",
-            "type" => "image",
-            "showText" => "on",
-            "background" => "var(--body-bg)",
-            "text" => __('Loading', "pds-blocks"),
-            "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
-        ));
-    }

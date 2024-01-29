@@ -6,6 +6,14 @@
 	font-family: var(--secondary-font)!important;
 	.block-editor-rich-text__editable:not([class*="color-"]) {color: inherit!important;}
 
+	/*==== Min Size for Empty Blocks ====*/
+	.wp-block>.block-editor-block-list__layout:empty {
+		min-width: 200px;
+		min-height: 42px;
+		background-color: #fcddbd;
+		&::after {content: "Empty Block Click to add elements..."; font-size: 12px;}
+	}
+
 	/*==== Links ====*/
 	a, button {text-decoration: none;}
 

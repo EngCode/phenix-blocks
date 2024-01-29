@@ -265,17 +265,6 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
                     <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-box h-min-100' style={{paddingTop: 2}} data-title={__("Container Wrapper", "pds-blocks")}></span>
                 </OptionControl>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
-                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
-                        <ScreensTabs
-                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
-                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
-                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
-                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
-                        />
-                    </li>
-                </PxDropDown>
-                {/*===> Dropdown Button <===*/}
                 {attributes.isFlexbox? <PxDropDown title={__("Layout Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280" dataPosition={`bottom, end`}>
                     <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
@@ -296,6 +285,17 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
                 <OptionControl key={`isFlexbox-${uniqueKey}`} name={`isFlexbox`} value={`boolean`} checked={attributes.isFlexbox} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
                     <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-columns h-min-100' style={{paddingTop: 2}} data-title={__("Flexbox Layouts", "pds-blocks")}></span>
                 </OptionControl>}
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
+                    </li>
+                </PxDropDown>
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>

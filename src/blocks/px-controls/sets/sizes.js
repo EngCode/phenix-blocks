@@ -37,6 +37,16 @@ export default class SizesSet extends Component {
               min_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-min-${size}`} }),
               max_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-max-${size}`} });
 
+
+        //===> Add Default Option <===//
+        const default_option = { "label": __("Default", "pds-blocks"), "value": "" };
+        width_list.unshift(default_option);
+        min_width_list.unshift(default_option);
+        max_width_list.unshift(default_option);
+        height_list.unshift(default_option);
+        min_height_list.unshift(default_option);
+        max_height_list.unshift(default_option);
+        
         //===> Output <===//
         return <>
             {/*===> Grouped Options <===*/}

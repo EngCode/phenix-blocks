@@ -104,112 +104,118 @@
      *** option_page,
      *** show_in_rest
     <===*/
-    $pds_options_list = array(
-        //===> Data Collection <===//
-        array('pds_types', 'pds-data-collection', true),
-        array('users_roles', 'pds-data-collection', true),
-        array('pds_metabox', 'pds-data-collection', true),
-        array('theme_parts', 'pds-data-collection', true),
-        array('countries_list', 'pds-data-collection', true),
-        array('pds_taxonomies', 'pds-data-collection', true),
-        array('menu_locations', 'pds-data-collection', true),
-        array('block_patterns', 'pds-data-collection', true),
-        array('theme_templates', 'pds-data-collection', true),
-        array('templates_meta', 'pds-data-collection', true),
-        array('pds_custom_pallete', 'pds-data-collection', true),
+    function get_pds_options_list() {
+        //===> .... <===//
+        $pds_options = array(
+            //===> Data Collection <===//
+            array('pds_types', 'pds-data-collection', true),
+            array('users_roles', 'pds-data-collection', true),
+            array('pds_metabox', 'pds-data-collection', true),
+            array('theme_parts', 'pds-data-collection', true),
+            array('countries_list', 'pds-data-collection', true),
+            array('pds_taxonomies', 'pds-data-collection', true),
+            array('menu_locations', 'pds-data-collection', true),
+            array('block_patterns', 'pds-data-collection', true),
+            array('theme_templates', 'pds-data-collection', true),
+            array('templates_meta', 'pds-data-collection', true),
+            array('pds_custom_pallete', 'pds-data-collection', true),
+    
+            //===> General Settings <===//
+            array('pds_gfonts', 'pds-admin', true),
+            array('pds_admin_style', 'pds-admin'),
+            array('pds_template_parts', 'pds-general', true),
+            array('pds_primary_font', 'pds-admin', true),
+            array('pds_secondary_font', 'pds-admin', true),
+            array('pds_fonts', 'pds-admin', true),
+            array('pds_icon_font', 'pds-admin', true),
+            array('pds_icon_font_key', 'pds-admin', true),
+            array('pds_reset', 'pds-data-collection', true),
+    
+            //===> Optimization <===//
+            array('pds_cdn', 'pds-admin', true),
+            array('head_cleaner', 'pds-admin', true),
+            array('wpc7_cleaner', 'pds-admin', true),
+            array('wpc7_rm_styles', 'pds-admin', true),
+            array('wpc7_rm_scripts', 'pds-admin', true),
+            array('adminbar_css', 'pds-admin', true),
+            array('adminbar_disable', 'pds-admin', true),
+            array('comments_css', 'pds-admin', true),
+            array('newsletter_css', 'pds-admin', true),
+            array('jquery_remove', 'pds-admin', true),
+            array('blocks_optimizer', 'pds-admin', true),
+            array('pds_loading', 'pds-admin', true),
+            array('excerpt_length', 'pds-admin', true),
+    
+            //===> Phenix Blocks <===//
+            array('container_block', 'pds-admin', true),
+            array('logo_block', 'pds-admin', true),
+            array('navigation_block', 'pds-admin', true),
+            array('button_block', 'pds-admin', true),
+            array('row_block', 'pds-admin', true),
+            array('column_block', 'pds-admin', true),
+            array('head_block', 'pds-admin', true),
+            array('query_block', 'pds-admin', true),
+            array('taxonomies_block', 'pds-admin', true),
+            array('taxonomies_list_block', 'pds-admin', true),
+            array('theme_part_block', 'pds-admin', true),
+            array('group_block', 'pds-admin', true),
+            array('inline_elements_block', 'pds-admin', true),
+            array('popups_block', 'pds-admin', true),
+            array('media_element_block', 'pds-admin', true),
+            array('icon_element_block', 'pds-admin', true),
+            array('custom_code_block', 'pds-admin', true),
+            array('pds_logical_block', 'pds-admin', true),
+            array('pds_users_query_block', 'pds-admin', true),
+            array('text_elements_block', 'pds-admin', true),
+            
+            array('search_query_block', 'pds-admin', true),
+            array('tabs_block', 'pds-admin', true),
+            array('pds_form_block', 'pds-admin', true),
+            array('dropdowns_block', 'pds-admin', true),
+            array('accordion_block', 'pds-admin', true),
+            array('pds_gmaps_block', 'pds-admin', true),
+            array('pds_progress_block', 'pds-admin', true),
+            array('pds_languages_block', 'pds-admin', true),
+            array('pds_timer_block', 'pds-admin', true),
+    
+            //===> Core Blocks <===//
+            array('pds_core_quote', 'pds-admin', true),
+            array('pds_core_preformatted', 'pds-admin', true),
+            array('pds_core_code', 'pds-admin', true),
+            array('pds_core_pullquote', 'pds-admin', true),
+            array('pds_core_verse', 'pds-admin', true),
+            array('pds_core_gallery', 'pds-admin', true),
+            array('pds_core_file', 'pds-admin', true),
+            array('pds_core_mediatext', 'pds-admin', true),
+            array('pds_core_cover', 'pds-admin', true),
+            array('pds_core_buttons', 'pds-admin', true),
+            array('pds_core_columns', 'pds-admin', true),
+            array('pds_core_group', 'pds-admin', true),
+            array('pds_core_more', 'pds-admin', true),
+            array('pds_core_nextpage', 'pds-admin', true),
+            array('pds_core_separator', 'pds-admin', true),
+            array('pds_core_spacer', 'pds-admin', true),
+            array('pds_core_embed', 'pds-admin', true),
+            array('pds_core_logo', 'pds-admin', true),
+            array('pds_core_title', 'pds-admin', true),
+            array('pds_core_tagline', 'pds-admin', true),
+            array('pds_core_query', 'pds-admin', true),
+            array('pds_core_navigation', 'pds-admin', true),
+            array('pds_core_avatar', 'pds-admin', true),
+            array('pds_core_post_elements', 'pds-admin', true),
+            array('pds_core_tag_cloud', 'pds-admin', true),
+            array('pds_core_widgets_blocks', 'pds-admin', true),
+            array('pds_core_woo', 'pds-admin', true),
+        );
 
-        //===> General Settings <===//
-        array('pds_gfonts', 'pds-admin', true),
-        array('pds_admin_style', 'pds-admin'),
-        array('pds_template_parts', 'pds-general'),
-        array('pds_primary_font', 'pds-admin', true),
-        array('pds_secondary_font', 'pds-admin', true),
-        array('pds_fonts', 'pds-admin', true),
-        array('pds_icon_font', 'pds-admin', true),
-        array('pds_icon_font_key', 'pds-admin', true),
-        array('pds_reset', 'pds-data-collection', true),
-
-        //===> Optimization <===//
-        array('pds_cdn', 'pds-admin', true),
-        array('head_cleaner', 'pds-admin'),
-        array('wpc7_cleaner', 'pds-admin'),
-        array('wpc7_rm_styles', 'pds-admin'),
-        array('wpc7_rm_scripts', 'pds-admin'),
-        array('adminbar_css', 'pds-admin'),
-        array('adminbar_disable', 'pds-admin'),
-        array('comments_css', 'pds-admin'),
-        array('newsletter_css', 'pds-admin'),
-        array('jquery_remove', 'pds-admin'),
-        array('blocks_optimizer', 'pds-admin'),
-        array('pds_loading', 'pds-admin'),
-        array('excerpt_length', 'pds-admin'),
-
-        //===> Phenix Blocks <===//
-        array('container_block', 'pds-admin'),
-        array('logo_block', 'pds-admin'),
-        array('navigation_block', 'pds-admin'),
-        array('button_block', 'pds-admin'),
-        array('row_block', 'pds-admin'),
-        array('column_block', 'pds-admin'),
-        array('head_block', 'pds-admin'),
-        array('query_block', 'pds-admin'),
-        array('taxonomies_block', 'pds-admin'),
-        array('taxonomies_list_block', 'pds-admin'),
-        array('theme_part_block', 'pds-admin'),
-        array('group_block', 'pds-admin'),
-        array('inline_elements_block', 'pds-admin'),
-        array('popups_block', 'pds-admin'),
-        array('media_element_block', 'pds-admin'),
-        array('icon_element_block', 'pds-admin'),
-        array('custom_code_block', 'pds-admin'),
-        array('pds_logical_block', 'pds-admin'),
-        array('pds_users_query_block', 'pds-admin'),
-        array('text_elements_block', 'pds-admin'),
-        
-        array('search_query_block', 'pds-admin'),
-        array('tabs_block', 'pds-admin'),
-        array('pds_form_block', 'pds-admin'),
-        array('dropdowns_block', 'pds-admin'),
-        array('accordion_block', 'pds-admin'),
-        array('pds_gmaps_block', 'pds-admin'),
-        array('pds_progress_block', 'pds-admin'),
-        array('pds_languages_block', 'pds-admin'),
-        array('pds_timer_block', 'pds-admin'),
-
-        //===> Core Blocks <===//
-        array('pds_core_quote', 'pds-admin'),
-        array('pds_core_preformatted', 'pds-admin'),
-        array('pds_core_code', 'pds-admin'),
-        array('pds_core_pullquote', 'pds-admin'),
-        array('pds_core_verse', 'pds-admin'),
-        array('pds_core_gallery', 'pds-admin'),
-        array('pds_core_file', 'pds-admin'),
-        array('pds_core_mediatext', 'pds-admin'),
-        array('pds_core_cover', 'pds-admin'),
-        array('pds_core_buttons', 'pds-admin'),
-        array('pds_core_columns', 'pds-admin'),
-        array('pds_core_group', 'pds-admin'),
-        array('pds_core_more', 'pds-admin'),
-        array('pds_core_nextpage', 'pds-admin'),
-        array('pds_core_separator', 'pds-admin'),
-        array('pds_core_spacer', 'pds-admin'),
-        array('pds_core_embed', 'pds-admin'),
-        array('pds_core_logo', 'pds-admin'),
-        array('pds_core_title', 'pds-admin'),
-        array('pds_core_tagline', 'pds-admin'),
-        array('pds_core_query', 'pds-admin'),
-        array('pds_core_navigation', 'pds-admin'),
-        array('pds_core_avatar', 'pds-admin'),
-        array('pds_core_post_elements', 'pds-admin'),
-        array('pds_core_tag_cloud', 'pds-admin'),
-        array('pds_core_widgets_blocks', 'pds-admin'),
-        array('pds_core_woo', 'pds-admin'),
-    );
+        //===> Return Options <===//
+        return $pds_options;
+    }
 
     //====> Create Options <====//
     function create_pds_options() {
         //===> Grape Options List <===//
-        global $pds_options_list;
+        $pds_options_list = get_pds_options_list();
 
         //===> Register Options <===//
         foreach ($pds_options_list as $option) {
@@ -281,7 +287,7 @@
             },
             //===> Get Option Method <===//
             "get_method" => function($request) {
-                global $pds_options_list;
+                $pds_options_list = get_pds_options_list();
                 //===> Define Options List <===//
                 $core_blocks = array();
                 $current_options = array();

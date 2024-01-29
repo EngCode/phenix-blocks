@@ -133,15 +133,18 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         let parent:any = Phenix(element).ancestor(".px-navigation"),
             classNames = element.classList,
             children  = element.childNodes;
+
         //===> Move Children <===//
         children.forEach((child:any) => {
             parent.appendChild(child);
             //===> Move Classnames <===//
             classNames.forEach((className:string) => child.classList.add(className));
         });
+
         //===> Remove Element <===//
         element.remove();
     });
+
     //===> Phenix Menu <===//
     Phenix('.px-navigation').menu();
 

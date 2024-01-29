@@ -69,7 +69,7 @@
         add_action('init', 'pds_blocks_default_values');
     endif;
 
-    //====> Temporary Fallbacks (Loading Screen) <====//
+    //====> Default (Loading Screen) <====//
     if (!is_array(get_option("pds_loading"))) {
         update_option("pds_loading", array(
             "code" => "",

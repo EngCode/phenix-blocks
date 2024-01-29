@@ -128,8 +128,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix('.px-select').select();
     
     //===> Phenix Menu <===//
-    let checkMenuWrappers = Phenix('.px-navigation > div.reset-list');
-    checkMenuWrappers.forEach((element:HTMLElement) => {
+    Phenix('.px-navigation > div.reset-list').forEach((element:HTMLElement) => {
         let parent:any = Phenix(element).ancestor(".px-navigation"),
             classNames = element.classList,
             children  = element.childNodes;

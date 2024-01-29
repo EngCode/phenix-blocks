@@ -128,6 +128,22 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix('.px-select').select();
     
     //===> Phenix Menu <===//
+    let checkMenuWrappers = Phenix('.px-navigation > div.reset-list');
+    checkMenuWrappers.forEach((element:HTMLElement) => {
+        let parent:any = Phenix(element).ancestor(".px-navigation"),
+            classNames = element.classList,
+            children  = element.childNodes;
+
+        //===> Move Children <===//
+        children.forEach((child:any) => {
+            parent.appendChild(child);
+            //===> Move Classnames <===//
+            classNames.forEach((className:string) => child.classList.add(className));
+        });
+        //===> Remove Element <===//
+        element.remove();
+    });
+
     Phenix('.px-navigation').menu();
 
     //====> Multimedia <====//

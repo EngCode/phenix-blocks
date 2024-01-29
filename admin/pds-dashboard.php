@@ -9,7 +9,7 @@
 ?>
 <!-- Dashboard Wrapper -->
 <div class="pds-dashboard me-30 mgx-xl-auto pdy-50" style="max-width: 1100px; direction: ltr">
-    <!-- Quick Guid -->
+    <!-- Quick Guide -->
     <div class="bg-white radius-lg overflow-hidden pd-25">
         <!-- CTA Banners -->
         <div class="row gpy-30 gpx-20">
@@ -67,5 +67,6 @@
         </div>
         <!-- // CTA Sections -->
     </div>
+    <!-- // Quick Guide -->
 </div>
 <!-- // Dashboard Wrapper -->

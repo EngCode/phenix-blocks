@@ -107,23 +107,28 @@ const PhenixComponentsBuilder = () => {
                     clearInterval(loadAssetTimer);
                     return;
                 } else {
-                    //===> When the Frame is Found <===//
-                    if (!window.frames['editor-canvas'].document.querySelector("#fontawesome-css")) {
-                        //===> Check in the Editor <===//
-                        let frameDoc = window.frames['editor-canvas'].document,
-                            fontAwesome = document.querySelector("#fontawesome-css"),
-                            importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
-        
-                        //===> Load Font <===//
-                        if(importedEl && frameDoc.body) {
-                            frameDoc.body.appendChild(importedEl);
-                            clearInterval(loadAssetTimer);
+                    //===> Load Assets inside Frames <===//
+                    const frameAssetsLoader = (assets_id) => {
+                        if (!window.frames['editor-canvas'].document.querySelector(assets_id)) {
+                            //===> Check in the Editor <===//
+                            let frameDoc = window.frames['editor-canvas'].document,
+                                fontAwesome = document.querySelector(assets_id),
+                                importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
+            
+                            //===> Load Font <===//
+                            if(importedEl && frameDoc.body) {
+                                frameDoc.body.appendChild(importedEl);
+                                clearInterval(loadAssetTimer);
+                            }
+                        } else {
+                            //===> Increase Counter <===//
+                            trying_times += 1;
+                            if (trying_times > 3) clearInterval(loadAssetTimer);
                         }
-                    } else {
-                        //===> Increase Counter <===//
-                        trying_times += 1;
-                        if (trying_times > 3) clearInterval(loadAssetTimer);
-                    }
+                    };
+                    //===> When the Frame is Found <===//
+                    frameAssetsLoader("#fontawesome-css");
+                    frameAssetsLoader("#pds-primary-font-inline-css");
                 }
             }, 300);
     } else if (window.Phenix) {

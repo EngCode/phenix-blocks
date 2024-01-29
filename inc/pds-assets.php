@@ -255,7 +255,7 @@ endif;
 //===> Loading Page <===//
 if (!function_exists('pds_loader_template')) :
 	function pds_loader_template() {
-        get_template_part('template-parts/loading') === false ? include(dirname(__FILE__) . '/loading.php') : null;
+        get_template_part('template-parts/loading') === false ? include(dirname(__FILE__) . '/loading.php') : get_template_part('template-parts/loading');
 	}
 
 	add_action('wp_body_open', 'pds_loader_template');

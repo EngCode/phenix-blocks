@@ -21,7 +21,7 @@
 <!-- // Layouts -->
 
 <!-- Demo Templates -->
-<div class="pdy-10">
+<div class="pdy-10 hidden">
     <!-- Title -->
     <h3 class="fs-18 mb-0"><?php echo __("Import Theme Demo", "pds-blocks"); ?></h3>
     <p class="fs-14"><?php echo __('you can also choose one of the current Theme Demos to startup you website.', "pds-blocks"); ?></p>

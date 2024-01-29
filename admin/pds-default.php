@@ -16,70 +16,8 @@
         
         function pds_get_default_options() {
             //====> Define Options Data <====//
-            $default_types = array(
-                array(
-                    'enable'=> true,
-                    "name"  => "post",
-                    "label" => "Blog Posts",
-                    "label_singular" => "Posts",
-                    "template" => "phenix/blog-example",
-                    "menu_icon" => "welcome-widgets-menus",
-                    "taxonomies" => array('post_tag','category')
-                ),
-                array(
-                    'enable'=> true,
-                    "name"  => "sliders",
-                    "label" => "Block Sliders",
-                    "singular" => "slider",
-                    "label_singular" => "Slider",
-                    "template" => "phenix/slide-hero",
-                    "menu_icon" => "cover-image",
-                    "taxonomies" => array()
-                ),
-            );
-
-            $default_patterns = array(
-                array('name' => "table-of-content",
-                    'title'  => "Table of Content",
-                    'width'  => 1280,
-                    'category' => array("single", "elements"),
-                    'content'  => "<!-- wp:phenix/group {\"id\":\"table-of-content-list\",\"tagName\":\"ul\",\"className\":\"scrollspy-menu\"} -->\n<ul class=\"wp-block-phenix-group scrollspy-menu\" id=\"table-of-content-list\"><!-- wp:phenix/inline {\"content\":\"قائمة بعناوين محتوي الصفحة\\u003cbr\\u003e Table of Content List\"} -->\n<i class=\"wp-block-phenix-inline\">قائمة بعناوين محتوي الصفحة<br> Table of Content List</i>\n<!-- /wp:phenix/inline --></ul>\n<!-- /wp:phenix/group -->"
-                ),
-            );
-
-            $default_locations = array(
-                array(
-                    'title' => 'Main Menu',
-                    'name'  => 'main-menu',
-                ),
-                array(
-                    'title' => 'Quick Links',
-                    'name'  => 'quick-links',
-                ),
-                array(
-                    'title' => 'Secondary Menu',
-                    'name'  => 'secondary-menu',
-                ),
-            );
-
-            //====> Define Template Meta <====//
-            $default_templates_meta = array(
-                //===> Dynamic Search Bar <===//
-                "dynamic/search-bar" => array(
-                    //===> Features <===//
-                    "features" => array("grid", "spacing", "typography"),
-
-                    //===> Options <===//
-                    "options" => array(
-                        "search-type" => array("type" => "string", "default" => "post"),
-                        "taxonomies" => array("type" => "options", "default" => array(
-                            "enable" => array("type" => "boolean", "default" => false),
-                            "fields" => array("type" => "string", "default" => "1"),
-                            "value"  => array("type" => "array", "default" => array("category")),
-                        )),
-                    ),
-                )
-            );
+            $default_options = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json");
+            $default_options = json_decode($default_options);
 
             //====> Conditional Options <====//
             $other_options = array();
@@ -92,76 +30,7 @@
             }
 
             //====> Return Options <====//
-            return array_merge(array(
-                "pds_types" => $default_types,
-                "block_patterns" => $default_patterns,
-                "menu_locations" => $default_locations,
-                "pds_taxonomies" => array(),
-                "templates_meta" => $default_templates_meta,
-
-                //===> Blocks settings <===//
-                'pds_core_navigation' => "on",
-                'pds_admin_style' => "on",
-                'pds_gfonts' => "on",
-                'container_block' => "on",
-                'logo_block' => "on",
-                'navigation_block' => "on",
-                'button_block' => "on",
-                'row_block' => "on",
-                'column_block' => "on",
-                'head_block' => "on",
-                'query_block' => "on",
-                'taxonomies_list_block' => "on",
-                'taxonomies_block' => "on",
-                'theme_part_block' => "on",
-                'group_block' => "on",
-                'inline_elements_block' => "on",
-                'popups_block' => "on",
-                'media_element_block' => "on",
-                'icon_element_block' => "on",
-                'custom_code_block' => "on",
-                'pds_logical_block' => "on",
-                'pds_users_query_block' => "on",
-                'text_elements_block' => "on",
-                
-                // 'tabs_block' => "on",
-                // 'pds_form_block' => "on",
-                // 'dropdowns_block' => "on",
-                // 'accordion_block' => "on",
-                // 'pds_gmaps_block' => "on",
-                // 'pds_timer_block' => "on",
-                // 'pds_languages_block' => "on",
-                // 'pds_progress_block' => "on",
-                // 'search_query_block' => "on",
-
-                //===> Optimization settings <===//
-                'head_cleaner' => "on",
-                'wpc7_cleaner' => "on",
-                'adminbar_css' => "on",
-                'comments_css' => "on",
-                'jquery_remove' => "on",
-                'wpc7_rm_styles' => "on",
-                'wpc7_rm_scripts' => "on",
-                'blocks_optimizer' => "on",
-                'pds_loading' => array(
-                    "code" => "",
-                    "type" => "image",
-                    "showText" => "on",
-                    "background" => "var(--body-bg)",
-                    "text" => __('Loading', "pds-blocks"),
-                    "image" => plugin_dir_url(__DIR__)."assets/img/loading.svg",
-                ),
-
-                //===> Multiple Fonts <===//
-                'pds_fonts' => array(
-                    "primary" => 'somar-rounded',
-                    "secondary" => 'somar-rounded',
-                    "primary_rtl" => 'somar-rounded',
-                    "secondary_rtl" => 'somar-rounded',
-                ),
-
-                'pds_icon_font' => "fontawesome-6",
-            ), $other_options);
+            return array_merge($default_options, $other_options);
         }
     endif;
 

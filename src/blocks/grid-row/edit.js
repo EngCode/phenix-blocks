@@ -329,7 +329,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Layout Options", "pds-blocks")} initialOpen={true}>
                 <ScreensTabs
-                    sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}>
+                    sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.slider ? "flex-props, grid-props" : null}>
                         {/*===> Switch Button <===*/}
                         <OptionControl name='slider' value="boolean" checked={attributes.flexbox.slider} onChange={set_flexbox} type='checkbox' className='tiny me-15'>
                             <span className='fas fa-check radius-circle'>{__("Slider.", "pds-blocks")}</span>
@@ -339,9 +339,9 @@ export default function Edit({ attributes, setAttributes }) {
                             <span className='fas fa-check radius-circle'>{__("Enable Style.", "pds-blocks")}</span>
                         </OptionControl>
                     </FlexboxSet>}
-                    md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
-                    lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
-                    xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.equals || attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
+                    md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
+                    lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
+                    xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={attributes.flexbox.slider ? "flex-props, grid-props" : null}></FlexboxSet>}
                 />
             </PanelBody>
             {/*===> General Options <===*/}

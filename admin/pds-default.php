@@ -15,6 +15,9 @@
         */
         
         function pds_get_default_options($json_url = WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json") {
+            //====> Default Json File <====//
+            if (!file_exists($json_url)) { $json_url = WP_PLUGIN_DIR . "/pds-blocks/assets/json/default-options.json"; }
+
             //====> Define Options Data <====//
             $default_options = file_get_contents($json_url);
             $default_options = json_decode($default_options);

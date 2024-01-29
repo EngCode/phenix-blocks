@@ -123,7 +123,7 @@ const PhenixComponentsBuilder = () => {
                         } else {
                             //===> Increase Counter <===//
                             trying_times += 1;
-                            if (trying_times > 3) clearInterval(loadAssetTimer);
+                            if (trying_times > 5) clearInterval(loadAssetTimer);
                         }
                     };
                     //===> When the Frame is Found <===//

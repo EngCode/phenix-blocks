@@ -129,10 +129,10 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     
     //===> Phenix Menu <===//
     Phenix('.px-navigation > div.reset-list').forEach((element:HTMLElement) => {
+        //===> Define Elements <===//
         let parent:any = Phenix(element).ancestor(".px-navigation"),
             classNames = element.classList,
             children  = element.childNodes;
-
         //===> Move Children <===//
         children.forEach((child:any) => {
             parent.appendChild(child);

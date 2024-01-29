@@ -13,6 +13,7 @@ import OptionControl from '../px-controls/switch';
 import PhenixInput from '../px-controls/input';
 
 //====> Phenix Options Sets <=====//
+import SizesSet from '../px-controls/sets/sizes';
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
@@ -113,48 +114,6 @@ export default function Edit({ attributes, setAttributes }) {
         { "label": "Article", "value": "article"},
         { "label": "Section", "value": "section"},
         { "label": "Listing", "value": "ul"},
-    ];
-
-    const max_size_util = [
-        { "label": "1920", "value": "w-max-1920"},
-        { "label": "1600", "value": "w-max-1600"},
-        { "label": "1400", "value": "w-max-1400"},
-        { "label": "1366", "value": "w-max-1366"},
-        { "label": "1200", "value": "w-max-1200"},
-        { "label": "1100", "value": "w-max-1100"},
-        { "label": "768", "value": "w-max-768"},
-        { "label": "640", "value": "w-max-640"},
-        { "label": "570", "value": "w-max-570"},
-        { "label": "480", "value": "w-max-480"},
-        { "label": "420", "value": "w-max-420"},
-        { "label": "390", "value": "w-max-390"},
-        { "label": "360", "value": "w-max-360"},
-        { "label": "320", "value": "w-max-320"},
-        { "label": "280", "value": "w-max-280"},
-        { "label": "260", "value": "w-max-260"},
-        { "label": "200", "value": "w-max-200"},
-        { "label": "180", "value": "w-max-180"},
-    ];
-
-    const min_size_util = [
-        { "label": "1920", "value": "w-min-1920"},
-        { "label": "1600", "value": "w-min-1600"},
-        { "label": "1400", "value": "w-min-1400"},
-        { "label": "1366", "value": "w-min-1366"},
-        { "label": "1200", "value": "w-min-1200"},
-        { "label": "1100", "value": "w-min-1100"},
-        { "label": "768", "value": "w-min-768"},
-        { "label": "640", "value": "w-min-640"},
-        { "label": "570", "value": "w-min-570"},
-        { "label": "480", "value": "w-min-480"},
-        { "label": "420", "value": "w-min-420"},
-        { "label": "390", "value": "w-min-390"},
-        { "label": "360", "value": "w-min-360"},
-        { "label": "320", "value": "w-min-320"},
-        { "label": "280", "value": "w-min-280"},
-        { "label": "260", "value": "w-min-260"},
-        { "label": "200", "value": "w-min-200"},
-        { "label": "180", "value": "w-min-180"},
     ];
 
     //===> Get Block Properties <===//
@@ -279,14 +238,17 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Tag", "pds-blocks")}>
                     <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={html_tags} />
                 </div>
-                {/*===> Select Control <===*/}
-                <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Max Size", "pds-blocks")}>
-                    <PhenixSelect name="max_size" placeholder={__("Max Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.style.max_size} onChange={set_style} options={max_size_util} />
-                </div>
-                {/*===> Select Control <===*/}
-                <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Min Size", "pds-blocks")}>
-                    <PhenixSelect name="min_size" placeholder={__("Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.style.min_size} onChange={set_style} options={min_size_util} />
-                </div>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
+                    </li>
+                </PxDropDown>
                 {/*===> Dropdown Button <===*/}
                 {attributes.isFlexbox? <PxDropDown title={__("Layout Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280" >
                     <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>

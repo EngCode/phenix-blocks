@@ -16,6 +16,7 @@ import MediaUploader from '../px-controls/uploader';
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
+import SizesSet from '../px-controls/sets/sizes';
 import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
@@ -271,6 +272,17 @@ export default function Edit({ attributes, setAttributes }) {
                             <OptionControl name={`loop`} value="true" checked={attributes.setting.loop} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Video Loop", "pds-blocks")}</OptionControl>
                             <OptionControl name={`muted`} value="true" checked={attributes.setting.muted} onChange={set_setting} type='switch-checkbox' className='small mb-10'>{__("Muted Audio", "pds-blocks")}</OptionControl>
                         </div>
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
                     </li>
                 </PxDropDown>
                 {/*===> Link Input <===*/}

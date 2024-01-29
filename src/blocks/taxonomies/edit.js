@@ -6,6 +6,7 @@ import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.png';
+import SizesSet from '../px-controls/sets/sizes';
 import PxDropDown from '../px-controls/dropdown';
 import PhenixNumber from "../px-controls/number";
 import PhenixSelect from '../px-controls/select';
@@ -80,6 +81,7 @@ export default function Edit(props) {
     };
 
     //==> Set Object Attributes Methods <==//
+    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
     const set_slider = (target, screen) => set_attr_handler(target, screen, 'slider');
     const set_query = (target, screen) => set_attr_handler(target, screen, "query");
 
@@ -124,6 +126,17 @@ export default function Edit(props) {
                         <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
                     </li>
                 </PxDropDown>: null}
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
+                    </li>
+                </PxDropDown>
             </Toolbar>
         </BlockControls>
         {/* //====> Controls Layout <====// */}

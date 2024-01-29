@@ -13,6 +13,7 @@ import PhenixNumber from "../px-controls/number";
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
+import SizesSet from '../px-controls/sets/sizes';
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import SliderSet from '../px-controls/sets/slider';
@@ -231,8 +232,19 @@ export default function Edit({ attributes, setAttributes }) {
                         <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
                     </li>
                 </PxDropDown>:null}
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
                 {attributes.flexbox['style-support'] ?<>
-                    {/*===> Dropdown Button <===*/}
                     <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                             <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />

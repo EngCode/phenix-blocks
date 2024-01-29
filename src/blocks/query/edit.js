@@ -16,6 +16,7 @@ import OptionControl from '../px-controls/switch';
 import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
+import SizesSet from '../px-controls/sets/sizes';
 import ScreensTabs from "../px-controls/tabs";
 import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
@@ -84,6 +85,7 @@ export default function Edit(props) {
     };
 
     //==> Set Object Attributes Methods <==//
+    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
     const set_slider = (target, screen) => set_attr_handler(target, screen, 'slider');
     const set_query = (target, screen) => set_attr_handler(target, screen, "query");
 
@@ -127,14 +129,27 @@ export default function Edit(props) {
         <BlockControls>
             <Toolbar label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
-                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
-                    <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
-                        <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />
-                        <PhenixNumber name={`cols-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={set_flexbox} />
-                        <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
+                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <>
+                    <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                        <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
+                            <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={set_flexbox} />
+                            <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={set_flexbox} />
+                            <PhenixNumber name={`cols-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={set_flexbox} />
+                            <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={set_flexbox} />
+                        </li>
+                    </PxDropDown>
+                </>: null}
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
                     </li>
-                </PxDropDown>: null} 
+                </PxDropDown>
             </Toolbar>
         </BlockControls>
         {/* //====> Controls Layout <====// */}

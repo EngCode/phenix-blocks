@@ -14,6 +14,7 @@ import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
+import SizesSet from '../px-controls/sets/sizes';
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
@@ -243,6 +244,17 @@ export default function Edit({ attributes, setAttributes }) {
                         <PhenixNumber name={`size-md`} icon="far fa-tablet" min={0} max={13} value={attributes.responsive[`size-md`] || 0} onChange={(target) => set_responsive(target)} />
                         <PhenixNumber name={`size-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.responsive[`size-lg`] || 0} onChange={(target) => set_responsive(target)} />
                         <PhenixNumber name={`size-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.responsive[`size-xl`] || 0} onChange={(target) => set_responsive(target)} />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
                     </li>
                 </PxDropDown>
                 {/*===> Select Control <===*/}

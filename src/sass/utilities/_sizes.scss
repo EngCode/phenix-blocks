@@ -7,7 +7,7 @@
 */
 
 /*==== Width's ====*/
-@mixin make-width-sizes($infix:'') {
+@mixin make_width_sizes($infix:'') {
     .w#{$infix}-50 {width: 50px;}
     .w#{$infix}-75 {width: 75px;}
     .w#{$infix}-100 {width: 100px;}
@@ -19,124 +19,132 @@
     .w#{$infix}-275 {width: 275px;}
     .w#{$infix}-300 {width: 300px;}
     .w#{$infix}-320 {width: 320px;}
+    .w#{$infix}-360 {width: 360px;}
+    .w#{$infix}-390 {width: 390px;}
+    .w#{$infix}-768 {width: 768px;}
+    .w#{$infix}-570 {width: 570px;}
+    .w#{$infix}-480 {width: 480px;}
+    .w#{$infix}-420 {width: 420px;}
     .w#{$infix}-auto {width: auto;}
     .w#{$infix}-fluid, .fluid#{$infix}, .line-break#{$infix} {width: 100%;}
+
+    /*==== Max Width's ====*/
+    .w#{$infix}-max-2560 {max-width: 2560px;}
+    .w#{$infix}-max-1920 {max-width: 1920px;}
+    .w#{$infix}-max-1600 {max-width: 1600px;}
+    .w#{$infix}-max-1400 {max-width: 1400px;}
+    .w#{$infix}-max-1366 {max-width: 1366px;}
+    .w#{$infix}-max-1200 {max-width: 1200px;}
+    .w#{$infix}-max-1100 {max-width: 1100px;}
+    .w#{$infix}-max-768 {max-width: 768px;}
+    .w#{$infix}-max-640 {max-width: 640px;}
+    .w#{$infix}-max-570 {max-width: 570px;}
+    .w#{$infix}-max-480 {max-width: 480px;}
+    .w#{$infix}-max-420 {max-width: 420px;}
+    .w#{$infix}-max-390 {max-width: 390px;}
+    .w#{$infix}-max-360 {max-width: 360px;}
+    .w#{$infix}-max-320 {max-width: 320px;}
+    .w#{$infix}-max-280 {max-width: 280px;}
+    .w#{$infix}-max-260 {max-width: 260px;}
+    .w#{$infix}-max-225 {max-width: 225px;}
+    .w#{$infix}-max-200 {max-width: 200px;}
+    .w#{$infix}-max-180 {max-width: 180px;}
+    .w#{$infix}-max-150 {max-width: 150px;}
+    .w#{$infix}-max-120 {max-width: 120px;}
+
+    /*==== Min Width's ====*/
+    .w#{$infix}-min-2560 {min-width: 2560px;}
+    .w#{$infix}-min-1920 {min-width: 1920px;}
+    .w#{$infix}-min-1600 {min-width: 1600px;}
+    .w#{$infix}-min-1400 {min-width: 1400px;}
+    .w#{$infix}-min-1366 {min-width: 1366px;}
+    .w#{$infix}-min-1200 {min-width: 1200px;}
+    .w#{$infix}-min-1100 {min-width: 1100px;}
+    .w#{$infix}-min-768  {min-width: 768px;}
+    .w#{$infix}-min-640  {min-width: 640px;}
+    .w#{$infix}-min-570  {min-width: 570px;}
+    .w#{$infix}-min-480  {min-width: 480px;}
+    .w#{$infix}-min-420  {min-width: 420px;}
+    .w#{$infix}-min-390  {min-width: 390px;}
+    .w#{$infix}-min-360  {min-width: 360px;}
+    .w#{$infix}-min-320  {min-width: 320px;}
+    .w#{$infix}-min-280  {min-width: 280px;}
+    .w#{$infix}-min-260  {min-width: 260px;}
+    .w#{$infix}-min-225  {min-width: 225px;}
+    .w#{$infix}-min-200  {min-width: 200px;}
+    .w#{$infix}-min-180  {min-width: 180px;}
+    .w#{$infix}-min-150  {min-width: 150px;}
+    .w#{$infix}-min-120  {min-width: 120px;}
+    .w#{$infix}-min-90   {min-width: 90px;}
 }
 
-@include make-width-sizes();
+@include make_width_sizes();
 
 @include small() {
-    @include make-width-sizes('-sm');
+    @include make_width_sizes('-sm');
 };
 
 @include medium() {
-    @include make-width-sizes('-md');
+    @include make_width_sizes('-md');
 };
 
 @include large() {
-    @include make-width-sizes('-lg');
+    @include make_width_sizes('-lg');
 };
 
 @include xlarge() {
-    @include make-width-sizes('-xl');
+    @include make_width_sizes('-xl');
 };
 
-/*==== Max Width's ====*/
-.w-max-2560 {max-width: 2560px;}
-.w-max-1920 {max-width: 1920px;}
-.w-max-1600 {max-width: 1600px;}
-.w-max-1400 {max-width: 1400px;}
-.w-max-1366 {max-width: 1366px;}
-.w-max-1200 {max-width: 1200px;}
-.w-max-1100 {max-width: 1100px;}
-.w-max-768 {max-width: 768px;}
-.w-max-640 {max-width: 640px;}
-.w-max-570 {max-width: 570px;}
-.w-max-480 {max-width: 480px;}
-.w-max-420 {max-width: 420px;}
-.w-max-390 {max-width: 390px;}
-.w-max-360 {max-width: 360px;}
-.w-max-320 {max-width: 320px;}
-.w-max-280 {max-width: 280px;}
-.w-max-260 {max-width: 260px;}
-.w-max-225 {max-width: 225px;}
-.w-max-200 {max-width: 200px;}
-.w-max-180 {max-width: 180px;}
-.w-max-150 {max-width: 150px;}
-.w-max-120 {max-width: 120px;}
-
-/*==== Min Width's ====*/
-.w-min-2560 {min-width: 2560px;}
-.w-min-1920 {min-width: 1920px;}
-.w-min-1600 {min-width: 1600px;}
-.w-min-1400 {min-width: 1400px;}
-.w-min-1366 {min-width: 1366px;}
-.w-min-1200 {min-width: 1200px;}
-.w-min-1100 {min-width: 1100px;}
-.w-min-768  {min-width: 768px;}
-.w-min-640  {min-width: 640px;}
-.w-min-570  {min-width: 570px;}
-.w-min-480  {min-width: 480px;}
-.w-min-420  {min-width: 420px;}
-.w-min-390  {min-width: 390px;}
-.w-min-360  {min-width: 360px;}
-.w-min-320  {min-width: 320px;}
-.w-min-280  {min-width: 280px;}
-.w-min-260  {min-width: 260px;}
-.w-min-225  {min-width: 225px;}
-.w-min-200  {min-width: 200px;}
-.w-min-180  {min-width: 180px;}
-.w-min-150  {min-width: 150px;}
-.w-min-120  {min-width: 120px;}
-.w-min-90   {min-width: 90px;}
-
-/*==== Height's ====*/
-.h-auto {height: auto;}
-.h-25 {height: 25%;}
-.h-50 {height: 50%;}
-.h-75 {height: 75%;}
-.h-100 {height: 100%;}
-.h-25vh {height: 25vh;}
-.h-50vh {height: 50vh;}
-.h-75vh {height: 75vh;}
-.h-100vh {height: 100vh;}
-
 /*==== Min Height's ====*/
-@mixin make-min-height($infix:'') {
+@mixin make_height_sizes($infix:'') {
+    /*==== Height's ====*/
+    .h#{$infix}-auto {height: auto;}
+    .h#{$infix}-25 {height: 25%;}
+    .h#{$infix}-50 {height: 50%;}
+    .h#{$infix}-75 {height: 75%;}
+    .h#{$infix}-100 {height: 100%;}
+    .h#{$infix}-125 {height: 125%;}
+    .h#{$infix}-150 {height: 150%;}
+    .h#{$infix}-175 {height: 175%;}
+    .h#{$infix}-200 {height: 200%;}
+    .h#{$infix}-25vh {height: 25vh;}
+    .h#{$infix}-50vh {height: 50vh;}
+    .h#{$infix}-75vh {height: 75vh;}
+    .h#{$infix}-100vh {height: 100vh;}
+    /*==== Min Heights ====*/
     .h#{$infix}-min-25 {min-height: 25%;}
     .h#{$infix}-min-50 {min-height: 50%;}
     .h#{$infix}-min-75 {min-height: 75%;}
-    .h#{$infix}-min-100 {min-height: 100%;}
     .h#{$infix}-min-25vh {min-height: 25vh;}
     .h#{$infix}-min-50vh {min-height: 50vh;}
     .h#{$infix}-min-75vh {min-height: 75vh;}
     .h#{$infix}-min-100vh {min-height: 100vh;}
+    /*==== Max Height's ====*/
+    .h#{$infix}-max-25 {max-height: 25%;}
+    .h#{$infix}-max-50 {max-height: 50%;}
+    .h#{$infix}-max-75 {max-height: 75%;}
+    .h#{$infix}-max-100 {max-height: 100%;}
+    .h#{$infix}-max-25vh {max-height: 25vh;}
+    .h#{$infix}-max-50vh {max-height: 50vh;}
+    .h#{$infix}-max-75vh {max-height: 75vh;}
+    .h#{$infix}-max-100vh {max-height: 100vh;}
 }
 
-@include make-min-height();
+@include make_height_sizes();
 
 @include small() {
-    @include make-min-height('-sm');
+    @include make_height_sizes('-sm');
 };
 
 @include medium() {
-    @include make-min-height('-md');
+    @include make_height_sizes('-md');
 };
 
 @include large() {
-    @include make-min-height('-lg');
+    @include make_height_sizes('-lg');
 };
 
 @include xlarge() {
-    @include make-min-height('-xl');
+    @include make_height_sizes('-xl');
 };
-
-/*==== Max Height's ====*/
-.h-max-25 {max-height: 25%;}
-.h-max-50 {max-height: 50%;}
-.h-max-75 {max-height: 75%;}
-.h-max-100 {max-height: 100%;}
-.h-max-25vh {max-height: 25vh;}
-.h-max-50vh {max-height: 50vh;}
-.h-max-75vh {max-height: 75vh;}
-.h-max-100vh {max-height: 100vh;}

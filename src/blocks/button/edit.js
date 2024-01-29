@@ -7,12 +7,12 @@ import {BlockControls, RichText, useBlockProps, InspectorControls, __experimenta
 import PreviewImage from './preview.jpg';
 import ScreensTabs from "../px-controls/tabs";
 import PhenixIcons from '../px-controls/icons';
+import SizesSet from '../px-controls/sets/sizes';
 import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import SelectFromData from "../px-controls/select-data";
-
 import PaddingSet from '../px-controls/sets/padding';
 import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
@@ -305,6 +305,17 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
                         <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
                     </li>
                 </PxDropDown>
                 {/*===> Link Input <===*/}

@@ -72,6 +72,9 @@ if (!function_exists('pds_metabox_create')) :
 
         //===> for Each Metabox as Group <===//
         foreach($metaboxes as $metabox_group) {
+            //===> Check for Data <===//
+            $metabox_group = (array) $metabox_group;
+
             //===> Register Post Types Metaboxes <===//
             if (in_array("post_types", $metabox_group["datatype"])) {
                 //===> Register the Metaboxes Group <===//

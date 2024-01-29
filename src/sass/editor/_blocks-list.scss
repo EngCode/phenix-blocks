@@ -6,6 +6,9 @@
 	font-family: var(--secondary-font)!important;
 	.block-editor-rich-text__editable:not([class*="color-"]) {color: inherit!important;}
 
+	/*==== Links ====*/
+	a, button {text-decoration: none;}
+
 	//=== Editor Titles Reset Fix ====//
 	h1:not([class*="fs-"]):not([class*="y-h"]),.h1:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(32);}
     h2:not([class*="fs-"]):not([class*="y-h"]),.h2:not([class*="fs-"]):not([class*="y-h"]) {font-size: REM(28);}

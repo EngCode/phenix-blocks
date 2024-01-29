@@ -18,19 +18,18 @@
             //====> Define Options Data <====//
             $default_options = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json");
             $default_options = json_decode($default_options);
+            $default_options = (array) $default_options;
 
-            //====> Conditional Options <====//
-            $other_options = array();
 
             //====> Add WooCommerce Option <====//
             if (class_exists("woocommerce")) {
-                array_push($other_options, array('pds_core_woo' => ""));
+                $default_options["pds_core"]->pds_core_woo = "";
             } else {
-                array_push($other_options, array('pds_core_woo' => "on"));
+                $default_options["pds_core"]->pds_core_woo = "on";
             }
 
             //====> Return Options <====//
-            return array_merge($default_options, $other_options);
+            return $default_options;
         }
     endif;
 

@@ -37,7 +37,7 @@ PhenixElements.prototype.animations = function (options?:{
             into = parseInt(element.getAttribute('data-into')) || options?.into || false,
             lazy = parseInt(element.getAttribute('data-lazy')) || options?.lazyloading,
             delay = parseInt(element.getAttribute('data-delay')) || options?.delay,
-            lazygroup = parseInt(element.getAttribute('data-lazy-group')) || options?.lazygroup || true,
+            lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false,
             directionFix = options?.directionFix || true;
 
         //====> Directions Resolve <====//
@@ -92,27 +92,38 @@ PhenixElements.prototype.animations = function (options?:{
             // else element.classList.remove('view-active', animation);
         };
 
-        //====> Lazyloading <====//
-        if (lazy) {
-            let group = Phenix(element).ancestor('[data-lazy-group]'),
-                current_delay = 0;
-    
-            group?.querySelectorAll('[data-animation]:not([data-delay])').forEach((item, index) => {
-                if (item !== element) {
-                    if (!item.style.animationDelay) {
-                        current_delay += duration;
-                        item.setAttribute('data-delay', current_delay/2);
-                        item.style.animationDelay = `${current_delay/2}ms`;
-                    }
-                }
+        //====> Lazyloading Group <====//
+        if (lazygroup) {
+            //===> Loop over the Animated Children <===//
+            let current_delay = 0;
+            element.querySelectorAll('[data-animation]').forEach((item, index) => {
+                current_delay += duration;
+                console.log(current_delay);
+                item.setAttribute('data-delay', current_delay/2);
+                element.style.setProperty('--animation-delay', current_delay/2);
             });
         }
 
-        //====> First Activation <====//
-        isInView();
+        //====> Check for Loading Screen <====//
+        let loadingScreen:any = document.querySelector(".px-page-loader");
 
-        //====> Scrolling Spy <====//
-        Phenix(window).on('scroll', isInView);
+        //====> First View Activation <====//
+        if (loadingScreen) {
+            //====> Check for Loading Screen <====//
+            let loadingScreenChecker = setInterval(() => {
+                if (loadingScreen.style.display === 'none') {
+                    isInView();
+                    //====> Scrolling Spy <====//
+                    Phenix(window).on('scroll', isInView);
+                    //====> Clear Interval <====//
+                    clearInterval(loadingScreenChecker);
+                }
+            }, 500);
+        } else {
+            isInView();
+            //====> Scrolling Spy <====//
+            Phenix(window).on('scroll', isInView);
+        }
     });
 
     //====> Animations Loader <====//

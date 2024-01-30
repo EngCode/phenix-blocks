@@ -202,8 +202,8 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
                         if (sub_value.rotate) blockProps.className += ` ${sub_value.rotate}`;
                     }
                     //===> Animations Specials <===//
-                    else if (sub_option === "animation" && sub_value.name) {
-                        blockProps['data-animation'] = sub_value.name;
+                    else if (sub_option === "animation") {
+                        sub_value.name && (blockProps['data-animation'] = sub_value.name);
                         sub_value.group && (blockProps['data-lazy-group'] = 1);
                         sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
                         sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);

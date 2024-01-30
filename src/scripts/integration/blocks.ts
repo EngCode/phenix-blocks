@@ -168,7 +168,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     });
 
     //===> Animations <===//
-    Phenix('[data-animation], .px-animate').animations({animateCSS: ["all"]});
+    Phenix('[data-animation], .px-animate, [data-lazy-group]').animations({animateCSS: ["all"]});
 
     /*===> Table of contents Menu <===*/
     let postContent = document.querySelector(".entry-content"), last_title,

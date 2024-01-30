@@ -90,9 +90,9 @@ registerBlockType(metadata, {
                     //===> if its a Object Value <===//
                     else if (!isNormalValue(sub_value)) {
                         //===> Animations Specials <===//
-                        if (sub_option === "animation" && sub_value.name) {
-                            blockProps['data-animation'] = sub_value.name;
-                            sub_value.group && (blockProps['data-lazy-group'] = 1);
+                        if (sub_option === "animation") {
+                            sub_value.name && (blockProps['data-animation'] = sub_value.name);
+                            sub_value.group && (blockProps['data-lazy-group'] = sub_value.group);
                             sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
                             sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);
                             sub_value.offset && (blockProps['data-offset'] = sub_value.offset);

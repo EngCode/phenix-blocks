@@ -194,6 +194,8 @@
 	.listbox > * {width: 100%!important;}
 }
 
+.option-control.inline-block {display: inline-flex;}
+
 /*==== Post Editor Wrapper ====*/
 body.block-editor-page {
 	background-color: var(--body-bg)!important;

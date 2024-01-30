@@ -63,7 +63,6 @@ export default function Edit(props) {
         const newAttributes = { ...attributes, [name]: value };
         //==> Set Value <==//
         setAttributes(newAttributes);
-        console.log(attributes);
     };
 
     //==> Set Responsive Method <==//

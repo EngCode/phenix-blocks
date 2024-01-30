@@ -113,12 +113,12 @@
             array('pds_taxonomies', 'pds-data-collection', true),
             array('menu_locations', 'pds-data-collection', true),
             array('block_patterns', 'pds-data-collection', true),
-            array('users_roles', 'pds-data-collection'),
-            array('theme_parts', 'pds-data-collection'),
-            array('countries_list', 'pds-data-collection'),
-            array('theme_templates', 'pds-data-collection'),
-            array('templates_meta', 'pds-data-collection'),
-            array('pds_custom_pallete', 'pds-data-collection'),
+            array('users_roles', 'pds-data-collection', true),
+            array('theme_parts', 'pds-data-collection', true),
+            array('countries_list', 'pds-data-collection', true),
+            array('theme_templates', 'pds-data-collection', true),
+            array('templates_meta', 'pds-data-collection', true),
+            array('pds_custom_pallete', 'pds-data-collection', true),
     
             //===> General Settings <===//
             array('pds_gfonts', 'pds-admin', true),

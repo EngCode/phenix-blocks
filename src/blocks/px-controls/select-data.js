@@ -122,7 +122,7 @@ export default class SelectFromData extends Component {
                           new_options_list = [];
 
                     //===> Loop Through Theme-Parts <===//
-                    Object.entries(template_parts).forEach(([key, value]) => {
+                    if(template_parts) Object.entries(template_parts).forEach(([key, value]) => {
                         //===> if its direct theme-part <===//
                         if(typeof(value) === 'string') {
                             new_options_list.push(<option key={`${key}-${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);

@@ -18,9 +18,9 @@ this project is a full-integration for the design system with WordPress with hel
 
 ### **References & Documentations**
 
- Plugin Link| Theme Link | Documentation | Design System | Official Website
+ Plugin | Theme | Blocks | Design | Website
 --- | --- | --- | --- | ---
-🧩 [Phenix Blocks](https://github.com/EngCode/phenix-blocks) |🎨 [Starter Theme](https://github.com/EngCode/pds-starter-free) | 📕 [Blocks Docs](https://phenixthemes.notion.site/Phenix-Blocks-Documentation-b7ae033ce7484e8f98209d7587a94792?pvs=74) | 📘 [Developers Docs](https://phenixthemes.notion.site/Phenix-Design-System-efcfa4d3839946989a4f94ee5e0480c3?pvs=74) | 🌎 [Website](https://phenixthemes.com/demo/) 
+🧩 [Phenix Blocks](https://github.com/EngCode/phenix-blocks) |🎨 [Starter Theme](https://github.com/EngCode/pds-starter-free) | 📕 [Editor Handbook](https://phenixthemes.notion.site/Phenix-Blocks-Documentation-b7ae033ce7484e8f98209d7587a94792?pvs=74) | 📘 [Code Handbook](https://phenixthemes.notion.site/Phenix-Design-System-efcfa4d3839946989a4f94ee5e0480c3?pvs=74) | 🌎 [Official Website](https://phenixthemes.com/demo/) 
 
 ----------
 

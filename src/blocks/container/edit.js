@@ -137,7 +137,7 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
     const uniqueKey = blockProps.id;
 
     //===> General Options : for Section Convert <===//
-     if (attributes.isSection) {
+    if (attributes.isSection) {
         innerBlocksProps.className += `${renderProps.container.className}`; 
     } else {
         blockProps.className += `${renderProps.container.className}`;

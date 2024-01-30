@@ -1,14 +1,15 @@
 //===> Options Renderer <===//
 const OptionsRenderer = (options) => {
     //===> Options <===//
-    const {attributes, blockProps, isSave, isButton, isColumn} = options;
+    const {attributes, blockProps, isSave, isButton, isColumn, isGrid} = options;
 
     //===> Rendering Checkers <===//
     const container = {className: ""},
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
-          sizeRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`;
+          sizeRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`,
+          colsRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`;
 
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
@@ -37,15 +38,43 @@ const OptionsRenderer = (options) => {
         //===> if its object[group] Option like [style, typography, responsive] <===//
         else if (isObjectVal(option_value) && attributes[option_name]) {
             //===> Flexbox Props <===//
-            if(option_name === "flexbox" && !attributes.isFlexbox) return;
+            if(!isGrid && option_name === "flexbox" && !attributes.isFlexbox) return;
 
             //===> loop on the Object Options <===//
             Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                 //===> Check if the attribute is Set <===//
                 if (!attributes[option_name][sub_option]) return;
 
+                //===> Slider Mode Checker <===//
+                if (attributes.flexbox.slider) {
+                    //===> Add Slider Name <===//
+                    if (attributes.slider.preview) container.className += ' px-slider';
+                    //===> if not-related option return void <===//
+                    if (["align", "nowrap", "masonry"].some(option => sub_option.includes(option))) return;
+                };
+
+                //===> Flexbox Equals Columns <===//
+                if (option_name === "flexbox" && sub_option.includes("cols")) {
+                    //===> Slider Mode <===//
+                    if(attributes.flexbox.slider) {
+                        let dataAttr = `data-${sub_option === "cols" ? "items" : sub_option.replace('cols-', '')}`;
+                        container[dataAttr] = sub_value;
+                    } else if (attributes.flexbox.equals) {
+                        //===> add Classes <===//
+                        container.className += ` ${sub_option.replace('cols', 'row-cols') + colsRender(sub_value)}`;
+                    }
+                }
+
+                //===> Slider Options <===//
+                else if (option_name === "slider") {
+                    //===> Set Options <===//
+                    if (attributes.flexbox.slider && attributes.slider.preview || attributes.flexbox.slider && isSave) {
+                        container[`data-${sub_option}`] = sub_value;
+                    }
+                }
+
                 //===> if its a Object Value <===//
-                if (!isNormalValue(sub_value)) {
+                else if (!isNormalValue(sub_value)) {
                     //===> Background Specials <===//
                     if (sub_option === "background" && sub_value.value) {
                         //===> Image Background <===//
@@ -75,7 +104,7 @@ const OptionsRenderer = (options) => {
                     //===> Animations Specials <===//
                     else if (sub_option === "animation") {
                         sub_value.name && (blockProps['data-animation'] = sub_value.name);
-                        sub_value.group && (blockProps['data-lazy-group'] = 1);
+                        sub_value.group && (blockProps['data-lazy-group'] = "true");
                         sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
                         sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);
                         sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
@@ -87,28 +116,39 @@ const OptionsRenderer = (options) => {
                         sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
                     }
                     //===> Display Support <===//
-                    else if (sub_option === "display") blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
+                    else if (sub_option === "display") {
+                        blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
+                    }
                 }
 
                 //===> for Normal strings and Arrays <===//
                 else if (isNormalValue(sub_value)) {
                     //===> Postion Sticky <===//
                     if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;}
+                    
                     //===> Padding Values <===//
                     else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    
                     //===> Margin Values <===//
                     else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    
                     //===> Positions Values <===//
                     else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    
                     //===> Layout Gap <===//
                     else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) { container.className += ` ${sub_option}-${sub_value}`; }
+                    
                     //===> Flexbox Values <===//
                     else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
-                    //===> Responsive <===//
-                    else if (option_name === "responsive" && isColumn && sub_option.includes('size-')) blockProps.className += ` ${sub_option.replace("size", "col")}${sizeRender(sub_value)}`;
+                    
+                    //===> Responsive Columns <===//
+                    else if (isColumn && option_name === "responsive" && sub_option.includes('size-')) {
+                        blockProps.className += ` ${sub_option.replace("size", "col")}${sizeRender(sub_value)}`;
+                    }
+
                     //===> Other Values <===//
                     else {
-                        if (isColumn && attributes.isFlexbox) {
+                        if (isColumn && attributes.isFlexbox || isGrid) {
                             container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
                         } else {
                             blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;

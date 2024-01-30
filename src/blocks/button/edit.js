@@ -25,7 +25,7 @@ import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/renderer-v1";
+import OptionsRenderer from "../px-controls/logic/button-edit";
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

@@ -1,5 +1,5 @@
 //===> Options Renderer <===//
-const OptionsRenderer = (attributes, blockProps, innerBlocksProps) => {
+const OptionsRenderer = (attributes, blockProps) => {
     //===> Rendering Checkers <===//
     const container = {className: ""},
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
@@ -105,12 +105,8 @@ const OptionsRenderer = (attributes, blockProps, innerBlocksProps) => {
         };
     });
 
-    //===> General Options : for Section Convert <===//
-    if (attributes.isSection) innerBlocksProps.className += `${container.className}`; 
-    else blockProps.className += `${container.className}`;
-
     //===> Render Component <===//
-    return {blockProps, innerBlocksProps};
+    return {blockProps, container};
 }
 
 export default OptionsRenderer;

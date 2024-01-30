@@ -28,7 +28,7 @@ registerBlockType(metadata, {
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
         const TagName = attributes.tagName;
-        const renderProps = OptionsRenderer(attributes, useBlockProps.save());
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save()});
         const blockProps = renderProps.blockProps;
 
         //===> General Options : for Section Convert <===//

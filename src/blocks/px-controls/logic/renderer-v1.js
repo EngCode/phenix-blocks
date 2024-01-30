@@ -1,10 +1,14 @@
 //===> Options Renderer <===//
-const OptionsRenderer = (attributes, blockProps) => {
+const OptionsRenderer = (options) => {
+    //===> Options <===//
+    const {attributes, blockProps, isSave, isButton, isColumn} = options;
+
     //===> Rendering Checkers <===//
     const container = {className: ""},
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
-          isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'};
+          isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
+          sizeRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`;
 
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
@@ -16,6 +20,8 @@ const OptionsRenderer = (attributes, blockProps) => {
         if (isNormalValue(option_value) && attributes[option_name]) {
             //===> ID <===//
             if (option_name === "id") blockProps['id'] = attributes[option_name];
+            //===> Size <===//
+            if (isColumn && option_name === "size") blockProps.className += ` col${sizeRender(option_value)}`;
             //===> Other Options <===//
             else if (attributes[option_name]) {
                 container.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
@@ -96,10 +102,18 @@ const OptionsRenderer = (attributes, blockProps) => {
                     else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     //===> Layout Gap <===//
                     else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) { container.className += ` ${sub_option}-${sub_value}`; }
-                    //===> Other Values <===//
+                    //===> Flexbox Values <===//
                     else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    //===> Responsive <===//
+                    else if (option_name === "responsive" && isColumn && sub_option.includes('size-')) blockProps.className += ` ${sub_option.replace("size", "col")}${sizeRender(sub_value)}`;
                     //===> Other Values <===//
-                    else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
+                    else {
+                        if (isColumn && attributes.isFlexbox) {
+                            container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
+                        } else {
+                            blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
+                        }
+                    }
                 };
             });
         };

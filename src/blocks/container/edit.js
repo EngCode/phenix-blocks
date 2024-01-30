@@ -132,7 +132,7 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
     //===> Get Block Properties <===//
     const TagName = attributes.tagName;
     const innerBlocksProps = useInnerBlocksProps();
-    const renderProps = OptionsRenderer(attributes, useBlockProps());
+    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), isColumn: false});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
 

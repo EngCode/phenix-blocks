@@ -35,7 +35,6 @@ PhenixElements.prototype.animations = function (options?:{
             offset = parseInt(element.getAttribute('data-offset')) || options?.offset || false,
             flow = parseInt(element.getAttribute('data-flow')) || options?.flow || false,
             into = parseInt(element.getAttribute('data-into')) || options?.into || false,
-            lazy = parseInt(element.getAttribute('data-lazy')) || options?.lazyloading,
             delay = parseInt(element.getAttribute('data-delay')) || options?.delay,
             lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false,
             directionFix = options?.directionFix || true;
@@ -99,8 +98,8 @@ PhenixElements.prototype.animations = function (options?:{
             element.querySelectorAll('[data-animation]').forEach((item, index) => {
                 current_delay += duration;
                 console.log(current_delay);
-                item.setAttribute('data-delay', current_delay/2);
-                element.style.setProperty('--animation-delay', current_delay/2);
+                item.setAttribute('data-delay', current_delay/3);
+                element.style.setProperty('--animation-delay', current_delay/3);
             });
         }
 

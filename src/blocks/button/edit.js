@@ -352,7 +352,7 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> Column <===*/}
                         <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={lightbox_types} /></div>
                         {/*===> Column <===*/}
-                        <div className='col-12'>{attributes.lightbox_src ?  
+                        <div className='col-12'>{attributes.lightbox_src ?
                             <MediaUploader key={`lightbox-src-${uniqueKey}`} label={__("Upload Source", "pds-blocks")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
                             :
                             <TextControl key={`lightbox-src-input-${uniqueKey}`} label={__("Source URL", "pds-blocks")} value={ attributes.url } onChange={set_url}/>
@@ -407,8 +407,8 @@ export default function Edit({ attributes, setAttributes }) {
                     </PxDropDown>
                 :null}
                 {/*===> Dropdown Button <===*/}
-                {attributes.style?.position?.length > 0 ?
-                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                {attributes.style?.position ?
+                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs
                                 sm={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}

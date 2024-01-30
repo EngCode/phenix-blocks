@@ -106,18 +106,19 @@
 
 .splide__slide {
     -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    box-sizing: border-box;
-    flex-shrink: 0;
-    list-style-type: none !important;
+        backface-visibility: hidden;
     margin: 0;
-    position: relative
+    flex-shrink: 0;
+    position: relative;
+    box-sizing: border-box;
+    list-style-type: none !important;
 
     /*==== Animated Childs ====*/
     [data-animation] {
+        animation-fill-mode: both;
         visibility: hidden!important;
         animation-name: var(--animation-exit, 'fadeOut');
-        animation-delay: var(--animation-delay, 0);
+        animation-delay: calc(var(--animation-delay, 0));
         animation-duration: var(--animate-duration, 1s);
     }
 

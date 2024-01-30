@@ -187,10 +187,11 @@
 		overflow: hidden;
 	}
 
-	/*==== Inserter Fixes ====*/
-	.block-editor-inserter__panel-content {
-		.listbox > * {width: 100%;}
-	}
+}
+
+/*==== Inserter Fixes ====*/
+.block-editor-inserter__panel-content {
+	.listbox > * {width: 100%!important;}
 }
 
 /*==== Post Editor Wrapper ====*/

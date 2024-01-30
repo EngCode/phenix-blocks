@@ -33,9 +33,9 @@ export default class SizesSet extends Component {
               max_height_range = ["auto", "25%", "50%", "75%", "100%", "25vh", "50vh", "75vh", "100vh"];
 
         //===> Generate Height Sizes <===//
-        const height_list = height_range.map(size => { return { "label": size, "value": `h${screenPoint}-${size}`} }),
-              min_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-min-${size}`} }),
-              max_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-max-${size}`} });
+        const height_list = height_range.map(size => { return { "label": size, "value": `h${screenPoint}-${size.replace("%", "")}`} }),
+              min_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-min-${size.replace("%", "")}`} }),
+              max_height_list = max_height_range.map(size => { return { "label": size, "value": `h${screenPoint}-max-${size.replace("%", "")}`} });
 
 
         //===> Add Default Option <===//

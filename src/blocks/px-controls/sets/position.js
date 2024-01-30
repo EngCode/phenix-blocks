@@ -18,7 +18,6 @@ export default class PositionSet extends Component {
     render () {
         //===> Properties <===//
         const {attributes, options, mainSetter, screen, attrSetter} = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-padding-option`;
 
         //===> Reset Padding <===//
         const reset = () => {
@@ -35,7 +34,7 @@ export default class PositionSet extends Component {
         };
 
         //===> Output <===//
-        return <div className={`padding-controller mgx-auto`}>
+        return <div className={`position-controller mgx-auto`}>
             {/*===> Top Controller <===*/}
             <div className='mgx-auto mb-15' style={{width: 100}}>
                 <PhenixNumber name={`pos-top${screen}`} onChange={mainSetter} value={attributes.style[`pos-top${screen}`] || 0} min={0} max={30} steps={5} />

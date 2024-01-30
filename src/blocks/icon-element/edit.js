@@ -333,8 +333,8 @@ export default function Edit({ attributes, setAttributes }) {
                     </PxDropDown>
                 :null}
                 {/*===> Dropdown Button <===*/}
-                {attributes.style?.position?.length > 0 ?
-                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                {attributes.style?.position ?
+                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs
                                 sm={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}

@@ -5,7 +5,7 @@ const OptionsRenderer = (options) => {
 
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
-          CustomCSS = {}, CustomCSSProps = {},
+          CustomCSSProps = {},
           CssPropsList = ['pdt', 'pds', 'pde', 'pdb', 'mt', 'mb', 'ms', 'me', 'pos-'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
@@ -262,13 +262,7 @@ const OptionsRenderer = (options) => {
 
     //===> CSS Attributes Options <===//
     Object.entries(CustomCSSProps).forEach(([option_name, option_value]) => {
-        // blockProps.style.setProperty(`--${option_name}`, option_value);
         blockProps.style[`--${option_name}`] = option_value;
-    });
-
-    //===> CSS Options <===//
-    Object.entries(CustomCSS).forEach(([option_name, option_value]) => {
-        blockProps.style[option_name] = option_value;
     });
 
     //===> Render Component <===//

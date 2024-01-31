@@ -1,7 +1,7 @@
 //===> Options Renderer <===//
 const OptionsRenderer = (options) => {
     //===> Options <===//
-    const {attributes, blockProps, isSave, isButton, isColumn, isGrid} = options;
+    const {attributes, blockProps, isSave, primaryColors, isColumn, isGrid} = options;
 
     //===> Rendering Checkers <===//
     const container = {className: ""}, CustomCss = {},
@@ -14,15 +14,38 @@ const OptionsRenderer = (options) => {
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
         //===> Exclude Options <===//
-        const excluded = ["tagName", "className", "align", "metadata", "name", "content", "lightbox_type", "url"];
+        const excluded = ["tagName", "className", "align", "metadata", "name", "content", "lightbox_type", "url", "label"];
         if (excluded.some(opt => opt === option_name)) return;
 
         //===> if its a Normal Values that should be string <===//
         if (isNormalValue(option_value) && attributes[option_name]) {
-            //===> ID <===//
-            if (option_name === "id") blockProps['id'] = attributes[option_name];
-            //===> Size <===//
-            if (isColumn && option_name === "size") blockProps.className += ` col${sizeRender(option_value)}`;
+            //===> HTML ID <===//
+            if (option_name === "id") {
+                blockProps['id'] = attributes[option_name];
+            }
+
+            //===> Columns Size <===//
+            else if (isColumn && option_name === "size") {
+                blockProps.className += ` col${sizeRender(option_value)}`;
+            }
+
+            //===> Data Modal <===//
+            else if (option_name === "data_modal") {
+                blockProps['data-modal'] = attributes[option_name];
+            }
+
+            //===> Menu Data ID <===//
+            else if (option_name === "data_id") {
+                blockProps.className += ` menu-toggle`;
+                blockProps['data-id'] = attributes[option_name];
+            }
+
+            //===> for Icons <===//
+            else if (option_name === "icon" && attributes[option_name]) {
+                if (attributes.type.includes('icon') || attributes.type.includes('square')) {blockProps.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;}
+            }
+            //===> Fallback for Old Types <===//
+            else if (option_name === "type") {blockProps.className += ` ${attributes[option_name].replace('normal', 'btn').trim()}`;}
             //===> Other Options <===//
             else if (attributes[option_name]) {
                 container.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
@@ -32,7 +55,14 @@ const OptionsRenderer = (options) => {
         //===> for Boolean Options <===//
         else if (isBooleanVal(option_value) && attributes[option_name]) {
             //===> Flexbox <===//
-            if (option_name === "isFlexbox" && option_value === true) container.className += ` flexbox`;
+            if (option_name === "isFlexbox" && option_value === true) {
+                container.className += ` flexbox`;
+            }
+            //===> for Link Options <===//
+            else if (option_name === "isLink" || option_name === "inNewTab") {
+                if (option_name === "inNewTab") {blockProps['target'] = "_blank";} 
+                else {blockProps['rel'] = "noopener";}
+            }
             //===> for Lightbox Options <===//
             else if (option_name === "isLightBox" && option_value) {
                 blockProps.className += ' px-lightbox';
@@ -82,6 +112,14 @@ const OptionsRenderer = (options) => {
                 else if (!isNormalValue(sub_value)) {
                     //===> Background Specials <===//
                     if (sub_option === "background" && sub_value.value) {
+                        //===> Adjust Primary Colors <===//
+                        let isPrimary = false,
+                            colorsList = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+
+                        //===> Clear Props <===//
+                        blockProps['data-src'] = null;
+                        blockProps.style?.backgroundImage ? blockProps.style.backgroundImage = null : null;
+
                         //===> Image Background <===//
                         if (attributes.style.background.type === 'image') {
                             blockProps.className += ` px-media`;
@@ -91,17 +129,24 @@ const OptionsRenderer = (options) => {
                         //===> Video Background <===//
                         else if (attributes.style.background.type === 'video') {
                             blockProps.className += ` px-media pds-video-bg`;
-                            blockProps["data-type"] = "embed";
-                            blockProps["data-embed"]="video";
-                            blockProps["data-autoplay"]="1";
-                            blockProps["data-loop"]="1";
-                            blockProps["data-muted"]="1";
-                            blockProps["data-src"] = attributes.style.background.value;
+                            blockProps["data-src"]      = attributes.style.background.value;
+                            blockProps["data-loop"]     = "1";
+                            blockProps["data-type"]     = "embed";
+                            blockProps["data-embed"]    = "video";
+                            blockProps["data-muted"]    = "1";
+                            blockProps["data-autoplay"] = "1";
                         }
                         //===> Name Background <===//
                         else {
-                            blockProps['style'] = null; blockProps['data-src'] = null;
-                            blockProps.className += ` ${attributes.style.background.value}`;
+                            //===> Correct Colors <===//
+                            colorsList.forEach(color => sub_value.value === color ? isPrimary = true : null);
+
+                            //===> Set the Background <===//
+                            if (primaryColors && isPrimary) {
+                                blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
+                            }  else {
+                                blockProps.className += ` ${sub_value.value}`;
+                            }
                         }
                         //===> Background Rotation <===//
                         if (sub_value.rotate) blockProps.className += ` ${sub_value.rotate}`;

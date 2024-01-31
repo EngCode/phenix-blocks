@@ -25,7 +25,7 @@ import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/button-edit";
+import OptionsRenderer from "../px-controls/logic/renderer-v1";
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -136,9 +136,21 @@ export default function Edit({ attributes, setAttributes }) {
     ];
 
     //===> Get Block Properties <===//
-    const renderProps = OptionsRenderer(attributes, useBlockProps());
+    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), primaryColors: true});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
+
+    //===> Links and Lightbox URL <===//
+    if (attributes.style.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
+
+    //===> Layout Options <===//
+    blockProps.className += `${renderProps.container.className}`;
+
+    //===> Data Attributes Options <===//
+    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+        if(option_name === "className") return;
+        else blockProps[option_name] = option_value;
+    });
 
     //===> Label Element <===//
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;

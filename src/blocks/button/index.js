@@ -14,7 +14,7 @@ import {registerBlockType} from '@wordpress/blocks';
 import {useBlockProps} from '@wordpress/block-editor';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/button-save";
+import OptionsRenderer from "../px-controls/logic/renderer-v1";
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -26,8 +26,20 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer(attributes, useBlockProps.save());
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), primaryColors: true});
         const blockProps = renderProps.blockProps;
+
+        //===> Links and Lightbox URL <===//
+        if (attributes.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
+
+        //===> Layout Options <===//
+        blockProps.className += `${renderProps.container.className}`;
+
+        //===> Data Attributes Options <===//
+        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+            if(option_name === "className") return;
+            else blockProps[option_name] = option_value;
+        });
 
         //===> Rendered Element <===//
         let renderedElement = <button title={attributes.type.includes("square") ? attributes.label : null} { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</button>;

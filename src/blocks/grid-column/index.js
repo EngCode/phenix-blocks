@@ -34,6 +34,12 @@ registerBlockType(metadata, {
         if (attributes.isFlexbox) blockProps.className += ` ${renderProps.container.className}`;
         else {blockProps.className += ` ${renderProps.container.className}`;}
 
+        //===> Data Attributes Options <===//
+        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+            if(option_name === "className") return;
+            else blockProps[option_name] = option_value;
+        });
+
         //===> Render <===//
         return <TagName {...blockProps}>
             <InnerBlocks.Content />

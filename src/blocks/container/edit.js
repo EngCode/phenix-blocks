@@ -132,19 +132,26 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
     //===> Get Block Properties <===//
     const TagName = attributes.tagName;
     const innerBlocksProps = useInnerBlocksProps();
-    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), isColumn: false});
+    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
 
-    //===> General Options : for Section Convert <===//
+    //===> Layout Options <===//
     if (attributes.isSection) {
         innerBlocksProps.className += `${renderProps.container.className}`; 
     } else {
         blockProps.className += `${renderProps.container.className}`;
     }
 
+    //===> Data Attributes Options <===//
+    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+        if(option_name === "className") return;
+        else blockProps[option_name] = option_value;
+    });
+
     //===> Full Width Editing <===//
     if (!attributes.align) setAttributes({ align: 'full' });
+
 
     //===> Render <===//
     return (<>

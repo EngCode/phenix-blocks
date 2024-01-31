@@ -26,13 +26,7 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer({
-            isGrid: true,
-            isSave: true,
-            attributes: attributes,
-            blockProps: useBlockProps.save()
-        });
-
+        const renderProps = OptionsRenderer({isGrid: true, isSave: true, attributes: attributes, blockProps: useBlockProps.save()});
         const blockProps = renderProps.blockProps;
 
         //===> Set Props <===//

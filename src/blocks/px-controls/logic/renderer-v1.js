@@ -35,7 +35,7 @@ const OptionsRenderer = (options) => {
             if (option_name === "isFlexbox" && option_value === true) container.className += ` flexbox`;
         }
 
-        //===> if its object[group] Option like [style, typography, responsive] <===//
+        //===> if its object[group] Option like [style, typography, responsive, flexbox/slider] <===//
         else if (isObjectVal(option_value) && attributes[option_name]) {
             //===> Flexbox Props <===//
             if(!isGrid && option_name === "flexbox" && !attributes.isFlexbox) return;
@@ -46,7 +46,7 @@ const OptionsRenderer = (options) => {
                 if (!attributes[option_name][sub_option]) return;
 
                 //===> Slider Mode Checker <===//
-                if (attributes.flexbox.slider) {
+                if (attributes.flexbox?.slider) {
                     //===> Add Slider Name <===//
                     if (attributes.slider.preview) container.className += ' px-slider';
                     //===> if not-related option return void <===//
@@ -141,7 +141,7 @@ const OptionsRenderer = (options) => {
                     //===> Flexbox Values <===//
                     else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                     
-                    //===> Responsive Columns <===//
+                    //===> Responsive Columns Sizes <===//
                     else if (isColumn && option_name === "responsive" && sub_option.includes('size-')) {
                         blockProps.className += ` ${sub_option.replace("size", "col")}${sizeRender(sub_value)}`;
                     }

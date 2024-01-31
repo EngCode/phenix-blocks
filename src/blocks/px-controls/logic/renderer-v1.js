@@ -14,7 +14,7 @@ const OptionsRenderer = (options) => {
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
         //===> Exclude Options <===//
-        const excluded = ["tagName", "className", "align", "metadata", "name"];
+        const excluded = ["tagName", "className", "align", "metadata", "name", "content", "lightbox_type", "url"];
         if (excluded.some(opt => opt === option_name)) return;
 
         //===> if its a Normal Values that should be string <===//
@@ -33,6 +33,11 @@ const OptionsRenderer = (options) => {
         else if (isBooleanVal(option_value) && attributes[option_name]) {
             //===> Flexbox <===//
             if (option_name === "isFlexbox" && option_value === true) container.className += ` flexbox`;
+            //===> for Lightbox Options <===//
+            else if (option_name === "isLightBox" && option_value) {
+                blockProps.className += ' px-lightbox';
+                if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
+            };
         }
 
         //===> if its object[group] Option like [style, typography, responsive, flexbox/slider] <===//
@@ -115,6 +120,11 @@ const OptionsRenderer = (options) => {
                     else if (sub_option === "support") {
                         sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
                     }
+                    //===> for Link Options <===//
+                    else if (isSave && option_name === "isLink" || isSave &&  option_name === "inNewTab") {
+                        if (option_name === "inNewTab") {blockProps['target'] = "_blank";} 
+                        else {blockProps['rel'] = "noopener";}
+                    }
                     //===> Has Icon <===//
                     else if (sub_option === "hasIcon") {
                         blockProps.className += ` tx-icon`;
@@ -134,6 +144,12 @@ const OptionsRenderer = (options) => {
                     //===> Postion Sticky <===//
                     if (sub_option === "position" && sub_value === "sticky-absolute") {
                         blockProps["data-sticky"] = `${sub_value}`;
+                    }
+
+                    //===> Media Settings <===//
+                    else if (option_name === "setting") {
+                        if (sub_option.includes('size') && sub_value !== "custom") blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
+                        else blockProps[`data-${sub_option}`] = sub_value;
                     }
 
                     //===> Padding Values <===//

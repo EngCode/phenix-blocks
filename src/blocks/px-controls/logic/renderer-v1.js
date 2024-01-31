@@ -216,7 +216,7 @@ const OptionsRenderer = (options) => {
                     else if (CssPropsList.some(css => sub_option.includes(css))) {
                         //===> Check Value Range <===//
                         if (sub_option.includes('pos-') && parseInt(sub_value) > 50 || parseInt(sub_value) > 100) {
-                            CustomCSSProps["sub_option"] = `${sub_value}px`;
+                            CustomCSSProps[`${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
                         //===> is Name Value <===//
@@ -253,6 +253,9 @@ const OptionsRenderer = (options) => {
 
     //===> Activate Slider in Editor <===//
     if (isSave && attributes.flexbox?.slider || attributes.slider?.preview) container.className += ' px-slider';
+
+    //===> Check the Style Props <===//
+    if (!blockProps.style) blockProps.style = {};
 
     //===> Data Attributes Options <===//
     Object.entries(container).forEach(([option_name, option_value]) => {

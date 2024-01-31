@@ -82,6 +82,7 @@ if (!function_exists("pds_blocks_options_render")) :
                         //===> add data attributes <===//
                         $slider_attrs .= 'data-'.$sub_option.'="'.$sub_value.'"';
                     }
+
                     //===> Flexbox Options <===//
                     elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
                         //===> Slider Mode <===//

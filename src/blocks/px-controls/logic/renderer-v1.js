@@ -6,7 +6,8 @@ const OptionsRenderer = (options) => {
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
           CustomCSSProps = {},
-          CssPropsList = ['pdt', 'pds', 'pde', 'pdb', 'mt', 'mb', 'ms', 'me', 'pos-'],
+          isPadding = ['pdt', 'pds', 'pde', 'pdb'],
+          isMargin  = ['mt', 'mb', 'ms', 'me'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
@@ -212,33 +213,41 @@ const OptionsRenderer = (options) => {
                         blockProps.className += ` icons-list`;
                     }
 
-                    //===> Padding/Margin/Positions Values <===//
-                    else if (CssPropsList.some(css => sub_option.includes(css))) {
+                    //===> Positions Values <===//
+                    else if (sub_option.includes("pos-")) {
+                        //===> Custom Positions <===//
+                        if (parseInt(sub_value) > 50 || parseInt(sub_value) < 0) {
+                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
+                            blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                        }
+                        //===> Name Positions <===//
+                        else { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    }
+
+                    //===> Margin Values <===//
+                    else if (isMargin.some(css => sub_option.includes(css))) {
                         //===> Check Value Range <===//
-                        if (sub_option.includes('pos-') && parseInt(sub_value) > 50 || parseInt(sub_value) > 100) {
+                        if (parseInt(sub_value) > 100) {
                             CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
-                        //===> for Negative Positions <===//
-                        else if (sub_option.includes('pos-') && parseInt(sub_value) < 0) {
-                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
-                            blockProps.className += ` ${sub_option}-custom-${sub_value}`;
-                        }
-                        //===> for Auto Margin & Padding <===//
-                        else if (parseInt(sub_value) < 0) {
-                            blockProps.className += ` ${sub_option}-auto`;
-                        }
+                        //===> for Auto <===//
+                        else if (parseInt(sub_value) < 0) { blockProps.className += ` ${sub_option}-auto`; }
                         //===> is Name Value <===//
-                        else {
-                            blockProps.className += ` ${sub_option}-${sub_value}`;
-                        }
+                        else { blockProps.className += ` ${sub_option}-${sub_value}`; }
+                    }
+
+                    //===> Padding Values <===//
+                    else if (isPadding.some(css => sub_option.includes(css))) {
+                        if (parseInt(sub_value) < 0) sub_value = 0;
+                        blockProps.className += ` ${sub_option}-${sub_value}`;
                     }
 
                     //===> Layout Gap <===//
                     else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) {
                         container.className += ` ${sub_option}-${sub_value}`;
                     }
-                    
+
                     //===> Flexbox Values <===//
                     else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
                     

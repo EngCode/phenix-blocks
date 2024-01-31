@@ -233,7 +233,7 @@ const OptionsRenderer = (options) => {
 
     //===> Data Attributes Options <===//
     Object.entries(container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
+        if (option_name === "className") return;
         else blockProps[option_name] = option_value;
     });
 

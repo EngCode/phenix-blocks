@@ -6,6 +6,8 @@ const OptionsRenderer = (options) => {
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
           CustomCSSProps = {},
+          PosXChecker = ['pos-start', 'pos-end'],
+          PosYChecker = ['pos-top', 'pos-bottom'],
           CssPropsList = ['pdt', 'pds', 'pde', 'pdb', 'mt', 'mb', 'ms', 'me', 'pos-'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
@@ -218,6 +220,15 @@ const OptionsRenderer = (options) => {
                         if (sub_option.includes('pos-') && parseInt(sub_value) > 50 || parseInt(sub_value) > 100) {
                             CustomCSSProps[`${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                        }
+                        //===> for Negative Positions <===//
+                        else if (sub_option.includes('pos-') && parseInt(sub_value) < 0) {
+                            CustomCSSProps[`${sub_option}`] = `${sub_value}px`;
+                            blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                        }
+                        //===> for Auto Margin & Padding <===//
+                        else if (parseInt(sub_value) < 0) {
+                            blockProps.className += ` ${sub_option}-auto`;
                         }
                         //===> is Name Value <===//
                         else {

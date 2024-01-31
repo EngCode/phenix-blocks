@@ -6,8 +6,6 @@ const OptionsRenderer = (options) => {
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
           CustomCSSProps = {},
-          PosXChecker = ['pos-start', 'pos-end'],
-          PosYChecker = ['pos-top', 'pos-bottom'],
           CssPropsList = ['pdt', 'pds', 'pde', 'pdb', 'mt', 'mb', 'ms', 'me', 'pos-'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},

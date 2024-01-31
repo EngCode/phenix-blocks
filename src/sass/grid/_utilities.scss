@@ -14,6 +14,8 @@
 /*==== SASS Asset ====*/
 @import '../assets/mixin';
 
+
+
 /*==== Alignment Mixin ====*/
 @mixin make_align($infix:'') {
     /*=== Grid Alignment ===*/
@@ -69,39 +71,20 @@
 
 /*==== Gutters Mixin ====*/
 @mixin make_gap($infix:'') {
-    /*==== Gutters X/Y ====*/
-    .gp#{$infix}-0  {@include grid_gap(0)}
-    .gp#{$infix}-10 {@include grid_gap(REM(10))}
-    .gp#{$infix}-15 {@include grid_gap(REM(15))}
-    .gp#{$infix}-20 {@include grid_gap(REM(20))}
-    .gp#{$infix}-30 {@include grid_gap(REM(30))}
-    .gp#{$infix}-40 {@include grid_gap(REM(40))}
-    .gp#{$infix}-50 {@include grid_gap(REM(50))}
+    $space_range : 0, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
-    /*==== Gutters Horizontal ====*/
-    .gpx#{$infix}-0  {@include grid_gap(0, 'x')}
-    .gpx#{$infix}-10 {@include grid_gap(REM(10), 'x')}
-    .gpx#{$infix}-15 {@include grid_gap(REM(15), 'x')}
-    .gpx#{$infix}-20 {@include grid_gap(REM(20), 'x')}
-    .gpx#{$infix}-30 {@include grid_gap(REM(30), 'x')}
-    .gpx#{$infix}-40 {@include grid_gap(REM(40), 'x')}
-    .gpx#{$infix}-50 {@include grid_gap(REM(50), 'x')}
-
-    /*==== Gutters Vertical ====*/
-    .gpy#{$infix}-0  {@include grid_gap(0, 'y')}
-    .gpy#{$infix}-5 {@include grid_gap(REM(5), 'y')}
-    .gpy#{$infix}-10 {@include grid_gap(REM(10), 'y')}
-    .gpy#{$infix}-15 {@include grid_gap(REM(15), 'y')}
-    .gpy#{$infix}-20 {@include grid_gap(REM(20), 'y')}
-    .gpy#{$infix}-30 {@include grid_gap(REM(30), 'y')}
-    .gpy#{$infix}-40 {@include grid_gap(REM(40), 'y')}
-    .gpy#{$infix}-50 {@include grid_gap(REM(50), 'y')}
+    @each $size in $space_range {
+        .gp#{$infix}-#{$size}  {@include grid_gap(#{$size})}
+        .gpx#{$infix}-#{$size}  {@include grid_gap(#{$size}, 'x')}
+        .gpy#{$infix}-#{$size}  {@include grid_gap(#{$size}, 'y')}
+    }
 }
 
 /*==== xSmall Screen ====*/
 @include make_align();   //====> alignment
 @include make_sorting(); //====> sorting
 @include make_gap();     //====> Gutters
+
 /*==== No Gap Column ====*/
 .row > .col-no-gap {@include padding_inline(0);}
 

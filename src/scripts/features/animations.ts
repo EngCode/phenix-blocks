@@ -97,7 +97,6 @@ PhenixElements.prototype.animations = function (options?:{
             let current_delay = 0;
             element.querySelectorAll('[data-animation]').forEach((item, index) => {
                 current_delay += duration;
-                console.log(current_delay);
                 item.setAttribute('data-delay', current_delay/3);
                 element.style.setProperty('--animation-delay', current_delay/3);
             });

@@ -218,12 +218,12 @@ const OptionsRenderer = (options) => {
                     else if (CssPropsList.some(css => sub_option.includes(css))) {
                         //===> Check Value Range <===//
                         if (sub_option.includes('pos-') && parseInt(sub_value) > 50 || parseInt(sub_value) > 100) {
-                            CustomCSSProps[`${sub_option}`] = `${sub_value}px`;
+                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
                         //===> for Negative Positions <===//
                         else if (sub_option.includes('pos-') && parseInt(sub_value) < 0) {
-                            CustomCSSProps[`${sub_option}`] = `${sub_value}px`;
+                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
                         //===> for Auto Margin & Padding <===//
@@ -276,7 +276,7 @@ const OptionsRenderer = (options) => {
 
     //===> CSS Attributes Options <===//
     Object.entries(CustomCSSProps).forEach(([option_name, option_value]) => {
-        blockProps.style[`--${option_name}`] = option_value;
+        blockProps.style[`${option_name}`] = option_value;
     });
 
     //===> Render Component <===//

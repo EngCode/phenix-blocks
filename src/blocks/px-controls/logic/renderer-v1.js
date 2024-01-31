@@ -195,6 +195,12 @@ const OptionsRenderer = (options) => {
                         else blockProps[`data-${sub_option}`] = sub_value;
                     }
 
+                    //===> Icon List <====//
+                    else if (sub_option === "icon" && attributes.type === "list") {
+                        blockProps['data-icon'] = sub_value;
+                        blockProps.className += ` icons-list`;
+                    }
+
                     //===> Padding Values <===//
                     else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     

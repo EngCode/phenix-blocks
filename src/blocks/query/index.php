@@ -13,80 +13,16 @@ function px_query_render($block_attributes, $content) {
     $markup = '';ob_start();
 
     //===> Define Attributes <===//
-    $query = $block_attributes['query']; $slider_attrs = ""; $grid_classes = "";
-    if (isset($block_attributes['className'])) { $grid_classes .= $block_attributes['className'].' '; }
+    $slider_attrs = ""; 
+    $grid_classes = "";
+    $query = $block_attributes['query'];
 
-    //===> Dynamic Data Setter <===//
-    foreach ($block_attributes as $option_name => $option_value) {
-        //===> Exclude Options <===//
-        $excluded = ["preview", "query", "template_part"];
-        if (in_array($option_name, $excluded) || !isset($block_attributes[$option_name])) { continue; }
+    //===> Render Options <===//
+    $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);
 
-        //===> if its a Normal Values that should be string <===//
-        elseif (isNormalValue($option_value)) {
-            //===> Classes Options <===//
-            $grid_classes .= ' ' . str_replace(',', ' ', $block_attributes[$option_name]);
-        }
-
-        //===> for Boolean Options <===//
-        elseif (isBooleanVal($option_value) && $block_attributes[$option_name]) {
-            if ($option_name === 'isFlexbox') { $grid_classes .= "row "; }
-        }
-
-        //===> if its object[group] Option like [style, typography, slider...] <===//
-        elseif (isObjectVal($option_value)) {
-            //===> loop on the Object Options <===//
-            foreach ($option_value as $sub_option => $sub_value) {
-                //===> Check if the attribute is Set <===//
-                if (!isset($block_attributes[$option_name][$sub_option])) { continue; }
-
-                //===> Checker for Slider Mode <===//
-                if ($option_name === 'slider') {
-                    //===> Add Slider Name <===//
-                    $grid_classes .= " px-slider ";
-                    //===> if not-related option return void <===//
-                    if (in_array($sub_option, ["align", "nowrap", "masonry"])) { continue; }
-                    //===> add data attributes <===//
-                    $slider_attrs .= 'data-'.$sub_option.'="'.$sub_value.'"';
-                }
-                //===> Flexbox Options <===//
-                elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
-                    //===> Slider Mode <===//
-                    if (isset($block_attributes['flexbox']['slider'])) {
-                        $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
-                        $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
-                        //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
-                        if (isset($block_attributes['slider']['type']) && $block_attributes['slider']['type'] === 'fade') {
-                            $grid_classes = str_replace('row', '', $grid_classes);
-                        }
-                    } else {
-                        //===> add Classes <===//
-                        $grid_classes .= ' ' . str_replace('cols', 'row-cols', $sub_option) . colsRender($sub_value);
-                    }
-                }
-
-                //===> Other Options <===//
-                elseif ($option_name === "flexbox" || $option_name === "style" || $option_name === "typography") {
-                    //===> Postion Absolute Sticky <===//
-                    if ($sub_option === "position" && $sub_value === "sticky-absolute") {$block_attributes["data-sticky"] = $sub_value;} 
-                    //===> Animated Elements <===//
-                    elseif ($sub_option === "animate-elements") {$grid_classes .= ' ' . $sub_value;}
-                    //===> Padding Values <===//
-                    elseif (strpos($sub_option, 'pdt') !== false || strpos($sub_option, 'pds') !== false || strpos($sub_option, 'pde') !== false || strpos($sub_option, 'pdb') !== false) {$grid_classes .= " $sub_option-$sub_value";}
-                    //===> Margin Values <===//
-                    elseif (strpos($sub_option, 'mt') !== false || strpos($sub_option, 'ms') !== false || strpos($sub_option, 'me') !== false || strpos($sub_option, 'mb') !== false) {$grid_classes .= " $sub_option-$sub_value";}
-                    //===> Positions Values <===//
-                    elseif (strpos($sub_option, 'pos-') !== false) {$grid_classes .= " $sub_option-$sub_value";}
-                    //===> Layout Gap <===//
-                    elseif (strpos($sub_option, 'gpx') !== false || strpos($sub_option, 'gpy') !== false && $sub_option !== "gpy-fix") {$grid_classes .= " $sub_option-$sub_value";}
-                    //===> Other Values <===//
-                    elseif (!isBooleanVal($sub_value)) {
-                        $grid_classes .= " " . str_replace(',', ' ', $sub_value) . " ";
-                    }
-                };
-            }
-        };
-    }
+    //===> Get Rendered Attributes <===//
+    $slider_attrs = $renderedProps["slider_attrs"]; 
+    $grid_classes = $renderedProps["grid_classes"];
 
     //===> Get Current Global Query <===//
     global $wp_query;

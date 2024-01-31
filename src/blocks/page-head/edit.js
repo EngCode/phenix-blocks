@@ -11,14 +11,9 @@ import PreviewImage from './preview.jpg';
 import ScreensTabs from "../px-controls/tabs";
 import PhenixIcons from '../px-controls/icons';
 import PxDropDown from '../px-controls/dropdown';
-import PhenixSelect from '../px-controls/select';
-import PhenixNumber from "../px-controls/number";
-import PhenixInput from '../px-controls/input';
-import MediaUploader from '../px-controls/uploader';
-import OptionControl from '../px-controls/switch';
+import PhenixSelect from '../px-controls/select';;
 
 //====> Phenix Options Sets <=====//
-import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';

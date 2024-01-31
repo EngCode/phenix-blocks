@@ -262,7 +262,8 @@ const OptionsRenderer = (options) => {
 
     //===> CSS Attributes Options <===//
     Object.entries(CustomCSSProps).forEach(([option_name, option_value]) => {
-        blockProps.style.setProperty(`--${option_name}`, option_value);
+        // blockProps.style.setProperty(`--${option_name}`, option_value);
+        blockProps.style[`--${option_name}`] = option_value;
     });
 
     //===> CSS Options <===//

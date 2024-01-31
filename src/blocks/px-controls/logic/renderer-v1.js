@@ -42,10 +42,16 @@ const OptionsRenderer = (options) => {
 
             //===> for Icons <===//
             else if (option_name === "icon" && attributes[option_name]) {
-                if (attributes.type.includes('icon') || attributes.type.includes('square')) {blockProps.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;}
+                if (attributes.type.includes('icon') || attributes.type.includes('square')) {
+                    blockProps.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
+                }
             }
+
             //===> Fallback for Old Types <===//
-            else if (option_name === "type") {blockProps.className += ` ${attributes[option_name].replace('normal', 'btn').trim()}`;}
+            else if (option_name === "type") {
+                blockProps.className += ` ${attributes[option_name].replace('normal', 'btn').trim()}`;
+            }
+
             //===> Other Options <===//
             else if (attributes[option_name]) {
                 container.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
@@ -191,8 +197,11 @@ const OptionsRenderer = (options) => {
 
                     //===> Media Settings <===//
                     else if (option_name === "setting") {
-                        if (sub_option.includes('size') && sub_value !== "custom") blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
-                        else blockProps[`data-${sub_option}`] = sub_value;
+                        if (sub_option.includes('size') && sub_value !== "custom") {
+                            blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
+                        } else {
+                            blockProps[`data-${sub_option}`] = sub_value;
+                        }
                     }
 
                     //===> Icon List <====//

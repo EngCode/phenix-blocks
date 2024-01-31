@@ -66,35 +66,56 @@
 .pos-after-x  {#{$direction-start}: 100%;}
 .pos-before-x {#{$direction-end}: 100%;}
 
-/*==== Top ====*/
-.pos-top-0  {top: REM(0);}
-.pos-top-5  {top: REM(5);}
-.pos-top-10 {top: REM(10);}
-.pos-top-15 {top: REM(15);}
-.pos-top-20 {top: REM(20);}
-.pos-top-25 {top: REM(25);}
-.pos-top-30 {top: REM(30);}
-/*==== Bottom ====*/
-.pos-bottom-0  {bottom: REM(0);}
-.pos-bottom-5  {bottom: REM(5);}
-.pos-bottom-10 {bottom: REM(10);}
-.pos-bottom-15 {bottom: REM(15);}
-.pos-bottom-20 {bottom: REM(20);}
-.pos-bottom-25 {bottom: REM(25);}
-.pos-bottom-30 {bottom: REM(30);}
-/*==== Start ====*/
-.pos-start-0  {#{$direction-start}: REM(0);}
-.pos-start-5  {#{$direction-start}: REM(5);}
-.pos-start-10 {#{$direction-start}: REM(10);}
-.pos-start-15 {#{$direction-start}: REM(15);}
-.pos-start-20 {#{$direction-start}: REM(20);}
-.pos-start-25 {#{$direction-start}: REM(25);}
-.pos-start-30 {#{$direction-start}: REM(30);}
-/*==== End ====*/
-.pos-end-0  {#{$direction-end}: REM(0);}
-.pos-end-5  {#{$direction-end}: REM(5);}
-.pos-end-10 {#{$direction-end}: REM(10);}
-.pos-end-15 {#{$direction-end}: REM(15);}
-.pos-end-20 {#{$direction-end}: REM(20);}
-.pos-end-25 {#{$direction-end}: REM(25);}
-.pos-end-30 {#{$direction-end}: REM(30);}
+$space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
+
+@mixin make_positions($infix:'') {
+    @each $size in $space_range {
+        .pos-top#{$infix}-#{$size}  {top: #{REM($size)};}
+        .pos-bottom-#{$infix}-#{$size}  {bottom: #{REM($size)};}
+        .pos-start-#{$infix}-#{$size}  {#{$direction-start}: #{REM($size)};}
+        .pos-end-#{$infix}-#{$size}  {#{$direction-end}: #{REM($size)};}
+    }
+}
+
+@include make_positions();
+
+@include medium(){
+    @include make_positions('-md');
+}
+
+@include large(){
+    @include make_positions('-lg');
+}
+
+@include xlarge(){
+    @include make_positions('-xl');
+}
+
+/*==== Custom Positions ====*/
+.pos-custom-top {
+    top: var(--pos-top);
+    @include medium() { --pos-top: var(--pos-top-md) };
+    @include large()  { --pos-top: var(--pos-top-lx) };
+    @include xlarge() { --pos-top: var(--pos-top-xl) };
+}
+
+.pos-custom-bottom {
+    bottom: var(--pos-bottom);
+    @include medium() { --pos-bottom: var(--pos-bottom-md) };
+    @include large()  { --pos-bottom: var(--pos-bottom-lx) };
+    @include xlarge() { --pos-bottom: var(--pos-bottom-xl) };
+}
+
+.pos-custom-end {
+    #{$direction-end}: var(--pos-end);
+    @include medium() { --pos-end: var(--pos-end-md) };
+    @include large()  { --pos-end: var(--pos-end-lx) };
+    @include xlarge() { --pos-end: var(--pos-end-xl) };
+}
+
+.pos-custom-start {
+    #{$direction-start}: var(--pos-start);
+    @include medium() { --pos-start: var(--pos-start-md) };
+    @include large()  { --pos-start: var(--pos-start-lx) };
+    @include xlarge() { --pos-start: var(--pos-start-xl) };
+}

@@ -25,7 +25,7 @@
         color: #FFF;
         width: var(--width);
         @extend .pos-center-y;
-        @extend .pos-start-0;
+        #{$direction-start}: 0;
         content: attr(data-label);
     }
 

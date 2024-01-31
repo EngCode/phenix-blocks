@@ -31,12 +31,6 @@ registerBlockType(metadata, {
         //===> Layout Options <===//
         blockProps.className += ` px-modal hidden ${renderProps.container.className}`;
 
-        //===> Data Attributes Options <===//
-        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-            if(option_name === "className") return;
-            else blockProps[option_name] = option_value;
-        });
-
         //===> Render <===//
         return (<div {...blockProps}>
             <InnerBlocks.Content />

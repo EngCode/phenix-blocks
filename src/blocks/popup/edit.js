@@ -113,12 +113,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Layout Options <===//
     blockProps.className += ` px-modal ${renderProps.container.className}`;
 
-    //===> Data Attributes Options <===//
-    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
-        else blockProps[option_name] = option_value;
-    });
-
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}

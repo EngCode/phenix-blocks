@@ -33,12 +33,6 @@ registerBlockType(metadata, {
         blockProps.className += ' row';
         blockProps.className += ` ${renderProps.container.className.trim()}`;
 
-        //===> Data Attributes Options <===//
-        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-            if(option_name === "className") return;
-            else blockProps[option_name] = option_value;
-        });
-
         //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
         if (attributes.flexbox?.slider?.type === "fade") blockProps.className.replace('row', '');
 

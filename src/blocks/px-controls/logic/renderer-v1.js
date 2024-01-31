@@ -231,6 +231,12 @@ const OptionsRenderer = (options) => {
     //===> Activate Slider in Editor <===//
     if (isSave && attributes.flexbox?.slider || attributes.slider?.preview) container.className += ' px-slider';
 
+    //===> Data Attributes Options <===//
+    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+        if(option_name === "className") return;
+        else blockProps[option_name] = option_value;
+    });
+
     //===> Render Component <===//
     return {blockProps, container, CustomCss};
 }

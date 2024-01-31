@@ -35,12 +35,6 @@ registerBlockType(metadata, {
         //===> Layout Options <===//
         blockProps.className += `${renderProps.container.className}`;
 
-        //===> Data Attributes Options <===//
-        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-            if(option_name === "className") return;
-            else blockProps[option_name] = option_value;
-        });
-
         //===> Rendered Element <===//
         let renderedElement = <button title={attributes.type.includes("square") ? attributes.label : null} { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</button>;
         if (attributes.isLink) renderedElement = <a title={attributes.type.includes("square") ? attributes.label : null} { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</a>;

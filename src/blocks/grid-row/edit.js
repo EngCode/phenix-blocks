@@ -122,12 +122,6 @@ export default function Edit({ attributes, setAttributes }) {
     innerBlocksProps.className += ` ${renderProps.blockProps.className}`;
     innerBlocksProps.className += ` ${renderProps.container.className}`;
 
-    //===> Data Attributes Options <===//
-    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
-        else innerBlocksProps[option_name] = option_value;
-    });
-
     //===> if is Slider and is Fade or one Slide per view disable flexbox <===//
     if (attributes.flexbox?.slider?.type === "fade") innerBlocksProps.className.replace('row', '');
 

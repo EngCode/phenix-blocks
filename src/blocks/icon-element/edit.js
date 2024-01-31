@@ -125,12 +125,6 @@ export default function Edit({ attributes, setAttributes }) {
     blockProps.className += `${renderProps.container.className}`;
     if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 
-    //===> Data Attributes Options <===//
-    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
-        else blockProps[option_name] = option_value;
-    });
-
     //===> URL Auto-Complete <===//
     const suggestionsRender = (props) => (
         <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">

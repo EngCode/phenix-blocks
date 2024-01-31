@@ -158,12 +158,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Layout Options <===//
     blockProps.className += `${renderProps.container.className}`;
 
-    //===> Data Attributes Options <===//
-    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
-        else blockProps[option_name] = option_value;
-    });
-
     //===> Default Options <===//
     if(!attributes.setting.type) blockProps['data-type'] = "image";
     if(!attributes.setting.src) blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";

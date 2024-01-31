@@ -35,12 +35,6 @@ registerBlockType(metadata, {
         if (attributes.style.isLink) blockProps.href = attributes.style.url || "#";
         if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 
-        //===> Data Attributes Options <===//
-        Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-            if(option_name === "className") return;
-            else blockProps[option_name] = option_value;
-        });
-
         //===> Render <===//
         return (<TagName {...blockProps} style={{
             width: attributes.style.dimensions ? attributes.style.dimensions+'px' : 42+'px',

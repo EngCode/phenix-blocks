@@ -143,12 +143,6 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
         blockProps.className += `${renderProps.container.className}`;
     }
 
-    //===> Data Attributes Options <===//
-    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
-        if(option_name === "className") return;
-        else blockProps[option_name] = option_value;
-    });
-
     //===> Full Width Editing <===//
     if (!attributes.align) setAttributes({ align: 'full' });
 

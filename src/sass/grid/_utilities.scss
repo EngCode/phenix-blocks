@@ -74,9 +74,9 @@
     $space_range : 0, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
     @each $size in $space_range {
-        .gp#{$infix}-#{$size}  {@include grid_gap(#{$size})}
-        .gpx#{$infix}-#{$size}  {@include grid_gap(#{$size}, 'x')}
-        .gpy#{$infix}-#{$size}  {@include grid_gap(#{$size}, 'y')}
+        .gp#{$infix}-#{$size}  {@include grid_gap(#{REM($size)})}
+        .gpx#{$infix}-#{$size}  {@include grid_gap(#{REM($size)}, 'x')}
+        .gpy#{$infix}-#{$size}  {@include grid_gap(#{REM($size)}, 'y')}
     }
 }
 

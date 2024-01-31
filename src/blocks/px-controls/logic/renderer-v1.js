@@ -82,8 +82,6 @@ const OptionsRenderer = (options) => {
 
                 //===> Slider Mode Checker <===//
                 if (attributes.flexbox?.slider) {
-                    //===> Add Slider Name <===//
-                    if (attributes.slider.preview) container.className += ' px-slider';
                     //===> if not-related option return void <===//
                     if (["align", "nowrap", "masonry"].some(option => sub_option.includes(option))) return;
                 };
@@ -229,6 +227,9 @@ const OptionsRenderer = (options) => {
             });
         };
     });
+
+    //===> Activate Slider in Editor <===//
+    if (isSave && attributes.flexbox?.slider || attributes.slider?.preview) container.className += ' px-slider';
 
     //===> Render Component <===//
     return {blockProps, container, CustomCss};

@@ -135,6 +135,7 @@
 /*==== Phenix Modal ====*/
 .px-modal {
     overscroll-behavior: none;
+    &:not([class*="align-"]) {align-items: center;}
     &[class*="overlay"]::before {display: none!important;}
 }
 

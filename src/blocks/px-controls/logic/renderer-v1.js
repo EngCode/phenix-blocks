@@ -4,7 +4,7 @@ const OptionsRenderer = (options) => {
     const {attributes, blockProps, isSave, isButton, isColumn, isGrid} = options;
 
     //===> Rendering Checkers <===//
-    const container = {className: ""},
+    const container = {className: ""}, CustomCss = {},
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
@@ -43,7 +43,7 @@ const OptionsRenderer = (options) => {
         //===> if its object[group] Option like [style, typography, responsive, flexbox/slider] <===//
         else if (isObjectVal(option_value) && attributes[option_name]) {
             //===> Flexbox Props <===//
-            if(!isGrid && option_name === "flexbox" && !attributes.isFlexbox) return;
+            if(!isGrid && option_name === "flexbox" && attributes.isFlexbox === false) return;
 
             //===> loop on the Object Options <===//
             Object.entries(option_value).forEach(([sub_option, sub_value]) => {
@@ -186,7 +186,7 @@ const OptionsRenderer = (options) => {
     });
 
     //===> Render Component <===//
-    return {blockProps, container};
+    return {blockProps, container, CustomCss};
 }
 
 export default OptionsRenderer;

@@ -17,6 +17,9 @@ import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
+//====> Attributes Renderers <====//
+import OptionsRenderer from "../px-controls/logic/renderer-v1";
+
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Value Handler <===//
@@ -100,88 +103,20 @@ export default function Edit({ attributes, setAttributes }) {
     useEffect(() => PhenixComponentsBuilder(), []);
 
     //===> Get Block Properties <===//
-    const TagName = attributes.tagName;
-    const blockProps = useBlockProps();
+    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
+    const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
-    const innerBlocksProps = useInnerBlocksProps();
-
-    //===> Modal Settings <===//
-    blockProps.className += ` px-modal hidden`;
-    if(attributes.id) blockProps.id = attributes.id;
 
     //===> Full Width Editing <===//
     if (!attributes.align) setAttributes({ align: 'full' });
 
-    //===> Rendering Checkers <===//
-    const isObjectVal = (option_value) => {return typeof option_value === 'object'},
-        isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
-        isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'};
+    //===> Layout Options <===//
+    blockProps.className += ` px-modal ${renderProps.container.className}`;
 
-    //===> Rendering Options <===//
-    Object.entries(attributes).forEach(([option_name, option_value]) => {
-        //===> Exclude Options <===//
-        const excluded = ["tagName", "className", "align", "metadata"];
-        if (excluded.some(opt => opt === option_name)) return;
-
-        //===> if its a Normal Values that should be string <===//
-        if (isNormalValue(option_value) && attributes[option_name]) {
-            //===> ID <===//
-            if (option_name === "id") blockProps['id'] = attributes[option_name];
-            //===> Other Options <===//
-            else if (attributes[option_name]) {
-                blockProps.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
-            };
-        }
-
-        //===> if its object[group] Option like [style, typography, responsive] <===//
-        else if (isObjectVal(option_value) && attributes[option_name]) {
-            //===> Flexbox Props <===//
-            // if(option_name === "flexbox") return;
-
-            //===> loop on the Object Options <===//
-            Object.entries(option_value).forEach(([sub_option, sub_value]) => {
-                //===> Check if the attribute is Set <===//
-                if (!attributes[option_name][sub_option]) return;
-
-                //===> if its a Object Value <===//
-                if (!isNormalValue(sub_value)) {
-                    //===> Animations Specials <===//
-                    if (sub_option === "animation" && sub_value.name) {
-                        blockProps['data-animation'] = sub_value.name;
-                        sub_value.group && (blockProps['data-lazy-group'] = 1);
-                        sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
-                        sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);
-                        sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
-                        sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
-                        sub_value['exit-name'] && (blockProps['data-animation-exit'] = sub_value['exit-name']);
-                    }
-                    //===> Styles Support <===//
-                    else if (sub_option === "support") {
-                        sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
-                    }
-                    //===> Display Support <===//
-                    else if (sub_option === "display") blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
-                }
-
-                //===> for Normal strings and Arrays <===//
-                else if (isNormalValue(sub_value)) {
-                    //===> Postion Absolute Sticky <===//
-                    if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;}
-                    //===> Settings Values <===//
-                    else if (option_name === "setting") {blockProps[`data-${sub_option}`] = sub_value;}
-                    //===> Padding Values <===//
-                    else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    //===> Margin Values <===//
-                    else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    //===> Positions Values <===//
-                    else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    //===> Layout Gap <===//
-                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('gpy-fix')) { innerBlocksProps.className += ` ${sub_option}-${sub_value}`; }
-                    //===> Other Values <===//
-                    else {blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
-                };
-            });
-        };
+    //===> Data Attributes Options <===//
+    Object.entries(renderProps.container).forEach(([option_name, option_value]) => {
+        if(option_name === "className") return;
+        else blockProps[option_name] = option_value;
     });
 
     //===> Render <===//
@@ -216,9 +151,9 @@ export default function Edit({ attributes, setAttributes }) {
                                 <PhenixInput name="id" label={__("Modal ID", "pds-blocks")} value={attributes.id} onChange={set_value} />
                             </div>
                             {/*===> Form Control <===*/}
-                            {attributes.setting.showon ? <div className='col col--6'>
-                                <PhenixInput name="showon" label={__("Element ID", "pds-blocks")} value={attributes.setting.showon} onChange={set_setting} />
-                            </div> : null }
+                            <div className='col col--6'>
+                                <PhenixInput name="showon" label={__("Trigger ID", "pds-blocks")} value={attributes.setting.showon} onChange={set_setting} />
+                            </div>
                             {/*===> Form Control <===*/}
                             {attributes.setting.onload ? <div className='col col--6'>
                                 <PhenixNumber name="timeout" label={__("Duration", "pds-blocks")} value={attributes.setting.timeout || 6000} onChange={set_setting} min={0} max={20000} steps={100}></PhenixNumber>
@@ -227,7 +162,6 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> Option Controller <===*/}
                         <div className='flexbox'>
                             <OptionControl name={`hash_url`} value="true" checked={attributes.setting.hash_url} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open by Hash URL", "pds-blocks")}</OptionControl>
-                            <OptionControl name={`showon`} value="#ID" checked={attributes.setting.showon} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open When Rich Element", "pds-blocks")}</OptionControl>
                             <OptionControl name={`onload`} value="true" checked={attributes.setting.onload} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open When Page Loads", "pds-blocks")}</OptionControl>
                         </div>
                     </li>
@@ -246,24 +180,23 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
         {/*===> Modal Component <===*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<div {...blockProps} key={`${uniqueKey}`}>
-            <div className='modal-content col'>
-                <InnerBlocks template={[
-                    ['phenix/group', {
-                        "className": "model-content mgx-auto",
-                        "style": {
-                            "max_size":"w-max-640",
-                            "pdt": "30", "pdb": "30",
-                            "pds": "30", "pde": "30",
-                            "support":["enable-position"],
-                            "position":"position-rv",
-                            "background":{"type":"color","rotate":null,"value":"bg-white"},
-                        }
-                    },[
-                        [ 'phenix/button', {"label":"Close Window","type":"btn square tooltip-bottom","icon":"far fa-times","typography":{"size":"fs-18"},"style":{"background":{"type":"color","rotate":null,"value":"bg-danger"},"support":["enable-radius","enable-position"],"radius":"radius-circle","position":"position-ab","z-index":"z-index-modal","pos-top":"15","pos-end":"15"},"className":"modal-close"} ],
-                        [ 'core/paragraph', {"placeholder": "Modal Content"} ],
-                    ]],
-                ]} />
-            </div>
+            <InnerBlocks template={[
+                ['phenix/group', {
+                    "className": "model-content mgx-auto col",
+                    "style": {
+                        "max_size":"w-max-640",
+                        "pdt": "30", "pdb": "30",
+                        "pds": "30", "pde": "30",
+                        "support":["enable-position"],
+                        "position":"position-rv",
+                        "z-index": "z-index-10",
+                        "background":{"type":"color","rotate":null,"value":"bg-white"},
+                    }
+                },[
+                    [ 'phenix/button', {"label":"Close Window","type":"btn square tooltip-bottom","icon":"far fa-times","typography":{"size":"fs-18"},"style":{"background":{"type":"color","rotate":null,"value":"bg-danger"},"support":["enable-radius","enable-position"],"radius":"radius-circle","position":"position-ab","z-index":"z-index-modal","pos-top":"15","pos-end":"15"},"className":"modal-close"} ],
+                    [ 'core/paragraph', {"placeholder": "Modal Content"} ],
+                ]],
+            ]} />
         </div>}
         {/*===> // Modal Component <===*/}
     </>);

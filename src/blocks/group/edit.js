@@ -90,10 +90,6 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ ...attributes, [attr]: newAttributes });
     };
 
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
-    const set_typography = (target, screen) => set_attr_handler(target, screen, "typography");
-
     //==> Set Flexbox Method <==//
     const set_flexbox = (target, screen) => {
         //==> Get Current <==//
@@ -105,6 +101,10 @@ export default function Edit({ attributes, setAttributes }) {
         const newAttributes = { ...attributes, flexbox: flexbox };
         setAttributes(newAttributes);
     };
+
+    //==> Set Object Attributes Methods <==//
+    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
+    const set_typography = (target, screen) => set_attr_handler(target, screen, "typography");
 
     //===> View Script <===//
     useEffect(() => PhenixComponentsBuilder(), []);

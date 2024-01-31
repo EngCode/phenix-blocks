@@ -115,6 +115,10 @@ const OptionsRenderer = (options) => {
                     else if (sub_option === "support") {
                         sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
                     }
+                    //===> Has Icon <===//
+                    else if (sub_option === "hasIcon") {
+                        blockProps.className += ` tx-icon`;
+                    }
                     //===> Display Support <===//
                     else if (sub_option === "display") {
                         blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
@@ -123,9 +127,15 @@ const OptionsRenderer = (options) => {
 
                 //===> for Normal strings and Arrays <===//
                 else if (isNormalValue(sub_value)) {
+                    //===> Exclude Options <===//
+                    const excluded = ["dimensions"];
+                    if (excluded.some(opt => opt === sub_option)) return;
+
                     //===> Postion Sticky <===//
-                    if (sub_option === "position" && sub_value === "sticky-absolute") {blockProps["data-sticky"] = `${sub_value}`;}
-                    
+                    if (sub_option === "position" && sub_value === "sticky-absolute") {
+                        blockProps["data-sticky"] = `${sub_value}`;
+                    }
+
                     //===> Padding Values <===//
                     else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
                     

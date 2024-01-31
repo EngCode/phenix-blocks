@@ -71,9 +71,9 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 @mixin make_positions($infix:'') {
     @each $size in $space_range {
         .pos-top#{$infix}-#{$size}  {top: #{REM($size)};}
-        .pos-bottom-#{$infix}-#{$size}  {bottom: #{REM($size)};}
-        .pos-start-#{$infix}-#{$size}  {#{$direction-start}: #{REM($size)};}
-        .pos-end-#{$infix}-#{$size}  {#{$direction-end}: #{REM($size)};}
+        .pos-bottom#{$infix}-#{$size}  {bottom: #{REM($size)};}
+        .pos-start#{$infix}-#{$size}  {#{$direction-start}: #{REM($size)};}
+        .pos-end#{$infix}-#{$size}  {#{$direction-end}: #{REM($size)};}
     }
 }
 
@@ -92,28 +92,28 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 }
 
 /*==== Custom Positions ====*/
-.pos-custom-top {
+[class*="pos-top-custom"] {
     top: var(--pos-top);
     @include medium() { --pos-top: var(--pos-top-md) };
     @include large()  { --pos-top: var(--pos-top-lx) };
     @include xlarge() { --pos-top: var(--pos-top-xl) };
 }
 
-.pos-custom-bottom {
+[class*="pos-bottom-custom"] {
     bottom: var(--pos-bottom);
     @include medium() { --pos-bottom: var(--pos-bottom-md) };
     @include large()  { --pos-bottom: var(--pos-bottom-lx) };
     @include xlarge() { --pos-bottom: var(--pos-bottom-xl) };
 }
 
-.pos-custom-end {
+[class*="pos-end-custom"] {
     #{$direction-end}: var(--pos-end);
     @include medium() { --pos-end: var(--pos-end-md) };
     @include large()  { --pos-end: var(--pos-end-lx) };
     @include xlarge() { --pos-end: var(--pos-end-xl) };
 }
 
-.pos-custom-start {
+[class*="pos-start-custom"] {
     #{$direction-start}: var(--pos-start);
     @include medium() { --pos-start: var(--pos-start-md) };
     @include large()  { --pos-start: var(--pos-start-lx) };

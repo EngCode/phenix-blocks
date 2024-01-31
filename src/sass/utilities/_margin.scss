@@ -87,28 +87,28 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 };
 
 /*==== Custom ====*/
-.mt-custom {
+[class*="mt-custom"]{
     margin-top: var(--mt);
     @include medium() { --mt: var(--mt-md) };
     @include large()  { --mt: var(--mt-lx) };
     @include xlarge() { --mt: var(--mt-xl) };
 }
 
-.mb-custom {
+[class*="mb-custom"] {
     margin-bottom: var(--mb);
     @include medium() { --mb: var(--mb-md) };
     @include large()  { --mb: var(--mb-lx) };
     @include xlarge() { --mb: var(--mb-xl) };
 }
 
-.ms-custom-start {
+[class*="ms-custom-start"] {
     margin-#{$direction-start}: var(--ms);
     @include medium() { --ms: var(--ms-md) };
     @include large()  { --ms: var(--ms-lx) };
     @include xlarge() { --ms: var(--ms-xl) };
 }
 
-.me-custom-end {
+[class*="me-custom-end"] {
     margin-#{$direction-end}: var(--me);
     @include medium() { --me: var(--me-md) };
     @include large()  { --me: var(--me-lx) };

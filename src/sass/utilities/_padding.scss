@@ -70,28 +70,28 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 };
 
 /*==== Custom ====*/
-.pdt-custom {
+[class*="pdt-custom"] {
     padding-top: var(--pdt);
     @include medium() { --pdt: var(--pdt-md) };
     @include large()  { --pdt: var(--pdt-lx) };
     @include xlarge() { --pdt: var(--pdt-xl) };
 }
 
-.pdb-custom {
+[class*="pdb-custom"] {
     padding-bottom: var(--pdb);
     @include medium() { --pdb: var(--pdb-md) };
     @include large()  { --pdb: var(--pdb-lx) };
     @include xlarge() { --pdb: var(--pdb-xl) };
 }
 
-.pds-custom-start {
+[class*="pds-custom-start"] {
     padding-#{$direction-start}: var(--pds);
     @include medium() { --pds: var(--pds-md) };
     @include large()  { --pds: var(--pds-lx) };
     @include xlarge() { --pds: var(--pds-xl) };
 }
 
-.pde-custom-end {
+[class*="pde-custom-end"] {
     padding-#{$direction-end}: var(--pde);
     @include medium() { --pde: var(--pde-md) };
     @include large()  { --pde: var(--pde-lx) };

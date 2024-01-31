@@ -4,7 +4,9 @@ const OptionsRenderer = (options) => {
     const {attributes, blockProps, isSave, primaryColors, isColumn, isGrid} = options;
 
     //===> Rendering Checkers <===//
-    const container = {className: ""}, CustomCss = {},
+    const container = {className: ""}, 
+          CustomCSS = {}, CustomCSSProps = {},
+          CssPropsList = ['pdt', 'pds', 'pde', 'pdb', 'mt', 'mb', 'ms', 'me', 'pos-'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
@@ -210,17 +212,23 @@ const OptionsRenderer = (options) => {
                         blockProps.className += ` icons-list`;
                     }
 
-                    //===> Padding Values <===//
-                    else if (sub_option.includes('pdt') || sub_option.includes('pds') || sub_option.includes('pde') || sub_option.includes('pdb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    
-                    //===> Margin Values <===//
-                    else if (sub_option.includes('mt') || sub_option.includes('ms') || sub_option.includes('me') || sub_option.includes('mb')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    
-                    //===> Positions Values <===//
-                    else if (sub_option.includes('pos-')) { blockProps.className += ` ${sub_option}-${sub_value}`; }
-                    
+                    //===> Padding/Margin/Positions Values <===//
+                    else if (CssPropsList.some(css => sub_option.includes(css))) {
+                        //===> Check Value Range <===//
+                        if (sub_option.includes('pos-') && parseInt(sub_value) > 50 || parseInt(sub_value) > 100) {
+                            CustomCSSProps["sub_option"] = `${sub_value}px`;
+                            blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                        }
+                        //===> is Name Value <===//
+                        else {
+                            blockProps.className += ` ${sub_option}-${sub_value}`;
+                        }
+                    }
+
                     //===> Layout Gap <===//
-                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) { container.className += ` ${sub_option}-${sub_value}`; }
+                    else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) {
+                        container.className += ` ${sub_option}-${sub_value}`;
+                    }
                     
                     //===> Flexbox Values <===//
                     else if (option_name === "flexbox") {container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;}
@@ -252,8 +260,18 @@ const OptionsRenderer = (options) => {
         else blockProps[option_name] = option_value;
     });
 
+    //===> CSS Attributes Options <===//
+    Object.entries(CustomCSSProps).forEach(([option_name, option_value]) => {
+        blockProps.style.setProperty(`--${option_name}`, option_value);
+    });
+
+    //===> CSS Options <===//
+    Object.entries(CustomCSS).forEach(([option_name, option_value]) => {
+        blockProps.style[option_name] = option_value;
+    });
+
     //===> Render Component <===//
-    return {blockProps, container, CustomCss};
+    return {blockProps, container};
 }
 
 export default OptionsRenderer;

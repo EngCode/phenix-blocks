@@ -325,10 +325,10 @@ window.PhenixBlocks = {
     },
 
     //===> Responsive Values Handler <===//
-    setObject : (target, screen, attr, hasName) => {
+    setObject : (target, screen, attr, hasName, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : this.valueHandler(target);
+        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
         
         //==> Set Value <==//
         const newAttributes = name.includes('animation') ? {
@@ -343,22 +343,22 @@ window.PhenixBlocks = {
     },
 
     //===> Regular Values <===//
-    set_value : (target) => {
+    set_value : (target, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : this.valueHandler(target);
+        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
         const newAttributes = { ...attributes, [name]: value };
         //==> Set Value <==//
         setAttributes(newAttributes);
     },
 
     //===> Flexbox Values <===//
-    set_flexbox : (target, screen) => {
+    set_flexbox : (target, screen, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
         const flexbox = { ...attributes.flexbox };
         //==> Add the Value <==//
-        flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : this.valueHandler(target);
+        flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : PhenixBlocks.valueHandler(target);
         //==> Set Value <==//
         const newAttributes = { ...attributes, flexbox: flexbox };
         setAttributes(newAttributes);

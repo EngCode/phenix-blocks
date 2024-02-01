@@ -8,55 +8,18 @@ import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-
 import PreviewImage from './preview.jpg';
 import SelectFromData from '../px-controls/select-data';
 
+
 //====> Edit Mode <====//
-export default function Edit(props) {
+export default function Edit({ attributes, setAttributes }) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+
     //===> Get Properties <===//
-    const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
     //===> Value Handler <===//
-    const valueHandler = (target) => {
-        //===> Define Array Type <===//
-        let single_val,
-            array_val = [],
-            type = target instanceof HTMLElement ? (target.getAttribute('type') || target.tagName) : null;
-
-        //==> for Boolean Values <==//
-        if (type === 'checkbox' || type === 'radio') {
-            if (target.value === 'boolean') { single_val = target.checked; }
-            else { single_val = target.checked ? target.value : ""; }
-        }
-
-        //===> for Value of Type Array <===//
-        else if (type === "SELECT" && target.hasAttribute('multiple')) {
-            //===> Get Multiple Value <===//
-            let values = target.parentNode.getAttribute('data-value').split(',');
-            //===> Get Current Values <===//
-            values.forEach(val => val !== "" ? array_val.push(val) : null);
-            //===> Set Array Value <===//
-            single_val = array_val;
-        }
-
-        //===> for Normal Values <===//
-        else if (type === null) { single_val = target; }
-
-        //===> for Normal Values <===//
-        else { single_val = target.value; }
-
-        //===> Return Value <===//
-        if(single_val) return single_val;
-    };
-
-    const set_value = (target) => {
-        //==> Get Current <==//
-        const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        const newAttributes = { ...attributes, [name]: value };
-        //==> Set Value <==//
-        setAttributes(newAttributes);
-        console.log(attributes);
-    };
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
 
     //===> Render <===//
     return (<>

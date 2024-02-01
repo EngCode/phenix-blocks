@@ -2,7 +2,7 @@
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
 import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {RichText, BlockControls, InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls, useBlockProps, InnerBlocks, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -10,10 +10,10 @@ import ScreensTabs from "../px-controls/tabs";
 import PhenixIcons from '../px-controls/icons';
 import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
-import PhenixNumber from "../px-controls/number";
 import PhenixInput from '../px-controls/input';
 import MediaUploader from '../px-controls/uploader';
 import OptionControl from '../px-controls/switch';
+import SuggestionsUrl from "../px-controls/dynamic-url";
 
 //====> Phenix Options Sets <=====//
 import SizesSet from '../px-controls/sets/sizes';
@@ -30,68 +30,17 @@ const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    const set_value = PhenixBlocks.set_value;
-
-    //===> URL Auto-Complete <===//
-    const suggestionsRender = (props) => (
-        <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
-            {props.suggestions.map((suggestion, index) => {
-                return (<li key={`link-sug-key-${index}`} className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
-                    <strong>{suggestion.title}</strong>
-                    <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
-                </li>)
-            })}
-        </ul>
-    );
-
-    //==> Set Object Attributes Methods <==//
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_url = url => setAttributes({ url });
-    const set_setting = target => PhenixBlocks.setObject(target, "", "setting");
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon");
-    const set_source = value => PhenixBlocks.setObject(`${value.url}`, "", "setting", "src");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    const set_setting = target => PhenixBlocks.setObject(target, "", "setting", attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon", attributes, setAttributes);
+    const set_source = value => PhenixBlocks.setObject(`${value.url}`, "", "setting", "src", attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
     useEffect(() => PhenixComponentsBuilder(), []);
-
-    //===> Controls Options <===//
-    const types_options = [
-        { "label": "Image", "value": "image"},
-        { "label": "Embed", "value": "embed"},
-        { "label": "iFrame", "value": "iframe"},
-    ];
-
-    const embeds_options = [
-        { "label": "Video", "value": "video"},
-        { "label": "YouTube", "value": "youtube"},
-        { "label": "Vimeo", "value": "vimeo"},
-        { "label": "Others", "value": "other"},
-    ];
-
-    const size_options = [
-        { "label": "None", "value": "none"},
-        { "label": "1x1", "value": "1x1"},
-        { "label": "4x3", "value": "4x3"},
-        { "label": "16x9", "value": "16x9"},
-        { "label": "21x9", "value": "21x9"},
-        { "label": "Other", "value": "custom"},
-    ];
-
-    const size_options_res = [
-        { "label": "Default", "value": ""},
-        { "label": "None", "value": "none"},
-        { "label": "Ratio 1x1", "value": "1x1"},
-        { "label": "Ratio 4x3", "value": "4x3"},
-        { "label": "Ratio 16x9", "value": "16x9"},
-        { "label": "Ratio 21x9", "value": "21x9"},
-    ];
-
-    const lightbox_types = [
-        { label: __("Image", "pds-blocks"),  value: 'image' },
-        { label: __("Video", "pds-blocks"),  value: 'video' },
-        { label: __("Embed", "pds-blocks"),  value: 'embed' },
-    ];
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
@@ -113,15 +62,15 @@ export default function Edit({ attributes, setAttributes }) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Type", "pds-blocks")}>
-                    <PhenixSelect name="type" placeholder={__("Image", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.type} onChange={set_setting} options={types_options} />
+                    <PhenixSelect name="type" placeholder={__("Image", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.type} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.types} />
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("Ratio Size", "pds-blocks")}>
-                    <PhenixSelect name="size" placeholder={__("Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.size} onChange={set_setting} options={size_options} />
+                    <PhenixSelect name="size" placeholder={__("Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.size} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />
                 </div>
                 {/*===> Select Control <===*/}
                 {attributes.setting.type === "embed" ? <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Embed Source", "pds-blocks")}>
-                    <PhenixSelect name="embed" placeholder={__("Video", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting['embed']} onChange={set_setting} options={embeds_options} />
+                    <PhenixSelect name="embed" placeholder={__("Video", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting['embed']} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.embeds} />
                 </div> : null}
                 {/*===> Dropdown Control <===*/}
                 <PxDropDown title={__("Media Source", "pds-blocks")} button={`bg-transparent fs-16 square far fa-image divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
@@ -138,9 +87,9 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Media Settings", "pds-blocks")} button={`bg-transparent fs-16 square far fa-cog divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="dropdown-item" className='pdx-15 pdy-15'>
                         <ScreensTabs
-                            md={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={size_options_res} />}
-                            lg={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={size_options_res} />}
-                            xl={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={size_options_res} />}
+                            md={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
+                            lg={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
+                            xl={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
                         />
                         {/*===> Option Controller <===*/}
                         <div className='flexbox'>
@@ -167,7 +116,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Link Input <===*/}
                 {attributes.style.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" dataPosition={`bottom, end`}>
                     <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>
-                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => suggestionsRender(props)} />
+                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
                         {/*===> Option Control <===*/}
                         <OptionControl key={`inNewTab-${uniqueKey}`} name={`inNewTab`} value={`boolean`} checked={attributes.style.inNewTab} onChange={set_style} type='checkbox' className='tiny me-15'>
                             <span className='fas fa-check radius-circle'>{__("Open in New Tab", "pds-blocks")}</span>
@@ -188,7 +137,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {attributes.isLightBox ? <PxDropDown title={__("Lightbox Options", "pds-blocks")} button={`bg-transparent fs-16 square pxi pxi-lightbox-btn active divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" dataPosition={`bottom, end`}>
                     <li key="lightbox" className='pdx-15 pdt-15 pdb-0 mb-0'>
                         {/*===> Column <===*/}
-                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={lightbox_types} /></div>
+                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={PhenixBlocks.dataLists.lightbox.types} /></div>
                         {/*===> Column <===*/}
                         <div className='col-12'>{attributes.lightbox_src ?  
                             <MediaUploader key={`lightbox-src-${uniqueKey}`} label={__("Upload Source", "pds-blocks")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>

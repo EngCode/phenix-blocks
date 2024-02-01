@@ -1,8 +1,7 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {RichText, BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {RichText, BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -12,6 +11,7 @@ import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import PhenixInput from '../px-controls/input';
 import OptionControl from '../px-controls/switch';
+import SuggestionsUrl from "../px-controls/dynamic-url";
 
 //====> Phenix Options Sets <=====//
 import SizesSet from '../px-controls/sets/sizes';
@@ -30,30 +30,13 @@ const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);;
     const set_content = content => setAttributes({ content });
 
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
-
-    //===> Define Controls Options <===//
-    const types_options = [
-        { "label": "Headline", "value": "headline"},
-        { "label": "Paragraph", "value": "paragraph"},
-        { "label": "List Bullets", "value": "list"},
-        { "label": "List Numbers", "value": "list-numbers"},
-    ];
-
-    const headlines_tags = [
-        { "label": "H1", "value": "h1"},
-        { "label": "H2", "value": "h2"},
-        { "label": "H3", "value": "h3"},
-        { "label": "H4", "value": "h4"},
-        { "label": "H5", "value": "h5"},
-        { "label": "H6", "value": "h6"},
-    ];
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon", attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
@@ -71,12 +54,12 @@ export default function Edit({ attributes, setAttributes }) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-150' data-title={__("Text Type", "pds-blocks")}>
-                    <PhenixSelect name="type" placeholder={__("Paragraph", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.type} onChange={set_value} options={types_options} />
+                    <PhenixSelect name="type" placeholder={__("Paragraph", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.textElements.types} />
                 </div>
                 {/*===> Select Control <===*/}
                 {attributes.type === "headline" ?
                     <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Tag", "pds-blocks")}>
-                        <PhenixSelect name="tagName" placeholder={__("H2", "pds-blocks")} className={`weight-bold fs-20 tx-align-center`} value={attributes.tagName} onChange={set_value} options={headlines_tags} />
+                        <PhenixSelect name="tagName" placeholder={__("H2", "pds-blocks")} className={`weight-bold fs-20 tx-align-center`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.textElements.headlines} />
                     </div>
                 : null}
                 {/*===> Dropdown Button <===*/}

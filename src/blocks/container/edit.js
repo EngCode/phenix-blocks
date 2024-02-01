@@ -30,13 +30,11 @@ const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes}) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-    const set_flexbox = PhenixBlocks.set_flexbox;
-
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
     useEffect(() => PhenixComponentsBuilder(), []);
@@ -65,7 +63,7 @@ export default function Edit({ attributes, setAttributes}) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Tag", "pds-blocks")}>
-                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.html_tags} />
+                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.container_tags} />
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("Container Size", "pds-blocks")}>

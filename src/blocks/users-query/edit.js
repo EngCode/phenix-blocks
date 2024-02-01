@@ -18,35 +18,22 @@ import ScreensTabs from "../px-controls/tabs";
 import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-
 //====> Edit Mode <====//
 export default function Edit(props) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-    const set_flexbox = PhenixBlocks.set_flexbox;
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
 
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider');
-    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query");
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider', false, attributes, setAttributes);
+    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query", false, attributes, setAttributes);
 
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
-
-    //===> OrderBy Options <===//
-    const orderBy = [
-        { label: __('Default', 'pds-blocks'), value: '' },
-        { label: __('ID', 'pds-blocks'), value: 'ID' },
-        { label: __('Login', 'pds-blocks'), value: 'login' },
-        { label: __('Email', 'pds-blocks'), value: 'email' },
-        { label: __('URL', 'pds-blocks'), value: 'url' },
-        { label: __('Registered', 'pds-blocks'), value: 'registered' },
-        { label: __('Display Name', 'pds-blocks'), value: 'display_name' },
-    ];
 
     //===> Render <===//
     return (<>
@@ -109,7 +96,7 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
-                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={orderBy} />
+                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.usersOrderBy} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-10'>

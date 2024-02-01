@@ -23,14 +23,12 @@ const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_flexbox = PhenixBlocks.set_flexbox;
-
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting", attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
     useEffect(() => PhenixComponentsBuilder(), []);

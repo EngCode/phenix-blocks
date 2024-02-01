@@ -1,8 +1,7 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {RichText, BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -11,9 +10,9 @@ import PhenixIcons from '../px-controls/icons';
 import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import PhenixNumber from "../px-controls/number";
-import PhenixInput from '../px-controls/input';
 import MediaUploader from '../px-controls/uploader';
 import OptionControl from '../px-controls/switch';
+import SuggestionsUrl from "../px-controls/dynamic-url";
 
 //====> Phenix Options Sets <=====//
 import PaddingSet from '../px-controls/sets/padding';
@@ -28,16 +27,14 @@ const PhenixBlocks = window.PhenixBlocks;
 const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-
-    //==> Set Object Attributes Methods <==//
-    const set_url = value => PhenixBlocks.setObject(value, "", "style", "url");
-    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon");
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_icon_img = value => PhenixBlocks.setObject(value.url, "", "style", "icon");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+export default function Edit({ attributes, setAttributes }) {    
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_url = value => PhenixBlocks.setObject(value, "", "style", "url", attributes, setAttributes);
+    const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon", attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_icon_img = value => PhenixBlocks.setObject(value.url, "", "style", "icon", attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
     
     const types_options = [
         { "label": "FontAwesome", "value": "font"},
@@ -54,18 +51,6 @@ export default function Edit({ attributes, setAttributes }) {
     blockProps.className += ` tx-align-center inline-block`;
     blockProps.className += `${renderProps.container.className}`;
     if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
-
-    //===> URL Auto-Complete <===//
-    const suggestionsRender = (props) => (
-        <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
-            {props.suggestions.map((suggestion, index) => {
-                return (<li key={`link-sug-key-${index}`} className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
-                    <strong>{suggestion.title}</strong>
-                    <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
-                </li>)
-            })}
-        </ul>
-    );
 
     //===> Render <===//
     return (<>
@@ -99,7 +84,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Link Input <===*/}
                 {attributes.style.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" >
                     <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>
-                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => suggestionsRender(props)} />
+                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
                         {/*===> Option Control <===*/}
                         <OptionControl key={`inNewTab-${uniqueKey}`} name={`inNewTab`} value={`boolean`} checked={attributes.style.inNewTab} onChange={set_style} type='checkbox' className='tiny me-15'>
                             <span className='fas fa-check radius-circle'>{__("Open in New Tab", "pds-blocks")}</span>

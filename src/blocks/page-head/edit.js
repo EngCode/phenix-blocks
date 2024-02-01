@@ -19,19 +19,16 @@ import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
-    const set_separator = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "setting", "separator");
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;

@@ -138,7 +138,7 @@ if (!function_exists('phenix_blocks')) :
         //====> Blocks Logic and Data <====//
         if (is_admin()) :
             wp_enqueue_script('pds-blocks-logic', plugin_dir_url(__FILE__).'pds-helpers.js', $blocksDependencies, NULL , true);
-            wp_enqueue_script('pds-blocks-logic', plugin_dir_url(__FILE__).'pds-data-list.js', $blocksDependencies, NULL , true);
+            wp_enqueue_script('pds-blocks-data', plugin_dir_url(__FILE__).'pds-data-list.js', $blocksDependencies, NULL , true);
         endif;
 
         //====> GB Core Blocks Remover <====//

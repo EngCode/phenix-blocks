@@ -30,14 +30,12 @@ const PhenixBlocks = window.PhenixBlocks;
 const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-
+export default function Edit({ attributes, setAttributes }) {    
     //==> Set Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
-    const set_responsive = (target, screen) => PhenixBlocks.setObject(target, screen, 'responsive');
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
+    const set_responsive = (target, screen) => PhenixBlocks.setObject(target, screen, 'responsive', false, attributes, setAttributes);
 
     //===> Set Settings <===//
     const set_url = url => setAttributes({ url });

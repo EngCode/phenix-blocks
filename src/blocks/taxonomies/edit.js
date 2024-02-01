@@ -22,30 +22,17 @@ const PhenixBlocks = window.PhenixBlocks;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-    const set_flexbox = PhenixBlocks.set_flexbox;
-
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider');
-    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query");
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider', false, attributes, setAttributes);
+    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query", false, attributes, setAttributes);
 
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
-
-    //===> OrderBy Options <===//
-    const orderBy = [
-        { label: __('Default', 'pds-blocks'), value: '' },
-        { label: __('Name', 'pds-blocks'), value: 'name' },
-        { label: __('ID', 'pds-blocks'), value: 'id' },
-        { label: __('Count', 'pds-blocks'), value: 'count' },
-        { label: __('Slug', 'pds-blocks'), value: 'slug' },
-        { label: __('Term Group', 'pds-blocks'), value: 'term_group' },
-        { label: __('Term Order', 'pds-blocks'), value: 'term_order' },
-    ];
 
     //===> Render <===//
     return (<>
@@ -100,7 +87,7 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6 mb-10'>
-                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={orderBy} />
+                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.taxOrderBy} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-10'>

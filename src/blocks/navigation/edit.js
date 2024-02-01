@@ -20,17 +20,16 @@ import PhenixIcons from '../px-controls/icons';
 import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
-    //===> Value Handler <===//
-    const set_value = window.PhenixBlocks.set_value;
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
 
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    //==> Set Attributes Methods <==//
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> Set icons <===//
     const set_arrow_icon = icon => setAttributes({ arrow_icon: `${icon.type} ${icon.value}`});
@@ -79,14 +78,6 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
-    //===> Define Options <===//
-    const html_tags = [
-        { label: 'nav', value: 'nav' },
-        { label: 'main', value: 'main' },
-        { label: 'aside', value: 'aside' },
-        { label: 'div', value: 'div' },
-    ];
-
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -94,7 +85,7 @@ export default function Edit(props) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Wrapper", "pds-blocks")}>
-                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={html_tags} />
+                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.nav_tags} />
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip' style={{width: 125}} data-title={__("Menu Type", "pds-blocks")}>

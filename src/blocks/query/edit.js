@@ -1,11 +1,9 @@
 //====> WP Modules <====//
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import {useState, useEffect} from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
-import {PanelBody, TextControl, Toolbar, SelectControl, ToggleControl} from '@wordpress/components';
-import {InnerBlocks, BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
-import apiFetch from '@wordpress/api-fetch';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.png';
@@ -26,36 +24,17 @@ const PhenixBlocks = window.PhenixBlocks;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
-    //===> Value Handler <===//
-    const set_value = PhenixBlocks.set_value;
-    const set_flexbox = PhenixBlocks.set_flexbox;
-
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
-    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider');
-    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query");
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
+    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider', false, attributes, setAttributes);
+    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query", false, attributes, setAttributes);
 
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
-
-    //===> OrderBy Options <===//
-    const orderBy = [
-        { label: __('Default', 'pds-blocks'), value: '' },
-        { label: __('Date', 'pds-blocks'), value: 'date' },
-        { label: __('ID', 'pds-blocks'), value: 'ID' },
-        { label: __('Author', 'pds-blocks'), value: 'author' },
-        { label: __('Title', 'pds-blocks'), value: 'title' },
-        { label: __('Modified', 'pds-blocks'), value: 'modified' },
-        { label: __('Random', 'pds-blocks'), value: 'rand' },
-        { label: __('Comment Count', 'pds-blocks'), value: 'comment_count' },
-        { label: __('Menu Order', 'pds-blocks'), value: 'menu_order' },
-        { label: __('Meta Value', 'pds-blocks'), value: 'meta_value' },
-        { label: __('Meta Value Num', 'pds-blocks'), value: 'meta_value_num' },
-        { label: __('Post__In', 'pds-blocks'), value: 'post__in' },
-        { label: __('None', 'pds-blocks'), value: 'none' },
-    ];
 
     //===> Render <===//
     return (<>
@@ -109,7 +88,7 @@ export default function Edit(props) {
                     </div> : null}
                     {/*===> Column <===*/}
                     {!attributes.query?.post_type?.includes("default") ? <div className='col-6 mb-10'>
-                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={orderBy} />
+                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.orderBy} />
                     </div> : null}
                     {/*===> Column <===*/}
                     {!attributes.query?.post_type?.includes("default") ? <div className='col-12 mb-10'>

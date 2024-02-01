@@ -142,5 +142,5 @@ window.PhenixBlocks.dataLists = {
             { "label": "H5", "value": "h5"},
             { "label": "H6", "value": "h6"},
         ],
-    }
+    },
 };

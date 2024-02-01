@@ -135,6 +135,11 @@ if (!function_exists('phenix_blocks')) :
         $blocksDependencies = array('wp-blocks', 'wp-element', 'wp-editor', 'wp-edit-site', 'wp-plugins');
         $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);
 
+        //====> Blocks Logic and Data <====//
+        if (is_admin()) :
+            wp_enqueue_script('pds-blocks-logic', plugin_dir_url(__FILE__).'pds-helpers.js', $blocksDependencies, NULL , true);
+        endif;
+
         //====> GB Core Blocks Remover <====//
         if (is_admin() && !get_option("pds_core_post_elements")) :
             add_filter('extendify_load_library', '__return_false');

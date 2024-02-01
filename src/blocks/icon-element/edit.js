@@ -24,7 +24,7 @@ import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/renderer-v1";
+const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

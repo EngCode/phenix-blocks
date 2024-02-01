@@ -25,7 +25,7 @@ import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/renderer-v1";
+const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -136,7 +136,7 @@ export default function Edit({ attributes, setAttributes }) {
     ];
 
     //===> Get Block Properties <===//
-    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), primaryColors: true});
+    const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), hasColors: true});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
 

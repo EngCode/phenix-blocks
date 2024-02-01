@@ -1,17 +1,11 @@
 //====> WP Modules <====//
 import { __ } from '@wordpress/i18n';
 import {PanelBody} from '@wordpress/components';
-
-import {
-    InnerBlocks,
-    useBlockProps,
-    InspectorControls
-} from '@wordpress/block-editor';
+import {InnerBlocks, useBlockProps, InspectorControls} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
 import PhenixSelect from '../px-controls/select';
-import OptionControl from '../px-controls/switch';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

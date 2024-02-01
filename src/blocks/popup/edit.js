@@ -18,7 +18,7 @@ import FlexboxSet from '../px-controls/sets/flexbox';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/renderer-v1";
+const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

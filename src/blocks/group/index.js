@@ -14,7 +14,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import {InnerBlocks, useBlockProps} from '@wordpress/block-editor';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/renderer-v1";
+const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //===> Register Block <===//
 registerBlockType(metadata, {

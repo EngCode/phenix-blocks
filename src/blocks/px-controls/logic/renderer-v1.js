@@ -1,7 +1,7 @@
 //===> Options Renderer <===//
 const OptionsRenderer = (options) => {
     //===> Options <===//
-    const {attributes, blockProps, isSave, primaryColors, isColumn, isGrid} = options;
+    const {attributes, blockProps, isSave, hasColors, isColumn, isGrid} = options;
 
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
@@ -78,7 +78,7 @@ const OptionsRenderer = (options) => {
             };
         }
 
-        //===> if its object[group] Option like [style, typography, responsive, flexbox/slider] <===//
+        //===> if its object[group] => [style, typography, responsive, flexbox/slider] <===//
         else if (isObjectVal(option_value) && attributes[option_name]) {
             //===> Flexbox Props <===//
             if(!isGrid && option_name === "flexbox" && attributes.isFlexbox === false) return;
@@ -148,7 +148,7 @@ const OptionsRenderer = (options) => {
                             colorsList.forEach(color => sub_value.value === color ? isPrimary = true : null);
 
                             //===> Set the Background <===//
-                            if (primaryColors && isPrimary) {
+                            if (hasColors && isPrimary) {
                                 blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
                             }  else {
                                 blockProps.className += ` ${sub_value.value}`;

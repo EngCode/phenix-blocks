@@ -14,7 +14,7 @@ import {registerBlockType} from '@wordpress/blocks';
 import {useBlockProps} from '@wordpress/block-editor';
 
 //====> Attributes Renderers <====//
-import OptionsRenderer from "../px-controls/logic/renderer-v1";
+const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -25,21 +25,27 @@ registerBlockType(metadata, {
 
     /**===> Block Output <===*/
     save : ({ attributes }) => {
-        //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), primaryColors: true});
-        const blockProps = renderProps.blockProps;
+        //===> Render Block Properties <===//
+        const renderProps = OptionsRenderer({
+            hasColors: true,
+            attributes: attributes,
+            blockProps: useBlockProps.save()
+        });
 
-        //===> Links and Lightbox URL <===//
+        //===> Get Block Properties <===//
+        const blockProps = renderProps.blockProps;
+        const TagName = attributes.isLink ? "a" : "button";
+
+        //===> Add Layout Options <===//
+        blockProps.className += `${renderProps.container.className}`;
+        
+        //===> Add Links/Lightbox URL <===//
         if (attributes.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
 
-        //===> Layout Options <===//
-        blockProps.className += `${renderProps.container.className}`;
-
-        //===> Rendered Element <===//
-        let renderedElement = <button title={attributes.type.includes("square") ? attributes.label : null} { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</button>;
-        if (attributes.isLink) renderedElement = <a title={attributes.type.includes("square") ? attributes.label : null} { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ''}</a>;
+        //===> Add Button Title <===//
+        attributes.type.includes("square") ? blockProps.title = attributes.label : null;
 
         //===> Render <===//
-        return (<>{renderedElement}</>);
+        return (<TagName { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</TagName>);
     }
 });

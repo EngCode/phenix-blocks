@@ -11,7 +11,7 @@ const OptionsRenderer = (options) => {
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
-          colsRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) > 12 ? "" : `-${size}`;
+          sizeHandler = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) > 12 ? "" : `-${size}`;
 
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
@@ -28,7 +28,7 @@ const OptionsRenderer = (options) => {
 
             //===> Columns Size <===//
             else if (isColumn && option_name === "size") {
-                blockProps.className += ` col${colsRender(option_value)}`;
+                blockProps.className += ` col${sizeHandler(option_value)}`;
             }
 
             //===> Data Modal <===//
@@ -102,7 +102,7 @@ const OptionsRenderer = (options) => {
                         container[dataAttr] = sub_value;
                     } else if (attributes.flexbox.equals) {
                         //===> add Classes <===//
-                        container.className += ` ${sub_option.replace('cols', 'row-cols') + colsRender(sub_value)}`;
+                        container.className += ` ${sub_option.replace('cols', 'row-cols') + sizeHandler(sub_value)}`;
                     }
                 }
 
@@ -252,7 +252,7 @@ const OptionsRenderer = (options) => {
                     
                     //===> Responsive Columns Sizes <===//
                     else if (isColumn && option_name === "responsive" && sub_option.includes('size-')) {
-                        blockProps.className += ` ${sub_option.replace("size", "col")}${colsRender(sub_value)}`;
+                        blockProps.className += ` ${sub_option.replace("size", "col")}${sizeHandler(sub_value)}`;
                     }
 
                     //===> Other Values <===//

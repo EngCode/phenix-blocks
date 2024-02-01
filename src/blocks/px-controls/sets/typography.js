@@ -19,94 +19,30 @@ import OptionControl from '../switch';
 export default class TypographySet extends Component {
     render () {
         //===> Properties <===//
+        const PhenixBlocks = window.PhenixBlocks.dataLists;
         const {attributes, options, mainSetter, screen} = this.props;
         const screenPoint = screen ? `-${screen}` : "";
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-typography-${screen}-option`;
+
+        //===> Options Lists <===//
+        const font_weights = PhenixBlocks.typography.weights;
+        const font_lineheight = PhenixBlocks.typography.lineheight;
+        const text_shadows = PhenixBlocks.typography.shadows;
+        const font_families = PhenixBlocks.typography.families;
 
         //===> Define Controls Options <===//
         const sizes_list = [],
-            origin_sizes = [
-                ``,
-                `fs${screenPoint}-12`,
-                `fs${screenPoint}-13`,
-                `fs${screenPoint}-14`,
-                `fs${screenPoint}-15`,
-                `fs${screenPoint}-16`,
-                `fs${screenPoint}-17`,
-                `fs${screenPoint}-18`,
-                `fs${screenPoint}-19`,
-                `fs${screenPoint}-20`,
-                `fs${screenPoint}-22`,
-                `fs${screenPoint}-24`,
-                `fs${screenPoint}-25`,
-                `fs${screenPoint}-26`,
-                `fs${screenPoint}-28`,
-                `fs${screenPoint}-30`,
-                `h1${screenPoint}`, `h2${screenPoint}`, `h3${screenPoint}`, `h4${screenPoint}`, `h5${screenPoint}`, `h6${screenPoint}`,
-                `display${screenPoint}-h1`, `display${screenPoint}-h2`, `display${screenPoint}-h3`, `display${screenPoint}-h4`, `display${screenPoint}-h5`, `display${screenPoint}-h6`
-            ];
+              display_sizes = [];
 
         //===> Generate Responsive Sizes <===//
-        origin_sizes.forEach(size => {
-            //===> Filter Value and Label <===//
-            let true_label =`${size.replace(`fs${screenPoint}-`, "").replace(`display${screenPoint}-`,"D").replace(screenPoint, '').replace('-','').replace(`h`, 'H')}${size.includes(`fs${screenPoint}-`) ? 'px':''}`;
-            if (size === "") true_label = __("Default", "pds-blocks");
-            sizes_list.push({"label": true_label, "value": size});
+        PhenixBlocks.sizes_range.font_sizes.map(size => {
+            //===> Normal Size <===//
+            if (typeof(size) === "number") {
+                sizes_list.push({"label": size, "value": `fs${screenPoint}-${size}`});
+            } else {
+                sizes_list.push({"label": `H${size.replace('h', '')}`, "value": `${size}${screenPoint}`});
+                display_sizes.push({"label": `DH${size.replace('h', '')}`, "value": `display${screenPoint}-${size}`});
+            }
         });
-
-        //===> Weights List <===//
-        const font_weights = [
-            { "label": "Default",  "value": ""},
-            { "label": "Thin",  "value": "weight-thin"},
-            { "label": "Light",  "value": "weight-light"},
-            { "label": "Extra Light",  "value": "weight-xlight"},
-            { "label": "Normal",  "value": "weight-normal"},
-            { "label": "Medium",  "value": "weight-medium"},
-            { "label": "Semi-Bold",  "value": "weight-bold"},
-            { "label": "Bold",  "value": "weight-strong"},
-            { "label": "Heavy",  "value": "weight-xbold"},
-            { "label": "Black",  "value": "weight-black"}
-        ];
-
-        //===> Lineheight List <===//
-        const font_lineheight = [
-            { "label": "Default",  "value": ""},
-            { "label": "100%",  "value": "lineheight-100"},
-            { "label": "120%",  "value": "lineheight-120"},
-            { "label": "130%",  "value": "lineheight-130"},
-            { "label": "150%",  "value": "lineheight-150"},
-            { "label": "160%",  "value": "lineheight-160"},
-            { "label": "170%",  "value": "lineheight-170"},
-            { "label": "180%",  "value": "lineheight-180"},
-            { "label": "inherit",  "value": "lineheight-inherit"},
-        ];
-
-        const text_shadows = {
-            "Standard" : [
-                { "label": "None",  "value": ""},
-                { "label": "DP-1", "value": "tx-shadow-dp-1"},
-                { "label": "DP-2", "value": "tx-shadow-dp-2"},
-                { "label": "DP-3", "value": "tx-shadow-dp-3"},
-                { "label": "DP-4", "value": "tx-shadow-dp-4"},
-                { "label": "DP-5", "value": "tx-shadow-dp-5"},
-                { "label": "DP-1Y", "value": "tx-shadow-dp-1y"},
-            ],
-
-            "TailWind" : [
-                { "label": "Standard", "value": "tx-shadow-tw"},
-                { "label": "Small", "value": "tx-shadow-tw-sm"},
-                { "label": "Medium", "value": "tx-shadow-tw-md"},
-                { "label": "Large", "value": "tx-shadow-tw-lg"},
-                { "label": "xLarge", "value": "tx-shadow-tw-xl"},
-                { "label": "TW-2XL", "value": "tx-shadow-tw-2xl"},
-            ],
-        };
-
-        const font_families = [
-            { "label": "Default",  "value": ""},
-            { "label": "Primary Font",  "value": "primary-font"},
-            { "label": "Secondary Font",  "value": "secondary-font"},
-        ];
 
         //===> Output <===//
         return <>
@@ -123,7 +59,7 @@ export default class TypographySet extends Component {
                 </div>
                 {/*===> Size <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
+                    <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={[...sizes_list, ...display_sizes]} search={true} />
                 </div>
                 {/*===> Weight <===*/}
                 <div className='col col-6'>

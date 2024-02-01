@@ -581,5 +581,212 @@ window.PhenixBlocks.dataLists = {
         //===> Define Height Sizes <===//
         height_range : ["auto", "25%", "50%", "75%", "100%", "120%", "150%", "175%", "200%", "25vh", "50vh", "75vh", "100vh"],
         max_height_range : ["auto", "25%", "50%", "75%", "100%", "25vh", "50vh", "75vh", "100vh"],
+        //===> Define Font Sizes <===//
+        font_sizes: [12 ,13 ,14 ,15 ,16 ,17 ,18 ,19 ,20 ,22 ,24 ,25 ,26 ,28 ,30, "h1", "h2", "h3", "h4", "h5", "h6"],
+    },
+
+    styles: {
+        zindex_options : [
+            { "label": "Default", "value": ""},
+            { "label": "Level.1", "value": "z-index-1"},
+            { "label": "Level.2", "value": "z-index-2"},
+            { "label": "Level.3", "value": "z-index-3"},
+            { "label": "Level.4", "value": "z-index-4"},
+            { "label": "Level.5", "value": "z-index-5"},
+            { "label": "Level.6", "value": "z-index-6"},
+            { "label": "Level.7", "value": "z-index-7"},
+            { "label": "Level.8", "value": "z-index-8"},
+            { "label": "Level.9", "value": "z-index-9"},
+            { "label": "Level.10", "value": "z-index-10"},
+            { "label": "Lvl.Header", "value": "z-index-header"},
+            { "label": "Lvl.Popups", "value": "z-index-modal"},
+            { "label": "Lvl.Dropdowns", "value": "z-index-dropdown"},
+        ],
+
+        position_options: [
+            { "label": "Default", "value": ""},
+            { "label": "Fixed", "value": "position-fx"},
+            { "label": "Static", "value": "position-none"},
+            { "label": "Sticky", "value": "position-st"},
+            { "label": "Absolute", "value": "position-ab"},
+            { "label": "Relative", "value": "position-rv"},
+            { "label": "Sticky(S)", "value": "sticky-absolute"},
+        ],
+
+        radius_sizes: [
+            { label: __("None", "pds-blocks"), value: '' },
+            { label: __("Tiny", "pds-blocks"), value: 'radius-sm' },
+            { label: __("Small", "pds-blocks"), value: 'radius-md' },
+            { label: __("Medium", "pds-blocks"), value: 'radius-lg' },
+            { label: __("Large", "pds-blocks"), value: 'radius-xl' },
+            { label: __("xLarge", "pds-blocks"), value: 'radius-xxl' },
+            { label: __("Circle", "pds-blocks"), value: 'radius-circle' },
+            { label: __("Rounded", "pds-blocks"), value: 'radius-height' },
+        ],
+
+        radius_directions: [
+            { label: __("Default", "pds-blocks"), value: '' },
+            { label: __("Top", "pds-blocks"), value: 'radius-top' },
+            { label: __("Bottom", "pds-blocks"), value: 'radius-bottom' },
+            { label: __("Start", "pds-blocks"), value: 'radius-start' },
+            { label: __("End", "pds-blocks"), value: 'radius-end' },
+            { label: __("Top/Start", "pds-blocks"), value: 'radius-top-start' },
+            { label: __("Bottom/Start", "pds-blocks"), value: 'radius-bottom-start' },
+            { label: __("Top/End", "pds-blocks"), value: 'radius-top-end' },
+            { label: __("Bottom/End", "pds-blocks"), value: 'radius-bottom-end' },
+        ],
+
+        display_options: {
+            "Mobile Screens" : [
+                { "label": "Flex", "value": "display-flex"},
+                { "label": "Grid", "value": "display-grid"},
+                { "label": "Block", "value": "display-block"},
+                { "label": "Flexbox", "value": "flexbox"},
+                { "label": "Inline-Block", "value": "inline-block"},
+                { "label": "Hidden SM <i class='fas fa-arrow-up'><i>", "value": "hidden"},
+                { "label": "Hidden SM <i class='fas fa-arrow-down'><i>", "value": "hidden-sm-down"},
+            ],
+            "Tablet Screens" : [
+                { "label": "Flex MD", "value": "display-md-flex"},
+                { "label": "Grid MD", "value": "display-md-grid"},
+                { "label": "Block MD", "value": "display-md-block"},
+                { "label": "Hidden MD <i class='fas fa-arrow-up'><i>", "value": "hidden-md-up"},
+                { "label": "Hidden MD <i class='fas fa-arrow-down'><i>", "value": "hidden-md-down"},
+                { "label": "Inline-Block MD", "value": "inline-block-md"},
+            ],
+            "Laptop Screens" : [
+                { "label": "Flex LG", "value": "display-lg-flex"},
+                { "label": "Grid LG", "value": "display-lg-grid"},
+                { "label": "Block LG", "value": "display-lg-block"},
+                { "label": "Hidden LG <i class='fas fa-arrow-up'><i>", "value": "hidden-lg-up"},
+                { "label": "Hidden LG <i class='fas fa-arrow-down'><i>", "value": "hidden-lg-down"},
+                { "label": "Inline-Block LG", "value": "inline-block-lg"},
+            ],
+            "Desktop Screens" : [
+                { "label": "Flex XL", "value": "display-xl-flex"},
+                { "label": "Grid XL", "value": "display-xl-grid"},
+                { "label": "Block XL", "value": "display-xl-block"},
+                { "label": "Hidden XL <i class='fas fa-arrow-up'><i>", "value": "hidden-xl-up"},
+                { "label": "Hidden XL <i class='fas fa-arrow-down'><i>", "value": "hidden-xl-down"},
+                { "label": "Inline-Block XG", "value": "inline-block-xl"},
+            ],
+        },
+
+        support_options: [
+            { label: __("Margin", "pds-blocks"), value: 'enable-margin' },
+            { label: __("Padding", "pds-blocks"), value: 'enable-padding' },
+            { label: __("Radius", "pds-blocks"), value: 'enable-radius' },
+            { label: __("Display", "pds-blocks"), value: 'enable-display' },
+            { label: __("Position", "pds-blocks"), value: 'enable-position' },
+            { label: __("Animations", "pds-blocks"), value: 'enable-animations' },
+            { label: __("Effects", "pds-blocks"), value: 'enable-effects' },
+            // { label: __("Animated Childs", "pds-blocks"), value: 'px-animate' },
+            // { label: __("Overlapped", "pds-blocks"), value: 'pos-overlap' },
+        ],
+
+        background_options: {
+            sizes : [
+                { label:"all-100", value:"bgs-100" },
+                { label:"all-auto", value:"bgs-auto"},
+                { label:"width-25", value:"bgw-25"},
+                { label:"width-50", value:"bgw-50"},
+                { label:"width-75", value:"bgw-75"},
+                { label:"width-90", value:"bgw-90"},
+                { label:"width-100", value:"bgw-100"},
+                { label:"height-25", value:"bgh-25"},
+                { label:"height-50", value:"bgh-50"},
+                { label:"height-75", value:"bgh-75"},
+                { label:"height-90", value:"bgh-90"},
+                { label:"height-100", value:"bgh-100"},
+            ],
+        
+            repeat : [
+                { label:"repeat", value: "bgr"},
+                { label:"repeat-x", value: "bgr-x"},
+                { label:"repeat-y", value: "bgr-y"},
+                { label:"repeat-none", value: "bgr-n"},
+            ],
+        
+            positions : [
+                { label:"top-start", value: "bgp-ts"},
+                { label:"top-center", value: "bgp-tc"},
+                { label:"top-end", value: "bgp-te"},
+                { label:"center-start", value: "bgp-cs"},
+                { label:"center-center", value: "bgp-cc"},
+                { label:"center-end", value: "bgp-ce"},
+                { label:"bottom-start", value: "bgp-bs"},
+                { label:"bottom-center", value: "bgp-bc"},
+                { label:"bottom-end", value: "bgp-be"},
+            ],
+    
+            animations : [
+                { label:"Animated X", value: "bg-animated-x"},
+                { label:"Animated Y", value: "bg-animated-y"},
+                { label:"Zooming BG", value: "bg-animated-zoom"},
+            ],
+
+            overlay : [
+                { label:"None", value: ""},
+                { label:"Dark", value: "overlay-dark"},
+                { label:"Light", value: "overlay-light"},
+                { label:"Custom", value: "overlay-custom"},
+            ],
+        },
+    },
+
+    typography: {
+        //===> Weights List <===//
+        weights: [
+            { "label": "Default",  "value": ""},
+            { "label": "Thin",  "value": "weight-thin"},
+            { "label": "Light",  "value": "weight-light"},
+            { "label": "Extra Light",  "value": "weight-xlight"},
+            { "label": "Normal",  "value": "weight-normal"},
+            { "label": "Medium",  "value": "weight-medium"},
+            { "label": "Semi-Bold",  "value": "weight-bold"},
+            { "label": "Bold",  "value": "weight-strong"},
+            { "label": "Heavy",  "value": "weight-xbold"},
+            { "label": "Black",  "value": "weight-black"}
+        ],
+
+        //===> Lineheight List <===//
+        lineheight: [
+            { "label": "Default",  "value": ""},
+            { "label": "100%",  "value": "lineheight-100"},
+            { "label": "120%",  "value": "lineheight-120"},
+            { "label": "130%",  "value": "lineheight-130"},
+            { "label": "150%",  "value": "lineheight-150"},
+            { "label": "160%",  "value": "lineheight-160"},
+            { "label": "170%",  "value": "lineheight-170"},
+            { "label": "180%",  "value": "lineheight-180"},
+            { "label": "inherit",  "value": "lineheight-inherit"},
+        ],
+
+        shadows: {
+            "Standard" : [
+                { "label": "None",  "value": ""},
+                { "label": "DP-1", "value": "tx-shadow-dp-1"},
+                { "label": "DP-2", "value": "tx-shadow-dp-2"},
+                { "label": "DP-3", "value": "tx-shadow-dp-3"},
+                { "label": "DP-4", "value": "tx-shadow-dp-4"},
+                { "label": "DP-5", "value": "tx-shadow-dp-5"},
+                { "label": "DP-1Y", "value": "tx-shadow-dp-1y"},
+            ],
+
+            "TailWind" : [
+                { "label": "Standard", "value": "tx-shadow-tw"},
+                { "label": "Small", "value": "tx-shadow-tw-sm"},
+                { "label": "Medium", "value": "tx-shadow-tw-md"},
+                { "label": "Large", "value": "tx-shadow-tw-lg"},
+                { "label": "xLarge", "value": "tx-shadow-tw-xl"},
+                { "label": "TW-2XL", "value": "tx-shadow-tw-2xl"},
+            ],
+        },
+
+        families: [
+            { "label": "Default",  "value": ""},
+            { "label": "Primary Font",  "value": "primary-font"},
+            { "label": "Secondary Font",  "value": "secondary-font"},
+        ],
     },
 };

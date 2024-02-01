@@ -390,8 +390,8 @@ window.PhenixBlocks = {
                     element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
                 }
             });
-        }, 1000);
-    
+        }, 500);
+
         //===> Get View iFrame <===//
         let viewScript = (the_document) => {
             //===> Define Data <===//
@@ -454,13 +454,16 @@ window.PhenixBlocks = {
                 if (time_counter > 5) clearInterval(pds_elements_timer);
             }, 300);
         };
-    
-        //===> Run View Script <===//
+
+        //===> Check for Canvas Frames <===//
         if (window.frames['editor-canvas']) {
+            //===> Run View Script <===//
             viewScript(window.frames['editor-canvas'].document);
+
             //===> Load Assets in Frame <====//
-            let trying_times = 0,
-                loadAssetTimer = setInterval(()=> {
+            if (!window.PhenixBlocks.canvasAssetsLoaded) {
+                let trying_times = 0;
+                let loadAssetTimer = setInterval(()=> {
                     //====> if the Document unloaded clear the timer <====//
                     if (!window.frames['editor-canvas'] || !window.frames['editor-canvas'].document) {
                         clearInterval(loadAssetTimer);
@@ -485,13 +488,26 @@ window.PhenixBlocks = {
                                 if (trying_times > 5) clearInterval(loadAssetTimer);
                             }
                         };
-                        //===> When the Frame is Found <===//
+    
+                        //===> Clear Timer if Loaded <===//
+                        let fontAwesomeCheck = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"),
+                            pdsPrimaryFontCheck = window.frames['editor-canvas'].document.querySelector("#pds-primary-font-inline-css");
+                        
+                        if (fontAwesomeCheck && pdsPrimaryFontCheck) {
+                            window.PhenixBlocks.canvasAssetsLoaded = true;
+                            clearInterval(loadAssetTimer);
+                        };
+    
+                        //===> When the Frame is Found Load Assets <===//
                         frameAssetsLoader("#fontawesome-css");
                         frameAssetsLoader("#pds-primary-font-inline-css");
                     }
                 }, 300);
+            }
         } else if (window.Phenix) {
             window.document ? viewScript(window.document) : null;
         }
     },
+
+    canvasAssetsLoaded: false,
 }

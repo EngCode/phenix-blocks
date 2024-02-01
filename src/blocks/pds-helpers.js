@@ -390,7 +390,7 @@ window.PhenixBlocks = {
                     element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
                 }
             });
-        }, 500);
+        }, 100);
 
         //===> Get View iFrame <===//
         let viewScript = (the_document) => {

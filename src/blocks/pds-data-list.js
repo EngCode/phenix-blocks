@@ -143,4 +143,178 @@ window.PhenixBlocks.dataLists = {
             { "label": "H6", "value": "h6"},
         ],
     },
+
+    palette: {
+        colors : {
+            main : [
+                "fas fa-redo tx-align-center",
+                "bg-inherit",
+                "bg-transparent",
+                "bg-primary",
+                "bg-primary-dark",
+                "bg-secondary",
+                "bg-secondary-dark",
+                "bg-gray",
+                "bg-dark",
+                "bg-white",
+            ],
+
+            status: [
+                "bg-success",
+                "bg-danger",
+                "bg-warning",
+                "bg-info",
+
+                "bg-offwhite-primary",
+                "bg-offwhite-secondary",
+                "bg-offwhite-info",
+                "bg-offwhite-success",
+                "bg-offwhite-danger",
+                "bg-offwhite-warning",
+            ],
+
+            offwhite: [
+                "bg-offwhite-smoke",
+                "bg-offwhite-gray",
+                "bg-offwhite-snow",
+                "bg-offwhite-honeydew",
+                "bg-offwhite-aliceblue",
+                "bg-offwhite-ghost",
+                "bg-offwhite-seashell",
+                "bg-offwhite-beige",
+                "bg-offwhite-oldlace",
+                "bg-offwhite-floral",
+                "bg-offwhite-antique",
+                "bg-offwhite-linen",
+                "bg-offwhite-lavenderblush",
+            ],
+            
+            brands: [
+                "bg-facebook",
+                "bg-twitter",
+                "bg-youtube",
+                "bg-instagram",
+                "bg-snapchat",
+                "bg-whatsapp",
+                "bg-pinterest",
+                "bg-linkedin",
+                "bg-behance",
+                "bg-dribbble",
+                "bg-flicker",
+            ],
+
+            darkAlpha: [
+                "bg-alpha-05",
+                "bg-alpha-10",
+                "bg-alpha-15",
+                "bg-alpha-25",
+                "bg-alpha-50",
+                "bg-alpha-75",
+            ],
+
+            lightAlpha: [
+                "bg-revert-05",
+                "bg-revert-10",
+                "bg-revert-15",
+                "bg-revert-25",
+                "bg-revert-50",
+                "bg-revert-75",
+            ],
+
+            components: [
+                "bg-component-lvl-1",
+                "bg-component-lvl-2",
+                "bg-component-lvl-3"
+            ]
+        },
+
+        gradients: [
+            "bg-grade-primary",
+            "bg-grade-secondary",
+            "bg-grade-warning",
+            "bg-grade-danger",
+            "bg-grade-success",
+            "bg-grade-water",
+            "bg-grade-ice",
+            "bg-grade-fire",
+            "bg-grade-purple",
+            "bg-grade-primary-offwhite",
+            "bg-grade-primary-dark",
+            "bg-grade-secondary-offwhite",
+            "bg-grade-secondary-dark",
+            "bg-grade-primary-secondary",
+            "bg-grade-primary-secondary-2nd",
+            "bg-grade-danger-purple",
+            "bg-grade-primary-purple",
+            "bg-grade-silver",
+            "bg-grade-silver-2nd",
+            "bg-grade-offwhite-red",
+            "bg-grade-offwhite-blue",
+            "bg-grade-offwhite-green",
+            "bg-grade-offwhite-yellow",
+            "bg-grade-offwhite-silver",
+            "bg-grade-offwhite-info",
+            "bg-grade-offwhite-purple",
+            "bg-grade-offwhite-danger",
+            "bg-grade-offwhite-yellow-2nd",
+            "bg-grade-offwhite-blue-2nd ",
+            "bg-grade-offwhite-blue-3rd",
+            "bg-grade-offwhite-blue-4th",
+        ],
+
+        rotation : [
+            'bg-grade-0',
+            'bg-grade-45',
+            'bg-grade-90',
+            'bg-grade-120',
+            'bg-grade-120n',
+            'bg-grade-90n',
+            'bg-grade-45n',
+            'bg-grade-180',
+        ],
+
+        placeholder : "https://via.placeholder.com/480x200.webp?text=Example",
+    },
+
+    paletteText: {
+        main: [
+            "color-inherit",
+            "color-transparent",
+            "color-primary",
+            "color-primary-dark",
+            "color-secondary",
+            "color-secondary-dark",
+            "color-gray",
+            "color-dark",
+            "color-white",
+            "fas fa-redo tx-align-center"
+        ],
+
+        status: [
+            "color-success",
+            "color-danger",
+            "color-warning",
+            "color-info",
+        ],
+
+        social: [
+            "color-facebook",
+            "color-twitter",
+            "color-youtube",
+            "color-instagram",
+            "color-snapchat",
+            "color-whatsapp",
+            "color-pinterest",
+            "color-linkedin",
+            "color-behance",
+            "color-dribbble",
+            "color-flicker",
+        ],
+
+        components: [
+            "color-component-lvl-1",
+            "color-component-lvl-2",
+            "color-component-lvl-3"
+        ]
+    }
 };

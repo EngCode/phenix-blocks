@@ -17,153 +17,14 @@ import MediaUploader from '../uploader';
 //===> Phenix Background <===//
 export default class PhenixBackground extends Component {
     //===> States <===//
-    state = {
-        colors : {
-            main : [
-                "fas fa-redo tx-align-center",
-                "bg-inherit",
-                "bg-transparent",
-                "bg-primary",
-                "bg-primary-dark",
-                "bg-secondary",
-                "bg-secondary-dark",
-                "bg-gray",
-                "bg-dark",
-                "bg-white",
-            ],
+    state = {}
 
-            status: [
-                "bg-success",
-                "bg-danger",
-                "bg-warning",
-                "bg-info",
-
-                "bg-offwhite-primary",
-                "bg-offwhite-secondary",
-                "bg-offwhite-info",
-                "bg-offwhite-success",
-                "bg-offwhite-danger",
-                "bg-offwhite-warning",
-            ],
-
-            offwhite: [
-                "bg-offwhite-smoke",
-                "bg-offwhite-gray",
-                "bg-offwhite-snow",
-                "bg-offwhite-honeydew",
-                "bg-offwhite-aliceblue",
-                "bg-offwhite-ghost",
-                "bg-offwhite-seashell",
-                "bg-offwhite-beige",
-                "bg-offwhite-oldlace",
-                "bg-offwhite-floral",
-                "bg-offwhite-antique",
-                "bg-offwhite-linen",
-                "bg-offwhite-lavenderblush",
-            ],
-            
-            brands: [
-                "bg-facebook",
-                "bg-twitter",
-                "bg-youtube",
-                "bg-instagram",
-                "bg-snapchat",
-                "bg-whatsapp",
-                "bg-pinterest",
-                "bg-linkedin",
-                "bg-behance",
-                "bg-dribbble",
-                "bg-flicker",
-            ],
-
-            darkAlpha: [
-                "bg-alpha-05",
-                "bg-alpha-10",
-                "bg-alpha-15",
-                "bg-alpha-25",
-                "bg-alpha-50",
-                "bg-alpha-75",
-            ],
-
-            lightAlpha: [
-                "bg-revert-05",
-                "bg-revert-10",
-                "bg-revert-15",
-                "bg-revert-25",
-                "bg-revert-50",
-                "bg-revert-75",
-            ],
-
-            components: [
-                "bg-component-lvl-1",
-                "bg-component-lvl-2",
-                "bg-component-lvl-3"
-            ]
-        },
-
-        gradients: [
-            "bg-grade-primary",
-            "bg-grade-secondary",
-            "bg-grade-warning",
-            "bg-grade-danger",
-            "bg-grade-success",
-            "bg-grade-water",
-            "bg-grade-ice",
-            "bg-grade-fire",
-            "bg-grade-purple",
-            "bg-grade-primary-offwhite",
-            "bg-grade-primary-dark",
-            "bg-grade-secondary-offwhite",
-            "bg-grade-secondary-dark",
-            "bg-grade-primary-secondary",
-            "bg-grade-primary-secondary-2nd",
-            "bg-grade-danger-purple",
-            "bg-grade-primary-purple",
-            "bg-grade-silver",
-            "bg-grade-silver-2nd",
-            "bg-grade-offwhite-red",
-            "bg-grade-offwhite-blue",
-            "bg-grade-offwhite-green",
-            "bg-grade-offwhite-yellow",
-            "bg-grade-offwhite-silver",
-            "bg-grade-offwhite-info",
-            "bg-grade-offwhite-purple",
-            "bg-grade-offwhite-danger",
-            "bg-grade-offwhite-yellow-2nd",
-            "bg-grade-offwhite-blue-2nd ",
-            "bg-grade-offwhite-blue-3rd",
-            "bg-grade-offwhite-blue-4th",
-        ],
-
-        rotation : [
-            'bg-grade-0',
-            'bg-grade-45',
-            'bg-grade-90',
-            'bg-grade-120',
-            'bg-grade-120n',
-            'bg-grade-90n',
-            'bg-grade-45n',
-            'bg-grade-180',
-        ],
-
-        placeholder : "https://via.placeholder.com/480x200.webp?text=Example",
-    }
     //===> Render <===//
     render () {
+        //===> Get Data <===//
+        const PhenixBlocks = window.PhenixBlocks.dataLists;
         //===> Properties <===//
-        const {
-            type,
-            value,
-            label,
-            rotate,
-            colorsOnly,
-            onlyCG,
-            isSmall,
-            placeholder,
-            onChange
-        } = this.props;
-
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
+        const {type, value, label, rotate, colorsOnly, onlyCG, isSmall, placeholder, onChange} = this.props;
 
         //===> Returned Value <===//
         let options = {
@@ -178,11 +39,8 @@ export default class PhenixBackground extends Component {
             options.type = type;
 
             //===> change value <===//
-            if (options.type === 'image') {
-                options.value = this.state.placeholder;
-            } else {
-                options.value = "";
-            }
+            if (options.type === 'image') {options.value = PhenixBlocks.palette.placeholder;} 
+            else {options.value = "";}
 
             //===> Return Options <===//
             return onChange(options);
@@ -192,10 +50,8 @@ export default class PhenixBackground extends Component {
         const set_rotate = rotate => {
             //===> Set Value <===//
             options.rotate = rotate;
-
             //===> change value <===//
             if (options.type !== 'gradient') options.value = "";
-
             //===> Return Options <===//
             return onChange(options);
         };
@@ -300,34 +156,34 @@ export default class PhenixBackground extends Component {
                 <div className={`flexbox options-list ${type !== "image"  && type !== "video" && type !== "embed" ? 'pdy-15 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
                     {type === "color" ? <>
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
-                        {makeButtons(this.state.colors.main, "radius-xxl")}
+                        {makeButtons(PhenixBlocks.palette.colors.main, "radius-xxl")}
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
-                        {makeButtons(this.state.colors.components, "radius-xxl border-1 border-alpha-15 border-solid")}
+                        {makeButtons(PhenixBlocks.palette.colors.components, "radius-xxl border-1 border-alpha-15 border-solid")}
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
-                        {makeButtons(this.state.colors.status, "radius-xxl")}
+                        {makeButtons(PhenixBlocks.palette.colors.status, "radius-xxl")}
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
-                        {makeButtons(this.state.colors.offwhite, "radius-xxl")}
+                        {makeButtons(PhenixBlocks.palette.colors.offwhite, "radius-xxl")}
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
-                        {makeButtons(this.state.colors.brands, "radius-xxl")}
+                        {makeButtons(PhenixBlocks.palette.colors.brands, "radius-xxl")}
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
                         <div className='pd-5 radius-sm bg-white fluid flexbox align-between'>
-                            {makeButtons(this.state.colors.darkAlpha, "")}
+                            {makeButtons(PhenixBlocks.palette.colors.darkAlpha, "")}
                         </div>
 
                         <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
                         <div className='pd-5 radius-sm bg-dark fluid flexbox align-between'>
-                            {makeButtons(this.state.colors.lightAlpha, "")}
+                            {makeButtons(PhenixBlocks.palette.colors.lightAlpha, "")}
                         </div>
                     </>
                     : type === "gradient" ? 
-                        makeButtons(this.state.gradients, "radius-xxl") : 
+                        makeButtons(PhenixBlocks.palette.gradients, "radius-xxl") : 
                     null}
-                    {type === "image" || type === "video" ? <MediaUploader key="upload-file" value={!value ? this.state.placeholder : value} setValue={setBackground}></MediaUploader> : null}
+                    {type === "image" || type === "video" ? <MediaUploader key="upload-file" value={!value ? PhenixBlocks.palette.placeholder : value} setValue={setBackground}></MediaUploader> : null}
                 </div>
                 {/*===> Rotation Select <===*/}
                 {type === "gradient" ? <div className='divider-t pdt-15 col-12'>

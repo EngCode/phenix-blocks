@@ -13,58 +13,10 @@ import {Component} from '@wordpress/element';
 export default class PhenixColors extends Component {
     render () {
         //===> Properties <===//
-        const {
-            value,
-            label,
-            isSmall,
-            placeholder,
-            onChange
-        } = this.props;
-
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
+        const {value, label, isSmall, placeholder, onChange} = this.props;
 
         //===> Colors List <===//
-        const pxPallete = {
-            main: [
-                "color-inherit",
-                "color-transparent",
-                "color-primary",
-                "color-primary-dark",
-                "color-secondary",
-                "color-secondary-dark",
-                "color-gray",
-                "color-dark",
-                "color-white",
-                "fas fa-redo tx-align-center"
-            ],
-
-            status: [
-                "color-success",
-                "color-danger",
-                "color-warning",
-                "color-info",
-            ],
-
-            social: [
-                "color-facebook",
-                "color-twitter",
-                "color-youtube",
-                "color-instagram",
-                "color-snapchat",
-                "color-whatsapp",
-                "color-pinterest",
-                "color-linkedin",
-                "color-behance",
-                "color-dribbble",
-                "color-flicker",
-            ],
-
-            components: [
-                "color-component-lvl-1",
-                "color-component-lvl-2",
-                "color-component-lvl-3"
-            ]
-        };
+        const pxPallete = window.PhenixBlocks.dataLists.paletteText;
 
         //===> Set Color <===//
         const setColor = clicked => {

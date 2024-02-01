@@ -19,7 +19,7 @@ window.PhenixBlocks = {
         Object.entries(attributes).forEach(([option_name, option_value]) => {
             //===> Exclude Options <===//
             const excluded = ["tagName", "className", "align", "metadata", "name", "content", "lightbox_type", "url", "label"];
-            if (excluded.some(opt => opt === option_name)) return;
+            if (excluded.some(opt => opt === option_name) || option_name.startsWith('name-')) return;
     
             //===> if its a Normal Values that should be string <===//
             if (isNormalValue(option_value) && attributes[option_name]) {
@@ -215,7 +215,7 @@ window.PhenixBlocks = {
                         }
     
                         //===> Positions Values <===//
-                        else if (sub_option.includes("pos-")) {
+                        else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
                             if (parseInt(sub_value) > 50 || parseInt(sub_value) < 0) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
@@ -226,7 +226,7 @@ window.PhenixBlocks = {
                         }
     
                         //===> Margin Values <===//
-                        else if (isMargin.some(css => sub_option.includes(css))) {
+                        else if (isMargin.some(css => sub_option.startsWith(css))) {
                             //===> Check Value Range <===//
                             if (parseInt(sub_value) > 100) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
@@ -239,7 +239,7 @@ window.PhenixBlocks = {
                         }
     
                         //===> Padding Values <===//
-                        else if (isPadding.some(css => sub_option.includes(css))) {
+                        else if (isPadding.some(css => sub_option.startsWith(css))) {
                             if (parseInt(sub_value) < 0) sub_value = 0;
                             blockProps.className += ` ${sub_option}-${sub_value}`;
                         }

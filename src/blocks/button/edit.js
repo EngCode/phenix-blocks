@@ -35,9 +35,9 @@ export default function Edit({ attributes, setAttributes }) {
     const set_value = PhenixBlocks.set_value;
 
     //==> Set Methods <==//
-    const set_style = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, "style");
-    const set_typography = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, "typography");
-    const set_responsive = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, 'responsive');
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    const set_responsive = (target, screen) => PhenixBlocks.setObject(target, screen, 'responsive');
 
     //===> Set Settings <===//
     const set_url = url => setAttributes({ url });

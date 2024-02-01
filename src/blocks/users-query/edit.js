@@ -18,6 +18,10 @@ import ScreensTabs from "../px-controls/tabs";
 import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
 
+//====> Attributes Renderers <====//
+const PhenixBlocks = window.PhenixBlocks;
+const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Value Handler <===//
@@ -63,28 +67,10 @@ export default function Edit(props) {
         console.log(attributes);
     };
 
-    //==> Set Responsive Method <==//
-    const set_attr_handler = (target, screen, attr, hasName) => {
-        //==> Get Current <==//
-        const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        
-        //==> Set Value <==//
-        const newAttributes = name.includes('animation') ? {
-            ...attributes[attr],
-            animation: { ...attributes[attr].animation, [name.replace('animation-', '')]: value }
-        } : {
-            ...attributes[attr],
-            [`${name}${screen && screen.length > 0 ? '-' + screen : ''}`]: value
-        };
-
-        setAttributes({ ...attributes, [attr]: newAttributes });
-    };
-
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
-    const set_slider = (target, screen) => set_attr_handler(target, screen, 'slider');
-    const set_query = (target, screen) => set_attr_handler(target, screen, "query");
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
+    const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider');
+    const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query");
 
     //==> Set Flexbox Method <==//
     const set_flexbox = (target, screen) => {

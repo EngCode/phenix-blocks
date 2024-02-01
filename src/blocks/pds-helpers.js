@@ -3,7 +3,6 @@ const __ = window.wp.i18n.__;
 
 //====> Create Window Object <====//
 window.PhenixBlocks = {
-
     //====> Options Renderer <====//
     OptionsRenderer : (options) => {
         //===> Options <===//
@@ -329,7 +328,7 @@ window.PhenixBlocks = {
     },
 
     //===> Responsive Values Handler <===//
-    set_attr_handler : (target, screen, attr, hasName) => {
+    setObject : (target, screen, attr, hasName) => {
         //==> Get Current <==//
         const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
         const value = (typeof(target) === "string" || typeof(target) === "number") ? target : this.valueHandler(target);
@@ -381,5 +380,5 @@ window.PhenixBlocks = {
                 { label: __("Embed", "pds-blocks"),  value: 'embed' },
             ],
         },
-    }
+    },
 }

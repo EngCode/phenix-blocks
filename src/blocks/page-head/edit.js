@@ -19,6 +19,10 @@ import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
+//====> Attributes Renderers <====//
+const PhenixBlocks = window.PhenixBlocks;
+const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
 //====> Edit Mode <====//
 export default function Edit(props) {
     //===> Value Handler <===//
@@ -77,29 +81,11 @@ export default function Edit(props) {
         }
     };
 
-    //==> Set Attributes Method <==//
-    const set_attr_handler = (target, screen, attr, hasName) => {
-        //==> Get Current <==//
-        const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        
-        //==> Set Value <==//
-        const newAttributes = name.includes('animation') ? {
-            ...attributes[attr],
-            animation: { ...attributes[attr].animation, [name.replace('animation-', '')]: value }
-        } : {
-            ...attributes[attr],
-            [`${name}${screen ? '-' + screen : ''}`]: value
-        };
-
-        setAttributes({ ...attributes, [attr]: newAttributes });
-    };
-
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
-    const set_setting = (target, screen) => set_attr_handler(target, "", "setting");
-    const set_typography = (target, screen) => set_attr_handler(target, screen, "typography");
-    const set_separator = value => set_attr_handler(`${value.type} ${value.value}`, "", "setting", "separator");
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
+    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting");
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
+    const set_separator = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "setting", "separator");
 
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;

@@ -1,14 +1,11 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
-import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
-import ScreensTabs from "../px-controls/tabs";
 import PxDropDown from '../px-controls/dropdown';
 import PhenixNumber from "../px-controls/number";
 import PhenixSelect from '../px-controls/select';
@@ -17,12 +14,15 @@ import OptionControl from '../px-controls/switch';
 //====> Phenix Options Sets <=====//
 import SelectFromData from "../px-controls/select-data";
 import TypographySet from '../px-controls/sets/typography';
-import AnimationsSet from '../px-controls/sets/animations';
 
 //====> Phenix Modules <====//
 import PhenixIcons from '../px-controls/icons';
 import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
+
+//====> Attributes Renderers <====//
+const PhenixBlocks = window.PhenixBlocks;
+const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -68,27 +68,9 @@ export default function Edit(props) {
         setAttributes(newAttributes);
     };
 
-    //==> Set Responsive Method <==//
-    const set_attr_handler = (target, screen, attr, hasName) => {
-        //==> Get Current <==//
-        const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        
-        //==> Set Value <==//
-        const newAttributes = name.includes('animation') ? {
-            ...attributes[attr],
-            animation: { ...attributes[attr].animation, [name.replace('animation-', '')]: value }
-        } : {
-            ...attributes[attr],
-            [`${name}${screen && screen.length > 0 ? '-' + screen : ''}`]: value
-        };
-
-        setAttributes({ ...attributes, [attr]: newAttributes });
-    };
-
     //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
-    const set_typography = (target, screen) => set_attr_handler(target, screen, "typography");
+    const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
+    const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
 
     //===> Set icons <===//
     const set_arrow_icon = icon => setAttributes({ arrow_icon: `${icon.type} ${icon.value}`});

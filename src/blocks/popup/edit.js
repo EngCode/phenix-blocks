@@ -17,15 +17,16 @@ import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
     //==> Set Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
-    const set_flexbox = PhenixBlocks.set_flexbox;
+    const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
     const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting", attributes, setAttributes);
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);

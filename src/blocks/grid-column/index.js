@@ -13,8 +13,6 @@ import metadata from './block.json';
 import { registerBlockType } from '@wordpress/blocks';
 import {InnerBlocks, useBlockProps} from '@wordpress/block-editor';
 
-//====> Attributes Renderers <====//
-const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
 //===> Register Block <===//
 registerBlockType(metadata, {
@@ -25,6 +23,9 @@ registerBlockType(metadata, {
 
     /**===> Block Output <===*/
     save : ({ attributes }) => {
+        //====> Attributes Renderers <====//
+        const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
+
         //===> Get Block Properties <===//
         const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isColumn: true});
         const blockProps = renderProps.blockProps;

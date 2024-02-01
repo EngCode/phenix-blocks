@@ -1,8 +1,8 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar, SelectControl} from '@wordpress/components';
-import {InnerBlocks, BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -26,12 +26,12 @@ import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
 import EffectsSet from '../px-controls/sets/effects';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
-
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {    
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
     //==> Set Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);

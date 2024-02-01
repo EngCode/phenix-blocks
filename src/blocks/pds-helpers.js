@@ -166,8 +166,9 @@ window.PhenixBlocks = {
                             sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
                             sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);
                             sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
+                            sub_value.inset && (blockProps['data-inset'] = sub_value.inset);
                             sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
-                            sub_value['exit-name'] && (blockProps['data-animation-exit'] = sub_value['exit-name']);
+                            sub_value.exit && (blockProps['data-exit'] = sub_value.exit);
                         }
                         //===> Styles Support <===//
                         else if (sub_option === "support") {

@@ -8,7 +8,6 @@ import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-
 import PreviewImage from './preview.jpg';
 import SelectFromData from '../px-controls/select-data';
 
-
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //====> Attributes Renderers <====//

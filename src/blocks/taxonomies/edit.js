@@ -17,11 +17,12 @@ import SelectFromData from '../px-controls/select-data';
 import ScreensTabs from "../px-controls/tabs";
 import FlexboxSet from '../px-controls/sets/flexbox';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
 
 //====> Edit Mode <====//
 export default function Edit(props) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+
     //==> Set Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);

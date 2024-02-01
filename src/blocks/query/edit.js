@@ -19,11 +19,11 @@ import ScreensTabs from "../px-controls/tabs";
 import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-
 //====> Edit Mode <====//
 export default function Edit(props) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+
     //==> Set Object Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);

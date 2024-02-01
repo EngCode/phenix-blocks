@@ -25,12 +25,13 @@ import ResponsiveSet from '../px-controls/sets/responsive';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {    
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
     //==> Set Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);

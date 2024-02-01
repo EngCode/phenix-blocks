@@ -20,7 +20,6 @@ import PhenixIcons from '../px-controls/icons';
 import PhenixColor from '../px-controls/colors/text';
 import PhenixBackground from '../px-controls/colors/background';
 
-
 //====> Edit Mode <====//
 export default function Edit(props) {
     //====> Attributes Renderers <====//

@@ -19,7 +19,6 @@ import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
-
 //====> Edit Mode <====//
 export default function Edit(props) {
     //====> Attributes Renderers <====//

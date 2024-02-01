@@ -24,12 +24,13 @@ import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
 import PhenixComponentsBuilder from '../px-controls/panel-scripts';
 
-//====> Attributes Renderers <====//
-const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    const OptionsRenderer = PhenixBlocks.OptionsRenderer;
+
     //==> Set Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_url = url => setAttributes({ url });

@@ -785,8 +785,8 @@ window.PhenixBlocks.dataLists = {
 
         families: [
             { "label": "Default",  "value": ""},
-            { "label": "Primary Font",  "value": "primary-font"},
-            { "label": "Secondary Font",  "value": "secondary-font"},
+            { "label": "Primary",  "value": "primary-font"},
+            { "label": "Secondary",  "value": "secondary-font"},
         ],
     },
 };

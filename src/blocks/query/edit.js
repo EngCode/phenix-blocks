@@ -23,7 +23,6 @@ import FlexboxSet from '../px-controls/sets/flexbox';
 
 //====> Attributes Renderers <====//
 const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit(props) {

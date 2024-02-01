@@ -22,7 +22,6 @@ import PhenixBackground from '../px-controls/colors/background';
 
 //====> Attributes Renderers <====//
 const PhenixBlocks = window.PhenixBlocks;
-const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit(props) {

@@ -510,4 +510,4 @@ window.PhenixBlocks = {
     },
 
     canvasAssetsLoaded: false,
-}
+};

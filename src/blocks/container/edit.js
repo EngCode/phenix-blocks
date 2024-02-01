@@ -2,7 +2,7 @@
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
 import {PanelBody, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -10,7 +10,6 @@ import ScreensTabs from "../px-controls/tabs";
 import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
-import PhenixNumber from "../px-controls/number";
 import PhenixInput from "../px-controls/input";
 
 //====> Phenix Options Sets <=====//
@@ -30,7 +29,7 @@ const PhenixBlocks = window.PhenixBlocks;
 const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, name, setAttributes, clientId }) {
+export default function Edit({ attributes, setAttributes}) {
     //===> Value Handler <===//
     const set_value = PhenixBlocks.set_value;
     const set_flexbox = PhenixBlocks.set_flexbox;
@@ -38,26 +37,6 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
     //==> Set Object Attributes Methods <==//
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style");
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography");
-
-    //===> Define Controls Options <===//
-    const html_tags = [
-        { "label": "Div", "value": "div"},
-        { "label": "Main", "value": "main"},
-        { "label": "Aside", "value": "aside"},
-        { "label": "Header", "value": "header"},
-        { "label": "Footer", "value": "footer"},
-        { "label": "Article", "value": "article"},
-        { "label": "Section", "value": "section"},
-    ];
-
-    const container_sizes = [
-        { label: 'None',  value: '' },
-        { label: 'SM',  value: 'container-sm' },
-        { label: 'MD', value: 'container-md' },
-        { label: 'LG', value: 'container' },
-        { label: 'XL',  value: 'container-xl' },
-        { label: 'Fluid',  value: 'container-fluid' },
-    ];
 
     //===> View Script <===//
     useEffect(() => PhenixComponentsBuilder(), []);
@@ -79,7 +58,6 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
     //===> Full Width Editing <===//
     if (!attributes.align) setAttributes({ align: 'full' });
 
-
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -87,11 +65,11 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Tag", "pds-blocks")}>
-                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={html_tags} />
+                    <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.html_tags} />
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("Container Size", "pds-blocks")}>
-                    <PhenixSelect key={`size-${uniqueKey}`} name="size" placeholder={__("None", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.size} onChange={set_value} options={container_sizes} />
+                    <PhenixSelect key={`size-${uniqueKey}`} name="size" placeholder={__("None", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.size} onChange={set_value} options={PhenixBlocks.dataLists.container_sizes} />
                 </div>
                 {/*===> Option Control <===*/}
                 <OptionControl key={`isSection-${uniqueKey}`} name={`isSection`} value={`boolean`} checked={attributes.isSection} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
@@ -220,9 +198,9 @@ export default function Edit({ attributes, name, setAttributes, clientId }) {
         {attributes.preview ?
             <img src={PreviewImage} alt="" className="fluid" />
         :
-        <TagName {...blockProps} key={uniqueKey}>
-            <div {...innerBlocksProps}></div>
-        </TagName>
+            <TagName {...blockProps} key={uniqueKey}>
+                <div {...innerBlocksProps}></div>
+            </TagName>
         }
     </>);
 }

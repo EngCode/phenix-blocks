@@ -17,7 +17,7 @@ window.PhenixBlocks = {
               isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
               isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
               colSizeHandler = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) > 12 ? "" : `-${size}`;
-    
+
         //===> Rendering Options <===//
         Object.entries(attributes).forEach(([option_name, option_value]) => {
             //===> Exclude Options <===//
@@ -231,14 +231,16 @@ window.PhenixBlocks = {
     
                         //===> Margin Values <===//
                         else if (isMargin.some(css => sub_option.startsWith(css))) {
-                            //===> Check Value Range <===//
-                            if (parseInt(sub_value) > 100) {
+                            //===> Auto Value <===//
+                            if (parseInt(sub_value) === -5) {
+                                blockProps.className += ` ${sub_option}-auto`;
+                            }
+                            //===> Custom Value <===//
+                            else if (parseInt(sub_value) > 100 || parseInt(sub_value) < 0) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                             }
-                            //===> for Auto <===//
-                            else if (parseInt(sub_value) < 0) { blockProps.className += ` ${sub_option}-auto`; }
-                            //===> is Name Value <===//
+                            //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         }
     

@@ -1,6 +1,5 @@
 //====> .Dependencies. <====//
 import {Component} from '@wordpress/element';
-import PhenixComponentsBuilder from './panel-scripts';
 
 //===> Phenix Form Control <===//
 export default class PxDropDown extends Component {
@@ -8,8 +7,8 @@ export default class PxDropDown extends Component {
     state = {opened:false};
 
     //===> Component Rendered Hooks <===//
-    componentDidMount() { PhenixComponentsBuilder(); };
-    componentDidUpdate() { PhenixComponentsBuilder(); };
+    componentDidMount() { window.PhenixBlocks.componentsBuilder(); };
+    componentDidUpdate() { window.PhenixBlocks.componentsBuilder(); };
 
     render () {
         //===> Properties <===//

@@ -22,8 +22,6 @@ import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
-import PhenixComponentsBuilder from '../px-controls/panel-scripts';
-
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -41,7 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
-    useEffect(() => PhenixComponentsBuilder(), []);
+    useEffect(() => PhenixBlocks.componentsBuilder(), []);
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});

@@ -35,7 +35,7 @@ export default class FlexAlignment extends Component {
             if (itHasType && align_type === foundedType) {
                 //===> Loop on Values <===//
                 current_values.forEach(current_value => {
-                    //===> if the Founded Type is the same is the Value, Replace the Value <===//
+                    //===> if the Founded Type is the same as the Value, Replace the Value <===//
                     if (current_value.includes(align_type)) {
                         align_val = align_val.replace(current_value, target.value);
                     }

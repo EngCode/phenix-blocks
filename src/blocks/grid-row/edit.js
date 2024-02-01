@@ -19,8 +19,6 @@ import FlexboxSet from '../px-controls/sets/flexbox';
 import SliderSet from '../px-controls/sets/slider';
 import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
-import PhenixComponentsBuilder from '../px-controls/panel-scripts';
-
 import PaddingSet from '../px-controls/sets/padding';
 import MarginSet from '../px-controls/sets/margin';
 import PositionSet from '../px-controls/sets/position';
@@ -40,7 +38,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
-    useEffect(() => PhenixComponentsBuilder(), []);
+    useEffect(() => PhenixBlocks.componentsBuilder(), []);
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), isGrid: true});

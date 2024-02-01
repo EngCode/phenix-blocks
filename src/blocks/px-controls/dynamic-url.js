@@ -10,5 +10,4 @@ const SuggestionsUrl = (props) => (
     </ul>
 );
 
-
 export default SuggestionsUrl;

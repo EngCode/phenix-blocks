@@ -25,7 +25,7 @@ export default class TemplateOptions extends Component {
     //===> Component Rendered Hook <===//
     componentDidMount() {
         //===> Create Time Loop to Find the Elements <===//
-        PhenixComponentsBuilder();
+        window.PhenixBlocks.componentsBuilder();
     };
 
     //===> Render <===//

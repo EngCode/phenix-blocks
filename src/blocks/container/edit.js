@@ -22,8 +22,6 @@ import FlexboxSet from '../px-controls/sets/flexbox';
 import TypographySet from '../px-controls/sets/typography';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
-import PhenixComponentsBuilder from '../px-controls/panel-scripts';
-
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes}) {
@@ -38,7 +36,7 @@ export default function Edit({ attributes, setAttributes}) {
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
-    useEffect(() => PhenixComponentsBuilder(), []);
+    useEffect(() => PhenixBlocks.componentsBuilder(), []);
 
     //===> Get Block Properties <===//
     const TagName = attributes.tagName;

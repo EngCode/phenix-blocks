@@ -2,17 +2,14 @@
 import React from 'react';
 import {Component} from '@wordpress/element';
 
-//====> Phenix Modules <====//
-import PhenixComponentsBuilder from './panel-scripts';
-
 //===> Phenix Form Control <===//
 export default class PhenixSelect extends Component {
     //===> States <===//
     state = {};
 
     //===> Component Rendered Hooks <===//
-    componentDidMount() { PhenixComponentsBuilder(); };
-    componentDidUpdate() { PhenixComponentsBuilder(); };
+    componentDidMount() { window.PhenixBlocks.componentsBuilder(); };
+    componentDidUpdate() { window.PhenixBlocks.componentsBuilder(); };
 
     //===> Component Rendered when Props Change <===//
     shouldComponentUpdate(nextProps, nextState) {

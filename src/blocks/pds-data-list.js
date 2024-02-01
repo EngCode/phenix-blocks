@@ -1,6 +1,3 @@
-//===> Define Translation Function <===//
-const __ = window.wp.i18n.__;
-
 //===> Attach Data to Phenix Object <===//
 window.PhenixBlocks.dataLists = {
     button : {

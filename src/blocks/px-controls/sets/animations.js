@@ -40,12 +40,6 @@ export default class AnimationsSet extends Component {
                         <PhenixSelect name="exit" placeholder={__("None", "pds-blocks")} search={true} label={__("Exit Animation", "pds-blocks")} value={attributes.style?.animation?.exit} onChange={mainSetter} options={exit_animations} />
                     </div>
                 :null}
-                <div className='col-7 col mb-10'>
-                    <OptionControl name={`animation-group`} value="boolean" checked={attributes.style?.animation?.group} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Use as Group", "pds-blocks")}</OptionControl>
-                </div>
-                <div className='col-5 col mb-10'>
-                    <OptionControl name={`hasExit`} value="boolean" checked={attributes.style?.animation?.hasExit} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Has Exit", "pds-blocks")}</OptionControl>
-                </div>
                 {!attributes.style?.animation?.group ? <>
                     {/*===> Column <===*/}
                     <div className='col-6 col mb-10'>
@@ -69,6 +63,15 @@ export default class AnimationsSet extends Component {
                     </div>
                     {/*===> .End Columns. <===*/}
                 </>: null}
+                {/*===> . Columns. <===*/}
+                <div className='col-7 col mb-10'>
+                    <OptionControl name={`animation-group`} value="boolean" checked={attributes.style?.animation?.group} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Use as Group", "pds-blocks")}</OptionControl>
+                </div>
+                {/*===> . Columns. <===*/}
+                <div className='col-5 col mb-10'>
+                    <OptionControl name={`hasExit`} value="boolean" checked={attributes.style?.animation?.hasExit} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Has Exit", "pds-blocks")}</OptionControl>
+                </div>
+                {/*===> .End Columns. <===*/}
             </div>
             {/*===> // Layout Group <===*/}
         </>

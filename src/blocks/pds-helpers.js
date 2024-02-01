@@ -320,7 +320,7 @@ window.PhenixBlocks = {
             single_val = array_val;
         }
 
-        //===> for Values without Target <===//
+        //===> for Values with Target <===//
         else if (type === null) { single_val = target; }
 
         //===> for Normal Values <===//

@@ -13,153 +13,52 @@ import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import SelectFromData from "../px-controls/select-data";
-import PaddingSet from '../px-controls/sets/padding';
-import MarginSet from '../px-controls/sets/margin';
-import PositionSet from '../px-controls/sets/position';
+import SuggestionsUrl from "../px-controls/dynamic-url";
 
 //====> Phenix Options Sets <=====//
+import MarginSet from '../px-controls/sets/margin';
 import StylesSet from '../px-controls/sets/styles';
+import PaddingSet from '../px-controls/sets/padding';
+import PositionSet from '../px-controls/sets/position';
 import TypographySet from '../px-controls/sets/typography';
 import ResponsiveSet from '../px-controls/sets/responsive';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
 //====> Attributes Renderers <====//
-const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
+const PhenixBlocks = window.PhenixBlocks;
+const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Value Handler <===//
-    const valueHandler = (target) => {
-        //===> Define Array Type <===//
-        let single_val,
-            array_val = [],
-            type = target instanceof HTMLElement ? (target.getAttribute('type') || target.tagName) : null;
+    const set_value = PhenixBlocks.set_value;
 
-        //==> for Boolean Values <==//
-        if (type === 'checkbox' || type === 'radio') {
-            if (target.value === 'boolean') { single_val = target.checked; }
-            else { single_val = target.checked ? target.value : ""; }
-        }
-
-        //===> for Value of Type Array <===//
-        else if (type === "SELECT" && target.hasAttribute('multiple')) {
-            //===> Get Multiple Value <===//
-            let values = target.parentNode.getAttribute('data-value').split(',');
-            //===> Get Current Values <===//
-            values.forEach(val => val !== "" ? array_val.push(val) : null);
-            //===> Set Array Value <===//
-            single_val = array_val;
-        }
-
-        //===> for Normal Values <===//
-        else if (type === null) { single_val = target; }
-
-        //===> for Normal Values <===//
-        else { single_val = target.value; }
-
-        //===> Return Value <===//
-        if(single_val) return single_val;
-    };
-
-    const set_value = (target) => {
-        //==> Get Current <==//
-        const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        const newAttributes = { ...attributes, [name]: value };
-        //==> Set Value <==//
-        setAttributes(newAttributes);
-    };
-
-    //==> Set Responsive Method <==//
-    const set_attr_handler = (target, screen, attr, hasName) => {
-        //==> Get Current <==//
-        const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        
-        //==> Set Value <==//
-        const newAttributes = name.includes('animation') ? {
-            ...attributes[attr],
-            animation: { ...attributes[attr].animation, [name.replace('animation-', '')]: value }
-        } : {
-            ...attributes[attr],
-            [`${name}${screen ? '-' + screen : ''}`]: value
-        };
-
-        setAttributes({ ...attributes, [attr]: newAttributes });
-    };
-
-    //==> Set Object Attributes Methods <==//
-    const set_style = (target, screen) => set_attr_handler(target, screen, "style");
-    const set_typography = (target, screen) => set_attr_handler(target, screen, "typography");
-    const set_responsive = (target, screen) => set_attr_handler(target, screen, 'responsive');
-
-    //===> Responsive Options <===//
-    const responsive_options = (screen) => {
-        return (<ResponsiveSet 
-            screen={screen}
-            attributes={attributes}
-            styleSetter={set_style}
-            mainSetter={set_responsive}
-            typoSetter={set_typography}
-            options={`display, text-size, component-size`}
-        />);
-    };
+    //==> Set Methods <==//
+    const set_style = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, "style");
+    const set_typography = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, "typography");
+    const set_responsive = (target, screen) => PhenixBlocks.set_attr_handler(target, screen, 'responsive');
 
     //===> Set Settings <===//
+    const set_url = url => setAttributes({ url });
     const set_label = label => setAttributes({ label });
     const set_data_modal = data_modal => setAttributes({ data_modal });
     const set_icon = value => setAttributes({ icon: `${value.type} ${value.value}`});
-
-    //===> Link Settings <===//
-    const set_url = url => setAttributes({ url });
-
-    //===> Define Controls Options <===//
-    const btn_types = [
-        { label: __("Default", "pds-blocks"), value: 'btn' },
-        { label: __("Text/Icon", "pds-blocks"), value: 'btn btn-icon' },
-        { label: __("Icon Only", "pds-blocks"), value: 'btn square tooltip-bottom' },
-    ];
-
-    const btn_sizes = [
-        { label: __("XS", "pds-blocks"), value: 'tiny' },
-        { label: __("SM", "pds-blocks"), value: 'small' },
-        { label: __("MD", "pds-blocks"), value: 'medium' },
-        { label: __("LG", "pds-blocks"), value: 'large' },
-        { label: __("XL", "pds-blocks"), value: 'xlarge' },
-    ];
-
-    const lightbox_types = [
-        { label: __("Image", "pds-blocks"),  value: 'image' },
-        { label: __("Video", "pds-blocks"),  value: 'video' },
-        { label: __("Embed", "pds-blocks"),  value: 'embed' },
-    ];
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps(), hasColors: true});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
 
-    //===> Links and Lightbox URL <===//
+    //===> Set Layout Options <===//
+    blockProps.className += `${renderProps.container.className}`;
+    //===> Set Links/Lightbox URL <===//
     if (attributes.style.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
 
-    //===> Layout Options <===//
-    blockProps.className += `${renderProps.container.className}`;
-
-    //===> Label Element <===//
+    //===> Create Responsive Options <===//
+    const responsive_options = (screen) => <ResponsiveSet screen={screen} attributes={attributes} styleSetter={set_style} mainSetter={set_responsive} typoSetter={set_typography} options={`display, text-size, component-size`} />;
+    //===> Create Label Element <===//
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
-
-    //===> URL Auto-Complete <===//
-    const suggestionsRender = (props) => (
-        <ul className="fluid reset-list bg-white bx-shadow-dp-1 border-1 border-solid border-alpha-10 z-index-dropdown position-ab pos-start-0 pos-after-y">
-            {props.suggestions.map((suggestion, index) => {
-                return (<li key={`link-sug-key-${index}`} className="pdx-15 pdy-5 fs-12 divider-b mouse-pointer" onClick={() => props.handleSuggestionClick(suggestion)}>
-                    <strong>{suggestion.title}</strong>
-                    <span className='display-block fs-10 color-primary tx-nowrap'>{suggestion.url}</span>
-                </li>)
-            })}
-        </ul>
-    );
 
     //===> Render <===//
     return (<> 
@@ -168,11 +67,11 @@ export default function Edit({ attributes, setAttributes }) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip' style={{width: 130}} data-title={__("Button Type", "pds-blocks")}>
-                    <PhenixSelect key={`btn-type-${uniqueKey}`} className={`tx-align-center weight-medium`} name="type" placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={btn_types} />
+                    <PhenixSelect key={`btn-type-${uniqueKey}`} className={`tx-align-center weight-medium`} name="type" placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip' data-title={__("Button Size", "pds-blocks")}>
-                    <PhenixSelect key={`size-${uniqueKey}`} className="weight-bold tx-uppercase tx-align-center" name="size" placeholder={__("MD", "pds-blocks")} value={attributes.size} onChange={set_value} options={btn_sizes} />
+                    <PhenixSelect key={`size-${uniqueKey}`} className="weight-bold tx-uppercase tx-align-center" name="size" placeholder={__("MD", "pds-blocks")} value={attributes.size} onChange={set_value} options={PhenixBlocks.dataLists.button.sizes} />
                 </div>
                 {/*===> Dropdown Button <===*/}
                 {attributes.type.includes('icon') || attributes.type.includes('square') ?
@@ -233,7 +132,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Link Input <===*/}
                 {attributes.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260">
                     <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>
-                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.url } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => suggestionsRender(props)} />
+                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.url } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
                         {/*===> Option Control <===*/}
                         <OptionControl key={`inNewTab-${uniqueKey}`} name={`inNewTab`} value={`boolean`} checked={attributes.inNewTab || false} onChange={set_value} type='checkbox' className='tiny me-15'>
                             <span className='fas fa-check radius-circle'>{__("Open in New Tab", "pds-blocks")}</span>
@@ -262,7 +161,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {attributes.isLightBox ? <PxDropDown title={__("Lightbox Options", "pds-blocks")} button={`bg-transparent fs-16 square pxi pxi-lightbox-btn active divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" dataPosition={`bottom, end`}>
                     <li key="lightbox" className='pdx-15 pdt-15 pdb-0 mb-0'>
                         {/*===> Column <===*/}
-                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={lightbox_types} /></div>
+                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={PhenixBlocks.dataLists.lightbox.types} /></div>
                         {/*===> Column <===*/}
                         <div className='col-12'>{attributes.lightbox_src ?
                             <MediaUploader key={`lightbox-src-${uniqueKey}`} label={__("Upload Source", "pds-blocks")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>

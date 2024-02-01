@@ -37,13 +37,11 @@ registerBlockType(metadata, {
         const TagName = attributes.isLink ? "a" : "button";
 
         //===> Add Layout Options <===//
-        blockProps.className += `${renderProps.container.className}`;
-        
-        //===> Add Links/Lightbox URL <===//
-        if (attributes.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
-
+        blockProps.className += `${renderProps.container.className}`;        
         //===> Add Button Title <===//
         attributes.type.includes("square") ? blockProps.title = attributes.label : null;
+        //===> Add Links/Lightbox URL <===//
+        if (attributes.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
 
         //===> Render <===//
         return (<TagName { ...blockProps }>{!attributes.type.includes("square") ? attributes.label : ""}</TagName>);

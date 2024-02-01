@@ -5,7 +5,8 @@
 	background-color: var(--body-bg)!important;
 	font-family: var(--secondary-font)!important;
 	.block-editor-rich-text__editable:not([class*="color-"]) {color: inherit!important;}
-
+	
+	
 	/*==== Min Size for Empty Blocks ====*/
 	.wp-block>.block-editor-block-list__layout:empty {
 		min-width: 200px;
@@ -21,6 +22,8 @@
 	}
 
 	/*==== Fix Phenix Row ====*/
+	.container {max-width: 1200px;}
+	.container-xl, .container-lg {max-width: 1400px;}
 	.wp-block-phenix-row > .row {margin-left: 0; margin-right: 0;}
 
 	/*==== Links ====*/

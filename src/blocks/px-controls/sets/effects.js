@@ -10,103 +10,18 @@ import {Component} from '@wordpress/element';
 
 //====> Phenix Modules <====//
 import PhenixSelect from '../select';
-import PhenixNumber from "../number";
-import OptionControl from '../switch';
-
-//===> Options List
-//=> entrance-animation, exit-animation, duration, delay
-//=> lazyloading, flow/into, offset, lazygroup, effect-animations
 
 //===> Component <===//
 export default class EffectsSet extends Component {
     render () {
         //===> Properties <===//
+        const PhenixBlocks = window.PhenixBlocks.dataLists;
         const {attributes, options, mainSetter} = this.props;
 
         //===> Define Controls Options <===//
-        const hover_effect = {
-            "Default": [{ "label": "None", "value": ""}],
-
-            "Background" : [
-                { "label": "Gradient-L", "value": "pds-hvr-gradient-move"},
-                { "label": "Gradient-R", "value": "pds-hvr-gradient-move-revert"},
-            ],
-
-            "Scale Up" : [
-                { "label": "Grow-05%", "value": "pds-hvr-scale-05"},
-                { "label": "Grow-10%", "value": "pds-hvr-scale-10"},
-                { "label": "Grow-15%", "value": "pds-hvr-scale-15"},
-                { "label": "Grow-25%", "value": "pds-hvr-scale-25"},
-            ],
-
-            "Shrink Down" : [
-                { "label": "Shrink-05%", "value": "pds-hvr-scale--05"},
-                { "label": "Shrink-10%", "value": "pds-hvr-scale--10"},
-                { "label": "Shrink-15%", "value": "pds-hvr-scale--15"},
-                { "label": "Shrink-25%", "value": "pds-hvr-scale--25"},
-            ],
-
-            "Attention" : [
-                { "label": "Highlight", "value": "pds-hvr-highlight"},
-            ],
-
-            "Animate CSS" : [
-                { "label": "Floating", "value": "pds-hvr-floating"},
-                { "label": "Shaking", "value": "pds-hvr-ringing"},
-                { "label": "Bounce", "value": "pds-hvr-bounce"},
-                { "label": "Flash", "value": "pds-hvr-flash"},
-                { "label": "Pulse", "value": "pds-hvr-pulse"},
-                { "label": "RubberBand", "value": "pds-hvr-rubberBand"},
-                { "label": "ShakeX", "value": "pds-hvr-shakeX"},
-                { "label": "ShakeY", "value": "pds-hvr-shakeY"},
-                { "label": "Tada", "value": "pds-hvr-tada"},
-                { "label": "Jello", "value": "pds-hvr-jello"},
-            ],
-        };
-
-        const animations_effect = {
-            "Default": [{ "label": "None", "value": ""}],
-
-            "Moving" : [
-                { "label": "Floating", "value": "pds-animate-floating"},
-                { "label": "Ringing", "value": "pds-animate-ringing"},
-            ],
-
-            "Background" : [
-                { "label": "Zooming", "value": "bg-animated-zoom"},
-                { "label": "Animate-X", "value": "bg-animated-x"},
-                { "label": "Animate-Y", "value": "bg-animated-y"},
-            ],
-        };
-
-        const box_shadows = {
-            "Default": [{ "label": "None", "value": ""}],
-            
-            "Standard" : [
-                { "label": "DP-1", "value": "bx-shadow-dp-1"},
-                { "label": "DP-2", "value": "bx-shadow-dp-2"},
-                { "label": "DP-3", "value": "bx-shadow-dp-3"},
-                { "label": "DP-4", "value": "bx-shadow-dp-4"},
-                { "label": "DP-5", "value": "bx-shadow-dp-5"},
-                { "label": "DP-1Y", "value": "bx-shadow-dp-1y"},
-                { "label": "DP-2Y", "value": "bx-shadow-dp-2y"},
-            ],
-
-            "Glass Effects" : [
-                { "label": "Tiny", "value": "bx-shadow-gls-dp-1"},
-                { "label": "Small", "value": "bx-shadow-gls-dp-2"},
-                { "label": "Medium", "value": "bx-shadow-gls-dp-3"},
-            ],
-
-            "TailWind" : [
-                { "label": "Standard", "value": "bx-shadow-tw"},
-                { "label": "Small", "value": "bx-shadow-tw-sm"},
-                { "label": "Medium", "value": "bx-shadow-tw-md"},
-                { "label": "Large", "value": "bx-shadow-tw-lg"},
-                { "label": "xLarge", "value": "bx-shadow-tw-xl"},
-                { "label": "Huge", "value": "bx-shadow-tw-xxl"},
-            ],
-        };
+        const hover_effect = PhenixBlocks.effects.hover;
+        const box_shadows = PhenixBlocks.effects.shadows;
+        const animations_effect = PhenixBlocks.effects.animations;
 
         //===> Output <===//
         return <>

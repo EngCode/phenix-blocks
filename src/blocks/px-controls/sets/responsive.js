@@ -25,19 +25,12 @@ import TypographySet from './typography';
 export default class ResponsiveSet extends Component {
     render () {
         //===> Properties <===//
+        const PhenixBlocks = window.PhenixBlocks.dataLists;
         const {attributes, options, screen, mainSetter, flexSetter, styleSetter, typoSetter} = this.props;
         const screenPoint = screen ? `-${screen}` : "";
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
 
         //===> Define Controls Options <===//
-        const component_sizes = [
-            { label: __("Default", "pds-blocks"), value: '' },
-            { label: __("Tiny", "pds-blocks"), value: 'tiny' },
-            { label: __("Small", "pds-blocks"), value: 'small' },
-            { label: __("Normal", "pds-blocks"), value: 'medium' },
-            { label: __("Large", "pds-blocks"), value: 'large' },
-            { label: __("xLarge", "pds-blocks"), value: 'xlarge' },
-        ];
+        const component_sizes = PhenixBlocks.component_sizes;
 
         //===> Output <===//
         return <>

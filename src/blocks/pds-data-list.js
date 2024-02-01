@@ -477,5 +477,109 @@ window.PhenixBlocks.dataLists = {
                 { "label": "rollOut", "value": "rollOut"},
             ],
         },
-    }
+    },
+
+    effects: {
+        hover : {
+            "Default": [{ "label": "None", "value": ""}],
+
+            "Background" : [
+                { "label": "Gradient-L", "value": "pds-hvr-gradient-move"},
+                { "label": "Gradient-R", "value": "pds-hvr-gradient-move-revert"},
+            ],
+
+            "Scale Up" : [
+                { "label": "Grow-05%", "value": "pds-hvr-scale-05"},
+                { "label": "Grow-10%", "value": "pds-hvr-scale-10"},
+                { "label": "Grow-15%", "value": "pds-hvr-scale-15"},
+                { "label": "Grow-25%", "value": "pds-hvr-scale-25"},
+            ],
+
+            "Shrink Down" : [
+                { "label": "Shrink-05%", "value": "pds-hvr-scale--05"},
+                { "label": "Shrink-10%", "value": "pds-hvr-scale--10"},
+                { "label": "Shrink-15%", "value": "pds-hvr-scale--15"},
+                { "label": "Shrink-25%", "value": "pds-hvr-scale--25"},
+            ],
+
+            "Attention" : [
+                { "label": "Highlight", "value": "pds-hvr-highlight"},
+            ],
+
+            "Animate CSS" : [
+                { "label": "Floating", "value": "pds-hvr-floating"},
+                { "label": "Shaking", "value": "pds-hvr-ringing"},
+                { "label": "Bounce", "value": "pds-hvr-bounce"},
+                { "label": "Flash", "value": "pds-hvr-flash"},
+                { "label": "Pulse", "value": "pds-hvr-pulse"},
+                { "label": "RubberBand", "value": "pds-hvr-rubberBand"},
+                { "label": "ShakeX", "value": "pds-hvr-shakeX"},
+                { "label": "ShakeY", "value": "pds-hvr-shakeY"},
+                { "label": "Tada", "value": "pds-hvr-tada"},
+                { "label": "Jello", "value": "pds-hvr-jello"},
+            ],
+        },
+
+        animations : {
+            "Default": [{ "label": "None", "value": ""}],
+
+            "Moving" : [
+                { "label": "Floating", "value": "pds-animate-floating"},
+                { "label": "Ringing", "value": "pds-animate-ringing"},
+            ],
+
+            "Background" : [
+                { "label": "Zooming", "value": "bg-animated-zoom"},
+                { "label": "Animate-X", "value": "bg-animated-x"},
+                { "label": "Animate-Y", "value": "bg-animated-y"},
+            ],
+        },
+
+        shadows : {
+            "Default": [{ "label": "None", "value": ""}],
+            
+            "Standard" : [
+                { "label": "DP-1", "value": "bx-shadow-dp-1"},
+                { "label": "DP-2", "value": "bx-shadow-dp-2"},
+                { "label": "DP-3", "value": "bx-shadow-dp-3"},
+                { "label": "DP-4", "value": "bx-shadow-dp-4"},
+                { "label": "DP-5", "value": "bx-shadow-dp-5"},
+                { "label": "DP-1Y", "value": "bx-shadow-dp-1y"},
+                { "label": "DP-2Y", "value": "bx-shadow-dp-2y"},
+            ],
+
+            "Glass Effects" : [
+                { "label": "Tiny", "value": "bx-shadow-gls-dp-1"},
+                { "label": "Small", "value": "bx-shadow-gls-dp-2"},
+                { "label": "Medium", "value": "bx-shadow-gls-dp-3"},
+            ],
+
+            "TailWind" : [
+                { "label": "Standard", "value": "bx-shadow-tw"},
+                { "label": "Small", "value": "bx-shadow-tw-sm"},
+                { "label": "Medium", "value": "bx-shadow-tw-md"},
+                { "label": "Large", "value": "bx-shadow-tw-lg"},
+                { "label": "xLarge", "value": "bx-shadow-tw-xl"},
+                { "label": "Huge", "value": "bx-shadow-tw-xxl"},
+            ],
+        },
+    },
+
+    component_sizes : [
+        { label: __("Default", "pds-blocks"), value: '' },
+        { label: __("Tiny", "pds-blocks"), value: 'tiny' },
+        { label: __("Small", "pds-blocks"), value: 'small' },
+        { label: __("Normal", "pds-blocks"), value: 'medium' },
+        { label: __("Large", "pds-blocks"), value: 'large' },
+        { label: __("xLarge", "pds-blocks"), value: 'xlarge' },
+    ],
+
+    sizes_range : {
+        //===> Define Width Sizes <===//
+        width_range : [50, 75, 100, 125, 150, 200, 225, 250, 275, 300, 320, 360, 390, 768 ,570 ,480 ,420, "auto", "fluid"],
+        max_width_range : [1920, 1600, 1400, 1366, 1200, 1100, 768, 640, 570, 480, 420, 390, 360, 320, 280, 260, 200, 180],
+        //===> Define Height Sizes <===//
+        height_range : ["auto", "25%", "50%", "75%", "100%", "120%", "150%", "175%", "200%", "25vh", "50vh", "75vh", "100vh"],
+        max_height_range : ["auto", "25%", "50%", "75%", "100%", "25vh", "50vh", "75vh", "100vh"],
+    },
 };

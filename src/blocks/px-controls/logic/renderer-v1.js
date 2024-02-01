@@ -5,14 +5,13 @@ const OptionsRenderer = (options) => {
 
     //===> Rendering Checkers <===//
     const container = {className: ""}, 
-          CustomCSSProps = {},
+          CustomCSS = {},
           isPadding = ['pdt', 'pds', 'pde', 'pdb'],
           isMargin  = ['mt', 'mb', 'ms', 'me'],
           isObjectVal = (option_value) => {return typeof option_value === 'object'},
           isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
           isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
-          sizeRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`,
-          colsRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) === 13 ? "" : `-${size}`;
+          colsRender = (size) => parseInt(size) === 0 ? `-auto` : parseInt(size) > 12 ? "" : `-${size}`;
 
     //===> Rendering Options <===//
     Object.entries(attributes).forEach(([option_name, option_value]) => {
@@ -29,7 +28,7 @@ const OptionsRenderer = (options) => {
 
             //===> Columns Size <===//
             else if (isColumn && option_name === "size") {
-                blockProps.className += ` col${sizeRender(option_value)}`;
+                blockProps.className += ` col${colsRender(option_value)}`;
             }
 
             //===> Data Modal <===//
@@ -217,7 +216,7 @@ const OptionsRenderer = (options) => {
                     else if (sub_option.includes("pos-")) {
                         //===> Custom Positions <===//
                         if (parseInt(sub_value) > 50 || parseInt(sub_value) < 0) {
-                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
+                            CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
                         //===> Name Positions <===//
@@ -228,7 +227,7 @@ const OptionsRenderer = (options) => {
                     else if (isMargin.some(css => sub_option.includes(css))) {
                         //===> Check Value Range <===//
                         if (parseInt(sub_value) > 100) {
-                            CustomCSSProps[`--${sub_option}`] = `${sub_value}px`;
+                            CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value}`;
                         }
                         //===> for Auto <===//
@@ -253,7 +252,7 @@ const OptionsRenderer = (options) => {
                     
                     //===> Responsive Columns Sizes <===//
                     else if (isColumn && option_name === "responsive" && sub_option.includes('size-')) {
-                        blockProps.className += ` ${sub_option.replace("size", "col")}${sizeRender(sub_value)}`;
+                        blockProps.className += ` ${sub_option.replace("size", "col")}${colsRender(sub_value)}`;
                     }
 
                     //===> Other Values <===//
@@ -282,7 +281,7 @@ const OptionsRenderer = (options) => {
     });
 
     //===> CSS Attributes Options <===//
-    Object.entries(CustomCSSProps).forEach(([option_name, option_value]) => {
+    Object.entries(CustomCSS).forEach(([option_name, option_value]) => {
         blockProps.style[`${option_name}`] = option_value;
     });
 

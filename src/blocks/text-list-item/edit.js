@@ -1,6 +1,8 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
+import {createBlock} from '@wordpress/blocks';
 import {PanelBody, Toolbar} from '@wordpress/components';
+import { useDispatch } from '@wordpress/data';
 import {RichText, BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -23,7 +25,7 @@ import EffectsSet from '../px-controls/sets/effects';
 
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, setAttributes, clientId }) {
     //====> Attributes Renderers <====//
     const PhenixBlocks = window.PhenixBlocks;
     const OptionsRenderer = PhenixBlocks.OptionsRenderer;
@@ -45,6 +47,19 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Layout Options <===//
     blockProps.className += `${renderProps.container.className}`;
+
+    //===> Insert New Block when Hit Enter <===//
+    const {insertAfterBlock} = useDispatch('core/block-editor');
+    const newBlockInserter = (event) => {
+        if (event.key === 'Enter') {
+            // Prevent the default behavior of the Enter key (line break)
+            event.preventDefault();
+            // Create a new block
+            const newBlock = createBlock('phenix/text-list-item', { ...attributes, content: '' });
+            // Insert the new block after the current block
+            insertAfterBlock(clientId);
+        }
+    };
 
     //===> Render <===//
     return (<>
@@ -171,7 +186,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/*====> Edit Layout <====*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
-            <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+            <RichText {...blockProps} onKeyDown={newBlockInserter} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
         }
     </>);
 }

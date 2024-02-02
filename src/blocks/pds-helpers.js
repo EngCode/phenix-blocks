@@ -462,7 +462,7 @@ window.PhenixBlocks = {
             //===> Run View Script <===//
             viewScript(window.frames['editor-canvas'].document);
 
-            //===> Load Assets in Frame <====//
+            //===> Load Assets in Canvas Frame <====//
             if (!window.PhenixBlocks.canvasAssetsLoaded) {
                 let trying_times = 0;
                 let loadAssetTimer = setInterval(()=> {

@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
     
     //===> Set Default Values <===//
     blockProps.className += ` tx-align-center inline-block`;
-    blockProps.className += `${renderProps.container.className}`;
+    blockProps.className += ` ${renderProps.container.className}`;
     if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 
     //===> Render <===//

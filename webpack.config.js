@@ -27,6 +27,7 @@ module.exports = {
         'icon-element': './src/blocks/icon-element/index.js',
         'logical-block': './src/blocks/logical-block/index.js',
         'media-element': './src/blocks/media-element/index.js',
+        'text-list-item': './src/blocks/text-list-item/index.js',
         // 'pds-progress': './src/blocks/pds-progress/index.js',
         // 'pds-accordion': './src/blocks/pds-accordion/index.js',
         // 'pds-dropdowns': './src/blocks/pds-dropdowns/index.js',

@@ -1,0 +1,60 @@
+{
+  "apiVersion": 2,
+  "name": "phenix/text-list-item",
+  "version": "1.0.0",
+  "title": "List Item",
+  "keywords": [
+    "pds",
+    "pds-blocks",
+    "inline",
+    "li"
+  ],
+  "category": "design",
+  "description": "Text <li> element for Lists.",
+  "supports": {
+    "html": false,
+    "__experimentalOnEnter": true,
+    "__experimentalMetadata": true
+  },
+  "attributes": {
+    "id": {
+      "type": "string",
+      "default": ""
+    },
+    "tagName": {
+      "type": "string",
+      "default": "li"
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "setting": {
+      "type": "object",
+      "default": {}
+    },
+    "typography": {
+      "type": "object",
+      "default": {}
+    },
+    "style": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {}
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true
+    }
+  },
+  "textdomain": "pds-blocks",
+  "editorScript": "file:./index.js"
+}

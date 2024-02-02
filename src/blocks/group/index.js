@@ -32,7 +32,7 @@ registerBlockType(metadata, {
         const TagName = attributes.style.isLink ? "a" : attributes.tagName;
 
         //===> Layout Options <===//
-        blockProps.className += `${renderProps.container.className}`;
+        blockProps.className += ` ${renderProps.container.className}`;
 
         //===> Add Links/Lightbox URL <===//
         if (attributes.style.isLink) {

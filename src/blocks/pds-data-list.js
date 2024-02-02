@@ -129,6 +129,7 @@ window.PhenixBlocks.dataLists = {
             { "label": "Paragraph", "value": "paragraph"},
             { "label": "List Bullets", "value": "list"},
             { "label": "List Numbers", "value": "list-numbers"},
+            { "label": "List Custom", "value": "list-custom"},
         ],
 
         headlines: [

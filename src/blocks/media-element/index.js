@@ -33,7 +33,7 @@ registerBlockType(metadata, {
         if (attributes.style.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#";
 
         //===> Layout Options <===//
-        blockProps.className += `${renderProps.container.className}`;
+        blockProps.className += ` ${renderProps.container.className}`;
 
         //===> Default Options <===//
         if(!attributes.setting.type) blockProps['data-type'] = "image";

@@ -116,13 +116,16 @@
 }
 
 /*==== Icons List ====*/
-.icons-list li {
-    position: relative;
-    padding-#{$direction-start}: calc(1em + 8px)!important;
-    &::before {
-        top: 0;
-        position: absolute;
-        #{$direction-start}:0;
+.icons-list {
+    @extend %reset-list;
+    li {
+        position: relative;
+        padding-#{$direction-start}: calc(1em + 10px)!important;
+        &::before {
+            top: 0;
+            position: absolute;
+            #{$direction-start}:0;
+        }
     }
 }
 

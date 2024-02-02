@@ -217,7 +217,7 @@ window.PhenixBlocks = {
                             blockProps['data-icon'] = sub_value;
                             blockProps.className += ` icons-list`;
                         }
-    
+
                         //===> Positions Values <===//
                         else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
@@ -433,8 +433,15 @@ window.PhenixBlocks = {
 
                 //===> Run Utilites <===//
                 Phenix(the_document).utilities("form");
-                Phenix(the_document).utilities("icons");
-    
+
+                //===> Icons List <===//
+                the_document.querySelectorAll('li[data-icon]').forEach((list) => {
+                    if (list.getAttribute('data-icon')) {
+                        let classes = list.getAttribute('data-icon').split(" ") || [];
+                        list.classList.add(...classes);
+                    }
+                });
+
                 //====> Clear Timer <===//
                 time_counter += 1;
                 if (time_counter > 5) clearInterval(pds_elements_timer);

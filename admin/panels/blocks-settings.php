@@ -87,6 +87,11 @@
                     "title" => 'Text Elements',
                     "icon"  => $icons_url.'inline-elements.svg',
                 ),
+                array(
+                    "name"  => 'text_list_item_block',
+                    "title" => 'Text List Item',
+                    "icon"  => $icons_url.'inline-elements.svg',
+                ),
             ));
         ?>
     </div>

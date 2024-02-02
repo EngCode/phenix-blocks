@@ -31,7 +31,7 @@ registerBlockType(metadata, {
 
         //===> Set Default Values <===//
         blockProps.className += ` tx-align-center inline-block`;
-        blockProps.className += `${renderProps.container.className}`;
+        blockProps.className += ` ${renderProps.container.className}`;
         if (attributes.style.isLink) blockProps.href = attributes.style.url || "#";
         if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 

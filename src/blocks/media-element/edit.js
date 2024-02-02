@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes }) {
     const uniqueKey = blockProps.id;
 
     //===> Layout Options <===//
-    blockProps.className += `${renderProps.container.className}`;
+    blockProps.className += ` ${renderProps.container.className}`;
 
     //===> Default Options <===//
     if(!attributes.setting.type) blockProps['data-type'] = "image";

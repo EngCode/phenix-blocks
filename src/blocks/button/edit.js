@@ -50,7 +50,7 @@ export default function Edit({ attributes, setAttributes }) {
     const uniqueKey = blockProps.id;
 
     //===> Set Layout Options <===//
-    blockProps.className += `${renderProps.container.className}`;
+    blockProps.className += ` ${renderProps.container.className}`;
     //===> Set Links/Lightbox URL <===//
     if (attributes.style.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
 

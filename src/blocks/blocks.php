@@ -147,195 +147,55 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('core-block-remover', plugin_dir_url(__FILE__).'core-blocks-remover.js', $blocksDependencies, NULL , true);
         endif;
 
-        //====> Phenix Section <====//
-        if (get_option('container_block')) {
-            wp_enqueue_script('section', $blocksPath.'container/index.js', $blocksDependencies, NULL , true);
-        }
+        //====> Define Phenix Blocks <====//
+        $pds_blocks_list = array(
+            "logo_block" => 'logo',
+            "group_block" => 'group',
+            "row_block" => 'grid-row',
+            "column_block" => 'grid-column',
+            "container_block" => 'container',
+            "popups_block" => 'popup',
+            "button_block" => 'button',
+            "text_elements_block" => "text",
+            "text_list_item_block" => "text-list-item",
+            "media_element_block" => 'media-element',
+            "icon_element_block" => 'icon-element',
 
-        //====> Phenix Group <====//
-        if (get_option('group_block')) {
-            wp_enqueue_script('px-group', $blocksPath.'group/index.js', $blocksDependencies, NULL , true);
-        }
+            "tabs_block" => 'pds-tabs',
+            "dropdowns_block" => 'pds-dropdowns',
+            "accordion_block" => 'pds-accordion',
+            "pds_progress_block" => 'pds-progress',
+            "pds_gmaps_block" => 'pds-google-maps',
+            "pds_timer_block" => 'pds-timer',
+            "pds_form_block" => 'pds-form',
+            "pds_languages_block" => 'pds-languages',
+        );
 
-        //====> Phenix Logo <====//
-        if (get_option('logo_block')) {
-            wp_enqueue_script('px-logo', $blocksPath.'logo/index.js', $blocksDependencies, NULL , true);
+        //====> Loop on the Blocks <====//
+        foreach ($pds_blocks_list as $block_option => $block_name) {
+            if (!get_option($block_option)) { continue; }
+            wp_enqueue_script($block_name, $blocksPath.$block_name.'/index.js', $blocksDependencies, NULL , true);
         }
-
-        //====> Phenix Menu <====//
-        if (get_option('navigation_block')) {
-            wp_enqueue_script('px-navigation', $blocksPath.'navigation/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Phenix Row <====//
-        if (get_option('row_block')) {
-            wp_enqueue_script('px-row', $blocksPath.'grid-row/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Phenix Column <====//
-        if (get_option('column_block')) {
-            wp_enqueue_script('grid-column', $blocksPath.'grid-column/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Phenix Head <====//
-        if (get_option('head_block')) {
-            wp_enqueue_script('page-head', $blocksPath.'page-head/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Phenix Query <====//
-        if (get_option('query_block')) {
-            wp_enqueue_script('px-query', $blocksPath.'query/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Taxonomies List <====//
-        if (get_option('taxonomies_block')) {
-            wp_enqueue_script('pds-taxonomies', $blocksPath.'taxonomies/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Theme Part <====//
-        if (get_option('theme_part_block')) {
-            wp_enqueue_script('theme-part', $blocksPath.'theme-part/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Popups <====//
-        if (get_option('popups_block')) {
-            wp_enqueue_script('popup', $blocksPath.'popup/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Phenix Button <====//
-        if (get_option('button_block')) {
-            wp_enqueue_script('px-button', $blocksPath.'button/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Inline Elements <====//
-        // if (get_option('inline_elements_block')) {
-        //     wp_enqueue_script('inline-elements', $blocksPath.'inline-elements/index.js', $blocksDependencies, NULL , true);
-        // }
-
-        //====> Text Elements <====//
-        if (get_option('text_elements_block')) {
-            wp_enqueue_script('text-elements', $blocksPath.'text/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Media Element <====//
-        if (get_option('media_element_block')) {
-            wp_enqueue_script('media-element', $blocksPath.'media-element/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Icon Element <====//
-        if (get_option('icon_element_block')) {
-            wp_enqueue_script('icon-element', $blocksPath.'icon-element/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> Custom Code <====//
-        if (get_option('custom_code_block')) {
-            wp_enqueue_script('custom-code', $blocksPath.'custom-code/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Logical Block <====//
-        if (get_option('pds_logical_block')) {
-            wp_enqueue_script('logical-block', $blocksPath.'logical-block/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Users Query <====//
-        if (get_option('pds_users_query_block')) {
-            wp_enqueue_script('users-query', $blocksPath.'users-query/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Tabs <====//
-        if (get_option('tabs_block')) {
-            wp_enqueue_script('pds-tabs', $blocksPath.'pds-tabs/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Dropdowns <====//
-        if (get_option('dropdowns_block')) {
-            wp_enqueue_script('pds-dropdowns', $blocksPath.'pds-dropdowns/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Accordions <====//
-        if (get_option('accordion_block')) {
-            wp_enqueue_script('pds-accordion', $blocksPath.'pds-accordion/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Progress Bars <====//
-        if (get_option('pds_progress_block')) {
-            wp_enqueue_script('pds-tabs', $blocksPath.'pds-progress/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Google Maps <====//
-        if (get_option('pds_gmaps_block')) {
-            wp_enqueue_script('pds-google-maps', $blocksPath.'pds-google-maps/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Timer <====//
-        if (get_option('pds_timer_block')) {
-            wp_enqueue_script('pds-timer', $blocksPath.'pds-timer/index.js', $blocksDependencies, NULL , true);
-        }
-        
-        //====> PDS Forms <====//
-        if (get_option('pds_form_block')) {
-            wp_enqueue_script('pds-form', $blocksPath.'pds-form/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> PDS Languages <====//
-        if (get_option('pds_languages_block')) {
-            wp_enqueue_script('pds-languages', $blocksPath.'pds-languages/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Search Query <====//
-        if (get_option('search_query_block')) {
-            wp_enqueue_script('pds-search-query', $blocksPath.'pds-search-query/index.js', $blocksDependencies, NULL , true);
-        }
-
-        //====> Sidebar Options <====//
-        // wp_enqueue_script('pds-se-option', $blocksPath.'pds-se-option/index.js', array('wp-blocks', 'wp-element', 'wp-edit-site', 'wp-plugins'), NULL , true);
-        // wp_enqueue_script('pds-pe-options', $blocksPath.'pds-pe-options/index.js', array('wp-blocks', 'wp-element', 'wp-editor', 'wp-plugins'), NULL , true);
     }
-
+    
     add_action('enqueue_block_editor_assets', 'phenix_blocks');
 endif;
 
-//====> Phenix Navigation <====//
-if (get_option('navigation_block')) {
-    include(dirname(__FILE__) . '/navigation/index.php');
-}
+//===> Define Dynamic Blocks <===//
+$pds_dynamic_blocks = array(
+    "query_block" => 'query',
+    "head_block" => 'page-head',
+    "navigation_block" => 'navigation',
+    "theme_part_block" => 'theme-part',
+    "taxonomies_block" => 'taxonomies',
+    "pds_logical_block" => 'logical-block',
+    "pds_users_query_block" => 'users-query',
+    "custom_code_block" => 'custom-code',
+    "search_query_block" => 'pds-search-query',
+);
 
-//====> Phenix Page-Head <====//
-if (get_option('head_block')) {
-    include(dirname(__FILE__) . '/page-head/index.php');
-}
-
-//====> Phenix Query <====//
-if (get_option('query_block')) {
-    include(dirname(__FILE__) . '/query/index.php');
-}
-
-//====> Taxonomies List <====//
-if (get_option('taxonomies_block')) {
-    include(dirname(__FILE__) . '/taxonomies/index.php');
-}
-
-//====> Theme Part <====//
-if (get_option('theme_part_block')) {
-    include(dirname(__FILE__) . '/theme-part/index.php');
-}
-
-//====> Logical Block <====//
-if (get_option('pds_logical_block')) {
-    include(dirname(__FILE__) . '/logical-block/index.php');
-}
-
-//====> Users Query <====//
-if (get_option('pds_users_query_block')) {
-    include(dirname(__FILE__) . '/users-query/index.php');
-}
-
-//====> Custom Code <====//
-if (get_option('custom_code_block')) {
-    include(dirname(__FILE__) . '/custom-code/index.php');
-}
-
-//====> Search Query <====//
-if (get_option('search_query_block')) {
-    include(dirname(__FILE__) . '/pds-search-query/index.php');
+//===> Loop on the Dynamic Blocks <===//
+foreach ($pds_dynamic_blocks as $block_option => $block_name) {
+    if (!get_option($block_option)) { continue; }
+    include(dirname(__FILE__) . '/'.$block_name.'/index.php');
 }

@@ -47,9 +47,9 @@ export default function Edit({ attributes, setAttributes}) {
 
     //===> Layout Options <===//
     if (attributes.isSection) {
-        innerBlocksProps.className += `${renderProps.container.className}`; 
+        innerBlocksProps.className += ` ${renderProps.container.className}`; 
     } else {
-        blockProps.className += `${renderProps.container.className}`;
+        blockProps.className += ` ${renderProps.container.className}`;
     }
 
     //===> Full Width Editing <===//

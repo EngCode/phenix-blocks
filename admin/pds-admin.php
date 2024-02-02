@@ -165,6 +165,7 @@
             array('pds_logical_block', 'pds-admin', true),
             array('pds_users_query_block', 'pds-admin', true),
             array('text_elements_block', 'pds-admin', true),
+            array('text_list_item_block', 'pds-admin', true),
             
             array('search_query_block', 'pds-admin', true),
             array('tabs_block', 'pds-admin', true),

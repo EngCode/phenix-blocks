@@ -33,7 +33,7 @@ registerBlockType(metadata, {
         const blockProps = renderProps.blockProps;
 
         //===> Layout Options <===//
-        if (!attributes.isSection) blockProps.className += `${renderProps.container.className}`;
+        if (!attributes.isSection) blockProps.className += ` ${renderProps.container.className}`;
 
         //===> Render <===//
         return (

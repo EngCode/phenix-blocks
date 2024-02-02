@@ -1,7 +1,7 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import {PanelBody, Toolbar} from '@wordpress/components';
-import {RichText, BlockControls, InspectorControls, useBlockProps, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
+import {RichText, BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps,__experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -43,11 +43,16 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
     const blockProps = renderProps.blockProps;
+    const innerBlocksProps = useInnerBlocksProps(blockProps, {allowedBlocks: ['phenix/text-list-item']});
     const uniqueKey = blockProps.id;
     const TagName = attributes.tagName;
 
     //===> Layout Options <===//
-    blockProps.className += `${renderProps.container.className}`;
+    if (attributes.type === "list-custom") {
+        innerBlocksProps.className += ` ${renderProps.container.className} reset-list`;
+    } else {
+        blockProps.className += ` ${renderProps.container.className}`;
+    }
 
     //===> Render <===//
     return (<>
@@ -208,6 +213,10 @@ export default function Edit({ attributes, setAttributes }) {
                 <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ul"} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             : attributes.type === "list-numbers" ?
                 <RichText.Content {...blockProps} multiline="li" tagName={"ol"} value={attributes.content} />
+            : attributes.type === "list-custom" ?
+                <div {...blockProps}>
+                    <ul {...innerBlocksProps}></ul>
+                </div>
             : 
                 <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>

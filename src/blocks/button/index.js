@@ -38,7 +38,7 @@ registerBlockType(metadata, {
         const TagName = attributes.isLink ? "a" : "button";
 
         //===> Add Layout Options <===//
-        blockProps.className += `${renderProps.container.className}`;        
+        blockProps.className += ` ${renderProps.container.className}`;        
         //===> Add Button Title <===//
         attributes.type.includes("square") ? blockProps.title = attributes.label : null;
         //===> Add Links/Lightbox URL <===//

@@ -177,7 +177,6 @@ PhenixElements.prototype.utilities = function (options?:{
         }, true);
     }
     
-
     //====> Dynamic Word Coloring <====//
     if (type.includes("text") || type === "all") {
         //====> Dynamic Word Coloring <====//

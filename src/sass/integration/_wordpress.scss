@@ -123,3 +123,5 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     };
 }
 
+/*==== Group Block ====*/
+a.wp-block-phenix-group:not(.hidden):not(.display-inline-block):not(.flexbox):not(.display-flex) {display: block;}

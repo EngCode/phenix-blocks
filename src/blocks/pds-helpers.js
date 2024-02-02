@@ -371,6 +371,8 @@ window.PhenixBlocks = {
     },
 
     //===> Component Builder <===//
+    canvasAssetsLoaded: false,
+
     componentsBuilder : () => {
         //===> Create Timestamp to Find the Elements <===//
         setTimeout(() => {
@@ -406,7 +408,7 @@ window.PhenixBlocks = {
                     Phenix(element).multimedia();
                 });
     
-                //===> Run Sliders <===//
+                //===> Contain Queries Sliders <===//
                 the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
                     //===> Mark as Editing Mode <===//
                     element.classList.add('edit-mode');
@@ -424,28 +426,6 @@ window.PhenixBlocks = {
                     }
     
                     slider_cols_fixer(element);
-    
-                    //===> Stretch Fix <===//
-                    // let slider_element = element.querySelector(".splide__list"),
-                    //===> Slides List Finder <===//
-                    // slider_element_finder = setInterval(() => {
-                    //     if (!slider_element) {
-                    //         slider_cols_fixer(element);
-                    //         slider_element = element.querySelector(".splide__list");
-                    //     } else {
-                    //         //===> Assign a Max Height for Stretch <===//
-                    //         slider_element.style.maxHeight = Phenix(slider_element).height();
-    
-                    //         //===> Assign Columns Sizes <===//
-                    //         slider_cols_fixer(slider_element);
-                    //         element.classList.forEach(class_name => class_name.includes('row-cols') || class_name.includes('flow-') ? element.classList.remove(class_name) : null);
-    
-                    //         //===> Clear Timer <===//
-                    //         clearInterval(slider_element_finder);
-                    //     }
-                    // }, 100);
-                    //===> Run the Slider <===//
-                    // Phenix(element).slider({autoplay: false});
                 });
     
                 //===> Run Menus <===//
@@ -493,16 +473,18 @@ window.PhenixBlocks = {
                             }
                         };
     
-                        //===> Clear Timer if Loaded <===//
-                        let pdsPrimaryFontsCheck = window.frames['editor-canvas'].document.querySelectorAll("#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css");
+                        //===> Check if the Assets Exist or Not <===//
+                        let pdsAssetsTargets = "#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css",
+                            pdsPrimaryFontsCheck = window.frames['editor-canvas'].document.querySelectorAll(pdsAssetsTargets);
                         
+                        //===> Clear Timer if Loaded <===//
                         if (pdsPrimaryFontsCheck.length > 0) {
                             window.PhenixBlocks.canvasAssetsLoaded = true;
                             clearInterval(loadAssetTimer);
                         };
     
                         //===> When the Frame is Found Load Assets <===//
-                        frameAssetsLoader("#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css");
+                        frameAssetsLoader(pdsAssetsTargets);
                     }
                 }, 300);
             }
@@ -510,6 +492,4 @@ window.PhenixBlocks = {
             window.document ? viewScript(window.document) : null;
         }
     },
-
-    canvasAssetsLoaded: false,
 };

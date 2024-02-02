@@ -37,14 +37,17 @@ registerBlockType(metadata, {
             //===> Wrapped in Link
             if (attributes.style.isLink) {
                 //===> Link Properties <===//
-                let linkProps = {
-                    target: blockProps['target'] || "_self",
-                    target: blockProps['rel'] || "noopener",
-                };
+                let linkProps = {};
 
                 //===> Remove Target & Rel <===//
-                blockProps['target'] = null;
-                blockProps['rel'] = null;
+                if(blockProps['target']) {
+                    blockProps['target'] = null;
+                    linkProps.target = blockProps['target'];
+                } else if(blockProps['rel']) {
+                    blockProps['rel'] = null;
+                    linkProps.rel = !blockProps['target'] ? blockProps['rel'] : "noopener";
+                }
+
                 if (attributes.style.url) blockProps.className.replace(attributes.style.url, "");
 
                 //===> Render <===//

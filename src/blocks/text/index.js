@@ -36,7 +36,7 @@ registerBlockType(metadata, {
         const RenderElement = () => {
             //===> Wrapped in Link
             if (attributes.style.isLink) {
-                return <a class="display-block color-inherit" href={attributes.style.url || "#none"}>
+                return <a class="display-block color-inherit tx-link-wrapper" href={attributes.style.url || "#none"}>
                     <RichText.Content {...blockProps} tagName={TagName} value={attributes.content} />
                 </a>;
             } else {

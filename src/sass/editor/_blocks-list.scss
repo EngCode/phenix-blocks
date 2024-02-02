@@ -30,23 +30,23 @@
 	a, button {text-decoration: none;}
 
 	//=== Editor Titles Reset Fix ====//
-	h1:not([class*="fs-"]):not([class*="display-"]),
-	.h1:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(32);}
+	h1:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h1:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(32);}
     
-	h2:not([class*="fs-"]):not([class*="display-"]),
-	.h2:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(28);}
+	h2:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h2:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(28);}
     
-	h3:not([class*="fs-"]):not([class*="display-"]),
-	.h3:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(25);}
+	h3:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h3:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(25);}
     
-	h4:not([class*="fs-"]):not([class*="display-"]),
-	.h4:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(23);}
+	h4:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h4:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(23);}
     
-	h5:not([class*="fs-"]):not([class*="display-"]),
-	.h5:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(20);}
+	h5:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h5:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(20);}
     
-	h6:not([class*="fs-"]):not([class*="display-"]),
-	.h6:not([class*="fs-"]):not([class*="display-"]) {font-size: REM(17);}
+	h6:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]),
+	.h6:not([class*="fs-"]):not([class*="display-h"]):not([class*="display-md-h"]):not([class*="display-lg-h"]):not([class*="display-xl-h"]) {font-size: REM(17);}
 	
 	h1:not([class*="mt-"]), h2:not([class*="mt-"]), h3:not([class*="mt-"]),
 	h4:not([class*="mt-"]), h5:not([class*="mt-"]), h6:not([class*="mt-"]) {margin-top: 0;}

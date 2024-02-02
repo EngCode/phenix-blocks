@@ -36,7 +36,19 @@ registerBlockType(metadata, {
         const RenderElement = () => {
             //===> Wrapped in Link
             if (attributes.style.isLink) {
-                return <a class="display-block color-inherit tx-link-wrapper" href={attributes.style.url || "#none"}>
+                //===> Link Properties <===//
+                let linkProps = {
+                    target: blockProps['target'] || "_self",
+                    target: blockProps['rel'] || "noopener",
+                };
+
+                //===> Remove Target & Rel <===//
+                blockProps['target'] = null;
+                blockProps['rel'] = null;
+                blockProps.className.replace(attributes.style.url, "");
+
+                //===> Render <===//
+                return <a {...linkProps} class="display-block color-inherit tx-link-wrapper" href={attributes.style.url || "#none"}>
                     <RichText.Content {...blockProps} tagName={TagName} value={attributes.content} />
                 </a>;
             } else {

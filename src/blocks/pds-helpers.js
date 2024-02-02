@@ -195,7 +195,7 @@ window.PhenixBlocks = {
                     //===> for Normal strings and Arrays <===//
                     else if (isNormalValue(sub_value)) {
                         //===> Exclude Options <===//
-                        const excluded = ["dimensions"];
+                        const excluded = ["dimensions", "url", ""];
                         if (excluded.some(opt => opt === sub_option)) return;
     
                         //===> Postion Sticky <===//
@@ -430,6 +430,10 @@ window.PhenixBlocks = {
     
                 //===> Run Menus <===//
                 the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
+
+                //===> Run Utilites <===//
+                Phenix(the_document).utilities("form");
+                Phenix(the_document).utilities("icons");
     
                 //====> Clear Timer <===//
                 time_counter += 1;

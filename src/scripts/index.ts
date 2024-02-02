@@ -552,20 +552,21 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     };
 
     /*====> CSS/JS Importer <====*/
-    import = (id:string, type:string, source:string, callback:any, isIntegrated:boolean) => {
+    import = (id:string, tag:string, source:string, callback:any, isIntegrated:boolean) => {
         //===> if Already Exist Quit <===//
-        if (document.querySelector(`#${id}-phenix-${type}`)) return;
+        if (document.querySelector(`#${id}-phenix-${tag}`)) return;
+       
 
         //===> Create Element <===//
-        let element  = document.createElement(type),
+        let element  = document.createElement(tag),
             libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),
             trueUrl = `${isIntegrated ? libPath : ""}${source}`;
 
         //===> Set ID <===//
-        element.setAttribute('id', `${id}-phenix-${type === "link" ? "css" : type}`);
+        element.setAttribute('id', `${id}-phenix-${tag === "link" ? "css" : tag === "js" ? "script" : tag}`);
 
         //===> Set Source <===//
-        if (type === "script") {
+        if (tag === "script" || tag === "js") {
             element.setAttribute("src", trueUrl);
             element.setAttribute("async", "");
             //===> Append Element <===//
@@ -573,7 +574,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         }
 
         //===> for CSS <===//
-        else if (type === "link" || type === "css") {
+        else if (tag === "link" || tag === "css") {
             element.setAttribute("href", trueUrl);
             element.setAttribute("rel", "stylesheet");
             //===> Append Element <===//

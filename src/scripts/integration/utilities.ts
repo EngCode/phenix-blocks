@@ -9,6 +9,7 @@
 
 /*====> Phenix Object <====*/
 import Phenix, { PhenixElements } from "..";
+declare var Masonry:any;
 
 /*====> Phenix Utilities <====*/
 PhenixElements.prototype.utilities = function (options?:{
@@ -123,11 +124,6 @@ PhenixElements.prototype.utilities = function (options?:{
                 //====> Create Remove Button <====//
                 if (rows) rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
             }, 1000);
-
-            //====> Get Pre-Set Data <====//
-            // let repeaterObj = [
-            //     {},
-            // ];
         });
     }
 
@@ -173,14 +169,14 @@ PhenixElements.prototype.utilities = function (options?:{
     }
 
     //====> Masonry Grid <====//
-    if (type.includes("form") || type === "grid") Phenix('.px-masonry').forEach((gallery:HTMLElement) => {
-        //===> Wait for Loading <===//
-        setTimeout(() => {
-            let max_height = Phenix(gallery).height();
-            gallery.style.maxHeight = `${max_height}px`;
-            gallery.classList.add('flow-columns');
-        }, 500);
-    });
+    if (type.includes("all") || type === "grid") {
+        //===> Check for MAsonry Elements <===//
+        if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
+            var masonry = new Masonry('.px-masonry', {itemSelector: '[class*="col"]'});
+            console.log(masonry);
+        }, true);
+    }
+    
 
     //====> Dynamic Word Coloring <====//
     if (type.includes("text") || type === "all") {
@@ -254,16 +250,6 @@ PhenixElements.prototype.utilities = function (options?:{
                 element.style.setProperty('--shadow-color-light', lighterRgb);
             });
         }, 1000);
-
-        //====> Max Text Length <====//
-        // Phenix('[data-max-text]').forEach((element:any) => {
-        //     //===> Element Data <===//
-        //     let text = element.textContent,
-        //         max  = parseInt(element.getAttribute('data-max-text'));
-    
-        //     //===> check count <===//
-        //     if (text.length > max) element.textContent = text.slice(0, max) + '...';
-        // });
 
         //====> Custom Colored Titles <====//
         const pds_words_wrapper = (str, classes, num) => {

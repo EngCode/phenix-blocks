@@ -35,7 +35,10 @@ registerBlockType(metadata, {
         blockProps.className += `${renderProps.container.className}`;
 
         //===> Add Links/Lightbox URL <===//
-        if (attributes.style.isLink) blockProps.href = attributes.style.url || "#none";
+        if (attributes.style.isLink) {
+            blockProps.href = attributes.style.url || "#none";
+            blockProps.className.replace(attributes.style.url, "");
+        }
 
         //===> Render <===//
         return (

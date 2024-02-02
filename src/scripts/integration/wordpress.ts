@@ -4,9 +4,7 @@
 
 /*====> Phenix JS <====*/
 import Phenix from "..";
-declare var wp:any,
-    PDS_WP_KEY:any,
-    window:any;
+declare var wp:any, PDS_WP_KEY:any, window:any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(window).on("load", (loaded) => {
@@ -139,19 +137,6 @@ Phenix(window).on("load", (loaded) => {
         }));
     };
 
-    // editorAssets = () => {
-    //     //====> Add Design Options Classes <===//
-    //     document.body.classList.add('phenix-wp-design');
-
-    //     //===> Removes Editor Reset styles <===//
-    //     let common_css    = `#common-rtl-css, #common-css`,
-    //         reset_styles  = `#wp-reset-editor-styles-rtl-css, #wp-reset-editor-styles-css`,
-    //         block_library = `#wp-block-library-theme-css, #wp-block-library-theme-rtl-css`;
-
-    //     //===> Run Files Remover <===//
-    //     Phenix(`${reset_styles}, ${common_css}, ${block_library}`).forEach((file:HTMLElement) => file.remove());
-    // };
-
     /*====> Unblock Phenix <====*/
     document.querySelector('#phenix-js')?.removeAttribute('async');
 
@@ -192,25 +177,13 @@ Phenix(window).on("load", (loaded) => {
         
         //===> Run Scripts <===//
         Phenix(document).init();
-
-        //====> Hide WooCommerce Blocks <====//
-        // Phenix("#menu-settings li a").forEach((link:HTMLElement) => {
-        //     if (link.getAttribute("href").includes("blocks-product-editor-for-woocommerce")) {
-        //         Phenix(link.parentNode).css({"display": "none"});
-        //     }
-        // });
     }
 
     /*====> for Block Editor <====*/
-    // if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
-    //     //===> Editor Assets <====//
-    //     window.onload = editorAssets();
-    //     // let cf7Cleaner = setInterval(() => fixCF7(), 1000);
-    //     // setTimeout(() => clearInterval(cf7Cleaner), 10000);
-
-    //     //====> Disable Links <====//
-    //     Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
-    // }
+    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+        //====> Disable Links <====//
+        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+    }
 
     //===> WP Media Uploader <===//
     Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {

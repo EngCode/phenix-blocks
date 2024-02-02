@@ -45,7 +45,7 @@ registerBlockType(metadata, {
                 //===> Remove Target & Rel <===//
                 blockProps['target'] = null;
                 blockProps['rel'] = null;
-                blockProps.className.replace(attributes.style.url, "");
+                if (attributes.style.url) blockProps.className.replace(attributes.style.url, "");
 
                 //===> Render <===//
                 return <a {...linkProps} class="display-block color-inherit tx-link-wrapper" href={attributes.style.url || "#none"}>

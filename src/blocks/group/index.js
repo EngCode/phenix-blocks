@@ -37,7 +37,7 @@ registerBlockType(metadata, {
         //===> Add Links/Lightbox URL <===//
         if (attributes.style.isLink) {
             blockProps.href = attributes.style.url || "#none";
-            blockProps.className.replace(attributes.style.url, "");
+            if (attributes.style.url) blockProps.className.replace(attributes.style.url, "");
         }
 
         //===> Render <===//

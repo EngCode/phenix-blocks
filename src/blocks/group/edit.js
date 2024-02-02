@@ -1,8 +1,8 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps, InnerBlocks} from '@wordpress/block-editor';
+import {PanelBody, Toolbar} from '@wordpress/components';
+import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.png';
@@ -11,6 +11,7 @@ import PxDropDown from '../px-controls/dropdown';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import PhenixInput from '../px-controls/input';
+import SuggestionsUrl from "../px-controls/dynamic-url";
 
 //====> Phenix Options Sets <=====//
 import SizesSet from '../px-controls/sets/sizes';
@@ -110,6 +111,26 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </li>
                 </PxDropDown>
+                {/*===> Link Input <===*/}
+                {attributes.style.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" >
+                    <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>
+                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
+                        {/*===> Option Control <===*/}
+                        <OptionControl key={`inNewTab-${uniqueKey}`} name={`inNewTab`} value={`boolean`} checked={attributes.style.inNewTab} onChange={set_style} type='checkbox' className='tiny me-15'>
+                            <span className='fas fa-check radius-circle'>{__("Open in New Tab", "pds-blocks")}</span>
+                        </OptionControl>
+                        {/*===> Disable Button <===*/}
+                        <div className='fluid' style={{paddingBottom: 3}}>
+                            <OptionControl key={`isLink-${uniqueKey}`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
+                                <span className='btn small fluid bg-transparent fs-12 color-danger'>{__("Disable URL Link", "pds-blocks")}</span>
+                            </OptionControl>
+                        </div>
+                    </li>
+                </PxDropDown> :
+                /*===> Add Link <===*/
+                <OptionControl key={`isLink-${uniqueKey}`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='button-checkbox' className='inline-block'>
+                    <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-link' data-title={__("Convert to Link", "pds-blocks")}></span>
+                </OptionControl>}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-animations') ?
                     <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">

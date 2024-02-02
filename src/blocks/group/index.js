@@ -29,10 +29,13 @@ registerBlockType(metadata, {
         //===> Get Block Properties <===//
         const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save()});
         const blockProps = renderProps.blockProps;
-        const TagName = attributes.tagName;
+        const TagName = attributes.style.isLink ? "a" : attributes.tagName;
 
         //===> Layout Options <===//
         blockProps.className += `${renderProps.container.className}`;
+
+        //===> Add Links/Lightbox URL <===//
+        if (attributes.style.isLink) blockProps.href = attributes.style.url || "#none";
 
         //===> Render <===//
         return (

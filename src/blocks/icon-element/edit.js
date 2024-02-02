@@ -22,7 +22,6 @@ import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
 
-
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {    
     //====> Attributes Renderers <====//
@@ -82,6 +81,7 @@ export default function Edit({ attributes, setAttributes }) {
                         </li>
                     </PxDropDown>
                 }
+
                 {/*===> Link Input <===*/}
                 {attributes.style.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" >
                     <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>

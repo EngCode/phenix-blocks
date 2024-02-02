@@ -473,17 +473,19 @@ window.PhenixBlocks = {
                     } else {
                         //===> Load Assets inside Frames <===//
                         const frameAssetsLoader = (assets_id) => {
-                            if (!window.frames['editor-canvas'].document.querySelector(assets_id)) {
+                            if (window.frames['editor-canvas'].document.querySelectorAll(assets_id).length <= 0) {
                                 //===> Check in the Editor <===//
                                 let frameDoc = window.frames['editor-canvas'].document,
-                                    fontAwesome = document.querySelector(assets_id),
-                                    importedEl = fontAwesome ? document.importNode(fontAwesome, true) : false;
-                
-                                //===> Load Font <===//
-                                if(importedEl && frameDoc.body) {
-                                    frameDoc.body.appendChild(importedEl);
-                                    clearInterval(loadAssetTimer);
-                                }
+                                    fontsElements = document.querySelectorAll(assets_id);
+
+                                //===> Load Assets <===//
+                                if (fontsElements.length > 0) fontsElements.forEach((font) => {
+                                    //===> Load Font <===//
+                                    if(frameDoc.body) {
+                                        frameDoc.body.appendChild(document.importNode(font, true));
+                                        clearInterval(loadAssetTimer);
+                                    }
+                                });
                             } else {
                                 //===> Increase Counter <===//
                                 trying_times += 1;
@@ -492,17 +494,15 @@ window.PhenixBlocks = {
                         };
     
                         //===> Clear Timer if Loaded <===//
-                        let fontAwesomeCheck = window.frames['editor-canvas'].document.querySelector("#fontawesome-css"),
-                            pdsPrimaryFontCheck = window.frames['editor-canvas'].document.querySelector("#pds-primary-font-inline-css");
+                        let pdsPrimaryFontsCheck = window.frames['editor-canvas'].document.querySelectorAll("#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css");
                         
-                        if (fontAwesomeCheck && pdsPrimaryFontCheck) {
+                        if (pdsPrimaryFontsCheck.length > 0) {
                             window.PhenixBlocks.canvasAssetsLoaded = true;
                             clearInterval(loadAssetTimer);
                         };
     
                         //===> When the Frame is Found Load Assets <===//
-                        frameAssetsLoader("#fontawesome-css");
-                        frameAssetsLoader("#pds-primary-font-inline-css");
+                        frameAssetsLoader("#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css");
                     }
                 }, 300);
             }

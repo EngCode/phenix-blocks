@@ -31,7 +31,8 @@ export default function Edit({ attributes, setAttributes }) {
     const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
     //===> Value Handler <===//
-    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);;
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_url = value => PhenixBlocks.setObject(value, "", "style", "url", attributes, setAttributes);
     const set_content = content => setAttributes({ content });
 
     //==> Set Object Attributes Methods <==//

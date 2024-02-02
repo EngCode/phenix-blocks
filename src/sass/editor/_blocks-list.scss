@@ -312,3 +312,6 @@ body.block-editor-page {
 
 /*==== Pattern Editor Wrapper ====*/
 .edit-site-visual-editor.is-focus-mode .components-resizable-box__container {height: auto!important;}
+
+/*==== Site Icon Fix ====*/
+.edit-site-site-icon__image {padding: 10px; padding-#{$direction-end}: 15px;}

@@ -55,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     }
 
     //===> Block Accessibility <===//
-    const blockAccessibility = (event, editor) => PhenixBlocks.blockAccessibility(event, clientId, {content: ''}, attributes.content);
+    const blockAccessibility = (event, editor) => PhenixBlocks.blockAccessibility(event, clientId, {content: ''}, attributes.content, attributes);
 
     //===> Render <===//
     return (<>

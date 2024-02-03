@@ -505,26 +505,55 @@ window.PhenixBlocks = {
     },
 
     //===> Block Inserter Accessibility <===//
-    blockAccessibility : (event, clientId, newAttributes, currentContent) => {
+    blockAccessibility : (event, clientId, newAttributes, currentContent, currentAttributes) => {
         //===> Define Data <===//
         const { createBlock } = wp.blocks;
         const { insertBlock, removeBlock } = wp.data.dispatch('core/editor');
         const { getBlockIndex, getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
 
-        //===> Insert New Block when Hit Enter <===//
-        if (event.key === 'Enter') {
-            // Prevent the default behavior of the Enter key (line break)
-            event.preventDefault();
-            // Create a new block
-            const newBlock = createBlock(getBlockName(clientId), newAttributes);
-            // Insert the new block after the current block
-            insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
+        //===> when its Empty  <===//
+        if (currentContent.length < 1) {
+            //===> and Hit Backspace or Delete Remove the Block <===//
+            if (event.key === "Backspace" || event.key === "Delete") removeBlock(clientId);
         }
-        //===> Remove the Block when its Empty and Hit Backspace <===//
-        else if (event.key === "Backspace" && currentContent.length < 1) {
-            // Prevent the default behavior of the Backspace key (delete block)
+
+        //===> Shift + # Shortcuts <===//
+        else if (event.shiftKey) {
+            //===> Insert new Blank Block <===//
+            if (event.key === 'Enter') {
+                //===> Prevent the default Behavior <===//
+                event.preventDefault();
+                // Create a new block
+                const newBlock = createBlock("core/paragraph");
+                // Insert the new block after the current block
+                insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
+            }
+        }
+
+        //===> Control + # Shortcuts <===//
+        else if (event.ctrlKey) {
+            //===> Duplicate Current Block <===//
+            if (event.key === 'D' || event.key === 'd') {
+                //===> Prevent the default Behavior <===//
+                event.preventDefault();
+                //===> Create a new block <===//
+                const newBlock = createBlock(getBlockName(clientId), currentAttributes);
+                //===> Insert the new block after the current block <===//
+                insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
+            }
+        }
+
+        //===> Alt + # Shortcuts <===//
+        else if (event.altKey) {}
+
+        //===> Insert New Block when Hit Enter <===//
+        else if (event.key === 'Enter') {
+            //===> Prevent the default Behavior <===//
             event.preventDefault();
-            removeBlock(clientId);
+            //===> Create a new block <===//
+            const newBlock = createBlock(getBlockName(clientId), newAttributes);
+            //===> Insert the new block after the current block <===//
+            insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
         }
     },
 };

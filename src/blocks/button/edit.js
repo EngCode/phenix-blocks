@@ -59,7 +59,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" onReplace={() => {}} onSplit={() => {}} />;
 
     //===> Block Accessibility <===//
-    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, label: 'Button' }, attributes.label);
+    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, label: 'Button' }, attributes.label, attributes);
 
     //===> Render <===//
     return (<> 

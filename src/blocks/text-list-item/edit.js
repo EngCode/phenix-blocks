@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     blockProps.className += `${renderProps.container.className}`;
 
     //===> Block Accessibility <===//
-    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, content: '' }, attributes.content);
+    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, content: '' }, attributes.content, attributes);
 
     //===> Render <===//
     return (<>

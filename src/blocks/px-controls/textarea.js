@@ -7,11 +7,6 @@ export default class PhenixTextarea extends Component {
     //===> States <===//
     state = {};
 
-    //===> Force Render when Props Change <===//
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.value !== this.props.value);
-    }
-
     render () {
         //===> Properties <===//
         const {name, type, size, label, value,  onChange, className, placeholder } = this.props;
@@ -19,12 +14,12 @@ export default class PhenixTextarea extends Component {
 
         //===> Change Value <===//
         const setValue = (event) => {
-            return onChange(event.target);
+            if (this.props.value !== event.target.value) return onChange(event.target);
         };
 
         //===> Define Element Attributes <===//
         let attributes = {
-            onChange: setValue,
+            onBlur: setValue,
             defaultValue: value,
             placeholder: placeholder || label,
         };

@@ -51,7 +51,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         //===> Define Data <===//
         const { createBlock } = wp.blocks;
         const { insertBlock } = wp.data.dispatch('core/editor');
-        const { getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
+        const { getBlockIndex, getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
 
         //===> Check the Key <===//
         if (event.key === 'Enter') {
@@ -60,7 +60,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
             // Create a new block
             const newBlock = createBlock(getBlockName(clientId), { ...attributes, content: '' });
             // Insert the new block after the current block
-            insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
+            insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
         }
     };
 

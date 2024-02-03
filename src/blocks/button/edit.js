@@ -25,7 +25,6 @@ import ResponsiveSet from '../px-controls/sets/responsive';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
 
-
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes, clientId }) {    
     //====> Attributes Renderers <====//
@@ -60,20 +59,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
 
     //===> Insert New Block when Hit Enter <===//
-    const newBlockInserter = (event) => {
-        //===> Define Data <===//
-        const { createBlock } = wp.blocks;
-        const { insertBlock } = wp.data.dispatch('core/editor');
-        const { getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
-
+    const newBlockInserter = (event) => {     
         //===> Check the Key <===//
         if (event.key === 'Enter') {
-            // Prevent the default behavior of the Enter key (line break)
+            //===> Prevent the default behavior of the Enter key (line break) <===//
             event.preventDefault();
-            // Create a new block
+
+            //===> Define Data <===//
+            const { createBlock } = wp.blocks;
+            const { insertBlock } = wp.data.dispatch('core/editor');
+            const { getBlockInsertionPoint, getBlockIndex, getBlockName } = wp.data.select('core/block-editor');
+
+            //===> Create a new block <===//
             const newBlock = createBlock(getBlockName(clientId), { ...attributes, label: 'Button' });
-            // Insert the new block after the current block
-            insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
+
+            //===> Insert the new block after the current block <===//
+            insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
         }
     };
 

@@ -7,9 +7,9 @@ import {BlockControls, InspectorControls, useBlockProps, InnerBlocks, useInnerBl
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
 import ScreensTabs from "../px-controls/tabs";
-import PxDropDown from '../px-controls/dropdown';
-import PhenixSelect from '../px-controls/select';
 import PhenixInput from '../px-controls/input';
+import PxDropDown from '../px-controls/dropdown';
+import PhenixNumber from "../px-controls/number";
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
@@ -26,7 +26,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_flexbox = (target, screen) => PhenixBlocks.set_flexbox(target, screen, attributes, setAttributes);
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
-    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting", attributes, setAttributes);
+    const set_setting = (target, screen) => PhenixBlocks.setObject(target, "", "setting", target.getAttribute("name"), attributes, setAttributes);
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
@@ -71,15 +71,15 @@ export default function Edit({ attributes, setAttributes }) {
                         {/*===> Form Group <===*/}
                         <div className='row gpx-15 gpy-15'>
                             {/*===> Form Control <===*/}
-                            <div className='col col--6'>
+                            <div className='col col-6'>
                                 <PhenixInput name="id" label={__("Modal ID", "pds-blocks")} value={attributes.id} onChange={set_value} />
                             </div>
                             {/*===> Form Control <===*/}
-                            <div className='col col--6'>
+                            <div className='col col-6'>
                                 <PhenixInput name="showon" label={__("Trigger ID", "pds-blocks")} value={attributes.setting.showon} onChange={set_setting} />
                             </div>
                             {/*===> Form Control <===*/}
-                            {attributes.setting.onload ? <div className='col col--6'>
+                            {attributes.setting.onload || attributes.setting.hash_url ? <div className='col col-6'>
                                 <PhenixNumber name="timeout" label={__("Duration", "pds-blocks")} value={attributes.setting.timeout || 6000} onChange={set_setting} min={0} max={20000} steps={100}></PhenixNumber>
                             </div> : null }
                         </div>

@@ -51,14 +51,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         //===> Define Data <===//
         const { createBlock } = wp.blocks;
         const { insertBlock } = wp.data.dispatch('core/editor');
-        const { getBlockInsertionPoint } = wp.data.select('core/block-editor');
+        const { getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
 
         //===> Check the Key <===//
         if (event.key === 'Enter') {
             // Prevent the default behavior of the Enter key (line break)
             event.preventDefault();
             // Create a new block
-            const newBlock = createBlock('phenix/text-list-item', { ...attributes, content: '' });
+            const newBlock = createBlock(getBlockName(clientId), { ...attributes, content: '' });
             // Insert the new block after the current block
             insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
         }

@@ -25,7 +25,7 @@ import EffectsSet from '../px-controls/sets/effects';
 
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, setAttributes, clientId }) {
     //====> Attributes Renderers <====//
     const PhenixBlocks = window.PhenixBlocks;
     const OptionsRenderer = PhenixBlocks.OptionsRenderer;
@@ -53,6 +53,24 @@ export default function Edit({ attributes, setAttributes }) {
     } else {
         blockProps.className += ` ${renderProps.container.className}`;
     }
+
+    //===> Insert New Block when Hit Enter <===//
+    const newBlockInserter = (event) => {
+        //===> Define Data <===//
+        const { createBlock } = wp.blocks;
+        const { insertBlock } = wp.data.dispatch('core/editor');
+        const { getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
+
+        //===> Check the Key <===//
+        if (event.key === 'Enter') {
+            // Prevent the default behavior of the Enter key (line break)
+            event.preventDefault();
+            // Create a new block
+            const newBlock = createBlock(getBlockName(clientId), { ...attributes, content: '', type: "paragraph", tagName: "p" });
+            // Insert the new block after the current block
+            insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
+        }
+    };
 
     //===> Render <===//
     return (<>
@@ -218,7 +236,7 @@ export default function Edit({ attributes, setAttributes }) {
                     <ul {...innerBlocksProps}></ul>
                 </div>
             : 
-                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onKeyDown={newBlockInserter} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>
         }
     </>);

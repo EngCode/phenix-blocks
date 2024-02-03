@@ -27,7 +27,7 @@ import EffectsSet from '../px-controls/sets/effects';
 
 
 //====> Edit Mode <====//
-export default function Edit({ attributes, setAttributes }) {    
+export default function Edit({ attributes, setAttributes, clientId }) {    
     //====> Attributes Renderers <====//
     const PhenixBlocks = window.PhenixBlocks;
     const OptionsRenderer = PhenixBlocks.OptionsRenderer;
@@ -58,6 +58,24 @@ export default function Edit({ attributes, setAttributes }) {
     const responsive_options = (screen) => <ResponsiveSet screen={screen} attributes={attributes} styleSetter={set_style} mainSetter={set_responsive} typoSetter={set_typography} options={`display, text-size, component-size`} />;
     //===> Create Label Element <===//
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
+
+    //===> Insert New Block when Hit Enter <===//
+    const newBlockInserter = (event) => {
+        //===> Define Data <===//
+        const { createBlock } = wp.blocks;
+        const { insertBlock } = wp.data.dispatch('core/editor');
+        const { getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
+
+        //===> Check the Key <===//
+        if (event.key === 'Enter') {
+            // Prevent the default behavior of the Enter key (line break)
+            event.preventDefault();
+            // Create a new block
+            const newBlock = createBlock(getBlockName(clientId), { ...attributes, label: 'Button' });
+            // Insert the new block after the current block
+            insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
+        }
+    };
 
     //===> Render <===//
     return (<> 
@@ -271,7 +289,7 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/* //====> Edit Layout <====// */}
         {attributes.preview ? <img src={PreviewImage} alt="" className="fluid" /> : <>
-            <a key={`btn-${uniqueKey}-preview`} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
+            <a key={`btn-${uniqueKey}-preview`} onKeyDown={newBlockInserter} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
         </>}
     </>);
 }

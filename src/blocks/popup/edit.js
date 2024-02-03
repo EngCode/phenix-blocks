@@ -66,8 +66,8 @@ export default function Edit({ attributes, setAttributes }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Control <===*/}
-                <PxDropDown title={__("Modal Settings", "pds-blocks")} button={`bg-transparent fs-16 square far fa-cog divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
-                    <li key="dropdown-item" className='pd-10'>
+                <PxDropDown title={__("Modal Settings", "pds-blocks")} button={`bg-transparent fs-16 square far fa-cog divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320">
+                    <li key="dropdown-item" className='pd-20'>
                         {/*===> Form Group <===*/}
                         <div className='row gpx-15 gpy-15'>
                             {/*===> Form Control <===*/}

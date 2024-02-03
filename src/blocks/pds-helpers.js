@@ -130,6 +130,7 @@ window.PhenixBlocks = {
                             //===> Clear Props <===//
                             blockProps['data-src'] = null;
                             blockProps.style?.backgroundImage ? blockProps.style.backgroundImage = null : null;
+                            if (!blockProps.style) blockProps.style = {};
     
                             //===> Image Background <===//
                             if (attributes.style.background.type === 'image') {

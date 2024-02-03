@@ -2,7 +2,7 @@
 	"apiVersion": 2,
 	"name": "phenix/navigation",
 	"version": "0.1.0",
-	"title": "PDS Menu",
+	"title": "Dynamic Menu",
 	"category": "design",
 	"description": "",
 	"supports": {

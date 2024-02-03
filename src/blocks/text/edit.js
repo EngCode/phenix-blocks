@@ -66,7 +66,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
             // Prevent the default behavior of the Enter key (line break)
             event.preventDefault();
             // Create a new block
-            const newBlock = createBlock(getBlockName(clientId), { ...attributes, content: '', type: "paragraph", tagName: "p" });
+            const newBlock = createBlock(getBlockName(clientId), { ...attributes, content: ''});
             // Insert the new block after the current block
             insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
         }

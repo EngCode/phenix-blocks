@@ -57,7 +57,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     //===> Create Responsive Options <===//
     const responsive_options = (screen) => <ResponsiveSet screen={screen} attributes={attributes} styleSetter={set_style} mainSetter={set_responsive} typoSetter={set_typography} options={`display, text-size, component-size`} />;
     //===> Create Label Element <===//
-    const labelControl = <RichText key={`btn-text-${uniqueKey}`} onKeyDown={newBlockInserter} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
+    const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
 
     //===> Insert New Block when Hit Enter <===//
     const newBlockInserter = (event) => {
@@ -289,7 +289,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
         {/* //====> Edit Layout <====// */}
         {attributes.preview ? <img src={PreviewImage} alt="" className="fluid" /> : <>
-            <a key={`btn-${uniqueKey}-preview`} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
+            <a key={`btn-${uniqueKey}-preview`} onKeyDown={newBlockInserter} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
         </>}
     </>);
 }

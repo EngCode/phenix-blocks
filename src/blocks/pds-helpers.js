@@ -276,7 +276,7 @@ window.PhenixBlocks = {
                 });
             };
         });
-    
+
         //===> Activate Slider in Editor <===//
         if (isSave && attributes.flexbox?.slider || attributes.slider?.preview) container.className += ' px-slider';
     

@@ -504,7 +504,7 @@ window.PhenixBlocks = {
         }
     },
 
-    newBlockInserter : (event, editor, clientId, newAttributes, currentContent) => {
+    newBlockInserter : (event, clientId, newAttributes, currentContent) => {
         //===> Define Data <===//
         const { createBlock } = wp.blocks;
         const { insertBlock, removeBlock } = wp.data.dispatch('core/editor');

@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     blockProps.className += `${renderProps.container.className}`;
 
     //===> Block Accessibility <===//
-    const newBlockInserter = (event) => PhenixBlocks.newBlockInserter(event, editor, clientId, { ...attributes, content: '' }, attributes.content);
+    const newBlockInserter = (event) => PhenixBlocks.newBlockInserter(event, clientId, { ...attributes, content: '' }, attributes.content);
 
     //===> Render <===//
     return (<>

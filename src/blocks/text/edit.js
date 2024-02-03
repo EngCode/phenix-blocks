@@ -55,28 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     }
 
     //===> Block Accessibility <===//
-    const newBlockInserter = (event, editor) => {
-        //===> Define Data <===//
-        const { createBlock } = wp.blocks;
-        const { insertBlock, removeBlock } = wp.data.dispatch('core/editor');
-        const { getBlockIndex, getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
-
-        //===> Insert New Block when Hit Enter <===//
-        if (event.key === 'Enter') {
-            // Prevent the default behavior of the Enter key (line break)
-            event.preventDefault();
-            // Create a new block
-            const newBlock = createBlock(getBlockName(clientId), {content: ''});
-            // Insert the new block after the current block
-            insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
-        }
-        //===> Remove the Block when its Empty and Hit Backspace <===//
-        else if (event.key === "Backspace" && attributes.content.length < 1) {
-            // Prevent the default behavior of the Backspace key (delete block)
-            event.preventDefault();
-            removeBlock(clientId);
-        }
-    };
+    const newBlockInserter = (event, editor) => PhenixBlocks.newBlockInserter(event, editor, clientId, {content: ''}, attributes.content);
 
     //===> Render <===//
     return (<>

@@ -236,7 +236,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     <ul {...innerBlocksProps}></ul>
                 </div>
             : 
-                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onKeyDown={newBlockInserter} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onReplace={() => {}} onSplit={() => {}} onKeyDown={newBlockInserter} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>
         }
     </>);

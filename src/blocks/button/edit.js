@@ -56,7 +56,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     //===> Create Responsive Options <===//
     const responsive_options = (screen) => <ResponsiveSet screen={screen} attributes={attributes} styleSetter={set_style} mainSetter={set_responsive} typoSetter={set_typography} options={`display, text-size, component-size`} />;
     //===> Create Label Element <===//
-    const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" />;
+    const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" onReplace={() => {}} onSplit={() => {}} />;
 
     //===> Insert New Block when Hit Enter <===//
     const newBlockInserter = (event) => {     

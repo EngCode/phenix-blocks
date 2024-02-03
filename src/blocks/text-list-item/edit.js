@@ -189,7 +189,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
         {/*====> Edit Layout <====*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
-            <RichText {...blockProps} onKeyDown={newBlockInserter} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+            <RichText {...blockProps} onReplace={() => {}} onSplit={() => {}} onKeyDown={newBlockInserter} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
         }
     </>);
 }

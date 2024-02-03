@@ -55,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     }
 
     //===> Block Accessibility <===//
-    const newBlockInserter = (event, editor) => PhenixBlocks.newBlockInserter(event, clientId, {content: ''}, attributes.content);
+    const blockAccessibility = (event, editor) => PhenixBlocks.blockAccessibility(event, clientId, {content: ''}, attributes.content);
 
     //===> Render <===//
     return (<>
@@ -221,7 +221,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     <ul {...innerBlocksProps}></ul>
                 </div>
             : 
-                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onReplace={() => {}} onSplit={() => {}} onKeyDown={newBlockInserter} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onReplace={() => {}} onSplit={() => {}} onKeyDown={blockAccessibility} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>
         }
     </>);

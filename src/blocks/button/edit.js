@@ -59,7 +59,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" onReplace={() => {}} onSplit={() => {}} />;
 
     //===> Block Accessibility <===//
-    const newBlockInserter = (event) => PhenixBlocks.newBlockInserter(event, clientId, { ...attributes, label: 'Button' }, attributes.label);
+    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, label: 'Button' }, attributes.label);
 
     //===> Render <===//
     return (<> 
@@ -273,7 +273,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
         {/* //====> Edit Layout <====// */}
         {attributes.preview ? <img src={PreviewImage} alt="" className="fluid" /> : <>
-            <a key={`btn-${uniqueKey}-preview`} onKeyDown={newBlockInserter} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
+            <a key={`btn-${uniqueKey}-preview`} onKeyDown={blockAccessibility} onClick={(event) => event.preventDefault()} { ...blockProps }>{!attributes.type.includes("square") ? labelControl : ''}</a>
         </>}
     </>);
 }

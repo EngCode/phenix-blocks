@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     blockProps.className += `${renderProps.container.className}`;
 
     //===> Block Accessibility <===//
-    const newBlockInserter = (event) => PhenixBlocks.newBlockInserter(event, clientId, { ...attributes, content: '' }, attributes.content);
+    const blockAccessibility = (event) => PhenixBlocks.blockAccessibility(event, clientId, { ...attributes, content: '' }, attributes.content);
 
     //===> Render <===//
     return (<>
@@ -174,7 +174,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
         {/*====> Edit Layout <====*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
-            <RichText {...blockProps} onReplace={() => {}} onSplit={() => {}} onKeyDown={newBlockInserter} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+            <RichText {...blockProps} onReplace={() => {}} onSplit={() => {}} onKeyDown={blockAccessibility} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
         }
     </>);
 }

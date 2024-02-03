@@ -1,8 +1,6 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import {createBlock} from '@wordpress/blocks';
 import {PanelBody, Toolbar} from '@wordpress/components';
-import { useDispatch } from '@wordpress/data';
 import {RichText, BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -49,15 +47,20 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     blockProps.className += `${renderProps.container.className}`;
 
     //===> Insert New Block when Hit Enter <===//
-    const {insertAfterBlock} = useDispatch('core/block-editor');
     const newBlockInserter = (event) => {
+        //===> Define Data <===//
+        const { createBlock } = wp.blocks;
+        const { insertBlock } = wp.data.dispatch('core/editor');
+        const { getBlockInsertionPoint } = wp.data.select('core/block-editor');
+
+        //===> Check the Key <===//
         if (event.key === 'Enter') {
             // Prevent the default behavior of the Enter key (line break)
             event.preventDefault();
             // Create a new block
             const newBlock = createBlock('phenix/text-list-item', { ...attributes, content: '' });
             // Insert the new block after the current block
-            insertAfterBlock(clientId);
+            insertBlock(newBlock, getBlockInsertionPoint().index+1, getBlockInsertionPoint().rootClientId);
         }
     };
 

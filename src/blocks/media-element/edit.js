@@ -32,7 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
     //==> Set Attributes Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_url = url => setAttributes({ url });
-    const set_setting = target => PhenixBlocks.setObject(target, "", "setting", attributes, setAttributes);
+    const set_setting = target => PhenixBlocks.setObject(target, "", "setting", target.getAttribute('name'),attributes, setAttributes);
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
     const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon", attributes, setAttributes);
     const set_source = value => PhenixBlocks.setObject(`${value.url}`, "", "setting", "src", attributes, setAttributes);

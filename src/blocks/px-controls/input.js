@@ -19,12 +19,12 @@ export default class PhenixInput extends Component {
 
         //===> Change Value <===//
         const setValue = (event) => {
-            return onChange(event.target);
+            if (this.props.value !== event.target.value) return onChange(event.target);
         };
 
         //===> Define Element Attributes <===//
         let attributes = {
-            onChange: setValue,
+            onBlur: setValue,
             type: type || "text",
             defaultValue: value || "",
             placeholder: placeholder || label || "",

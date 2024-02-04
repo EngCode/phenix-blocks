@@ -83,11 +83,11 @@ window.PhenixBlocks = {
                 };
             }
     
-            //===> if its object[group] => [style, typography, responsive, flexbox/slider] <===//
+            //===> if its {options-set} => [style, typography, responsive, flexbox/slider] <===//
             else if (isObjectVal(option_value) && attributes[option_name]) {
                 //===> Flexbox Props <===//
                 if(!isGrid && option_name === "flexbox" && attributes.isFlexbox === false) return;
-    
+
                 //===> loop on the Object Options <===//
                 Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                     //===> Check if the attribute is Set <===//
@@ -163,46 +163,49 @@ window.PhenixBlocks = {
                             //===> Background Rotation <===//
                             if (sub_value.rotate) blockProps.className += ` ${sub_value.rotate}`;
                         }
+
                         //===> Animations Specials <===//
                         else if (sub_option === "animation") {
-                            sub_value.name && (blockProps['data-animation'] = sub_value.name);
-                            sub_value.group && (blockProps['data-lazy-group'] = "true");
-                            sub_value.delay && (blockProps['data-delay'] = sub_value.delay);
-                            sub_value.reverse && (blockProps['data-flow'] = sub_value.reverse);
-                            sub_value.offset && (blockProps['data-offset'] = sub_value.offset);
-                            sub_value.inset && (blockProps['data-inset'] = sub_value.inset);
-                            sub_value.duration && (blockProps['data-duration'] = sub_value.duration);
-                            sub_value.exit && (blockProps['data-exit'] = sub_value.exit);
+                            Object.entries(sub_value).forEach(([key, value]) => {
+                                //===> Animation Name <===//
+                                if (key === "name") { blockProps[`data-animation`] = value; } 
+                                //===> Animation Group <===//
+                                else if (key === "group") {blockProps[`data-lazy-group`] = "true";} 
+                                //===> Animation Flow <===//
+                                else if (key === "reverse") {blockProps[`data-flow`] = value;}
+                                //===> Animation Other Options <===//
+                                else {blockProps[`data-${key}`] = value;}
+                            });
                         }
+
                         //===> Styles Support <===//
                         else if (sub_option === "support") {
                             sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
                         }
+
                         //===> for Link Options <===//
-                        else if (isSave && option_name === "isLink" || isSave &&  option_name === "inNewTab") {
-                            if (option_name === "inNewTab") {blockProps['target'] = "_blank";} 
+                        else if (isSave && option_name === "isLink" || isSave && option_name === "inNewTab") {
+                            //===> Open in New Tab <===//
+                            if (option_name === "inNewTab") {blockProps['target'] = "_blank";}
+                            //===> No Target Fallback <===//
                             else {blockProps['rel'] = "noopener";}
                         }
+
                         //===> Has Icon <===//
-                        else if (sub_option === "hasIcon") {
-                            blockProps.className += ` tx-icon`;
-                        }
+                        else if (sub_option === "hasIcon") { blockProps.className += ` tx-icon`; }
+
                         //===> Display Support <===//
-                        else if (sub_option === "display") {
-                            blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
-                        }
+                        else if (sub_option === "display") { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
                     }
     
                     //===> for Normal strings and Arrays <===//
                     else if (isNormalValue(sub_value)) {
                         //===> Exclude Options <===//
-                        const excluded = ["dimensions", "url", ""];
+                        const excluded = ["dimensions", "url"];
                         if (excluded.some(opt => opt === sub_option)) return;
     
                         //===> Postion Sticky <===//
-                        if (sub_option === "position" && sub_value === "sticky-absolute") {
-                            blockProps["data-sticky"] = `${sub_value}`;
-                        }
+                        if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }
     
                         //===> Media Settings <===//
                         else if (option_name === "setting") {
@@ -229,13 +232,11 @@ window.PhenixBlocks = {
                             //===> Name Positions <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         }
-    
+
                         //===> Margin Values <===//
                         else if (isMargin.some(css => sub_option.startsWith(css))) {
                             //===> Auto Value <===//
-                            if (parseInt(sub_value) === -5) {
-                                blockProps.className += ` ${sub_option}-auto`;
-                            }
+                            if (parseInt(sub_value) === -5) { blockProps.className += ` ${sub_option}-auto`; }
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100 || parseInt(sub_value) < 0) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
@@ -244,13 +245,19 @@ window.PhenixBlocks = {
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         }
-    
+
                         //===> Padding Values <===//
                         else if (isPadding.some(css => sub_option.startsWith(css))) {
-                            if (parseInt(sub_value) < 0) sub_value = 0;
-                            blockProps.className += ` ${sub_option}-${sub_value}`;
+                            if (parseInt(sub_value) < 0) return;
+                            //===> Custom Value <===//
+                            else if (parseInt(sub_value) > 100) {
+                                CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                                blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                            }
+                            //===> Name Value <===//
+                            else { blockProps.className += ` ${sub_option}-${sub_value}`; }
                         }
-    
+
                         //===> Layout Gap <===//
                         else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) {
                             container.className += ` ${sub_option}-${sub_value}`;

@@ -12,6 +12,7 @@
         "__experimentalOnEnter": true,
 		"__experimentalMetadata": true
 	},
+
     "attributes" : {
 		"preview" : {
             "type": "boolean",
@@ -53,11 +54,13 @@
             "default": {}
         }
     },
+
 	"example": {
         "attributes": {
             "preview": true
         }
     },
+
 	"textdomain": "pds-blocks",
 	"editorScript": "file:./index.js"
 }

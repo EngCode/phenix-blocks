@@ -37,10 +37,18 @@ registerBlockType(metadata, {
 
         //===> Default Options <===//
         if(!attributes.setting.type) blockProps['data-type'] = "image";
-        if(!attributes.setting.src) blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";
-        if(!attributes.setting.size) blockProps.className += " ratio-4x3";
+        if(!attributes.setting.src) {
+            blockProps['data-src'] = "https://via.placeholder.com/1024x768.webp";
+            blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";
+        }
+        if(!attributes.setting.size) blockProps.className += " ratio-none";
 
         //===> Render <===//
-        return (<TagName {...blockProps}>{attributes.style['inner-blocks'] === true ? <InnerBlocks.Content /> : null}</TagName>);
+        return (<TagName {...blockProps}>
+            {/*===> Image Type <===*/}
+            {attributes.setting.type === "image" || blockProps['data-type'] === "image" ? <img src={attributes.setting.src || blockProps['data-src']} class="px-media-img" /> : null}
+            {/*===> Inner Content <===*/}
+            {attributes.style['inner-blocks'] === true ? <InnerBlocks.Content /> : null}
+        </TagName>);
     }
 });

@@ -254,6 +254,9 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
         {/*===> Modal Component <===*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : <div {...blockProps}  key={`${uniqueKey}`}>
+            {/*===> Image Type <===*/}
+            {attributes.setting.type === "image" ? <img src={attributes.setting.src || blockProps['data-src']} class="px-media-img" /> : null}
+            {/*===> Inner Content <===*/}
             {attributes.style['inner-blocks'] === true ? <InnerBlocks template={[
                 ['phenix/group', {
                     "className": "px-media-element",

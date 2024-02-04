@@ -520,7 +520,7 @@ window.PhenixBlocks = {
         const { getBlockIndex, getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
 
         //===> when its Empty  <===//
-        if (currentContent.length < 1) {
+        if (currentContent?.length < 1) {
             //===> and Hit Backspace or Delete Remove the Block <===//
             if (event.key === "Backspace" || event.key === "Delete") removeBlock(clientId);
         }

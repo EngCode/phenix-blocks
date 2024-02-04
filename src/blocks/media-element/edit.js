@@ -51,8 +51,11 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Default Options <===//
     if(!attributes.setting.type) blockProps['data-type'] = "image";
-    if(!attributes.setting.src) blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";
-    if(!attributes.setting.size) blockProps.className += " ratio-4x3";
+    if(!attributes.setting.src) {
+        blockProps['data-src'] = "https://via.placeholder.com/1024x768.webp";
+        blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";
+    }
+    if(!attributes.setting.size) blockProps.className += " ratio-none";
 
     //===> Render <===//
     return (<>

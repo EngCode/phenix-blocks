@@ -50,7 +50,7 @@ export default class TypographySet extends Component {
             {/*===> Size Only <===*/}
             {options && options.includes("size") ? <>
                 {/*===> Size <===*/}
-                <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={sizes_list} search={true} />
+                <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Font Size", "pds-blocks")} value={attributes.typography[`size${screenPoint}`]} onChange={mainSetter} options={[...sizes_list, ...display_sizes]} search={true} />
             </> : null}
             {/*===> Grouped Options <===*/}
             {!options ? <div className='row gpx-20 gpy-15'>

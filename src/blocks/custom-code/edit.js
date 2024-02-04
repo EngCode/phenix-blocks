@@ -34,7 +34,7 @@ export default function Edit({ attributes, setAttributes }) {
         <BlockControls>
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick-Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
-                <div className='inline-block inline-select tooltip-bottom w-150' data-title={__("Code Type", "pds-blocks")}>
+                <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Code Type", "pds-blocks")}>
                     <PhenixSelect className="mb-10" name="type" value={attributes.type} onChange={set_value} options={[
                         { label: __('HTML', "pds-blocks"), value: 'html' },
                         { label: __('CSS', "pds-blocks"),  value: 'css' },

@@ -678,8 +678,6 @@ window.PhenixBlocks.dataLists = {
             { label: __("Position", "pds-blocks"), value: 'enable-position' },
             { label: __("Animations", "pds-blocks"), value: 'enable-animations' },
             { label: __("Effects", "pds-blocks"), value: 'enable-effects' },
-            // { label: __("Animated Childs", "pds-blocks"), value: 'px-animate' },
-            // { label: __("Overlapped", "pds-blocks"), value: 'pos-overlap' },
         ],
 
         background_options: {

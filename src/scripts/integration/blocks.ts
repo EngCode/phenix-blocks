@@ -81,6 +81,27 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     //====> Header Holders <====//
     if (main_header && header_holder) header_holder.prepend(main_header);
 
+    //===> Audio Player [Testimonials] <===//
+    if (document.querySelector('[data-audio]')) {
+        //===> Create Audio Player <===//
+        let audio_player = document.createElement("audio");
+        //=== Set Player ID ===//
+        audio_player.setAttribute('id', 'px-audio-player');
+        //=== Insert Player to the Document ===//
+        document.body.appendChild(audio_player);
+
+        //====> Audio Buttons <====//
+        Phenix('button[data-audio]').on('click', event => {
+            //=== Get Data ===//
+            let element = event.target,
+                audio_file = element.getAttribute('data-audio');
+            //=== Set Audio ===//
+            audio_player.setAttribute('src', audio_file);
+            //=== Player Audio ===//
+            audio_player.play();
+        }, true);
+    }
+
     //====> Sticky Header Fixes <====//    
     // if (Phenix('[data-sticky="absolute"], .main-header.position-st')[0]) {
     //     //===> Define Data <===//

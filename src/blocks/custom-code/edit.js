@@ -70,7 +70,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Preview Mode <===*/}
             {attributes.dev_preview || attributes.code_preview ? <ServerSideRender block="phenix/custom-code" attributes={attributes}  /> : null}
             {/*===> Coding Mode <===*/}
-            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} style={{padding:"15px 20px", backgroundColor: "#1c1c1c", borderRadius: "3px"}} className={`position-rv z-index-3 ltr color-gray`} />
+            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} style={{padding:"15px 20px", backgroundColor: "#1c1c1c", borderRadius: "3px"}} className={`position-rv z-index-3 ltr color-gray border-gray`} />
         </div>}
     </>);
 }

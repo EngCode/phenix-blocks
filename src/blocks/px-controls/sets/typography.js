@@ -111,6 +111,8 @@ export default class TypographySet extends Component {
                         <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
                     </OptionControl>
                 </div>
+            </>: null}
+            {!options || options.includes("styles") ? <>
                 {/*===> Style Options <===*/}
                 <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Style", "pds-blocks")}</label>
                 {/*===> Elements Group <===*/}
@@ -161,6 +163,7 @@ export default class TypographySet extends Component {
                     </OptionControl>
                 </div>
             </>: null}
+            
         </>
     }
 }

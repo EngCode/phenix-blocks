@@ -28,6 +28,12 @@ export default function Edit({ attributes, setAttributes }) {
     if (!attributes.code) blockProps.className += ' pd-15';
     if (attributes.dev_preview || !attributes.code_preview) blockProps.className += ' pdx-15 pdt-15';
 
+    //===> Wrapper Style <===//
+    if (!blockProps.style) blockProps.style = {};
+    if (!attributes.dev_preview || !attributes.code_preview) {
+        blockProps.style.backgroundColor = "#111111";
+    }
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}

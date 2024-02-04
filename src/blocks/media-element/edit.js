@@ -22,6 +22,7 @@ import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
+import {MediaUpload} from '@wordpress/block-editor';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -67,7 +68,7 @@ export default function Edit({ attributes, setAttributes }) {
                     <PhenixSelect name="type" placeholder={__("Image", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.type} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.types} />
                 </div>
                 {/*===> Select Control <===*/}
-                <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("Ratio Size", "pds-blocks")}>
+                <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Ratio Size", "pds-blocks")}>
                     <PhenixSelect name="size" placeholder={__("Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.size} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />
                 </div>
                 {/*===> Select Control <===*/}
@@ -253,7 +254,12 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}
-        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : <div {...blockProps}  key={`${uniqueKey}`}>
+        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : 
+        <div {...blockProps}  key={`${uniqueKey}`}>
+            {/*===> Change Source Trigger <===*/}
+            {!attributes.setting.type || attributes.setting.type === "image" || attributes.setting['embed'] === "video" || attributes.setting.type === "embed" && !attributes.setting['embed']? 
+                <MediaUpload onSelect={ set_source } value={attributes.setting?.src} render={({open}) => (<button type="button" className="pds-replace-btn mouse-pointer position-ab pos-top-15 pos-start-15 btn primary radius-sm fs-12 small z-index-5" onClick={open}>{__("Replace", "pds-blocks")}</button>)} />
+            :null}
             {/*===> Image Type <===*/}
             {attributes.setting.type === "image" ? <img src={attributes.setting.src || blockProps['data-src']} class="px-media-img" /> : null}
             {/*===> Inner Content <===*/}

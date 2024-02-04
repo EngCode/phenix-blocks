@@ -87,6 +87,15 @@
 	// .px-navigation[class*="hidden-"] {display: block!important;}
 	// .wp-block[class*="hidden-"], .wp-block.hidden {opacity: 0.7;display: block!important;}
 
+	/*==== Blocks IS Selected ====*/
+	.wp-block:not(.is-selected) {
+		> .pds-replace-btn {opacity: 0; visibility: hidden;}
+	}
+
+	.wp-block.is-selected {
+		> .pds-replace-btn {opacity: 1; visibility: visible;}
+	}
+
 	/*==== Layouts Wrapper ====*/
 	.block-editor-block-list__layout {
 		// &:not(.block-library-block__reusable-block-container) {position: static;}

@@ -10,46 +10,15 @@ import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import PhenixTextarea from '../px-controls/textarea';
 
+//====> Code Editor <====//
+
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
+    //====> Attributes Renderers <====//
+    const PhenixBlocks = window.PhenixBlocks;
+    
     //===> Value Handler <===//
-    const valueHandler = (target) => {
-        //===> Define Array Type <===//
-        let single_val,
-            array_val = [],
-            type = target instanceof HTMLElement ? (target.getAttribute('type') || target.tagName) : null;
-
-        //==> for Boolean Values <==//
-        if (type === 'checkbox' || type === 'radio') {
-            if (target.value === 'boolean') { single_val = target.checked; }
-            else { single_val = target.checked ? target.value : ""; }
-        }
-
-        //===> for Value of Type Array <===//
-        else if (type === "SELECT" && target.hasAttribute('multiple')) {
-            //===> Get Multiple Value <===//
-            let values = target.parentNode.getAttribute('data-value').split(',');
-            //===> Get Current Values <===//
-            values.forEach(val => val !== "" ? array_val.push(val) : null);
-            //===> Set Array Value <===//
-            single_val = array_val;
-        }
-
-        //===> for Normal Values <===//
-        else { single_val = target.value; }
-
-        //===> Return Value <===//
-        if(single_val) return single_val;
-    };
-
-    const set_value = (target) => {
-        //==> Get Current <==//
-        const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : valueHandler(target);
-        const newAttributes = { ...attributes, [name]: value };
-        //==> Set Value <==//
-        setAttributes(newAttributes);
-    };
+    const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
@@ -64,6 +33,14 @@ export default function Edit({ attributes, setAttributes }) {
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick-Settings", "pds-blocks")}>
+                {/*===> Select Control <===*/}
+                <div className='inline-block inline-select tooltip-bottom w-150' data-title={__("Code Type", "pds-blocks")}>
+                    <PhenixSelect className="mb-10" name="type" value={attributes.type} onChange={set_value} options={[
+                        { label: __('HTML', "pds-blocks"), value: 'html' },
+                        { label: __('CSS', "pds-blocks"),  value: 'css' },
+                        { label: __('JS', "pds-blocks"),  value: 'javascript' },
+                    ]} />
+                </div>
                 {/*===> Option Control <===*/}
                 <OptionControl key={`code_preview-${uniqueKey}`} name={`code_preview`} value={`boolean`} checked={attributes.code_preview} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
                     <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-eye h-min-100' style={{paddingTop: 2}} data-title={__("Preview", "pds-blocks")}></span>
@@ -93,7 +70,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Preview Mode <===*/}
             {attributes.dev_preview || attributes.code_preview ? <ServerSideRender block="phenix/custom-code" attributes={attributes}  /> : null}
             {/*===> Coding Mode <===*/}
-            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} className={`position-rv z-index-3 mb-15 ltr`} />
+            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} style={{padding:"15px 20px", backgroundColor: "#1c1c1c", borderRadius: "3px"}} className={`position-rv z-index-3 ltr color-gray`} />
         </div>}
     </>);
 }

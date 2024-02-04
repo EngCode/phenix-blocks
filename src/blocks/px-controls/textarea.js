@@ -9,7 +9,7 @@ export default class PhenixTextarea extends Component {
 
     render () {
         //===> Properties <===//
-        const {name, type, size, label, value,  onChange, className, placeholder } = this.props;
+        const {name, type, size, label, value,  onChange, className, placeholder, style } = this.props;
         const uniqueKey = `pds-textarea-option`;
 
         //===> Change Value <===//
@@ -19,6 +19,7 @@ export default class PhenixTextarea extends Component {
 
         //===> Define Element Attributes <===//
         let attributes = {
+            style: style,
             onBlur: setValue,
             defaultValue: value,
             placeholder: placeholder || label,

@@ -11,6 +11,7 @@ import {Component} from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixSelect from '../select';
 import OptionControl from '../switch';
+import PhenixNumber from '../number';
 
 //===> Options List
 //=> align, size, weight
@@ -73,6 +74,12 @@ export default class TypographySet extends Component {
                 <div className='col col-6'>
                     <PhenixSelect name="text-shadow" placeholder={__("None", "pds-blocks")} label={__("Text Shadow", "pds-blocks")} value={attributes.style['text-shadow']} onChange={mainSetter} options={text_shadows} />
                 </div>
+                {/*===> Margin for List Items <===*/}
+                {attributes.type?.includes('list-') || attributes.type === "list" ? <>
+                <div className='col col-6'>
+                    <PhenixNumber label={__("Gap-Y Space", "pds-blocks")} name={`gpy${screenPoint}`} onChange={mainSetter} value={attributes.typography[`gpy${screenPoint}`] || 0} min={0} max={50} steps={5} />
+                </div>
+                </> :null}
                 {/*===> Other Options <===*/}
                 {this.props.children ? this.props.children : null}
                 {/*===> // Column <===*/}

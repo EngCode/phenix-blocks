@@ -63,7 +63,7 @@ window.PhenixBlocks.dataLists = {
     media_options: {
         types : [
             { "label": "Image", "value": "image"},
-            { "label": "Embed", "value": "embed"},
+            { "label": "Video", "value": "embed"},
             { "label": "iFrame", "value": "iframe"},
         ],
     

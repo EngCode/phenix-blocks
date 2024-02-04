@@ -38,24 +38,24 @@ export default class PaddingSet extends Component {
         return <div className={`padding-controller mgx-auto`}>
             {/*===> Top Controller <===*/}
             <div className='mgx-auto mb-15' style={{width: 100}}>
-                <PhenixNumber name={`pdt${screen}`} onChange={mainSetter} value={attributes.style[`pdt${screen}`] || 0} min={-5} max={2500} steps={5} />
+                <PhenixNumber key={`pdt${screen}`} name={`pdt${screen}`} onChange={mainSetter} value={attributes.style[`pdt${screen}`] || 0} min={-5} max={2500} steps={5} />
             </div>
             {/*===> X Controls <===*/}
             <div className={`flexbox align-between align-center-y mb-15`}>
                 {/*===> Start Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber name={`pds${screen}`} onChange={mainSetter} value={attributes.style[`pds${screen}`] || 0} min={-5} max={2500} steps={5} />
+                    <PhenixNumber key={`pds${screen}`} name={`pds${screen}`} onChange={mainSetter} value={attributes.style[`pds${screen}`] || 0} min={-5} max={2500} steps={5} />
                 </div>
                 {/*===> Reset Button <===*/}
-                <button name="reset-padding" onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
+                <button key={`reset-padding${screen}`} name={`reset-padding${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber name={`pde${screen}`} onChange={mainSetter} value={attributes.style[`pde${screen}`] || 0} min={-5} max={2500} steps={5} />
+                    <PhenixNumber key={`pde${screen}`} name={`pde${screen}`} onChange={mainSetter} value={attributes.style[`pde${screen}`] || 0} min={-5} max={2500} steps={5} />
                 </div>
             </div>
             {/*===> Bottom Controller <===*/}
             <div className='mgx-auto' style={{width: 100}}>
-                <PhenixNumber name={`pdb${screen}`} onChange={mainSetter} value={attributes.style[`pdb${screen}`] || 0} min={-5} max={2500} steps={5} />
+                <PhenixNumber key={`pdb${screen}`} name={`pdb${screen}`} onChange={mainSetter} value={attributes.style[`pdb${screen}`] || 0} min={-5} max={2500} steps={5} />
             </div>
             {/*===> Other Options <===*/}
             {this.props.children ? this.props.children : null}

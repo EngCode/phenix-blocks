@@ -46,7 +46,7 @@ registerBlockType(metadata, {
         //===> Render <===//
         return (<TagName {...blockProps}>
             {/*===> Image Type <===*/}
-            {attributes.setting.type === "image" || blockProps['data-type'] === "image" ? <img src={attributes.setting.src || blockProps['data-src']} class="px-media-img" /> : null}
+            {attributes.setting.type === "image" || blockProps['data-type'] === "image" ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
             {/*===> Inner Content <===*/}
             {attributes.style['inner-blocks'] === true ? <InnerBlocks.Content /> : null}
         </TagName>);

@@ -261,7 +261,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <MediaUpload onSelect={ set_source } value={attributes.setting?.src} render={({open}) => (<button type="button" className="pds-replace-btn mouse-pointer position-ab pos-top-15 pos-start-15 btn primary radius-sm fs-12 small z-index-5" onClick={open}>{__("Replace", "pds-blocks")}</button>)} />
             :null}
             {/*===> Image Type <===*/}
-            {attributes.setting.type === "image" ? <img src={attributes.setting.src || blockProps['data-src']} class="px-media-img" /> : null}
+            {attributes.setting.type === "image" ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
             {/*===> Inner Content <===*/}
             {attributes.style['inner-blocks'] === true ? <InnerBlocks template={[
                 ['phenix/group', {

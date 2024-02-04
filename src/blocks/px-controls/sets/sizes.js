@@ -45,28 +45,28 @@ export default class SizesSet extends Component {
             {!options ? <div className='row gpx-20 gpy-15'>
                 {/*===> Width <===*/}
                 <div className='col-12'>
-                    <PhenixSelect name={`width_size`} placeholder={__("Default", "pds-blocks")} label={__("Width Sizes", "pds-blocks")} value={attributes.style[`width_size`]} onChange={mainSetter} options={width_list} />
+                    <PhenixSelect key={`width_size`} name={`width_size`} placeholder={__("Default", "pds-blocks")} label={__("Width Sizes", "pds-blocks")} value={attributes.style[`width_size`]} onChange={mainSetter} options={width_list} />
                 </div>
                 {/*===> Min Width <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name={`min_size`} placeholder={__("Default", "pds-blocks")} label={__("Min Width", "pds-blocks")} value={attributes.style[`min_size`]} onChange={mainSetter} options={min_width_list} />
+                    <PhenixSelect key={`min_size`} name={`min_size`} placeholder={__("Default", "pds-blocks")} label={__("Min Width", "pds-blocks")} value={attributes.style[`min_size`]} onChange={mainSetter} options={min_width_list} />
                 </div>
                 {/*===> Max Width <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name={`max_size`} placeholder={__("Default", "pds-blocks")} label={__("Max Width", "pds-blocks")} value={attributes.style[`max_size`]} onChange={mainSetter} options={max_width_list} />
+                    <PhenixSelect key={`max_size`} name={`max_size`} placeholder={__("Default", "pds-blocks")} label={__("Max Width", "pds-blocks")} value={attributes.style[`max_size`]} onChange={mainSetter} options={max_width_list} />
                 </div>
 
                 {/*===> Height <===*/}
                 <div className='col-12'>
-                    <PhenixSelect name={`height_size`} placeholder={__("Default", "pds-blocks")} label={__("Height Sizes", "pds-blocks")} value={attributes.style[`height_size`]} onChange={mainSetter} options={height_list} />
+                    <PhenixSelect key={`height_size`} name={`height_size`} placeholder={__("Default", "pds-blocks")} label={__("Height Sizes", "pds-blocks")} value={attributes.style[`height_size`]} onChange={mainSetter} options={height_list} />
                 </div>
                 {/*===> Min Height <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name={`min_height_size`} placeholder={__("Default", "pds-blocks")} label={__("Min Height", "pds-blocks")} value={attributes.style[`min_height_size`]} onChange={mainSetter} options={min_height_list} />
+                    <PhenixSelect key={`min_height_size`} name={`min_height_size`} placeholder={__("Default", "pds-blocks")} label={__("Min Height", "pds-blocks")} value={attributes.style[`min_height_size`]} onChange={mainSetter} options={min_height_list} />
                 </div>
                 {/*===> Max Height <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect name={`max_height_size`} placeholder={__("Default", "pds-blocks")} label={__("Max Height", "pds-blocks")} value={attributes.style[`max_height_size`]} onChange={mainSetter} options={max_height_list} />
+                    <PhenixSelect key={`max_height_size`} name={`max_height_size`} placeholder={__("Default", "pds-blocks")} label={__("Max Height", "pds-blocks")} value={attributes.style[`max_height_size`]} onChange={mainSetter} options={max_height_list} />
                 </div>
                 {/*===> Other Options <===*/}
                 {this.props.children ? this.props.children : null}

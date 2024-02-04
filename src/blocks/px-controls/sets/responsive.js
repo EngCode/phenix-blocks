@@ -10,11 +10,8 @@ import {Component} from '@wordpress/element';
 
 //====> Phenix Modules <====//
 import PhenixSelect from '../select';
-import OptionControl from '../switch';
-import FlexAlignment from '../alignment';
 
 //====> Phenix Options Sets <=====//
-import StylesSet from './styles';
 import FlexboxSet from './flexbox';
 import TypographySet from './typography';
 
@@ -49,7 +46,7 @@ export default class ResponsiveSet extends Component {
                 {/*===> Sizes Options <===*/}
                 {options && options.includes("component-size") ?
                     <div className='col-6 col'>
-                        <PhenixSelect name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size${screenPoint}`]} onChange={mainSetter} options={component_sizes} />
+                        <PhenixSelect key={`size${screenPoint}`} name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size${screenPoint}`]} onChange={mainSetter} options={component_sizes} />
                     </div>
                 : null}
                 {/*===> Text Size <===*/}

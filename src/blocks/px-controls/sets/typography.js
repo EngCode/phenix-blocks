@@ -163,7 +163,6 @@ export default class TypographySet extends Component {
                     </OptionControl>
                 </div>
             </>: null}
-            
         </>
     }
 }

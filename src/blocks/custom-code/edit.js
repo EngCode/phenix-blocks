@@ -2,15 +2,13 @@
 import {__} from '@wordpress/i18n';
 import {PanelBody, Toolbar} from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
-import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
 import PhenixTextarea from '../px-controls/textarea';
-
-//====> Code Editor <====//
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

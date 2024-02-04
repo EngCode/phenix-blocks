@@ -8,7 +8,6 @@
 	"description": "Text <li> element for Lists.",
 	"supports": {
 		"html": false,
-        "inserter": false,
         "__experimentalOnEnter": true,
 		"__experimentalMetadata": true
 	},

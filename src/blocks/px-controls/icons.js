@@ -72,7 +72,6 @@ export default class PhenixIcons extends Component {
 
             //===> Reset Icons List <===//
             if (icon_type.includes('fab') && !icon_value[0].includes('fab')) icons_list = [];
-            // if (icon_type !== icon_value[0]) icons_list = [];
 
             //===> Set Icon Type <===//
             icon_name = icon_value[1];
@@ -225,7 +224,7 @@ export default class PhenixIcons extends Component {
 
         //===> Component Design <===//
         return (
-            <div className='px-gb-component position-rv mb-10 px-icons-selector'>
+            <div className={`px-gb-component position-rv mb-10 px-icons-selector ${!label?'pdt-10':''}`}>
                 {/*===> Toggle Button <===*/}
                 {label?<label className='mb-10 tx-UpperCase fs-13'>{label}</label>:null}
 

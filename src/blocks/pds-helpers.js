@@ -157,7 +157,14 @@ window.PhenixBlocks = {
                                 if (hasColors && isPrimary) {
                                     blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
                                 }  else {
-                                    blockProps.className += ` ${sub_value.value}`;
+                                    //===> Custom Colors <===//
+                                    if (sub_value.includes('var(--wp--preset--color--')) {CustomCSS.backgroundColor = sub_value;}
+
+                                    //===> Custom Gradient <===//
+                                    else if (sub_value.includes('var(--wp--preset--gradient--')) {CustomCSS.backgroundImage = sub_value;}
+
+                                    //===> Normal <===//
+                                    else {blockProps.className += ` ${sub_value.value}`;}
                                 }
                             }
                             //===> Background Rotation <===//
@@ -270,7 +277,10 @@ window.PhenixBlocks = {
                         else if (isColumn && option_name === "responsive" && sub_option.includes('size-')) {
                             blockProps.className += ` ${sub_option.replace("size", "col")}${colSizeHandler(sub_value)}`;
                         }
-    
+
+                        //===> Custom Text Colors <===//
+                        else if (option_name === "typography" && sub_option === "color" && sub_value.includes('var')) {CustomCSS.color = sub_value;}
+
                         //===> Other Values <===//
                         else {
                             if (isColumn && attributes.isFlexbox || isGrid) {
@@ -569,5 +579,11 @@ window.PhenixBlocks = {
             //===> Insert the new block after the current block <===//
             insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
         }
+    },
+
+    //===> Palette Checker <====//
+    checkPalette : (colors, theme) => {
+        if (!theme) theme = window.PhenixBlocks.dataLists.theme_palette;
+        return colors.length === theme.length && colors[0].slug === "background" && colors[colors.length-1].slug === "disable";
     },
 };

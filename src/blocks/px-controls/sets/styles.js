@@ -52,7 +52,17 @@ export default class StylesSet extends Component {
 
             {/*===> Background <===*/}
             {!options || options.includes("background")?<>
-                <PhenixBackground key={`background-${uniqueKey}`} colorsOnly={bgOnly && bgOnly.includes('colorsOnly') ? true : false} onlyCG={bgOnly && bgOnly.includes('onlyCG') ? true : false} label={__("Background", "pds-blocks")}  onChange={mainSetter} type={attributes.style.background?.type || "color"} value={attributes.style.background?.value || ""} rotate={attributes.style.background?.rotate || null} />
+                {/*===> Colors and Gradients <===*/}
+                <PhenixBackground key={`background-${uniqueKey}`} 
+                    colorsOnly={bgOnly && bgOnly.includes('colorsOnly') ? true : false}
+                    onlyCG={bgOnly && bgOnly.includes('onlyCG') ? true : false}
+                    label={__("Background", "pds-blocks")}  onChange={mainSetter}
+                    type={attributes.style.background?.type || "color"}
+                    value={attributes.style.background?.value || ""}
+                    rotate={attributes.style.background?.rotate || null} 
+                />
+
+                {/*===> Image Backgrounds <===*/}
                 {attributes.style.background?.type === "image" ? 
                     <div className='row gpx-15 pdt-10' style={{marginTop: -10}}>
                         {/*===> Column <===*/}

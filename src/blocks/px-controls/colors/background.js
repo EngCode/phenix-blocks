@@ -26,6 +26,20 @@ export default class PhenixBackground extends Component {
         //===> Properties <===//
         const {type, value, label, rotate, colorsOnly, onlyCG, isSmall, placeholder, onChange} = this.props;
 
+        //===> Get Custom Colors and Gradients <===//
+        const setting = wp.data.select('core/block-editor').getSettings();
+        const editorColors = setting['__experimentalFeatures']?.color;
+        const customColorsList = [];
+        const customGradientsList = [];
+
+        //===> Generate Custom Colors <===//
+        if (editorColors) {
+            editorColors.palette.default.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.palette.custom.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.gradients.default.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
+            editorColors.gradients.custom.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
+        }
+
         //===> Returned Value <===//
         let options = {
             type: type,
@@ -84,6 +98,7 @@ export default class PhenixBackground extends Component {
                 //===> Convert to Title <===//
                 if (isColor) {
                     title = list[index].replace('bg-', '').replace('-', ' ');
+                    title = title.replace('var(--wp--preset--color--', '').replace('var(--wp--preset--gradient--', '').replace(')', '').replace('bg-', '').replaceAll('-', ' ');
 
                     //===> UpperCase Title <===//
                     title = title.replace(/^\w/, function(c) {
@@ -91,7 +106,16 @@ export default class PhenixBackground extends Component {
                     });
                 } else title = "Reset";
 
-                output.push(<button key={`${name.replaceAll(" ", "-")}`} onClick={setBackground} title={title} data-value={isColor ? name : ""} className={`${isColor ? name : `${name} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : ""} ${classes?classes:""}`} style={{"width":"30px","height":"16px"}}></button>);
+                const buttonAttributes = {
+                    "title": title,
+                    "onClick": setBackground,
+                    "data-value": isColor ? name : "",
+                    "key": `${name.replaceAll(" ", "-")}`,
+                    "style": {"width":"30px","height":"16px", backgroundColor: name.includes('--wp--preset--color') ? name : null, backgroundImage: name.includes('--wp--preset--gradient') ? name : null},
+                    "className":`${isColor && !name.includes('var') ? name : `${!name.includes('var') ? name : name.includes('--white') ? 'border-1 border-solid border-alpha-10' : ''} color-gray fs-12`} col reset-button ${value === name ? 'px-active' : ""} ${classes?classes:""}`
+                }
+
+                output.push(<button {...buttonAttributes}></button>);
             }
             //===> Return Buttons <===//
             return output;
@@ -115,10 +139,6 @@ export default class PhenixBackground extends Component {
             }
         };
 
-        //===> Get Custom Colors and Gradients <===//
-        // const settings = wp.data.select('core/block-editor').getSettings();
-        // console.log(settings.colors, settings.gradients);
-
         //===> Component Design <===//
         return (
             <div className={`colors-selector px-gb-component ${isSmall ? "":" position-rv "}${label ? "mb-10" : ""}`}>
@@ -129,8 +149,8 @@ export default class PhenixBackground extends Component {
                     {/*===> Panel Trigger */}
                     <button onClick={showPanel} className={`col fs-13 col h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
                         {type !== "image" && type !== "video" ? <>
-                            <span className={`me-5 radius-circle inline-block ${value?.length > 0 ? value : "bg-inherit"}`} style={{"width": "17px", "height": "17px"}}></span>
-                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value?.length > 0 ? value.replaceAll("-", " ").replace("bg","") : placeholder ? placeholder : "Default"}</span>
+                            <span className={`me-5 radius-circle inline-block ${value?.length > 0 && !value.includes('var') ? value : value?.includes('var') ? '': "bg-inherit"}`} style={{"width": "17px", "height": "17px", backgroundColor: value.includes('--wp--preset--color') ? value : null, backgroundImage: value.includes('--wp--preset--gradient') ? value : null}}></span>
+                            <span className='col tx-nowrap pde-5 tx-capitalize'>{value?.length > 0 && !placeholder ? value?.replace('var(--wp--preset--color--', '').replace('var(--wp--preset--gradient--', '').replace(')', '').replace('bg-', '').replaceAll('-', ' ') : placeholder ? placeholder : "Default"}</span>
                         </> : <>
                         <span className={`me-5 radius-circle inline-block`} style={{"width": "22px", "height": "22px", "backgroundImage": `url(${value})`, "backgroundSize": "cover", "backgroundPosition": "center"}}></span>
                             <span className='col tx-nowrap pde-5'>{placeholder ? placeholder : __("Replace", "pds-blocks")}</span>
@@ -155,33 +175,50 @@ export default class PhenixBackground extends Component {
                 {/*===> Panel <===*/}
                 <div className={`flexbox options-list ${type !== "image"  && type !== "video" && type !== "embed" ? 'pdy-15 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
                     {type === "color" ? <>
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
                         {makeButtons(PhenixBlocks.palette.colors.main, "radius-xxl")}
 
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
                         {makeButtons(PhenixBlocks.palette.colors.components, "radius-xxl border-1 border-alpha-15 border-solid")}
 
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette.colors.status, "radius-xxl")}
-
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette.colors.offwhite, "radius-xxl")}
-
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette.colors.brands, "radius-xxl")}
-
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
+                        {customColorsList.length > 0 ? <>
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 mt-10 tx-UpperCase fs-12 col-12'>
+                                {__("Custom Colors", "pds-blocks")}
+                            </label>
+                            {makeButtons(customColorsList, "radius-xxl")}
+                        </>:null}
+                        
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
                         <div className='pd-5 radius-sm bg-white fluid flexbox align-between'>
                             {makeButtons(PhenixBlocks.palette.colors.darkAlpha, "")}
                         </div>
 
-                        <label className='tx-align-center divider-b mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
                         <div className='pd-5 radius-sm bg-dark fluid flexbox align-between'>
                             {makeButtons(PhenixBlocks.palette.colors.lightAlpha, "")}
                         </div>
+
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
+                        {makeButtons(PhenixBlocks.palette.colors.status, "radius-xxl")}
+
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
+                        {makeButtons(PhenixBlocks.palette.colors.offwhite, "radius-xxl")}
+
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
+                        {makeButtons(PhenixBlocks.palette.colors.brands, "radius-xxl")}
+
                     </>
-                    : type === "gradient" ? 
-                        makeButtons(PhenixBlocks.palette.gradients, "radius-xxl") : 
+                    : type === "gradient" ? <>
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Phenix Gradients", "pds-blocks")}</label>
+                        {makeButtons(PhenixBlocks.palette.gradients, "radius-xxl")}
+
+                        {customGradientsList.length > 0 ? <>
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 mt-10 tx-UpperCase fs-12 col-12'>
+                                {__("Custom Gradients", "pds-blocks")}
+                            </label>
+                            {makeButtons(customGradientsList, "radius-xxl")}
+                        </>:null}
+                    </>:
                     null}
                     {type === "image" || type === "video" ? <MediaUploader key="upload-file" value={!value ? PhenixBlocks.palette.placeholder : value} setValue={setBackground}></MediaUploader> : null}
                 </div>

@@ -1,3 +1,10 @@
+/*
+ * Phenix Blocks
+ * Version  : 1.0
+ * License  : MIT
+ * Copyright: 2022 Abdullah.Ramadan
+*/
+
 //===> Define Translation Function <===//
 const __ = window.wp.i18n.__;
 

@@ -64,7 +64,7 @@ export default class PositionSet extends Component {
         };
 
         //===> Output <===//
-        return <div className={`position-controller mgx-auto`}>
+        return <div className={`position-controller mgx-auto position-rv`}>
             {/*===> Bound X <===*/}
             <OptionControl key={`bound-position-x${screen}`} name={`bound-position-x${screen}`} checked={attributes.style[`bound-position-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-end-0">
                 <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>

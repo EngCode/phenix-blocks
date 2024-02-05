@@ -79,7 +79,7 @@ export default class StylesSet extends Component {
                                 </div>
                                 </>:null}
                                 {attributes.style.overly === "overlay-custom" ? <>
-                                <div className='col-12 mb-10'>
+                                <div className='col-12'>
                                     {/*===> Colors and Gradients <===*/}
                                     <PhenixBackground key={`overlay-background-${uniqueKey}`}
                                         customOnly={true}

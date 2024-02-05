@@ -15,14 +15,26 @@
   "description": "",
   "supports": {
     "html": false,
+    "ariaLabel": true,
     "align": [
       "full"
     ],
     "alignWide": true,
     "__experimentalOnEnter": true,
-    "__experimentalMetadata": true
+    "__experimentalMetadata": true,
+    "shadow": true,
+    "renaming": true,
+    "interactivity": {
+      "clientNavigation": true
+    }
   },
   "attributes": {
+    "metadata": {
+      "name": {
+        "type": "string",
+        "default": ""
+      }
+    },
     "id": {
       "type": "string",
       "default": ""

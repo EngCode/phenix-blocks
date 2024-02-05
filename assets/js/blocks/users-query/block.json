@@ -12,9 +12,20 @@
     ],
     "alignWide": true,
     "__experimentalOnEnter": true,
-    "__experimentalMetadata": true
+    "__experimentalMetadata": true,
+    "shadow": true,
+    "renaming": true,
+    "interactivity": {
+      "clientNavigation": true
+    }
   },
   "attributes": {
+    "metadata": {
+      "name": {
+        "type": "string",
+        "default": ""
+      }
+    },
     "query": {
       "type": "object",
       "default": {}

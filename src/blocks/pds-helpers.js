@@ -21,7 +21,7 @@ window.PhenixBlocks = {
         //===> Rendering Options <===//
         Object.entries(attributes).forEach(([option_name, option_value]) => {
             //===> Exclude Options <===//
-            const excluded = ["tagName", "className", "align", "metadata", "name", "content", "lightbox_type", "url", "label"];
+            const excluded = ["tagName", "className", "align", "metadata", "content", "lightbox_type", "url", "label"];
             if (excluded.some(opt => opt === option_name) || option_name.startsWith('name-')) return;
     
             //===> if its a Normal Values that should be string <===//
@@ -300,6 +300,12 @@ window.PhenixBlocks = {
         Object.entries(CustomCSS).forEach(([option_name, option_value]) => {
             blockProps.style[`${option_name}`] = option_value;
         });
+
+        //===> List View Naming <===//
+        if (attributes.metadata?.name) {
+            let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
+            if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
+        }
     
         //===> Render Component <===//
         return {blockProps, container};

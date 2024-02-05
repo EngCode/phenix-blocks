@@ -18,14 +18,13 @@
   "description": "",
   "supports": {
     "html": false,
+    "renaming": true,
     "align": [
       "full"
     ],
     "alignWide": true,
     "__experimentalOnEnter": true,
     "__experimentalMetadata": true,
-    "shadow": true,
-    "renaming": true,
     "interactivity": {
       "clientNavigation": true
     }

@@ -8,10 +8,19 @@
 	"description": "Text <li> element for Lists.",
 	"supports": {
 		"html": false,
+        "renaming": true,
         "__experimentalOnEnter": true,
-		"__experimentalMetadata": true
+		"__experimentalMetadata": true,
+        "interactivity": {"clientNavigation": true}
 	},
+
     "attributes" : {
+        "metadata": {
+            "name": {
+                "type": "string",
+                "default": ""
+            }
+        },
         "id": {
 			"type": "string",
 			"default": ""

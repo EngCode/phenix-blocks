@@ -7,10 +7,20 @@
   "description": "Show and Hide Blocks with Logical Conditions",
   "supports": {
     "html": false,
+    "renaming": true,
     "__experimentalOnEnter": true,
-    "__experimentalMetadata": true
+    "__experimentalMetadata": true,
+    "interactivity": {
+      "clientNavigation": true
+    }
   },
   "attributes": {
+    "metadata": {
+      "name": {
+        "type": "string",
+        "default": ""
+      }
+    },
     "logic": {
       "type": "object",
       "default": {}

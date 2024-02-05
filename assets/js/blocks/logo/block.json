@@ -7,10 +7,20 @@
   "description": "Main Logo Block for Phenix Header.",
   "supports": {
     "html": false,
+    "renaming": true,
     "__experimentalOnEnter": true,
-    "__experimentalMetadata": true
+    "__experimentalMetadata": true,
+    "interactivity": {
+      "clientNavigation": true
+    }
   },
   "attributes": {
+    "metadata": {
+      "name": {
+        "type": "string",
+        "default": ""
+      }
+    },
     "preview": {
       "type": "boolean",
       "default": false

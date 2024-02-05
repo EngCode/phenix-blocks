@@ -92,7 +92,7 @@ export default class PhenixBackground extends Component {
             for (let index = 0; index < list.length; index++) {
                 //===> Get Value <===//
                 const name = list[index];
-                let title = "",
+                let title = name,
                     isColor = !name.includes("fa-");
 
                 //===> Convert to Title <===//

@@ -29,11 +29,17 @@ export default function Edit(props) {
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
     const set_slider = (target, screen) => PhenixBlocks.setObject(target, screen, 'slider', false, attributes, setAttributes);
     const set_query = (target, screen) => PhenixBlocks.setObject(target, screen, "query", false, attributes, setAttributes);
-
+    
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
+
+    //===> List View Naming <===//
+    if (attributes.metadata?.name) {
+        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
+        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
+    }
 
     //===> Render <===//
     return (<>

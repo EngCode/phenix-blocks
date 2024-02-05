@@ -64,6 +64,12 @@ export default function Edit({ attributes, setAttributes }) {
         { label: __("Visitors Only", "pds-blocks"), value: 'visitors-only' }
     ];
 
+    //===> List View Naming <===//
+    if (attributes.metadata?.name) {
+        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
+        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
+    }
+
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}

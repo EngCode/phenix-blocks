@@ -71,11 +71,17 @@ export default function Edit(props) {
         styles.background_hvr = background;
         setAttributes({ style : {...styles} });
     };
-
+    
     //===> Get Properties <===//
     const {attributes, setAttributes} = props;
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
+
+    //===> List View Naming <===//
+    if (attributes.metadata?.name) {
+        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
+        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
+    }
 
     //===> Render <===//
     return (<>

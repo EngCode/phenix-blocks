@@ -281,6 +281,11 @@ window.PhenixBlocks = {
                         //===> Custom Text Colors <===//
                         else if (option_name === "typography" && sub_option === "color" && sub_value.includes('var')) {CustomCSS.color = sub_value;}
 
+                        //===> Overlay Options <===//
+                        else if (option_name === "style" && sub_option === "overly_opacity") {
+                            CustomCSS['--opacity'] = `${sub_value}%`;
+                        }
+
                         //===> Other Values <===//
                         else {
                             if (isColumn && attributes.isFlexbox || isGrid) {

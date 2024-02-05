@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
 import {Component} from '@wordpress/element';
 
 //====> Phenix Modules <====//
+import PhenixNumber from '../number';
 import PhenixSelect from '../select';
 import OptionControl from '../switch';
 import PhenixColor from '../colors/text';
@@ -67,10 +68,6 @@ export default class StylesSet extends Component {
                     <div className='row gpx-15 pdt-10' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
                         <div className='col col-6 mb-10'>
-                            <PhenixSelect className="border-alpha-25" key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col col-6 mb-10'>
                             <PhenixSelect className="border-alpha-25" key={`bg-size-${uniqueKey}`} name="bg-size" placeholder={__("Size", "pds-blocks")} value={attributes.style['bg-size']} onChange={mainSetter} options={background_options.sizes} />
                         </div>
                         {/*===> Column <===*/}
@@ -84,6 +81,20 @@ export default class StylesSet extends Component {
                         {/*===> Column <===*/}
                         <div className='col col-6'>
                             <PhenixSelect className="border-alpha-25" key={`bg-animation-${uniqueKey}`} name="bg-animation" placeholder={__("Animation", "pds-blocks")} value={attributes.style['bg-animation']} onChange={mainSetter} options={background_options.animations} />
+                        </div>
+                        {/*===> Column <===*/}
+                        <div className='col-12'>
+                            {/*===> Column <===*/}
+                            <div className='row gpx-15'>
+                                <div className='col col-6 mb-10'>
+                                    <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
+                                </div>
+                                {attributes.style.overly ? <>
+                                <div className='col col-6 mb-10'>
+                                    <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 75} onChange={mainSetter} />
+                                </div>
+                                </>:null}
+                            </div>
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-12'>

@@ -24,6 +24,7 @@ import TypographySet from '../px-controls/sets/typography';
 import ResponsiveSet from '../px-controls/sets/responsive';
 import AnimationsSet from '../px-controls/sets/animations';
 import EffectsSet from '../px-controls/sets/effects';
+import BorderSet from '../px-controls/sets/border';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes, clientId }) {    
@@ -227,6 +228,20 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                                 md={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                 lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                                 xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-border') ?
+                    <PxDropDown title={__("Border Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-all divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            {/*===> Border Size <===*/}
+                            <ScreensTabs
+                                sm={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
                             />
                         </li>
                     </PxDropDown>

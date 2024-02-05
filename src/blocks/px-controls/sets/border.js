@@ -12,12 +12,14 @@ import {Component} from '@wordpress/element';
 import PhenixSelect from '../select';
 import OptionControl from '../switch';
 import PhenixNumber from "../number";
+import PhenixBackground from '../colors/background';
 
 //===> Component <===//
-export default class PositionSet extends Component {
+export default class BorderSet extends Component {
     render () {
         //===> Properties <===//
-        const {attributes, options, mainSetter, screen, attrSetter} = this.props;
+        const {attributes, options, mainSetter, screen, attrSetter, objectSetter, setAttributes} = this.props;
+        const PhenixBlocks = window.PhenixBlocks;
 
         //===> Reset border <===//
         const reset = () => {
@@ -66,37 +68,59 @@ export default class PositionSet extends Component {
         //===> Output <===//
         return <div className={`position-controller mgx-auto position-rv`}>
             {/*===> Bound X <===*/}
-            <OptionControl key={`bound-border-x${screen}`} name={`bound-border-x${screen}`} checked={attributes.style[`bound-border-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab border-top-0 border-end-0">
+            <OptionControl key={`bound-border-x${screen}`} name={`bound-border-x${screen}`} checked={attributes.style[`bound-border-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-end-0">
                 <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
             </OptionControl>
             {/*===> Bound Y <===*/}
-            <OptionControl key={`bound-border-y${screen}`} name={`bound-border-y${screen}`} checked={attributes.style[`bound-border-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab border-top-0 border-start-0">
+            <OptionControl key={`bound-border-y${screen}`} name={`bound-border-y${screen}`} checked={attributes.style[`bound-border-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-start-0">
                 <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
             </OptionControl>
 
             {/*===> Top Controller <===*/}
             <div className='mgx-auto mb-15' style={{width: 100}}>
-                <PhenixNumber key={`border-top${screen}`} name={`border-top${screen}`} onChange={setValue} value={attributes.style[`border-top${screen}`] || 0} min={-2500} max={2500} steps={5} />
+                <PhenixNumber key={`border-top${screen}`} name={`border-top${screen}`} onChange={setValue} value={attributes.style[`border-top${screen}`] || 0} min={0} max={250} steps={1} />
             </div>
             {/*===> X Controls <===*/}
             <div className={`flexbox align-between align-center-y mb-15`}>
                 {/*===> Start Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber key={`border-start${screen}`} name={`border-start${screen}`} onChange={setValue} value={attributes.style[`border-start${screen}`] || 0} min={-2500} max={2500} steps={5} />
+                    <PhenixNumber key={`border-start${screen}`} name={`border-start${screen}`} onChange={setValue} value={attributes.style[`border-start${screen}`] || 0} min={0} max={250} steps={1} />
                 </div>
                 {/*===> Reset Button <===*/}
                 <button key={`reset-position${screen}`} name={`reset-position${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber key={`border-end${screen}`} name={`border-end${screen}`} onChange={setValue} value={attributes.style[`border-end${screen}`] || 0} min={-2500} max={2500} steps={5} />
+                    <PhenixNumber key={`border-end${screen}`} name={`border-end${screen}`} onChange={setValue} value={attributes.style[`border-end${screen}`] || 0} min={0} max={250} steps={1} />
                 </div>
             </div>
             {/*===> Bottom Controller <===*/}
             <div className='mgx-auto' style={{width: 100}}>
-                <PhenixNumber key={`border-bottom${screen}`}  name={`border-bottom${screen}`} onChange={setValue} value={attributes.style[`border-bottom${screen}`] || 0} min={-2500} max={2500} steps={5} />
+                <PhenixNumber key={`border-bottom${screen}`}  name={`border-bottom${screen}`} onChange={setValue} value={attributes.style[`border-bottom${screen}`] || 0} min={0} max={250} steps={1} />
             </div>
             {/*===> Other Options <===*/}
-            {this.props.children ? this.props.children : null}
+            {!screen || screen !== "" ? <>
+                <div className='row gpx-15 divider-t pdt-10 mt-15 position-rv'>
+                    {/*===> Column <===*/}
+                    <div className='col col-6'>
+                        {/*===> Border Style <===*/}
+                        <PhenixSelect name="border-style" placeholder={__("Style", "pds-blocks")} className={`mb-10 weight-medium`} value={attributes.style['border_styles']} onChange={mainSetter} options={PhenixBlocks.dataLists.styles.border_styles} />
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col col-6'>
+                        {/*===> Border Style <===*/}
+                        <PhenixBackground key={`border-color`}
+                            isSmall={true}
+                            colorsOnly={true}
+                            customOnly={true}
+                            onChange={(value) => objectSetter(value, "", "style", "border-color", attributes, setAttributes)}
+                            type={attributes.style['border-color']?.type || "color"}
+                            value={attributes.style['border-color']?.value || ""}
+                            rotate={attributes.style['border-color']?.rotate || null} 
+                        />
+                    </div>
+                </div>
+            </>:null}
+            {/*===> // Other Options <===*/}
         </div>
     }
 }

@@ -188,6 +188,9 @@ window.PhenixBlocks = {
                             else {CustomCSS['--overlay-bg'] = sub_value.value;}
                         }
 
+                        //===> Border Color <===//
+                        else if (sub_option === "border-color" && sub_value.value) {CustomCSS['borderColor'] = sub_value.value;}
+
                         //===> Animations Specials <===//
                         else if (sub_option === "animation") {
                             Object.entries(sub_value).forEach(([key, value]) => {
@@ -204,7 +207,10 @@ window.PhenixBlocks = {
 
                         //===> Styles Support <===//
                         else if (sub_option === "support") {
-                            sub_value.forEach(property => !property.includes('enable-') ? blockProps.className += ` ${property}` : null);
+                            sub_value.forEach(property => {
+                                if (property === "enable-border") blockProps.className += ` border-reset`;
+                                !property.includes('enable-') ? blockProps.className += ` ${property}` : null
+                            });
                         }
 
                         //===> for Link Options <===//
@@ -226,10 +232,10 @@ window.PhenixBlocks = {
                     else if (isNormalValue(sub_value)) {
                         //===> Exclude Options <===//
                         const excluded = ["dimensions", "url"];
-                        const excludedX = ["bound-"];
+                        const findAndExcluded = ["bound-"];
 
                         if (excluded.some(opt => opt === sub_option)) return;
-                        if (excludedX.some(opt => opt.includes(sub_option))) return;
+                        if (findAndExcluded.some(opt => opt.includes(sub_option))) return;
     
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }
@@ -288,6 +294,12 @@ window.PhenixBlocks = {
                         //===> Layout Gap <===//
                         else if (sub_option.includes('gpx') || sub_option.includes('gpy') && !sub_option.includes('fix')) {
                             container.className += ` ${sub_option}-${sub_value}`;
+                        }
+
+                        //===> Border Values <===//
+                        else if (sub_option.includes('border-') && typeof(sub_value) === 'number') {
+                            CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                            blockProps.className += ` ${sub_option}-custom-${sub_value} ${!attributes.style['border-style'] ? 'border-solid' : ''}`;
                         }
     
                         //===> Flexbox Values <===//

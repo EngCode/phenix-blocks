@@ -851,6 +851,7 @@ window.PhenixBlocks.dataLists = {
         support_options: [
             { label: __("Margin", "pds-blocks"), value: 'enable-margin' },
             { label: __("Padding", "pds-blocks"), value: 'enable-padding' },
+            { label: __("Border", "pds-blocks"), value: 'enable-border' },
             { label: __("Radius", "pds-blocks"), value: 'enable-radius' },
             { label: __("Display", "pds-blocks"), value: 'enable-display' },
             { label: __("Position", "pds-blocks"), value: 'enable-position' },
@@ -906,6 +907,12 @@ window.PhenixBlocks.dataLists = {
                 { label:"Custom", value: "overlay-custom"},
             ],
         },
+
+        border_styles: [
+            {"label": "Solid", "value": "border-solid"},
+            {"label": "Dashed", "value": "border-dashed"},
+            {"label": "Dotted", "value": "border-dotted "}
+        ]
     },
 
     typography: {

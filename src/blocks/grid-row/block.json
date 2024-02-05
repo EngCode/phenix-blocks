@@ -18,10 +18,8 @@
 
     "attributes" : {
         "metadata": {
-            "name": {
-                "type": "string",
-                "default": ""
-            }
+            "type": "object",
+            "default": {}
         },
         "preview" : {
             "type": "boolean",

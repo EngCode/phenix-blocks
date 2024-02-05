@@ -20,10 +20,8 @@
   },
   "attributes": {
     "metadata": {
-      "name": {
-        "type": "string",
-        "default": ""
-      }
+      "type": "object",
+      "default": {}
     },
     "query": {
       "type": "object",

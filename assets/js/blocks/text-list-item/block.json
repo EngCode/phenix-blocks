@@ -22,10 +22,8 @@
   },
   "attributes": {
     "metadata": {
-      "name": {
-        "type": "string",
-        "default": ""
-      }
+      "type": "object",
+      "default": {}
     },
     "id": {
       "type": "string",

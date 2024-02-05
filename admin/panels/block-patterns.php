@@ -43,8 +43,9 @@
 </ul>
 <!-- Pagination Buttons -->
 <div class="flexbox align-between pdt-15 hidden data-pagination">
-    <button type="button" data-page="next" class="btn small primary radius-sm border-1 border-solid border-alpha-15 next-btn">Next Page</button>
     <button type="button" data-page="previous" class="btn small gray radius-sm border-1 border-solid border-alpha-15 prev-btn">Previous Page</button>
+    <span class="pagination-info fs-14 weight-bold">1/1</span>
+    <button type="button" data-page="next" class="btn small primary radius-sm border-1 border-solid border-alpha-15 next-btn">Next Page</button>
 </div>
 <!-- /// Pagination Buttons -->
 

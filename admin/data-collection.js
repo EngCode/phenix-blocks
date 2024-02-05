@@ -330,6 +330,7 @@ document.addEventListener('DOMContentLoaded', ready => {
             let current = options,
                 theData  = current[type],
                 dataList = document.querySelector(list),
+                pagesInfo = dataList.parentNode.querySelector('.pagination-info'),
                 currentPage = parseInt(dataList.getAttribute('data-current-page')) || 1,
                 dataPages   = {},
                 itemsShows  = theData.length > 10 ? 10 : theData.length;
@@ -342,6 +343,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                 //===> Add item to Pages Object <===//
                 dataPages[pageNumber] = theData.slice(item, item + itemsShows);
             }
+            
+            //===> Update Pagination Info <===//
+            if (pagesInfo) pagesInfo.textContent = `1/${Object.keys(dataPages).length}`;
 
             //===> if it is only one page hide the pagination <===//
             if (Object.keys(dataPages).length === 1) dataList.parentNode.querySelector('.data-pagination')?.classList.add('hidden');
@@ -384,6 +388,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                     //===> Create Page <===//
                     dataPages[currentPage].forEach(item => Phenix(dataList).insert('append', template(item)));
                 }
+
+                //===> Update Pagination Info <===//
+                if (pagesInfo) pagesInfo.textContent = `${currentPage}/${Object.keys(dataPages).length}`;
 
                 //===> Activate Edit Method <===//
                 dataList.querySelectorAll(".edit-item").forEach(item => item.addEventListener('click', event => edit_item(event.target)));

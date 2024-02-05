@@ -83,7 +83,7 @@ export default class StylesSet extends Component {
                                     {/*===> Colors and Gradients <===*/}
                                     <PhenixBackground key={`overlay-background-${uniqueKey}`}
                                         customOnly={true}
-                                        label={__("Background", "pds-blocks")}  onChange={(value) => objectSetter(value, "", "style", "overly_bg", attributes, setAttributes)}
+                                        label={__("Overlay Background", "pds-blocks")}  onChange={(value) => objectSetter(value, "", "style", "overly_bg", attributes, setAttributes)}
                                         type={attributes.style.overly_bg?.type || "color"}
                                         value={attributes.style.overly_bg?.value || ""}
                                         rotate={attributes.style.overly_bg?.rotate || null} 

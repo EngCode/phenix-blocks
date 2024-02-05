@@ -255,7 +255,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 {/*===> Responsive Tabs <===*/}
                 <ScreensTabs key={`responsive-${uniqueKey}`} md={responsive_options} lg={responsive_options} xl={responsive_options} />
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
             {/*===> Style Options <===*/}
             <PanelBody title={__("Extra Options", "pds-blocks")} initialOpen={true}>

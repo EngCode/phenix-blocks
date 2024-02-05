@@ -135,13 +135,13 @@ window.PhenixBlocks = {
                             //===> Image Background <===//
                             if (attributes.style.background.type === 'image') {
                                 blockProps.className += ` px-media`;
-                                blockProps["data-src"] = attributes.style.background.value;
-                                blockProps.style.backgroundImage = attributes.style.background.value;
+                                blockProps["data-src"] = sub_value.value;
+                                blockProps.style.backgroundImage = sub_value.value;
                             }
                             //===> Video Background <===//
                             else if (attributes.style.background.type === 'video') {
                                 blockProps.className += ` px-media pds-video-bg`;
-                                blockProps["data-src"]      = attributes.style.background.value;
+                                blockProps["data-src"]      = sub_value.value;
                                 blockProps["data-loop"]     = "1";
                                 blockProps["data-type"]     = "embed";
                                 blockProps["data-embed"]    = "video";
@@ -169,6 +169,14 @@ window.PhenixBlocks = {
                             }
                             //===> Background Rotation <===//
                             if (sub_value.rotate) blockProps.className += ` ${sub_value.rotate}`;
+                        }
+
+                        //===> Overlay Background <===//
+                        else if (sub_option === "overly_bg" && sub_value.value) {
+                            //===> Video Background <===//
+                            if (attributes.style.background.type === 'video') return;
+                            //===> Name Background <===//
+                            else {CustomCSS['--overlay-bg'] = sub_value.value;}
                         }
 
                         //===> Animations Specials <===//
@@ -282,9 +290,7 @@ window.PhenixBlocks = {
                         else if (option_name === "typography" && sub_option === "color" && sub_value.includes('var')) {CustomCSS.color = sub_value;}
 
                         //===> Overlay Options <===//
-                        else if (option_name === "style" && sub_option === "overly_opacity") {
-                            CustomCSS['--opacity'] = `${sub_value}%`;
-                        }
+                        else if (option_name === "style" && sub_option === "overly_opacity") {CustomCSS['--opacity'] = `${sub_value}%`;}
 
                         //===> Other Values <===//
                         else {
@@ -364,7 +370,7 @@ window.PhenixBlocks = {
         //==> Get Current <==//
         const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
         const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
-        
+
         //==> Set Value <==//
         const newAttributes = name.includes('animation') ? {
             ...attributes[attr],

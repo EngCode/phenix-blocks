@@ -110,7 +110,7 @@ export default function Edit({ attributes, setAttributes }) {
                         <PhenixNumber name={"dimensions"} icon="far fa-arrows" className="mb-15" min={42} max={512} value={attributes.style.dimensions || 42} onChange={set_style} />
 
                         {/*===> Styles <===*/}
-                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
+                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
@@ -187,7 +187,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="General Settings" initialOpen={true}>
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}

@@ -165,7 +165,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         {/*===> Styles <===*/}
-                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="text-colors" />
+                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} mainSetter={set_style} objectSetter={PhenixBlocks.setObject} colorSetter={set_typography} options="text-colors" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
@@ -250,7 +250,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="General Settings" initialOpen={true}>
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}

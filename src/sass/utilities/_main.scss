@@ -31,17 +31,12 @@
 .clear-after::after,.clear-fix { clear: both; content: ''; }
 
 /*==== Overlay Layer ====*/
-.overlay-dark {
-    --opacity: 0.5;
+.overlay-dark, .overlay-light, .overlay-custom {
     @extend %overlay;
-    &::before {background-color: #000;opacity: var(--opacity);}
+    &::before {background: var(--overlay-bg, #000);opacity: var(--opacity, 0.5);}
 }
 
-.overlay-light {
-    --opacity: 0.3;
-    @extend %overlay;
-    &::before {background-color: #FFF;opacity: var(--opacity);}
-}
+.overlay-light {--overlay-bg: #FFF;}
 
 /*==== Directions ====*/
 .ltr { direction: ltr!important; }

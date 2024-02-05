@@ -57,7 +57,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
+                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
@@ -168,7 +168,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 {/*=== Form Control  ===*/}
                 <PhenixInput className="mb-15" name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={ attributes.id } onChange={set_value} />
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
         </InspectorControls>
 

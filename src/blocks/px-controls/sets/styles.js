@@ -23,7 +23,7 @@ export default class StylesSet extends Component {
     render () {
         //===> Properties <===//
         const PhenixBlocks = window.PhenixBlocks.dataLists.styles;
-        const {attributes, options, mainSetter, colorSetter, bgOnly} = this.props;
+        const {attributes, options, mainSetter, colorSetter, bgOnly, objectSetter, setAttributes} = this.props;
         const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-styles-option`;
 
         //===> Define Controls Options <===//
@@ -54,10 +54,10 @@ export default class StylesSet extends Component {
             {/*===> Background <===*/}
             {!options || options.includes("background")?<>
                 {/*===> Colors and Gradients <===*/}
-                <PhenixBackground key={`background-${uniqueKey}`} 
+                <PhenixBackground key={`background-${uniqueKey}`}
                     colorsOnly={bgOnly && bgOnly.includes('colorsOnly') ? true : false}
                     onlyCG={bgOnly && bgOnly.includes('onlyCG') ? true : false}
-                    label={__("Background", "pds-blocks")}  onChange={mainSetter}
+                    label={__("Background", "pds-blocks")} onChange={mainSetter}
                     type={attributes.style.background?.type || "color"}
                     value={attributes.style.background?.value || ""}
                     rotate={attributes.style.background?.rotate || null} 
@@ -66,6 +66,32 @@ export default class StylesSet extends Component {
                 {/*===> Image Backgrounds <===*/}
                 {attributes.style.background?.type === "image" ? 
                     <div className='row gpx-15 pdt-10' style={{marginTop: -10}}>
+                        {/*===> Column <===*/}
+                        <div className='col-12'>
+                            {/*===> Column <===*/}
+                            <div className='row gpx-15'>
+                                <div className='col col-6 mb-10'>
+                                    <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
+                                </div>
+                                {attributes.style.overly ? <>
+                                <div className='col col-6 mb-10'>
+                                    <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={mainSetter} />
+                                </div>
+                                </>:null}
+                                {attributes.style.overly === "overlay-custom" ? <>
+                                <div className='col-12 mb-10'>
+                                    {/*===> Colors and Gradients <===*/}
+                                    <PhenixBackground key={`overlay-background-${uniqueKey}`}
+                                        customOnly={true}
+                                        label={__("Background", "pds-blocks")}  onChange={(value) => objectSetter(value, "", "style", "overly_bg", attributes, setAttributes)}
+                                        type={attributes.style.overly_bg?.type || "color"}
+                                        value={attributes.style.overly_bg?.value || ""}
+                                        rotate={attributes.style.overly_bg?.rotate || null} 
+                                    />
+                                </div>
+                                </>:null}
+                            </div>
+                        </div>
                         {/*===> Column <===*/}
                         <div className='col col-6 mb-10'>
                             <PhenixSelect className="border-alpha-25" key={`bg-size-${uniqueKey}`} name="bg-size" placeholder={__("Size", "pds-blocks")} value={attributes.style['bg-size']} onChange={mainSetter} options={background_options.sizes} />
@@ -81,20 +107,6 @@ export default class StylesSet extends Component {
                         {/*===> Column <===*/}
                         <div className='col col-6'>
                             <PhenixSelect className="border-alpha-25" key={`bg-animation-${uniqueKey}`} name="bg-animation" placeholder={__("Animation", "pds-blocks")} value={attributes.style['bg-animation']} onChange={mainSetter} options={background_options.animations} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col-12'>
-                            {/*===> Column <===*/}
-                            <div className='row gpx-15'>
-                                <div className='col col-6 mb-10'>
-                                    <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
-                                </div>
-                                {attributes.style.overly ? <>
-                                <div className='col col-6 mb-10'>
-                                    <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 75} onChange={mainSetter} />
-                                </div>
-                                </>:null}
-                            </div>
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-12'>

@@ -99,7 +99,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Form Control <===*/}
                 <PhenixInput name="id" label={__("Modal ID", "pds-blocks")} className="mb-15" value={attributes.id} onChange={set_value} />
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}

@@ -67,31 +67,26 @@ export default class StylesSet extends Component {
                 {attributes.style.background?.type === "image" ? 
                     <div className='row gpx-15 pdt-10' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
-                        <div className='col-12'>
-                            {/*===> Column <===*/}
-                            <div className='row gpx-15'>
-                                <div className='col col-6 mb-10'>
-                                    <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
-                                </div>
-                                {attributes.style.overly ? <>
-                                <div className='col col-6 mb-10'>
-                                    <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={mainSetter} />
-                                </div>
-                                </>:null}
-                                {attributes.style.overly === "overlay-custom" ? <>
-                                <div className='col-12'>
-                                    {/*===> Colors and Gradients <===*/}
-                                    <PhenixBackground key={`overlay-background-${uniqueKey}`}
-                                        customOnly={true}
-                                        label={__("Overlay Background", "pds-blocks")}  onChange={(value) => objectSetter(value, "", "style", "overly_bg", attributes, setAttributes)}
-                                        type={attributes.style.overly_bg?.type || "color"}
-                                        value={attributes.style.overly_bg?.value || ""}
-                                        rotate={attributes.style.overly_bg?.rotate || null} 
-                                    />
-                                </div>
-                                </>:null}
-                            </div>
+                        <div className='col col-6 mb-10'>
+                            <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
                         </div>
+                        {attributes.style.overly ? <>
+                        <div className='col col-6 mb-10'>
+                            <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={mainSetter} />
+                        </div>
+                        </>:null}
+                        {attributes.style.overly === "overlay-custom" ? <>
+                        <div className='col-12'>
+                            {/*===> Colors and Gradients <===*/}
+                            <PhenixBackground key={`overlay-background-${uniqueKey}`}
+                                customOnly={true}
+                                label={__("Overlay Background", "pds-blocks")}  onChange={(value) => objectSetter(value, "", "style", "overly_bg", attributes, setAttributes)}
+                                type={attributes.style.overly_bg?.type || "color"}
+                                value={attributes.style.overly_bg?.value || ""}
+                                rotate={attributes.style.overly_bg?.rotate || null} 
+                            />
+                        </div>
+                        </>:null}
                         {/*===> Column <===*/}
                         <div className='col col-6 mb-10'>
                             <PhenixSelect className="border-alpha-25" key={`bg-size-${uniqueKey}`} name="bg-size" placeholder={__("Size", "pds-blocks")} value={attributes.style['bg-size']} onChange={mainSetter} options={background_options.sizes} />

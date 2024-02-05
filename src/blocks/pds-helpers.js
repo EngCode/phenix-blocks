@@ -189,7 +189,7 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Color <===//
-                        else if (sub_option === "border-color" && sub_value.value) {CustomCSS['borderColor'] = sub_value.value;}
+                        else if (attributes.style.support?.includes('border-enable') && sub_option === "border-color" && sub_value.value) {CustomCSS['borderColor'] = sub_value.value;}
 
                         //===> Animations Specials <===//
                         else if (sub_option === "animation") {
@@ -297,7 +297,7 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Values <===//
-                        else if (sub_option.includes('border-') && typeof(sub_value) === 'number') {
+                        else if (attributes.style.support?.includes('border-enable') && sub_option.includes('border-') && typeof(sub_value) === 'number') {
                             CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             blockProps.className += ` ${sub_option}-custom-${sub_value} ${!attributes.style['border-style'] ? 'border-solid' : ''}`;
                         }

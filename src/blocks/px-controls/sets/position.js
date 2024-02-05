@@ -33,6 +33,7 @@ export default class PositionSet extends Component {
             attrSetter({ ...attributes, "style": newAttributes });
         };
 
+        //===> Value Setter <===//
         const setValue = (target) => {
             //==> Checker <===//
             let newAttributes = {},

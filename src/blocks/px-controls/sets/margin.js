@@ -34,6 +34,7 @@ export default class MarginSet extends Component {
             attrSetter({ ...attributes, "style": newAttributes });
         };
 
+        //===> Value Setter <===//
         const setValue = (target) => {
             //==> Checker <===//
             let newAttributes = {},

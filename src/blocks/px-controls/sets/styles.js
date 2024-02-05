@@ -64,11 +64,11 @@ export default class StylesSet extends Component {
                 />
 
                 {/*===> Image Backgrounds <===*/}
-                {attributes.style.background?.type === "image" ? 
+                {attributes.style.background?.type === "image" || attributes.style.background?.type === "video" ? 
                     <div className='row gpx-15 pdt-10' style={{marginTop: -10}}>
                         {/*===> Column <===*/}
                         <div className='col col-6 mb-10'>
-                            <PhenixSelect className="border-alpha-25" label={__("Overlay", "pds-blocks")} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
+                            <PhenixSelect className="border-alpha-25" label={attributes.style.overly ?__("Overlay", "pds-blocks"):null} key={`overly-${uniqueKey}`} name="overly" placeholder={__("Overlay", "pds-blocks")} value={attributes.style.overly} onChange={mainSetter} options={background_options.overlay} />
                         </div>
                         {attributes.style.overly ? <>
                         <div className='col col-6 mb-10'>
@@ -87,26 +87,28 @@ export default class StylesSet extends Component {
                             />
                         </div>
                         </>:null}
-                        {/*===> Column <===*/}
-                        <div className='col col-6 mb-10'>
-                            <PhenixSelect className="border-alpha-25" key={`bg-size-${uniqueKey}`} name="bg-size" placeholder={__("Size", "pds-blocks")} value={attributes.style['bg-size']} onChange={mainSetter} options={background_options.sizes} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col col-6 mb-10'>
-                            <PhenixSelect className="border-alpha-25" key={`bg-position-${uniqueKey}`} name="bg-position" placeholder={__("Position", "pds-blocks")} value={attributes.style['bg-position']} onChange={mainSetter} options={background_options.positions} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col col-6 mb-10'>
-                            <PhenixSelect className="border-alpha-25" key={`bg-repeat-${uniqueKey}`} name="bg-repeat" placeholder={__("Repeat", "pds-blocks")} value={attributes.style['bg-repeat']} onChange={mainSetter} options={background_options.repeat} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col col-6'>
-                            <PhenixSelect className="border-alpha-25" key={`bg-animation-${uniqueKey}`} name="bg-animation" placeholder={__("Animation", "pds-blocks")} value={attributes.style['bg-animation']} onChange={mainSetter} options={background_options.animations} />
-                        </div>
-                        {/*===> Column <===*/}
-                        <div className='col-12'>
-                            <OptionControl key={`parallax-${uniqueKey}`} name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Parallax BG", "pds-blocks")}</OptionControl>
-                        </div>
+                        {attributes.style.background?.type === "image"? <>                            
+                            {/*===> Column <===*/}
+                            <div className='col col-6 mb-10'>
+                                <PhenixSelect className="border-alpha-25" key={`bg-size-${uniqueKey}`} name="bg-size" placeholder={__("Size", "pds-blocks")} value={attributes.style['bg-size']} onChange={mainSetter} options={background_options.sizes} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col col-6 mb-10'>
+                                <PhenixSelect className="border-alpha-25" key={`bg-position-${uniqueKey}`} name="bg-position" placeholder={__("Position", "pds-blocks")} value={attributes.style['bg-position']} onChange={mainSetter} options={background_options.positions} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col col-6 mb-10'>
+                                <PhenixSelect className="border-alpha-25" key={`bg-repeat-${uniqueKey}`} name="bg-repeat" placeholder={__("Repeat", "pds-blocks")} value={attributes.style['bg-repeat']} onChange={mainSetter} options={background_options.repeat} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col col-6'>
+                                <PhenixSelect className="border-alpha-25" key={`bg-animation-${uniqueKey}`} name="bg-animation" placeholder={__("Animation", "pds-blocks")} value={attributes.style['bg-animation']} onChange={mainSetter} options={background_options.animations} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div className='col-12'>
+                                <OptionControl key={`parallax-${uniqueKey}`} name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Parallax BG", "pds-blocks")}</OptionControl>
+                            </div>
+                        </>:null}
                     </div>
                 : null }
             </>:null}

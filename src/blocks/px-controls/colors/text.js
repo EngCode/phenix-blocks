@@ -25,8 +25,8 @@ export default class PhenixColors extends Component {
 
         //===> Generate Custom Colors <===//
         if (editorColors) {
-            editorColors.palette.default.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
-            editorColors.palette.custom.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.palette?.default?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.palette?.custom?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
         }
 
         //===> Set Color <===//

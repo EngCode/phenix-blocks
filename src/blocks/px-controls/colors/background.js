@@ -34,10 +34,10 @@ export default class PhenixBackground extends Component {
 
         //===> Generate Custom Colors <===//
         if (editorColors) {
-            editorColors.palette.default.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
-            editorColors.palette.custom.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
-            editorColors.gradients.default.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
-            editorColors.gradients.custom.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
+            editorColors.palette?.default?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.palette?.custom?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
+            editorColors.gradients?.default?.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
+            editorColors.gradients?.custom?.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
         }
 
         //===> Returned Value <===//

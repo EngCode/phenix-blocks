@@ -158,10 +158,10 @@ window.PhenixBlocks = {
                                     blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
                                 }  else {
                                     //===> Custom Colors <===//
-                                    if (sub_value.includes('var(--wp--preset--color--')) {CustomCSS.backgroundColor = sub_value;}
+                                    if (sub_value.value.includes('var(--wp--preset--color--')) {CustomCSS.backgroundColor = sub_value.value;}
 
                                     //===> Custom Gradient <===//
-                                    else if (sub_value.includes('var(--wp--preset--gradient--')) {CustomCSS.backgroundImage = sub_value;}
+                                    else if (sub_value.value.includes('var(--wp--preset--gradient--')) {CustomCSS.backgroundImage = sub_value.value;}
 
                                     //===> Normal <===//
                                     else {blockProps.className += ` ${sub_value.value}`;}

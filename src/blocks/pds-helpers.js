@@ -92,13 +92,13 @@ window.PhenixBlocks = {
                 Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                     //===> Check if the attribute is Set <===//
                     if (!attributes[option_name][sub_option]) return;
-    
+
                     //===> Slider Mode Checker <===//
                     if (attributes.flexbox?.slider) {
                         //===> if not-related option return void <===//
                         if (["align", "nowrap", "masonry"].some(option => sub_option.includes(option))) return;
                     };
-    
+
                     //===> Flexbox Equals Columns <===//
                     if (option_name === "flexbox" && sub_option.includes("cols")) {
                         //===> Slider Mode <===//
@@ -110,7 +110,7 @@ window.PhenixBlocks = {
                             container.className += ` ${sub_option.replace('cols', 'row-cols') + colSizeHandler(sub_value)}`;
                         }
                     }
-    
+
                     //===> Slider Options <===//
                     else if (option_name === "slider") {
                         //===> Set Options <===//
@@ -118,7 +118,7 @@ window.PhenixBlocks = {
                             container[`data-${sub_option}`] = sub_value;
                         }
                     }
-    
+
                     //===> if its a Object Value <===//
                     else if (!isNormalValue(sub_value)) {
                         //===> Background Specials <===//
@@ -204,7 +204,7 @@ window.PhenixBlocks = {
                         //===> Display Support <===//
                         else if (sub_option === "display") { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
                     }
-    
+
                     //===> for Normal strings and Arrays <===//
                     else if (isNormalValue(sub_value)) {
                         //===> Exclude Options <===//

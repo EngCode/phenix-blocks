@@ -36,6 +36,7 @@ export default class PhenixBackground extends Component {
         if (editorColors) {
             //===> for Custom Theme Palette <===//
             if (customOnly) {
+                if (colorsOnly) customColorsList.push("fas fa-redo tx-align-center");
                 editorColors.palette?.theme?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
                 if (!colorsOnly) editorColors.gradients?.theme?.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
             }

@@ -97,9 +97,8 @@ export default class PhenixBackground extends Component {
 
                 //===> Convert to Title <===//
                 if (isColor) {
-                    title = list[index].replace('bg-', '').replace('-', ' ');
+                    //===> Get a Clean Title <===//
                     title = title.replace('var(--wp--preset--color--', '').replace('var(--wp--preset--gradient--', '').replace(')', '').replace('bg-', '').replaceAll('-', ' ');
-
                     //===> UpperCase Title <===//
                     title = title.replace(/^\w/, function(c) {
                         return c.toUpperCase();

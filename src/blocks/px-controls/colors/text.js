@@ -50,7 +50,7 @@ export default class PhenixColors extends Component {
 
                 //===> Convert to Title <===//
                 if (isColor) {
-                    //===> for Custom Colors <===//
+                    //===> Get a Clean Title <===//
                     title = title.replace('var(--wp--preset--color--', '').replace(')', '').replace('color-', '').replaceAll('-', ' ');
                     //===> UpperCase Title <===//
                     title = title.replace(/^\w/, function(c) {

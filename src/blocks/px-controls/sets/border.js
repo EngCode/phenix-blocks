@@ -14,21 +14,20 @@ import OptionControl from '../switch';
 import PhenixNumber from "../number";
 
 //===> Component <===//
-export default class PaddingSet extends Component {
+export default class PositionSet extends Component {
     render () {
         //===> Properties <===//
         const {attributes, options, mainSetter, screen, attrSetter} = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-padding-option`;
 
-        //===> Reset Padding <===//
+        //===> Reset border <===//
         const reset = () => {
             //==> Set Value <==//
             const newAttributes = {
                 ...attributes.style,
-                [`pdt${screen}`]: "",
-                [`pds${screen}`]: "",
-                [`pde${screen}`]: "",
-                [`pdb${screen}`]: ""
+                [`border-top${screen}`]: "",
+                [`border-start${screen}`]: "",
+                [`border-end${screen}`]: "",
+                [`border-bottom${screen}`]: ""
             };
 
             attrSetter({ ...attributes, "style": newAttributes });
@@ -37,23 +36,23 @@ export default class PaddingSet extends Component {
         const setValue = (target) => {
             //==> Checker <===//
             let newAttributes = {},
-                propX = ["pds", "pde"],
-                propY = ["pdt", "pdb"],
+                propX = ["border-start", "border-end"],
+                propY = ["border-top", "border-bottom"],
                 isX = propX.some(opt => target.getAttribute('name').includes(opt)),
                 isY = propY.some(opt => target.getAttribute('name').includes(opt));
 
             //===> Correct the New Attributes <===//
             if (isX) {
-                if (attributes.style[`bound-padding-x${screen}`]) {
-                    newAttributes = {...attributes.style, [`pds${screen}`]: parseInt(target.value), [`pde${screen}`]: parseInt(target.value)};
+                if (attributes.style[`bound-border-x${screen}`]) {
+                    newAttributes = {...attributes.style, [`border-start${screen}`]: parseInt(target.value), [`border-end${screen}`]: parseInt(target.value)};
                 } else {
                     newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.getAttribute('value'))};
                 }
             }
 
             else if (isY) {
-                if (attributes.style[`bound-padding-y${screen}`]) {
-                    newAttributes = {...attributes.style, [`pdt${screen}`]: parseInt(target.value), [`pdb${screen}`]: parseInt(target.value)};
+                if (attributes.style[`bound-border-y${screen}`]) {
+                    newAttributes = {...attributes.style, [`border-top${screen}`]: parseInt(target.value), [`border-bottom${screen}`]: parseInt(target.value)};
                 } else {
                     newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.value)};
                 }
@@ -64,36 +63,36 @@ export default class PaddingSet extends Component {
         };
 
         //===> Output <===//
-        return <div className={`padding-controller mgx-auto position-rv`}>
+        return <div className={`position-controller mgx-auto`}>
             {/*===> Bound X <===*/}
-            <OptionControl key={`bound-padding-x${screen}`} name={`bound-padding-x${screen}`} checked={attributes.style[`bound-padding-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-end-0">
+            <OptionControl key={`bound-border-x${screen}`} name={`bound-border-x${screen}`} checked={attributes.style[`bound-border-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab border-top-0 border-end-0">
                 <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
             </OptionControl>
             {/*===> Bound Y <===*/}
-            <OptionControl key={`bound-padding-y${screen}`} name={`bound-padding-y${screen}`} checked={attributes.style[`bound-padding-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-start-0">
+            <OptionControl key={`bound-border-y${screen}`} name={`bound-border-y${screen}`} checked={attributes.style[`bound-border-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab border-top-0 border-start-0">
                 <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
             </OptionControl>
 
             {/*===> Top Controller <===*/}
             <div className='mgx-auto mb-15' style={{width: 100}}>
-                <PhenixNumber key={`pdt${screen}`} name={`pdt${screen}`} onChange={setValue} value={attributes.style[`pdt${screen}`] || 0} min={-5} max={2500} steps={5} />
+                <PhenixNumber key={`border-top${screen}`} name={`border-top${screen}`} onChange={setValue} value={attributes.style[`border-top${screen}`] || 0} min={-2500} max={2500} steps={5} />
             </div>
             {/*===> X Controls <===*/}
             <div className={`flexbox align-between align-center-y mb-15`}>
                 {/*===> Start Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber key={`pds${screen}`} name={`pds${screen}`} onChange={setValue} value={attributes.style[`pds${screen}`] || 0} min={-5} max={2500} steps={5} />
+                    <PhenixNumber key={`border-start${screen}`} name={`border-start${screen}`} onChange={setValue} value={attributes.style[`border-start${screen}`] || 0} min={-2500} max={2500} steps={5} />
                 </div>
                 {/*===> Reset Button <===*/}
-                <button key={`reset-padding${screen}`} name={`reset-padding${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
+                <button key={`reset-position${screen}`} name={`reset-position${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
-                    <PhenixNumber key={`pde${screen}`} name={`pde${screen}`} onChange={setValue} value={attributes.style[`pde${screen}`] || 0} min={-5} max={2500} steps={5} />
+                    <PhenixNumber key={`border-end${screen}`} name={`border-end${screen}`} onChange={setValue} value={attributes.style[`border-end${screen}`] || 0} min={-2500} max={2500} steps={5} />
                 </div>
             </div>
             {/*===> Bottom Controller <===*/}
             <div className='mgx-auto' style={{width: 100}}>
-                <PhenixNumber key={`pdb${screen}`} name={`pdb${screen}`} onChange={setValue} value={attributes.style[`pdb${screen}`] || 0} min={-5} max={2500} steps={5} />
+                <PhenixNumber key={`border-bottom${screen}`}  name={`border-bottom${screen}`} onChange={setValue} value={attributes.style[`border-bottom${screen}`] || 0} min={-2500} max={2500} steps={5} />
             </div>
             {/*===> Other Options <===*/}
             {this.props.children ? this.props.children : null}

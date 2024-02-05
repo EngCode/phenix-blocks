@@ -226,7 +226,10 @@ window.PhenixBlocks = {
                     else if (isNormalValue(sub_value)) {
                         //===> Exclude Options <===//
                         const excluded = ["dimensions", "url"];
+                        const excludedX = ["bound-"];
+
                         if (excluded.some(opt => opt === sub_option)) return;
+                        if (excludedX.some(opt => opt.includes(sub_option))) return;
     
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }

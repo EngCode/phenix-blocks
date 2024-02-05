@@ -69,7 +69,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Ratio Size", "pds-blocks")}>
-                    <PhenixSelect name="size" placeholder={__("Ratio Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.size} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />
+                    <PhenixSelect key={`ratio-size`} name="size" placeholder={__("Ratio Size", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.size} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />
                 </div>
                 {/*===> Select Control <===*/}
                 {attributes.setting.type === "embed" ? <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Embed Source", "pds-blocks")}>
@@ -82,7 +82,7 @@ export default function Edit({ attributes, setAttributes }) {
                         {!attributes.setting.type || attributes.setting.type === "image" || attributes.setting['embed'] === "video" || attributes.setting.type === "embed" && !attributes.setting['embed']? 
                             <MediaUploader label={__("Upload File","pds-blocks")} value={attributes.setting?.src} setValue={set_source}></MediaUploader>
                             :
-                            <PhenixInput name="src" label={__("Source URL", "pds-blocks")} value={attributes.setting.src} onChange={set_setting} />
+                            <PhenixInput key="src" name="src" label={__("Source URL", "pds-blocks")} value={attributes.setting.src} onChange={set_setting} />
                         }
                     </li>
                 </PxDropDown>
@@ -90,19 +90,19 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Media Settings", "pds-blocks")} button={`bg-transparent fs-16 square far fa-cog divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="dropdown-item" className='pdx-15 pdy-15'>
                         <ScreensTabs
-                            md={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
-                            lg={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
-                            xl={(screen) => <PhenixSelect name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
+                            md={(screen) => <PhenixSelect key={`ratio-size-${screen}`} name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
+                            lg={(screen) => <PhenixSelect key={`ratio-size-${screen}`} name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
+                            xl={(screen) => <PhenixSelect key={`ratio-size-${screen}`} name={`size-${screen}`} label={__("Ratio Size", "pds-blocks")} className={`weight-medium mb-15`} value={attributes.setting[`size-${screen}`]} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.size} />}
                         />
                         {/*===> Option Controller <===*/}
                         <div className='flexbox'>
-                            <OptionControl name={`lazyloading`} value="true" checked={attributes.setting.lazyloading} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("LazyLoading", "pds-blocks")}</OptionControl>
-                            <OptionControl name={`inner-blocks`} value="boolean" checked={attributes.style['inner-blocks']} onChange={set_style} type='switch-checkbox' className='small mb-10'>{__("innerBlocks", "pds-blocks")}</OptionControl>
+                            <OptionControl key={`lazyloading`} name={`lazyloading`} value="true" checked={attributes.setting.lazyloading} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("LazyLoading", "pds-blocks")}</OptionControl>
+                            <OptionControl key={`inner-blocks`} name={`inner-blocks`} value="boolean" checked={attributes.style['inner-blocks']} onChange={set_style} type='switch-checkbox' className='small mb-10'>{__("innerBlocks", "pds-blocks")}</OptionControl>
                             {attributes.setting.type === 'embed' && attributes.setting.embeds === "video" ? <>
-                                <OptionControl name={`controls`} value="true" checked={attributes.setting.controls} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Controls", "pds-blocks")}</OptionControl>
-                                <OptionControl name={`autoplay`} value="true" checked={attributes.setting.autoplay} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Autoplay", "pds-blocks")}</OptionControl>
-                                <OptionControl name={`loop`} value="true" checked={attributes.setting.loop} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Video Loop", "pds-blocks")}</OptionControl>
-                                <OptionControl name={`muted`} value="true" checked={attributes.setting.muted} onChange={set_setting} type='switch-checkbox' className='small mb-10'>{__("Muted Audio", "pds-blocks")}</OptionControl>
+                                <OptionControl key={`controls`} name={`controls`} value="true" checked={attributes.setting.controls} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Controls", "pds-blocks")}</OptionControl>
+                                <OptionControl key={`autoplay`}  name={`autoplay`} value="true" checked={attributes.setting.autoplay} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Autoplay", "pds-blocks")}</OptionControl>
+                                <OptionControl key={`loop`} name={`loop`} value="true" checked={attributes.setting.loop} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Video Loop", "pds-blocks")}</OptionControl>
+                                <OptionControl key={`muted`} name={`muted`} value="true" checked={attributes.setting.muted} onChange={set_setting} type='switch-checkbox' className='small mb-10'>{__("Muted Audio", "pds-blocks")}</OptionControl>
                             </>:null}
                         </div>
                     </li>

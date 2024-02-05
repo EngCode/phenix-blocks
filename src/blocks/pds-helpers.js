@@ -449,6 +449,8 @@ window.PhenixBlocks = {
                 //===> Run Multimedia <===//
                 the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
                     element.style.backgroundImage = null;
+                    let image = element.querySelector('.px-media-img');
+                    if (image) image.setAttribute('src', element.getAttribute('data-src'));
                     Phenix(element).multimedia();
                 });
     

@@ -47,7 +47,7 @@ export default class PositionSet extends Component {
                 if (attributes.style[`bound-position-x${screen}`]) {
                     newAttributes = {...attributes.style, [`pos-start${screen}`]: parseInt(target.value), [`pos-end${screen}`]: parseInt(target.value)};
                 } else {
-                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.getAttribute('value'))};
+                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.value)};
                 }
             }
 

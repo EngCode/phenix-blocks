@@ -49,7 +49,7 @@ export default class BorderSet extends Component {
                 if (attributes.style[`bound-border-x${screen}`]) {
                     newAttributes = {...attributes.style, [`border-start${screen}`]: parseInt(target.value), [`border-end${screen}`]: parseInt(target.value)};
                 } else {
-                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.getAttribute('value'))};
+                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.value)};
                 }
             }
 
@@ -62,6 +62,7 @@ export default class BorderSet extends Component {
             }
 
             //==> Set Value <==//
+            console.log(newAttributes);
             attrSetter({ ...attributes, "style": newAttributes });
         };
 
@@ -87,7 +88,7 @@ export default class BorderSet extends Component {
                     <PhenixNumber key={`border-start${screen}`} name={`border-start${screen}`} onChange={setValue} value={attributes.style[`border-start${screen}`] || 0} min={0} max={250} steps={1} />
                 </div>
                 {/*===> Reset Button <===*/}
-                <button key={`reset-position${screen}`} name={`reset-position${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
+                <button key={`reset-border${screen}`} name={`reset-border${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
                     <PhenixNumber key={`border-end${screen}`} name={`border-end${screen}`} onChange={setValue} value={attributes.style[`border-end${screen}`] || 0} min={0} max={250} steps={1} />

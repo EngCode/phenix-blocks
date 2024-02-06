@@ -189,7 +189,10 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Color <===//
-                        else if (attributes.style.support?.includes('border-enable') && sub_option === "border-color" && sub_value.value) {CustomCSS['borderColor'] = sub_value.value;}
+                        else if (attributes.style.support?.includes('border-enable') && sub_option === "border-color" && sub_value.value) {
+                            if (sub_value.value.includes('var(--wp--preset--color--')) CustomCSS['borderColor'] = sub_value.value;
+                            else {blockProps.className += ` ${sub_value.value}`;}
+                        }
 
                         //===> Animations Specials <===//
                         else if (sub_option === "animation") {
@@ -259,8 +262,12 @@ window.PhenixBlocks = {
                         else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
                             if (parseInt(sub_value) > 50 || parseInt(sub_value) < 0) {
+                                //===> Set Custom Positions <===//
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
-                                blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                                //===> Add the ClassName <===//
+                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
+                                    customClass = `${classOption}-custom-${sub_value}`;
+                                if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Positions <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -273,7 +280,10 @@ window.PhenixBlocks = {
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100 || parseInt(sub_value) < 0) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
-                                blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                                //===> Add the ClassName <===//
+                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
+                                    customClass = `${classOption}-custom-${sub_value}`;
+                                if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -285,7 +295,10 @@ window.PhenixBlocks = {
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
-                                blockProps.className += ` ${sub_option}-custom-${sub_value}`;
+                                //===> Add the ClassName <===//
+                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
+                                    customClass = `${classOption}-custom-${sub_value}`;
+                                if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -297,9 +310,16 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Values <===//
-                        else if (attributes.style.support?.includes('border-enable') && sub_option.includes('border-') && typeof(sub_value) === 'number') {
+                        else if (sub_option.includes('border-') && typeof(parseInt(sub_value)) === 'number') {
+                            //===> Set Custom Border <===//
                             CustomCSS[`--${sub_option}`] = `${sub_value}px`;
-                            blockProps.className += ` ${sub_option}-custom-${sub_value} ${!attributes.style['border-style'] ? 'border-solid' : ''}`;
+                            //===> Add the ClassName <===//
+                            let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
+                                customClass = `${classOption}-custom-${sub_value}`,
+                                defaultClass = `${!attributes.style['border-style'] ? 'border-solid' : ''}`;
+                            //===> ... <===//
+                            if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
+                            if (!blockProps.className.includes(defaultClass)) blockProps.className += ` ${defaultClass}`;
                         }
     
                         //===> Flexbox Values <===//

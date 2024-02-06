@@ -48,7 +48,7 @@ export default class PaddingSet extends Component {
                 if (attributes.style[`bound-padding-x${screen}`]) {
                     newAttributes = {...attributes.style, [`pds${screen}`]: parseInt(target.value), [`pde${screen}`]: parseInt(target.value)};
                 } else {
-                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.getAttribute('value'))};
+                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.value)};
                 }
             }
 

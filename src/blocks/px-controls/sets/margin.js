@@ -48,7 +48,7 @@ export default class MarginSet extends Component {
                 if (attributes.style[`bound-margin-x${screen}`]) {
                     newAttributes = {...attributes.style, [`ms${screen}`]: parseInt(target.value), [`me${screen}`]: parseInt(target.value)};
                 } else {
-                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.getAttribute('value'))};
+                    newAttributes = {...attributes.style, [`${target.getAttribute('name')}`]: parseInt(target.value)};
                 }
             }
 

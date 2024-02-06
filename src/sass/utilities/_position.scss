@@ -92,28 +92,28 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 }
 
 /*==== Custom Positions ====*/
-[class*="pos-top-custom"] {
+.pos-top-custom {
     top: var(--pos-top);
     @include medium() { --pos-top: var(--pos-top-md) };
     @include large()  { --pos-top: var(--pos-top-lg) };
     @include xlarge() { --pos-top: var(--pos-top-xl) };
 }
 
-[class*="pos-bottom-custom"] {
+.pos-bottom-custom {
     bottom: var(--pos-bottom);
     @include medium() { --pos-bottom: var(--pos-bottom-md) };
     @include large()  { --pos-bottom: var(--pos-bottom-lg) };
     @include xlarge() { --pos-bottom: var(--pos-bottom-xl) };
 }
 
-[class*="pos-end-custom"] {
+.pos-end-custom {
     #{$direction-end}: var(--pos-end);
     @include medium() { --pos-end: var(--pos-end-md) };
     @include large()  { --pos-end: var(--pos-end-lg) };
     @include xlarge() { --pos-end: var(--pos-end-xl) };
 }
 
-[class*="pos-start-custom"] {
+.pos-start-custom {
     #{$direction-start}: var(--pos-start);
     @include medium() { --pos-start: var(--pos-start-md) };
     @include large()  { --pos-start: var(--pos-start-lg) };

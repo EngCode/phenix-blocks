@@ -47,28 +47,28 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 };
 
 /*==== Custom ====*/
-[class*="pdt-custom"] {
+.pdt-custom {
     padding-top: var(--pdt);
     @include medium() { --pdt: var(--pdt-md) };
     @include large()  { --pdt: var(--pdt-lg) };
     @include xlarge() { --pdt: var(--pdt-xl) };
 }
 
-[class*="pdb-custom"] {
+.pdb-custom {
     padding-bottom: var(--pdb);
     @include medium() { --pdb: var(--pdb-md) };
     @include large()  { --pdb: var(--pdb-lg) };
     @include xlarge() { --pdb: var(--pdb-xl) };
 }
 
-[class*="pds-custom-start"] {
+.pds-custom-start {
     padding-#{$direction-start}: var(--pds);
     @include medium() { --pds: var(--pds-md) };
     @include large()  { --pds: var(--pds-lg) };
     @include xlarge() { --pds: var(--pds-xl) };
 }
 
-[class*="pde-custom-end"] {
+.pde-custom-end {
     padding-#{$direction-end}: var(--pde);
     @include medium() { --pde: var(--pde-md) };
     @include large()  { --pde: var(--pde-lg) };

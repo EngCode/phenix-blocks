@@ -266,7 +266,7 @@ window.PhenixBlocks = {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom-${sub_value}`;
+                                    customClass = `${classOption}-custom`;
                                 if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Positions <===//
@@ -282,7 +282,7 @@ window.PhenixBlocks = {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom-${sub_value}`;
+                                    customClass = `${classOption}-custom`;
                                 if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Value <===//
@@ -297,7 +297,7 @@ window.PhenixBlocks = {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom-${sub_value}`;
+                                    customClass = `${classOption}-custom`;
                                 if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Value <===//
@@ -315,7 +315,7 @@ window.PhenixBlocks = {
                             CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             //===> Add the ClassName <===//
                             let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                customClass = `${classOption}-custom-${sub_value}`,
+                                customClass = `${classOption}-custom`,
                                 defaultClass = `${!attributes.style['border-style'] ? 'border-solid' : ''}`;
                             //===> ... <===//
                             if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;

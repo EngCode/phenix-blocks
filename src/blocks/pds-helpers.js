@@ -310,7 +310,7 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Values <===//
-                        else if (sub_option.includes('border-') && !sub_option.includes('border-style')) {
+                        else if (sub_option.includes('border-') && !sub_option.includes('border-style') && !sub_option.includes('bound-')) {
                             //===> Set Custom Border <===//
                             CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             //===> Add the ClassName <===//

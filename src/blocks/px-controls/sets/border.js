@@ -62,7 +62,6 @@ export default class BorderSet extends Component {
             }
 
             //==> Set Value <==//
-            console.log(newAttributes);
             attrSetter({ ...attributes, "style": newAttributes });
         };
 
@@ -104,7 +103,7 @@ export default class BorderSet extends Component {
                     {/*===> Column <===*/}
                     <div className='col col-6'>
                         {/*===> Border Style <===*/}
-                        <PhenixSelect name="border-style" placeholder={__("Style", "pds-blocks")} className={`mb-10 weight-medium`} value={attributes.style['border_styles']} onChange={mainSetter} options={PhenixBlocks.dataLists.styles.border_styles} />
+                        <PhenixSelect name="border-style" placeholder={__("Style", "pds-blocks")} className={`mb-10 weight-medium`} value={attributes.style['border-style']} onChange={mainSetter} options={PhenixBlocks.dataLists.styles.border_styles} />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col col-6'>

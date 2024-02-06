@@ -67,6 +67,7 @@
 .mouse-no-events {pointer-events: none;}
 .mouse-all-events {pointer-events: all;}
 .tx-icon::before {margin-#{$direction-end}: 7px;}
+.pds-icon-color::before {color: var(--icon-color, inherit);}
 
 /*==== Custom Scrollbar ====*/
 .px-scrollbar:not(html):not(body) {

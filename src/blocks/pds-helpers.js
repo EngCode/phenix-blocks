@@ -189,8 +189,8 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Color <===//
-                        else if (attributes.style.support?.includes('border-enable') && sub_option === "border-color" && sub_value.value) {
-                            if (sub_value.value.includes('var(--wp--preset--color--')) CustomCSS['borderColor'] = sub_value.value;
+                        else if (sub_option === "border-color" && sub_value.value) {
+                            if (sub_value.value.includes('var(')) CustomCSS['borderColor'] = sub_value.value;
                             else {blockProps.className += ` ${sub_value.value}`;}
                         }
 
@@ -310,7 +310,7 @@ window.PhenixBlocks = {
                         }
 
                         //===> Border Values <===//
-                        else if (sub_option.includes('border-') && typeof(parseInt(sub_value)) === 'number') {
+                        else if (sub_option.includes('border-') && !sub_option.includes('border-style')) {
                             //===> Set Custom Border <===//
                             CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                             //===> Add the ClassName <===//

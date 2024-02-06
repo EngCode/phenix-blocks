@@ -25,6 +25,35 @@
 .border-dashed {border-style: dashed;}
 .border-dotted {border-style: dotted;}
 
+/*==== Custom ====*/
+.border-top-custom {
+    border-top-width: var(--border-top);
+    @include medium() { --border-top: var(--border-top-md) };
+    @include large()  { --border-top: var(--border-top-lg) };
+    @include xlarge() { --border-top: var(--border-top-xl) };
+}
+
+.border-bottom-custom {
+    border-bottom-width: var(--border-bottom);
+    @include medium() { --border-bottom: var(--border-bottom-md) };
+    @include large()  { --border-bottom: var(--border-bottom-lg) };
+    @include xlarge() { --border-bottom: var(--border-bottom-xl) };
+}
+
+.border-start-custom {
+    border-#{$direction-start}-width: var(--border-start);
+    @include medium() { --border-start: var(--border-start-md) };
+    @include large()  { --border-start: var(--border-start-lg) };
+    @include xlarge() { --border-start: var(--border-start-xl) };
+}
+
+.border-end-custom {
+    border-#{$direction-end}-width: var(--border-end);
+    @include medium() { --border-end: var(--border-end-md) };
+    @include large()  { --border-end: var(--border-end-lg) };
+    @include xlarge() { --border-end: var(--border-end-xl) };
+}
+
 /*==== Borders Size ====*/
 @mixin make-borders ($infix:'') {
     /*==== All ====*/
@@ -68,35 +97,6 @@
 @include large() {
     @include make-borders('-lg');
 };
-
-/*==== Custom ====*/
-.border-top-custom {
-    border-top-width: var(--border-top);
-    @include medium() { --border-top: var(--border-top-md) };
-    @include large()  { --border-top: var(--border-top-lg) };
-    @include xlarge() { --border-top: var(--border-top-xl) };
-}
-
-.border-bottom-custom {
-    border-bottom-width: var(--border-bottom);
-    @include medium() { --border-bottom: var(--border-bottom-md) };
-    @include large()  { --border-bottom: var(--border-bottom-lg) };
-    @include xlarge() { --border-bottom: var(--border-bottom-xl) };
-}
-
-.border-start-custom {
-    border-#{$direction-start}-width: var(--border-start);
-    @include medium() { --border-start: var(--border-start-md) };
-    @include large()  { --border-start: var(--border-start-lg) };
-    @include xlarge() { --border-start: var(--border-start-xl) };
-}
-
-.border-end-custom {
-    border-#{$direction-end}-width: var(--border-end);
-    @include medium() { --border-end: var(--border-end-md) };
-    @include large()  { --border-end: var(--border-end-lg) };
-    @include xlarge() { --border-end: var(--border-end-xl) };
-}
 
 /*==== Radius Utilites ====*/
 .radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl,

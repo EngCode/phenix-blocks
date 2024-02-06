@@ -4,6 +4,35 @@
 
 $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
 
+/*==== Custom ====*/
+.mt-custom{
+    margin-top: var(--mt);
+    @include medium() { --mt: var(--mt-md) };
+    @include large()  { --mt: var(--mt-lg) };
+    @include xlarge() { --mt: var(--mt-xl) };
+}
+
+.mb-custom {
+    margin-bottom: var(--mb);
+    @include medium() { --mb: var(--mb-md) };
+    @include large()  { --mb: var(--mb-lg) };
+    @include xlarge() { --mb: var(--mb-xl) };
+}
+
+.ms-custom {
+    margin-#{$direction-start}: var(--ms);
+    @include medium() { --ms: var(--ms-md) };
+    @include large()  { --ms: var(--ms-lg) };
+    @include xlarge() { --ms: var(--ms-xl) };
+}
+
+.me-custom {
+    margin-#{$direction-end}: var(--me);
+    @include medium() { --me: var(--me-md) };
+    @include large()  { --me: var(--me-lg) };
+    @include xlarge() { --me: var(--me-xl) };
+}
+
 /*==== Margin All ====*/
 @mixin make_margin($infix:'') {
     /*==== Auto Margins ====*/
@@ -53,31 +82,3 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
     @include make_margin('-xl');
 };
 
-/*==== Custom ====*/
-.mt-custom{
-    margin-top: var(--mt);
-    @include medium() { --mt: var(--mt-md) };
-    @include large()  { --mt: var(--mt-lg) };
-    @include xlarge() { --mt: var(--mt-xl) };
-}
-
-.mb-custom {
-    margin-bottom: var(--mb);
-    @include medium() { --mb: var(--mb-md) };
-    @include large()  { --mb: var(--mb-lg) };
-    @include xlarge() { --mb: var(--mb-xl) };
-}
-
-.ms-custom {
-    margin-#{$direction-start}: var(--ms);
-    @include medium() { --ms: var(--ms-md) };
-    @include large()  { --ms: var(--ms-lg) };
-    @include xlarge() { --ms: var(--ms-xl) };
-}
-
-.me-custom {
-    margin-#{$direction-end}: var(--me);
-    @include medium() { --me: var(--me-md) };
-    @include large()  { --me: var(--me-lg) };
-    @include xlarge() { --me: var(--me-xl) };
-}

@@ -33,7 +33,12 @@
 /*==== Overlay Layer ====*/
 .overlay-dark, .overlay-light, .overlay-custom {
     @extend %overlay;
-    &::before {background: var(--overlay-bg, #000);opacity: var(--opacity, 0.5);}
+    &::before {
+        opacity: var(--opacity, 0.5);
+        background: var(--overlay-bg, #000);
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .overlay-light {--overlay-bg: #FFF;}

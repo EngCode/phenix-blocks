@@ -186,9 +186,8 @@ export default class PhenixBackground extends Component {
                         <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
                         {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].main, "radius-xxl")}
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
+                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-10 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
                         {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].components, "radius-xxl border-1 border-alpha-15 border-solid")}
-
 
                         {customColorsList.length > 0 ? <>
                             <label className={`tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 ${!customOnly?"mt-10":''} tx-UpperCase fs-12 col-12`}>

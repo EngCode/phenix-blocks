@@ -189,7 +189,7 @@ if (!function_exists('pds_admin_style') && is_admin()) :
     }
 
     //===> Include Phenix Core in the Plugin Page <===//
-    if (isset($_GET["page"]) && $_GET["page"] == 'pds-admin' || get_option('pds_admin_style')) {
+    if (get_option('pds_admin_style')) {
         add_action('admin_enqueue_scripts', 'phenix_core');
         add_action('admin_enqueue_scripts', 'phenix_assets');
         add_action('admin_enqueue_scripts', 'pds_admin_style');

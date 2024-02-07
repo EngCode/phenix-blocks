@@ -8,6 +8,9 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
     --typography-color: var(--wp--preset--color--text);
 
     /*==== Primary Color ====*/
+    --white: white;
+    --inherit: inherit;
+    --transparent: transparent;
     --primary-color: var(--wp--preset--color--primary);
     --primary-hover: var(--wp--preset--color--primary-hvr);
     --primary-dark: var(--wp--preset--color--primary-dark);

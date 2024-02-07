@@ -304,8 +304,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         //====> Loop Through Phenix Elements <====//
         this.forEach((element:HTMLElement) => {
             //===> String Element Converter to [Node] <===//
-            if (typeof(elementsPackage) === 'string')
-                elementsPackage = document.createRange().createContextualFragment(elementsPackage);
+            if (typeof(elementsPackage) === 'string') elementsPackage = document.createRange().createContextualFragment(elementsPackage);
 
             //====> Insert After The Element <====//
             if (position === 'after') {
@@ -553,33 +552,39 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
 
     /*====> CSS/JS Importer <====*/
     import = (id:string, tag:string, source:string, callback:any, isIntegrated:boolean) => {
-        //===> if Already Exist Quit <===//
-        if (document.querySelector(`#${id}-phenix-${tag}`)) return;
-       
+        //===> Get Correct Tagname <===//
+        if (tag === "css") tag = "link";
+        else if (tag === "js") tag = "script";
 
-        //===> Create Element <===//
-        let element  = document.createElement(tag),
+        //===> Define Element and URL Path <===//
+        let element = document.querySelector(`#${id}-phenix-${tag === "link" ? "css" : tag}`),
             libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),
             trueUrl = `${isIntegrated ? libPath : ""}${source}`;
 
-        //===> Set ID <===//
-        element.setAttribute('id', `${id}-phenix-${tag === "link" ? "css" : tag === "js" ? "script" : tag}`);
+        //===> Create a new Element if is not Loaded yet <===//
+        if (!element) {
+            //===> Create Element <===//
+            element = document.createElement(tag);
+    
+            //===> Set ID <===//
+            element.setAttribute('id', `${id}-phenix-${tag === "link" ? "css" : tag}`);
+    
+            //===> Load JS Script <===//
+            if (tag === "script" || tag === "js") {
+                element.setAttribute("src", trueUrl);
+                element.setAttribute("async", "");
+                //===> Append Element <===//
+                document.body.appendChild(element);
+            }
 
-        //===> Set Source <===//
-        if (tag === "script" || tag === "js") {
-            element.setAttribute("src", trueUrl);
-            element.setAttribute("async", "");
-            //===> Append Element <===//
-            document.body.appendChild(element);
+            //===> Load CSS File <===//
+            else if (tag === "link" || tag === "css") {
+                element.setAttribute("href", trueUrl);
+                element.setAttribute("rel", "stylesheet");
+                //===> Append Element <===//
+                document.head.appendChild(element);
+            };
         }
-
-        //===> for CSS <===//
-        else if (tag === "link" || tag === "css") {
-            element.setAttribute("href", trueUrl);
-            element.setAttribute("rel", "stylesheet");
-            //===> Append Element <===//
-            document.head.appendChild(element);
-        };
 
         //====> When Loaded Run Callback <====//
         element.addEventListener("load", callback);

@@ -165,10 +165,10 @@ window.PhenixBlocks = {
                                     blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
                                 }  else {
                                     //===> Custom Colors <===//
-                                    if (sub_value.value.includes('var(--wp--preset--color--')) {CustomCSS.backgroundColor = sub_value.value;}
+                                    if (sub_value.value.includes('var(') && !sub_value.value.includes('--gradient')) {CustomCSS.backgroundColor = sub_value.value;}
 
                                     //===> Custom Gradient <===//
-                                    else if (sub_value.value.includes('var(--wp--preset--gradient--')) {CustomCSS.backgroundImage = sub_value.value;}
+                                    else if (sub_value.value.includes('var(') && sub_value.value.includes('--gradient')) {CustomCSS.backgroundImage = sub_value.value;}
 
                                     //===> Normal <===//
                                     else {blockProps.className += ` ${sub_value.value}`;}
@@ -192,6 +192,15 @@ window.PhenixBlocks = {
                         else if (sub_option === "border-color" && sub_value.value) {
                             if (sub_value.value.includes('var(')) CustomCSS['borderColor'] = sub_value.value;
                             else {blockProps.className += ` ${sub_value.value}`;}
+                        }
+
+                        //===> Icon Color <===//
+                        else if (sub_option === "icon-color" && sub_value.value) {
+                            //===> 
+                            if (sub_value.value.includes('var(')) CustomCSS['--icon-color'] = sub_value.value;
+                            else {blockProps.className += ` ${sub_value.value}`;}
+                            //===> Coloring Class <===//
+                            if (!blockProps.className.includes('pds-icon-color')) blockProps.className += ` pds-icon-color`;
                         }
 
                         //===> Animations Specials <===//

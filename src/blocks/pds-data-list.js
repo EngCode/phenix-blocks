@@ -278,6 +278,80 @@ window.PhenixBlocks.dataLists = {
             'bg-grade-180',
         ],
         
+        variables: {
+            main : [
+                "fas fa-redo tx-align-center",
+                "var(--white)",
+                "var(--inherit)",
+                "var(--transparent)",
+                "var(--wp--preset--color--gray)",
+                "var(--wp--preset--color--dark)",
+                "var(--wp--preset--color--primary)",
+                "var(--wp--preset--color--secondary)",
+                "var(--wp--preset--color--primary-hvr)",
+                "var(--wp--preset--color--primary-txt)",
+                "var(--wp--preset--color--primary-dark)",
+                "var(--wp--preset--color--secondary-hvr)",
+                "var(--wp--preset--color--secondary-txt)",
+                "var(--wp--preset--color--secondary-dark)",
+                "var(--wp--preset--color--primary-offwhite)",
+                "var(--wp--preset--color--secondary-offwhite)",
+            ],
+
+            status: [
+                "var(--wp--preset--color--info)",
+                "var(--wp--preset--color--success)",
+                "var(--wp--preset--color--danger)",
+                "var(--wp--preset--color--warning)",
+                "var(--wp--preset--color--disable)",
+                "var(--wp--preset--color--info-offwhite)",
+                "var(--wp--preset--color--success-offwhite)",
+                "var(--wp--preset--color--danger-offwhite)",
+            ],
+
+            brands: [
+                "var(--facebook-color)",
+                "var(--twitter-color)",
+                "var(--youtube-color)",
+                "var(--instagram-color)",
+                "var(--whatsapp-color)",
+                "var(--pinterest-color)",
+                "var(--linkedin-color)",
+                "var(--behance-color)",
+                "var(--dribbble-color)",
+                "var(--flicker-color)",
+                "var(--snapchat-color)",
+                "var(--google-red-color)",
+            ],
+
+            darkAlpha: [
+                "var(--wp--preset--color--alpha-05)",
+                "var(--wp--preset--color--alpha-10)",
+                "var(--wp--preset--color--alpha-15)",
+                "var(--wp--preset--color--alpha-25)",
+                "var(--wp--preset--color--alpha-50)",
+                "var(--wp--preset--color--alpha-75)"
+            ],
+
+            lightAlpha: [
+                "var(--wp--preset--color--revert-05)",
+                "var(--wp--preset--color--revert-10)",
+                "var(--wp--preset--color--revert-15)",
+                "var(--wp--preset--color--revert-25)",
+                "var(--wp--preset--color--revert-50)",
+                "var(--wp--preset--color--revert-75)"
+            ],
+
+            components: [
+                "var(--wp--preset--color--component-bg-lvl-1)",
+                "var(--wp--preset--color--component-tx-lvl-1)",
+                "var(--wp--preset--color--component-bg-lvl-2)",
+                "var(--wp--preset--color--component-tx-lvl-2)",
+                "var(--wp--preset--color--component-bg-lvl-3)",
+                "var(--wp--preset--color--component-tx-lvl-3)"
+            ]
+        },
+        
         placeholder : "https://via.placeholder.com/480x200.webp?text=Example",
     },
 

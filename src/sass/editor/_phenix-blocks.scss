@@ -39,8 +39,8 @@
 .px-gb-component {
 	//===> Chessboard Backgrounds <===//
 	&.colors-selector {
-		.bg-inherit:not(ul), .bg-transparent, .bg-white, [class*="bg-revert"] {border: 1px solid rgba(#000, 0.2);}
-		.bg-inherit:not(ul) 	{background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
+		.bg-inherit:not(ul), .bg-transparent, .bg-white, [class*="bg-revert"], [data-value="var(--transparent)"], [data-value="var(--inherit)"] {border: 1px solid rgba(#000, 0.2);}
+		.bg-inherit:not(ul), [data-value="var(--transparent)"], [data-value="var(--inherit)"] {background: linear-gradient(-45deg,transparent 48%,#ddd 0,#ddd 52%,transparent 0);}
 		.bg-transparent	{background: repeating-conic-gradient(#d4d4d4 0% 25%, transparent 0% 50%) 50% / 12px 12px;}
 	}
 

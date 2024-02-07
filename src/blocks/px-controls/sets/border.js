@@ -69,7 +69,7 @@ export default class BorderSet extends Component {
         return <div className={`position-controller mgx-auto`}>
             {/*===> Other Options <===*/}
             {!screen || screen !== "" ? <>
-                <div className='row gpx-15 divider-b pdb-10 mt-15 position-rv'>
+                <div className='row gpx-15 divider-b mb-15 position-rv'>
                     {/*===> Column <===*/}
                     <div className='col col-6'>
                         {/*===> Border Style <===*/}

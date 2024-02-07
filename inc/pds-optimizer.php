@@ -256,6 +256,9 @@ if (!function_exists('pds_limit_login_attempts')) :
 		//===> Lockout Duration <===//
 		$lockout_duration = 300;
 
+        //===> Create Nonce Verification <===//
+        $pds_nonce = wp_create_nonce("pds_limit_login_attempts");
+
 		//===> Check if the Cookie is Set <===//
 		if (isset($_COOKIE['login_attempts']) && $_COOKIE['login_attempts'] >= $login_attempts) {
 			//===> Check if the Lockout Duration is Over <===//
@@ -267,7 +270,7 @@ if (!function_exists('pds_limit_login_attempts')) :
 		}
 
 		//===> Check if the Login Form is Submitted <===//
-		if (isset($_POST['log'])) {
+		if (wp_verify_nonce($_GET['log'], "pds_limit_login_attempts")) {
 			//===> Check if the Cookie is Set <===//
 			if (!isset($_COOKIE['login_attempts'])) {
 				//===> Set the Cookie <===//

@@ -135,6 +135,8 @@
 /*==== Phenix Modal ====*/
 .px-modal {
     overscroll-behavior: none;
+    .model-content {z-index: 2;}
+    .backdrop-btn {z-index: 0;}
     &:not([class*="align-"]) {align-items: center;}
     &[class*="overlay"]::before {display: none!important;}
 }

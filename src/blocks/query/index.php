@@ -21,8 +21,10 @@ function px_query_render($block_attributes, $content) {
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);
 
     //===> Get Rendered Attributes <===//
-    $slider_attrs = $renderedProps["slider_attrs"]; 
+    $slider_attrs = $renderedProps["slider_attrs"];
     $grid_classes = $renderedProps["grid_classes"];
+    //===> Create Nonce Verification <===//
+    $pds_nonce = wp_create_nonce("posts-query");
 
     //===> Get Current Global Query <===//
     global $wp_query;
@@ -38,7 +40,7 @@ function px_query_render($block_attributes, $content) {
     //===> Check for Search Query <===//
     if (isset($query['s'])) {
         //===> if Search is Enable <===//
-        if ($query['s'] === true && isset($_GET["s"])) {
+        if ($query['s'] === true && wp_verify_nonce($_GET['s'], "posts-query")) {
             //===> Get Search Keywords <===//
             $query['s'] = $_GET["s"];
 

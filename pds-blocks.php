@@ -15,19 +15,6 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
-//====> Automatic Updater <====//
-include_once(dirname(__FILE__) . '/pds-updater.php');
-
-if (is_admin()) {
-	new PDS_GitHub_Updater(array(
-		'slug'        => plugin_basename(__FILE__),
-		'tested'      => '6.4',
-		'requires'    => '6.0',
-		'github_user' => 'EngCode',
-		'github_repo' => 'phenix-blocks',
-	));
-}
-
 //===> Activation <===//
 function pds_blocks_activate() {
 	do_action('pds_blocks_active');

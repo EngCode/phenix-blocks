@@ -14,19 +14,19 @@
          * @return void
         */
         
-        function pds_get_default_options($json_url = WP_PLUGIN_DIR."/pds-blocks/assets/json/default-options.json") {
+        function pds_get_default_options($json_url = NULL) {
             //====> Default Json File <====//
-            if (!file_exists($json_url)) { $json_url = WP_PLUGIN_DIR . "/pds-blocks/assets/json/default-options.json"; }
+            if (!$json_url) { $json_url = plugin_dir_url(__FILE__) . "default-options.json"; }
 
             //====> Define Options Data <====//
-            $default_options = file_get_contents($json_url);
-            $default_options = json_decode($default_options);
+            $default_options = wp_remote_get($json_url);
+            $default_options = json_decode(wp_remote_retrieve_body($default_options));
             $default_options = (array) $default_options;
 
             //====> Add WooCommerce Option <====//
-            if (class_exists("woocommerce")) {
+            if ($default_options && class_exists("woocommerce")) {
                 $default_options["pds_core"]->pds_core_woo = "";
-            } else {
+            } else if ($default_options) {
                 $default_options["pds_core"]->pds_core_woo = "on";
             }
 

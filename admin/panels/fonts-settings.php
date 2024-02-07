@@ -31,13 +31,13 @@
     //===> Get Google Fonts <===//
     if (get_option("pds_gfonts") === "on") {
         //===> Get Google Fonts Json File <===//
-        $json_data = file_get_contents("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC3GNi2OCpFOJnJfeJZvzHjISPg__fqlUI", false, stream_context_create(array("ssl" => array("verify_peer" => false, "verify_peer_name" => false))));
-        $json_array = json_decode($json_data, TRUE);
+        $json_data = wp_remote_get("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC3GNi2OCpFOJnJfeJZvzHjISPg__fqlUI");
+        $json_array = json_decode(wp_remote_retrieve_body($json_data));
         //===> Convert to Array <===//
-        foreach ($json_array["items"] as $key => $value) {
-            array_push($google_fonts, $value["family"]);
+        foreach ($json_array->items as $key => $value) {
+            array_push($google_fonts, $value->family);
         }
-    }    
+    }
 ?>
 <!-- Grid -->
 <div class="row">

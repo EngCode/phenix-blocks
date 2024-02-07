@@ -16,7 +16,7 @@
         
         function pds_get_default_options($json_url = NULL) {
             //====> Default Json File <====//
-            if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/admin/pds-options.json"; }
+            if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/pds-blocks/assets/pds-options.json"; }
 
             //====> Define Options Data <====//
             $default_options = wp_remote_get($json_url);

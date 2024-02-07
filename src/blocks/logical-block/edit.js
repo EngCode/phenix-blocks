@@ -57,6 +57,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
+    const uniqueKey = blockProps.id;
 
     const visibility_opts = [
         { label: __("All", "pds-blocks"), value: '' },

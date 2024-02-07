@@ -21,8 +21,8 @@
     ];
 
     //===> Get Current Fonts <===//
-    $current_fonts = get_option("pds_fonts");
-    $current_fonts['icon'] = get_option("pds_icon_font");
+    $current_fonts = (array) get_option("pds_fonts");
+    $current_fonts['icon'] = (array) get_option("pds_icon_font");
 
     //===> Google Fonts <===//
     $google_fonts = [];

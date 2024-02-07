@@ -361,6 +361,7 @@
         } else {
             //====> Set Menu Locations <====//
             foreach ($current_locations as $location) {
+                $location = (array) $location;
                 register_nav_menu($location['name'], $location['title']);
             }
         }
@@ -369,6 +370,7 @@
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
         foreach(get_option('pds_types') as $post_type) {
+            $post_type = (array) $post_type;
             //===> if is Posts Disable Core <===//
             if ($post_type["name"] == "post") {
                 add_action('admin_menu', function() {
@@ -392,6 +394,7 @@
     //===> Set Taxonomies <===//
     if (get_option('pds_taxonomies')) :
         foreach(get_option('pds_taxonomies') as $taxonomy) {
+            $taxonomy = (array) $taxonomy;
             //===> if the Post-Type is Enabled <===//
             if(isset($taxonomy['enable']) && $taxonomy['enable'] == true) { pds_tax_create($taxonomy); }
             //===> Register String for Translation <===//
@@ -405,6 +408,7 @@
     //===> Set Patterns <===//
     if (get_option('block_patterns')) :
         foreach(get_option('block_patterns') as $pattern) {
+            $pattern = (array) $pattern;
             //===> if the Post-Type is Enabled <===//
             pds_add_pattern($pattern['name'], array(
                 'width' => isset($pattern['width']) ? intval($pattern['width']) : 320,

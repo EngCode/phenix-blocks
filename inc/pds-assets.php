@@ -78,7 +78,7 @@ if (!function_exists('phenix_assets')) :
         $assets_path = plugin_dir_path(__DIR__);
         $assets_url  = plugin_dir_url(__DIR__)."assets/";
         $icons_font  = get_option("pds_icon_font");
-        $fonts_list  = get_option("pds_fonts");
+        $fonts_list  = (array) get_option("pds_fonts");
         $custom_fonts = ["somar-rounded","somar-sans", "neo-sans-w23", "din-next-lt-arabic", "tarek-v"];
 
         //====> Define the Fonts List <====//

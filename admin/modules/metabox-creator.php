@@ -38,7 +38,7 @@ if (!function_exists('pds_metabox_create')) :
 
                 //===> Create Field Label <===//
                 $label_html = '<label class="fs-14 mb-5">' . $metabox["label"] . '</label>';
-                $input_classes = "form-control radius-sm fs-13 mb-20";
+                $input_classes = "form-control radius-sm fs-13 mb-20 tx-nowrap flow-nowrap";
                 $field_html = '';
 
                 //===> for Textarea Type <===//
@@ -49,10 +49,18 @@ if (!function_exists('pds_metabox_create')) :
 
                 //===> for Media Uploader Type <===//
                 else if ($type_checkpoints["isMedia"]) {
+                    //===> Get the File Name and Type <===//
+                    $file_name = basename($current_value);
+                    $file_type = (array) wp_check_filetype($file_name);
+                    //===> Check Types <===//
+                    if (strpos($file_type['type'], 'image') !== false) {$file_type = 'image';}
+                    if (strpos($file_type['type'], 'video') !== false) {$file_type = 'video';}
+                    if (strpos($file_type['type'], 'audio') !== false) {$file_type = 'audio';}
+                    //===> Generate Output <===//
                     $field_html =  '<label class="fs-14 mb-5">'.$metabox["label"].'</label>';
                     $field_html .= '<div class="col-auto px-custom-uploader flexbox align-between border-1 border-solid border-alpha-10 bg-white radius-sm pds-15 align-center-y">';
-                        $field_html .=  '<span class="input-value">' . basename($current_value) . '</span>';
-                        $field_html .=  '<button type="button" class="uploader-btn btn gray small radius-sm radius-end">'.__("Change Image", "pds-blocks").'</button>';
+                        $field_html .=  '<span class="input-value">'.$file_name.'</span>';
+                        $field_html .=  '<button type="button" class="uploader-btn btn gray small radius-sm radius-end">'.__("Replace", "pds-blocks").'</button>';
                         $field_html .=  '<input type="hidden" name="'.$metabox["name"].'" class="uploader-input" value="'.$current_value.'" />';
                     $field_html .= '</div>';
                 }

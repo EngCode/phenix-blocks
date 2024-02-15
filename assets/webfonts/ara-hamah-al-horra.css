@@ -1,0 +1,8 @@
+﻿/*====> Phenix Custom Fonts <====*/
+@font-face {
+    font-family: 'Ara Hamah AlHorra';
+    src: url('ara-hamah/AlHorra.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

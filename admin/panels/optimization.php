@@ -1,7 +1,7 @@
-<?php if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif; ?>
 <?php 
-    $showLoadingText = (array) get_option('pds_loading');
-    $showLoadingText = $showLoadingText["showText"];
+    if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
+    $loadingOptions = (array) get_option('pds_loading');
+    $showLoadingText = $loadingOptions["showText"];
 ?>
 <!-- Grid -->
 <div class="row gpx-md-40 gpx-lg-50">
@@ -66,16 +66,16 @@
         <div class="row gpy-30">
             <!-- Preview -->
             <div class="col-12 col-md-5 col-xl-6">
-                <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo get_option('pds_loading')["background"]; ?>;">
+                <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo $loadingOptions["background"]; ?>;">
                     <div class="loading-content position-ab pos-center">
                         <!-- Image -->
-                        <img class="loading-image <?php if (get_option("pds_loading")["type"] == "code") { echo "hidden"; } ?>" width="36" src="<?php echo get_option('pds_loading')["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
+                        <img class="loading-image <?php if ($loadingOptions["type"] == "code") { echo "hidden"; } ?>" width="36" src="<?php echo $loadingOptions["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
                         <!-- Code -->
-                        <div class="loading-code <?php if (get_option("pds_loading")["type"] == "image") { echo "hidden"; } ?>">
-                            <?php echo get_option('pds_loading')["code"]; ?>
+                        <div class="loading-code <?php if ($loadingOptions["type"] == "image") { echo "hidden"; } ?>">
+                            <?php echo $loadingOptions["code"]; ?>
                         </div>
                         <!-- Paragraph -->
-                        <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo get_option('pds_loading')["text"]; ?></p>
+                        <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loadingOptions["text"]; ?></p>
                     </div>
                 </div>
                 <!-- Note -->
@@ -89,15 +89,15 @@
                     <div class="row gpx-10 flow-nowrap">
                         <!-- Loading Type -->
                         <div class="col">
-                            <select id="pds_loading_type" name="pds_loading[type]" value="<?php echo get_option('pds_loading')["type"]; ?>" class="mb-20 px-select form-control small radius-sm">
+                            <select id="pds_loading_type" name="pds_loading[type]" value="<?php echo $loadingOptions["type"]; ?>" class="mb-20 px-select form-control small radius-sm">
                                 <option value="image">Image</option>
                                 <option value="code">Custom Code</option>
                             </select>
                         </div>
                         <!-- Image Uploader -->
                         <div class="col-auto px-custom-uploader">
-                            <button type="button" class="uploader-btn btn <?php if (get_option("pds_loading")["type"] == "image") {echo "primary";} else {echo "gray";} ?> small radius-sm"><?php echo __("Change Image", "pds-blocks"); ?></button>
-                            <input id="pds_loading_image" type="hidden" name="pds_loading[image]" class="uploader-input" value="<?php echo get_option('pds_loading')["image"]; ?>" />
+                            <button type="button" class="uploader-btn btn <?php if ($loadingOptions["type"] == "image") {echo "primary";} else {echo "gray";} ?> small radius-sm"><?php echo __("Change Image", "pds-blocks"); ?></button>
+                            <input id="pds_loading_image" type="hidden" name="pds_loading[image]" class="uploader-input" value="<?php echo $loadingOptions["image"]; ?>" />
                         </div>
                     </div>
 
@@ -106,14 +106,14 @@
                         <!-- Loading Text -->
                         <div class="col-6">
                             <label class="fs-14 weight-strong mb-5"><?php echo __("Text", "pds-blocks"); ?></label>
-                            <input id="pds_loading_text" name="pds_loading[text]" value="<?php echo get_option('pds_loading')["text"]; ?>" type="text" class="form-control small radius-sm mb-10" />
+                            <input id="pds_loading_text" name="pds_loading[text]" value="<?php echo $loadingOptions["text"]; ?>" type="text" class="form-control small radius-sm mb-10" />
                         </div>
                         <!-- Loading Background -->
                         <div class="col-6" id="pds_loading_background">
                             <label class="fs-14 weight-strong mb-5"><?php echo __("Background", "pds-blocks"); ?></label>
                             <div class="px-group flexbox flow-nowrap mb-10">
-                                <span class="btn square small border-1 border-solid border-alpha-15" style="background: <?php echo get_option('pds_loading')["background"]; ?>"></span>
-                                <input name="pds_loading[background]" value="<?php echo get_option('pds_loading')["background"]; ?>" type="text" class="form-control small radius-sm col-8 col" />
+                                <span class="btn square small border-1 border-solid border-alpha-15" style="background: <?php echo $loadingOptions["background"]; ?>"></span>
+                                <input name="pds_loading[background]" value="<?php echo $loadingOptions["background"]; ?>" type="text" class="form-control small radius-sm col-8 col" />
                             </div>
                         </div>
                     </div>
@@ -126,10 +126,10 @@
                     </label>
 
                     <!-- Loading Code -->
-                    <div id="pds_loading_code" class="<?php if (get_option("pds_loading")["type"] == "image") : ?>hidden<?php endif; ?>">
+                    <div id="pds_loading_code" class="<?php if ($loadingOptions["type"] == "image") : ?>hidden<?php endif; ?>">
                         <label class="fs-14 weight-strong mb-5"><?php echo __("Custom Code", "pds-blocks"); ?></label>
                         <textarea name="pds_loading[code]" class="form-control radius-sm">
-                            <?php echo get_option('pds_loading')["code"]; ?>
+                            <?php echo $loadingOptions["code"]; ?>
                         </textarea>
                     </div>
                     <!-- Loading Code -->

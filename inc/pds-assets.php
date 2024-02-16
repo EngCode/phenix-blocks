@@ -44,18 +44,18 @@ if (!function_exists('phenix_core')) :
 
         //=====> Create Phenix API Key <=====//
         if (is_user_logged_in() && current_user_can('manage_options') || current_user_can('edit_others_posts')) {
-            wp_localize_script('phenix', 'PDS_WP_KEY', array(
+            wp_localize_script('phenix-localize', 'PDS_WP_KEY', array(
                 'site' => esc_url_raw(site_url()),
                 'root' => esc_url_raw(rest_url('pds-blocks/v2/')),
                 'json' => esc_url_raw($assets_url."json"),
                 'nonce' => wp_create_nonce('wp_rest'),
             ));
         } else {
-            wp_localize_script('phenix', 'PDS_WP_KEY', array('site' => esc_url_raw(site_url())));
+            wp_localize_script('phenix-localize', 'PDS_WP_KEY', array('site' => esc_url_raw(site_url())));
         }
 
         //====> Get the Translation Files <====//
-        wp_set_script_translations('phenix-js', 'pds-blocks', plugin_dir_path(__FILE__).'languages');
+        wp_set_script_translations('phenix-js-translate', 'pds-blocks', plugin_dir_path(__FILE__).'languages');
     }
 
     add_action('wp_enqueue_scripts', 'phenix_core');

@@ -34,8 +34,10 @@
         $json_data = wp_remote_get("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC3GNi2OCpFOJnJfeJZvzHjISPg__fqlUI");
         $json_array = json_decode(wp_remote_retrieve_body($json_data));
         //===> Convert to Array <===//
-        foreach ($json_array->items as $key => $value) {
-            array_push($google_fonts, $value->family);
+        if($json_array) {
+            foreach ($json_array->items as $key => $value) {
+                array_push($google_fonts, $value->family);
+            }
         }
     }
 ?>

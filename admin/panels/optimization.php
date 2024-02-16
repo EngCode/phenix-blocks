@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif; ?>
 <?php 
-    $showLoadingText = get_option('pds_loading')["showText"];
+    $showLoadingText = (array) get_option('pds_loading')["showText"];
 ?>
 <!-- Grid -->
 <div class="row gpx-md-40 gpx-lg-50">

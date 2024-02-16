@@ -16,16 +16,7 @@
         */
 
         function pds_admin_menu() {
-            //===> Dashboard Settings <===//
-            add_menu_page(
-                __('Home', "pds-blocks"),
-                __('Home', "pds-blocks"),
-                'edit_posts',
-                'pds-dashboard',
-                'pds_dash_page',
-                plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 0
-            );
-
+            
             //===> General Settings <===//
             add_menu_page(
                 __('Phenix Settings', "pds-blocks"),
@@ -35,7 +26,7 @@
                 'pds_admin_page',
                 plugin_dir_url(__DIR__).'assets/img/px-logo/px-dashicon.svg', 60
             );
-
+            
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
                 __('Custom Data Collection', "pds-blocks"),
@@ -44,11 +35,20 @@
                 'pds-data-collection',
                 'pds_data_collection'
             );
+
+            //===> Dashboard Settings <===//
+            add_submenu_page('pds-admin',
+                __('Documentation', "pds-blocks"),
+                __('Documentation', "pds-blocks"),
+                'edit_posts',
+                'pds-dashboard',
+                'pds_dash_page'
+            );
             
             //===> Remove Menu Items <===//
             $removable = [
                 'flamingo',
-                'index.php',
+                // 'index.php',
                 'upload.php',
                 'edit-comments.php',
             ];
@@ -57,8 +57,6 @@
 
             //===> Remove Sub Menu Items <===//
             $removable_sub = [
-                ['index.php', 'my-sites.php'],
-                ['index.php', 'update-core.php'],
                 ['wpcf7', 'wpcf7-integration'],
                 ['tools.php', 'export-personal-data.php'],
                 ['tools.php', 'erase-personal-data.php'],
@@ -420,18 +418,18 @@
     endif;
     
     //===> Redirect to Dashboard <===//
-    if (!function_exists('pds_dash_redirect')) :
-        /**
-         * Admin Page for Phenix Blocks
-         * @since Phenix Blocks 1.0
-         * @return void
-        */
-        function pds_dash_redirect(){
-            wp_redirect(admin_url('admin.php?page=pds-dashboard'));
-        }
+    // if (!function_exists('pds_dash_redirect')) :
+    //     /**
+    //      * Admin Page for Phenix Blocks
+    //      * @since Phenix Blocks 1.0
+    //      * @return void
+    //     */
+    //     function pds_dash_redirect(){
+    //         wp_redirect(admin_url('admin.php?page=pds-dashboard'));
+    //     }
 
-        add_action('load-index.php', 'pds_dash_redirect');
-    endif;
+    //     add_action('load-index.php', 'pds_dash_redirect');
+    // endif;
 
     //====> Setup Users Roles <====//
     if (!function_exists('pds_users_roles_register')) :

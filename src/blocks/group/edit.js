@@ -169,7 +169,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </PxDropDown>
                 :null}
                 {/*===> Dropdown Button <===*/}
-                {attributes.style?.position ?
+                {attributes.style?.support?.includes('enable-position ') ?
                     <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs

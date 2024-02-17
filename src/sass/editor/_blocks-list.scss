@@ -220,6 +220,9 @@
 		justify-content: inherit;
 		.block-editor-block-list__layout {position: static;}
 	}
+
+	/*==== Inner Blocks Position Fix ====*/
+	.block-editor-block-list__block:not(.position-) > .block-editor-block-list__layout {position: static;}
 }
 
 /*==== Inserter Fixes ====*/

@@ -223,6 +223,7 @@
 
 	/*==== Inner Blocks Position Fix ====*/
 	.block-editor-block-list__block:not(.position-) > .block-editor-block-list__layout {position: static;}
+	.wp-block-phenix-custom-code .form-control {direction: ltr; text-align: left;}
 }
 
 /*==== Inserter Fixes ====*/

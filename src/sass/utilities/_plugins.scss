@@ -81,7 +81,7 @@
 .px-media {
     /*==== ....====*/
     &:not([class*="position-"]) {position: relative;}
-    &:not([class*="flex"]):not([class*="display-"]):not([class*="inline-"]) {display: block;}
+    &:not([class*="flex"]):not([class*="inline-"]) {display: block;}
     &:not([class*="bgs-"]):not([class*="bgh-"]):not([class*="bgw-"]) {
         background-size: cover;
         background-position: center;

@@ -532,6 +532,24 @@ window.PhenixBlocks = {
                     }
                 });
 
+                //===> Unlocated Menu fallback style. <===//
+                the_document.querySelectorAll('.px-navigation > div.reset-list').forEach((element) => {
+                    //===> Define Elements <===//
+                    let parent = Phenix(element).ancestor(".px-navigation"),
+                        classNames = element.classList,
+                        children  = element.childNodes;
+
+                    //===> Move Children <===//
+                    children.forEach((child) => {
+                        parent.appendChild(child);
+                        //===> Move Classnames <===//
+                        classNames.forEach((className) => child.classList.add(className));
+                    });
+
+                    //===> Remove Element <===//
+                    element.remove();
+                });
+
                 //====> Clear Timer <===//
                 time_counter += 1;
                 if (time_counter > 5) clearInterval(pds_elements_timer);

@@ -101,10 +101,10 @@ export default class PositionSet extends Component {
             </div>
             {/*===> Other Options <===*/}
             <div className='col-12 pdt-10 divider-t mt-15 row gpx-15'>
-                <div className='col'>
+                <div className='mb-10 col'>
                     <PhenixSelect key={`position${screen}`} name={`position${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Position Type", "pds-blocks")} value={attributes.style[`position${screen}`]} onChange={mainSetter} options={position_options} />
                 </div>
-                <div className='col col-6'>
+                <div className='mb-10 col col-6'>
                     <PhenixSelect key={`position-index${screen}`} name={`z-index${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Index Order", "pds-blocks")} value={attributes.style[`z-index${screen}`]} onChange={mainSetter} options={zindex_options} />
                 </div>
                 <div className='col col-6'>

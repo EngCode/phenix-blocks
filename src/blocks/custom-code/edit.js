@@ -22,13 +22,10 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
-    //===> for Editing Mode <===//
-    if (!attributes.code) blockProps.className += ' pd-15';
-    if (attributes.dev_preview || attributes.code_preview) blockProps.className += ' pdx-15 pdb-15';
-
     //===> Wrapper Style <===//
     if (!blockProps.style) blockProps.style = {};
     if (!attributes.dev_preview || !attributes.code_preview) {
+        blockProps.className += ' col pd-15';
         blockProps.style.backgroundColor = "#111111";
     }
 
@@ -65,8 +62,6 @@ export default function Edit({ attributes, setAttributes }) {
                     { label: __('CSS', "pds-blocks"),  value: 'css' },
                     { label: __('JS', "pds-blocks"),  value: 'javascript' },
                 ]} />
-                {/*===> Textarea Control <===*/}
-                <PhenixTextarea label={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} />
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}
@@ -74,7 +69,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Preview Mode <===*/}
             {attributes.dev_preview || attributes.code_preview ? <ServerSideRender block="phenix/custom-code" attributes={attributes}  /> : null}
             {/*===> Coding Mode <===*/}
-            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} style={{padding:"15px 20px", backgroundColor: "#1c1c1c", borderRadius: "3px", direction: "ltr"}} className={`position-rv z-index-3 ltr color-gray border-gray ${attributes.dev_preview || attributes.code_preview ? 'mt-15':''}`} />
+            <PhenixTextarea placeholder={__("Custom Code", "pds-blocks")} name="code" onChange={set_value} value={attributes.code} style={{padding:"15px 20px", backgroundColor: "#1c1c1c", borderRadius: "3px", direction: "ltr", appearance: "none"}} className={`position-rv z-index-3 ltr color-gray border-gray ${attributes.dev_preview || attributes.code_preview ? 'mt-15':''}`} />
         </div>}
     </>);
 }

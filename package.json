@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@types/babel__traverse": "^7.18.3",
+    "@uiw/react-textarea-code-editor": "^3.0.2",
     "@wordpress/blocks": "^11.17.0"
   }
 }

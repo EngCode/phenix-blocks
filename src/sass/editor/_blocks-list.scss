@@ -156,13 +156,6 @@
 		&:not([data-items]), &:not([data-md]), &:not([data-lg]), &:not([data-xl]) {margin-left: 0; margin-right: 0;}
 	}
 
-	/*==== Position ====*/
-	.position-ab  {position: absolute!important;}
-	.position-st  {position: sticky!important;}
-	.position-rv  {position: relative!important;}
-	.position-fx  {position: fixed!important;}
-	.position-none  {position: static!important;}
-
 	/*==== Template Part ====*/
 	.block-library-block__reusable-block-container > * {width: 100%;}
 

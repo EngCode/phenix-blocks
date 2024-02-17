@@ -63,11 +63,11 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
 @mixin make_positions($infix:'') {
     /*==== Position ====*/
-    .position-ab#{$infix}  {position: absolute;}
-    .position-rv#{$infix}  {position: relative;}
-    .position-fx#{$infix}  {position: fixed;}
-    .position-st#{$infix}  {position: -webkit-sticky;position: sticky;}
-    .position-none#{$infix}  {position: static;}
+    .position-ab#{$infix}  {position: absolute!important;}
+    .position-rv#{$infix}  {position: relative!important;}
+    .position-fx#{$infix}  {position: fixed!important;}
+    .position-st#{$infix}  {position: -webkit-sticky!important;position: sticky!important;}
+    .position-none#{$infix}  {position: static!important;}
 
     /*==== Center ====*/
     .position-full#{$infix}, .pos-full#{$infix} {top: 0;left: 0;right: 0;bottom: 0;}

@@ -18,6 +18,10 @@ export default class PositionSet extends Component {
     render () {
         //===> Properties <===//
         const {attributes, options, mainSetter, screen, attrSetter} = this.props;
+        const preset_positions = PhenixBlocks.preset_positions.map(opt => {
+            opt.value += `${screen}`;
+            return opt;
+        });
 
         //===> Reset position <===//
         const reset = () => {
@@ -96,6 +100,9 @@ export default class PositionSet extends Component {
                 <PhenixNumber key={`pos-bottom${screen}`}  name={`pos-bottom${screen}`} onChange={setValue} value={attributes.style[`pos-bottom${screen}`] || 0} min={-2500} max={2500} steps={5} />
             </div>
             {/*===> Other Options <===*/}
+            <div className='col-12 pdt-10 divider-t'>
+                <PhenixSelect key={`position-preset-${uniqueKey}`} name={`position-preset${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Preset Position", "pds-blocks")} value={attributes.style[`position-preset${screen}`]} onChange={mainSetter} options={preset_positions} />
+            </div>
             {this.props.children ? this.props.children : null}
         </div>
     }

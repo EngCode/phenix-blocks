@@ -66,38 +66,21 @@
     @include xlarge() { --pos-start: var(--pos-start-xl) };
 }
 
-/*==== Center ====*/
-.position-full, .pos-full {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.pos-center {
-    top: 50%;
-    left: 50%;
-    @extend %position-center;
-}
-
-.pos-center-y {
-    top: 50%;
-    @extend %position-center-y;
-}
-
-.pos-center-x {
-    left: 50%;
-    @extend %position-center-x;
-}
-
-.pos-after-y  {top: 100%;}
-.pos-before-y {bottom: 100%;}
-.pos-after-x  {#{$direction-start}: 100%;}
-.pos-before-x {#{$direction-end}: 100%;}
 
 $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
 @mixin make_positions($infix:'') {
+    /*==== Center ====*/
+    .position-full#{$infix}, .pos-full#{$infix} {top: 0;left: 0;right: 0;bottom: 0;}
+    .pos-center#{$infix} {top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);;}
+    .pos-center-y#{$infix} {top: 50%;transform: translateY(-50%);}
+    .pos-center-x#{$infix} {left: 50%;transform: translateX(-50%);}
+    .pos-after-y#{$infix}  {top: 100%;}
+    .pos-before-y#{$infix} {bottom: 100%;}
+    .pos-after-x#{$infix}  {#{$direction-start}: 100%;}
+    .pos-before-x#{$infix} {#{$direction-end}: 100%;}
+
+
     @each $size in $space_range {
         .pos-top#{$infix}-#{$size}  {top: #{REM($size)};}
         .pos-bottom#{$infix}-#{$size}  {bottom: #{REM($size)};}

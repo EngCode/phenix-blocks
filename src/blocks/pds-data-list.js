@@ -692,6 +692,18 @@ window.PhenixBlocks.dataLists = {
             { "label": "Sticky(S)", "value": "sticky-absolute"},
         ],
 
+        preset_positions: [
+            { "label": "Default", "value": ""},
+            { "label": "Fill Area", "value": "position-full"},
+            { "label": "Centered", "value": "pos-center"},
+            { "label": "Centered Y", "value": "pos-center-y"},
+            { "label": "Centered X", "value": "pos-center-x"},
+            { "label": "After Area Y ", "value": "pos-after-y"},
+            { "label": "Before Area Y", "value": "pos-before-y"},
+            { "label": "After Area X", "value": "pos-after-x"},
+            { "label": "Before Area X", "value": "pos-before-x"},
+        ],
+
         radius_sizes: [
             { label: __("None", "pds-blocks"), value: '' },
             { label: __("Tiny", "pds-blocks"), value: 'radius-sm' },

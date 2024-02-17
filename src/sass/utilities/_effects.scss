@@ -6,7 +6,7 @@
 .transition-fast {@extend %fast-motion;}
 .transition-smooth {@extend %smooth-motion;}
 .transition-slow {@extend %slow-motion;}
-[class*="pds-hvr"] {transition: all 0.3s ease-in-out;}
+[class*="pds-hvr"] {transition: all 0.3s;}
 
 /*==== Scrolling Effects ====*/
 .px-section-snap {
@@ -16,6 +16,8 @@
 }
 
 /*==== Scaling Hover Effects ====*/
+[class*="pds-hvr-scale"], .pds-hvr-scale-05 {transition: all 0.3s;}
+
 .pds-hvr-scale-05:hover {transform: scale(1.05);}
 .pds-hvr-scale-10:hover {transform: scale(1.10);}
 .pds-hvr-scale-15:hover {transform: scale(1.15);}
@@ -35,8 +37,8 @@
 .pds-hvr-gradient-move-revert:hover {background-size: 200%; background-position: 100% 0;}
 
 /*==== Attention ====*/
-*:has(> .pds-hvr-highlight) > * {transition: opacity 0.3s ease-in-out;}
-*:has(> .pds-hvr-highlight:is(:hover)) > *:not(.pds-hvr-highlight)  {opacity: 0.5;}
+// *:has(> .pds-hvr-highlight) > * {transition: opacity 0.3s ease-in-out;}
+// *:has(> .pds-hvr-highlight:is(:hover)) > *:not(.pds-hvr-highlight)  {opacity: 0.5;}
 
 /*==== Floating Effect ====*/
 .pds-hvr-floating:hover, .pds-animate-floating {animation: floating 2s ease-in-out infinite;}

@@ -322,7 +322,7 @@ PhenixElements.prototype.utilities = function (options?:{
         Phenix('a[href]').forEach((link:any) => {
             //===> Alternative Text <===//
             if (!link.getAttribute('title') || link.getAttribute('title') === "") {
-                link.setAttribute('title', link.textContent.trim() || link.getAttribute('data-title'));
+                link.setAttribute('title', link.textContent.trim() || link.getAttribute('data-title') || "");
             }
         });
     }

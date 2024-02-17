@@ -238,6 +238,9 @@ window.PhenixBlocks = {
 
                         //===> Display Support <===//
                         else if (sub_option === "display") { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
+                        
+                        //===> for Array Values <===//
+                        else if (Array.isArray(sub_value)) { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
                     }
 
                     //===> for Normal strings and Arrays <===//

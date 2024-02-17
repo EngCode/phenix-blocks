@@ -30,13 +30,6 @@
 .z-index-9 {z-index: 9;}
 .z-index-10 {z-index: 10;}
 
-/*==== Position ====*/
-.position-ab  {position: absolute;}
-.position-rv  {position: relative;}
-.position-fx  {position: fixed;}
-.position-st  {position: -webkit-sticky;position: sticky;}
-.position-none  {position: static;}
-
 /*==== Custom Positions ====*/
 .pos-top-custom {
     top: var(--pos-top);
@@ -66,10 +59,16 @@
     @include xlarge() { --pos-start: var(--pos-start-xl) };
 }
 
-
 $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
 @mixin make_positions($infix:'') {
+    /*==== Position ====*/
+    .position-ab#{$infix}  {position: absolute;}
+    .position-rv#{$infix}  {position: relative;}
+    .position-fx#{$infix}  {position: fixed;}
+    .position-st#{$infix}  {position: -webkit-sticky;position: sticky;}
+    .position-none#{$infix}  {position: static;}
+
     /*==== Center ====*/
     .position-full#{$infix}, .pos-full#{$infix} {top: 0;left: 0;right: 0;bottom: 0;}
     .pos-center#{$infix} {top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);;}

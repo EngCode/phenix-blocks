@@ -10,21 +10,21 @@
 /*==== Progress Bars ====*/
 .px-progress {
     /*==== Label Basic ====*/
-    &[data-label]::before, .px-progress-bar[data-label]::before {@extend .position-ab;}
+    &[data-label]::before, .px-progress-bar[data-label]::before {position: absolute;}
 
     /*==== Label Before ====*/
     &[data-label]::before {
         width: 100%;
         #{$direction-start}: 0;
         content: attr(data-label);
-        @extend .pos-center-y;
+        @extend %position-center-y;
     }
 
     /*==== Inverted Label ====*/
     .px-progress-bar[data-label]::before {
         color: #FFF;
         width: var(--width);
-        @extend .pos-center-y;
+        @extend %position-center-y;
         #{$direction-start}: 0;
         content: attr(data-label);
     }

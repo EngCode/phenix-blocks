@@ -28,10 +28,8 @@ export default class StylesSet extends Component {
 
         //===> Define Controls Options <===//
         const radius_sizes = PhenixBlocks.radius_sizes;
-        const zindex_options = PhenixBlocks.zindex_options;
         const support_options = PhenixBlocks.support_options;
         const display_options = PhenixBlocks.display_options;
-        const position_options = PhenixBlocks.position_options;
         const radius_directions = PhenixBlocks.radius_directions;
         const background_options = PhenixBlocks.background_options;
 
@@ -131,16 +129,6 @@ export default class StylesSet extends Component {
                                 <PhenixSelect key={`radius-direction-${uniqueKey}`} name="radius-direction" placeholder={__("Default", "pds-blocks")} label={__("Radius Direction", "pds-blocks")} value={attributes.style['radius-direction']} onChange={mainSetter} options={radius_directions} />
                             </div>
                         </> : null}
-
-                        {/*===> Sticky Element <===*/}
-                        {attributes.style.support?.includes('enable-position') ? <>
-                            <div className='col col-6'>
-                                <PhenixSelect key={`position-${uniqueKey}`} name="position" placeholder={__("Default", "pds-blocks")} label={__("Position Type", "pds-blocks")} value={attributes.style.position} onChange={mainSetter} options={position_options} />
-                            </div>
-                            <div className='col col-6'>
-                                <PhenixSelect key={`position-index-${uniqueKey}`} name="z-index" placeholder={__("Default", "pds-blocks")} label={__("Index Order", "pds-blocks")} value={attributes.style['z-index']} onChange={mainSetter} options={zindex_options} />
-                            </div>
-                        </>: null}
 
                         {/*===> Display <===*/}
                         {attributes.style.support?.includes('enable-display') ? <>

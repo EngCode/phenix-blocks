@@ -18,10 +18,10 @@ export default class PositionSet extends Component {
     render () {
         //===> Properties <===//
         const {attributes, options, mainSetter, screen, attrSetter} = this.props;
-        const preset_positions = PhenixBlocks.preset_positions.map(opt => {
-            opt.value += `${screen}`;
-            return opt;
-        });
+        const PhenixBlocks = window.PhenixBlocks.dataLists.styles;
+        const zindex_options = PhenixBlocks.zindex_options.map(opt => { opt.value += `${screen}`; return opt; });
+        const position_options = PhenixBlocks.position_options.map(opt => { opt.value += `${screen}`; return opt; });
+        const preset_positions = PhenixBlocks.preset_positions.map(opt => { opt.value += `${screen}`; return opt; });
 
         //===> Reset position <===//
         const reset = () => {
@@ -100,8 +100,16 @@ export default class PositionSet extends Component {
                 <PhenixNumber key={`pos-bottom${screen}`}  name={`pos-bottom${screen}`} onChange={setValue} value={attributes.style[`pos-bottom${screen}`] || 0} min={-2500} max={2500} steps={5} />
             </div>
             {/*===> Other Options <===*/}
-            <div className='col-12 pdt-10 divider-t'>
-                <PhenixSelect key={`position-preset-${uniqueKey}`} name={`position-preset${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Preset Position", "pds-blocks")} value={attributes.style[`position-preset${screen}`]} onChange={mainSetter} options={preset_positions} />
+            <div className='col-12 pdt-10 divider-t mt-15'>
+                <div className='col'>
+                    <PhenixSelect key={`position-${screen}`} name={`position${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Position Type", "pds-blocks")} value={attributes.style[`position-${screen}`]} onChange={mainSetter} options={position_options} />
+                </div>
+                <div className='col col-6'>
+                    <PhenixSelect key={`position-index-${screen}`} name={`z-index${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Index Order", "pds-blocks")} value={attributes.style[`z-index${screen}`]} onChange={mainSetter} options={zindex_options} />
+                </div>
+                <div className='col col-6'>
+                    <PhenixSelect key={`position-preset${screen}`} name={`position-preset${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Preset Position", "pds-blocks")} value={attributes.style[`position-preset${screen}`]} onChange={mainSetter} options={preset_positions} />
+                </div>
             </div>
             {this.props.children ? this.props.children : null}
         </div>

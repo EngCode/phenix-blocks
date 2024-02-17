@@ -2,7 +2,7 @@
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
 import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
-import {BlockControls, InspectorControls, useBlockProps, InnerBlocks, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
+import {MediaUpload, BlockControls, InspectorControls, useBlockProps, InnerBlocks, __experimentalLinkControlSearchInput as LinkControlSearchInput} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
 import PreviewImage from './preview.jpg';
@@ -22,7 +22,6 @@ import PositionSet from '../px-controls/sets/position';
 import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
-import {MediaUpload} from '@wordpress/block-editor';
 import BorderSet from '../px-controls/sets/border';
 
 //====> Edit Mode <====//

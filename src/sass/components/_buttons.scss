@@ -68,7 +68,7 @@
     border : var(--border-size) solid var(--border-color);
     color  : var(--color);
     height : var(--height);
-    text-align  : center;
+    // text-align  : center;
     font-size   : var(--text-size);
     font-weight : var(--text-weight);
     // line-height : var(--height);
@@ -135,7 +135,10 @@
 
     &.btn-icon{
         /*==== icon ====*/
-        &::before, .icon {@include margin-inline(calc(var(--padding) / 2) ,'end');}
+        &::before, .icon {
+            @include margin-inline(0 ,'start');
+            @include margin-inline(calc(var(--padding) / 2) ,'end');
+        }
         /*==== Labeled ====*/
         &.labeled {padding-#{$direction-start}: 0;}
     }
@@ -143,7 +146,7 @@
     &.btn-icon-end {
         /*==== icon ====*/
         &::before, .icon {
-            float: $direction-end;
+            @include margin-inline(0 ,'end');
             @include margin-inline(calc(var(--padding) / 2) ,'start');
         }
         /*==== Labeled ====*/

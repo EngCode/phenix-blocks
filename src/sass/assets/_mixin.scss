@@ -22,12 +22,6 @@
     inherits: false;
 }
 
-@property --color {
-    syntax: '<color>';
-    initial-value: rgba(255,255,255, 0);
-    inherits: false;
-}
-
 @property --background {
     syntax: '<color>';
     initial-value: rgba(255,255,255, 0);

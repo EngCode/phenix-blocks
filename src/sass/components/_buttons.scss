@@ -71,9 +71,13 @@
     text-align  : center;
     font-size   : var(--text-size);
     font-weight : var(--text-weight);
-    line-height : var(--height);
+    // line-height : var(--height);
     background-color : var(--background);
-    @extend %inline-block;
+
+    /*==== Layout ====*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     @include padding-inline(var(--padding), 'both');
     transition: color 0.3s ease, background-color 0.3s, border-color 0.3s;
     
@@ -124,10 +128,10 @@
         --border-size  : 2px;
         --border-color : rgba(0,0,0, 0.1);
         --background : transparent;
-        line-height : calc(var(--height) - 3px);
+        // line-height : calc(var(--height) - 3px);
     }
 
-    &.btn-icon {line-height: calc(var(--height) - 2px);}
+    // &.btn-icon {line-height: calc(var(--height) - 2px);}
 
     &.btn-icon{
         /*==== icon ====*/
@@ -150,7 +154,7 @@
         width: var(--height);
         height: var(--height);
         background-color: rgba(#000, 0.1);
-        line-height: calc(var(--height) - 3px);
+        // line-height: calc(var(--height) - 3px);
     }
 
     @mixin make-color($prefix, $hover, $text:'dark-reverse') {
@@ -208,14 +212,14 @@
             width: var(--height);
             &::before {
                 display: block;
-                line-height: inherit;
+                // line-height: inherit;
                 margin-#{$direction-end}: 0;
             }
         };
     }
 
-    &.fix-lineheight {line-height: calc(var(--height) - 3px);}
-    &.fix-icon::before {transform: translateY(-15%);}
+    // &.fix-lineheight {line-height: calc(var(--height) - 3px);}
+    // &.fix-icon::before {transform: translateY(-15%);}
 
     /*==== Standard Hover ===*/
     &:hover,&.active,&.px-active, &.is-active {

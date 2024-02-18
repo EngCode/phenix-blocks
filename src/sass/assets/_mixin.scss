@@ -1,4 +1,4 @@
-/**======> Referance <======
+/**======> Reference <======
  * ===> 01 - Logical Properties
  * ===> 02 - Other Mixin & Functions
  * ===> 03 - Responsive Breakpoints
@@ -14,3 +14,28 @@
 
 //====> Responsive Breakpoints [Always Last Line] <====//
 @import './mixin/breakpoints';
+
+/*==== Define CSS Properties ====*/
+@property --gradient-rotation {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@property --color {
+    syntax: '<color>';
+    initial-value: rgba(255,255,255, 0);
+    inherits: false;
+}
+
+@property --background {
+    syntax: '<color>';
+    initial-value: rgba(255,255,255, 0);
+    inherits: false;
+}
+
+@property --border-color {
+    syntax: '<color>';
+    initial-value: rgba(255,255,255, 0);
+    inherits: false;
+}

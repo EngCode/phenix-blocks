@@ -14,13 +14,13 @@ export default class PhenixTextarea extends Component {
 
         //===> Change Value <===//
         const setValue = (event) => {
-            if (this.props.value !== event.target.value) return onChange(event.target);
+            if (this.props.value !== event.target.value) return onChange(event.value);
         };
 
         //===> Define Element Attributes <===//
         let attributes = {
             style: style,
-            onBlur: setValue,
+            onChange: setValue,
             defaultValue: value,
             placeholder: placeholder || label,
         };

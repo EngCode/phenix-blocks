@@ -14,7 +14,7 @@ export default class PhenixTextarea extends Component {
 
         //===> Change Value <===//
         const setValue = (event) => {
-            if (this.props.value !== event.target.value) return onChange(event.value);
+            if (this.props.value !== event.target.value) return onChange(event.target);
         };
 
         //===> Define Element Attributes <===//

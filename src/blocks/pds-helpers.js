@@ -443,7 +443,7 @@ window.PhenixBlocks = {
     set_value : (target, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
+        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target.value);
         const newAttributes = { ...attributes, [name]: value };
         //==> Set Value <==//
         setAttributes(newAttributes);

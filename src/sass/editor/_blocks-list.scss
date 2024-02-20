@@ -300,6 +300,8 @@ body.block-editor-page {
 	}
 }
 
+.interface-interface-skeleton__secondary-sidebar {color: #2b2b2b;}
+
 .interface-interface-skeleton__secondary-sidebar ~ .interface-interface-skeleton__content {
 	.edit-site-visual-editor, .edit-post-visual-editor {
 		.components-popover.block-editor-block-popover .components-popover__content {
@@ -310,6 +312,8 @@ body.block-editor-page {
 		}
 	}
 }
+
+
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

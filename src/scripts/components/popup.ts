@@ -35,11 +35,11 @@ PhenixElements.prototype.popup = function (options?:{
             showon   = options?.showon || popup.getAttribute('data-showon'),
             onload   = options?.onload || popup.getAttribute('data-onload'),
             hash_url = options?.hash_url || popup.getAttribute('data-hash'),
-            backdrop = options?.backdrop || true,
+            backdrop = options?.backdrop || popup.getAttribute('data-backdrop') || true,
             modal_id = popup.getAttribute('id');
 
         /*=====> Backdrop Trigger <=====*/
-        if (backdrop && !popup.querySelector('.backdrop-btn')) {
+        if (backdrop && !popup.querySelector('.backdrop-btn') && backdrop !== 'false') {
             Phenix(popup).insert('append', `<button type="button" class="reset-button backdrop-btn modal-close position-fx fluid h-100vh pos-start-0 pos-top-0 bg-alpha-75" title="Close Window"></button>`);
             backdrop = popup.querySelector('.backdrop-btn');
         }

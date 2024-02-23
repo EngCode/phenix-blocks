@@ -196,5 +196,15 @@
     @include make_ratio('-xl');
 };
 
-/*==== Masonry Grid ====*/
+/*==== Section Snapping ====*/
+.px-section-snap {
+    scroll-snap-type: y mandatory;
+    > * {scroll-snap-align: start;}
+}
+
+.px-section-snap-x {
+    scroll-snap-type: x mandatory;
+    > * {scroll-snap-align: start;}
+}
+
 // .px-masonry, .row.px-masonry {display: block;}

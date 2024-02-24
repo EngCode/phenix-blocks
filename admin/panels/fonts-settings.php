@@ -12,6 +12,7 @@
         "din-next-lt-arabic" => "DIN Next LT Arabic",
         "tarek-v" => "Tarek V",
         "biosans" => "Bio Sans [EN]",
+        "ara-hamah-al-horra" => "Ara Hamah AlHorra",
     ];
 
     //===> Icon Fonts <===//
@@ -157,7 +158,7 @@
                 <?php 
                     foreach ($fonts_list_icon as $key => $value) {
                         $is_selected = "";
-                        if ($current_fonts["icon"] === $key) { $is_selected = "selected"; }
+                        if ($key == "fontawesome-6") { $is_selected = "selected"; }
                         echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                     }
                 ?>

@@ -158,7 +158,7 @@
     /*==== Activated ====*/
     &.px-menu-active {
         opacity: 1;
-        @extend %flexbox;
+        display: flexbox!important;
     }
     /*==== Menu Toggle ====*/
     .menu-toggle {

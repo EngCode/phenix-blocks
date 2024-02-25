@@ -44,6 +44,9 @@ endif;
 //====> Helper Functions [Block Options Renderer] <====//
 if (!function_exists("pds_blocks_options_render")) :
     function pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes) {
+        //===> PHP 8.2 Fixes <===//
+        $block_attributes = (array) $block_attributes;
+
         //===> Grid Layout Mode <===//
         if (isset($block_attributes['className'])) {
             $grid_classes .= $block_attributes['className'].' ';

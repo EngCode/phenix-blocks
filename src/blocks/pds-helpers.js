@@ -127,7 +127,7 @@ window.PhenixBlocks = {
                     }
 
                     //===> if its a Object Value <===//
-                    else if (isObjectVal(sub_value)) {
+                    else if (!isNormalValue(sub_value)) {
                         //===> Background Specials <===//
                         if (sub_option === "background" && sub_value.value) {
                             //===> Adjust Primary Colors <===//
@@ -396,7 +396,7 @@ window.PhenixBlocks = {
             type = target instanceof HTMLElement ? (target.getAttribute('type') || target.tagName) : null;
 
         //==> for Boolean Values <==//
-        if (type === 'checkbox' || type === 'radio') {
+        if (target === "boolean" || type === "boolean" || type === 'checkbox' || type === 'radio') {
             if (target.value === 'boolean') { single_val = target.checked; }
             else { single_val = target.checked ? target.value : ""; }
         }
@@ -415,7 +415,7 @@ window.PhenixBlocks = {
         else if (type === null) { single_val = target; }
 
         //===> for Normal Values <===//
-        else { single_val = target.value; }
+        else if (target instanceof HTMLElement) { single_val = target.value; }
 
         //===> Return Value <===//
         if(single_val) return single_val;
@@ -443,8 +443,8 @@ window.PhenixBlocks = {
     set_value : (target, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = target.getAttribute('name');
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target.value);
-        const newAttributes = { ...attributes, [name]: value };
+        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : target ? PhenixBlocks.valueHandler(target) : PhenixBlocks.valueHandler(target.value);
+        const newAttributes = Object.assign({}, attributes, { [name]: value });
         //==> Set Value <==//
         setAttributes(newAttributes);
     },
@@ -452,7 +452,7 @@ window.PhenixBlocks = {
     //===> Flexbox Values <===//
     set_flexbox : (target, screen, attributes, setAttributes) => {
         //==> Get Current <==//
-        const name = target instanceof HTMLElement ? target.getAttribute('name') : `${target}`;
+        const name = target instanceof HTMLElement ? target.getAttribute('name') : target;
         const flexbox = { ...attributes.flexbox };
         //==> Add the Value <==//
         flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : PhenixBlocks.valueHandler(target);

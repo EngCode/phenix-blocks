@@ -127,7 +127,7 @@ window.PhenixBlocks = {
                     }
 
                     //===> if its a Object Value <===//
-                    else if (!isNormalValue(sub_value)) {
+                    else if (isObjectVal(sub_value)) {
                         //===> Background Specials <===//
                         if (sub_option === "background" && sub_value.value) {
                             //===> Adjust Primary Colors <===//

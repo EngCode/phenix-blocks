@@ -425,7 +425,7 @@ window.PhenixBlocks = {
     setObject : (target, screen, attr, hasName, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : target instanceof HTMLElement ? PhenixBlocks.valueHandler(target) : PhenixBlocks.valueHandler(target.value);
+        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
 
         //==> Set Value <==//
         const newAttributes = name.includes('animation') ? {
@@ -455,7 +455,7 @@ window.PhenixBlocks = {
         const name = target instanceof HTMLElement ? target.getAttribute('name') : target;
         const flexbox = { ...attributes.flexbox };
         //==> Add the Value <==//
-        flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : target instanceof HTMLElement ? PhenixBlocks.valueHandler(target) : PhenixBlocks.valueHandler(target.value);
+        flexbox[`${name.includes('align-') ? `align${screen?'-'+screen:""}` : name}${screen?'-'+screen:""}`] = (typeof(target) === "string" || typeof(target) === "number") ? target.replace("align-reset", "") : PhenixBlocks.valueHandler(target);
         //==> Set Value <==//
         const newAttributes = { ...attributes, flexbox: flexbox };
         setAttributes(newAttributes);

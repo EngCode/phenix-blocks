@@ -46,19 +46,19 @@ export default class ResponsiveSet extends Component {
                 {/*===> Sizes Options <===*/}
                 {options && options.includes("component-size") ?
                     <div className='col-6 col'>
-                        <PhenixSelect key={`size${screenPoint}`} name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size${screenPoint}`]} onChange={mainSetter} options={component_sizes} />
+                        <PhenixSelect key={`size${screenPoint}`} name={`size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size${screenPoint}`]} onChange={(target) => mainSetter(target, screen ? screen : "")} options={component_sizes} />
                     </div>
                 : null}
                 {/*===> Text Size <===*/}
                 {options && options.includes("text-size") ?
                     <div className='col-6 col'>
-                        <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="size" />
+                        <TypographySet screen={screen} attributes={attributes} mainSetter={(target) => typoSetter(target, screen ? screen : "")} options="size" />
                     </div>
                 : null}
                 {/*===> Text Align <===*/}
                 {!options || options.includes("text-align") ?
                     <div className='col-12'>
-                        <TypographySet screen={screen} attributes={attributes} mainSetter={typoSetter} options="align" />
+                        <TypographySet screen={screen} attributes={attributes} mainSetter={(target) => typoSetter(target, screen ? screen : "")} options="align" />
                     </div>
                 : null}
             </div>

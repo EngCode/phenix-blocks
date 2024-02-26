@@ -69,7 +69,7 @@ export default class StylesSet extends Component {
                     </div>
                     {attributes.style.overly ? <>
                     <div className='col col-6 mb-10'>
-                        <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={mainSetter} />
+                        <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={(target) => mainSetter(target, screen ? screen : "")} />
                     </div>
                     </>:null}
 
@@ -106,7 +106,7 @@ export default class StylesSet extends Component {
                         </div>
                         {/*===> Column <===*/}
                         <div className='col-12'>
-                            <OptionControl key={`parallax-${uniqueKey}`} name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Parallax BG", "pds-blocks")}</OptionControl>
+                            <OptionControl key={`parallax-${uniqueKey}`} name={`parallax`} value="bg-parallax" checked={attributes.style.parallax || false} onChange={(target) => mainSetter(target, screen ? screen : "")} type='switch-checkbox' className='small'>{__("Parallax BG", "pds-blocks")}</OptionControl>
                         </div>
                     </>:null}
                 </div>

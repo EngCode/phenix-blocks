@@ -37,22 +37,22 @@ export default class SliderSet extends Component {
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="steps" name="steps" label={__("Steps", "pds-blocks")} value={attributes.slider.steps || 1} onChange={mainSetter} min={1} max={12}></PhenixNumber>
+                    <PhenixNumber key="steps" name="steps" label={__("Steps", "pds-blocks")} value={attributes.slider.steps || 1} onChange={(target) => mainSetter(target, screen ? screen : "")} min={1} max={12}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={mainSetter} min={3000} max={20000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={(target) => mainSetter(target, screen ? screen : "")} min={3000} max={20000} steps={100}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={mainSetter} min={300} max={3000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={(target) => mainSetter(target, screen ? screen : "")} min={300} max={3000} steps={100}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12 pdt-10 divider-t flexbox gpy-5 align-between'>
-                    <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`animate-elements`} name={`animate-elements`} value="has-animated-childs" checked={attributes.flexbox['animate-elements'] || false} onChange={flexSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Animated Elements", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || false} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`animate-elements`} name={`animate-elements`} value="has-animated-childs" checked={attributes.flexbox['animate-elements'] || false} onChange={(target) => flexSetter(target, screen ? screen : "")} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Animated Elements", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
                 {attributes.slider.pagination ? <div className='col-12'>

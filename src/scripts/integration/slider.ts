@@ -30,10 +30,25 @@ PhenixElements.prototype.slider = function (options?:{
     arrow?:string;
     page?:string;
     isNavigation?:boolean;
-    sync?:string
+    updateAfter?:boolean;
+    waitForTransition?:boolean;
+    sync?:string;
+    padding?:string;
     pauseOnHover?:boolean;
     intersection?:boolean;
     rewind?:boolean;
+    wheel?:boolean;
+    wheelSleep?:number;
+    releaseWheel?:boolean;
+    drag?:boolean;
+    width?:string;
+    height?:string;
+    autoWidth?:string;
+    autoHeight?:string;
+    fixedWidth?:string;
+    fixedHeight?:string;
+    heightRatio?:string;
+    autoScroll?:number;
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
@@ -54,16 +69,43 @@ PhenixElements.prototype.slider = function (options?:{
                 speed = parseInt(inline('data-speed')) || options?.speed || 700,
                 duration = parseInt(inline('data-duration')) || options?.duration || 6000,
                 autoplay = inline('data-autoplay') || options?.autoplay,
+                start  = parseInt(inline('data-start')) || options?.start,
+                rewind = inline('data-rewind') || options?.rewind,
+                direction = inline('data-direction') || options?.direction || Phenix(document).direction(),
+                breakpoints = options?.breakpoints || {},
+
+                //===> User Actions <====//
                 pauseOnHover = inline('data-pause-hover') || options?.pauseOnHover,
                 intersection = inline('data-intersection') || options?.intersection,
+
+                //===> Controls <===//
+                drag  = inline('data-drag') || options?.drag || false,
+                wheel = inline('data-wheel') || options?.wheel || false,
                 controls = inline('data-controls') || options?.controls,
                 pagination = inline('data-pagination') || options?.pagination,
-                start = parseInt(inline('data-start')) || options?.start,
-                isNavigation = parseInt(inline('data-is-navigation')) || options?.isNavigation,
+
+                //===> Features & Modes <===//
                 sync = inline('data-sync') || options?.sync,
-                rewind = inline('data-rewind') || options?.rewind,
-                breakpoints = options?.breakpoints || {},
-                direction = inline('data-direction') || options?.direction || Phenix(document).direction();
+                padding = inline('data-padding') || options?.padding,
+                isNavigation = parseInt(inline('data-is-navigation')) || options?.isNavigation,
+
+                //===> Animations <===//
+                updateAfter = inline('data-update-after') || options?.updateAfter,
+                waitForTransition = inline('data-waitForTransition') || options?.waitForTransition,
+                wheelSleep = parseInt(inline('data-wheelSleep')) || options?.wheelSleep,
+                releaseWheel = inline('data-releaseWheel') || options?.releaseWheel,
+
+                //===> Style <===//
+                width = inline('data-width') || options?.width,
+                height = inline('data-height') || options?.height,
+                autoWidth = inline('data-autoWidth') || options?.autoWidth,
+                autoHeight = inline('data-autoHeight') || options?.autoHeight,
+                fixedWidth = inline('data-fixedWidth') || options?.fixedWidth,
+                fixedHeight = inline('data-fixedHeight') || options?.fixedHeight,
+                heightRatio = inline('data-heightRatio') || options?.heightRatio,
+
+                //===> Extensions <===//
+                autoScroll = parseInt(inline('data-autoScroll')) || options?.autoScroll;
 
             //====> Rewind Sliding and Fading <=====//
             if (!rewind && type === "fade" || type === "slide") rewind = true;
@@ -115,22 +157,23 @@ PhenixElements.prototype.slider = function (options?:{
             inline('data-sm') ? breakpoints[570] = { 
                 //===> Small Screens <===//
                 perPage: inline('data-sm') || items,
-                height: verticalFix(inline('data-sm') || items),
+                height: height || verticalFix(inline('data-sm') || items),
             } : '';
             //===> Medium Screens <===//
-            inline('data-md') ? breakpoints[760] = {
+            inline('data-md') ? breakpoints[1100] = {
                 perPage: inline('data-md') || items,
-                height: verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-md') || items),
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
+                drag: drag && drag === 'true' || drag && drag === '1' ? 1 : false,
                 perPage: inline('data-lg') || items,
-                height: verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-md') || items),
             } : '';
             //===> xLarge Screens <===//
             inline('data-xl') ? breakpoints[1400] = {
                 perPage: inline('data-xl') || items,
-                height: verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-md') || items),
             } : '';
 
             //====> Custom Classes <====//
@@ -156,12 +199,43 @@ PhenixElements.prototype.slider = function (options?:{
                 perPage: items,
                 perMove: steps,
                 autoplay: parseInt(autoplay),
+                live: true,
                 pauseOnHover: false,
                 mediaQuery: 'min',
                 direction: direction,
                 breakpoints: breakpoints,
                 rewind: rewind,
+                padding: padding,
+                omitEnd: type === 'slide' ? true : false,
                 paginationDirection: Phenix(document).direction(),
+
+                //====> Animation Fix <====//
+                updateOnMove: updateAfter && updateAfter === 'false' || updateAfter && updateAfter === '0' ? false : true,
+                waitForTransition: waitForTransition && waitForTransition === 'false' || waitForTransition && waitForTransition === '0' ? false : true,
+                
+                //====> Static Options <====//
+                snap: true,
+                rewindSpeed: 1000,
+                rewindByDrag: true,
+                
+                //====> .Sniping Sliding. <====//
+                wheel: wheel, //===> Enable Wheel Sliding
+                wheelSleep: wheelSleep, //===> Time to Disable the Scroll before next slide
+                releaseWheel: releaseWheel, //===> Allow Scrolling at the End or the Start.
+
+                //====> ... <====//
+                width: width,
+                autoWidth: autoWidth,
+                autoHeight: autoHeight,
+                fixedWidth: fixedWidth,
+                fixedHeight: fixedHeight,
+                heightRatio: heightRatio,
+
+                //====> Accessibility <====//
+                // role: 'slider',
+                // label: 'Slider',
+                // labelledby: 'slider-label',
+
                 //====> Classes <====//
                 classes: {
                     // Add classes for arrows.
@@ -179,7 +253,6 @@ PhenixElements.prototype.slider = function (options?:{
             if (start) slider_options.start = start;
             if (!controls) slider_options.arrows = false;
             if (!pagination) slider_options.pagination = false;
-            if (isNavigation) slider_options.isNavigation = true;
             if (sync) slider_options.sync = true;
             if (direction == 'ttb') slider_options.height = heightCalc;
             if (direction == 'ttb') slider_options.autoHeight = true;
@@ -187,7 +260,18 @@ PhenixElements.prototype.slider = function (options?:{
             if(!autoplay) slider_options.autoplay = true;
             if (intersection) intersection !== 'false' || '0' ? intersection = true : null;
             if (rewind) rewind !== 'false' || '0' ? slider_options.rewind = true : slider_options.rewind = false;
+            if (isNavigation) {
+                slider_options.isNavigation = true;
+                slider_options.live = false;
+            }
 
+            //====> Add Extensions Options <====//
+            if (autoScroll) {
+                Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {}, true);
+                slider_options.autoScroll = {speed: autoScroll};
+            }
+
+            //====> Return Options <====//
             return {
                 track  : slider_track,
                 list   : slider_list,
@@ -288,6 +372,7 @@ PhenixElements.prototype.slider = function (options?:{
         //====> Run Sync Sliders <====//
         let mount_slider = () => {
             if (!current_slider.track?.classList.contains('mounted')) {
+                //===> If is Synced Slider <===//
                 if (current_slider.sync) {
                     //====> Synced Create <====//
                     let sync_selector = document.querySelector(`${current_slider.sync}`),
@@ -306,6 +391,7 @@ PhenixElements.prototype.slider = function (options?:{
                     the_slider.mount();
                 }
     
+                //===> Add Mounted Class <===//
                 current_slider.track?.classList.add('mounted');
             }
         };
@@ -346,6 +432,9 @@ PhenixElements.prototype.slider = function (options?:{
         splide_loader.addEventListener("error", (ev) => {
             splide_loader.setAttribute("src", splide_url);
         });
+
+        //===> Mount Extensions <===//
+        new Splide('.splide').mount( Splide.Extensions );
     //====> if Al-ready loaded run the sliders <====//
     } else slider_handler;
 

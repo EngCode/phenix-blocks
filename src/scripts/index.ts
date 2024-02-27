@@ -262,18 +262,17 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
 
     /*====> CSS Styling <====*/
     css(style:object, clearInline?) {
+        //====> Check for the Elements <====//
+        if (this.length === 0) return;
+
         //====> if inline-style Clear is Activated <====//
         if (clearInline) this.forEach((element:HTMLElement) => (element.removeAttribute('style')));
 
         //====> for Each CSS Property <====//
         for (const [key, value] of Object.entries(style)) {
-            //====> Convert Property[String] To Object Name[Key] <====//
-            // let property = key.replace(/(-[a-z])/, prop => prop.replace("-", "").toUpperCase());
-
             //====> Style Elements <====//
             this.forEach((element:HTMLElement) => {
                 element.style.setProperty(key, value);
-                // element.style[property] = value
             });
         }
 

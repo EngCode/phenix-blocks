@@ -642,6 +642,17 @@ window.PhenixBlocks.dataLists = {
                 { "label": "Huge", "value": "bx-shadow-tw-xxl"},
             ],
         },
+
+        other_effects : {
+            "Default": [{ "label": "None", "value": ""}],
+            
+            "Scroll Effects" : [
+                { "label": "Snap Scroll Y", "value": "px-section-snap"},
+                { "label": "Snap Scroll X", "value": "px-section-snap-x"},
+                { "label": "Snap Item", "value": "px-section-snap-item"},
+                { "label": "Snap Disable", "value": "no-snap"},
+            ],
+        },
     },
 
     component_sizes : [

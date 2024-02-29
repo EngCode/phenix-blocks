@@ -198,13 +198,17 @@
 
 /*==== Section Snapping ====*/
 .px-section-snap {
+    overflow-y: auto;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
-    > * {scroll-snap-align: start;}
+    > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
 }
 
 .px-section-snap-x {
+    overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    > * {scroll-snap-align: start;}
+    > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
 }
 
 // .px-masonry, .row.px-masonry {display: block;}

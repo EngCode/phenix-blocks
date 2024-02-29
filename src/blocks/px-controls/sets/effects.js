@@ -22,6 +22,7 @@ export default class EffectsSet extends Component {
         const hover_effect = PhenixBlocks.effects.hover;
         const box_shadows = PhenixBlocks.effects.shadows;
         const animations_effect = PhenixBlocks.effects.animations;
+        const other_effects = PhenixBlocks.effects.other_effects;
 
         //===> Output <===//
         return <>
@@ -41,6 +42,10 @@ export default class EffectsSet extends Component {
                 {/*===> Box Shadow <===*/}
                 <div className='col col-12'>
                     <PhenixSelect name="box-shadow" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Box Shadow", "pds-blocks")} value={attributes.style['box-shadow']} onChange={mainSetter} options={box_shadows} />
+                </div>
+                {/*===> Other Effects <===*/}
+                <div className='col col-12'>
+                    <PhenixSelect name="other-effects" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Other Effects", "pds-blocks")} value={attributes.style['other-effects']} onChange={mainSetter} options={other_effects} />
                 </div>
             </div>
             {/*===> // Layout Group <===*/}

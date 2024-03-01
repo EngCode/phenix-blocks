@@ -45,7 +45,7 @@ export default class EffectsSet extends Component {
                 </div>
                 {/*===> Other Effects <===*/}
                 <div className='col col-12'>
-                    <PhenixSelect name="other-effects" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Other Effects", "pds-blocks")} value={attributes.style['other-effects']} onChange={mainSetter} options={other_effects} />
+                    <PhenixSelect name="other-effects" size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Other Effects", "pds-blocks")} value={attributes.style['other-effects']} multiple={true} onChange={mainSetter} options={other_effects} />
                 </div>
             </div>
             {/*===> // Layout Group <===*/}

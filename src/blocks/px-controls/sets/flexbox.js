@@ -24,14 +24,24 @@ export default class FlexboxSet extends Component {
         const screenPoint = screen ? `-${screen}` : "";
         const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screenPoint}-option`;
 
+        const align_options = [
+            {label: "Start", value: `align-self${screen}-start`},
+            {label: "Center", value: `align-self${screen}-center`},
+            {label: "End", value: `align-self${screen}-end`}
+        ];
+
         //===> Output <===//
         return <>
             <div className={`row gpx-15 ${className ? className : ""}`} key={uniqueKey}>
                 {/*===> Column <===*/}
                 {!options || options.includes("align") ? <>
-                <div className='col-12 mb-15'>
-                    <FlexAlignment screen={screen} label={__("Flexbox Alignment", "pds-blocks")} value={attributes.flexbox[`align${screenPoint}`] || ""} onChange={(target) => mainSetter(target, screen ? screen : "")}></FlexAlignment>
-                </div>
+                    <div className='col-12 mb-15'>
+                        <FlexAlignment screen={screen} label={__("Flexbox Alignment", "pds-blocks")} value={attributes.flexbox[`align${screenPoint}`] || ""} onChange={(target) => mainSetter(target, screen ? screen : "")}></FlexAlignment>
+                        {/*====> Self Alignment <====*/}
+                        {!options && options.includes('align-self') ? <>
+                            <PhenixSelect name={`align-self${screen}`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self${screen}`]} onChange={mainSetter} options={align_options} />
+                        </>:null}
+                    </div>
                 </>: null}
                 {/*===> Group <===*/}
                 <div className='col-12 row gpx-10 pdt-5 mb-15'>

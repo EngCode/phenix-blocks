@@ -80,9 +80,9 @@ export default function Edit({ attributes, setAttributes }) {
                     <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
-                            md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align"}></FlexboxSet>}
-                            lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align"}></FlexboxSet>}
-                            xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align"}></FlexboxSet>}
+                            md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align, align-self"}></FlexboxSet>}
+                            lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align, align-self"}></FlexboxSet>}
+                            xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"flex-props, align, align-self"}></FlexboxSet>}
                         />
                         {/*===> Disable Button <===*/}
                         <div className='fluid' style={{paddingBottom: 3}}>

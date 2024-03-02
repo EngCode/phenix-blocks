@@ -48,7 +48,7 @@ PhenixElements.prototype.slider = function (options?:{
     fixedWidth?:string;
     fixedHeight?:string;
     heightRatio?:string;
-    autoScroll?:number;
+    autoScroll?:string;
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
@@ -105,7 +105,7 @@ PhenixElements.prototype.slider = function (options?:{
                 heightRatio = inline('data-heightRatio') || options?.heightRatio,
 
                 //===> Extensions <===//
-                autoScroll = parseInt(inline('data-autoScroll')) || options?.autoScroll;
+                autoScroll = inline('data-autoScroll') || options?.autoScroll;
 
             //====> Rewind Sliding and Fading <=====//
             if (!rewind && type === "fade" || type === "slide") rewind = true;
@@ -267,8 +267,12 @@ PhenixElements.prototype.slider = function (options?:{
 
             //====> Add Extensions Options <====//
             if (autoScroll) {
-                Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {}, true);
-                slider_options.autoScroll = {speed: autoScroll};
+                Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {
+                    //===> Mount Extensions <===//
+                    new Splide('.splide').mount( Splide.Extensions.AutoScroll );
+                }, true);
+
+                slider_options.autoScroll = {speed: parseInt(autoScroll) || 1};
             }
 
             //====> Return Options <====//
@@ -426,15 +430,16 @@ PhenixElements.prototype.slider = function (options?:{
         document.body.appendChild(splide_loader);
     
         //====> When Loaded Run Sliders <====//
-        splide_loader.addEventListener("load", slider_handler);
+        splide_loader.addEventListener("load", () => {
+            //===> Run Slider <====//
+            slider_handler();
+        });
     
         //====> When Error Re-Load <====//
         splide_loader.addEventListener("error", (ev) => {
             splide_loader.setAttribute("src", splide_url);
         });
 
-        //===> Mount Extensions <===//
-        new Splide('.splide').mount( Splide.Extensions );
     //====> if Al-ready loaded run the sliders <====//
     } else slider_handler;
 

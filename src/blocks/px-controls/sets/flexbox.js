@@ -12,6 +12,7 @@ import {Component} from '@wordpress/element';
 import OptionControl from '../switch';
 import FlexAlignment from '../alignment';
 import PhenixNumber from "../number";
+import PhenixSelect from "../select";
 
 //===> Options List
 //=> align, flex-props, grid-props
@@ -38,7 +39,7 @@ export default class FlexboxSet extends Component {
                     <div className='col-12 mb-15'>
                         <FlexAlignment screen={screen} label={__("Flexbox Alignment", "pds-blocks")} value={attributes.flexbox[`align${screenPoint}`] || ""} onChange={(target) => mainSetter(target, screen ? screen : "")}></FlexAlignment>
                         {/*====> Self Alignment <====*/}
-                        {!options && options.includes('align-self') ? <>
+                        {!options || options.includes('align-self') ? <>
                             <PhenixSelect name={`align-self${screen}`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self${screen}`]} onChange={mainSetter} options={align_options} />
                         </>:null}
                     </div>

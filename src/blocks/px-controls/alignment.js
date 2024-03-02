@@ -18,37 +18,66 @@ export default class FlexAlignment extends Component {
         const uniqueKey = `${blockKey ? blockKey+"-" : ""}align-${screenPoint}-options`;
 
         //===> Value Handler <===//
-        const set_alignment = target => {
-            //===> Define Data <===//
-            let align_val  = value;
-            const current_val = value.trim(),
-                  current_values  = current_val.split(" "),
-                  xTypes = ["-x", "between", "around"],
-                  allTypes = ["-x", "between", "around", "-y"];
+        // const set_alignment = target => {
+        //     //===> Define Data <===//
+        //     let align_val  = value;
+        //     const current_val = value.trim(),
+        //           current_values  = current_val.split(" "),
+        //           xTypes = [`x`, `${screenPoint}-between`, `${screenPoint}-around`],
+        //           allTypes = [`${screenPoint}-end-x`,`${screenPoint}-start-x`,`${screenPoint}-center-x`, `${screenPoint}-between`, `${screenPoint}-around`, `${screenPoint}-end-y`,`${screenPoint}-start-y`, `${screenPoint}-center-y`];
 
-            //===> Check if the Value has an option with the same type as the target value <===//
-            const itHasType = allTypes.some(type => current_val.includes(type)),
-                  align_type = xTypes.some(type => target.getAttribute('name').includes(type)) ? "x" : "y",
-                  foundedType = xTypes.some(type => current_val.includes(type)) ? "x" : "y";
+        //     //===> Check if the Value has an option with the same type as the target value <===//
+        //     const itHasType = allTypes.some(type => current_val.includes(type)),
+        //           align_type = xTypes.some(type => target.getAttribute('name').includes(type)) ? `${screenPoint}-x` : `${screenPoint}-y`,
+        //           foundedType = xTypes.some(type => current_val.includes(type)) ? `x` : `y`;
 
-            //===> if the Value has an Option and the option type is the same as the target <===//
-            if (itHasType && align_type === foundedType) {
-                //===> Loop on Values <===//
-                current_values.forEach(current_value => {
-                    //===> if the Founded Type is the same as the Value, Replace the Value <===//
-                    if (current_value.includes(align_type)) {
-                        align_val = align_val.replace(current_value, target.value);
-                    }
-                });
+        //     //===> if the Value has an Option and the option type is the same as the target <===//
+        //     if (itHasType && align_type === foundedType) {
+        //         //===> Loop on Values <===//
+        //         current_values.forEach(current_value => {
+        //             //===> if the Founded Type is the same as the Value, Replace the Value <===//
+        //             if (current_value.includes(align_type)) {
+        //                 align_val = align_val.replace(current_value, target.value);
+        //             }
+        //         });
+        //     }
+        //     //===> if its a new Value add it <===//
+        //     else {
+        //         align_val += ` ${target.value}`;
+        //     }
+
+        //     //===> Return new Value <===//
+        //     return onChange(align_val.trim());
+        // },
+
+        const set_alignment = (target) => {
+            //====> Cleanup Empty Space and Split the Value <====/
+            const options = value.trim().split(/\s+/);
+
+            //====> Define alignment <====//
+            const xAlignments = [`${screenPoint}-x-start`, `${screenPoint}-x-end`, `${screenPoint}-x-between`, `${screenPoint}-x-around`, `${screenPoint}-x-center`];
+            const yAlignments = [`${screenPoint}-y-start`, `${screenPoint}-y-end`, `${screenPoint}-y-center`];
+            const allAlignments = [...xAlignments, ...yAlignments];
+
+            //====> Extract alignment type from target attribute <====//
+            const targetType = target.getAttribute('name').match(/-x$/) ? 'x' : 'y';
+          
+            //====> Check if any option has the same type as target <====//
+            const hasOption = options.some(option => allAlignments.includes(option));
+          
+            //====> Modify value based on conditions <====//
+            let modifiedValue = options;
+            if (hasOption && targetType === extractType(options)) {
+              modifiedValue = options.map(option => option === extractType(options) ? target.value : option);
+            } else {
+              modifiedValue.push(target.value);
             }
-            //===> if its a new Value add it <===//
-            else {
-                align_val += ` ${target.value}`;
-            }
-
-            //===> Return new Value <===//
-            return onChange(align_val.trim());
+          
+            //====> Join modified options and return <====//
+            return onChange(modifiedValue.join(' '));
         },
+
+        extractType = (options) => options.find(option => xAlignments.includes(option) || yAlignments.includes(option)),
 
         //===> Reset Value Method <===//
         reset_align = (clicked) => onChange("align-reset");
@@ -58,7 +87,7 @@ export default class FlexAlignment extends Component {
             {/*===> Label <===*/}
             <div className={"flexbox align-between mb-5 align-center-y"}>
                 <label className='fs-13 weight-bold'>{label}</label>
-                <button type="button" key="reset-btn" data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square far fa-redo' onClick={reset_align}></button>
+                <button type="button" key={`reset-btn${screenPoint}`} data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square far fa-redo' onClick={reset_align}></button>
             </div>
             {/*===> Counter Control <===*/}
             <div className={"flexbox align-between"}>

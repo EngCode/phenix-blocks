@@ -76,10 +76,13 @@ if (!function_exists("pds_blocks_options_render")) :
                     //===> Check if the attribute is Set <===//
                     if (!isset($block_attributes[$option_name][$sub_option])) { continue; }
 
+                    //===> Add Slider Name <===//
+                    if (isset($block_attributes['flexbox']['slider'])) {
+                        $grid_classes .= " px-slider ";
+                    }
+
                     //===> Checker for Slider Mode <===//
                     if ($option_name === 'slider') {
-                        //===> Add Slider Name <===//
-                        $grid_classes .= " px-slider ";
                         //===> if not-related option return void <===//
                         if (in_array($sub_option, ["align", "nowrap", "masonry"])) { continue; }
                         //===> add data attributes <===//

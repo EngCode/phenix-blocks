@@ -12,17 +12,16 @@ export default class PhenixNumber extends Component {
     render () {
         //===> Properties <===//
         const {label, value, min, max, steps, icon, onChange, name} = this.props;
-        const uniqueKey = `flexbox-${screen}-option`;
 
         //===> Set Value <===//
         const setNumber = (changed) => {
             //===> Get Elements <===//
             const input  = changed.target,
-                  minNum  = parseInt(min) || 0,
-                  maxNum  = parseInt(max) || 0;
+                  minNum  = parseFloat(min) || 0,
+                  maxNum  = parseFloat(max) || 0;
 
             //===> Get Input Element <===//
-            const newVal = parseInt(input.value),
+            const newVal = parseFloat(input.value),
                   checkVal = (newVal >= minNum || newVal <= maxNum) ? newVal : 0;
 
             //===> Set Data <===//
@@ -35,12 +34,12 @@ export default class PhenixNumber extends Component {
             //===> Get Elements <===//
             let button  = clicked.target,
                 wrapper = Phenix(button).ancestor(".px-counter-input"),
-                maxNum  = parseInt(max) || 9999999,
-                step    = steps ? parseInt(steps) : 1;
+                maxNum  = parseFloat(max) || 9999999,
+                step    = steps ? parseFloat(steps) : 1;
 
             //===> Get Input Element <===//
             let input  = wrapper.querySelector('input[type="number"]'),
-                newVal = parseInt(input.value) + step;
+                newVal = parseFloat(input.value) + step;
 
             //===> Set Data <===//
             input.value = newVal < maxNum || newVal === maxNum ? newVal : maxNum;
@@ -52,12 +51,12 @@ export default class PhenixNumber extends Component {
             //===> Get Elements <===//
             let button  = clicked.target,
                 wrapper = Phenix(button).ancestor(".px-counter-input"),
-                minNum  = parseInt(min) || 0,
+                minNum  = parseFloat(min) || 0,
                 step    = steps ? steps : 1;
 
             //===> Get Input Element <===//
             let input = wrapper.querySelector('input[type="number"]'),
-                newVal = parseInt(input.value) - step;
+                newVal = parseFloat(input.value) - step;
 
             //===> Set Data <===//
             input.value = newVal > minNum || newVal === minNum ? newVal : minNum;
@@ -74,7 +73,7 @@ export default class PhenixNumber extends Component {
                 {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 
                 {/*===> Number Input <===*/}
-                <input name={name} type="number" min={min} max={max} value={parseInt(value) ? parseInt(value) : 0} className={"form-control small radius-sm reset-appearance tx-align-center"} onChange={setNumber} />
+                <input name={name} type="number" min={min} max={max} value={parseFloat(value) ? parseFloat(value) : 0} className={"form-control small radius-sm reset-appearance tx-align-center"} onChange={setNumber} />
 
                 {/*===> Button <===*/}
                 <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>

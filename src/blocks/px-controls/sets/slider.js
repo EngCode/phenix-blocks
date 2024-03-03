@@ -37,15 +37,19 @@ export default class SliderSet extends Component {
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="steps" name="steps" label={__("Steps", "pds-blocks")} value={attributes.slider.steps || 1} onChange={(target) => mainSetter(target, screen ? screen : "")} min={1} max={12}></PhenixNumber>
+                    <PhenixNumber key="steps" name="steps" label={__("Steps", "pds-blocks")} value={attributes.slider.steps || 1} onChange={mainSetter} min={1} max={12}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={(target) => mainSetter(target, screen ? screen : "")} min={3000} max={20000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={mainSetter} min={3000} max={20000} steps={100}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={(target) => mainSetter(target, screen ? screen : "")} min={300} max={3000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={mainSetter} min={300} max={3000} steps={100}></PhenixNumber>
+                </div>
+                {/*===> Column <===*/}
+                <div className='col-12'>
+                    <PhenixNumber key="autoScroll" name="autoScroll" label={__("autoScroll", "pds-blocks")} value={attributes.slider.autoScroll || 0} onChange={mainSetter} min={-10} max={10} steps={0.25}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12 pdt-10 divider-t flexbox gpy-5 align-between'>

@@ -62,6 +62,11 @@
     .flow#{$infix}-columns-reverse {flex-flow: column-reverse;}
     /*=== No-Wrap ===*/
     .flow#{$infix}-nowrap {flex-wrap: nowrap!important;}
+    /*=== Shrink and Grow ===*/
+    .flex-shrink#{$infix}-on {flex-shrink: 1;}
+    .flex-shrink#{$infix}-off {flex-shrink: 0;}
+    .flex-grow#{$infix}-on {flex-grow: 1;}
+    .flex-grow#{$infix}-off {flex-grow: 0;}
 
     /*==== Ordering ====*/
     @for $i from 0 through $order-limit { 

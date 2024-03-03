@@ -266,14 +266,14 @@ PhenixElements.prototype.slider = function (options?:{
             }
 
             //====> Add Extensions Options <====//
-            if (autoScroll) {
-                Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {
-                    //===> Mount Extensions <===//
-                    new Splide('.splide').mount( Splide.Extensions.AutoScroll );
-                }, true);
+            // if (autoScroll) {
+            //     Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {
+            //         //===> Mount Extensions <===//
+            //         new Splide('.splide').mount( Splide.Extensions.AutoScroll );
+            //     }, true);
 
-                slider_options.autoScroll = {speed: parseInt(autoScroll) || 1};
-            }
+            //     slider_options.autoScroll = {speed: parseInt(autoScroll) || 1};
+            // }
 
             //====> Return Options <====//
             return {

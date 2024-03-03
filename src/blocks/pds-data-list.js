@@ -646,6 +646,13 @@ window.PhenixBlocks.dataLists = {
         other_effects : {
             "Default": [{ "label": "None", "value": ""}],
             
+            "Flexbox Effects" : [
+                { "label": "ShrinkOn", "value": "flex-shrink-on"},
+                { "label": "ShrinkOff", "value": "flex-shrink-off "},
+                { "label": "GrowOn", "value": "flex-grow-on"},
+                { "label": "GrowOff", "value": "flex-grow-off"},
+            ],
+            
             "Scroll Effects" : [
                 { "label": "Snap Scroll Y", "value": "px-section-snap"},
                 { "label": "Snap Scroll X", "value": "px-section-snap-x"},

@@ -180,15 +180,15 @@ PhenixElements.prototype.utilities = function (options?:{
     //====> Dynamic Word Coloring <====//
     if (type.includes("text") || type === "all") {
         //====> Dynamic Word Coloring <====//
-        Phenix('body:not(.wp-admin) .colored-word').forEach((title:HTMLElement) => {
-            //====> Setup Properties <====//
-            var titleContent = title.innerHTML,
-                word_array = titleContent.split(/[ ]+/),
-                lastWord  = word_array.splice(-1);
-            //====> Return Title <====//
-            let theResult = `${word_array} <span class="color-primary">${lastWord}</span>`;
-            title.innerHTML = theResult.replace(/,/g, ' ');
-        });
+        // Phenix('body:not(.wp-admin) .colored-word').forEach((title:HTMLElement) => {
+        //     //====> Setup Properties <====//
+        //     var titleContent = title.innerHTML,
+        //         word_array = titleContent.split(/[ ]+/),
+        //         lastWord  = word_array.splice(-1);
+        //     //====> Return Title <====//
+        //     let theResult = `${word_array} <span class="color-primary">${lastWord}</span>`;
+        //     title.innerHTML = theResult.replace(/,/g, ' ');
+        // });
 
         //===> Dynamic Colors Variants for Elements Shadow <===//
         setTimeout(() => {

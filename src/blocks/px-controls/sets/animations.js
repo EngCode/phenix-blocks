@@ -33,11 +33,11 @@ export default class AnimationsSet extends Component {
             <div className={`row gpx-10`}>
                 {/*===> Animation Name <===*/}
                 <div className='col-12 mb-5'>
-                    <PhenixSelect name="animation-name" placeholder={__("None", "pds-blocks")} search={true} label={__("Entrances Animation", "pds-blocks")} value={attributes.style?.animation?.name} onChange={mainSetter} options={entrance_animations} />
+                    <PhenixSelect name="animation-name" className="mb-15" placeholder={__("None", "pds-blocks")} search={true} label={__("Entrances Animation", "pds-blocks")} value={attributes.style?.animation?.name} onChange={mainSetter} options={entrance_animations} />
                 </div>
                 {attributes.style?.animation?.hasExit ?
                     <div className='col-12 mb-5'>
-                        <PhenixSelect name="exit" placeholder={__("None", "pds-blocks")} search={true} label={__("Exit Animation", "pds-blocks")} value={attributes.style?.animation?.exit} onChange={mainSetter} options={exit_animations} />
+                        <PhenixSelect name="exit" className="mb-15" placeholder={__("None", "pds-blocks")} search={true} label={__("Exit Animation", "pds-blocks")} value={attributes.style?.animation?.exit} onChange={mainSetter} options={exit_animations} />
                     </div>
                 :null}
                 {!attributes.style?.animation?.group ? <>

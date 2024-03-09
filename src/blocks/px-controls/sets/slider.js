@@ -48,15 +48,10 @@ export default class SliderSet extends Component {
                     <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={mainSetter} min={300} max={3000} steps={100}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
-                <div className='col-12'>
-                    <PhenixNumber key="autoScroll" name="autoScroll" label={__("autoScroll", "pds-blocks")} value={attributes.slider.autoScroll || 0} onChange={mainSetter} min={-10} max={10} steps={0.25}></PhenixNumber>
-                </div>
-                {/*===> Column <===*/}
                 <div className='col-12 pdt-10 divider-t flexbox gpy-5 align-between'>
                     <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`animate-elements`} name={`animate-elements`} value="has-animated-childs" checked={attributes.flexbox['animate-elements'] || false} onChange={flexSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Animated Elements", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
                 {attributes.slider.pagination ? <div className='col-12'>
@@ -64,7 +59,7 @@ export default class SliderSet extends Component {
                     <PhenixInput key="pagination" name="pagination" label={__("Pagination Wrapper Classes", "pds-blocks")} value={attributes.slider.pagination} onChange={mainSetter} />
                 </div> : null}
                 {/*===> Column <===*/}
-                {attributes.slider.controls ? <div className='col-12'>
+                {attributes.slider.controls || attributes.slider.controls === "" ? <div className='col-12'>
                     <PhenixInput key="arrow" name="arrow" label={__("Arrows Buttons Classes", "pds-blocks")} className="mb-15" value={attributes.slider.arrow} onChange={mainSetter} />
                     <PhenixInput key="controls" name="controls" label={__("Arrows Wrapper Classes", "pds-blocks")} value={attributes.slider.controls} onChange={mainSetter} />
                 </div> : null}

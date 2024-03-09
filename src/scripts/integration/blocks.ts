@@ -102,37 +102,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         }, true);
     }
 
-    //====> Sticky Header Fixes <====//    
-    // if (Phenix('[data-sticky="absolute"], .main-header.position-st')[0]) {
-    //     //===> Define Data <===//
-    //     const stickyHeader = Phenix('[data-sticky="absolute"], .main-header.position-st'),
-    //           headerHeight = stickyHeader.height();
-
-    //     //====> Full Screen Fixes <====//
-    //     Phenix('.full-screen').forEach((element:HTMLElement) => {
-    //         //===> Check for Row Element and Padding <====//
-    //         let rowElement:HTMLElement = element.querySelector('[class*="row"]') || element.querySelector('[class*="flexbox"]'),
-    //             hasPadding = [Phenix(element).getCSS('padding-top'), Phenix(element).getCSS('padding-bottom')],
-    //             paddingValue:any = 0; hasPadding.forEach((value:string) => paddingValue += parseInt(value));
-
-    //         console.log(hasPadding);
-    //         //===> Set Height <===//
-    //         element.style.minHeight = `calc(100vh - ${headerHeight+paddingValue}px)`;
-    //         if (rowElement) rowElement.style.minHeight = `calc(100vh - ${headerHeight+paddingValue}px)`;
-    //     });
-
-    //     Phenix('.full-screen-wide').forEach((element:HTMLElement) => {
-    //         //===> Check for Row Element and Padding <====//
-    //         let rowElement:HTMLElement = element.querySelector('[class*="row"]') || element.querySelector('[class*="flexbox"]'),
-    //             hasPadding = [Phenix(element).getCSS('padding-top'), Phenix(element).getCSS('padding-bottom')],
-    //             paddingValue:any = 0; hasPadding.forEach((value:string) => paddingValue += parseInt(value));
-
-    //         //===> Set Height <===//
-    //         element.style.minHeight = `calc(85vh - ${headerHeight+paddingValue}px)`;
-    //         if (rowElement) rowElement.style.minHeight = `calc(85vh - ${headerHeight+paddingValue}px)`;
-    //     });
-    // }
-
     //===> Sticky Elements <====//
     Phenix("[data-sticky], .main-header.position-st").sticky();
 

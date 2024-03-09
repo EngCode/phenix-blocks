@@ -45,7 +45,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const blockProps = renderProps.blockProps;
     const innerBlocksProps = useInnerBlocksProps(blockProps, {allowedBlocks: ['phenix/text-list-item']});
     const uniqueKey = blockProps.id;
-    const TagName = attributes.tagName;
+    const TagName = attributes.type === 'headline' && !attributes.tagName.includes('h') ? 'h2' : attributes.tagName;
 
     //===> Layout Options <===//
     if (attributes.type === "list-custom") {
@@ -229,9 +229,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
             <>{attributes.type === "list" ?
                 <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ul"} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             : attributes.type === "list-numbers" ?
-                <RichText.Content {...blockProps} multiline="li" tagName={"ol"} value={attributes.content} />
+                <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ol"} value={attributes.content} />
             : attributes.type === "list-custom" ?
-                <div {...blockProps}>
+                <div key={`${uniqueKey}`} {...blockProps}>
                     <ul {...innerBlocksProps}></ul>
                 </div>
             : 

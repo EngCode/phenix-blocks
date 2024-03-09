@@ -322,99 +322,103 @@ PhenixElements.prototype.utilities = function (options?:{
 
     //====> Third-Party Libraries <====//
     if (type.includes("libraries") || type === "all") {
-        //===> Import Masonry Grid Plugin <===//
-        if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
-            var masonry = new Masonry('.px-masonry', {itemSelector: '[class*="col"]'});
-        }, true);
-
-        //===> Typed List <===//
-        if(document.querySelector('.typed-list')) {
-            //====> Create the List Structure <====//
-            Phenix('.typed-list').forEach((text_list:HTMLElement) => {
-                //===> Gather the Items <===//
-                const text_list_items = [];
-                text_list.querySelectorAll('li').forEach(item => text_list_items.push(item.textContent));
-        
-                //===> Create the Typed Text Element <===//
-                const text_element = document.createElement('p');
-                text_element.classList.add('typed-text');
-        
-                //===> Assign the Text List <===//
-                text_element.textContent = text_list_items[0];
-                text_list_items.forEach((item, index) => text_element.setAttribute(`data-text-${index}`, item));
-        
-                //===> Copy List Classed to Text Element <===//
-                text_list.classList.forEach(item => !item.includes('list') ? text_element.classList.add(item) : null);
-        
-                //===> Insert the Typed Text <===//
-                Phenix(text_list).insert('before', text_element);
-            });
-    
-            //===> Import Typed Effect for Texts Library <====//
-            Phenix(document).import('typed-js', 'script', 'text/tinyTypewriter.js', (isReady) => Phenix('.typed-text').forEach((typeWriter:HTMLElement) => {
-                //===> Items <===//
-                let items = [];
-        
-                //===> Get Text Items <===//
-                for (let i = 0; i < 20; i++) {
-                    if(typeWriter.getAttribute(`data-text-${i}`)) { items.push(typeWriter.getAttribute(`data-text-${i}`)); }
-                }
-        
-                //===> Run the Typewriter <===//
-                typeWriter.style.height = Phenix(typeWriter).height() + 'px';
-                tinyTypewriter(typeWriter, {items: items, cursor: false, startDelay: 700});
-            }), true);
-        }
-
-        //===> Marquee Slider <===//
-        if(document.querySelector('.px-marquee') || document.querySelector('.px-marquee-reverse')) {
-            //====> Import Marquee Library <====//
-            Phenix(document).import('marquee-js', 'script', 'marquee.js', (isReady) => {
-                //===> Create Marquee <===//
-                Phenix('.px-marquee, .px-marquee-reverse').forEach((marquee:HTMLElement, index) => {
-                    //===> Create Structure Wrappers Elements <===//
-                    const marquee_slider = document.createElement('div');
-                    const marquee_slides = document.createElement('div');
-        
-                    //===> Set Slider ID <===//
-                    const marquee_id = `px-marquee-${index}`;
-                    marquee.style.direction = 'ltr';
-                    marquee.setAttribute('id', marquee_id);
-    
-                    //===> Marquess Settings <===//
-                    if(!marquee.getAttribute('data-speed')) marquee.setAttribute('data-speed', "15");
-                    if(!marquee.getAttribute('data-space')) marquee.setAttribute('data-space', "15");
-    
-                    //===> Set Wrappers Properties <===//
-                    marquee_slider.classList.add('marquee-slider-wrapper','display-flex', 'position-rv',);
-                    marquee_slides.classList.add('marquee-slider-slides-wrapper', 'display-flex', 'position-rv');
-                    marquee_slider.appendChild(marquee_slides);
-        
-                    //===> Move Content Items to the Slides Wrapper <===//
-                    marquee.querySelectorAll(':scope > *').forEach((item:HTMLElement) => {
-                        //===> Set Item Properties <===//
-                        item.style.width = `fit-content`;
-                        item.style.direction = Phenix(document).direction();
-                        item.classList.add('marquee-slider-slide');
-    
-                        //===> Append Item to the Slides Wrapper <===//
-                        marquee_slides.appendChild(item.cloneNode(true));
-    
-                        //===> Remove Item After it was Copied <===//
-                        item.remove();
-                    });
-        
-                    //===> Append the Slider Wrapper to the Marquee <===//
-                    marquee.appendChild(marquee_slider);
-        
-                    //===> Initialize Marquee <===//
-                    initMarqueeSlider(marquee_id, {
-                        allowPointEvent:true,
-                        dir: marquee.classList.contains('px-marquee-reverse') ? 'left' : 'right',
-                        stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-speed') === 'false' ? false : true,
-                    });
-                });
+        //===> Prevent on WP Editor <====//
+        const document_classes = document.body.getAttribute('class');
+        if (!document.body.classList.contains('wp-admin') && !document_classes.includes('-editor')) {
+            //===> Import Masonry Grid Plugin <===//
+            if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
+                var masonry = new Masonry('.px-masonry', {itemSelector: '[class*="col"]'});
             }, true);
+    
+            //===> Typed List <===//
+            if(document.querySelector('.typed-list')) {
+                //====> Create the List Structure <====//
+                Phenix('.typed-list').forEach((text_list:HTMLElement) => {
+                    //===> Gather the Items <===//
+                    const text_list_items = [];
+                    text_list.querySelectorAll('li').forEach(item => text_list_items.push(item.textContent));
+            
+                    //===> Create the Typed Text Element <===//
+                    const text_element = document.createElement('p');
+                    text_element.classList.add('typed-text');
+            
+                    //===> Assign the Text List <===//
+                    text_element.textContent = text_list_items[0];
+                    text_list_items.forEach((item, index) => text_element.setAttribute(`data-text-${index}`, item));
+            
+                    //===> Copy List Classed to Text Element <===//
+                    text_list.classList.forEach(item => !item.includes('list') ? text_element.classList.add(item) : null);
+            
+                    //===> Insert the Typed Text <===//
+                    Phenix(text_list).insert('before', text_element);
+                });
+        
+                //===> Import Typed Effect for Texts Library <====//
+                Phenix(document).import('typed-js', 'script', 'text/tinyTypewriter.js', (isReady) => Phenix('.typed-text').forEach((typeWriter:HTMLElement) => {
+                    //===> Items <===//
+                    let items = [];
+            
+                    //===> Get Text Items <===//
+                    for (let i = 0; i < 20; i++) {
+                        if(typeWriter.getAttribute(`data-text-${i}`)) { items.push(typeWriter.getAttribute(`data-text-${i}`)); }
+                    }
+            
+                    //===> Run the Typewriter <===//
+                    typeWriter.style.height = Phenix(typeWriter).height() + 'px';
+                    tinyTypewriter(typeWriter, {items: items, cursor: false, startDelay: 700});
+                }), true);
+            }
+    
+            //===> Marquee Slider <===//
+            if(document.querySelector('.px-marquee') || document.querySelector('.px-marquee-reverse')) {
+                //====> Import Marquee Library <====//
+                Phenix(document).import('marquee-js', 'script', 'marquee.js', (isReady) => {
+                    //===> Create Marquee <===//
+                    Phenix('.px-marquee, .px-marquee-reverse').forEach((marquee:HTMLElement, index) => {
+                        //===> Create Structure Wrappers Elements <===//
+                        const marquee_slider = document.createElement('div');
+                        const marquee_slides = document.createElement('div');
+            
+                        //===> Set Slider ID <===//
+                        const marquee_id = `px-marquee-${index}`;
+                        marquee.style.direction = 'ltr';
+                        marquee.setAttribute('id', marquee_id);
+        
+                        //===> Marquess Settings <===//
+                        if(!marquee.getAttribute('data-speed')) marquee.setAttribute('data-speed', "15");
+                        if(!marquee.getAttribute('data-space')) marquee.setAttribute('data-space', "15");
+        
+                        //===> Set Wrappers Properties <===//
+                        marquee_slider.classList.add('marquee-slider-wrapper','display-flex', 'position-rv',);
+                        marquee_slides.classList.add('marquee-slider-slides-wrapper', 'display-flex', 'position-rv');
+                        marquee_slider.appendChild(marquee_slides);
+            
+                        //===> Move Content Items to the Slides Wrapper <===//
+                        marquee.querySelectorAll(':scope > *').forEach((item:HTMLElement) => {
+                            //===> Set Item Properties <===//
+                            item.style.width = `fit-content`;
+                            item.style.direction = Phenix(document).direction();
+                            item.classList.add('marquee-slider-slide');
+        
+                            //===> Append Item to the Slides Wrapper <===//
+                            marquee_slides.appendChild(item.cloneNode(true));
+        
+                            //===> Remove Item After it was Copied <===//
+                            item.remove();
+                        });
+            
+                        //===> Append the Slider Wrapper to the Marquee <===//
+                        marquee.appendChild(marquee_slider);
+            
+                        //===> Initialize Marquee <===//
+                        initMarqueeSlider(marquee_id, {
+                            allowPointEvent:true,
+                            dir: marquee.classList.contains('px-marquee-reverse') ? 'left' : 'right',
+                            stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-speed') === 'false' ? false : true,
+                        });
+                    });
+                }, true);
+            }
         }
     }
 

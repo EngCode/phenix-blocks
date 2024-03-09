@@ -11,7 +11,7 @@
 
 /*==== Box Resize for All Elements ====*/
 *, *:before, *:after {
-    min-width: 0;
+    // min-width: 0;
     -webkit-box-sizing: border-box;
         box-sizing: border-box;
 }

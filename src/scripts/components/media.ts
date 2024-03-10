@@ -123,17 +123,17 @@ PhenixElements.prototype.multimedia = function (options?:{
                 if (type == 'background') {
                     //===> Set Background <===//
                     background(element, src);
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
     
                 //====> Image Type <====//
                 else if (type == 'image') {
                     //===> Set Background <===//
-                    background(element, src);
+                    // background(element, src);
                     //===> Create Image <===//
                     if(!element.querySelector('img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" class="px-media-img" ${lazy ? 'loading="lazy"' : ''} />`);
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
                 
@@ -146,7 +146,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                         element.style.backgroundImage = `${gradient_repeat}${gradient_mode}-gradient(${gradient})`;
                     //===> Set As Color if it Single Value <===//
                     } else element.style.backgroundColor = `${gradient}`;
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
 
@@ -154,7 +154,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                 else if (type == 'mixed-bg') {
                     //===> Set Background <===//
                     background(element, src);
-                    //===> Grap Current Background <===//
+                    //===> Get Current Background <===//
                     let currentBg = element.style.backgroundImage,
                         orderBG   = element.getAttribute('data-bg-order');
 
@@ -175,7 +175,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                             element.style.backgroundImage = `linear-gradient(${gradient},${gradient}), ${currentBg}`;
                         }
                     }
-                    //===> Matk as Done <===//
+                    //===> Mark as Done <===//
                     mediaDone = true;
                 }
 

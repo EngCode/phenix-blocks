@@ -842,6 +842,7 @@ window.PhenixBlocks.dataLists = {
         },
 
         border_styles: [
+            { "label": "Default",  "value": ""},
             {"label": "Solid", "value": "border-solid"},
             {"label": "Dashed", "value": "border-dashed"},
             {"label": "Dotted", "value": "border-dotted "}

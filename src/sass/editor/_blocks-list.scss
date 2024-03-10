@@ -179,11 +179,11 @@
 		position: absolute;
 	}
 
-	/*==== Tabs & Panels ====*/
-	.tab-panel, .tabs-navigation {
+	/*==== Tabs & Panels and Accordion ====*/
+	.tab-panel, .tabs-navigation, .px-accordion, .accordion-item, .accordion-content {
 		position: relative;
+		outline: 1px dashed var(--primary-color);
 		&:not([class*="pd"]) {padding: 15px;}
-		border: 1px dashed var(--primary-color);
 		/*==== Label ====*/
 		&::before {
 			top: 0;
@@ -196,12 +196,38 @@
 		}
 	}
 
+	.accordion-btn {
+		position: relative;
+		outline: 1px dashed var(--secondary-color);
+		&:not([class*="pd"]) {padding: 15px;}
+		/*==== Label ====*/
+		&::after {
+			top: 0;
+			font-size: 11px;
+			padding: 5px 8px;
+			position: absolute;
+			#{$direction-end}: 0;
+			color: var(--primary-reverse);
+			background-color: var(--primary-color);
+		}
+	}
+
+	/*==== Hidden Panels ====*/
+	.accordion-content, .tab-panel {
+		&[class*="hidden"] {display: block;}
+	}
+
+	/*==== Panels Size ====*/
+	.tab-panel:not(.is-selected):not(.has-child-selected) {max-height: 100px;overflow: hidden;}
+	.accordion-content:not(.is-selected):not(.has-child-selected) {max-height: 50px; overflow: hidden;}
+
+	/*==== Panels Labels ====*/
 	.tab-panel::before {content: attr(id);}
 	.tabs-navigation::before {content: 'Tabs Buttons';}
-	.tab-panel:not(.is-selected):not(.has-child-selected) {
-		max-height: 100px;
-		overflow: hidden;
-	}
+	.px-accordion::before {content: 'Accordion Wrapper';}
+	.accordion-item::before {content: 'Accordion Item';}
+	.accordion-btn::after {content: 'Trigger';}
+	.accordion-content::before {content: 'Content';}
 
 	/*==== Popups Modal ====*/
 	.px-modal > .block-editor-inner-blocks, 

@@ -23,10 +23,33 @@ PhenixElements.prototype.collapse = function (options?:{
         if(button.classList.contains('pxjs-done')) return;
 
         //====> Get Options <====//
-        let parent = button.getAttribute('data-parent') || options?.parent,
+        let classes = button.classList,
+            parent = button.getAttribute('data-parent') || options?.parent,
             related = button.getAttribute('data-related') || options?.related,
             active_class = 'px-collapse-active',
             target = button.getAttribute('data-target') || options?.target;
+
+        //===> Add Icon Class Name <====//
+        classes.forEach((className:string) => {
+            //===> Get the Icon Name <===//
+            if(className.includes('fa-')) button.setAttribute('data-trigger-icon-normal', `${className}`);
+        });
+
+        //===> Store the Icon Name <===//
+        const normal_icon = button.getAttribute('data-trigger-icon-normal');
+
+        //===> Get the Icon Class for Active <===//
+        if (normal_icon.includes('plus')) {
+            button.setAttribute('data-trigger-icon', `${normal_icon.replace('plus', 'minus')}`);
+        } else if (normal_icon.includes('down')) {
+            button.setAttribute('data-trigger-icon', `${normal_icon.replace('down', 'up')}`);
+        }
+        
+        //===> Change Active Item Icon <===//
+        if (button.classList.contains(active_class)) {
+            button.classList.add(button.getAttribute('data-trigger-icon'));
+            button.classList.remove(normal_icon);
+        }
 
         //====> Create Custom Event <====//
         const showed = new Event('collapse-showed'),
@@ -45,17 +68,21 @@ PhenixElements.prototype.collapse = function (options?:{
                 if (parent) {
                     //====> Get Other Activated Items <====//
                     let others = Phenix(button).ancestor(parent).querySelectorAll(`.${active_class}`);
+
                     //====> and for each item <====//
                     others.forEach(element => {
                         //====> Remove Active Class <====//
-                        element.classList.remove(active_class);
+                        element.classList.remove(active_class, element.getAttribute('data-trigger-icon'));
+                        element.classList.add(normal_icon);
                         //====> Hide Targets <====//
                         if (element.matches(button.getAttribute('data-target') || options?.target))
                             Phenix(element).slideUp();
                     });
                 }
+
                 //====> Active Button <====//
-                button.classList.add(active_class);
+                button.classList.add(active_class, button.getAttribute('data-trigger-icon'));
+                button.classList.remove(active_class, normal_icon);
 
                 //====> Show Target <====//
                 Phenix(target).slideDown().addClass(active_class);
@@ -67,7 +94,8 @@ PhenixElements.prototype.collapse = function (options?:{
             //====> Hide if its Shown <====//
             else {
                 //====> Active Button <====//
-                button.classList.remove(active_class);
+                button.classList.remove(active_class, button.getAttribute('data-trigger-icon'));
+                button.classList.add(active_class, normal_icon);
 
                 //====> Show Target <====//
                 Phenix(target).slideUp().removeClass(active_class);

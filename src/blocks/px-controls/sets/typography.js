@@ -31,7 +31,7 @@ export default class TypographySet extends Component {
         const font_families = PhenixBlocks.typography.families;
 
         //===> Define Controls Options <===//
-        const sizes_list = [],
+        const sizes_list = [{ "label": "Default",  "value": ""}],
               display_sizes = [];
 
         //===> Generate Responsive Sizes <===//

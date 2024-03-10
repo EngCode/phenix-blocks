@@ -120,6 +120,10 @@ export default function Edit(props) {
                 </div>
             </PanelBody>
             {/*===> Widget Panel <===*/}
+            <PanelBody title={__("Query Terms", "pds-blocks")} initialOpen={true}>
+                
+            </PanelBody>
+            {/*===> Widget Panel <===*/}
             <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>
                 <ScreensTabs
                     sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}

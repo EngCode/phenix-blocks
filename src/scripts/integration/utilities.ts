@@ -414,7 +414,7 @@ PhenixElements.prototype.utilities = function (options?:{
                         initMarqueeSlider(marquee_id, {
                             allowPointEvent:true,
                             dir: marquee.classList.contains('px-marquee-reverse') ? 'left' : 'right',
-                            stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-speed') === 'false' ? false : true,
+                            stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-hover') === 'false' ? false : true,
                         });
                     });
                 }, true);

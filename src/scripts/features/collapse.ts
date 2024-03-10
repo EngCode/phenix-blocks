@@ -73,10 +73,13 @@ PhenixElements.prototype.collapse = function (options?:{
                     //====> and for each item <====//
                     others.forEach(element => {
                         //====> Remove Active Class <====//
-                        element.classList.add(normal_icon);
                         element.classList.remove(active_class, active_icon);
                         //====> Hide Targets <====//
-                        if (element.matches(button.getAttribute('data-target') || options?.target)) Phenix(element).slideUp();
+                        if (element.matches(button.getAttribute('data-target') || options?.target)) {
+                            Phenix(element).slideUp();
+                        } else {
+                            element.classList.add(normal_icon);
+                        }
                     });
                 }
 

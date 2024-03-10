@@ -654,6 +654,8 @@ window.PhenixBlocks.dataLists = {
             ],
             
             "Scroll Effects" : [
+                { "label": "Marquee Slider", "value": "px-marquee"},
+                { "label": "Marquee Reverse", "value": "px-marquee-reverse"},
                 { "label": "Snap Scroll Y", "value": "px-section-snap"},
                 { "label": "Snap Scroll X", "value": "px-section-snap-x"},
                 { "label": "Snap Item", "value": "px-section-snap-item"},

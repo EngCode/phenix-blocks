@@ -44,10 +44,11 @@ PhenixElements.prototype.collapse = function (options?:{
         } else if (normal_icon.includes('down')) {
             button.setAttribute('data-trigger-icon', `${normal_icon.replace('down', 'up')}`);
         }
-        
+
         //===> Change Active Item Icon <===//
+        const active_icon = button.getAttribute('data-trigger-icon');
         if (button.classList.contains(active_class)) {
-            button.classList.add(button.getAttribute('data-trigger-icon'));
+            button.classList.add(active_icon);
             button.classList.remove(normal_icon);
         }
 
@@ -72,17 +73,16 @@ PhenixElements.prototype.collapse = function (options?:{
                     //====> and for each item <====//
                     others.forEach(element => {
                         //====> Remove Active Class <====//
-                        element.classList.remove(active_class, element.getAttribute('data-trigger-icon'));
                         element.classList.add(normal_icon);
+                        element.classList.remove(active_class, active_icon);
                         //====> Hide Targets <====//
-                        if (element.matches(button.getAttribute('data-target') || options?.target))
-                            Phenix(element).slideUp();
+                        if (element.matches(button.getAttribute('data-target') || options?.target)) Phenix(element).slideUp();
                     });
                 }
 
                 //====> Active Button <====//
-                button.classList.add(active_class, button.getAttribute('data-trigger-icon'));
-                button.classList.remove(active_class, normal_icon);
+                button.classList.remove(normal_icon);
+                button.classList.add(active_class, active_icon);
 
                 //====> Show Target <====//
                 Phenix(target).slideDown().addClass(active_class);
@@ -94,8 +94,8 @@ PhenixElements.prototype.collapse = function (options?:{
             //====> Hide if its Shown <====//
             else {
                 //====> Active Button <====//
-                button.classList.remove(active_class, button.getAttribute('data-trigger-icon'));
-                button.classList.add(active_class, normal_icon);
+                button.classList.add(normal_icon);
+                button.classList.remove(active_class, active_icon);
 
                 //====> Show Target <====//
                 Phenix(target).slideUp().removeClass(active_class);

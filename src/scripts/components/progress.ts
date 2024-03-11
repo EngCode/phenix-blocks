@@ -134,10 +134,10 @@ PhenixElements.prototype.progress = function (options?:{
             
             //====> Create SVG if not Existed <====//
             if (!svg) {
-                let circle_shape = `<svg class="px-progress-circle" viewBox="-15 -15 225 225" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
+                let circle_shape = `<svg class="px-progress-circle" viewBox="-15 -15 225 225" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg);">
                     <circle r="100" class="circle-base" cx="100" cy="100" fill="transparent" stroke-width="${size}" stroke="var(--gray-light)" stroke-dasharray="${circleSize}px" stroke-dashoffset="0"></circle>
                     <circle r="100" class="circle-progress" cx="100" cy="100" style="transition: stroke-dashoffset ${value*50}ms linear 0.2s" stroke-width="${size}" stroke="${color}" stroke-linecap="round" stroke-dashoffset="${circleSize}px" fill="transparent" stroke-dasharray="${circleSize}px"></circle>
-                    <text x="72%" class="circle-text" y="52%" fill="${color}" font-size="52px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -196px)">0%</text>
+                    <text x="${Phenix(document).direction() === 'rtl' ? '72%' : '25%'}" class="circle-text" y="52%" fill="${color}" font-size="52px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -196px)">0%</text>
                 </svg>`;
 
                 Phenix(progress).insert('append', circle_shape);

@@ -192,17 +192,19 @@ Phenix(window).on("load", (loaded) => {
         let input = Phenix(isClicked.target).next(".uploader-input");
         
         //===> Open Media Uploader <===//
-        console.log(wp.media);
-        var image = wp.media({
-            title: "Upload Image",
-            multiple: false
-        }).open().on("select", isSelect => {
-            //===> Get the Image URL <===//
-            var uploaded_image = image.state().get("selection").first();
-            //===> Set the URL to the Input <===//
-            input.value = uploaded_image.toJSON().url;
-            //===> Preview <===//
-            input.parentNode.querySelector(".input-value").innerHTML = new URL(uploaded_image.toJSON().url).pathname.split("/").pop();
-        });
+        if(wp.media) {
+            var image = wp.media({
+                title: "Upload Image",
+                multiple: false
+            }).open().on("select", isSelect => {
+                //===> Get the Image URL <===//
+                var uploaded_image = image.state().get("selection").first();
+                //===> Set the URL to the Input <===//
+                input.value = uploaded_image.toJSON().url;
+                //===> Preview <===//
+                let input_preview = input.parentNode.querySelector(".input-value");
+                if(input_preview) input_preview.innerHTML = new URL(uploaded_image.toJSON().url).pathname.split("/").pop();
+            });
+        }
     });
 });

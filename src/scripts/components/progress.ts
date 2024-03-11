@@ -29,7 +29,7 @@ PhenixElements.prototype.progress = function (options?:{
             //====> Progress Handler <====//
             let progress_handler = () => {
                 //====> Get Current Value <====//
-                let value = parseInt(progress.getAttribute('data-value')) || options?.value || 0,
+                let value = parseFloat(progress.getAttribute('data-value')) || options?.value || 0,
                     color = progress.getAttribute('data-color') || options?.color || 'var(--primary-color)';
 
                 //====> Set Bar Data <====//
@@ -41,9 +41,32 @@ PhenixElements.prototype.progress = function (options?:{
                 }
                 //====> Set Circle Data <====//
                 if (type === 'circle') {
-                    let circle_path = bar.querySelector('path');
-                    circle_path.setAttribute('stroke-dasharray', `${value}, 100`);
-                    circle_path.setAttribute('stroke', color);
+                    //====> Define Elements <====//
+                    let circle_path = bar.querySelector('.circle-progress');
+                    let circle_text = bar.querySelector('.circle-text');
+
+                    //====> Check if is Counting <====//
+                    if (circle_text.classList.contains('is-counting')) return;
+                    
+                    //====> Create Temp Value <====//
+                    let current_value = 0;
+                    circle_path.setAttribute('stroke-dashoffset', `${565*((value/100)-1)}px`);
+
+                    //====> Animate the Counting <====//
+                    let CountUpTimer = setInterval(() => {
+                        //====> Set Progress <====//
+                        if (current_value < value) {
+                            current_value += 1;
+                            circle_text.classList.add('is-counting');
+                            circle_text.textContent = `${current_value}%`;
+                        }
+                        //===> if Already Done <===//
+                        if (current_value === value || circle_text.classList.contains('done-counting')) {
+                            //====> Clear When Done <====//
+                            circle_text.classList.add('done-counting');
+                            clearInterval(CountUpTimer);
+                        }
+                    }, 50);
                 }
                 //====> Set Circle Data <====//
                 if (type === 'radial') {
@@ -83,7 +106,7 @@ PhenixElements.prototype.progress = function (options?:{
             //====> Create the bar if not existed <====// 
             if (!progressBar) {
                 //====> Add Progress Bar <====//
-                Phenix(progress).insert('append', `<span class="px-progress-bar display-block transtion-fast overflow-hidden position-rv" data-value="${value}" ${label ? `data-label="${label}"`: null} style="width:0;height:100%"></span>`);
+                Phenix(progress).insert('append', `<span class="px-progress-bar display-block transition-fast overflow-hidden position-rv" data-value="${value}" ${label ? `data-label="${label}"`: null} style="width:0;height:100%"></span>`);
                 progressBar = progress.querySelector('.px-progress-bar'); 
             }
 
@@ -105,18 +128,19 @@ PhenixElements.prototype.progress = function (options?:{
         //====> Circle Mode <====//
         if (type === 'circle') {
             //====> Circle Shape <====//
-            let size = progress.getAttribute('data-size') || options?.size || 3,
+            let size = progress.getAttribute('data-size') || options?.size || 15,
                 svg  = progress.querySelector('.px-progress-circle');
             
             //====> Create SVG if not Existed <====//
             if (!svg) {
-                let circle_shape = `<svg viewBox="0 0 36 36" width="100%" class="px-progress-circle">
-                    <path fill="none" stroke="${color}" stroke-width="${size}" strole-linecap="round" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                let circle_shape = `<svg class="px-progress-circle" viewBox="-15 -15 225 225" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
+                    <circle r="100" class="circle-base" cx="100" cy="100" fill="transparent" stroke-width="${size}" stroke="var(--gray-light)" stroke-dasharray="${700}px" stroke-dashoffset="0"></circle>
+                    <circle r="100" class="circle-progress" cx="100" cy="100" style="transition: stroke-dashoffset ${value*50}ms linear 0.2s" stroke-width="${size}" stroke="${color}" stroke-linecap="round" stroke-dashoffset="${565}px" fill="transparent" stroke-dasharray="${565}px"></circle>
+                    <text x="72%" class="circle-text" y="52%" fill="${color}" font-size="52px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -196px)">0%</text>
                 </svg>`;
-                
+
                 Phenix(progress).insert('append', circle_shape);
                 svg = progress.querySelector('.px-progress-circle');
-
                 setProgress(svg);
             }
             //====> if Exist Update it <====//

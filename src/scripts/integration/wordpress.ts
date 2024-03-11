@@ -203,7 +203,7 @@ Phenix(window).on("load", (loaded) => {
                 input.value = uploaded_image.toJSON().url;
                 //===> Preview <===//
                 let input_preview = document.querySelector('.loading-image');
-                if(input_preview) input_preview.setAttribute('src', new URL(uploaded_image.toJSON().url).pathname.split("/").pop());
+                if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
             });
         }
     });

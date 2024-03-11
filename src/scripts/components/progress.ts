@@ -22,7 +22,8 @@ PhenixElements.prototype.progress = function (options?:{
             color = progress.getAttribute('data-color') || options?.color || 'var(--primary-color)',
             value = parseInt(progress.getAttribute('data-value')) || options?.value || 0,
             label = progress.getAttribute('data-label') || options?.label || "",
-            lazy  = progress.getAttribute('data-lazy')  || options?.lazyloading;
+            lazy  = progress.getAttribute('data-lazy')  || options?.lazyloading,
+            circleSize = 700;
 
         //====> Set Progress <====//
         let setProgress = (bar) => {
@@ -50,7 +51,7 @@ PhenixElements.prototype.progress = function (options?:{
                     
                     //====> Create Temp Value <====//
                     let current_value = 0;
-                    circle_path.setAttribute('stroke-dashoffset', `${565*((value/100)-1)}px`);
+                    circle_path.setAttribute('stroke-dashoffset', `${circleSize*((value/100)-1)}px`);
 
                     //====> Animate the Counting <====//
                     let CountUpTimer = setInterval(() => {
@@ -134,8 +135,8 @@ PhenixElements.prototype.progress = function (options?:{
             //====> Create SVG if not Existed <====//
             if (!svg) {
                 let circle_shape = `<svg class="px-progress-circle" viewBox="-15 -15 225 225" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
-                    <circle r="100" class="circle-base" cx="100" cy="100" fill="transparent" stroke-width="${size}" stroke="var(--gray-light)" stroke-dasharray="${700}px" stroke-dashoffset="0"></circle>
-                    <circle r="100" class="circle-progress" cx="100" cy="100" style="transition: stroke-dashoffset ${value*50}ms linear 0.2s" stroke-width="${size}" stroke="${color}" stroke-linecap="round" stroke-dashoffset="${565}px" fill="transparent" stroke-dasharray="${565}px"></circle>
+                    <circle r="100" class="circle-base" cx="100" cy="100" fill="transparent" stroke-width="${size}" stroke="var(--gray-light)" stroke-dasharray="${circleSize}px" stroke-dashoffset="0"></circle>
+                    <circle r="100" class="circle-progress" cx="100" cy="100" style="transition: stroke-dashoffset ${value*50}ms linear 0.2s" stroke-width="${size}" stroke="${color}" stroke-linecap="round" stroke-dashoffset="${circleSize}px" fill="transparent" stroke-dasharray="${circleSize}px"></circle>
                     <text x="72%" class="circle-text" y="52%" fill="${color}" font-size="52px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -196px)">0%</text>
                 </svg>`;
 

@@ -202,8 +202,8 @@ Phenix(window).on("load", (loaded) => {
                 //===> Set the URL to the Input <===//
                 input.value = uploaded_image.toJSON().url;
                 //===> Preview <===//
-                let input_preview = input.parentNode.querySelector(".input-value");
-                if(input_preview) input_preview.innerHTML = new URL(uploaded_image.toJSON().url).pathname.split("/").pop();
+                let input_preview = document.querySelector('.loading-image');
+                if(input_preview) input_preview.setAttribute('src', new URL(uploaded_image.toJSON().url).pathname.split("/").pop());
             });
         }
     });

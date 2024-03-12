@@ -386,7 +386,7 @@ PhenixElements.prototype.utilities = function (options?:{
         
                         //===> Marquess Settings <===//
                         if(!marquee.getAttribute('data-speed')) marquee.setAttribute('data-speed', "15");
-                        if(!marquee.getAttribute('data-space')) marquee.setAttribute('data-space', "15");
+                        // if(!marquee.getAttribute('data-space')) marquee.setAttribute('data-space', "15");
         
                         //===> Set Wrappers Properties <===//
                         marquee_slider.classList.add('marquee-slider-wrapper','display-flex', 'position-rv',);

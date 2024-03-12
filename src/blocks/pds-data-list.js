@@ -792,6 +792,7 @@ window.PhenixBlocks.dataLists = {
             { label: __("Position", "pds-blocks"), value: 'enable-position' },
             { label: __("Animations", "pds-blocks"), value: 'enable-animations' },
             { label: __("Effects", "pds-blocks"), value: 'enable-effects' },
+            { label: __("Marquee", "pds-blocks"), value: 'enable-marquee' },
         ],
 
         background_options: {

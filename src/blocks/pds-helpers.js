@@ -342,6 +342,9 @@ window.PhenixBlocks = {
                             blockProps.className += ` ${sub_option.replace("size", "col")}${colSizeHandler(sub_value)}`;
                         }
 
+                        //===> Marquee Speed <===//
+                        else if (sub_option === "marquee-speed") { blockProps['data-speed'] = sub_value; }
+
                         //===> Custom Text Colors <===//
                         else if (option_name === "typography" && sub_option === "color" && sub_value.includes('var')) {CustomCSS.color = sub_value;}
 

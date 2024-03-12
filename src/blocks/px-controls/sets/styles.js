@@ -136,6 +136,21 @@ export default class StylesSet extends Component {
                                 <PhenixSelect name="display" placeholder={__("Default", "pds-blocks")} search={true} label={__("Responsive Display", "pds-blocks")} value={attributes.style.display} onChange={mainSetter} options={display_options} multiple={true} className="stacked-options" />
                             </div>
                         </>: null}
+
+                        {/*===> Marquee Slider <===*/}
+                        {attributes.style.support?.includes('enable-marquee') ? <>
+                            <div className='col col-6'>
+                                <PhenixSelect key={`marquee-${uniqueKey}`} name="marquee" placeholder={__("None", "pds-blocks")} label={__("Marquee Direction", "pds-blocks")} value={attributes.style.marquee} onChange={mainSetter} options={[
+                                    { label: __("None", "pds-blocks"), value: '' },
+                                    { label: __("Marquee Left", "pds-blocks"), value: 'px-marquee' },
+                                    { label: __("Marquee Right", "pds-blocks"), value: 'px-marquee-reverse' },
+                                ]} />
+                            </div>
+                            <div className='col col-6'>
+                                <label className='tx-capitalize fs-13' style={{marginBottom: 5}}>{__("Speed", "pds-blocks")}</label>
+                                <PhenixNumber key={`marquee-speed`} name={`marquee-speed`} onChange={mainSetter} value={attributes.style[`marquee-speed`] || 15} min={5} />
+                            </div>
+                        </> : null}
                     </div>
                 </>:null}
             </>: null}

@@ -40,7 +40,7 @@ export default class FlexboxSet extends Component {
                         <FlexAlignment screen={screen} label={__("Flexbox Alignment", "pds-blocks")} value={attributes.flexbox[`align${screenPoint}`] || ""} onChange={(target) => mainSetter(target, screen ? screen : "")}></FlexAlignment>
                         {/*====> Self Alignment <====*/}
                         {!options || options.includes('align-self') ? <>
-                            <PhenixSelect name={`align-self${screen}`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self${screen}`]} onChange={mainSetter} options={align_options} />
+                            <PhenixSelect class="mt-15" name={`align-self${screen}`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self${screen}`]} onChange={mainSetter} options={align_options} />
                         </>:null}
                     </div>
                 </>: null}

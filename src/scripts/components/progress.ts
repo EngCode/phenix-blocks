@@ -10,7 +10,7 @@ import Phenix, { PhenixElements } from "..";
 PhenixElements.prototype.progress = function (options?:{
     type?:string,    //===> Timer Type [bar, circle, radial]
     color?:any,      //===> the Progress Color
-    value?:number,   //===> the prorgress value
+    value?:number,   //===> the progress value
     label?:string,   //===> the progress label
     size?:number,    //===> the size of the progress with px
     lazyloading?:boolean,  //====> Animate when its visible

@@ -1,6 +1,5 @@
 # Folders
+.vscode/
 node_modules/
 node_modules.rar
-.vscode/
-_tools
-dev.code-workspace
+_tools/

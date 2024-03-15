@@ -191,20 +191,38 @@ Phenix(window).on("load", (loaded) => {
         isClicked.preventDefault();
         let input = Phenix(isClicked.target).next(".uploader-input");
         
+        //===> Preview <===//
+        let input_preview = document.querySelector('.loading-image'),
+            value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
+
         //===> Open Media Uploader <===//
         if(wp.media) {
-            var image = wp.media({
+            const mediaPopup = wp.media({
                 title: "Upload Image",
                 multiple: false
-            }).open().on("select", isSelect => {
+            });
+            
+            //===> Open the Popup <===//
+            mediaPopup.open().on("select", isSelect => {
                 //===> Get the Image URL <===//
-                var uploaded_image = image.state().get("selection").first();
+                var uploaded_image = mediaPopup.state().get("selection").first();
+
                 //===> Set the URL to the Input <===//
                 input.value = uploaded_image.toJSON().url;
-                //===> Preview <===//
-                let input_preview = document.querySelector('.loading-image');
+
+                //===> Set Preview and Value <===//
                 if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
+                if(value_preview) {
+                    value_preview.classList.add('tx-nowrap');
+                    value_preview.parentNode.classList.add('flow-nowrap');
+                    value_preview.textContent = uploaded_image.toJSON().url;
+                }
             });
         }
+    });
+
+    if(document.querySelector('.px-custom-uploader .input-value')) document.querySelectorAll('.px-custom-uploader .input-value').forEach((item:any) => {
+        item.classList.add('tx-nowrap');
+        item.parentNode.classList.add('flow-nowrap');
     });
 });

@@ -17,7 +17,7 @@ if (!function_exists('pds_metabox_create')) :
 
     function pds_metabox_create ($metaboxes) {
         //===> Create Fields <===//
-        function pds_metabox_fields_create($metabox_group) {
+        function pds_metabox_fields_create($metabox_group, $term) {
             //===> Output <===//
             $output = '';
 
@@ -25,6 +25,9 @@ if (!function_exists('pds_metabox_create')) :
             foreach($metabox_group["fields"] as $metabox) {
                 //===> Get Current Value <===//
                 $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
+                if ($term->term_id) {
+                    $current_value = get_term_meta($term->term_id, $metabox["name"], true);
+                }
 
                 //===> Type Check Points <===//
                 $type_checkpoints = array(
@@ -53,9 +56,9 @@ if (!function_exists('pds_metabox_create')) :
                     $file_name = basename($current_value);
                     $file_type = (array) wp_check_filetype($file_name);
                     //===> Check Types <===//
-                    if (strpos($file_type['type'], 'image') !== false) {$file_type = 'image';}
-                    if (strpos($file_type['type'], 'video') !== false) {$file_type = 'video';}
-                    if (strpos($file_type['type'], 'audio') !== false) {$file_type = 'audio';}
+                    // if (strpos($file_type['type'], 'image') !== false) {$file_type = 'image';}
+                    // if (strpos($file_type['type'], 'video') !== false) {$file_type = 'video';}
+                    // if (strpos($file_type['type'], 'audio') !== false) {$file_type = 'audio';}
                     //===> Generate Output <===//
                     $field_html =  '<label class="fs-14 mb-5">'.$metabox["label"].'</label>';
                     $field_html .= '<div class="col-auto px-custom-uploader flexbox align-between border-1 border-solid border-alpha-10 bg-white radius-sm pds-15 align-center-y">';
@@ -94,7 +97,7 @@ if (!function_exists('pds_metabox_create')) :
                             wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                             
                             //===> Create Fields <===//
-                            echo pds_metabox_fields_create($metabox_group);
+                            echo pds_metabox_fields_create($metabox_group, false);
                         }, $post_type, 'side', 'high', 0);
                     }
                 });
@@ -123,7 +126,7 @@ if (!function_exists('pds_metabox_create')) :
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                         //===> Create Fields <===//
                         echo '<tr class="form-field term-group-wrap"><th scope="row"><label for="custom_field">'.$metabox_group["label"].'</label></th>';
-                        echo '<td>' . pds_metabox_fields_create($metabox_group) . '</td></tr>';
+                        echo '<td>' . pds_metabox_fields_create($metabox_group, $term) . '</td></tr>';
                     });
         
                     //====> Display Metaboxes in Creating Mode<=====//
@@ -132,7 +135,7 @@ if (!function_exists('pds_metabox_create')) :
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                         //===> Create Fields <===//
                         echo '<div class="form-field fluid ">';
-                            echo pds_metabox_fields_create($metabox_group);
+                            echo pds_metabox_fields_create($metabox_group, $term);
                         echo '</div>';
                     });
         

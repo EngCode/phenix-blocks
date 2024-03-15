@@ -212,11 +212,8 @@ Phenix(window).on("load", (loaded) => {
 
                 //===> Set Preview and Value <===//
                 if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
-                if(value_preview) {
-                    value_preview.classList.add('tx-nowrap');
-                    value_preview.parentNode.classList.add('flow-nowrap');
-                    value_preview.textContent = uploaded_image.toJSON().url;
-                }
+                if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
+                
             });
         }
     });

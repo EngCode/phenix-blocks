@@ -30,7 +30,8 @@ function px_query_render($block_attributes, $content) {
     global $wp_query;
 
     /*===> Query Items <===*/
-    if(!isset($query['per_page'])) { $query['per_page'] = 5; }
+    if(!isset($query['per_page'])) { $query['per_page'] = 5; $query['posts_per_page'] = 5; }
+    else { $query['per_page'] = (int) $query['per_page']; $query['posts_per_page'] = (int) $query['per_page']; }
 
     /*===> Check Pagination <===*/
     if (isset($query['pagination']) && $query['pagination'] === true) {

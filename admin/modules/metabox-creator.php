@@ -25,7 +25,7 @@ if (!function_exists('pds_metabox_create')) :
             foreach($metabox_group["fields"] as $metabox) {
                 //===> Get Current Value <===//
                 $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
-                if ($term->term_id) {
+                if ($term && $term->term_id) {
                     $current_value = get_term_meta($term->term_id, $metabox["name"], true);
                 }
 

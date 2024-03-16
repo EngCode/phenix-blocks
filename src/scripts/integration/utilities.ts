@@ -298,20 +298,20 @@ PhenixElements.prototype.utilities = function (options?:{
         if(!headline) Phenix('body').insert('prepend', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> Images SEO/Performance <====//
-        setTimeout(() => {            
-            Phenix('img').forEach((img:any) => {
-                //===> Get Image Data <===//
-                let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
-                    img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
-                    parent_width = img.parentNode.clientWidth,
-                    parent_height = img.parentNode.clientHeight;
-                //===> Set Width and Height <===//
-                if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
-                if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
-                //===> Alternative Text <===//
-                if (!img.getAttribute('alt') || img.getAttribute('alt') === "") img.setAttribute('alt', document.title);
-            });
-        }, 1000);
+        Phenix('img').forEach((img:any) => {
+            //===> Get Image Data <===//
+            let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
+                img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
+                parent_width = img.parentNode.clientWidth,
+                parent_height = Phenix(img.parentNode).height();
+
+            //===> Set Width and Height <===//
+            if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
+            if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
+
+            //===> Alternative Text <===//
+            if (!img.getAttribute('alt')) img.setAttribute('alt', "");
+        });
     
         //====> Links SEO <====//
         Phenix('a[href]').forEach((link:any) => {
@@ -320,7 +320,7 @@ PhenixElements.prototype.utilities = function (options?:{
 
             //===> Get Text <===//
             if (!link.querySelector('*') && link.textContent) text = link.textContent.trim();
-            else text = link.querySelector('h2').textContent || link.querySelector('h3').textContent || link.querySelector('h4').textContent || '';
+            else text = link.querySelector('h2')?.textContent || link.querySelector('h3')?.textContent || link.querySelector('h4')?.textContent || '';
 
             //===> Alternative Text <===//
             if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', text);
@@ -399,7 +399,7 @@ PhenixElements.prototype.utilities = function (options?:{
                         marquee_slider.classList.add('marquee-slider-wrapper','display-flex', 'position-rv',);
                         marquee_slides.classList.add('marquee-slider-slides-wrapper', 'display-flex', 'position-rv');
                         marquee_slider.appendChild(marquee_slides);
-            
+
                         //===> Move Content Items to the Slides Wrapper <===//
                         marquee.querySelectorAll(':scope > *').forEach((item:HTMLElement) => {
                             //===> Set Item Properties <===//

@@ -35,38 +35,32 @@ PhenixElements.prototype.animations = function (options?:{
             offset = parseInt(element.getAttribute('data-offset')) || options?.offset || false,
             flow = parseInt(element.getAttribute('data-flow')) || options?.flow || false,
             into = parseInt(element.getAttribute('data-into')) || options?.into || false,
-            delay = parseInt(element.getAttribute('data-delay')) || options?.delay,
+            delay = parseInt(element.getAttribute('data-delay')) || options?.delay || 0,
             lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false,
             directionFix = options?.directionFix || true;
 
         //====> Directions Resolve <====//
         if (directionFix) {
-            //====> LTR <====//
-            if (Phenix(document).direction() === 'ltr') {
-                if (animation.includes('Start')) {
-                    animation = animation.replace('Start', 'Left');
-                } else if (animation.includes('End')) {
-                    animation = animation.replace('End', 'Right');
-                }
-            //====> RTL <====//
-            } else {
-                if (animation.includes('Start')) {
-                    animation = animation.replace('Start', 'Right');
-                } else if (animation.includes('End')) {
-                    animation = animation.replace('End', 'Left');
-                }
+            //====> Get Direction <====//
+            let pageDir = Phenix(document).direction();
+
+            //====> Fix Directions <====//
+            if (animation.includes('Start')) {
+                animation = animation.replace('Start', pageDir === 'ltr' ? 'Left' : 'Right');
+            } else if (animation.includes('End')) {
+                animation = animation.replace('End',  pageDir === 'ltr' ? 'Right' : 'Left');
             }
         }
 
         //====> Hide the Element <====//
         element.classList.add('visibility-hidden', 'animated');
         //====> Set Duration <====//
-        element.setAttribute('data-duration', duration);
+        // if (!element.getAttribute('data-duration')) element.setAttribute('data-duration', duration);
 
         //===> Set the Animation Name as CSS Variable <====//
+        element.style.setProperty('--animation-delay', delay);
         element.style.setProperty('--animation-name', animation);
         element.style.setProperty('--animation-duration', duration);
-        element.style.setProperty('--animation-delay', delay||0);
 
         //====> if the Element in view Show it <====//
         let isInView = () => {
@@ -93,35 +87,41 @@ PhenixElements.prototype.animations = function (options?:{
 
         //====> Lazyloading Group <====//
         if (lazygroup) {
-            //===> Loop over the Animated Children <===//
+            //===> Define Delay <===//
             let current_delay = 0;
+
+            //===> Loop over the Animated Children <===//
             element.querySelectorAll('[data-animation]').forEach((item, index) => {
-                current_delay += duration;
+                current_delay += duration/2;
                 item.setAttribute('data-delay', current_delay/3);
                 element.style.setProperty('--animation-delay', current_delay/3);
             });
         }
 
         //====> Check for Loading Screen <====//
-        let loadingScreen:any = document.querySelector(".px-page-loader");
-
-        //====> First View Activation <====//
-        if (loadingScreen) {
-            //====> Check for Loading Screen <====//
-            let loadingScreenChecker = setInterval(() => {
-                if (loadingScreen.style.display === 'none') {
-                    isInView();
-                    //====> Scrolling Spy <====//
-                    Phenix(window).on('scroll', isInView);
-                    //====> Clear Interval <====//
-                    clearInterval(loadingScreenChecker);
-                }
-            }, 500);
-        } else {
+        const startAnimations = () => {
+            //====> First View <====//
             isInView();
             //====> Scrolling Spy <====//
             Phenix(window).on('scroll', isInView);
         }
+
+        //====> Get Loading Screen <====//
+        let loadingScreen:any = document.querySelector(".px-page-loader");
+
+        //====> Check for Loading Screen <====//
+        if (loadingScreen) {
+            //====> Search for Loading Screen <====//
+            let loadingScreenChecker = setInterval(() => {
+                //===> When the Loading Screen is Hidden <===//
+                if (Phenix(loadingScreen).getCSS('display') === 'none') {
+                    //===> Start Animations <====//
+                    startAnimations();
+                    //====> Clear Interval <====//
+                    clearInterval(loadingScreenChecker);
+                }
+            }, 500);
+        } else startAnimations();
     });
 
     //====> Animations Loader <====//

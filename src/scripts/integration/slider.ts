@@ -79,10 +79,10 @@ PhenixElements.prototype.slider = function (options?:{
                 intersection = inline('data-intersection') || options?.intersection,
 
                 //===> Controls <===//
-                drag  = inline('data-drag') || options?.drag || false,
                 wheel = inline('data-wheel') || options?.wheel || false,
                 controls = inline('data-controls') || options?.controls,
                 pagination = inline('data-pagination') || options?.pagination,
+                drag  = inline('data-drag') || options?.drag || (!controls || !pagination ? false : true),
 
                 //===> Features & Modes <===//
                 sync = inline('data-sync') || options?.sync,
@@ -166,7 +166,7 @@ PhenixElements.prototype.slider = function (options?:{
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
-                drag: drag && drag === 'true' || drag && drag === '1' ? 1 : false,
+                drag: drag && drag === 'true' || drag === '1' ? 1 : false,
                 perPage: inline('data-lg') || items,
                 height: height || verticalFix(inline('data-md') || items),
             } : '';

@@ -24,8 +24,11 @@ if (!function_exists('pds_metabox_create')) :
             //===> Create Fields <===//
             foreach($metabox_group["fields"] as $metabox) {
                 //===> Get Current Value <===//
+                $metabox = (array) $metabox;
                 $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
-                if ($term && $term->term_id) {
+
+                //===> Get Current Value for Taxonomies <===//
+                if ($term && isset($term->term_id)) {
                     $current_value = get_term_meta($term->term_id, $metabox["name"], true);
                 }
 

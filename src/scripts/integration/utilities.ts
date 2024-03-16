@@ -298,25 +298,32 @@ PhenixElements.prototype.utilities = function (options?:{
         if(!headline) Phenix('body').insert('prepend', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> Images SEO/Performance <====//
-        Phenix('img').forEach((img:any) => {
-            //===> Get Image Data <===//
-            let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
-                img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
-                parent_width = img.parentNode.clientWidth,
-                parent_height = img.parentNode.clientHeight;
-            //===> Set Width and Height <===//
-            if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
-            if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
-            //===> Alternative Text <===//
-            if (!img.getAttribute('alt') || img.getAttribute('alt') === "") img.setAttribute('alt', document.title);
-        });
+        setTimeout(() => {            
+            Phenix('img').forEach((img:any) => {
+                //===> Get Image Data <===//
+                let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
+                    img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
+                    parent_width = img.parentNode.clientWidth,
+                    parent_height = img.parentNode.clientHeight;
+                //===> Set Width and Height <===//
+                if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
+                if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
+                //===> Alternative Text <===//
+                if (!img.getAttribute('alt') || img.getAttribute('alt') === "") img.setAttribute('alt', document.title);
+            });
+        }, 1000);
     
         //====> Links SEO <====//
         Phenix('a[href]').forEach((link:any) => {
+            //===> Text Checker <===//
+            let text = link.getAttribute('data-title') || "";
+
+            //===> Get Text <===//
+            if (!link.querySelector('*') && link.textContent) text = link.textContent.trim();
+            else text = link.querySelector('h2').textContent || link.querySelector('h3').textContent || link.querySelector('h4').textContent || '';
+
             //===> Alternative Text <===//
-            if (!link.getAttribute('title') || link.getAttribute('title') === "") {
-                link.setAttribute('title', link.textContent.trim() || link.getAttribute('data-title') || "");
-            }
+            if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', text);
         });
     }
 
@@ -324,6 +331,7 @@ PhenixElements.prototype.utilities = function (options?:{
     if (type.includes("libraries") || type === "all") {
         //===> Prevent on WP Editor <====//
         const document_classes = document.body.getAttribute('class');
+        //===> Check the Document Type <===//
         if (!document.body.classList.contains('wp-admin') && !document_classes.includes('-editor')) {
             //===> Import Masonry Grid Plugin <===//
             if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
@@ -354,7 +362,7 @@ PhenixElements.prototype.utilities = function (options?:{
                 });
         
                 //===> Import Typed Effect for Texts Library <====//
-                Phenix(document).import('typed-js', 'script', 'text/tinyTypewriter.js', (isReady) => Phenix('.typed-text').forEach((typeWriter:HTMLElement) => {
+                Phenix(document).import('typed-js', 'script', 'typewriter.js', (isReady) => Phenix('.typed-text').forEach((typeWriter:HTMLElement) => {
                     //===> Items <===//
                     let items = [];
             
@@ -386,7 +394,6 @@ PhenixElements.prototype.utilities = function (options?:{
         
                         //===> Marquess Settings <===//
                         if(!marquee.getAttribute('data-speed')) marquee.setAttribute('data-speed', "15");
-                        // if(!marquee.getAttribute('data-space')) marquee.setAttribute('data-space', "15");
         
                         //===> Set Wrappers Properties <===//
                         marquee_slider.classList.add('marquee-slider-wrapper','display-flex', 'position-rv',);

@@ -49,9 +49,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> if it has error list <====//
                 if(errors_list) {
                     //===> Create a new Message <===//
-                    if (errors_list.querySelector('li:last-child').textContent !== message)
-                        errors_list.append(`${message}`);
-
+                    if (errors_list.querySelector('li:last-child').textContent !== message) errors_list.append(`${message}`);
                 //====> Create an Error List <====//
                 } else if (hasError.textContent !== message) {
                     //===> get previous message <===//
@@ -71,6 +69,19 @@ PhenixElements.prototype.validation = function (options?:{
             }
         };
 
+        //====> Reset Method <====//
+        const reset_status = (input, position) => {
+             //===> Remove Error <===//
+             input.setCustomValidity('');
+             input.classList.remove('error', 'success');
+             //===> Delete Error Message <===//
+             if (position === 'after') {
+                 Phenix(input).next('.px-validation')?.remove();
+             } else {
+                 Phenix(input).prev('.px-validation')?.remove();
+             }
+        };
+
         //===> Control Validation <===//
         let valid_control = (input, submit?) => {
             //===> Get Error Message Position <===//
@@ -79,6 +90,7 @@ PhenixElements.prototype.validation = function (options?:{
             //====> Validation Handler <====//
             let validate = () => {
                 let hasError = false;
+                let message = input.getAttribute('data-message');
                 //===> Set Error <===//
                 input.classList.add('error');
                 input.classList.remove('success');
@@ -86,7 +98,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Value Check. <====//
                 if (input.validity.valueMissing) {
                     hasError = true;
-                    let message = defaults?.valueMissing || input.getAttribute('data-message') || pageDir == 'ltr' ? "this field is Required Please fill this field" : "هذا الحقل مطلوب يرجي املاءه";
+                    if (!message) message = pageDir == 'ltr' ? "this field is Required Please fill this field" : "هذا الحقل مطلوب يرجي املاءه";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -94,7 +106,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Type/Bad/Pattern Check. <====//
                 else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
                     hasError = true;
-                    let message = defaults?.typeMismatch || input.getAttribute('data-message') || pageDir == 'ltr' ? "You have entered a wrong value please current your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
+                    if (!message) message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "You have entered a wrong value please current your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -102,7 +114,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Too-Long Check. <====//
                 else if (input.validity.tooLong || input.validity.rangeOverflow) {
                     hasError = true;
-                    let message = defaults?.tooLong || pageDir == 'ltr' ? "You have exceeded the maximum number, please correct the value." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
+                    if (!message) message = defaults?.tooLong || pageDir == 'ltr' ? "You have exceeded the maximum number, please correct the value." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -110,26 +122,10 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Too-Short Check. <====//
                 else if (input.validity.tooShort || input.validity.rangeUnderflow || input.validity.stepMismatch) {
                     hasError = true;
-                    let message = defaults?.tooLong || pageDir == 'ltr' ? "You entered a value less than the minimum, please correct." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
+                    if (!message) message = pageDir == 'ltr' ? "You entered a value less than the minimum, please correct." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
-
-                //====> Custom Pattern <====//
-                // else if (input.getAttribute('pattern') || input.validity.patternMismatch) {
-                //     //===> Get the input Pattern <===//
-                //     let regEx = input.getAttribute('pattern');
-
-                //     //===> Check for it <===//
-                //     if (!regEx.test(input.value)) {
-                //         //===> Return Error <===//
-                //         hasError = true;
-                //         //===> Return Message Error <===//
-                //         let message = input.getAttribute('data-message') || pageDir == 'ltr' ? "You have entered a wrong value please current your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
-                //         input.setCustomValidity(message);
-                //         errorHandler(input, message, position);
-                //     }
-                // }
 
                 //====> .Success. <====//
                 else if (input.validity.valid) {
@@ -149,26 +145,20 @@ PhenixElements.prototype.validation = function (options?:{
             }
 
             //====> Reset When New Value is Set <====//
-            input.addEventListener("input", event => {
-                //===> Remove Error <===//
-                input.setCustomValidity('');
-                input.classList.remove('error', 'success');
-                //===> Delete Error Message <===//
-                if (position === 'after') {
-                    Phenix(input).next('.px-validation')?.remove();
-                } else {
-                    Phenix(input).prev('.px-validation')?.remove();
-                }
-                //====> Check for Validation <====//
+            if (input.tagName !== 'SELECT') input.addEventListener("input", event => {
+                reset_status(input, position);
                 input.checkValidity();
                 validate();
             });
 
-            //====> if has invalid value <====//
-            input.addEventListener("invalid", invalid => {
-                //===> Validate <===//
+            else if (input.tagName === 'SELECT') input.addEventListener("change", event => {
+                reset_status(input, position);
+                input.checkValidity();
                 validate();
             });
+
+            //====> if has invalid value Re-Validate <====//
+            input.addEventListener("invalid", invalid => validate());
 
             //====> Init <====//
             validate();
@@ -200,23 +190,24 @@ PhenixElements.prototype.validation = function (options?:{
             inputs.forEach(input => {
                 //====> Get input Value <====//
                 let validate = () => {
-                        //====> Check the Pattern <====//
-                        if (regEx.test(input.value)) {
-                            //===> Set Success <===//
-                            input.classList.add('success');
-                            input.classList.remove('error');
-                            //===> Delete Error Message <===//
-                            if (position === 'after') {
-                                Phenix(input).next('.px-validation')?.remove();
-                            } else {
-                                Phenix(input).prev('.px-validation')?.remove();
-                            }
+                    //====> Check the Pattern <====//
+                    if (regEx.test(input.value)) {
+                        //===> Set Success <===//
+                        input.classList.add('success');
+                        input.classList.remove('error');
+                        //===> Delete Error Message <===//
+                        if (position === 'after') {
+                            Phenix(input).next('.px-validation')?.remove();
                         } else {
-                            errorHandler(input, message, position);
+                            Phenix(input).prev('.px-validation')?.remove();
                         }
-                    };
+                    } else {
+                        errorHandler(input, message, position);
+                    }
+                };
                 //====> Check While input <====//
-                input.addEventListener('change', validate);
+                if (input.tagName !== 'SELECT') input.addEventListener('input', validate);
+                else if (input.tagName === 'SELECT') input.addEventListener('change', validate);
             });
         });
     });

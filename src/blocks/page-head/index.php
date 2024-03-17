@@ -40,9 +40,17 @@ function px_head_render($block_attributes, $content) {
                     elseif (strpos($sub_option, 'pos-') !== false) {$class_names .= " $sub_option-$sub_value";}
                     //====> Other Classes <===//
                     else {
-                        $sub_value = str_replace(',', ' ', (string) $sub_value);
-                        $sub_value = trim($sub_value);
-                        $class_names .= " " . $sub_value;
+                        if (!is_array($sub_value)) {
+                            $sub_value = str_replace(',', ' ', (string) $sub_value);
+                            $sub_value = trim($sub_value);
+                            $class_names .= " " . $sub_value;
+                        } else {
+                            foreach ($sub_value as $sub_value_item) {
+                                $sub_value_item = str_replace(',', ' ', (string) $sub_value_item);
+                                $sub_value_item = trim($sub_value_item);
+                                $class_names.= " " . $sub_value_item;
+                            }
+                        }
                     }
                 };
             }

@@ -65,6 +65,8 @@
 		#future-posts ul, #published-posts ul,
 		#dashboard_right_now ul, #the-comment-list {padding: 0;}
 	}
+
+	#monsterinsights_reports_widget h2.hndle {padding: 10px 15px!important;}
 	
 	/*==== Admin Menu ====*/
 	#adminmenu {
@@ -273,7 +275,7 @@
 		}
 	
 		/*==== Content Wrapper ====*/
-		.inside {
+		&:not(#monsterinsights_reports_widget) .inside {
 			padding: 15px 20px!important;
 			/*==== Reset Lists ====*/
 			ul, ol {

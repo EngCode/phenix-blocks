@@ -273,7 +273,7 @@ window.PhenixBlocks = {
                         //===> Positions Values <===//
                         else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
-                            if (parseInt(sub_value) > 50 || parseInt(sub_value) < 0) {
+                            if (parseInt(sub_value) > 50 || parseInt(sub_value) <= -1) {
                                 //===> Set Custom Positions <===//
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 //===> Add the ClassName <===//
@@ -290,7 +290,7 @@ window.PhenixBlocks = {
                             //===> Auto Value <===//
                             if (parseInt(sub_value) === -5) { blockProps.className += ` ${sub_option}-auto`; }
                             //===> Custom Value <===//
-                            else if (parseInt(sub_value) > 100 || parseInt(sub_value) < 0) {
+                            else if (parseInt(sub_value) > 100 || parseInt(sub_value) < -6) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
@@ -303,7 +303,7 @@ window.PhenixBlocks = {
 
                         //===> Padding Values <===//
                         else if (isPadding.some(css => sub_option.startsWith(css))) {
-                            if (parseInt(sub_value) < 0) return;
+                            if (parseInt(sub_value) < -1) return;
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100) {
                                 CustomCSS[`--${sub_option}`] = `${sub_value}px`;
@@ -491,7 +491,7 @@ window.PhenixBlocks = {
         }, 100);
 
         //===> Get View iFrame <===//
-        let viewScript = (the_document) => {
+        const viewScript = (the_document) => {
             //===> Define Data <===//
             let time_counter = 0,
             //===> Timer Loop <===//
@@ -626,7 +626,7 @@ window.PhenixBlocks = {
         const { getBlockIndex, getBlockInsertionPoint, getBlockName } = wp.data.select('core/block-editor');
 
         //===> when its Empty  <===//
-        if (currentContent?.length < 1) {
+        if (currentContent?.length < 0) {
             //===> and Hit Backspace or Delete Remove the Block <===//
             if (event.key === "Backspace" || event.key === "Delete") removeBlock(clientId);
         }

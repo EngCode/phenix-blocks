@@ -149,3 +149,13 @@
     from {background-position: 0 0;}
     to {background-position: 0 100%;}
 }
+
+@keyframes gradient-rotation {
+    0% {--gradient-rotation: 0deg;}
+    100% {--gradient-rotation: 360deg;}
+}
+
+@keyframes animate-rotation {
+    0% {--rotation: 0deg;}
+    100% {--rotation: 360deg;}
+}

@@ -310,7 +310,9 @@ PhenixElements.prototype.utilities = function (options?:{
             if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
 
             //===> Alternative Text <===//
-            if (!img.getAttribute('alt')) img.setAttribute('alt', img.src.substring(img.src.lastIndexOf('/')+1));
+            if (!img.getAttribute('alt') || img.getAttribute('alt') === "") {
+                img.setAttribute('alt', img.src.substring(img.src.lastIndexOf('/')+1));
+            }
         });
     
         //====> Links SEO <====//

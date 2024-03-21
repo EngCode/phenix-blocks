@@ -215,7 +215,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
                 {/*===> Self-Align Options <===*/}
                 <ScreensTabs
-                    sm={(screen) => <PhenixSelect class="mt-15" name={`align-self`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self`]} onChange={set_flexbox} options={[
+                    sm={(screen) => <PhenixSelect class="mt-30" name={`align-self`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self`]} onChange={set_flexbox} options={[
                         {label: "Start", value: `align-self-start`},
                         {label: "Center", value: `align-self-center`},
                         {label: "End", value: `align-self-end`}

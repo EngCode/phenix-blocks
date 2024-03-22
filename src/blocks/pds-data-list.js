@@ -5,29 +5,32 @@
  * Copyright: 2022 Abdullah.Ramadan
 */
 
+//===> Define Translation Function <===//
+const __trans = window.wp.i18n.__;
+
 //===> Attach Data to Phenix Object <===//
 window.PhenixBlocks.dataLists = {
     button : {
         types : [
-            { label: __("Default", "pds-blocks"), value: 'btn' },
-            { label: __("Text/Icon", "pds-blocks"), value: 'btn btn-icon' },
-            { label: __("Icon Only", "pds-blocks"), value: 'btn square tooltip-bottom' },
+            { label: __trans("Default", "pds-blocks"), value: 'btn' },
+            { label: __trans("Text/Icon", "pds-blocks"), value: 'btn btn-icon' },
+            { label: __trans("Icon Only", "pds-blocks"), value: 'btn square tooltip-bottom' },
         ],
     
         sizes : [
-            { label: __("XS", "pds-blocks"), value: 'tiny' },
-            { label: __("SM", "pds-blocks"), value: 'small' },
-            { label: __("MD", "pds-blocks"), value: 'medium' },
-            { label: __("LG", "pds-blocks"), value: 'large' },
-            { label: __("XL", "pds-blocks"), value: 'xlarge' },
+            { label: __trans("XS", "pds-blocks"), value: 'tiny' },
+            { label: __trans("SM", "pds-blocks"), value: 'small' },
+            { label: __trans("MD", "pds-blocks"), value: 'medium' },
+            { label: __trans("LG", "pds-blocks"), value: 'large' },
+            { label: __trans("XL", "pds-blocks"), value: 'xlarge' },
         ],
     },
 
     lightbox : {
         types : [
-            { label: __("Image", "pds-blocks"),  value: 'image' },
-            { label: __("Video", "pds-blocks"),  value: 'video' },
-            { label: __("Embed", "pds-blocks"),  value: 'embed' },
+            { label: __trans("Image", "pds-blocks"),  value: 'image' },
+            { label: __trans("Video", "pds-blocks"),  value: 'video' },
+            { label: __trans("Embed", "pds-blocks"),  value: 'embed' },
         ],
     },
 
@@ -94,39 +97,39 @@ window.PhenixBlocks.dataLists = {
 
     queries : {
         orderBy : [
-            { label: __('Default', 'pds-blocks'), value: '' },
-            { label: __('Date', 'pds-blocks'), value: 'date' },
-            { label: __('ID', 'pds-blocks'), value: 'ID' },
-            { label: __('Author', 'pds-blocks'), value: 'author' },
-            { label: __('Title', 'pds-blocks'), value: 'title' },
-            { label: __('Modified', 'pds-blocks'), value: 'modified' },
-            { label: __('Random', 'pds-blocks'), value: 'rand' },
-            { label: __('Comment Count', 'pds-blocks'), value: 'comment_count' },
-            { label: __('Menu Order', 'pds-blocks'), value: 'menu_order' },
-            { label: __('Meta Value', 'pds-blocks'), value: 'meta_value' },
-            { label: __('Meta Value Num', 'pds-blocks'), value: 'meta_value_num' },
-            { label: __('Post__In', 'pds-blocks'), value: 'post__in' },
-            { label: __('None', 'pds-blocks'), value: 'none' },
+            { label: __trans('Default', 'pds-blocks'), value: '' },
+            { label: __trans('Date', 'pds-blocks'), value: 'date' },
+            { label: __trans('ID', 'pds-blocks'), value: 'ID' },
+            { label: __trans('Author', 'pds-blocks'), value: 'author' },
+            { label: __trans('Title', 'pds-blocks'), value: 'title' },
+            { label: __trans('Modified', 'pds-blocks'), value: 'modified' },
+            { label: __trans('Random', 'pds-blocks'), value: 'rand' },
+            { label: __trans('Comment Count', 'pds-blocks'), value: 'comment_count' },
+            { label: __trans('Menu Order', 'pds-blocks'), value: 'menu_order' },
+            { label: __trans('Meta Value', 'pds-blocks'), value: 'meta_value' },
+            { label: __trans('Meta Value Num', 'pds-blocks'), value: 'meta_value_num' },
+            { label: __trans('Post__In', 'pds-blocks'), value: 'post__in' },
+            { label: __trans('None', 'pds-blocks'), value: 'none' },
         ],
 
         taxOrderBy : [
-            { label: __('Default', 'pds-blocks'), value: '' },
-            { label: __('Name', 'pds-blocks'), value: 'name' },
-            { label: __('ID', 'pds-blocks'), value: 'id' },
-            { label: __('Count', 'pds-blocks'), value: 'count' },
-            { label: __('Slug', 'pds-blocks'), value: 'slug' },
-            { label: __('Term Group', 'pds-blocks'), value: 'term_group' },
-            { label: __('Term Order', 'pds-blocks'), value: 'term_order' },
+            { label: __trans('Default', 'pds-blocks'), value: '' },
+            { label: __trans('Name', 'pds-blocks'), value: 'name' },
+            { label: __trans('ID', 'pds-blocks'), value: 'id' },
+            { label: __trans('Count', 'pds-blocks'), value: 'count' },
+            { label: __trans('Slug', 'pds-blocks'), value: 'slug' },
+            { label: __trans('Term Group', 'pds-blocks'), value: 'term_group' },
+            { label: __trans('Term Order', 'pds-blocks'), value: 'term_order' },
         ],
 
         usersOrderBy : [
-            { label: __('Default', 'pds-blocks'), value: '' },
-            { label: __('ID', 'pds-blocks'), value: 'ID' },
-            { label: __('Login', 'pds-blocks'), value: 'login' },
-            { label: __('Email', 'pds-blocks'), value: 'email' },
-            { label: __('URL', 'pds-blocks'), value: 'url' },
-            { label: __('Registered', 'pds-blocks'), value: 'registered' },
-            { label: __('Display Name', 'pds-blocks'), value: 'display_name' },
+            { label: __trans('Default', 'pds-blocks'), value: '' },
+            { label: __trans('ID', 'pds-blocks'), value: 'ID' },
+            { label: __trans('Login', 'pds-blocks'), value: 'login' },
+            { label: __trans('Email', 'pds-blocks'), value: 'email' },
+            { label: __trans('URL', 'pds-blocks'), value: 'url' },
+            { label: __trans('Registered', 'pds-blocks'), value: 'registered' },
+            { label: __trans('Display Name', 'pds-blocks'), value: 'display_name' },
         ]
     },
 
@@ -665,12 +668,12 @@ window.PhenixBlocks.dataLists = {
     },
 
     component_sizes : [
-        { label: __("Default", "pds-blocks"), value: '' },
-        { label: __("Tiny", "pds-blocks"), value: 'tiny' },
-        { label: __("Small", "pds-blocks"), value: 'small' },
-        { label: __("Normal", "pds-blocks"), value: 'medium' },
-        { label: __("Large", "pds-blocks"), value: 'large' },
-        { label: __("xLarge", "pds-blocks"), value: 'xlarge' },
+        { label: __trans("Default", "pds-blocks"), value: '' },
+        { label: __trans("Tiny", "pds-blocks"), value: 'tiny' },
+        { label: __trans("Small", "pds-blocks"), value: 'small' },
+        { label: __trans("Normal", "pds-blocks"), value: 'medium' },
+        { label: __trans("Large", "pds-blocks"), value: 'large' },
+        { label: __trans("xLarge", "pds-blocks"), value: 'xlarge' },
     ],
 
     sizes_range : {
@@ -725,26 +728,26 @@ window.PhenixBlocks.dataLists = {
         ],
 
         radius_sizes: [
-            { label: __("None", "pds-blocks"), value: '' },
-            { label: __("Tiny", "pds-blocks"), value: 'radius-sm' },
-            { label: __("Small", "pds-blocks"), value: 'radius-md' },
-            { label: __("Medium", "pds-blocks"), value: 'radius-lg' },
-            { label: __("Large", "pds-blocks"), value: 'radius-xl' },
-            { label: __("xLarge", "pds-blocks"), value: 'radius-xxl' },
-            { label: __("Circle", "pds-blocks"), value: 'radius-circle' },
-            { label: __("Rounded", "pds-blocks"), value: 'radius-height' },
+            { label: __trans("None", "pds-blocks"), value: '' },
+            { label: __trans("Tiny", "pds-blocks"), value: 'radius-sm' },
+            { label: __trans("Small", "pds-blocks"), value: 'radius-md' },
+            { label: __trans("Medium", "pds-blocks"), value: 'radius-lg' },
+            { label: __trans("Large", "pds-blocks"), value: 'radius-xl' },
+            { label: __trans("xLarge", "pds-blocks"), value: 'radius-xxl' },
+            { label: __trans("Circle", "pds-blocks"), value: 'radius-circle' },
+            { label: __trans("Rounded", "pds-blocks"), value: 'radius-height' },
         ],
 
         radius_directions: [
-            { label: __("Default", "pds-blocks"), value: '' },
-            { label: __("Top", "pds-blocks"), value: 'radius-top' },
-            { label: __("Bottom", "pds-blocks"), value: 'radius-bottom' },
-            { label: __("Start", "pds-blocks"), value: 'radius-start' },
-            { label: __("End", "pds-blocks"), value: 'radius-end' },
-            { label: __("Top/Start", "pds-blocks"), value: 'radius-top-start' },
-            { label: __("Bottom/Start", "pds-blocks"), value: 'radius-bottom-start' },
-            { label: __("Top/End", "pds-blocks"), value: 'radius-top-end' },
-            { label: __("Bottom/End", "pds-blocks"), value: 'radius-bottom-end' },
+            { label: __trans("Default", "pds-blocks"), value: '' },
+            { label: __trans("Top", "pds-blocks"), value: 'radius-top' },
+            { label: __trans("Bottom", "pds-blocks"), value: 'radius-bottom' },
+            { label: __trans("Start", "pds-blocks"), value: 'radius-start' },
+            { label: __trans("End", "pds-blocks"), value: 'radius-end' },
+            { label: __trans("Top/Start", "pds-blocks"), value: 'radius-top-start' },
+            { label: __trans("Bottom/Start", "pds-blocks"), value: 'radius-bottom-start' },
+            { label: __trans("Top/End", "pds-blocks"), value: 'radius-top-end' },
+            { label: __trans("Bottom/End", "pds-blocks"), value: 'radius-bottom-end' },
         ],
 
         display_options: {
@@ -784,15 +787,15 @@ window.PhenixBlocks.dataLists = {
         },
 
         support_options: [
-            { label: __("Margin", "pds-blocks"), value: 'enable-margin' },
-            { label: __("Padding", "pds-blocks"), value: 'enable-padding' },
-            { label: __("Border", "pds-blocks"), value: 'enable-border' },
-            { label: __("Radius", "pds-blocks"), value: 'enable-radius' },
-            { label: __("Display", "pds-blocks"), value: 'enable-display' },
-            { label: __("Position", "pds-blocks"), value: 'enable-position' },
-            { label: __("Animations", "pds-blocks"), value: 'enable-animations' },
-            { label: __("Effects", "pds-blocks"), value: 'enable-effects' },
-            { label: __("Marquee", "pds-blocks"), value: 'enable-marquee' },
+            { label: __trans("Margin", "pds-blocks"), value: 'enable-margin' },
+            { label: __trans("Padding", "pds-blocks"), value: 'enable-padding' },
+            { label: __trans("Border", "pds-blocks"), value: 'enable-border' },
+            { label: __trans("Radius", "pds-blocks"), value: 'enable-radius' },
+            { label: __trans("Display", "pds-blocks"), value: 'enable-display' },
+            { label: __trans("Position", "pds-blocks"), value: 'enable-position' },
+            { label: __trans("Animations", "pds-blocks"), value: 'enable-animations' },
+            { label: __trans("Effects", "pds-blocks"), value: 'enable-effects' },
+            { label: __trans("Marquee", "pds-blocks"), value: 'enable-marquee' },
         ],
 
         background_options: {

@@ -35,7 +35,7 @@ export default class StylesSet extends Component {
 
         //====> Support Options Checker <====//
         let showSupportOpts = false;
-        const supportedOpts = ["enable-radius","enable-position","enable-display"];
+        const supportedOpts = ["enable-radius","enable-position","enable-display", "enable-marquee"];
         const SupportOpts = attributes.style?.support || [];
         SupportOpts.forEach(opt => supportedOpts.includes(opt) ? showSupportOpts = true : showSupportOpts = showSupportOpts);
 

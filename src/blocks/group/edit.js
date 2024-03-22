@@ -214,31 +214,33 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Styles Options <===*/}
                 <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
                 {/*===> Self-Align Options <===*/}
-                <ScreensTabs
-                    sm={(screen) => <PhenixSelect class="mt-30" name={`align-self`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self`]} onChange={set_flexbox} options={[
-                        {label: "Start", value: `align-self-start`},
-                        {label: "Center", value: `align-self-center`},
-                        {label: "End", value: `align-self-end`}
-                    ]} />}
+                <div className="mt-30">
+                    <ScreensTabs
+                        sm={(screen) => <PhenixSelect name={`align-self`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self`]} onChange={set_flexbox} options={[
+                            {label: "Start", value: `align-self-start`},
+                            {label: "Center", value: `align-self-center`},
+                            {label: "End", value: `align-self-end`}
+                        ]} />}
 
-                    md={(screen) => <PhenixSelect class="mt-15" name={`align-self-md`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-md`]} onChange={set_flexbox} options={[
-                        {label: "Start", value: `align-self-md-start`},
-                        {label: "Center", value: `align-self-md-center`},
-                        {label: "End", value: `align-self-md-end`}
-                    ]} />}
+                        md={(screen) => <PhenixSelect class="mt-15" name={`align-self-md`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-md`]} onChange={set_flexbox} options={[
+                            {label: "Start", value: `align-self-md-start`},
+                            {label: "Center", value: `align-self-md-center`},
+                            {label: "End", value: `align-self-md-end`}
+                        ]} />}
 
-                    lg={(screen) => <PhenixSelect class="mt-15" name={`align-self-lg`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-lg`]} onChange={set_flexbox} options={[
-                        {label: "Start", value: `align-self-lg-start`},
-                        {label: "Center", value: `align-self-lg-center`},
-                        {label: "End", value: `align-self-lg-end`}
-                    ]} />}
+                        lg={(screen) => <PhenixSelect class="mt-15" name={`align-self-lg`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-lg`]} onChange={set_flexbox} options={[
+                            {label: "Start", value: `align-self-lg-start`},
+                            {label: "Center", value: `align-self-lg-center`},
+                            {label: "End", value: `align-self-lg-end`}
+                        ]} />}
 
-                    xl={(screen) => <PhenixSelect class="mt-15" name={`align-self-xl`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-xl`]} onChange={set_flexbox} options={[
-                        {label: "Start", value: `align-self-xl-start`},
-                        {label: "Center", value: `align-self-xl-center`},
-                        {label: "End", value: `align-self-xl-end`}
-                    ]} />}
+                        xl={(screen) => <PhenixSelect class="mt-15" name={`align-self-xl`} size="normal" placeholder={__("None", "pds-blocks")} className="stacked-options" label={__("Self Align", "pds-blocks")} value={attributes.flexbox[`align-self-xl`]} onChange={set_flexbox} options={[
+                            {label: "Start", value: `align-self-xl-start`},
+                            {label: "Center", value: `align-self-xl-center`},
+                            {label: "End", value: `align-self-xl-end`}
+                        ]} />}
                 />
+                </div>
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

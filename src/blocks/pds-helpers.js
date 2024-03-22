@@ -5,9 +5,6 @@
  * Copyright: 2022 Abdullah.Ramadan
 */
 
-//===> Define Translation Function <===//
-const __ = window.wp.i18n.__;
-
 //====> Create Window Object <====//
 window.PhenixBlocks = {
     //====> Options Renderer <====//

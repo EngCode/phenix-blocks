@@ -147,7 +147,7 @@ export default class StylesSet extends Component {
                                 ]} />
                             </div>
                             <div className='col col-6'>
-                                <label className='tx-capitalize fs-13' style={{marginBottom: 5}}>{__("Speed", "pds-blocks")}</label>
+                                <label className='tx-capitalize fs-13'>{__("Speed", "pds-blocks")}</label>
                                 <PhenixNumber key={`marquee-speed`} name={`marquee-speed`} onChange={mainSetter} value={attributes.style[`marquee-speed`] || 15} min={5} />
                             </div>
                         </> : null}

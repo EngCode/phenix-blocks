@@ -302,6 +302,14 @@ body.block-editor-page {
 
 	/*==== Patterns List Fix ====*/
 	.block-editor-block-patterns-list__item {height: auto!important;}
+
+	/*====  ====*/
+	.px-marquee, .px-marquee-reverse {
+		> .block-editor-block-list__layout {
+			display: flex;
+			> * {max-width: calc(25% - 30px); margin-bottom: 15px;}
+		}
+	}
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}
@@ -338,8 +346,6 @@ body.block-editor-page {
 		}
 	}
 }
-
-
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

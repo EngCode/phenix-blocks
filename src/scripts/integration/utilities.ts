@@ -405,7 +405,6 @@ PhenixElements.prototype.utilities = function (options?:{
                         //===> Move Content Items to the Slides Wrapper <===//
                         marquee.querySelectorAll(':scope > *').forEach((item:HTMLElement) => {
                             //===> Set Item Properties <===//
-                            item.style.width = `fit-content`;
                             item.style.direction = Phenix(document).direction();
                             item.classList.add('marquee-slider-slide');
         

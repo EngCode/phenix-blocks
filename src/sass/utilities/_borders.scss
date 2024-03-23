@@ -100,7 +100,7 @@
 
 /*==== Radius Utilites ====*/
 .radius-sm, .radius-md, .radius-lg, .radius-xl, .radius-xxl,
-.radius-none, .radius-circle, .radius-height, .radius-rounded, .radius-custom {
+.radius-none, .radius-circle, .radius-height, .radius-rounded, .radius-custom, .radius-section, .radius-section-x2 {
     border-radius: var(--radius, 0);
 }
 
@@ -114,6 +114,8 @@
 .radius-circle  {--radius: 50%;}
 .radius-height  {--radius: var(--height);}
 .radius-rounded {--radius: 62px;}
+.radius-section {--radius: #{REM(150)};}
+.radius-section-x2 {--radius: #{REM(250)};}
 
 /*==== Radius Position ====*/
 .radius-top     {border-radius: var(--radius) var(--radius) 0 0;}

@@ -201,7 +201,7 @@
 		outline: 1px dashed var(--secondary-color);
 		&:not([class*="pd"]) {padding: 15px;}
 		/*==== Label ====*/
-		&::after {
+		&:not(.is-selected):not(.is-hovered)::after {
 			top: 0;
 			font-size: 11px;
 			padding: 5px 8px;
@@ -211,7 +211,7 @@
 			background-color: var(--primary-color);
 		}
 	}
-
+	
 	/*==== Hidden Panels ====*/
 	.accordion-content, .tab-panel {
 		&[class*="hidden"] {display: block;}

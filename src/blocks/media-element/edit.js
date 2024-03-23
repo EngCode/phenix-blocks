@@ -23,6 +23,7 @@ import StylesSet from '../px-controls/sets/styles';
 import TypographySet from '../px-controls/sets/typography';
 import EffectsSet from '../px-controls/sets/effects';
 import BorderSet from '../px-controls/sets/border';
+import AnimationsSet from '../px-controls/sets/animations';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {

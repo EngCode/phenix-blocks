@@ -168,6 +168,11 @@ PhenixElements.prototype.utilities = function (options?:{
                 if (Phenix(element).inView() && !element.classList.contains('counting')) Phenix(element).counter();
             });
         });
+
+        //====> To Top Hook <=====//
+        let toTopHook = document.querySelector('.entry-content *:first-child');
+        if (!toTopHook) toTopHook = document.querySelector('.main-header + *');
+        if (toTopHook) toTopHook.id = 'to-top-hook';
     }
     
     //====> Dynamic Word Coloring <====//

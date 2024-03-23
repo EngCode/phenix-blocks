@@ -738,6 +738,7 @@ window.PhenixBlocks.dataLists = {
             { label: __trans("Rounded", "pds-blocks"), value: 'radius-height' },
             { label: __trans("Section", "pds-blocks"), value: 'radius-section' },
             { label: __trans("Section@X2", "pds-blocks"), value: 'radius-section-x2' },
+            { label: __trans("Section@X5", "pds-blocks"), value: 'radius-section-x5' },
         ],
 
         radius_directions: [

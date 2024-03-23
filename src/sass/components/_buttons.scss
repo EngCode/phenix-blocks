@@ -213,9 +213,10 @@
             --padding: 0;
             overflow: hidden;
             width: var(--height);
+            display: inline-block;
+            line-height: var(--height);
             &::before {
                 display: block;
-                // line-height: inherit;
                 margin-#{$direction-end}: 0;
             }
         };

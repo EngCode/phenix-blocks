@@ -131,3 +131,9 @@ a.wp-block-phenix-group {
     &:not(.hidden):not(.display-inline-block):not(.flexbox):not(.display-flex) {display: block;}
 }
 
+/*==== Front-End Only ====*/
+body:not(.wp-admin):not([class*="-editor"]) {
+    /*==== Hide Typed List ====*/
+    .typed-list {display: none;}
+}
+

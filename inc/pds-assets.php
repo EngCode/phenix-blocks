@@ -266,7 +266,7 @@ if (!function_exists('pds_copyrights_backlinks')) :
     function pds_copyrights_backlinks() {
         include(dirname(__FILE__) . '/backlinks.php');
     }
-    add_action('wp_body_open', 'pds_copyrights_backlinks');
+    add_action('wp_footer', 'pds_copyrights_backlinks');
 endif;
 
 //===> Lightbox Template <===//

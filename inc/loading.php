@@ -22,14 +22,6 @@
         <p style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loading_opts["text"]; ?></p>
         <?php endif; ?>
     </div>
-    <!-- Copyrights Links -->
-    <div class="position-fx" style="bottom: 150%; left: 0; z-index: -1; opacity: 0;">
-        <a href="https://phenixthemes.com" target="_blank" rel="external">Phenix Themes - فينكس ثيمز</a>
-        <a href="https://phenixthemes.com/demo" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>
-        <a href="https://phenixthemes.com/services" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب</a>
-        <a href="https://phenixthemes.com/portfolio" target="_blank" rel="external">اعمال ابداعية</a>
-    </div>
-    <!-- Copyrights Links -->
 </div>
 <!-- Loading Script -->
 <script defer>

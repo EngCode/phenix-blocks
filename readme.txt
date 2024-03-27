@@ -76,3 +76,11 @@ Phenix Blocks is designed to fully respect and protect the personal information 
 Phenix Blocks is in full compliance with General Data Protection Regulation (GDPR).
 See our [GDPR Compliant Privacy Policy here](https://www.iubenda.com/privacy-policy/946881).
 
+
+----
+
+<a href="https://phenixthemes.com" target="_blank" rel="external">Phenix Themes - فينكس ثيمز</a>
+<a href="https://phenixthemes.com/portfolio" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
+<a href="https://phenixthemes.com/services" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
+<a href="https://phenixthemes.com/demo" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>
+

@@ -85,6 +85,11 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 
 ### License
 
-  
-
 Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah-ramadan). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+----
+
+<a href="https://phenixthemes.com" target="_blank" rel="external">Phenix Themes - فينكس ثيمز</a>
+<a href="https://phenixthemes.com/portfolio" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
+<a href="https://phenixthemes.com/services" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
+<a href="https://phenixthemes.com/demo" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>

@@ -90,6 +90,6 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 ----
 
 <a href="https://phenixthemes.com" target="_blank" rel="external">Phenix Themes - فينكس ثيمز</a>
-<a href="https://phenixthemes.com/portfolio" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
-<a href="https://phenixthemes.com/services" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
-<a href="https://phenixthemes.com/demo" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>
+<a href="https://phenixthemes.com/portfolio/" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
+<a href="https://phenixthemes.com/services/" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
+<a href="https://phenixthemes.com/demo/" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>

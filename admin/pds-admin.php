@@ -393,7 +393,7 @@
     if (get_option('pds_taxonomies')) :
         foreach(get_option('pds_taxonomies') as $taxonomy) {
             $taxonomy = (array) $taxonomy;
-            //===> if the Post-Type is Enabled <===//
+            //===> if the Taxonomy is Enabled <===//
             if(isset($taxonomy['enable']) && $taxonomy['enable'] == true) { pds_tax_create($taxonomy); }
             //===> Register String for Translation <===//
             if (function_exists('pll_register_string')) {
@@ -407,7 +407,7 @@
     if (get_option('block_patterns')) :
         foreach(get_option('block_patterns') as $pattern) {
             $pattern = (array) $pattern;
-            //===> if the Post-Type is Enabled <===//
+            //===> if the Pattern is Enabled <===//
             pds_add_pattern($pattern['name'], array(
                 'width' => isset($pattern['width']) ? intval($pattern['width']) : 320,
                 'title' => $pattern['title'],
@@ -483,7 +483,7 @@
                     );
                 }
     
-                //===> Set Rules <===//
+                //===> Set Countries <===//
                 update_option("countries_list", $countries);
             }
         };

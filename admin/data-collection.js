@@ -202,7 +202,6 @@ document.addEventListener('DOMContentLoaded', ready => {
             }
         });
 
-        console.log(new_item);
         //===> Return Data <===//
         return new_item;
     },

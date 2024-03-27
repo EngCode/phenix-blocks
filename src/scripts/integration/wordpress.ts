@@ -55,14 +55,15 @@ Phenix(window).on("load", (loaded) => {
         //====> Schema Meta Data Set <====//
         document.body.setAttribute('itemscope', "");
         document.body.setAttribute('itemtype', "https://schema.org/WebPage");
+        const pds_keywords = `تصميم, متجر الكتروني, شركات تصميم مواقع, ووردبريس, شركة تصميم مواقع, تصميم موقع الكتروني, تصميم مواقع, انشاء موقع الكتروني, ${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, WordPress, phenixthemes.com`;
 
         //====> Check for Headline Level 1 <====//
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> S.E.O : Missing Meta <====//
         if (!document.head.querySelector('meta[name="description"]')) Phenix(document.head).insert('append', `<meta name="description" content="this is ${document.title} website with no proper description.">`);
-        if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="description" content="${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, Keyword, WordPress, phenixthemes.com">`);
-        
+        if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="keywords" content="${pds_keywords}">`);
+
         //====> Links do not have a discernible name <====//
         Phenix('a:empty:not(.px-media), button:empty').forEach((link:HTMLElement) => {
             setTimeout(() => {

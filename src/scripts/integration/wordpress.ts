@@ -55,7 +55,10 @@ Phenix(window).on("load", (loaded) => {
         //====> Schema Meta Data Set <====//
         document.body.setAttribute('itemscope', "");
         document.body.setAttribute('itemtype', "https://schema.org/WebPage");
-        const pds_keywords = `تصميم, متجر الكتروني, شركات تصميم مواقع, ووردبريس, شركة تصميم مواقع, تصميم موقع الكتروني, تصميم مواقع, انشاء موقع الكتروني, ${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Placeholder, WordPress, phenixthemes.com`;
+        let pds_keywords = `${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Design System, WordPress, phenixthemes.com`;
+        if (document.location.href.includes('phenixthemes.com')) {
+            pds_keywords += `,شركة برمجة, تصميم مواقع, شركة تصميم مواقع, تصميم موقع الكتروني, تصميم مواقع الكترونية, شركات تصميم مواقع الكترونية, تصميم واجهة مستخدم, تطوير موقع ووردبريس, شركات تطوير مواقع الكترونية, شركات تصميم المواقع الالكترونية, تصميم مواقع الشركات, افضل شركة لتصميم المواقع, افضل شركات تصميم متاجر الكترونية, شركات تطوير المواقع الالكترونية, افضل شركات تصميم منصات الكترونية, افضل شركة برمجة منصات, شركات لعمل مواقع الانترنت, شركة برمجة وتصميم مواقع, أسعار تصميم المواقع, شركة تصميم مواقع ويب`
+        }
 
         //====> Check for Headline Level 1 <====//
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);

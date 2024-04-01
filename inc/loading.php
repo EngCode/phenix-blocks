@@ -11,7 +11,7 @@
     <div class="content-box" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
         <!-- Spinner -->
         <?php if (isset($loading_opts["type"]) && $loading_opts["type"] == "image") : ?>
-            <img class="spinner" width="42" height="42" src="<?php echo $loading_opts["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
+            <img class="spinner" width="2.625rem" height="2.625rem" src="<?php echo $loading_opts["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
         <?php 
             elseif (isset($loading_opts["type"]) && $loading_opts["type"] == "code") :
                 echo $loading_opts["code"]; 
@@ -19,7 +19,7 @@
         ?>
         <!-- Paragraph -->
         <?php if ($showLoadingText && $showLoadingText == "on") : ?>
-        <p style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loading_opts["text"]; ?></p>
+        <p style="margin-bottom: 0; font-size: 0.813rem; padding: 0.625rem 0.313rem;"><?php echo $loading_opts["text"]; ?></p>
         <?php endif; ?>
     </div>
 </div>

@@ -8,6 +8,13 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Helper Functions [Check for Objects] <====//
+if (!function_exists("PxToREM")) :
+    function PxToREM($size, $base = 16) {
+        return ($size / $base) . "rem";
+    }
+endif;
+
+//====> Helper Functions [Check for Objects] <====//
 if (!function_exists("isObjectVal")) :
     function isObjectVal($option_value) {
         return is_object($option_value) || is_array($option_value) && count($option_value) > 0;

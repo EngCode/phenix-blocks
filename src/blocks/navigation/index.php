@@ -97,16 +97,16 @@ function px_navigation_render($block_attributes, $content) {
     //===> Custom CSS Style <===//
     if (isset($font_size) && $font_size) { $nav_style .= "--font-size:".str_replace("fs-", "", $font_size)."px;"; }
     // if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
-    if (isset($font_height) && $font_height) { $nav_style .= "--height: {$font_height}px;"; }
+    if (isset($font_height) && $font_height) { $nav_style .= "--height:".PxToREM($font_height).";"; }
     if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
     if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }
     if (isset($background_color) && $background_color) { $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$background_color).");"; }
     if (isset($background_color_hvr) && $background_color_hvr) { $nav_style .= "--background-hvr:".str_replace('bg-', 'var(--wp--preset--color--',$background_color_hvr).");"; }
     if (isset($style_padding) && $style_padding) {
         if ($block_attributes['items_icon_op'] === true) {
-            $nav_style .= "--space-in: 0px; padding-right:". $style_padding."px; padding-left:". $style_padding."px;";
+            $nav_style .= "--space-in: 0px; padding-right:". PxToREM($style_padding)."; padding-left:". PxToREM($style_padding).";";
         } else {
-            $nav_style .= "--space-in:{$style_padding}px;";
+            $nav_style .= "--space-in:".PxToREM($style_padding);
         }
     };
 

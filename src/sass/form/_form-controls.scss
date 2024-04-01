@@ -59,7 +59,7 @@
     --color : var(--component-tx-lvl-1);
     --box-shadow   : unset;
     --background   : var(--component-bg-lvl-1);
-    --border-size  : 1px;
+    --border-size  : #{REM(1)};
     --border-color : #{rgba(#000, 0.1)};
 
     /*=== Status Colors ===*/
@@ -162,7 +162,7 @@ select.form-control, .reset-appearance {
         &:hover {background-color: var(--primary-offwhite);}
     }
     /*==== Arrow icon Fix ====*/
-    .px-select-toggle {padding-#{$direction-end}: calc(var(--padding) + var(--text-size) + 3px)!important;}
+    .px-select-toggle {padding-#{$direction-end}: calc(var(--padding) + var(--text-size) + #{REM(3)})!important;}
 }
 
 /*==== Textarea Theme ====*/
@@ -193,7 +193,7 @@ label,legend  {@extend %inline-block;}
 
     &.radius-height {
         --white-space : calc(var(--padding)*2.5);
-        &::before {#{$direction-start}: 5px;}
+        &::before {#{$direction-start}: #{REM(5)}}
     }
 
     /*==== icon Position ====*/
@@ -210,7 +210,7 @@ label,legend  {@extend %inline-block;}
 
         &.radius-height {
             &::before {#{$direction-start}: auto;}
-            &::before {#{$direction-end}: 5px;}
+            &::before {#{$direction-end}: #{REM(5)}}
         }
     }
 
@@ -248,13 +248,13 @@ label,legend  {@extend %inline-block;}
     /*==== Checkbox & Radio ====*/
     &[data-type="checkbox"], &[data-type="radio"] {
         span::before {
-            top: -1px;
-            padding: 4px;
+            top: -#{REM(1)};
+            padding: #{REM(4)};
             font-size: 0.8em;
             line-height: 1;
-            --border-size  : 2px;
+            --border-size  : #{REM(2)};
             --border-color : var(--color);
-            @include margin-inline(5px, 'end');
+            @include margin-inline(#{REM(5)}, 'end');
             border-radius: var(--radius);
             background-color: var(--background);
             border: var(--border-size) solid var(--border-color);
@@ -273,19 +273,19 @@ label,legend  {@extend %inline-block;}
     /*==== Switches ====*/
     &[data-type="switch"] .switch {
         display: flex;
-        padding: 0 3px;
+        padding: 0 #{REM(3)};
         line-height: 1;
-        padding-top: 2px;
+        padding-top: #{REM(2)};
         position: relative;
         width: var(--height);
         background-color: transparent;
-        border: 1px solid var(--color);
+        border: #{REM(1)} solid var(--color);
         height: calc(var(--height) / 2);
         border-radius: calc(var(--height) / 2);
         transition: background-color 0.3s, border-color 0.3s;
         /*==== Extends ====*/
         // @extend %inline-block;
-        @include margin-inline(5px, 'end');
+        @include margin-inline(#{REM(5)}, 'end');
         /*==== Handle ====*/
         &::before {
             content: '';

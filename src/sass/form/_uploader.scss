@@ -9,7 +9,7 @@
     /*==== Standard Input ====*/
     &:not([data-uploader="advanced"]) {
         @extend .form-control;
-        line-height: calc(var(--height) - 3px);
+        line-height: calc(var(--height) - #{REM(3)});
         /*==== Value Text ====*/ 
         &::before {
             line-height: inherit;
@@ -26,7 +26,7 @@
             padding: 0 var(--padding);
             color:var(--primary-reverse);
             background-color: var(--primary-color);
-            line-height: calc(var(--height) - 3px);
+            line-height: calc(var(--height) - #{REM(3)});
         }
     }
 

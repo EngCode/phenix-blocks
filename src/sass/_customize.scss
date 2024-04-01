@@ -123,3 +123,10 @@
 @import 'utilities/visibility'; //===> Visibility Utilities
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 @import 'utilities/effects';    //===> Phenix Effects Assets
+
+/*==== 2K and 4K Responsive Support ====*/
+@media screen and (min-width: 2500px) {
+    body, html {font-size: 2vh;}
+    .container, .container-xl, .container-lg {max-width: 95%;}
+}
+

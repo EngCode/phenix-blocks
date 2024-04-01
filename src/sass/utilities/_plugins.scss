@@ -99,7 +99,7 @@
     }
 
     /*==== image type ====*/
-    .px-media-img {opacity: 0; pointer-events: none;}
+    &[style*="background-image"] .px-media-img {opacity: 0; pointer-events: none;}
 }
 
 .object-fit {-o-object-fit: cover;object-fit: cover;}

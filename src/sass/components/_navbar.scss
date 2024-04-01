@@ -13,7 +13,7 @@
 /*==== Phenix Navigation ====*/
 .px-navigation {
     /*==== CSS Options ====*/
-    --font-size : 14px;
+    --font-size : #{REM(14)};
     --space-in  : #{REM(10)};
     --height : #{REM(34)};
     --color  : var(--gray-color);
@@ -67,12 +67,12 @@
     /*==== Submenu Theme ====*/
     .submenu {
         /*==== CSS Options ====*/
-        --height : 30px;
-        --radius : 5px;
+        --height : #{REM(30)};
+        --radius : #{REM(5)};
         --background : white;
         --space-in : #{REM(15)};
         --color : var(--gray-color);
-        --box-shadow : 3px 3px 8px 0 rgba(0,0,0, 0.05);
+        --box-shadow : #{REM(3)} #{REM(3)} #{REM(8)} 0 rgba(0,0,0, 0.05);
         /*==== ... ====*/
         color: var(--color);
         font-weight : normal;
@@ -100,7 +100,7 @@
     .arrow-icon::before {
         line-height: inherit;
         float: $direction-end;
-        margin-#{$direction-start}: 8px;
+        margin-#{$direction-start}: #{REM(8)};
     }
 
     /*==== Submenu Prepare ====*/
@@ -110,7 +110,7 @@
                 top: 100%;
                 width: 100%;
                 display: none;
-                margin-top: -2px;
+                margin-top: -#{REM(2)};
                 position: absolute;
                 min-width: REM(190);
                 #{$direction-start}: 0;
@@ -143,7 +143,7 @@
 /*==== Phenix Custom Menu ====*/
 .px-custom-menu {
     /*==== CSS Options ====*/
-    --width : 300px;
+    --width : #{REM(300)};
     /*==== Standard ====*/
     position: fixed;
     top: 0;
@@ -180,7 +180,7 @@
         width: var(--width);
         max-height: 95vh;
         overflow-y: auto;
-        border-radius: 5px;
+        border-radius: #{REM(5)};
         /*==== Submenu Arrow ====*/
         .arrow-icon::before {
             line-height: inherit;
@@ -189,8 +189,8 @@
 
         /*==== Menu ====*/
         > ul {
-            font-size: 15px;
-            line-height: 35px;
+            font-size: #{REM(15)};
+            line-height: #{REM(35)};
             /*==== Links ====*/
             li > a {
                 color: inherit;
@@ -205,26 +205,26 @@
             .icon {
                 top: -1px;
                 line-height: 1;
-                font-size: 15px;
+                font-size: #{REM(15)};
                 font-style: normal;
                 text-align: center;
                 position: relative;
                 @extend %inline-block;
                 color: var(--primary-color);
-                margin-#{$direction-end}: 5px;
+                margin-#{$direction-end}: #{REM(5)};
             }
             /*==== Submenu ====*/
             .submenu, .megamenu {
                 list-style: none;
                 margin: 0;
-                padding: 8px;
+                padding: #{REM(8)};
                 background-color: rgba(#000, 0.03);
                 display: none;
-                line-height: 28px;
-                font-size: 14px;
+                line-height: #{REM(28)};
+                font-size: #{REM(14)};
                 color: var(--gray-color);
                 font-weight: normal;
-                border-radius: 4px;
+                border-radius: #{REM(4)};
             }
         }
     }

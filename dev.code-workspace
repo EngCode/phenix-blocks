@@ -33,7 +33,7 @@
 			
 		],
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "frontdemo",
+		"liveServer.settings.multiRootWorkspaceName": "sugarworld",
 		"liveServer.settings.port": 5502,
 	}
 }

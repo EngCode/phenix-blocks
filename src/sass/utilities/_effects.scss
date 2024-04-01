@@ -78,64 +78,64 @@
     --shadow-color-light: 255,255,255;
 }
 
-.bx-shadow-dp-1  {--box-shadow: 3px 3px 6px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-dp-2  {--box-shadow: 5px 5px 10px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-dp-3  {--box-shadow: 0 0 15px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-dp-4  {--box-shadow: 10px 10px 20px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-dp-5  {--box-shadow: 0 0 30px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-dp-1y {--box-shadow: -5px 20px 10px -20px rgba(var(--shadow-color-dark), 0.15);}
-.bx-shadow-dp-2y {--box-shadow: -5px 19px 15px -10px rgba(var(--shadow-color-dark), 0.15);}
+.bx-shadow-dp-1  {--box-shadow: #{REM(3)} #{REM(3)} #{REM(6)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-dp-2  {--box-shadow: #{REM(5)} #{REM(5)} #{REM(10)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-dp-3  {--box-shadow: 0 0 #{REM(15)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-dp-4  {--box-shadow: #{REM(10)} #{REM(10)} #{REM(20)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-dp-5  {--box-shadow: 0 0 #{REM(30)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-dp-1y {--box-shadow:  -#{REM(5)} #{REM(20)} #{REM(10)} -#{REM(20)} rgba(var(--shadow-color-dark), 0.15);}
+.bx-shadow-dp-2y {--box-shadow:  -#{REM(5)} #{REM(19)} #{REM(15)} -#{REM(10)} rgba(var(--shadow-color-dark), 0.15);}
 
 //====> TailWind Shadows <====//
-.bx-shadow-tw     {--box-shadow: 0px 1px 3px rgba(var(--shadow-color-dark), 0.1), 0px 1px 2px -1px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-tw-sm  {--box-shadow: 0px 1px 2px rgba(var(--shadow-color-dark), 0.05);}
-.bx-shadow-tw-md  {--box-shadow: 0px 4px 6px -1px rgba(var(--shadow-color-dark), 0.1), 0px 2px 4px -2px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-tw-lg  {--box-shadow: 0px 10px 15px -3px rgba(var(--shadow-color-dark), 0.1), 0px 4px 6px -4px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-tw-xl  {--box-shadow: 0px 20px 25px -5px rgba(var(--shadow-color-dark), 0.1), 0px 8px 10px -6px rgba(var(--shadow-color-dark), 0.1);}
-.bx-shadow-tw-2xl {--box-shadow: 0px 25px 50px -12px rgba(var(--shadow-color-dark), 0.25);}
+.bx-shadow-tw     {--box-shadow: 0px #{REM(1)} #{REM(3)} rgba(var(--shadow-color-dark), 0.1), 0px #{REM(1)} #{REM(2)} -#{REM(1)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-tw-sm  {--box-shadow: 0px #{REM(1)} #{REM(2)} rgba(var(--shadow-color-dark), 0.05);}
+.bx-shadow-tw-md  {--box-shadow: 0px #{REM(4)} #{REM(6)} -#{REM(1)} rgba(var(--shadow-color-dark), 0.1), 0px #{REM(2)} #{REM(4)} -#{REM(2)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-tw-lg  {--box-shadow: 0px #{REM(10)} #{REM(15)} -#{REM(3)} rgba(var(--shadow-color-dark), 0.1), 0px #{REM(4)} #{REM(6)} -#{REM(4)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-tw-xl  {--box-shadow: 0px #{REM(20)} #{REM(25)}  -#{REM(5)} rgba(var(--shadow-color-dark), 0.1), 0px #{REM(8)} #{REM(10)} -#{REM(6)} rgba(var(--shadow-color-dark), 0.1);}
+.bx-shadow-tw-2xl {--box-shadow: 0px #{REM(25)} #{REM(50)} -#{REM(12)} rgba(var(--shadow-color-dark), 0.25);}
 
 /*==== Glass Shadows Effects ====*/
 [class*="bx-shadow-gls"] {backdrop-filter: blur(2px);}
-.bx-shadow-gls-dp-1 {--box-shadow: -4px -4px 8px 0px rgba(var(--shadow-color-dark), 0.2) inset, 3px 3px 10px -1px rgba(var(--shadow-color-dark), 0.3), 1px 1px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -1px -1px 0px 0px rgba(var(--shadow-color-light), 0.3) inset;}
-.bx-shadow-gls-dp-2 {--box-shadow: -4px -4px 12px 0px rgba(var(--shadow-color-dark), 0.3) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 2px 4px 8px 0px rgba(var(--shadow-color-dark), 0.4), 2px 2px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
-.bx-shadow-gls-dp-3 {--box-shadow: -8px -8px 12px 0px rgba(var(--shadow-color-dark), 0.5) inset, 5px 4px 15px 0px rgba(var(--shadow-color-light), 0.3) inset, 4px 8px 8px 0px rgba(var(--shadow-color-dark), 0.4), 3px 3px 1px 0px rgba(var(--shadow-color-light), 0.5) inset, -2px -2px 1px 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-1 {--box-shadow: -#{REM(4)} -#{REM(4)} #{REM(8)} 0px rgba(var(--shadow-color-dark), 0.2) inset, #{REM(3)} #{REM(3)} #{REM(10)} -#{REM(1)} rgba(var(--shadow-color-dark), 0.3), #{REM(1)} #{REM(1)} #{REM(1)} 0px rgba(var(--shadow-color-light), 0.5) inset, -#{REM(1)} -#{REM(1)} 0px 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-2 {--box-shadow: -#{REM(4)} -#{REM(4)} #{REM(12)} 0px rgba(var(--shadow-color-dark), 0.3) inset, #{REM(5)} #{REM(4)} #{REM(15)} 0px rgba(var(--shadow-color-light), 0.3) inset, #{REM(2)} #{REM(4)} #{REM(8)} 0px rgba(var(--shadow-color-dark), 0.4), #{REM(2)} #{REM(2)} #{REM(1)} 0px rgba(var(--shadow-color-light), 0.5) inset, -#{REM(2)} -#{REM(2)} #{REM(1)} 0px rgba(var(--shadow-color-light), 0.3) inset;}
+.bx-shadow-gls-dp-3 {--box-shadow: -#{REM(8)} -#{REM(8)} #{REM(12)} 0px rgba(var(--shadow-color-dark), 0.5) inset, #{REM(5)} #{REM(4)} #{REM(15)} 0px rgba(var(--shadow-color-light), 0.3) inset, #{REM(4)} #{REM(8)} #{REM(8)} 0px rgba(var(--shadow-color-dark), 0.4), #{REM(3)} #{REM(3)} #{REM(1)} 0px rgba(var(--shadow-color-light), 0.5) inset, -#{REM(2)} -#{REM(2)} #{REM(1)} 0px rgba(var(--shadow-color-light), 0.3) inset;}
 
 /*==== Text Shadows ====*/
-.tx-shadow-dp-1  {text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);}
-.tx-shadow-dp-2  {text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);}
-.tx-shadow-dp-3  {text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16);}
-.tx-shadow-dp-4  {text-shadow: 10px 10px 20px rgba(#000, 0.1);}
-.tx-shadow-dp-5  {text-shadow: 0 0 30px rgba(#000, 0.1);}
-.tx-shadow-dp-1y {text-shadow: -5px 19px 15px -10px rgba(0, 0, 0, 0.8);}
+.tx-shadow-dp-1  {text-shadow: #{REM(1)} #{REM(1)} #{REM(2)} rgba(0, 0, 0, 0.1);}
+.tx-shadow-dp-2  {text-shadow: #{REM(2)} #{REM(2)} #{REM(3)} rgba(0, 0, 0, 0.15);}
+.tx-shadow-dp-3  {text-shadow: 0px #{REM(3)} #{REM(3)} rgba(0, 0, 0, 0.16);}
+.tx-shadow-dp-4  {text-shadow: #{REM(10)} #{REM(10)} #{REM(20)} rgba(#000, 0.1);}
+.tx-shadow-dp-5  {text-shadow: 0 0 #{REM(30)} rgba(#000, 0.1);}
+.tx-shadow-dp-1y {text-shadow:  -#{REM(5)} -#{REM(19)} #{REM(15)} -#{REM(10)} rgba(0, 0, 0, 0.8);}
 
 //====> TailWind Text Shadows <====//
-.tx-shadow-tw     {text-shadow: 0px 1px 3px rgba(#000, 0.1), 0px 1px 2px -1px rgba(#000, 0.1);}
-.tx-shadow-tw-sm  {text-shadow: 0px 1px 2px rgba(#000, 0.05);}
-.tx-shadow-tw-md  {text-shadow: 0px 4px 6px -1px rgba(#000, 0.1), 0px 2px 4px -2px rgba(#000, 0.1);}
-.tx-shadow-tw-lg  {text-shadow: 0px 10px 15px -3px rgba(#000, 0.1), 0px 4px 6px -4px rgba(#000, 0.1);}
-.tx-shadow-tw-xl  {text-shadow: 0px 20px 25px -5px rgba(#000, 0.1), 0px 8px 10px -6px rgba(#000, 0.1);}
-.tx-shadow-tw-2xl {text-shadow: 0px 25px 50px -12px rgba(#000, 0.25);}
+.tx-shadow-tw     {text-shadow: 0px #{REM(1)} #{REM(3)} rgba(#000, 0.1), 0px #{REM(1)} #{REM(2)} -#{REM(1)} rgba(#000, 0.1);}
+.tx-shadow-tw-sm  {text-shadow: 0px #{REM(1)} #{REM(2)} rgba(#000, 0.05);}
+.tx-shadow-tw-md  {text-shadow: 0px #{REM(4)} #{REM(6)} -#{REM(1)} rgba(#000, 0.1), 0px #{REM(2)} #{REM(4)} -#{REM(2)} rgba(#000, 0.1);}
+.tx-shadow-tw-lg  {text-shadow: 0px #{REM(10)} #{REM(15)} -#{REM(3)} rgba(#000, 0.1), 0px #{REM(4)} #{REM(6)} -#{REM(4)} rgba(#000, 0.1);}
+.tx-shadow-tw-xl  {text-shadow: 0px #{REM(20)} #{REM(25)}  -#{REM(5)} rgba(#000, 0.1), 0px #{REM(8)} #{REM(10)} -#{REM(6)} rgba(#000, 0.1);}
+.tx-shadow-tw-2xl {text-shadow: 0px #{REM(25)} #{REM(50)} -#{REM(12)} rgba(#000, 0.25);}
 
 /*==== Animations Effect ====*/
 @keyframes floating {
     0% {transform: translateY(0);}
-    50% {transform: translateY(-10px);}
+    50% {transform: translateY(-#{REM(10)});}
     100% {transform: translateY(0);}
 }
 
 @keyframes shaking {
     0% {transform: translateX(0);}
-    25% {transform: translateX(-10px) rotate(-5deg) scale(1.01);}
-    50% {transform: translateX(10px) rotate(5deg) scale(1.03);}
-    75% {transform: translateX(-10px) rotate(-5deg) scale(1.05);}
+    25% {transform: translateX(-#{REM(10)}) rotate(-5deg) scale(1.01);}
+    50% {transform: translateX(#{REM(10)}) rotate(5deg) scale(1.03);}
+    75% {transform: translateX(-#{REM(10)}) rotate(-5deg) scale(1.05);}
     100% {transform: translateX(0);}
 }
 
 @keyframes shakingInf {
     0% {transform: translateX(0);}
-    6% {transform: translateX(-5px) rotate(-3deg) scale(1.01);}
-    10% {transform: translateX(5px) rotate(3deg) scale(1.03);}
-    20% {transform: translateX(-5px) rotate(-3deg) scale(1.05);}
+    6% {transform: translateX(-#{REM(5)}) rotate(-3deg) scale(1.01);}
+    10% {transform: translateX(#{REM(5)}) rotate(3deg) scale(1.03);}
+    20% {transform: translateX(-#{REM(5)}) rotate(-3deg) scale(1.05);}
     30% {transform: translateX(0);}
     100% {transform: translateX(0);}
 }

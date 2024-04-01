@@ -39,8 +39,8 @@ h6 {font-size: REM(17);}
 
     /*==== Text Sizes ====*/
     .fs-inherit {font-size: inherit;}
-    .fs#{$infix}-12,.tiny-text#{$infix} {font-size: 12px;}
-    .fs#{$infix}-13 {font-size: 13px;}
+    .fs#{$infix}-12,.tiny-text#{$infix} {font-size: #{REM(12)};}
+    .fs#{$infix}-13 {font-size: #{REM(13)};}
     .fs#{$infix}-14,.small-text#{$infix} {font-size: REM(14);}
     .fs#{$infix}-15 {font-size: REM(15);}
     .fs#{$infix}-16 {font-size: REM(16);}

@@ -13,10 +13,10 @@
     &:not([class*="border-"]) { border-color: rgba(#000, 0.1); }
 }
 
-.divider-b, .divider-y {border-bottom-width: 1px;}
-.divider-t, .divider-y {border-top-width: 1px;}
-.divider-s, .divider-x {border-#{$direction-start}-width: 1px;}
-.divider-e, .divider-x {border-#{$direction-end}-width: 1px;}
+.divider-b, .divider-y {border-bottom-width: #{REM(1)};}
+.divider-t, .divider-y {border-top-width: #{REM(1)};}
+.divider-s, .divider-x {border-#{$direction-start}-width: #{REM(1)};}
+.divider-e, .divider-x {border-#{$direction-end}-width: #{REM(1)};}
 .divider-b:last-child {border-width: 0;}
 
 /*==== Borders Style ====*/
@@ -57,35 +57,35 @@
 /*==== Borders Size ====*/
 @mixin make-borders ($infix:'') {
     /*==== All ====*/
-    .border#{$infix}-1 {border-width: 1px;}
-    .border#{$infix}-2 {border-width: 2px;}
-    .border#{$infix}-3 {border-width: 3px;}
-    .border#{$infix}-4 {border-width: 4px;}
-    .border#{$infix}-5 {border-width: 5px;}
+    .border#{$infix}-1 {border-width: #{REM(1)};}
+    .border#{$infix}-2 {border-width: #{REM(2)};}
+    .border#{$infix}-3 {border-width: #{REM(3)};}
+    .border#{$infix}-4 {border-width: #{REM(4)};}
+    .border#{$infix}-5 {border-width: #{REM(5)};}
     /*==== Bottom ====*/
-    .border#{$infix}-bottom-1 {border-bottom-width: 1px;}
-    .border#{$infix}-bottom-2 {border-bottom-width: 2px;}
-    .border#{$infix}-bottom-3 {border-bottom-width: 3px;}
-    .border#{$infix}-bottom-4 {border-bottom-width: 4px;}
-    .border#{$infix}-bottom-5 {border-bottom-width: 5px;}
+    .border#{$infix}-bottom-1 {border-bottom-width: #{REM(1)};}
+    .border#{$infix}-bottom-2 {border-bottom-width: #{REM(2)};}
+    .border#{$infix}-bottom-3 {border-bottom-width: #{REM(3)};}
+    .border#{$infix}-bottom-4 {border-bottom-width:  #{REM(4)};}
+    .border#{$infix}-bottom-5 {border-bottom-width:  #{REM(5)};}
     /*==== Top ====*/
-    .border#{$infix}-top-1 {border-top-width: 1px;}
-    .border#{$infix}-top-2 {border-top-width: 2px;}
-    .border#{$infix}-top-3 {border-top-width: 3px;}
-    .border#{$infix}-top-4 {border-top-width: 4px;}
-    .border#{$infix}-top-5 {border-top-width: 5px;}
+    .border#{$infix}-top-1 {border-top-width: #{REM(1)};}
+    .border#{$infix}-top-2 {border-top-width: #{REM(2)};}
+    .border#{$infix}-top-3 {border-top-width: #{REM(3)};}
+    .border#{$infix}-top-4 {border-top-width:  #{REM(4)};}
+    .border#{$infix}-top-5 {border-top-width:  #{REM(5)};}
     /*==== Start ====*/
-    .border#{$infix}-start-1 {border-#{$direction-start}-width: 1px;}
-    .border#{$infix}-start-2 {border-#{$direction-start}-width: 2px;}
-    .border#{$infix}-start-3 {border-#{$direction-start}-width: 3px;}
-    .border#{$infix}-start-4 {border-#{$direction-start}-width: 4px;}
-    .border#{$infix}-start-5 {border-#{$direction-start}-width: 5px;}
+    .border#{$infix}-start-1 {border-#{$direction-start}-width: #{REM(1)};}
+    .border#{$infix}-start-2 {border-#{$direction-start}-width: #{REM(2)};}
+    .border#{$infix}-start-3 {border-#{$direction-start}-width: #{REM(3)};}
+    .border#{$infix}-start-4 {border-#{$direction-start}-width:  #{REM(4)};}
+    .border#{$infix}-start-5 {border-#{$direction-start}-width:  #{REM(5)};}
     /*==== End ====*/
-    .border#{$infix}-end-1 {border-#{$direction-end}-width: 1px;}
-    .border#{$infix}-end-2 {border-#{$direction-end}-width: 2px;}
-    .border#{$infix}-end-3 {border-#{$direction-end}-width: 3px;}
-    .border#{$infix}-end-4 {border-#{$direction-end}-width: 4px;}
-    .border#{$infix}-end-5 {border-#{$direction-end}-width: 5px;}
+    .border#{$infix}-end-1 {border-#{$direction-end}-width: #{REM(1)};}
+    .border#{$infix}-end-2 {border-#{$direction-end}-width: #{REM(2)};}
+    .border#{$infix}-end-3 {border-#{$direction-end}-width: #{REM(3)};}
+    .border#{$infix}-end-4 {border-#{$direction-end}-width:  #{REM(4)};}
+    .border#{$infix}-end-5 {border-#{$direction-end}-width:  #{REM(5)};}
 }
 
 @include make-borders();
@@ -105,15 +105,15 @@
 }
 
 /*==== Radius Sizes ====*/
-.radius-ty      {--radius: 2px;}
-.radius-sm      {--radius: 4px;}
-.radius-md      {--radius: 6px;}
-.radius-lg      {--radius: 8px;}
-.radius-xl      {--radius: 10px;}
-.radius-xxl     {--radius: 15px;}
+.radius-ty      {--radius: #{REM(2)};}
+.radius-sm      {--radius: #{REM(4)};}
+.radius-md      {--radius: #{REM(6)};}
+.radius-lg      {--radius: #{REM(8)};}
+.radius-xl      {--radius: #{REM(10)};}
+.radius-xxl     {--radius: #{REM(15)};}
 .radius-circle  {--radius: 50%;}
 .radius-height  {--radius: var(--height);}
-.radius-rounded {--radius: 62px;}
+.radius-rounded {--radius: #{REM(62)};}
 .radius-section {--radius: #{REM(150)};}
 .radius-section-x2 {--radius: #{REM(250)};}
 .radius-section-x5 {--radius: #{REM(500)};}

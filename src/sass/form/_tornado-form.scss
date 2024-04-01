@@ -33,22 +33,22 @@
     overflow: hidden;
     @extend %fast-motion;
     /*======== Theme ========*/
-    padding: 30px;
+    padding: #{REM(30)};
     background-color:var(--forms-darker-bg);
     text-align: center;
-    font-size:13px;
+    font-size: #{REM(13)};
     /*======== Hidden Input ========*/
     input[type="file"] {
         position:absolute;
-        top:15px;
+        top: #{REM(15)};
         #{$direction-start}:0;
         #{$direction-end}:0;
         cursor:pointer;
         margin:0;
         width:auto;
-        height: 88px;
+        height: #{REM(88)};
         max-height: 100%;
-        z-index:5;
+        z-index: 5;
         opacity: 0;
     }
     /*======== Border ========*/
@@ -57,26 +57,26 @@
         z-index: 1;
         content:'';
         display: block;
-        top:15px;
-        bottom: 15px;
-        #{$direction-start}:15px;
-        #{$direction-end}:15px;
-        max-height: 95px;
+        top: #{REM(15)};
+        bottom: #{REM(15)};
+        #{$direction-start}: #{REM(15)};
+        #{$direction-end}: #{REM(15)};
+        max-height: #{REM(95)};
         border:var(--forms-border);
     }
     /*======== icon ========*/
     &::before {
         display: block;
         margin: auto;
-        font-size:1.75rem;
-        width:40px;
-        height: 40px;
-        line-height: 40px;
+        font-size: 1.75rem;
+        width: #{REM(40)};
+        height: #{REM(40)};
+        line-height: #{REM(40)};
     }
     /*======== Text ========*/
     span {
         display: block;
-        height: 25px;
+        height: #{REM(25)};
         @extend %nowrap;
     }
     /*======== Heighlight ========*/
@@ -93,7 +93,7 @@
         &[data-size="square"] {padding-bottom:100%;}
         /*==== Resize Fix ====*/
         &[data-size] {
-            height: 125px;
+            height: #{REM(125)};
             input[type="file"] {height: 100%;}
             .files {
                 #{$direction-start}:0;
@@ -101,7 +101,7 @@
                 position: absolute;
                 bottom: 0;
                 margin: 0;
-                li{padding: 0 15px;}
+                li{padding: 0 #{REM(15)};}
             }
         }
     }
@@ -122,23 +122,23 @@
     /*======== Files ========*/
     .files {
         @extend %reset-space;
-        margin: 0 -15px;
-        margin-bottom: -25px;
-        margin-top: 25px;
+        margin: 0 -#{REM(15)};
+        margin-bottom: -#{REM(25)};
+        margin-top: #{REM(25)};
         li {
             @extend %nowrap;
             text-align: $direction;
-            line-height: 25px;
+            line-height: #{REM(25)};
             color:var(--primary-color);
             background-color: #fff;
             padding:0;
-            margin-bottom: 10px;
-            &:not(:last-child){border-bottom: 1px solid rgba(#000,0.1);}
+            margin-bottom: #{REM(10)};
+            &:not(:last-child){border-bottom: #{REM(1)} solid rgba(#000,0.1);}
             &::before {
                 font-family: var(--icons-font);
-                margin-#{$direction-end}:5px;
+                margin-#{$direction-end}: #{REM(5)};
                 position: relative;
-                top:-1px;
+                top: -#{REM(1)};
                 @extend %inline-block;
                 // @extend %ti-file-new,:before;
             }
@@ -155,7 +155,7 @@
         /*==== Controls ====*/
         .controls-wrap {
             @extend .col-auto;
-            padding-#{$direction-end}:15px;
+            padding-#{$direction-end}: #{REM(15)};
         }
         /*==== Button ====*/
         .add-item,.remove-item {
@@ -165,7 +165,7 @@
             text-align: center;
             border-radius: var(--forms-radius);
             color:#FFF;
-            &::before{top:-2px;}
+            &::before{top: -#{REM(2)};}
         }
         /*==== Button Colors ====*/
         .add-item{background:var(--success-color);}
@@ -200,22 +200,22 @@
     .rate-icon,.text {
         @extend %inline-block;
         color:var(--gray-color);
-        font-size:17px;
-        margin-#{$direction-end}:5px;
-        &::before{top:-3px;}
+        font-size: #{REM(17)};
+        margin-#{$direction-end}: #{REM(5)};
+        &::before{top: -#{REM(3)};}
         &.active {color:var(--warning-color);}
     }
     /*==== Sizes ====*/
     &.small {
         height: var(--forms-height-small);
         line-height: var(--forms-height-small);
-        font-size:15px;
+        font-size: #{REM(15)};
     }
     /*==== Sizes ====*/
     &.large {
         height: var(--forms-height-large);
         line-height: var(--forms-height-large);
-        font-size:20px;
+        font-size: #{REM(200)};
     }
 }
 

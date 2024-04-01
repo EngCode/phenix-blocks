@@ -125,13 +125,13 @@
 
     /*===== Outline ===*/
     &.outline {
-        --border-size  : 2px;
+        --border-size  : #{REM(2)};
         --border-color : rgba(0,0,0, 0.1);
         --background : transparent;
         // line-height : calc(var(--height) - 3px);
     }
 
-    // &.btn-icon {line-height: calc(var(--height) - 2px);}
+    // &.btn-icon {line-height: calc(var(--height) - #{REM(2)});}
 
     &.btn-icon{
         /*==== icon ====*/
@@ -242,7 +242,7 @@ button, input {
     &.btn, &.btn.outline {
         line-height: normal;
         &:not(.labeled)::before {
-            top: -1px;
+            top: -#{REM(1)};
             line-height: 1;
             position: relative;
         }

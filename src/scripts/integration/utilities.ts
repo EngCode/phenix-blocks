@@ -379,7 +379,7 @@ PhenixElements.prototype.utilities = function (options?:{
                     }
             
                     //===> Run the Typewriter <===//
-                    typeWriter.style.height = Phenix(typeWriter).height() + 'px';
+                    typeWriter.style.height = Phenix(document).toREM(Phenix(typeWriter).height());
                     tinyTypewriter(typeWriter, {items: items, cursor: false, startDelay: 700});
                 }), true);
             }

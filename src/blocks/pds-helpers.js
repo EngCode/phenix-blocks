@@ -272,7 +272,7 @@ window.PhenixBlocks = {
                             //===> Custom Positions <===//
                             if (parseInt(sub_value) > 50 || parseInt(sub_value) <= -1) {
                                 //===> Set Custom Positions <===//
-                                CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
@@ -288,7 +288,7 @@ window.PhenixBlocks = {
                             if (parseInt(sub_value) === -5) { blockProps.className += ` ${sub_option}-auto`; }
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100 || parseInt(sub_value) < -6) {
-                                CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
@@ -303,7 +303,7 @@ window.PhenixBlocks = {
                             if (parseInt(sub_value) < -1) return;
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100) {
-                                CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
@@ -321,7 +321,7 @@ window.PhenixBlocks = {
                         //===> Border Values <===//
                         else if (sub_option.includes('border-') && !sub_option.includes('border-style') && !sub_option.includes('bound-')) {
                             //===> Set Custom Border <===//
-                            CustomCSS[`--${sub_option}`] = `${sub_value}px`;
+                            CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                             //===> Add the ClassName <===//
                             let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                 customClass = `${classOption}-custom`,

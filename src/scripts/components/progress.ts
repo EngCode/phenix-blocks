@@ -115,9 +115,9 @@ PhenixElements.prototype.progress = function (options?:{
             if (!progress.classList.contains('px-progress-bar-js')) {
                 //====> Base Background <====//
                 progress.classList.add('bg-alpha-10', 'overflow-hidden', 'px-progress-bar-js');
-                progress.style.height = `${size}px`;
-                progress.style.lineHeight = `calc(${size}px)`;
-                progress.style.setProperty('--width', `${progress.clientWidth}px`);
+                progress.style.height = `${Phenix(document).toREM(size)}`;
+                progress.style.lineHeight = `calc(${Phenix(document).toREM(size)})`;
+                progress.style.setProperty('--width', `${Phenix(document).toREM(progress.clientWidth)}`);
                 //====> Set Progress <====//
                 setProgress(progressBar);
 

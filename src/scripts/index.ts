@@ -592,6 +592,11 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         element.addEventListener("error", event => element.setAttribute("src", trueUrl));
     };
 
+    /*====> Convert Pixels to REM <====*/
+    toREM(size, base = 16) {
+        return `${(parseFloat(size) / base)}rem`;
+    };
+
     /*====> Define Information <====*/
     height; getCSS; direction; getURL
     inView; viewport; copyrights;

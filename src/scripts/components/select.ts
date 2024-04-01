@@ -215,8 +215,8 @@ PhenixElements.prototype.select = function (options?:{
                 //====> Tag Remover Handler <====//
                 tag_padding_fixer = () => {
                     //===> Remover Size Fixer <===//
-                    if(Phenix(document).direction() === 'ltr') return 'padding-left: calc(1.5em + 8px)';
-                    else return 'padding-right: calc(1.5em + 8px)';
+                    if(Phenix(document).direction() === 'ltr') return `padding-left: calc(1.5em + ${Phenix(document).toREM(8)})`;
+                    else return `padding-right: calc(1.5em + ${Phenix(document).toREM(8)})`;
                 },
                 //====> Default Value Setter <====//
                 get_default_value = () => {

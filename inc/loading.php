@@ -11,7 +11,7 @@
     <div class="content-box" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
         <!-- Spinner -->
         <?php if (isset($loading_opts["type"]) && $loading_opts["type"] == "image") : ?>
-            <img class="spinner" width="2.625rem" height="2.625rem" src="<?php echo $loading_opts["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
+            <img class="spinner" src="<?php echo $loading_opts["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" style="width:2.625rem; height: 2.625rem" />
         <?php 
             elseif (isset($loading_opts["type"]) && $loading_opts["type"] == "code") :
                 echo $loading_opts["code"]; 

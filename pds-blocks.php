@@ -11,7 +11,7 @@
   * Text Domain: pds-blocks
   * Domain Path: /languages
 **/
-  
+
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 

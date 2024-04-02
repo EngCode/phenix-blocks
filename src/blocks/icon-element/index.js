@@ -41,7 +41,7 @@ registerBlockType(metadata, {
             height: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42),
             lineHeight: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)
         }}>{attributes.type === "custom" ? 
-            <img alt="icon" width={attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)} height={attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)} src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
+            <img alt="icon" className='fluid' src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
         : null}</TagName>);
     }
 });

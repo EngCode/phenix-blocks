@@ -37,11 +37,11 @@ registerBlockType(metadata, {
 
         //===> Render <===//
         return (<TagName {...blockProps} style={{
-            width: attributes.style.dimensions ? attributes.style.dimensions+'px' : 42+'px',
-            height: attributes.style.dimensions ? attributes.style.dimensions+'px' : 42+'px',
-            lineHeight: attributes.style.dimensions ? attributes.style.dimensions+'px' : 42+'px'
+            width: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42),
+            height: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42),
+            lineHeight: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)
         }}>{attributes.type === "custom" ? 
-            <img alt="icon" width={attributes.style.dimensions ? attributes.style.dimensions : 42} height={attributes.style.dimensions ? attributes.style.dimensions : 42} src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
+            <img alt="icon" width={attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)} height={attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)} src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
         : null}</TagName>);
     }
 });

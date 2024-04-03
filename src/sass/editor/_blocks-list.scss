@@ -267,6 +267,8 @@ body.block-editor-page {
 	}
 
 	/*==== Toolbar ====*/
+	.block-editor-block-toolbar {background-color: #fff;}
+	
 	.block-editor-block-toolbar__slot > .components-accessible-toolbar {
 		border: 0 none;
 		border-#{$direction-end}: 1px solid rgba(#000, 0.4);
@@ -353,7 +355,7 @@ body.block-editor-page {
 .components-popover__content {width: auto!important;max-width: 280px;}
 
 /*==== Pattern Editor Wrapper ====*/
-.edit-site-visual-editor.is-focus-mode .components-resizable-box__container {height: auto!important;}
+// .edit-site-visual-editor.is-focus-mode .components-resizable-box__container {height: auto!important;}
 
 /*==== Site Icon Fix ====*/
 .edit-site-site-icon__image {padding: 10px; padding-#{$direction-end}: 15px;}

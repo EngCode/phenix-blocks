@@ -120,7 +120,7 @@ export default function Edit(props) {
                 </div>
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title={__("Query by Terms", "pds-blocks")} initialOpen={true}>
+            <PanelBody title={__("Query by Taxonomies", "pds-blocks")} initialOpen={true}>
                 {/*===> Taxonomies Types <===*/}
                 <div className='mb-15' key={`taxonomies-types-wrapper`}>
                     <SelectFromData key={`taxonomies-types`} name="taxonomies-types" options="taxonomies" multiple={true}
@@ -135,7 +135,7 @@ export default function Edit(props) {
                     return (
                         <div key={`${tax_type}-wrapper`} className='mb-15'>
                             <SelectFromData key={`${tax_type}-terms-${uniqueKey}`} name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}
-                                label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
+                                label={__(`Terms of "${tax_type}"`, "pds-blocks")}
                                 value={attributes.query[`${tax_type}-terms`] || ["none"]}
                                 valueSetter={(target) => set_query(target, false)} 
                             />

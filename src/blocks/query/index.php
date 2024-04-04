@@ -26,10 +26,19 @@ function px_query_render($block_attributes, $content) {
         foreach ($query['taxonomies-types'] as $taxonomy) {
             //===> Push the Taxonomy and its Terms <===//
             if (isset($query[$taxonomy.'-terms'])) {
+                //===> Get Terms <===//
+                $terms = array();
+                foreach ($query[$taxonomy.'-terms'] as $term) {
+                    $terms[] = (int) $term;
+                }
+
+                //===> Add the Taxonomy <===//
                 $query['tax_query'][] = array(
+                    'terms' => $terms,
+                    'operator' => 'IN',
                     'field' => 'term_id',
                     'taxonomy' => $taxonomy,
-                    'terms' => $query[$taxonomy.'-terms']
+                    'include_children' => true,
                 );
             }
         }
@@ -39,7 +48,7 @@ function px_query_render($block_attributes, $content) {
         unset($query[$taxonomy.'-terms']);
     }
 
-    var_dump($query);
+    // var_dump($query);
 
     //===> Render Options <===//
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);
@@ -92,7 +101,10 @@ function px_query_render($block_attributes, $content) {
     if (isset($query['post_type'])) {
         $the_query = new WP_Query($query);
     }
-
+    
+    if (isset($query['tax_query'])) {
+        var_dump($the_query->have_posts());
+    }
     //==== Start Query =====//
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//

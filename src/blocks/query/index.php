@@ -33,6 +33,10 @@ function px_query_render($block_attributes, $content) {
                 );
             }
         }
+
+        //===> Remove unnecessary Args from the Query <===//
+        unset($query['taxonomies-types']);
+        unset($query['taxonomies-terms']);
     }
 
     //===> Render Options <===//
@@ -48,8 +52,13 @@ function px_query_render($block_attributes, $content) {
     global $wp_query;
 
     /*===> Query Items <===*/
-    if(!isset($query['per_page'])) { $query['per_page'] = 5; $query['posts_per_page'] = 5; }
-    else { $query['per_page'] = (int) $query['per_page']; $query['posts_per_page'] = (int) $query['per_page']; }
+    if(!isset($query['per_page'])) {
+        $query['per_page'] = 5;
+        $query['posts_per_page'] = 5;
+    } else {
+        $query['per_page'] = (int) $query['per_page'];
+        $query['posts_per_page'] = (int) $query['per_page'];
+    }
 
     /*===> Check Pagination <===*/
     if (isset($query['pagination']) && $query['pagination'] === true) {
@@ -64,22 +73,30 @@ function px_query_render($block_attributes, $content) {
             $query['s'] = $_GET["s"];
 
             //===> Get the Post Type <===//
-            if (isset($_GET["post_type"])) { $query['post_type'] = $_GET["post_type"]; }
+            if (isset($_GET["post_type"])) {
+                $query['post_type'] = $_GET["post_type"];
+            }
 
             //===> Set Default Type <===//
-            else if (!isset($query['post_type']) || empty($query['post_type'])) { $query['post_type'] = "post"; };
+            else if (!isset($query['post_type']) || empty($query['post_type'])) {
+                $query['post_type'] = "post";
+            };
         }
         //===> if its Disable Delete the Prop <===//
         else { unset($query['s']); }
     };
 
     //===> Create New Query <===//
-    if (isset($query['post_type'])) { $the_query = new WP_Query($query); }
+    if (isset($query['post_type'])) {
+        $the_query = new WP_Query($query);
+    }
 
     //==== Start Query =====//
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//
-        if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
+        if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
+            echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>';
+        }
 
         //===> Custom Loop <===//
         if (isset($query['post_type']) && !empty($query['post_type']) && $the_query->have_posts()) {
@@ -97,7 +114,9 @@ function px_query_render($block_attributes, $content) {
         };
 
         //===> End Grid Wrapper <===//
-        if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '</div>'; }
+        if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
+            echo '</div>';
+        }
 
         //=== Pagination ===//
         if (isset($query['pagination']) && $query['pagination'] === true) {

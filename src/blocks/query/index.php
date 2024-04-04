@@ -101,10 +101,7 @@ function px_query_render($block_attributes, $content) {
     if (isset($query['post_type'])) {
         $the_query = new WP_Query($query);
     }
-    
-    if (isset($query['tax_query'])) {
-        var_dump($the_query->have_posts());
-    }
+
     //==== Start Query =====//
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//

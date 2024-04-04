@@ -367,6 +367,10 @@
 
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
+        //===> Define GB Types <===//
+        $pds_gb_cpt = array();
+
+        //===> Get Post-Types <===//
         foreach(get_option('pds_types') as $post_type) {
             $post_type = (array) $post_type;
             //===> if is Posts Disable Core <===//
@@ -383,12 +387,7 @@
 
             //===> Disable Gutenberg for the Post-Type <===//
             if (isset($post_type['disable-editor'])) {
-                add_filter('use_block_editor_for_post_type', 'pds_disable_gutenberg', 10, 2);
-
-                function pds_disable_gutenberg($current_status, $type) {
-                    if ($type === $post_type["name"]) return false;
-                    return $current_status;
-                }
+                array_push($pds_gb_cpt, $post_type["name"]);
             }
 
             //===> Register Strings for Translation <===//
@@ -400,6 +399,16 @@
                     pll_register_string("pds-blocks", $post_type["rewrite"]);
                 }
             }
+        }
+
+        //====> Disable Editor for Specific Types <====//
+        if (!function_exists('pds_cpt_disable_gutenberg')) {
+            function pds_cpt_disable_gutenberg($current_status, $type) {
+                if (in_array($type, $pds_gb_cpt)) return false;
+                return $current_status;
+            }
+    
+            add_filter('use_block_editor_for_post_type', 'pds_cpt_disable_gutenberg', 10, 2);
         }
     endif;
 
@@ -430,20 +439,6 @@
             ));
         }
     endif;
-    
-    //===> Redirect to Dashboard <===//
-    // if (!function_exists('pds_dash_redirect')) :
-    //     /**
-    //      * Admin Page for Phenix Blocks
-    //      * @since Phenix Blocks 1.0
-    //      * @return void
-    //     */
-    //     function pds_dash_redirect(){
-    //         wp_redirect(admin_url('admin.php?page=pds-dashboard'));
-    //     }
-
-    //     add_action('load-index.php', 'pds_dash_redirect');
-    // endif;
 
     //====> Setup Users Roles <====//
     if (!function_exists('pds_users_roles_register')) :

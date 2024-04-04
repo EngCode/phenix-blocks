@@ -46,14 +46,11 @@ export default class SelectFromData extends Component {
                 apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
                     //===> Define Types <===//
                     const new_state = this.state,
-                          new_options_list = [];
+                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
 
                     //===> Get Current Active Types <===//
                     for (const [key, value] of Object.entries(taxonomies)) {
-                        //===> Exclude the Core Types <===//
-                        if ("nav_menu" !== key) {
-                            new_options_list.push({"value":key, "label":value.name});
-                        }
+                        new_options_list.push({"value":key, "label":value.name});
                     }
 
                     //===> Set new Options List <===//
@@ -66,29 +63,25 @@ export default class SelectFromData extends Component {
                 });
             }
             //====> for taxonomies Terms <====//
-            else if (this.props.options === "taxonomies-terms") {
+            if (this.props.options === "taxonomies-terms") {
                 //===> Fetch Taxonomies <===//
-                apiFetch({path: `wp/v2/${this.props.termType}`}).then(taxonomies => {
-                    console.log(taxonomies);
-                    // //===> Define Types <===//
-                    // const new_state = this.state,
-                    //       new_options_list = [];
+                apiFetch({path: `wp/v2/${this.props.termType}`}).then(terms => {
+                    //===> Define Types <===//
+                    const new_state = this.state,
+                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
 
-                    // //===> Get Current Active Types <===//
-                    // for (const [key, value] of Object.entries(taxonomies)) {
-                    //     //===> Exclude the Core Types <===//
-                    //     if ("nav_menu" !== key) {
-                    //         new_options_list.push({"value":key, "label":value.name});
-                    //     }
-                    // }
+                    //===> Get Current Active Types <===//
+                    for (const [key, value] of Object.entries(terms)) {
+                        new_options_list.push({"value": decodeURIComponent(value.slug), "label": value.name});
+                    }
 
-                    // //===> Set new Options List <===//
-                    // if (new_options_list !== this.state.options) {
-                    //     new_state.dataFetched += 1;
-                    //     new_state.options = new_options_list;
-                    //     //===> Set State <===//
-                    //     this.setState({...new_state});
-                    // }
+                    //===> Set new Options List <===//
+                    if (new_options_list !== this.state.options) {
+                        new_state.dataFetched += 1;
+                        new_state.options = new_options_list;
+                        //===> Set State <===//
+                        this.setState({...new_state});
+                    }
                 });
             }
             //====> for Post-Types <====//
@@ -123,7 +116,7 @@ export default class SelectFromData extends Component {
                 apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
                     //===> Define Types <===//
                     const new_state = this.state,
-                          new_options_list = [];
+                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
             
                     //===> Get Current Roles <===//
                     for (const [key, value] of Object.entries(options.users_roles)) {
@@ -145,7 +138,7 @@ export default class SelectFromData extends Component {
                     //===> Create New Array <===//
                     const new_state = this.state,
                           template_parts = options.theme_parts,
-                          new_options_list = [];
+                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
 
                     //===> Loop Through Theme-Parts <===//
                     if(template_parts) Object.entries(template_parts).forEach(([key, value]) => {

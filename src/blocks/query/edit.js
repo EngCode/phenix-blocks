@@ -120,25 +120,27 @@ export default function Edit(props) {
                 </div>
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title={__("Query Terms", "pds-blocks")} initialOpen={true}>
+            <PanelBody title={__("Query by Terms", "pds-blocks")} initialOpen={true}>
                 {/*===> Taxonomies Types <===*/}
                 <div className='mb-15'>
                     <SelectFromData name="taxonomies-types" options="taxonomies" multiple={true}
-                        label={__("By Taxonomies", "pds-blocks")}
-                        value={attributes.query?.post_type || "default"}
+                        label={__("Taxonomies Types", "pds-blocks")}
+                        value={attributes.query['taxonomies-types'] || ["none"]}
                         valueSetter={(target) => set_query(target, false)} 
                     />
                 </div>
 
                 {/*===> Taxonomies Terms <===*/}
-                {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].forEach(tax_type => {
-                    <div className='mb-15'>
-                        <SelectFromData name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}
-                            label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
-                            value={attributes.query?.post_type || "default"}
-                            valueSetter={(target) => set_query(target, false)} 
-                        />
-                    </div>
+                {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].map((tax_type) => {
+                    if(tax_type !== '') return (
+                        <div key={`${tax_type}-${uniqueKey}`} className='mb-15'>
+                            <SelectFromData key={`${tax_type}-terms-${uniqueKey}`} name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}
+                                label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
+                                value={attributes.query[`${tax_type}-terms`] || ["none"]}
+                                valueSetter={(target) => set_query(target, false)} 
+                            />
+                        </div>
+                    )
                 }) : null}
             </PanelBody>
             {/*===> Widget Panel <===*/}

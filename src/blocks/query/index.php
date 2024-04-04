@@ -29,15 +29,17 @@ function px_query_render($block_attributes, $content) {
                 $query['tax_query'][] = array(
                     'field' => 'term_id',
                     'taxonomy' => $taxonomy,
-                    'terms' => $block_attributes[$taxonomy.'-terms']
+                    'terms' => $query[$taxonomy.'-terms']
                 );
             }
         }
 
         //===> Remove unnecessary Args from the Query <===//
         unset($query['taxonomies-types']);
-        unset($query['taxonomies-terms']);
+        unset($query[$taxonomy.'-terms']);
     }
+
+    var_dump($query);
 
     //===> Render Options <===//
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);

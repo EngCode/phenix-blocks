@@ -66,13 +66,14 @@ export default class SelectFromData extends Component {
             if (this.props.options === "taxonomies-terms") {
                 //===> Fetch Taxonomies <===//
                 apiFetch({path: `wp/v2/${this.props.termType}`}).then(terms => {
+                    console.log(terms);
                     //===> Define Types <===//
                     const new_state = this.state,
                           new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
 
                     //===> Get Current Active Types <===//
                     for (const [key, value] of Object.entries(terms)) {
-                        new_options_list.push({"value": decodeURIComponent(value.slug), "label": value.name});
+                        new_options_list.push({"value": value.id, "label": value.name});
                     }
 
                     //===> Set new Options List <===//

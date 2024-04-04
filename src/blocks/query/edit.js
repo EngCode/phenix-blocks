@@ -79,22 +79,22 @@ export default function Edit(props) {
                 <div className='row gpx-10 mb-10'>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-10'>
-                        <SelectFromData name="post_type" options="post-types" label={__("Post-Type", "pds-blocks")} value={attributes.query?.post_type || "default"} valueSetter={(target) => set_query(target, false)} multiple />
+                        <SelectFromData key="post_type" name="post_type" options="post-types" label={__("Post-Type", "pds-blocks")} value={attributes.query?.post_type || "default"} valueSetter={(target) => set_query(target, false)} multiple />
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-10'>
-                        <SelectFromData label={__("Card Template", "pds-blocks")} name="template_part" options="template-parts" value={attributes.template_part} valueSetter={set_value} />
+                        <SelectFromData label={__("Card Template", "pds-blocks")} key="template_part" name="template_part" options="template-parts" value={attributes.template_part} valueSetter={set_value} />
                     </div>
                     {/*===> Column <===*/}
                     {!attributes.query?.post_type?.includes("default") ? <div className='col-6 mb-10'>
-                        <PhenixSelect label={__("Order", "pds-blocks")} name="order" value={attributes.query?.order} onChange={set_query} options={[
+                        <PhenixSelect label={__("Order", "pds-blocks")} key="order" name="order" value={attributes.query?.order} onChange={set_query} options={[
                             { label: __('Oldest', "pds-blocks"), value: 'ASC' },
                             { label: __('Newest', "pds-blocks"),  value: 'DESC' },
                         ]} />
                     </div> : null}
                     {/*===> Column <===*/}
                     {!attributes.query?.post_type?.includes("default") ? <div className='col-6 mb-10'>
-                        <PhenixSelect label={__("OrderBy", "pds-blocks")} name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.orderBy} />
+                        <PhenixSelect label={__("OrderBy", "pds-blocks")} key="orderby" name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.orderBy} />
                     </div> : null}
                     {/*===> Column <===*/}
                     {!attributes.query?.post_type?.includes("default") ? <div className='col-12 mb-10'>
@@ -122,8 +122,8 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Query by Terms", "pds-blocks")} initialOpen={true}>
                 {/*===> Taxonomies Types <===*/}
-                <div className='mb-15'>
-                    <SelectFromData name="taxonomies-types" options="taxonomies" multiple={true}
+                <div className='mb-15' key={`taxonomies-types-wrapper`}>
+                    <SelectFromData key={`taxonomies-types`} name="taxonomies-types" options="taxonomies" multiple={true}
                         label={__("Taxonomies Types", "pds-blocks")}
                         value={attributes.query['taxonomies-types'] || ["none"]}
                         valueSetter={(target) => set_query(target, false)} 
@@ -132,8 +132,8 @@ export default function Edit(props) {
 
                 {/*===> Taxonomies Terms <===*/}
                 {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].map((tax_type) => {
-                    if(tax_type !== '') return (
-                        <div key={`${tax_type}-${uniqueKey}`} className='mb-15'>
+                    return (
+                        <div key={`${tax_type}-wrapper`} className='mb-15'>
                             <SelectFromData key={`${tax_type}-terms-${uniqueKey}`} name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}
                                 label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
                                 value={attributes.query[`${tax_type}-terms`] || ["none"]}

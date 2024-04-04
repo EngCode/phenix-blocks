@@ -11,7 +11,6 @@ export default class SelectFromData extends Component {
     //===> States <===//
     state = {
         dataFetched: 0,
-        taxonomyType: "category",
         options: [{label: __("Default", "pds-blocks"), value: ""}],
     };
 
@@ -69,7 +68,7 @@ export default class SelectFromData extends Component {
             //====> for taxonomies Terms <====//
             else if (this.props.options === "taxonomies-terms") {
                 //===> Fetch Taxonomies <===//
-                apiFetch({path: `wp/v2/taxonomies/${this.props.termType}`}).then(taxonomies => {
+                apiFetch({path: `wp/v2/${this.props.termType}`}).then(taxonomies => {
                     console.log(taxonomies);
                     // //===> Define Types <===//
                     // const new_state = this.state,

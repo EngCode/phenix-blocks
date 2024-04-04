@@ -122,17 +122,24 @@ export default function Edit(props) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Query Terms", "pds-blocks")} initialOpen={true}>
                 {/*===> Taxonomies Types <===*/}
-                <SelectFromData name="taxonomies-types" options="taxonomies" multiple={true}
-                    label={__("By Taxonomies", "pds-blocks")}
-                    value={attributes.query?.post_type || "default"}
-                    valueSetter={(target) => set_query(target, false)} 
-                />
+                <div className='mb-15'>
+                    <SelectFromData name="taxonomies-types" options="taxonomies" multiple={true}
+                        label={__("By Taxonomies", "pds-blocks")}
+                        value={attributes.query?.post_type || "default"}
+                        valueSetter={(target) => set_query(target, false)} 
+                    />
+                </div>
+
                 {/*===> Taxonomies Terms <===*/}
-                <SelectFromData name="taxonomies-terms" options="taxonomies-terms" termType={'category'} multiple={true}
-                    label={__("By Taxonomies", "pds-blocks")}
-                    value={attributes.query?.post_type || "default"}
-                    valueSetter={(target) => set_query(target, false)} 
-                />
+                {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].forEach(tax_type => {
+                    <div className='mb-15'>
+                        <SelectFromData name="taxonomies-terms" options="taxonomies-terms" termType={tax_type} multiple={true}
+                            label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
+                            value={attributes.query?.post_type || "default"}
+                            valueSetter={(target) => set_query(target, false)} 
+                        />
+                    </div>
+                }) : null}
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>

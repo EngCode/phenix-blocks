@@ -17,9 +17,23 @@ function px_query_render($block_attributes, $content) {
     $grid_classes = "";
     $query = $block_attributes['query'];
 
-    // 'tax_query' => array(
-    //     array('taxonomy' => 'category', 'field' => 'term_id', 'terms' => $cat->cat_ID),
-    // );
+    //===> Generate Taxonomies Query <===//
+    if (isset($query['taxonomies-types'])) {
+        //===> Create Taxonomies in Query <===//
+        $query['tax_query'] = array();
+
+        //===> for Each Taxonomy Type <===//
+        foreach ($query['taxonomies-types'] as $taxonomy) {
+            //===> Push the Taxonomy and its Terms <===//
+            if (isset($query[$taxonomy.'-terms'])) {
+                $query['tax_query'][] = array(
+                    'field' => 'term_id',
+                    'taxonomy' => $taxonomy,
+                    'terms' => $block_attributes[$taxonomy.'-terms']
+                );
+            }
+        }
+    }
 
     //===> Render Options <===//
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);

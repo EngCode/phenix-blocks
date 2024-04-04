@@ -133,7 +133,7 @@ export default function Edit(props) {
                 {/*===> Taxonomies Terms <===*/}
                 {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].forEach(tax_type => {
                     <div className='mb-15'>
-                        <SelectFromData name="taxonomies-terms" options="taxonomies-terms" termType={tax_type} multiple={true}
+                        <SelectFromData name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}
                             label={__(`${tax_type.toUpperCase()} Terms`, "pds-blocks")}
                             value={attributes.query?.post_type || "default"}
                             valueSetter={(target) => set_query(target, false)} 

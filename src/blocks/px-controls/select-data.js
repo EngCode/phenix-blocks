@@ -11,6 +11,7 @@ export default class SelectFromData extends Component {
     //===> States <===//
     state = {
         dataFetched: 0,
+        taxonomyType: "category",
         options: [{label: __("Default", "pds-blocks"), value: ""}],
     };
 
@@ -63,6 +64,32 @@ export default class SelectFromData extends Component {
                         //===> Set State <===//
                         this.setState({...new_state});
                     }
+                });
+            }
+            //====> for taxonomies Terms <====//
+            else if (this.props.options === "taxonomies-terms") {
+                //===> Fetch Taxonomies <===//
+                apiFetch({path: `wp/v2/taxonomies/${this.props.termType}`}).then(taxonomies => {
+                    console.log(taxonomies);
+                    // //===> Define Types <===//
+                    // const new_state = this.state,
+                    //       new_options_list = [];
+
+                    // //===> Get Current Active Types <===//
+                    // for (const [key, value] of Object.entries(taxonomies)) {
+                    //     //===> Exclude the Core Types <===//
+                    //     if ("nav_menu" !== key) {
+                    //         new_options_list.push({"value":key, "label":value.name});
+                    //     }
+                    // }
+
+                    // //===> Set new Options List <===//
+                    // if (new_options_list !== this.state.options) {
+                    //     new_state.dataFetched += 1;
+                    //     new_state.options = new_options_list;
+                    //     //===> Set State <===//
+                    //     this.setState({...new_state});
+                    // }
                 });
             }
             //====> for Post-Types <====//
@@ -160,7 +187,7 @@ export default class SelectFromData extends Component {
 
     render () {
         //===> Properties <===//
-        const {options, name, type, size, label, value, multiple, valueSetter, className, search } = this.props;
+        const {options, name, type, size, label, value, multiple, valueSetter, className, search, termType } = this.props;
         const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
 
         //===> Render Component <===//

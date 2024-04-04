@@ -121,7 +121,18 @@ export default function Edit(props) {
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Query Terms", "pds-blocks")} initialOpen={true}>
-                
+                {/*===> Taxonomies Types <===*/}
+                <SelectFromData name="taxonomies-types" options="taxonomies" multiple={true}
+                    label={__("By Taxonomies", "pds-blocks")}
+                    value={attributes.query?.post_type || "default"}
+                    valueSetter={(target) => set_query(target, false)} 
+                />
+                {/*===> Taxonomies Terms <===*/}
+                <SelectFromData name="taxonomies-terms" options="taxonomies-terms" termType={'category'} multiple={true}
+                    label={__("By Taxonomies", "pds-blocks")}
+                    value={attributes.query?.post_type || "default"}
+                    valueSetter={(target) => set_query(target, false)} 
+                />
             </PanelBody>
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>

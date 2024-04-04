@@ -365,10 +365,12 @@
         }
     }
 
+    
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
         //===> Define GB Types <===//
         $pds_gb_cpt = array();
+        global $pds_gb_cpt;
 
         //===> Get Post-Types <===//
         foreach(get_option('pds_types') as $post_type) {
@@ -402,14 +404,12 @@
         }
 
         //====> Disable Editor for Specific Types <====//
-        if (!function_exists('pds_cpt_disable_gutenberg')) {
-            function pds_cpt_disable_gutenberg($current_status, $type) {
-                if (in_array($type, $pds_gb_cpt)) return false;
-                return $current_status;
-            }
-    
-            add_filter('use_block_editor_for_post_type', 'pds_cpt_disable_gutenberg', 10, 2);
-        }
+        add_filter('use_block_editor_for_post_type', function ($status, $type) use ($pds_gb_cpt) {
+            //===> if the Post-Type has Editor Disabled <===//
+            if (in_array($type, $pds_gb_cpt)) return false;
+            //===> Else Return the Status <===//
+            return $status;
+        }, 10, 2);
     endif;
 
     //===> Set Taxonomies <===//

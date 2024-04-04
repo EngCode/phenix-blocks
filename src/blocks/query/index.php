@@ -17,6 +17,10 @@ function px_query_render($block_attributes, $content) {
     $grid_classes = "";
     $query = $block_attributes['query'];
 
+    // 'tax_query' => array(
+    //     array('taxonomy' => 'category', 'field' => 'term_id', 'terms' => $cat->cat_ID),
+    // );
+
     //===> Render Options <===//
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);
 

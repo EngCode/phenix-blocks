@@ -83,12 +83,19 @@
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
+                    <div class="control-icon far fa-link">
+                        <input type="text" name="rewrite" class="form-control radius-sm fs-13" placeholder="<?php echo __('Rewrite Slug', "pds-blocks");?>">
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="col-12 col-md-6">
+                    <!-- Form Control -->
                     <div class="control-icon far fa-image">
                         <input type="text" name="menu_icon" class="form-control radius-sm fs-13" placeholder="<?php echo __('Icon', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                     <!-- Form Control -->
                     <div class="control-icon far fa-file-alt">
                         <select name="template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Pattern Template' ,'phenix'); ?>">
@@ -122,12 +129,17 @@
                         <!-- Form Control -->
                         <label class="col-4 small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
                             <input type="checkbox" name="hierarchical" />
-                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("is Hierarchical", "pds-blocks"); ?></span>
+                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("Hierarchical", "pds-blocks"); ?></span>
+                        </label>
+                        <!-- Form Control -->
+                        <label class="col-4 small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
+                            <input type="checkbox" name="disable-editor" />
+                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("Classic Editor?", "pds-blocks"); ?></span>
                         </label>
                         <!-- Form Control -->
                         <label class="col-4 small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
                             <input type="checkbox" name="enable" checked />
-                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable Type ?", "pds-blocks"); ?></span>
+                            <span class="fas fa-check radius-circle tx-icon"><?php echo __("Enable Type?", "pds-blocks"); ?></span>
                         </label>
                     </div>
                     <!-- // Elements Group -->

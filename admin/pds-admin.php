@@ -381,10 +381,24 @@
                 pds_cpt_create($post_type);
             }
 
-            //===> Register String for Translation <===//
+            //===> Disable Gutenberg for the Post-Type <===//
+            if (isset($post_type['disable-editor'])) {
+                add_filter('use_block_editor_for_post_type', 'pds_disable_gutenberg', 10, 2);
+
+                function pds_disable_gutenberg($current_status, $type) {
+                    if ($type === $post_type["name"]) return false;
+                    return $current_status;
+                }
+            }
+
+            //===> Register Strings for Translation <===//
             if (function_exists('pll_register_string')) {
                 pll_register_string("pds-blocks", $post_type["label"]);
                 pll_register_string("pds-blocks", $post_type["label_singular"]);
+
+                if (isset($post_type["rewrite"])) {
+                    pll_register_string("pds-blocks", $post_type["rewrite"]);
+                }
             }
         }
     endif;

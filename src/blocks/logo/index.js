@@ -23,6 +23,7 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
+        const toREM = (size, base = 16) => `${(parseFloat(size) / base)}rem`;
         const siteUrl = attributes.site_link,
               blockProps = useBlockProps.save();
 
@@ -34,8 +35,8 @@ registerBlockType(metadata, {
         //===> Render <===//
         return (
             <a { ...blockProps }>
-                <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "width": `${parseInt(attributes.width) ? parseInt(attributes.width) : 'auto'}`, "height": `${Phenix(document).toREM(attributes.size)}` }} />
-                {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "width": `${parseInt(attributes.size)}`, "height": `${Phenix(document).toREM(attributes.size)}` }} /> : null}
+                <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "width": `${parseInt(attributes.width) ? parseInt(attributes.width) : 'auto'}`, "height": `${toREM(attributes.size)}` }} />
+                {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "width": `${parseInt(attributes.size)}`, "height": `${toREM(attributes.size)}` }} /> : null}
             </a>
         );
     }

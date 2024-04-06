@@ -74,6 +74,23 @@ Alternatively, you can download the plugin using the download button on this pag
 
 this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
 
+### Hotfixes v1.0.6:
+
+1. Template Parts Block Listing Fix.
+2. Logo REM Function fix.
+3. Taxonomies Creator Labels translation remove.
+4. Remove Pro Fonts for Official Release.
+5. Fix Loading Media Uploader opens multiple times.
+6. RM... deprecated emoji style remover
+7. Convert to CDN Assets and WebFonts.
+8. Upgrade Query Block to get posts by taxonomies.
+9. adding FHD to the scaling responsive 2k/4k.
+11. Update CPT Creator, and Query Block to get posts by taxonomies.
+12. WP 6.5 Update Fixes.
+13. fix loading spinner size.
+14. icons sizes to rem.
+
+
 ### License
 Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah-ramadan). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 

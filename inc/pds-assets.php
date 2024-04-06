@@ -29,7 +29,7 @@ if (!function_exists('phenix_core')) :
         //====> define props <====//
         // $assets_path = plugin_dir_path(__DIR__);
         $assets_url = plugin_dir_url(__DIR__)."assets/";
-        // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
+        // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
 
         //====> Phenix CSS <====//
         if (!is_rtl()) :

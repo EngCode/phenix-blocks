@@ -21,6 +21,7 @@ import MediaUploader from '../px-controls/uploader';
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
     //===> Set Attributes <===//
+    const toREM = (size, base = 16) => `${(parseFloat(size) / base)}rem`;
     const set_size = size => setAttributes({ size });
     const set_width = width => setAttributes({ width });
     const set_responsive = responsive => setAttributes({ responsive });
@@ -122,8 +123,8 @@ export default function Edit({ attributes, setAttributes }) {
 
         {/* //====> Edit Layout <====// */}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<a { ...blockProps }>
-            <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "width": `${parseInt(attributes.width) ? parseInt(attributes.width) : 'auto'}`, "height": `${Phenix(document).toREM(attributes.size)}` }} />
-            {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "width": `${parseInt(attributes.size)}`, "height": `${Phenix(document).toREM(attributes.size)}` }} /> : null}
+            <img src={attributes.logo} className={attributes.responsive ? 'hidden-md-down' : ''} alt={blockProps.title} style={{ "width": `${parseInt(attributes.width) ? parseInt(attributes.width) : 'auto'}`, "height": `${toREM(attributes.size)}` }} />
+            {attributes.responsive ?  <img src={attributes.use_fevicon ? attributes.fevicon : attributes.mobile_logo} className='hidden-lg-up' alt={blockProps.title} style={{ "width": `${parseInt(attributes.size)}`, "height": `${toREM(attributes.size)}` }} /> : null}
         </a>}
     </>);
 }

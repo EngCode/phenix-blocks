@@ -6,10 +6,10 @@
 
     //===> Phenix Main Fonts <===//
     $fonts_list = [
-        "somar-rounded" => "Somar Rounded",
-        "somar-sans" => "Somar Sans",
         "tarek-v" => "Tarek V",
         "biosans" => "Bio Sans [EN]",
+        "somar-sans" => "Somar Sans",
+        "somar-rounded" => "Somar Rounded",
         "ara-hamah-al-horra" => "Ara Hamah AlHorra",
     ];
 

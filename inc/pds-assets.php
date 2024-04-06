@@ -27,8 +27,9 @@ if (!function_exists('phenix_core')) :
     //=====> Phenix Assets [Head] <=====//
     function phenix_core () {
         //====> define props <====//
-        $assets_path = plugin_dir_path(__DIR__);
-        $assets_url  = plugin_dir_url(__DIR__)."assets/";
+        // $assets_path = plugin_dir_path(__DIR__);
+        $assets_url = plugin_dir_url(__DIR__)."assets/";
+        // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
 
         //====> Phenix CSS <====//
         if (!is_rtl()) :
@@ -75,11 +76,18 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font;
         $final_files = array();
-        $assets_path = plugin_dir_path(__DIR__);
-        $assets_url  = plugin_dir_url(__DIR__)."assets/";
+        // $assets_path = plugin_dir_path(__DIR__);
+        // $assets_url = plugin_dir_url(__DIR__)."assets/";
+        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
-        $custom_fonts = ["somar-rounded","somar-sans", "neo-sans-w23", "din-next-lt-arabic", "tarek-v", "ara-hamah-al-horra"];
+        $custom_fonts = [
+            "biosans",
+            "tarek-v",
+            "somar-sans",
+            "somar-rounded",
+            "ara-hamah-al-horra",
+        ];
 
         //====> Define the Fonts List <====//
         $current_fonts = [

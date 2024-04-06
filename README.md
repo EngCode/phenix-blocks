@@ -93,3 +93,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 <a href="https://phenixthemes.com/portfolio/" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
 <a href="https://phenixthemes.com/services/" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
 <a href="https://phenixthemes.com/demo/" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>
+
+
+#### DEV NOTES v1.0.6 and up:
+  - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self-Hosted"), (Phenix Assets => "CDN Hosted").

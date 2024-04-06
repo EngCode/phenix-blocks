@@ -15,6 +15,12 @@ Unleash Creativity with Ease and Transform Your Web Design Experience
 == Description ==
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
+### **Source Files**
+ - Blocks Source => src/blocks/
+ - Front-End (UI) CSS Source => src/sass/
+ - Front-End (UI) Source => src/scripts/
+ - Animations Source CSS => src/animations/
+
 ### **References & Documentations**
 
  Plugin | Theme | Blocks | Design | Website

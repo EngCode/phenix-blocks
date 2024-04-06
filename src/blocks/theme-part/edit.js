@@ -33,7 +33,7 @@ export default function Edit({ attributes, setAttributes }) {
             <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip' style={{width: 175}} data-title={__("Template Name", "pds-blocks")}>
-                    <SelectFromData key={"part_name"} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
+                    <SelectFromData key={`${uniqueKey}-part_name-toolbar`} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
                 </div>
             </Toolbar>
         </BlockControls>
@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "pds-blocks")} initialOpen={true}>
                 {/*=== Template Name ===*/}
-                <SelectFromData key={"part_name"} label={__("Template Name", "pds-blocks")} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
+                <SelectFromData key={`${uniqueKey}-part_name`} label={__("Template Name", "pds-blocks")} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

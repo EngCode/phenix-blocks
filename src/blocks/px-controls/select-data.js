@@ -139,33 +139,37 @@ export default class SelectFromData extends Component {
                     //===> Create New Array <===//
                     const new_state = this.state,
                           template_parts = options.theme_parts,
-                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
+                          new_options_list = [];
 
                     //===> Loop Through Theme-Parts <===//
-                    if(template_parts) Object.entries(template_parts).forEach(([key, value]) => {
-                        //===> if its direct theme-part <===//
-                        if(typeof(value) === 'string') {
-                            new_options_list.push(<option key={`${key}-${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
-                        }
-                        //===> if its nested theme-part in a directory <===//
-                        else {
-                            //===> Define Directory Files <===//
-                            let files_list = [];
-                            //===> Loop Through Files <===//
-                            Object.entries(value).forEach(([key2, value]) => {
-                                //===> add the file to the list <===//
-                                files_list.push(<option key={`${key2}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
-                            });
-                            //===> Push the Options Group <===//
-                            new_options_list.push(<optgroup key={`${key}-group`} label={`${key}`}>{files_list}</optgroup>);
-                        }
-                    });
+                    if(template_parts) {
+                        Object.entries(template_parts).forEach(([key, value]) => {
+                            //===> if its direct theme-part <===//
+                            if(typeof(value) === 'string') {
+                                new_options_list.push(<option key={`${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
+                                console.log(new_options_list);
+                            }
+                            //===> if its nested theme-part in a directory <===//
+                            else {
+                                //===> Define Directory Files <===//
+                                let files_list = [];
+                                //===> Loop Through Files <===//
+                                Object.entries(value).forEach(([key2, value]) => {
+                                    //===> add the file to the list <===//
+                                    files_list.push(<option key={`${key}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
+                                });
+                                //===> Push the Options Group <===//
+                                new_options_list.push(<optgroup key={`${key}-group`} label={`${key}`}>{files_list}</optgroup>);
+                            }
+                        });
+                    }
 
                     //===> Set new Options List <===//
                     if (new_options_list !== this.state.options) {
                         new_state.dataFetched += 1;
                         new_state.options = new_options_list;
                         //===> Set State <===//
+                        console.log(new_state.options);
                        this.setState({...new_state});
                     }
                 });

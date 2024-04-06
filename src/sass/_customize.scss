@@ -124,12 +124,17 @@
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 @import 'utilities/effects';    //===> Phenix Effects Assets
 
-/*==== FHD and 2K Responsive Support ====*/
+/*==== FHD and UHD Responsive Support ====*/
 @media screen and (min-width: 1900px) {
     body, html {font-size: 1.75vh;}
 }
 
-/*==== 4K Responsive Support ====*/
+/*==== 2K (4/3 and 21/9) Responsive Support ====*/
+@media screen and (min-width: 1990px) and (max-width: 2200px) {
+    body, html {font-size: 1.5vh;}
+}
+
+/*==== 2K/4K Responsive Support ====*/
 @media screen and (min-width: 2500px) {
     body, html {font-size: 2vh;}
 }

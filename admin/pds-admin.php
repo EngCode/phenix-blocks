@@ -388,7 +388,7 @@
             }
 
             //===> Disable Gutenberg for the Post-Type <===//
-            if (isset($post_type['disable-editor'])) {
+            if (isset($post_type['disable-editor']) && $post_type['disable-editor'] === true) {
                 array_push($pds_gb_cpt, $post_type["name"]);
             }
 

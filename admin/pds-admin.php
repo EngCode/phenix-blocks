@@ -389,7 +389,7 @@
 
             //===> Disable Gutenberg for the Post-Type <===//
             if (isset($post_type['disable-editor']) && $post_type['disable-editor'] === true) {
-                array_push($pds_gb_cpt, $post_type["name"]);
+                $pds_gb_cpt[$post_type["name"]] = $post_type['disable-editor'];
             }
 
             //===> Register Strings for Translation <===//
@@ -406,7 +406,7 @@
         //====> Disable Editor for Specific Types <====//
         add_filter('use_block_editor_for_post_type', function ($status, $type) use ($pds_gb_cpt) {
             //===> if the Post-Type has Editor Disabled <===//
-            if (in_array($type, $pds_gb_cpt)) return false;
+            if (isset($pds_gb_cpt[$type]) && $pds_gb_cpt[$type] === true) return false;
             //===> Else Return the Status <===//
             return $status;
         }, 10, 2);

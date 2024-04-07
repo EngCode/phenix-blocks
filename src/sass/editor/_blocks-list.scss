@@ -4,7 +4,9 @@
 .editor-styles-wrapper {
 	background-color: var(--body-bg)!important;
 	font-family: var(--secondary-font)!important;
-	.block-editor-rich-text__editable:not([class*="color-"]):not([style*="color:"]) {color: inherit!important;}
+	.block-editor-rich-text__editable:not([class*="color-"]):not([style*="color:"]):not(.bg-clip-text) {
+		color: inherit!important;
+	}
 
 	/*==== Min Size for Empty Blocks ====*/
 	.wp-block>.block-editor-block-list__layout:empty {

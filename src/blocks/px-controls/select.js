@@ -12,9 +12,9 @@ export default class PhenixSelect extends Component {
     componentDidUpdate() { window.PhenixBlocks.componentsBuilder(); };
 
     //===> Component Rendered when Props Change <===//
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.value !== this.props.value || nextProps.options !== this.props.options);
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return (nextProps.value !== this.props.value || nextProps.options !== this.props.options);
+    // }
 
     render () {
         //===> Properties <===//

@@ -24,8 +24,9 @@ export default class StylesSet extends Component {
         //===> Properties <===//
         const PhenixBlocks = window.PhenixBlocks.dataLists.styles;
         const {attributes, options, mainSetter, colorSetter, bgOnly, objectSetter, setAttributes} = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-styles-option`;
+        const uniqueKey = 'x';//Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-styles-option`;
 
+        console.log(attributes);
         //===> Define Controls Options <===//
         const radius_sizes = PhenixBlocks.radius_sizes;
         const support_options = PhenixBlocks.support_options;

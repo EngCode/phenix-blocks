@@ -98,3 +98,26 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 #### DEV NOTES v1.0.6+:
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "CDN"), (Phenix Assets => "CDN") on "pre-release" only.
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self"), (Phenix Assets => "CDN") on "main" only.
+
+### Hot-fixes v1.0.7:
+
+1. Improve Responsive UHD Scaler.
+4. Add New Effects and Animations.
+2. Gradient Text Coloring Editing Style Fix.
+3. Media Uploader Control Multiple Popups Fix.
+
+### Hot-fixes v1.0.6:
+
+1. Template Parts Block Listing Fix.
+2. Logo REM Function fix.
+3. Taxonomies Creator Labels translation remove.
+4. Remove Pro Fonts for Official Release.
+5. Fix Loading Media Uploader opens multiple times.
+6. RM... deprecated emoji style remover
+7. Convert to CDN Assets and WebFonts.
+8. Upgrade Query Block to get posts by taxonomies.
+9. adding FHD to the scaling responsive 2k/4k.
+11. Update CPT Creator, and Query Block to get posts by taxonomies.
+12. WP 6.5 Update Fixes.
+13. fix loading spinner size.
+14. icons sizes to rem.

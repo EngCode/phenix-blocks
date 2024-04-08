@@ -21,7 +21,7 @@ export default class MediaUploader extends Component {
                         {/* label */}
                         {label ? <label className="mb-5">{label}</label> : ''}
                         {/* elements group */}
-                        <div className={`${className ? `${className}` : ""}`}>
+                        <div className={`${className ? `${className}` : ""} mouse-no-events`}>
                             {size === 'small' ?
                                 <div className='flexbox align-center-y align-between pd-5 border-solid border-1 border-alpha-15 radius-sm'>
                                     {!type || type === 'image' ? <img src={value} style={{"maxHeight": "1.5rem"}} /> : null}

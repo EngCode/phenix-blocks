@@ -74,7 +74,12 @@ Alternatively, you can download the plugin using the download button on this pag
 
 this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
 
-### Hotfixes v1.0.6:
+### Hot-fixes v1.0.7:
+
+1. Improve Responsive UHD Scaler.
+2. Gradient Text Coloring Editing Style Fix.
+
+### Hot-fixes v1.0.6:
 
 1. Template Parts Block Listing Fix.
 2. Logo REM Function fix.

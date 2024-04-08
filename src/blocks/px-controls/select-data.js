@@ -50,7 +50,11 @@ export default class SelectFromData extends Component {
 
                     //===> Get Current Active Types <===//
                     for (const [key, value] of Object.entries(taxonomies)) {
-                        new_options_list.push({"value":key, "label":value.name});
+                        //===> Exclude the Core Types <===//
+                        let isCoreType = false;
+                        ['nav_menu', 'wp_pattern'].forEach(keyword => key.includes(keyword) ? isCoreType = true : null);
+                        //===> If not Core Type Added it <===//
+                        if (!isCoreType) new_options_list.push({"value":key, "label":value.name});
                     }
 
                     //===> Set new Options List <===//
@@ -96,9 +100,10 @@ export default class SelectFromData extends Component {
                     //===> Get Current Active Types <===//
                     for (const [key, value] of Object.entries(post_types)) {
                         //===> Exclude the Core Types <===//
-                        if (!['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'].includes(key)) {
-                            new_options_list.push({"value":key, "label":value.name});
-                        }
+                        let isCoreType = false;
+                        ['attachment','nav_menu_item','wp_block','wp_navigation','wp_template','wp_template_part','wp_font'].forEach(keyword => key.includes(keyword) ? isCoreType = true : null);
+                        //===> If not Core Type Added it <===//
+                        if (!isCoreType) new_options_list.push({"value":key, "label":value.name});
                     }
             
                     //===> Set new Options List <===//

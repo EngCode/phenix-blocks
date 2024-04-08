@@ -105,6 +105,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 4. Add New Effects and Animations.
 2. Gradient Text Coloring Editing Style Fix.
 3. Media Uploader Control Multiple Popups Fix.
+4. Fix Select Re-render Options unexpectedly.
 
 ### Hot-fixes v1.0.6:
 

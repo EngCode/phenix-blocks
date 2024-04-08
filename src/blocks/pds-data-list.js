@@ -238,24 +238,28 @@ window.PhenixBlocks.dataLists = {
 
         gradients: [
             "bg-grade-primary",
+            "bg-grade-primary-dark",
+            "bg-grade-primary-purple",
+            "bg-grade-primary-offwhite",
+            
             "bg-grade-secondary",
-            "bg-grade-warning",
-            "bg-grade-danger",
-            "bg-grade-success",
-            "bg-grade-water",
+            "bg-grade-secondary-dark",
+            "bg-grade-secondary-offwhite",
+            
             "bg-grade-ice",
             "bg-grade-fire",
+            "bg-grade-water",
+            "bg-grade-danger",
             "bg-grade-purple",
-            "bg-grade-primary-offwhite",
-            "bg-grade-primary-dark",
-            "bg-grade-secondary-offwhite",
-            "bg-grade-secondary-dark",
+            "bg-grade-silver",
+            "bg-grade-warning",
+            "bg-grade-success",
+            "bg-grade-silver-2nd",
+            
+            "bg-grade-danger-purple",
             "bg-grade-primary-secondary",
             "bg-grade-primary-secondary-2nd",
-            "bg-grade-danger-purple",
-            "bg-grade-primary-purple",
-            "bg-grade-silver",
-            "bg-grade-silver-2nd",
+
             "bg-grade-offwhite-red",
             "bg-grade-offwhite-blue",
             "bg-grade-offwhite-green",
@@ -268,6 +272,11 @@ window.PhenixBlocks.dataLists = {
             "bg-grade-offwhite-blue-2nd ",
             "bg-grade-offwhite-blue-3rd",
             "bg-grade-offwhite-blue-4th",
+
+            "bg-grade-alpha-dark",
+            "bg-grade-alpha-darker",
+            "bg-grade-alpha-light",
+            "bg-grade-alpha-lighter",
         ],
 
         rotation: [
@@ -566,8 +575,9 @@ window.PhenixBlocks.dataLists = {
             "Default": [{ "label": "None", "value": ""}],
 
             "Background" : [
-                { "label": "Gradient-L", "value": "pds-hvr-gradient-move"},
-                { "label": "Gradient-R", "value": "pds-hvr-gradient-move-revert"},
+                { "label": "Gradient-Left", "value": "pds-hvr-gradient-move"},
+                { "label": "Gradient-Right", "value": "pds-hvr-gradient-move-revert"},
+                { "label": "Gradient-Rotate", "value": "bg-hvr-gradient-rotation"},
             ],
 
             "Scale Up" : [
@@ -611,6 +621,7 @@ window.PhenixBlocks.dataLists = {
             ],
 
             "Background" : [
+                { "label": "Gradient Rotation", "value": "bg-animated-gradient-rotation"},
                 { "label": "Zooming", "value": "bg-animated-zoom"},
                 { "label": "Animate-X", "value": "bg-animated-x"},
                 { "label": "Animate-Y", "value": "bg-animated-y"},
@@ -839,7 +850,8 @@ window.PhenixBlocks.dataLists = {
             animations : [
                 { label:"Animated X", value: "bg-animated-x"},
                 { label:"Animated Y", value: "bg-animated-y"},
-                { label:"Zooming BG", value: "bg-animated-zoom"},
+                { label:"BG Zooming", value: "bg-animated-zoom"},
+                { label:"BG Rotation", value: "bg-animated-gradient-rotation"},
             ],
 
             overlay : [
@@ -851,7 +863,7 @@ window.PhenixBlocks.dataLists = {
         },
 
         border_styles: [
-            { "label": "Default",  "value": ""},
+            {"label": "Default",  "value": ""},
             {"label": "Solid", "value": "border-solid"},
             {"label": "Dashed", "value": "border-dashed"},
             {"label": "Dotted", "value": "border-dotted "}

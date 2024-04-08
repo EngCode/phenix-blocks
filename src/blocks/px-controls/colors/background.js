@@ -34,12 +34,6 @@ export default class PhenixBackground extends Component {
 
         //===> Generate Custom Colors <===//
         if (editorColors) {
-            // if (colorsOnly) customColorsList.push("fas fa-redo tx-align-center");
-            //===> for Custom Theme Palette <===//
-            // if (customOnly) {
-            //     editorColors.palette?.theme?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
-            //     if (!colorsOnly) editorColors.gradients?.theme?.forEach(gradient => customGradientsList.push(`var(--wp--preset--gradient--${gradient.slug})`));
-            // }
             //===> Default and User Custom <===//
             editorColors.palette?.default?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));
             editorColors.palette?.custom?.forEach(color => customColorsList.push(`var(--wp--preset--color--${color.slug})`));

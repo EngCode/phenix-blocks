@@ -56,6 +56,7 @@
 .pds-hvr-shakeX:hover  {animation: shakeX 0.7s ease-in-out;}
 .pds-hvr-bounce:hover  {animation: bounce 1s ease-in-out;}
 .pds-hvr-rubberBand:hover {animation: rubberBand 0.7s ease-in-out;}
+.bg-hvr-gradient-rotation {animation: gradient-rotation 1s linear;}
 
 /*==== Background Animations ====*/
 .bg-animated-x {
@@ -69,6 +70,7 @@
 }
 
 .bg-animated-zoom {animation: bgZoomInOut 30s linear infinite;}
+.bg-animated-gradient-rotation {animation: gradient-rotation 30s ease-in-out infinite;}
 
 /*==== Shadows ====*/
 [class*="bx-shadow"] {

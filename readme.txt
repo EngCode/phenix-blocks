@@ -78,6 +78,7 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 
 1. Improve Responsive UHD Scaler.
 2. Gradient Text Coloring Editing Style Fix.
+3. Media Uploader Control Multiple Popups Fix.
 
 ### Hot-fixes v1.0.6:
 

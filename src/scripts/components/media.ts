@@ -231,10 +231,10 @@ PhenixElements.prototype.multimedia = function (options?:{
                 }
 
                 //====> First View Handler <=====//
-                if (Phenix(element).inView()) mediaHandle();
+                if (Phenix(element).inView({offset: 100})) mediaHandle();
 
                 //====> On-Scroll Handler <====//
-                window.addEventListener('scroll', event => Phenix(element).inView() ? mediaHandle() : null);
+                window.addEventListener('scroll', event => Phenix(element).inView({offset: 100}) ? mediaHandle() : null);
             }
 
             //====> None-Lazy <====//

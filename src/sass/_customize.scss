@@ -124,17 +124,22 @@
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 @import 'utilities/effects';    //===> Phenix Effects Assets
 
-/*==== FHD and UHD Responsive Support ====*/
-@media screen and (min-width: 1900px) {
-    body, html {font-size: 1.75vh;}
+/*==== FHD/UHD (6:9) Responsive Support ====*/
+@media screen and (min-width: 1800px) {
+    body, html {font-size: 2.5vh;}
 }
 
-/*==== 2K (4/3 and 21/9) Responsive Support ====*/
-@media screen and (min-width: 1990px) and (max-width: 2200px) {
+/*==== FHD/2K (4:3) Responsive Support ====*/
+@media screen and (min-width: 1900px) and (min-height: 1400px) {
     body, html {font-size: 1.5vh;}
 }
 
-/*==== 2K/4K Responsive Support ====*/
-@media screen and (min-width: 2500px) {
+/*==== FHD/2K (5:3) Responsive Support ====*/
+@media screen and (min-width: 1900px) and (min-height: 2000px) {
+    body, html {font-size: 1.25vh;}
+}
+
+/*==== 2K/4K (6:9) Responsive Support ====*/
+@media screen and (min-width: 1990px) {
     body, html {font-size: 2vh;}
 }

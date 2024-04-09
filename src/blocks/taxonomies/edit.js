@@ -15,8 +15,8 @@ import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
 import ScreensTabs from "../px-controls/tabs";
+import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
-
 
 //====> Edit Mode <====//
 export default function Edit(props) {

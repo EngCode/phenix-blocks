@@ -248,7 +248,7 @@ window.PhenixBlocks = {
 
                         if (excluded.some(opt => opt === sub_option)) return;
                         if (findAndExcluded.some(opt => opt.includes(sub_option))) return;
-    
+
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }
     
@@ -352,9 +352,10 @@ window.PhenixBlocks = {
 
                         //===> Other Values <===//
                         else {
-                            //====> URL Classes Fix <====//
-                            const urlPattern = new RegExp('(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?');
-                            if (!urlPattern.test(sub_value)) return;
+                            //====> Check URL Classes Fix <====//
+                            const urlPattern = new RegExp(/(www|http:|https:)+[^\s]+[\w]/);
+                            if (urlPattern.test(sub_value)) return;
+
                             //====> Grid Layouts <===//
                             if (isColumn && attributes.isFlexbox || isGrid) {
                                 container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;

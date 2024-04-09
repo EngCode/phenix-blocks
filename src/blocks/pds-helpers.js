@@ -392,7 +392,7 @@ window.PhenixBlocks = {
             let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
             if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
         }
-    
+
         //===> Render Component <===//
         return {blockProps, container};
     },

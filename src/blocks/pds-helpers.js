@@ -285,7 +285,9 @@ window.PhenixBlocks = {
                         //===> Margin Values <===//
                         else if (isMargin.some(css => sub_option.startsWith(css))) {
                             //===> Auto Value <===//
-                            if (parseInt(sub_value) === -5) { blockProps.className += ` ${sub_option}-auto`; }
+                            if (parseInt(sub_value) === -5) {
+                                blockProps.className += ` ${sub_option}-auto`;
+                            }
                             //===> Custom Value <===//
                             else if (parseInt(sub_value) > 100 || parseInt(sub_value) < -6) {
                                 CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
@@ -350,9 +352,15 @@ window.PhenixBlocks = {
 
                         //===> Other Values <===//
                         else {
+                            //====> URL Classes Fix <====//
+                            const urlPattern = new RegExp('(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?');
+                            if (!urlPattern.test(sub_value)) return;
+                            //====> Grid Layouts <===//
                             if (isColumn && attributes.isFlexbox || isGrid) {
                                 container.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
-                            } else {
+                            }
+                            //====> Class names <====//
+                            else {
                                 blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
                             }
                         }

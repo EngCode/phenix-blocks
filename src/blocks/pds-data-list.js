@@ -814,6 +814,7 @@ window.PhenixBlocks.dataLists = {
 
         background_options: {
             sizes : [
+                { label:"Default", value:"" },
                 { label:"all-100", value:"bgs-100" },
                 { label:"all-auto", value:"bgs-auto"},
                 { label:"width-25", value:"bgw-25"},
@@ -829,6 +830,7 @@ window.PhenixBlocks.dataLists = {
             ],
         
             repeat : [
+                { label:"Default", value:"" },
                 { label:"repeat", value: "bgr"},
                 { label:"repeat-x", value: "bgr-x"},
                 { label:"repeat-y", value: "bgr-y"},
@@ -836,6 +838,7 @@ window.PhenixBlocks.dataLists = {
             ],
         
             positions : [
+                { label:"Default", value:"" },
                 { label:"top-start", value: "bgp-ts"},
                 { label:"top-center", value: "bgp-tc"},
                 { label:"top-end", value: "bgp-te"},
@@ -848,6 +851,7 @@ window.PhenixBlocks.dataLists = {
             ],
     
             animations : [
+                { label:"None", value:"" },
                 { label:"Animated X", value: "bg-animated-x"},
                 { label:"Animated Y", value: "bg-animated-y"},
                 { label:"BG Zooming", value: "bg-animated-zoom"},

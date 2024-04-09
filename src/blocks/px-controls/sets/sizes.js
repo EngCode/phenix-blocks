@@ -45,28 +45,28 @@ export default class SizesSet extends Component {
             {!options ? <div className='row gpx-20 gpy-15'>
                 {/*===> Width <===*/}
                 <div className='col-12'>
-                    <PhenixSelect key={`width_size${screen}`} name={`width_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Width Sizes", "pds-blocks")} value={attributes.style[`width_size${screen}`]} onChange={mainSetter} options={width_list} />
+                    <PhenixSelect key={`width_size${screenPoint}`} name={`width_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Width Sizes", "pds-blocks")} value={attributes.style[`width_size${screenPoint}`]} onChange={mainSetter} options={width_list} />
                 </div>
                 {/*===> Min Width <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect key={`min_size${screen}`} name={`min_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Min Width", "pds-blocks")} value={attributes.style[`min_size${screen}`]} onChange={mainSetter} options={min_width_list} />
+                    <PhenixSelect key={`min_size${screenPoint}`} name={`min_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Min Width", "pds-blocks")} value={attributes.style[`min_size${screenPoint}`]} onChange={mainSetter} options={min_width_list} />
                 </div>
                 {/*===> Max Width <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect key={`max_size${screen}`} name={`max_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Max Width", "pds-blocks")} value={attributes.style[`max_size${screen}`]} onChange={mainSetter} options={max_width_list} />
+                    <PhenixSelect key={`max_size${screenPoint}`} name={`max_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Max Width", "pds-blocks")} value={attributes.style[`max_size${screenPoint}`]} onChange={mainSetter} options={max_width_list} />
                 </div>
 
                 {/*===> Height <===*/}
                 <div className='col-12'>
-                    <PhenixSelect key={`height_size${screen}`} name={`height_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Height Sizes", "pds-blocks")} value={attributes.style[`height_size${screen}`]} onChange={mainSetter} options={height_list} />
+                    <PhenixSelect key={`height_size${screenPoint}`} name={`height_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Height Sizes", "pds-blocks")} value={attributes.style[`height_size${screenPoint}`]} onChange={mainSetter} options={height_list} />
                 </div>
                 {/*===> Min Height <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect key={`min_height_size${screen}`} name={`min_height_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Min Height", "pds-blocks")} value={attributes.style[`min_height_size${screen}`]} onChange={mainSetter} options={min_height_list} />
+                    <PhenixSelect key={`min_height_size${screenPoint}`} name={`min_height_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Min Height", "pds-blocks")} value={attributes.style[`min_height_size${screenPoint}`]} onChange={mainSetter} options={min_height_list} />
                 </div>
                 {/*===> Max Height <===*/}
                 <div className='col col-6'>
-                    <PhenixSelect key={`max_height_size${screen}`} name={`max_height_size${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Max Height", "pds-blocks")} value={attributes.style[`max_height_size${screen}`]} onChange={mainSetter} options={max_height_list} />
+                    <PhenixSelect key={`max_height_size${screenPoint}`} name={`max_height_size${screenPoint}`} placeholder={__("Default", "pds-blocks")} label={__("Max Height", "pds-blocks")} value={attributes.style[`max_height_size${screenPoint}`]} onChange={mainSetter} options={max_height_list} />
                 </div>
                 {/*===> Other Options <===*/}
                 {this.props.children ? this.props.children : null}

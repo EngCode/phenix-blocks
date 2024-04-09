@@ -130,7 +130,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                 //====> Image Type <====//
                 else if (type == 'image') {
                     //===> Set Background <===//
-                    // background(element, src);
+                    background(element, src);
                     //===> Create Image <===//
                     if(!element.querySelector('img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" class="px-media-img" ${lazy ? 'loading="lazy"' : ''} />`);
                     //===> Mark as Done <===//

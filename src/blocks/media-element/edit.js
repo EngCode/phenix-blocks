@@ -99,7 +99,7 @@ export default function Edit({ attributes, setAttributes }) {
                         <div className='flexbox'>
                             <OptionControl key={`lazyloading`} name={`lazyloading`} value="true" checked={attributes.setting.lazyloading} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("LazyLoading", "pds-blocks")}</OptionControl>
                             <OptionControl key={`inner-blocks`} name={`inner-blocks`} value="boolean" checked={attributes.style['inner-blocks']} onChange={set_style} type='switch-checkbox' className='small mb-10'>{__("innerBlocks", "pds-blocks")}</OptionControl>
-                            {attributes.setting.type === 'embed' && attributes.setting.embeds === "video" ? <>
+                            {attributes.setting.type === 'embed' && attributes.setting.embed === "video" ? <>
                                 <OptionControl key={`controls`} name={`controls`} value="true" checked={attributes.setting.controls} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Controls", "pds-blocks")}</OptionControl>
                                 <OptionControl key={`autoplay`}  name={`autoplay`} value="true" checked={attributes.setting.autoplay} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Autoplay", "pds-blocks")}</OptionControl>
                                 <OptionControl key={`loop`} name={`loop`} value="true" checked={attributes.setting.loop} onChange={set_setting} type='switch-checkbox' className='small mb-10 me-10'>{__("Video Loop", "pds-blocks")}</OptionControl>

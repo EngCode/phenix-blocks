@@ -78,16 +78,22 @@
         background-size: cover;
         background-position: center;
     }
-    /*==== elements ====*/
-    .px-video, .px-iframe, .px-media-img, &.editor-mode .block-editor-block-list__layout, > iframe, > video {
-        top: 0;
-        left: 0;
+    /*==== Media Element ====*/
+    .px-video, .px-iframe, .px-media-img, > iframe, > video {
         width: 100%;
-        height: 100%;
-        position: absolute;
-        border-radius: inherit;
         -o-object-fit: cover;
            object-fit: cover;
+        border-radius: inherit;
+    }
+
+    /*==== elements ====*/
+    &:not(.ratio-none) {
+        .px-video, .px-iframe, .px-media-img, > iframe, > video {
+            top: 0;
+            left: 0;
+            height: 100%;
+            position: absolute;
+        }
     }
 
     /*==== Custom Mode ====*/

@@ -74,7 +74,7 @@
     /*==== ....====*/
     &:not([class*="position-"]) {position: relative;}
     &:not([class*="flex"]):not([class*="inline-"]) {display: block;}
-    &:not([class*="bgs-"]):not([class*="bgh-"]):not([class*="bgw-"]) {
+    &:not([class*="bgs-"]):not([class*="bgh-"]):not([class*="bgw-"]):not([data-type="image"]) {
         background-size: cover;
         background-position: center;
     }
@@ -106,6 +106,12 @@
 
     /*==== image type ====*/
     &[style*="background-image"] .px-media-img {opacity: 0; pointer-events: none;}
+    &[data-type="image"],
+    &:has(.px-media-img) {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }
 
 .object-fit {-o-object-fit: cover;object-fit: cover;}

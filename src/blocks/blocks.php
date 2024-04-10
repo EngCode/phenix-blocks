@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'
 //====> Helper Functions [Check for Objects] <====//
 if (!function_exists("PxToREM")) :
     function PxToREM($size, $base = 16) {
-        return ($size / $base) . "rem";
+        return ((int) $size / $base) . "rem";
     }
 endif;
 

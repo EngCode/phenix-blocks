@@ -316,9 +316,11 @@ add_action('init', function() {
 
 add_action('init', function () {
     foreach ( get_intermediate_image_sizes() as $size ) {
-        if ( in_array( $size, ['thumbnail', 'medium', 'medium_large', 'large'] ) ) {
+        if ( in_array( $size, ['thumbnail', 'medium', 'medium_large', 'large', 'scaled'] ) ) {
             continue;
         }
         remove_image_size( $size );
     }
 });
+
+add_filter( 'big_image_size_threshold', '__return_false' );

@@ -6,7 +6,13 @@
 */
 
 //===> Define Translation Function <===//
-const __trans = window.wp.i18n.__;
+const __trans = (str, domain) => {
+    if (window.wp.i18n.__) {
+        return window.wp.i18n.__(str, domain);
+    } else {
+        return str;
+    };
+};
 
 //===> Attach Data to Phenix Object <===//
 window.PhenixBlocks.dataLists = {

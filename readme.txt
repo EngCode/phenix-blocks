@@ -74,17 +74,14 @@ Alternatively, you can download the plugin using the download button on this pag
 
 this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
 
-### Hot-fixes v1.0.8:
-
-1. Media Type Image Cover Size Fix
-
-### Hot-fixes v1.0.7:
+### Hot-fixes v1.0.7 and v1.0.8:
 
 1. Improve Responsive UHD Scaler.
 4. Add New Effects and Animations.
 2. Gradient Text Coloring Editing Style Fix.
 3. Media Uploader Control Multiple Popups Fix.
 4. Fix Select Re-render Options unexpectedly.
+5. Media Type Image Cover Size Fix
 
 ### Hot-fixes v1.0.6:
 

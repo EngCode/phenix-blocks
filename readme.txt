@@ -76,7 +76,7 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 
 ### Hot-fixes v1.0.8:
 
-1. 
+1. Media Type Image Cover Size Fix
 
 ### Hot-fixes v1.0.7:
 

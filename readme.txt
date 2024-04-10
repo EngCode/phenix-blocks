@@ -82,6 +82,7 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 3. Media Uploader Control Multiple Popups Fix.
 4. Fix Select Re-render Options unexpectedly.
 5. Media Type Image Cover Size Fix
+6. Disable Scaled Thumbnail Generation.
 
 ### Hot-fixes v1.0.6:
 

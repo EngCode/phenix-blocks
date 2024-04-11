@@ -132,7 +132,8 @@ PhenixElements.prototype.multimedia = function (options?:{
                     //===> Set Background <===//
                     background(element, src);
                     //===> Create Image <===//
-                    if(!element.querySelector('img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" class="px-media-img" ${lazy ? 'loading="lazy"' : ''} />`);
+                    if(!element.querySelector('img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" class="px-media-img" loading="lazy" />`);
+                    else element.querySelector('img').setAttribute('loading', 'lazy');
                     //===> Mark as Done <===//
                     mediaDone = true;
                 }

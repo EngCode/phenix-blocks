@@ -29,4 +29,6 @@
     window.addEventListener('load', (loaded) => setTimeout(() => Phenix(".px-page-loader").fadeOut(500, 0), 1500));
     //===> When Leaving Page <===//
     window.addEventListener('beforeunload', (isLeaving) => Phenix(".px-page-loader").fadeIn(500, 0));
+    //===> Defer Images <===//
+    document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
 </script>

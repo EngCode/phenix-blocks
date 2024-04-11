@@ -74,7 +74,12 @@
     /*==== ....====*/
     &:not([class*="position-"]) {position: relative;}
     &:not([class*="flex"]):not([class*="inline-"]) {display: block;}
-    &:not([class*="bgs-"]):not([class*="bgh-"]):not([class*="bgw-"]) {background-size: cover;background-position: center;}
+
+    /*==== BG Sizing ====*/
+    &:not([class*="bgs-"]):not([class*="bgh-"]):not([class*="bgw-"]) {
+        background-size: cover;
+        background-position: center;
+    }
     /*==== Media Element ====*/
     .px-video, .px-iframe, .px-media-img, > iframe, > video {
         width: 100%;
@@ -102,7 +107,7 @@
     }
 
     /*==== image type ====*/
-    &[data-type="image"] {
+    &.ratio-none[data-type="image"] {
         background-image: initial!important;
         .px-media-img {pointer-events: none;}
     }

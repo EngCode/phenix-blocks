@@ -365,7 +365,6 @@
         }
     }
 
-    
     //===> Set Post-Types <===//
     if (get_option('pds_types')) :
         //===> Define GB Types <===//

@@ -23,36 +23,3 @@
     <p>لا تتردد في الاتصال بنا اليوم لبدء رحلة النجاح الإلكتروني معنا. نحن هنا لمساعدتك في تحقيق أهدافك وتحقيق النجاح على الإنترنت.</p>
     <?php endif; ?>
 </div>
-<!-- SEO Fixer for Phenix Only -->
-<script defer>
-    if (window.location.href.includes('phenixthemes.com')) {
-        //====> Add Slash to Live Preview Link <====//
-        document.querySelectorAll('a[href*="phenixthemes.com"]:not([href$="/"])').forEach((link) => {
-            //===> Element Data <===//
-            const hrefLink = link.getAttribute('href');
-            const pathName = hrefLink.split('/');
-            const lastPath = pathName[pathName.length - 1];
-            //===> Check if its File Link <===//
-            if (lastPath.includes('.') && !lastPath.includes('.com')) return;
-            //===> Correct the Link <===//
-            link.setAttribute('href', `${hrefLink}/`);
-        });
-
-        //====> Taxonomies First Page 301 Fixer <=====//
-        document.querySelectorAll('a[href*="phenixthemes.com"][href$="/page/1"]').forEach((link) => link.setAttribute('href', link.getAttribute('href').replace('page/1/', '')));
-
-        //====> Keywords List <====//
-        const keywords = ['افضل خدمات تصميم وتطوير مواقع', 'افضل شركة تصميم مواقع', 'افضل شركة برمجة', 'افضل شركة تصميم تطبيقات', 'افضل شركة تطوير برمجيات', 'افضل شركة تصميم واجهات استخدام'];
-
-        //====> Empty Alt Fixer <=====//
-        document.querySelectorAll('img[alt=""], .product-card .px-media, .product-card .px-media img').forEach((img) => {
-            //===> Select Random Keyword from the Preset Array <===//
-            const catsList = img.getAttribute('alt') || img.getAttribute('title') || '';
-            const randomKey = keywords[Math.floor(Math.random() * keywords.length)];
-
-            //===> Set the Image Alt <===//
-            if (img.matches('.px-media')) img.setAttribute('title', `${randomKey} - ${catsList}`);
-            else img.setAttribute('alt', `${randomKey} - ${catsList}`);
-        });
-    }
-</script>

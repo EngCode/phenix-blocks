@@ -85,7 +85,7 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 6. Disable Scaled Thumbnail Generation.
 7. Defer Any Images with Lazyloading Attribute.
 8. Add new copyText() method for Phenix Core.
-9. Jetpack Plugin Styling Support Fix.
+9. Admin Style Fixes.
 
 ### Hot-fixes v1.0.6:
 

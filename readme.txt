@@ -86,6 +86,7 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 7. Defer Any Images with Lazyloading Attribute.
 8. Add new copyText() method for Phenix Core.
 9. Admin Style Fixes.
+10. Fix loading duplicates when custom template are present.
 
 ### Hot-fixes v1.0.6:
 

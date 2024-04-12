@@ -84,6 +84,8 @@ this plugin needs its starter theme to makes you control the plugin colors, and 
 5. Media Type Image Cover Size Fix
 6. Disable Scaled Thumbnail Generation.
 7. Defer Any Images with Lazyloading Attribute.
+8. Add new copyText() method for Phenix Core.
+9. Jetpack Plugin Styling Support Fix.
 
 ### Hot-fixes v1.0.6:
 

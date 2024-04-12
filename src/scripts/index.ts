@@ -597,6 +597,15 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         return `${(parseFloat(size) / base)}rem`;
     };
 
+    /*====> Copy to Clipboard <====*/
+    async copyText (text) {
+        //===> Copy to Clipboard Method <===//
+        const type = "text/plain";
+        const blob = new Blob([text], { type });
+        const data = [new ClipboardItem({ [type]: blob })];
+        await navigator.clipboard.write(data);
+    };
+
     /*====> Define Information <====*/
     height; getCSS; direction; getURL
     inView; viewport; copyrights;

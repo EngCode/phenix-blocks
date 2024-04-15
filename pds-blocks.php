@@ -15,6 +15,9 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
+//====> Automatic Updater <====//
+include_once(dirname(__FILE__) . '/inc/pds-updater.php');
+
 //===> Activation <===//
 function pds_blocks_activate() {
 	do_action('pds_blocks_active');

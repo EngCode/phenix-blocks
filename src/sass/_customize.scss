@@ -125,6 +125,8 @@
 @import 'utilities/effects';    //===> Phenix Effects Assets
 
 /*==== All-In-One (FHD, UHD, 2K, 4K, 8K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
-@media screen and (min-width: 1800px) {
-    :root { --current-rem: 1vw; }
+:root {
+    @media screen and (min-width: 1600px) {--current-rem: min(0.9vw, 18px);}
+    @media screen and (min-width: 1800px) {--current-rem: min(0.95vw, 1vh);}
 }
+

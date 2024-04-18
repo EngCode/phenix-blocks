@@ -39,9 +39,9 @@ PhenixElements.prototype.collapse = function (options?:{
         const normal_icon = button.getAttribute('data-trigger-icon-normal');
 
         //===> Get the Icon Class for Active <===//
-        if (normal_icon.includes('plus')) {
+        if (normal_icon && normal_icon.includes('plus')) {
             button.setAttribute('data-trigger-icon', `${normal_icon.replace('plus', 'minus')}`);
-        } else if (normal_icon.includes('down')) {
+        } else if (normal_icon && normal_icon.includes('down')) {
             button.setAttribute('data-trigger-icon', `${normal_icon.replace('down', 'up')}`);
         }
 

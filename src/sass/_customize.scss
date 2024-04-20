@@ -52,7 +52,7 @@
     --links-color   : var(--primary-color);
     --info-color    : #816CF3;
     --gray-color    : #868e96;
-    --dark-color    : #343a40;
+    --dark-color    : #14171a;
     --success-color : #22B567;
     --danger-color  : #DE3131;
     --warning-color : #FAD934;
@@ -124,9 +124,15 @@
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 @import 'utilities/effects';    //===> Phenix Effects Assets
 
-/*==== All-In-One (FHD, UHD, 2K, 4K, 8K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
-:root {
-    @media screen and (min-width: 1600px) {--current-rem: min(0.9vw, 18px);}
-    @media screen and (min-width: 1800px) {--current-rem: min(0.95vw, 1vh);}
+/*==== (FHD) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
+@media screen and (min-width: 1600px) {
+    body,html{font-size: 0.9vw;}
 }
-
+/*==== (UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
+@media screen and (min-width: 1800px) {
+    body,html{font-size: 0.93vw;}
+}
+/*==== All-In-One (4K, 8K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
+@media screen and (min-width: 2500px) {
+    body,html{font-size: 1vw;}
+}

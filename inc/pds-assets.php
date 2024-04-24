@@ -263,7 +263,11 @@ endif;
 //===> Loading Page <===//
 if (!function_exists('pds_loader_template')) :
 	function pds_loader_template() {
-        get_template_part('template-parts/loading') || include(dirname(__FILE__) . '/loading.php');
+        if(locate_template('template-parts/loading')) {
+            get_template_part('template-parts/loading');
+        } else {
+            include(dirname(__FILE__) . '/loading.php');
+        }
 	}
 
 	add_action('wp_body_open', 'pds_loader_template');

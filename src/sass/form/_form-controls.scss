@@ -105,6 +105,16 @@
     @include xlarge(){
         @include make_control_sizes('-xl');
     };
+
+    /*==== Date and Time Fix ====*/
+    &[type*="date"], &[type*="time"] {
+        display: block;
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
+        -webkit-min-logical-width: calc(100% - 16px);
+        &::-webkit-calendar-picker-indicator {color: inherit;}
+        &::-webkit-date-and-time-value {text-align: $page-dir;}
+    }
 }
 
 /*==== Default Validation ====*/

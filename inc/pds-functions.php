@@ -77,21 +77,26 @@ if (!function_exists('pagination')) :
 		$icon_left  = $options["prev_icon"];
 
 		//===> Create Next and Prev Buttons <===//
-		$next_btn = !is_rtl() ? sprintf('%1$s<i class="'.$icon_right.'"></i>', "") : sprintf('<i class="'.$icon_left.'"></i>%1$s', "");
-		$prev_btn = is_rtl() ? sprintf('%1$s<i class="'.$icon_left.'"></i>', "") : sprintf('<i class="'.$icon_right.'"></i>%1$s', "");
+		$next_btn = sprintf('%1$s<i class="'.$icon_right.'"></i>', "");
+		$prev_btn = sprintf('%1$s<i class="'.$icon_left.'"></i>', "");
+		
+		if(is_rtl()) {
+			$prev_btn = sprintf('%1$s<i class="'.$icon_right.'"></i>', "");
+			$next_btn = sprintf('%1$s<i class="'.$icon_left.'"></i>', "");
+		}
 
 		//===> Configuration <===//
 		$pages = paginate_links( array(
-			'end_size'     => 2,
 			'mid_size'     => 2,
+			'end_size'     => 2,
 			'prev_next'    => true,
 			'show_all'     => false,
 			'type'         => 'array',
 			'format'       => '?page=%#%',
 			'total'        => $query->max_num_pages,
-			'current'      => max(1, get_query_var('paged')),
 			'prev_text'    => $prev_btn,
 			'next_text'    => $next_btn,
+			'current'      => max(1, get_query_var('paged')),
 			'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
 		));
 	

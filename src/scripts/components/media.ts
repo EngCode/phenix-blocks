@@ -232,7 +232,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                 }
 
                 //====> First View Handler <=====//
-                if (Phenix(element).inView({offset: 100})) mediaHandle();
+                if (Phenix(element).inView() || element.offsetTop < 100) mediaHandle();
 
                 //====> On-Scroll Handler <====//
                 window.addEventListener('scroll', event => Phenix(element).inView({offset: 100}) ? mediaHandle() : null);

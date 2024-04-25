@@ -2,6 +2,7 @@
 .interface-interface-skeleton__html-container {overflow: hidden;}
 
 .editor-styles-wrapper {
+	color: inherit!important;
 	background-color: var(--body-bg)!important;
 	font-family: var(--secondary-font)!important;
 	.block-editor-rich-text__editable:not([class*="color-"]):not([style*="color:"]):not(.bg-clip-text) {

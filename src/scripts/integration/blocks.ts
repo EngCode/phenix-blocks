@@ -13,27 +13,8 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Phenix Blocks Script <====*/
 PhenixElements.prototype.init = function (scripts?:[]) {
-    //===> Lazy Backgrounds <===//
-    Phenix('.wp-block-phenix-container[data-src]').forEach((container:HTMLElement) => {
-        container.setAttribute('data-lazyloading', "true");
-    });
-
-    //===> Lightbox Images <===//
-    Phenix('.lightbox-image img').forEach((image:HTMLElement) => {
-        //===> Get the Source <===//
-        let image_source = image.getAttribute('src');
-
-        //===> Add Classes <===//
-        image.classList.add('px-lightbox');
-        image.classList.add('mouse-pointer');
-
-        //====> Check for File Type Classes <===//
-        let fileType = image.classList.contains('jpg') ? "jpg" : "png";
-        if (fileType) image_source.replace('.webp', fileType);
-
-        //===> Set the Source <===//
-        image.setAttribute('data-src', image_source);
-    });
+    //===> Activate Lazyloading <===//
+    Phenix(document).lazyLoading();
 
     //===> Smooth Scroll <====//
     Phenix('body:not(.wp-admin) a[href*="#"]').forEach((link:HTMLElement) => {
@@ -59,16 +40,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix('.move-to-grid').forEach(element => {
         let grid_element = Phenix(element).siblings('.row')[0];
         Phenix(grid_element).insert("append", element);
-    });
-
-    //===> Element Overlap <===//
-    Phenix(".pos-overlap").forEach((element:HTMLElement) => {
-        let height = Phenix(element).height(),
-            nextEl = Phenix(element).next() || Phenix(element.parentNode).next(),
-            nextElPadding = nextEl ? Phenix(nextEl).getCSS("paddingTop") : 0;
-        //===> Element CSS <===//
-        element.style.marginBottom = `-${height}px`;
-        if(nextEl) Phenix(nextEl).css({'padding-top': `${height+parseInt(nextElPadding)}px`});
     });
 
     //====> Forms Validation <====//
@@ -139,11 +110,11 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix('.px-navigation').menu();
 
     //====> Multimedia <====//
-    Phenix('.px-media').multimedia();
+    Phenix('.px-media').multimedia({lazyloading: true});
 
     //====> Phenix Uploader <====//
     Phenix('.px-uploader').uploader();
-    
+
     //====> Dropdown Buttons <====//
     Phenix('.px-dropdown').dropdown();
 

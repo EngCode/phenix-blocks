@@ -151,7 +151,7 @@ Phenix(window).on("load", (loaded) => {
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
         //====> Start Fixes <====//
-        fixCF7(); fixSEO(); spamBlock();
+        fixCF7(); fixSEO();
 
         /*====> Activated Menu Items <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
@@ -185,7 +185,7 @@ Phenix(window).on("load", (loaded) => {
     }
 
     /*====> for Block Editor <====*/
-    if(document.querySelector("#site-editor") || document.querySelector('body.block-editor-page')) {
+    if(document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]')) {
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     }

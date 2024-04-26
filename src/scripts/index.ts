@@ -366,52 +366,29 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
 
     /*====> Resources Lazy-Loader <====*/
     lazyLoading() {
-        //====> Element Data <====//
-        // let spinner = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApIG5vbmUgcmVwZWF0IHNjcm9sbCAwJSAwJTsgZGlzcGxheTogYmxvY2s7IHNoYXBlLXJlbmRlcmluZzogYXV0bzsiIHdpZHRoPSIyMDBweCIgaGVpZ2h0PSIyMDBweCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4KPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGNkY2RjIiBzdHJva2Utd2lkdGg9IjMiIHI9IjE4IiBzdHJva2UtZGFzaGFycmF5PSI4NC44MjMwMDE2NDY5MjQ0MSAzMC4yNzQzMzM4ODIzMDgxMzgiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIga2V5VGltZXM9IjA7MSI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT4KPCEtLSBbbGRpb10gZ2VuZXJhdGVkIGJ5IGh0dHBzOi8vbG9hZGluZy5pby8gLS0+PC9zdmc+";
-        
         //====> Loop Through Media Elements <====//
         Phenix('img, video, audio, iframe').forEach((element:HTMLElement) => {
             //====> Set Loading Mode <====//
             if (!Phenix(element).inView()) {
                 //====> Get Data <====//
-                let playable = element.matches('video' || 'audio'),
-                    source = !playable ? element.getAttribute('src') : null,
+                let playable = element.matches('video' || 'audio' || 'iframe'),
                     preloaded = element.getAttribute('preload' || 'loading');
 
-                //===> for [images, iframe] <===//
-                if (element.matches('img'||'iframe')) {
-                    // element.setAttribute('data-lazyload', source);
-                    // element.setAttribute('src', spinner);
-                    element.classList.add('px-loading')
-                }
+                //===> Mark as Loading <===//
+                if (element.matches('img'||'iframe')) element.classList.add('px-loading');
 
-                //===> for [video, audio] <===//
-                else if (playable && !preloaded) element.setAttribute('preload', 'none');
-                element.setAttribute('loading', 'lazy');
+                //===> Native Loading Attribute <===//
+                if (playable && !preloaded) element.setAttribute('preload', 'none');
+                else if(element.matches('img')) element.setAttribute('loading', 'lazy');
 
                 //====> Keep Watching Element While Scrolling <====//
                 document.addEventListener('scroll', event => {
-                    //====> if its in view-point set the original source <====//
-                    if (element.matches('img'||'iframe') && Phenix(element).inView() && !element.matches('.px-loaded')) {
-                        // element.setAttribute('src', source);
+                    if (element.matches('img'||'iframe') && Phenix(element).inView({offset: 100}) && !element.matches('.px-loaded')) {
                         element.classList.remove('px-loading');
                         element.classList.add('px-loaded');
                     };
                 });
             }
-
-            //====> First View [workout] <====//
-            else if (Phenix(element).inView() && element.matches('img') && element.getAttribute('data-lazyload')) {
-                element.setAttribute('src', element.getAttribute('data-lazyload'));
-                element.classList.add('px-loaded');
-            }
-        });
-
-        //====> Other Elements Types <====//
-        Phenix('.px-counter').forEach((counter:HTMLElement) => {
-            if(!counter.classList.contains('counting')) document.addEventListener('scroll', event => {
-                if(Phenix(counter).inView() && !counter.classList.contains('counting')) Phenix(counter).counter();
-            });
         });
 
         //====> Return Phenix Elements <====//
@@ -650,9 +627,6 @@ const Phenix = (selector?:any) => {
 
 //====> Export Phenix <====//
 export default Phenix;
-
-//===> Page Loader Script <===//
-import './integration/loader';
 
 /*====> Import Features <====*/
 import './features/get-info';   //==> Information

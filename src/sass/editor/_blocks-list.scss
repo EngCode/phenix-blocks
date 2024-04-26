@@ -5,9 +5,8 @@
 	color: inherit!important;
 	background-color: var(--body-bg)!important;
 	font-family: var(--secondary-font)!important;
-	.block-editor-rich-text__editable:not([class*="color-"]):not([style*="color:"]):not(.bg-clip-text) {
-		color: inherit!important;
-	}
+	.components-popover {color: #2b2b2b;}
+	.block-editor-rich-text__editable:not([class*="color-"]):not([style*="color:"]):not(.bg-clip-text) {color: inherit!important;}
 
 	/*==== Min Size for Empty Blocks ====*/
 	.wp-block>.block-editor-block-list__layout:empty {
@@ -152,8 +151,8 @@
 
 	/*==== Full Screen Fix ====*/
     .px-slider {
-		overflow-x: hidden;
-		.splide__list {max-height: 100vh;}
+		overflow: hidden;
+		max-height: 100vh;
 		&:not([data-items]), &:not([data-md]), &:not([data-lg]), &:not([data-xl]) {margin-left: 0; margin-right: 0;}
 	}
 

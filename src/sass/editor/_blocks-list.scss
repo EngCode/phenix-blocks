@@ -194,6 +194,8 @@
 			color: var(--primary-reverse);
 			background-color: var(--primary-color);
 		}
+
+		&[class*="overlay-"]::before {max-width: fit-content; max-height: fit-content;}
 	}
 
 	.accordion-btn {

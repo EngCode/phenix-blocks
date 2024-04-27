@@ -341,7 +341,19 @@ body.block-editor-page {
 	}
 }
 
-.interface-interface-skeleton__secondary-sidebar {color: #2b2b2b;}
+.interface-interface-skeleton__sidebar, .block-editor-block-toolbar {
+	/*==== Components ====*/
+	--component-bg-lvl-1 : #FFFFFF;
+	--component-bg-lvl-2 : #F2F2F2;
+	--component-bg-lvl-3 : #F5F5F5;
+	--component-tx-lvl-1 : var(--dark-color);
+	--component-tx-lvl-2 : var(--gray-color);
+	--component-tx-lvl-3 : var(--dark-light);
+}
+
+.interface-interface-skeleton__secondary-sidebar {
+	color: #2b2b2b;
+}
 
 .interface-interface-skeleton__secondary-sidebar ~ .interface-interface-skeleton__content {
 	.edit-site-visual-editor, .edit-post-visual-editor {

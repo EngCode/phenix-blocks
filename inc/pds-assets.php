@@ -82,7 +82,7 @@ if (!function_exists('phenix_assets')) :
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
         $custom_fonts = [
-            "biosans",
+            "bio-sans",
             "tarek-v",
             "somar-sans",
             "somar-rounded",

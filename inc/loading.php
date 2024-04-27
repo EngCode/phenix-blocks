@@ -26,12 +26,12 @@
 <!-- Loading Script -->
 <script defer>
     //===> When Loading is Complete <===//
-    window.addEventListener('load', (loaded) => setTimeout(() => {
+    window.addEventListener('load', (loaded) => {
         //===> Hide the Loader <===//
-        Phenix(".px-page-loader").fadeOut(0, 0);
+        Phenix(".px-page-loader").fadeOut(500, 0);
         //===> Leaving Fallback <===//
-        window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(0, 0));
-    }, 1500));
+        window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(500, 0));
+    });
     //===> When Leaving Page <===//
     window.addEventListener('beforeunload', (isLeaving) => Phenix(".px-page-loader").fadeIn(100, 0));
     //===> Defer Images <===//

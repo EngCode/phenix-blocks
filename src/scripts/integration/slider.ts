@@ -206,7 +206,6 @@ PhenixElements.prototype.slider = function (options?:{
                 breakpoints: breakpoints,
                 rewind: rewind,
                 padding: padding,
-                omitEnd: type === 'slide' ? true : false,
                 paginationDirection: Phenix(document).direction(),
 
                 //====> Animation Fix <====//
@@ -265,16 +264,6 @@ PhenixElements.prototype.slider = function (options?:{
                 slider_options.live = false;
             }
 
-            //====> Add Extensions Options <====//
-            // if (autoScroll) {
-            //     Phenix(document).import('splide-marquee', 'script', 'splide-marquee.js', () => {
-            //         //===> Mount Extensions <===//
-            //         new Splide('.splide').mount( Splide.Extensions.AutoScroll );
-            //     }, true);
-
-            //     slider_options.autoScroll = {speed: parseInt(autoScroll) || 1};
-            // }
-
             //====> Return Options <====//
             return {
                 track  : slider_track,
@@ -287,8 +276,9 @@ PhenixElements.prototype.slider = function (options?:{
         }
 
         //====> Splide Prepare <====//
-        let current_slider = slider_creator(slider),
-            the_slider = new Splide(slider, current_slider.options);
+        let current_slider = slider_creator(slider);
+        if (!current_slider) return;
+        let the_slider = new Splide(slider, current_slider.options);
 
         //====> Integration <====//
         let slider_integration = () => {
@@ -297,7 +287,7 @@ PhenixElements.prototype.slider = function (options?:{
             Phenix(media_elements).multimedia();
     
             //====> Lazyloading Integration <====//
-            slider.querySelectorAll('.px-loading, .px-loader').forEach(media => {
+            slider.querySelectorAll('.px-media.px-loading, .px-media.px-loader').forEach(media => {
                 if (Phenix(media).inView()) {
                     //====> Multimedia Loader <====//
                     if (media.getAttribute('data-src')) {
@@ -305,6 +295,9 @@ PhenixElements.prototype.slider = function (options?:{
                     } else {
                         media.setAttribute('src', media.getAttribute('data-lazyload'));
                     }
+                    //====> Disable Loading Spinner <====//
+                    media.classList.remove('px-loader');
+                    media.classList.remove('px-loading');
                 }
             });
 

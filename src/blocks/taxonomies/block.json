@@ -20,6 +20,12 @@
             "type": "object",
             "default": {}
         },
+        
+        "id": {
+            "type": "string",
+            "default": ""
+        },
+
 		"query": {
 			"type": "object",
             "default": {}

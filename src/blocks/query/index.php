@@ -48,8 +48,6 @@ function px_query_render($block_attributes, $content) {
         unset($query[$taxonomy.'-terms']);
     }
 
-    // var_dump($query);
-
     //===> Render Options <===//
     $renderedProps = pds_blocks_options_render($block_attributes, $slider_attrs, $grid_classes);
 

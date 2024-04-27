@@ -19,6 +19,10 @@
     }
   },
   "attributes": {
+    "id": {
+      "type": "string",
+      "default": ""
+    },
     "metadata": {
       "type": "object",
       "default": {}

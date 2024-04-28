@@ -124,14 +124,15 @@
 @import 'utilities/plugins';    //===> Phenix Plugins Assets
 @import 'utilities/effects';    //===> Phenix Effects Assets
 
-/*==== (FHD) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
+/*==== (FHD, UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
 @media screen and (min-width: 1600px) {
-    body,html{font-size: 0.9vw;}
-}
-/*==== (UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
-@media screen and (min-width: 1800px) {
     body,html{font-size: 0.93vw;}
 }
+/*==== (UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
+// @media screen and (min-width: 1800px) {
+//     body,html{font-size: 0.93vw;}
+// }
+
 /*==== All-In-One (4K, 8K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
 @media screen and (min-width: 2500px) {
     body,html{font-size: 1vw;}

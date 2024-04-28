@@ -12,7 +12,15 @@
 
 /*==== Selectors ====*/
 %select-icon {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgba(0,0,0, 0.5)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgba(0,0,0, 0.1)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
+}
+
+%select-icon-gray {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgb(100,100,100)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
+}
+
+%select-icon-white {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgb(255,255,255)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
 }
 
 /*==== Make Sizes ====*/
@@ -173,6 +181,9 @@ select.form-control, .reset-appearance {
     }
     /*==== Arrow icon Fix ====*/
     .px-select-toggle {padding-#{$direction-end}: calc(var(--padding) + var(--text-size) + #{REM(3)})!important;}
+    /*==== Gray/White Arrow ====*/
+    &.arrow-gray {@extend %select-icon-gray;}
+    &.arrow-white {@extend %select-icon-white;}
 }
 
 /*==== Textarea Theme ====*/

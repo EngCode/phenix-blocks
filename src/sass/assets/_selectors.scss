@@ -92,7 +92,7 @@
 
 %select-arrow {
     background-repeat: no-repeat;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cGF0aCBkPSJNMTAuNSAxNWw3LjUgNy41IDcuNS03LjV6Ii8+PC9zdmc+);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7.008" height="4.175" viewBox="0 0 7.008 4.175"><path fill="rgb(100,100,100)" d="M3.293,164.773.052,161.558a.263.263,0,0,1,0-.372l.434-.434a.263.263,0,0,1,.372,0l2.621,2.595L6.1,160.752a.263.263,0,0,1,.372,0l.434.434a.263.263,0,0,1,0,.372l-3.241,3.215A.263.263,0,0,1,3.293,164.773Z" transform="translate(0.025 -160.675)"/></svg>');
     background-size: 20px;
     background-position: $direction-end 15px center;
 }

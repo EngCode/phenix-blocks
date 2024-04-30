@@ -293,7 +293,8 @@
                 foreach ($pds_options_list as $option) {
                     //===> Define Data <===//
                     $option_name = $option[0];
-                    $option_api  = $option[2];
+                    $option_api  = false;
+                    if (isset($option[2])) { $option_api = $option[2]; }
 
                     //===> Core Blocks <===//
                     if (strpos($option_name, "pds_core") !== false) {

@@ -25,15 +25,6 @@ function pds_blocks_activate() {
 
 register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
 
-//====> Multilang Support <====//
-function px__($string) {
-	if(function_exists('pll__')) {
-		return pll__($string, 'phenix');
-	} else {
-		return __($string, 'phenix');
-	}
-}
-
 //====> Languages Path <====//
 if (!function_exists('pds_textdomain')) {
 	/**

@@ -44,9 +44,9 @@ if (!function_exists('pds_cpt_create')) :
 
             //==== CPT Labels ====//
             $labels = array(
-                'name'          => px__($label),
-                'menu_name'     => px__($label),
-                'singular_name' => px__($singular),
+                'name'          => $label,
+                'menu_name'     => $label,
+                'singular_name' => $singular,
             );
 
             //==== CPT Options ====//

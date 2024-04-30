@@ -28,20 +28,21 @@ if (!function_exists('phenix_core')) :
     function phenix_core () {
         //====> define props <====//
         // $assets_path = plugin_dir_path(__DIR__);
+        $version = "1.0.8";
         $assets_url = plugin_dir_url(__DIR__)."assets/";
         // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
 
         //====> Phenix CSS <====//
         if (!is_rtl()) :
             //====> Phenix LTR <====//
-            wp_enqueue_style('phenix', $assets_url. 'css/phenix.css');
+            wp_enqueue_style('phenix', $assets_url. 'css/phenix.css', array(), $version);
         else :
             //====> Phenix RTL <====//
-            wp_enqueue_style('phenix', $assets_url. 'css/phenix-rtl.css');
+            wp_enqueue_style('phenix', $assets_url. 'css/phenix-rtl.css', array(), $version);
         endif;
     
         //====> Enqueue Phenix JS <====//
-        wp_enqueue_script('phenix', $assets_url.'js/phenix.js', false , NULL , true);
+        wp_enqueue_script('phenix', $assets_url.'js/phenix.js', false, $version , true);
 
         //=====> Create Phenix API Key <=====//
         if (is_user_logged_in() && current_user_can('manage_options') || current_user_can('edit_others_posts')) {
@@ -138,6 +139,7 @@ if (!function_exists('phenix_assets')) :
 
     function pds_optimized_asset () {
         //====> Get the Assets Files <====//
+        $version = "1.0.8";
         $assets_files = phenix_assets();
 
         //====> Google Fonts <====//
@@ -147,15 +149,15 @@ if (!function_exists('phenix_assets')) :
         }
 
         //===> Load Primary Font <===//
-        wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), null, 'screen and (min-width: 2500px)');
+        wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
 
         //===> Load Secondary Font <===//
         if (isset($assets_files['primary']) && $assets_files['primary'] !== $assets_files['secondary']) {
-            wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), null, 'screen and (min-width: 2500px)');
+            wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
         }
         
         //===> Load Icons Font <===//
-        wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, null, 'screen and (min-width: 2500px)');
+        wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
 
         //===> Set Font Css Settings <===//
         if ($assets_files['primary_name'] !== $assets_files['secondary_name']) {
@@ -188,11 +190,12 @@ if (!function_exists('pds_admin_style') && is_admin()) :
     */
 
     function pds_admin_style($hook) {
+        $version = "1.0.8";
         //===> Global for Admin <===//
         if (is_rtl()) {
-            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin-rtl.css');
+            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin-rtl.css', array(), $version);
         } else {
-            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css');
+            wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css', array(), $version);
         }
     }
 

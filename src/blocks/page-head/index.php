@@ -115,7 +115,7 @@ function px_head_block () {
     wp_register_script('page-head',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

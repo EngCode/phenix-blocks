@@ -35,7 +35,7 @@ function px_theme_part_block () {
     wp_register_script('theme-part',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

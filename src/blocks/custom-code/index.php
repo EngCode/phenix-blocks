@@ -49,7 +49,7 @@ function px_custom_code_block () {
     wp_register_script('custom-code',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

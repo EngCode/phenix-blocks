@@ -67,7 +67,7 @@ function px_users_query_block () {
     wp_register_script('users-query',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

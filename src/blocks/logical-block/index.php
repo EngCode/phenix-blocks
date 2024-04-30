@@ -46,7 +46,7 @@ function px_logical_block () {
     wp_register_script('logical-block',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

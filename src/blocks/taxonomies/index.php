@@ -67,7 +67,7 @@ function pds_taxonomies_block () {
     wp_register_script('pds-taxonomies',
         $assets_uri.'index.js',
         $px_assets['dependencies'],
-        $px_assets['version']
+        $px_assets['version'],true
     );
 
     //==== Register Block ====//

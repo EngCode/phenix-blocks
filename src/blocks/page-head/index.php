@@ -81,8 +81,12 @@ function px_head_render($block_attributes, $content) {
                 //===> Create Home Page <===//
                 echo '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>';
                 //===> Get Category Title <===//
-                if (is_category() || is_archive()) {
-                    echo '<li>'.get_the_archive_title('', false ).'</li>';
+                if (is_category() || is_archive() || is_single()) {
+                    if (is_single()) {
+                        echo '<li><a href="'.get_post_type_archive_link(get_post_type()).'">'.get_post_type_object(get_post_type())->labels->name.'</a></li>';
+                    } else {
+                        echo '<li>'.get_the_archive_title('', false ).'</li>';
+                    }
                 }
                 //===> Get Single Title <===//
                 if (is_single() || is_page()) {

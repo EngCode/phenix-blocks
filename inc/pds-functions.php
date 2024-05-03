@@ -34,8 +34,9 @@ if (!function_exists('refactor_archive_title')) :
 	 ** 02 - CF7 Customize
 	*/
 	function refactor_archive_title( $title ) {
-		if ( is_category() ) {
+		if (is_category()) {
 			$title = single_cat_title('', false);
+			
 		} elseif ( is_tag() ) {
 			$title = single_tag_title('', false);
 		} elseif ( is_post_type_archive() ) {

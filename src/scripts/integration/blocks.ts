@@ -86,8 +86,11 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix('.px-modal').popup();
 
     //====> Activate Select <====//
-    Phenix('.px-select').select();
-    
+    Phenix('.px-select').forEach((select:HTMLElement) => {
+        Phenix(select).insert('prepend', `<option value="" selected>${select.getAttribute('data-placeholder') || 'Default'}</option>`);
+        Phenix(select).select();
+    });
+
     //===> Unlocated Menu fallback style. <===//
     Phenix('.px-navigation > div.reset-list').forEach((element:HTMLElement) => {
         //===> Define Elements <===//

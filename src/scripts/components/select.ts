@@ -16,6 +16,9 @@ PhenixElements.prototype.select = function (options?:{
 }) {
     //====> Loop Through Phenix Elements <====//
     this.forEach(select => {
+        //====> if Empty Select Return <====//
+        if (!select.querySelector('option')) return;
+
         //====> Get Options <====//
         let events_data:any = {},
             classes  = select.classList,

@@ -25,6 +25,7 @@ function pds_taxonomies_render($block_attributes, $content) {
 
     //===> Create New Query <===//
     $categories = get_categories($block_attributes['query']);
+    if (empty($categories)) {return;}
 
     //===> Default Query <===//
     $default_query = ["hide_empty"];

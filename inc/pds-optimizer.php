@@ -308,18 +308,20 @@ add_action('add_attachment', function ($post_ID) {
 
 //===> Disable Thumbnails Generating <===//
 add_action('init', function() {
-    foreach ( ['thumbnail', 'medium', 'large'] as $size ) {
+    //====> Define Sizes <====//
+    $media_sizes = array('thumbnail', 'small', 'medium', 'medium_large', 'large', 'scaled', 'medium_large', 'medium-large');
+
+    //====> Update Sizes Options to 0 <====//
+    foreach ($media_sizes as $size ) {
         update_option( "{$size}_size_w", 0 );
         update_option( "{$size}_size_h", 0 );
     }
-});
 
-add_action('init', function () {
+    //====> Remove Resized Images <====//
     foreach ( get_intermediate_image_sizes() as $size ) {
-        if ( in_array( $size, ['thumbnail', 'medium', 'medium_large', 'large', 'scaled'] ) ) {
-            continue;
+        if (!in_array($size, $media_sizes)) {
+            remove_image_size($size);
         }
-        remove_image_size( $size );
     }
 });
 

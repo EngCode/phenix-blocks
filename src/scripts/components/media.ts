@@ -115,7 +115,7 @@ PhenixElements.prototype.multimedia = function (options?:{
 
                 //====> De-Activate Loader <====//
                 if (lazy) {
-                    element.classList.remove('px-loading');
+                    element.classList.remove('px-is-loading');
                     if (element.style.backgroundImage) element.style.removeProperty('background-image');
                 }
     
@@ -226,7 +226,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             //====> Lazy-Loading Mode <====//
             if (lazy) {
                 //====> Activate Lazy-Loading <====//
-                if (!splide) element.classList.add('px-loading');
+                if (!splide) element.classList.add('px-is-loading');
                 //====> First View Handler <=====//
                 if (Phenix(element).inView() || element.offsetTop < Phenix(document).viewport().height) mediaHandle();
                 //====> On-Scroll Handler <====//

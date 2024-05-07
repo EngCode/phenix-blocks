@@ -135,5 +135,11 @@ a.wp-block-phenix-group {
 body:not(.wp-admin):not([class*="-editor"]) {
     /*==== Hide Typed List ====*/
     .typed-list {display: none;}
+    /*==== Marquee ====*/
+    .px-marquee, .px-marquee-reverse, .marquee-slider-slides-wrapper {
+        display: flex;
+        overflow: hidden;
+        flex-wrap: nowrap;
+    }
 }
 

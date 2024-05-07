@@ -87,7 +87,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //====> Activate Select <====//
     Phenix('.px-select').forEach((select:HTMLElement) => {
-        Phenix(select).insert('prepend', `<option value="" selected>${select.getAttribute('data-placeholder') || 'Default'}</option>`);
+        if (!select.querySelector('option')) Phenix(select).insert('prepend', `<option value="" selected>${select.getAttribute('data-placeholder') || 'Default'}</option>`);
         Phenix(select).select();
     });
 

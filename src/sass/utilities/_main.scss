@@ -32,13 +32,21 @@
 
 /*==== Overlay Layer ====*/
 .overlay-dark, .overlay-light, .overlay-custom {
-    @extend %overlay;
+    --opacity: 0.75;
+    position: relative;
+    /*==== Overlay Element ====*/
     &::before {
+        inset: 0;
+        z-index: 1;
+        content: '';
+        display: block;
+        position: absolute;
+        pointer-events: none;
         opacity: var(--opacity, 0.5);
         background: var(--overlay-bg, #000);
-        background-size: cover;
-        background-position: center;
     }
+    /*==== Overlay Sibling ====*/
+    > div {position: relative; z-index: 3;}
 }
 
 .overlay-light {--overlay-bg: #FFF;}

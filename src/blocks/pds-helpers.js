@@ -178,9 +178,9 @@ window.PhenixBlocks = {
                         //===> Overlay Background <===//
                         else if (sub_option === "overly_bg" && sub_value.value) {
                             //===> Video Background <===//
-                            if (attributes.style.background.type === 'video') return;
+                            if (attributes.style.overly_bg.type === 'video') return;
                             //===> Image Background <===//
-                            else if (attributes.style.background.type === 'image') {CustomCSS['--overlay-bg'] = `url("${sub_value.value}")`;}
+                            else if (attributes.style.overly_bg.type === 'image') {CustomCSS['--overlay-bg'] = `url("${sub_value.value}")`;}
                             //===> Name Background <===//
                             else {CustomCSS['--overlay-bg'] = sub_value.value;}
                         }

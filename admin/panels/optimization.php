@@ -2,6 +2,7 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     $loadingOptions = (array) get_option('pds_loading');
     $showLoadingText = $loadingOptions["showText"];
+    if(!isset($loadingOptions["size"])) {$loadingOptions["size"] = "3.5rem";}
 ?>
 <!-- Grid -->
 <div class="row gpx-md-40 gpx-lg-50">
@@ -69,7 +70,7 @@
                 <div class="loading-preview mb-5 position-rv tx-align-center border-1 border-solid border-alpha-15" style="padding-bottom: 60%; background: <?php echo $loadingOptions["background"]; ?>;">
                     <div class="loading-content position-ab pos-center">
                         <!-- Image -->
-                        <img class="loading-image <?php if ($loadingOptions["type"] == "code") { echo "hidden"; } ?>" width="36" src="<?php echo $loadingOptions["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
+                        <img class="loading-image <?php if ($loadingOptions["type"] == "code") { echo "hidden"; } ?>" width="50" src="<?php echo $loadingOptions["image"]; ?>" alt="<?php echo __('Loading', "pds-blocks");?>" />
                         <!-- Code -->
                         <div class="loading-code <?php if ($loadingOptions["type"] == "image") { echo "hidden"; } ?>">
                             <?php echo $loadingOptions["code"]; ?>
@@ -102,14 +103,19 @@
                     </div>
 
                     <!-- Text and Background -->
-                    <div class="row gpx-10 flow-nowrap">
+                    <div class="row gpx-10">
                         <!-- Loading Text -->
-                        <div class="col-6">
+                        <div class="col-4">
                             <label class="fs-14 weight-strong mb-5"><?php echo __("Text", "pds-blocks"); ?></label>
                             <input id="pds_loading_text" name="pds_loading[text]" value="<?php echo $loadingOptions["text"]; ?>" type="text" class="form-control small radius-sm mb-10" />
                         </div>
+                        <!-- Loading Text -->
+                        <div class="col-4">
+                            <label class="fs-14 weight-strong mb-5"><?php echo __("Size", "pds-blocks"); ?></label>
+                            <input id="pds_loading_size" name="pds_loading[size]" value="<?php echo $loadingOptions["size"]; ?>" type="text" class="form-control small radius-sm mb-10" />
+                        </div>
                         <!-- Loading Background -->
-                        <div class="col-6" id="pds_loading_background">
+                        <div class="col-4" id="pds_loading_background">
                             <label class="fs-14 weight-strong mb-5"><?php echo __("Background", "pds-blocks"); ?></label>
                             <div class="px-group flexbox flow-nowrap mb-10">
                                 <span class="btn square small border-1 border-solid border-alpha-15" style="background: <?php echo $loadingOptions["background"]; ?>"></span>

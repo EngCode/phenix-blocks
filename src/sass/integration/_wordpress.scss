@@ -141,5 +141,7 @@ body:not(.wp-admin):not([class*="-editor"]) {
         overflow: hidden;
         flex-wrap: nowrap;
     }
+    /*==== Disable Textarea Resizing ====*/
+    textarea {resize: none;}
 }
 

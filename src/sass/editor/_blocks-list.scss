@@ -317,6 +317,8 @@ body.block-editor-page {
 			> * {max-width: calc(25% - 30px); margin-bottom: 15px;}
 		}
 	}
+
+	textarea {resize: vertical;}
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}

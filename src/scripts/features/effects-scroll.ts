@@ -111,7 +111,7 @@ PhenixElements.prototype.sticky = function (options?:{
         if(!direction || direction === 'y') {
             //====> Offset Calc <====//
             if (into && into > 0) offset = element.offsetTop + into;
-            if (offset && offset > 0) offset   = element.offsetTop - offset;
+            else if (offset && offset > 0) offset   = element.offsetTop - offset;
 
             //====> First Position [workout] <====//
             if (window.scrollY > offset) element.classList.add(active); 

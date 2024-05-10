@@ -74,7 +74,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     }
 
     //===> Sticky Elements <====//
-    Phenix("[data-sticky], .main-header.position-st").sticky();
+    Phenix("[data-sticky], .main-header.position-st").sticky({into: 5});
 
     //====> Sliders <====//
     Phenix('.px-slider:not([data-is-navigation])').slider();

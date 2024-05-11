@@ -117,6 +117,7 @@
     /*==== Date and Time Fix ====*/
     &[type*="date"], &[type*="time"] {
         display: block;
+        line-height: var(--height);
         -moz-appearance: textfield;
         -webkit-appearance: textfield;
         -webkit-min-logical-width: calc(100% - 16px);

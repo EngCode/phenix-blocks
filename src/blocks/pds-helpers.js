@@ -600,7 +600,7 @@ window.PhenixBlocks = {
                             } else {
                                 //===> Increase Counter <===//
                                 trying_times += 1;
-                                if (trying_times > 5) clearInterval(loadAssetTimer);
+                                if (trying_times > 10) clearInterval(loadAssetTimer);
                             }
                         };
     

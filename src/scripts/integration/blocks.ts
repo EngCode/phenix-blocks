@@ -109,6 +109,16 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         element.remove();
     });
 
+
+    //===> Megamenu Hooks <===//
+    Phenix(".pds-megamenu").forEach((menu:HTMLElement) => {
+        //===> Get Elements <====//
+        const id = menu.getAttribute('id');
+        const menu_item = document.querySelector(`.mgh-${id}`);
+        //===> Get the Menu Item <===//
+        Phenix(menu_item).insert('append', menu);
+    });
+
     //===> Phenix Menu <===//
     Phenix('.px-navigation').menu();
 

@@ -34,13 +34,18 @@
             /*==== inherited ====*/
             font-size: inherit;
             font-weight: inherit;
+            &[class*="fa-"]::before {
+                top: -#{REM(2)};
+                position: relative;
+                margin-#{$direction-end}: #{REM(8)};
+            }
         }
         /*==== Links ====*/
         li > a {
-            display: block;
             transition: none;
             color: var(--color);
             line-height: inherit;
+            display: inline-block;
             transition: color 0.3s;
             &:focus, &:active {outline: 0 none;}
         }

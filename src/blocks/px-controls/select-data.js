@@ -70,7 +70,6 @@ export default class SelectFromData extends Component {
             if (this.props.options === "taxonomies-terms") {
                 //===> Fetch Taxonomies <===//
                 apiFetch({path: `wp/v2/${this.props.termType}`}).then(terms => {
-                    console.log(terms);
                     //===> Define Types <===//
                     const new_state = this.state,
                           new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
@@ -152,7 +151,6 @@ export default class SelectFromData extends Component {
                             //===> if its direct theme-part <===//
                             if(typeof(value) === 'string') {
                                 new_options_list.push(<option key={`${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
-                                console.log(new_options_list);
                             }
                             //===> if its nested theme-part in a directory <===//
                             else {
@@ -174,7 +172,6 @@ export default class SelectFromData extends Component {
                         new_state.dataFetched += 1;
                         new_state.options = new_options_list;
                         //===> Set State <===//
-                        console.log(new_state.options);
                        this.setState({...new_state});
                     }
                 });

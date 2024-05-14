@@ -79,7 +79,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             //====> .... <====//
             lazy = lazyloading && lazyloading !== 'false' ? true : false,
             controls = player_controls && player_controls !== 'false' ? true : false,
-            autoplay = player_autoplay && player_autoplay !== 'false' ? true : false,
+            autoplay = player_autoplay && player_autoplay !== 'false' && player_autoplay !== 'hover' ? true : false,
             loop = player_loop && player_loop !== 'false' ? true : false,
             muted = player_muted && player_muted !== 'false' ? true : false;
         //====> Set Media Size <====//
@@ -195,10 +195,15 @@ PhenixElements.prototype.multimedia = function (options?:{
                 //====> Embed Type <====//
                 else if (type == 'embed') {
                     //===> Embed Options <===//
-                    let media_attributes = `${lazy ? 'loading="lazy"' : ''} ${autoplay ? 'autoplay="true"' : ''} ${controls ? 'controls' : ''} ${loop ? 'loop' : ''} ${muted ? 'muted' : ''}`;
+                    let media_attributes = `${lazy ? 'loading="lazy"' : ''} ${autoplay ? 'autoplay="true" playsinline="true"' : ''} ${controls ? 'controls' : ''} ${loop ? 'loop' : ''} ${muted ? 'muted' : ''}`;
                     //===> Video Source <===//
                     if (embed == 'video' && !element.querySelector('.px-video')) {
                         Phenix(element).insert('append', `<video class="px-video" src="${src}" ${media_attributes}></video>`);
+                        if (player_autoplay === 'hover') {
+                            const video = element.querySelector('.px-video');
+                            Phenix(element).on('mouseenter', event => video.play());
+                            Phenix(element).on('mouseleave', event => video.pause());
+                        }
                     }
                     //===> Video Source <===//
                     else if (embed != 'video' && !element.querySelector('.px-iframe')) {

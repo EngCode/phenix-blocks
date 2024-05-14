@@ -15,10 +15,11 @@ Phenix(window).on("load", (loaded) => {
             if (window.location.hash.substr(1).includes('wpcf7-')) {
                 //===> ... <===//
                 let isFailed = false,
+                    message  =Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
                     theForm = document.querySelector(`#${window.location.hash.substr(1)}`);
                 
                 //===> Check Forms <===//
-                if(theForm.classList.contains('failed')) isFailed = true;
+                if(theForm.classList.contains('failed') || document.querySelector('.wpcf7-not-valid-tip')) isFailed = true;
 
                 //===> Redirect <===//
                 if (isFailed === false) {
@@ -31,7 +32,7 @@ Phenix(window).on("load", (loaded) => {
                     type: "error",
                     duration: "7000",
                     position: ["center", "center"],
-                    message: Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
+                    message: document.querySelector('.wpcf7-not-valid-tip')?.textContent || message,
                 });
             }
 

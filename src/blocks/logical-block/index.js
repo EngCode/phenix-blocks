@@ -24,5 +24,11 @@ registerBlockType(metadata.name, {
     edit : Edit,
 
     /**===> Block Output <===*/
-    save : () => null
+    save : ({attributes}) => {
+        //===> Get Block Properties <===//
+        const blockProps = useBlockProps.save();
+
+        //===> Render <===//
+        return <InnerBlocks.Content />;
+    }
 });

@@ -109,7 +109,7 @@
     /*==== image type ====*/
     &.ratio-none[data-type="image"] {
         background-image: initial!important;
-        .px-media-img {pointer-events: none;}
+        .px-media-img {pointer-events: none; position: relative;}
     }
 }
 
@@ -175,13 +175,16 @@
         &-1x1  {--ratio-size: 100%;}
         /*==== FHD 16x9 ====*/
         &-16x9 {--ratio-size: 56.3%;}
+        &-9x16 {--ratio-size: 156.3%;}
         /*==== Landscape 21x9 ====*/
         &-21x9 {--ratio-size: 42.9%;}
+        &-9x21 {--ratio-size: 142.9%;}
         /*==== Classic 4x3 ====*/
         &-4x3 {--ratio-size: 75%;}
         &-3x4 {--ratio-size: 125%;}
         /*==== Wide 3x1 ====*/
         &-3x1 {--ratio-size: 33.3%;}
+        &-1x3 {--ratio-size: 133.3%;}
     }
 }
 

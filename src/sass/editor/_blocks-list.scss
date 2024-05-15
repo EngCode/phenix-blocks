@@ -245,6 +245,21 @@
 	/*==== Inner Blocks Position Fix ====*/
 	.block-editor-block-list__block:not(.position-) > .block-editor-block-list__layout {position: static;}
 	.wp-block-phenix-custom-code .form-control {direction: ltr; text-align: left;}
+
+	/*==== Marquess Style ====*/
+	.px-marquee, .px-marquee-reverse {
+		> .block-editor-block-list__layout {
+			display: flex;
+			> * {max-width: calc(25% - 30px); margin-bottom: 15px;}
+		}
+	}
+
+	/*==== Multimedia Inner Blocks ====*/
+	.wp-block-phenix-media-element {
+		.block-editor-inner-blocks, .block-editor-block-list__layout {position: static;}
+	}
+
+	textarea {resize: vertical;}
 }
 
 /*==== Toolbar Fix 6.5 ====*/
@@ -310,15 +325,6 @@ body.block-editor-page {
 	/*==== Patterns List Fix ====*/
 	.block-editor-block-patterns-list__item {height: auto!important;}
 
-	/*====  ====*/
-	.px-marquee, .px-marquee-reverse {
-		> .block-editor-block-list__layout {
-			display: flex;
-			> * {max-width: calc(25% - 30px); margin-bottom: 15px;}
-		}
-	}
-
-	textarea {resize: vertical;}
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}

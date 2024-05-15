@@ -166,18 +166,18 @@
     &[title]:not([data-title]) {--title-content: attr(title);}
 }
 
-/*==== Default Tooltip ====*/
-.tooltip::after {
-    left:50%;
-    bottom: 100%;
-    @extend %position-center-x;
-    max-width:300px;
-}
-
 /*==== Bottom Tooltip ====*/
 .tooltip-bottom::after {
     left:50%;
     top: 100%;
+    @extend %position-center-x;
+    max-width:300px;
+}
+
+/*==== Default Tooltip ====*/
+.tooltip::after, .tooltip-top::after {
+    left:50%;
+    bottom: 100%;
     @extend %position-center-x;
     max-width:300px;
 }

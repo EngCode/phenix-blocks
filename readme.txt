@@ -1,13 +1,13 @@
 === Phenix Blocks ===
 Contributors: abdullah.ramadan, abdullahramadan, EngCode
 Tags: phenix, phenix themes, phenix blocks, block, blocks, gutenberg blocks, gutenberg, block editor, metaboxes, post-types, taxonomies, optimizing, admin style, design system
-Version: 1.0.8
+Version: 1.0.9
 Author: Abdullah.Ramadan
 Author URI:https://phenixthemes.com/en/abdullah-ramadan
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.9
 License: GPLv2 or later
 
 Unleash Creativity with Ease and Transform Your Web Design Experience
@@ -73,6 +73,23 @@ Alternatively, you can download the plugin using the download button on this pag
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-07.jpeg)
 
 this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
+
+### Minor-fixes v1.0.9:
+1. Add Support for iPhone autoplay videos
+2. Add new Ratio Sizes for Multi-Media
+3. Fixing Multimedia inner block position editor mode.
+4. Fix None-Ratio hidden images.
+5. Fix Logical-block already exist.
+6. Add navbar icons style support
+7. Add Transition for Sticky Header.
+8. Fix Sticky Offset in PDS Core.
+9. Fix custom overlay rendering.
+10. Add loading logo size option.
+11. fix empty option in advanced select.
+12. upgrade wordpress breadcrumb flow.
+13. improve auto-generated thumbnails remover.
+14. fixing editor dark styles inhihretes.
+
 
 ### Hot-fixes v1.0.7 and v1.0.8:
 

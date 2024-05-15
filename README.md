@@ -99,13 +99,36 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "CDN"), (Phenix Assets => "CDN") on "pre-release" only.
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self"), (Phenix Assets => "CDN") on "main" only.
 
-### Hot-fixes v1.0.7:
+### Minor-fixes v1.0.9:
+1. Add Support for iPhone autoplay videos
+2. Add new Ratio Sizes for Multi-Media
+3. Fixing Multimedia inner block position editor mode.
+4. Fix None-Ratio hidden images.
+5. Fix Logical-block already exist.
+6. Add navbar icons style support
+7. Add Transition for Sticky Header.
+8. Fix Sticky Offset in PDS Core.
+9. Fix custom overlay rendering.
+10. Add loading logo size option.
+11. fix empty option in advanced select.
+12. upgrade wordpress breadcrumb flow.
+13. improve auto-generated thumbnails remover.
+14. fixing editor dark styles inhihretes.
+
+
+### Hot-fixes v1.0.7 and v1.0.8:
 
 1. Improve Responsive UHD Scaler.
 4. Add New Effects and Animations.
 2. Gradient Text Coloring Editing Style Fix.
 3. Media Uploader Control Multiple Popups Fix.
 4. Fix Select Re-render Options unexpectedly.
+5. Media Type Image Cover Size Fix
+6. Disable Scaled Thumbnail Generation.
+7. Defer Any Images with Lazyloading Attribute.
+8. Add new copyText() method for Phenix Core.
+9. Admin Style Fixes.
+10. Fix loading duplicates when custom template are present.
 
 ### Hot-fixes v1.0.6:
 

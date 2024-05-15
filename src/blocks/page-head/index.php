@@ -75,7 +75,10 @@ function px_head_render($block_attributes, $content) {
     </h1>
     <?php endif; ?>
     <!-- Breadcrumb -->
-    <?php if (!is_front_page() && strpos($block_attributes['mode'], 'breadcrumb') !== false) : ?>
+    <?php 
+        if (!is_front_page() && strpos($block_attributes['mode'], 'breadcrumb') !== false) :
+            if (function_exists('yoast_breadcrumb')): yoast_breadcrumb('<div class="px-breadcrumb flexbox custom-icon links-inherit" data-type="font-icon" itemprop="breadcrumb">', '</div>'); else:
+    ?>
         <ul class="px-breadcrumb reset-list flexbox custom-icon links-inherit" data-type="font-icon" itemprop="breadcrumb">
             <?php
                 //===> Create Home Page <===//
@@ -97,6 +100,7 @@ function px_head_render($block_attributes, $content) {
                 }
             ?>
         </ul>
+        <?php endif; ?>
     <?php endif; ?>
     <!-- // Breadcrumb -->
 </div>

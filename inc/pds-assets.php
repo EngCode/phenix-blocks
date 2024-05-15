@@ -28,7 +28,7 @@ if (!function_exists('phenix_core')) :
     function phenix_core () {
         //====> define props <====//
         // $assets_path = plugin_dir_path(__DIR__);
-        $version = "1.0.8";
+        $version = "1.0.9";
         $assets_url = plugin_dir_url(__DIR__)."assets/";
         // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
 
@@ -139,7 +139,7 @@ if (!function_exists('phenix_assets')) :
 
     function pds_optimized_asset () {
         //====> Get the Assets Files <====//
-        $version = "1.0.8";
+        $version = "1.0.9";
         $assets_files = phenix_assets();
 
         //====> Google Fonts <====//
@@ -190,7 +190,7 @@ if (!function_exists('pds_admin_style') && is_admin()) :
     */
 
     function pds_admin_style($hook) {
-        $version = "1.0.8";
+        $version = "1.0.9";
         //===> Global for Admin <===//
         if (is_rtl()) {
             wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin-rtl.css', array(), $version);

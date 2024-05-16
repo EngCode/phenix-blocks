@@ -74,7 +74,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     }
 
     //===> Sticky Elements <====//
-    Phenix("[data-sticky], .main-header.position-st").sticky({into: 5});
+    Phenix("[data-sticky], .main-header.position-st").sticky({into: 0});
 
     //====> Sliders <====//
     Phenix('.px-slider:not([data-is-navigation])').slider();
@@ -108,7 +108,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         //===> Remove Element <===//
         element.remove();
     });
-
 
     //===> Megamenu Hooks <===//
     Phenix(".pds-megamenu").forEach((menu:HTMLElement) => {

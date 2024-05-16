@@ -98,7 +98,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Value Check. <====//
                 if (input.validity.valueMissing) {
                     hasError = true;
-                    if (!message) message = pageDir == 'ltr' ? "this field is Required Please fill this field" : "هذا الحقل مطلوب يرجي املاءه";
+                    if (!message) message = pageDir == 'ltr' ? "this field is required!" : "هذا الحقل مطلوب يرجي املاءه";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -106,7 +106,8 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Type/Bad/Pattern Check. <====//
                 else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
                     hasError = true;
-                    if (!message) message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "You have entered a wrong value please current your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
+                    if (!message && input.getAttribute('type') === "email") message = pageDir == 'ltr' ? "please enter a valid e-mail!" : "من فضلك ادخل عنوان بريد صحيح.";
+                    if (!message) message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "please correct your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -114,7 +115,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Too-Long Check. <====//
                 else if (input.validity.tooLong || input.validity.rangeOverflow) {
                     hasError = true;
-                    if (!message) message = defaults?.tooLong || pageDir == 'ltr' ? "You have exceeded the maximum number, please correct the value." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
+                    if (!message) message = defaults?.tooLong || pageDir == 'ltr' ? "you have exceeded the maximum number." : "لقد تخطيت الحد الاقصي يرجي تصحيح القيمة.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -122,7 +123,7 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Too-Short Check. <====//
                 else if (input.validity.tooShort || input.validity.rangeUnderflow || input.validity.stepMismatch) {
                     hasError = true;
-                    if (!message) message = pageDir == 'ltr' ? "You entered a value less than the minimum, please correct." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
+                    if (!message) message = pageDir == 'ltr' ? "your value is less than the minimum." : "لقد ادخلت قيمة اقل من الحد الادني يرجي التصحيح.";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }

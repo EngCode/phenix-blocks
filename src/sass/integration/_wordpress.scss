@@ -148,5 +148,7 @@ body:not(.wp-admin):not([class*="-editor"]) {
         transition: all 0.3s ease-in-out;
         > div {transition: all 0.3s ease-in-out;}
     }
+    /*==== Google Captcha Badge Hide ====*/
+    .grecaptcha-badge {display: none!important;}
 }
 

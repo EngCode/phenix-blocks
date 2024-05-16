@@ -160,6 +160,8 @@ if (!is_admin()) {
     //====> Remove Enum Validation <====//
     remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_select_enum_rules', 20, 2);
     remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_checkbox_enum_rules', 20, 2);
+    // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_enum_rules', 20, 2);
+    // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_local_enum_rules', 20, 2);
 
     //===> Cleanup Navigation Menus <===//
     if (!function_exists('pds_menu_items_id_remover')) :

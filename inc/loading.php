@@ -27,13 +27,29 @@
 <script defer>
     //===> When Loading is Complete <===//
     window.addEventListener('load', (loaded) => {
-        //===> Hide the Loader <===//
-        Phenix(".px-page-loader").fadeOut(500, 0);
-        //===> Leaving Fallback <===//
-        window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(500, 0));
+        //===> WP7 Hacks <===//
+        const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
+        const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
+
+        //===> Keep Loading for Forms Submit <====//
+        if (isFormProcessing && theForm && !theForm.classList.contains('failed')) {
+            Phenix('.px-page-loader p')[0].innerHTML = "please wait your data is being processed.";
+        } else {
+            //===> Hide the Loader <===//
+            Phenix(".px-page-loader").fadeOut(500, 0);
+            //===> Leaving Fallback <===//
+            window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(500, 0));
+        }
     });
     //===> When Leaving Page <===//
-    window.addEventListener('beforeunload', (isLeaving) => Phenix(".px-page-loader").fadeIn(100, 0));
+    window.addEventListener('beforeunload', (isLeaving) => {
+        //===> WP7 Hacks <===//
+        const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
+        const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
+        //====> Cancel Loading Showup <=====//
+        if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
+        Phenix(".px-page-loader").fadeIn(100, 0);
+    });
     //===> Defer Images <===//
     document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
 </script>

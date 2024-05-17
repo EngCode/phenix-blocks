@@ -10,32 +10,101 @@ declare var wp:any, PDS_WP_KEY:any, window:any;
 Phenix(window).on("load", (loaded) => {
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
-        if (document.querySelector(".wpcf7-form")) {
-            //===> Redirect WP7 After Submit <===//
-            if (window.location.hash.substr(1).includes('wpcf7-')) {
-                //===> ... <===//
-                let isFailed = false,
-                    message  = Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
-                    formID  = window.location.hash.substr(1),
-                    theForm = document.querySelector(`#${formID}`);
-                
-                //===> Check Forms <===//
-                if(theForm.classList.contains('failed') || document.querySelector('.wpcf7-not-valid-tip')) isFailed = true;
+        //====> Local Date/Time Reformating <=====//
+        document.querySelectorAll('.wpcf7-form').forEach((form:any) => {
+            //====> on Submit Prevent the Native behavior and submit with Fetch <====//
+            form.addEventListener('submit', (event:any) => {
+                //====> Prevent the default form submission <====//
+                event.preventDefault();
 
-                //===> Redirect <===//
-                if (isFailed === false) {
-                    const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '').replace(`#${formID}`, '');
-                    window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
+                //====> Date/Time Reformated <====//
+                const dateTimeFormatter = (dateString) => {
+                    //===> Get Current Date and Time Data <===//
+                    let date = new Date(dateString),
+                        year = date.getFullYear(),
+                        month = ('0' + (date.getMonth() + 1)).slice(-2),
+                        day = ('0' + date.getDate()).slice(-2),
+                        hours = ('0' + date.getHours()).slice(-2),
+                        minutes = ('0' + date.getMinutes()).slice(-2);
+                    
+                    //===> Construct a readable date and time format <===//
+                    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
                 }
 
-                //===> Show Failed Message <===//
-                else Phenix(document).notifications({
-                    type: "error",
-                    duration: "7000",
-                    position: ["center", "center"],
-                    message: document.querySelector('.wpcf7-not-valid-tip')?.textContent || message,
+                // Create a new FormData object from the form
+                const formData = new FormData(form);
+
+                //====> Loop through each entry in the FormData object <===//
+                for (const pair of formData.entries()) {
+                    //====> Check if the entry value is a date/time string <====//
+                    if (typeof pair[1] === 'string' && pair[1].match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)) {
+                        //====> Reformat the date/time string <====//
+                        formData.set(pair[0], dateTimeFormatter(pair[1]));
+                    }
+                }
+
+                //====> Submit with Ajax [Fetch] <====//
+                fetch(form.getAttribute('action'), {
+                    body: formData,
+                    method: form.getAttribute('method'),
+                }).then(response => {
+                    //====> Check Network Connection <====//
+                    if (!response.ok) {
+                        //===> Show Failed Message <===//
+                        Phenix(document).notifications({
+                            type: "error",
+                            duration: "7000",
+                            position: ["center", "center"],
+                            message: "Network response was not ok",
+                        });
+
+                        //===> Throw an Error <====//
+                        throw new Error('Network response was not ok');
+                    }
+                    //====> Return Response Text <====//
+                    return response.text();
+                }).then(data => {
+                    //===> Redirect to Success <===//
+                    const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
+                    window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
+                }).catch(error => {
+                    //===> Show Error Message <===//
+                    Phenix(document).notifications({
+                        type: "error",
+                        duration: "7000",
+                        position: ["center", "center"],
+                        message: error,
+                    });
                 });
-            }
+            });
+        });
+
+        if (document.querySelector(".wpcf7-form")) {
+            //===> Redirect WP7 After Submit <===//
+            // if (window.location.hash.substr(1).includes('wpcf7-')) {
+            //         //===> ... <===//
+            //         let isFailed = false,
+            //             message  = Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
+            //             formID  = window.location.hash.substr(1),
+            //             theForm = document.querySelector(`#${formID}`);
+                    
+            //         //===> Check Forms <===//
+            //         if(theForm.classList.contains('failed') || document.querySelector('.wpcf7-not-valid-tip')) isFailed = true;
+
+            //         //===> Redirect <===//
+            //         if (isFailed === false) {
+            //             const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '').replace(`#${formID}`, '');
+            //             // window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
+            //         }
+
+            //         //===> Show Failed Message <===//
+            //         else Phenix(document).notifications({
+            //             type: "error",
+            //             duration: "7000",
+            //             position: ["center", "center"],
+            //             message: document.querySelector('.wpcf7-not-valid-tip')?.textContent || message,
+            //         });
+            //     }
 
             //===> Textarea <===//
             Phenix('.wpcf7-textarea').forEach((element:any) => {

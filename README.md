@@ -104,6 +104,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 2. improve SEO fixers and speed up the process without any delays.
 3. remove old CF7 Success redirect method.
 4. Improve Media Uploader, and add placeholder for none images.
+5. improve performance and loading process for the main js.
 
 ### Minor-fixes v1.0.9:
 1. Add Support for iPhone autoplay videos

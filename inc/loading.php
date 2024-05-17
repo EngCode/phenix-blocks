@@ -26,7 +26,11 @@
 <!-- Loading Script -->
 <script defer>
     /*====> Unblock Phenix <====*/
-    document.querySelector('#phenix-js')||document.querySelector("script[src*='phenix.js']")?.removeAttribute('async');
+    const phenixJsScript = document.querySelector('#phenix-js') || document.querySelector("script[src*='phenix.js']");
+    if(phenixJsScript) phenixJsScript.removeAttribute('async');
+
+    //===> Defer Images <===//
+    document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
 
     //===> When Loading is Complete <===//
     window.addEventListener('load', (loaded) => {
@@ -53,8 +57,5 @@
         //====> Cancel Loading Showup <=====//
         if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
         Phenix(".px-page-loader").fadeIn(100, 0);
-    });
-
-    //===> Defer Images <===//
-    document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
+    });    
 </script>

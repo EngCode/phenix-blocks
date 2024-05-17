@@ -12,70 +12,78 @@ Phenix(window).on("load", (loaded) => {
     const fixCF7 = () => {
         //====> Local Date/Time Reformating <=====//
         document.querySelectorAll('.wpcf7-form').forEach((form:any) => {
+            //====> Forms Validation <====//
+            Phenix('.wpcf7-form, .px-form-validation').validation();
+
             //====> on Submit Prevent the Native behavior and submit with Fetch <====//
             form.addEventListener('submit', (event:any) => {
                 //====> Prevent the default form submission <====//
                 event.preventDefault();
 
-                //====> Date/Time Reformated <====//
-                const dateTimeFormatter = (dateString) => {
-                    //===> Get Current Date and Time Data <===//
-                    let date = new Date(dateString),
-                        year = date.getFullYear(),
-                        month = ('0' + (date.getMonth() + 1)).slice(-2),
-                        day = ('0' + date.getDate()).slice(-2),
-                        hours = ('0' + date.getHours()).slice(-2),
-                        minutes = ('0' + date.getMinutes()).slice(-2);
-                    
-                    //===> Construct a readable date and time format <===//
-                    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
-                }
+                if(!form.querySelector('.px-validation') && !form.querySelector('.error')) {
+                    //====> Disable Form <====//
+                    form.classList.add('px-loading-inline');
 
-                // Create a new FormData object from the form
-                const formData = new FormData(form);
-
-                //====> Loop through each entry in the FormData object <===//
-                for (const pair of formData.entries()) {
-                    //====> Check if the entry value is a date/time string <====//
-                    if (typeof pair[1] === 'string' && pair[1].match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)) {
-                        //====> Reformat the date/time string <====//
-                        formData.set(pair[0], dateTimeFormatter(pair[1]));
+                    //====> Date/Time Reformated <====//
+                    const dateTimeFormatter = (dateString) => {
+                        //===> Get Current Date and Time Data <===//
+                        let date = new Date(dateString),
+                            year = date.getFullYear(),
+                            month = ('0' + (date.getMonth() + 1)).slice(-2),
+                            day = ('0' + date.getDate()).slice(-2),
+                            hours = ('0' + date.getHours()).slice(-2),
+                            minutes = ('0' + date.getMinutes()).slice(-2);
+                        
+                        //===> Construct a readable date and time format <===//
+                        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
                     }
-                }
 
-                //====> Submit with Ajax [Fetch] <====//
-                fetch(form.getAttribute('action'), {
-                    body: formData,
-                    method: form.getAttribute('method'),
-                }).then(response => {
-                    //====> Check Network Connection <====//
-                    if (!response.ok) {
-                        //===> Show Failed Message <===//
+                    // Create a new FormData object from the form
+                    const formData = new FormData(form);
+
+                    //====> Loop through each entry in the FormData object <===//
+                    for (const pair of formData.entries()) {
+                        //====> Check if the entry value is a date/time string <====//
+                        if (typeof pair[1] === 'string' && pair[1].match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)) {
+                            //====> Reformat the date/time string <====//
+                            formData.set(pair[0], dateTimeFormatter(pair[1]));
+                        }
+                    }
+
+                    //====> Submit with Ajax [Fetch] <====//
+                    fetch(form.getAttribute('action'), {
+                        body: formData,
+                        method: form.getAttribute('method'),
+                    }).then(response => {
+                        //====> Check Network Connection <====//
+                        if (!response.ok) {
+                            //===> Show Failed Message <===//
+                            Phenix(document).notifications({
+                                type: "error",
+                                duration: "7000",
+                                position: ["center", "center"],
+                                message: "Network response was not ok",
+                            });
+    
+                            //===> Throw an Error <====//
+                            throw new Error('Network response was not ok');
+                        }
+                        //====> Return Response Text <====//
+                        return response.text();
+                    }).then(data => {
+                        //===> Redirect to Success <===//
+                        const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
+                        window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
+                    }).catch(error => {
+                        //===> Show Error Message <===//
                         Phenix(document).notifications({
                             type: "error",
                             duration: "7000",
                             position: ["center", "center"],
-                            message: "Network response was not ok",
+                            message: error,
                         });
-
-                        //===> Throw an Error <====//
-                        throw new Error('Network response was not ok');
-                    }
-                    //====> Return Response Text <====//
-                    return response.text();
-                }).then(data => {
-                    //===> Redirect to Success <===//
-                    const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
-                    window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
-                }).catch(error => {
-                    //===> Show Error Message <===//
-                    Phenix(document).notifications({
-                        type: "error",
-                        duration: "7000",
-                        position: ["center", "center"],
-                        message: error,
                     });
-                });
+                }
             });
         });
 

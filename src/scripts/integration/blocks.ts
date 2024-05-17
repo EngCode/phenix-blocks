@@ -42,9 +42,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         Phenix(grid_element).insert("append", element);
     });
 
-    //====> Forms Validation <====//
-    Phenix('.wpcf7-form, .px-form-validation').validation();
-
     //===> Move Header <===//
     const main_header = document.querySelector('.main-header'),
           header_holder = document.querySelector('#header-holder');

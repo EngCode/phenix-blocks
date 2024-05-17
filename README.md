@@ -99,6 +99,11 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "CDN"), (Phenix Assets => "CDN") on "pre-release" only.
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self"), (Phenix Assets => "CDN") on "main" only.
 
+### Change Log v1.1.0:
+1. Switch CF7 Form Posting to JS Fetching for custom validation and readable data formatting.
+2. improve SEO fixers and speed up the process without any delays.
+3. remove old CF7 Success redirect method.
+
 ### Minor-fixes v1.0.9:
 1. Add Support for iPhone autoplay videos
 2. Add new Ratio Sizes for Multi-Media

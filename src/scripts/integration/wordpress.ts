@@ -79,6 +79,7 @@ Phenix(window).on("load", (loaded) => {
             });
         });
 
+        //===> CF7 Style Fixes <===//
         if (document.querySelector(".wpcf7-form")) {
             //===> Textarea <===//
             Phenix('.wpcf7-textarea').forEach((element:any) => {

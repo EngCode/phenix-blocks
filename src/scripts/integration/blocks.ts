@@ -75,7 +75,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //====> Sliders <====//
     Phenix('.px-slider:not([data-is-navigation])').slider();
-    
+
     //====> Tabs <====//
     Phenix('.px-tabs').tabs();
     

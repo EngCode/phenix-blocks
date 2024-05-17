@@ -178,9 +178,6 @@ Phenix(window).on("load", (loaded) => {
         });
     };
 
-    /*====> Unblock Phenix <====*/
-    document.querySelector('#phenix-js')?.removeAttribute('async');
-
     /*====> Unblock Fonts <====*/
     Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 

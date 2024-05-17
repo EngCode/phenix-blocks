@@ -25,6 +25,9 @@
 </div>
 <!-- Loading Script -->
 <script defer>
+    /*====> Unblock Phenix <====*/
+    document.querySelector('#phenix-js')||document.querySelector("script[src*='phenix.js']")?.removeAttribute('async');
+
     //===> When Loading is Complete <===//
     window.addEventListener('load', (loaded) => {
         //===> WP7 Hacks <===//
@@ -41,6 +44,7 @@
             window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(500, 0));
         }
     });
+
     //===> When Leaving Page <===//
     window.addEventListener('beforeunload', (isLeaving) => {
         //===> WP7 Hacks <===//
@@ -50,6 +54,7 @@
         if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
         Phenix(".px-page-loader").fadeIn(100, 0);
     });
+
     //===> Defer Images <===//
     document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
 </script>

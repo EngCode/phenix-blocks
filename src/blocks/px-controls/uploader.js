@@ -13,6 +13,9 @@ export default class MediaUploader extends Component {
     render () {
         //===> Properties <===//
         const { label, value, size, type, setValue, className } = this.props;
+        const largeImage = (src) => <img src={src} className="radius-sm radius-top" style={{"maxWidth": "100%", "display": "block"}} /> ;
+        const smallImage = (src) => <img src={src} style={{"maxHeight": "1.5rem"}} />;
+        const placeholderImage = "https://placehold.co/600x400/1c1c1c/CCC?text=Change%20Source";
 
         //===> Output <===//
         return (<>
@@ -24,12 +27,12 @@ export default class MediaUploader extends Component {
                         <div className={`${className ? `${className}` : ""} mouse-no-events`}>
                             {size === 'small' ?
                                 <div className='flexbox align-center-y align-between pd-5 border-solid border-1 border-alpha-15 radius-sm'>
-                                    {!type || type === 'image' ? <img src={value} style={{"maxHeight": "1.5rem"}} /> : null}
+                                    {!type || type === 'image' ? smallImage(value || placeholderImage) : smallImage(placeholderImage)}
                                     <button key="change-media" onClick={open} className="btn square primary tiny radius-sm fs-12 fas fa-upload"></button>
                                 </div>
                                 :
                                 <div className='flexbox align-center-y align-between'>
-                                    {!type || type === 'image' ? <img src={value} className="radius-sm radius-top" style={{"maxWidth": "100%", "display": "block"}} /> : null}
+                                    {!type || type === 'image' ? largeImage(value || placeholderImage) : largeImage(placeholderImage)}
                                     <button key="change-media" onClick={open} className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select File</button>
                                 </div>
                             }

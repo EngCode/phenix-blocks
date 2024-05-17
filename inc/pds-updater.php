@@ -13,7 +13,7 @@ class PDS_GitHub_Updater {
 	//===> Define Data <===//
 	var $config;
 	var $missing_config;
-	const VERSION = "1.0.9";
+	const VERSION = "1.1.0";
 	private $github_data;
 
 	//=====> Constructor <====//

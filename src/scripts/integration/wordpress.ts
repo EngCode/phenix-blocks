@@ -80,32 +80,6 @@ Phenix(window).on("load", (loaded) => {
         });
 
         if (document.querySelector(".wpcf7-form")) {
-            //===> Redirect WP7 After Submit <===//
-            // if (window.location.hash.substr(1).includes('wpcf7-')) {
-            //         //===> ... <===//
-            //         let isFailed = false,
-            //             message  = Phenix(document).direction() === "ltr" ? "Something Went Wrong Please Try Again." : "لقد حدث خطأ ما يرجي اعادة المحاولة.",
-            //             formID  = window.location.hash.substr(1),
-            //             theForm = document.querySelector(`#${formID}`);
-                    
-            //         //===> Check Forms <===//
-            //         if(theForm.classList.contains('failed') || document.querySelector('.wpcf7-not-valid-tip')) isFailed = true;
-
-            //         //===> Redirect <===//
-            //         if (isFailed === false) {
-            //             const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '').replace(`#${formID}`, '');
-            //             // window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
-            //         }
-
-            //         //===> Show Failed Message <===//
-            //         else Phenix(document).notifications({
-            //             type: "error",
-            //             duration: "7000",
-            //             position: ["center", "center"],
-            //             message: document.querySelector('.wpcf7-not-valid-tip')?.textContent || message,
-            //         });
-            //     }
-
             //===> Textarea <===//
             Phenix('.wpcf7-textarea').forEach((element:any) => {
                 element.setAttribute('cols', null);

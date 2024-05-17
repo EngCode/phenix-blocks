@@ -38,13 +38,16 @@ if (!function_exists('phenix_core')) :
         //====> Phenix CSS <====//
         if (!is_rtl()) :
             //====> Phenix LTR <====//
-            wp_enqueue_style('phenix', $assets_url. 'css/phenix.css', array(), $version);
-            wp_enqueue_style('phenix-utils', $assets_url. 'css/phenix-utils.css', array('phenix'), $version);
+            wp_register_style('phenix', $assets_url. 'css/phenix.css', array(), $version);
+            wp_register_style('phenix-utils', $assets_url. 'css/phenix-utils.css', array('phenix'), $version);
         else :
             //====> Phenix RTL <====//
-            wp_enqueue_style('phenix', $assets_url. 'css/phenix-rtl.css', array(), $version);
-            wp_enqueue_style('phenix-utils', $assets_url. 'css/phenix-utils-rtl.css', array('phenix'), $version);
+            wp_register_style('phenix', $assets_url. 'css/phenix-rtl.css', array(), $version);
+            wp_register_style('phenix-utils', $assets_url. 'css/phenix-utils-rtl.css', array('phenix'), $version);
         endif;
+
+        wp_enqueue_style('phenix');
+        wp_enqueue_style('phenix-utils');
 
         //====> Enqueue Phenix JS <====//
         wp_enqueue_script('phenix', $assets_url.'js/phenix.js', false, $version , true);
@@ -300,3 +303,5 @@ endif;
 add_action('admin_enqueue_scripts', function () {
     wp_enqueue_media();
 });
+
+

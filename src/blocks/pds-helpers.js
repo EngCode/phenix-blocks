@@ -474,27 +474,23 @@ window.PhenixBlocks = {
     canvasAssetsLoaded: false,
 
     componentsBuilder : () => {
-        //===> Create Timestamp to Find the Elements <===//
-        setTimeout(() => {
-            //===> Get Elements <===//
-            let elements = document.querySelectorAll('.pds-tm-control');
-    
-            //===> Loop Through Elements <===//
-            elements.forEach(element => {
-                //===> Define Element Data <===//
-                let class_names = element.classList;
-    
-                //===> for Selects <===//
-                if (class_names.contains('px-select') && !Phenix(element).ancestor('.px-dropdown')) {
-                    Phenix(element).select();
-                }
-                //===> for Dropdowns <===//
-                else if (class_names.contains('px-dropdown')) {
-                    Phenix(element).dropdown();
-                    element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
-                }
-            });
-        }, 100);
+        //===> Get Elements <===//
+        let elements = document.querySelectorAll('.pds-tm-control');
+
+        //===> Loop Through Elements <===//
+        elements.forEach(element => {
+            //===> Define Element Data <===//
+            let class_names = element.classList;
+
+            //===> for Selects <===//
+            if (class_names.contains('px-select') && !Phenix(element).ancestor('.px-dropdown')) Phenix(element).select();
+
+            //===> for Dropdowns <===//
+            else if (class_names.contains('px-dropdown')) {
+                Phenix(element).dropdown();
+                element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
+            }
+        });
 
         //===> Get View iFrame <===//
         const viewScript = (the_document) => {
@@ -568,60 +564,55 @@ window.PhenixBlocks = {
             }, 300);
         };
 
+        //====> Get the Editor iFrame <====//
+        const canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+              canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+
         //===> Check for Canvas Frames <===//
-        if (window.frames['editor-canvas']) {
-            //===> Run View Script <===//
-            viewScript(window.frames['editor-canvas'].document);
-
+        if (canvasIframeDoc) {
             //===> Load Assets in Canvas Frame <====//
-            if (!window.PhenixBlocks.canvasAssetsLoaded) {
-                let trying_times = 0;
-                let loadAssetTimer = setInterval(()=> {
-                    //====> if the Document unloaded clear the timer <====//
-                    if (!window.frames['editor-canvas'] || !window.frames['editor-canvas'].document) {
-                        clearInterval(loadAssetTimer);
-                        return;
-                    } else {
-                        //===> Load Assets inside Frames <===//
-                        const frameAssetsLoader = (assets_id) => {
-                            if (window.frames['editor-canvas'].document.querySelectorAll(assets_id).length <= 0) {
-                                //===> Check in the Editor <===//
-                                let frameDoc = window.frames['editor-canvas'].document,
-                                    fontsElements = document.querySelectorAll(assets_id);
+            const isLoaded = window.PhenixBlocks.canvasAssetsLoaded;
+            if (!isLoaded) {
+                //====> Loading Times <====//
+                let trying_times = 0,
 
-                                //===> Load Assets <===//
-                                if (fontsElements.length > 0) fontsElements.forEach((font) => {
-                                    //===> Load Font <===//
-                                    if(frameDoc.body) {
-                                        frameDoc.body.appendChild(document.importNode(font, true));
-                                        clearInterval(loadAssetTimer);
-                                    }
-                                });
-                            } else {
-                                //===> Increase Counter <===//
-                                trying_times += 1;
-                                if (trying_times > 10) clearInterval(loadAssetTimer);
-                            }
-                        };
-    
-                        //===> Check if the Assets Exist or Not <===//
-                        let pdsAssetsTargets = "#fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css",
-                            pdsPrimaryFontsCheck = window.frames['editor-canvas'].document.querySelectorAll(pdsAssetsTargets);
-                        
-                        //===> Clear Timer if Loaded <===//
-                        if (pdsPrimaryFontsCheck.length > 0) {
+                //====> Loader Timer <====//
+                loadAssetTimer = setInterval(()=> {
+                    //===> Run View Script <===//
+                    viewScript(canvasIframeDoc);
+
+                    //===> Load Assets inside Frames <===//
+                    const frameAssetsLoader = (assets_id) => {
+                        //====> Check for the Assets Existing  <====//
+                        if (canvasIframeDoc.querySelectorAll(assets_id).length <= 0) {
+                            //===> Get the Assets from the Original Document <===//
+                            const fontsElements = document.querySelectorAll(assets_id);
+
+                            //===> Load Assets <===//
+                            fontsElements.forEach((asset) => {
+                                if(!canvasIframeDoc.querySelector(`#${asset.getAttribute('id')}`)) canvasIframeDoc.body.appendChild(document.importNode(asset, true));
+                            });
+
                             window.PhenixBlocks.canvasAssetsLoaded = true;
                             clearInterval(loadAssetTimer);
-                        };
-    
-                        //===> When the Frame is Found Load Assets <===//
-                        frameAssetsLoader(pdsAssetsTargets);
-                    }
-                }, 300);
+                        } else {
+                            //===> Increase Counter <===//
+                            trying_times += 1;
+                            if (trying_times > 15) clearInterval(loadAssetTimer);
+                        }
+                    };
+
+                    //===> Check if the Assets Exist or Not <===//
+                    const pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css";
+
+                    //===> When the Frame is Found Load Assets <===//
+                    frameAssetsLoader(pdsAssetsTargets);
+                }, 500);
             }
-        } else if (window.Phenix) {
-            window.document ? viewScript(window.document) : null;
         }
+
+        //===> Run the Scripts Directly <===//
+        else if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
     },
 
     //===> Block Inserter Accessibility <===//

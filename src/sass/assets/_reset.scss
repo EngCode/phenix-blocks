@@ -235,7 +235,7 @@ ul, ol {
 dl {
     margin-bottom: REM(25);
     dt {
-        @extend .weight-strong;
+        font-weight: 700;
         + dd {margin-top: .25rem;}
         &:not(:first-child) {margin-top: .5rem;}
     }

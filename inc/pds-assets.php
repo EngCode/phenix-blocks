@@ -27,20 +27,25 @@ if (!function_exists('phenix_core')) :
     //=====> Phenix Assets [Head] <=====//
     function phenix_core () {
         //====> define props <====//
-        // $assets_path = plugin_dir_path(__DIR__);
         $version = "1.0.9";
         $assets_url = plugin_dir_url(__DIR__)."assets/";
-        // $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
+
+        //====> Check for CDN Option for the Core JS/CSS <====//
+        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
+        }
 
         //====> Phenix CSS <====//
         if (!is_rtl()) :
             //====> Phenix LTR <====//
             wp_enqueue_style('phenix', $assets_url. 'css/phenix.css', array(), $version);
+            wp_enqueue_style('phenix-utils', $assets_url. 'css/phenix-utils.css', array('phenix'), $version);
         else :
             //====> Phenix RTL <====//
             wp_enqueue_style('phenix', $assets_url. 'css/phenix-rtl.css', array(), $version);
+            wp_enqueue_style('phenix-utils', $assets_url. 'css/phenix-utils-rtl.css', array('phenix'), $version);
         endif;
-    
+
         //====> Enqueue Phenix JS <====//
         wp_enqueue_script('phenix', $assets_url.'js/phenix.js', false, $version , true);
 
@@ -77,8 +82,6 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font;
         $final_files = array();
-        // $assets_path = plugin_dir_path(__DIR__);
-        // $assets_url = plugin_dir_url(__DIR__)."assets/";
         $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
@@ -155,7 +158,7 @@ if (!function_exists('phenix_assets')) :
         if (isset($assets_files['primary']) && $assets_files['primary'] !== $assets_files['secondary']) {
             wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
         }
-        
+
         //===> Load Icons Font <===//
         wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
 

@@ -111,27 +111,10 @@
 @import 'form/uploader';
 @import 'form/form-controls';
 
-/*==== Utilities Modules ====*/
-@import 'utilities/main';       //===> Custom Utilities
-@import 'utilities/position';   //===> Postion Utilites
-@import 'utilities/typography'; //===> Typography Utilites
-@import 'utilities/sizes';      //===> Sizing Utilities
-@import 'utilities/margin';     //===> Margin Utilites
-@import 'utilities/padding';    //===> Padding Utilites
-@import 'utilities/colors';     //===> CSS Coloring System
-@import 'utilities/borders';    //===> CSS Borders
-@import 'utilities/visibility'; //===> Visibility Utilities
-@import 'utilities/plugins';    //===> Phenix Plugins Assets
-@import 'utilities/effects';    //===> Phenix Effects Assets
-
 /*==== (FHD, UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
 @media screen and (min-width: 1600px) {
     body,html{font-size: 0.93vw;}
 }
-/*==== (UHD, 2K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
-// @media screen and (min-width: 1800px) {
-//     body,html{font-size: 0.93vw;}
-// }
 
 /*==== All-In-One (4K, 8K) => {4:3, 16:9, 21:9, 5:3} Responsive Scaling ====*/
 @media screen and (min-width: 2500px) {

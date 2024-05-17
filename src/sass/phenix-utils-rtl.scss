@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*!
+ * Phenix UI v0.7-beta (https://design.phenixthemes.com)
+ * Copyright 2012-2022 Abdullah.Ramadan
+ * Copyright 2020-2022 Phenix Themes.
+ * Licensed under MIT (https://github.com/EngCode/phenix-ui/blob/main/LICENSE)
+*/
+
+/*==== Direction Options ====*/
+$direction: rtl;
+$direction-reverse: ltr;
+$direction-start: right;
+$direction-end: left;
+
+/*==== Required Modules ====*/
+@import 'assets/mixin';     //===> SASS Mixin
+@import 'assets/selectors'; //===> SASS Selectors
+
+/*==== Utilities Modules ====*/
+@import 'utilities/main';       //===> Custom Utilities
+@import 'utilities/position';   //===> Postion Utilites
+@import 'utilities/typography'; //===> Typography Utilites
+@import 'utilities/sizes';      //===> Sizing Utilities
+@import 'utilities/margin';     //===> Margin Utilites
+@import 'utilities/padding';    //===> Padding Utilites
+@import 'utilities/colors';     //===> CSS Coloring System
+@import 'utilities/borders';    //===> CSS Borders
+@import 'utilities/visibility'; //===> Visibility Utilities
+@import 'utilities/plugins';    //===> Phenix Plugins Assets
+@import 'utilities/effects';    //===> Phenix Effects Assets

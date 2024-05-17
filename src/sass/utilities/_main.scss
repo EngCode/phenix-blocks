@@ -101,7 +101,7 @@
 
 /*==== Text Clipping ====*/
 .bg-clip-text {
-    @extend .color-transparent;
+    color: transparent;
     -webkit-background-clip: text;
         background-clip: text;
 }

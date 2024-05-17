@@ -12,6 +12,10 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
+                    "name"  => 'pds_cdn',
+                    "title" => 'Use Phenix CDN',
+                ),
+                array(
                     "name"  => 'head_cleaner',
                     "title" => 'Header Optimizer',
                 ),

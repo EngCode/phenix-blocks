@@ -50,24 +50,6 @@
     }
 }
 
-@include make-visibility();
-
-@include small() {
-    @include make-visibility('-sm');
-};
-
-@include medium() {
-    @include make-visibility('-md');
-};
-
-@include large() {
-    @include make-visibility('-lg');
-};
-
-@include xlarge() {
-    @include make-visibility('-xl');
-};
-
 /*==== Hidden ====*/
 .hidden {
     display: none;
@@ -104,3 +86,21 @@
         &-xl-down {display: none;}
     };
 }
+
+@include make-visibility();
+
+@include small() {
+    @include make-visibility('-sm');
+};
+
+@include medium() {
+    @include make-visibility('-md');
+};
+
+@include large() {
+    @include make-visibility('-lg');
+};
+
+@include xlarge() {
+    @include make-visibility('-xl');
+};

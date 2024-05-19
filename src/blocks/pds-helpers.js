@@ -574,40 +574,51 @@ window.PhenixBlocks = {
             const isLoaded = window.PhenixBlocks.canvasAssetsLoaded;
             if (!isLoaded) {
                 //====> Loading Times <====//
-                let trying_times = 0,
+                let trying_times = 0;
+
+                //===> Load Assets inside Frames <===//
+                const frameAssetsLoader = (assets_id) => {
+                    //===> Get the Assets from the Original Document <===//
+                    const assetsElements = document.querySelectorAll(assets_id);
+
+                    //===> Load Assets <===//
+                    assetsElements.forEach((asset) => {
+                        if(!canvasIframeDoc.querySelector(`#${asset.getAttribute('id')}`)) {
+                            canvasIframeDoc.body.appendChild(document.importNode(asset, true));
+                        }
+                    });
+
+                    window.PhenixBlocks.canvasAssetsLoaded = true;
+                },
+                
+                pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css",
 
                 //====> Loader Timer <====//
                 loadAssetTimer = setInterval(()=> {
+                    //====> Check for the Assets Existing  <====//
+                    if (canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length <= 0) {
+                        //===> When the Frame is Found Load Assets <===//
+                        frameAssetsLoader(pdsAssetsTargets);
+                        //===> Clear the Timer after Loading the Assets <====//
+                        clearInterval(loadAssetTimer);
+                    } else {
+                        //===> Increase Counter <===//
+                        trying_times += 1;
+                        //===> Clear the Timer after Tring for 15 Times <====//
+                        if (trying_times > 15) clearInterval(loadAssetTimer);
+                    }
                     //===> Run View Script <===//
                     viewScript(canvasIframeDoc);
-
-                    //===> Load Assets inside Frames <===//
-                    const frameAssetsLoader = (assets_id) => {
-                        //====> Check for the Assets Existing  <====//
-                        if (canvasIframeDoc.querySelectorAll(assets_id).length <= 0) {
-                            //===> Get the Assets from the Original Document <===//
-                            const fontsElements = document.querySelectorAll(assets_id);
-
-                            //===> Load Assets <===//
-                            fontsElements.forEach((asset) => {
-                                if(!canvasIframeDoc.querySelector(`#${asset.getAttribute('id')}`)) canvasIframeDoc.body.appendChild(document.importNode(asset, true));
-                            });
-
-                            window.PhenixBlocks.canvasAssetsLoaded = true;
-                            clearInterval(loadAssetTimer);
-                        } else {
-                            //===> Increase Counter <===//
-                            trying_times += 1;
-                            if (trying_times > 15) clearInterval(loadAssetTimer);
-                        }
-                    };
-
-                    //===> Check if the Assets Exist or Not <===//
-                    const pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css";
-
-                    //===> When the Frame is Found Load Assets <===//
-                    frameAssetsLoader(pdsAssetsTargets);
                 }, 500);
+
+                //====> Attach the Loader in  into the Frame Life Cycle <====//
+                canvasIframeDoc.onload = () => {
+                    window.PhenixBlocks.canvasAssetsLoaded = false;
+                    //===> Load Assets <===//
+                    frameAssetsLoader();
+                    //===> Run View Script <===//
+                    viewScript(canvasIframeDoc);
+                };
             }
         }
 

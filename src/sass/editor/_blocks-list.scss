@@ -259,6 +259,8 @@
 		.block-editor-inner-blocks, .block-editor-block-list__layout {position: static;}
 	}
 
+	.wp-block-phenix-media-element.none-ratio:empty {padding-bottom: 50%;}
+
 	textarea {resize: vertical;}
 }
 

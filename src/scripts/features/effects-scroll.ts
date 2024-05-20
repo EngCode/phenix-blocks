@@ -23,7 +23,7 @@ PhenixElements.prototype.smothScroll = function (options?:{
 
         //====> Element Data <====//
         let element:HTMLElement = event.target,
-            target:HTMLElement  = document.querySelector(element.getAttribute('href')?.length > 1 ? element.getAttribute('href') : element.getAttribute('data-target') ? element.getAttribute('data-target') : options.target ? options.target : 'h1'),
+            target:HTMLElement  = document.querySelector(element.getAttribute('href')?.length > 1 ? element.getAttribute('href') : element.getAttribute('data-target') ? element.getAttribute('data-target') : options.target ? options?.target : 'div:first-of-type'),
             start:number  = null,
             into:number   = parseInt(element.getAttribute('data-into')) || options?.into || 0,
             offset:number = parseInt(element.getAttribute('data-offset')) || options?.offset || 0,

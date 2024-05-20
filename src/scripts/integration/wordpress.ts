@@ -10,7 +10,7 @@ declare var wp:any, PDS_WP_KEY:any, window:any;
 Phenix(window).on("load", (loaded) => {
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
-        //====> Local Date/Time Reformating <=====//
+        //====> Fetching Form Data for CF7 <=====//
         document.querySelectorAll('.wpcf7-form').forEach((form:any) => {
             //====> Forms Validation <====//
             Phenix('.wpcf7-form, .px-form-validation').validation();
@@ -71,6 +71,10 @@ Phenix(window).on("load", (loaded) => {
                         //====> Return Response Text <====//
                         return response.text();
                     }).then(data => {
+                        //====> Enable Form <====//
+                        form.classList.add('px-loading-inline');
+                        //===> Reset Forms on Loading <===//
+                        Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => input.value = '');
                         //===> Redirect to Success <===//
                         const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
                         window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;

@@ -19,10 +19,11 @@ Phenix(window).on("load", (loaded) => {
             form.addEventListener('submit', (event:any) => {
                 //====> Prevent the default form submission <====//
                 event.preventDefault();
+                const submitButton = form.querySelector('input[type="submit"]') || form.querySelector('button[type="submit"]') || form.querySelector('.btn:last-of-type');
 
                 if(!form.querySelector('.px-validation') && !form.querySelector('.error')) {
                     //====> Disable Form <====//
-                    form.classList.add('px-loading-inline');
+                    submitButton.classList.add('px-loading-inline');
 
                     //====> Date/Time Reformated <====//
                     const dateTimeFormatter = (dateString) => {
@@ -33,7 +34,7 @@ Phenix(window).on("load", (loaded) => {
                             day = ('0' + date.getDate()).slice(-2),
                             hours = ('0' + date.getHours()).slice(-2),
                             minutes = ('0' + date.getMinutes()).slice(-2);
-                        
+
                         //===> Construct a readable date and time format <===//
                         return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
                     }
@@ -72,7 +73,7 @@ Phenix(window).on("load", (loaded) => {
                         return response.text();
                     }).then(data => {
                         //====> Enable Form <====//
-                        form.classList.add('px-loading-inline');
+                        submitButton.classList.add('px-loading-inline');
                         //===> Reset Forms on Loading <===//
                         Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => input.value = '');
                         //===> Redirect to Success <===//

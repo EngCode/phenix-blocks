@@ -99,6 +99,10 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "CDN"), (Phenix Assets => "CDN") on "pre-release" only.
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self"), (Phenix Assets => "CDN") on "main" only.
 
+
+### Change Log v1.1.1
+1. Reset Form Elements when submit is complete.
+
 ### Change Log v1.1.0:
 
 1. Switch CF7 Form Posting to JS Fetching for custom validation and readable data formatting.
@@ -126,7 +130,6 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 12. upgrade wordpress breadcrumb flow.
 13. improve auto-generated thumbnails remover.
 14. fixing editor dark styles inhihretes.
-
 
 ### Hot-fixes v1.0.7 and v1.0.8:
 

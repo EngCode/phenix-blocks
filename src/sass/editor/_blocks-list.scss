@@ -110,6 +110,10 @@
 		.px-media textarea.block-editor-plain-text {height: 100%!important;}
 	}
 
+	.px-dropdown.has-child-selected, .px-dropdown.is-selected {
+		.px-dropdown-list {display: block;}
+	}
+
 	/*==== Core Block Style ====*/
 	.block-editor-block-list__block {
 		//====> Position Fix in Editor <====//
@@ -244,7 +248,11 @@
 
 	/*==== Inner Blocks Position Fix ====*/
 	.block-editor-block-list__block:not(.position-) > .block-editor-block-list__layout {position: static;}
-	.wp-block-phenix-custom-code .form-control {direction: ltr; text-align: left;}
+	.wp-block-phenix-custom-code .form-control {
+		direction: ltr;
+		text-align: left;
+		font-family: 'Courier New', Courier, monospace;
+	}
 
 	/*==== Marquess Style ====*/
 	.px-marquee, .px-marquee-reverse {

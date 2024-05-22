@@ -134,6 +134,12 @@
                         <span class="switch"></span>
                         <span class="me-5"><?php echo __("Show Loading Text", "pds-blocks"); ?></span>
                     </label>
+                    <!-- Switch Button -->
+                    <label class="mb-20 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
+                        <input id="pds_loading_theme" type="checkbox" name="pds_loading[theme]" <?php if ($showLoadingText == "on") {echo 'checked';} ?> />
+                        <span class="switch"></span>
+                        <span class="me-5"><?php echo __("Custom Loading", "pds-blocks"); ?></span>
+                    </label>
 
                     <!-- Loading Code -->
                     <div id="pds_loading_code" class="<?php if ($loadingOptions["type"] == "image") : ?>hidden<?php endif; ?>">

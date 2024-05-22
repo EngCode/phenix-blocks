@@ -272,7 +272,9 @@ endif;
 //===> Loading Page <===//
 if (!function_exists('pds_loader_template')) :
 	function pds_loader_template() {
-        if(locate_template('loading.php')) {
+        $theme_loading = get_option("pds_loading")["theme"];
+
+        if(isset($theme_loading) && $theme_loading) {
             get_template_part('template-parts/loading');
         } else {
             include(dirname(__FILE__) . '/loading.php');

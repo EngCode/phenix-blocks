@@ -102,6 +102,8 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.
+2. Custom Code Font Improve.
+3. Add custom loading page from theme option.
 
 ### Change Log v1.1.0:
 

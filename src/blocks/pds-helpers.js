@@ -565,16 +565,21 @@ window.PhenixBlocks = {
         };
 
         //====> Get the Editor iFrame <====//
-        const canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-              canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+        let canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+            canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
 
         //===> Check for Canvas Frames <===//
         if (canvasIframeDoc) {
             //===> Load Assets in Canvas Frame <====//
             const isLoaded = window.PhenixBlocks.canvasAssetsLoaded;
             const pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css";
+            
             const createLoading = () => {
-                if (!isLoaded) {
+                //===> Re-Catch the Canvas <===//
+                canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+                canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+
+                if (canvasIframe && !isLoaded) {
                     //====> Loading Times <====//
                     let trying_times = 0;
     
@@ -609,29 +614,25 @@ window.PhenixBlocks = {
                         }
                         //===> Run View Script <===//
                         viewScript(canvasIframeDoc);
-                    }, 500);
-    
-                    //====> Attach the Loader in  into the Frame Life Cycle <====//
-                    canvasIframe.addEventListener('change', () => {
-                        window.PhenixBlocks.canvasAssetsLoaded = false;
-                        //===> Load Assets <===//
-                        frameAssetsLoader();
-                        //===> Run View Script <===//
-                        viewScript(canvasIframeDoc);
-                    });
+                    }, 100);
                 }
             };
 
             //===> First initial <====//
             createLoading();
+
             //===> Timer to Check for Assets Existing <===//
             setInterval(() => {
-                let iFrameChecker = document.querySelector('iframe[name="editor-canvas"]');
-                if (iFrameChecker && !iFrameChecker.document.querySelectorAll(pdsAssetsTargets).length < 1) {
+                //===> Re-Catch the Canvas <===//
+                canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+                canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+
+                //===> if the Assets are no there Loaded <===//
+                if (canvasIframe && canvasIframeDoc && canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length < 1) {
                     window.PhenixBlocks.canvasAssetsLoaded = false;
                     createLoading();
                 }
-            }, 100);
+            }, 250);
         }
 
         //===> Run the Scripts Directly <===//

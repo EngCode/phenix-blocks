@@ -632,7 +632,7 @@ window.PhenixBlocks = {
                     window.PhenixBlocks.canvasAssetsLoaded = false;
                     createLoading();
                 }
-            }, 250);
+            }, 500);
         }
 
         //===> Run the Scripts Directly <===//

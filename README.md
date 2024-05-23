@@ -104,6 +104,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 1. Reset Form Elements when submit is complete.
 2. Custom Code Font Improve.
 3. Add custom loading page from theme option.
+4. new Workaround for Editor assets loading while switching between templates.
 
 ### Change Log v1.1.0:
 

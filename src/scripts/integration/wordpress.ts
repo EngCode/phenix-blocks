@@ -75,7 +75,18 @@ Phenix(window).on("load", (loaded) => {
                         //====> Enable Form <====//
                         submitButton.classList.add('px-loading-inline');
                         //===> Reset Forms on Loading <===//
-                        Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => input.value = '');
+                        Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => {input.value = '';});
+
+                        //===> Reset PX Select Component <===//
+                        form.querySelectorAll('div.px-select').forEach((element: any) => {
+                            let firstOption = element.querySelector('.px-select-option:first-child');
+                            const toggleButton = element.querySelector('.px-select-toggle');
+                            if (!firstOption) firstOption = element.querySelector('.px-select-option:nth-child(2)');
+                            toggleButton.textContent = firstOption.textContent;
+                        });
+
+                        //====> Disable Form <====//
+                        submitButton.classList.remove('px-loading-inline');
                         //===> Redirect to Success <===//
                         const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
                         window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
@@ -163,7 +174,7 @@ Phenix(window).on("load", (loaded) => {
             }
 
             //===> Correct Label if there are none <===//
-            label && label.textContent ? element_label = label.textContent.trim() : element_label = element.tagName.toLocaleLowerCase();
+            label && !element_label && label.textContent ? element_label = label.textContent.trim() : element_label = "";
 
             //===> Set Attributes <===//
             if(!element.getAttribute('aria-label')) element.setAttribute('aria-label', `${element_label}`);

@@ -82,6 +82,7 @@ Phenix(window).on("load", (loaded) => {
                             let firstOption = element.querySelector('.px-select-option:first-child');
                             const toggleButton = element.querySelector('.px-select-toggle');
                             if (!firstOption) firstOption = element.querySelector('.px-select-option:nth-child(2)');
+                            
                             toggleButton.textContent = firstOption.textContent;
                         });
 

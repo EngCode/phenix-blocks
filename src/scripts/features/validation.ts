@@ -106,10 +106,12 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Type/Bad/Pattern Check. <====//
                 else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
                     hasError = true;
-                    if (!message && input.getAttribute('type') === "email" && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(input.value)) {
-                        message = pageDir == 'ltr' ? "Please enter a valid e-mail!" : "من فضلك ادخل عنوان بريد صحيح.";
+                    if (!message && input.getAttribute('type') === "email") {
+                        message = pageDir == 'ltr' ? "Please enter a valid E-Mail!" : "من فضلك ادخل عنوان بريد صحيح.";
                     }
-                    else if (!message) message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "Please correct your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
+                    else if (!message) {
+                        message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "Please correct your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
+                    }
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 } 

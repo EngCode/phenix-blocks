@@ -41,7 +41,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
-    useEffect(() => PhenixBlocks.componentsBuilder(), []);
+    useEffect(() => PhenixBlocks.componentsBuilder());
 
     //===> Get Block Properties <===//
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
@@ -124,60 +124,60 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Link Input <===*/}
                 {attributes.style.isLink ? <PxDropDown title={__("URL Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-link color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" dataPosition={`bottom, end`}>
                     <li key="link" className='pdx-15 pdt-10 pdb-0 mb-0'>
-                        <LinkControlSearchInput key={`url-${uniqueKey}`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={ attributes.style.url || "#" } allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
+                        <LinkControlSearchInput key={`url`} name="url" placeholder={__("URL or Page Name", "pds-blocks")} onChange={set_url} value={attributes.url} allowDirectEntry={false} withURLSuggestion={false} withCreateSuggestion={false} renderSuggestions={(props) => SuggestionsUrl(props)} />
                         {/*===> Option Control <===*/}
-                        <OptionControl key={`inNewTab-${uniqueKey}`} name={`inNewTab`} value={`boolean`} checked={attributes.style.inNewTab} onChange={set_style} type='checkbox' className='tiny me-15'>
+                        <OptionControl key={`inNewTab`} name={`inNewTab`} value={`boolean`} checked={attributes.style.inNewTab} onChange={set_style} type='checkbox' className='tiny me-15'>
                             <span className='fas fa-check radius-circle'>{__("Open in New Tab", "pds-blocks")}</span>
                         </OptionControl>
                         {/*===> Disable Button <===*/}
                         <div className='fluid' style={{paddingBottom: 3}}>
-                            <OptionControl key={`isLink-${uniqueKey}`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
+                            <OptionControl key={`isLink`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
                                 <span className='btn small fluid bg-transparent fs-12 color-danger'>{__("Disable URL Link", "pds-blocks")}</span>
                             </OptionControl>
                         </div>
                     </li>
                 </PxDropDown> :
                 /*===> Add Link <===*/
-                <OptionControl key={`isLink-${uniqueKey}`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='button-checkbox' className='inline-block'>
+                <OptionControl key={`isLink`} name={`isLink`} value={`boolean`} checked={attributes.style.isLink} onChange={set_style} type='button-checkbox' className='inline-block'>
                     <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-link' data-title={__("Convert to Link", "pds-blocks")}></span>
                 </OptionControl>}
                 {/*===> Dropdown Button <===*/}
                 {attributes.isLightBox ? <PxDropDown title={__("Lightbox Options", "pds-blocks")} button={`bg-transparent fs-16 square pxi pxi-lightbox-btn active divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-260" dataPosition={`bottom, end`}>
                     <li key="lightbox" className='pdx-15 pdt-15 pdb-0 mb-0'>
                         {/*===> Column <===*/}
-                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type-${uniqueKey}`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={PhenixBlocks.dataLists.lightbox.types} /></div>
+                        <div className='col-12 mb-10'><PhenixSelect key={`lightbox-type`} name="lightbox_type" placeholder={__("Source Type", "pds-blocks")} value={attributes.lightbox_type} onChange={set_value} options={PhenixBlocks.dataLists.lightbox.types} /></div>
                         {/*===> Column <===*/}
                         <div className='col-12'>{attributes.lightbox_src ?  
-                            <MediaUploader key={`lightbox-src-${uniqueKey}`} label={__("Upload Source", "pds-blocks")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
+                            <MediaUploader key={`lightbox-src`} label={__("Upload Source", "pds-blocks")} type={attributes.lightbox_type} value={attributes.url} setValue={(file => {setAttributes({url: file.url})})}></MediaUploader>
                             :
-                            <TextControl key={`lightbox-src-input-${uniqueKey}`} label={__("Source URL", "pds-blocks")} value={ attributes.url } onChange={set_url}/>
+                            <TextControl key={`lightbox-src-input`} label={__("Source URL", "pds-blocks")} value={ attributes.url } onChange={set_url}/>
                         }</div>
                         {/*===> Column <===*/}
-                        <div className='col-12'><OptionControl key={`lightbox_src-${uniqueKey}`} name={`lightbox_src`} value="boolean" checked={attributes.lightbox_src || false} onChange={set_value} type='switch-checkbox' className='small'>{__("Upload Source", "pds-blocks")}</OptionControl></div>
+                        <div className='col-12'><OptionControl key={`lightbox_src`} name={`lightbox_src`} value="boolean" checked={attributes.lightbox_src || false} onChange={set_value} type='switch-checkbox' className='small'>{__("Upload Source", "pds-blocks")}</OptionControl></div>
                         {/*===> Disable Button <===*/}
                         <div className='fluid' style={{paddingBottom: 3}}>
-                            <OptionControl key={`isLightBox-${uniqueKey}`} name={`isLightBox`} value={`boolean`} checked={attributes.isLightBox || false} onChange={set_value} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
+                            <OptionControl key={`isLightBox`} name={`isLightBox`} value={`boolean`} checked={attributes.isLightBox || false} onChange={set_value} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
                                 <span className='btn small fluid bg-transparent fs-12 color-danger'>{__("Disable Lightbox", "pds-blocks")}</span>
                             </OptionControl>
                         </div>
                     </li>
                 </PxDropDown> :
                 /*===> Option Control <===*/
-                <OptionControl key={`isLightBox-${uniqueKey}`} name={`isLightBox`} value={`boolean`} checked={attributes.isLightBox || false} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
+                <OptionControl key={`isLightBox`} name={`isLightBox`} value={`boolean`} checked={attributes.isLightBox || false} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
                     <span className='btn bg-transparent fs-16 square tooltip-bottom pxi pxi-lightbox-btn' data-title={__("View Source in Lightbox", "pds-blocks")}></span>
                 </OptionControl>}
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         {/*===> Styles <===*/}
-                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} mainSetter={set_style} objectSetter={PhenixBlocks.setObject} colorSetter={set_typography} options="text-colors" />
+                        <StylesSet key={`styles`} attributes={attributes} setAttributes={setAttributes} mainSetter={set_style} objectSetter={PhenixBlocks.setObject} colorSetter={set_typography} options="text-colors" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
-                            sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} options="size, other" />}
+                            sm={(screen) => <TypographySet key={`typography`} attributes={attributes} mainSetter={set_typography} options="size, other" />}
                             md={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size" />}
                             lg={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size" />}
                             xl={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size" />}
@@ -186,19 +186,19 @@ export default function Edit({ attributes, setAttributes }) {
                 </PxDropDown>
                 {/*===> Icon Control <===*/}
                 {!attributes.style?.hasIcon ? 
-                    <OptionControl key={`hasIcon-${uniqueKey}`} name={`hasIcon`} value={`boolean`} checked={attributes.style?.hasIcon} onChange={set_style} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
+                    <OptionControl key={`hasIcon`} name={`hasIcon`} value={`boolean`} checked={attributes.style?.hasIcon} onChange={set_style} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
                         <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-icons h-min-100' style={{paddingTop: 2}} data-title={__("Add Icon", "pds-blocks")}></span>
                     </OptionControl>
                 :
                     <PxDropDown title={__("Text Icon", "pds-blocks")} button={`bg-transparent fs-16 square ${attributes.style?.icon || "far fa-icons"} divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="icons" className='pdx-10 pdt-5'>
                             {/*===> Icon Selector <===*/}
-                            <PhenixIcons key={`icon-${uniqueKey}`} value={ attributes.style?.icon || "far fa-icons" } onChange={set_icon} />
+                            <PhenixIcons key={`icon`} value={ attributes.style?.icon || "far fa-icons" } onChange={set_icon} />
                             {/*===> Option Control <===*/}
-                            <OptionControl key={`icon-large-${uniqueKey}`} name={`icon-large`} value="icon-lg" checked={attributes.style['icon-large'] || false} onChange={set_style} type='switch-checkbox' className='tiny mt-5'>{__("Large icon", "pds-blocks")}</OptionControl>
+                            <OptionControl key={`icon-large`} name={`icon-large`} value="icon-lg" checked={attributes.style['icon-large'] || false} onChange={set_style} type='switch-checkbox' className='tiny mt-5'>{__("Large icon", "pds-blocks")}</OptionControl>
                             {/*===> Disable Button <===*/}
                             <div className='fluid' style={{paddingBottom: 3}}>
-                                <OptionControl key={`hasIcon-${uniqueKey}`} name={`hasIcon`} value={`boolean`} checked={attributes.style?.hasIcon} onChange={set_style} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
+                                <OptionControl key={`hasIcon`} name={`hasIcon`} value={`boolean`} checked={attributes.style?.hasIcon} onChange={set_style} type='checkbox' className='tiny fluid align-center-x divider-t mt-5'>
                                     <span className='btn small fluid bg-transparent fs-12 color-danger'>{__("Remove Icon", "pds-blocks")}</span>
                                 </OptionControl>
                             </div>
@@ -269,7 +269,7 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title="General Settings" initialOpen={true}>
                 {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                <StylesSet key={`styles`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}

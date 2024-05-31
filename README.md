@@ -106,7 +106,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 3. Add custom loading page from theme option.
 4. new Workaround for Editor assets loading while switching between templates.
 5. Fix Multimedia URL input.
-6. Fix Multimedia not showing on insert.README
+6. Fix Multimedia not showing on insert
 
 ### Change Log v1.1.0:
 

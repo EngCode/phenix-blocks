@@ -7,7 +7,7 @@ import Phenix from "..";
 declare var wp:any, PDS_WP_KEY:any, window:any;
 
 /*====> D.O.M is Ready ? <====*/
-Phenix(window).on("load", (loaded) => {
+Phenix(document).on("DOMContentLoaded", (loaded) => {
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
         //====> Fetching Form Data for CF7 <=====//

@@ -128,7 +128,7 @@ endif;
 remove_filter('the_excerpt', 'wpautop');
 
 //====> Limited Excerpt <====//
-function px_excerpt_length($length) {return 18;}
+function px_excerpt_length($length) {return $length;}
 add_filter('excerpt_length', 'px_excerpt_length', get_option("excerpt_length") ? get_option("excerpt_length") : 175);
 
 //====> Excerpt More <====//

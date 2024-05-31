@@ -166,12 +166,6 @@
 	/*==== Navigation Menu ====*/
 	.wp-block-phenix-navigation li > a {pointer-events: none;}
 
-	/*==== Layers List ====*/
-	// .edit-post-editor__document-overview-panel {max-width: 250px!important;}
-
-	/*==== Components Tabs ====*/
-	// .components-panel__header.edit-post-sidebar__panel-tabs ul {list-style-type: none;padding: 0;}
-
 	/*==== Multimedia Block ====*/
 	.wp-block-phenix-media-element::after {
 		top: 0;
@@ -270,6 +264,25 @@
 	.wp-block-phenix-media-element.none-ratio:empty {padding-bottom: 50%;}
 
 	textarea {resize: vertical;}
+
+	/*==== Select Fixes ====*/
+	.px-icons-selector, .colors-selector {
+		.form-control .px-select {
+			height: 100%;
+			border: 0 none;
+			@if ($direction == "rtl") {border-radius: var(--radius) 0 0 var(--radius);}
+			@else  {border-radius: 0 var(--radius) var(--radius) 0;}
+		}
+	}
+
+	.px-select .options-list.px-active {overflow: auto!important;}
+
+	/*==== Multimedia Fixes ====*/
+	.px-media {
+		.px-media-img {opacity: 1;}
+		
+		> img, > video, > iframe {pointer-events: none;}
+	}
 }
 
 /*==== Toolbar Fix 6.5 ====*/
@@ -319,22 +332,8 @@ body.block-editor-page {
 		.form-control span {pointer-events: none;}
 	}
 
-	.px-icons-selector, .colors-selector {
-		.form-control .px-select {
-			height: 100%;
-			border: 0 none;
-			@if ($direction == "rtl") {border-radius: var(--radius) 0 0 var(--radius);}
-			@else  {border-radius: 0 var(--radius) var(--radius) 0;}
-		}
-	}
-
-	.px-select .options-list.px-active {overflow: auto!important;}
-	
-	.px-media .px-media-img {opacity: 1;}
-
 	/*==== Patterns List Fix ====*/
 	.block-editor-block-patterns-list__item {height: auto!important;}
-
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}

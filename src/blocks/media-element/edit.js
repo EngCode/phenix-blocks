@@ -276,7 +276,7 @@ export default function Edit({ attributes, setAttributes }) {
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : 
         <div {...blockProps}  key={`${uniqueKey}`}>
             {/*===> Image Type <===*/}
-            {attributes.setting.type === "image" ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
+            {attributes.setting.type === "image" || !attributes.setting.type ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
             {/*===> Inner Content <===*/}
             {attributes.style['inner-blocks'] === true ? <InnerBlocks template={[
                 ['phenix/group', {

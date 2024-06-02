@@ -142,7 +142,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="keywords" content="${pds_keywords}">`);
 
         //====> Links do not have a discernible name <====//
-        Phenix('a:empty, button:empty, a:not([title]), button:not([title])').forEach((link:HTMLElement) => {
+        Phenix('a:not([title]):empty, button:not([title]):empty, a:not([title]), button:not([title])').forEach((link:HTMLElement) => {
             //===> Links Metadata Fixer <===//
             const LinksMetaFixer = () => {
                 //===> Get the Title from the Closest Text Element <===//
@@ -150,7 +150,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     elTitle:string = document.title;
 
                 //===> Get the Title from the closest elements Attributes or the document title <===//
-                if (closestElement) closestElement.textContent.trim() || link.getAttribute('title') || closestElement?.getAttribute('alt') || document.title;
+                if (closestElement) closestElement[0].textContent.trim() || link.getAttribute('title') || closestElement?.getAttribute('alt') || document.title;
 
                 //===> Set Attributes <===//
                 if(!link.getAttribute('title')) link.setAttribute('title', `${elTitle}`);
@@ -166,16 +166,17 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             //===> Define Data <===//
             let element_label = element.getAttribute('placeholder') || element.getAttribute('data-placeholder');
 
-            //===> Get a Correct Title <===//
-            let label = Phenix(element).prev('label') || Phenix(element).next('label') || element.closest('label');
-
-            if (!label && !element_label) {
+            //===> If the placeholder is not valid <===//
+            if (!element_label) {
+                //===> Get the Label <===//
+                let label = Phenix(element).prev('label') || Phenix(element).next('label') || element.closest('label');
+                //=== Get the Controller Parent ====//
                 let element_parent = Phenix(element).ancestor('p') || Phenix(element).ancestor('[class*="col"]') || Phenix(element).ancestor('div');
-                if (element_parent) label = Phenix(element_parent).prev('label') || Phenix(element_parent).next('label');
+                //===> if the label not exist get the parent text <====//
+                if (!label && element_parent) label = Phenix(element_parent).prev('label') || Phenix(element_parent).next('label');
+                //===> Correct Label if there are none <===//
+                if (label && label.textContent) element_label = label.textContent.trim();
             }
-
-            //===> Correct Label if there are none <===//
-            label && !element_label && label.textContent ? element_label = label.textContent.trim() : element_label = "";
 
             //===> Set Attributes <===//
             if(!element.getAttribute('aria-label')) element.setAttribute('aria-label', `${element_label}`);
@@ -200,11 +201,14 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
     /*====> for Front-End <====*/
     if (!document.body.classList.contains('wp-admin')) {
-        //====> Start Fixes <====//
-        fixCF7(); fixSEO();
-
         /*====> Activated Menu Items <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
+
+        //===> Run Scripts <===//
+        Phenix(document).init();
+        
+        //====> Start Fixes <====//
+        fixCF7(); fixSEO();
 
         //====> Adminbar Fix <====//
         if (document.querySelector('#wpadminbar')) Phenix('body').css({ "padding": "0", 'padding-top' : '32px', "margin-top": "-24px"});
@@ -214,9 +218,6 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
         //===> Set Logo Link <===//
         Phenix(".wp-block-phenix-logo").setAttributes({"href": PDS_WP_KEY?.site || "/"});
-
-        //===> Run Scripts <===//
-        Phenix(document).init();
     }
 
     /*====> for Admin Panel <====*/

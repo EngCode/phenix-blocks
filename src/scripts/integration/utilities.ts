@@ -285,6 +285,7 @@ PhenixElements.prototype.utilities = function (options?:{
 
             //===> Alternative Text <===//
             if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', text);
+            if (!link.getAttribute('aria-label') || link.getAttribute('aria-label') === "") link.setAttribute('aria-label', text);
         });
     }
 

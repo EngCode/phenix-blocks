@@ -23,7 +23,7 @@ function pds_blocks_activate() {
 	do_action('pds_blocks_active');
 }
 
-register_activation_hook(dirname(__FILE__), 'pds_blocks_activate');
+register_activation_hook(__FILE__, 'pds_blocks_activate');
 
 //====> Languages Path <====//
 if (!function_exists('pds_textdomain')) {

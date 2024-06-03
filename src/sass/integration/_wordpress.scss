@@ -150,5 +150,17 @@ body:not(.wp-admin):not([class*="-editor"]) {
     }
     /*==== Google Captcha Badge Hide ====*/
     .grecaptcha-badge {display: none!important;}
+
+    // .wp-block-phenix-container.alignfull {width: 100%;margin-left: auto;margin-right: auto;}
+}
+
+/*==== Pagination Fix ====*/
+.pagination .btn > a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 

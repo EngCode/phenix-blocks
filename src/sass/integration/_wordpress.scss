@@ -151,7 +151,8 @@ body:not(.wp-admin):not([class*="-editor"]) {
     /*==== Google Captcha Badge Hide ====*/
     .grecaptcha-badge {display: none!important;}
 
-    // .wp-block-phenix-container.alignfull {width: 100%;margin-left: auto;margin-right: auto;}
+    /*==== Sticky Header Width Fix ====*/
+    [data-sticky="sticky-absolute"].is-sticky {width: 100%;}
 }
 
 /*==== Pagination Fix ====*/

@@ -21,6 +21,8 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                 event.preventDefault();
                 const submitButton = form.querySelector('input[type="submit"]') || form.querySelector('button[type="submit"]') || form.querySelector('.btn:last-of-type');
 
+                console.log(submitButton);
+
                 if(!form.querySelector('.px-validation') && !form.querySelector('.error')) {
                     //====> Disable Form <====//
                     submitButton.classList.add('px-loading-inline');
@@ -150,7 +152,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     elTitle:string = document.title;
 
                 //===> Get the Title from the closest elements Attributes or the document title <===//
-                if (closestElement) closestElement[0].textContent.trim() || link.getAttribute('title') || closestElement?.getAttribute('alt') || document.title;
+                if (closestElement) closestElement.textContent.trim() || link.getAttribute('title') || closestElement?.getAttribute('alt') || document.title;
 
                 //===> Set Attributes <===//
                 if(!link.getAttribute('title')) link.setAttribute('title', `${elTitle}`);
@@ -162,7 +164,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         });
 
         //====> Inputs do not have a discernible name <====//
-        Phenix('input:not([title]), select:not([title])').forEach((element:HTMLElement) => {
+        Phenix('input:not([title]):not([type="submit"]), select:not([title])').forEach((element:HTMLElement) => {
             //===> Define Data <===//
             let element_label = element.getAttribute('placeholder') || element.getAttribute('data-placeholder');
 

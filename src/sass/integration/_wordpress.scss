@@ -152,7 +152,7 @@ body:not(.wp-admin):not([class*="-editor"]) {
     .grecaptcha-badge {display: none!important;}
 
     /*==== Sticky Header Width Fix ====*/
-    [data-sticky="sticky-absolute"].is-sticky {width: 100%;}
+    // [data-sticky="sticky-absolute"].is-sticky {width: 100%;}
 }
 
 /*==== Pagination Fix ====*/

@@ -274,7 +274,7 @@ if (!function_exists('pds_loader_template')) :
 	function pds_loader_template() {
         $theme_loading = get_option("pds_loading");
 
-        if(isset($theme_loading["theme"]) && $theme_loading["theme"]) {
+        if(isset($theme_loading->theme) && $theme_loading->theme) {
             get_template_part('template-parts/loading');
         } else {
             include(dirname(__FILE__) . '/loading.php');

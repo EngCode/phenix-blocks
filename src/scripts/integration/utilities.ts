@@ -296,7 +296,7 @@ PhenixElements.prototype.utilities = function (options?:{
         //===> Prevent on WP Editor <====//
         const document_classes = document.body.getAttribute('class');
         //===> Check the Document Type <===//
-        if (!document.body.classList.contains('wp-admin') && !document_classes.includes('-editor')) {
+        if (!document.body.classList.contains('wp-admin') && !document_classes?.includes('-editor')) {
             //===> Import Masonry Grid Plugin <===//
             if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
                 var masonry = new Masonry('.px-masonry', {itemSelector: '[class*="col"]'});

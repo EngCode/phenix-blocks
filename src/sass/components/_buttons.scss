@@ -157,7 +157,6 @@
         width: var(--height);
         height: var(--height);
         background-color: rgba(#000, 0.1);
-        // line-height: calc(var(--height) - 3px);
     }
 
     @mixin make-color($prefix, $hover, $text:'dark-reverse') {
@@ -222,8 +221,8 @@
         };
     }
 
-    // &.fix-lineheight {line-height: calc(var(--height) - 3px);}
-    // &.fix-icon::before {transform: translateY(-15%);}
+    &.fix-lineheight {line-height: calc(var(--height) - 3px);}
+    &.fix-icon::before {transform: translateY(-15%);}
 
     /*==== Standard Hover ===*/
     &:hover,&.active,&.px-active, &.is-active {
@@ -241,10 +240,6 @@
 button, input {
     &.btn, &.btn.outline {
         line-height: normal;
-        &:not(.labeled)::before {
-            top: -#{REM(1)};
-            line-height: 1;
-            position: relative;
-        }
+        &:not(.labeled)::before {position: relative;}
     }
 }

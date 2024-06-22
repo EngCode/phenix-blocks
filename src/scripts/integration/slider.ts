@@ -307,7 +307,7 @@ PhenixElements.prototype.slider = function (options?:{
             
             //====> Audio Buttons <====//
             const audioTriggers = slider.querySelectorAll("button[data-audio]");
-            Phenix(document).audioTrigger(audioTriggers);
+            if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
         };
 
         //====> Events Data <====//

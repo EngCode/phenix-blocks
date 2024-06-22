@@ -17,7 +17,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix(document).lazyLoading();
 
     //===> Smooth Scroll <====//
-    Phenix('body:not(.wp-admin) a[href*="#"]').forEach((link:HTMLElement) => {
+    Phenix('body:not(.wp-admin) a[href*="#"]:not(.wp-block-phenix-logo)').forEach((link:HTMLElement) => {
         let hasFunction = Phenix(link).ancestor('.px-tabs') || Phenix(link).ancestor('.scrollspy-menu');
         if (!hasFunction) Phenix(link).smothScroll();
     });

@@ -283,7 +283,7 @@ PhenixElements.prototype.slider = function (options?:{
         //====> Integration <====//
         let slider_integration = () => {
             //====> Multimedia Integration <====//
-            let media_elements = slider.querySelectorAll('[data-src]');
+            const media_elements = slider.querySelectorAll('[data-src]');
             Phenix(media_elements).multimedia();
     
             //====> Lazyloading Integration <====//
@@ -302,8 +302,12 @@ PhenixElements.prototype.slider = function (options?:{
             });
 
             //====> Popup Modals <====//
-            let modalTriggers = slider.querySelectorAll(".px-lightbox, [data-modal]");
+            const modalTriggers = slider.querySelectorAll(".px-lightbox, [data-modal]");
             if (modalTriggers.length > 0) Phenix('.px-modal').popup();
+            
+            //====> Audio Buttons <====//
+            const audioTriggers = slider.querySelectorAll("button[data-audio]");
+            Phenix(document).audioTrigger(audioTriggers);
         };
 
         //====> Events Data <====//

@@ -583,6 +583,55 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         await navigator.clipboard.write(data);
     };
 
+    /*====> Voice Trigger <=====*/
+    audioTrigger = (trigger) => {
+        //===> Define Objects <===//
+        let audio_player:any = document.querySelector('#px-audio-player');
+
+        //===> Create Audio Player <===//
+        if (!audio_player) {
+            //===> Create Player <===//
+            audio_player = document.createElement("audio");
+            //=== Set Player ID ===//
+            audio_player.setAttribute('id', 'px-audio-player');
+            //=== Insert Player to the Document ===//
+            document.body.appendChild(audio_player);
+        }
+
+        //====> Audio Buttons <====//
+        Phenix(trigger).on('click', event => {
+            //=== Get Data ===//
+            let button = event.target,
+                audio_file = button.getAttribute('data-audio');
+
+            //=== Check if the Audio is Already Playing ===//
+            if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
+                //=== Pause the Audio ===//
+                audio_player.pause();
+
+                //=== Switch Play Status icon ===//
+                if(button.classList.contains('fa-pause')) {
+                    button.classList.remove('fa-pause');
+                    button.classList.add('fa-play');
+                }
+            } else {
+                //=== Set Audio and Play ===//
+                audio_player.setAttribute('src', audio_file);
+                audio_player.play();
+
+                //=== Switch Play Status icon ===//
+                button.classList.add('fa-pause');
+                button.classList.remove('fa-play');
+
+                //=== When Audio is Finished Switch the Status icon ===//
+                audio_player.addEventListener('ended', (isEnded) => {
+                    button.classList.add('fa-play');
+                    button.classList.remove('fa-pause');
+                });
+            }
+        }, true);
+    };
+
     /*====> Define Information <====*/
     height; getCSS; direction; getURL
     inView; viewport; copyrights;

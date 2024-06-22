@@ -51,45 +51,8 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //===> Audio Player [Testimonials] <===//
     if (document.querySelector('[data-audio]')) {
-        //===> Create Audio Player <===//
-        let audio_player = document.createElement("audio");
-            //=== Set Player ID ===//
-            audio_player.setAttribute('id', 'px-audio-player');
-            //=== Insert Player to the Document ===//
-            document.body.appendChild(audio_player);
-
         //====> Audio Buttons <====//
-        Phenix('button[data-audio]').on('click', event => {
-            //=== Get Data ===//
-            let button = event.target,
-                audio_file = button.getAttribute('data-audio');
-
-            //=== Check if the Audio is Already Playing ===//
-            if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
-                //=== Pause the Audio ===//
-                audio_player.pause();
-
-                //=== Switch Play Status icon ===//
-                if(button.classList.contains('fa-pause')) {
-                    button.classList.remove('fa-pause');
-                    button.classList.add('fa-play');
-                }
-            } else {
-                //=== Set Audio and Play ===//
-                audio_player.setAttribute('src', audio_file);
-                audio_player.play();
-
-                //=== Switch Play Status icon ===//
-                button.classList.add('fa-pause');
-                button.classList.remove('fa-play');
-
-                //=== When Audio is Finished Switch the Status icon ===//
-                audio_player.addEventListener('ended', (isEnded) => {
-                    button.classList.add('fa-play');
-                    button.classList.remove('fa-pause');
-                });
-            }
-        }, true);
+        Phenix(document).audioTrigger('button[data-audio]');
     }
 
     //===> Sticky Elements <====//

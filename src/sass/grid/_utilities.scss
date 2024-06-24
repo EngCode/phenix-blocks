@@ -62,6 +62,7 @@
     .flow#{$infix}-columns-reverse {flex-flow: column-reverse;}
     /*=== No-Wrap ===*/
     .flow#{$infix}-nowrap {flex-wrap: nowrap!important;}
+    .flow#{$infix}-wrap {flex-wrap: wrap!important;}
     /*=== Shrink and Grow ===*/
     .flex-shrink#{$infix}-on {flex-shrink: 1;}
     .flex-shrink#{$infix}-off {flex-shrink: 0;}

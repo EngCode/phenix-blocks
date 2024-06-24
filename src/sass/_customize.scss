@@ -120,3 +120,11 @@
 @media screen and (min-width: 2500px) {
     body,html{font-size: 1vw;}
 }
+
+/*===> Vertical Menu Fixes <====*/
+.px-navigation ul.vertical > li {
+    display: flex;
+    padding-#{$direction-end}: calc(1em + .625rem);
+    > a {flex-grow: 1;}
+}
+

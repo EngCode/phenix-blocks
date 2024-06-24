@@ -211,6 +211,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                         let source = src;
                         //====> Cleanup URL <====//
                         if (source.includes('youtube.com')) source = src.replace('watch?v=', 'embed/');
+                        else if (source.includes('youtu.be')) source = src.replace('https://youtu.be/', 'https://www.youtube.com/embed/');
                         else if (source.includes('vimeo.com')) source = src.replace('vimeo.com', 'player.vimeo.com/video');
                         //====> Create the View <====//
                         Phenix(element).insert('append', `<iframe class="px-iframe" src="${source}"  ${lazy ? 'loading="lazy"' : ''} frameborder="0" allowfullscreen></iframe>`);

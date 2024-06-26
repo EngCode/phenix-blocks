@@ -107,6 +107,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 4. new Workaround for Editor assets loading while switching between templates.
 5. Fix Multimedia URL input.
 6. Fix Multimedia not showing on insert
+7. Fix embed media from youtube short link.
 
 ### Change Log v1.1.0:
 

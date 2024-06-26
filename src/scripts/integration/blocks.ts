@@ -17,9 +17,10 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     Phenix(document).lazyLoading();
 
     //===> Smooth Scroll <====//
-    Phenix('body:not(.wp-admin) a[href*="#"]:not(.wp-block-phenix-logo)').forEach((link:HTMLElement) => {
-        let hasFunction = Phenix(link).ancestor('.px-tabs') || Phenix(link).ancestor('.scrollspy-menu');
-        if (!hasFunction) Phenix(link).smothScroll();
+    Phenix('a.smooth-scroll, .smooth-scroll a[href*="#"]').forEach((link:HTMLElement) => {
+        // let hasFunction = Phenix(link).ancestor('.px-tabs') || Phenix(link).ancestor('.scrollspy-menu');
+        // if (!hasFunction) 
+        Phenix(link).smothScroll();
     });
 
     /*====> Add Data Options to un-reachable Elements <====*/

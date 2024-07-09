@@ -51,9 +51,12 @@ registerBlockType(metadata, {
 
                 if (attributes.style.url) blockProps.className.replace(attributes.style.url, "");
 
+                //===> Add Links Classes <===//
+                blockProps.className += ` display-block color-inherit tx-link-wrapper`;
+
                 //===> Render <===//
-                return <a {...linkProps} class="display-block color-inherit tx-link-wrapper" href={attributes.style.url || "#none"}>
-                    <RichText.Content {...blockProps} tagName={TagName} value={attributes.content} />
+                return <a {...linkProps} {...blockProps} href={attributes.style.url || "#none"}>
+                    <RichText.Content tagName={TagName} value={attributes.content} />
                 </a>;
             } else {
                 return <RichText.Content {...blockProps} tagName={TagName} value={attributes.content} />;

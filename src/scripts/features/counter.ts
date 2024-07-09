@@ -45,7 +45,7 @@ PhenixElements.prototype.counter = function (options?:{
         if (reverse) count = value;
 
         
-        //====> Count Runer <===//
+        //====> Count Runner <===//
         const runCounter = () => {
             //===> Round Up Values <===//
             count = Math.round(count);
@@ -70,10 +70,18 @@ PhenixElements.prototype.counter = function (options?:{
             else element.innerHTML = current;
 
             //===> Clear When Count Up Reaches The Target <===//
-            if (!reverse && count === value) clearInterval(interval);
+            if (!reverse && count === value) {
+                clearInterval(interval);
+                element.classList.add('counted');
+                element.classList.remove('counting');
+            }
 
             //===> Clear When Count Down Reaches Zero <===//
-            else if (reverse && count === 0) clearInterval(interval);
+            else if (reverse && count === 0) {
+                clearInterval(interval);
+                element.classList.add('counted');
+                element.classList.remove('counting');
+            }
         };
 
         //====> Counter Handler <====//
@@ -91,7 +99,7 @@ PhenixElements.prototype.counter = function (options?:{
             }
             //===> Hidden View <===//
             if(!counting) window.addEventListener('scroll', scrolling => {
-                counting = element.classList.contains('counting');
+                counting = element.classList.contains('counting') || element.classList.contains('counted');
                 if(!counting && Phenix(element).inView()) counter_handler();
             });
         } else {

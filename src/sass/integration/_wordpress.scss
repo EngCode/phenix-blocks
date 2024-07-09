@@ -87,6 +87,11 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 .main-header.position-st.is-sticky {position: fixed; width: 100%;}
 .pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}
 
+/*==== Text to Link Headlines Fix ====*/
+a.wp-block-phenix-text {
+    h1,h2,h3,h4,h5,h6 {font-size: inherit;}
+}
+
 /*==== Video Background ====*/
 .pds-video-bg {
     > video {z-index: 0;}

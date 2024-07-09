@@ -51,9 +51,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     if (main_header && header_holder) header_holder.prepend(main_header);
 
     //===> Audio Player [Testimonials] <===//
-    if (document.querySelector('[data-audio]')) {
+    if (document.querySelector('[data-audio]') || document.querySelector('.audio-trigger')) {
         //====> Audio Buttons <====//
-        Phenix(document).audioTrigger('button[data-audio]');
+        Phenix(document).audioTrigger('button[data-audio], .audio-trigger');
     }
 
     //===> Sticky Elements <====//

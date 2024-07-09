@@ -2,7 +2,6 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     //===> Define Elements <===//
     $loading_opts = (array) get_option('pds_loading');
-    $showLoadingText = $loading_opts["showText"];
     $background = $loading_opts["background"];
     if(!isset($loading_opts["size"])) { $loading_opts["size"] = "3.5rem"; };
 ?>
@@ -18,7 +17,7 @@
             endif;
         ?>
         <!-- Paragraph -->
-        <?php if ($showLoadingText && $showLoadingText == "on") : ?>
+        <?php if (isset($loading_opts["showText"]) && $loading_opts["showText"] == "on") : ?>
         <p style="margin-bottom: 0; font-size: 1rem; padding: 0.625rem 0.313rem;"><?php echo $loading_opts["text"]; ?></p>
         <?php endif; ?>
     </div>

@@ -1,7 +1,6 @@
 <?php 
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
     $loadingOptions = (array) get_option('pds_loading');
-    $showLoadingText = $loadingOptions["showText"];
     if(!isset($loadingOptions["size"])) {$loadingOptions["size"] = "3.5rem";}
 ?>
 <!-- Grid -->
@@ -80,7 +79,7 @@
                             <?php echo $loadingOptions["code"]; ?>
                         </div>
                         <!-- Paragraph -->
-                        <p class="loading-text <?php if($showLoadingText !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loadingOptions["text"]; ?></p>
+                        <p class="loading-text <?php if(isset($loadingOptions["showText"]) && $loadingOptions["showText"] !== "on") { echo "hidden"; } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loadingOptions["text"]; ?></p>
                     </div>
                 </div>
                 <!-- Note -->
@@ -132,7 +131,7 @@
                     <div class="flexbox align-between">
                         <!-- Switch Button -->
                         <label class="mb-0 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
-                            <input id="pds_loading_showText" type="checkbox" name="pds_loading[showText]" <?php if ($showLoadingText == "on") {echo 'checked';} ?> />
+                            <input id="pds_loading_showText" type="checkbox" name="pds_loading[showText]" <?php if (isset($loadingOptions["showText"]) && $loadingOptions["showText"] == "on") {echo 'checked';} ?> />
                             <span class="switch"></span>
                             <span class="me-5"><?php echo __("Show Loading Text", "pds-blocks"); ?></span>
                         </label>

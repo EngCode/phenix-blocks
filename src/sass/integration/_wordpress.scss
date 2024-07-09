@@ -89,7 +89,7 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 
 /*==== Text to Link Headlines Fix ====*/
 a.wp-block-phenix-text {
-    h1,h2,h3,h4,h5,h6 {font-size: inherit; font-weight: inherit;}
+    >h1,>h2,>h3,>h4,>h5,>h6 {font-size: inherit; font-weight: inherit;}
 }
 
 /*==== Video Background ====*/

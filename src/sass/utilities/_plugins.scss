@@ -129,6 +129,25 @@
     animation-duration: 1s;
 }
 
+/*==== Slider Animation Support ====*/
+.splide__slide {
+    visibility: visible;
+    /*==== Animated Childs ====*/
+    [data-animation] {
+        animation-fill-mode: both;
+        visibility: hidden!important;
+        animation-name: var(--animation-exit, 'fadeOut');
+        animation-delay: calc(var(--animation-delay, 0));
+        animation-duration: var(--animate-duration, 1s);
+    }
+
+    /*==== Animations ====*/
+    &.is-active [data-animation], &.is-visible [data-animation] {
+        visibility: visible!important;
+        animation-name: var(--animation-name, 'fadeIn');
+    }
+}
+
 /*==== Row Fix ====*/
 .container-fluid > .row {
     margin-left: calc(var(--container-padding) * -1);

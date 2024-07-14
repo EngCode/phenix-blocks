@@ -3,7 +3,7 @@ import {__} from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { useState, useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
-import {PanelBody, TextControl, Toolbar} from '@wordpress/components';
+import {PanelBody, TextControl, ToolbarGroup} from '@wordpress/components';
 import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -44,7 +44,7 @@ export default function Edit(props) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
+            <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-150' data-title={__("Text Type", "pds-blocks")}>
                     <PhenixSelect name="mode" placeholder={__("Title/Breadcrumb", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.mode} onChange={set_value} options={[
@@ -88,7 +88,7 @@ export default function Edit(props) {
                         </li>
                     </PxDropDown>
                 :null}
-            </Toolbar>
+            </ToolbarGroup>
         </BlockControls>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key={`${uniqueKey}-inspector`}>

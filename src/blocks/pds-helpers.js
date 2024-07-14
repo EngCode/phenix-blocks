@@ -118,8 +118,8 @@ window.PhenixBlocks = {
                     //===> Slider Options <===//
                     else if (option_name === "slider") {
                         //===> Set Options <===//
-                        if (attributes.flexbox.slider && attributes.slider.preview || attributes.flexbox.slider && isSave) {
-                            container[`data-${sub_option}`] = sub_value;
+                        if (attributes.flexbox.slider && isSave) {
+                            container[`data-${sub_option}`] = `${sub_value}`;
                         }
                     }
 
@@ -427,14 +427,14 @@ window.PhenixBlocks = {
         else if (target instanceof HTMLElement) { single_val = target.value; }
 
         //===> Return Value <===//
-        if(single_val) return single_val;
+        if(single_val !== undefined) return single_val;
     },
 
     //===> Responsive Values Handler <===//
     setObject : (target, screen, attr, hasName, attributes, setAttributes) => {
         //==> Get Current <==//
         const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
-        const value = (typeof(target) === "string" || typeof(target) === "number") ? target : PhenixBlocks.valueHandler(target);
+        const value = (target instanceof HTMLElement) ? PhenixBlocks.valueHandler(target) : target;
 
         //==> Set Value <==//
         const newAttributes = name.includes('animation') ? {

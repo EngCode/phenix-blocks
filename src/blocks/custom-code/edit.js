@@ -1,6 +1,6 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
-import {PanelBody, Toolbar} from '@wordpress/components';
+import {PanelBody, ToolbarGroup} from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
@@ -33,7 +33,7 @@ export default function Edit({ attributes, setAttributes }) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick-Settings", "pds-blocks")}>
+            <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick-Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Code Type", "pds-blocks")}>
                     <PhenixSelect className="mb-10" name="type" value={attributes.type} onChange={set_value} options={[
@@ -50,7 +50,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <OptionControl key={`dev_preview-${uniqueKey}`} name={`dev_preview`} value={`boolean`} checked={attributes.dev_preview} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
                     <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-code h-min-100' style={{paddingTop: 2}} data-title={__("Developer Mode", "pds-blocks")}></span>
                 </OptionControl>
-            </Toolbar>
+            </ToolbarGroup>
         </BlockControls>
         {/*====> Controls Layout <====*/}
         <InspectorControls key={`${uniqueKey}-inspector`}>

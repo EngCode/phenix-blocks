@@ -1,7 +1,7 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
-import {PanelBody, Toolbar} from '@wordpress/components';
+import {PanelBody, ToolbarGroup} from '@wordpress/components';
 import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -87,7 +87,7 @@ export default function Edit(props) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
+            <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-75' data-title={__("HTML Wrapper", "pds-blocks")}>
                     <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.nav_tags} />
@@ -153,7 +153,7 @@ export default function Edit(props) {
                         </TypographySet>
                     </li>
                 </PxDropDown>
-            </Toolbar>
+            </ToolbarGroup>
         </BlockControls>
         {/* //====> Controls Layout <====// */}
         <InspectorControls key={`${uniqueKey}-inspector`}>

@@ -1,7 +1,7 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
 import {useEffect} from '@wordpress/element';
-import {PanelBody, TextControl, Toolbar, SelectControl} from '@wordpress/components';
+import {PanelBody, TextControl, ToolbarGroup, SelectControl} from '@wordpress/components';
 import {BlockControls, InspectorControls, useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 
 //====> Phenix Modules <====//
@@ -53,7 +53,7 @@ export default function Edit({ attributes, setAttributes }) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <Toolbar key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
+            <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Column Size", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt-h divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
@@ -186,7 +186,7 @@ export default function Edit({ attributes, setAttributes }) {
                         </li>
                     </PxDropDown>
                 :null}
-            </Toolbar>
+            </ToolbarGroup>
         </BlockControls>
         {/*====> Controls Layout <====*/}
         <InspectorControls key={`${uniqueKey}-inspector`}>

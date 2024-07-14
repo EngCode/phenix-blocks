@@ -166,7 +166,7 @@ PhenixElements.prototype.slider = function (options?:{
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
-                drag: drag && drag === 'true' || drag === '1' ? 1 : false,
+                drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
                 perPage: inline('data-lg') || items,
                 height: height || verticalFix(inline('data-md') || items),
             } : '';
@@ -199,7 +199,6 @@ PhenixElements.prototype.slider = function (options?:{
                 perPage: items,
                 perMove: steps,
                 autoplay: parseInt(autoplay),
-                live: true,
                 pauseOnHover: false,
                 mediaQuery: 'min',
                 direction: direction,
@@ -231,9 +230,9 @@ PhenixElements.prototype.slider = function (options?:{
                 heightRatio: heightRatio,
 
                 //====> Accessibility <====//
-                // role: 'slider',
-                // label: 'Slider',
-                // labelledby: 'slider-label',
+                role: 'slider',
+                label: 'Slider',
+                labelledby: 'slider-label',
 
                 //====> Classes <====//
                 classes: {
@@ -259,11 +258,8 @@ PhenixElements.prototype.slider = function (options?:{
             if(!autoplay) slider_options.autoplay = true;
             if (intersection) intersection !== 'false' || '0' ? intersection = true : null;
             if (rewind) rewind !== 'false' || '0' ? slider_options.rewind = true : slider_options.rewind = false;
-            if (isNavigation) {
-                slider_options.isNavigation = true;
-                slider_options.live = false;
-            }
-
+            if (isNavigation) slider_options.isNavigation = true;
+            
             //====> Return Options <====//
             return {
                 track  : slider_track,
@@ -379,14 +375,19 @@ PhenixElements.prototype.slider = function (options?:{
                     let sync_selector = document.querySelector(`${current_slider.sync}`),
                         synced_slider = slider_creator(sync_selector);
                         sync_selector.classList.add('px-slider');
-        
+
                     //====> Synced Splide <====//
                     let synced_splide = new Splide(sync_selector, synced_slider.options);
-                    
+
                     //====> Run Both <====//
                     the_slider.sync(synced_splide);
                     the_slider.mount();
                     synced_splide.mount();
+
+                    //====> Clickable Thumbnail <====//
+                    Array.from(synced_slider.slides).forEach((slide_item, index) => {
+                        slide_item.addEventListener( 'click', () => the_slider.go(index));
+                    });
                 } else {
                     //====> Run the Slider <====//
                     the_slider.mount();

@@ -312,13 +312,13 @@ body.block-editor-page {
 	}
 
 	/*==== Toolbar ====*/
-	.block-editor-block-toolbar__slot > .components-accessible-toolbar {
-		border: 0 none;
-		border-#{$direction-end}: 1px solid rgba(#000, 0.4);
+	.block-editor-block-toolbar__slot > .components-toolbar {
+		// border: 0 none;
+		// border-#{$direction-end}: 1px solid rgba(#000, 0.4);
 		
 		.inline-block .form-control {
-			height: 100%;
-			margin-top: 0;
+			height: calc(100% - 2px);
+			margin-top: 1px;
 			border: 0 none;
 			border-radius: 0;
 			border-#{$direction-end}: 1px solid rgba(#000, 0.4);

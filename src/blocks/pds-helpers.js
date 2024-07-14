@@ -80,6 +80,14 @@ window.PhenixBlocks = {
                     if (option_name === "inNewTab") {blockProps['target'] = "_blank";} 
                     else {blockProps['rel'] = "noopener";}
                 }
+                //===> for icon End <===//
+                else if (option_name === "iconEnd" && option_value) {
+                    blockProps.className += ' btn-icon-end';
+                }
+                //===> for icon Label <===//
+                else if (option_name === "iconLabel" && option_value) {
+                    blockProps.className += ' labeled';
+                }
                 //===> for Lightbox Options <===//
                 else if (option_name === "isLightBox" && option_value) {
                     blockProps.className += ' px-lightbox';

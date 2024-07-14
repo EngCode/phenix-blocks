@@ -144,6 +144,7 @@
     }
 
     &.btn-icon-end {
+        flex-flow: row-reverse;
         /*==== icon ====*/
         &::before, .icon {
             @include margin-inline(0 ,'end');

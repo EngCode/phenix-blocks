@@ -283,6 +283,8 @@
 		
 		> img, > video, > iframe {pointer-events: none;}
 	}
+
+	.pds-video-bg > .block-editor-block-list__layout {position: relative; z-index: 1;}
 }
 
 /*==== Toolbar Fix 6.5 ====*/

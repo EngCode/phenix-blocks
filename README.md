@@ -121,6 +121,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 8. improve Editor assets loader.
 9. improve Audio Trigger Buttons.
 10. Sliders Drag Bug Fix, Gallery Slider Support.
+11. Fix icons options position, label mode.
 
 ### Minor-fixes v1.0.9:
 

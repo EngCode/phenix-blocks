@@ -119,7 +119,8 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 6. divide core phenix css into smaller parts [Core / Utilites]
 7. add and activate Phenix Core from CDN.
 8. improve Editor assets loader.
-8. improve Audio Trigger Buttons.
+9. improve Audio Trigger Buttons.
+10. Sliders Drag Bug Fix, Gallery Slider Support.
 
 ### Minor-fixes v1.0.9:
 

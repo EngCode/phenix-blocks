@@ -122,6 +122,8 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 9. improve Audio Trigger Buttons.
 10. Sliders Drag Bug Fix, Gallery Slider Support.
 11. Fix icons options position, label mode.
+12. Fix Background video z-index.
+13. Fix Animated Number Counting.
 
 ### Minor-fixes v1.0.9:
 

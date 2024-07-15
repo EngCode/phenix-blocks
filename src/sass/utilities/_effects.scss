@@ -161,3 +161,23 @@
     0% {--rotation: 0deg;}
     100% {--rotation: 360deg;}
 }
+
+@keyframes fullWidth {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+@keyframes fullHeight {
+    from {height: 0%;}
+    to {height: 100%;}
+}
+
+@keyframes fullHeightVH {
+    from {height: 0vh;}
+    to {height: 100vh;}
+}
+
+@keyframes rotateFull {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

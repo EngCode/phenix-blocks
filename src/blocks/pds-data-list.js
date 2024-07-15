@@ -472,6 +472,7 @@ window.PhenixBlocks.dataLists = {
 
             "Rotating Entrances" : [
                 { "label": "rotateIn", "value": "rotateIn"},
+                { "label": "rotateFull", "value": "rotateFull"},
                 { "label": "rotateInDownStart", "value": "rotateInDownStart"},
                 { "label": "rotateInDownEnd", "value": "rotateInDownEnd"},
                 { "label": "rotateInUpStart", "value": "rotateInUpStart"},
@@ -494,6 +495,9 @@ window.PhenixBlocks.dataLists = {
             ],
 
             "Specials Entrances" : [
+                { "label": "fullWidth", "value": "fullWidth"},
+                { "label": "fullHeight", "value": "fullHeight"},
+                { "label": "fullHeightVH", "value": "fullHeightVH"},
                 { "label": "hinge", "value": "hinge"},
                 { "label": "jackInTheBox", "value": "jackInTheBox"},
                 { "label": "rollIn", "value": "rollIn"},

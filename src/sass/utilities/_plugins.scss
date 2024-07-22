@@ -89,7 +89,7 @@
     }
 
     /*==== elements ====*/
-    &:not(.ratio-none) {
+    &:not(.ratio-none), &.ratio-none[class*="h-"] {
         .px-video, .px-iframe, .px-media-img, > iframe, > video {
             top: 0;
             left: 0;

@@ -60,6 +60,7 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     if(!attributes.setting.size) blockProps.className += " ratio-none";
+    if(attributes.setting.type === "video" && !attributes.setting.embed) attributes.setting.embed = "video";
 
     //===> Render <===//
     return (<>

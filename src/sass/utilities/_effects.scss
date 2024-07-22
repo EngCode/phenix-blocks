@@ -162,6 +162,16 @@
     100% {--rotation: 360deg;}
 }
 
+@keyframes scaleX {
+    from {transform: scaleX(0);}
+    to {transform: scaleX(1);}
+}
+
+@keyframes scaleY {
+    from {transform: scaleY(0);}
+    to {transform: scaleY(1);}
+}
+
 @keyframes fullWidth {
     from {width: 0%;}
     to {width: 100%;}

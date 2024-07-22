@@ -353,8 +353,8 @@ body.block-editor-page {
 		top: 0px!important;
 		position: fixed!important;
 		#{$direction-start}: 0!important;
-		-webkit-transform: translateX(0%) translateY(68%) translateZ(0px) !important;
-		        transform: translateX(0%) translateY(68%) translateZ(0px) !important;
+		-webkit-transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
+		        transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
 	}
 }
 

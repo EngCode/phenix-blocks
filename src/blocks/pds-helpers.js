@@ -395,12 +395,6 @@ window.PhenixBlocks = {
             blockProps.style[`${option_name}`] = option_value;
         });
 
-        //===> List View Naming <===//
-        if (attributes.metadata?.name) {
-            let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
-            if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
-        }
-
         //===> Render Component <===//
         return {blockProps, container};
     },

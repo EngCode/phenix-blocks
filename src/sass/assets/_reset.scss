@@ -36,9 +36,10 @@ pre, code, kbd, samp {
 }
 
 /*==== Links Reset ====*/
-a {
+a {color: var(--links-color);}
+
+a, .reset-link, .px-navigation a, .btn {
     text-decoration: none;
-    color: var(--links-color);
     -webkit-text-decoration-skip: objects;
             text-decoration-skip: objects;
 }

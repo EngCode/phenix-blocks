@@ -49,6 +49,7 @@ PhenixElements.prototype.slider = function (options?:{
     fixedHeight?:string;
     heightRatio?:string;
     autoScroll?:string;
+    center?:any;
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
@@ -56,19 +57,19 @@ PhenixElements.prototype.slider = function (options?:{
         let slider_creator = (slider:any) => {
             /*====> Get Inline Options <====*/
             let inline = attr => slider.getAttribute(attr),
-            currentClasses = slider.classList;
+                currentClasses = slider.classList;
 
             //====> Already Exist <====//
             if (currentClasses.contains('splide') || currentClasses.contains('splide__list')) return;
 
             //====> Default Options <====//
             let type = inline('data-type') || options?.type || "loop",
-                focus = inline('data-focus') || options?.focus || 0,
+                focus = inline('data-focus') || options?.focus,
                 items = parseInt(inline('data-items')) || options?.items || 1,
                 steps = parseInt(inline('data-steps')) || options?.steps || 1,
                 speed = parseInt(inline('data-speed')) || options?.speed || 700,
                 duration = parseInt(inline('data-duration')) || options?.duration || 6000,
-                autoplay = inline('data-autoplay') || options?.autoplay,
+                autoplay:any = inline('data-autoplay') || options?.autoplay || currentClasses.contains("data-autoplay-off") ? false : true,
                 start  = parseInt(inline('data-start')) || options?.start,
                 rewind = inline('data-rewind') || options?.rewind,
                 direction = inline('data-direction') || options?.direction || Phenix(document).direction(),
@@ -82,7 +83,7 @@ PhenixElements.prototype.slider = function (options?:{
                 wheel = inline('data-wheel') || options?.wheel || false,
                 controls = inline('data-controls') || options?.controls,
                 pagination = inline('data-pagination') || options?.pagination,
-                drag  = inline('data-drag') || options?.drag || (!controls || !pagination ? false : true),
+                drag = inline('data-drag') || options?.drag || (!controls || !pagination ? false : true),
 
                 //===> Features & Modes <===//
                 sync = inline('data-sync') || options?.sync,
@@ -102,13 +103,12 @@ PhenixElements.prototype.slider = function (options?:{
                 autoHeight = inline('data-autoHeight') || options?.autoHeight,
                 fixedWidth = inline('data-fixedWidth') || options?.fixedWidth,
                 fixedHeight = inline('data-fixedHeight') || options?.fixedHeight,
-                heightRatio = inline('data-heightRatio') || options?.heightRatio,
-
-                //===> Extensions <===//
-                autoScroll = inline('data-autoScroll') || options?.autoScroll;
+                heightRatio = inline('data-heightRatio') || options?.heightRatio;
 
             //====> Rewind Sliding and Fading <=====//
             if (!rewind && type === "fade" || type === "slide") rewind = true;
+            //====> Center Mode <====//
+            if (!focus) focus = inline('data-center') || options?.autoplay || currentClasses.contains("data-center-on") ? "center" : 0;
 
             //====> Vertical Mode Fix <====//
             let verticalFix = (slides) => {
@@ -166,7 +166,7 @@ PhenixElements.prototype.slider = function (options?:{
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
-                drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
+                // drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
                 perPage: inline('data-lg') || items,
                 height: height || verticalFix(inline('data-md') || items),
             } : '';
@@ -198,7 +198,7 @@ PhenixElements.prototype.slider = function (options?:{
                 interval: duration,
                 perPage: items,
                 perMove: steps,
-                autoplay: parseInt(autoplay),
+                autoplay: typeof autoplay === "string" ? parseInt(autoplay) : autoplay,
                 pauseOnHover: false,
                 mediaQuery: 'min',
                 direction: direction,
@@ -255,11 +255,10 @@ PhenixElements.prototype.slider = function (options?:{
             if (direction == 'ttb') slider_options.height = heightCalc;
             if (direction == 'ttb') slider_options.autoHeight = true;
             if (pauseOnHover) slider_options.pauseOnHover = pauseOnHover;
-            if(!autoplay) slider_options.autoplay = true;
             if (intersection) intersection !== 'false' || '0' ? intersection = true : null;
             if (rewind) rewind !== 'false' || '0' ? slider_options.rewind = true : slider_options.rewind = false;
             if (isNavigation) slider_options.isNavigation = true;
-            
+
             //====> Return Options <====//
             return {
                 track  : slider_track,

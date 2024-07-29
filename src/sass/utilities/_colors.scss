@@ -219,8 +219,8 @@
 .border-pinterest {border-color: var(--pinterest-color);}
 
 /*==== Background Utilites ====*/
-.bgs-100 {background-size: 100%;}
-.bgs-auto {background-size: auto;}
+.bgs-100 {background-size: 100% 100%;}
+.bgs-auto {background-size: auto auto;}
 /*==== Width ====*/
 .bgw-25 {background-size: 25% auto;}
 .bgw-50 {background-size: 50% auto;}

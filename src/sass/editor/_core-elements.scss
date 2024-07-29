@@ -880,11 +880,11 @@
 .show-filters .wp-filter .button.drawer-toggle {margin-bottom: 5px;}
 
 /*==== PDS Icon ====*/
-#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
-    background-image: url('../img/ap-icon.svg');
-    background-size: 100% auto;
-    background-position: center;
-}
+// #wpadminbar #wp-admin-bar-wp-logo > .ab-item {
+//     background-image: url('../img/ap-icon.svg');
+//     background-size: 100% auto;
+//     background-position: center;
+// }
 
 /*==== Admin : Custom Font Family ====*/
 body, #wpadminbar *:not([class="ab-icon"]), body.rtl, body.rtl .press-this a.wp-switch-editor, .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl h5,.rtl h6,.wp-core-ui, .media-menu, .media-frame *, .media-modal * {font-family: var(--secondary-font)!important;}

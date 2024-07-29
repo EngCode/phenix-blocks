@@ -125,6 +125,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 12. Fix Background video z-index.
 13. Fix Animated Number Counting.
 14. Add new Animations.
+15. improve validation when controls are wrapped.
 
 ### Minor-fixes v1.0.9:
 

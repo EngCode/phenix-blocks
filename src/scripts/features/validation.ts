@@ -34,12 +34,16 @@ PhenixElements.prototype.validation = function (options?:{
 
         //===> Error Handler <===//
         const errorHandler = (input, message, position) => {
+            //===> Input Data <====//
+            let inputWrapper = input.parentNode,
+                hasWrapper = inputWrapper.classList.contains("option-control") || inputWrapper.classList.contains(".control-icon");
+
             //===> Set Error <===//
             input.classList.add('error');
             input.classList.remove('success');
 
             //===> Check for Error Message <===//
-            let hasError = position === 'before' ? Phenix(input).prev('.px-validation') : Phenix(input).next('.px-validation');
+            let hasError = position === 'before' ? Phenix(hasWrapper ? inputWrapper : input).prev('.px-validation') : Phenix(hasWrapper ? inputWrapper : input).next('.px-validation');
 
             //====> if already has errors <====//
             if (hasError) {
@@ -65,7 +69,7 @@ PhenixElements.prototype.validation = function (options?:{
 
             //===> Create Error Message <===//
             else {
-                Phenix(input).insert('after', `<div class="px-validation color-danger">${message}</div>`);
+                Phenix(hasWrapper ? inputWrapper : input).insert('after', `<div class="px-validation color-danger">${message}</div>`);
             }
         };
 

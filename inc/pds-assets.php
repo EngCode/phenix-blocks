@@ -70,7 +70,7 @@ if (!function_exists('phenix_core')) :
 
     add_action('wp_enqueue_scripts', 'phenix_core');
     add_action('enqueue_block_editor_assets', 'phenix_core');
-    add_action('login_enqueue_scripts', 'phenix_core');
+    // add_action('login_enqueue_scripts', 'phenix_core');
 endif;
 
 //=====> Phenix Assets <=====//
@@ -182,7 +182,7 @@ if (!function_exists('phenix_assets')) :
     };
 
     add_action('wp_enqueue_scripts', 'pds_optimized_asset');
-    add_action('login_enqueue_scripts', 'pds_optimized_asset');
+    // add_action('login_enqueue_scripts', 'pds_optimized_asset');
     add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
     add_action('admin_enqueue_scripts', 'pds_optimized_asset');
 endif;
@@ -225,7 +225,7 @@ if (!function_exists('pds_login_admin')) :
         include(dirname(__FILE__) . '/login-overwrite.php');
     }
 
-    add_action('login_enqueue_scripts', 'pds_login_admin');
+    // add_action('login_enqueue_scripts', 'pds_login_admin');
 endif;
 
 //====> Defer Scripts <====//

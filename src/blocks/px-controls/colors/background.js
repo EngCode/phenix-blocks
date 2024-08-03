@@ -185,6 +185,12 @@ export default class PhenixBackground extends Component {
                 </div>
                 {/*===> Panel <===*/}
                 <div className={`flexbox flow-columns options-list ${type !== "image"  && type !== "video" && type !== "embed" ? 'pdy-15 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
+                    {type === "image" || type === "video" ? <>
+                        <MediaUploader key="upload-file" size="small" label={`${type === "video" ? "Video File" : "Image File"}`} value={!value || type === "video" ? PhenixBlocks.palette.placeholder : value} setValue={setBackground}></MediaUploader>
+
+                        {type === "video" ? <MediaUploader label="Cover File" key="upload-cover-file" size="small" value={!cover ? PhenixBlocks.palette.placeholder : cover} setValue={setCover}></MediaUploader> : null}
+                    </> : null}
+
                     {type === "color" ? <>
                         <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
                         {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].main, "radius-xxl")}
@@ -233,11 +239,6 @@ export default class PhenixBackground extends Component {
                         </>:null}
                     </>:
                     null}
-                    {type === "image" || type === "video" ? <>
-                        <MediaUploader key="upload-file" size="small" label={`${type === "video" ? "Video File" : "Image File"}`} value={!value || type === "video" ? PhenixBlocks.palette.placeholder : value} setValue={setBackground}></MediaUploader>
-
-                        {type === "video" ? <MediaUploader label="Cover File" key="upload-cover-file" size="small" value={!cover ? PhenixBlocks.palette.placeholder : cover} setValue={setCover}></MediaUploader> : null}
-                    </> : null}
                 </div>
                 {/*===> Rotation Select <===*/}
                 {type === "gradient" ? <div className='divider-t pdt-15 col-12'>

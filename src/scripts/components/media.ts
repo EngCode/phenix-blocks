@@ -67,6 +67,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             ratio  = element.getAttribute('data-size') || options?.size,
             splide = Phenix(element).ancestor('.splide.is-initialized'),
             embed  = element.getAttribute('data-embed') || options?.embed || 'video',
+            cover  = element.getAttribute('data-cover') || options?.cover,
             gradient = element.getAttribute('data-gradient') || options?.gradient?.value || false,
             gradient_mode = element.getAttribute('data-mode') || options?.gradient?.mode || 'linear',
             gradient_repeat = element.getAttribute('data-repeat') || options?.gradient?.repeat,
@@ -195,7 +196,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                 //====> Embed Type <====//
                 else if (type == 'embed') {
                     //===> Embed Options <===//
-                    let media_attributes = `${lazy ? 'loading="lazy"' : ''} ${autoplay ? 'autoplay="true" playsinline="true"' : ''} ${controls ? 'controls' : ''} ${loop ? 'loop' : ''} ${muted ? 'muted' : ''}`;
+                    let media_attributes = `${lazy ? 'loading="lazy"' : ''} ${autoplay ? 'autoplay="true" playsinline="true"' : ''} ${controls ? 'controls' : ''} ${loop ? 'loop' : ''} ${muted ? 'muted' : ''} ${cover ? `poster="${cover}"` : ''}`;
                     //===> Video Source <===//
                     if (embed == 'video' && !element.querySelector('.px-video')) {
                         Phenix(element).insert('append', `<video class="px-video" src="${src}" ${media_attributes}></video>`);

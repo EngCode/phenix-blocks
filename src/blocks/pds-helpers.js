@@ -159,6 +159,7 @@ window.PhenixBlocks = {
                                 blockProps["data-embed"]    = "video";
                                 blockProps["data-muted"]    = "1";
                                 blockProps["data-autoplay"] = "1";
+                                if (sub_value.cover) blockProps["data-cover"] = sub_value.cover;
                             }
                             //===> Name Background <===//
                             else {

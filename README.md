@@ -108,6 +108,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 5. Fix Multimedia URL input.
 6. Fix Multimedia not showing on insert
 7. Fix embed media from youtube short link.
+8. Add Poster/Cover image for video background.
 
 ### Change Log v1.1.0:
 

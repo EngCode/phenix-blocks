@@ -190,55 +190,57 @@ export default class PhenixBackground extends Component {
 
                         {type === "video" ? <MediaUploader label="Cover File" key="upload-cover-file" size="small" value={!cover ? PhenixBlocks.palette.placeholder : cover} setValue={setCover}></MediaUploader> : null}
                     </> : null}
+                    {/*===> Colors Set <====*/}
+                    <div className='flexbox'>
+                        {type === "color" ? <>
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
+                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].main, "radius-xxl")}
 
-                    {type === "color" ? <>
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].main, "radius-xxl")}
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-10 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
+                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].components, "radius-xxl border-1 border-alpha-15 border-solid")}
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-10 tx-UpperCase fs-12 col-12 mt-10'>{__("Components Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].components, "radius-xxl border-1 border-alpha-15 border-solid")}
+                            {customColorsList.length > 0 ? <>
+                                <label className={`tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 ${!customOnly?"mt-10":''} tx-UpperCase fs-12 col-12`}>
+                                    {__("Custom Colors", "pds-blocks")}
+                                </label>
+                                {makeButtons(customColorsList, "radius-xxl")}
+                            </>:null}
 
-                        {customColorsList.length > 0 ? <>
-                            <label className={`tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 ${!customOnly?"mt-10":''} tx-UpperCase fs-12 col-12`}>
-                                {__("Custom Colors", "pds-blocks")}
-                            </label>
-                            {makeButtons(customColorsList, "radius-xxl")}
-                        </>:null}
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
+                            <div className='pd-5 radius-sm bg-white fluid flexbox align-between'>
+                                {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].darkAlpha, "")}
+                            </div>
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Dark Alpha", "pds-blocks")}</label>
-                        <div className='pd-5 radius-sm bg-white fluid flexbox align-between'>
-                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].darkAlpha, "")}
-                        </div>
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
+                            <div className='pd-5 radius-sm bg-dark fluid flexbox align-between'>
+                                {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].lightAlpha, "")}
+                            </div>
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Light Alpha", "pds-blocks")}</label>
-                        <div className='pd-5 radius-sm bg-dark fluid flexbox align-between'>
-                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].lightAlpha, "")}
-                        </div>
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
+                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].status, "radius-xxl")}
+                            {!customOnly ? <> 
+                                <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
+                                {makeButtons(PhenixBlocks.palette.colors.offwhite, "radius-xxl")}
+                            </>:null}
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Status Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].status, "radius-xxl")}
-                        {!customOnly ? <> 
-                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Offwhite Colors", "pds-blocks")}</label>
-                            {makeButtons(PhenixBlocks.palette.colors.offwhite, "radius-xxl")}
-                        </>:null}
+                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
+                            {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].brands, "radius-xxl")}
+                        </>
+                        : type === "gradient" ? <>
+                            {!customOnly ? <> 
+                                <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Phenix Gradients", "pds-blocks")}</label>
+                                {makeButtons(PhenixBlocks.palette.gradients, "radius-xxl")}
+                            </>:null}
 
-                        <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12 mt-10'>{__("Brand Colors", "pds-blocks")}</label>
-                        {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].brands, "radius-xxl")}
-                    </>
-                    : type === "gradient" ? <>
-                        {!customOnly ? <> 
-                            <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Phenix Gradients", "pds-blocks")}</label>
-                            {makeButtons(PhenixBlocks.palette.gradients, "radius-xxl")}
-                        </>:null}
-
-                        {customGradientsList.length > 0 ? <>
-                            <label className={`tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 ${!customOnly?"mt-10":''} tx-UpperCase fs-12 col-12`}>
-                                {__("Custom Gradients", "pds-blocks")}
-                            </label>
-                            {makeButtons(customGradientsList, "radius-xxl")}
-                        </>:null}
-                    </>:
-                    null}
+                            {customGradientsList.length > 0 ? <>
+                                <label className={`tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 ${!customOnly?"mt-10":''} tx-UpperCase fs-12 col-12`}>
+                                    {__("Custom Gradients", "pds-blocks")}
+                                </label>
+                                {makeButtons(customGradientsList, "radius-xxl")}
+                            </>:null}
+                        </>:
+                        null}
+                    </div>
                 </div>
                 {/*===> Rotation Select <===*/}
                 {type === "gradient" ? <div className='divider-t pdt-15 col-12'>

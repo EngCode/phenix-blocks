@@ -63,13 +63,13 @@ function px_head_render($block_attributes, $content) {
     <h1 class="color-inherit">
         <?php
             if (is_archive() || is_category()) {
-                echo pds_html( get_the_archive_title() );
+                echo  get_the_archive_title();
             }
             //===> Get Single Title <===//
             elseif (is_single() || is_page()) {
-                echo pds_html( get_the_title() );
+                echo  get_the_title();
             } else {
-                echo pds_html( wp_get_document_title() );
+                echo  wp_get_document_title();
             }
         ?>
     </h1>
@@ -82,21 +82,21 @@ function px_head_render($block_attributes, $content) {
         <ul class="px-breadcrumb reset-list flexbox custom-icon links-inherit" data-type="font-icon" itemprop="breadcrumb">
             <?php
                 //===> Create Home Page <===//
-                echo pds_html( '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>');
+                echo  '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>';
                 //===> Get Category Title <===//
                 if (is_category() || is_archive() || is_single()) {
                     if (is_single()) {
-                        echo pds_html( '<li><a href="'.get_post_type_archive_link(get_post_type()).'">'.get_post_type_object(get_post_type())->labels->name.'</a></li>' );
+                        echo  '<li><a href="'.get_post_type_archive_link(get_post_type()).'">'.get_post_type_object(get_post_type())->labels->name.'</a></li>';
                     } else {
-                        echo pds_html( '<li>'.get_the_archive_title('', false ).'</li>' );
+                        echo  '<li>'.get_the_archive_title('', false ).'</li>';
                     }
                 }
                 //===> Get Single Title <===//
                 if (is_single() || is_page()) {
                     if (is_page()) {
-                        echo pds_html( '<li>'.get_post_type_object(get_post_type())->labels->name.'</li>' );
+                        echo  '<li>'.get_post_type_object(get_post_type())->labels->name.'</li>';
                     }
-                    echo pds_html( '<li>'.get_the_title().'</li>' );
+                    echo  '<li>'.get_the_title().'</li>';
                 }
             ?>
         </ul>

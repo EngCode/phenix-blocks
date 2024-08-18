@@ -89,7 +89,7 @@
                                 $post_types = get_post_types(array('public'=> true), 'objects');
                                 foreach ($post_types as $post_type) {
                                     if ($post_type->name !== "attachment") {
-                                        echo pds_html('<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>');
+                                        echo '<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>';
                                     }
                                 };
                             ?>
@@ -105,7 +105,7 @@
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
                                     if ($taxonomy->name !== "post_format") {
-                                        echo pds_html('<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>');
+                                        echo '<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>';
                                     }
                                 };
                             ?>

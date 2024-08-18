@@ -63,7 +63,7 @@
         background-repeat: no-repeat;
         color: var(--success-color)!important;
         border-color: var(--success-color)!important;
-        background-image: url('<?php echo pds_html( $plugin_url ); ?>assets/img/fa-check.svg')!important;
+        background-image: url('<?php echo esc_url( $plugin_url ); ?>assets/img/fa-check.svg')!important;
     }
 
     .forgetmenot label {

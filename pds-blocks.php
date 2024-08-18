@@ -14,16 +14,6 @@
 
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
-if (!function_exists("pds_html")) {
-	function pds_html($html) { 
-		$markup = '';ob_start();
-		echo $html;
-		//===> Stop Collecting Data <===//
-		$new_markup = ob_get_clean();
-		$markup  .= $new_markup;
-		return "{$markup}";
-	}
-};
 
 //===> Activation <===//
 function pds_blocks_activate() {

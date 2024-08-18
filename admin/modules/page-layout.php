@@ -28,13 +28,13 @@
                 foreach ($tabs_list as $tab) {
                     $content = $tab['content'];
                     //===> Panel Start <===//
-                    echo pds_html('<div class="tab-panel mb-15" id="'.$tab['slug'].'">');
+                    echo '<div class="tab-panel mb-15" id="'.$tab['slug'].'">';
                     //===> Panel Description <===//
                     if (isset($tab['description'])) {
-                        echo pds_html('<p class="mb-10 fs-15">'.$tab['description'].'</p>');
+                        echo '<p class="mb-10 fs-15">'.$tab['description'].'</p>';
                     }
                     //===> Panel End <===//
-                    echo pds_html($content().'</div>');
+                    echo $content().'</div>';
                 }
             ?>
             <!-- // Panels -->

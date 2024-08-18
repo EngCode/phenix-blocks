@@ -63,7 +63,7 @@
     //====> Create the Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
-        echo pds_html(pds_add_admin_page(
+        echo pds_add_admin_page(
             //==> Page Title <==//
             'Phenix Blocks Settings',
             //==> Page Description <==//
@@ -105,7 +105,7 @@
             ),
             //==> Show Submit Button <==//
             true
-        ));
+        );
     endif;
 
     //====> Load Media Uploader <====//

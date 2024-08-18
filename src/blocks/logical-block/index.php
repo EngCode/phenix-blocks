@@ -14,15 +14,15 @@ function px_logical_block_render($block_attributes, $content) {
 
     //===> Users Only Logic <===//
     if ($block_attributes['logic']['visibility'] === "users-only" && is_user_logged_in()) {
-        echo pds_html($content);
+        echo $content;
     }
     //===> Visitors Only Logic <===//
     elseif ($block_attributes['logic']['visibility'] === "visitors-only" && !is_user_logged_in()) {
-        echo pds_html($content);
+        echo $content;
     }
     //===> for All <===//
     elseif ($block_attributes['logic']['visibility'] === "" || $block_attributes['logic']['visibility'] === "all") {
-        echo pds_html($content);
+        echo $content;
     }
 
     //===> Stop Collecting Data <===//

@@ -9,7 +9,7 @@
     <div class="col-12 col-md-4 w-max-320 divider-e">
         <h3 class="fs-16 mb-10"><?php echo esc_html__("Core Optimization", "pds-blocks");?></h3>
         <?php
-            echo pds_html(pds_toggle_controls(array(
+            echo pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_cdn',
                     "title" => 'Use Phenix CDN',
@@ -38,12 +38,12 @@
                     "name"  => 'adminbar_disable',
                     "title" => 'Disable Admin-Bar for Users',
                 ),
-            )));
+            ));
         ?>
 
         <h3 class="fs-16 mb-10 mt-30"><?php echo esc_html__("Plugins Optimization", "pds-blocks");?></h3>
         <?php
-            echo pds_html(pds_toggle_controls(array(
+            echo pds_toggle_controls(array(
                 array(
                     "name"  => 'wpc7_rm_scripts',
                     "title" => 'CF7 Remove JS',
@@ -60,7 +60,7 @@
                     "name"  => 'newsletter_css',
                     "title" => 'Remove [Newsletter] CSS',
                 ),
-            )));
+            ));
         ?>
     </div>
     <!-- Column -->
@@ -79,7 +79,7 @@
                             <?php echo esc_attr($loadingOptions["code"]); ?>
                         </div>
                         <!-- Paragraph -->
-                        <p class="loading-text <?php if(isset($loadingOptions["showText"]) && $loadingOptions["showText"] !== "on") { echo esc_attr("hidden"); } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo pds_html($loadingOptions["text"]); ?></p>
+                        <p class="loading-text <?php if(isset($loadingOptions["showText"]) && $loadingOptions["showText"] !== "on") { echo esc_attr("hidden"); } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loadingOptions["text"]; ?></p>
                     </div>
                 </div>
                 <!-- Note -->
@@ -148,7 +148,7 @@
                     <div id="pds_loading_code" class="<?php if ($loadingOptions["type"] == "image") : ?>hidden<?php endif; ?>">
                         <label class="fs-14 weight-strong mb-5"><?php echo esc_html__("Custom Code", "pds-blocks"); ?></label>
                         <textarea name="pds_loading[code]" class="form-control radius-sm">
-                            <?php echo pds_html($loadingOptions["code"]); ?>
+                            <?php echo $loadingOptions["code"]; ?>
                         </textarea>
                     </div>
                     <!-- Loading Code -->

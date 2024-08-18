@@ -54,14 +54,14 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["primary"] === $key) { $is_selected = "selected"; }
-                            echo pds_html('<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>');
+                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
                                 if ($current_fonts["primary"] === $value) { $is_selected = "selected"; }
-                                echo pds_html('<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>');
+                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }
                     ?>
@@ -78,14 +78,14 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["secondary"] === $key) { $is_selected = "selected"; }
-                            echo pds_html('<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>');
+                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
                                 if ($current_fonts["secondary"] === $value) { $is_selected = "selected"; }
-                                echo pds_html('<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>');
+                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }
                     ?>
@@ -106,14 +106,14 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
-                            echo pds_html('<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>');
+                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
                                 if ($current_fonts["primary_rtl"] === $value) { $is_selected = "selected"; }
-                                echo pds_html('<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>');
+                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }
                     ?>
@@ -130,14 +130,14 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["secondary_rtl"] === $key) { $is_selected = "selected"; }
-                            echo pds_html('<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>');
+                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
                                 if ($current_fonts["secondary_rtl"] === $value) { $is_selected = "selected"; }
-                                echo pds_html('<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>');
+                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }
                     ?>
@@ -157,7 +157,7 @@
                     foreach ($fonts_list_icon as $key => $value) {
                         $is_selected = "";
                         if ($key == "fontawesome-6") { $is_selected = "selected"; }
-                        echo pds_html('<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>');
+                        echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                     }
                 ?>
             </select>
@@ -165,7 +165,7 @@
         <!-- Divider -->
         <div class="pdt-10 mb-10 divider-b"></div>
         <?php
-            echo pds_html(pds_toggle_controls(array(
+            echo pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_admin_style',
                     "title" => 'Admin UI Re-Style',
@@ -174,7 +174,7 @@
                     "name"  => 'pds_gfonts',
                     "title" => 'Enable Google Fonts',
                 )
-            )));
+            ));
         ?>
     </div>
     <!-- // Column -->

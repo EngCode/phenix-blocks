@@ -110,7 +110,7 @@ function px_query_render($block_attributes, $content) {
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
-            echo pds_html( '<div class="'.$grid_classes.'" '.$slider_attrs.'>' );
+            echo  '<div class="'.$grid_classes.'" '.$slider_attrs.'>';
         }
 
         //===> Custom Loop <===//
@@ -130,7 +130,7 @@ function px_query_render($block_attributes, $content) {
 
         //===> End Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
-            echo pds_html( '</div>' );
+            echo  '</div>';
         }
 
         //=== Pagination ===//

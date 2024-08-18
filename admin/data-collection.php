@@ -97,7 +97,7 @@
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
-        echo esc_html(pds_add_admin_page(
+        echo pds_html(pds_add_admin_page(
             //==> Page Title <==//
             'Custom Data Collection',
             //==> Page Description <==//

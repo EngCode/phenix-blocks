@@ -9,7 +9,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_core_group',
                     "title" => 'Core/Group',
@@ -56,7 +56,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_core_mediatext',
                     "title" => 'Media-Text',
@@ -98,7 +98,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_core_separator',
                     "title" => 'Core/Separator',
@@ -140,7 +140,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_core_navigation',
                     "title" => 'Core/Navigation',

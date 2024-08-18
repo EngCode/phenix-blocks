@@ -17,7 +17,7 @@
 <div class="flexbox align-between align-center-y mb-20">
     <!-- Area Head -->
     <div class="col">
-        <h3 class="fs-16 mb-0 weight-medium"><?php echo esc_html(__('Patterns List', "pds-blocks")); ?></h3>
+        <h3 class="fs-16 mb-0 weight-medium"><?php echo pds_html(__('Patterns List', "pds-blocks")); ?></h3>
         <p class="fs-14"><?php echo esc_html__('in here you can manage the patterns created by phenix-blocks.', "pds-blocks"); ?></p>
     </div>
     <!-- Buttons -->

@@ -13,7 +13,7 @@
             <img class="spinner" src="<?php echo esc_attr($loading_opts["image"]); ?>" alt="<?php echo esc_html__('Loading', "pds-blocks");?>" style="width:<?php echo esc_attr( $loading_opts["size"] ); ?>; height: auto!important" />
         <?php 
             elseif (isset($loading_opts["type"]) && $loading_opts["type"] == "code") :
-                echo esc_html($loading_opts["code"]); 
+                echo pds_html($loading_opts["code"]); 
             endif;
         ?>
         <!-- Paragraph -->

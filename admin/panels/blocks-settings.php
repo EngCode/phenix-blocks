@@ -9,7 +9,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'container_block',
                     "title" => 'Phenix/Container',
@@ -51,7 +51,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'head_block',
                     "title" => 'Page Head',
@@ -98,7 +98,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'custom_code_block',
                     "title" => 'Design Code',
@@ -140,7 +140,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo esc_html(pds_toggle_controls(array(
+            echo pds_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'accordion_block',
                     "title" => 'Accordion Block',

@@ -36,7 +36,7 @@ function px_users_query_render($block_attributes, $content) {
     };
 
     //===> Grid Wrapper <===//
-    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo esc_html( '<div class="'.$grid_classes.'" '.$slider_attrs.'>' ); }
+    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo pds_html( '<div class="'.$grid_classes.'" '.$slider_attrs.'>' ); }
 
     //===> Loop Through Users <===//
     foreach ($users as $user) :
@@ -44,7 +44,7 @@ function px_users_query_render($block_attributes, $content) {
     endforeach;
 
     //===> End Grid Wrapper <===//
-    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo esc_html( '</div>' ); }
+    if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo pds_html( '</div>' ); }
 
     //===> Stop Collecting Data <===//
     $blockOutput = ob_get_clean();

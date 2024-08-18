@@ -94,7 +94,7 @@
                                 $post_types = get_post_types(array('public'=> true), 'objects');
                                 foreach ($post_types as $post_type) {
                                     if ($post_type->name !== "attachment") {
-                                        echo esc_html('<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>');
+                                        echo pds_html('<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>');
                                     }
                                 };
                             ?>

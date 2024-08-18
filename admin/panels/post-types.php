@@ -103,7 +103,7 @@
                             <?php 
                                 $block_patterns = pds_get_patterns();
                                 foreach ($block_patterns as $pattern) {
-                                    echo esc_html('<option value="'.$pattern['name'].'">' . $pattern['title'] . '</option>');
+                                    echo pds_html('<option value="'.$pattern['name'].'">' . $pattern['title'] . '</option>');
                                 }
                             ?>
                         </select>
@@ -118,7 +118,7 @@
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
                                     if ($taxonomy->name !== "post_format") {
-                                        echo esc_html('<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>');
+                                        echo pds_html('<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>');
                                     }
                                 };
                             ?>

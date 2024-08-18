@@ -100,7 +100,7 @@ if (!function_exists('pds_metabox_create')) :
                             wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                             
                             //===> Create Fields <===//
-                            echo esc_html(pds_metabox_fields_create($metabox_group, false));
+                            echo pds_html(pds_metabox_fields_create($metabox_group, false));
                         }, $post_type, 'side', 'high', 0);
                     }
                 });
@@ -111,7 +111,7 @@ if (!function_exists('pds_metabox_create')) :
                     if (!current_user_can('edit_post', $post_id)) return $post_id;
                     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
                     if (!isset($_POST[$metabox_group["name"] . '_nonce'])) return $post_id;
-                    if (!wp_verify_nonce($_POST[$metabox_group["name"] . '_nonce'], basename(__FILE__))) return esc_html($post_id);
+                    if (!wp_verify_nonce($_POST[$metabox_group["name"] . '_nonce'], basename(__FILE__))) return pds_html($post_id);
 
                     //===> Save Fields <===//
                     foreach($metabox_group["fields"] as $metabox) {
@@ -128,8 +128,8 @@ if (!function_exists('pds_metabox_create')) :
                         //===> Create Nonce Field <===//
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                         //===> Create Fields <===//
-                        echo esc_html('<tr class="form-field term-group-wrap"><th scope="row"><label for="custom_field">'.$metabox_group["label"].'</label></th>');
-                        echo esc_html('<td>'. pds_metabox_fields_create($metabox_group, $term) . '</td></tr>');
+                        echo pds_html('<tr class="form-field term-group-wrap"><th scope="row"><label for="custom_field">'.$metabox_group["label"].'</label></th>');
+                        echo pds_html('<td>'. pds_metabox_fields_create($metabox_group, $term) . '</td></tr>');
                     });
         
                     //====> Display Metaboxes in Creating Mode<=====//
@@ -137,9 +137,9 @@ if (!function_exists('pds_metabox_create')) :
                         //===> Create Nonce Field <===//
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                         //===> Create Fields <===//
-                        echo esc_html('<div class="form-field fluid ">');
-                            echo esc_html(pds_metabox_fields_create($metabox_group, $term));
-                        echo esc_html('</div>');
+                        echo pds_html('<div class="form-field fluid ">');
+                            echo pds_html(pds_metabox_fields_create($metabox_group, $term));
+                        echo pds_html('</div>');
                     });
         
                     //====> Save Metaboxes in Edit Mode <=====//

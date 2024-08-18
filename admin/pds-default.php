@@ -16,7 +16,9 @@
         
         function pds_get_default_options($json_url = NULL) {
             //====> Default Json File <====//
-            if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/json/default-options.json"; }
+            if (!$json_url) {
+                $json_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/json/default-options.json";
+            }
 
             //====> Define Options Data <====//
             $default_options = wp_remote_get($json_url);
@@ -55,7 +57,9 @@
             //===> Reset Options <===//
             if (isset($is_reset_mode) && $is_reset_mode !== "off") {
                 //===> Reset Data <===//
-                update_option($is_reset_mode, $default_options[$is_reset_mode]);
+                if (isset($default_options[$is_reset_mode])) {
+                    update_option($is_reset_mode, $default_options[$is_reset_mode]);
+                }
                 //===> Turn Off Reset <===//
                 update_option("pds_reset", "off");
             }

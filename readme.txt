@@ -1,13 +1,13 @@
 === Phenix Blocks ===
 Contributors: abdullah.ramadan, abdullahramadan, EngCode
-Tags: phenix, phenix themes, phenix blocks, block, blocks, gutenberg blocks, gutenberg, block editor, metaboxes, post-types, taxonomies, optimizing, admin style, design system
-Version: 1.1.0
+Tags: phenix, blocks, gutenberg, metaboxes, design system
+Version: 1.2.0
 Author: Abdullah.Ramadan
 Author URI:https://phenixthemes.com/en/abdullah-ramadan
 Requires at least: 6.0
-Tested up to: 6.5
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 
 Unleash Creativity with Ease and Transform Your Web Design Experience

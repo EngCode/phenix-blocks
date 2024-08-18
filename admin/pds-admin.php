@@ -46,25 +46,12 @@
             );
             
             //===> Remove Menu Items <===//
-            $removable = [
-                'flamingo',
-                // 'index.php',
-                'upload.php',
-                'edit-comments.php',
-            ];
+            $removable = ['flamingo','edit-comments.php'];
 
             foreach ($removable as $item) { remove_menu_page($item); }
 
             //===> Remove Sub Menu Items <===//
             $removable_sub = [
-                // ['wpcf7', 'wpcf7-integration'],
-                // ['tools.php', 'export-personal-data.php'],
-                // ['tools.php', 'erase-personal-data.php'],
-                // ['options-general.php', 'svg-support'],
-                // ['options-general.php', 'options-writing.php'],
-                // ['options-general.php', 'options-privacy.php'],
-                // ['options-general.php', 'options-discussion.php'],
-                // ['options-general.php', 'blocks-product-editor-for-woocommerce'],
                 ['blocks-product-editor-for-woocommerce', 'pricing'],
                 ['blocks-product-editor-for-woocommerce', 'contact'],
                 ['blocks-product-editor-for-woocommerce', 'wp-support-forum'],
@@ -74,11 +61,11 @@
 
             //===> Organize Menu Items <===//
             $movable = [
-                ['users.php', null, __('Comments', "pds-blocks"), 'manage_options', 'edit-comments.php'],
-                ['wpcf7', null, __('Address Book', "pds-blocks"), 'manage_options', 'admin.php?page=flamingo'],
-                ['tools.php', null, __('Media Uploads', "pds-blocks"), 'manage_options', 'upload.php'],
-                ['options-general.php', null, __('Core Updates', "pds-blocks"), 'manage_options', 'update-core.php'],
                 ['pds-dashboard', null, __('WordPress', "pds-blocks"), 'edit_posts', 'about.php'],
+                ['users.php', null, __('Comments', "pds-blocks"), 'manage_options', 'edit-comments.php'],
+                // ['tools.php', null, __('Media Uploads', "pds-blocks"), 'manage_options', 'upload.php'],
+                ['wpcf7', null, __('Address Book', "pds-blocks"), 'manage_options', 'admin.php?page=flamingo'],
+                ['options-general.php', null, __('Core Updates', "pds-blocks"), 'manage_options', 'update-core.php'],
                 ['wpcf7', null, __('Inbox Messages', "pds-blocks"), 'edit_posts', 'admin.php?page=flamingo_inbound'],
             ];
 
@@ -459,11 +446,12 @@
         function pds_countries_register() {
             //===> CDN URL <===//
             $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets";
+            // if ($cdn) { $px_cdn_assets = WP_PLUGIN_DIR.'/pds-blocks/assets'; }
 
             if (!get_option("countries_list")) {
                 //====> Get Countries JSON <====//
-                $countries_data = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/countries.json");
-                $countries_phone = file_get_contents(WP_PLUGIN_DIR."/pds-blocks/assets/json/countries-phones.json");
+                $countries_data = wp_remote_get($px_cdn_assets."/json/countries.json");
+                $countries_phone = wp_remote_get($px_cdn_assets."/json/countries-phones.json");
     
                 //====> Convert the JSON data into a PHP object <====//
                 $phones_json = json_decode($countries_phone);
@@ -502,5 +490,7 @@
 
     //====> Set Custom Metaboxes <====//
     $metaboxes = get_option('pds_metabox');
-    if ($metaboxes): pds_metabox_create($metaboxes); endif;
+    if ($metaboxes): 
+        pds_metabox_create($metaboxes); 
+    endif;
 ?>

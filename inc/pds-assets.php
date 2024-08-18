@@ -203,6 +203,17 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         } else {
             wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin.css', array(), $version);
         }
+
+        //===> Check Current Admin Page <===//
+        $screen = get_current_screen();
+
+        //===> Collection Data <===//
+        if ($screen->id === 'pds-data-collection') {
+            wp_enqueue_script('phenix', plugin_dir_url(__DIR__).'admin/data-collection.js', false, $version , true);
+        }
+
+        //===> Include Admin Script <===//
+        wp_enqueue_script('phenix', plugin_dir_url(__DIR__).'admin/scripts.js', false, $version , true);
     }
 
     //===> Include Phenix Core in the Plugin Page <===//
@@ -237,16 +248,18 @@ if (!function_exists('pds_defer_scripts')) :
 	*/
 
     function pds_defer_scripts($tag, $handle, $src) {
+        // Array of script handles to defer
         $async_scripts = array('phenix');
-        // $defer_scripts = array('pds-script');
-
-        if (in_array($handle, $async_scripts)) {
-            return '<script src="' . $src . '" defer></script>' . "\n";
+        
+        // Check if the script is enqueued and should be deferred
+        if (in_array($handle, $async_scripts) && wp_script_is($handle, 'enqueued')) {
+            return str_replace('<script ', '<script defer ', $tag);
         }
-
+    
+        // Return the original tag if not deferring
         return $tag;
     }
-
+    
     add_filter('script_loader_tag', 'pds_defer_scripts', 10, 3);
 
     add_filter('body_class', function( $classes ) {

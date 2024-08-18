@@ -23,13 +23,13 @@ if (!function_exists('pds_toggle_controls')) :
 
             //===> Get Options <===//
             if (get_option($control_item["name"])) { $isChecked = 'checked'; }
-            if (isset($control_item["icon"])) $has_icon = '<img src="'.$control_item["icon"].'" class="icon x2"> ';
+            if (isset($control_item["icon"])) $has_icon = '<img src="'.esc_attr($control_item["icon"]).'" class="icon x2"> ';
 
             //===> Print the Data <===//
-            echo '<label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">';
-                echo '<input type="checkbox" name="'.$control_item["name"].'" '.$isChecked.'><span class="switch"></span>';
-                echo '<span>'.$has_icon.$control_item["title"].'</span>';
-            echo '</label>';
+            echo esc_html('<label class="small option-control flexbox flow-reverse align-center-y align-between fs-15 weight-medium" data-type="switch">');
+                echo esc_html('<input type="checkbox" name="'.$control_item["name"].'" '.$isChecked.'><span class="switch"></span>');
+                echo esc_html('<span>'.$has_icon.$control_item["title"].'</span>');
+            echo esc_html('</label>');
         }
     }
 endif;

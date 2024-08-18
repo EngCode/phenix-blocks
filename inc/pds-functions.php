@@ -104,21 +104,21 @@ if (!function_exists('pagination')) :
 		//===> Generate <===//
 		if(is_array($pages)) {
 			//===> List <===//
-			echo '<ul class="reset-list pagination '.$list_style.'">';
+			echo esc_html( '<ul class="reset-list pagination '.$list_style.'">' );
 			//===> Pages Start <===//
 			foreach ($pages as $page) {
 				//===> if its the Current Page <===//
 				if (strpos($page, 'current') !== false) {
 					$page = str_replace("span", "a", $page);
-					echo "<li class='".$main_style." ".$active_btn."'>$page</li>";
+					echo esc_html( "<li class='".$main_style." ".$active_btn."'>$page</li>" );
 				}
 				//===> else other pages <===//
 				else {
-					echo "<li class='".$main_style." ".$normal_btn."'>$page</li>";
+					echo esc_html( "<li class='".$main_style." ".$normal_btn."'>$page</li>" );
 				}
 			}
 			//===> Pages End <===//
-			echo '</ul>';
+			echo esc_html( '</ul>' );
 			//===> List <===//
 		}
 	}
@@ -210,31 +210,31 @@ if (!function_exists('pds_get_theme_parts_select')) :
         $Files_List = get_option("theme_parts");
 
         //===> Create Select Control <===//
-        echo '<select class="form-control tx-capitalize" name="theme-part" title="Template Part" style="max-width:unset;">';
+        echo esc_html( '<select class="form-control tx-capitalize" name="theme-part" title="Template Part" style="max-width:unset;">' );
             foreach (array_reverse($Files_List) as $key => $value) {
                 if (is_array($value)) {
-                    echo '<optgroup label="'.$key.'">';
+                    echo esc_html( '<optgroup label="'.$key.'">' );
                         foreach ($value as $key2 => $value2) {
                             $value2 = str_replace(".php", "",$value2);
-                            echo '<option value="'.$key.'/'.$value2.'">'.str_replace("-", " ",$value2).'</option>';
+                            echo esc_html( '<option value="'.$key.'/'.$value2.'">'.str_replace("-", " ",$value2).'</option>' );
                         }
-                    echo '</optgroup>';
+                    echo esc_html( '</optgroup>' );
                 } else {
                     $value = str_replace(".php", "",$value);
                     $value = str_replace("_", "", $value);
-                    echo '<option value="'.$value.'">'.str_replace("-", " ",$value).'</option>';
+                    echo esc_html( '<option value="'.$value.'">'.str_replace("-", " ",$value).'</option>' );
                 }
             }
-        echo '</select>';
+        echo esc_html( '</select>' );
 	}
 endif;
 
 //===> Debug Variables <===//
 if (!function_exists('pds_var_dump')) :
 	function pds_var_dump($variable) {
-		echo '<pre>';
+		echo esc_html( '<pre>' );
 			highlight_string("<?php\n" . var_export($variable, true));
-		echo '</pre>';
+		echo esc_html( '</pre>' );
 	}
 endif;
 

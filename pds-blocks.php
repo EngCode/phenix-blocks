@@ -3,7 +3,7 @@
   * Plugin Name: Phenix Blocks
   * Plugin URI: https://github.com/EngCode/phenix-blocks
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 1.1.0
+  * Version: 1.2.0
   * Author: Abdullah.Ramadan
   * Author URI:https://phenixthemes.com
   * License: GPL2
@@ -14,9 +14,6 @@
 
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
-
-//====> Automatic Updater <====//
-include_once(dirname(__FILE__) . '/inc/pds-updater.php');
 
 //===> Activation <===//
 function pds_blocks_activate() {
@@ -77,18 +74,6 @@ if (!function_exists('pds_patterns_cats')) :
 	add_action('init', 'pds_patterns_cats');
 endif;
 
-//===> Create Cron Jobs Scheduler <===//
-add_filter('cron_schedules', function($schedules) {
-    //===> Every 10 Minutes <===//
-    $schedules['pds_schedule'] = array(
-        'interval' => 600,
-        'display'  => __( 'Every 10 Minutes' ),
-    );
-
-    //===> .... <===//
-    return $schedules;
-});
-
 //===> Plugins Fallback <===//
 function check_other_plugins() {
 	//===> ACF <===//
@@ -103,3 +88,15 @@ function check_other_plugins() {
 		}
 	}
 }
+
+//===> Create Cron Jobs Scheduler <===//
+// add_filter('cron_schedules', function($schedules) {
+//     //===> Every 10 Minutes <===//
+//     $schedules['pds_schedule'] = array(
+//         'interval' => 600,
+//         'display'  => __( 'Every 10 Minutes' ),
+//     );
+
+//     //===> .... <===//
+//     return $schedules;
+// });

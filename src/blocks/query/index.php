@@ -17,6 +17,17 @@ function px_query_render($block_attributes, $content) {
     $grid_classes = "";
     $query = $block_attributes['query'];
 
+
+    /*===> Default Query Items <===*/
+    $query['per_page'] = 12;
+    $query['posts_per_page'] = 12;
+    
+    /*===> Query Items <===*/
+    if(isset($query['per_page'])) {
+        $query['per_page'] = (int) $query['per_page'];
+        $query['posts_per_page'] = (int) $query['per_page'];
+    }
+
     //===> Generate Taxonomies Query <===//
     if (isset($query['taxonomies-types'])) {
         //===> Create Taxonomies in Query <===//
@@ -60,15 +71,6 @@ function px_query_render($block_attributes, $content) {
     //===> Get Current Global Query <===//
     global $wp_query;
 
-    /*===> Query Items <===*/
-    if(!isset($query['per_page'])) {
-        $query['per_page'] = 5;
-        $query['posts_per_page'] = 5;
-    } else {
-        $query['per_page'] = (int) $query['per_page'];
-        $query['posts_per_page'] = (int) $query['per_page'];
-    }
-
     /*===> Check Pagination <===*/
     if (isset($query['pagination']) && $query['pagination'] === true) {
         $query['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -97,14 +99,18 @@ function px_query_render($block_attributes, $content) {
 
     //===> Create New Query <===//
     if (isset($query['post_type'])) {
-        $the_query = new WP_Query($query);
+        //===> Create Cached Query <====//
+        $the_query = get_transient(new WP_Query($query));
+
+        //===> Cache the results for 24 hours <===//
+        set_transient('my_tax_query_results', $the_query, 24 * HOUR_IN_SECONDS);
     }
 
     //==== Start Query =====//
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
-            echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>';
+            echo esc_html( '<div class="'.$grid_classes.'" '.$slider_attrs.'>' );
         }
 
         //===> Custom Loop <===//
@@ -124,7 +130,7 @@ function px_query_render($block_attributes, $content) {
 
         //===> End Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
-            echo '</div>';
+            echo esc_html( '</div>' );
         }
 
         //=== Pagination ===//

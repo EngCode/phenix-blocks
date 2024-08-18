@@ -63,7 +63,7 @@
         background-repeat: no-repeat;
         color: var(--success-color)!important;
         border-color: var(--success-color)!important;
-        background-image: url('<?php echo $plugin_url; ?>assets/img/fa-check.svg')!important;
+        background-image: url('<?php echo esc_html( $plugin_url ); ?>assets/img/fa-check.svg')!important;
     }
 
     .forgetmenot label {
@@ -84,7 +84,7 @@
         
         //===> Logo Image <===//
         Phenix("#login h1 a")[0].remove();
-        Phenix('#login h1').insert('append', `<img src="<?php echo $plugin_url; ?>assets/img/px-logo/px-blocks-reverse.svg" alt="logo" width="200" class="mb-30 display-block mgx-auto" />`);
+        Phenix('#login h1').insert('append', `<img src="<?php echo esc_attr( $plugin_url ); ?>assets/img/px-logo/px-blocks-reverse.svg" alt="logo" width="200" class="mb-30 display-block mgx-auto" />`);
         
         //===> Form <===//
         let FormElement = Phenix("#loginform"),

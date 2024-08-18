@@ -97,7 +97,7 @@
     //====> Create Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//
-        echo pds_add_admin_page(
+        echo esc_html(pds_add_admin_page(
             //==> Page Title <==//
             'Custom Data Collection',
             //==> Page Description <==//
@@ -151,7 +151,7 @@
             ),
             //==> Hide Submit Button <==//
             false
-        );
+        ));
     endif;
 ?>
 <!-- Button Uploader -->
@@ -160,5 +160,3 @@
     .px-uploader.pds-data-importer-wrapper::before {display: none;}
     .px-uploader.pds-data-importer-wrapper::after {text-align: center; width: 100%; }
 </style>
-<!-- Form Script -->
-<script src="<?php echo esc_url($assets_url.'/data-collection.js');?>" defer></script>

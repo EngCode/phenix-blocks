@@ -111,11 +111,11 @@ function px_navigation_render($block_attributes, $content) {
     };
 
     //===> Start Navigation Wrapper <===//
-    echo "<{$block_attributes['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_attrs} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>";
+    echo esc_html( "<{$block_attributes['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_attrs} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>" );
         //===> Get Taxonomies Menu <===//
         if ($block_attributes['menu_type'] === "taxonomies") {
             //===> Create Menu <===//
-            echo '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">';
+            echo esc_html( '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">' );
                 //===> Get Categories List <===//
                 $categories = get_categories(array(
                     'hide_empty' => false,
@@ -131,9 +131,9 @@ function px_navigation_render($block_attributes, $content) {
                         $count_badge = ' <span class="posts-count float-end">'.$category->count.'</span>';
                     };
                     //===> Create Item <===//
-                    echo '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.$count_badge.'</a></li>';
+                    echo esc_html( '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.$count_badge.'</a></li>' );
                 endforeach;
-            echo '</ul>';
+            echo esc_html( '</ul>' );
         }
         //===> Get Posts List Menu <===//
         elseif ($block_attributes['menu_type'] === "posts") {
@@ -147,7 +147,7 @@ function px_navigation_render($block_attributes, $content) {
             ));
             
             //===> Create Menu <===//
-            echo '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">';
+            echo esc_html( '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">' );
                 //==== Start Query =====//
                 if ($menu_query->have_posts()) :
                     //==== Loop Start ====//
@@ -157,13 +157,13 @@ function px_navigation_render($block_attributes, $content) {
                             $count_badge = '<span class="posts-count float-end">'.get_post_views($post->ID).'</span>';
                         };
                         //===> Create Item <===//
-                        echo '<li><a href="'.get_permalink($post->ID).'">'.get_the_title($post->ID).$count_badge.'</a></li>';
+                        echo esc_html( '<li><a href="'.get_permalink($post->ID).'">'.get_the_title($post->ID).$count_badge.'</a></li>' );
                     }
                     //=== Reset Query Data ===//
                     wp_reset_postdata();
                 endif;
                 //==== End Query =====//
-            echo '</ul>';
+            echo esc_html( '</ul>' );
         } 
         //===> Get Classic Menu <===//
         else {
@@ -175,7 +175,7 @@ function px_navigation_render($block_attributes, $content) {
                 'container_class' => false,
             ));
         }
-    echo "</{$block_attributes['tagName']}>";
+    echo esc_html( "</{$block_attributes['tagName']}>" );
     //===> End Navigation Wrapper <===//
 
     //===> Stop Collecting Data <===//

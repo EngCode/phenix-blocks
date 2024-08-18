@@ -9,7 +9,7 @@
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo pds_toggle_controls(array(
+            echo esc_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'container_block',
                     "title" => 'Phenix/Container',
@@ -45,13 +45,13 @@
                     "title" => 'Grid/Column',
                     "icon"  => $icons_url.'column.svg',
                 ),
-            ));
+            )));
         ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo pds_toggle_controls(array(
+            echo esc_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'head_block',
                     "title" => 'Page Head',
@@ -92,13 +92,13 @@
                     "title" => 'Text List Item',
                     "icon"  => $icons_url.'inline-elements.svg',
                 ),
-            ));
+            )));
         ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo pds_toggle_controls(array(
+            echo esc_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'custom_code_block',
                     "title" => 'Design Code',
@@ -134,13 +134,13 @@
                     "title" => 'Search Query',
                     "icon"  => $icons_url.'under-dev.svg',
                 ),
-            ));
+            )));
             ?>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-3 divider-e">
         <?php
-            echo pds_toggle_controls(array(
+            echo esc_html(pds_toggle_controls(array(
                 array(
                     "name"  => 'accordion_block',
                     "title" => 'Accordion Block',
@@ -176,7 +176,7 @@
                     "title" => 'Language Switcher',
                     "icon"  => $icons_url.'under-dev.svg',
                 ),
-            ));
+            )));
         ?>
     </div>
     <!-- // Column -->

@@ -584,7 +584,7 @@ window.PhenixBlocks = {
         }
 
         //===> Run the Scripts Directly <===//
-        if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
+        else if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
     },
 
     //===> Block Inserter Accessibility <===//

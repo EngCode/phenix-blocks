@@ -495,151 +495,151 @@ window.PhenixBlocks = {
             }
         });
 
-        //===> Get View iFrame <===//
-        const viewScript = (the_document) => {
-            //===> Define Data <===//
-            let time_counter = 0,
-            //===> Timer Loop <===//
-            pds_elements_timer = setInterval(() => {
-                //===> Run Multimedia <===//
-                the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
-                    element.style.backgroundImage = null;
-                    let image = element.querySelector('.px-media-img');
-                    if (image) image.setAttribute('src', element.getAttribute('data-src'));
-                    Phenix(element).multimedia();
-                });
+        // //===> Get View iFrame <===//
+        // const viewScript = (the_document) => {
+        //     //===> Define Data <===//
+        //     let time_counter = 0,
+        //     //===> Timer Loop <===//
+        //     pds_elements_timer = setInterval(() => {
+        //         //===> Run Multimedia <===//
+        //         the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
+        //             element.style.backgroundImage = null;
+        //             let image = element.querySelector('.px-media-img');
+        //             if (image) image.setAttribute('src', element.getAttribute('data-src'));
+        //             Phenix(element).multimedia();
+        //         });
     
-                //===> Contain Queries Sliders <===//
-                the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
-                    //===> Mark as Editing Mode <===//
-                    element.classList.add('edit-mode');
+        //         //===> Contain Queries Sliders <===//
+        //         the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
+        //             //===> Mark as Editing Mode <===//
+        //             element.classList.add('edit-mode');
     
-                    //===> Disable Autoplay <===//
-                    if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
+        //             //===> Disable Autoplay <===//
+        //             if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
     
-                    //===> Replace Data Attributes with Row/Columns Classes <===//
-                    const slider_cols_fixer = (row) => {
-                        //===> Contain the Slides in One Line <====//
-                        row.classList.add('flow-nowrap');
-                        if (element.getAttribute('data-md')) row.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
-                        if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
-                        if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
-                    }
+        //             //===> Replace Data Attributes with Row/Columns Classes <===//
+        //             const slider_cols_fixer = (row) => {
+        //                 //===> Contain the Slides in One Line <====//
+        //                 row.classList.add('flow-nowrap');
+        //                 if (element.getAttribute('data-md')) row.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
+        //                 if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
+        //                 if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
+        //             }
     
-                    slider_cols_fixer(element);
-                });
+        //             slider_cols_fixer(element);
+        //         });
     
-                //===> Run Menus <===//
-                the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
+        //         //===> Run Menus <===//
+        //         the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
 
-                //===> Run Utilites <===//
-                Phenix(the_document).utilities("form");
+        //         //===> Run Utilites <===//
+        //         Phenix(the_document).utilities("form");
 
-                //===> Icons List <===//
-                the_document.querySelectorAll('li[data-icon]').forEach((list) => {
-                    if (list.getAttribute('data-icon')) {
-                        let classes = list.getAttribute('data-icon').split(" ") || [];
-                        list.classList.add(...classes);
-                    }
-                });
+        //         //===> Icons List <===//
+        //         the_document.querySelectorAll('li[data-icon]').forEach((list) => {
+        //             if (list.getAttribute('data-icon')) {
+        //                 let classes = list.getAttribute('data-icon').split(" ") || [];
+        //                 list.classList.add(...classes);
+        //             }
+        //         });
 
-                //===> Unlocated Menu fallback style. <===//
-                the_document.querySelectorAll('.px-navigation > div.reset-list').forEach((element) => {
-                    //===> Define Elements <===//
-                    let parent = Phenix(element).ancestor(".px-navigation"),
-                        classNames = element.classList,
-                        children  = element.childNodes;
+        //         //===> Unlocated Menu fallback style. <===//
+        //         the_document.querySelectorAll('.px-navigation > div.reset-list').forEach((element) => {
+        //             //===> Define Elements <===//
+        //             let parent = Phenix(element).ancestor(".px-navigation"),
+        //                 classNames = element.classList,
+        //                 children  = element.childNodes;
 
-                    //===> Move Children <===//
-                    children.forEach((child) => {
-                        parent.appendChild(child);
-                        //===> Move Classnames <===//
-                        classNames.forEach((className) => child.classList.add(className));
-                    });
+        //             //===> Move Children <===//
+        //             children.forEach((child) => {
+        //                 parent.appendChild(child);
+        //                 //===> Move Classnames <===//
+        //                 classNames.forEach((className) => child.classList.add(className));
+        //             });
 
-                    //===> Remove Element <===//
-                    element.remove();
-                });
+        //             //===> Remove Element <===//
+        //             element.remove();
+        //         });
 
-                //====> Clear Timer <===//
-                time_counter += 1;
-                if (time_counter > 5) clearInterval(pds_elements_timer);
-            }, 300);
-        };
+        //         //====> Clear Timer <===//
+        //         time_counter += 1;
+        //         if (time_counter > 5) clearInterval(pds_elements_timer);
+        //     }, 300);
+        // };
 
-        //====> Get the Editor iFrame <====//
-        let canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-            canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+        // //====> Get the Editor iFrame <====//
+        // let canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+        //     canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
 
-        //===> Check for Canvas Frames <===//
-        if (canvasIframeDoc) {
-            //===> Load Assets in Canvas Frame <====//
-            const isLoaded = window.PhenixBlocks.canvasAssetsLoaded;
-            const pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css";
+        // //===> Check for Canvas Frames <===//
+        // if (canvasIframeDoc) {
+        //     //===> Load Assets in Canvas Frame <====//
+        //     const isLoaded = window.PhenixBlocks.canvasAssetsLoaded;
+        //     const pdsAssetsTargets = "#phenix-utils-css, #fontawesome-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-primary-font-inline-css";
             
-            const createLoading = () => {
-                //===> Re-Catch the Canvas <===//
-                canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-                canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+        //     const createLoading = () => {
+        //         //===> Re-Catch the Canvas <===//
+        //         canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+        //         canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
 
-                if (canvasIframe && !isLoaded) {
-                    //====> Loading Times <====//
-                    let trying_times = 0;
+        //         if (canvasIframe && !isLoaded) {
+        //             //====> Loading Times <====//
+        //             let trying_times = 0;
     
-                    //===> Load Assets inside Frames <===//
-                    const frameAssetsLoader = (assets_id) => {
-                        //===> Get the Assets from the Original Document <===//
-                        const assetsElements = document.querySelectorAll(assets_id);
+        //             //===> Load Assets inside Frames <===//
+        //             const frameAssetsLoader = (assets_id) => {
+        //                 //===> Get the Assets from the Original Document <===//
+        //                 const assetsElements = document.querySelectorAll(assets_id);
     
-                        //===> Load Assets <===//
-                        assetsElements.forEach((asset) => {
-                            if(!canvasIframeDoc.querySelector(`#${asset.getAttribute('id')}`)) {
-                                canvasIframeDoc.body.appendChild(document.importNode(asset, true));
-                            }
-                        });
+        //                 //===> Load Assets <===//
+        //                 assetsElements.forEach((asset) => {
+        //                     if(!canvasIframeDoc.querySelector(`#${asset.getAttribute('id')}`)) {
+        //                         canvasIframeDoc.body.appendChild(document.importNode(asset, true));
+        //                     }
+        //                 });
     
-                        window.PhenixBlocks.canvasAssetsLoaded = true;
-                    },
+        //                 window.PhenixBlocks.canvasAssetsLoaded = true;
+        //             },
                     
-                    //====> Loader Timer <====//
-                    loadAssetTimer = setInterval(()=> {
-                        //====> Check for the Assets Existing  <====//
-                        if (canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length <= 0) {
-                            //===> When the Frame is Found Load Assets <===//
-                            frameAssetsLoader(pdsAssetsTargets);
-                            //===> Clear the Timer after Loading the Assets <====//
-                            clearInterval(loadAssetTimer);
-                        } else {
-                            //===> Increase Counter <===//
-                            trying_times += 1;
-                            //===> Clear the Timer after Tring for 15 Times <====//
-                            if (trying_times > 15) clearInterval(loadAssetTimer);
-                        }
-                        //===> Run View Script <===//
-                        viewScript(canvasIframeDoc);
-                    }, 100);
-                }
-            };
+        //             //====> Loader Timer <====//
+        //             loadAssetTimer = setInterval(()=> {
+        //                 //====> Check for the Assets Existing  <====//
+        //                 if (canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length <= 0) {
+        //                     //===> When the Frame is Found Load Assets <===//
+        //                     frameAssetsLoader(pdsAssetsTargets);
+        //                     //===> Clear the Timer after Loading the Assets <====//
+        //                     clearInterval(loadAssetTimer);
+        //                 } else {
+        //                     //===> Increase Counter <===//
+        //                     trying_times += 1;
+        //                     //===> Clear the Timer after Tring for 15 Times <====//
+        //                     if (trying_times > 15) clearInterval(loadAssetTimer);
+        //                 }
+        //                 //===> Run View Script <===//
+        //                 viewScript(canvasIframeDoc);
+        //             }, 100);
+        //         }
+        //     };
 
-            //===> First initial <====//
-            createLoading();
+        //     //===> First initial <====//
+        //     createLoading();
 
-            //===> Timer to Check for Assets Existing <===//
-            setInterval(() => {
-                //===> Re-Catch the Canvas <===//
-                canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-                canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
+        //     //===> Timer to Check for Assets Existing <===//
+        //     setInterval(() => {
+        //         //===> Re-Catch the Canvas <===//
+        //         canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
+        //         canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
 
-                //===> if the Assets are no there Loaded <===//
-                if (canvasIframe && canvasIframeDoc && canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length < 1) {
-                    window.PhenixBlocks.canvasAssetsLoaded = false;
-                    createLoading();
-                }
-            }, 500);
-        }
+        //         //===> if the Assets are no there Loaded <===//
+        //         if (canvasIframe && canvasIframeDoc && canvasIframeDoc.querySelectorAll(pdsAssetsTargets).length < 1) {
+        //             window.PhenixBlocks.canvasAssetsLoaded = false;
+        //             createLoading();
+        //         }
+        //     }, 500);
+        // }
 
         //===> Run the Scripts Directly <===//
-        else if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
+        if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
     },
 
     //===> Block Inserter Accessibility <===//

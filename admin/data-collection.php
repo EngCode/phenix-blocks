@@ -160,5 +160,3 @@
     .px-uploader.pds-data-importer-wrapper::before {display: none;}
     .px-uploader.pds-data-importer-wrapper::after {text-align: center; width: 100%; }
 </style>
-<!-- Form Script -->
-<script src="<?php echo esc_url($assets_url.'/data-collection.js');?>" defer></script>

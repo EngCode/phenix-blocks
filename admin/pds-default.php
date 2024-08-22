@@ -49,6 +49,9 @@
             $default_options = pds_get_default_options();
             $is_reset_mode = get_option('pds_reset');
 
+            //===> Check for the Options <===//
+            if (!isset($default_options)) return;
+
             //===> Add Options if not Exist <===//
             foreach ($default_options as $key => $value) { add_option($key, $value); }
     

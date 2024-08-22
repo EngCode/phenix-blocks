@@ -99,6 +99,10 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "CDN"), (Phenix Assets => "CDN") on "pre-release" only.
   - Assets CDN **[ pds-assets.php ]**, (Phenix Core => "Self"), (Phenix Assets => "CDN") on "main" only.
 
+### Change Log v1.2.0 Revamped
+1. Disable Cron Jobs Scheduler
+2. Cleanup the Plugin for Public
+3. Disable Custom Login
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

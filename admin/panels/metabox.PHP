@@ -6,29 +6,29 @@
 <div class="flexbox align-between align-center-y mb-20">
     <!-- Area Head -->
     <div class="col">
-        <h3 class="fs-16 mb-0 weight-medium"><?php echo __('Metaboxes List', "pds-blocks"); ?></h3>
-        <p class="fs-14"><?php echo __('in here you can manage the metaboxes created by phenix-blocks.', "pds-blocks"); ?></p>
+        <h3 class="fs-16 mb-0 weight-medium"><?php echo esc_html__('Metaboxes List', "pds-blocks"); ?></h3>
+        <p class="fs-14"><?php echo esc_html__('in here you can manage the metaboxes created by phenix-blocks.', "pds-blocks"); ?></p>
     </div>
     <!-- Buttons -->
     <div class="flexbox px-group radius-sm">
         <!-- Import File -->
-        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo __('Import', "pds-blocks"); ?>">
+        <label class="pds-data-importer-wrapper px-uploader fs-14 radius-md col-auto w-100 tx-align-center" data-btn="<?php echo esc_html__('Import', "pds-blocks"); ?>">
             <input type="file" class="hidden pds-data-importer" data-target="pds_metabox" />
         </label>
         <!-- Button -->
-        <button data-target="pds_metabox" type="button" class="pds-data-exporter btn dark radius-sm"><?php echo __('Export', "pds-blocks"); ?></button>
+        <button data-target="pds_metabox" type="button" class="pds-data-exporter btn dark radius-sm"><?php echo esc_html__('Export', "pds-blocks"); ?></button>
         <!-- Button -->
-        <button type="button" class="btn success radius-sm" data-modal="pds_metabox_form"><?php echo __('Add New', "pds-blocks"); ?></button>
+        <button type="button" class="btn success radius-sm" data-modal="pds_metabox_form"><?php echo esc_html__('Add New', "pds-blocks"); ?></button>
     </div>
 </div>
 <!-- metabox List -->
 <ul class="reset-list border-1 border-solid border-alpha-15 radius-sm fs-14 pds_metabox_list" data-type="pds_metabox">
     <li class="list-head flexbox divider-b align-center-y pdy-10 pds-15 pde-10 mb-0 weight-medium bg-offwhite-smoke radius-sm radius-top">
-        <span class="col-3"><?php echo __('Label', "pds-blocks"); ?></span>
-        <span class="col-3 w-max-200"><?php echo __('Name', "pds-blocks"); ?></span>
-        <span class="w-100 pds-15"><?php echo __('Fields', "pds-blocks"); ?></span>
-        <span class="w-150"><?php echo __('Data', "pds-blocks"); ?></span>
-        <span class="col col-3"><?php echo __('Locations', "pds-blocks"); ?></span>
+        <span class="col-3"><?php echo esc_html__('Label', "pds-blocks"); ?></span>
+        <span class="col-3 w-max-200"><?php echo esc_html__('Name', "pds-blocks"); ?></span>
+        <span class="w-100 pds-15"><?php echo esc_html__('Fields', "pds-blocks"); ?></span>
+        <span class="w-150"><?php echo esc_html__('Data', "pds-blocks"); ?></span>
+        <span class="col col-3"><?php echo esc_html__('Locations', "pds-blocks"); ?></span>
     </li>
 </ul>
 <!-- Pagination Buttons -->
@@ -44,37 +44,37 @@
     <!-- Container -->
     <div class="modal-content w-max-640 bg-white radius-sm collection-form" data-type="pds_metabox">
         <!-- Headline -->
-        <h4 class="fs-15 pdx-20 pdy-10 divider-b"><?php echo __('Add New Metabox', "pds-blocks"); ?></h4>
+        <h4 class="fs-15 pdx-20 pdy-10 divider-b"><?php echo esc_html__('Add New Metabox', "pds-blocks"); ?></h4>
         <!-- Close Button -->
         <button class="modal-close far fa-times btn square ms-15 bg-transparent color-danger position-ab pos-top-0 pos-end-0"></button>
         <!-- Modal Body -->
         <div class="pdx-20 pdt-10">
             <!-- Description -->
-            <p class="fs-14"><?php echo __('you can add/edit metaboxes from the next form.', "pds-blocks"); ?></p>
+            <p class="fs-14"><?php echo esc_html__('you can add/edit metaboxes from the next form.', "pds-blocks"); ?></p>
             <!-- Grid -->
             <div class="row gpx-15 gpy-15">
                 <!-- Column -->
                 <div class="col-12 col-md-6">
-                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Group Title", "pds-blocks"); ?></label>
+                    <label class="fs-13 mb-5 weight-bold"><?php echo esc_html__("Group Title", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-text">
-                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
+                        <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
-                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Group Name/Key", "pds-blocks"); ?></label>
+                    <label class="fs-13 mb-5 weight-bold"><?php echo esc_html__("Group Name/Key", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-link">
-                        <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', "pds-blocks");?>">
+                        <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Name', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12">
-                    <label class="fs-13 mb-5 weight-bold"><?php echo __("Data Types", "pds-blocks"); ?></label>
+                    <label class="fs-13 mb-5 weight-bold"><?php echo esc_html__("Data Types", "pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <div class="control-icon far fa-cube">
-                        <select name="datatype" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Location', "pds-blocks");?>" multiple>
+                        <select name="datatype" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Data Location', "pds-blocks");?>" multiple>
                             <option value="post_types" selected>Post Type</option>
                             <option value="taxonomies">Taxonomy</option>
                         </select>
@@ -84,7 +84,7 @@
                 <div class="col post-types-select">
                     <!-- Form Control -->
                     <div class="control-icon fas fa-map-marker-alt">
-                        <select name="post_types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Post Types', "pds-blocks");?>" multiple>
+                        <select name="post_types" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Post Types', "pds-blocks");?>" multiple>
                             <?php
                                 $post_types = get_post_types(array('public'=> true), 'objects');
                                 foreach ($post_types as $post_type) {
@@ -100,7 +100,7 @@
                 <div class="col taxonomies-select">
                     <!-- Form Control -->
                     <div class="control-icon far fa-map-marker-alt">
-                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Taxonomies', "pds-blocks");?>" multiple>
+                        <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Taxonomies', "pds-blocks");?>" multiple>
                             <?php
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
@@ -119,7 +119,7 @@
                 <div class="col-12 px-form-repeater" data-fields-key="fields">
                     <!-- Headline -->
                     <h5 class="fs-13 mb-10 weight-bold flexbox align-center-y align-between bg-offwhite-primary border-1 border-alpha-05 pd-10 pds-20 radius-sm">
-                        <?php echo __("Custom Fields List", "pds-blocks"); ?>
+                        <?php echo esc_html__("Custom Fields List", "pds-blocks"); ?>
                         <button type="button" class="btn tiny primary square radius-sm px-repeater-add fas fa-plus"></button>
                     </h5>
                     <!-- Repeater Items -->
@@ -128,15 +128,15 @@
                         <div class="px-form-repeater-fields px-group flow-nowrap" data-item-key="0">
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-text">
-                                <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo __('Label', "pds-blocks");?>">
+                                <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Label', "pds-blocks");?>">
                             </div>
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-link">
-                                <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo __('Name', "pds-blocks");?>">
+                                <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Name', "pds-blocks");?>">
                             </div>
                             <!-- Form Control -->
                             <div class="col-4 control-icon far fa-pen-field">
-                                <select name="type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo __('Data Type', "pds-blocks");?>">
+                                <select name="type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Data Type', "pds-blocks");?>">
                                     <option value="text">Text</option>
                                     <option value="date">Date</option>
                                     <option value="time">Time</option>
@@ -163,8 +163,8 @@
         </div>
         <!-- Modal Footer -->
         <div class="pdx-20 pdy-10 divider-t flexbox align-between">
-            <button class="add-item btn success small radius-sm"><?php echo __('Save', "pds-blocks"); ?></button>
-            <button class="modal-close btn danger small radius-sm"><?php echo __('Cancel', "pds-blocks"); ?></button>
+            <button class="add-item btn success small radius-sm"><?php echo esc_html__('Save', "pds-blocks"); ?></button>
+            <button class="modal-close btn danger small radius-sm"><?php echo esc_html__('Cancel', "pds-blocks"); ?></button>
         </div>
         <!-- // Modal Footer -->
     </div>

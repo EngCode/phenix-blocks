@@ -143,19 +143,21 @@ if (!function_exists('pds_get_patterns')) :
 	*/
 
 	function pds_get_patterns() {
-		//===> Get Registered Block Patterns <===//
-		$get_patterns  = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+		if (class_exists('WP_Block_Patterns_Registry')) {
+			//===> Get Registered Block Patterns <===//
+			$get_patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
 
-		//===> Create a new List of Patterns <===//
-		$patterns_list = array_map(
-			function (array $pattern) {
-				return $pattern;
-			},
-			$get_patterns
-		);
-
-		//===> Return the Patterns <===//
-		return $patterns_list;
+			//===> Create a new List of Patterns <===//
+			$patterns_list = array_map(
+				function (array $pattern) {
+					return $pattern;
+				},
+				$get_patterns
+			);
+	
+			//===> Return the Patterns <===//
+			return $patterns_list;
+		}
 	}
 endif;
 
@@ -171,25 +173,27 @@ if (!function_exists('pds_get_theme_parts')) :
 		$result = array();
 
 		//===> For Each File in the Givin Path <===//
-		foreach ($base_path as $key => $child) {
-			//===> If its a File <===//
-			if ($child->isDot()) { continue; }
-			
-			//===> Get its Base Base <===//
-			$name = $child->getBasename();
-
-			//===> if its a Directory <===//
-			if ($child->isDir()) {
-				//===> Get its Files List <===//
-				$sub_directory = new DirectoryIterator($child->getPathname());
-
-				//===> add the Files List to the Result <===//
-				$result[$name] = pds_get_theme_parts($sub_directory);
-			}
-			//===> if its Normal File <===//
-			else {
-				//===> Add the File to the Result <===//
-				$result[] = $name;
+		if (isset($base_path)) {
+			foreach ($base_path as $key => $child) {
+				//===> If its a File <===//
+				if ($child->isDot()) { continue; }
+				
+				//===> Get its Base Base <===//
+				$name = $child->getBasename();
+	
+				//===> if its a Directory <===//
+				if ($child->isDir()) {
+					//===> Get its Files List <===//
+					$sub_directory = new DirectoryIterator($child->getPathname());
+	
+					//===> add the Files List to the Result <===//
+					$result[$name] = pds_get_theme_parts($sub_directory);
+				}
+				//===> if its Normal File <===//
+				else {
+					//===> Add the File to the Result <===//
+					$result[] = $name;
+				}
 			}
 		}
 

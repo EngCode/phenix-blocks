@@ -103,6 +103,8 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 1. Disable Cron Jobs Scheduler
 2. Cleanup the Plugin for Public
 3. Disable Custom Login
+4. improve assets loading, and disable the JS hack.
+5. Fix Icon Block Free Width.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

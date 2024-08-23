@@ -151,13 +151,11 @@ body:not(.wp-admin):not([class*="-editor"]) {
     /*==== Sticky Header Transition ====*/
     .main-header, [data-sticky="sticky-absolute"] {
         transition: all 0.3s ease-in-out;
+        z-index: var(--header-index)!important;
         > div {transition: all 0.3s ease-in-out;}
     }
     /*==== Google Captcha Badge Hide ====*/
     .grecaptcha-badge {display: none!important;}
-
-    /*==== Sticky Header Width Fix ====*/
-    // [data-sticky="sticky-absolute"].is-sticky {width: 100%;}
 }
 
 /*==== Pagination Fix ====*/

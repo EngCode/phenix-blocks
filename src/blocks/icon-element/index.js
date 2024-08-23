@@ -35,12 +35,17 @@ registerBlockType(metadata, {
         if (attributes.style.isLink) blockProps.href = attributes.style.url || "#";
         if (attributes.type === "font" && !attributes.style.icon) blockProps.className += ` far fa-icons`;
 
-        //===> Render <===//
-        return (<TagName {...blockProps} style={{
-            width: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42),
+        const iconStyle = {
             height: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42),
             lineHeight: attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42)
-        }}>{attributes.type === "custom" ? 
+        }
+    
+        if (!attributes.style.freeWidth) {
+            iconStyle.width = attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42);
+        }
+
+        //===> Render <===//
+        return (<TagName {...blockProps} style={iconStyle}>{attributes.type === "custom" ? 
             <img alt="icon" className='fluid' src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
         : null}</TagName>);
     }

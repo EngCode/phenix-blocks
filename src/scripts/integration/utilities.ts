@@ -97,11 +97,8 @@ PhenixElements.prototype.utilities = function (options?:{
 
                 //===> Change the Fields Name <===//
                 newRow.querySelectorAll("[name]").forEach((element:any) => {
-                    //====> Get the Name <====//
-                    let name = element.getAttribute("name");
-                    
-                    //====> Correct the Name <====//
-                    element.setAttribute("name", name.replace(`[${currentRows-1}]`, `[${currentRows}]`));
+                    //====> Set the Name <====//
+                    element.setAttribute("name", `${fields_key}[${currentRows}][${name}]`);
 
                     //====> Cleanup Any Values <====//
                     if (element.value) element.value = "";

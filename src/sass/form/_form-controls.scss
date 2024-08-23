@@ -91,6 +91,12 @@
         --background : var(--disable-color);
     }
 
+    &::placeholder, &::-ms-input-placeholder, 
+    &:-webkit-input-placeholder, &::-moz-placeholder {
+        opacity: 1;
+        color: var(--color);
+    }
+
     /*=== Sizes ===*/
     @include make_control_sizes();
 
@@ -118,6 +124,7 @@
     &[type*="date"], &[type*="time"] {
         display: block;
         line-height: var(--height);
+        appearance: textfield;
         -moz-appearance: textfield;
         -webkit-appearance: textfield;
         -webkit-min-logical-width: calc(100% - 16px);

@@ -198,11 +198,14 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         });
     };
 
+    const isEditor = document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]');
+    const isAdmin  = document.body.classList.contains('wp-admin');
+
     /*====> Unblock Fonts <====*/
-    Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
+    Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-style-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 
     /*====> for Front-End <====*/
-    if (!document.body.classList.contains('wp-admin')) {
+    if (!isAdmin && !isEditor) {
         /*====> Activated Menu Items <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
 
@@ -223,7 +226,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     }
 
     /*====> for Admin Panel <====*/
-    if (document.body.classList.contains('wp-admin') && !document.body.getAttribute('class')?.includes('-editor')) {
+    else if (isAdmin && !isEditor) {
         //===> Fix Tables Style <===//
         Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
             dateColumn.classList.add('tx-nowrap');
@@ -235,49 +238,49 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         
         //===> Run Scripts <===//
         Phenix(document).init();
+
+        //===> WP Media Uploader <===//
+        Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {
+            //===> Prevent Default <===//
+            isClicked.preventDefault();
+            let input = Phenix(isClicked.target).next(".uploader-input");
+            
+            //===> Preview <===//
+            let input_preview = document.querySelector('.loading-image'),
+                value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
+
+            //===> Open Media Uploader <===//
+            if(wp.media) {
+                const mediaPopup = wp.media({
+                    title: "Upload Image",
+                    multiple: false
+                });
+                
+                //===> Open the Popup <===//
+                mediaPopup.open().on("select", isSelect => {
+                    //===> Get the Image URL <===//
+                    var uploaded_image = mediaPopup.state().get("selection").first();
+
+                    //===> Set the URL to the Input <===//
+                    input.value = uploaded_image.toJSON().url;
+
+                    //===> Set Preview and Value <===//
+                    if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
+                    if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
+                    
+                });
+            }
+        });
+
+        if(document.querySelector('.px-custom-uploader .input-value')) document.querySelectorAll('.px-custom-uploader .input-value').forEach((item:any) => {
+            item.classList.add('tx-nowrap');
+            item.parentNode.classList.add('flow-nowrap');
+        });
     }
 
     /*====> for Block Editor <====*/
-    if(document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]')) {
+    if(isEditor) {
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     }
-
-    //===> WP Media Uploader <===//
-    Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {
-        //===> Prevent Default <===//
-        isClicked.preventDefault();
-        let input = Phenix(isClicked.target).next(".uploader-input");
-        
-        //===> Preview <===//
-        let input_preview = document.querySelector('.loading-image'),
-            value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
-
-        //===> Open Media Uploader <===//
-        if(wp.media) {
-            const mediaPopup = wp.media({
-                title: "Upload Image",
-                multiple: false
-            });
-            
-            //===> Open the Popup <===//
-            mediaPopup.open().on("select", isSelect => {
-                //===> Get the Image URL <===//
-                var uploaded_image = mediaPopup.state().get("selection").first();
-
-                //===> Set the URL to the Input <===//
-                input.value = uploaded_image.toJSON().url;
-
-                //===> Set Preview and Value <===//
-                if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
-                if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
-                
-            });
-        }
-    });
-
-    if(document.querySelector('.px-custom-uploader .input-value')) document.querySelectorAll('.px-custom-uploader .input-value').forEach((item:any) => {
-        item.classList.add('tx-nowrap');
-        item.parentNode.classList.add('flow-nowrap');
-    });
 });

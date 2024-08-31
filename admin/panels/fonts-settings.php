@@ -11,6 +11,7 @@
         "somar-sans" => "Somar Sans",
         "somar-rounded" => "Somar Rounded",
         "ara-hamah-al-horra" => "Ara Hamah AlHorra",
+        "tactic-sans" => "Tactic Sans",
     ];
 
     //===> Icon Fonts <===//

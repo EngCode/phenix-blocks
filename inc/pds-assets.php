@@ -95,6 +95,7 @@ if (!function_exists('phenix_assets')) :
             "somar-sans",
             "somar-rounded",
             "ara-hamah-al-horra",
+            "tactic-sans",
         ];
 
         //====> Define the Fonts List <====//

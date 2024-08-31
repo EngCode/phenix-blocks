@@ -285,7 +285,7 @@ window.PhenixBlocks = {
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
-                                if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                if (!blockProps.className?.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Positions <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }

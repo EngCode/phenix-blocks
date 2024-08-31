@@ -888,7 +888,8 @@
 
 /*==== Admin : Custom Font Family ====*/
 body, #wpadminbar *:not([class="ab-icon"]), body.rtl, body.rtl .press-this a.wp-switch-editor, .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl h5,.rtl h6,.wp-core-ui, .media-menu, .media-frame *, .media-modal * {font-family: var(--secondary-font)!important;}
-body, .welcome-panel, .welcome-panel h2, .wp-die-message, p {line-height: var(--line-height) !important;}
+body, .welcome-panel, .welcome-panel h2, .wp-die-message, p:not([class*="lineheight"]) {line-height: var(--line-height) !important;}
+
 // #wpadminbar #wp-admin-bar-wp-logo>.ab-item .ab-icon::before {content: "" !important;}
 .php-error #adminmenuback {margin: 0!important;}
 .php-error #adminmenuback + #adminmenuwrap {margin-top: 0!important;}

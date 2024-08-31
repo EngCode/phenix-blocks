@@ -109,7 +109,12 @@
     /*==== image type ====*/
     &.ratio-none[data-type="image"] {
         background-image: initial!important;
-        .px-media-img {pointer-events: none; position: relative;}
+        .px-media-img {
+            height: auto;
+            position: relative;
+            object-fit: initial;
+            pointer-events: none;
+        }
     }
 }
 

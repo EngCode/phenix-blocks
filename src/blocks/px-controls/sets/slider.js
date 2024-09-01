@@ -55,6 +55,7 @@ export default class SliderSet extends Component {
                     <OptionControl key={`isNavigation`} name={`is-navigation`} value="boolean" checked={attributes.slider['is-navigation'] || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("isNavigation", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`center-mode`} name={`center`} value="boolean" checked={attributes.slider.center || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Center Mode", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`autoWidth`} name={`autoWidth`} value="boolean" checked={attributes.slider.autoWidth || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Width", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`autoHeight`} name={`autoHeight`} value="boolean" checked={attributes.slider.autoHeight || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Height", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12'>

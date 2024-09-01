@@ -285,7 +285,7 @@ if (!function_exists('pds_limit_login_attempts')) :
 		}
 	}
 
-	// add_action('wp_login_failed', 'pds_limit_login_attempts');
+	add_action('wp_login_failed', 'pds_limit_login_attempts');
 endif;
 
 //====> S.E.O. Images Metadata Generator <====//

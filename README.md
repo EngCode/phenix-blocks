@@ -105,6 +105,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 3. Disable Custom Login
 4. improve assets loading, and disable the JS hack.
 5. Fix Icon Block Free Width.
+6. Refactoring Core Counter Function.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

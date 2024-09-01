@@ -1,9 +1,9 @@
-/**======> Reference By Comment <======
+/**======> Referance By Comment <======
  * ===> 01 - Phenix Object
  * ===> 02 - Animated Counter
  * ===> 03 - Get Options Data
  * ===> 04 - Counter Data
- * ===> 05 - Count Runner
+ * ===> 05 - Count Runer
  * ===> 06 - Start Counting
 */
 
@@ -29,7 +29,7 @@ PhenixElements.prototype.counter = function (options?:{
             value    = parseInt(element.getAttribute('data-value')) || options?.value || parseInt(element.textContent.replaceAll(',','')),
             symbol   = element.getAttribute('data-symbol') || options?.symbol || '',
             delay    = parseInt(element.getAttribute('data-delay')) || options?.delay  || 0,
-            steps    = parseInt(element.getAttribute('data-steps')) || options?.steps  || 1,
+            steps    = parseInt(element.getAttribute('data-steps')) || options?.steps  || 10,
             reverse  = element.getAttribute('data-reverse') || options?.reverse || false,
             lazyloading = element.getAttribute('data-lazy') || options?.lazyloading,
             counting = element.classList.contains('counting');
@@ -48,40 +48,28 @@ PhenixElements.prototype.counter = function (options?:{
         //====> Count Runner <===//
         const runCounter = () => {
             //===> Round Up Values <===//
-            count = Math.round(count);
-            value = Math.round(value);
-            
+            // count = Math.round(count);
+            // value = Math.round(value);
+
             //===> Set is Counting <===//
             if (!counting) element.classList.add('counting');
-            
-            //===> if [Count Down] is Activated => Decrease the Count <===//
-            if (reverse && count > 0) count -= increment;
-            
-            //===> Otherwise Increase the Count <===//
-            else if (count < value) count += increment;
-            
+
+            //===> if [Count Down] is Activated => Decrease the Count Otherwise Increase the Count <===//
+            count += (reverse ? -Math.min(increment, Math.abs(value - count)) : Math.min(increment, Math.abs(value - count)));
+            // if (reverse && count > 0) count -= increment;
+            // else if (count < value) count += increment;
+
             //===> Current Value <===//
-            let current = `${(count).toFixed(decimal).toString().replace(decimal_regex, ',')+symbol}`;
-            
-            //===> if the Element is Input Control <===//
-            if (input) element.value = current;
-            
-            //===> Otherwise <===//
-            else element.innerHTML = current;
+            // let current = `${count.toFixed(decimal).toString().replace(decimal_regex, ',')}${symbol}`;
+
+            //===> Update the Element <===//
+            element[ input ? 'value' : 'innerHTML' ] = `${count.toFixed(decimal).toString().replace(decimal_regex, ',')}${symbol}`;
+            // if (input) element.value = current;
+            // //===> Otherwise <===//
+            // else element.innerHTML = current;
 
             //===> Clear When Count Up Reaches The Target <===//
-            if (!reverse && count === value || !reverse && count > value) {
-                element.classList.add('counted');
-                element.classList.remove('counting');
-                clearInterval(interval);
-            }
-
-            //===> Clear When Count Down Reaches Zero <===//
-            else if (reverse && count === 0) {
-                clearInterval(interval);
-                element.classList.add('counted');
-                element.classList.remove('counting');
-            }
+            if (count === (reverse ? 0 : value)) clearInterval(interval);
         };
 
         //====> Counter Handler <====//
@@ -99,7 +87,7 @@ PhenixElements.prototype.counter = function (options?:{
             }
             //===> Hidden View <===//
             if(!counting) window.addEventListener('scroll', scrolling => {
-                counting = element.classList.contains('counting') || element.classList.contains('counted');
+                counting = element.classList.contains('counting');
                 if(!counting && Phenix(element).inView()) counter_handler();
             });
         } else {

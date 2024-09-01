@@ -273,7 +273,7 @@ if (!function_exists('pds_limit_login_attempts')) :
 		}
 
 		//===> Check if the Login Form is Submitted <===//
-		if (wp_verify_nonce($_GET['log'], "pds_limit_login_attempts")) {
+		if (isset($_GET['log']) && wp_verify_nonce($_GET['log'], "pds_limit_login_attempts")) {
 			//===> Check if the Cookie is Set <===//
 			if (!isset($_COOKIE['login_attempts'])) {
 				//===> Set the Cookie <===//
@@ -285,7 +285,7 @@ if (!function_exists('pds_limit_login_attempts')) :
 		}
 	}
 
-	add_action('wp_login_failed', 'pds_limit_login_attempts');
+	// add_action('wp_login_failed', 'pds_limit_login_attempts');
 endif;
 
 //====> S.E.O. Images Metadata Generator <====//

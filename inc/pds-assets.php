@@ -87,6 +87,7 @@ if (!function_exists('phenix_assets')) :
         $prim_font; $sec_font;
         $final_files = array();
         $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
+        // $assets_url = "https://raw.githubusercontent.com/EngCode/pdb-assets/main/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
         $custom_fonts = [

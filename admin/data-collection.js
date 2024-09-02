@@ -185,6 +185,8 @@ document.addEventListener('DOMContentLoaded', ready => {
                 //===> Convert to Keys <===//
                 let control_keys = control_name.split('[').map(key => key.replace(']', ''));
 
+                console.log(control_keys);
+
                 //===> Create the keys if not exist <===//
                 let fields_key = control_keys[0],
                     fields_row = control_keys[1],

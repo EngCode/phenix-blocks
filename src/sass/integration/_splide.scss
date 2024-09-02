@@ -44,8 +44,8 @@
     display: -ms-flexbox;
     display: flex;
     height: 100%;
-    margin: 0 !important;
-    padding: 0 !important
+    padding: 0 !important;
+    &:not(.row) {margin: 0 !important;}
 }
 
 .splide.is-initialized:not(.is-active) .splide__list {

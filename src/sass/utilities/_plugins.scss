@@ -59,8 +59,8 @@
     z-index: var(--header-index);
     /*==== Absolute ====*/
     &[data-sticky*="absolute"] {
-        position: fixed;
         width: 100%;
+        position: fixed!important;
     }
     /*==== Native ====*/
     [data-sticky*="inner"].is-sticky {

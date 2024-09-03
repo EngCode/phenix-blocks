@@ -75,6 +75,7 @@ h6 {font-size: REM(17);}
 .tx-underline  {text-decoration: underline;}
 .tx-capitalize {text-transform: capitalize;}
 .tx-line-through {text-decoration: line-through;}
+.tx-italic {font-style: italic;}
 .tx-line-clamp {
     --max-lines: 3;
     display: -webkit-box;

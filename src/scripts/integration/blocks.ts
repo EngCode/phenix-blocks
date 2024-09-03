@@ -43,6 +43,12 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         Phenix(grid_element).insert("append", element);
     });
 
+    //===> Move Elements to Sibling Grid <===//
+    Phenix('.move-to-grid-before').forEach(element => {
+        let grid_element = Phenix(element).siblings('.row')[0];
+        Phenix(grid_element).insert("prepend", element);
+    });
+
     //===> Move Header <===//
     const main_header = document.querySelector('.main-header'),
           header_holder = document.querySelector('#header-holder');

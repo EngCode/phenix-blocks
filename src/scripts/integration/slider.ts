@@ -438,7 +438,7 @@ PhenixElements.prototype.slider = function (options?:{
         });
 
     //====> if Al-ready loaded run the sliders <====//
-    } else slider_handler;
+    } else slider_handler();
 
     //====> Return Phenix Elements <====//
     return this;

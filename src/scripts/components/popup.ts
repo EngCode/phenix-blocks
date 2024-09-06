@@ -167,7 +167,7 @@ PhenixElements.prototype.popup = function (options?:{
                 //===> Group Mode <===//
                 else {
                     //===> Create Slider Wrapper <===//
-                    let slider_wrapper = Phenix(lightbox_wrapper).insert('append', `<div class="lightbox-slider" data-controls="1"></div>`);
+                    let slider_wrapper = Phenix(lightbox_wrapper).insert('append', `<div class="lightbox-slider px-slider" data-controls="1"></div>`);
 
                     //===> Insert Elements of the Group <===//
                     Phenix(`[data-group="${lightbox_group}"]`).forEach((item:any) => {

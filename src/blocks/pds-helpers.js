@@ -148,7 +148,7 @@ window.PhenixBlocks = {
                             if (attributes.style.background.type === 'image') {
                                 blockProps.className += ` px-media`;
                                 blockProps["data-src"] = sub_value.value;
-                                blockProps.style.backgroundImage = sub_value.value;
+                                if(!isSave) blockProps.style.backgroundImage = sub_value.value;
                             }
                             //===> Video Background <===//
                             else if (attributes.style.background.type === 'video') {
@@ -584,7 +584,7 @@ window.PhenixBlocks = {
         }
 
         //===> Run the Scripts Directly <===//
-        else if (window.Phenix) window.document.addEventListener('DOMContentLoaded', isLoaded => viewScript(window.document));
+        else if (window.Phenix) viewScript(window.document);
     },
 
     //===> Block Inserter Accessibility <===//

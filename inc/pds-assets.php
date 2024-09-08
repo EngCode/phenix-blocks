@@ -214,8 +214,8 @@ if (!function_exists('phenix_block_view')) :
         wp_enqueue_script('phenix-blocks-view', $assets_url.'pds-view.js', array("phenix"), $version , true);
     }
 
-    add_action('enqueue_block_assets', 'phenix_block_view');
-    add_action('enqueue_block_editor_assets', 'phenix_block_view');
+    // add_action('enqueue_block_assets', 'phenix_block_view');
+    // add_action('enqueue_block_editor_assets', 'phenix_block_view');
 endif;
 
 //=====> Phenix Admin CSS <=====//

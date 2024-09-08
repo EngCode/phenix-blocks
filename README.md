@@ -107,6 +107,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 5. Fix Icon Block Free Width.
 6. Refactoring Core Counter Function.
 7. Lightbox Slider Fix.
+8. Fix Background not Rendering in Editor.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

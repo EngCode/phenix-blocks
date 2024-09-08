@@ -191,6 +191,33 @@ if (!function_exists('phenix_assets')) :
     add_action('enqueue_block_assets', 'pds_optimized_asset');
 endif;
 
+//====> Phenix View Script <====//
+if (!function_exists('phenix_block_view')) :
+	/**
+	 * Setup Core Phenix Design Assets
+	 * @since Phenix Blocks 1.0
+	 * @return void
+	*/
+
+    //=====> Phenix Assets [Head] <=====//
+    function phenix_block_view () {
+        //====> define props <====//
+        $version = "1.1.0";
+        $assets_url = plugin_dir_url(__DIR__)."assets/";
+
+        //====> Check for CDN Option for the Core JS/CSS <====//
+        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
+        }
+
+        //====> Enqueue Phenix JS <====//
+        wp_enqueue_script('phenix-blocks-view', $assets_url.'pds-view.js', array("phenix"), $version , true);
+    }
+
+    add_action('enqueue_block_assets', 'phenix_block_view');
+    add_action('enqueue_block_editor_assets', 'phenix_block_view');
+endif;
+
 //=====> Phenix Admin CSS <=====//
 if (!function_exists('pds_admin_style') && is_admin()) :
     /**

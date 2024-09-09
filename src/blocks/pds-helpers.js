@@ -148,7 +148,7 @@ window.PhenixBlocks = {
                             if (attributes.style.background.type === 'image') {
                                 blockProps.className += ` px-media`;
                                 blockProps["data-src"] = sub_value.value;
-                                if(!isSave) blockProps.style.backgroundImage = sub_value.value;
+                                if(!isSave) blockProps.style.backgroundImage = `url("${sub_value.value}")`;
                             }
                             //===> Video Background <===//
                             else if (attributes.style.background.type === 'video') {

@@ -25,7 +25,7 @@ registerBlockType(metadata, {
     /**===> Block Output <===*/
     save : ({ attributes }) => {
         //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save()});
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isSave: true});
         const blockProps = renderProps.blockProps;
         const TagName = attributes.type === 'headline' && !attributes.tagName.includes('h') ? 'h2' : attributes.tagName;
 

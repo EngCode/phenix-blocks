@@ -24,7 +24,7 @@ registerBlockType(metadata, {
         const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
         //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save()});
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isSave: true});
         const blockProps = renderProps.blockProps;
         const TagName = attributes.style.isLink ?  "a" : 'i';
         let iconURl = "https://via.placeholder.com/50x50.webp";

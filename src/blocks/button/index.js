@@ -30,7 +30,8 @@ registerBlockType(metadata, {
         const renderProps = OptionsRenderer({
             hasColors: true,
             attributes: attributes,
-            blockProps: useBlockProps.save()
+            blockProps: useBlockProps.save(),
+            isSave: true
         });
 
         //===> Get Block Properties <===//

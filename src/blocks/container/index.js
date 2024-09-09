@@ -29,7 +29,7 @@ registerBlockType(metadata, {
 
         //===> Get Block Properties <===//
         const TagName = attributes.tagName;
-        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save()});
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isSave: true});
         const blockProps = renderProps.blockProps;
 
         //===> Layout Options <===//

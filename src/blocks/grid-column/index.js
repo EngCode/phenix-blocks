@@ -27,7 +27,7 @@ registerBlockType(metadata, {
         const OptionsRenderer = window.PhenixBlocks.OptionsRenderer;
 
         //===> Get Block Properties <===//
-        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isColumn: true});
+        const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isColumn: true, isSave: true});
         const blockProps = renderProps.blockProps;
         const TagName = attributes.tagName;
 

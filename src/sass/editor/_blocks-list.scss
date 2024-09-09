@@ -241,7 +241,8 @@
 	}
 
 	/*==== Inner Blocks Position Fix ====*/
-	.block-editor-block-list__block:not(.position-):not(.pds-video-bg) > .block-editor-block-list__layout {position: static;}
+	.block-editor-block-list__block:not([class*="position-"]):not(.pds-video-bg) > .block-editor-block-list__layout:not([class*="container"]):not([class*="position-"]) {position: static;}
+	
 	.wp-block-phenix-custom-code .form-control {
 		direction: ltr;
 		text-align: left;

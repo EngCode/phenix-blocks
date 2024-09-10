@@ -55,7 +55,7 @@
 /*==== Sorting Mixin ====*/
 @mixin make_sorting($infix:'', $order-limit:24) {
     /*=== Flow Reverse ===*/
-    .flow#{$infix}-reverse {flex-flow: row-reverse;}
+    .flow#{$infix}-reverse {flex-flow: row-reverse; flex-wrap: wrap;}
     /*=== Stacked Flow ===*/
     .flow#{$infix}-columns {flex-flow: column;}
     /*=== Reversed Stacked ===*/

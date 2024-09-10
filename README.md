@@ -108,6 +108,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 6. Refactoring Core Counter Function.
 7. Lightbox Slider Fix.
 8. Fix Background not Rendering in Editor.
+9. Fix Grid Flow Reverse not Wrapping.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

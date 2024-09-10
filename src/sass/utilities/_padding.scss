@@ -3,35 +3,6 @@
 
 $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
 
-/*==== Custom ====*/
-.pdt-custom {
-    padding-top: var(--pdt);
-    @include medium() { --pdt: var(--pdt-md) };
-    @include large()  { --pdt: var(--pdt-lg) };
-    @include xlarge() { --pdt: var(--pdt-xl) };
-}
-
-.pdb-custom {
-    padding-bottom: var(--pdb);
-    @include medium() { --pdb: var(--pdb-md) };
-    @include large()  { --pdb: var(--pdb-lg) };
-    @include xlarge() { --pdb: var(--pdb-xl) };
-}
-
-.pds-custom-start {
-    padding-#{$direction-start}: var(--pds);
-    @include medium() { --pds: var(--pds-md) };
-    @include large()  { --pds: var(--pds-lg) };
-    @include xlarge() { --pds: var(--pds-xl) };
-}
-
-.pde-custom-end {
-    padding-#{$direction-end}: var(--pde);
-    @include medium() { --pde: var(--pde-md) };
-    @include large()  { --pde: var(--pde-lg) };
-    @include xlarge() { --pde: var(--pde-xl) };
-}
-
 /*==== Padding Maker ====*/
 @mixin make_padding($infix:'') {
     @each $size in $space_range {
@@ -74,3 +45,32 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 @include xlarge(){
     @include make_padding('-xl');
 };
+
+/*==== Custom ====*/
+.pdt-custom {
+    padding-top: var(--pdt);
+    @include xlarge() { padding-top: var(--pdt-xl) };
+    @include large()  { padding-top: var(--pdt-lg) };
+    @include medium() { padding-top: var(--pdt-md) };
+}
+
+.pdb-custom {
+    padding-bottom: var(--pdb);
+    @include xlarge() { padding-bottom: var(--pdb-xl) };
+    @include large()  { padding-bottom: var(--pdb-lg) };
+    @include medium() { padding-bottom: var(--pdb-md) };
+}
+
+.pds-custom-start {
+    padding-#{$direction-start}: var(--pds);
+    @include xlarge() { padding-#{$direction-start}: var(--pds-xl) };
+    @include large()  { padding-#{$direction-start}: var(--pds-lg) };
+    @include medium() { padding-#{$direction-start}: var(--pds-md) };
+}
+
+.pde-custom-end {
+    padding-#{$direction-end}: var(--pde);
+    @include xlarge() { padding-#{$direction-end}: var(--pde-xl) };
+    @include large()  { padding-#{$direction-end}: var(--pde-lg) };
+    @include medium() { padding-#{$direction-end}: var(--pde-md) };
+}

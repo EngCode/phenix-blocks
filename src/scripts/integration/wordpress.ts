@@ -238,7 +238,16 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         
         //===> Run Scripts <===//
         Phenix(document).init();
+    }
 
+    /*====> for Block Editor <====*/
+    if(isEditor) {
+        //====> Disable Links <====//
+        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
+    }
+
+    /*====> for Block Editor and Admin <====*/
+    else if (isEditor || isAdmin) {
         //===> WP Media Uploader <===//
         Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {
             //===> Prevent Default <===//
@@ -276,11 +285,5 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             item.classList.add('tx-nowrap');
             item.parentNode.classList.add('flow-nowrap');
         });
-    }
-
-    /*====> for Block Editor <====*/
-    if(isEditor) {
-        //====> Disable Links <====//
-        Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     }
 });

@@ -62,6 +62,8 @@ PhenixElements.prototype.utilities = function (options?:{
             original_row.querySelectorAll("[name]").forEach((element:HTMLElement) => {
                 //====> Get the Name <====//
                 let name = element.getAttribute("name");
+                //====> Move the Original Name to new Attribute <====//
+                element.setAttribute('data-original-name', name);
                 //====> Correct the Name <====//
                 element.setAttribute("name", `${fields_key}[${original_row.getAttribute('data-item-key')}][${name}]`);
             });
@@ -98,7 +100,7 @@ PhenixElements.prototype.utilities = function (options?:{
                 //===> Change the Fields Name <===//
                 newRow.querySelectorAll("[name]").forEach((element:any) => {
                     //====> Get the Name <====//
-                    let name = element.getAttribute('name');
+                    let name = element.getAttribute('data-original-name');
 
                     //====> Set the Name <====//
                     element.setAttribute("name", `${fields_key}[${currentRows}][${name}]`);

@@ -112,6 +112,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 10. Media Uploader Fix for Metaboxes.
 11. Fix Metaboxes Repeater.
 12. Fix Media Uploader in Editor.
+13. Add New Style Font Option.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

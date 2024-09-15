@@ -97,6 +97,9 @@ PhenixElements.prototype.utilities = function (options?:{
 
                 //===> Change the Fields Name <===//
                 newRow.querySelectorAll("[name]").forEach((element:any) => {
+                    //====> Get the Name <====//
+                    let name = element.getAttribute('name');
+
                     //====> Set the Name <====//
                     element.setAttribute("name", `${fields_key}[${currentRows}][${name}]`);
 
@@ -120,6 +123,7 @@ PhenixElements.prototype.utilities = function (options?:{
             setInterval(() => {
                 //====> Get the Rows <====//
                 let rows = repeater_container.querySelectorAll('[data-item-key]:not([data-item-key="0"])');
+
                 //====> Create Remove Button <====//
                 if (rows) rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
             }, 1000);

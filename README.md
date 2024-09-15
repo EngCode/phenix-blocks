@@ -110,6 +110,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 8. Fix Background not Rendering in Editor.
 9. Fix Grid Flow Reverse not Wrapping.
 10. Media Uploader Fix for Metaboxes.
+11. Fix Metaboxes Repeater.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

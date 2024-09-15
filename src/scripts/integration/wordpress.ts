@@ -278,7 +278,6 @@ window.PxWpUploader = isClicked => {
             //===> Set Preview and Value <===//
             if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
             if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
-            
         });
     }
 };

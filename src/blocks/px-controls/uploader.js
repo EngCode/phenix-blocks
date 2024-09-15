@@ -29,12 +29,12 @@ export default class MediaUploader extends Component {
                             {size === 'small' ?
                                 <div className='flexbox align-center-y align-between pd-5 border-solid border-1 border-alpha-15 radius-sm'>
                                     {!type || type === 'image' ? smallImage(value || smallPlaceholder) : smallImage(smallPlaceholder)}
-                                    <button key="change-media" onClick={open} className="btn square primary tiny radius-sm fs-12 fas fa-upload"></button>
+                                    <span key="change-media" className="btn square primary tiny radius-sm fs-12 fas fa-upload"></span>
                                 </div>
                                 :
                                 <div className='flexbox align-center-y align-between'>
                                     {!type || type === 'image' ? largeImage(value || largePlaceholder) : largeImage(largePlaceholder)}
-                                    <button key="change-media" onClick={open} className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select File</button>
+                                    <span key="change-media" className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select File</span>
                                 </div>
                             }
                         </div>

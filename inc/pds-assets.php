@@ -128,13 +128,14 @@ if (!function_exists('phenix_assets')) :
             //===> Define Font Css Settings <===//
             if ($key === "primary") $prim_font = trim(str_replace("-", " ", $value));
             if ($key === "secondary") $sec_font  = trim(str_replace("-", " ", $value));
+            if ($key === "style") $style_font  = trim(str_replace("-", " ", $value));
         }
 
         //===> Validate and Clean-up Files Names from Spaces and replace it with dash (-) <===//
         $final_files['icons_name'] = str_replace("-", " ", $icons_font);
         $final_files['primary_name'] = ucwords(str_replace("-", " ", $prim_font));
         $final_files['secondary_name'] = ucwords(str_replace("-", " ", $sec_font));
-        $final_files['style_name'] = ucwords(str_replace("-", " ", $sec_font));
+        $final_files['style_name'] = ucwords(str_replace("-", " ", $style_font));
 
         //===> Fix Fontawesome Family Name <===//
         if (strpos($current_fonts['icon'], "fontawesome") !== false) {
@@ -200,11 +201,25 @@ if (!function_exists('phenix_assets')) :
         }
     };
 
-    add_action('wp_enqueue_scripts', 'pds_optimized_asset');
+    // add_action('wp_enqueue_scripts', 'pds_optimized_asset');
     // add_action('login_enqueue_scripts', 'pds_optimized_asset');
     add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
-    add_action('admin_enqueue_scripts', 'pds_optimized_asset');
-    add_action('enqueue_block_assets', 'pds_optimized_asset');
+
+    //====> For Admin Dashboard Only <====//
+    if (is_admin()) {
+        function pds_dashboard_checker() {
+            //====> Get current screen <====//
+            $screen = get_current_screen();
+            //====> Exclude block editor (Gutenberg) and classic editor <====//
+            if (!in_array( $screen->base, array('post', 'edit'))) {
+                add_action('admin_enqueue_scripts', 'pds_optimized_asset');
+            }
+        }
+
+        add_action('current_screen', 'pds_dashboard_checker');
+    } else {
+        add_action('enqueue_block_assets', 'pds_optimized_asset');
+    }
 endif;
 
 //=====> Phenix Admin CSS <=====//

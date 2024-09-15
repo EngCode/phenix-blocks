@@ -100,9 +100,9 @@ if (!function_exists('phenix_assets')) :
         ];
 
         //===> Style Font Fallback <===//
-        if (is_rtl() && !$fonts_list['style_rtl']) {
+        if (is_rtl() && !isset($fonts_list['style_rtl'])) {
             $fonts_list['style_rtl'] = $fonts_list['primary_rtl'];
-        } else if (!is_rtl() && !$fonts_list['style']) {
+        } else if (!is_rtl() && !isset($fonts_list['style'])) {
             $fonts_list['style'] = $fonts_list['primary'];
         }
 

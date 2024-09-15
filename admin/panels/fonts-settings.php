@@ -102,14 +102,14 @@
                     <?php 
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
-                            if ($current_fonts["secondary"] === $key) { $is_selected = "selected"; }
+                            if (isset($current_fonts["style"]) && $current_fonts["style"] === $key || $current_fonts["primary"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
-                                if ($current_fonts["secondary"] === $value) { $is_selected = "selected"; }
+                                if (isset($current_fonts["style"]) && $current_fonts["style"] === $value || $current_fonts["primary"] === $value) { $is_selected = "selected"; }
                                 echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }
@@ -178,14 +178,14 @@
                     <?php 
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
-                            if ($current_fonts["secondary"] === $key) { $is_selected = "selected"; }
+                            if (isset($current_fonts["style_rtl"]) && $current_fonts["style_rtl"] === $key || $current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
                         //===> for Google Fonts <===//
                         if (get_option("pds_gfonts") === "on") {
                             foreach ($google_fonts as $value) {
                                 $is_selected = "";
-                                if ($current_fonts["secondary"] === $value) { $is_selected = "selected"; }
+                                if (isset($current_fonts["style_rtl"]) && $current_fonts["style_rtl"] === $value || $current_fonts["primary_rtl"] === $value) { $is_selected = "selected"; }
                                 echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
                             }
                         }

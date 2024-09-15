@@ -10,6 +10,7 @@
 /*==== Font Families ====*/
 .primary-font {font-family: var(--primary-font);}
 .secondary-font {font-family: var(--secondary-font);}
+.style-font {font-family: var(--style-font, var(--primary-font));}
 
 /*==== Headline Sizes ====*/
 h1 {font-size: REM(32);}

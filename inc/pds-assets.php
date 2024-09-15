@@ -84,7 +84,7 @@ if (!function_exists('phenix_assets')) :
 
     function phenix_assets () {
         //====> define props <====//
-        $prim_font; $sec_font;
+        $prim_font; $sec_font; $style_font;
         $final_files = array();
         $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
         // $assets_url = "https://raw.githubusercontent.com/EngCode/pdb-assets/main/";
@@ -99,10 +99,18 @@ if (!function_exists('phenix_assets')) :
             "tactic-sans",
         ];
 
+        //===> Style Font Fallback <===//
+        if (is_rtl() && !$fonts_list['style_rtl']) {
+            $fonts_list['style_rtl'] = $fonts_list['primary_rtl'];
+        } else if (!is_rtl() && !$fonts_list['style']) {
+            $fonts_list['style'] = $fonts_list['primary'];
+        }
+
         //====> Define the Fonts List <====//
         $current_fonts = [
             "icon" => $icons_font,
             "text" => array(
+                "style" => is_rtl() === true ? $fonts_list['style_rtl'] : $fonts_list['style'],
                 "primary" => is_rtl() === true ? $fonts_list['primary_rtl'] : $fonts_list['primary'],
                 "secondary" => is_rtl() === true ? $fonts_list['secondary_rtl'] : $fonts_list['secondary']
             ),
@@ -126,6 +134,7 @@ if (!function_exists('phenix_assets')) :
         $final_files['icons_name'] = str_replace("-", " ", $icons_font);
         $final_files['primary_name'] = ucwords(str_replace("-", " ", $prim_font));
         $final_files['secondary_name'] = ucwords(str_replace("-", " ", $sec_font));
+        $final_files['style_name'] = ucwords(str_replace("-", " ", $sec_font));
 
         //===> Fix Fontawesome Family Name <===//
         if (strpos($current_fonts['icon'], "fontawesome") !== false) {
@@ -164,6 +173,11 @@ if (!function_exists('phenix_assets')) :
         if (isset($assets_files['primary']) && $assets_files['primary'] !== $assets_files['secondary']) {
             wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
         }
+        
+        //===> Load Style Font <===//
+        if (isset($assets_files['style']) && $assets_files['style'] !== $assets_files['primary']) {
+            wp_enqueue_style('pds-style-font', $assets_files['style'], array('phenix'), $version, 'screen and (min-width: 2500px)');
+        }
 
         //===> Load Icons Font <===//
         wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
@@ -173,12 +187,14 @@ if (!function_exists('phenix_assets')) :
             wp_add_inline_style('pds-primary-font', 'body, :root {
                 --primary-font: '.$assets_files['primary_name'].', '.$assets_files['secondary_name'].';
                 --secondary-font: '.$assets_files['secondary_name'].', '.$assets_files['primary_name'].';
+                --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
                 --icons-font: "'.$assets_files['icons_name'].'";
             }');
         } else {
             wp_add_inline_style('pds-primary-font', 'body, :root {
                 --primary-font: '.$assets_files['primary_name'].';
                 --secondary-font: '.$assets_files['secondary_name'].';
+                --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
                 --icons-font: "'.$assets_files['icons_name'].'";
             }');
         }
@@ -189,33 +205,6 @@ if (!function_exists('phenix_assets')) :
     add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
     add_action('admin_enqueue_scripts', 'pds_optimized_asset');
     add_action('enqueue_block_assets', 'pds_optimized_asset');
-endif;
-
-//====> Phenix View Script <====//
-if (!function_exists('phenix_block_view')) :
-	/**
-	 * Setup Core Phenix Design Assets
-	 * @since Phenix Blocks 1.0
-	 * @return void
-	*/
-
-    //=====> Phenix Assets [Head] <=====//
-    function phenix_block_view () {
-        //====> define props <====//
-        $version = "1.1.0";
-        $assets_url = plugin_dir_url(__DIR__)."assets/";
-
-        //====> Check for CDN Option for the Core JS/CSS <====//
-        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
-            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
-        }
-
-        //====> Enqueue Phenix JS <====//
-        wp_enqueue_script('phenix-blocks-view', $assets_url.'pds-view.js', array("phenix"), $version , true);
-    }
-
-    // add_action('enqueue_block_assets', 'phenix_block_view');
-    // add_action('enqueue_block_editor_assets', 'phenix_block_view');
 endif;
 
 //=====> Phenix Admin CSS <=====//

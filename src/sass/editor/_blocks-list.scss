@@ -1,6 +1,4 @@
 /*==== GB Editor Blocks List ====*/
-// .interface-interface-skeleton__html-container {overflow: hidden;}
-
 .editor-styles-wrapper {
 	color: var(--typography-color, inherit)!important;
 	background-color: var(--body-bg)!important;
@@ -84,10 +82,6 @@
 		}
 	}
 
-	/*==== Hidden Blocks ====*/
-	// .px-navigation[class*="hidden-"] {display: block!important;}
-	// .wp-block[class*="hidden-"], .wp-block.hidden {opacity: 0.7;display: block!important;}
-
 	/*==== Blocks IS Selected ====*/
 	.wp-block:not(.is-selected) {
 		> .pds-replace-btn {opacity: 0; visibility: hidden;}
@@ -111,6 +105,7 @@
 		.px-media textarea.block-editor-plain-text {height: 100%!important;}
 	}
 
+	/*==== Show Dropdown on Select ====*/
 	.px-dropdown.has-child-selected, .px-dropdown.is-selected {
 		.px-dropdown-list {display: block;}
 	}
@@ -349,11 +344,6 @@ body.block-editor-page {
 }
 
 /*==== Toolbar Position Fix ====*/
-// .rtl .block-editor-block-list__empty-block-inserter {left: 0; right: auto;}
-// .rtl .block-editor-block-list__block .block-list-appender {left: 1rem; right: auto;}
-
-body:not(.block-editor-iframe__body) .wp-site-blocks {padding-top: 4rem;}
-
 .components-popover.block-editor-block-popover:has(.block-editor-block-contextual-toolbar) {
 	width: 100%;
 	top: 0px!important;
@@ -362,6 +352,9 @@ body:not(.block-editor-iframe__body) .wp-site-blocks {padding-top: 4rem;}
 	-webkit-transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
 			transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
 }
+
+/*==== Add Space for Toolbar ====*/
+body .wp-site-blocks {padding-top: 4rem;}
 
 /*==== Fixing Dark Mode Colors in Editor Components ====*/
 .interface-interface-skeleton__sidebar, .interface-interface-skeleton__secondary-sidebar,
@@ -384,6 +377,7 @@ body:not(.block-editor-iframe__body) .wp-site-blocks {padding-top: 4rem;}
     --dark-light    : #343a40;
 }
 
+/*==== Fix Inserter Popup ====*/
 .interface-interface-skeleton__secondary-sidebar ~ .interface-interface-skeleton__content {
 	.edit-site-visual-editor, .edit-post-visual-editor {
 		.components-popover.block-editor-block-popover .components-popover__content {
@@ -400,12 +394,10 @@ body:not(.block-editor-iframe__body) .wp-site-blocks {padding-top: 4rem;}
 .tx-icon .block-editor-rich-text__editable.rich-text {display: inline-block;}
 .components-popover__content {width: auto!important;max-width: 280px;}
 
-/*==== Pattern Editor Wrapper ====*/
-// .edit-site-visual-editor.is-focus-mode .components-resizable-box__container {height: auto!important;}
-
 /*==== Site Icon Fix ====*/
 .edit-site-site-icon__image {padding: 10px; padding-#{$direction-end}: 15px;}
 
+/*==== Media Content ====*/
 .px-media.editor-mode .block-editor-block-list__layout {
 	top: 0;
 	left: 0;

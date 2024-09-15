@@ -122,7 +122,8 @@
 				font-size: 13px;
 				box-shadow: unset;
 				border-radius: 4px;
-				&:not([type="checkbox"]):not([type="radio"]) {
+				font-family: var(--secondary-font);
+				&:not([type="checkbox"]):not([type="radio"]):not(.attachment-filters) {
 					height: 34px;
 					margin-bottom: 15px;
 					+ p {margin-top: -10px;}
@@ -191,6 +192,9 @@
 				}
 			}
 		}
+
+		.media-frame {font-family: var(--secondary-font);}
+		.wp-filter input, .wp-filter select {margin-bottom: 0!important; min-width: 150px;}
 	}
 
 	/*==== Buttons ====*/
@@ -888,7 +892,12 @@
 
 /*==== Admin : Custom Font Family ====*/
 // body, #wpadminbar *:not([class="ab-icon"]), body.rtl, body.rtl .press-this a.wp-switch-editor, .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl h5,.rtl h6,.wp-core-ui, .media-menu, .media-frame *, .media-modal * 
-body.rtl, body.rtl .press-this a.wp-switch-editor {font-family: var(--secondary-font)!important;}
+body.rtl, body.rtl .press-this a.wp-switch-editor{font-family: var(--secondary-font)!important;}
+
+.rtl #dashboard-widgets-wrap, .rtl #nav-menus-frame, .rtl .media-frame, .wrap > {
+	h1, h2, h3, h4, h5, h6 {font-family: var(--primary-font)!important;}
+}
+
 body, .welcome-panel, .welcome-panel h2, .wp-die-message, p:not([class*="lineheight"]) {line-height: var(--line-height) !important;}
 
 // #wpadminbar #wp-admin-bar-wp-logo>.ab-item .ab-icon::before {content: "" !important;}

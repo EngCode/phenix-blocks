@@ -23,6 +23,8 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         Phenix(link).smothScroll();
     });
 
+    Phenix(".go-up-btn").on("click", isClicked => window.scrollTo({top: 0,left: 0,behavior: "smooth",}));
+
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
         //===> Get Data Options <====//

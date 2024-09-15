@@ -16,6 +16,8 @@
         box-sizing: border-box;
 }
 
+html,body{ scroll-behavior: smooth }
+
 /*==== Display Resets ====*/
 summary {display: list-item;}
 [hidden] { display: none !important; }

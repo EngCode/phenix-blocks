@@ -1,5 +1,5 @@
 /*==== GB Editor Blocks List ====*/
-.interface-interface-skeleton__html-container {overflow: hidden;}
+// .interface-interface-skeleton__html-container {overflow: hidden;}
 
 .editor-styles-wrapper {
 	color: var(--typography-color, inherit)!important;
@@ -349,15 +349,18 @@ body.block-editor-page {
 }
 
 /*==== Toolbar Position Fix ====*/
-.edit-site-visual-editor, .edit-post-visual-editor {
-	.components-popover.block-editor-block-popover {
-		width: 100%;
-		top: 0px!important;
-		position: fixed!important;
-		#{$direction-start}: 0!important;
-		-webkit-transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
-		        transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
-	}
+// .rtl .block-editor-block-list__empty-block-inserter {left: 0; right: auto;}
+// .rtl .block-editor-block-list__block .block-list-appender {left: 1rem; right: auto;}
+
+body:not(.block-editor-iframe__body) .wp-site-blocks {padding-top: 4rem;}
+
+.components-popover.block-editor-block-popover:has(.block-editor-block-contextual-toolbar) {
+	width: 100%;
+	top: 0px!important;
+	position: fixed!important;
+	#{$direction-start}: 0!important;
+	-webkit-transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
+			transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;
 }
 
 /*==== Fixing Dark Mode Colors in Editor Components ====*/

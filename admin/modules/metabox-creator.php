@@ -64,9 +64,9 @@ if (!function_exists('pds_metabox_create')) :
                     // if (strpos($file_type['type'], 'audio') !== false) {$file_type = 'audio';}
                     //===> Generate Output <===//
                     $field_html =  '<label class="fs-14 mb-5">'.$metabox["label"].'</label>';
-                    $field_html .= '<div class="col-auto px-custom-uploader flexbox align-between border-1 border-solid border-alpha-10 bg-white radius-sm pds-15 align-center-y">';
-                        $field_html .=  '<span class="input-value">'.$file_name.'</span>';
-                        $field_html .=  '<button type="button" class="uploader-btn btn gray small radius-sm radius-end">'.__("Replace", "pds-blocks").'</button>';
+                    $field_html .= '<div class="col-auto px-custom-uploader flexbox flow-nowrap align-between border-1 border-solid border-alpha-10 bg-white radius-sm pds-15 align-center-y">';
+                        $field_html .=  '<span class="input-value tx-nowrap">'.$file_name.'</span>';
+                        $field_html .=  '<button type="button" class="uploader-btn btn gray small radius-sm radius-end" onClick="PxWpUploader(event)">'.__("Replace", "pds-blocks").'</button>';
                         $field_html .=  '<input type="hidden" name="'.$metabox["name"].'" class="uploader-input" value="'.$current_value.'" />';
                     $field_html .= '</div>';
                 }

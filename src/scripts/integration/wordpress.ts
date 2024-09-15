@@ -247,43 +247,38 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     }
 
     /*====> for Block Editor and Admin <====*/
-    else if (isEditor || isAdmin) {
-        //===> WP Media Uploader <===//
-        Phenix(".px-custom-uploader .uploader-btn").on("click", isClicked => {
-            //===> Prevent Default <===//
-            isClicked.preventDefault();
-            let input = Phenix(isClicked.target).next(".uploader-input");
-            
-            //===> Preview <===//
-            let input_preview = document.querySelector('.loading-image'),
-                value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
+    else if (isEditor || isAdmin) {}
+});
 
-            //===> Open Media Uploader <===//
-            if(wp.media) {
-                const mediaPopup = wp.media({
-                    title: "Upload Image",
-                    multiple: false
-                });
-                
-                //===> Open the Popup <===//
-                mediaPopup.open().on("select", isSelect => {
-                    //===> Get the Image URL <===//
-                    var uploaded_image = mediaPopup.state().get("selection").first();
+//===> Create WP Uploader <===//
+window.PxWpUploader = isClicked => {
+    //===> Prevent Default <===//
+    isClicked.preventDefault();
+    let input = Phenix(isClicked.target).next(".uploader-input");
+    
+    //===> Preview <===//
+    let input_preview = document.querySelector('.loading-image'),
+        value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
 
-                    //===> Set the URL to the Input <===//
-                    input.value = uploaded_image.toJSON().url;
-
-                    //===> Set Preview and Value <===//
-                    if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
-                    if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
-                    
-                });
-            }
+    //===> Open Media Uploader <===//
+    if(wp.media) {
+        const mediaPopup = wp.media({
+            title: "Upload Image",
+            multiple: false
         });
+        
+        //===> Open the Popup <===//
+        mediaPopup.open().on("select", isSelect => {
+            //===> Get the Image URL <===//
+            var uploaded_image = mediaPopup.state().get("selection").first();
 
-        if(document.querySelector('.px-custom-uploader .input-value')) document.querySelectorAll('.px-custom-uploader .input-value').forEach((item:any) => {
-            item.classList.add('tx-nowrap');
-            item.parentNode.classList.add('flow-nowrap');
+            //===> Set the URL to the Input <===//
+            input.value = uploaded_image.toJSON().url;
+
+            //===> Set Preview and Value <===//
+            if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
+            if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
+            
         });
     }
-});
+};

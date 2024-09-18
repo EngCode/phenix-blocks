@@ -199,7 +199,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     };
 
     const isEditor = document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]');
-    const isAdmin  = document.body.classList?.contains('wp-admin');
+    const isAdmin  = document.body?.classList?.contains('wp-admin');
 
     /*====> Unblock Fonts <====*/
     Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-style-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));

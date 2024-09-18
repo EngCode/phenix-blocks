@@ -18,7 +18,7 @@ function px_query_render($block_attributes, $content) {
     $query = $block_attributes['query'];
 
     //===> Generate Taxonomies Query <===//
-    if (isset($query['taxonomies-types'])) {
+    if (isset($query['taxonomies-types']) && count($query['taxonomies-types']) > 0) {
         //===> Create Taxonomies in Query <===//
         $query['tax_query'] = array('relation' => 'OR');
 

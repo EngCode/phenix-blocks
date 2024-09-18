@@ -23,13 +23,15 @@ if (!function_exists('pds_metabox_create')) :
 
             //===> Create Fields <===//
             foreach($metabox_group["fields"] as $metabox) {
-                //===> Get Current Value <===//
+                //===> Define Value and Metabox name <===//
+                $current_value;
                 $metabox = (array) $metabox;
-                $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
 
-                //===> Get Current Value for Taxonomies <===//
+                //===> Get Current Value <===//
                 if ($term && isset($term->term_id)) {
                     $current_value = get_term_meta($term->term_id, $metabox["name"], true);
+                } else {
+                    $current_value = get_post_meta(get_the_ID(), $metabox["name"], true);
                 }
 
                 //===> Type Check Points <===//
@@ -57,7 +59,7 @@ if (!function_exists('pds_metabox_create')) :
                 else if ($type_checkpoints["isMedia"]) {
                     //===> Get the File Name and Type <===//
                     $file_name = basename($current_value);
-                    $file_type = (array) wp_check_filetype($file_name);
+                    // $file_type = (array) wp_check_filetype($file_name);
                     //===> Check Types <===//
                     // if (strpos($file_type['type'], 'image') !== false) {$file_type = 'image';}
                     // if (strpos($file_type['type'], 'video') !== false) {$file_type = 'video';}

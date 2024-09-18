@@ -38,10 +38,11 @@ pre, code, kbd, samp {
 }
 
 /*==== Links Reset ====*/
-a {color: var(--links-color);}
+a {color: var(--links-color, inherit);}
+a:where(:not(.wp-element-button):not([class*="color-"])) {color: var(--links-color, inherit);}
 
 a, .reset-link, .px-navigation a, .btn {
-    text-decoration: none;
+    text-decoration: none!important;
     -webkit-text-decoration-skip: objects;
             text-decoration-skip: objects;
 }

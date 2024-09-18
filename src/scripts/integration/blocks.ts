@@ -177,4 +177,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //===> .Others. <===//
     Phenix(document).utilities();
+
+    //===> Header Hacks <===//
+    if (main_header) {
+        
+    }
 }

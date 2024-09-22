@@ -27,7 +27,7 @@
     font-weight: var(--font-weight);
     
     /*==== General Style ====*/
-    ul {
+    > ul {
         @extend %reset-list;
         /*==== items ====*/
         li {
@@ -71,6 +71,7 @@
 
     /*==== Submenu Theme ====*/
     .submenu {
+        @extend %reset-list;
         /*==== CSS Options ====*/
         --height : #{REM(30)};
         --radius : #{REM(5)};
@@ -141,7 +142,10 @@
 
     /*==== Show Submenu ====*/
     .px-menu-active, &[data-hover] li:hover {
-        > .submenu, > .megamenu {display: block;}
+        > .submenu, > .megamenu {
+            display: block;
+            animation: fadeInUpShort 0.3s ease-in-out
+        }
     }
 }
 
@@ -150,13 +154,13 @@
     /*==== CSS Options ====*/
     --width : #{REM(300)};
     /*==== Standard ====*/
-    position: fixed;
     top: 0;
-    #{$direction-end}: 0;
+    opacity: 0;
     width: 100%;
     height: 100vh;
     display: none;
-    opacity: 0;
+    position: fixed;
+    #{$direction-end}: 0;
     z-index: var(--modal-index);
     @extend .align-center-y;
     @extend .align-center-x;

@@ -584,7 +584,7 @@ window.PhenixBlocks = {
         }
 
         //===> Run the Scripts Directly <===//
-        else if (window.Phenix) viewScript(window.document);
+        else if (window.Phenix && window.document) viewScript(window.document);
     },
 
     //===> Block Inserter Accessibility <===//

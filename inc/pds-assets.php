@@ -201,25 +201,26 @@ if (!function_exists('phenix_assets')) :
         }
     };
 
-    // add_action('wp_enqueue_scripts', 'pds_optimized_asset');
+    add_action('wp_enqueue_scripts', 'pds_optimized_asset');
+    add_action('enqueue_block_assets', 'pds_optimized_asset');
+    // add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
     // add_action('login_enqueue_scripts', 'pds_optimized_asset');
-    add_action('enqueue_block_editor_assets', 'pds_optimized_asset');
 
     //====> For Admin Dashboard Only <====//
-    if (is_admin()) {
-        function pds_dashboard_checker() {
-            //====> Get current screen <====//
-            $screen = get_current_screen();
-            //====> Exclude block editor (Gutenberg) and classic editor <====//
-            if (!in_array( $screen->base, array('post', 'edit'))) {
-                add_action('admin_enqueue_scripts', 'pds_optimized_asset');
-            }
-        }
+    // if (is_admin()) {
+    //     function pds_dashboard_checker() {
+    //         //====> Get current screen <====//
+    //         $screen = get_current_screen();
+    //         //====> Exclude block editor (Gutenberg) and classic editor <====//
+    //         if (!in_array( $screen->base, array('post', 'edit'))) {
+    //             add_action('admin_enqueue_scripts', 'pds_optimized_asset');
+    //         }
+    //     }
 
-        add_action('current_screen', 'pds_dashboard_checker');
-    } else {
-        add_action('enqueue_block_assets', 'pds_optimized_asset');
-    }
+    //     add_action('current_screen', 'pds_dashboard_checker');
+    // } else {
+    //     add_action('enqueue_block_assets', 'pds_optimized_asset');
+    // }
 endif;
 
 //=====> Phenix Admin CSS <=====//

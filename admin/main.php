@@ -46,19 +46,19 @@
     }
 
     //===> General Blocks Panel <===//
-    if (!function_exists('pds_core_blocks_panel')) {
-        function pds_core_blocks_panel() {
-            //===> Start Data <===//
-            $template_markup = '';
-            ob_start();
-            //===> Get Panel Template <===//
-            include(dirname(__FILE__) . '/panels/core-blocks.php');
-            //===> Stop Data <===//
-            $template_output = ob_get_clean();
-            $template_markup .= $template_output;
-            return "{$template_markup}";
-        }
-    }
+    // if (!function_exists('pds_core_blocks_panel')) {
+        // function pds_core_blocks_panel() {
+        //     //===> Start Data <===//
+        //     $template_markup = '';
+        //     ob_start();
+        //     //===> Get Panel Template <===//
+        //     include(dirname(__FILE__) . '/panels/core-blocks.php');
+        //     //===> Stop Data <===//
+        //     $template_output = ob_get_clean();
+        //     $template_markup .= $template_output;
+        //     return "{$template_markup}";
+        // }
+    // }
 
     //====> Create the Page <====//
     if (function_exists('pds_add_admin_page')) :
@@ -87,14 +87,14 @@
                     "content" => 'pds_blocks_panel',
                     "description" => 'by default phenix blocks are enabled to replace the core blocks within gutenberg, and in the options below you can choose which "phenix blocks" to enable, be sure to select only the blocks that you need and will use.',
                 ),
-                //==> Tabs Panel <==//
-                array(
-                    "title" => "Core Blocks",
-                    "slug"  => "pds-core-blocks",
-                    "icon"  => "far fa-layer-group",
-                    "content" => 'pds_core_blocks_panel',
-                    "description" => 'by default phenix blocks disables the unnecessary default core blocks within gutenberg to replace it with its own, and in the options below you can choose which core blocks to enable, be sure to select only the blocks that you need and will use.',
-                ),
+                // //==> Tabs Panel <==//
+                // array(
+                //     "title" => "Core Blocks",
+                //     "slug"  => "pds-core-blocks",
+                //     "icon"  => "far fa-layer-group",
+                //     "content" => 'pds_core_blocks_panel',
+                //     "description" => 'by default phenix blocks disables the unnecessary default core blocks within gutenberg to replace it with its own, and in the options below you can choose which core blocks to enable, be sure to select only the blocks that you need and will use.',
+                // ),
                 //==> Tabs Panel <==//
                 array(
                     "title" => "Optimization",

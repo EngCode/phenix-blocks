@@ -103,6 +103,11 @@
         "post_type" : {
             "type": "string",
             "default": "post"
+        },
+
+        "withTerms": {
+            "type": "boolean",
+            "default": false
         }
     },
 	"example": {

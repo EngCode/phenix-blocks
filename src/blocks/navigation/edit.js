@@ -196,6 +196,7 @@ export default function Edit(props) {
                 <OptionControl name={`responsive`} value="boolean" checked={attributes.responsive} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("Responsive", "pds-blocks")}</OptionControl>
                 <OptionControl name={`items_icon_op`} value="boolean" checked={attributes.items_icon_op} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("with Icons", "pds-blocks")}</OptionControl>
                 <OptionControl name={`count_badge`} value="boolean" checked={attributes.count_badge} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("Count Items", "pds-blocks")}</OptionControl>
+                <OptionControl name={`withTerms`} value="boolean" checked={attributes.withTerms} onChange={set_value} type='switch-checkbox' className='small col-6 inline-block'>{__("with Terms", "pds-blocks")}</OptionControl>
             </PanelBody>
             {/*===> Widget Panel <===*/}
             {attributes.responsive ? <>

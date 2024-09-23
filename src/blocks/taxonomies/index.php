@@ -41,7 +41,6 @@ function pds_taxonomies_render($block_attributes, $content) {
     $categories = get_terms($block_attributes['query']);
     if (empty($categories)) {return;}
 
-
     //===> Grid Wrapper <===//
     if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
 

@@ -67,11 +67,22 @@ function px_navigation_render($block_attributes, $content) {
                 elseif (isNormalValue($sub_value)) {
                     //===> Typography <===//
                     if ($option_name === "typography") {
-                        //===> Collect Style Data <===//
-                        if($sub_option === "size") { $font_size = $sub_value; } 
-                        elseif($sub_option === "height") { $font_height = $sub_value; } 
-                        elseif($sub_option === "color") { $text_color = $sub_value; } 
-                        elseif($sub_option === "color_hvr") { $text_color_hvr = $sub_value; }
+                        //===> Font Size <===//
+                        if($sub_option === "size") {
+                            $nav_style .= "--font-size:".PxToREM(str_replace("fs-", "", $sub_value)).";"; 
+                        } 
+                        //===>  <===//
+                        elseif($sub_option === "height") {
+                            $nav_style .= "--height:".PxToREM($sub_value).";";
+                        } 
+                        //===> <===//
+                        elseif($sub_option === "color") {
+                            $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$sub_value).");"; 
+                        } 
+                        //===> <===//
+                        elseif($sub_option === "color_hvr") {
+                            $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$sub_value).");";
+                        }
                         //====> Other Classes <===//
                         else {
                             $sub_value = str_replace(',', ' ', (string) $sub_value);
@@ -81,34 +92,35 @@ function px_navigation_render($block_attributes, $content) {
                     }
                     //====> Style <===//
                     elseif ($option_name === "style") {
-                        if($sub_option === "padding") { $style_padding = $sub_value; }
+                        //====> Padding (Space Between Items) <====//
+                        if($sub_option === "padding") {
+                            //===> With Icons Mode <===//
+                            if ($block_attributes['items_icon_op'] === true) {
+                                $nav_style .= "--space-in: 0px; padding-right:". PxToREM($sub_value)."; padding-left:". PxToREM($sub_value).";";
+                            } 
+                            //===> Normal Mode <===//
+                            else {
+                                $nav_style .= "--space-in:".PxToREM($sub_value);
+                            }
+                        }
                     }
                 }
 
                 //===> for Object Options <===//
                 elseif (isObjectVal($sub_value) && $option_name === "style") {
-                    if ($sub_option === "background") { $background_color = $sub_value['value']; }
-                    elseif ($sub_option === "background_hvr") { $background_color_hvr = $sub_value['value']; }
+                    //====> Normal Background <====//
+                    if ($sub_option === "background") {
+                        $background_color = $sub_value['value'];
+                        $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$sub_value['value']).");";
+                    }
+                    //====> Hover Background <====//
+                    elseif ($sub_option === "background_hvr") {
+                        $nav_style .= "--background-hvr:".str_replace('bg-', 'var(--wp--preset--color--',$sub_value['value']).");";
+                    }
                 };
             }
         };
     }
-
-    //===> Custom CSS Style <===//
-    if (isset($font_size) && $font_size) { $nav_style .= "--font-size:".PxToREM(str_replace("fs-", "", $font_size)).";"; }
-    // if (isset($font_weight) && $font_weight) { $nav_style .= "--font-weight: {$font_weight};"; }
-    if (isset($font_height) && $font_height) { $nav_style .= "--height:".PxToREM($font_height).";"; }
-    if (isset($text_color) && $text_color) { $nav_style .= "--color:".str_replace('color-', 'var(--wp--preset--color--',$text_color).");"; }
-    if (isset($text_color_hvr) && $text_color_hvr) { $nav_style .= "--color-hvr:".str_replace('color-', 'var(--wp--preset--color--',$text_color_hvr).");"; }
-    if (isset($background_color) && $background_color) { $nav_style .= "--background:".str_replace('bg-', 'var(--wp--preset--color--',$background_color).");"; }
-    if (isset($background_color_hvr) && $background_color_hvr) { $nav_style .= "--background-hvr:".str_replace('bg-', 'var(--wp--preset--color--',$background_color_hvr).");"; }
-    if (isset($style_padding) && $style_padding) {
-        if ($block_attributes['items_icon_op'] === true) {
-            $nav_style .= "--space-in: 0px; padding-right:". PxToREM($style_padding)."; padding-left:". PxToREM($style_padding).";";
-        } else {
-            $nav_style .= "--space-in:".PxToREM($style_padding);
-        }
-    };
 
     //===> Start Navigation Wrapper <===//
     echo "<{$block_attributes['tagName']} class='{$classNames} {$text_align}' style='{$nav_style}' {$menu_attrs} {$menu_id} {$mobile_mode} {$effect_type} {$hover_mode} {$arrow_icon}>";
@@ -117,7 +129,8 @@ function px_navigation_render($block_attributes, $content) {
             //===> Create Menu <===//
             echo '<ul class="'.$menuClasses.'" id="'.$block_attributes['menu_id'].'">';
                 //===> Get Categories List <===//
-                $categories = get_categories(array(
+                $categories = get_terms(array(
+                    "parent" => 0,
                     'hide_empty' => false,
                     'taxonomy'   => $block_attributes['menu_id'],
                     'number'     => $block_attributes['items_count'],
@@ -130,8 +143,32 @@ function px_navigation_render($block_attributes, $content) {
                     if ($block_attributes["count_badge"]) {
                         $count_badge = ' <span class="posts-count float-end">'.$category->count.'</span>';
                     };
+
                     //===> Create Item <===//
-                    echo '<li><a href="'.get_category_link($category->cat_ID).'">'.$category->name.$count_badge.'</a></li>';
+                    echo '<li><a href="'.get_category_link($category->term_id).'">'.$category->name.$count_badge.'</a>';
+
+                    //===> Check for Sub Terms as Dropdown Menu <===//
+                    if ($block_attributes["withTerms"]) {
+                        //===> Create Children <===//
+                        $child_categories = get_terms(array(
+                            'number'     => '',
+                            'hide_empty' => false,
+                            "parent"     => $category->term_id,
+                            'taxonomy'   => $block_attributes['menu_id'],
+                            'post_type'  => $block_attributes['post_type'],
+                        ));
+    
+                        if (!empty($child_categories)) {
+                            echo '<ul>';
+                            foreach ($child_categories as $child_category) {
+                                echo '<li><a href="'.get_category_link($child_category->cat_ID).'">'.$child_category->name.'</a></li>';
+                            }
+                            echo '</ul>';
+                        }
+                    }
+                    //===> End Create Item <===//
+                    echo '</li>';
+
                 endforeach;
             echo '</ul>';
         }

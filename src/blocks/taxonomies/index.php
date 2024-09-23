@@ -30,7 +30,11 @@ function pds_taxonomies_render($block_attributes, $content) {
 
     //====> Correct Hierarchical Option <====//
     if (isset($block_attributes['query']["hierarchical"]) && $block_attributes['query']["hierarchical"]) {
+        $block_attributes['query']["parent"] = '';
         $block_attributes['query']["hierarchical"] = false;
+    } else {
+        $block_attributes['query']["parent"] = 0;
+        $block_attributes['query']["hierarchical"] = true;
     }
 
     //===> Create New Query <===//

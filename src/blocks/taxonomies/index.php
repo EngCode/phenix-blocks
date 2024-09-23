@@ -23,18 +23,30 @@ function pds_taxonomies_render($block_attributes, $content) {
     $slider_attrs = $renderedProps["slider_attrs"]; 
     $grid_classes = $renderedProps["grid_classes"];
 
-    //===> Create New Query <===//
-    $categories = get_categories($block_attributes['query']);
-    if (empty($categories)) {return;}
-
     //===> Default Query <===//
     $default_query = ["hide_empty"];
+
     foreach ($default_query as $option_name) {
+        //====> Check for Invalid Options <====//
         if (!isset($block_attributes['query'][$option_name])) {
+            //====> if it is hide_empty correct the value <====//
             if ($option_name === "hide_empty")  { $block_attributes['query'][$option_name] = false; }
+            //====> if it is any other option set it to empty string <====//
             else { $block_attributes['query'][$option_name] = ''; }
         }
     };
+
+    //====> Correct Hierarchical Option <====//
+    if (isset($block_attributes['query']["hierarchical"]) && $block_attributes['query']["hierarchical"]) {
+        $block_attributes['query']["hierarchical"] = false;
+    } else {
+        $block_attributes['query']["hierarchical"] = true;
+    }
+
+    //===> Create New Query <===//
+    $categories = get_terms($block_attributes['query']);
+    if (empty($categories)) {return;}
+
 
     //===> Grid Wrapper <===//
     if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }

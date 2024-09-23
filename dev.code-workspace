@@ -1,15 +1,23 @@
 {
 	"folders": [
 		{
+			"name": "pds-blocks",
 			"path": "."
 		},
 		{
+			"name": "px-design",
 			"path": "../../../../px-design"
 		},
 		{
+			"name": "themes",
 			"path": "../../themes"
 		},
 		{
+			"name": "chery-jordan",
+			"path": "../../../../demo/wp-content/themes/chery-jordan"
+		},
+		{
+			"name": "profilaat",
 			"path": "D:/Work Space/Backups/Projects/Profilaat-WP/profilaat"
 		}
 	],

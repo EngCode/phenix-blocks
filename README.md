@@ -114,6 +114,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 12. Fix Media Uploader in Editor.
 13. Add New Style Font Option.
 14. Disable core blocks remover
+15. Upgrade taxonomies query and support sub terms.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

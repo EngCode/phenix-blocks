@@ -61,28 +61,28 @@ export default class FlexboxSet extends Component {
                     {/*===> Label <===*/}
                     {!options || options.includes("flex-props") ? <label className='col-12 mb-5 tx-UpperCase'>{__("Flow Options", "pds-blocks")}</label> : null}
                     {/*===> Switch Button <===*/}
-                    {!options || options.includes("flex-props") ? <OptionControl key={`flow${screenPoint}`} name={`flow${screenPoint}`} value={!attributes.flexbox[`stacked${screenPoint}`] || attributes.flexbox[`stacked${screenPoint}`] === "" ? `flow${screenPoint}-reverse` : `flow${screenPoint}-columns-reverse`} checked={attributes.flexbox[`flow${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny me-15'>
+                    {!options || options.includes("flex-props") ? <OptionControl key={`flow${screenPoint}`} name={`flow${screenPoint}`} value={!attributes.flexbox[`stacked${screenPoint}`] || attributes.flexbox[`stacked${screenPoint}`] === "" ? `flow${screenPoint}-reverse` : `flow${screenPoint}-columns-reverse`} checked={attributes.flexbox[`flow${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Reverse ", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Switch Button <===*/}
-                    {!options || options.includes("flex-props") && !attributes.flexbox?.slider ? <OptionControl key={`stacked${screenPoint}`} name={`stacked${screenPoint}`} value={`flow${screenPoint}-columns`} checked={attributes.flexbox[`stacked${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny me-15'>
+                    {!options || options.includes("flex-props") && !attributes.flexbox?.slider ? <OptionControl key={`stacked${screenPoint}`} name={`stacked${screenPoint}`} value={`flow${screenPoint}-columns`} checked={attributes.flexbox[`stacked${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Stacked", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Switch Button <===*/}
-                    {!options || options.includes("flex-props") && !attributes.flexbox?.slider ? <OptionControl key={`nowrap${screenPoint}`} name={`nowrap${screenPoint}`} value={`flow${screenPoint}-nowrap`} checked={attributes.flexbox[`nowrap${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny'>
+                    {!options || options.includes("flex-props") && !attributes.flexbox?.slider ? <OptionControl key={`nowrap${screenPoint}`} name={`nowrap${screenPoint}`} value={`flow${screenPoint}-nowrap`} checked={attributes.flexbox[`nowrap${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Nowrap", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Switch Button <===*/}
-                    {!options || options.includes("grid-props") && !attributes.flexbox?.slider && !screen ? <OptionControl key={`equals${screenPoint}`} name={`equals${screenPoint}`} checked={attributes.flexbox.equals} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny me-15'>
+                    {!options || options.includes("grid-props") && !attributes.flexbox?.slider && !screen ? <OptionControl key={`equals${screenPoint}`} name={`equals${screenPoint}`} checked={attributes.flexbox.equals} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Equal Cols.", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Switch Button <===*/}
-                    {!options || options.includes("grid-props") && !attributes.flexbox?.slider ? <OptionControl key={`masonry${screenPoint}`} name={`masonry${screenPoint}`} value={`px-masonry${screenPoint}`} checked={attributes.flexbox[`masonry${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny me-15'>
+                    {!options || options.includes("grid-props") && !attributes.flexbox?.slider ? <OptionControl key={`masonry${screenPoint}`} name={`masonry${screenPoint}`} value={`px-masonry${screenPoint}`} checked={attributes.flexbox[`masonry${screenPoint}`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Masonry", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Switch Button <===*/}
                     {!options || options.includes("grid-props") ?
-                    <OptionControl key={`gpy-fix`} name={`gpy-fix`} value={`gpy-fix`} checked={attributes.flexbox[`gpy-fix`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny me-15'>
+                    <OptionControl key={`gpy-fix`} name={`gpy-fix`} value={`gpy-fix`} checked={attributes.flexbox[`gpy-fix`]?.length > 0} onChange={(target) => mainSetter(target, screen ? screen : "")} type='checkbox' className='tiny col-6'>
                         <span className='fas fa-check radius-circle'>{__("Gap Y fix", "pds-blocks")}</span>
                     </OptionControl>: null}
                     {/*===> Other Button <===*/}

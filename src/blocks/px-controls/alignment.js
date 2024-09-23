@@ -17,39 +17,6 @@ export default class FlexAlignment extends Component {
         const button_style = "btn tiny bg-transparent fs-12 square pxi";
         const uniqueKey = `${blockKey ? blockKey+"-" : ""}align-${screenPoint}-options`;
 
-        //===> Value Handler <===//
-        // const set_alignment = target => {
-        //     //===> Define Data <===//
-        //     let align_val  = value;
-        //     const current_val = value.trim(),
-        //           current_values  = current_val.split(" "),
-        //           xTypes = [`x`, `${screenPoint}-between`, `${screenPoint}-around`],
-        //           allTypes = [`${screenPoint}-end-x`,`${screenPoint}-start-x`,`${screenPoint}-center-x`, `${screenPoint}-between`, `${screenPoint}-around`, `${screenPoint}-end-y`,`${screenPoint}-start-y`, `${screenPoint}-center-y`];
-
-        //     //===> Check if the Value has an option with the same type as the target value <===//
-        //     const itHasType = allTypes.some(type => current_val.includes(type)),
-        //           align_type = xTypes.some(type => target.getAttribute('name').includes(type)) ? `${screenPoint}-x` : `${screenPoint}-y`,
-        //           foundedType = xTypes.some(type => current_val.includes(type)) ? `x` : `y`;
-
-        //     //===> if the Value has an Option and the option type is the same as the target <===//
-        //     if (itHasType && align_type === foundedType) {
-        //         //===> Loop on Values <===//
-        //         current_values.forEach(current_value => {
-        //             //===> if the Founded Type is the same as the Value, Replace the Value <===//
-        //             if (current_value.includes(align_type)) {
-        //                 align_val = align_val.replace(current_value, target.value);
-        //             }
-        //         });
-        //     }
-        //     //===> if its a new Value add it <===//
-        //     else {
-        //         align_val += ` ${target.value}`;
-        //     }
-
-        //     //===> Return new Value <===//
-        //     return onChange(align_val.trim());
-        // },
-
         const set_alignment = (target) => {
             //====> Cleanup Empty Space and Split the Value <====/
             const options = value.trim().split(/\s+/);
@@ -90,9 +57,9 @@ export default class FlexAlignment extends Component {
                 <button type="button" key={`reset-btn${screenPoint}`} data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square far fa-redo' onClick={reset_align}></button>
             </div>
             {/*===> Counter Control <===*/}
-            <div className={"flexbox align-between"}>
+            <div className={"flexbox align-between mb-15"}>
                 {/*===> Radio Buttons <===*/}
-                <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
+                <div className="col-auto border-1 border-solid border-alpha-15 radius-sm">
                     {/*===> Switch Button <===*/}
                     <OptionControl key={`align${screenPoint}-start-x`} name={`flex-align${screenPoint}-x`} checked={value.includes(`align${screenPoint}-start-x`)} value={`align${screenPoint}-start-x`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span title="Start" className={`${button_style} pxi-align-x-start`}></span>
@@ -115,7 +82,7 @@ export default class FlexAlignment extends Component {
                     </OptionControl>
                 </div>
                 {/*===> Radio Buttons <===*/}
-                <div className="col-auto pdx-5 border-1 border-solid border-alpha-15 radius-sm">
+                <div className="col-auto border-1 border-solid border-alpha-15 radius-sm">
                     {/*===> Switch Button <===*/}
                     <OptionControl key={`align${screenPoint}-start-y`} name={`flex-align${screenPoint}-y`} checked={value.includes(`align${screenPoint}-start-y`)} value={`align${screenPoint}-start-y`} onChange={set_alignment} type='button-radio' className='tiny inline-block'>
                         <span className={`${button_style} pxi-align-y-start`} title="Start"></span>

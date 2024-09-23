@@ -106,6 +106,10 @@ export default function Edit(props) {
                     </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
+                        <OptionControl key={`hierarchical-${uniqueKey}`} name={`hierarchical`} value="boolean" checked={attributes.query['hierarchical'] || false} onChange={set_query} type='switch-checkbox' className='small'>{__("with Terms", "pds-blocks")}</OptionControl>
+                    </div>
+                    {/*===> Column <===*/}
+                    <div className='col-6'>
                         <OptionControl key={`isFlexbox-${uniqueKey}`} name={`isFlexbox`} value="boolean" checked={attributes.isFlexbox} onChange={set_value} type='switch-checkbox' className='small'>{__("Grid Mode", "pds-blocks")}</OptionControl>
                     </div>
                     {/*===> Column <===*/}

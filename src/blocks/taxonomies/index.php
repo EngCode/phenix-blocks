@@ -26,15 +26,15 @@ function pds_taxonomies_render($block_attributes, $content) {
     //====> Correct Hide Empty Option <====//
     if (!isset($block_attributes['query']["hide_empty"]) || !$block_attributes['query']["hide_empty"]) {
         $block_attributes['query']["hide_empty"] = false;
+        //====> Show Empty Sub Terms <====//
+        $block_attributes['query']["hierarchical"] = true;
     }
 
     //====> Correct Hierarchical Option <====//
-    if (isset($block_attributes['query']["hierarchical"]) && $block_attributes['query']["hierarchical"]) {
+    if (isset($block_attributes['query']["withTerms"]) && $block_attributes['query']["withTerms"]) {
         $block_attributes['query']["parent"] = '';
-        $block_attributes['query']["hierarchical"] = false;
     } else {
         $block_attributes['query']["parent"] = 0;
-        $block_attributes['query']["hierarchical"] = true;
     }
 
     //===> Create New Query <===//

@@ -24,17 +24,13 @@ function pds_taxonomies_render($block_attributes, $content) {
     $grid_classes = $renderedProps["grid_classes"];
 
     //====> Correct Hide Empty Option <====//
-    if (isset($block_attributes['query']["hide_empty"]) && $block_attributes['query']["hide_empty"]) {
-        $block_attributes['query']["hide_empty"] = true;
-    } else {
+    if (!isset($block_attributes['query']["hide_empty"]) || !$block_attributes['query']["hide_empty"]) {
         $block_attributes['query']["hide_empty"] = false;
     }
 
     //====> Correct Hierarchical Option <====//
     if (isset($block_attributes['query']["hierarchical"]) && $block_attributes['query']["hierarchical"]) {
         $block_attributes['query']["hierarchical"] = false;
-    } else {
-        $block_attributes['query']["hierarchical"] = true;
     }
 
     //===> Create New Query <===//

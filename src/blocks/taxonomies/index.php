@@ -23,7 +23,7 @@ function pds_taxonomies_render($block_attributes, $content) {
     $slider_attrs = $renderedProps["slider_attrs"]; 
     $grid_classes = $renderedProps["grid_classes"];
 
-    //====> Correct Hierarchical Option <====//
+    //====> Correct Hide Empty Option <====//
     if (isset($block_attributes['query']["hide_empty"]) && $block_attributes['query']["hide_empty"]) {
         $block_attributes['query']["hide_empty"] = true;
     } else {

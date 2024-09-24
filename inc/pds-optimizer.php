@@ -74,7 +74,7 @@ if (!is_admin()) {
     if (!function_exists('scripts_optimize')) :
         function scripts_optimize() {
             //===> Remove jQuery <===//
-            if (get_option('jquery_remove')) {
+            if (get_option('jquery_remove') === "on") {
                 wp_deregister_script('jquery');
                 wp_deregister_script('jquery-core');
                 wp_deregister_script('jquery-migrate');
@@ -129,7 +129,7 @@ if (!is_admin()) {
         add_action('get_header', 'adminbar_disable');
     endif;
 
-    //===== C7 Elements Fix =====//
+    //===== CF7 Elements Fix =====//
     if (get_option('wpc7_cleaner') == "on") {
         add_filter('wpcf7_form_elements', function($content) {
             $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
@@ -208,7 +208,7 @@ remove_filter('render_block', 'wp_render_elements_support', 10, 2);
 remove_filter('render_block', 'gutenberg_render_elements_support', 10, 2);
 
 //====> WooCommerce Optimizer <====//
-if (!function_exists('woo_scripts_optimize')) :
+if (!function_exists('woo_scripts_optimize') && get_option('blocks_optimizer') == "on") :
     function woo_scripts_optimize() {
         //===> Define Scripts <===//
         $woo_scripts = array("woocommerce", "wc-product-image-gallery-block");
@@ -237,11 +237,6 @@ if (!function_exists('woo_scripts_optimize')) :
         };
     }
 
-    function woo_patterns_remove() {
-       unregister_block_pattern_category('woo-commerce');
-    }
-    
-    // add_action('after_setup_theme', 'woo_patterns_remove', 999);
     add_action('wp_enqueue_scripts', 'woo_scripts_optimize', 99);
 endif;
 

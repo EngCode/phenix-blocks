@@ -134,6 +134,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     //===> Animations <===//
     Phenix('[data-animation], .px-animate, [data-lazy-group]').animations({animateCSS: ["all"]});
 
+    //====> Build Timer's <====//
+    Phenix('.px-timer').timer({type: "countdown"});
+
     /*===> Table of contents Menu <===*/
     let postContent = document.querySelector(".entry-content"), last_title,
         content_menu = document.querySelector('#table-of-content-list');

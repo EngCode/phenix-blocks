@@ -15,6 +15,13 @@
 /*==== Make Sizes ====*/
 @mixin make_button_sizes ($infix:'') {
     /*=== Sizes ===*/
+    &.xtiny#{$infix} {
+        --height    : #{REM(22)};
+        --padding   : #{REM(10)};
+        --text-size : #{REM(12)};
+    }
+
+    /*=== Sizes ===*/
     &.tiny#{$infix} {
         --height    : #{REM(30)};
         --padding   : #{REM(15)};

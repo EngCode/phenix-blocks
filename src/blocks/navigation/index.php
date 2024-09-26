@@ -161,7 +161,7 @@ function px_navigation_render($block_attributes, $content) {
                         if (!empty($child_categories)) {
                             echo '<ul>';
                             foreach ($child_categories as $child_category) {
-                                echo '<li><a href="'.get_category_link($child_category->cat_ID).'">'.$child_category->name.'</a></li>';
+                                echo '<li><a href="'.get_category_link($child_category->term_id).'">'.$child_category->name.'</a></li>';
                             }
                             echo '</ul>';
                         }

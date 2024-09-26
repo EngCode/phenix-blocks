@@ -74,18 +74,6 @@ if (!function_exists('pds_patterns_cats')) :
 	add_action('init', 'pds_patterns_cats');
 endif;
 
-//===> Create Cron Jobs Scheduler <===//
-// add_filter('cron_schedules', function($schedules) {
-//     //===> Every 10 Minutes <===//
-//     $schedules['pds_schedule'] = array(
-//         'interval' => 600,
-//         'display'  => __( 'Every 10 Minutes' ),
-//     );
-
-//     //===> .... <===//
-//     return $schedules;
-// });
-
 //===> Plugins Fallback <===//
 function check_other_plugins() {
 	//===> ACF <===//

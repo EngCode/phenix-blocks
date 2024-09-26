@@ -74,7 +74,7 @@ if (!is_admin()) {
     if (!function_exists('scripts_optimize')) :
         function scripts_optimize() {
             //===> Remove jQuery <===//
-            if (get_option('jquery_remove') === "on") {
+            if (get_option('jquery_remove') == "on") {
                 wp_deregister_script('jquery');
                 wp_deregister_script('jquery-core');
                 wp_deregister_script('jquery-migrate');
@@ -206,39 +206,6 @@ remove_filter('render_block', 'gutenberg_render_layout_support_flag', 10, 2);
 //====> Remove Link Color <====//
 remove_filter('render_block', 'wp_render_elements_support', 10, 2);
 remove_filter('render_block', 'gutenberg_render_elements_support', 10, 2);
-
-//====> WooCommerce Optimizer <====//
-if (!function_exists('woo_scripts_optimize') && get_option('blocks_optimizer') == "on") :
-    function woo_scripts_optimize() {
-        //===> Define Scripts <===//
-        $woo_scripts = array("woocommerce", "wc-product-image-gallery-block");
-
-        //===> Define Styles <===//
-        $woo_style = array(
-            "wc-block-style",
-            "woocommerce-inline",
-            "woocommerce-layout",
-            "woocommerce-general",
-            "woocommerce-blocktheme",
-            "wc-block-vendors-style",
-            "woocommerce-smallscreen",
-        );
-
-        // remove_action('wp_head', array($GLOBALS['woocommerce'], 'generator'));
-
-        //===> Remove Scripts <===//
-        foreach ($woo_scripts as $script) {
-            wp_deregister_script($script);
-        };
-
-        //===> Remove Styles <===//
-        foreach ($woo_style as $style) {
-            wp_dequeue_style($style);
-        };
-    }
-
-    add_action('wp_enqueue_scripts', 'woo_scripts_optimize', 99);
-endif;
 
 //===> Restrict Login Attempts <===//
 if (!function_exists('pds_limit_login_attempts')) :

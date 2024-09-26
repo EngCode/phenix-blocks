@@ -93,9 +93,6 @@ function px_head_render($block_attributes, $content) {
                 }
                 //===> Get Single Title <===//
                 if (is_single() || is_page()) {
-                    if (!is_page()) {
-                        echo '<li>'.get_post_type_object(get_post_type())->labels->name.'</li>';
-                    }
                     echo '<li>'.get_the_title().'</li>';
                 }
             ?>

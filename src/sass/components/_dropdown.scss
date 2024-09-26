@@ -23,5 +23,5 @@
         }
     }
     /*==== links ====*/
-    a {color: inherit;}
+    li > a:not(.btn) {color: inherit;}
 }

@@ -121,6 +121,7 @@
         -webkit-backdrop-filter: blur(#{REM(2.5)});
                 backdrop-filter: blur(#{REM(2.5)});
         background-color: rgba(#000, 0.15);
+        border-radius: inherit;
     }
 }
 

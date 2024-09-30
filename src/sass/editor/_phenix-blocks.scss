@@ -184,42 +184,7 @@
 }
 
 /*==== Counter Input ====*/
-.px-counter-input {
-	top: -1px;
-
-	.pos-bottom-0 {bottom: -1px;}
-	
-	.btn.square {
-		width: REM(28);
-		font-size: 0.75em;
-		background-color: transparent;
-	}
-
-	/*==== Reset Input ====*/
-	input[type="number"] {
-		border-color: rgba(#000, 0.1)!important;
-		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
-			-webkit-appearance: none!important;
-			-moz-appearance: none!important;
-					appearance: none!important;
-		}
-	}
-
-	/*====  ====*/
-	&[class*="fa-"] {
-		input[type="number"] {
-			padding-#{$direction-start}: 2rem;
-			padding-#{$direction-end}: 4rem;
-		}
-
-		&::before {
-			top: 0;
-			position: absolute;
-			line-height: REM(34);
-			#{$direction-start}: REM(15);
-		}
-	}
-}
+.px-counter-input {top: -1px;}
 
 .flex-alignment-btns .btn.tiny {width: 1.65rem;}
 

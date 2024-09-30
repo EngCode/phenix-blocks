@@ -8,6 +8,7 @@
  * ===> 08 - Control icon
  * ===> 09 - Options Controls
  * ===> 10 - Forms [Gray Mode], [Dark Mode]
+ * ===> 11 - Counter Input
 */
 
 /*==== Selectors ====*/
@@ -201,6 +202,41 @@ textarea.form-control {
     line-height: normal;
     min-height : calc(var(--height)*2);
     @include padding-block(calc(var(--padding) / 1.75));
+}
+
+/*==== Counter Input ====*/
+.px-counter-input {
+    /*==== Buttons ====*/
+	.btn.square {
+		width: REM(28);
+		font-size: 0.75em;
+		background-color: transparent;
+	}
+
+	/*==== Reset Input ====*/
+	input[type="number"] {
+		border-color: rgba(#000, 0.1)!important;
+		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+			-webkit-appearance: none!important;
+			-moz-appearance: none!important;
+					appearance: none!important;
+		}
+	}
+
+	/*==== With Icon on the Side ====*/
+	&[class*="fa-"] {
+		input[type="number"] {
+			padding-#{$direction-start}: 2rem;
+			padding-#{$direction-end}: 4rem;
+		}
+
+		&::before {
+			top: 0;
+			position: absolute;
+			line-height: REM(34);
+			#{$direction-start}: REM(15);
+		}
+	}
 }
 
 /*==== Labels ====*/

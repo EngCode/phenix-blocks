@@ -72,6 +72,10 @@ if (!function_exists('phenix_core')) :
     add_action('enqueue_block_assets', 'phenix_core');
     add_action('enqueue_block_editor_assets', 'phenix_core');
     // add_action('login_enqueue_scripts', 'phenix_core');
+    //===> Include Phenix Core in the Plugin Page <===//
+    if (get_option('pds_admin_style') && is_admin()) {
+        add_action('admin_enqueue_scripts', 'phenix_core');
+    }
 endif;
 
 //=====> Phenix Assets <=====//
@@ -203,6 +207,10 @@ if (!function_exists('phenix_assets')) :
 
     add_action('wp_enqueue_scripts', 'pds_optimized_asset');
     add_action('enqueue_block_assets', 'pds_optimized_asset');
+    //===> Include Phenix Core in the Plugin Page <===//
+    if (get_option('pds_admin_style') && is_admin()) {
+        add_action('admin_enqueue_scripts', 'pds_optimized_asset');
+    }
 endif;
 
 //=====> Phenix Admin CSS <=====//
@@ -236,8 +244,6 @@ if (!function_exists('pds_admin_style') && is_admin()) :
 
     //===> Include Phenix Core in the Plugin Page <===//
     if (get_option('pds_admin_style') && is_admin()) {
-        add_action('admin_enqueue_scripts', 'phenix_core');
-        add_action('admin_enqueue_scripts', 'phenix_assets');
         add_action('admin_enqueue_scripts', 'pds_admin_style');
     }
 endif;

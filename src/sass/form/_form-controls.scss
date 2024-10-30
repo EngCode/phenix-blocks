@@ -368,7 +368,7 @@ label,legend  {@extend %inline-block;}
         }
     }
 
-    &[data-type="switch"] span {color: var(--color);}
+    &[data-type="switch"] input:checked ~ span {color: var(--color);}
     /*==== Checked mode ====*/
     input:checked ~ {
         span, .btn, .switch {

@@ -674,7 +674,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     popup; lightbox; menu; datatable;
     validation; uploader; progress; rebuildSelect
     select; repeater; rating; seo; loader;
-    slider; utilities; notifications; init;
+    slider; utilities; notifications; init; debounce
 }
 
 /*====> Phenix Selecting Method <====*/

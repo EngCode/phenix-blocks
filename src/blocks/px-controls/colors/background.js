@@ -141,12 +141,11 @@ export default class PhenixBackground extends Component {
             //=== Show/Hide Panel ===//
             if (panel) {
                 Phenix(button).toggleClass("px-active");
+                Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+
                 if (isSmall) {
                     Phenix(wrapper).toggleClass("overlay-panel")
-                    Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
-                } else {
-                    Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
-                };
+                }
             }
         };
 

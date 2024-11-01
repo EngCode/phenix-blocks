@@ -203,7 +203,7 @@ export default class PhenixIcons extends Component {
             //=== Show/Hide Panel ===//
             if (panel) {
                 Phenix(button).toggleClass("px-active");
-                Phenix(panel).toggleClass("px-active").slideToggle(300, 0, "flex");
+                Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
             }
         };
 

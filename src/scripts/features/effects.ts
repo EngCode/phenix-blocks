@@ -19,94 +19,99 @@ PhenixElements.prototype.slideUp = function (duration?, delay?) {
     this.forEach((element:HTMLElement) => {
         //====> if the target is Visible <====//
         if (getComputedStyle(element).display !== 'none') {
-            //====> Set Animation Base Properties <====//
-            Phenix(element).css({"overflow" : 'hidden'});
+            //====> Set Initial Animation Properties <====//
+            Phenix(element).css({ "overflow": 'hidden' });
 
             //====> Animation Data <====//
-            let height = Phenix(element).height(),
-                thisStyle = Phenix(element).getCSS(),
-                timespeed = duration || 300,
-                keyframes = [
-                    {
-                        height: `${height}px`,
-                        paddingTop: thisStyle.paddingTop,
-                        paddingBottom: thisStyle.paddingBottom,
-                    },
-                    //====> To <====//
-                    {
-                        height: 0,
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                    }
-                ];
+            const fullHeight = element.scrollHeight;
+            const initialStyles = Phenix(element).getCSS();
+            const timespeed = duration || 300;
+            const startTime = performance.now();
+            const endHeight = 0;
 
-            //====> Slide-Up the Element <====//
-            element.animate(keyframes, {
-                duration : timespeed,
-                easing   : 'linear',
-                fill     : 'backwards',
-                delay    : delay || 0,
-            });
+            //====> requestAnimationFrame Animation <====//
+            function animateSlideUp(currentTime: number) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / timespeed, 1);
 
-            //====> After Animation : Hide the Element <====//
-            window.setTimeout(() => Phenix(element).css({"display" : 'none'}), timespeed);
+                // Set the element's style based on the animation progress
+                Phenix(element).css({
+                    height: `${fullHeight * (1 - progress)}px`,
+                    paddingTop: `${parseFloat(initialStyles.paddingTop) * (1 - progress)}px`,
+                    paddingBottom: `${parseFloat(initialStyles.paddingBottom) * (1 - progress)}px`
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateSlideUp); // Continue the animation
+                } else {
+                    // After Animation : Hide the Element
+                    Phenix(element).css({ "display": 'none', "height": "", "paddingTop": "", "paddingBottom": "", "overflow": "" });
+                }
+            }
+
+            //====> Trigger the Animation with Delay <====//
+            setTimeout(() => requestAnimationFrame(animateSlideUp), delay || 0);
         }
     });
 
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : SlideDown <====*/
 PhenixElements.prototype.slideDown = function (duration?, delay?, display?) {
     //====> Loop Through Phenix Elements <====//
-    this.forEach((element:HTMLElement) => {
+    this.forEach((element: HTMLElement) => {
         //====> if the target is Hidden <====//
         if (getComputedStyle(element).display === 'none') {
-            //====> Show the Element <====//
+            //====> Show the Element and Set Initial Styles <====//
             Phenix(element).css({
-                "overflow" : 'hidden',
-                "display"  : display || 'block',
+                "overflow": 'hidden',
+                "display": display || 'block',
+                "height": "0px", // Start height for sliding effect
+                "paddingTop": "0px",
+                "paddingBottom": "0px"
             });
 
             //====> Animation Data <====//
-            let height = Phenix(element).height(),
-                thisStyle = Phenix(element).getCSS(),
-                timespeed = duration || 300,
-                keyframes = [
-                    {
-                        height: 0,
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                    },
-                    //====> To <====//
-                    {
-                        height: `${height}px`,
-                        paddingTop: thisStyle.paddingTop,
-                        paddingBottom: thisStyle.paddingBottom,
-                    }
-                ];
+            const fullHeight = element.scrollHeight;
+            const initialStyles = Phenix(element).getCSS();
+            const timespeed = duration || 300;
+            const startTime = performance.now();
 
-            //====> Slide-Up the Element <====//
-            element.animate(keyframes, {
-                duration: timespeed,
-                easing  : 'linear',
-                fill    : 'backwards',
-                delay   : delay || 0,
-            });
+            //====> requestAnimationFrame Animation <====//
+            function animateSlideDown(currentTime: number) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / timespeed, 1);
 
-            //====> After Animation : Clear Overflow <====//
-            window.setTimeout(() => element.style.overflow = null, timespeed);
+                // Set the element's style based on the animation progress
+                Phenix(element).css({
+                    height: `${progress * fullHeight}px`,
+                    paddingTop: `${parseFloat(initialStyles.paddingTop) * progress}px`,
+                    paddingBottom: `${parseFloat(initialStyles.paddingBottom) * progress}px`
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateSlideDown); // Continue the animation
+                } else {
+                    // Clear overflow and reset properties after animation completes
+                    Phenix(element).css({ "height": "", "paddingTop": "", "paddingBottom": "", "overflow": "" });
+                }
+            }
+
+            //====> Trigger the Animation with Delay <====//
+            setTimeout(() => requestAnimationFrame(animateSlideDown), delay || 0);
         }
     });
+
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : SlideToggle <====*/
 PhenixElements.prototype.slideToggle = function (duration?, delay?, display?) {
     //====> Loop Through Phenix Elements <====//
-    this.forEach((element:HTMLElement) => {
+    this.forEach((element: HTMLElement) => {
         //====> if the target is Hidden <====//
         if (getComputedStyle(element).display === 'none') {
             Phenix(element).slideDown(duration, delay, display);
@@ -119,66 +124,91 @@ PhenixElements.prototype.slideToggle = function (duration?, delay?, display?) {
 
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : FadeOut <====*/
 PhenixElements.prototype.fadeOut = function (duration?, delay?) {
     //====> Loop Through Phenix Elements <====//
-    this.forEach((element:HTMLElement) => {
+    this.forEach((element: HTMLElement) => {
         //====> if the target is Visible <====//
         if (getComputedStyle(element)?.display !== 'none') {
+            //====> Set Initial Style for Animation <====//
+            Phenix(element).css({ "opacity": "1" });
+
             //====> Animation Data <====//
-            let timespeed = duration || 300,
-                keyframes = [{opacity: 1}, {opacity : 0}];
+            const timespeed = duration || 300;
+            const startTime = performance.now();
 
-            //====> Slide-Up the Element <====//
-            element.animate(keyframes, {
-                duration : timespeed,
-                easing   : 'linear',
-                fill     : 'forwards',
-                delay    : delay || 0,
-            });
+            //====> requestAnimationFrame Animation <====//
+            function animateFadeOut(currentTime: number) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / timespeed, 1);
 
-            //====> After Animation : Hide the Element & Clear inline-style <====//
-            window.setTimeout(() => Phenix(element).css({"display" : 'none'}), timespeed);
+                // Apply the opacity based on the animation progress
+                Phenix(element).css({ opacity: `${1 - progress}` });
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateFadeOut); // Continue the animation
+                } else {
+                    // After Animation : Hide the Element and Reset Inline Styles
+                    Phenix(element).css({ "display": 'none', "opacity": "" });
+                }
+            }
+
+            //====> Trigger the Animation with Delay <====//
+            setTimeout(() => requestAnimationFrame(animateFadeOut), delay || 0);
         }
     });
 
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : FadeIn <====*/
 PhenixElements.prototype.fadeIn = function (duration?, delay?, display?) {
     //====> Loop Through Phenix Elements <====//
-    this.forEach((element:HTMLElement) => {
-        //====> if the target is Visible <====//
+    this.forEach((element: HTMLElement) => {
+        //====> if the target is Hidden <====//
         if (getComputedStyle(element).display === 'none') {
-            //====> Show the Element <====//
-            Phenix(element).css({"display" : display || 'block'});
+            //====> Show the Element with Initial Opacity <====//
+            Phenix(element).css({
+                "display": display || 'block',
+                "opacity": "0"
+            });
 
             //====> Animation Data <====//
-            let timespeed = duration || 300,
-                keyframes = [{opacity: 0}, {opacity : 1}];
+            const timespeed = duration || 300;
+            const startTime = performance.now();
 
-            //====> Slide-Up the Element <====//
-            element.animate(keyframes, {
-                duration : timespeed,
-                easing   : 'linear',
-                fill     : 'forwards',
-                delay    : delay || 0,
-            });
+            //====> requestAnimationFrame Animation <====//
+            function animateFadeIn(currentTime: number) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / timespeed, 1);
+
+                // Set opacity based on the animation progress
+                Phenix(element).css({ opacity: `${progress}` });
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateFadeIn); // Continue animation
+                } else {
+                    // Clear inline opacity style after animation completes
+                    Phenix(element).css({ "opacity": "" });
+                }
+            }
+
+            //====> Trigger the Animation with Delay <====//
+            setTimeout(() => requestAnimationFrame(animateFadeIn), delay || 0);
         }
     });
 
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : FadeToggle <====*/
 PhenixElements.prototype.fadeToggle = function (duration?, delay?, display?) {
     //====> Loop Through Phenix Elements <====//
-    this.forEach((element:HTMLElement) => {
+    this.forEach((element: HTMLElement) => {
         //====> if the target is Hidden <====//
         if (getComputedStyle(element).display === 'none') {
             Phenix(element).fadeIn(duration, delay, display);
@@ -191,7 +221,7 @@ PhenixElements.prototype.fadeToggle = function (duration?, delay?, display?) {
 
     //====> Return Phenix Elements <====//
     return this;
-}
+};
 
 /*====> Effects : (Smoth-Scroll, Sticky, Scroll-Spy) <====*/
 import './effects-scroll';

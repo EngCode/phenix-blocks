@@ -116,6 +116,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 14. Disable core blocks remover
 15. Upgrade taxonomies query and support sub terms.
 16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
+17. Fix Core Animations Effects Bouncing.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

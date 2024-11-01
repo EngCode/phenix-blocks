@@ -39,6 +39,9 @@
                 position: relative;
                 margin-#{$direction-end}: #{REM(8)};
             }
+
+            //===> Hide Submenus <===//
+            > ul, > div {display: none;}
         }
         /*==== Links ====*/
         li > a {

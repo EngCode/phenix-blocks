@@ -246,7 +246,7 @@ label,legend  {@extend %inline-block;}
 .control-icon {
     position: relative;
     color: var(--color);
-    --white-space : calc(var(--padding)*2.1);
+    --white-space : calc(var(--padding)*2.25);
     /*==== icons ====*/
     &::before {
         top: 0;

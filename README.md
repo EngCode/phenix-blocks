@@ -117,6 +117,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 15. Upgrade taxonomies query and support sub terms.
 16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
 17. Fix Core Animations Effects Bouncing.
+18. Fix Fading Slider in RTL.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

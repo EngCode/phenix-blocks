@@ -1,6 +1,6 @@
 
 /*==== Canvas Overflow Fix ====*/
-.interface-interface-skeleton__html-container {overflow: hidden;}
+// .interface-interface-skeleton__html-container {overflow: hidden;}
 
 /*==== GB Editor Blocks List ====*/
 .editor-styles-wrapper {
@@ -117,9 +117,9 @@
 	}
 
 	/*==== Show Dropdown on Select ====*/
-	.px-dropdown.has-child-selected, .px-dropdown.is-selected {
-		.px-dropdown-list {display: block;}
-	}
+	// .px-dropdown.has-child-selected, .px-dropdown.is-selected {
+	// 	.px-dropdown-list {display: block;}
+	// }
 
 	/*==== Core Block Style ====*/
 	.block-editor-block-list__block {
@@ -154,12 +154,11 @@
 		}
 	}
 
+	/*==== ... ====*/
 	.splide {visibility: visible;}
-
-	.block-editor-inserter {border-color: rgba(#000, 0.1);}
-
-	.wp-block-image .components-resizable-box__container img {display: inline-block!important;}
 	.wp-block-phenix-button {pointer-events: all!important;}
+	.block-editor-inserter {border-color: rgba(#000, 0.1);}
+	.wp-block-image .components-resizable-box__container img {display: inline-block!important;}
 
 	/*==== Full Screen Fix ====*/
     .px-slider {
@@ -249,15 +248,17 @@
 	}
 
 	/*==== Inner Blocks Position Fix ====*/
-	// .block-editor-block-list__block:not([class*="position-"]):not(.pds-video-bg) > .block-editor-block-list__layout:not([class*="container"]):not([class*="position-"])
 	.px-media.pds-video-bg > .block-editor-block-list__layout {position: relative; z-index: 10;}
 	.block-editor-block-list__block.position-rv > .block-editor-block-list__layout:has(.position-ab) {position: static;}
 
+	/*==== Custom Code Fixes ====*/
 	.wp-block-phenix-custom-code .form-control {
 		direction: ltr;
 		text-align: left;
 		font-family: 'Courier New', Courier, monospace;
 	}
+
+	textarea {resize: vertical;}
 
 	/*==== Marquess Style ====*/
 	.px-marquee, .px-marquee-reverse {
@@ -273,8 +274,6 @@
 	}
 
 	.wp-block-phenix-media-element.none-ratio:empty {padding-bottom: 50%;}
-
-	textarea {resize: vertical;}
 
 	/*==== Select Fixes ====*/
 	.px-icons-selector, .colors-selector {
@@ -297,15 +296,16 @@
 }
 
 /*==== Toolbar Fix 6.5 ====*/
-.components-popover.block-editor-block-list__block-popover .block-editor-block-contextual-toolbar {
-	width: fit-content!important;
-}
+// .components-popover.block-editor-block-list__block-popover .block-editor-block-contextual-toolbar {
+// 	width: fit-content!important;
+// }
 
 /*==== Inserter Fixes ====*/
-.block-editor-inserter__panel-content {
-	.block-editor-block-types-list > * {width: 100%!important;}
-}
+// .block-editor-inserter__panel-content {
+// 	.block-editor-block-types-list > * {width: 100%!important;}
+// }
 
+/*==== Options Layout Fix ====*/
 .option-control.inline-block {display: inline-flex;}
 
 /*==== Post Editor Wrapper ====*/
@@ -322,11 +322,8 @@ body.block-editor-page {
 		}
 	}
 
-	/*==== Toolbar ====*/
-	.block-editor-block-toolbar__slot > .components-toolbar {
-		// border: 0 none;
-		// border-#{$direction-end}: 1px solid rgba(#000, 0.4);
-		
+	/*==== Toolbar Controls ====*/
+	.block-editor-block-toolbar__slot .components-toolbar {
 		.inline-block .form-control {
 			height: calc(100% - 2px);
 			margin-top: 1px;
@@ -392,21 +389,7 @@ body .wp-site-blocks {padding-top: 4rem;}
 }
 
 /*==== Fix Inserter Popup ====*/
-.interface-interface-skeleton__secondary-sidebar ~ .interface-interface-skeleton__content {
-	.edit-site-visual-editor, .edit-post-visual-editor {
-		.components-popover.block-editor-block-popover .components-popover__content {
-			margin-#{$direction-start}: auto!important;
-			margin-#{$direction-end}: 0!important;
-			-webkit-transform: translateX(-190%);
-			        transform: translateX(-190%);
-		}
-	}
-}
-
-.components-popover__content {
-	max-width: 280px;
-	width: auto !important;
-}
+.block-editor-block-types-list>[role=presentation] {width: 100%;}
 
 /*==== List Items with Text/Icon ====*/
 .block-editor-rich-text__editable.rich-text {cursor: text;}

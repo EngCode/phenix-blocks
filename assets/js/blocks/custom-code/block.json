@@ -3,7 +3,7 @@
   "name": "phenix/custom-code",
   "version": "1.0.0",
   "title": "Custom Code",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Inject Custom HTML/CSS/JavaScript code into your page",
   "supports": {
     "html": false,

@@ -3,7 +3,7 @@
   "name": "phenix/logical-block",
   "version": "1.0.0",
   "title": "Logic Content",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Show and Hide Blocks with Logical Conditions",
   "supports": {
     "html": false,

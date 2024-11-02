@@ -3,7 +3,7 @@
   "name": "phenix/query",
   "version": "1.0.0",
   "title": "Posts Query",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Custom Query Posts Block.",
   "supports": {
     "html": false,

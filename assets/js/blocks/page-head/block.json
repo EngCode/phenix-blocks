@@ -3,7 +3,7 @@
   "name": "phenix/page-head",
   "version": "0.1.0",
   "title": "Page Head",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Page Title and Breadcrumb.",
   "supports": {
     "html": false,

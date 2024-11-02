@@ -11,7 +11,7 @@
     "wrapper",
     "container"
   ],
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "",
   "supports": {
     "html": false,

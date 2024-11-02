@@ -3,7 +3,7 @@
   "name": "phenix/logo",
   "version": "0.1.0",
   "title": "Phenix Logo",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Main Logo Block for Phenix Header.",
   "supports": {
     "html": false,

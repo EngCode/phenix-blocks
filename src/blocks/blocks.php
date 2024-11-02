@@ -7,6 +7,18 @@
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
+//====> Create Phenix Section <====//
+add_filter( 'block_categories_all', function( $categories, $post ) {
+    // Add a custom section (category) for your blocks
+    $categories[] = array(
+        'slug'  => 'phenix-blocks',        // Unique slug for the category
+        'title' => __('Phenix Blocks', 'text-domain'), // Display name for the category
+        'icon'  => 'screenoptions', // Optional: icon for the category in the list
+    );
+
+    return $categories;
+}, 10, 2 );
+
 //====> Helper Functions [Check for Objects] <====//
 if (!function_exists("PxToREM")) :
     function PxToREM($size, $base = 16) {

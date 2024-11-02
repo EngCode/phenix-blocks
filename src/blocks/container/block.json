@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"title": "Container",
     "keywords": ["pds", "pds-blocks", "section", "group", "wrapper", "container"],
-	"category": "design",
+	"category": "phenix-blocks",
 	"description": "",
 	"supports": {
 		"html": false,

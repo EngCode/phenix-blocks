@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"title": "Grid Column",
     "keywords": ["pds", "pds-blocks", "column", "group", "wrapper", "row", "flex", "layout", "grid"],
-	"category": "design",
+	"category": "phenix-blocks",
 	"description": "",
 	"supports": {
 		"html": false,

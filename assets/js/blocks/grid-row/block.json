@@ -14,7 +14,7 @@
     "layout",
     "grid"
   ],
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "",
   "supports": {
     "html": false,

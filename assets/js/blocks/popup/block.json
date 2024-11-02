@@ -3,7 +3,7 @@
   "name": "phenix/popup",
   "version": "0.1.0",
   "title": "Popup/Modal",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "",
   "supports": {
     "html": false,

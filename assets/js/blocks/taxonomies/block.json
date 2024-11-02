@@ -3,7 +3,7 @@
   "name": "phenix/taxonomies",
   "version": "0.1.0",
   "title": "Taxonomies",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Custom Taxonomies & Categories Query Block.",
   "supports": {
     "html": false,

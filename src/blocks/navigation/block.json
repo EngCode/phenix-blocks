@@ -3,7 +3,7 @@
 	"name": "phenix/navigation",
 	"version": "0.1.0",
 	"title": "Dynamic Menu",
-	"category": "design",
+	"category": "phenix-blocks",
 	"description": "",
 	"supports": {
 		"html": false,

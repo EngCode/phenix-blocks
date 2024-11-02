@@ -9,7 +9,7 @@
     "inline",
     "li"
   ],
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Text <li> element for Lists.",
   "supports": {
     "html": false,

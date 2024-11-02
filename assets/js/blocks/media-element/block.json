@@ -3,7 +3,7 @@
   "name": "phenix/media-element",
   "version": "1.0.0",
   "title": "Multimedia",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "",
   "supports": {
     "html": false,

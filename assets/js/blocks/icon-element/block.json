@@ -3,7 +3,7 @@
   "name": "phenix/icon-element",
   "version": "1.0.0",
   "title": "Icon Element",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "",
   "supports": {
     "html": false,

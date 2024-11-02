@@ -3,7 +3,7 @@
   "name": "phenix/theme-part",
   "version": "0.1.0",
   "title": "Theme Part",
-  "category": "design",
+  "category": "phenix-blocks",
   "description": "Pull a Dynamic Template Part From Current Theme.",
   "supports": {
     "html": false,

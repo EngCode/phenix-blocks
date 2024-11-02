@@ -3,7 +3,7 @@
 	"name": "phenix/button",
 	"version": "1.0.0",
 	"title": "Button",
-	"category": "design",
+	"category": "phenix-blocks",
 	"description": "",
 	"supports": {
 		"html": false,

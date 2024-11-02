@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"title": "Group",
     "keywords": ["pds", "pds-blocks", "group", "wrapper", "container"],
-	"category": "design",
+	"category": "phenix-blocks",
 	"description": "Flexbox Container to Group the Elements Together from Phenix Blocks.",
 	"supports": {
 		"html": false,

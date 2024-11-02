@@ -190,7 +190,7 @@ export default class PhenixBackground extends Component {
                         {type === "video" ? <MediaUploader label="Cover File" key="upload-cover-file" size="small" value={!cover ? PhenixBlocks.palette.placeholder : cover} setValue={setCover}></MediaUploader> : null}
                     </> : null}
                     {/*===> Colors Set <====*/}
-                    <div className='flexbox'>
+                    <div className='flexbox' style={{"gap": "0.75rem"}}>
                         {type === "color" ? <>
                             <label className='tx-align-center pdb-5 pdy-5 lineheight-100 bg-alpha-05 radius-sm mb-0 tx-UpperCase fs-12 col-12'>{__("Main Colors", "pds-blocks")}</label>
                             {makeButtons(PhenixBlocks.palette[`${customOnly?'variables':'colors'}`].main, "radius-xxl")}

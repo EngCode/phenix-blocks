@@ -10,11 +10,14 @@ if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'
 //====> Create Phenix Section <====//
 add_filter( 'block_categories_all', function( $categories, $post ) {
     // Add a custom section (category) for your blocks
-    $categories[] = array(
+    $custom_category = array(
         'slug'  => 'phenix-blocks',        // Unique slug for the category
         'title' => __('Phenix Blocks', 'text-domain'), // Display name for the category
         'icon'  => 'screenoptions', // Optional: icon for the category in the list
     );
+
+    // Add custom category to the beginning of the categories array
+    array_unshift( $categories, $custom_category );
 
     return $categories;
 }, 10, 2 );

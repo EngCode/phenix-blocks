@@ -426,3 +426,9 @@ body .wp-site-blocks {padding-top: 4rem;}
 	height: 100%;
 	position: absolute;
 }
+
+/*==== RTL Headlines Fix ====*/
+.rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6 {
+	font-family: var(--primary-font), var(--secondary-font)!important;
+}
+

@@ -69,7 +69,7 @@ export default class StylesSet extends Component {
                     </div>
                     {attributes.style.overly ? <>
                     <div className='col col-6 mb-10'>
-                        <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={(target) => mainSetter(target, screen ? screen : "")} />
+                        <PhenixNumber name="overly_opacity" label={__("Overlay Opacity", "pds-blocks")} value={ parseInt(attributes.style.overly_opacity) || 50} onChange={mainSetter} />
                     </div>
                     </>:null}
 

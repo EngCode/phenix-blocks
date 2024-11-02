@@ -275,6 +275,10 @@ window.PhenixBlocks = {
                             blockProps['data-icon'] = sub_value;
                             blockProps.className += ` icons-list`;
                         }
+                        //===> Icon List <====//
+                        else if (sub_option === "icon" && attributes.type === "font") {
+                            blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;
+                        }
 
                         //===> Positions Values <===//
                         else if (sub_option.startsWith("pos-")) {

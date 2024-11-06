@@ -5,10 +5,6 @@
 			"path": "."
 		},
 		{
-			"name": "px-design",
-			"path": "../../../../px-design"
-		},
-		{
 			"name": "themes",
 			"path": "../../themes"
 		},
@@ -19,6 +15,9 @@
 		{
 			"name": "profilaat",
 			"path": "D:/Work Space/Backups/Projects/Profilaat-WP/profilaat"
+		},
+		{
+			"path": "../../../../px-design"
 		}
 	],
 	"settings": {

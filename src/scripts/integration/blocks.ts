@@ -185,4 +185,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     if (main_header) {
         
     }
+
+    //===> Add Support for CSS Scroll Driving Animations <===//
+    // Phenix(document).import("scroll-timeline", "script", "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js", ()=>{}, false);
 }

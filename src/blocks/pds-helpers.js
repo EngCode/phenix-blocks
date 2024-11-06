@@ -30,6 +30,9 @@ window.PhenixBlocks = {
     
             //===> if its a Normal Values that should be string <===//
             if (isNormalValue(option_value) && attributes[option_name]) {
+                //====> Invalid Values Check <====//
+                if (attributes[option_name] === "null" || attributes[option_name] === "on" || attributes[option_name] === "undefined") return;
+
                 //===> HTML ID <===//
                 if (option_name === "id") {
                     blockProps['id'] = attributes[option_name];
@@ -257,6 +260,9 @@ window.PhenixBlocks = {
 
                         if (excluded.some(opt => opt === sub_option)) return;
                         if (findAndExcluded.some(opt => opt.includes(sub_option))) return;
+
+                        //====> Invalid Values Check <====//
+                        if (sub_value === "null" || sub_value === "on" || sub_value === "undefined") return;
 
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }

@@ -79,6 +79,24 @@ if (!is_admin()) {
                 wp_deregister_script('jquery-core');
                 wp_deregister_script('jquery-migrate');
             }
+
+            //===> WooCommerce <===//
+            if (get_option('pds_woo_js') == "on") {
+                wp_dequeue_script('select2');
+                wp_dequeue_script('woocommerce');
+                wp_dequeue_script('wc-checkout');
+                wp_dequeue_script('wc-add-to-cart');
+                wp_dequeue_script('wc-cart-fragments');
+                wp_dequeue_script('wc-single-product');
+                wp_dequeue_script('wc-add-to-cart-variation');
+            }
+
+            if (get_option('pds_woo_css') == "on") {
+                wp_dequeue_style('wc-blocks-style');
+                wp_dequeue_style('woocommerce-layout');
+                wp_dequeue_style('woocommerce-general');
+                wp_dequeue_style('woocommerce-smallscreen');
+            }
         }
         
         add_action('wp_enqueue_scripts', 'scripts_optimize');

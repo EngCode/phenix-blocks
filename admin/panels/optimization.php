@@ -60,6 +60,14 @@
                     "name"  => 'newsletter_css',
                     "title" => 'Remove [Newsletter] CSS',
                 ),
+                array(
+                    "name"  => 'pds_woo_css',
+                    "title" => 'Remove WooCommerce CSS',
+                ),
+                array(
+                    "name"  => 'pds_woo_js',
+                    "title" => 'Remove WooCommerce JS',
+                ),
             ));
         ?>
     </div>

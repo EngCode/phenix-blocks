@@ -128,6 +128,8 @@
             array('blocks_optimizer', 'pds-admin', true),
             array('pds_loading', 'pds-admin', true),
             array('excerpt_length', 'pds-admin', true),
+            array('pds_woo_css', 'pds-admin', true),
+            array('pds_woo_js', 'pds-admin', true),
     
             //===> Phenix Blocks <===//
             array('container_block', 'pds-admin', true),

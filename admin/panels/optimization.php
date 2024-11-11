@@ -15,12 +15,12 @@
                     "title" => 'Use Phenix CDN',
                 ),
                 array(
-                    "name"  => 'head_cleaner',
-                    "title" => 'Header Optimizer',
-                ),
-                array(
                     "name"  => 'jquery_remove',
                     "title" => 'Remove jQuery',
+                ),
+                array(
+                    "name"  => 'head_cleaner',
+                    "title" => 'Header Optimizer',
                 ),
                 array(
                     "name"  => 'blocks_optimizer',
@@ -29,15 +29,7 @@
                 array(
                     "name"  => 'comments_css',
                     "title" => 'Clean Comments CSS',
-                ),
-                array(
-                    "name"  => 'adminbar_css',
-                    "title" => 'Clean Admin-Bar CSS',
-                ),
-                array(
-                    "name"  => 'adminbar_disable',
-                    "title" => 'Disable Admin-Bar for Users',
-                ),
+                )
             ));
         ?>
 

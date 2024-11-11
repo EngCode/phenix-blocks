@@ -128,23 +128,12 @@ if (!is_admin()) {
     endif;
 
     //===> Remove Admin Bar Inline CSS <===//
-    if (!function_exists('remove_adminbar_style') && get_option('adminbar_css') == "on") :
+    if (!function_exists('remove_adminbar_style')) :
         function remove_adminbar_style() {
             remove_action('wp_head', '_admin_bar_bump_cb');
         }
 
         add_action('get_header', 'remove_adminbar_style');
-    endif;
-
-    //=====> Remove Admin Bar for Users <=====//
-    if (!function_exists('adminbar_disable') && get_option("adminbar_disable") == "on") :
-        function adminbar_disable() {
-            if (!current_user_can('update_core')) {
-                show_admin_bar(false);
-            }
-        }
-
-        add_action('get_header', 'adminbar_disable');
     endif;
 
     //===== CF7 Elements Fix =====//

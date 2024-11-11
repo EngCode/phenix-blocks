@@ -12,7 +12,7 @@
             echo pds_toggle_controls(array(
                 array(
                     "name"  => 'pds_cdn',
-                    "title" => 'Use Phenix CDN',
+                    "title" => 'Phenix CDN',
                 ),
                 array(
                     "name"  => 'jquery_remove',

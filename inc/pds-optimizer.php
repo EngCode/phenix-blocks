@@ -80,6 +80,11 @@ if (!is_admin()) {
                 wp_deregister_script('jquery-migrate');
             }
 
+            //===== Contact Form 7 =====//
+            if (get_option('wpc7_cleaner') == "on") {
+                wp_deregister_script('contact-form-7');
+            }
+
             //===> WooCommerce <===//
             if (get_option('pds_woo_js') == "on") {
                 wp_dequeue_script('select2');
@@ -99,7 +104,7 @@ if (!is_admin()) {
             }
         }
         
-        add_action('wp_enqueue_scripts', 'scripts_optimize');
+        add_action('wp_enqueue_scripts', 'scripts_optimize', 999);
     endif;
 
     //=====> Styles Optimizer <=====//
@@ -109,12 +114,18 @@ if (!is_admin()) {
             if (get_option('newsletter_css') && get_option('newsletter_css') == "on") {
                 wp_dequeue_style('newsletter');
             }
+
+            //===== Contact Form 7 =====//
+            if (get_option('wpc7_cleaner') == "on") {
+                wp_deregister_style('contact-form-7');
+            }
             
+            //==== Editor Assets ====//
             wp_dequeue_style('wp-reset-editor-styles');
             wp_dequeue_style('wp-reset-editor-styles-rtl');
         }
 
-        add_action('wp_print_styles', 'styles_optimize', 100);
+        add_action('wp_print_styles', 'styles_optimize', 999);
     endif;
 
     //===> Remove Comments Default CSS <===//
@@ -136,39 +147,22 @@ if (!is_admin()) {
         add_action('get_header', 'remove_adminbar_style');
     endif;
 
-    //===== CF7 Elements Fix =====//
+    //===== Contact Form 7 Fixes =====//
     if (get_option('wpc7_cleaner') == "on") {
+        //===> HTML Fixes <===//
         add_filter('wpcf7_form_elements', function($content) {
             $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
             return $content;
         });
 
         add_filter('wpcf7_autop_or_not', '__return_false');
+
+        //====> Remove Enum Validation <====//
+        remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_select_enum_rules', 20, 2);
+        remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_checkbox_enum_rules', 20, 2);
+        // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_enum_rules', 20, 2);
+        // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_local_enum_rules', 20, 2);
     }
-
-    //===== CSS Remove =====//
-    if (get_option('wpc7_rm_styles') == "on" && !function_exists('wpcf7_deregister_styles')) {
-        function wpcf7_deregister_styles() {
-            wp_deregister_style('contact-form-7');
-        }
-
-        add_action('wp_print_styles', 'wpcf7_deregister_styles', 100);
-    }
-
-    //===== JavaScript Remove =====//
-    if (get_option('wpc7_rm_scripts') == "on" && !function_exists('wpcf7_deregister_scripts')) {
-        function wpcf7_deregister_scripts() {
-            wp_deregister_script('contact-form-7');
-        }
- 
-        add_action('wp_enqueue_scripts', 'wpcf7_deregister_scripts', 100);
-    }
-
-    //====> Remove Enum Validation <====//
-    remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_select_enum_rules', 20, 2);
-    remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_checkbox_enum_rules', 20, 2);
-    // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_enum_rules', 20, 2);
-    // remove_action('wpcf7_swv_create_schema', 'wpcf7_swv_add_datetime_local_enum_rules', 20, 2);
 
     //===> Cleanup Navigation Menus <===//
     if (!function_exists('pds_menu_items_id_remover')) :

@@ -37,20 +37,12 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
-                    "name"  => 'wpc7_rm_scripts',
-                    "title" => 'CF7 Remove JS',
-                ),
-                array(
-                    "name"  => 'wpc7_rm_styles',
-                    "title" => 'CF7 Remove CSS',
+                    "name"  => 'newsletter_css',
+                    "title" => 'Remove Newsletter CSS',
                 ),
                 array(
                     "name"  => 'wpc7_cleaner',
-                    "title" => 'CF7 HTML Cleaner',
-                ),
-                array(
-                    "name"  => 'newsletter_css',
-                    "title" => 'Remove [Newsletter] CSS',
+                    "title" => 'Contact Form 7 Cleaner',
                 ),
                 array(
                     "name"  => 'pds_woo_css',

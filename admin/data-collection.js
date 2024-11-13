@@ -756,4 +756,113 @@ document.addEventListener('DOMContentLoaded', ready => {
             }
         }
     });
+
+    //===> Import Posts <===//
+    async function import_posts(data) {
+        //===> Create a FormData <===//
+        const formData = new FormData();
+        //===> WordPress AJAX action <===//
+        formData.append('action', 'pds_import_posts');
+
+        // Convert JSON data to string <===//
+        formData.append('posts_data', JSON.stringify(data));
+
+        //===> Nonce for security <===//
+        formData.append('_ajax_nonce', PDS_WP_KEY.nonce);
+
+        //===> Connect to the API <===//
+        const response = await fetch(`${PDS_WP_KEY.site}/wp-admin/admin-ajax.php`, {
+            method: 'POST',
+            body: formData,
+            credentials: "same-origin",
+        });
+
+        //===> Check for Error <===//
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        //===> Define Data <===//
+        const result = await response.json();
+        
+        //===> Success Notification <===//
+        if (result.success) {
+            data_success("Posts have been imported successfully.");
+        } 
+        //===> Error Notification <===//
+        else {
+            console.error("Error importing posts:", result.message);
+        }
+
+        //===> Return Data <===//
+        return result;
+    }
+    
+    //===> Posts Uploader <===//
+    Phenix('#import-posts-uploader').on('change', event => {
+        //===> Get the File <===//
+        let file = event.target.files[0];
+
+        //===> Check for File <===//
+        if (file) {
+            //===> Define Data <===//
+            let reader = new FileReader();
+
+            //===> Read the File <===//
+            reader.readAsText(file, "UTF-8");
+
+            //===> Send AJAX request to WordPress to import posts <===//
+            reader.onload = (event) => import_posts(JSON.parse(event.target.result)).catch(error => console.error('Error:', error));
+        }
+    });
+
+    //===> Remove Posts <===//
+    async function remove_posts(data) {
+        //===> Create a FormData <===//
+        const formData = new FormData();
+
+        //===> WordPress AJAX action <===//
+        formData.append('action', 'pds_posts_remover');
+
+        // Convert JSON data to string <===//
+        formData.append('post_type', JSON.stringify(data));
+
+        //===> Nonce for security <===//
+        formData.append('_ajax_nonce', PDS_WP_KEY.nonce);
+
+        //===> Connect to the API <===//
+        const response = await fetch(`${PDS_WP_KEY.site}/wp-admin/admin-ajax.php`, {
+            method: 'POST',
+            body: formData,
+            credentials: "same-origin",
+        });
+
+        //===> Check for Error <===//
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        //===> Define Data <===//
+        const result = await response.json();
+        
+        //===> Success Notification <===//
+        if (result.success) {
+            data_success("Posts have been removed successfully.");
+        } 
+        //===> Error Notification <===//
+        else {
+            console.error("Error importing posts:", result.message);
+        }
+
+        //===> Return Data <===//
+        return result;
+    }
+
+    //===> Posts Uploader <===//
+    Phenix('#pds-posts-remover').on('click', event => {
+        //===> Get the Post Type <===//
+        const post_type = Phenix(event.target).ancestor(".posts-remover-wrapper").querySelector("[name='post_type']").value;
+        //===> Send AJAX request to WordPress to import posts <===//
+        remove_posts({"post_type": post_type}).catch(error => console.error('Error:', error));
+    });
 });

@@ -261,3 +261,112 @@ if (!function_exists('get_post_views')) :
 		return $count;
 	}
 endif;
+
+//====> Create Posts from a Json File <====//
+if (!function_exists('pds_import_posts')) :
+    function pds_import_posts() {
+        //====> Clear output buffer to prevent unexpected output <====//
+        ob_clean();
+
+        //====> Verify nonce <====//
+        check_ajax_referer('wp_rest', '_ajax_nonce');
+
+        //====> Check if data exists <====//
+        if (!isset($_POST['posts_data'])) {
+            wp_send_json_error(['message' => 'No data provided.']);
+            return;
+        }
+
+        //====> Decode JSON data <====//
+        $posts_data = json_decode(stripslashes($_POST['posts_data']), true);
+
+        //====> Check if JSON decoding was successful <====//
+        if (!$posts_data) {
+            wp_send_json_error(['message' => 'Invalid JSON data.']);
+            return;
+        }
+
+        //====> Initialize counter for imported posts <====//
+        $imported_posts = 0;
+
+        //====> Import posts into WordPress <====//
+        foreach ($posts_data as $post_data) {
+            //====> Create Post Data Schema <====//
+            $post_args = [
+                'post_status'   => 'publish',
+                'post_type'     => $post_data['post_type'],
+                'post_title'    => wp_strip_all_tags($post_data['post_title']),
+                'post_content'  => '',  // Leave content empty or populate if available in JSON
+            ];
+
+            //====> Insert the post into WordPress and get the post ID <====//
+            $post_id = wp_insert_post($post_args);
+
+            //====> Add custom meta fields <====//
+            if (!is_wp_error($post_id)) {
+                $imported_posts++;
+                if (is_array($post_data['meta'])) {
+					//===> Add Meta Data <====//
+                    foreach ($post_data['meta'] as $key => $value) {
+                        update_post_meta($post_id, $key, $value);
+                    }
+
+					//===> Default Language <====//
+					// update_post_meta($post_id, 'language', "ar");
+                }
+            }
+        }
+
+        //====> Send success response with imported count <====//
+        wp_send_json_success(['message' => 'Posts imported successfully.', 'imported' => $imported_posts]);
+    }
+
+    add_action('wp_ajax_pds_import_posts', 'pds_import_posts');
+endif;
+
+//====> Create Posts from a Json File <====//
+if (!function_exists('pds_posts_remover')) :
+    //====> Remove Posts <====//
+	function pds_posts_remover($post_type) {
+		//====> Clear output buffer to prevent unexpected output <====//
+        ob_clean();
+
+        //====> Verify nonce <====//
+        check_ajax_referer('wp_rest', '_ajax_nonce');
+
+        //====> Check if data exists <====//
+        if (!isset($_POST['post_type'])) {
+            wp_send_json_error(['message' => 'No data provided.']);
+            return;
+        }
+
+        //====> Decode JSON data <====//
+        $response_data = json_decode(stripslashes($_POST['post_type']), true);
+
+        //====> Check if JSON decoding was successful <====//
+        if (!$response_data) {
+            wp_send_json_error(['message' => 'Invalid JSON data.']);
+            return;
+        }
+
+		//===> Get All Posts <===//
+		$query = new WP_Query([
+			'post_type'      => $response_data["post_type"],
+			'posts_per_page' => -1, // Retrieve all posts
+			'fields'         => 'ids' // Only get post IDs
+		]);
+
+		//===> Loop through each post and delete it <===//
+		if ($query->have_posts()) {
+			foreach ($query->posts as $post_id) {
+				wp_delete_post($post_id, true);
+			}
+			
+			//===> Success Message <===//
+			echo "All posts of type '{$response_data["post_type"]}' have been deleted.";
+		}
+	}
+
+    add_action('wp_ajax_pds_posts_remover', 'pds_posts_remover');
+endif;
+

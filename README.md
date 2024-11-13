@@ -118,6 +118,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
 17. Fix Core Animations Effects Bouncing.
 18. Fix Fading Slider in RTL.
+19. Add Posts Managers Tools [ import posts from json file, remove all posts of any type]
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

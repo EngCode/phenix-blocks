@@ -37,20 +37,20 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
-                    "name"  => 'newsletter_css',
-                    "title" => 'Remove Newsletter CSS',
-                ),
-                array(
                     "name"  => 'wpc7_cleaner',
-                    "title" => 'Contact Form 7 Cleaner',
+                    "title" => 'Contact Form 7',
                 ),
                 array(
-                    "name"  => 'pds_woo_css',
-                    "title" => 'Remove WooCommerce CSS',
+                    "name"  => 'newsletter_css',
+                    "title" => 'Newsletter CSS',
                 ),
                 array(
                     "name"  => 'pds_woo_js',
-                    "title" => 'Remove WooCommerce JS',
+                    "title" => 'WooCommerce JS',
+                ),
+                array(
+                    "name"  => 'pds_woo_css',
+                    "title" => 'WooCommerce CSS',
                 ),
             ));
         ?>

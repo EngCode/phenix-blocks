@@ -370,3 +370,61 @@ if (!function_exists('pds_posts_remover')) :
     add_action('wp_ajax_pds_posts_remover', 'pds_posts_remover');
 endif;
 
+//====> Extract Post Titles/ID's into wp-content <====//
+if (!function_exists('pds_posts_exporter')) :
+	function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
+		//===> Get Options <===//
+		$options = array('post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids');
+
+		//===> Get Posts <===//
+		$posts = get_posts($options);
+
+		//===> Create Data Array <===//
+		$export_data = array();
+
+		//===> Loop through Posts <===//
+		foreach ($posts as $post_id) {
+			//===> Add Post ID and Title <===//
+			$export_data[] = array(
+				'id' => $post_id,
+				'title' => get_the_title($post_id)
+			);
+
+			//===> Add Meta Data <===//
+			if (!empty($metaboxes)) {
+				foreach ($metaboxes as $metabox) {
+					$export_data["meta"][$metabox] = get_post_meta($post_id, $metabox, true);
+				}
+			}
+		}
+
+		//===> Save JSON file in wp-content directory <===//
+		file_put_contents(WP_CONTENT_DIR . '/posts.json', json_encode($export_data, JSON_PRETTY_PRINT));
+
+		//====> Success Message <====//
+		echo "JSON file created at: " . $file_path;
+	}
+
+	//===> Export Posts <===//
+	add_action('wp_ajax_pds_posts_remover', 'pds_posts_exporter');
+endif;
+
+//===> Add a Columns to Posts Table <===//
+function pds_add_admin_columns($columns) {
+	//===> Define Columns <===//
+    $columns['post_id'] = 'Post ID';
+
+	//===> Return Columns <===//
+    return $columns;
+}
+
+//===> Assign Data to the Columns <===//
+function pds_add_admin_columns_data($column, $post_id) {
+	//====> Show Post ID <===//
+    if ($column === 'post_id') {
+        echo $post_id;
+    }
+}
+
+// add_filter('manage_posts_columns', 'pds_add_admin_columns');
+// add_action('manage_posts_custom_column', 'pds_add_admin_columns_data', 10, 2);

@@ -335,13 +335,13 @@ if (!function_exists('pds_posts_remover')) :
         check_ajax_referer('wp_rest', '_ajax_nonce');
 
         //====> Check if data exists <====//
-        if (!isset($_POST['post_type'])) {
+        if (!isset($_POST['data'])) {
             wp_send_json_error(['message' => 'No data provided.']);
             return;
         }
 
         //====> Decode JSON data <====//
-        $response_data = json_decode(stripslashes($_POST['post_type']), true);
+        $response_data = json_decode(stripslashes($_POST['data']), true);
 
         //====> Check if JSON decoding was successful <====//
         if (!$response_data) {
@@ -363,7 +363,7 @@ if (!function_exists('pds_posts_remover')) :
 			}
 			
 			//===> Success Message <===//
-			echo "All posts of type '{$response_data["post_type"]}' have been deleted.";
+			wp_send_json_success(['message' => "All posts of type '{$response_data["post_type"]}' have been deleted."]);
 		}
 	}
 
@@ -373,8 +373,29 @@ endif;
 //====> Extract Post Titles/ID's into wp-content <====//
 if (!function_exists('pds_posts_exporter')) :
 	function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
+		//====> Clear output buffer to prevent unexpected output <====//
+        ob_clean();
+
+        //====> Verify nonce <====//
+        check_ajax_referer('wp_rest', '_ajax_nonce');
+
+        //====> Check if data exists <====//
+        if (!isset($_POST['data'])) {
+            wp_send_json_error(['message' => 'No data provided.']);
+            return;
+        }
+
+        //====> Decode JSON data <====//
+        $response_data = json_decode(stripslashes($_POST['data']), true);
+
+        //====> Check if JSON decoding was successful <====//
+        if (!$response_data) {
+            wp_send_json_error(['message' => 'Invalid JSON data.']);
+            return;
+        }
+
 		//===> Get Options <===//
-		$options = array('post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids');
+		$options = array('post_type' => $response_data["post_type"], 'posts_per_page' => -1, 'fields' => 'ids');
 
 		//===> Get Posts <===//
 		$posts = get_posts($options);
@@ -387,26 +408,24 @@ if (!function_exists('pds_posts_exporter')) :
 			//===> Add Post ID and Title <===//
 			$export_data[] = array(
 				'id' => $post_id,
-				'title' => get_the_title($post_id)
+				'title' => get_the_title($post_id),
+				'post_type' => $response_data["post_type"],
 			);
 
 			//===> Add Meta Data <===//
-			if (!empty($metaboxes)) {
-				foreach ($metaboxes as $metabox) {
+			if (!empty($response_data["metaboxes"])) {
+				foreach ($response_data["metaboxes"] as $metabox) {
 					$export_data["meta"][$metabox] = get_post_meta($post_id, $metabox, true);
 				}
 			}
 		}
 
-		//===> Save JSON file in wp-content directory <===//
-		file_put_contents(WP_CONTENT_DIR . '/posts.json', json_encode($export_data, JSON_PRETTY_PRINT));
-
-		//====> Success Message <====//
-		echo "JSON file created at: " . $file_path;
+		//===> Success Message <===//
+		wp_send_json_success(json_encode($export_data, JSON_PRETTY_PRINT));
 	}
 
 	//===> Export Posts <===//
-	add_action('wp_ajax_pds_posts_remover', 'pds_posts_exporter');
+	add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
 endif;
 
 //===> Add a Columns to Posts Table <===//

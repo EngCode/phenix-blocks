@@ -122,6 +122,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 20. Remove Posts from any Type Tool
 21. Import Posts from a Json File
 22. add Show Columns in the Admin Posts Table Functions
+23. add Posts JSON Exporter Simple Tool
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

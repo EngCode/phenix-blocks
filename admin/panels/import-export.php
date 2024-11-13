@@ -2,7 +2,7 @@
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 ?>
 <!-- Layouts -->
-<div class="flexbox pdb-15">
+<div class="row pdb-15">
     <!-- Phenix Blocks Options -->
     <div class="col-12 col-lg-6">
         <!-- Area Head -->
@@ -11,7 +11,7 @@
             <p class="fs-16"><?php echo esc_html__('from this two buttons you can import and export all phenix blocks options and data collection.', "pds-blocks"); ?></p>
         </div>
         <!-- Buttons -->
-        <div class="flexbox px-group radius-sm w-250">
+        <div class="flexbox px-group radius-sm fluid mb-30">
             <!-- Import File -->
             <label class="pds-data-importer-wrapper px-uploader fs-14 radius-sm col-6 tx-align-center" data-btn="<?php echo esc_html__('Import', "pds-blocks"); ?>">
                 <input type="file" id="import-pds-data-uploader" class="hidden" />
@@ -19,6 +19,35 @@
             <!-- Button -->
             <button id="export-pds-data-btn" type="button" class="btn dark radius-sm col-6"><?php echo esc_html__('Export', "pds-blocks"); ?></button>
         </div>
+
+        <!-- Posts Extractor -->
+        <div class="mb-15">
+            <h3 class="fs-18 mb-10 weight-medium"><?php echo esc_html__('Post Exporter', "pds-blocks"); ?></h3>
+            <p class="fs-16"><?php echo esc_html__('from the next options you can export the posts as json file, by default it only exports the ids and titles, you need to choose other things to export it alongside.', "pds-blocks"); ?></p>
+        </div>
+
+        <div class="row posts-exporter-wrapper">
+            <!-- Form Control -->
+            <div class="col-12 col-md-7">
+                <div class="control-icon fas fa-files">
+                    <select name="post_type" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Post Type', "pds-blocks");?>">
+                        <?php
+                            $post_types = get_post_types(array('public'=> true), 'objects');
+                            foreach ($post_types as $post_type) {
+                                if ($post_type->name !== "attachment") {
+                                    echo '<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>';
+                                }
+                            };
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <!-- Button -->
+            <div class="col-12 col-md-5">
+                <button id="pds-posts-exporter" type="button" class="btn dark radius-sm fluid"><?php echo esc_html__('Export', "pds-blocks"); ?></button>
+            </div>
+        </div>
+        <!-- // Posts Extractor -->
     </div>
     <!-- Posts Manager -->
     <div class="col-12 col-lg-6">
@@ -35,6 +64,7 @@
             </label>
         </div>
         <!-- Posts Remover -->
+        <h3 class="fs-16 mb-10 weight-medium mb-15"><?php echo esc_html__('Posts Remover', "pds-blocks"); ?></h3>
         <div class="row posts-remover-wrapper">
             <!-- Form Control -->
             <div class="col-12 col-md-7">

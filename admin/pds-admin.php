@@ -29,8 +29,8 @@
             
             //===> Data Collection <===//
             add_submenu_page('pds-admin',
-                __('Custom Data Collection', "pds-blocks"),
-                __('Data Collection', "pds-blocks"),
+                __('Phenix Data Manager', "pds-blocks"),
+                __('Data Manager', "pds-blocks"),
                 'manage_options',
                 'pds-data-collection',
                 'pds_data_collection'

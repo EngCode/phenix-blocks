@@ -761,6 +761,7 @@ document.addEventListener('DOMContentLoaded', ready => {
     async function import_posts(data) {
         //===> Create a FormData <===//
         const formData = new FormData();
+
         //===> WordPress AJAX action <===//
         formData.append('action', 'pds_import_posts');
 

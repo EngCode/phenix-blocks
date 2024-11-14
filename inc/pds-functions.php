@@ -289,6 +289,13 @@ if (!function_exists('pds_import_posts')) :
         //====> Initialize counter for imported posts <====//
         $imported_posts = 0;
 
+		//====> Check the Post Data Schema <====//
+		if (empty($posts_data) || !is_array($posts_data)) {
+			error_log("posts_data is unexpectedly empty or not an array before foreach.");
+			wp_send_json_error(['message' => 'posts_data is unexpectedly empty or invalid.']);
+			return;
+		}
+
         //====> Import posts into WordPress <====//
         foreach ($posts_data as $post_data) {
             //====> Create Post Data Schema <====//
@@ -296,22 +303,22 @@ if (!function_exists('pds_import_posts')) :
                 'post_status'   => 'publish',
                 'post_type'     => $post_data['post_type'],
                 'post_title'    => wp_strip_all_tags($post_data['post_title']),
+				//===> Content Template Pattern <===//
+                'post_content'  => generate_post_content($post_data),
             ];
 
             //====> Insert the post into WordPress and get the post ID <====//
-            $post_id = wp_insert_post($post_args);
-
+			$post_id = wp_insert_post($post_args);
+			
             //====> Add custom meta fields <====//
             if (!is_wp_error($post_id)) {
                 $imported_posts++;
+
                 if (is_array($post_data['meta'])) {
 					//===> Add Meta Data <====//
                     foreach ($post_data['meta'] as $key => $value) {
                         update_post_meta($post_id, $key, $value);
                     }
-
-					//===> Default Language <====//
-					// update_post_meta($post_id, 'language', "ar");
                 }
             }
         }
@@ -321,6 +328,57 @@ if (!function_exists('pds_import_posts')) :
     }
 
     add_action('wp_ajax_pds_import_posts', 'pds_import_posts');
+endif;
+
+//====> Generate Post Content with Tabs <====//
+if (!function_exists('generate_post_content')) :
+    function generate_post_content($post_data) {
+        $pattern_content = get_option('block_patterns')[5]["content"];
+
+        //====> Replace Opportunity Title and Description in First Section <====//
+        $pattern_content = str_replace(
+            [
+                "عنوان الفرصة الكامل يقع هنا كمثال على محتوي العنوان",  // placeholder title
+                "وصف المشروع يقع هنا كمثال",  // placeholder description
+            ],
+            [
+                esc_html($post_data['post_title']),  // post title
+                esc_html($post_data['description']), // description
+            ],
+            $pattern_content
+        );
+
+        //====> Generate Tabs Section Content <====//
+        $tabs_navigation = '';
+        $tabs_content = '';
+        $tab_index = 1;
+
+        foreach ($post_data['tabs'] as $tab_key => $tab_info) {
+            $tab_id = "tab-$tab_index";
+            $tabs_navigation .= '<a class="wp-block-phenix-button btn small" href="#' . esc_attr($tab_id) . '">' . esc_html($tab_info['title']) . '</a>';
+            $tabs_content .= '<div class="wp-block-phenix-group tab-panel" id="' . esc_attr($tab_id) . '">';
+            $tabs_content .= '<h2 class="wp-block-phenix-text headline fs-22 color-primary">' . esc_html($tab_info['title']) . '</h2>';
+            $tabs_content .= '<p class="wp-block-phenix-text paragraph">' . wp_kses_post($tab_info['content']) . '</p>';
+            $tabs_content .= '</div>';
+
+            $tab_index++;
+        }
+
+        //====> Insert Tabs Navigation and Panels <====//
+        $pattern_content = str_replace(
+            [
+                "<!-- TAB NAVIGATION PLACEHOLDER -->",
+                "<!-- TAB CONTENT PLACEHOLDER -->",
+            ],
+            [
+                $tabs_navigation, // Insert tabs navigation
+                $tabs_content,    // Insert tabs panels
+            ],
+            $pattern_content
+        );
+
+        return $pattern_content;
+    }
 endif;
 
 //====> Create Posts from a Json File <====//

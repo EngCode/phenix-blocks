@@ -18,6 +18,9 @@
 		},
 		{
 			"path": "../../../../px-design"
+		},
+		{
+			"path": "../../../../python"
 		}
 	],
 	"settings": {
@@ -40,7 +43,7 @@
 			
 		],
 		"git.ignoreLimitWarning": true,
-		"liveServer.settings.multiRootWorkspaceName": "dvg",
+		"liveServer.settings.multiRootWorkspaceName": "px-design",
 		"liveServer.settings.port": 5502,
 	}
 }

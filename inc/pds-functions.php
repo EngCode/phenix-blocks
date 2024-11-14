@@ -296,7 +296,6 @@ if (!function_exists('pds_import_posts')) :
                 'post_status'   => 'publish',
                 'post_type'     => $post_data['post_type'],
                 'post_title'    => wp_strip_all_tags($post_data['post_title']),
-                'post_content'  => '',  // Leave content empty or populate if available in JSON
             ];
 
             //====> Insert the post into WordPress and get the post ID <====//

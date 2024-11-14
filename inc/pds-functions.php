@@ -333,49 +333,46 @@ endif;
 //====> Generate Post Content with Tabs <====//
 if (!function_exists('generate_post_content')) :
     function generate_post_content($post_data) {
-        $pattern_content = get_option('block_patterns')[5]["content"];
+        // Retrieve the template content
+        $pattern_content = get_option('block_patterns')[6]["content"];
 
-        //====> Replace Opportunity Title and Description in First Section <====//
+        // Replace placeholders for the main post title and description with HTML-encoded content
         $pattern_content = str_replace(
             [
-                "عنوان الفرصة الكامل يقع هنا كمثال على محتوي العنوان",  // placeholder title
-                "وصف المشروع يقع هنا كمثال",  // placeholder description
+                "post_title",        // Placeholder for the post title
+                "post_description"   // Placeholder for the post description
             ],
             [
-                esc_html($post_data['post_title']),  // post title
-                esc_html($post_data['description']), // description
+                esc_html($post_data['post_title']),            // Replaces with title
+                wp_kses_post($post_data['description'])        // Replaces with description as HTML
             ],
             $pattern_content
         );
 
-        //====> Generate Tabs Section Content <====//
-        $tabs_navigation = '';
-        $tabs_content = '';
-        $tab_index = 1;
+        // Replace placeholders for each tab title and content
+        $tabs = [
+            "project_rationale" => ["title" => "project_rationale_title", "content" => "project_rationale_content"],
+            "demand_analysis" => ["title" => "demand_analysis_title", "content" => "demand_analysis_content"],
+            "financial_indicators" => ["title" => "financial_indicators_title", "content" => "financial_indicators_content"],
+            "study_services" => ["title" => "study_services_title", "content" => "study_services_content"],
+            "features" => ["title" => "features_title", "content" => "features_content"]
+        ];
 
-        foreach ($post_data['tabs'] as $tab_key => $tab_info) {
-            $tab_id = "tab-$tab_index";
-            $tabs_navigation .= '<a class="wp-block-phenix-button btn small" href="#' . esc_attr($tab_id) . '">' . esc_html($tab_info['title']) . '</a>';
-            $tabs_content .= '<div class="wp-block-phenix-group tab-panel" id="' . esc_attr($tab_id) . '">';
-            $tabs_content .= '<h2 class="wp-block-phenix-text headline fs-22 color-primary">' . esc_html($tab_info['title']) . '</h2>';
-            $tabs_content .= '<p class="wp-block-phenix-text paragraph">' . wp_kses_post($tab_info['content']) . '</p>';
-            $tabs_content .= '</div>';
-
-            $tab_index++;
+        foreach ($post_data['tabs'] as $key => $tab_info) {
+            if (isset($tabs[$key])) {
+                $pattern_content = str_replace(
+                    [
+                        $tabs[$key]['title'],
+                        $tabs[$key]['content']
+                    ],
+                    [
+                        esc_html($tab_info['title']),         // Tab title as plain text
+                        wp_kses_post($tab_info['content'])    // Tab content as HTML
+                    ],
+                    $pattern_content
+                );
+            }
         }
-
-        //====> Insert Tabs Navigation and Panels <====//
-        $pattern_content = str_replace(
-            [
-                "<!-- TAB NAVIGATION PLACEHOLDER -->",
-                "<!-- TAB CONTENT PLACEHOLDER -->",
-            ],
-            [
-                $tabs_navigation, // Insert tabs navigation
-                $tabs_content,    // Insert tabs panels
-            ],
-            $pattern_content
-        );
 
         return $pattern_content;
     }

@@ -71,7 +71,6 @@ if (!function_exists('phenix_core')) :
     add_action('wp_enqueue_scripts', 'phenix_core');
     add_action('enqueue_block_assets', 'phenix_core');
     add_action('enqueue_block_editor_assets', 'phenix_core');
-    // add_action('login_enqueue_scripts', 'phenix_core');
     //===> Include Phenix Core in the Plugin Page <===//
     if (get_option('pds_admin_style') && is_admin()) {
         add_action('admin_enqueue_scripts', 'phenix_core');
@@ -90,10 +89,11 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font; $style_font;
         $final_files = array();
-        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
-        // $assets_url = "https://raw.githubusercontent.com/EngCode/pdb-assets/main/";
+        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/"; //==> ALT: "https://raw.githubusercontent.com/EngCode/pdb-assets/main/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
+
+        //===> Custom Fonts <===//
         $custom_fonts = [
             "bio-sans",
             "tarek-v",
@@ -145,6 +145,7 @@ if (!function_exists('phenix_assets')) :
         if (strpos($current_fonts['icon'], "fontawesome") !== false) {
             //====> Filter Icons-Font Name <====//
             $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
+
             //===> Check if the Font is Pro Family and fix it <===//
             if (strpos($current_fonts['icon'], "pro") === false) {
                 $final_files['icons_name'] = $final_files['icons_name']." Pro";

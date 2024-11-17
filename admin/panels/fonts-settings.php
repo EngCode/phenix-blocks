@@ -16,8 +16,9 @@
 
     //===> Icon Fonts <===//
     $fonts_list_icon = [
-        "fontawesome-5" => "Font Awesome v5.14",
-        "fontawesome-6" => "Font Awesome v6.5.1",
+        "ui-icons" => "UI Icons",
+        "fontawesome-5" => "Font Awesome v5",
+        "fontawesome-6" => "Font Awesome v6",
     ];
 
     //===> Get Current Fonts <===//
@@ -26,7 +27,6 @@
 
     //===> Google Fonts <===//
     $google_fonts = [];
-
     
     //===> Get Google Fonts <===//
     if (get_option("pds_gfonts") === "on") {

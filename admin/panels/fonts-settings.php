@@ -216,10 +216,6 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
-                    "name"  => 'pds_admin_style',
-                    "title" => 'Admin UI Re-Style',
-                ),
-                array(
                     "name"  => 'pds_gfonts',
                     "title" => 'Enable Google Fonts',
                 )

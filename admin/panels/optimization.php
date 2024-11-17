@@ -15,6 +15,10 @@
                     "title" => 'Phenix CDN',
                 ),
                 array(
+                    "name"  => 'pds_admin_style',
+                    "title" => 'Admin UI Style',
+                ),
+                array(
                     "name"  => 'jquery_remove',
                     "title" => 'Remove jQuery',
                 ),

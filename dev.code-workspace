@@ -9,18 +9,13 @@
 			"path": "../../themes"
 		},
 		{
-			"name": "chery-jordan",
-			"path": "../../../../demo/wp-content/themes/chery-jordan"
-		},
-		{
-			"name": "profilaat",
-			"path": "D:/Work Space/Backups/Projects/Profilaat-WP/profilaat"
-		},
-		{
 			"path": "../../../../px-design"
 		},
 		{
 			"path": "../../../../python"
+		},
+		{
+			"path": "../../../../pdb-assets"
 		}
 	],
 	"settings": {

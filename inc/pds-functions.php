@@ -426,8 +426,8 @@ endif;
 
 //====> Extract Post Titles/ID's into wp-content <====//
 if (!function_exists('pds_posts_exporter')) :
-	function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
-		//====> Clear output buffer to prevent unexpected output <====//
+    function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
+        //====> Clear output buffer to prevent unexpected output <====//
         ob_clean();
 
         //====> Verify nonce <====//
@@ -448,39 +448,46 @@ if (!function_exists('pds_posts_exporter')) :
             return;
         }
 
-		//===> Get Options <===//
-		$options = array('post_type' => $response_data["post_type"], 'posts_per_page' => -1, 'fields' => 'ids');
+        //===> Get Options <===//
+        $options = array(
+            'post_type' => $response_data["post_type"], 
+            'posts_per_page' => -1, 
+            'fields' => 'ids'
+        );
 
-		//===> Get Posts <===//
-		$posts = get_posts($options);
+        //===> Get Posts <===//
+        $posts = get_posts($options);
 
-		//===> Create Data Array <===//
-		$export_data = array();
+        //===> Create Data Array <===//
+        $export_data = array();
 
-		//===> Loop through Posts <===//
-		foreach ($posts as $post_id) {
-			//===> Add Post ID and Title <===//
-			$export_data[] = array(
-				'id' => $post_id,
-				'title' => get_the_title($post_id),
-				'post_type' => $response_data["post_type"],
-			);
+        //===> Loop through Posts <===//
+        foreach ($posts as $post_id) {
+            //===> Add Post ID and Title <===//
+            $export_data[] = array(
+                'id' => $post_id,
+                'title' => html_entity_decode(get_the_title($post_id), ENT_QUOTES | ENT_XML1, 'UTF-8'),
+                'post_type' => $response_data["post_type"],
+            );
 
-			//===> Add Meta Data <===//
-			if (!empty($response_data["metaboxes"])) {
-				foreach ($response_data["metaboxes"] as $metabox) {
-					$export_data["meta"][$metabox] = get_post_meta($post_id, $metabox, true);
-				}
-			}
-		}
+            //===> Add Meta Data <===//
+            if (!empty($response_data["metaboxes"])) {
+                $meta_data = array();
+                foreach ($response_data["metaboxes"] as $metabox) {
+                    $meta_data[$metabox] = get_post_meta($post_id, $metabox, true);
+                }
+                $export_data[count($export_data) - 1]['meta'] = $meta_data;
+            }
+        }
 
-		//===> Success Message <===//
-		wp_send_json_success(json_encode($export_data, JSON_PRETTY_PRINT));
-	}
+        //===> Success Message <===//
+        wp_send_json_success($export_data);
+    }
 
-	//===> Export Posts <===//
-	add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
+    //===> Export Posts <===//
+    add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
 endif;
+
 
 //===> Add a Columns to Posts Table <===//
 function pds_add_admin_columns($columns) {

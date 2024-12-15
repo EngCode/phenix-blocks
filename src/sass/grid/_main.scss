@@ -24,27 +24,27 @@
 }
 
 /*==== Containers ====*/
-.container, .container-xl, .container-lg {max-width: #{REM(1200)};}
+.container, .container-xl, .container-lg {max-width: #{REM(1200)}!important;}
 
 .container-fluid {
     width: 100%;
-    max-width: 100%;
+    max-width: 100%!important;
 }
 
 /*==== Breakpoints Container ====*/
 .container-xs {
     max-width: #{REM(360)};
-    @include small() { max-width: #{REM(480)}; }
+    @include small() { max-width: #{REM(480)}!important; }
 }
 
 .container-sm {
     max-width: #{REM(567)};
-    @include medium() { max-width: #{REM(640)}; }
+    @include medium() { max-width: #{REM(640)}!important; }
 }
 
 .container-md {
     max-width: #{REM(768)};
-    @include large() { max-width: #{REM(1024)}; }
+    @include large() { max-width: #{REM(1024)}!important; }
 }
 
 @media screen and (min-width: 1450px) {
@@ -52,9 +52,9 @@
 }
 
 .container-xl, .container-lg {
-    @media screen and (max-width: 1449px) {max-width: 97%;}
-    @media screen and (max-width: 1100px) {max-width: 100%;}
-    @media screen and (min-width: 1450px) {max-width: #{REM(1400)};}
+    @media screen and (max-width: 1449px) {max-width: 97%!important;}
+    @media screen and (max-width: 1100px) {max-width: 100%!important;}
+    @media screen and (min-width: 1450px) {max-width: #{REM(1400)}!important;}
 }
 
 /*==== Flexbox Grid ====*/

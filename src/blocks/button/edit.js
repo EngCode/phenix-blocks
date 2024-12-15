@@ -67,11 +67,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
             <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
-                {/*===> Select Control <===*/}
+                {/*===> Type <===*/}
                 <div className='inline-block inline-select tooltip' style={{width: 130}} data-title={__("Button Type", "pds-blocks")}>
                     <PhenixSelect key={`btn-type-${uniqueKey}`} className={`tx-align-center weight-medium`} name="type" placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
                 </div>
-                {/*===> Select Control <===*/}
+                {/*===> Size <===*/}
                 <div className='inline-block inline-select tooltip' data-title={__("Button Size", "pds-blocks")}>
                     <PhenixSelect key={`size-${uniqueKey}`} className="weight-bold tx-uppercase tx-align-center" name="size" placeholder={__("MD", "pds-blocks")} value={attributes.size} onChange={set_value} options={PhenixBlocks.dataLists.button.sizes} />
                 </div>

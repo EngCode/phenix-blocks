@@ -11,6 +11,8 @@
 /*==== Design Options ====*/
 :root {
     /*==== Global ====*/
+    interpolate-size: allow-keywords;
+    /*==== Global ====*/
     --body-bg : #f6f6f6;
     --icons-font: "Font Awesome 5";
 

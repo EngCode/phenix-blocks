@@ -488,27 +488,6 @@ if (!function_exists('pds_posts_exporter')) :
     add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
 endif;
 
-//===> Add a Columns to Posts Table <===//
-function pds_add_admin_columns($columns) {
-	//===> Define Columns <===//
-    $columns['post_id'] = 'Post ID';
-
-	//===> Return Columns <===//
-    return $columns;
-}
-
-//===> Assign Data to the Columns <===//
-function pds_add_admin_columns_data($column, $post_id) {
-	//====> Show Post ID <===//
-    if ($column === 'post_id') {
-        echo $post_id;
-    }
-}
-
-// add_filter('manage_posts_columns', 'pds_add_admin_columns');
-// add_action('manage_posts_custom_column', 'pds_add_admin_columns_data', 10, 2);
-
-
 //===> Add a Duplicate link to the posts table <===//
 add_filter('post_row_actions', 'pds_add_duplicate_button', 10, 2);
 
@@ -520,8 +499,6 @@ function pds_add_duplicate_button($actions, $post) {
 	//===> Return Actions <===//
     return $actions;
 }
-
-
 
 //===> Handle the duplication logic <===//
 add_action('admin_action_duplicate_post', 'pds_duplicate_post');

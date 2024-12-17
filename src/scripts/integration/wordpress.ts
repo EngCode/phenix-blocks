@@ -130,38 +130,13 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         if(!document.body.getAttribute('itemtype')) document.body.setAttribute('itemtype', "https://schema.org/WebPage");
 
         //====> Create Placeholder Keywords <=====//
-        let pds_keywords = `${document.title}, HTML, Phenix, Abdullah, Ramadan, Web, Designer, Developer, Design System, WordPress, phenixthemes.com`;
         let pds_meta_description = document.querySelector('.entry-content p:first-of-type')?.textContent.substring(0, 160);
-
-        //====> Add keywords for PX website only <====//
-        if (document.location.href.includes('phenixthemes.com')) pds_keywords += `,شركة برمجة, تصميم مواقع, شركة تصميم مواقع, تصميم موقع الكتروني, تصميم مواقع الكترونية, شركات تصميم مواقع الكترونية, تصميم واجهة مستخدم, تطوير موقع ووردبريس, شركات تطوير مواقع الكترونية, شركات تصميم المواقع الالكترونية, تصميم مواقع الشركات, افضل شركة لتصميم المواقع, افضل شركات تصميم متاجر الكترونية, شركات تطوير المواقع الالكترونية, افضل شركات تصميم منصات الكترونية, افضل شركة برمجة منصات, شركات لعمل مواقع الانترنت, شركة برمجة وتصميم مواقع, أسعار تصميم المواقع, شركة تصميم مواقع ويب`;
 
         //====> Check for Headline Level 1 <====//
         if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> S.E.O : Missing Meta <====//
         if (!document.head.querySelector('meta[name="description"]')) Phenix(document.head).insert('append', `<meta name="description" content="${pds_meta_description}">`);
-        if (!document.head.querySelector('meta[name="keywords"]')) Phenix(document.head).insert('append', `<meta name="keywords" content="${pds_keywords}">`);
-
-        //====> Links do not have a discernible name <====//
-        Phenix('a:not([title]):empty, button:not([title]):empty, a:not([title]), button:not([title])').forEach((link:HTMLElement) => {
-            //===> Links Metadata Fixer <===//
-            const LinksMetaFixer = () => {
-                //===> Get the Title from the Closest Text Element <===//
-                let closestElement = link.closest('h2, h3, h4, p, a, img'),
-                    elTitle:string = document.title;
-
-                //===> Get the Title from the closest elements Attributes or the document title <===//
-                if (closestElement) closestElement.textContent.trim() || link.getAttribute('title') || closestElement?.getAttribute('alt') || document.title;
-
-                //===> Set Attributes <===//
-                if(!link.getAttribute('title')) link.setAttribute('title', `${elTitle}`);
-                if(!link.getAttribute('aria-label')) link.setAttribute('aria-label', `${elTitle}`);
-            };
-
-            //===> Fix the Links <===//
-            LinksMetaFixer();
-        });
 
         //====> Inputs do not have a discernible name <====//
         Phenix('input:not([title]):not([type="submit"]), select:not([title])').forEach((element:HTMLElement) => {

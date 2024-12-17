@@ -59,7 +59,7 @@
 		h2.hndle {
 			font-size: 14px;
 			margin-bottom: 0;
-			padding: 0 15px!important;
+			padding: 10px 15px!important;
 		}
 	
 		#future-posts ul, #published-posts ul,
@@ -438,12 +438,6 @@
 		}
 	
 		.inside label {margin-bottom: 10px;}
-	
-		.stuffbox > h3, .postbox > h3, h3.hndle, h2.hndle {
-			margin-bottom: 0;
-			padding: 10px 15px;
-			border-color: rgba(0,0,0,0.1);
-		}
 	}
 	
 	#poststuff .inside {margin-top: 0;}

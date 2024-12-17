@@ -280,7 +280,7 @@ PhenixElements.prototype.utilities = function (options?:{
         }, 500);
     
         //====> Links SEO <====//
-        Phenix('a[href]').forEach((link:any) => {
+        Phenix('a:not([title]):empty, button:not([title]):empty, a:not([title]), button:not([title])').forEach((link:any) => {
             //===> Text Checker <===//
             let text = link.getAttribute('data-title') || "";
 

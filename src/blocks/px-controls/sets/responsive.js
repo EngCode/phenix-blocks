@@ -27,7 +27,8 @@ export default class ResponsiveSet extends Component {
         const screenPoint = screen ? `-${screen}` : "";
 
         //===> Define Controls Options <===//
-        const component_sizes = PhenixBlocks.component_sizes;
+        const component_sizes = [];
+        PhenixBlocks.component_sizes.forEach(item => component_sizes.push({label: item.label, value: item.value !== "" ? "" :`${item.value}${screenPoint}`}));
 
         //===> Output <===//
         return <>

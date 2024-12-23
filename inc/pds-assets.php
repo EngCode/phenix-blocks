@@ -235,7 +235,7 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         $screen = get_current_screen();
 
         //===> Collection Data <===//
-        if ($screen->id === 'phenix-blocks_page_pds-data-collection') {
+        if (str_contains($screen->id, 'pds-data-collection')) {
             wp_enqueue_script('phenix-data-collection', plugin_dir_url(__DIR__).'admin/data-collection.js', false, $version , true);
         }
 

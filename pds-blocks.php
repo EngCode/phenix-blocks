@@ -1,6 +1,6 @@
 <?php
 /**
-  * Plugin Name: Phenix Blocks
+  * Plugin Name: Phenix Design System - Blocks
   * Plugin URI: https://github.com/EngCode/phenix-blocks
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
   * Version: 1.1.0

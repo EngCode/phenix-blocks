@@ -78,9 +78,9 @@
         /*==== CSS Options ====*/
         --height : #{REM(30)};
         --radius : #{REM(5)};
-        --background : white;
+        --background : var(--component-bg-lvl-1);
         --space-in : #{REM(15)};
-        --color : var(--gray-color);
+        --color : var(--component-tx-lvl-1);
         --box-shadow : #{REM(3)} #{REM(3)} #{REM(8)} 0 rgba(0,0,0, 0.05);
         /*==== ... ====*/
         color: var(--color);
@@ -185,7 +185,7 @@
     }
     /*==== Menu wrapper ====*/
     .menu-wrapper {
-        background-color: #fff;
+        background-color: var(--component-bg-lvl-1);
         padding: REM(15) REM(25);
         position: relative;
         z-index: 1;

@@ -20,7 +20,7 @@
             //===> General Settings <===//
             add_menu_page(
                 __('Phenix Settings', "pds-blocks"),
-                __('Phenix Blocks', "pds-blocks"),
+                __('Design System', "pds-blocks"),
                 'manage_options',
                 'pds-admin',
                 'pds_admin_page',
@@ -46,9 +46,8 @@
             );
             
             //===> Remove Menu Items <===//
-            $removable = ['flamingo','edit-comments.php'];
-
-            foreach ($removable as $item) { remove_menu_page($item); }
+            // $removable = ['edit-comments.php'];
+            // foreach ($removable as $item) { remove_menu_page($item); }
 
             //===> Remove Sub Menu Items <===//
             $removable_sub = [
@@ -63,10 +62,7 @@
             $movable = [
                 ['pds-dashboard', null, __('WordPress', "pds-blocks"), 'edit_posts', 'about.php'],
                 ['users.php', null, __('Comments', "pds-blocks"), 'manage_options', 'edit-comments.php'],
-                // ['tools.php', null, __('Media Uploads', "pds-blocks"), 'manage_options', 'upload.php'],
-                ['wpcf7', null, __('Address Book', "pds-blocks"), 'manage_options', 'admin.php?page=flamingo'],
                 ['options-general.php', null, __('Core Updates', "pds-blocks"), 'manage_options', 'update-core.php'],
-                ['wpcf7', null, __('Inbox Messages', "pds-blocks"), 'edit_posts', 'admin.php?page=flamingo_inbound'],
             ];
 
             foreach ($movable as $item) { add_submenu_page(...$item); }

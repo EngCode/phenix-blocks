@@ -32,6 +32,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const PhenixBlocks = window.PhenixBlocks;
     const OptionsRenderer = PhenixBlocks.OptionsRenderer;
 
+    //===> Get Sizes <===//
+    const getSizes = (screen) => {
+        //===> Break Point fix <===//
+        const screenPoint =  screen === "sm" ? "" : screen ? `-${screen}` : "";
+        //===> Define Controls Options <===//
+        const component_sizes = [];
+        PhenixBlocks.dataLists.component_sizes.forEach(item => component_sizes.push({label: item.label, value: item.value === "" ? "" :`${item.value}${screenPoint}`}));
+        //===> Output <===//
+        return component_sizes;
+    }
+
     //==> Set Methods <==//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
@@ -51,11 +62,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
     //===> Set Layout Options <===//
     blockProps.className += ` ${renderProps.container.className}`;
+
     //===> Set Links/Lightbox URL <===//
     if (attributes.style.isLink || attributes.isLightBox) blockProps.href = attributes.url || "#none";
 
-    //===> Create Responsive Options <===//
-    const responsive_options = (screen) => <ResponsiveSet screen={screen} attributes={attributes} styleSetter={set_style} mainSetter={set_responsive} typoSetter={set_typography} options={`display, text-size, component-size`} />;
     //===> Create Label Element <===//
     const labelControl = <RichText key={`btn-text-${uniqueKey}`} value={ attributes.label } onChange={set_label} allowedFormats={[]} tagName="span" placeholder="TXT" className="mg-0 pd-0" onReplace={() => {}} splitting={""} />;
 
@@ -67,14 +77,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
             <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
-                {/*===> Type <===*/}
-                <div className='inline-block inline-select tooltip' style={{width: 130}} data-title={__("Button Type", "pds-blocks")}>
-                    <PhenixSelect key={`btn-type-${uniqueKey}`} className={`tx-align-center weight-medium`} name="type" placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
-                </div>
-                {/*===> Size <===*/}
-                <div className='inline-block inline-select tooltip' data-title={__("Button Size", "pds-blocks")}>
-                    <PhenixSelect key={`size-${uniqueKey}`} className="weight-bold tx-uppercase tx-align-center" name="size" placeholder={__("MD", "pds-blocks")} value={attributes.size} onChange={set_value} options={PhenixBlocks.dataLists.button.sizes} />
-                </div>
                 {/*===> Dropdown Button <===*/}
                 {attributes.type.includes('icon') || attributes.type.includes('square') ?
                 <PxDropDown title={__("Button Icon", "pds-blocks")} button={`bg-transparent fs-16 square ${attributes.icon} divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
@@ -112,12 +114,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} mainSetter={set_style} colorSetter={set_typography} bgOnly="onlyCG" options="text-colors, background" />
-                    </li>
-                </PxDropDown>
-                {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
-                    <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
-                        <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
@@ -259,22 +255,57 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
         {/*====> Setting Panels <====*/}
         <InspectorControls key={`${uniqueKey}-inspector`}>
-            {/*===> Responsive Options <===*/}
-            <PanelBody title={__("Responsive Options", "pds-blocks")} initialOpen={true}>
-                {/*===> Column <===*/}
-                {attributes.type.includes('square') ?
-                    <div className='pdb-25'>
-                        <TextControl key={`label-${uniqueKey}`} label={__("Button Label", "pds-blocks")} value={attributes.label} onChange={set_label} />
-                    </div>
-                : null}
-                
-                {/*===> Responsive Tabs <===*/}
-                <ScreensTabs key={`responsive-${uniqueKey}`} md={responsive_options} lg={responsive_options} xl={responsive_options} />
-                {/*===> Styles Options <===*/}
-                <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
+            {/*===> General Options <===*/}
+            <PanelBody title={__("General Options", "pds-blocks")} initialOpen={true}>
+                {/*===> Screen Tabs <===*/}
+                <ScreensTabs key={`responsive-${uniqueKey}`} 
+                    //===> Small Screen <===//
+                    sm={(screen) => <>
+                        {/*===> Layouts <===*/}
+                        <div class="row">
+                            {/*===> Button Type <===*/}
+                            <div class="col-6">
+                                <PhenixSelect key={`btn-type-${uniqueKey}`} className={`mb-15 arrow-gray`} name="type" label={"Type"} placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div class="col-6">
+                                <PhenixSelect key={`size`} name={`size`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size`]} onChange={(target) => set_responsive(target, "")} options={getSizes(screen)} />
+                            </div>
+                        </div>
+                        {/*===> Button Label <===*/}
+                        {attributes.type.includes('square') ?
+                            <TextControl key={`label-${uniqueKey}`} label={__("Button Label", "pds-blocks")} value={attributes.label} onChange={set_label} />
+                        : null}
+                        {/*===> Styles Options <===*/}
+                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="support" />
+                    </>} 
+                    //===> Medium Screen <===//
+                    md={(screen) => <>
+                        <PhenixSelect key={`size-${screen}`} name={`size-${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size-${screen}`]} onChange={(target) => set_responsive(target, screen ? screen : "")} options={getSizes(screen)} />
+                    </>}
+                    //===> Large Screen <===// 
+                    lg={(screen) => <>
+                        <PhenixSelect key={`size-${screen}`} name={`size-${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size-${screen}`]} onChange={(target) => set_responsive(target, screen ? screen : "")} options={getSizes(screen)} />
+                    </>} 
+                    //===> xLarge Screen <===//
+                    xl={(screen) => <>
+                        <PhenixSelect key={`size-${screen}`} name={`size-${screen}`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size-${screen}`]} onChange={(target) => set_responsive(target, screen ? screen : "")} options={getSizes(screen)} />
+                    </>} 
+                />
             </PanelBody>
-            {/*===> Style Options <===*/}
-            <PanelBody title={__("Extra Options", "pds-blocks")} initialOpen={true}>
+
+            {/*===> Typography Options <===*/}
+            <PanelBody title={__("Typography Options", "pds-blocks")} initialOpen={false}>
+                <ScreensTabs key={`responsive-${uniqueKey}`} 
+                    sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} />} 
+                    md={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                    lg={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                    xl={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                />
+            </PanelBody>
+
+            {/*===> Trigger Options <===*/}
+            <PanelBody title={__("Trigger Options", "pds-blocks")} initialOpen={false}>
                 {/*===> Elements Group <===*/}
                 <div className='row gpx-15 gpy-10'>
                     {/*===> Column <===*/}

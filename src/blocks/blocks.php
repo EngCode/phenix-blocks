@@ -77,7 +77,8 @@ if (!function_exists("pds_blocks_options_render")) :
         //===> Dynamic Data Setter <===//
         foreach ($block_attributes as $option_name => $option_value) {
             //===> Exclude Options <===//
-            $excluded = ["preview", "query", "template_part"];
+            $excluded = ["id", "preview", "query", "template_part"];
+            if ($option_name === "id") { $slider_attrs .= 'id="'.$option_value.'"'; }
             if (in_array($option_name, $excluded) || !isset($block_attributes[$option_name])) { continue; }
 
             //===> if its a Normal Values that should be string <===//

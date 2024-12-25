@@ -16,6 +16,14 @@
 	},
 
     "attributes" : {
+		"id" : {
+			"type": "string",
+			"default": ""
+		},
+		"className": {
+			"type": "string",
+			"default": ""
+		},
         "metadata": {
             "type": "object",
             "default": {}
@@ -46,7 +54,7 @@
 		},
 
 		"label": {
-			"type": "string",
+			"type": "html",
 			"default": "Button"
 		},
 

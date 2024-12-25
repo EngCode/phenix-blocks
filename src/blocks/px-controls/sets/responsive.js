@@ -24,11 +24,11 @@ export default class ResponsiveSet extends Component {
         //===> Properties <===//
         const PhenixBlocks = window.PhenixBlocks.dataLists;
         const {attributes, options, screen, mainSetter, flexSetter, styleSetter, typoSetter} = this.props;
-        const screenPoint = screen ? `-${screen}` : "";
+        const screenPoint =  screen === "sm" ? "" : screen ? `-${screen}` : "";
 
         //===> Define Controls Options <===//
         const component_sizes = [];
-        PhenixBlocks.component_sizes.forEach(item => component_sizes.push({label: item.label, value: item.value !== "" ? "" :`${item.value}${screenPoint}`}));
+        PhenixBlocks.component_sizes.forEach(item => component_sizes.push({label: item.label, value: item.value === "" ? "" :`${item.value}${screenPoint}`}));
 
         //===> Output <===//
         return <>

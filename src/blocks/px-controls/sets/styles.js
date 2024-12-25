@@ -115,7 +115,7 @@ export default class StylesSet extends Component {
             {/*===> Support <===*/}
             {!options || options.includes("support") ? <>
                 <div className={`col-12 ${showSupportOpts === true?"mb-20":"mb-10"}`}>
-                    <PhenixSelect name="support" placeholder={__("add..", "pds-blocks")} search={true} label={__("Support", "pds-blocks")} value={attributes.style.support} onChange={mainSetter} options={support_options} multiple={true} className="stacked-options" />
+                    <PhenixSelect name="support" placeholder={__("add..", "pds-blocks")} search={true} label={__("Style Properties", "pds-blocks")} value={attributes.style.support} onChange={mainSetter} options={support_options} multiple={true} className="stacked-options" />
                 </div>
                 {/*===> Additional Styles <===*/}
                 {showSupportOpts === true ? <>

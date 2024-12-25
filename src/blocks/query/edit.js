@@ -11,6 +11,7 @@ import PxDropDown from '../px-controls/dropdown';
 import PhenixNumber from "../px-controls/number";
 import PhenixSelect from '../px-controls/select';
 import OptionControl from '../px-controls/switch';
+import PhenixInput from '../px-controls/input';
 import SelectFromData from '../px-controls/select-data';
 
 //====> Phenix Options Sets <=====//
@@ -18,6 +19,7 @@ import SizesSet from '../px-controls/sets/sizes';
 import ScreensTabs from "../px-controls/tabs";
 import SliderSet from '../px-controls/sets/slider';
 import FlexboxSet from '../px-controls/sets/flexbox';
+
 
 //====> Edit Mode <====//
 export default function Edit(props) {
@@ -77,6 +79,11 @@ export default function Edit(props) {
             <PanelBody title={__("General Setting", "pds-blocks")} initialOpen={true}>
                 {/*===> Group <===*/}
                 <div className='row gpx-10 mb-10'>
+                    {/*===> Column <===*/}
+                    <div className='col-12 mb-10'>
+                        {/*=== Form Control  ===*/}
+                        <PhenixInput className="mb-15" name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={attributes.id} onChange={set_value} />
+                    </div>
                     {/*===> Column <===*/}
                     <div className='col-12 mb-10'>
                         <SelectFromData key="post_type" name="post_type" options="post-types" label={__("Post-Type", "pds-blocks")} value={attributes.query?.post_type || "default"} valueSetter={(target) => set_query(target, false)} multiple />

@@ -21,7 +21,7 @@ export default class TypographySet extends Component {
     render () {
         //===> Properties <===//
         const PhenixBlocks = window.PhenixBlocks.dataLists;
-        const {attributes, options, mainSetter, screen} = this.props;
+        const {attributes, options, mainSetter, exclude, screen} = this.props;
         const screenPoint = screen ? `-${screen}` : "";
 
         //===> Options Lists <===//
@@ -85,33 +85,35 @@ export default class TypographySet extends Component {
                 {/*===> // Column <===*/}
             </div> : this.props.children ? this.props.children : null }
             {/*===> Alignment Options <===*/}
-            {!options || options.includes("align") ? <>
-                {/*===> Label <===*/}
-                <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Alignment", "pds-blocks")}</label>
-                {/*===> Elements Group <===*/}
-                <div className='flexbox mb-15'>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`align${screenPoint}`} checked={!attributes.typography[`align${screenPoint}`] || attributes.typography[`align${screenPoint}`] === ""} value={""} onChange={mainSetter} type='button-radio' className='small me-5'>
-                        <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-start` ? true : false} value={`tx-align${screenPoint}-start`} onChange={mainSetter} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-justify` ? true : false} value={`tx-align${screenPoint}-justify`} onChange={mainSetter} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-center` ? true : false} value={`tx-align${screenPoint}-center`} onChange={mainSetter} type='button-radio' className='small me-5'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
-                    </OptionControl>
-                    {/*===> Switch Button <===*/}
-                    <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-end` ? true : false} value={`tx-align${screenPoint}-end`} onChange={mainSetter} type='button-radio' className='small'>
-                        <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
-                    </OptionControl>
-                </div>
-            </>: null}
+            {exclude && exclude.includes("align") ? null : <>
+                {!options || options.includes("align") ? <>
+                    {/*===> Label <===*/}
+                    <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Alignment", "pds-blocks")}</label>
+                    {/*===> Elements Group <===*/}
+                    <div className='flexbox mb-15'>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name={`align${screenPoint}`} checked={!attributes.typography[`align${screenPoint}`] || attributes.typography[`align${screenPoint}`] === ""} value={""} onChange={mainSetter} type='button-radio' className='small me-5'>
+                            <span className='btn small square outline gray far fa-align-slash radius-sm'></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-start` ? true : false} value={`tx-align${screenPoint}-start`} onChange={mainSetter} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "ltr" ? 'left' : "right"} radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-justify` ? true : false} value={`tx-align${screenPoint}-justify`} onChange={mainSetter} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-justify radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-center` ? true : false} value={`tx-align${screenPoint}-center`} onChange={mainSetter} type='button-radio' className='small me-5'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-center radius-sm`}></span>
+                        </OptionControl>
+                        {/*===> Switch Button <===*/}
+                        <OptionControl name={`align${screenPoint}`} checked={attributes.typography[`align${screenPoint}`] === `tx-align${screenPoint}-end` ? true : false} value={`tx-align${screenPoint}-end`} onChange={mainSetter} type='button-radio' className='small'>
+                            <span className={`btn small square outline gray fs-17 far fa-align-${Phenix(document).direction() === "rtl" ? 'left' : "right"} radius-sm`}></span>
+                        </OptionControl>
+                    </div>
+                </>: null}
+            </>}
             {!options || options.includes("styles") ? <>
                 {/*===> Style Options <===*/}
                 <label className={`col-12 mb-5 tx-UpperCase fs-13`}>{__("Text Style", "pds-blocks")}</label>
@@ -150,13 +152,13 @@ export default class TypographySet extends Component {
                         <span className='btn small square tooltip-bottom outline gray fas fa-box-heart radius-sm' data-title={__("Clip Text","pds-blocks")}></span>
                     </OptionControl>
                     {/*===> Switch Button <===*/}
-                    <OptionControl name={`colored-word`} checked={attributes.typography[`colored-word`]} value={"colored-word"} onChange={mainSetter} type='button-checkbox' className='small me-5'>
+                    {/* <OptionControl name={`colored-word`} checked={attributes.typography[`colored-word`]} value={"colored-word"} onChange={mainSetter} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-tint radius-sm' data-title={__("Colored Words","pds-blocks")}></span>
-                    </OptionControl>
+                    </OptionControl> */}
                     {/*===> Switch Button <===*/}
-                    <OptionControl name={`gradient-text`} checked={attributes.typography[`gradient-text`]} value={"gradient-text"} onChange={mainSetter} type='button-checkbox' className='small me-5'>
+                    {/* <OptionControl name={`gradient-text`} checked={attributes.typography[`gradient-text`]} value={"gradient-text"} onChange={mainSetter} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-brush radius-sm' data-title={__("Gradient Words","pds-blocks")}></span>
-                    </OptionControl>
+                    </OptionControl> */}
                     {/*===> Switch Button <===*/}
                     <OptionControl name={`animated-num`} checked={attributes.typography[`animated-num`]} value={"px-counter"} onChange={mainSetter} type='button-checkbox' className='small me-5'>
                         <span className='btn small square tooltip-bottom outline gray fas fa-sort-numeric-up-alt radius-sm' data-title={__("Animated Number","pds-blocks")}></span>

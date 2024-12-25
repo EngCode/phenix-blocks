@@ -5,7 +5,7 @@
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
   * Version: 1.1.0
   * Author: Abdullah.Ramadan
-  * Author URI:https://phenixthemes.com
+  * Author URI: https://phenixthemes.com
   * License: GPL2
   * License URI: https://www.gnu.org/licenses/gpl-2.0.html
   * Text Domain: pds-blocks

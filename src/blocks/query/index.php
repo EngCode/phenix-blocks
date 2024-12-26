@@ -72,6 +72,8 @@ function px_query_render($block_attributes, $content) {
     /*===> Check Pagination <===*/
     if (isset($query['pagination']) && $query['pagination'] === true) {
         $query['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    } else {
+        $query['paged'] = 1;
     }
 
     //===> Check for Search Query <===//
@@ -100,11 +102,14 @@ function px_query_render($block_attributes, $content) {
         $the_query = new WP_Query($query);
     }
 
+    //===> Convert Query Informations into JSON String <===//
+    $query_json = json_encode($query);
+
     //==== Start Query =====//
     if (isset($the_query) && $the_query->have_posts() || have_posts()) {
         //===> Grid Wrapper <===//
         if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) {
-            echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>';
+            echo '<div class="'.$grid_classes.'" '.$slider_attrs. ' data-query="'. $query_json .'" data-page="'.$query['paged'].'" data-template="'.$block_attributes["template_part"].'">';
         }
 
         //===> Custom Loop <===//

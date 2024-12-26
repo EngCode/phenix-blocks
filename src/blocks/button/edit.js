@@ -14,6 +14,7 @@ import OptionControl from '../px-controls/switch';
 import MediaUploader from '../px-controls/uploader';
 import SelectFromData from "../px-controls/select-data";
 import SuggestionsUrl from "../px-controls/dynamic-url";
+import PhenixInput from "../px-controls/input";
 
 //====> Phenix Options Sets <=====//
 import MarginSet from '../px-controls/sets/margin';
@@ -264,12 +265,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                         {/*===> Layouts <===*/}
                         <div class="row">
                             {/*===> Button Type <===*/}
-                            <div class="col-6">
+                            <div class="col col-6">
                                 <PhenixSelect key={`btn-type-${uniqueKey}`} className={`mb-15 arrow-gray`} name="type" label={"Type"} placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
                             </div>
                             {/*===> Column <===*/}
-                            <div class="col-6">
+                            <div class="col col-6">
                                 <PhenixSelect key={`size`} name={`size`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size`]} onChange={(target) => set_responsive(target, "")} options={getSizes(screen)} />
+                            </div>
+                            {/*===> Column <===*/}
+                            <div class="col col-6">
+                                {/*=== Form Control  ===*/}
+                                <PhenixInput className="mb-15" name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={attributes.id} onChange={set_value} />
                             </div>
                         </div>
                         {/*===> Button Label <===*/}

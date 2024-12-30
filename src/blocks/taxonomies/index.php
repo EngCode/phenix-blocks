@@ -44,11 +44,12 @@ function pds_taxonomies_render($block_attributes, $content) {
     //===> Grid Wrapper <===//
     if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
 
-    //===> Set Extra ID <===//
     
     //===> Loop Through Categories <===//
     foreach ($categories as $category) :
+        //===> Set Extra ID <===//
         $category->cat_ID = $category->term_id;
+        //===> Get Template Part <===//
         get_template_part("template-parts/".$block_attributes["template_part"], null, $category);
     endforeach;
 

@@ -109,7 +109,7 @@ if (!function_exists("pds_blocks_options_render")) :
                         //===> if not-related option return void <===//
                         if (in_array($sub_option, ["align", "nowrap", "masonry"])) { continue; }
                         //===> add data attributes <===//
-                        if (strpos($sub_option, "[object") === false) {
+                        if (strpos($sub_option, "[object") === false && $sub_value !== "") {
                             $slider_attrs .= 'data-'.$sub_option.'="'.$sub_value.'"';
                         }
                     }

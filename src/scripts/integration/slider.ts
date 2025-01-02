@@ -101,16 +101,18 @@ PhenixElements.prototype.slider = function (options?:{
             //====> Default Options <====//
             let slider_options:any = {
                 //===> Main Options <===//
-                loop: true,
                 a11y: true,
                 createElements: true,
+                loop: inline('data-loop') || true,
                 breakpoints: options?.breakpoints || {},
+                loopAdditionalSlides: (parseInt(inline('data-items')) || options?.items || 1) * 2,
                 slidesPerView: parseInt(inline('data-items')) || options?.items || 1,
                 direction: inline('data-direction') || options?.direction || "horizontal",
+                centeredSlides: inline('data-center') || currentClasses.contains("data-center-on") ? true : false,
 
                 //===> User Actions <====//
-                rewind: inline('data-rewind') || options?.rewind,
-                pauseOnMouseEnter: inline('data-pause-hover') || options?.pauseOnHover,
+                rewind: inline('data-rewind') || options?.rewind || false,
+                pauseOnMouseEnter: inline('data-pause-hover') || options?.pauseOnHover || false,
 
                 //===> Controls <===//
                 navigation: controls ? {nextEl: `.swiper-button-next`,prevEl: `.swiper-button-prev`} : false,
@@ -123,13 +125,13 @@ PhenixElements.prototype.slider = function (options?:{
                 //===> Autoplay <===//
                 autoplay: autoPlayDisabled ? false : {
                     delay: parseInt(inline('data-duration')) || options?.duration || 6000,
-                    waitForTransition: inline('data-waitForTransition') || options?.waitForTransition,
+                    waitForTransition: inline('data-waitForTransition') || options?.waitForTransition || true,
                 },
 
                 //===> Style <===//
-                width: inline('data-width') || options?.width,
-                height: inline('data-height') || options?.height,
-                autoHeight: inline('data-autoHeight') || options?.autoHeight,
+                width: inline('data-width') || options?.width || null,
+                height: inline('data-height') || options?.height || null,
+                autoHeight: inline('data-autoHeight') || options?.autoHeight || false,
 
                 //===> Syncing Controller <===//
                 controller: controller ? {by: 'slide', control: controller} : false,
@@ -137,30 +139,54 @@ PhenixElements.prototype.slider = function (options?:{
                 //===> Events <===//
                 on: {
                     //===> Slider Init <===//
-                    init: () => slider_integration(),
+                    init: (event) => {
+                        //====> Get Slider Wrapper <====//
+                        const slider_wrapper = event.wrapperEl;
+                        //====> Active Slide <====//
+                        slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
+                        //====> Run Integration <====//
+                        slider_integration();
+                    },
+                    //===> Slider Loop Fix <===//
+                    loopFix: (event) => {
+                        //====> Run Integration <====//
+                        slider_integration();
+                    },
+                    //===> Slider Slide Change <===//
+                    slideChange: (event) => {
+                        //====> Get Slider Wrapper <====//
+                        const slider_wrapper = event.wrapperEl;
+                        //====> Remove Active Slide <====//
+                        slider_wrapper.querySelector(".is-active")?.classList.remove("is-active");
+                        //====> Active Slide <====//
+                        slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
+                    },
                 },
             }
 
             //====> Mobile Responsive <====//
             inline('data-sm') ? slider_options.breakpoints[570] = { 
-                //===> Small Screens <===//
-                slidesPerView: inline('data-sm') || slider_options.slidesPerView,
+                //===> Slides Per View and Loop Fixer <===//
+                slidesPerView: parseInt(inline('data-sm')) || slider_options.slidesPerView,
+                loopAdditionalSlides: (parseInt(inline('data-sm')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> Medium Screens <===//
             inline('data-md') ? slider_options.breakpoints[1100] = {
-                slidesPerView: inline('data-md') || slider_options.slidesPerView,
+                slidesPerView: parseInt(inline('data-md')) || slider_options.slidesPerView,
+                loopAdditionalSlides: (parseInt(inline('data-md')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> Large Screens <===//
             inline('data-lg') ? slider_options.breakpoints[1170] = {
-                // drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
-                slidesPerView: inline('data-lg') || slider_options.slidesPerView,
+                slidesPerView: parseInt(inline('data-lg')) || slider_options.slidesPerView,
+                loopAdditionalSlides: (parseInt(inline('data-lg')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> xLarge Screens <===//
             inline('data-xl') ? slider_options.breakpoints[1400] = {
-                slidesPerView: inline('data-xl') || slider_options.slidesPerView,
+                slidesPerView: parseInt(inline('data-xl')) || slider_options.slidesPerView,
+                loopAdditionalSlides: (parseInt(inline('data-xl')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //====> Create Markup <====//
@@ -208,23 +234,12 @@ PhenixElements.prototype.slider = function (options?:{
             }
 
             //====> Return Options <====//
+            console.log(slider_options);
             return slider_options
         }
 
         //====> Run Slider <====//
         const the_slider = new Swiper(slider, slider_creator(slider));
-
-        //====> When Slide Transition is Finished <====//
-        the_slider.on('slideChangeTransitionEnd', (event) => {
-            //====> Get Slider Wrapper <====//
-            const slider_wrapper = event.wrapperEl;
-
-            //====> Remove Active Slide <====//
-            slider_wrapper.querySelector(".is-active")?.classList.remove("is-active");
-
-            //====> Active Slide <====//
-            slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
-        });
 
         //====> Stop Played Media <====//
         // the_slider.on(['inactive'], function(data) {

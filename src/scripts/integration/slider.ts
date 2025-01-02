@@ -136,6 +136,7 @@ PhenixElements.prototype.slider = function (options?:{
 
                 //===> Events <===//
                 on: {
+                    //===> Slider Init <===//
                     init: () => slider_integration(),
                 },
             }
@@ -212,6 +213,18 @@ PhenixElements.prototype.slider = function (options?:{
 
         //====> Run Slider <====//
         const the_slider = new Swiper(slider, slider_creator(slider));
+
+        //====> When Slide Transition is Finished <====//
+        the_slider.on('slideChangeTransitionEnd', (event) => {
+            //====> Get Slider Wrapper <====//
+            const slider_wrapper = event.wrapperEl;
+
+            //====> Remove Active Slide <====//
+            slider_wrapper.querySelector(".is-active")?.classList.remove("is-active");
+
+            //====> Active Slide <====//
+            slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
+        });
 
         //====> Stop Played Media <====//
         // the_slider.on(['inactive'], function(data) {

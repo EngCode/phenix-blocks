@@ -34,39 +34,49 @@
 /*====> Phenix Object <====*/
 export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     /*====> D.O.M Ready <====*/
-    ready(callback:any) {
-        //====> Check if its Ready <====//
-        if (document.readyState == 'complete') callback();
-
+    ready(callback) {
+         //====> Check if its Ready <====//
+        if (document.readyState === 'complete') {
+            requestIdleCallback ? requestIdleCallback(callback) : callback();
+        } 
         //====> Wait for It to be Ready <====//
-        else document.addEventListener('DOMContentLoaded', callback);
-
+        else {
+            document.addEventListener('DOMContentLoaded', () => {
+                requestIdleCallback ? requestIdleCallback(callback) : callback();
+            }, { once: true });
+        }
         //====> Return Phenix Elements <====//
         return this;
     }
 
     /*====> Add Class <====*/
-    addClass(className:any) {
+    addClass(className: any) {
         //====> Split classNames string into an array of class names <====//
         const classNamesArray = className.split(' ');
+        const classNamesLength = classNamesArray.length;
 
         //====> Add Class for Each Element <====//
-        this.forEach((element: HTMLElement) => {
-            classNamesArray.forEach(className => element.classList.add(className));
-        });
+        for (let i = 0; i < this.length; i++) {
+            const element = this[i] as HTMLElement;
+            const classList = element.classList;
+
+            for (let j = 0; j < classNamesLength; j++) {
+                classList.add(classNamesArray[j]);
+            }
+        }
 
         //====> Return Phenix Elements <====//
         return this;
     }
 
     /*====> Remove Class <====*/
-    removeClass(className:any) {
-        //====> Split classNames string into an array of class names <====//
-        const classNamesArray = className.split(' ');
+    removeClass(className: string) {
+        //====> Split classNames string into an array of class names and convert it to a Set <====//
+        const classNamesSet = new Set(className.split(' '));
 
-        //====> Add Class for Each Element <====//
+        //====> Remove Class for Each Element <====//
         this.forEach((element: HTMLElement) => {
-            classNamesArray.forEach(className => element.classList.remove(className));
+            element.classList.remove(...classNamesSet);
         });
 
         //====> Return Phenix Elements <====//
@@ -74,14 +84,27 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
     }
 
     /*====> Toggle Class <====*/
-    toggleClass(className:any) {
+    toggleClass(className: string) {
         //====> Split classNames string into an array of class names <====//
         const classNamesArray = className.split(' ');
 
-        //====> Add Class for Each Element <====//
-        this.forEach((element: HTMLElement) => {
-            classNamesArray.forEach(className => element.classList.toggle(className));
-        });
+        //====> Loop through each element only once <====//
+        for (let i = 0; i < this.length; i++) {
+            const element = this[i] as HTMLElement;
+            const classList = element.classList;
+
+            //====> Check if element already has the class <====//
+            const hasClass = classNamesArray.some(className => classList.contains(className));
+
+            //====> Toggle the class based on its presence <====//
+            classNamesArray.forEach(className => {
+                if (hasClass) {
+                    classList.remove(className);
+                } else {
+                    classList.add(className);
+                }
+            });
+        }
 
         //====> Return Phenix Elements <====//
         return this;

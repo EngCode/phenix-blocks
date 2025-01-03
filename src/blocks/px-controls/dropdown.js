@@ -1,36 +1,29 @@
-//====> .Dependencies. <====//
-import {Component} from '@wordpress/element';
+import React, { useEffect, Fragment } from '@wordpress/element';
+import { DropdownMenu } from '@wordpress/components';
 
-//===> Phenix Form Control <===//
-export default class PxDropDown extends Component {
-    //===> States <===//
-    state = {opened:false};
+const PxDropDown = ({
+    label,
+    button,
+    support,
+    dropList,
+    children,
+    className,
+    dataPosition,
+    title,
+    key
+}) => {
+    useEffect(() => {
+        window.PhenixBlocks.componentsBuilder();
+    }, []); // Empty dependency array ensures this runs only once after the initial render
 
-    //===> Component Rendered Hooks <===//
-    componentDidMount() { window.PhenixBlocks.componentsBuilder(); };
-    componentDidUpdate() { window.PhenixBlocks.componentsBuilder(); };
+    const attributes = {};
 
-    render () {
-        //===> Properties <===//
-        const {
-            label,
-            button,
-            support,
-            dropList,
-            children,
-            className,
-            dataPosition,
-            title,
-        } = this.props;
+    if (support?.includes("hover")) attributes["data-hover"] = "true";
+    if (dataPosition) attributes["data-position"] = dataPosition;
+    if (key) attributes.key = key;
 
-        const attributes = {};
-
-        if (support?.includes("hover")) attributes["data-hover"] = "true";
-        if (dataPosition) attributes["data-position"] = dataPosition;
-        if (this.props.key) attributes.key = this.props.key;
-
-        //===> Render Component <===//
-        return (<>
+    return (
+        <Fragment>
             {/* Dropdown Wrapper */}
             <div className={`px-dropdown pds-tm-control ${className ? className : ""}`} {...attributes}>
                 {/* Toggle Button */}
@@ -40,6 +33,8 @@ export default class PxDropDown extends Component {
                 {/* // Dropdown Target */}
             </div>
             {/* // Dropdown Wrapper */}
-        </>)
-    }
-}
+        </Fragment>
+    );
+};
+
+export default PxDropDown;

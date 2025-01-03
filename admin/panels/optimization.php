@@ -176,6 +176,9 @@
 <!-- Scripts -->
 <script defer>
     document.addEventListener('DOMContentLoaded', ready => {
+        //====> Phenix Uploader <====//
+        Phenix('.px-custom-uploader .uploader-btn').on("click", PxWpUploader);
+
         //===> Loading Live Preview <===//
         Phenix('#pds_loading_type').on("change", isChanged => {
             //===> Get the Value <===//

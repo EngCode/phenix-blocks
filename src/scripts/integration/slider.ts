@@ -50,6 +50,7 @@ PhenixElements.prototype.slider = function (options?:{
     heightRatio?:string;
     autoScroll?:string;
     center?:any;
+    controller?:any;
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
@@ -95,7 +96,8 @@ PhenixElements.prototype.slider = function (options?:{
             //====> Get Options <====//
             const controls = inline('data-controls') || options?.controls;
             const pagination = inline('data-pagination') || options?.pagination;
-            const controller = inline('data-sync') || options?.sync;
+            const thumbnails = inline('data-sync') || options?.sync;
+            const controller = inline('data-controller') || options?.controller;
             const autoPlayDisabled = inline('data-autoplay') === 'false' || options?.autoplay === false || currentClasses.contains("data-autoplay-off");
 
             //====> Default Options <====//
@@ -133,7 +135,8 @@ PhenixElements.prototype.slider = function (options?:{
                 height: inline('data-height') || options?.height || null,
                 autoHeight: inline('data-autoHeight') || options?.autoHeight || false,
 
-                //===> Syncing Controller <===//
+                //===> Syncing Controller and THumbnails <===//
+                thumbs: thumbnails ? {swiper: thumbnails} : false,
                 controller: controller ? {by: 'slide', control: controller} : false,
 
                 //===> Events <===//

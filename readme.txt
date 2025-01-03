@@ -1,13 +1,13 @@
 === Phenix Blocks ===
 Contributors: abdullah.ramadan, abdullahramadan, EngCode
 Tags: phenix, phenix themes, phenix blocks, block, blocks, gutenberg blocks, gutenberg, block editor, metaboxes, post-types, taxonomies, optimizing, admin style, design system
-Version: 1.1.0
+Version: 1.2.0
 Author: Abdullah.Ramadan
 Author URI:https://phenixthemes.com/en/abdullah-ramadan
 Requires at least: 6.0
-Tested up to: 6.5
+Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 
 Unleash Creativity with Ease and Transform Your Web Design Experience
@@ -73,6 +73,43 @@ Alternatively, you can download the plugin using the download button on this pag
 ![enter image description here](https://phenixthemes.com/px-plugins/pdb-07.jpeg)
 
 this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
+
+### Change Log v1.2.0 Revamped
+1. Disable Cron Jobs Scheduler
+2. Cleanup the Plugin for Public
+3. Disable Custom Login
+4. improve assets loading, and disable the JS hack.
+5. Fix Icon Block Free Width.
+6. Refactoring Core Counter Function.
+7. Lightbox Slider Fix.
+8. Fix Background not Rendering in Editor.
+9. Fix Grid Flow Reverse not Wrapping.
+10. Media Uploader Fix for Metaboxes.
+11. Fix Metaboxes Repeater.
+12. Fix Media Uploader in Editor.
+13. Add New Style Font Option.
+14. Disable core blocks remover
+15. Upgrade taxonomies query and support sub terms.
+16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
+17. Fix Core Animations Effects Bouncing.
+18. Fix Fading Slider in RTL.
+19. Add Posts Managers Tools
+20. Remove Posts from any Type Tool
+21. Import Posts from a Json File
+22. Add Show Columns in the Admin Posts Table Functions
+23. Add Posts JSON Exporter Simple Tool
+24. Add post duplicating method.
+25. Improving component builders, and view scripts.
+26. Fixing Dropdown Menus in the Toolbar.
+27. Fix Media Uploader in Optimization Tab.
+28. Replace SplideJS with Swiper Slider.
+29. Refactor Phenix Core Class Methods
+30. Fix Taxonomies ID and Link Controller Bugs.
+31. SEO Useless methods removed.
+32. Improving Colors Panel Performance.
+33. Improving Select Elements Performance in Editor.
+34. Improving Select Data Performance in Editor.
+35. Refactoring icons Panel and improve Performance in Editor.
 
 ### Minor-fixes v1.0.9:
 1. Add Support for iPhone autoplay videos

@@ -5,83 +5,86 @@
 */
 
 //===> WordPress Modules <===//
-import {Component} from '@wordpress/element';
+import React, { useCallback } from '@wordpress/element';
 
 //===> Media Uploader <===//
-export default class PhenixNumber extends Component {
-    render () {
-        //===> Properties <===//
-        const {label, value, min, max, steps, icon, onChange, name} = this.props;
+const PhenixNumber = (props) => {
+    //===> Properties <===//
+    const {label, value, min, max, steps, icon, onChange, name} = props;
 
-        //===> Set Value <===//
-        const setNumber = (changed) => {
-            //===> Get Elements <===//
-            const input  = changed.target,
-                  minNum  = parseFloat(min) || 0,
-                  maxNum  = parseFloat(max) || 0;
+    //===> Set Value <===//
+    const setNumber = useCallback((changed) => {
+        //===> Get Elements <===//
+        const input  = changed.target;
+        const minNum  = parseFloat(min) || 0;
+        const maxNum  = parseFloat(max) || 0;
+        //===> Get Input Element <===//
+        const newVal = parseFloat(input.value);
+        const checkVal = (newVal >= minNum && newVal <= maxNum) ? newVal : 0;
+        //===> Set Data <===//
+        input.value = checkVal;
+        //===> Return Data <===//
+        return onChange(input);
+    }, [min, max, onChange]);
 
-            //===> Get Input Element <===//
-            const newVal = parseFloat(input.value),
-                  checkVal = (newVal >= minNum || newVal <= maxNum) ? newVal : 0;
+    //===> Increase Number <===//
+    const IncreaseNum = useCallback((clicked) => {
+        //===> Get Elements <===//
+        let button = clicked.target,
+            wrapper = button.closest(".px-counter-input"),
+            maxNum = parseFloat(max) || 9999999,
+            step = steps ? parseFloat(steps) : 1;
+    
+        //===> Get Input Element <===//
+        let input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseFloat(input.value) + step;
+    
+        //===> Set Data <===//
+        input.value = newVal < maxNum || newVal === maxNum ? newVal : maxNum;
+    
+        //===> Return Data <===//
+        return onChange(input);
+    }, [max, steps, onChange]);
 
-            //===> Set Data <===//
-            input.value = checkVal;
-            return onChange(input);
-        },
+    //===> Decrease Number <===//
+    const DecreaseNum = useCallback((clicked) => {
+        //===> Get Elements <===//
+        let button = clicked.target,
+            wrapper = button.closest(".px-counter-input"),
+            minNum = parseFloat(min) || 0,
+            step = steps ? parseFloat(steps) : 1;
+    
+        //===> Get Input Element <===//
+        let input = wrapper.querySelector('input[type="number"]'),
+            newVal = parseFloat(input.value) - step;
+    
+        //===> Set Data <===//
+        input.value = newVal > minNum || newVal === minNum ? newVal : minNum;
+    
+        //===> Return Data <===//
+        return onChange(input);
+    }, [min, steps, onChange]);
 
-        //===> Increase Number <===//
-        IncreaseNum = (clicked) => {
-            //===> Get Elements <===//
-            let button  = clicked.target,
-                wrapper = Phenix(button).ancestor(".px-counter-input"),
-                maxNum  = parseFloat(max) || 9999999,
-                step    = steps ? parseFloat(steps) : 1;
+    //===> Output <===//
+    return (<div className='flexbox flex-gap-fix align-between flow-column'>
+        {/*===> Label <===*/}
+        <label className='components-input-control__label tx-uppercase weight-bold'>{label}</label>
+        {/*===> Counter Control <===*/}
+        <div className={"px-counter-input position-rv fluid " + (icon ? icon : "")}>
+            {/*===> Button <===*/}
+            {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 
-            //===> Get Input Element <===//
-            let input  = wrapper.querySelector('input[type="number"]'),
-                newVal = parseFloat(input.value) + step;
+            {/*===> Number Input <===*/}
+            <input name={name} type="number" min={min} max={max} value={parseFloat(value) ? parseFloat(value) : 0} className={"form-control small radius-sm reset-appearance tx-align-center"} onChange={setNumber} />
 
-            //===> Set Data <===//
-            input.value = newVal < maxNum || newVal === maxNum ? newVal : maxNum;
-            return onChange(input);
-        },
-
-        //===> Decrease Number <===//
-        DecreaseNum = (clicked) => {
-            //===> Get Elements <===//
-            let button  = clicked.target,
-                wrapper = Phenix(button).ancestor(".px-counter-input"),
-                minNum  = parseFloat(min) || 0,
-                step    = steps ? steps : 1;
-
-            //===> Get Input Element <===//
-            let input = wrapper.querySelector('input[type="number"]'),
-                newVal = parseFloat(input.value) - step;
-
-            //===> Set Data <===//
-            input.value = newVal > minNum || newVal === minNum ? newVal : minNum;
-            return onChange(input);
-        };
-
-        //===> Output <===//
-        return (<div className='flexbox flex-gap-fix align-between flow-column'>
-            {/*===> Label <===*/}
-            <label className='components-input-control__label tx-uppercase weight-bold'>{label}</label>
-            {/*===> Counter Control <===*/}
-            <div className={"px-counter-input position-rv fluid " + (icon ? icon : "")}>
-                {/*===> Button <===*/}
-                {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
-
-                {/*===> Number Input <===*/}
-                <input name={name} type="number" min={min} max={max} value={parseFloat(value) ? parseFloat(value) : 0} className={"form-control small radius-sm reset-appearance tx-align-center"} onChange={setNumber} />
-
-                {/*===> Button <===*/}
-                <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>
-                    {icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus divider-s icon-fix'></button> : ""}
-                    <button onClick={IncreaseNum} className='btn square small fs-13 increase-btn far fa-plus divider-s icon-fix'></button>
-                </div>
+            {/*===> Button <===*/}
+            <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>
+                {icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus divider-s icon-fix'></button> : ""}
+                <button onClick={IncreaseNum} className='btn square small fs-13 increase-btn far fa-plus divider-s icon-fix'></button>
             </div>
-            {/*===> Counter Control <===*/}
-        </div>)
-    }
+        </div>
+        {/*===> Counter Control <===*/}
+    </div>)
 }
+
+export default PhenixNumber;

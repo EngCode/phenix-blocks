@@ -1,41 +1,31 @@
-//====> .Dependencies. <====//
-import React from 'react';
-import {Component} from '@wordpress/element';
+//===> WordPress Modules <===//
+import React, { useCallback } from '@wordpress/element';
 
 //===> Phenix Form Control <===//
-export default class PhenixInput extends Component {
-    //===> States <===//
-    state = {};
+const PhenixInput = (props) => {
+    //===> Properties <===//
+    const {name, type, size, label, value,  onChange, className, placeholder } = props;
 
-    //===> Force Render when Props Change <===//
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.value !== this.props.value);
-    }
+    //===> Change Value <===//
+    const setValue = useCallback((event) => {
+        if (value !== event.target.value) return onChange(event.target);
+    }, [value, onChange]);
 
-    render () {
-        //===> Properties <===//
-        const {name, type, size, label, value,  onChange, className, placeholder } = this.props;
-        const uniqueKey = `pds-input`;
+    //===> Define Element Attributes <===//
+    const attributes = {
+        onBlur: setValue,
+        type: type || "text",
+        defaultValue: value || "",
+        placeholder: placeholder || label || "",
+    };;
 
-        //===> Change Value <===//
-        const setValue = (event) => {
-            if (this.props.value !== event.target.value) return onChange(event.target);
-        };
-
-        //===> Define Element Attributes <===//
-        let attributes = {
-            onBlur: setValue,
-            type: type || "text",
-            defaultValue: value || "",
-            placeholder: placeholder || label || "",
-        };
-
-        //===> Render Component <===//
-        return <>
-            {/*===> Control Label <===*/}
-            {label?<label className='tx-capitalize fs-13' style={{marginBottom: 5}}>{`${label}`}</label>:null}
-            {/*===> Control Element <===*/}
-            <input name={name} className={`form-control ${size ? size : "small"} radius-md ${className ? className : ""}`} {...attributes}/>
-        </>
-    }
+    //===> Render Component <===//
+    return (<>
+        {/*===> Control Label <===*/}
+        {label && <label className='tx-capitalize fs-13' style={{ marginBottom: 5 }}>{label}</label>}
+        {/*===> Control Element <===*/}
+        <input name={name} className={`form-control ${size ? size : "small"} radius-md ${className ? className : ""}`} {...attributes}/>
+    </>);
 }
+
+export default PhenixInput;

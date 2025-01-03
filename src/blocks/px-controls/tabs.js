@@ -7,10 +7,10 @@
 
 //===> WordPress Modules <===//
 import { __ } from '@wordpress/i18n';
-import { useState } from 'react';
+import React, { useState } from '@wordpress/element';
 
 //===> Phenix Background <===//
-export default function ScreensTabs(props) {
+const ScreensTabs = (props) => {
     //===> States <===//
     const [screen, setScreen] = props.sm ? useState("sm") : useState("md");
 
@@ -40,3 +40,5 @@ export default function ScreensTabs(props) {
         </div>
     );
 };
+
+export default ScreensTabs;

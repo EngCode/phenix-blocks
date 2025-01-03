@@ -6,189 +6,130 @@ import React, { useState, useMemo, useEffect, useCallback, Component } from '@wo
 import PhenixSelect from './select';
 
 //===> Phenix Form Control <===//
-export default class SelectFromData extends Component {
+const SelectFromData = (props) => {
     //===> States <===//
-    state = {
-        dataFetched: 0,
-        options: [{label: __("Default", "pds-blocks"), value: ""}],
-    };
+    const [dataFetched, setDataFetched] = useState(0);
+    const [optionsList, setOptionsList] = useState([{label: __("Default", "pds-blocks"), value: ""}]);
 
-    //===> Component Rendered Hook <===//
-    reRender = () => {
-        //===> Fetch Data <===//
-        if(this.state.options.length < 2) {
+    //===> Properties <===//
+    const {options, name, type, size, label, value, multiple, valueSetter, className, search, termType } = props;
+
+    //===> Fetch Data <===//
+    const fetchData = useCallback(() => {
+        //===> Check if Options List is Empty <===//
+        if (optionsList.length > 1) return;
+
+        //===> Fetching Method <===//
+        const fetchOptions = async (path, processData) => {
+            //===> Fetch Data <===//
+            const data = await apiFetch({ path });
+            //===> Create Data <===//
+            const newOptionsList = [{ label: __("Default", "pds-blocks"), value: "" }];
+            //===> Process Data <===//
+            processData(data, newOptionsList);
+            //===> Set new Options List <===//
+            setOptionsList(prevOptions => {
+                //===> Check if Options are Different <===//
+                if (JSON.stringify(prevOptions) !== JSON.stringify(newOptionsList)) {
+                    //===> Increase Data Fetched <===//
+                    setDataFetched(prev => prev + 1);
+                    //===> Return new Options List <===//
+                    return newOptionsList;
+                }
+                //===> Return Previous Options <===//
+                return prevOptions;
+            });
+        };
+
+        //===> Fetching Switch Cases <===//
+        switch (options) {
             //===> for PDS Menu Locations <===//
-            if (this.props.options === "menu-locations") {
-                apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
-                    //===> Create New Array <===//
-                    const new_state = this.state,
-                        locations = options.menu_locations,
-                        new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
-        
-                    //===> add Locations to a List <===//
-                    for (const [key, item] of Object.entries(locations)) {
-                        new_options_list.push({label: item.title, value: item.name});
-                    }
-    
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                       this.setState({...new_state});
-                    }
+            case "menu-locations":
+                fetchOptions('pds-blocks/v2/options', (data, newOptionsList) => {
+                    Object.entries(data.menu_locations).forEach(([key, item]) => {
+                        newOptionsList.push({ label: item.title, value: item.name });
+                    });
                 });
-            }
+                break;
             //====> for taxonomies <====//
-            else if (this.props.options === "taxonomies") {
-                //===> Fetch Taxonomies <===//
-                apiFetch({path: 'wp/v2/taxonomies'}).then(taxonomies => {
-                    //===> Define Types <===//
-                    const new_state = this.state,
-                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
-
-                    //===> Get Current Active Types <===//
-                    for (const [key, value] of Object.entries(taxonomies)) {
-                        //===> Exclude the Core Types <===//
-                        let isCoreType = false;
-                        ['nav_menu', 'wp_pattern'].forEach(keyword => key.includes(keyword) ? isCoreType = true : null);
-                        //===> If not Core Type Added it <===//
-                        if (!isCoreType) new_options_list.push({"value":key, "label":value.name});
-                    }
-
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                        this.setState({...new_state});
-                    }
+            case "taxonomies":
+                fetchOptions('wp/v2/taxonomies', (data, newOptionsList) => {
+                    Object.entries(data).forEach(([key, value]) => {
+                        if (!['nav_menu', 'wp_pattern'].some(keyword => key.includes(keyword))) {
+                            newOptionsList.push({ value: key, label: value.name });
+                        }
+                    });
                 });
-            }
+                break;
             //====> for taxonomies Terms <====//
-            if (this.props.options === "taxonomies-terms") {
-                //===> Fetch Taxonomies <===//
-                apiFetch({path: `wp/v2/${this.props.termType === "category" ? "categories" : this.props.termType}`}).then(terms => {
-                    //===> Define Types <===//
-                    const new_state = this.state,
-                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
-
-                    //===> Get Current Active Types <===//
-                    for (const [key, value] of Object.entries(terms)) {
-                        new_options_list.push({"value": value.id, "label": value.name});
-                    }
-
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                        this.setState({...new_state});
-                    }
+            case "taxonomies-terms":
+                fetchOptions(`wp/v2/${termType === "category" ? "categories" : termType}`, (data, newOptionsList) => {
+                    Object.entries(data).forEach(([key, value]) => {
+                        newOptionsList.push({ value: value.id, label: value.name });
+                    });
                 });
-            }
+                break;
             //====> for Post-Types <====//
-            else if (this.props.options === "post-types") {
-                //===> Fetch Post Types <===//
-                apiFetch({path: 'wp/v2/types'}).then(post_types => {
-                    //===> Define Types <===//
-                    const new_state = this.state,
-                          new_options_list = [];
-            
-                    //===> Get Current Active Types <===//
-                    for (const [key, value] of Object.entries(post_types)) {
-                        //===> Exclude the Core Types <===//
-                        let isCoreType = false;
-                        ['attachment','nav_menu_item','wp_block','wp_navigation','wp_template','wp_template_part','wp_font'].forEach(keyword => key.includes(keyword) ? isCoreType = true : null);
-                        //===> If not Core Type Added it <===//
-                        if (!isCoreType) new_options_list.push({"value":key, "label":value.name});
-                    }
-            
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                        this.setState({...new_state});
-                    }
-
+            case "post-types":
+                fetchOptions('wp/v2/types', (data, newOptionsList) => {
+                    Object.entries(data).forEach(([key, value]) => {
+                        //===> Exclude Unwanted Post Types <===//
+                        const excluded = ['attachment', 'nav_menu_item', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part', 'wp_font'];
+                        //===> Add Post Type to the List <===//
+                        if (!excluded.some(keyword => key.includes(keyword))) newOptionsList.push({ value: key, label: value.name });
+                    });
                 });
-            }
+                break;
             //====> for Users-Roles <====//
-            else if (this.props.options === "users-roles") {
-                //===> Fetch Roles <===//
-                apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
-                    //===> Define Types <===//
-                    const new_state = this.state,
-                          new_options_list = [{label: __("Default", "pds-blocks"), value: ""}];
-            
-                    //===> Get Current Roles <===//
-                    for (const [key, value] of Object.entries(options.users_roles)) {
-                        new_options_list.push({"value": value.name, "label": value.name});
-                    }
-            
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                        this.setState({...new_state});
-                    }
+            case "users-roles":
+                fetchOptions('pds-blocks/v2/options', (data, newOptionsList) => {
+                    Object.entries(data.users_roles).forEach(([key, value]) => {
+                        newOptionsList.push({ value: value.name, label: value.name });
+                    });
                 });
-            }
+                break;
             //====> for Template-Parts <====//
-            else if (this.props.options === "template-parts") {
-                apiFetch({path: 'pds-blocks/v2/options'}).then(options => {
-                    //===> Create New Array <===//
-                    const new_state = this.state,
-                          template_parts = options.theme_parts,
-                          new_options_list = [];
-
-                    //===> Loop Through Theme-Parts <===//
-                    if(template_parts) {
-                        Object.entries(template_parts).forEach(([key, value]) => {
-                            //===> if its direct theme-part <===//
-                            if(typeof(value) === 'string') {
-                                new_options_list.push(<option key={`${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
-                            }
-                            //===> if its nested theme-part in a directory <===//
+            case "template-parts":
+                fetchOptions('pds-blocks/v2/options', (data, newOptionsList) => {
+                    //===> Define Data <===//
+                    const templateParts = data.theme_parts;
+                    
+                    if (templateParts) {
+                        Object.entries(templateParts).forEach(([key, value]) => {
+                            //===> Normal File <===//
+                            if (typeof value === 'string') {
+                                newOptionsList.push(<option key={`${value}`} value={value.replace(".php", "")}>{value.replace('-', ' ').replace('_', '').replace(".php", "")}</option>);
+                            } 
+                            //===> Grouped Files <===//
                             else {
-                                //===> Define Directory Files <===//
-                                let files_list = [];
-                                //===> Loop Through Files <===//
-                                Object.entries(value).forEach(([key2, value]) => {
-                                    //===> add the file to the list <===//
-                                    files_list.push(<option key={`${key}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
+                                //===> Define Files List <===//
+                                let filesList = [];
+
+                                //===> Add Files to the List <===//
+                                Object.entries(value).forEach(([key, value]) => {
+                                    filesList.push(<option key={`${key}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
                                 });
-                                //===> Push the Options Group <===//
-                                new_options_list.push(<optgroup key={`${key}-group`} label={`${key}`}>{files_list}</optgroup>);
+                                //===> Add Grouped Files to the List <===//
+                                newOptionsList.push(<optgroup key={`${key}-group`} label={`${key}`}>{filesList}</optgroup>);
                             }
                         });
                     }
-
-                    //===> Set new Options List <===//
-                    if (new_options_list !== this.state.options) {
-                        new_state.dataFetched += 1;
-                        new_state.options = new_options_list;
-                        //===> Set State <===//
-                       this.setState({...new_state});
-                    }
                 });
-            }
+                break;
+            //====> .... <====//
+            default:
+                break;
         }
-    };
+    }, [options, optionsList.length, termType]);
 
-    //===> Fetch Data When Rendered <===//
-    componentDidMount() { this.reRender(); };
-    //===> Fetch Data When Updated <===//
-    componentDidUpdate() { this.reRender(); };
+    //===> Start Fetch Data When Rendering <===//
+    useEffect(() => fetchData(), [fetchData]);
 
-    render () {
-        //===> Properties <===//
-        const {options, name, type, size, label, value, multiple, valueSetter, className, search, termType } = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-flexbox-${screen}-option`;
+    //===> Memoized Options List <===//
+    const memoizedOptionsList = useMemo(() => optionsList, [optionsList]);
 
-        //===> Render Component <===//
-        return <PhenixSelect key={this.state.dataFetched} type={type} options={this.state.options} multiple={multiple} name={name} placeholder={__("Default", "pds-blocks")} label={label} value={value} onChange={valueSetter} className={className} search={search} size={size} />
-    }
+    //===> Render Component <===//
+    return <PhenixSelect key={dataFetched} type={type} options={memoizedOptionsList} multiple={multiple} name={name} placeholder={__("Default", "pds-blocks")} label={label} value={value} onChange={valueSetter} className={className} search={search} size={size} />
 }
+
+export default SelectFromData;

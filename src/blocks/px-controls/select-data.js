@@ -1,8 +1,7 @@
 //====> .Dependencies. <====//
 import {__} from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
-import {Component} from '@wordpress/element';
-
+import React, { useState, useMemo, useEffect, useCallback, Component } from '@wordpress/element';
 //====> Phenix Modules <====//
 import PhenixSelect from './select';
 

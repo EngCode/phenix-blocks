@@ -23,6 +23,7 @@ const PhenixBackground = (props) => {
     //===> Get Custom Colors and Gradients <===//
     const setting = wp.data.select('core/block-editor').getSettings();
     const editorColors = setting['__experimentalFeatures']?.color;
+
     //===> Custom Colors List <===//
     const customColorsList = useMemo(() => {
         //===> Default and User Custom <===//
@@ -33,6 +34,7 @@ const PhenixBackground = (props) => {
         }
         return list;
     }, [editorColors]);
+
     //===> Custom Gradients List <===//
     const customGradientsList = useMemo(() => {
         //===> Default and User Custom <===//
@@ -43,6 +45,7 @@ const PhenixBackground = (props) => {
         }
         return list;
     }, [editorColors]);
+
     //===> Returned Value <===//
     let options = {
         type: type,

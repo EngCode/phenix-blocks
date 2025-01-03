@@ -131,7 +131,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 29. Refactor Phenix Core Class Methods
 30. Fix Taxonomies ID and Link Controller Bugs.
 31. SEO Useless methods removed.
-
+32. Improving Colors Panel Performance.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

@@ -1,265 +1,264 @@
 /*
  * ===> 01 - WordPress Modules
- * ===> 02 - Phenix Background
- * ===> 03 - Buttons Creator
- * ===> 04 - Component Output
+ * ===> 02 - Phenix Modules
+ * ===> 03 - Phenix Icons
 */
 
 //===> WordPress Modules <===//
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
-import {Component} from '@wordpress/element';
+import React, { useState, useMemo, useEffect, useCallback, Component } from '@wordpress/element';
+
+//===> Phenix Modules <===//
 import PhenixSelect from './select';
 
 //===> Phenix Icons <===//
-export default class PhenixIcons extends Component {
+const PhenixIcons = (props) => {
     //===> States <===//
-    state = {
-        icons_page : 1,
-        icon_type  : "far",
-        icon_name  : "fa-icons",
-        icons_file : "fa6-pro.json",
-        icons_list : [],
-        icons_pages: {},
-
-        icons_types : [
+    const [state, setState] = useState({
+        iconsPage: 1,
+        iconType: "far",
+        iconName: "fa-icons",
+        iconsFile: "fa6-pro.json",
+        iconsList: [],
+        iconsPages: {},
+        iconsVersion: "fa6",
+        returnType: null,
+        iconsTypes: [
             { value: 'fab', label: 'Brands' },
-
             { value: 'fat', label: 'Thin' },
             { value: 'fal', label: 'Light' },
             { value: 'far', label: 'Regular' },
             { value: 'fas', label: 'Solid' },
             { value: 'fad', label: 'Duotone' },
-
             { value: 'fast', label: 'Sharp Thin' },
             { value: 'fasl', label: 'Sharp Light' },
             { value: 'fass', label: 'Sharp Solid' },
             { value: 'fasr', label: 'Sharp Regular' },
-        ],
+        ]
+    });
 
-        icons_version : "fa6",
-        return_type: null
-    };
-
-    reRender = () => {
-        //===> Fetch Data <===//
+    //===> Fetch Data When Render <===//
+    useEffect(() => {
         apiFetch({ path: "pds-blocks/v2/options" }).then((options) => {
-            //===> Get Icons Data <===//
-            let icons_pages = this.state.icons_pages,
-                icons_version = this.state.icons_version,
-                icons_file = this.state.icons_file,
-                icon_type = this.state.icon_type,
-                icon_name = this.state.icon_name,
-                icons_list = this.state.icons_list;
-
             //===> Get Icons Version <===//
+            let version = state.iconsVersion;
             if (options.pds_icon_font) {
-                icons_version = options.pds_icon_font.replace("fontawesome-", "fa").replace("-free","").replace("-pro","");
+                version = options.pds_icon_font.replace("fontawesome-", "fa").replace("-free", "").replace("-pro", "");
             }
 
-            //===> Define FontAwesome Icons File <===//
-            if (this.props.value.includes("fab")) {
-                icons_file = `${icons_version}-brands.json`;
-            } else {
-                icons_file = `${icons_version}-pro.json`;
-            }
-
+             //===> Define FontAwesome Icons File <===//
+            let file = props.value.includes("fab") ? `${version}-brands.json` : `${version}-pro.json`;
             //===> FontAwesome Version Correct <===//
-            if(icons_version.includes("6")) icons_file = icons_file.replace("5", "6");
-
-            //===> Set Icon Type <===//
-            const icon_value = this.props.value.split(" ");
-
-            //===> Reset Icons List <===//
-            if (icon_type.includes('fab') && !icon_value[0].includes('fab')) icons_list = [];
-
-            //===> Set Icon Type <===//
-            icon_name = icon_value[1];
-            icon_type = icon_value[0];
-
+            if (version.includes("6")) file = file.replace("5", "6");
+    
             //===> Start Fetching <===//
-            if (icons_list.length < 1) {
-                fetch(`${PDS_WP_KEY.json}/${icons_file}`).then((res) => res.json()).then((json) => {
+            if (state.iconsList.length < 1) {
+                fetch(`${PDS_WP_KEY.json}/${file}`).then((res) => res.json()).then((json) => {
                     //===> Assign Icons List <===//
-                    if (json.icons !== icons_list) icons_list = json.icons;
+                    const newIconsList = json.icons;
+
                     //===> Divide List into Pages <===//
-                    for(let item = 0; item < icons_list.length; item += 200) {
+                    const pages = {};
+                    for (let item = 0; item < newIconsList.length; item += 200) {
                         //===> Define Page Number <===//
                         let pageNumber = Math.floor(item / 200) + 1;
                         //===> Add item to Pages Object <===//
-                        icons_pages[pageNumber] = icons_list.slice(item, item + 200);
+                        pages[pageNumber] = newIconsList.slice(item, item + 200);
                     }
                     //===> Update State <===//
-                    this.setState({icon_type, icon_name, icons_file, icons_list, icons_version, icons_pages});
+                    setState(prevState => ({
+                        ...prevState,
+                        iconsList: newIconsList,
+                        iconsPages: pages
+                    }));
                 });
             } else {
                 //===> Divide List into Pages <===//
-                for(let item = 0; item < icons_list.length; item += 200) {
-                    //===> Define Page Number <===//
+                const pages = {};
+                for (let item = 0; item < state.iconsList.length; item += 200) {
                     let pageNumber = Math.floor(item / 200) + 1;
-                    //===> Add item to Pages Object <===//
-                    icons_pages[pageNumber] = icons_list.slice(item, item + 200);
+                    pages[pageNumber] = state.iconsList.slice(item, item + 200);
                 }
+
                 //===> Update State <===//
-                this.setState({icon_type, icon_name, icons_file, icons_list, icons_version, icons_pages});
+                setState(prevState => ({...prevState,iconsPages: pages}));
             }
         });
+    }, [props.value]);
+
+    //===> Properties <===//
+    const { label, value, version, onChange } = props;
+
+    //===> Returned Value <===//
+    let options = {
+        type: value.split(" ")[0],
+        value: value.split(" ")[1],
     };
 
-    //===> Fetch Data When Rendered <===//
-    componentDidMount() { this.reRender(); };
-    //===> Fetch Data When Updated <===//
-    componentDidUpdate() { this.reRender(); };
+    //===> Set Value <===//
+    const set_value = useCallback((clicked) => {
+        //===> Get Value <===//
+        let button = clicked.target,
+            theValue = button?.getAttribute('data-value');
 
-    //===> Render <===//
-    render () {
-        //===> Properties <===//
-        const { label, value, version, onChange } = this.props;
+        //===> Set Value <===//
+        options.value = theValue;
 
-        //===> Returned Value <===//
-        let options = {
-            type: value.split(" ")[0],
-            value: value.split(" ")[1],
-        };
+        //===> Return Options <===//
+        return onChange(options);
+    }, [onChange, options]);
 
-        //===> Set Type <===//
-        const set_value = clicked => {
-            //===> Get Value <===//
-            let button = clicked.target,
-                theValue  = button?.getAttribute('data-value');
+    //===> Set Type <===//
+    const set_type = useCallback((value) => {
+        //===> Get Value <===//
+        options.type = value;
 
-            //===> Set Value <===//
-            options.value = theValue;
+        //===> Switched to Brand <===//
+        if (value === "fab" && !props.value.includes('fab')) options.value = "fa-wordpress";
 
-            //===> Return Options <===//
-            return onChange(options);
-        };
+        //===> Switched from Brand <===//
+        if (props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
 
-        const set_type = value => {
-            //===> Set Value <===//
-            options.type = value;
+        //===> If Different Set of Icons Reset the List <===//
+        if (props.value.includes('fab') && value !== "fab" || !props.value.includes('fab') && value === "fab") {
+            setState(prevState => ({
+                ...prevState,
+                iconsPage: 1,
+                iconsList: [],
+                iconsPages: {},
+                iconType: value,
+                iconName: options.value
+            }));
+        }
+        //===> Set Icon Type <===//
+        else {
+            setState(prevState => ({
+                ...prevState,
+                iconType: value
+            }));
+        }
 
-            //===> Switched to Brand <===//
-            if (value === "fab" && !this.props.value.includes('fab')) options.value = "fa-wordpress";
+        return onChange(options);
+    }, [props.value, onChange, options]);
 
-            //===> Switched from Brand <===//
-            if (this.props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
+    //===> Traveling Buttons <===//
+    const travelingButton = useCallback((event) => {
+        //===> Get the icons List Wrapper <====//
+        let element = event.target,
+            travelType = element.getAttribute('data-travel');
 
-            //===> Return Options <===//
-            this.setState({icon_type: value, icons_list: [], icons_pages: {}, icons_page: 1, icon_name: options.value}, () => {
-                return onChange(options);
-            });
-        };
+        //===> Get Next Page <===//
+        if (travelType === 'next') {
+            //===> Exit if Last Page <===//
+            if (state.iconsPage === Object.keys(state.iconsPages).length) return;
+            //===> Go to Next Page <===//
+            setState(prevState => ({
+                ...prevState,
+                iconsPage: prevState.iconsPage + 1
+            }));
+        }
+        //===> Get Previous Page <===//
+        else if (travelType === 'previous') {
+            //===> Exit if First Page <===//
+            if (state.iconsPage === 1) return;
+            //===> Go to Previous Page <===//
+            setState(prevState => ({
+                ...prevState,
+                iconsPage: prevState.iconsPage - 1
+            }));
+        }
+    }, [state.iconsPage, state.iconsPages]);
 
-        //===> Traveling Buttons <===//
-        const travelingButton = (event) => {
-            //===> Get the icons List Wrapper <====//
-            let element = event.target,
-                travelType = element.getAttribute('data-travel');
+    //===> Buttons Creator <===//
+    const makeButtons = useCallback((list, type) => {
+        //===> Exit if has no items <===//
+        if (!list || list.length < 1) return;
 
-            //===> Get Next Page <===//
-            if (travelType === 'next') {
-                //===> Exit if Last Page <===//
-                if (this.state.icons_page === Object.keys(this.state.icons_pages).length) return;
-                //===> Go to Next Page <===//
-                this.setState({icons_page: this.state.icons_page + 1});
-            }
+        //===> Define Data <===//
+        let buttonsList = [],
+            buttonsStyle = {"fontSize": "20px", "lineHeight": "32px", "width":"32px", "height":"32px", "borderRadius": "3px", "padding": 0},
+            buttonItem = (item) => {
+                return <button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`reset-button icon-btn-item ${type} ${item} ${state.iconName === item ? 'px-active bg-offwhite-primary' : ""}`} style={buttonsStyle}></button>;
+            };
 
-            //===> Get Previous Page <===//
-            else if (travelType === 'previous') {
-                //===> Exit if First Page <===//
-                if (this.state.icons_page === 1) return;
+        //===> Create Buttons <===//
+        list.forEach((item) => buttonsList.push(buttonItem(item)));
 
-                //===> Go to Previous Page <===//
-                this.setState({icons_page: this.state.icons_page - 1});
-            }
-        };
+        //===> Return Buttons <===//
+        return buttonsList;
+    }, [set_value, state.iconName]);
 
-        //===> Buttons Creator <===//
-        const makeButtons = (list, type) => {
-            //===> Exit if has no items <===//
-            if (!list || list.length < 1) return;
+    //===> Colors Panel <===//
+    const showPanel = useCallback((clicked) => {
+        let button = clicked.target,
+            wrapper = Phenix(button).ancestor('.px-gb-component'),
+            panel = wrapper.querySelector(".options-list");
 
-            //===> Define Data <===//
-            let buttonsList  = [],
-                buttonsStyle = {"fontSize": "20px", "lineHeight": "32px", "width":"32px", "height":"32px", "borderRadius": "3px", "padding": 0},
-                buttonItem = (item) => {
-                    return <button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`reset-button icon-btn-item ${type} ${item} ${this.state.icon_name === item?'px-active bg-offwhite-primary':""}`} style={buttonsStyle}></button>;
-                };
+        //=== Show/Hide Panel ===//
+        if (panel) {
+            Phenix(button).toggleClass("px-active");
+            Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
+        }
+    }, []);
 
-            //===> Create Buttons <===//
-            list.forEach((item) => buttonsList.push(buttonItem(item)));
+    //===> Search in icons <===//
+    const iconsFilter = useCallback((changed) => {
+        //===> Define Data <===//
+        let input = changed.target,
+            value = input.value;
 
-            //===> Return Buttons <===//
-            return buttonsList;
-        };
+        //===> Find the searched icon and remove the reset <===//
+        let searchedList = state.iconsList.filter(icon => icon.includes(value));
+        
+        //===> Set the New List <===//
+        setState(prevState => ({
+            ...prevState,
+            iconsList: searchedList,
+            iconsPage: 1,
+            iconsPages: {}
+        }));
+    }, [state.iconsList]);
 
-        //===> Colors Panel <===//
-        const showPanel = clicked => {
-            let button  = clicked.target,
-                wrapper = Phenix(button).ancestor('.px-gb-component'),
-                panel   = wrapper.querySelector(".options-list");
+    //===> Component Design <===//
+    return (
+        <div className={`px-gb-component position-rv mb-10 px-icons-selector ${!label?'pdt-10':''}`}>
+            {/*===> Toggle Button <===*/}
+            {label?<label className='mb-10 tx-UpperCase fs-13'>{label}</label>:null}
 
-            //=== Show/Hide Panel ===//
-            if (panel) {
-                Phenix(button).toggleClass("px-active");
-                Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
-            }
-        };
-
-        //===> Search in icons <===//
-        const iconsFilter = changed => {
-            //===> Define Data <===//
-            let input = changed.target,
-                icons_list = this.state.icons_list,
-                value = input.value;
-
-            //===> Find the searched icon and remove the reset <===//
-            let searchedList = icons_list.filter(icon => icon.includes(value));
-            
-            //===> Set the New List <===//
-            if (value.length > 0)  this.setState({icons_list: searchedList, icons_page: 1, icons_pages: {}});
-            else this.setState({icons_list: [], icons_page: 1, icons_pages: {}});
-        };
-
-        //===> Component Design <===//
-        return (
-            <div className={`px-gb-component position-rv mb-10 px-icons-selector ${!label?'pdt-10':''}`}>
-                {/*===> Toggle Button <===*/}
-                {label?<label className='mb-10 tx-UpperCase fs-13'>{label}</label>:null}
-
-                {/*===> Group <===*/}
-                <div className='form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
-                    {/*===> Panel Trigger */}
-                    <button onClick={showPanel} className={`col-6 w-max-150 fs-13 h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
-                        <span className={`col tx-nowrap pde-5`} style={{"lineHeight": "20px"}}>
-                            <span className={`pds-icon-preview inline-block me-5 radius-circle bg-alpha-05 ${this.props.value} position-rv`}></span>
-                            {__("Replace", "pds-blocks")}
-                        </span>
-                        <i className='fas fa-pencil fs-12 color-gray'></i>
-                    </button>
-                    {/*===> Type Select <===*/}
-                    <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={value.split(" ")[0]} onChange={(target) => set_type(target.value)} options={this.state.icons_types} />
-                </div>
-
-                {/*===> Panel <===*/}
-                <div className={`flexbox align-center tx-align-center options-list pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-25 radius-md radius-bottom hidden fluid`}>
-                    <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
-                    {/*===> Buttons List <===*/}
-                    <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-y" style={{gap:"10px", maxHeight: "220px"}}>
-                        {this.state.icons_list.length > 0 ? 
-                            makeButtons(this.state.icons_pages[this.state.icons_page], this.state.icon_type) : "No Icons Found."
-                        }
-                    </div>
-                    {/*===> Pagination <===*/}
-                    <div className='fluid flexbox align-between align-center-y pagination-btns pdx-15'>
-                        <button onClick={travelingButton} type="button" data-travel="next" className="btn tiny fs-12 radius-sm primary">{__("Next", "pds-blocks")}</button> 
-                        <span className="fs-14 weight-medium">{this.state.icons_page}/{Object.keys(this.state.icons_pages).length}</span>
-                        <button onClick={travelingButton} type="button" data-travel="previous" className="btn tiny fs-12 radius-sm gray">{__("Previous", "pds-blocks")}</button> 
-                    </div>
-                    {/*===> // Pagination <===*/}
-                </div>
+            {/*===> Group <===*/}
+            <div className='form-control small flexbox border-alpha-25 mb-5 tx-align-start radius-md align-center-y pdx-0 flow-nowrap'>
+                {/*===> Panel Trigger */}
+                <button onClick={showPanel} className={`col-6 w-max-150 fs-13 h-min-100 reset-button options-toggle flexbox flow-nowrap align-between align-center-y pdx-10 divider-e`} type="button">
+                    <span className={`col tx-nowrap pde-5`} style={{"lineHeight": "20px"}}>
+                        <span className={`pds-icon-preview inline-block me-5 radius-circle bg-alpha-05 ${props.value} position-rv`}></span>
+                        {__("Replace", "pds-blocks")}
+                    </span>
+                    <i className='fas fa-pencil fs-12 color-gray'></i>
+                </button>
+                {/*===> Type Select <===*/}
+                <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={value.split(" ")[0]} onChange={(target) => set_type(target.value)} options={state.iconsTypes} />
             </div>
-        )
-    }
+
+            {/*===> Panel <===*/}
+            <div className={`flexbox align-center tx-align-center options-list pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-25 radius-md radius-bottom hidden fluid`}>
+                <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
+                {/*===> Buttons List <===*/}
+                <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-y" style={{gap:"10px", maxHeight: "220px"}}>
+                    {state.iconsList.length > 0 ? 
+                        makeButtons(state.iconsPages[state.iconsPage], state.iconType) : "No Icons Found."
+                    }
+                </div>
+                {/*===> Pagination <===*/}
+                <div className='fluid flexbox align-between align-center-y pagination-btns pdx-15'>
+                    <button onClick={travelingButton} type="button" data-travel="next" className="btn tiny fs-12 radius-sm primary">{__("Next", "pds-blocks")}</button> 
+                    <span className="fs-14 weight-medium">{state.iconsPage}/{Object.keys(state.iconsPages).length}</span>
+                    <button onClick={travelingButton} type="button" data-travel="previous" className="btn tiny fs-12 radius-sm gray">{__("Previous", "pds-blocks")}</button> 
+                </div>
+                {/*===> // Pagination <===*/}
+            </div>
+        </div>
+    )
 }
+
+export default PhenixIcons;

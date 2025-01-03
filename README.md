@@ -134,6 +134,7 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 32. Improving Colors Panel Performance.
 33. Improving Select Elements Performance in Editor.
 34. Improving Select Data Performance in Editor.
+35. Refactoring icons Panel and improve Performance in Editor.
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

@@ -1,5 +1,5 @@
 //====> .Dependencies. <====//
-import React, { useState, useMemo, useEffect, useCallback } from '@wordpress/element';
+import React, { useMemo, useEffect, useCallback } from '@wordpress/element';
 
 //===> Phenix Form Control <===//
 const PhenixSelect = (props) => {

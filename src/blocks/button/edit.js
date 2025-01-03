@@ -265,7 +265,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                         {/*===> Layouts <===*/}
                         <div class="row">
                             {/*===> Button Type <===*/}
-                            <div class="col col-6">
+                            <div class="col col-12">
                                 <PhenixSelect key={`btn-type-${uniqueKey}`} className={`mb-15 arrow-gray`} name="type" label={"Type"} placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
                             </div>
                             {/*===> Column <===*/}

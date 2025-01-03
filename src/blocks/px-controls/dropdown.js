@@ -1,5 +1,4 @@
 import React, { useEffect, Fragment } from '@wordpress/element';
-import { DropdownMenu } from '@wordpress/components';
 
 const PxDropDown = ({
     label,
@@ -12,16 +11,20 @@ const PxDropDown = ({
     title,
     key
 }) => {
+    //===> Component View Script Function <===\\
     useEffect(() => {
         window.PhenixBlocks.componentsBuilder();
-    }, []); // Empty dependency array ensures this runs only once after the initial render
+    }, []);
 
+    //===> Component Attributes <===\\
     const attributes = {};
 
+    //===> Component Classes <===\\
     if (support?.includes("hover")) attributes["data-hover"] = "true";
     if (dataPosition) attributes["data-position"] = dataPosition;
     if (key) attributes.key = key;
 
+    //===> Component Render <===\\
     return (
         <Fragment>
             {/* Dropdown Wrapper */}

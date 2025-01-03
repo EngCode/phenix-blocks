@@ -124,6 +124,14 @@ Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah
 22. Add Show Columns in the Admin Posts Table Functions
 23. Add Posts JSON Exporter Simple Tool
 24. Add post duplicating method.
+25. Improving component builders, and view scripts.
+26. Fixing Dropdown Menus in the Toolbar.
+27. Fix Media Uploader in Optimization Tab.
+28. Replace SplideJS with Swiper Slider.
+29. Refactor Phenix Core Class Methods
+30. Fix Taxonomies ID and Link Controller Bugs.
+31. SEO Useless methods removed.
+
 
 ### Change Log v1.1.1
 1. Reset Form Elements when submit is complete.

@@ -230,29 +230,33 @@ window.PxWpUploader = isClicked => {
     //===> Prevent Default <===//
     isClicked.preventDefault();
     let input = Phenix(isClicked.target).next(".uploader-input");
-    
+
     //===> Preview <===//
     let input_preview = document.querySelector('.loading-image'),
         value_preview = Phenix(input).ancestor('.px-custom-uploader')?.querySelector('.input-value');
 
-    //===> Open Media Uploader <===//
-    if(wp.media) {
-        const mediaPopup = wp.media({
+    //===> Track Media Frame for Each Instance <===//
+    if (!isClicked.target.mediaPopup) {
+        //===> Create Media Popup if it Doesn't Exist <===//
+        isClicked.target.mediaPopup = wp.media({
             title: "Upload Image",
             multiple: false
         });
-        
-        //===> Open the Popup <===//
-        mediaPopup.open().on("select", isSelect => {
-            //===> Get the Image URL <===//
-            var uploaded_image = mediaPopup.state().get("selection").first();
 
+        //===> Handle Media Selection <===//
+        isClicked.target.mediaPopup.on("select", () => {
+            //===> Get the Image URL <===//
+            var uploaded_image = isClicked.target.mediaPopup.state().get("selection").first();
+    
             //===> Set the URL to the Input <===//
             input.value = uploaded_image.toJSON().url;
-
+    
             //===> Set Preview and Value <===//
-            if(input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
-            if(value_preview) value_preview.textContent = uploaded_image.toJSON().name;
+            if (input_preview) input_preview.setAttribute('src', uploaded_image.toJSON().url);
+            if (value_preview) value_preview.textContent = uploaded_image.toJSON().name;
         });
     }
+
+    //===> Open the Popup <===//
+    isClicked.target.mediaPopup.open();
 };

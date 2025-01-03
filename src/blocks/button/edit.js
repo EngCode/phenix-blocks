@@ -275,7 +275,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                             {/*===> Column <===*/}
                             <div class="col col-6">
                                 {/*=== Form Control  ===*/}
-                                <PhenixInput className="mb-15" name="id" label={__("HTML ID [Anchor]", "pds-blocks")} value={attributes.id} onChange={set_value} />
+                                <PhenixInput className="mb-15" name="id" label={__("HTML ID", "pds-blocks")} value={attributes.id} onChange={set_value} />
                             </div>
                         </div>
                         {/*===> Button Label <===*/}

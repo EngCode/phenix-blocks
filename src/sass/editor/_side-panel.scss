@@ -332,6 +332,11 @@ body[class*="block-editor"], body[class*="site-editor"] {
 	.edit-site-global-styles-screen-colors {
 		[id="/colors/heading"], [id="/colors/link"] {display: none!important;}
 	}
+
+	.flexbox .option-control:hover {
+		z-index: 10;
+		position: relative;
+	}
 }
 
 .block-editor-block-inspector .components-base-control {margin-bottom: 10px!important;}

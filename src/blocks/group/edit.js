@@ -39,7 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
-    useEffect(() => PhenixBlocks.componentsBuilder(), []);
+    useEffect(() => PhenixBlocks.viewScript(), []);
 
     //===> Get Block Properties <===//
     const TagName = attributes.tagName;

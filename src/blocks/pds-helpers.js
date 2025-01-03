@@ -488,12 +488,12 @@ window.PhenixBlocks = {
 
     componentsBuilder : () => {
         //===> Get Elements <===//
-        let elements = document.querySelectorAll('.pds-tm-control');
+        const elements = document.querySelectorAll('.pds-tm-control');
 
         //===> Loop Through Elements <===//
         elements.forEach(element => {
             //===> Define Element Data <===//
-            let class_names = element.classList;
+            const class_names = element.classList;
 
             //===> for Selects <===//
             if (class_names.contains('px-select') && !Phenix(element).ancestor('.px-dropdown')) Phenix(element).select();
@@ -504,77 +504,70 @@ window.PhenixBlocks = {
                 element.querySelectorAll('.pds-tm-control.px-select').forEach(element => Phenix(element).select());
             }
         });
+    },
 
+    viewScript : () => {
         //===> Get View iFrame <===//
         const viewScript = (the_document) => {
-            //===> Define Data <===//
-            let time_counter = 0,
-            //===> Timer Loop <===//
-            pds_elements_timer = setInterval(() => {
-                //===> Run Multimedia <===//
-                the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
-                    element.style.backgroundImage = null;
-                    let image = element.querySelector('.px-media-img');
-                    if (image) image.setAttribute('src', element.getAttribute('data-src'));
-                    Phenix(element).multimedia();
-                });
-    
-                //===> Contain Queries Sliders <===//
-                the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
-                    //===> Mark as Editing Mode <===//
-                    element.classList.add('edit-mode');
-    
-                    //===> Disable Autoplay <===//
-                    if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
-    
-                    //===> Replace Data Attributes with Row/Columns Classes <===//
-                    const slider_cols_fixer = (row) => {
-                        //===> Contain the Slides in One Line <====//
-                        row.classList.add('flow-nowrap');
-                        if (element.getAttribute('data-md')) row.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
-                        if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
-                        if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
-                    }
-    
-                    slider_cols_fixer(element);
-                });
-    
-                //===> Run Menus <===//
-                the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
+            //===> Run Multimedia <===//
+            the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
+                element.style.backgroundImage = null;
+                let image = element.querySelector('.px-media-img');
+                if (image) image.setAttribute('src', element.getAttribute('data-src'));
+                Phenix(element).multimedia();
+            });
 
-                //===> Run Utilites <===//
-                Phenix(the_document).utilities("form");
+            //===> Contain Queries Sliders <===//
+            the_document.querySelectorAll(".px-slider:not(.block-editor-block-list__block)").forEach(element => {
+                //===> Mark as Editing Mode <===//
+                element.classList.add('edit-mode');
 
-                //===> Icons List <===//
-                the_document.querySelectorAll('li[data-icon]').forEach((list) => {
-                    if (list.getAttribute('data-icon')) {
-                        let classes = list.getAttribute('data-icon').split(" ") || [];
-                        list.classList.add(...classes);
-                    }
-                });
+                //===> Disable Autoplay <===//
+                if(element.getAttribute('data-autoplay')) element.setAttribute('data-autoplay', false);
 
-                //===> Unlocated Menu fallback style. <===//
-                the_document.querySelectorAll('.px-navigation > div.reset-list').forEach((element) => {
-                    //===> Define Elements <===//
-                    let parent = Phenix(element).ancestor(".px-navigation"),
-                        classNames = element.classList,
-                        children  = element.childNodes;
+                //===> Replace Data Attributes with Row/Columns Classes <===//
+                const slider_cols_fixer = (row) => {
+                    //===> Contain the Slides in One Line <====//
+                    row.classList.add('flow-nowrap');
+                    if (element.getAttribute('data-md')) row.classList.add(`row-cols-md-${element.getAttribute('data-md')}`);
+                    if (element.getAttribute('data-lg')) row.classList.add(`row-cols-md-${element.getAttribute('data-lg')}`);
+                    if (element.getAttribute('data-xl')) row.classList.add(`row-cols-md-${element.getAttribute('data-xl')}`);
+                }
 
-                    //===> Move Children <===//
-                    children.forEach((child) => {
-                        parent.appendChild(child);
-                        //===> Move Classnames <===//
-                        classNames.forEach((className) => child.classList.add(className));
-                    });
+                slider_cols_fixer(element);
+            });
 
-                    //===> Remove Element <===//
-                    element.remove();
+            //===> Run Menus <===//
+            the_document.querySelectorAll(".px-navigation").forEach(element => Phenix(element).menu());
+
+            //===> Run Utilites <===//
+            Phenix(the_document).utilities("form");
+
+            //===> Icons List <===//
+            the_document.querySelectorAll('li[data-icon]').forEach((list) => {
+                if (list.getAttribute('data-icon')) {
+                    let classes = list.getAttribute('data-icon').split(" ") || [];
+                    list.classList.add(...classes);
+                }
+            });
+
+            //===> Unlocated Menu fallback style. <===//
+            the_document.querySelectorAll('.px-navigation > div.reset-list').forEach((element) => {
+                //===> Define Elements <===//
+                let parent = Phenix(element).ancestor(".px-navigation"),
+                    classNames = element.classList,
+                    children  = element.childNodes;
+
+                //===> Move Children <===//
+                children.forEach((child) => {
+                    parent.appendChild(child);
+                    //===> Move Classnames <===//
+                    classNames.forEach((className) => child.classList.add(className));
                 });
 
-                //====> Clear Timer <===//
-                time_counter += 1;
-                if (time_counter > 5) clearInterval(pds_elements_timer);
-            }, 300);
+                //===> Remove Element <===//
+                element.remove();
+            });
         };
 
         //====> Get the Editor iFrame <====//
@@ -584,12 +577,15 @@ window.PhenixBlocks = {
         //===> Check for Canvas Frames <===//
         if (canvasIframeDoc) {
             //===> Timer to Check for Assets Existing <===//
-            setInterval(() => {
+            let canvasTimer = setInterval(() => {
                 //===> Re-Catch the Canvas <===//
                 canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
                 canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
                 //===> if the Assets are no there Loaded <===//
-                if (canvasIframe && canvasIframeDoc) viewScript(canvasIframeDoc);
+                if (canvasIframe && canvasIframeDoc) {
+                    viewScript(canvasIframeDoc);
+                    clearInterval(canvasTimer);
+                }
             }, 500);
         }
 

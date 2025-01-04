@@ -20,7 +20,7 @@ const PhenixNumber = (props) => {
         const maxNum  = parseFloat(max) || 0;
         //===> Get Input Element <===//
         const newVal = parseFloat(input.value);
-        const checkVal = (newVal >= minNum && newVal <= maxNum) ? newVal : 0;
+        const checkVal = (newVal >= minNum || newVal <= maxNum) ? newVal : 0;
         //===> Set Data <===//
         input.value = checkVal;
         //===> Return Data <===//
@@ -40,7 +40,7 @@ const PhenixNumber = (props) => {
             newVal = parseFloat(input.value) + step;
     
         //===> Set Data <===//
-        input.value = newVal < maxNum || newVal === maxNum ? newVal : maxNum;
+        input.value = (newVal >= minNum || newVal <= maxNum) ? newVal : maxNum;
     
         //===> Return Data <===//
         return onChange(input);
@@ -59,7 +59,7 @@ const PhenixNumber = (props) => {
             newVal = parseFloat(input.value) - step;
     
         //===> Set Data <===//
-        input.value = newVal > minNum || newVal === minNum ? newVal : minNum;
+        input.value = (newVal >= minNum || newVal <= maxNum) ? newVal : minNum;
     
         //===> Return Data <===//
         return onChange(input);

@@ -29,48 +29,35 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 }
 
 /*==== Base Screen ====*/
+.pdt-custom {padding-top: var(--pdt);}
+.pdb-custom {padding-bottom: var(--pdb);}
+.pds-custom-start {padding-#{$direction-start}: var(--pds);}
+.pde-custom-end {padding-#{$direction-end}: var(--pde);}
 @include make_padding();
 
 /*==== Medium Screen ====*/
 @include medium(){
+    .pdt-custom { --pdt: var(--pdt-md, var(--pdt)) };
+    .pdb-custom { --pdb: var(--pdb-md, var(--pdb)) };
+    .pds-custom-start { --pds: var(--pds-md, var(--pds)) };
+    .pde-custom-end { --pde: var(--pde-md, var(--pde)) };
     @include make_padding('-md');
 };
 
 /*==== Large Screen ====*/
 @include large(){
+    .pdt-custom { --pdt: var(--pdt-lg, var(--pdt-md)) };
+    .pdb-custom { --pdb: var(--pdb-lg, var(--pdb-md)) };
+    .pds-custom-start { --pds: var(--pds-lg, var(--pds-md)) };
+    .pde-custom-end { --pde: var(--pde-lg, var(--pde-md)) };
     @include make_padding('-lg');
 };
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
+    .pdt-custom { --pdt: var(--pdt-xl, var(--pdt-lg)) };
+    .pdb-custom { --pdb: var(--pdb-xl, var(--pdb-lg)) };
+    .pds-custom-start { --pds: var(--pds-xl, var(--pds-lg)) };
+    .pde-custom-end { --pde: var(--pde-xl, var(--pde-lg)) };
     @include make_padding('-xl');
 };
-
-/*==== Custom ====*/
-.pdt-custom {
-    padding-top: var(--pdt);
-    @include xlarge() { padding-top: var(--pdt-xl) };
-    @include large()  { padding-top: var(--pdt-lg) };
-    @include medium() { padding-top: var(--pdt-md) };
-}
-
-.pdb-custom {
-    padding-bottom: var(--pdb);
-    @include xlarge() { padding-bottom: var(--pdb-xl) };
-    @include large()  { padding-bottom: var(--pdb-lg) };
-    @include medium() { padding-bottom: var(--pdb-md) };
-}
-
-.pds-custom-start {
-    padding-#{$direction-start}: var(--pds);
-    @include xlarge() { padding-#{$direction-start}: var(--pds-xl) };
-    @include large()  { padding-#{$direction-start}: var(--pds-lg) };
-    @include medium() { padding-#{$direction-start}: var(--pds-md) };
-}
-
-.pde-custom-end {
-    padding-#{$direction-end}: var(--pde);
-    @include xlarge() { padding-#{$direction-end}: var(--pde-xl) };
-    @include large()  { padding-#{$direction-end}: var(--pde-lg) };
-    @include medium() { padding-#{$direction-end}: var(--pde-md) };
-}

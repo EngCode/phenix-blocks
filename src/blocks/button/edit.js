@@ -118,6 +118,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} />} 
+                            md={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                            lg={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                            xl={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
+                        />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
@@ -299,17 +310,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     </>} 
                 />
             </PanelBody>
-
-            {/*===> Typography Options <===*/}
-            <PanelBody title={__("Typography Options", "pds-blocks")} initialOpen={false}>
-                <ScreensTabs key={`responsive-${uniqueKey}`} 
-                    sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} />} 
-                    md={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
-                    lg={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
-                    xl={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} exclude={`align`} options="size" screen={screen} />} 
-                />
-            </PanelBody>
-
             {/*===> Trigger Options <===*/}
             <PanelBody title={__("Trigger Options", "pds-blocks")} initialOpen={false}>
                 {/*===> Elements Group <===*/}

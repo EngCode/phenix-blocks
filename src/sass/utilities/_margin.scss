@@ -36,49 +36,36 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 }
 
 /*==== Base Screen ====*/
+.mt-custom {margin-top: var(--mt);}
+.mb-custom {margin-bottom: var(--mb);}
+.ms-custom {margin-#{$direction-start}: var(--ms);}
+.me-custom {margin-#{$direction-end}: var(--me);}
 @include make_margin();
 
 /*==== Medium Screen ====*/
 @include medium(){
+    .mt-custom { --mt: var(--mt-md, var(--mt)) };
+    .mb-custom { --mb: var(--mb-md, var(--mb)) };
+    .ms-custom { --ms: var(--ms-md, var(--ms)) };
+    .me-custom { --me: var(--me-md, var(--me)) };
     @include make_margin('-md');
 };
 
 /*==== Large Screen ====*/
 @include large(){
+    .mt-custom { --mt: var(--mt-lg, var(--mt-md)) };
+    .mb-custom { --mb: var(--mb-lg, var(--mb-md)) };
+    .ms-custom { --ms: var(--ms-lg, var(--ms-md)) };
+    .me-custom { --me: var(--me-lg, var(--me-md)) };
     @include make_margin('-lg');
 };
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
+    .mt-custom { --mt: var(--mt-xl, var(--mt-lg)) };
+    .mb-custom { --mb: var(--mb-xl, var(--mb-lg)) };
+    .ms-custom { --ms: var(--ms-xl, var(--ms-lg)) };
+    .me-custom { --me: var(--me-xl, var(--me-lg)) };
     @include make_margin('-xl');
 };
-
-/*==== Custom ====*/
-.mt-custom{
-    margin-top: var(--mt);
-    @include medium() { margin-top: var(--mt-md) };
-    @include large()  { margin-top: var(--mt-lg) };
-    @include xlarge() { margin-top: var(--mt-xl) };
-}
-
-.mb-custom {
-    margin-bottom: var(--mb);
-    @include medium() { margin-bottom: var(--mb-md) };
-    @include large()  { margin-bottom: var(--mb-lg) };
-    @include xlarge() { margin-bottom: var(--mb-xl) };
-}
-
-.ms-custom {
-    margin-#{$direction-start}: var(--ms);
-    @include medium() { margin-#{$direction-start}: var(--ms-md) };
-    @include large()  { margin-#{$direction-start}: var(--ms-lg) };
-    @include xlarge() { margin-#{$direction-start}: var(--ms-xl) };
-}
-
-.me-custom {
-    margin-#{$direction-end}: var(--me);
-    @include medium() { margin-#{$direction-end}: var(--me-md) };
-    @include large()  { margin-#{$direction-end}: var(--me-lg) };
-    @include xlarge() { margin-#{$direction-end}: var(--me-xl) };
-}
 

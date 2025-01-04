@@ -15,12 +15,12 @@ const PhenixNumber = (props) => {
     //===> Set Value <===//
     const setNumber = useCallback((changed) => {
         //===> Get Elements <===//
-        const input  = changed.target;
-        const minNum  = parseFloat(min) || 0;
-        const maxNum  = parseFloat(max) || 0;
+        const input = changed.target;
+        const minNum = parseFloat(min) || Number.MIN_SAFE_INTEGER;
+        const maxNum = parseFloat(max) || Number.MAX_SAFE_INTEGER;
         //===> Get Input Element <===//
         const newVal = parseFloat(input.value);
-        const checkVal = (newVal >= minNum && newVal <= maxNum) ? newVal : 0;
+        const checkVal = (newVal >= minNum && newVal <= maxNum) ? newVal : minNum;
         //===> Set Data <===//
         input.value = checkVal;
         //===> Return Data <===//
@@ -32,16 +32,16 @@ const PhenixNumber = (props) => {
         //===> Get Elements <===//
         let button = clicked.target,
             wrapper = button.closest(".px-counter-input"),
-            maxNum = parseFloat(max) || 9999999,
+            maxNum = parseFloat(max) || Number.MAX_SAFE_INTEGER,
             step = steps ? parseFloat(steps) : 1;
-    
+
         //===> Get Input Element <===//
         let input = wrapper.querySelector('input[type="number"]'),
             newVal = parseFloat(input.value) + step;
-    
+
         //===> Set Data <===//
-        input.value = newVal < maxNum || newVal === maxNum ? newVal : maxNum;
-    
+        input.value = newVal <= maxNum ? newVal : maxNum;
+
         //===> Return Data <===//
         return onChange(input);
     }, [max, steps, onChange]);
@@ -51,16 +51,16 @@ const PhenixNumber = (props) => {
         //===> Get Elements <===//
         let button = clicked.target,
             wrapper = button.closest(".px-counter-input"),
-            minNum = parseFloat(min) || 0,
+            minNum = parseFloat(min) || Number.MIN_SAFE_INTEGER,
             step = steps ? parseFloat(steps) : 1;
-    
+
         //===> Get Input Element <===//
         let input = wrapper.querySelector('input[type="number"]'),
             newVal = parseFloat(input.value) - step;
-    
+
         //===> Set Data <===//
-        input.value = newVal > minNum || newVal === minNum ? newVal : minNum;
-    
+        input.value = newVal >= minNum ? newVal : minNum;
+
         //===> Return Data <===//
         return onChange(input);
     }, [min, steps, onChange]);

@@ -31,33 +31,10 @@
 .z-index-10 {z-index: 10;}
 
 /*==== Custom Positions ====*/
-.pos-top-custom {
-    top: var(--pos-top);
-    @include medium() { --pos-top: var(--pos-top-md) };
-    @include large()  { --pos-top: var(--pos-top-lg) };
-    @include xlarge() { --pos-top: var(--pos-top-xl) };
-}
-
-.pos-bottom-custom {
-    bottom: var(--pos-bottom);
-    @include medium() { --pos-bottom: var(--pos-bottom-md) };
-    @include large()  { --pos-bottom: var(--pos-bottom-lg) };
-    @include xlarge() { --pos-bottom: var(--pos-bottom-xl) };
-}
-
-.pos-end-custom {
-    #{$direction-end}: var(--pos-end);
-    @include medium() { --pos-end: var(--pos-end-md) };
-    @include large()  { --pos-end: var(--pos-end-lg) };
-    @include xlarge() { --pos-end: var(--pos-end-xl) };
-}
-
-.pos-start-custom {
-    #{$direction-start}: var(--pos-start);
-    @include medium() { --pos-start: var(--pos-start-md) };
-    @include large()  { --pos-start: var(--pos-start-lg) };
-    @include xlarge() { --pos-start: var(--pos-start-xl) };
-}
+.pos-top-custom {top: var(--pos-top);}
+.pos-bottom-custom {bottom: var(--pos-bottom);}
+.pos-end-custom {#{$direction-end}: var(--pos-end);}
+.pos-start-custom {#{$direction-start}: var(--pos-start);}
 
 $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
@@ -91,13 +68,25 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 @include make_positions();
 
 @include medium(){
+    .pos-top-custom { --pos-top: var(--pos-top-md, var(--pos-top)) };
+    .pos-bottom-custom { --pos-bottom: var(--pos-bottom-md, var(--pos-bottom)) };
+    .pos-end-custom { --pos-end: var(--pos-end-md, var(--pos-end)) };
+    .pos-start-custom { --pos-start: var(--pos-start-md, var(--pos-start)) };
     @include make_positions('-md');
 }
 
 @include large(){
+    .pos-top-custom { --pos-top: var(--pos-top-lg, var(--pos-top-md)) };
+    .pos-bottom-custom { --pos-bottom: var(--pos-bottom-lg, var(--pos-bottom-md)) };
+    .pos-end-custom { --pos-end: var(--pos-end-lg, var(--pos-end-md)) };
+    .pos-start-custom { --pos-start: var(--pos-start-lg, var(--pos-start-md)) };
     @include make_positions('-lg');
 }
 
 @include xlarge(){
+    .pos-top-custom { --pos-top: var(--pos-top-xl, var(--pos-top-lg)) };
+    .pos-bottom-custom { --pos-bottom: var(--pos-bottom-xl, var(--pos-bottom-lg)) };
+    .pos-end-custom { --pos-end: var(--pos-end-xl, var(--pos-end-lg)) };
+    .pos-start-custom { --pos-start: var(--pos-start-xl, var(--pos-start-lg)) };
     @include make_positions('-xl');
 }

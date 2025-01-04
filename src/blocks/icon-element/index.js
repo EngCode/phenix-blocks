@@ -44,8 +44,14 @@ registerBlockType(metadata, {
             iconStyle.width = attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42);
         }
 
+        if (blockProps.style) {
+            blockProps.style = { ...blockProps.style, ...iconStyle };
+        } else {
+            blockProps.style = iconStyle;
+        }
+
         //===> Render <===//
-        return (<TagName {...blockProps} style={iconStyle}>{attributes.type === "custom" ? 
+        return (<TagName {...blockProps}>{attributes.type === "custom" ? 
             <img alt="icon" className='fluid' src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
         : null}</TagName>);
     }

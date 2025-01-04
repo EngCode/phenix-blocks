@@ -11,6 +11,8 @@ window.PhenixBlocks = {
     OptionsRenderer : (options) => {
         //===> Options <===//
         const {attributes, blockProps, isSave, hasColors, isColumn, isGrid} = options;
+        const utilities_sizes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+        const positions_sizes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
     
         //===> Rendering Checkers <===//
         const container = {className: ""}, 
@@ -289,7 +291,7 @@ window.PhenixBlocks = {
                         //===> Positions Values <===//
                         else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
-                            if (parseInt(sub_value) > 50 || parseInt(sub_value) <= -1) {
+                            if (!positions_sizes.includes(parseInt(sub_value))) {
                                 //===> Set Custom Positions <===//
                                 CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
@@ -303,12 +305,9 @@ window.PhenixBlocks = {
 
                         //===> Margin Values <===//
                         else if (isMargin.some(css => sub_option.startsWith(css))) {
-                            //===> Auto Value <===//
-                            if (parseInt(sub_value) === -5) {
-                                blockProps.className += ` ${sub_option}-auto`;
-                            }
                             //===> Custom Value <===//
-                            else if (parseInt(sub_value) > 100 || parseInt(sub_value) < -6) {
+                            if (!utilities_sizes.includes(parseInt(sub_value))) {
+                                //===> Set Custom Margin <===//
                                 CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
@@ -323,7 +322,8 @@ window.PhenixBlocks = {
                         else if (isPadding.some(css => sub_option.startsWith(css))) {
                             if (parseInt(sub_value) < -1) return;
                             //===> Custom Value <===//
-                            else if (parseInt(sub_value) > 100) {
+                            else if (!utilities_sizes.includes(parseInt(sub_value))) {
+                                //===> Set Custom Padding <===//
                                 CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),

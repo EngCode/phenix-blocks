@@ -210,14 +210,19 @@ const PhenixIcons = (props) => {
 
         //===> Find the searched icon and remove the reset <===//
         let searchedList = state.iconsList.filter(icon => icon.includes(value));
+
+        //===> Divide List into Pages <===//
+        const pages = {};
+
+        for (let item = 0; item < searchedList.length; item += 200) {
+            //===> Define Page Number <===//
+            let pageNumber = Math.floor(item / 200) + 1;
+            //===> Add item to Pages Object <===//
+            pages[pageNumber] = state.iconsList.slice(item, item + 200);
+        }
         
         //===> Set the New List <===//
-        setState(prevState => ({
-            ...prevState,
-            iconsList: searchedList,
-            iconsPage: 1,
-            iconsPages: {}
-        }));
+        setState(prevState => ({...prevState, iconsList: searchedList, iconsPage: 1, iconsPages: pages}));
     }, [state.iconsList]);
 
     //===> Component Design <===//

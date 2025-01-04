@@ -93,7 +93,8 @@ const SelectFromData = (props) => {
                 fetchOptions('pds-blocks/v2/options', (data, newOptionsList) => {
                     //===> Define Data <===//
                     const templateParts = data.theme_parts;
-                    
+
+                    //===> Check if Data is Available <===//
                     if (templateParts) {
                         Object.entries(templateParts).forEach(([key, value]) => {
                             //===> Normal File <===//
@@ -106,9 +107,10 @@ const SelectFromData = (props) => {
                                 let filesList = [];
 
                                 //===> Add Files to the List <===//
-                                Object.entries(value).forEach(([key, value]) => {
-                                    filesList.push(<option key={`${key}-${value}`} value={`${key}/${value.replace(".php", "")}`}>{`${value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
+                                Object.entries(value).forEach(([sub_key, sub_value]) => {
+                                    filesList.push(<option key={`${key}-${sub_value}`} value={`${key}/${sub_value.replace(".php", "")}`}>{`${sub_value.replace('-', ' ').replace('_', '').replace(".php", "")}`}</option>);
                                 });
+
                                 //===> Add Grouped Files to the List <===//
                                 newOptionsList.push(<optgroup key={`${key}-group`} label={`${key}`}>{filesList}</optgroup>);
                             }

@@ -209,7 +209,9 @@ const PhenixIcons = (props) => {
             value = input.value;
 
         //===> Find the searched icon and remove the reset <===//
-        let searchedList = state.iconsList.filter(icon => icon.includes(value));
+        let searchedList;
+        if (value.length > 0) { searchedList = state.iconsList.filter(icon => icon.includes(value)); }
+        else { searchedList = state.iconsList; }
 
         //===> Divide List into Pages <===//
         const pages = {};

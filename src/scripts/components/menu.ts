@@ -98,12 +98,14 @@ PhenixElements.prototype.menu = function (options?:{
             if (effect === 'slide') Phenix(target).slideToggle();
             else if (effect === 'fade') Phenix(target).fadeToggle();
             parent.classList.toggle(sub_active);
+            parent.classList.toggle(sub_active.replace("active", "deactivate"));
 
             //===> Disable Others <===//
             if (siblings) siblings.forEach(element => {
                 if (effect === 'slide') Phenix(element.querySelector('.submenu')).slideUp();
                 else if (effect === 'fade') Phenix(element.querySelector('.submenu')).fadeOut();
                 element.classList.remove(sub_active);
+                element.classList.add(sub_active.replace("active", "deactivate"));
             });
         });
 

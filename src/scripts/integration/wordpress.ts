@@ -183,6 +183,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     if (!isAdmin && !isEditor) {
         /*====> Activated Menu Items <====*/
         Phenix('.current-menu-parent, .current-menu-item').addClass('px-item-active');
+        Phenix(".px-navigation.has-active-submenu .px-item-active").addClass("px-submenu-active");
 
         //===> Run Scripts <===//
         Phenix(document).init();

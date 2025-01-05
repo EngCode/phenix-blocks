@@ -16,6 +16,8 @@ function px_navigation_render($block_attributes, $content) {
     $menuClasses = " reset-list"; $hover_mode = ""; $nav_style = ""; $menu_id = ""; $menu_attrs = ""; $count_badge = "";
     $effect_type = ""; $classNames = "px-navigation"; $mobile_mode = ""; $arrow_icon = ""; $text_align = "";
 
+    // if (isset($block_attributes["className"])) $classNames .= " ".$block_attributes["className"];
+
     //===> Dynamic Data Setter <===//
     foreach ($block_attributes as $option_name => $option_value) {
         //===> Exclude Options <===//

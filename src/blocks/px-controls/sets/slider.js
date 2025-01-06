@@ -23,9 +23,14 @@ export default class SliderSet extends Component {
 
         //===> Define Controls Options <===//
         const slider_types = [
-            { label: __('Loop', "pds-blocks"), value: 'loop' },
-            { label: __('Fading', "pds-blocks"),  value: 'fade' },
-            { label: __('Sliding', "pds-blocks"),  value: 'slide' },
+            { label: __('Default', "pds-blocks"),  value: '' },
+            { label: __('Fade', "pds-blocks"),  value: 'fade' },
+            { label: __('Flip', "pds-blocks"),  value: 'flip' },
+            { label: __('Cube', "pds-blocks"),  value: 'cube' },
+            { label: __('Slide', "pds-blocks"),  value: 'slide' },
+            { label: __('Cards', "pds-blocks"),  value: 'cards' },
+            { label: __('Creative', "pds-blocks"),  value: 'creative' },
+            { label: __('CoverFlow', "pds-blocks"),  value: 'coverflow' },
         ];
 
         //===> Output <===//
@@ -41,25 +46,25 @@ export default class SliderSet extends Component {
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={mainSetter} min={3000} max={20000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="duration" name="duration" label={__("Duration", "pds-blocks")} value={attributes.slider.duration || 6000} onChange={mainSetter} min={0} max={20000} steps={50}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
-                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={mainSetter} min={300} max={3000} steps={100}></PhenixNumber>
+                    <PhenixNumber key="speed" name="speed" label={__("Speed", "pds-blocks")} value={attributes.slider.speed || 700} onChange={mainSetter} min={0} max={20000} steps={50}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12 pdt-10 divider-t flexbox gpy-5 align-between'>
                     <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || true} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`isNavigation`} name={`is-navigation`} value="boolean" checked={attributes.slider['is-navigation'] || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("isNavigation", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`center-mode`} name={`center`} value="boolean" checked={attributes.slider.center || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Center Mode", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`autoWidth`} name={`autoWidth`} value="boolean" checked={attributes.slider.autoWidth || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Width", "pds-blocks")}</span></OptionControl>
                     <OptionControl key={`autoHeight`} name={`autoHeight`} value="boolean" checked={attributes.slider.autoHeight || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Height", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`reverseDirection`} name={`reverseDirection`} value="boolean" checked={attributes.slider.reverseDirection || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Reverse Direction", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12'>
-                    <PhenixInput key="sync" name="sync" label={__("Sync with", "pds-blocks")} className="mb-15" value={attributes.slider.sync} onChange={mainSetter} />
+                    <PhenixInput key="sync" name="sync" label={__("Thumbnails", "pds-blocks")} className="mb-15" value={attributes.slider.sync} onChange={mainSetter} />
                 </div>
                 {/*===> Column <===*/}
                 {attributes.slider.pagination ? <div className='col-12'>

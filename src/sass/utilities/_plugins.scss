@@ -135,7 +135,7 @@
 }
 
 /*==== Slider Animation Support ====*/
-.splide__slide {
+.splide__slide, .swiper-slide {
     visibility: visible;
     /*==== Animated Childs ====*/
     [data-animation] {
@@ -147,7 +147,10 @@
     }
 
     /*==== Animations ====*/
-    &.is-active [data-animation], &.is-visible [data-animation] {
+    &.is-active [data-animation], 
+    &.is-visible [data-animation],
+    &.swiper-slide-active [data-animation],
+    &.swiper-slide-visible [data-animation] {
         visibility: visible!important;
         animation-name: var(--animation-name, 'fadeIn');
     }
@@ -248,3 +251,9 @@
 }
 
 // .px-masonry, .row.px-masonry {display: block;}
+
+/*==== Swiper Fixes ====*/
+.px-slider[data-duration="0"] .swiper-wrapper {
+    -webkit-transition-timing-function:linear !important;
+    transition-timing-function:linear !important;
+}

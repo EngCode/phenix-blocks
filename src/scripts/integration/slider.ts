@@ -15,42 +15,27 @@ declare var Swiper: any;
 /*====> Phenix Slider <====*/
 PhenixElements.prototype.slider = function (options?:{
     type?:string;
-    focus?:any;
     items?:number;
-    steps?:number;
     speed?:number;
-    start?:number;
     duration?:number;
     autoplay?:boolean;
     controls?:any;
     pagination?:any;
     breakpoints?:any;
     direction?:string;
-    splide_options?:any;
     arrow?:string;
     page?:string;
-    isNavigation?:boolean;
-    updateAfter?:boolean;
     waitForTransition?:boolean;
+    reverseDirection?:boolean;
     sync?:string;
-    padding?:string;
     pauseOnHover?:boolean;
-    intersection?:boolean;
     rewind?:boolean;
-    wheel?:boolean;
-    wheelSleep?:number;
-    releaseWheel?:boolean;
-    drag?:boolean;
     width?:string;
     height?:string;
-    autoWidth?:string;
     autoHeight?:string;
-    fixedWidth?:string;
-    fixedHeight?:string;
-    heightRatio?:string;
-    autoScroll?:string;
     center?:any;
     controller?:any;
+    zoom:any;
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
@@ -94,50 +79,60 @@ PhenixElements.prototype.slider = function (options?:{
             if (currentClasses.contains('swiper') || currentClasses.contains('swiper-wrapper')) return;
 
             //====> Get Options <====//
+            const zoom = inline('data-zoom') || options?.zoom;
+            const thumbnails = inline('data-sync') || options?.sync;
             const controls = inline('data-controls') || options?.controls;
             const pagination = inline('data-pagination') || options?.pagination;
-            const thumbnails = inline('data-sync') || options?.sync;
             const controller = inline('data-controller') || options?.controller;
             const autoPlayDisabled = inline('data-autoplay') === 'false' || options?.autoplay === false || currentClasses.contains("data-autoplay-off");
 
             //====> Default Options <====//
-            let slider_options:any = {
+            const slider_options:any = {
                 //===> Main Options <===//
                 a11y: true,
-                createElements: true,
                 loop: inline('data-loop') || true,
                 breakpoints: options?.breakpoints || {},
-                loopAdditionalSlides: (parseInt(inline('data-items')) || options?.items || 1) * 2,
-                slidesPerView: parseInt(inline('data-items')) || options?.items || 1,
-                direction: inline('data-direction') || options?.direction || "horizontal",
-                centeredSlides: inline('data-center') || currentClasses.contains("data-center-on") ? true : false,
+                direction: inline('data-direction') || options?.direction || null,
+                slidesPerView: (slider.getAttribute('data-autoWidth') ? "auto" : false) || parseInt(inline('data-items')) || options?.items || 1,
+                centeredSlides: inline('data-center') || currentClasses.contains("data-center-on") ? true : null,
 
                 //===> User Actions <====//
-                rewind: inline('data-rewind') || options?.rewind || false,
-                pauseOnMouseEnter: inline('data-pause-hover') || options?.pauseOnHover || false,
+                rewind: inline('data-rewind') || options?.rewind || null,
 
                 //===> Controls <===//
-                navigation: controls ? {nextEl: `.swiper-button-next`,prevEl: `.swiper-button-prev`} : false,
-                pagination: pagination ? {type: 'bullets', el: '.swiper-pagination'} : false,
+                navigation: controls ? {nextEl: `.swiper-button-next`,prevEl: `.swiper-button-prev`} : null,
+                pagination: pagination ? {type: 'bullets', el: '.swiper-pagination'} : null,
 
                 //===> Animations <===//
-                effect: inline('data-type') || options?.type || "slide",
                 speed: parseInt(inline('data-speed')) || options?.speed || 700,
+                effect: inline('data-type')?.replace("loop", "slide") || options?.type?.replace("loop", "slide") || null,
 
                 //===> Autoplay <===//
                 autoplay: autoPlayDisabled ? false : {
-                    delay: parseInt(inline('data-duration')) || options?.duration || 6000,
-                    waitForTransition: inline('data-waitForTransition') || options?.waitForTransition || true,
+                    disableOnInteraction: false,
+                    delay: parseInt(inline('data-duration')) ?? options?.duration,
+                    pauseOnMouseEnter: inline('data-pause-hover') || options?.pauseOnHover || true,
+                    reverseDirection: inline('data-reverseDirection') || options?.reverseDirection || false,
+                    // waitForTransition: inline('data-waitForTransition') || options?.waitForTransition || false,
                 },
 
                 //===> Style <===//
                 width: inline('data-width') || options?.width || null,
                 height: inline('data-height') || options?.height || null,
-                autoHeight: inline('data-autoHeight') || options?.autoHeight || false,
+                autoHeight: inline('data-autoHeight') || options?.autoHeight || null,
 
                 //===> Syncing Controller and THumbnails <===//
-                thumbs: thumbnails ? {swiper: thumbnails} : false,
-                controller: controller ? {by: 'slide', control: controller} : false,
+                thumbs: thumbnails ? {swiper: thumbnails} : null,
+                controller: controller ? {by: 'slide', control: controller} : null,
+
+                //===> Zooming Feature <===//
+                zoom: zoom ? {
+                    maxRatio: 5,
+                    containerClass: "px-media"
+                } : null,
+
+                //===> Accessibility <====//
+                keyboard: {enabled: true},
 
                 //===> Events <===//
                 on: {
@@ -150,11 +145,11 @@ PhenixElements.prototype.slider = function (options?:{
                         //====> Run Integration <====//
                         slider_integration();
                     },
-                    //===> Slider Loop Fix <===//
-                    loopFix: (event) => {
-                        //====> Run Integration <====//
-                        slider_integration();
-                    },
+                    // //===> Slider Loop Fix <===//
+                    // loopFix: (event) => {
+                    //     //====> Run Integration <====//
+                    //     slider_integration();
+                    // },
                     //===> Slider Slide Change <===//
                     slideChange: (event) => {
                         //====> Get Slider Wrapper <====//
@@ -171,25 +166,21 @@ PhenixElements.prototype.slider = function (options?:{
             inline('data-sm') ? slider_options.breakpoints[570] = { 
                 //===> Slides Per View and Loop Fixer <===//
                 slidesPerView: parseInt(inline('data-sm')) || slider_options.slidesPerView,
-                loopAdditionalSlides: (parseInt(inline('data-sm')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> Medium Screens <===//
             inline('data-md') ? slider_options.breakpoints[1100] = {
                 slidesPerView: parseInt(inline('data-md')) || slider_options.slidesPerView,
-                loopAdditionalSlides: (parseInt(inline('data-md')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> Large Screens <===//
             inline('data-lg') ? slider_options.breakpoints[1170] = {
                 slidesPerView: parseInt(inline('data-lg')) || slider_options.slidesPerView,
-                loopAdditionalSlides: (parseInt(inline('data-lg')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //===> xLarge Screens <===//
             inline('data-xl') ? slider_options.breakpoints[1400] = {
                 slidesPerView: parseInt(inline('data-xl')) || slider_options.slidesPerView,
-                loopAdditionalSlides: (parseInt(inline('data-xl')) || slider_options.slidesPerView) * 2,
             } : '';
 
             //====> Create Markup <====//
@@ -237,12 +228,29 @@ PhenixElements.prototype.slider = function (options?:{
             }
 
             //====> Return Options <====//
-            console.log(slider_options);
-            return slider_options
+            const final_options:any = {};
+            Object.entries(slider_options).forEach(([key, value]) => {
+                //===> Remove Null Options <===//
+                value !== null ? final_options[key] = value : null;
+            });
+
+            //====> Default <====//
+            if (isNaN(final_options.autoplay.delay)) final_options.autoplay.delay = 6000;
+
+            //====> Fade Effect Fixes <====//
+            if (final_options.effect === "fade") {
+                //===> Disable Loop <===//
+                final_options.loop = false;
+                //===> Fade Effect Avoid seeing content behind <===//
+                final_options.fadeEffect = {crossFade: true};
+            }
+
+            //====> Return Options <====//
+            return final_options;
         }
 
         //====> Run Slider <====//
-        const the_slider = new Swiper(slider, slider_creator(slider));
+        new Swiper(slider, slider_creator(slider));
 
         //====> Stop Played Media <====//
         // the_slider.on(['inactive'], function(data) {

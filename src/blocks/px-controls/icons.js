@@ -205,27 +205,29 @@ const PhenixIcons = (props) => {
     //===> Search in icons <===//
     const iconsFilter = useCallback((changed) => {
         //===> Define Data <===//
-        let input = changed.target,
-            value = input.value;
+        let pages = {},
+            input = changed.target,
+            value = input.value,
+            searchedList;
 
         //===> Find the searched icon and remove the reset <===//
-        let searchedList;
-        if (value.length > 0) { searchedList = state.iconsList.filter(icon => icon.includes(value)); }
-        else { searchedList = state.iconsList; }
+        if (value && value !== "") {
+            searchedList = state.iconsList.filter(icon => icon.includes(value));
+        } else {
+            searchedList = state.iconsList;
+        }
 
         //===> Divide List into Pages <===//
-        const pages = {};
-
         for (let item = 0; item < searchedList.length; item += 200) {
             //===> Define Page Number <===//
             let pageNumber = Math.floor(item / 200) + 1;
             //===> Add item to Pages Object <===//
-            pages[pageNumber] = state.iconsList.slice(item, item + 200);
+            pages[pageNumber] = searchedList.slice(item, item + 200);
         }
         
         //===> Set the New List <===//
-        setState(prevState => ({...prevState, iconsList: searchedList, iconsPage: 1, iconsPages: pages}));
-    }, [state.iconsList]);
+        setState(prevState => ({...prevState, iconsPage: 1, iconsPages: pages}));
+    }, [state.iconsPages]);
 
     //===> Component Design <===//
     return (
@@ -249,7 +251,7 @@ const PhenixIcons = (props) => {
 
             {/*===> Panel <===*/}
             <div className={`flexbox align-center tx-align-center options-list pdb-15 pdt-5 bg-white border-1 border-solid border-alpha-25 radius-md radius-bottom hidden fluid`}>
-                <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
+                <input name="pds-icons-search" className='reset-input pdy-5 fs-12 divider-b fluid tx-align-center' onChange={iconsFilter} onKeyUp={iconsFilter} placeholder={__("Search in icons", "pds-blocks")} />
                 {/*===> Buttons List <===*/}
                 <div className="bg-alpha-05 fluid pdx-15 pdy-10 icons-listing align-center flexbox px-scrollbar overflow-y-auto mb-10 divider-y" style={{gap:"10px", maxHeight: "220px"}}>
                     {state.iconsList.length > 0 ? 

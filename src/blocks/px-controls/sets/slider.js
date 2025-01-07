@@ -37,12 +37,8 @@ export default class SliderSet extends Component {
         return <>
             <div className='row gpx-20 gpy-15 gpy-fix'>
                 {/*===> Column <===*/}
-                <div className='col-6'>
-                    <PhenixSelect key="type" name="type" placeholder={__("Default", "pds-blocks")} label={__("Effect Type", "pds-blocks")} value={attributes.slider.type} onChange={mainSetter} options={slider_types} />
-                </div>
-                {/*===> Column <===*/}
-                <div className='col-6'>
-                    <PhenixNumber key="steps" name="steps" label={__("Steps", "pds-blocks")} value={attributes.slider.steps || 1} onChange={mainSetter} min={1} max={12}></PhenixNumber>
+                <div className='col-12'>
+                    <PhenixSelect key="type" name="type" placeholder={__("Default", "pds-blocks")} label={__("Effect", "pds-blocks")} value={attributes.slider.type} onChange={mainSetter} options={slider_types} />
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>
@@ -67,7 +63,7 @@ export default class SliderSet extends Component {
                     <PhenixInput key="sync" name="sync" label={__("Thumbnails", "pds-blocks")} className="mb-15" value={attributes.slider.sync} onChange={mainSetter} />
                 </div>
                 {/*===> Column <===*/}
-                {attributes.slider.pagination ? <div className='col-12'>
+                {attributes.slider.pagination || attributes.slider.controls === "" ? <div className='col-12'>
                     <PhenixInput key="page" name="page" label={__("Pagination Buttons Classes", "pds-blocks")} className="mb-15" value={attributes.slider.page} onChange={mainSetter} />
                     <PhenixInput key="pagination" name="pagination" label={__("Pagination Wrapper Classes", "pds-blocks")} value={attributes.slider.pagination} onChange={mainSetter} />
                 </div> : null}

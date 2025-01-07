@@ -17,6 +17,7 @@
  ** 08 - S.E.O. Images Metadata Generator
  ** 09 - Cleanup Navigation Menus
  ** 10 - Disable Thumbnails Generating
+ ** 11 - Optimize Third-Party CDN Cookies
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -295,3 +296,22 @@ add_action('init', function() {
 });
 
 add_filter( 'big_image_size_threshold', '__return_false' );
+
+//===> Optimize Third-Party CDN Cookies <====//
+function pds_cdn_cookies_style($tag, $handle, $src) {
+    //===> Check if the Target has CDN Link <===//
+    if (strpos($src, 'cdn.') !== false || strpos($src, 'fonts.') !== false || strpos($src, 'cloudflare.com')) {
+        //===> Check if its Stylesheet or Script <=====//
+        if (strpos($tag, ' media=') === false) {
+            $tag = str_replace('>', ' crossorigin="anonymous" referrerpolicy="strict-origin-when-cross-origin">', $tag);
+        } else {
+            $tag = str_replace('>', ' referrerpolicy="strict-origin-when-cross-origin">', $tag);
+        }
+    }
+
+    return $tag;
+}
+
+add_filter('style_loader_tag', 'pds_cdn_cookies_style', 10, 3);
+add_filter('script_loader_tag', 'pds_cdn_cookies_style', 10, 3);
+

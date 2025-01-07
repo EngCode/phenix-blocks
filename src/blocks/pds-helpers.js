@@ -268,7 +268,7 @@ window.PhenixBlocks = {
 
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }
-    
+
                         //===> Media Settings <===//
                         else if (option_name === "setting") {
                             if (sub_option.includes('size') && sub_value !== "custom") {
@@ -277,12 +277,13 @@ window.PhenixBlocks = {
                                 blockProps[`data-${sub_option}`] = sub_value;
                             }
                         }
-    
+
                         //===> Icon List <====//
                         else if (sub_option === "icon" && attributes.type === "list") {
                             blockProps['data-icon'] = sub_value;
                             blockProps.className += ` icons-list`;
                         }
+
                         //===> Icon List <====//
                         else if (sub_option === "icon" && attributes.type === "font") {
                             blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`;

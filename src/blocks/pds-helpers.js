@@ -606,22 +606,18 @@ window.PhenixBlocks = {
             //===> and Hit Backspace or Delete Remove the Block <===//
             if (event.key === "Backspace" || event.key === "Delete") removeBlock(clientId);
         }
-
-        //===> Shift + # Shortcuts <===//
-        else if (event.shiftKey) {
+        
+        //===> Control + # Shortcuts <===//
+        else if (event.ctrlKey) {
             //===> Insert new Blank Block <===//
             if (event.key === 'Enter') {
                 //===> Prevent the default Behavior <===//
                 event.preventDefault();
                 // Create a new block
-                const newBlock = createBlock("core/paragraph");
+                const newBlock = createBlock(getBlockName(clientId), newAttributes);
                 // Insert the new block after the current block
                 insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
             }
-        }
-
-        //===> Control + # Shortcuts <===//
-        else if (event.ctrlKey) {
             //===> Duplicate Current Block <===//
             if (event.key === 'D' || event.key === 'd') {
                 //===> Prevent the default Behavior <===//
@@ -632,16 +628,12 @@ window.PhenixBlocks = {
                 insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
             }
         }
-
-        //===> Alt + # Shortcuts <===//
-        else if (event.altKey) {}
-
         //===> Insert New Block when Hit Enter <===//
         else if (event.key === 'Enter') {
             //===> Prevent the default Behavior <===//
             event.preventDefault();
             //===> Create a new block <===//
-            const newBlock = createBlock(getBlockName(clientId), newAttributes);
+            const newBlock = createBlock("core/paragraph");
             //===> Insert the new block after the current block <===//
             insertBlock(newBlock, getBlockIndex(clientId)+1, getBlockInsertionPoint().rootClientId);
         }

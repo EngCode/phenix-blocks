@@ -31,16 +31,16 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 /*==== Base Screen ====*/
 .pdt-custom {padding-top: var(--pdt);}
 .pdb-custom {padding-bottom: var(--pdb);}
-.pds-custom-start {padding-#{$direction-start}: var(--pds);}
-.pde-custom-end {padding-#{$direction-end}: var(--pde);}
+.pds-custom {padding-#{$direction-start}: var(--pds);}
+.pde-custom {padding-#{$direction-end}: var(--pde);}
 @include make_padding();
 
 /*==== Medium Screen ====*/
 @include medium(){
     .pdt-custom { --pdt: var(--pdt-md, var(--pdt)) };
     .pdb-custom { --pdb: var(--pdb-md, var(--pdb)) };
-    .pds-custom-start { --pds: var(--pds-md, var(--pds)) };
-    .pde-custom-end { --pde: var(--pde-md, var(--pde)) };
+    .pds-custom { --pds: var(--pds-md, var(--pds)) };
+    .pde-custom { --pde: var(--pde-md, var(--pde)) };
     @include make_padding('-md');
 };
 
@@ -48,8 +48,8 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 @include large(){
     .pdt-custom { --pdt: var(--pdt-lg, var(--pdt-md)) };
     .pdb-custom { --pdb: var(--pdb-lg, var(--pdb-md)) };
-    .pds-custom-start { --pds: var(--pds-lg, var(--pds-md)) };
-    .pde-custom-end { --pde: var(--pde-lg, var(--pde-md)) };
+    .pds-custom { --pds: var(--pds-lg, var(--pds-md)) };
+    .pde-custom { --pde: var(--pde-lg, var(--pde-md)) };
     @include make_padding('-lg');
 };
 
@@ -57,7 +57,7 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 @include xlarge(){
     .pdt-custom { --pdt: var(--pdt-xl, var(--pdt-lg)) };
     .pdb-custom { --pdb: var(--pdb-xl, var(--pdb-lg)) };
-    .pds-custom-start { --pds: var(--pds-xl, var(--pds-lg)) };
-    .pde-custom-end { --pde: var(--pde-xl, var(--pde-lg)) };
+    .pds-custom { --pds: var(--pds-xl, var(--pds-lg)) };
+    .pde-custom { --pde: var(--pde-xl, var(--pde-lg)) };
     @include make_padding('-xl');
 };

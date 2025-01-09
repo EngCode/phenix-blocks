@@ -32,19 +32,13 @@
 */
 
 /*====> Phenix Object <====*/
-export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
+export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     /*====> D.O.M Ready <====*/
     ready(callback) {
          //====> Check if its Ready <====//
-        if (document.readyState === 'complete') {
-            requestIdleCallback ? requestIdleCallback(callback) : callback();
-        } 
+        if (document.readyState === 'complete') queueMicrotask(callback);
         //====> Wait for It to be Ready <====//
-        else {
-            document.addEventListener('DOMContentLoaded', () => {
-                requestIdleCallback ? requestIdleCallback(callback) : callback();
-            }, { once: true });
-        }
+        else document.addEventListener('DOMContentLoaded', () => queueMicrotask(callback),{ once: true });
         //====> Return Phenix Elements <====//
         return this;
     }
@@ -622,7 +616,7 @@ export class PhenixElements extends Array<HTMLElement | Object | 'object'> {
         }
 
         //====> Audio Buttons <====//
-        Phenix(trigger).on('click', event => {
+        Phenix(...trigger).on('click', event => {
             event.preventDefault();
             //=== Get Data ===//
             let button = event.target,

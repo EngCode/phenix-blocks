@@ -34,6 +34,7 @@
             /*==== inherited ====*/
             font-size: inherit;
             font-weight: inherit;
+
             &[class*="fa-"]::before {
                 top: -#{REM(2)};
                 position: relative;

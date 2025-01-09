@@ -40,7 +40,7 @@ PhenixElements.prototype.slider = function (options?:{
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
         //====> Integration <====//
-        const slider_integration = () => {
+        const slider_integration = (slider) => {
             //====> Multimedia Integration <====//
             const media_elements = slider.querySelectorAll('[data-src]');
             Phenix(media_elements).multimedia();
@@ -143,7 +143,7 @@ PhenixElements.prototype.slider = function (options?:{
                         //====> Active Slide <====//
                         slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
                         //====> Run Integration <====//
-                        slider_integration();
+                        slider_integration(slider_wrapper);
                     },
                     // //===> Slider Loop Fix <===//
                     // loopFix: (event) => {

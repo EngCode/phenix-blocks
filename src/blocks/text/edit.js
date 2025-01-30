@@ -45,7 +45,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const blockProps = renderProps.blockProps;
     const innerBlocksProps = useInnerBlocksProps(blockProps, {allowedBlocks: ['phenix/text-list-item']});
     const uniqueKey = blockProps.id;
-    const TagName = attributes.type === 'headline' && !attributes.tagName.includes('h') ? 'h2' : attributes.tagName;
+    const TagName = attributes.type === 'headline' && !attributes.tagName.includes('h') ? 'h2' : attributes.tagName === "" ? "p" : attributes.tagName;
 
     //===> Layout Options <===//
     if (attributes.type === "list-custom") {

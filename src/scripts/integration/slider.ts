@@ -38,7 +38,7 @@ PhenixElements.prototype.slider = function (options?:{
     zoom:any;
 }) {
     //====> Sliders Activator <====//
-    let slider_handler = () => this.forEach((slider:HTMLElement) => {
+    const slider_handler = () => this.forEach((slider:HTMLElement) => {
         //====> Integration <====//
         const slider_integration = (slider) => {
             //====> Multimedia Integration <====//
@@ -65,8 +65,8 @@ PhenixElements.prototype.slider = function (options?:{
             if (modalTriggers.length > 0) Phenix('.px-modal').popup();
             
             //====> Audio Buttons <====//
-            const audioTriggers = slider.querySelectorAll("button[data-audio]");
-            if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
+            const audioTriggers = slider.querySelector("button[data-audio]");
+            if (audioTriggers) Phenix(document).audioTrigger("button[data-audio]");
         };
 
         //====> Slider Creator <=====//

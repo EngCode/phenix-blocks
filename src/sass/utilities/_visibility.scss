@@ -42,12 +42,7 @@
     .inline-block#{$infix}  {display: inline-block;}
     .display#{$infix}-block {display: block;}
     .display#{$infix}-grid  {display: grid;}
-    .display#{$infix}-flex {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        > * {-ms-flex-negative: 0;flex-shrink: 0;}
-    }
+    .display#{$infix}-flex  {display: flex;}
 }
 
 /*==== Hidden ====*/

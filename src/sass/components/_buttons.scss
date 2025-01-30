@@ -164,6 +164,9 @@
     &.labeled::before, &.labeled .icon {
         width: var(--height);
         height: var(--height);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         background-color: rgba(#000, 0.1);
     }
 

@@ -378,9 +378,9 @@ label,legend  {@extend %inline-block;}
         }
 
         @if ($direction == "ltr") {
-            .switch::before {transform: translateX(140%);}
+            .switch::before {transform: translateX(calc(var(--height)/2));}
         } @else {
-            .switch::before {transform: translateX(-140%);}
+            .switch::before {transform: translateX(calc(var(--height) * -1 / 2));}
         }
     }
 }

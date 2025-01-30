@@ -302,7 +302,10 @@ PhenixElements.prototype.utilities = function (options?:{
         if (!document.body.classList.contains('wp-admin') && !document_classes?.includes('-editor')) {
             //===> Import Masonry Grid Plugin <===//
             if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
-                var masonry = new Masonry('.px-masonry', {itemSelector: '[class*="col"]'});
+                Phenix(".px-masonry").forEach((grid:any) => {
+                    let first_child_class = grid.children[0].classList[0];
+                    var masonry = new Masonry(grid, {itemSelector: `.${first_child_class}`});
+                });
             }, true);
     
             //===> Typed List <===//

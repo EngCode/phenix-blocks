@@ -616,7 +616,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         }
 
         //====> Audio Buttons <====//
-        Phenix(...trigger).on('click', event => {
+        Phenix(trigger).on('click', event => {
             event.preventDefault();
             //=== Get Data ===//
             let button = event.target,

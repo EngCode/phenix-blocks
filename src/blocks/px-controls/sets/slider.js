@@ -50,17 +50,21 @@ export default class SliderSet extends Component {
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-12 pdt-10 divider-t flexbox gpy-5 align-between'>
-                    <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || true} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`center-mode`} name={`center`} value="boolean" checked={attributes.slider.center || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Center Mode", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`autoWidth`} name={`autoWidth`} value="boolean" checked={attributes.slider.autoWidth || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Width", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`autoHeight`} name={`autoHeight`} value="boolean" checked={attributes.slider.autoHeight || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Free Height", "pds-blocks")}</span></OptionControl>
-                    <OptionControl key={`reverseDirection`} name={`reverseDirection`} value="boolean" checked={attributes.slider.reverseDirection || false} onChange={mainSetter} type='checkbox' className='small'><span className='fas fa-check radius-circle'>{__("Reverse Direction", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`autoplay`} name={`autoplay`} value="boolean" checked={attributes.slider.autoplay || true} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Autoplay", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`controls`} name={`controls`} value="boolean" checked={attributes.slider.controls || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Arrows", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`pagination`} name={`pagination`} value="boolean" checked={attributes.slider.pagination || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Pagination", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`center-mode`} name={`center`} value="boolean" checked={attributes.slider.center || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Center Mode", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`autoWidth`} name={`autoWidth`} value="boolean" checked={attributes.slider.autoWidth || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Free Width", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`autoHeight`} name={`autoHeight`} value="boolean" checked={attributes.slider.autoHeight || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Free Height", "pds-blocks")}</span></OptionControl>
+                    <OptionControl key={`reverseDirection`} name={`reverseDirection`} value="boolean" checked={attributes.slider.reverseDirection || false} onChange={mainSetter} type='checkbox' className='small col-6'><span className='fas fa-check radius-circle'>{__("Reverse Direction", "pds-blocks")}</span></OptionControl>
                 </div>
                 {/*===> Column <===*/}
-                <div className='col-12'>
+                <div className='col-6'>
                     <PhenixInput key="sync" name="sync" label={__("Thumbnails", "pds-blocks")} className="mb-15" value={attributes.slider.sync} onChange={mainSetter} />
+                </div>
+                {/*===> Column <===*/}
+                <div className='col-6'>
+                    <PhenixNumber key="rows" name="rows" label={__("Rows", "pds-blocks")} value={attributes.slider.rows || 1} onChange={mainSetter} min={0} max={20000} steps={1}></PhenixNumber>
                 </div>
                 {/*===> Column <===*/}
                 {attributes.slider.pagination || attributes.slider.controls === "" ? <div className='col-12'>

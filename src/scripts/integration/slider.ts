@@ -90,6 +90,7 @@ PhenixElements.prototype.slider = function (options?:{
             const slider_options:any = {
                 //===> Main Options <===//
                 a11y: true,
+                slidesOffsetAfter:0,
                 loop: inline('data-loop') || true,
                 breakpoints: options?.breakpoints || {},
                 direction: inline('data-direction') || options?.direction || null,
@@ -100,8 +101,8 @@ PhenixElements.prototype.slider = function (options?:{
                 rewind: inline('data-rewind') || options?.rewind || null,
 
                 //===> Controls <===//
-                navigation: controls ? {nextEl: `.swiper-button-next`,prevEl: `.swiper-button-prev`} : null,
-                pagination: pagination ? {type: 'bullets', el: '.swiper-pagination'} : null,
+                navigation: controls ? {nextEl: `.swiper-button-next`, prevEl: `.swiper-button-prev`} : null,
+                pagination: pagination ? {type: 'bullets', el: '.swiper-pagination', clickable: true} : null,
 
                 //===> Animations <===//
                 speed: parseInt(inline('data-speed')) || options?.speed || 700,
@@ -160,6 +161,11 @@ PhenixElements.prototype.slider = function (options?:{
                         slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
                     },
                 },
+            }
+
+            //===> Center Mode <===//
+            if (slider_options.centeredSlides) {
+                console.log(slider_options.loop);
             }
 
             //====> Mobile Responsive <====//

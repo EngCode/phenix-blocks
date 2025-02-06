@@ -60,6 +60,7 @@ export default class AnimationsSet extends Component {
                     {/*===> Column <===*/}
                     <div className='col-12'>
                         <OptionControl name={`animation-reverse`} value="end" checked={attributes.style?.animation?.reverse} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Revers Flow", "pds-blocks")}</OptionControl>
+                        <OptionControl name={`animation-scrollTrigger`} value="boolean" checked={attributes.style?.animation?.scrollTrigger} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Scroll Trigger", "pds-blocks")}</OptionControl>
                     </div>
                     {/*===> .End Columns. <===*/}
                 </>: null}

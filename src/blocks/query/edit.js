@@ -132,13 +132,17 @@ export default function Edit(props) {
                 <div className='mb-15' key={`taxonomies-types-wrapper`}>
                     <SelectFromData key={`taxonomies-types`} name="taxonomies-types" options="taxonomies" multiple={true}
                         label={__("Taxonomies Types", "pds-blocks")}
-                        value={attributes.query['taxonomies-types'] || ["none"]}
+                        value={attributes.query['taxonomies-types'] || []}
                         valueSetter={(target) => set_query(target, false)} 
                     />
                 </div>
 
                 {/*===> Taxonomies Terms <===*/}
                 {attributes.query['taxonomies-types'] ? attributes.query['taxonomies-types'].map((tax_type) => {
+                    //===> Check if its Empty Option <===//
+                    if (tax_type === "" || tax_type === "none") return;
+
+                    //===> Create Select Component <===//
                     return (
                         <div key={`${tax_type}-wrapper`} className='mb-15'>
                             <SelectFromData key={`${tax_type}-terms-${uniqueKey}`} name={`${tax_type}-terms`} options="taxonomies-terms" termType={tax_type} multiple={true}

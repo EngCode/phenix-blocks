@@ -744,6 +744,7 @@ import './integration/slider';    //==> Splide.js Slider
 import './integration/utilities'; //==> Phenix Utilities
 import './integration/blocks';    //==> Phenix Blocks Scripts
 import './integration/wordpress'; //==> Wordpress Integration
+import './integration/woocommerce'; //==> WooCommerce Integration
 
 /*====> Custom Script <====*/
 import './custom-scripts';

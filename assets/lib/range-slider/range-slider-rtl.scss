@@ -1,0 +1,19 @@
+/*! nouislider - 14.5.0 - 5/11/2020  Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+*/
+
+//====> REM Calculator <====//
+@function REM($size, $base:16) {
+    //====> Return REM Size <====//
+    @return ($size / $base * 1)+rem;
+}
+
+/*==== Direction Options ====*/
+$direction: rtl;
+$direction-reverse: ltr;
+$direction-start: right;
+$direction-end: left;
+
+/*====  ====*/
+@import 'theme.scss';

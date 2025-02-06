@@ -1,0 +1,204 @@
+/*==== Target Wraper ====*/
+.noUi-target {position: relative;width: 100%;}
+.noUi-target, .noUi-target * {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+
+/*==== Base Element ====*/
+.noUi-base, .noUi-connects {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    --handle-width: #{REM(20)};
+    --handle-height: #{REM(20)};
+}
+
+/*==== Connects Wrapper ====*/
+.noUi-origin  {height: 10%;width: 10%;}
+.noUi-connect {height: 100%;width: 100%;}
+.noUi-connects {overflow: hidden; z-index: 0;}
+
+/*==== .... ====*/
+.noUi-connect, .noUi-origin {
+    top: 0;
+    right: 0;
+    z-index: 1;
+    will-change: transform;
+    position: absolute;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    -webkit-transform-style: preserve-3d;
+            transform-origin: 0 0;
+            transform-style: flat;
+}
+
+/*==== Offset direction ====*/
+.noUi-txt-dir-rtl.noUi-horizontal .noUi-origin {left: 0; right: auto;}
+
+/*==== Origins Clicking Fixes ====*/
+.noUi-vertical .noUi-origin {width: 0;}
+.noUi-horizontal .noUi-origin {height: 0;}
+.noUi-touch-area {height: 100%;width: 100%;}
+.noUi-handle {-webkit-backface-visibility: hidden;backface-visibility: hidden;position: absolute;}
+.noUi-state-tap .noUi-connect, .noUi-state-tap .noUi-origin {transition: transform 0.3s;}
+.noUi-state-drag * {cursor: inherit !important;}
+
+/*==== Handles and cursors; ====*/
+.noUi-draggable {cursor: ew-resize;}
+.noUi-vertical .noUi-draggable {cursor: ns-resize;}
+
+/*==== Disabled State; ====*/
+[disabled] .noUi-connect {background: #B8B8B8;}
+[disabled].noUi-target,[disabled].noUi-handle,[disabled] .noUi-handle {cursor: not-allowed;}
+
+/*==== Base ====*/
+.noUi-pips {position: absolute;color: #999;}
+
+/*==== Values; ====*/
+.noUi-value-sub {color: #ccc;font-size: REM(10);}
+.noUi-value {position: absolute;white-space: nowrap;text-align: center;}
+
+/*==== Markings; ====*/
+.noUi-marker {position: absolute;background: #CCC;}
+.noUi-marker-sub, .noUi-marker-large {background: #AAA;}
+
+/*==== Horizontal layout; ====*/
+.noUi-pips-horizontal {
+    padding: REM(10) 0;
+    height: REM(80);
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.noUi-value-horizontal {transform: translate(-50%, 50%);}
+.noUi-rtl .noUi-value-horizontal {transform: translate(50%, 50%);}
+.noUi-marker-horizontal.noUi-marker {margin-left: -#{REM(1)};width: REM(2);height: REM(5);}
+.noUi-marker-horizontal.noUi-marker-sub {height: REM(10);}
+.noUi-marker-horizontal.noUi-marker-large {height: REM(15);}
+
+/*==== Vertical layout; ====*/
+.noUi-pips-vertical {
+    padding: 0 REM(10);
+    height: 100%;
+    top: 0;
+    left: 100%;
+}
+
+.noUi-value-vertical {
+    transform: translate(0, -50%);
+    padding-left: REM(25);
+}
+
+.noUi-rtl .noUi-value-vertical {
+    transform: translate(0, 50%);
+}
+
+.noUi-marker-vertical.noUi-marker {
+    width: #{REM(5)};
+    height: #{REM(2)};
+    margin-top: -#{REM(1)};
+}
+
+.noUi-marker-vertical.noUi-marker-sub {
+    width: REM(10);
+}
+
+.noUi-marker-vertical.noUi-marker-large {
+    width: REM(15);
+}
+
+/*==== Tooltip ====*/
+.noUi-tooltip {
+    display: block;
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.noUi-horizontal .noUi-tooltip {
+    bottom: 120%;
+    #{$direction-start}: 0;
+}
+
+.noUi-horizontal .noUi-origin:last-child .noUi-tooltip {
+    #{$direction-end}: 0;
+    #{$direction-start}: auto;
+}
+
+.noUi-vertical .noUi-tooltip {
+    top: 0;
+    right: 120%;
+}
+
+.noUi-horizontal .noUi-origin>.noUi-tooltip {
+    left: auto;
+    bottom: REM(10);
+}
+
+.noUi-vertical .noUi-origin>.noUi-tooltip {
+    top: auto;
+    right: 0;
+}
+
+/*==== Horizontal noUiSlider Size ====*/
+.noUi-horizontal {
+    height: REM(8);
+
+    /*==== Handle placement; ====*/
+    .noUi-handle {
+        top: -#{REM(5)};
+        width: var(--handle-width);
+        height: var(--handle-height);
+        #{$direction-end}: -#{REM(10)};
+    }
+}
+
+/*==== Vertical noUiSlider Size ====*/
+.noUi-vertical {
+    width: #{REM(10)};
+
+    .noUi-handle {
+        top: -#{REM(15)};
+        right: -#{REM(3)};
+        width: var(--handle-height);
+        height: var(--handle-width);
+    }
+}
+
+/*==== Theme Style ====*/
+.noUi-target {
+    margin-top: #{REM(10)};
+    border-radius: #{REM(5)};
+    background: #e6e6e6;
+
+    /*==== Connect Bar ====*/
+    .noUi-connect {
+        background: var(--primary-color)
+    }
+
+    /*==== Handles and Cursors ====*/
+    .noUi-handle {
+        cursor: -webkit-grab;
+        cursor: grab;
+        border-radius: var(--handle-height);
+        background: var(--primary-color);
+        border: REM(2) solid var(--primary-color);
+        box-shadow: inset 0 0 0 REM(3) #FFFFFF;
+
+        //======> Active Drag Status <======//
+        &.noUi-active {
+            background: var(--primary-color)
+        }
+    }
+
+    /*==== Tooltip ====*/
+    .noUi-tooltip {
+        top: 110%;
+        bottom: auto;
+        height: REM(22);
+        font-size: REM(12);
+        line-height: REM(23);
+        color: var(--primary-color);
+        font-weight: var(--medium-weight);
+    }
+}

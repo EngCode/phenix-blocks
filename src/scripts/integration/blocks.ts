@@ -191,19 +191,21 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     // Phenix(document).import("scroll-timeline", "script", "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js", ()=>{}, false);
 
     //===> Add Support Price Range Sliders <===//
-    const RangeSliders = Phenix('.price-range');
-    
+    const RangeSliders = Phenix('.pds-range-slider');
+
     //===> Price Range Slider <===//
     if (RangeSliders.length > 0) {
+        //===> Get Page Direction <===//
+        const page_direction = Phenix(document).direction();
+
         //====> Import Slider Plugin <====//
-        Phenix(document).import("rangeslider", "script", "rangeslider.js", ()=>{
+        Phenix(document).import("range-slider", "script", "range-slider/range-slider.js", ()=>{
             //====> Import CSS <====//
-            Phenix(document).import("rangeslider", "link", "rangeslider.css", ()=>{}, true);
+            Phenix(document).import(`range-slider`, "link", `range-slider/range-slider${page_direction === "rtl" ? "-rtl" : ""}.css`, ()=>{}, true);
 
             //====> Activate Sliders <====//
             RangeSliders.forEach((slider:any) => {
-                //===> Get Page Direction <===//
-                let page_direction = Phenix(document).direction();
+                
         
                 //===> Initial the Slider <===//
                 noUiSlider.create(slider, {
@@ -219,23 +221,25 @@ PhenixElements.prototype.init = function (scripts?:[]) {
                 var min_range = slider.querySelector('.price-range-min'),
                     max_range = slider.querySelector('.price-range-max');
         
-                slider.noUiSlider.on('update', function (values, handle) {
-                    if (handle) {max_range.value = values[handle];} 
-                    else {min_range.value = values[handle];}
-                });
-        
-                //===> Update From Controls <===//
-                min_range.addEventListener('change', event => {
-                    var maxVal = max_range.value,
-                        minVal = min_range.value;
-                        slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
-                });
-        
-                max_range.addEventListener('change', event => {
-                    var maxVal = max_range.value,
-                        minVal = min_range.value;
-                        slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
-                });
+                if (min_range && max_range) {
+                    slider.noUiSlider.on('update', function (values, handle) {
+                        if (handle) {max_range.value = values[handle];} 
+                        else {min_range.value = values[handle];}
+                    });
+            
+                    //===> Update From Controls <===//
+                    min_range.addEventListener('change', event => {
+                        var maxVal = max_range.value,
+                            minVal = min_range.value;
+                            slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                    });
+            
+                    max_range.addEventListener('change', event => {
+                        var maxVal = max_range.value,
+                            minVal = min_range.value;
+                            slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                    });
+                }
             });
         }, true);
     }

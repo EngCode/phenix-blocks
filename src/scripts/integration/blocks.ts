@@ -191,9 +191,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     // Phenix(document).import("scroll-timeline", "script", "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js", ()=>{}, false);
 
     //===> Add Support Price Range Sliders <===//
-    //===> Price Range Slider <===//
     const RangeSliders = Phenix('.price-range');
-
+    
+    //===> Price Range Slider <===//
     if (RangeSliders.length > 0) {
         //====> Import Slider Plugin <====//
         Phenix(document).import("rangeslider", "script", "rangeslider.js", ()=>{

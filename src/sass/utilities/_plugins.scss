@@ -187,7 +187,7 @@
 }
 
 @mixin make_ratio($infix:'') {
-    .ratio#{$infix} {
+    .px-media.ratio#{$infix} {
         --ratio-size : 60%;
         /*==== Square 1x1 ====*/
         &-none  {
@@ -218,6 +218,30 @@
         /*==== Wide 3x1 ====*/
         &-3x1 {--ratio-size: 33.3%;}
         &-1x3 {--ratio-size: 133.3%;}
+    }
+
+    img.ratio#{$infix} {
+        aspect-ratio: 4 / 3;
+        /*==== Square 1x1 ====*/
+        &-1x1   {aspect-ratio: 1 / 1;}
+        /*==== FHD 16x9 ====*/
+        &-16x9  {aspect-ratio: 16 / 9%;}
+        &-9x16  {aspect-ratio: 9 / 16%;}
+        &-16x10 {aspect-ratio: 16 / 10;}
+        &-10x16 {aspect-ratio: 10 / 16;}
+        &-16x11 {aspect-ratio: 16 / 11;}
+        &-11x16 {aspect-ratio: 11 / 16;}
+        &-16x14 {aspect-ratio: 716 / 14;}
+        &-14x16 {aspect-ratio: 14 / 16;}
+        /*==== Landscape 21x9 ====*/
+        &-21x9 {aspect-ratio: 21 / 9;}
+        &-9x21 {aspect-ratio: 9 / 21;}
+        /*==== Classic 4x3 ====*/
+        &-4x3  {aspect-ratio: 4 / 3;}
+        &-3x4  {aspect-ratio: 3 / 4;}
+        /*==== Wide 3x1 ====*/
+        &-3x1  {aspect-ratio: 3 / 1;}
+        &-1x3  {aspect-ratio: 1 / 3;}
     }
 }
 

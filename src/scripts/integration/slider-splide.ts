@@ -53,14 +53,88 @@ PhenixElements.prototype.slider = function (options?:{
 }) {
     //====> Sliders Activator <====//
     let slider_handler = () => this.forEach((slider:HTMLElement) => {
+        //===> Vertical Height Calculator <===//
+        const verticalFix = (slides, direction, slider) => {
+            if (direction == 'ttb') {
+                let first_item = slider.children[0],
+                    first_height = Phenix(first_item).height();
+
+                console.log(first_height, parseInt(slides), first_height*parseInt(slides));
+
+                return first_height*parseInt(slides);
+            }
+        };
+
+        //====> Integration <====//
+        const slider_integration = () => {
+            //====> Multimedia Integration <====//
+            const media_elements = slider.querySelectorAll('[data-src]');
+            Phenix(media_elements).multimedia();
+    
+            //====> Lazyloading Integration <====//
+            slider.querySelectorAll('.px-media.px-loading, .px-media.px-loader').forEach(media => {
+                if (Phenix(media).inView()) {
+                    //====> Multimedia Loader <====//
+                    if (media.getAttribute('data-src')) {
+                        Phenix(media).multimedia();
+                    } else {
+                        media.setAttribute('src', media.getAttribute('data-lazyload'));
+                    }
+                    //====> Disable Loading Spinner <====//
+                    media.classList.remove('px-loader');
+                    media.classList.remove('px-loading');
+                }
+            });
+
+            //====> Popup Modals <====//
+            const modalTriggers = slider.querySelectorAll(".px-lightbox, [data-modal]");
+            if (modalTriggers.length > 0) Phenix('.px-modal').popup();
+            
+            //====> Audio Buttons <====//
+            const audioTriggers = slider.querySelectorAll("button[data-audio]");
+            if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
+        };
+
         //====> Slider Creator <=====//
-        let slider_creator = (slider:any) => {
+        const slider_creator = (slider:any) => {
             /*====> Get Inline Options <====*/
             let inline = attr => slider.getAttribute(attr),
                 currentClasses = slider.classList;
 
             //====> Already Exist <====//
             if (currentClasses.contains('splide') || currentClasses.contains('splide__list')) return;
+
+            //====> Create Markup <====//
+            const slider_track   = document.createElement("div"),
+                  slider_list    = document.createElement("div"),
+                  current_slides = slider.children;
+
+            //====> Move Slides <====//
+            Array.from(current_slides).forEach((slide:any) => {
+                slide.classList.add('splide__slide');
+                slider_list.appendChild(slide);
+            });
+
+            //====> Set Class Names <====//
+            currentClasses.add('splide');
+            slider_track.setAttribute("class", "splide__track");
+            slider_list.setAttribute("class", "splide__list");
+
+            //====> Fix Grid System Classes <====//
+            Array.from(currentClasses).forEach((cl:any) => {
+                if (cl.includes('gp') || cl.includes('row')) {
+                    slider_list.classList.add(cl);
+                    slider.classList.remove(cl);
+                }
+            });
+
+            //====> Append Elements <====//
+            slider.appendChild(slider_track);
+            slider_track.appendChild(slider_list);
+
+
+            //====> Run Phenix Utils <====//
+            slider_integration();
 
             //====> Default Options <====//
             let type = inline('data-type') || options?.type || "loop",
@@ -110,70 +184,27 @@ PhenixElements.prototype.slider = function (options?:{
             //====> Center Mode <====//
             if (!focus) focus = inline('data-center') || options?.autoplay || currentClasses.contains("data-center-on") ? "center" : 0;
 
-            //====> Vertical Mode Fix <====//
-            let verticalFix = (slides) => {
-                if (direction == 'ttb') {
-                    let first_item = slider.children[0],
-                        margin = parseInt(getComputedStyle(first_item).getPropertyValue('margin-bottom')),
-                        first_height = first_item.clientHeight;
-                    //====> Height Margin Fallback <====//
-                    if(margin === 0) margin = parseInt(getComputedStyle(first_item).getPropertyValue('margin-top'));
-                    if (margin > 0) first_height = (first_height + margin - 1);
-
-                    return first_height*slides;
-                }
-            },
-
-            heightCalc = verticalFix(items);
-
-            //====> Create Markup <====//
-            let slider_track   = document.createElement("div"),
-                slider_list    = document.createElement("div"),
-                current_slides = slider.children;
-
-            //====> Move Slides <====//
-            Array.from(current_slides).forEach((slide:any) => {
-                slide.classList.add('splide__slide');
-                slider_list.appendChild(slide);
-            });
-
-            //====> Set Class Names <====//
-            currentClasses.add('splide');
-            slider_track.setAttribute("class", "splide__track");
-            slider_list.setAttribute("class", "splide__list");
-
-            Array.from(currentClasses).forEach((cl:any) => {
-                if (cl.includes('gp') || cl.includes('row')) {
-                    slider_list.classList.add(cl);
-                    slider.classList.remove(cl);
-                }
-            });
-
-            //====> Append Elements <====//
-            slider.appendChild(slider_track);
-            slider_track.appendChild(slider_list);
-
             //====> Inline Responsive <====//
             inline('data-sm') ? breakpoints[570] = { 
                 //===> Small Screens <===//
                 perPage: inline('data-sm') || items,
-                height: height || verticalFix(inline('data-sm') || items),
+                height: height || verticalFix(inline('data-sm') || items, direction, slider_list),
             } : '';
             //===> Medium Screens <===//
             inline('data-md') ? breakpoints[1100] = {
                 perPage: inline('data-md') || items,
-                height: height || verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-md') || items, direction, slider_list),
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
                 // drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
                 perPage: inline('data-lg') || items,
-                height: height || verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-lg') || items, direction, slider_list),
             } : '';
             //===> xLarge Screens <===//
             inline('data-xl') ? breakpoints[1400] = {
                 perPage: inline('data-xl') || items,
-                height: height || verticalFix(inline('data-md') || items),
+                height: height || verticalFix(inline('data-xl') || items, direction, slider_list),
             } : '';
 
             //====> Custom Classes <====//
@@ -252,7 +283,7 @@ PhenixElements.prototype.slider = function (options?:{
             if (!controls) slider_options.arrows = false;
             if (!pagination) slider_options.pagination = false;
             if (sync) slider_options.sync = true;
-            if (direction == 'ttb') slider_options.height = heightCalc;
+            if (direction == 'ttb') slider_options.height = verticalFix(items, direction, slider_list);
             if (direction == 'ttb') slider_options.autoHeight = true;
             if (pauseOnHover) slider_options.pauseOnHover = pauseOnHover;
             if (intersection) intersection !== 'false' || '0' ? intersection = true : null;
@@ -274,36 +305,6 @@ PhenixElements.prototype.slider = function (options?:{
         let current_slider = slider_creator(slider);
         if (!current_slider) return;
         let the_slider = new Splide(slider, current_slider.options);
-
-        //====> Integration <====//
-        let slider_integration = () => {
-            //====> Multimedia Integration <====//
-            const media_elements = slider.querySelectorAll('[data-src]');
-            Phenix(media_elements).multimedia();
-    
-            //====> Lazyloading Integration <====//
-            slider.querySelectorAll('.px-media.px-loading, .px-media.px-loader').forEach(media => {
-                if (Phenix(media).inView()) {
-                    //====> Multimedia Loader <====//
-                    if (media.getAttribute('data-src')) {
-                        Phenix(media).multimedia();
-                    } else {
-                        media.setAttribute('src', media.getAttribute('data-lazyload'));
-                    }
-                    //====> Disable Loading Spinner <====//
-                    media.classList.remove('px-loader');
-                    media.classList.remove('px-loading');
-                }
-            });
-
-            //====> Popup Modals <====//
-            const modalTriggers = slider.querySelectorAll(".px-lightbox, [data-modal]");
-            if (modalTriggers.length > 0) Phenix('.px-modal').popup();
-            
-            //====> Audio Buttons <====//
-            const audioTriggers = slider.querySelectorAll("button[data-audio]");
-            if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
-        };
 
         //====> Events Data <====//
         let events_data = {

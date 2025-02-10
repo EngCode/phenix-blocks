@@ -18,8 +18,7 @@ import PhenixNumber from "../number";
 export default class SliderSet extends Component {
     render () {
         //===> Properties <===//
-        const {className, attributes, options, mainSetter, flexSetter, isGrid} = this.props;
-        const uniqueKey = Date.now().toString(36) + Math.random().toString(36).substr(2, 5)+`-slider-option`;
+        const {className, attributes, options, mainSetter} = this.props;
 
         //===> Define Controls Options <===//
         const slider_types = [
@@ -28,12 +27,23 @@ export default class SliderSet extends Component {
             { label: __('Sliding', "pds-blocks"),  value: 'slide' },
         ];
 
+        const slider_directions = [
+            { label: __('Default', "pds-blocks"), value: '' },
+            { label: __('LTR', "pds-blocks"), value: 'ltr' },
+            { label: __('RTL', "pds-blocks"), value: 'rtl' },
+            { label: __('Vertical', "pds-blocks"),  value: 'ttb' },
+        ];
+
         //===> Output <===//
         return <>
-            <div className='row gpx-20 gpy-15 gpy-fix'>
+            <div className={`row gpx-20 gpy-15 gpy-fix ${className}`}>
                 {/*===> Column <===*/}
                 <div className='col-6'>
                     <PhenixSelect key="type" name="type" placeholder={__("Default", "pds-blocks")} label={__("Effect Type", "pds-blocks")} value={attributes.slider.type} onChange={mainSetter} options={slider_types} />
+                </div>
+                {/*===> Column <===*/}
+                <div className='col-6'>
+                    <PhenixSelect key="type" name="direction" placeholder={__("Default", "pds-blocks")} label={__("Direction", "pds-blocks")} value={attributes.slider.direction} onChange={mainSetter} options={slider_directions} />
                 </div>
                 {/*===> Column <===*/}
                 <div className='col-6'>

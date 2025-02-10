@@ -145,6 +145,10 @@ PhenixElements.prototype.slider = function (options?:{
                         slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
                         //====> Run Integration <====//
                         slider_integration(slider_wrapper);
+                        //====> Correct Height in Vertical <=====//
+                        // if (inline('data-direction') === "vertical" || options?.direction === "vertical") {
+                        //     slider_wrapper.querySelectorAll(".swiper-slide.").forEach(element => element.style.height = Phenix(element).height());
+                        // }
                     },
                     // //===> Slider Loop Fix <===//
                     // loopFix: (event) => {
@@ -159,6 +163,10 @@ PhenixElements.prototype.slider = function (options?:{
                         slider_wrapper.querySelector(".is-active")?.classList.remove("is-active");
                         //====> Active Slide <====//
                         slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
+                        //====> Correct Height in Vertical <=====//
+                        // if (inline('data-direction') === "vertical" || options?.direction === "vertical") {
+                        //     slider_wrapper.querySelectorAll(".swiper-slide.").forEach(element => element.style.height = Phenix(element).height());
+                        // }
                     },
                 },
             }

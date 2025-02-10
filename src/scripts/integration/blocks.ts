@@ -205,22 +205,27 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
             //====> Activate Sliders <====//
             RangeSliders.forEach((slider:any) => {
-                
-        
+                //===> Get Defaults <===//
+                const minRange = parseInt(slider.getAttribute("data-min")),
+                      maxRange = parseInt(slider.getAttribute("data-max"));
+
                 //===> Initial the Slider <===//
                 noUiSlider.create(slider, {
                     step: 5,
                     connect: true,
                     tooltips:true,
-                    start: [150, 700],
+                    start: [minRange || 150, maxRange || 700],
                     direction: page_direction,
-                    range: {'min': 10,'max': 900},
+                    range: {
+                        'min': minRange || 10,
+                        'max': maxRange || 900
+                    },
                 });
         
                 //===> Update Controls Values <===//
-                var min_range = slider.querySelector('.price-range-min'),
-                    max_range = slider.querySelector('.price-range-max');
-        
+                var min_range = slider.parentNode.querySelector(".range-min"),
+                    max_range = slider.parentNode.querySelector(".range-max");
+
                 if (min_range && max_range) {
                     slider.noUiSlider.on('update', function (values, handle) {
                         if (handle) {max_range.value = values[handle];} 

@@ -20,10 +20,10 @@
 /*==== .... ====*/
 .noUi-connect, .noUi-origin {
     top: 0;
-    right: 0;
     z-index: 1;
-    will-change: transform;
     position: absolute;
+    #{$direction-end}: 0;
+    will-change: transform;
     -ms-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     -webkit-transform-style: preserve-3d;
@@ -84,14 +84,8 @@
     left: 100%;
 }
 
-.noUi-value-vertical {
-    transform: translate(0, -50%);
-    padding-left: REM(25);
-}
-
-.noUi-rtl .noUi-value-vertical {
-    transform: translate(0, 50%);
-}
+.noUi-value-vertical {transform: translate(0, -50%); padding-#{$direction-start}: REM(25);}
+.noUi-rtl .noUi-value-vertical {transform: translate(0, 50%);}
 
 .noUi-marker-vertical.noUi-marker {
     width: #{REM(5)};
@@ -99,13 +93,8 @@
     margin-top: -#{REM(1)};
 }
 
-.noUi-marker-vertical.noUi-marker-sub {
-    width: REM(10);
-}
-
-.noUi-marker-vertical.noUi-marker-large {
-    width: REM(15);
-}
+.noUi-marker-vertical.noUi-marker-sub {width: REM(10);}
+.noUi-marker-vertical.noUi-marker-large {width: REM(15);}
 
 /*==== Tooltip ====*/
 .noUi-tooltip {
@@ -115,30 +104,13 @@
     white-space: nowrap;
 }
 
-.noUi-horizontal .noUi-tooltip {
-    bottom: 120%;
-    #{$direction-start}: 0;
-}
+.noUi-horizontal .noUi-tooltip {bottom: 120%; #{$direction-start}: 0;}
+.noUi-horizontal .noUi-origin > .noUi-tooltip {#{$direction-start}: auto; bottom: REM(10);}
+.noUi-horizontal .noUi-origin:last-child .noUi-tooltip {#{$direction-end}: 0; #{$direction-start}: auto;}
 
-.noUi-horizontal .noUi-origin:last-child .noUi-tooltip {
-    #{$direction-end}: 0;
-    #{$direction-start}: auto;
-}
-
-.noUi-vertical .noUi-tooltip {
-    top: 0;
-    right: 120%;
-}
-
-.noUi-horizontal .noUi-origin>.noUi-tooltip {
-    left: auto;
-    bottom: REM(10);
-}
-
-.noUi-vertical .noUi-origin>.noUi-tooltip {
-    top: auto;
-    right: 0;
-}
+/*==== Vertical Tooltip ====*/
+.noUi-vertical .noUi-tooltip {top: 0; #{$direction-end}: 120%;}
+.noUi-vertical .noUi-origin>.noUi-tooltip {top: auto; #{$direction-end}: 0;}
 
 /*==== Horizontal noUiSlider Size ====*/
 .noUi-horizontal {
@@ -149,7 +121,8 @@
         top: -#{REM(5)};
         width: var(--handle-width);
         height: var(--handle-height);
-        #{$direction-end}: -#{REM(10)};
+        #{$direction-end}: -#{REM(3)};
+        &.noUi-handle-lower { #{$direction-end}: -#{REM(16)};}
     }
 }
 

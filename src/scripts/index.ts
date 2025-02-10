@@ -740,7 +740,7 @@ import './components/uploader';  //==> File Uploader
 import './components/datatable'; //==> Data-Tables
 
 /*====> Integration <====*/
-import './integration/slider';    //==> Splide.js Slider
+import './integration/slider-splide';    //==> Splide.js Slider
 import './integration/utilities'; //==> Phenix Utilities
 import './integration/blocks';    //==> Phenix Blocks Scripts
 import './integration/wordpress'; //==> Wordpress Integration

@@ -84,6 +84,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
             //===> Check for the Cart Fragments <===//
+            //===* data {div.widget_shopping_cart_content, .cart-table, cart_count, cart_total} <===//
             if (data && data.fragments) {   
                 //===> Cart Content Fragment <===//
                 const newCartContent = data.fragments["div.widget_shopping_cart_content"];
@@ -98,6 +99,9 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
                 //===> Update Cart Table <===//
                 Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
+
+                //====> Update Cart Count <====//
+                Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
 
                 //===> Update Cart Item Remover <===//
                 Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
@@ -184,9 +188,6 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                         message  : 'Error adding to cart: ' + data.error,
                     });
                 } else {
-                    //====> Update Cart Count <====//
-                    Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
-
                     //====> Show Notifications <====//
                     Phenix(document).notifications({
                         duration : 5000,
@@ -194,6 +195,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                         position : ["center", "center"],
                         message  : "Product added to cart successfully.",
                     });
+
                     //===> Add next product in the list <===//
                     addProductsSequentially(index + 1);
                 }
@@ -216,13 +218,10 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
             //===> Check for Data Fragments <===//
-            if (data.fragments) {
+            if (data.fragments) { //===> Fragments {cart_count, cart_total} <===//
                 //====> Remove the Item from the DOM <====//
                 document.querySelectorAll(`.cart-item[data-cart_item_key="${cartItemKey}"]`).forEach(item => item.remove());
 
-                //====> Update Cart Count <====//
-                Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
-    
                 //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
                 document.body.dispatchEvent(new CustomEvent('pds_cart_updated', { detail: data }));
 

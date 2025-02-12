@@ -16,6 +16,65 @@ declare var wc_add_to_cart_params: any;
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).on("DOMContentLoaded", (loaded) => {
+    //===> WooCommerce Sorting <===//
+    Phenix('.woocommerce-ordering select').on('change', (select) => {
+        //====> Get the Current Value <====//
+        const sortValue = select.target.value;
+        //====> Create new URL Params <====//
+        const urlParams = new URLSearchParams(window.location.search);
+        //====> Set URL Params <====//
+        urlParams.set('orderby', sortValue);
+        //====> Reload page with selected sorting <====//
+        window.location.search = urlParams.toString();
+    });
+
+    //===> Custom Number Input <===//
+    Phenix(".px-counter-input").forEach(counter => {
+        //===> Get Elements <===//
+        const input = counter.querySelector('input[type="number"]');
+        const decrease = counter.querySelector('.decrease-btn');
+        const increase = counter.querySelector('.increase-btn');
+        const minValue = parseInt(input.getAttribute('min')) || 0;
+        const maxValue = parseInt(input.getAttribute('max')) || 99999;
+        const inputSteps = parseInt(input.getAttribute('data-step')) || 1;
+
+        //===> Increase Number <===//
+        const IncreaseNum = (clicked) => {
+            //===> Get Input Element <===//
+            let newVal = parseInt(input.value) + inputSteps;
+            console.log(newVal);
+            //===> Set Data <===//
+            input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
+        };
+    
+        //===> Decrease Number <===//
+        const DecreaseNum = (clicked) => {
+            //===> Get Input Element <===//
+            let newVal = parseFloat(input.value) - inputSteps;
+            //===> Set Data <===//
+            input.value = newVal > minValue || newVal === minValue ? newVal : minValue;
+        };
+
+        Phenix(decrease).on('click', DecreaseNum);
+        Phenix(increase).on('click', IncreaseNum);
+    });
+
+    //===> Add Multiple Products from Cart Page <===//
+    Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
+       //===> Prevent link navigation <===//
+       isClicked.preventDefault();
+
+       //===> Define Item Data <===//
+       const button = isClicked.target;
+       const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
+
+       //===> Activate Loading Mode <===//
+       button.classList.add('px-loading-inline');
+       
+       //===> Add the Items to the Cart <===//
+       pds_add_to_cart(button, products);
+    });
+
     //===> WooCommerce Mini Cart Updater <===//
     document.body.addEventListener('pds_cart_updated', function() {
         //===> Fetch the updated cart fragments using Fetch API <===//
@@ -27,6 +86,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         .then(response => response.json()).then(data => {
             //===> Check for the Cart Fragments <===//
             if (data && data.fragments) {
+                console.log(data);
                 //===> Cart Content Fragment <===//
                 const newCartContent = data.fragments["div.widget_shopping_cart_content"];
 
@@ -41,9 +101,9 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                 //===> Update Cart Table <===//
                 Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
 
-                //===> Update Counts <===//
-                const itemsCount = tempDiv.querySelectorAll('.cart-item') ? tempDiv.querySelectorAll('.cart-item').length : 0;
-                Phenix(".pds-cart-fragment .cart-count").forEach(cart_count => cart_count.innerHTML = itemsCount);
+                //===> Update Count <===//
+
+                //===> Update Prices <===//
 
                 //===> Update Cart Item Remover <===//
                 Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
@@ -81,14 +141,12 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Remove Empty Items from Array <===//
         product_ids = product_ids.filter(id => id);
 
-         //===> Collect Selected Attributes <===//
+        //===> Collect Selected Attributes <===//
         const attributes = {};
         Phenix(button).ancestor('.single-product-content')?.querySelectorAll('select[name^="attribute_"]').forEach(select => {
-            const attributeName = select.getAttribute('name');
             const attributeValue = select.value;
-            if (attributeValue) {
-                attributes[attributeName] = attributeValue;
-            }
+            const attributeName = select.getAttribute('name');
+            if (attributeValue) attributes[attributeName] = attributeValue;
         });
 
         const addProductsSequentially = (index = 0) => {

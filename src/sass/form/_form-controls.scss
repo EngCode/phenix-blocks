@@ -59,7 +59,7 @@
 }
 
 /*==== CSS Options ====*/
-.control-icon, .form-control, .option-control {
+.control-icon, .form-control, .option-control, .rating-control {
     --padding : #{REM(15)};
     /*=== Size Options ===*/
     --height    : #{REM(42)};
@@ -382,6 +382,29 @@ label,legend  {@extend %inline-block;}
         } @else {
             .switch::before {transform: translateX(calc(var(--height) * -1 / 2));}
         }
+    }
+}
+
+/*======== Form Rating Control ========*/
+.px-rating {
+    position: relative;
+    @extend %inline-block;
+    height: var(--height);
+    line-height: var(--height);
+
+    /*==== Hide Input ====*/
+    input {display: none;}
+
+    /*==== Icons ====*/
+    .rate-icon, .text {
+        @extend %inline-block;
+        color:var(--gray-color);
+        font-size: var(--text-size);
+        margin-#{$direction-end}: REM(5);
+        /*==== Icon ====*/
+        // &::before{top: -#{REM(3)};}
+        /*==== Active Color ====*/
+        &.active {color:var(--warning-color);}
     }
 }
 

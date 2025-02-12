@@ -23,9 +23,9 @@
 
     /*==== Inverted Label ====*/
     .px-progress-bar[data-label]::before {
+        top: 0;
         color: #FFF;
         width: var(--width);
-        @extend %position-center-y;
         #{$direction-start}: 0;
         content: attr(data-label);
     }
@@ -139,8 +139,8 @@
     visibility: visible;
     /*==== Animated Childs ====*/
     [data-animation] {
+        visibility: hidden;
         animation-fill-mode: both;
-        visibility: hidden!important;
         animation-name: var(--animation-exit, 'fadeOut');
         animation-delay: calc(var(--animation-delay, 0));
         animation-duration: var(--animate-duration, 1s);
@@ -277,7 +277,7 @@
 // .px-masonry, .row.px-masonry {display: block;}
 
 /*==== Swiper Fixes ====*/
-.px-slider[data-duration="0"] .swiper-wrapper {
-    -webkit-transition-timing-function:linear !important;
-    transition-timing-function:linear !important;
-}
+// .px-slider[data-duration="0"] .swiper-wrapper {
+//     -webkit-transition-timing-function:linear !important;
+//     transition-timing-function:linear !important;
+// }

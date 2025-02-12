@@ -159,7 +159,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     next(target?, all_target?) {
         //====> Sibling Define <====//
         let siblings = [];
-        
+
         //====> Loop Through Phenix Elements <====//
         this.forEach((element:any) => {
             //====> Define Next Unit <====//
@@ -169,9 +169,9 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
             if (!target) siblings.push(nextUnit);
     
             //====> if Target is Detected <====//
-            if (target) {
+            else {
                 //====> if All Next is the Target <====//
-                if (target.includes('all', 0)) {
+                if (all_target) {
                     //====> Loop Through All Next Siblings <====//
                     while (nextUnit) {
                         //====> if All has Target & Matches this Unit <====//
@@ -200,8 +200,8 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         });
 
         //====> Return Siblings <====//
-        if (siblings.length > 1) return siblings;
-        else if (siblings.length === 1) return siblings[0];
+        if (siblings.length === 1 && !all_target) return siblings[0];
+        else if (siblings.length > 0 || all_target) return siblings;
     }
 
     /*====> Get Previous Siblings <====*/
@@ -220,14 +220,14 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
             //====> if Target is Detected <====//
             if (target) {
                 //====> if All Previous is the Target <====//
-                if (target.includes('all', 0)) {
+                if (all_target) {
                     //====> Loop Through All Previous Siblings <====//
                     while (prevUnit) {
                         //====> if All has Target & Matches this Unit <====//
-                        if (all_target && prevUnit.matches(all_target)) siblings.push(prevUnit);
+                        if (all_target && prevUnit.matches(target)) siblings.push(prevUnit);
     
                         //====> if All has no Target get this Unit <====//
-                        if (!all_target) siblings.push(prevUnit);
+                        else if (!all_target) siblings.push(prevUnit);
     
                         //====> get the previous one <====//
                         prevUnit = prevUnit.previousElementSibling;
@@ -251,8 +251,8 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         });
         
         //====> Return Siblings <====//
-        if (siblings.length > 1) return siblings;
-        else if (siblings.length === 1) return siblings[0];
+        if (siblings.length === 1 && !all_target) return siblings[0];
+        else if (siblings.length > 0 || all_target) return siblings;
     }
 
     /*====> Get Children <====*/
@@ -737,7 +737,8 @@ import './components/popup';     //==> Popups
 import './components/progress';  //==> Progress
 import './components/select';    //==> Advanced Select
 import './components/uploader';  //==> File Uploader
-import './components/datatable'; //==> Data-Tables
+import './components/rating'; //==> Rating
+// import './components/datatable'; //==> Data-Tables
 
 /*====> Integration <====*/
 import './integration/slider-splide';    //==> Splide.js Slider

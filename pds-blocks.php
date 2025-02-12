@@ -50,6 +50,7 @@ include(dirname(__FILE__) . '/inc/pds-optimizer.php');
 
 //=====> Phenix Functions <=====//
 include(dirname(__FILE__) . '/inc/pds-functions.php');
+include(dirname(__FILE__) . '/inc/woo-functions.php');
 
 //=====> Phenix Assets <=====//
 include(dirname(__FILE__) . '/inc/pds-assets.php');

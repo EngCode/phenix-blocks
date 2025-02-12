@@ -58,9 +58,6 @@ PhenixElements.prototype.slider = function (options?:{
             if (direction == 'ttb') {
                 let first_item = slider.children[0],
                     first_height = Phenix(first_item).height();
-
-                console.log(first_height, parseInt(slides), first_height*parseInt(slides));
-
                 return first_height*parseInt(slides);
             }
         };

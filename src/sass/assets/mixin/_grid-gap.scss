@@ -11,8 +11,7 @@
     //====> Vertical Space <====//
     @if ($flow == 'y' or $flow == 'both') {
         /*==== Columns ====*/
-        > .col, > [class*="col-"], &[class*="row-cols"] > *, > *:not(.swiper-wrapper),
-        > .swiper-wrapper > [class*="col-"], > .swiper-wrapper > .col { @include margin_block(#{$size}, 'end'); }
+        > .col, > [class*="col-"], &[class*="row-cols"] > *, > .splide__slide { @include margin_block(#{$size}, 'end'); }
         /*==== Overflow Fix ====*/
         &.gpy-fix { @include margin_block(-#{$size}, 'end'); }
     }
@@ -29,8 +28,7 @@
         }
 
         /*==== Columns ====*/
-        > .col, > [class*="col-"], &[class*="row-cols"] > *, > *:not(.swiper-wrapper),
-        > .swiper-wrapper > [class*="col-"], > .swiper-wrapper > .col  {
+        > .col, > [class*="col-"], &[class*="row-cols"] > *, > .splide__slide   {
             /*==== Padding Space ====*/
             @if($size != 0) {
                 @include padding_inline(calc(#{$size} / 2));

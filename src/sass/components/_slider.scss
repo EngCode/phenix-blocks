@@ -36,5 +36,13 @@
     }
 
     /*==== Pagination ====*/
+    .px-slider-pagination .px-slider-page {
+        width: REM(12);
+        height: REM(12);
+        border: 0 none;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+    }
+
     .px-slider-pagination .px-slider-page:not(.is-active) {opacity: 0.5;}
 }

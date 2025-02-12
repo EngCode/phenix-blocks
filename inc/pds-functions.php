@@ -9,16 +9,19 @@
  * @since Phenix WP 1.0
  * 
  * ========> Reference by Comments <=======
- ** 01 - Delete "Archive" Prefix
- ** 02 - Pagination Creator
- ** 03 - Excerpt Striper
- ** 04 - Limited Excerpt 
- ** 05 - Excerpt More
- ** 06 - Get Patterns
- ** 07 - Get Templates Part
- ** 08 - Get Templates Parts Select
- ** 09 - Debug Variables
- ** 10 - Get Post Views
+ ** - Delete "Archive" Prefix
+ ** - Pagination Creator
+ ** - Excerpt Striper
+ ** - Limited Excerpt 
+ ** - Excerpt More
+ ** - Get Patterns
+ ** - Get Templates Part
+ ** - Get Templates Parts Select
+ ** - Debug Variables
+ ** - Get Post Views
+ ** - Add Dynamic Options to CF7 Dropdowns
+ ** - Add a Duplicate link
+ ** - Handle the duplication logic
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -486,6 +489,68 @@ if (!function_exists('pds_posts_exporter')) :
 
     //===> Export Posts <===//
     add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
+endif;
+
+//===> Add Dynamic Options to CF7 Dropdowns <===//
+if (!function_exists('pds_cf7_dd_options')):
+    function pds_cf7_dd_options($form_control, $unused ) {
+        //===> Check if its Post Type or Taxonomy Field <===//
+        if (!str_contains($form_control['name'], "cpt-") || !str_contains($form_control['name'], "tax-")) {
+            return $form_control;
+        }
+
+        //===> Add a Post Type Options <===//
+        if (str_contains($form_control['name'], "cpt-")) {
+            //===> Get the Current Post Type Within a Post <===//
+            $post_type = str_replace("cpt-", "", $form_control['name']);
+
+            //===> Get Current Post Type <===//
+            if ($form_control['name'] === "cpt-current") {
+                if (isset($post) && $post->ID) {
+                    $post_type = get_post_type($post->ID);
+                } else {
+                    $post_type = get_post_type();
+                }
+            }
+
+            /*==== Query Data =====*/
+            $the_query = new WP_Query(array('post_type' => $post_type, 'posts_per_page' => -1));
+            //==== Start Query =====//
+            if ($the_query->have_posts()) :
+                //===> Get the First Post <===//
+                while ($the_query->have_posts()): $the_query->the_post();
+                    $form_control['raw_values'][] = get_the_title();
+                    $form_control['labels'][] = get_the_title();
+                endwhile;
+                //==== RESET Query =====//
+                wp_reset_postdata();
+            endif;
+        }
+
+        //===> Add the Options to the "pickup-location" <===//
+        else if (str_contains($form_control['name'], "taxonomy-")) {
+            //===> Add the Locations to the Options <===//
+            $taxonomies_terms = get_categories(array('taxonomy' => str_replace("taxonomy-", "", $form_control['name']), 'hide_empty' => false));
+
+            if (!empty($taxonomies_terms)) {
+                //===> Loop Through Categories <===//
+                foreach ($taxonomies_terms as $term) :
+                    $form_control['labels'][] = $term->label;
+                    $form_control['raw_values'][] = $term->name;
+                endforeach;
+            }
+        }
+
+        //===> Pass the Options to CF7 <===//
+        $pipes = new WPCF7_Pipes($form_control['raw_values']);
+        $form_control['values'] = $pipes->collect_befores();
+        $form_control['pipes'] = $pipes;
+
+        //===> Return the Field <===//
+        return $form_control;
+    }
+
+    add_filter('wpcf7_form_tag', 'pds_cf7_dd_options', 10, 2);
 endif;
 
 //===> Add a Duplicate link to the posts table <===//

@@ -130,6 +130,9 @@ PhenixElements.prototype.utilities = function (options?:{
                 if (rows) rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
             }, 1000);
         });
+
+        //====> Rating Controllers <====//
+        Phenix(".px-rating").rating();
     }
 
     //====> Others <====//

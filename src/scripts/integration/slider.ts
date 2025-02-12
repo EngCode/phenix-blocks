@@ -9,38 +9,61 @@
 
 /*====> Phenix Query <====*/
 import Phenix, { PhenixElements } from "..";
-/*====> Swiper JS for The Slider Core <====*/
-declare var Swiper: any;
+/*====> Splide JS for The Slider Core <====*/
+declare var Splide: any;
 
 /*====> Phenix Slider <====*/
 PhenixElements.prototype.slider = function (options?:{
     type?:string;
+    focus?:any;
     items?:number;
+    steps?:number;
     speed?:number;
+    start?:number;
     duration?:number;
     autoplay?:boolean;
     controls?:any;
     pagination?:any;
     breakpoints?:any;
     direction?:string;
+    splide_options?:any;
     arrow?:string;
     page?:string;
+    isNavigation?:boolean;
+    updateAfter?:boolean;
     waitForTransition?:boolean;
-    reverseDirection?:boolean;
     sync?:string;
+    padding?:string;
     pauseOnHover?:boolean;
+    intersection?:boolean;
     rewind?:boolean;
+    wheel?:boolean;
+    wheelSleep?:number;
+    releaseWheel?:boolean;
+    drag?:boolean;
     width?:string;
     height?:string;
+    autoWidth?:string;
     autoHeight?:string;
+    fixedWidth?:string;
+    fixedHeight?:string;
+    heightRatio?:string;
+    autoScroll?:string;
     center?:any;
-    controller?:any;
-    zoom:any;
 }) {
     //====> Sliders Activator <====//
-    const slider_handler = () => this.forEach((slider:HTMLElement) => {
+    let slider_handler = () => this.forEach((slider:HTMLElement) => {
+        //===> Vertical Height Calculator <===//
+        const verticalFix = (slides, direction, slider) => {
+            if (direction == 'ttb') {
+                let first_item = slider.children[0],
+                    first_height = Phenix(first_item).height();
+                return first_height*parseInt(slides);
+            }
+        };
+
         //====> Integration <====//
-        const slider_integration = (slider) => {
+        const slider_integration = () => {
             //====> Multimedia Integration <====//
             const media_elements = slider.querySelectorAll('[data-src]');
             Phenix(media_elements).multimedia();
@@ -65,236 +88,355 @@ PhenixElements.prototype.slider = function (options?:{
             if (modalTriggers.length > 0) Phenix('.px-modal').popup();
             
             //====> Audio Buttons <====//
-            const audioTriggers = slider.querySelector("button[data-audio]");
-            if (audioTriggers) Phenix(document).audioTrigger("button[data-audio]");
+            const audioTriggers = slider.querySelectorAll("button[data-audio]");
+            if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
         };
 
         //====> Slider Creator <=====//
         const slider_creator = (slider:any) => {
             /*====> Get Inline Options <====*/
-            let currentClasses = slider.classList,
-                inline = attr => slider.getAttribute(attr) === "true" ? true : slider.getAttribute(attr) === "false" ? false : slider.getAttribute(attr);
+            let inline = attr => slider.getAttribute(attr),
+                currentClasses = slider.classList;
 
             //====> Already Exist <====//
-            if (currentClasses.contains('swiper') || currentClasses.contains('swiper-wrapper')) return;
-
-            //====> Get Options <====//
-            const zoom = inline('data-zoom') || options?.zoom;
-            const thumbnails = inline('data-sync') || options?.sync;
-            const controls = inline('data-controls') || options?.controls;
-            const pagination = inline('data-pagination') || options?.pagination;
-            const controller = inline('data-controller') || options?.controller;
-            const autoPlayDisabled = inline('data-autoplay') === 'false' || options?.autoplay === false || currentClasses.contains("data-autoplay-off");
-
-            //====> Default Options <====//
-            const slider_options:any = {
-                //===> Main Options <===//
-                a11y: true,
-                slidesOffsetAfter:0,
-                loop: inline('data-loop') || true,
-                breakpoints: options?.breakpoints || {},
-                direction: inline('data-direction') || options?.direction || null,
-                slidesPerView: (slider.getAttribute('data-autoWidth') ? "auto" : false) || parseInt(inline('data-items')) || options?.items || 1,
-                centeredSlides: inline('data-center') || currentClasses.contains("data-center-on") ? true : null,
-
-                //===> User Actions <====//
-                rewind: inline('data-rewind') || options?.rewind || null,
-
-                //===> Controls <===//
-                navigation: controls ? {nextEl: `.swiper-button-next`, prevEl: `.swiper-button-prev`} : null,
-                pagination: pagination ? {type: 'bullets', el: '.swiper-pagination', clickable: true} : null,
-
-                //===> Animations <===//
-                speed: parseInt(inline('data-speed')) || options?.speed || 700,
-                effect: inline('data-type')?.replace("loop", "slide") || options?.type?.replace("loop", "slide") || null,
-
-                //===> Autoplay <===//
-                autoplay: autoPlayDisabled ? false : {
-                    disableOnInteraction: false,
-                    delay: parseInt(inline('data-duration')) ?? options?.duration,
-                    pauseOnMouseEnter: inline('data-pause-hover') || options?.pauseOnHover || true,
-                    reverseDirection: inline('data-reverseDirection') || options?.reverseDirection || false,
-                    // waitForTransition: inline('data-waitForTransition') || options?.waitForTransition || false,
-                },
-
-                //===> Style <===//
-                width: inline('data-width') || options?.width || null,
-                height: inline('data-height') || options?.height || null,
-                autoHeight: inline('data-autoHeight') || options?.autoHeight || null,
-
-                //===> Syncing Controller and THumbnails <===//
-                thumbs: thumbnails ? {swiper: thumbnails} : null,
-                controller: controller ? {by: 'slide', control: controller} : null,
-
-                //===> Zooming Feature <===//
-                zoom: zoom ? {
-                    maxRatio: 5,
-                    containerClass: "px-media"
-                } : null,
-
-                //===> Accessibility <====//
-                keyboard: {enabled: true},
-
-                //===> Events <===//
-                on: {
-                    //===> Slider Init <===//
-                    init: (event) => {
-                        //====> Get Slider Wrapper <====//
-                        const slider_wrapper = event.wrapperEl;
-                        //====> Active Slide <====//
-                        slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
-                        //====> Run Integration <====//
-                        slider_integration(slider_wrapper);
-                        //====> Correct Height in Vertical <=====//
-                        // if (inline('data-direction') === "vertical" || options?.direction === "vertical") {
-                        //     slider_wrapper.querySelectorAll(".swiper-slide.").forEach(element => element.style.height = Phenix(element).height());
-                        // }
-                    },
-                    // //===> Slider Loop Fix <===//
-                    // loopFix: (event) => {
-                    //     //====> Run Integration <====//
-                    //     slider_integration();
-                    // },
-                    //===> Slider Slide Change <===//
-                    slideChange: (event) => {
-                        //====> Get Slider Wrapper <====//
-                        const slider_wrapper = event.wrapperEl;
-                        //====> Remove Active Slide <====//
-                        slider_wrapper.querySelector(".is-active")?.classList.remove("is-active");
-                        //====> Active Slide <====//
-                        slider_wrapper.querySelector(".swiper-slide-active")?.classList.add("is-active");
-                        //====> Correct Height in Vertical <=====//
-                        // if (inline('data-direction') === "vertical" || options?.direction === "vertical") {
-                        //     slider_wrapper.querySelectorAll(".swiper-slide.").forEach(element => element.style.height = Phenix(element).height());
-                        // }
-                    },
-                },
-            }
-
-            //===> Center Mode <===//
-            if (slider_options.centeredSlides) {
-                console.log(slider_options.loop);
-            }
-
-            //====> Mobile Responsive <====//
-            inline('data-sm') ? slider_options.breakpoints[570] = { 
-                //===> Slides Per View and Loop Fixer <===//
-                slidesPerView: parseInt(inline('data-sm')) || slider_options.slidesPerView,
-            } : '';
-
-            //===> Medium Screens <===//
-            inline('data-md') ? slider_options.breakpoints[1100] = {
-                slidesPerView: parseInt(inline('data-md')) || slider_options.slidesPerView,
-            } : '';
-
-            //===> Large Screens <===//
-            inline('data-lg') ? slider_options.breakpoints[1170] = {
-                slidesPerView: parseInt(inline('data-lg')) || slider_options.slidesPerView,
-            } : '';
-
-            //===> xLarge Screens <===//
-            inline('data-xl') ? slider_options.breakpoints[1400] = {
-                slidesPerView: parseInt(inline('data-xl')) || slider_options.slidesPerView,
-            } : '';
+            if (currentClasses.contains('splide') || currentClasses.contains('splide__list')) return;
 
             //====> Create Markup <====//
-            let swiper_wrapper = document.createElement("div"),
-                current_slides = slider.children;
+            const slider_track   = document.createElement("div"),
+                  slider_list    = document.createElement("div"),
+                  current_slides = slider.children;
 
             //====> Move Slides <====//
             Array.from(current_slides).forEach((slide:any) => {
-                slide.classList.add('swiper-slide');
-                swiper_wrapper.appendChild(slide);
+                slide.classList.add('splide__slide');
+                slider_list.appendChild(slide);
             });
 
             //====> Set Class Names <====//
-            currentClasses.add('swiper');
-            swiper_wrapper.setAttribute("class", "swiper-wrapper");
+            currentClasses.add('splide');
+            slider_track.setAttribute("class", "splide__track");
+            slider_list.setAttribute("class", "splide__list");
 
-            //====> Append Elements <====//
-            slider.appendChild(swiper_wrapper);
-
-            //===> Create Navigation <===//
-            if (controls) {
-                let navigation_wrapper = document.createElement("div"),
-                    nextButton = document.createElement("button"),
-                    prevButton = document.createElement("button");
-    
-                //===> Set Attributes <===//
-                navigation_wrapper.setAttribute("class", `px-slider-controls z-index-dropdown ${typeof(controls) === "string" && controls !== "1" ? controls : 'fluid flexbox position-ab pos-center-y align-between align-center-y pos-start-0'}`);
-                nextButton.setAttribute("class", `swiper-button-next px-slider-button reset-button fas fa-angle-${Phenix(document).direction("end")} ${inline('data-arrow') || options?.arrow || 'btn primary small square'}`);
-                prevButton.setAttribute("class", `swiper-button-prev px-slider-button reset-button  fas fa-angle-${Phenix(document).direction("start")} ${inline('data-arrow') || options?.arrow || 'btn primary small square'}`);
-    
-                //===> Append Elements <===//
-                navigation_wrapper.appendChild(prevButton);
-                navigation_wrapper.appendChild(nextButton);
-                slider.appendChild(navigation_wrapper);
-            }
-
-            //===> Create Pagination <===//
-            if (pagination) {
-                let pagination_wrapper = document.createElement("div");
-                pagination_wrapper.setAttribute("class", `swiper-pagination px-slider-pagination z-index-dropdown ${typeof(pagination) === "string" && pagination !== "1" ? pagination : 'position-ab pos-center-x pos-bottom-15'}`);
-                // let page_class  = inline('data-page') || options?.page || 'pd-5 bg-primary no-border tiny square radius-circle mx-5';
-    
-                //===> Append Pagination <===//
-                slider.appendChild(pagination_wrapper);
-            }
-
-            //====> Return Options <====//
-            const final_options:any = {};
-            Object.entries(slider_options).forEach(([key, value]) => {
-                //===> Remove Null Options <===//
-                value !== null ? final_options[key] = value : null;
+            //====> Fix Grid System Classes <====//
+            Array.from(currentClasses).forEach((cl:any) => {
+                if (cl.includes('gp') || cl.includes('row')) {
+                    slider_list.classList.add(cl);
+                    slider.classList.remove(cl);
+                }
             });
 
-            //====> Default <====//
-            if (isNaN(final_options.autoplay.delay)) final_options.autoplay.delay = 6000;
+            //====> Append Elements <====//
+            slider.appendChild(slider_track);
+            slider_track.appendChild(slider_list);
 
-            //====> Fade Effect Fixes <====//
-            if (final_options.effect === "fade") {
-                //===> Disable Loop <===//
-                final_options.loop = false;
-                //===> Fade Effect Avoid seeing content behind <===//
-                final_options.fadeEffect = {crossFade: true};
+
+            //====> Run Phenix Utils <====//
+            slider_integration();
+
+            //====> Default Options <====//
+            let type = inline('data-type') || options?.type || "loop",
+                focus = inline('data-focus') || options?.focus,
+                items = parseInt(inline('data-items')) || options?.items || 1,
+                steps = parseInt(inline('data-steps')) || options?.steps || 1,
+                speed = parseInt(inline('data-speed')) || options?.speed || 700,
+                duration = parseInt(inline('data-duration')) || options?.duration || 6000,
+                autoplay:any = inline('data-autoplay') || options?.autoplay || currentClasses.contains("data-autoplay-off") ? false : true,
+                start  = parseInt(inline('data-start')) || options?.start,
+                rewind = inline('data-rewind') || options?.rewind,
+                direction = inline('data-direction') || options?.direction || Phenix(document).direction(),
+                breakpoints = options?.breakpoints || {},
+
+                //===> User Actions <====//
+                pauseOnHover = inline('data-pause-hover') || options?.pauseOnHover,
+                intersection = inline('data-intersection') || options?.intersection,
+
+                //===> Controls <===//
+                wheel = inline('data-wheel') || options?.wheel || false,
+                controls = inline('data-controls') || options?.controls,
+                pagination = inline('data-pagination') || options?.pagination,
+                drag = inline('data-drag') || options?.drag || (!controls || !pagination ? false : true),
+
+                //===> Features & Modes <===//
+                sync = inline('data-sync') || options?.sync,
+                padding = inline('data-padding') || options?.padding,
+                isNavigation = parseInt(inline('data-is-navigation')) || options?.isNavigation,
+
+                //===> Animations <===//
+                updateAfter = inline('data-update-after') || options?.updateAfter,
+                waitForTransition = inline('data-waitForTransition') || options?.waitForTransition,
+                wheelSleep = parseInt(inline('data-wheelSleep')) || options?.wheelSleep,
+                releaseWheel = inline('data-releaseWheel') || options?.releaseWheel,
+
+                //===> Style <===//
+                width = inline('data-width') || options?.width,
+                height = inline('data-height') || options?.height,
+                autoWidth = inline('data-autoWidth') || options?.autoWidth,
+                autoHeight = inline('data-autoHeight') || options?.autoHeight,
+                fixedWidth = inline('data-fixedWidth') || options?.fixedWidth,
+                fixedHeight = inline('data-fixedHeight') || options?.fixedHeight,
+                heightRatio = inline('data-heightRatio') || options?.heightRatio;
+
+            //====> Rewind Sliding and Fading <=====//
+            if (!rewind && type === "fade" || type === "slide") rewind = true;
+            //====> Center Mode <====//
+            if (!focus) focus = inline('data-center') || options?.autoplay || currentClasses.contains("data-center-on") ? "center" : 0;
+
+            //====> Inline Responsive <====//
+            inline('data-sm') ? breakpoints[570] = { 
+                //===> Small Screens <===//
+                perPage: inline('data-sm') || items,
+                height: height || verticalFix(inline('data-sm') || items, direction, slider_list),
+            } : '';
+            //===> Medium Screens <===//
+            inline('data-md') ? breakpoints[1100] = {
+                perPage: inline('data-md') || items,
+                height: height || verticalFix(inline('data-md') || items, direction, slider_list),
+            } : ''; 
+            //===> Large Screens <===//
+            inline('data-lg') ? breakpoints[1170] = {
+                // drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
+                perPage: inline('data-lg') || items,
+                height: height || verticalFix(inline('data-lg') || items, direction, slider_list),
+            } : '';
+            //===> xLarge Screens <===//
+            inline('data-xl') ? breakpoints[1400] = {
+                perPage: inline('data-xl') || items,
+                height: height || verticalFix(inline('data-xl') || items, direction, slider_list),
+            } : '';
+
+            //====> Custom Classes <====//
+            let controls_class = 'flexbox position-ab pos-center-y align-between align-center-y pos-start-0 col-12',
+                pagination_class = 'position-ab pos-center-x pos-bottom-15',
+                arrow_class = inline('data-arrow') || options?.arrow || 'btn primary small square',
+                page_class  = inline('data-page') || options?.page || 'pd-5 bg-primary no-border tiny square radius-circle mx-5';
+
+            if (typeof(controls) === "string") {
+                controls !== "1" ? controls_class = controls : null;
             }
 
+            if (typeof(pagination) === "string") {
+                pagination !== "1" ? pagination_class = pagination : null;
+            }
+
+            //====> Slider to Splide <====//
+            let slider_options:any = {
+                type : type,
+                focus: focus,
+                speed: speed,
+                interval: duration,
+                perPage: items,
+                perMove: steps,
+                autoplay: typeof autoplay === "string" ? parseInt(autoplay) : autoplay,
+                pauseOnHover: false,
+                mediaQuery: 'min',
+                direction: direction,
+                breakpoints: breakpoints,
+                rewind: rewind,
+                padding: padding,
+                paginationDirection: Phenix(document).direction(),
+
+                //====> Animation Fix <====//
+                updateOnMove: updateAfter && updateAfter === 'false' || updateAfter && updateAfter === '0' ? false : true,
+                waitForTransition: waitForTransition && waitForTransition === 'false' || waitForTransition && waitForTransition === '0' ? false : true,
+                
+                //====> Static Options <====//
+                snap: true,
+                rewindSpeed: 1000,
+                rewindByDrag: true,
+                
+                //====> .Sniping Sliding. <====//
+                wheel: wheel, //===> Enable Wheel Sliding
+                wheelSleep: wheelSleep, //===> Time to Disable the Scroll before next slide
+                releaseWheel: releaseWheel, //===> Allow Scrolling at the End or the Start.
+
+                //====> ... <====//
+                width: width,
+                autoWidth: autoWidth,
+                autoHeight: autoHeight,
+                fixedWidth: fixedWidth,
+                fixedHeight: fixedHeight,
+                heightRatio: heightRatio,
+
+                //====> Accessibility <====//
+                role: 'slider',
+                label: 'Slider',
+                labelledby: 'slider-label',
+
+                //====> Classes <====//
+                classes: {
+                    // Add classes for arrows.
+                    arrows: `splide__arrows px-slider-controls ${controls_class}`,
+                    arrow : `splide__arrow px-slider-button ${arrow_class}`,
+                    prev  : `splide__arrow--prev px-prev`,
+                    next  : `splide__arrow--next px-next`,
+                    // Add classes for pagination.
+                    pagination: `splide__pagination px-slider-pagination ${pagination_class}`, // container
+                    page      : `splide__pagination__page px-slider-page ${page_class}`, // each button
+                },
+            };
+            
+            //====> Add Options <====//
+            if (start) slider_options.start = start;
+            if (!controls) slider_options.arrows = false;
+            if (!pagination) slider_options.pagination = false;
+            if (sync) slider_options.sync = true;
+            if (direction == 'ttb') slider_options.height = verticalFix(items, direction, slider_list);
+            if (direction == 'ttb') slider_options.autoHeight = true;
+            if (pauseOnHover) slider_options.pauseOnHover = pauseOnHover;
+            if (intersection) intersection !== 'false' || '0' ? intersection = true : null;
+            if (rewind) rewind !== 'false' || '0' ? slider_options.rewind = true : slider_options.rewind = false;
+            if (isNavigation) slider_options.isNavigation = true;
+
             //====> Return Options <====//
-            return final_options;
+            return {
+                track  : slider_track,
+                list   : slider_list,
+                slides : slider_list.children,
+                sync : sync,
+                intersection : intersection,
+                options: slider_options
+            }
         }
 
-        //====> Run Slider <====//
-        new Swiper(slider, slider_creator(slider));
+        //====> Splide Prepare <====//
+        let current_slider = slider_creator(slider);
+        if (!current_slider) return;
+        let the_slider = new Splide(slider, current_slider.options);
+
+        //====> Events Data <====//
+        let events_data = {
+            slider : slider,
+            track  : slider.querySelector('splide__track'),
+            list   : slider.querySelector('splide__list'),
+        };
+
+        //====> Create Custom Events [https://splidejs.com/guides/events/] <====//
+        const move = new CustomEvent('move', {detail: events_data}),       //===> Fired right before the carousel moves.
+            moved = new CustomEvent('moved', {detail: events_data}),       //===> Fired right after the carousel moves.
+            active = new CustomEvent('active', {detail: events_data}),     //===> Fired when the active slide is changed.
+            resize = new CustomEvent('resize', {detail: events_data}),     //===> Fired whenever the window is resized.
+            hidden = new CustomEvent('hidden', {detail: events_data}),     //===> Fired when any slide gets visible in the view port.
+            resized = new CustomEvent('resized', {detail: events_data}),   //===> Fired whenever Splide completes resizing the carousel.
+            refresh = new CustomEvent('refresh', {detail: events_data}),   //===> Fired when Splide refreshes the carousel.
+            destroy = new CustomEvent('destroy', {detail: events_data}),   //===> Fired when Splide destroys the carousel.
+            visible = new CustomEvent('visible', {detail: events_data}),   //===> Fired when any slide gets visible in the view port.
+            mounted = new CustomEvent('mounted', {detail: events_data}),   //===> Fired right after all components are mounted.
+            inactive = new CustomEvent('inactive', {detail: events_data}), //===> Fired when the active slide becomes inactive.
+            arrows_mounted = new CustomEvent('arrows:mounted', {detail: events_data}), //===> Fired right after arrows are mounted.
+            arrows_updated = new CustomEvent('arrows:updated', {detail: events_data}), //===> Fired whenever status of arrows are updated.
+            pagination_mounted = new CustomEvent('pagination:mounted', {detail: events_data}),  //===> Fired right after pagination is mounted.
+            pagination_updated = new CustomEvent('pagination:updated', {detail: events_data});  //===> Fired whenever status of pagination is updated.
+
+        //====> Integration Phenix <====//
+        the_slider.on(['mounted'], function(data) {
+            //====> Mounted Run Integration <====//
+            slider_integration();
+        });
 
         //====> Stop Played Media <====//
-        // the_slider.on(['inactive'], function(data) {
-        //     let video = data.slide.querySelector('video'),
-        //         iframe = data.slide.querySelector('iframe');
+        the_slider.on(['inactive'], function(data) {
+            let video = data.slide.querySelector('video'),
+                iframe = data.slide.querySelector('iframe');
 
-        //     //====> Played Video <====//
-        //     if (video) video.playing ? video.pause() : null;
+            //====> Played Video <====//
+            if (video) video.playing ? video.pause() : null;
 
-        //     //====> Played iFrame <====//
-        //     if (iframe) {
-        //         let source = iframe.getAttribute('src');
-        //         iframe.setAttribute('src', source);
-        //     };
-        // });
+            //====> Played iFrame <====//
+            if (iframe) {
+                let source = iframe.getAttribute('src');
+                iframe.setAttribute('src', source);
+            };
+        });
+
+        //====> Dispatch Events <====//
+        the_slider.on('move', () => slider.dispatchEvent(move));
+        the_slider.on('moved', () => slider.dispatchEvent(moved));
+        the_slider.on('resize', () => slider.dispatchEvent(resize));
+        the_slider.on('active', () => slider.dispatchEvent(active));
+        the_slider.on('refresh', () => slider.dispatchEvent(refresh));
+        the_slider.on('resized', () => slider.dispatchEvent(resized));
+        the_slider.on('destroy', () => slider.dispatchEvent(destroy));
+        the_slider.on('mounted', () => slider.dispatchEvent(mounted));
+        the_slider.on('inactive', () => slider.dispatchEvent(inactive));
+        the_slider.on('arrows:mounted', () => slider.dispatchEvent(arrows_mounted));
+        the_slider.on('arrows:updated', () => slider.dispatchEvent(arrows_updated));
+        the_slider.on('pagination:mounted', () => slider.dispatchEvent(pagination_mounted));
+        the_slider.on('pagination:updated', () => slider.dispatchEvent(pagination_updated));
+
+        //====> Run Sync Sliders <====//
+        let mount_slider = () => {
+            if (!current_slider.track?.classList.contains('mounted')) {
+                //===> If is Synced Slider <===//
+                if (current_slider.sync) {
+                    //====> Synced Create <====//
+                    let sync_selector = document.querySelector(`${current_slider.sync}`),
+                        synced_slider = slider_creator(sync_selector);
+                        sync_selector.classList.add('px-slider');
+
+                    //====> Synced Splide <====//
+                    let synced_splide = new Splide(sync_selector, synced_slider.options);
+
+                    //====> Run Both <====//
+                    the_slider.sync(synced_splide);
+                    the_slider.mount();
+                    synced_splide.mount();
+
+                    //====> Clickable Thumbnail <====//
+                    Array.from(synced_slider.slides).forEach((slide_item, index) => {
+                        slide_item.addEventListener( 'click', () => the_slider.go(index));
+                    });
+                } else {
+                    //====> Run the Slider <====//
+                    the_slider.mount();
+                }
+    
+                //===> Add Mounted Class <===//
+                current_slider.track?.classList.add('mounted');
+            }
+        };
+
+        //====> Intersection Sliders <====//
+        if (current_slider.intersection) {
+            //===> First View <===//
+            if (Phenix(slider).inView()) mount_slider();
+            //===> Hidden View <===//
+            window.addEventListener('scroll', scrolling => {
+                Phenix(slider).inView() ? mount_slider() : null
+            });
+        } else {
+            mount_slider();
+        }
     });
 
     //====> Load Splide JS <====//
-    if (!document.querySelector('#slider-phenix-script') && this.length > 0) {
-        //===> Load CSS <===//
-        Phenix(document).import("slider", "link", "swiper.css", () => {}, true);
-
+    if (!document.querySelector('#splidejs-phenix') && this.length > 0) {
         //===> Create Script Element <===//
-        Phenix(document).import("slider", "script", "swiper-slider.js", () => {
+        let splide_loader = document.createElement("script"),
+            libPath = Phenix(document).getURL().phenixJS.replace('js/', 'lib/'),
+            splide_url = libPath+'splide.min.js';
+
+        //===> Set ID <===//
+        splide_loader.setAttribute('id', 'splidejs-phenix');
+        //===> Set Source <===//
+        splide_loader.setAttribute("src", splide_url);
+        splide_loader.setAttribute("async", "");
+
+        //===> Append Script <===//
+        document.body.appendChild(splide_loader);
+    
+        //====> When Loaded Run Sliders <====//
+        splide_loader.addEventListener("load", () => {
+            //===> Run Slider <====//
             slider_handler();
-        }, true);
+        });
+    
+        //====> When Error Re-Load <====//
+        splide_loader.addEventListener("error", (ev) => {
+            splide_loader.setAttribute("src", splide_url);
+        });
+
     //====> if Al-ready loaded run the sliders <====//
-    } else {
-        slider_handler();
-    }
+    } else slider_handler();
 
     //====> Return Phenix Elements <====//
     return this;

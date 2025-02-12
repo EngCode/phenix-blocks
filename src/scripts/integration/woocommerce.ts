@@ -42,7 +42,6 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         const IncreaseNum = (clicked) => {
             //===> Get Input Element <===//
             let newVal = parseInt(input.value) + inputSteps;
-            console.log(newVal);
             //===> Set Data <===//
             input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
         };
@@ -85,8 +84,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
             //===> Check for the Cart Fragments <===//
-            if (data && data.fragments) {
-                console.log(data);
+            if (data && data.fragments) {   
                 //===> Cart Content Fragment <===//
                 const newCartContent = data.fragments["div.widget_shopping_cart_content"];
 
@@ -100,10 +98,6 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
                 //===> Update Cart Table <===//
                 Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
-
-                //===> Update Count <===//
-
-                //===> Update Prices <===//
 
                 //===> Update Cart Item Remover <===//
                 Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
@@ -121,7 +115,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     const formData = new URLSearchParams();
                     formData.append('cart_item_key', cartItemKey);
                     formData.append('action', 'woocommerce_remove_cart_item');
-                    
+
                     //===> Remove the Item from the Cart <===//
                     pds_remove_from_cart(formData, cartItemKey);
                 }, true);
@@ -186,15 +180,18 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     Phenix(document).notifications({
                         duration : 5000,
                         type     : "error",
-                        position : ["bottom", "end"],
+                        position : ["center", "center"],
                         message  : 'Error adding to cart: ' + data.error,
                     });
                 } else {
+                    //====> Update Cart Count <====//
+                    Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
+
                     //====> Show Notifications <====//
                     Phenix(document).notifications({
                         duration : 5000,
                         type     : "success",
-                        position : ["bottom", "end"],
+                        position : ["center", "center"],
                         message  : "Product added to cart successfully.",
                     });
                     //===> Add next product in the list <===//
@@ -222,6 +219,9 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             if (data.fragments) {
                 //====> Remove the Item from the DOM <====//
                 document.querySelectorAll(`.cart-item[data-cart_item_key="${cartItemKey}"]`).forEach(item => item.remove());
+
+                //====> Update Cart Count <====//
+                Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
     
                 //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
                 document.body.dispatchEvent(new CustomEvent('pds_cart_updated', { detail: data }));
@@ -230,7 +230,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                 Phenix(document).notifications({
                     duration : 5000,
                     type     : "success",
-                    position : ["bottom", "end"],
+                    position : ["center", "center"],
                     message  : "Product removed from cart successfully.",
                 });
             } 

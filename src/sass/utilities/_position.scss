@@ -63,33 +63,33 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 /*==== Base Screen ====*/
 .pos-top-custom {top: var(--pos-top);}
 .pos-bottom-custom {bottom: var(--pos-bottom);}
-.pos-end-custom {#{$direction-end}: var(--pos-end);}
 .pos-start-custom {#{$direction-start}: var(--pos-start);}
+.pos-end-custom {#{$direction-end}: var(--pos-end);}
 @include make_positions();
 
 /*==== Medium Screen ====*/
 @include medium(){
     .pos-top-custom { top: var(--pos-top-md, var(--pos-top)) };
     .pos-bottom-custom { bottom: var(--pos-bottom-md, var(--pos-bottom)) };
-    .pos-end-custom { #{$direction-end}: var(--pos-end-md, var(--pos-end)) };
     .pos-start-custom { #{$direction-start}: var(--pos-start-md, var(--pos-start)) };
+    .pos-end-custom { #{$direction-end}: var(--pos-end-md, var(--pos-end)) };
     @include make_positions('-md');
 }
 
 /*==== Large Screen ====*/
 @include large(){
-    .pos-top-custom { top: var(--pos-top-lg, var(--pos-top-md)) };
-    .pos-bottom-custom { bottom: var(--pos-bottom-lg, var(--pos-bottom-md)) };
-    .pos-end-custom { #{$direction-end}: var(--pos-end-lg, var(--pos-end-md)) };
-    .pos-start-custom { #{$direction-start}: var(--pos-start-lg, var(--pos-start-md)) };
+    .pos-top-custom { top: var(--pos-top-lg, var(--pos-top-md, var(--pos-top))) };
+    .pos-bottom-custom { bottom: var(--pos-bottom-lg, var(--pos-bottom-md, var(--pos-bottom))) };
+    .pos-start-custom { #{$direction-start}: var(--pos-start-lg, var(--pos-start-md, var(--pos-start))) };
+    .pos-end-custom { #{$direction-end}: var(--pos-end-lg, var(--pos-end-md, var(--pos-end))) };
     @include make_positions('-lg');
 }
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
-    .pos-top-custom { top: var(--pos-top-xl, var(--pos-top-lg)) };
-    .pos-bottom-custom { bottom: var(--pos-bottom-xl, var(--pos-bottom-lg)) };
-    .pos-end-custom { #{$direction-end}: var(--pos-end-xl, var(--pos-end-lg)) };
-    .pos-start-custom { #{$direction-start}: var(--pos-start-xl, var(--pos-start-lg)) };
+    .pos-top-custom { top: var(--pos-top-xl, var(--pos-top-lg, var(--pos-top-md, var(--pos-top)))) };
+    .pos-bottom-custom { bottom: var(--pos-bottom-xl, var(--pos-bottom-lg, var(--pos-bottom-md, var(--pos-bottom)))) };
+    .pos-start-custom { #{$direction-start}: var(--pos-start-xl, var(--pos-start-lg, var(--pos-start-md, var(--pos-start)))) };
+    .pos-end-custom { #{$direction-end}: var(--pos-end-xl, var(--pos-end-lg, var(--pos-end-md, var(--pos-end)))) };
     @include make_positions('-xl');
 }

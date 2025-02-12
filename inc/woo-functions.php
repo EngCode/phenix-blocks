@@ -68,17 +68,29 @@ if (!function_exists('get_product_price_data')):
         //===> Check for Product <===//
         if (!$product) return null;
 
+        //===> Initialize Prices <===//
+        $regular_price = 0;
+        $sale_price = 0;
+
         //===> Get Price from Variable Products <===//
         if ($product->is_type('variable')) {
             $prices = $product->get_variation_prices();
             $regular_price = !empty($prices['regular_price']) ? min($prices['regular_price']) : 0;
             $sale_price = !empty($prices['sale_price']) ? min($prices['sale_price']) : 0;
+        } 
+        //===> Get Price from Simple Products <===//
+        else {
+            $regular_price = $product->get_regular_price(); // Ensure correct price retrieval
+            $sale_price = $product->get_sale_price(); // Get sale price
         }
 
-        //===> Get Normal Product Price <===//
-        else {
-            $regular_price = $product->get_regular_price();
-            $sale_price = $product->get_sale_price();
+        //====> Ensure Prices are Numeric Before Formatting <====//
+        if (is_numeric($regular_price)) {
+            $regular_price = wc_format_decimal($regular_price, 2); // Format to 2 decimal places
+        }
+
+        if (is_numeric($sale_price)) {
+            $sale_price = wc_format_decimal($sale_price, 2); // Format to 2 decimal places
         }
 
         //====> Get Discount Percentage <====//
@@ -96,6 +108,7 @@ if (!function_exists('get_product_price_data')):
         ];
     }
 endif;
+
 
 //===> Custom Sorting <===//
 if (!function_exists('pds_woo_products_sorting')):
@@ -165,6 +178,12 @@ if (!function_exists('pds_cart_table_fragment')):
 
         //===> Add the Cart Table to the Fragments <===//
         $fragments['.cart-table'] = $cart_table_html;
+
+        //===> Add Cart Count <===//
+        $fragments['cart_count'] = WC()->cart->get_cart_contents_count();
+
+        //===> Add Cart Total Price <===//
+        $fragments['cart_total'] = WC()->cart->get_cart_total();
 
         //===> Return the Fragments <===//
         return $fragments;

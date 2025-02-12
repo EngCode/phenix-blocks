@@ -53,19 +53,19 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 
 /*==== Large Screen ====*/
 @include large(){
-    .mt-custom { margin-top: var(--mt-lg, var(--mt-md)) };
-    .mb-custom { margin-bottom: var(--mb-lg, var(--mb-md)) };
-    .ms-custom { margin-#{$direction-start}: var(--ms-lg, var(--ms-md)) };
-    .me-custom { margin-#{$direction-end}: var(--me-lg, var(--me-md)) };
+    .mt-custom { margin-top: var(--mt-lg, var(--mt-md, var(--mt))) };
+    .mb-custom { margin-bottom: var(--mb-lg, var(--mb-md, var(--mb))) };
+    .ms-custom { margin-#{$direction-start}: var(--ms-lg, var(--ms-md, var(--ms))) };
+    .me-custom { margin-#{$direction-end}: var(--me-lg, var(--me-md, var(--me))) };
     @include make_margin('-lg');
 };
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
-    .mt-custom { margin-top: var(--mt-xl, var(--mt-lg)) };
-    .mb-custom { margin-bottom: var(--mb-xl, var(--mb-lg)) };
-    .ms-custom { margin-#{$direction-start}: var(--ms-xl, var(--ms-lg)) };
-    .me-custom { margin-#{$direction-end}: var(--me-xl, var(--me-lg)) };
+    .mt-custom { margin-top: var(--mt-xl, var(--mt-lg, var(--mt-md, var(--mt)))) };
+    .mb-custom { margin-bottom: var(--mb-xl, var(--mb-lg, var(--mb-md, var(--mb)))) };
+    .ms-custom { margin-#{$direction-start}: var(--ms-xl, var(--ms-lg, var(--ms-md, var(--ms)))) };
+    .me-custom { margin-#{$direction-end}: var(--me-xl, var(--me-lg, var(--me-md, var(--me)))) };
     @include make_margin('-xl');
 };
 

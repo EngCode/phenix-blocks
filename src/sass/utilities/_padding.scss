@@ -46,18 +46,18 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 
 /*==== Large Screen ====*/
 @include large(){
-    .pdt-custom { padding-top: var(--pdt-lg, var(--pdt-md)) };
-    .pdb-custom { padding-bottom: var(--pdb-lg, var(--pdb-md)) };
-    .pds-custom { padding-#{$direction-start}: var(--pds-lg, var(--pds-md)) };
-    .pde-custom { padding-#{$direction-end}: var(--pde-lg, var(--pde-md)) };
+    .pdt-custom { padding-top: var(--pdt-lg, var(--pdt-md, var(--pdt))) };
+    .pdb-custom { padding-bottom: var(--pdb-lg, var(--pdb-md, var(--pdb))) };
+    .pds-custom { padding-#{$direction-start}: var(--pds-lg, var(--pds-md, var(--pds))) };
+    .pde-custom { padding-#{$direction-end}: var(--pde-lg, var(--pde-md, var(--pde))) };
     @include make_padding('-lg');
 };
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
-    .pdt-custom { padding-top: var(--pdt-xl, var(--pdt-lg)) };
-    .pdb-custom { padding-bottom: var(--pdb-xl, var(--pdb-lg)) };
-    .pds-custom { padding-#{$direction-start}: var(--pds-xl, var(--pds-lg)) };
-    .pde-custom { padding-#{$direction-end}: var(--pde-xl, var(--pde-lg)) };
+    .pdt-custom { padding-top: var(--pdt-xl, var(--pdt-lg, var(--pdt-md, var(--pdt)))) };
+    .pdb-custom { padding-bottom: var(--pdb-xl, var(--pdb-lg, var(--pdb-md, var(--pdb)))) };
+    .pds-custom { padding-#{$direction-start}: var(--pds-xl, var(--pds-lg, var(--pds-md, var(--pds)))) };
+    .pde-custom { padding-#{$direction-end}: var(--pde-xl, var(--pde-lg, var(--pde-md, var(--pde)))) };
     @include make_padding('-xl');
 };

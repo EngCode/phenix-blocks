@@ -135,8 +135,7 @@
 }
 
 /*==== Slider Animation Support ====*/
-.splide__slide, .swiper-slide {
-    visibility: visible;
+.px-slider {
     /*==== Animated Childs ====*/
     [data-animation] {
         visibility: hidden;
@@ -147,12 +146,23 @@
     }
 
     /*==== Animations ====*/
-    &.is-active [data-animation], 
-    &.is-visible [data-animation],
-    &.swiper-slide-active [data-animation],
-    &.swiper-slide-visible [data-animation] {
-        visibility: visible!important;
-        animation-name: var(--animation-name, 'fadeIn');
+    .splide__slide {
+        &.is-active [data-animation], 
+        &.is-visible [data-animation],
+        &.swiper-slide-active [data-animation],
+        &.swiper-slide-visible [data-animation] {
+            visibility: visible!important;
+            animation-name: var(--animation-name, 'fadeIn');
+        }
+    }
+
+    &[data-center="1"] .splide__slide {
+       /*==== Animations ====*/
+       &.is-next [data-animation], 
+       &.is-prev [data-animation] {
+           visibility: visible!important;
+           animation-name: var(--animation-name, 'fadeIn');
+       }
     }
 }
 

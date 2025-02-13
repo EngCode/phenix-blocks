@@ -245,6 +245,6 @@ PhenixElements.prototype.multimedia = function (options?:{
         }
 
         //====> None-Valid Source <====//
-        else element.style.backgroundImage = 'https://via.placeholder.com/1280x650?text=Source+URL+Not+Supported+or+404';
+        else element.style.backgroundImage = 'https://placehold.co/1280x650?text=Source+URL+Not+Supported+or+404';
     });
 }

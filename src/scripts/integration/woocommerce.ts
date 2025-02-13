@@ -285,4 +285,43 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Remove the Item from the Cart <===//
         pds_remove_from_cart(formData, cartItemKey);
     }, true);
+
+    //===> Cart Table Update <===//
+    // Phenix(".woocommerce-cart-form").on("submit", event => {
+    //     //===> Prevent Default <===//
+    //     event.preventDefault();
+
+    //     //====> Convert form data to JSON
+    //     const formData = new FormData(event.target);
+    //     const formObject = {};
+    //     formData.forEach((value, key) => {
+    //         formObject[key] = value;
+    //     });
+
+    //     //====> Send the Data to the Server <====//
+    //     fetch(event.target.action, {
+    //         method: "POST",
+    //         body: formData
+    //     }).then(response => response.json())
+    //     //====> Success Data <====//
+    //     .then(data => {
+    //         console.log(data);
+    //         //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
+    //         document.body.dispatchEvent(new CustomEvent('pds_cart_updated'));
+    //     })
+    //     //====> Error Status <====//
+    //     .catch(error => {
+    //         //====> Throw Error <===//
+    //         console.error("Error:", error);
+
+    //         //====> Show Notifications <====//
+    //         Phenix(document).notifications({
+    //             duration : 5000,
+    //             type     : "error",
+    //             position : ["bottom", "end"],
+    //             message  : error,
+    //         });
+    //     });
+    // });
 });
+

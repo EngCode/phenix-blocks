@@ -27,7 +27,7 @@ registerBlockType(metadata, {
         const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps.save(), isSave: true});
         const blockProps = renderProps.blockProps;
         const TagName = attributes.style.isLink ?  "a" : 'i';
-        let iconURl = "https://via.placeholder.com/50x50.webp";
+        let iconURl = "https://placehold.co/50x50.webp";
 
         //===> Set Default Values <===//
         blockProps.className += ` tx-align-center inline-block`;

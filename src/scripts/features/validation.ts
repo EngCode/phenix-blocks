@@ -36,7 +36,8 @@ PhenixElements.prototype.validation = function (options?:{
         const errorHandler = (input, message, position) => {
             //===> Input Data <====//
             let inputWrapper = input.parentNode,
-                hasWrapper = inputWrapper.classList.contains("option-control") || inputWrapper.classList.contains(".control-icon");
+                hasWrapper = inputWrapper.classList.contains(".control-icon"),
+                optionControl = inputWrapper.classList.contains(".option-control");
 
             //===> Set Error <===//
             input.classList.add('error');
@@ -68,9 +69,7 @@ PhenixElements.prototype.validation = function (options?:{
             }
 
             //===> Create Error Message <===//
-            else {
-                Phenix(hasWrapper ? inputWrapper : input).insert('after', `<div class="px-validation color-danger">${message}</div>`);
-            }
+            else Phenix(hasWrapper ? inputWrapper : input).insert('after', `<div class="px-validation color-danger">${message}</div>`);
         };
 
         //====> Reset Method <====//
@@ -99,10 +98,18 @@ PhenixElements.prototype.validation = function (options?:{
                 input.classList.add('error');
                 input.classList.remove('success');
 
-                //====> .Value Check. <====//
-                if (input.validity.valueMissing) {
+                //====> Checkboxes <====//
+                if (input.getAttribute('type') === "checkbox" && !input.checked) {
                     hasError = true;
-                    if (!message) message = pageDir == 'ltr' ? "This field is required!" : "هذا الحقل مطلوب يرجي املاءه";
+                    if (!message) message = pageDir == 'ltr' ? "Must check to continue" : "يجب الموافقة للمتابعة.";
+                    input.setCustomValidity(message);
+                    errorHandler(input, message, position);
+                }
+
+                //====> .Value Check. <====//
+                else if (input.validity.valueMissing) {
+                    hasError = true;
+                    if (!message) message = pageDir == 'ltr' ? "This field is required!" : "هذا الحقل مطلوب يرجي وضع قيمة";
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 }
@@ -110,12 +117,13 @@ PhenixElements.prototype.validation = function (options?:{
                 //====> .Type/Bad/Pattern Check. <====//
                 else if (input.validity.typeMismatch || input.validity.badInput || input.validity.patternMismatch) {
                     hasError = true;
+
                     if (!message && input.getAttribute('type') === "email") {
                         message = pageDir == 'ltr' ? "Please enter a valid E-Mail!" : "من فضلك ادخل عنوان بريد صحيح.";
-                    }
-                    else if (!message) {
+                    } else if (!message) {
                         message = input.getAttribute('data-message') || defaults?.typeMismatch || pageDir == 'ltr' ? "Please correct your value." : "لقد ادخلت قيمة خاطئه يرجي التصحيح.";
                     }
+
                     input.setCustomValidity(message);
                     errorHandler(input, message, position);
                 } 
@@ -186,7 +194,7 @@ PhenixElements.prototype.validation = function (options?:{
         //===> Active on Form Submit <===//
         if(element.tagName == 'FORM') {
             element.addEventListener('submit', isSubmitting => {
-                element.querySelectorAll('input, textarea, select').forEach(item => {
+                element.querySelectorAll('input, textarea, select, .required').forEach(item => {
                     valid_control(item, isSubmitting);
                 });
             });

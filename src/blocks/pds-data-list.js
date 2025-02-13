@@ -381,7 +381,7 @@ window.PhenixBlocks.dataLists = {
             ]
         },
         
-        placeholder : "https://via.placeholder.com/480x200.webp?text=Example",
+        placeholder : "https://placehold.co/480x200.webp?text=Example",
     },
 
     paletteText: {

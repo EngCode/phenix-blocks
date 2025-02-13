@@ -55,8 +55,8 @@ export default function Edit({ attributes, setAttributes }) {
     if(!attributes.setting.type) blockProps['data-type'] = "image";
 
     if(!attributes.setting.src) {
-        blockProps['data-src'] = "https://via.placeholder.com/1024x768.webp";
-        blockProps.style.backgroundImage = "https://via.placeholder.com/1024x768.webp";
+        blockProps['data-src'] = "https://placehold.co/1024x768.webp";
+        blockProps.style.backgroundImage = "https://placehold.co/1024x768.webp";
     }
 
     if(!attributes.setting.size) blockProps.className += " ratio-none";

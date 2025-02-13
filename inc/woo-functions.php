@@ -20,6 +20,11 @@
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
+
+//====> . Check IF WooCommerce not Enabled . <=====//
+include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+if (!is_plugin_active('woocommerce/woocommerce.php')) return;
+
 //====> WooCommerce Optimizer <====//
 if (!function_exists('woo_scripts_optimize')) :
     function woo_scripts_optimize() {
@@ -66,7 +71,7 @@ endif;
 if (!function_exists('get_product_price_data')):
     function get_product_price_data($product) {
         //===> Check for Product <===//
-        if (!$product) return null;
+        if (!$product) return;
 
         //===> Initialize Prices <===//
         $regular_price = 0;
@@ -108,7 +113,6 @@ if (!function_exists('get_product_price_data')):
         ];
     }
 endif;
-
 
 //===> Custom Sorting <===//
 if (!function_exists('pds_woo_products_sorting')):
@@ -187,7 +191,35 @@ if (!function_exists('pds_cart_table_fragment')):
 
         //===> Return the Fragments <===//
         return $fragments;
+
+        //====> End Connection <====//
+        wp_die();
     }
 
     add_filter('woocommerce_add_to_cart_fragments', 'pds_cart_table_fragment');
+endif;
+
+//====> Cart Table Updater <====//
+if (!function_exists('pds_woocommerce_update_cart')):
+    function pds_woocommerce_update_cart() {
+        //====> Check for Cart <====//
+        if (WC()->cart) {
+            //===> Recalculate totals <===//
+            WC()->cart->calculate_totals();
+
+            //===> Return Calculated Cart <===//
+            wp_send_json_success(array(
+                'message' => 'Cart updated successfully',
+                'cart_total' => WC()->cart->get_cart_total(),
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Cart not found'));
+        }
+
+        //====> End Connection <====//
+        wp_die();
+    }
+
+    add_action('wp_ajax_update_cart', 'pds_woocommerce_update_cart'); 
+    add_action('wp_ajax_nopriv_update_cart', 'pds_woocommerce_update_cart');
 endif;

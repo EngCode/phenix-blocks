@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes }) {
     const renderProps = OptionsRenderer({attributes: attributes, blockProps: useBlockProps()});
     const blockProps = renderProps.blockProps;
     const uniqueKey = blockProps.id;
-    let iconURl = "https://via.placeholder.com/50x50.webp";
+    let iconURl = "https://placehold.co/50x50.webp";
     
     //===> Set Default Values <===//
     blockProps.className += ` tx-align-center inline-block`;

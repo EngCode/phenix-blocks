@@ -29,7 +29,7 @@
     },
     "logo": {
       "type": "string",
-      "default": "https://via.placeholder.com/200x90.webp?text=Logo%20Placeholder"
+      "default": "https://placehold.co/200x90.webp?text=Logo%20Placeholder"
     },
     "size": {
       "type": "string",
@@ -53,7 +53,7 @@
     },
     "fevicon": {
       "type": "string",
-      "default": "https://via.placeholder.com/512x512.webp?text=Fevicon"
+      "default": "https://placehold.co/512x512.webp?text=Fevicon"
     },
     "responsive": {
       "type": "boolean",
@@ -65,7 +65,7 @@
     },
     "mobile_logo": {
       "type": "boolean",
-      "default": "https://via.placeholder.com/512x512.webp?text=Logo"
+      "default": "https://placehold.co/512x512.webp?text=Logo"
     }
   },
   "example": {

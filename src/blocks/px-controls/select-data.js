@@ -30,7 +30,7 @@ const SelectFromData = (props) => {
             //===> Set new Options List <===//
             setOptionsList(prevOptions => {
                 //===> Check if Options are Different <===//
-                if (JSON.stringify(prevOptions) !== JSON.stringify(newOptionsList)) {
+                if (typeof(prevOptions) === "object" && prevOptions !== newOptionsList || JSON.stringify(prevOptions) !== JSON.stringify(newOptionsList)) {
                     //===> Increase Data Fetched <===//
                     setDataFetched(prev => prev + 1);
                     //===> Return new Options List <===//

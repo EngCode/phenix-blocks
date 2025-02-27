@@ -10,11 +10,11 @@ declare var wp:any, PDS_WP_KEY:any, window:any;
 Phenix(document).on("DOMContentLoaded", (loaded) => {
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
+        //====> Forms Validation <====//
+        Phenix('.wpcf7-form, .px-form-validation').validation();
+
         //====> Fetching Form Data for CF7 <=====//
         document.querySelectorAll('.wpcf7-form').forEach((form:any) => {
-            //====> Forms Validation <====//
-            Phenix('.wpcf7-form, .px-form-validation').validation();
-
             //====> on Submit Prevent the Native behavior and submit with Fetch <====//
             form.addEventListener('submit', (event:any) => {
                 //====> Prevent the default form submission <====//

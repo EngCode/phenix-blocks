@@ -90,6 +90,38 @@ PhenixElements.prototype.slider = function (options?:{
             //====> Audio Buttons <====//
             const audioTriggers = slider.querySelectorAll("button[data-audio]");
             if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
+            
+            //===> WooCommerce Add to Cart <===//
+            const add_to_cart_btns = slider.querySelectorAll(".pds-add-to-cart");
+            if (add_to_cart_btns.length > 0) Phenix(".pds-add-to-cart").on("click", isClicked => {
+                    //===> Prevent link navigation <===//
+                    isClicked.preventDefault();
+                    //===> Define Item Data <===//
+                    const button = isClicked.target;
+                    const productId = button.getAttribute('data-product');
+
+                    //===> Activate Loading Mode <===//
+                    button.classList.add('px-loading-inline');
+
+                    //===> Add the Item to the Cart <===//
+                    Phenix(document).pds_add_to_cart(button, productId);
+            }, true);
+
+            //===> Wishlist Toggle <===//
+            const wishlist_btns = slider.querySelectorAll(".pds-wishlist-btn");
+            if (wishlist_btns.length > 0) Phenix(".pds-wishlist-btn").on("click", (isClicked) => {
+                //===> Prevent Default <===//
+                isClicked.preventDefault();
+                //===> Define Data <===//
+                let action_url = isClicked.target.getAttribute('href'),
+                    add_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-rm-url")),
+                    remove_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-add-url"));
+
+                //====> Add Loading Mode <====//
+                isClicked.target.classList.add("px-loading-inline");
+
+                Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
+            }, true);
         };
 
         //====> Slider Creator <=====//

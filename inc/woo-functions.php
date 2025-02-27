@@ -20,7 +20,6 @@
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
-
 //====> . Check IF WooCommerce not Enabled . <=====//
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 if (!is_plugin_active('woocommerce/woocommerce.php')) return;
@@ -31,10 +30,10 @@ if (!function_exists('woo_scripts_optimize')) :
         //===> Define Scripts <===//
         $woo_scripts = array(
             "zoom",
+            "select2",
             "photoswipe",
             "flexslider",
             "woocommerce",
-            // "wc-add-to-cart",
             "sourcebuster-js",
             "wc-single-product",
             "wc-product-image-gallery-block",
@@ -42,26 +41,40 @@ if (!function_exists('woo_scripts_optimize')) :
 
         //===> Define Styles <===//
         $woo_style = array(
+            "photoswipe",
             "wc-block-style",
+            "jquery-selectBox",
             "woocommerce-inline",
             "woocommerce-layout",
             "woocommerce-general",
+            "yith-wcwl-main-inline",
             "woocommerce-blocktheme",
             "wc-block-vendors-style",
+            "photoswipe-default-skin",
             "woocommerce-smallscreen",
+            "woocommerce_prettyPhoto",
+            "yith-wcwl-add-to-wishlist",
+            "wc-product-gallery-lightbox",
         );
 
-        remove_action('wp_head', array($GLOBALS['woocommerce'], 'generator'));
-
+        
         //===> Remove Scripts <===//
-        foreach ($woo_scripts as $script) {
-            wp_deregister_script($script);
-        };
+        if (get_option('pds_woo_js') == "on") {
+            foreach ($woo_scripts as $script) {
+                wp_deregister_script($script);
+            };
+
+            //===> Generator Disable <===//
+            remove_action('wp_head', array($GLOBALS['woocommerce'], 'generator'));
+        }
 
         //===> Remove Styles <===//
-        foreach ($woo_style as $style) {
-            wp_dequeue_style($style);
-        };
+        if (get_option('pds_woo_css') == "on") {
+            foreach ($woo_style as $style) {
+                wp_dequeue_style($style);
+            };
+            remove_theme_support('wc-product-gallery-lightbox');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'woo_scripts_optimize', 99);
@@ -222,4 +235,29 @@ if (!function_exists('pds_woocommerce_update_cart')):
 
     add_action('wp_ajax_update_cart', 'pds_woocommerce_update_cart'); 
     add_action('wp_ajax_nopriv_update_cart', 'pds_woocommerce_update_cart');
+endif;
+
+//===> Products Variation Attributes Select Creator <====//
+if (!function_exists("pds_woo_attributes_select")):
+    function pds_woo_attributes_select($attributes, $selected_attributes, $style = "radius-sm") {
+        //===> Check the Selected Attribute <===//
+        if (!$selected_attributes || !isset($selected_attributes)) { $selected_attributes = array(); }
+
+        //====> for Each Attribute <====//
+        foreach ($attributes as $attribute_name => $options) {
+            //===> Create Select Field <===//
+            echo '<div class="w-150 me-15">';
+                echo '<select name="attribute_'.strtolower(urlencode($attribute_name)).'" value="'.$selected_attributes[strtolower(urlencode($attribute_name))].'" id="'.strtolower(urlencode($attribute_name)).'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
+                //===> Create Options <===//
+                foreach ($options as $option) {
+                    //===> Check if the Option is Selected <===//
+                    $selected = selected($selected_attributes[strtolower(urlencode($attribute_name))] ?? '', $option, false);
+                    //===> Create the Option <===//
+                    echo '<option value="'.esc_attr($option).'"'.$selected.'>'.esc_html($option).'</option>';
+                }
+                //====> End Select Field <====//
+                echo '</select>';
+            echo '</div>';
+        }
+    }
 endif;

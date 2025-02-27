@@ -342,6 +342,9 @@ body.block-editor-page {
 
 	/*==== Patterns List Fix ====*/
 	.block-editor-block-patterns-list__item {height: auto!important;}
+	.block-editor-block-patterns-explorer__sidebar {
+		.block-editor-block-patterns-list, .block-editor-inserter__media-list {height: auto!important;}
+	}
 }
 
 .edit-post-visual-editor .editor-styles-wrapper.block-editor-writing-flow {padding-bottom: 120px;}

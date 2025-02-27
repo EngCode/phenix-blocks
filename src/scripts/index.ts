@@ -691,7 +691,9 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     popup; lightbox; menu; datatable;
     validation; uploader; progress; rebuildSelect
     select; repeater; rating; seo; loader;
-    slider; utilities; notifications; init; debounce
+    slider; utilities; notifications; init; debounce;
+    /*====> WooCommerce Methods <====*/
+    pds_add_to_cart; pds_remove_from_cart; pds_toggle_wishlist;
 }
 
 /*====> Phenix Selecting Method <====*/

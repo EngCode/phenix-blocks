@@ -194,7 +194,7 @@ PhenixElements.prototype.validation = function (options?:{
         //===> Active on Form Submit <===//
         if(element.tagName == 'FORM') {
             element.addEventListener('submit', isSubmitting => {
-                element.querySelectorAll('input, textarea, select, .required').forEach(item => {
+                element.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]):not([type="button"]), textarea, select, .required').forEach(item => {
                     valid_control(item, isSubmitting);
                 });
             });

@@ -36,7 +36,7 @@ if (!function_exists('pds_textdomain')) {
 		load_plugin_textdomain('newsletter', false, $languages);
 	}
 
-	add_action('init', 'pds_textdomain');
+	add_action('plugins_loaded', 'pds_textdomain');
 }
 
 //====> Default Values <====//

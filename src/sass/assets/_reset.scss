@@ -300,3 +300,8 @@ dl {
 @view-transition {
     navigation: auto;
 }
+
+/*==== Fix Megamenu and Dropdown Before Loading ====*/
+body:not(.wp-admin):not([class*="-editor"]) {
+    .pds-megamenu, .px-dropdown-list {display: none;}
+}

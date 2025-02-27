@@ -123,7 +123,7 @@
 				box-shadow: unset;
 				border-radius: 4px;
 				font-family: var(--secondary-font);
-				&:not([type="checkbox"]):not([type="radio"]):not(.attachment-filters) {
+				&:not([type="checkbox"]):not([type="radio"]):not(.attachment-filters):not([multiple]) {
 					height: 34px;
 					margin-bottom: 15px;
 					+ p {margin-top: -10px;}

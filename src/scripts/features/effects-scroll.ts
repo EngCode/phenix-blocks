@@ -93,16 +93,16 @@ PhenixElements.prototype.sticky = function (options?:{
     flow?:string,   //===> Flow Direction [X, Y]
     active?:string, //===> Active Class Name
 }) {
-    //====> Define Direction Flow <====//
-    let direction = options?.flow?.toLowerCase() || 'y';
-
+    
     //====> Loop Through Phenix Elements <====//
     this.forEach(element => {
         //====> Get Data <====//
         let type   = element.getAttribute('data-sticky') || options?.type || 'sticky',
             into   = parseInt(element.getAttribute('data-into')) || options?.into || 0,
             active = options?.active || 'is-sticky',
-            offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0;
+            offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0,
+            position = element.offsetTop,
+            direction = options?.flow?.toLowerCase() || 'y';
 
         //====> Relative to its Parent [workout] <====//
         // if (type && type === 'sticky') element.parentNode.style.transform = "translateZ(0)";
@@ -110,8 +110,8 @@ PhenixElements.prototype.sticky = function (options?:{
         //====> Y Scroll Mode <====//
         if(!direction || direction === 'y') {
             //====> Offset Calc <====//
-            if (into && into > 0) offset = element.offsetTop + into;
-            else if (offset && offset > 0) offset   = element.offsetTop - offset;
+            if (into && into > 0) position = position + into;
+            else if (offset && offset > 0) position = element.offsetTop - offset;
 
             //====> First Position [workout] <====//
             if (window.scrollY > offset) element.classList.add(active); 
@@ -119,29 +119,32 @@ PhenixElements.prototype.sticky = function (options?:{
             //====> While Window Scrolling <====//
             window.addEventListener('scroll', event => {
                 //====> if position matches element Activate <====//
-                if (window.scrollY >= offset) element.classList.add(active); 
+                if (window.scrollY >= position) element.classList.add(active); 
 
                 //====> Otherwise De-Activate <====//
-                if (window.scrollY <= offset) element.classList.remove(active);
+                if (window.scrollY <= position) element.classList.remove(active);
+
+                console.log(element, offset);
             });
         }
 
         //====> X Scroll Mode <====//
         else if (direction && direction === 'x') {
             //====> Offset Calc <====//
-            if (into && into > 0) element.offsetLeft + into;
-            if (offset && offset > 0)   element.offsetLeft - offset;
+            position = element.offsetLeft;
+            if (into && into > 0) position = element.offsetLeft + into;
+            if (offset && offset > 0)  position = element.offsetLeft - offset;
     
             //====> First Position [workout] <====//
-            if (window.scrollX > offset) element.classList.add(active); 
+            if (window.scrollX > position) element.classList.add(active); 
 
             //====> While Window Scrolling <====//
             window.addEventListener('scroll', event => {
                 //====> if position matches element Activate <====//
-                if (window.scrollX >= offset) element.classList.add(active); 
+                if (window.scrollX >= position) element.classList.add(active); 
 
                 //====> Otherwise De-Activate <====//
-                else if (window.scrollX <= offset) element.classList.remove(active);
+                else if (window.scrollX <= position) element.classList.remove(active);
             });
         }
     });

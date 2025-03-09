@@ -38,12 +38,9 @@ PhenixElements.prototype.utilities = function (options?:{
             let size = form.getAttribute('data-size') || '';
     
             //===> for Each Form <====//
-            form.querySelectorAll('input, select, textarea').forEach(controler => {
-                //====> Get the controler type <====//
-                let type = controler.getAttribute('type');
+            form.querySelectorAll('input:not([type="submit"]):not([type="button"]):not([type="radio"):not([type="checkbox"]), select, textarea').forEach(controler => {
                 //====> if has no such class names or type <====//
-                if (!controler.matches('.btn' || '.form-control'))
-                    type !== 'submit' || 'button' || 'radio' || 'checkbox' ? controler.classList.add('form-control', size) : '';
+                if (!controler.matches('.btn' || '.form-control')) controler.classList.add('form-control', size);
             });
         });
 

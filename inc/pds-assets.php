@@ -32,7 +32,7 @@ if (!function_exists('phenix_core')) :
 
         //====> Check for CDN Option for the Core JS/CSS <====//
         if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
-            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/";
+            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
         }
 
         //====> Phenix CSS <====//
@@ -89,10 +89,9 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font; $style_font;
         $final_files = array();
-        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/"; //==> ALT: "https://raw.githubusercontent.com/EngCode/pdb-assets/main/";
+        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets@latest/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
-
         //===> Custom Fonts <===//
         $custom_fonts = [
             "bio-sans",

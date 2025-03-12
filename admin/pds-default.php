@@ -16,7 +16,7 @@
         
         function pds_get_default_options($json_url = NULL) {
             //====> Default Json File <====//
-            if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@1.2.0/assets/json/default-options.json"; }
+            if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/json/default-options.json"; }
 
             //====> Define Options Data <====//
             $default_options = wp_remote_get($json_url);

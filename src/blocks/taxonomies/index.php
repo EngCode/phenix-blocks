@@ -45,7 +45,7 @@ function pds_taxonomies_render($block_attributes, $content) {
     if ($block_attributes['isFlexbox'] || isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider']) { echo '<div class="'.$grid_classes.'" '.$slider_attrs.'>'; }
 
     //===> Check if the Taxonomy Exists <===//
-    if (!taxonomy_exists($block_attributes['taxonomy'])) {
+    if (!taxonomy_exists($block_attributes['query']['taxonomy'])) {
         return;
     }
 

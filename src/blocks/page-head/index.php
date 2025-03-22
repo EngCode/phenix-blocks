@@ -82,7 +82,7 @@ function px_head_render($block_attributes, $content) {
         <ul class="px-breadcrumb reset-list flexbox custom-icon links-inherit" data-type="font-icon" itemprop="breadcrumb">
             <?php
                 //===> Create Home Page <===//
-                echo '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.get_bloginfo('name').'</a></li>';
+                echo '<li class="far fa-home tx-icon"><a href="'.get_option('home').'">'.__('Home', 'pds-blocks').'</a></li>';
                 //===> Get Category Title <===//
                 if (is_category() || is_archive() || is_single()) {
                     if (is_single()) {

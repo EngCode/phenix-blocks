@@ -7,21 +7,6 @@
 		{
 			"name": "themes",
 			"path": "../../themes"
-		},
-		{
-			"path": "../../../../px-design"
-		},
-		{
-			"path": "../../../../pdb-assets"
-		},
-		{
-			"path": "../../../../px-plugins/themes/woodmart"
-		},
-		{
-			"path": "../woocommerce"
-		},
-		{
-			"path": "../yith-woocommerce-wishlist"
 		}
 	],
 	"settings": {

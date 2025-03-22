@@ -5,3 +5,4 @@ node_modules.rar
 _tools/
 dev.code-workspace
 _pdb-assets/
+.cursorignore

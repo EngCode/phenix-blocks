@@ -118,7 +118,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-15 pdx-15 lineheight-150'>
                         {/*===> Icon Size <===*/}
-                        <PhenixNumber name={"dimensions"} icon="far fa-arrows" className="mb-15" min={42} max={512} value={attributes.style.dimensions || 42} onChange={set_style} />
+                        <PhenixNumber name={"dimensions"} icon="far fa-arrows" className="mb-15" min={0} max={1920} value={attributes.style.dimensions || 42} onChange={set_style} />
 
                         {/*===> Styles <===*/}
                         <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />

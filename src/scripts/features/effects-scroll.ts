@@ -123,8 +123,6 @@ PhenixElements.prototype.sticky = function (options?:{
 
                 //====> Otherwise De-Activate <====//
                 if (window.scrollY <= position) element.classList.remove(active);
-
-                console.log(element, offset);
             });
         }
 

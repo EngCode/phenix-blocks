@@ -18,6 +18,7 @@ declare var wc_add_to_cart_params: any;
 PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
     //===> Get Quantity <===//
     let quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+    let variation_id = button.getAttribute('data-variation');
 
     //===> Convert single ID to array <===//
     if (!Array.isArray(product_ids)) product_ids = [product_ids];
@@ -26,12 +27,12 @@ PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
     product_ids = product_ids.filter(id => id);
 
     //===> Collect Selected Attributes <===//
-    const attributes = {};
-    Phenix(button).ancestor('.single-product-content')?.querySelectorAll('.variation-control').forEach(control => {
-        const attributeValue = control.value;
-        const attributeName  = control.getAttribute('name');
-        if (attributeValue) attributes[attributeName] = attributeValue;
-    });
+    // const attributes = {};
+    // Phenix(button).ancestor('.single-product-content')?.querySelectorAll('.variation-control').forEach(control => {
+    //     const attributeValue = control.value;
+    //     const attributeName  = control.getAttribute('name');
+    //     if (attributeValue) attributes[attributeName] = attributeValue;
+    // });
 
     const addProductsSequentially = (index = 0) => {
         //===> Ensure valid index and stop when done <===//
@@ -50,11 +51,16 @@ PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
         formData.append('action', 'woocommerce_add_to_cart');
         formData.append('product_id', product_ids[index]);
 
+        //===> Add Variation ID if Existed <===//
+        if (variation_id) formData.append('product_id', variation_id);
+
         //===> Append Collected Attributes <===//
-        for (const [key, value] of Object.entries(attributes)) {
-            /*====> Custom Variables <====*/
-            formData.append(key, value as any);
-        }
+        // for (const [key, value] of Object.entries(attributes)) {
+        //     /*====> Custom Variables <====*/
+        //     formData.append(key, value as any);
+        // }
+
+        console.log(formData);
 
         //===> Send the request to WooCommerce via Fetch API <===//
         fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'), {
@@ -64,7 +70,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
         })
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
-            console.log(data);
             //===> Check for Data and Error <===//
             if (data && data.error) {
                 //====> Show Notifications <====//
@@ -341,6 +346,26 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         button.classList.add('px-loading-inline');
         //===> Add the Items to the Cart <===//
         Phenix(document).pds_add_to_cart(button, products);
+    });
+
+    //===> Variation Price Change <===//
+    Phenix(".variation-control").on("change", isChanged => {
+        //===> Make sure it is a valid controller <===//
+        if (!isChanged.target.value) return;
+
+        //===> Capture Select Element <===//
+        let element = isChanged.target;
+        let option = element.querySelector(`option[value="${element.value}"]`);
+
+        //===> Get Data <===//
+        let variation = element.value;
+        let price = option?.getAttribute('data-price');
+
+        //===> Update the Prices <===//
+        Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);
+
+        //===> Set Variation ID to Add to Cart Button <===//
+        if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
     });
 });
 

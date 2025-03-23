@@ -239,21 +239,43 @@ endif;
 
 //===> Products Variation Attributes Select Creator <====//
 if (!function_exists("pds_woo_attributes_select")):
-    function pds_woo_attributes_select($attributes, $selected_attributes, $style = "radius-sm") {
+    function pds_woo_attributes_select($attributes, $selected_attributes, $available_variations, $style = "radius-sm") {
         //===> Check the Selected Attribute <===//
         if (!$selected_attributes || !isset($selected_attributes)) { $selected_attributes = array(); }
 
         //====> for Each Attribute <====//
         foreach ($attributes as $attribute_name => $options) {
+            //===> Correct the Name for Languages like Arabic <===//
+            $option_name = strtolower(urlencode($attribute_name));
+
             //===> Create Select Field <===//
             echo '<div class="w-150 me-15">';
-                echo '<select name="attribute_'.strtolower(urlencode($attribute_name)).'" value="'.$selected_attributes[strtolower(urlencode($attribute_name))].'" id="'.strtolower(urlencode($attribute_name)).'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
+                echo '<select name="attribute_'.$option_name.'" value="'.$selected_attributes[$option_name].'" id="'.$option_name.'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
                 //===> Create Options <===//
                 foreach ($options as $option) {
+                    //===> Create Variation ID Holder <===//
+                    $variation_id = 0;
+                    $variation_price = null;
+
+                    //===> Loop on Variations <===//
+                    foreach ($available_variations as $variation) {
+                        //===> Check if the Attribute in the Variation matches the current option <===//
+                        if ($variation['attributes']['attribute_' . $option_name] == $option) {
+                            //===> Assign the Correct ID <===//
+                            $variation_id = $variation['variation_id'];
+                            //===> Assign Price <===//
+                            $variation_price = $variation['display_price'];
+                        }
+                    }
+
+                    //===> Ensure Price is a Valid Number <===//
+                    $variation_price = is_numeric($variation_price) ? $variation_price : 0.0;
+
                     //===> Check if the Option is Selected <===//
-                    $selected = selected($selected_attributes[strtolower(urlencode($attribute_name))] ?? '', $option, false);
+                    $selected = selected($selected_attributes[$option_name] ?? '', $option, false);
+
                     //===> Create the Option <===//
-                    echo '<option value="'.esc_attr($option).'"'.$selected.'>'.esc_html($option).'</option>';
+                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'"'.$selected.'>'.esc_html($option).'</option>';
                 }
                 //====> End Select Field <====//
                 echo '</select>';

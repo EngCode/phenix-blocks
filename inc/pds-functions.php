@@ -495,56 +495,71 @@ endif;
 if (!function_exists('pds_cf7_dd_options')):
     function pds_cf7_dd_options($form_control, $unused ) {
         //===> Check if its Post Type or Taxonomy Field <===//
-        if (!str_contains($form_control['name'], "cpt-") || !str_contains($form_control['name'], "tax-")) {
-            return $form_control;
-        }
+        $cpt_cpt = str_contains($form_control['name'], "cpt-");
+        $tax_cpt = str_contains($form_control['name'], "tax-");
+        $custom_ops = str_contains($form_control['name'], "pds-");
 
-        //===> Add a Post Type Options <===//
-        if (str_contains($form_control['name'], "cpt-")) {
-            //===> Get the Current Post Type Within a Post <===//
-            $post_type = str_replace("cpt-", "", $form_control['name']);
-
-            //===> Get Current Post Type <===//
-            if ($form_control['name'] === "cpt-current") {
-                if (isset($post) && $post->ID) {
-                    $post_type = get_post_type($post->ID);
-                } else {
-                    $post_type = get_post_type();
+        //===> Check if the name matches custom or dynamic options <===//
+        if ($cpt_cpt ||  $tax_cpt || $custom_ops) {
+            //===> Add a Post Type Options <===//
+            if (str_contains($form_control['name'], "cpt-")) {
+                //===> Get the Current Post Type Within a Post <===//
+                $post_type = str_replace("cpt-", "", $form_control['name']);
+    
+                //===> Get Current Post Type <===//
+                if ($form_control['name'] === "cpt-current") {
+                    if (isset($post) && $post->ID) {
+                        $post_type = get_post_type($post->ID);
+                    } else {
+                        $post_type = get_post_type();
+                    }
+                }
+    
+                /*==== Query Data =====*/
+                $the_query = new WP_Query(array('post_type' => $post_type, 'posts_per_page' => -1));
+                //==== Start Query =====//
+                if ($the_query->have_posts()) :
+                    //===> Get the First Post <===//
+                    while ($the_query->have_posts()): $the_query->the_post();
+                        $form_control['raw_values'][] = get_the_title();
+                        $form_control['labels'][] = get_the_title();
+                    endwhile;
+                    //==== RESET Query =====//
+                    wp_reset_postdata();
+                endif;
+            }
+    
+            //===> Add the Options to the "pickup-location" <===//
+            else if (str_contains($form_control['name'], "taxonomy-")) {
+                //===> Add the Locations to the Options <===//
+                $taxonomies_terms = get_categories(array('taxonomy' => str_replace("taxonomy-", "", $form_control['name']), 'hide_empty' => false));
+    
+                if (!empty($taxonomies_terms)) {
+                    //===> Loop Through Categories <===//
+                    foreach ($taxonomies_terms as $term) :
+                        $form_control['labels'][] = $term->label;
+                        $form_control['raw_values'][] = $term->name;
+                    endforeach;
                 }
             }
-
-            /*==== Query Data =====*/
-            $the_query = new WP_Query(array('post_type' => $post_type, 'posts_per_page' => -1));
-            //==== Start Query =====//
-            if ($the_query->have_posts()) :
-                //===> Get the First Post <===//
-                while ($the_query->have_posts()): $the_query->the_post();
-                    $form_control['raw_values'][] = get_the_title();
-                    $form_control['labels'][] = get_the_title();
-                endwhile;
-                //==== RESET Query =====//
-                wp_reset_postdata();
-            endif;
-        }
-
-        //===> Add the Options to the "pickup-location" <===//
-        else if (str_contains($form_control['name'], "taxonomy-")) {
-            //===> Add the Locations to the Options <===//
-            $taxonomies_terms = get_categories(array('taxonomy' => str_replace("taxonomy-", "", $form_control['name']), 'hide_empty' => false));
-
-            if (!empty($taxonomies_terms)) {
-                //===> Loop Through Categories <===//
-                foreach ($taxonomies_terms as $term) :
-                    $form_control['labels'][] = $term->label;
-                    $form_control['raw_values'][] = $term->name;
-                endforeach;
+    
+            //===> Create Countries Select <===//
+            else if ($form_control['name'] === "pds-country") {
+                //====> Get Countries JSON <====//
+                $countries_list = get_option("countries_list");
+    
+                //====> Loop through the JSON Object <====//
+                foreach ($countries_list as $country) {
+                    $form_control['raw_values'][] = $country['code'];
+                    $form_control['labels'][] = $country['name'];
+                }
             }
+    
+            //===> Pass the Options to CF7 <===//
+            $pipes = new WPCF7_Pipes($form_control['raw_values']);
+            $form_control['values'] = $pipes->collect_befores();
+            $form_control['pipes'] = $pipes;
         }
-
-        //===> Pass the Options to CF7 <===//
-        $pipes = new WPCF7_Pipes($form_control['raw_values']);
-        $form_control['values'] = $pipes->collect_befores();
-        $form_control['pipes'] = $pipes;
 
         //===> Return the Field <===//
         return $form_control;

@@ -82,12 +82,14 @@ PhenixElements.prototype.inView = function (options?:{
     into:number,    //====> Increase Target Position By [number]
     offset:number,  //====> Decrease Target Position By [number]
 }, flowOn?:string) {
+    //===> Check if the Element Available ===//
+    if (!this[0]) return;
+
     //====> Define Data <====//
     let element:any = this[0],
         flow:string = flowOn || options?.flow,
         scrollPosition = window.scrollY || window.pageYOffset,
         targetPosition = element.getBoundingClientRect().top + scrollPosition,
-
         //===> ViewPoint Position <====//
         viewport = {
             top: scrollPosition,

@@ -185,7 +185,7 @@ PhenixElements.prototype.scrollSpy = function (options?:{
             activator = () => {
                 //====> Define Siblings & Parent Elements <====//
                 let siblings, parent;
-
+            
                 //====> if Trigger not List-Item Get Ancestor List-Item <====//
                 if (!element.matches('li')) parent = Phenix(element).ancestor('li');
 
@@ -210,7 +210,9 @@ PhenixElements.prototype.scrollSpy = function (options?:{
             })) activator();
 
             //====> Check While Scroll if in view-point : Activate <====//
-            window.addEventListener('scroll', event => Phenix(selector).inView() ? activator() : null);
+            window.addEventListener('scroll', event => {
+                Phenix(selector).inView() ? activator() : null;
+            });
         });
     });
 

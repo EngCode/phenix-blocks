@@ -16,8 +16,8 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Define Constants <====//
-define('PDS_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('PDS_BLOCKS_URL', plugin_dir_url(__FILE__));
+define('PDS_BLOCKS_PATH', plugin_dir_path(__FILE__));
 
 //===> Activation <===//
 function pds_blocks_activate() {
@@ -43,23 +43,15 @@ if (!function_exists('pds_textdomain')) {
 	add_action('plugins_loaded', 'pds_textdomain');
 }
 
-//====> Default Values <====//
-include(dirname(__FILE__) . '/admin/pds-default.php');
-
-//=====> Phenix Blocks Admin <=====//
+//=====> Admin Pages <=====//
 include(dirname(__FILE__) . '/admin/pds-admin.php');
-
-//=====> Phenix Optimizer <=====//
-include(dirname(__FILE__) . '/inc/pds-optimizer.php');
-
 //=====> Phenix Functions <=====//
 include(dirname(__FILE__) . '/inc/pds-functions.php');
 include(dirname(__FILE__) . '/inc/woo-functions.php');
-
-//=====> Phenix Assets <=====//
+include(dirname(__FILE__) . '/inc/pds-optimizer.php');
+//====> Assets and Blocks <====//
 include(dirname(__FILE__) . '/inc/pds-assets.php');
-
-//====> Add Phenix Blocks <====//
+include(dirname(__FILE__) . '/admin/pds-default.php');
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
 
 //===> Implement selective block loading <===//

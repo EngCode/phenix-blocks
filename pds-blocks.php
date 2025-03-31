@@ -45,13 +45,13 @@ if (!function_exists('pds_textdomain')) {
 
 //=====> Admin Pages <=====//
 include(dirname(__FILE__) . '/admin/pds-admin.php');
+include(dirname(__FILE__) . '/admin/pds-default.php');
 //=====> Phenix Functions <=====//
 include(dirname(__FILE__) . '/inc/pds-functions.php');
 include(dirname(__FILE__) . '/inc/woo-functions.php');
 include(dirname(__FILE__) . '/inc/pds-optimizer.php');
 //====> Assets and Blocks <====//
 include(dirname(__FILE__) . '/inc/pds-assets.php');
-include(dirname(__FILE__) . '/admin/pds-default.php');
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
 
 //===> Implement selective block loading <===//

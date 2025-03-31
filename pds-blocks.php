@@ -15,8 +15,13 @@
 //=====> Exit if accessed directly <=====//
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
+//====> Define Constants <====//
+define('PDS_BLOCKS_PATH', plugin_dir_path(__FILE__));
+define('PDS_BLOCKS_URL', plugin_dir_url(__FILE__));
+
 //===> Activation <===//
 function pds_blocks_activate() {
+	if (!current_user_can('activate_plugins')) return;
 	do_action('pds_blocks_active');
 }
 
@@ -32,8 +37,7 @@ if (!function_exists('pds_textdomain')) {
 
 	function pds_textdomain() {
 		$languages = dirname(plugin_basename(__FILE__)). '/languages';
-		load_plugin_textdomain('phenix', false, $languages);
-		load_plugin_textdomain('newsletter', false, $languages);
+		load_plugin_textdomain('pds-blocks', false, $languages);
 	}
 
 	add_action('plugins_loaded', 'pds_textdomain');
@@ -58,6 +62,14 @@ include(dirname(__FILE__) . '/inc/pds-assets.php');
 //====> Add Phenix Blocks <====//
 include(dirname(__FILE__) . '/src/blocks/blocks.php');
 
+//===> Implement selective block loading <===//
+add_filter('pds_blocks_registered_blocks', function($blocks) {
+    // Allow theme/user to disable unused blocks
+    return array_filter($blocks, function($block) {
+        return apply_filters("pds_block_{$block}_enabled", true);
+    });
+});
+
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :
 	function pds_patterns_cats () {
@@ -78,7 +90,7 @@ endif;
 //===> Plugins Fallback <===//
 function check_other_plugins() {
 	//===> ACF <===//
-	if (!is_plugin_active('advanced-custom-fields/acf.php') || !is_plugin_active('advanced-custom-fields-pro/acf.php')) {
+	if (!is_plugin_active('advanced-custom-fields/acf.php') && !is_plugin_active('advanced-custom-fields-pro/acf.php')) {
 		//===> Get Field Replacement <===//
 		if(!function_exists('get_field'))  {
 			function get_field() { return 'ACF is Not Enabled.'; }
@@ -89,3 +101,4 @@ function check_other_plugins() {
 		}
 	}
 }
+

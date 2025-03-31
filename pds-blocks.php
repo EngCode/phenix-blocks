@@ -73,15 +73,23 @@ add_filter('pds_blocks_registered_blocks', function($blocks) {
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :
 	function pds_patterns_cats () {
-		register_block_pattern_category('sections', array('label' => 'Sections'));
-		register_block_pattern_category('slides', array('label' => 'Hero Slides'));
-		register_block_pattern_category('cards', array('label' => 'Cards'));
-		register_block_pattern_category('elements', array('label' => 'Elements'));
-		register_block_pattern_category('headers', array('label' => 'Headers'));
-		register_block_pattern_category('pages', array('label' => 'General Pages'));
-		register_block_pattern_category('single', array('label' => 'Single Pages'));
-		register_block_pattern_category('footers', array('label' => 'Footers'));
-		register_block_pattern_category('phenix', array('label' => 'Phenix'));
+		//===> Blocks Patterns Categories <===//
+		$pattern_categories = array(
+			'sections' => 'Sections',
+			'slides' => 'Hero Slides',
+			'cards' => 'Cards',
+			'elements' => 'Elements',
+			'headers' => 'Headers',
+			'pages' => 'General Pages',
+			'single' => 'Single Pages',
+			'footers' => 'Footers',
+			'phenix' => 'Phenix'
+		);
+
+		//===> Register Blocks Categories <===//
+		foreach ($pattern_categories as $slug => $label) {
+			register_block_pattern_category($slug, array('label' => $label));
+		}
 	}
 
 	add_action('init', 'pds_patterns_cats');
@@ -101,4 +109,3 @@ function check_other_plugins() {
 		}
 	}
 }
-

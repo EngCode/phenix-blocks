@@ -98,7 +98,7 @@
             <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font", "phenix"); ?> (LTR)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
-                <select name="pds_fonts[style]" value="<?php echo esc_attr($current_fonts["style"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
+                <select name="pds_fonts[style]" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
                     <?php 
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
@@ -174,7 +174,7 @@
             <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font", "phenix"); ?> (RTL)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
-                <select name="pds_fonts[style_rtl]" value="<?php echo esc_attr($current_fonts["style_rtl"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
+                <select name="pds_fonts[style_rtl]" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
                     <?php 
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";

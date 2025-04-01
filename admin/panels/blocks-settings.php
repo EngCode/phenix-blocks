@@ -53,11 +53,6 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
-                    "name"  => 'head_block',
-                    "title" => 'Page Head',
-                    "icon"  => $icons_url.'page-head.svg',
-                ),
-                array(
                     "name"  => 'query_block',
                     "title" => 'Phenix/Query',
                     "icon"  => $icons_url.'query-loop.svg',
@@ -115,11 +110,6 @@
                     "icon"  => $icons_url.'users-query.svg',
                 ),
                 array(
-                    "name"  => 'inline_elements_block',
-                    "title" => 'Inline Elements',
-                    "icon"  => $icons_url.'inline-elements.svg',
-                ),
-                array(
                     "name"  => 'popups_block',
                     "title" => 'Popups Block',
                     "icon"  => $icons_url.'popup.svg',
@@ -130,8 +120,13 @@
                     "icon"  => $icons_url.'under-dev.svg',
                 ),
                 array(
-                    "name"  => 'search_query_block',
-                    "title" => 'Search Query',
+                    "name"  => 'accordion_block',
+                    "title" => 'Accordion Block',
+                    "icon"  => $icons_url.'under-dev.svg',
+                ),
+                array(
+                    "name"  => 'dropdowns_block',
+                    "title" => 'Dropdown Block',
                     "icon"  => $icons_url.'under-dev.svg',
                 ),
             ));
@@ -142,14 +137,9 @@
         <?php
             echo pds_toggle_controls(array(
                 array(
-                    "name"  => 'accordion_block',
-                    "title" => 'Accordion Block',
-                    "icon"  => $icons_url.'under-dev.svg',
-                ),
-                array(
-                    "name"  => 'dropdowns_block',
-                    "title" => 'Dropdown Block',
-                    "icon"  => $icons_url.'under-dev.svg',
+                    "name"  => 'head_block',
+                    "title" => 'Page Head',
+                    "icon"  => $icons_url.'page-head.svg',
                 ),
                 array(
                     "name"  => 'pds_progress_block',

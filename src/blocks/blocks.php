@@ -8,7 +8,7 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Create Phenix Section <====//
-add_filter( 'block_categories_all', function( $categories, $post ) {
+add_filter( 'block_categories_all', function($categories, $post) {
     // Add a custom section (category) for your blocks
     $custom_category = array(
         'slug'  => 'phenix-blocks',        // Unique slug for the category
@@ -20,7 +20,7 @@ add_filter( 'block_categories_all', function( $categories, $post ) {
     array_unshift( $categories, $custom_category );
 
     return $categories;
-}, 10, 2 );
+}, 10, 2);
 
 //====> Helper Functions [Check for Objects] <====//
 if (!function_exists("PxToREM")) :

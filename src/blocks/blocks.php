@@ -162,7 +162,7 @@ endif;
 if (!function_exists('phenix_blocks')) :
     function phenix_blocks() {
         //====> Shared Options <====//
-        $version = "1.2.0";
+        $version = PDS_BLOCKS_VERSTION;
         $blocksPath = plugin_dir_url(__FILE__);
         $blocksDependencies = array('wp-blocks', 'wp-element', 'wp-editor', 'wp-edit-site', 'wp-plugins');
         $blocksPath = str_replace('src/', 'assets/js/', $blocksPath);

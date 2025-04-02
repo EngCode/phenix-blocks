@@ -167,30 +167,59 @@ endif;
 //===> Get Templates Parts <===//
 if (!function_exists('pds_get_theme_parts')) :
 	/**
+	 * Get a list of files and directories from a given path
 	 * @since Phenix WP 1.0
-	 * @return void
+	 * @param string|DirectoryIterator $path Path to scan or DirectoryIterator instance
+	 * @return array List of files and directories
 	*/
 
-	function pds_get_theme_parts(DirectoryIterator $base_path) {
+	function pds_get_theme_parts($path) {
 		//===> Define Files List <===//
 		$result = array();
 
-		//===> For Each File in the Givin Path <===//
-		if (isset($base_path)) {
-			foreach ($base_path as $key => $child) {
+		//===> Handle string path input <===//
+		if (is_string($path)) {
+			//===> Check if path exists and is a directory <===//
+			if (!file_exists($path) || !is_dir($path)) {
+				return $result;
+			}
+
+			//===> Create a new DirectoryIterator instance <===//   
+			try {
+				$path = new DirectoryIterator($path);
+			} catch (Exception $e) {
+				error_log("Error creating DirectoryIterator: " . $e->getMessage());
+				return $result;
+			}
+		}
+
+		//===> Check if path is valid DirectoryIterator <===//
+		if (!($path instanceof DirectoryIterator)) {
+			return $result;
+		}
+
+		//===> For Each File in the Given Path <===//
+		try {
+			foreach ($path as $key => $child) {
 				//===> If its a File <===//
 				if ($child->isDot()) { continue; }
 				
-				//===> Get its Base Base <===//
+				//===> Get its Base Name <===//
 				$name = $child->getBasename();
 	
 				//===> if its a Directory <===//
 				if ($child->isDir()) {
-					//===> Get its Files List <===//
-					$sub_directory = new DirectoryIterator($child->getPathname());
-	
-					//===> add the Files List to the Result <===//
-					$result[$name] = pds_get_theme_parts($sub_directory);
+					try {
+						//===> Get its Files List <===//
+						$sub_directory = new DirectoryIterator($child->getPathname());
+		
+						//===> add the Files List to the Result <===//
+						$result[$name] = pds_get_theme_parts($sub_directory);
+					} catch (UnexpectedValueException $e) {
+						// Log error but continue execution
+						error_log("Error accessing subdirectory {$name}: " . $e->getMessage());
+						continue;
+					}
 				}
 				//===> if its Normal File <===//
 				else {
@@ -198,6 +227,9 @@ if (!function_exists('pds_get_theme_parts')) :
 					$result[] = $name;
 				}
 			}
+		} catch (Exception $e) {
+			error_log("Error scanning directory: " . $e->getMessage());
+			return $result;
 		}
 
 		//===> Return the Files Tree <===//

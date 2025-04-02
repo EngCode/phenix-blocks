@@ -78,7 +78,8 @@
             //===> Update Theme Template Parts <===//
             if (function_exists('phenix_support')) {
                 //===> Set Templates Parts <===//
-                $current_theme_parts = pds_get_theme_parts(new DirectoryIterator(get_template_directory()."/template-parts"));
+                $template_parts_dir = get_template_directory()."/template-parts";
+                $current_theme_parts = pds_get_theme_parts($template_parts_dir);
                 update_option('theme_parts', $current_theme_parts);
             }
         }

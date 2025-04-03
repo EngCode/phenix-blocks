@@ -54,9 +54,9 @@
 
             //===> Add Options if not Exist <===//
             foreach ($default_options as $key => $value) { add_option($key, $value); }
-    
+
             //===> Reset Options <===//
-            if (isset($is_reset_mode) && $is_reset_mode !== "off" && get_option("pds_reset") && $default_options[$is_reset_mode]) {
+            if (isset($is_reset_mode) && $is_reset_mode === "on" && isset($default_options[$is_reset_mode])) {
                 //===> Reset Data <===//
                 update_option($is_reset_mode, $default_options[$is_reset_mode]);
                 //===> Turn Off Reset <===//

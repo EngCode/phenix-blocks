@@ -6,6 +6,6 @@ _tools/
 dev.code-workspace
 _pdb-assets/
 .cursorignore
-
+.cursor
 # Documentation
 PR.md

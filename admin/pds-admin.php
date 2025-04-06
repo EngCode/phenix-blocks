@@ -443,43 +443,45 @@
     if (!function_exists('pds_countries_register')) :
         function pds_countries_register() {
             //===> CDN URL <===//
-            $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets";
-            // if ($cdn) { $px_cdn_assets = WP_PLUGIN_DIR.'/pds-blocks/assets'; }
+            $px_cdn_assets = WP_PLUGIN_DIR.'/pds-blocks/assets';
+            if (get_option("pds_cdn") === "on") { $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets"; }
 
             if (!get_option("countries_list")) {
                 //====> Get Countries JSON <====//
                 $countries_data = wp_remote_get($px_cdn_assets."/json/countries.json");
                 $countries_phone = wp_remote_get($px_cdn_assets."/json/countries-phones.json");
     
-                //====> Convert the JSON data into a PHP object <====//
-                $phones_json = json_decode($countries_phone);
-                $countries_json = json_decode($countries_data);
-    
-                //====> Create new List <====//
-                $countries = array();
-    
-                //====> Loop through the JSON Object <====//
-                foreach ($countries_json as $country) {
-                    //===> Get Phone Number <===//
-                    $country_phone = "";
-                    foreach ($phones_json as $phone) {
-                        if (strtolower($country->code) == strtolower($phone->code)) { $country_phone = $phone->dial_code; }
+                //====> Convert the JSON data into a PHP object (Check if the data is valid json string before decoding) <====//
+                if (is_wp_error($countries_data) || is_wp_error($countries_phone)) {
+                    $phones_json = json_decode($countries_phone);
+                    $countries_json = json_decode($countries_data);
+        
+                    //====> Create new List <====//
+                    $countries = array();
+        
+                    //====> Loop through the JSON Object <====//
+                    foreach ($countries_json as $country) {
+                        //===> Get Phone Number <===//
+                        $country_phone = "";
+                        foreach ($phones_json as $phone) {
+                            if (strtolower($country->code) == strtolower($phone->code)) { $country_phone = $phone->dial_code; }
+                        }
+        
+                        //===> add the Country to the List <===//
+                        $countries[strtolower($country->code)] = array(
+                            "iso" => $country->iso,
+                            "name" => $country->name,
+                            "code" => $country->code,
+                            "dial_code" => $country_phone,
+                            "capital" => isset($country->capital) ? $country->capital : $country->name,
+                            "flag" => $px_cdn_assets."/img/countries/".$country->flag_4x3,
+                            "flag_1x1" => $px_cdn_assets."/img/countries/".$country->flag_1x1,
+                        );
                     }
-    
-                    //===> add the Country to the List <===//
-                    $countries[strtolower($country->code)] = array(
-                        "iso" => $country->iso,
-                        "name" => $country->name,
-                        "code" => $country->code,
-                        "dial_code" => $country_phone,
-                        "capital" => isset($country->capital) ? $country->capital : $country->name,
-                        "flag" => $px_cdn_assets."/img/countries/".$country->flag_4x3,
-                        "flag_1x1" => $px_cdn_assets."/img/countries/".$country->flag_1x1,
-                    );
+        
+                    //===> Set Countries <===//
+                    update_option("countries_list", $countries);
                 }
-    
-                //===> Set Countries <===//
-                update_option("countries_list", $countries);
             }
         };
 

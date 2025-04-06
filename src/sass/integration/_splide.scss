@@ -100,7 +100,8 @@
     flex-shrink: 0;
     list-style-type: none !important;
     margin: 0;
-    position: relative
+    position: relative;
+    direction: $direction;
 }
 
 .splide__spinner {

@@ -90,7 +90,7 @@ PhenixElements.prototype.slider = function (options?:{
             //====> Audio Buttons <====//
             const audioTriggers = slider.querySelectorAll("button[data-audio]");
             if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
-            
+
             //===> WooCommerce Add to Cart <===//
             const add_to_cart_btns = slider.querySelectorAll(".pds-add-to-cart");
             if (add_to_cart_btns.length > 0) Phenix(".pds-add-to-cart").on("click", isClicked => {

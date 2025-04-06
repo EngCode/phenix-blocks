@@ -388,11 +388,11 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
             //====> Set Loading Mode <====//
             if (!Phenix(element).inView()) {
                 //====> Get Data <====//
-                let playable = element.matches('video' || 'audio' || 'iframe'),
-                    preloaded = element.getAttribute('preload' || 'loading');
+                let playable = element.matches('video') || element.matches('audio') || element.matches('iframe'),
+                    preloaded = element.getAttribute('preload') || element.getAttribute('loading');
 
                 //===> Mark as Loading <===//
-                if (element.matches('img'||'iframe')) element.classList.add('px-loading');
+                if (element.matches('img') || element.matches('iframe')) element.classList.add('px-loading');
 
                 //===> Native Loading Attribute <===//
                 if (playable && !preloaded) element.setAttribute('preload', 'none');
@@ -400,10 +400,10 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
 
                 //====> Keep Watching Element While Scrolling <====//
                 document.addEventListener('scroll', event => {
-                    if (element.matches('img'||'iframe') && Phenix(element).inView({offset: 100}) && !element.matches('.px-loaded')) {
+                    if ((element.matches('img') || element.matches('iframe')) && Phenix(element).inView({offset: 100}) && !element.matches('.px-loaded')) {
                         element.classList.remove('px-loading');
                         element.classList.add('px-loaded');
-                    };
+                    }
                 });
             }
         });
@@ -602,75 +602,78 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
 
     /*====> Voice Trigger <=====*/
     audioTrigger = (trigger) => {
-        //===> Define Objects <===//
-        let audio_player:any = document.querySelector('#px-audio-player');
-
-        //===> Create Audio Player <===//
-        if (!audio_player) {
-            //===> Create Player <===//
-            audio_player = document.createElement("audio");
-            //=== Set Player ID ===//
-            audio_player.setAttribute('id', 'px-audio-player');
-            //=== Insert Player to the Document ===//
-            document.body.appendChild(audio_player);
-        }
-
-        //====> Audio Buttons <====//
-        Phenix(trigger).on('click', event => {
-            event.preventDefault();
-            //=== Get Data ===//
-            let button = event.target,
-                audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
-
-            //=== Check if the Audio is Already Playing ===//
-            if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
-                //=== Pause the Audio ===//
-                audio_player.pause();
-
-                //=== Switch Play Status icon ===//
-                if(button.classList.contains('fa-pause')) {
-                    button.classList.remove('fa-pause');
-                    button.classList.add('fa-play');
-                }
-
-                //=== Switch Play Status icon ===//
-                else if(button.classList.contains('fa-music-note')) {
-                    button.classList.remove('fa-music-note');
-                    button.classList.add('fa-music-note-slash');
-                }
-            } else {
-                //=== Set Audio and Play ===//
-                audio_player.setAttribute('src', audio_file);
-                audio_player.play();
-
-                //=== Switch Play Status icon ===//
-                if (button.classList.contains('fa-play')) {
-                    button.classList.add('fa-pause');
-                    button.classList.remove('fa-play');
-                }
-
-                //=== Switch Play Status icon ===//
-                else if(button.classList.contains('fa-music-note-slash')) {
-                    button.classList.add('fa-music-note');
-                    button.classList.remove('fa-music-note-slash');
-                }
-
-                //=== When Audio is Finished Switch the Status icon ===//
-                audio_player.addEventListener('ended', (isEnded) => {
+        //===> Check if the Trigger is HTML Element <===//
+        if (trigger instanceof HTMLElement) {
+            //===> Define Objects <===//
+            let audio_player:any = document.querySelector('#px-audio-player');
+    
+            //===> Create Audio Player <===//
+            if (!audio_player) {
+                //===> Create Player <===//
+                audio_player = document.createElement("audio");
+                //=== Set Player ID ===//
+                audio_player.setAttribute('id', 'px-audio-player');
+                //=== Insert Player to the Document ===//
+                document.body.appendChild(audio_player);
+            }
+    
+            //====> Audio Buttons <====//
+            Phenix(trigger).on('click', event => {
+                event.preventDefault();
+                //=== Get Data ===//
+                let button = event.target,
+                    audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
+    
+                //=== Check if the Audio is Already Playing ===//
+                if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
+                    //=== Pause the Audio ===//
+                    audio_player.pause();
+    
+                    //=== Switch Play Status icon ===//
+                    if(button.classList.contains('fa-pause')) {
+                        button.classList.remove('fa-pause');
+                        button.classList.add('fa-play');
+                    }
+    
+                    //=== Switch Play Status icon ===//
+                    else if(button.classList.contains('fa-music-note')) {
+                        button.classList.remove('fa-music-note');
+                        button.classList.add('fa-music-note-slash');
+                    }
+                } else {
+                    //=== Set Audio and Play ===//
+                    audio_player.setAttribute('src', audio_file);
+                    audio_player.play();
+    
                     //=== Switch Play Status icon ===//
                     if (button.classList.contains('fa-play')) {
                         button.classList.add('fa-pause');
                         button.classList.remove('fa-play');
                     }
-
+    
                     //=== Switch Play Status icon ===//
                     else if(button.classList.contains('fa-music-note-slash')) {
                         button.classList.add('fa-music-note');
                         button.classList.remove('fa-music-note-slash');
                     }
-                });
-            }
-        }, true);
+    
+                    //=== When Audio is Finished Switch the Status icon ===//
+                    audio_player.addEventListener('ended', (isEnded) => {
+                        //=== Switch Play Status icon ===//
+                        if (button.classList.contains('fa-play')) {
+                            button.classList.add('fa-pause');
+                            button.classList.remove('fa-play');
+                        }
+    
+                        //=== Switch Play Status icon ===//
+                        else if(button.classList.contains('fa-music-note-slash')) {
+                            button.classList.add('fa-music-note');
+                            button.classList.remove('fa-music-note-slash');
+                        }
+                    });
+                }
+            }, true);
+        };
     };
 
     /*====> Define Information <====*/

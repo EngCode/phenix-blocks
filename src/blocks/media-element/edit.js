@@ -38,6 +38,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_style = (target, screen) => PhenixBlocks.setObject(target, screen, "style", false, attributes, setAttributes);
     const set_icon = value => PhenixBlocks.setObject(`${value.type} ${value.value}`, "", "style", "icon", attributes, setAttributes);
     const set_source = value => PhenixBlocks.setObject(`${value.url}`, "", "setting", "src", attributes, setAttributes);
+    const set_cover = value => PhenixBlocks.setObject(`${value.url}`, "", "setting", "cover", attributes, setAttributes);
     const set_typography = (target, screen) => PhenixBlocks.setObject(target, screen, "typography", false, attributes, setAttributes);
 
     //===> View Script <===//
@@ -84,7 +85,11 @@ export default function Edit({ attributes, setAttributes }) {
                     <li key="dropdown-item" className='pd-10'>
                         {/*===> Uploader <===*/}
                         {!attributes.setting.type || attributes.setting.type === "image" || attributes.setting['embed'] === "video" || attributes.setting.type === "embed" && !attributes.setting['embed']? 
-                            <MediaUploader label={__("Upload File","pds-blocks")} value={attributes.setting?.src} setValue={set_source}></MediaUploader>
+                            <>
+                                <MediaUploader label={__("Upload File","pds-blocks")} value={attributes.setting?.src} setValue={set_source}></MediaUploader>
+                                {/* ===> Cover File <=== */}
+                                <MediaUploader label="Cover File" key="upload-cover-file" size="small mt-15" value={attributes.setting.cover} setValue={set_cover}></MediaUploader>
+                            </>
                             :
                             <PhenixInput key="src" name="src" label={__("Source URL", "pds-blocks")} value={attributes.setting.src} onChange={set_setting} />
                         }

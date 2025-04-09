@@ -34,7 +34,7 @@
 /*====> Phenix Object <====*/
 export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     /*====> D.O.M Ready <====*/
-    ready(callback) {
+    ready(callback: () => void): this {
          //====> Check if its Ready <====//
         if (document.readyState === 'complete') queueMicrotask(callback);
         //====> Wait for It to be Ready <====//
@@ -677,7 +677,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     };
 
     /*====> Define Information <====*/
-    height; getCSS; direction; getURL
+    height; getCSS; direction; getURL;
     inView; viewport; copyrights;
 
     /*====> Define UI Effects <====*/
@@ -720,40 +720,10 @@ const Phenix = (selector?:any) => {
     }
 }
 
-//====> Export Phenix <====//
-export default Phenix;
-
-/*====> Import Features <====*/
-import './features/get-info';   //==> Information
-import './features/effects';    //==> UI Effects
-import './features/counter';    //==> Animated Counter
-import './features/animations'; //==> View-port Animations
-import './features/validation'; //==> Form Validation
-import './features/collapse';   //==> Collapse Toggle
-import './features/notifications'; //==> Notifications
-
-/*====> Import Components <====*/
-import './components/menu';      //==> Menus
-import './components/media';     //==> Media Setter
-import './components/timer';     //==> Time Counter
-import './components/dropdown';  //==> Dropdown
-import './components/tabs';      //==> Tabs System
-import './components/popup';     //==> Popups
-import './components/progress';  //==> Progress
-import './components/select';    //==> Advanced Select
-import './components/uploader';  //==> File Uploader
-import './components/rating'; //==> Rating
-// import './components/datatable'; //==> Data-Tables
-
-/*====> Integration <====*/
-import './integration/slider';    //==> Splide.js Slider
-import './integration/utilities'; //==> Phenix Utilities
-import './integration/blocks';    //==> Phenix Blocks Scripts
-import './integration/wordpress'; //==> Wordpress Integration
-import './integration/woocommerce'; //==> WooCommerce Integration
-
 /*====> Custom Script <====*/
 import './custom-scripts';
 
-//====> Export Global Phenix <====//
-module.exports = Phenix;
+// Export Phenix as the default
+export default Phenix;
+// Also make it available as a named export
+export { Phenix };

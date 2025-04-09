@@ -158,7 +158,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
             element.setAttribute('id', `section-${index}`);
 
             //====> Sub-Titles <====//
-            if (element.matches('h3' || 'h4')) {
+            if (element.matches('h3') || element.matches('h4')) {
                 //===> ... <===//
                 let last_item = content_menu.querySelector('li:last-child'),
                     last_list = last_item?.querySelector('ul') || content_menu;

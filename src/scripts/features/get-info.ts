@@ -13,6 +13,9 @@
 /*====> Phenix Object <====*/
 import Phenix, { PhenixElements } from "..";
 
+// Import global declarations
+import '../global';
+
 /*====> Page Direction <====*/
 PhenixElements.prototype.direction = function (property?:string) {
     //====> Default Direction <====//
@@ -76,51 +79,155 @@ PhenixElements.prototype.getCSS = function(property?:string, pseudo?:string) {
     return styles;
 }
 
+//====> Type extensions for window properties <====//
+// Extend window with custom properties
+interface Window {
+    _phenixViewportCache?: {
+        width: number;  // Cache viewport width
+        height: number; // Cache viewport height
+    };
+    _phenixLastWidth?: number;  // Track width changes
+    _phenixLastHeight?: number; // Track height changes
+}
+
 /*====> ViewPort Detector <====*/
 PhenixElements.prototype.inView = function (options?:{
-    flow:string,    //====> From Top to Bottom [start] Reverse [end] Or Any of [both]
-    into:number,    //====> Increase Target Position By [number]
-    offset:number,  //====> Decrease Target Position By [number]
+    flow?:string,    //====> From Top to Bottom [start] Reverse [end] Or Any of [both]
+    into?:number,    //====> Increase Target Position By [number]
+    offset?:number,  //====> Decrease Target Position By [number]
+    threshold?:number, //====> How much of the element should be visible (0-1)
+    useObserver?:boolean, //====> Use IntersectionObserver when available (default: false)
 }, flowOn?:string) {
-    //===> Check if the Element Available ===//
-    if (!this[0]) return;
-
+    //====> Check if the Element Available <====//
+    if (!this[0]) return false;
+    
     //====> Define Data <====//
-    let element:any = this[0],
-        flow:string = flowOn || options?.flow,
-        scrollPosition = window.scrollY || window.pageYOffset,
-        targetPosition = element.getBoundingClientRect().top + scrollPosition,
-        //===> ViewPoint Position <====//
-        viewport = {
-            top: scrollPosition,
-            bottom: scrollPosition + window.innerHeight
-        };
+    const element = this[0];
+    
+    //====> Fast path for simple checks (most common case) <====//
+    if (!options) {
+        //====> Use cached state if available <====//
+        if (element._phenixInViewState !== undefined) return element._phenixInViewState;
+        
+        //====> Fast viewport check <====//
+        const rect = element.getBoundingClientRect();
+        return (
+            //====> Element's top edge is above the bottom of viewport <====//
+            rect.top <= window.innerHeight && 
+            //====> Element's bottom edge is below the top of viewport <====//
+            rect.bottom >= 0 && 
+            //====> Element's left edge is before the right edge of viewport <====//
+            rect.left <= window.innerWidth && 
+            //====> Element's right edge is after the left edge of viewport <====//
+            rect.right >= 0
+        );
+    }
+    
+    //====> Get options <====//
+    const flow = flowOn || options.flow;
+    const useObserver = options.useObserver || false;
+    
+    //====> Simple check function <====//
+    const isInViewport = () => {
+        const rect = element.getBoundingClientRect();
+        let inView = (
+            //====> Element's top edge is above the bottom of viewport <====//
+            rect.top <= window.innerHeight && 
+            //====> Element's bottom edge is below the top of viewport <====//
+            rect.bottom >= 0 && 
+            //====> Element's left edge is before the right edge of viewport <====//
+            rect.left <= window.innerWidth && 
+            //====> Element's right edge is after the left edge of viewport <====//
+            rect.right >= 0
+        );
+        
+        //====> Apply flow direction if specified <====//
+        if (flow === 'start') inView = inView && rect.top <= window.innerHeight;
+        else if (flow === 'end') inView = inView && rect.bottom >= 0;
+        
+        //====> Apply offset/into if specified <====//
+        if (options.offset) inView = inView && (rect.top <= window.innerHeight - options.offset);
+        else if (options.into) inView = inView && (rect.bottom >= options.into);
+        
+        return inView;
+    };
+    
+    //====> Use simple check if not using observer or threshold <====//
+    if (!useObserver && (!options.threshold || options.threshold <= 0)) {
+        //====> Use cached state if available <====//
+        if (element._phenixInViewState !== undefined) return element._phenixInViewState;
+        return isInViewport();
+    }
+    
+    //====> From here on, we're using IntersectionObserver <====//
+    
+    //====> Clean up existing observer if any <====//
+    if (element._phenixObserver) {
+        element._phenixObserver.disconnect();
+        element._phenixObserver = null;
+    }
+    
+    //====> Initialize state with current viewport check <====//
+    element._phenixInViewState = isInViewport();
+    
+    //====> Set up observer with minimal config <====//
+    const rootMargin = options.offset ? `${options.offset}px 0px 0px 0px` : 
+                     options.into ? `0px 0px ${options.into}px 0px` : '0px';
+    
+    //====> Create observer <====//
+    const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        
+        //====> Update state based on flow direction <====//
+        if (flow === 'start') {
+            //====> Check if element is entering from the top <====//
+            element._phenixInViewState = entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight;
+        } else if (flow === 'end') {
+            //====> Check if element is entering from the bottom <====//
+            element._phenixInViewState = entry.isIntersecting && entry.boundingClientRect.bottom >= 0;
+        } else {
+            //====> Default visibility check <====//
+            element._phenixInViewState = entry.isIntersecting;
+        }
+        
+        //====> Track direction <====//
+        element._phenixDirection = entry.boundingClientRect.top < 0 ? 'down' : 'up';
+        
+        //====> Dispatch event with minimal data <====//
+        element.dispatchEvent(new CustomEvent('phenixInViewChange', { detail: { inView: element._phenixInViewState, direction: element._phenixDirection, ratio: entry.intersectionRatio } }));
+    }, { root: null, rootMargin, threshold: options.threshold || 0 });
+    
+    //====> Store observer for cleanup <====//
+    element._phenixObserver = observer;
+    
+    //====> Start observing <====//
+    observer.observe(element);
+    
+    //====> Return initial state <====//
+    return element._phenixInViewState;
+}
 
-        //====> Into Calc <====//
-        if (options?.into && options?.into > 0) targetPosition = targetPosition + options?.into;
-
-        //====> Offset Calc <====//
-        else if (options?.offset && options?.offset > 0) targetPosition = targetPosition - options?.offset;
-
-        //===> Target Data <====//
-        let target = {
-            top: targetPosition,
-            bottom: targetPosition + element.clientHeight
-        },
-
-        //===> inBetween Odds <====//
-        topIn = viewport.bottom >= target.top && target.top >= viewport.top ? true : false,
-        bottomIn = viewport.top <= target.bottom && target.bottom <= viewport.bottom ? true : false,
-        inBetween = topIn || bottomIn ? true : false;
-
-    //====> if Visible from Top to Bottom <====//
-    if(flow === 'start') return viewport.bottom >= target.top ? true : false;
-
-    //====> if Visible from Bottom to Top <====//
-    else if (flow === 'end') return bottomIn;
-
-    //====> if Visible from Any of Both Directions <====//
-    else return inBetween;
+//====> Clean up IntersectionObserver <====//
+PhenixElements.prototype.cleanupInView = function() {
+    //====> Check if the Element Available <====//
+    if (!this[0]) return this;
+    
+    //====> Clean up for each element <====//
+    this.forEach((element) => {
+        //====> Disconnect observer if exists <====//
+        if (element._phenixObserver) {
+            element._phenixObserver.disconnect();
+            element._phenixObserver = null;
+        }
+        
+        //====> Clean up properties <====//
+        delete element._phenixInViewState;
+        delete element._phenixIntersectionRatio;
+        delete element._phenixDirection;
+    });
+    
+    //====> Return Phenix Elements <====//
+    return this;
 }
 
 //=====> Get Viewport Dimensions <=====//
@@ -172,5 +279,12 @@ PhenixElements.prototype.getURL = function (location?) {
         page   : window.location.pathname,
         phenixJS : phenix_js || 'https://cdn.jsdelivr.net/npm/phenix-ui@0.6.5/dist/js/',
         phenixCSS : phenix_js.replace('js', 'css') || 'https://cdn.jsdelivr.net/npm/phenix-ui@0.6.5/dist/css/',
+    }
+}
+
+// Fix for the cleanupInView method error
+declare module ".." {
+    interface PhenixElements {
+        cleanupInView(): PhenixElements;
     }
 }

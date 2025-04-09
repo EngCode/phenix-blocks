@@ -40,7 +40,7 @@ PhenixElements.prototype.utilities = function (options?:{
             //===> for Each Form <====//
             form.querySelectorAll('input:not([type="submit"]):not([type="button"]):not([type="radio"):not([type="checkbox"]), select, textarea').forEach(controler => {
                 //====> if has no such class names or type <====//
-                if (!controler.matches('.btn' || '.form-control')) controler.classList.add('form-control', size);
+                if (!controler.matches('.btn') && !controler.matches('.form-control')) controler.classList.add('form-control', size);
             });
         });
 
@@ -140,7 +140,7 @@ PhenixElements.prototype.utilities = function (options?:{
             click.preventDefault();
             //====> Remover Data <====//
             let trigger = click.target,
-                target  = trigger.getAttribute('data-target' || 'href') || false,
+                target  = trigger.getAttribute('data-target') || trigger.getAttribute('href') || false,
                 relation = trigger.getAttribute('data-relation');
     
             //=== Remove Target in Ancestors ===//

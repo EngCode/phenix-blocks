@@ -25,7 +25,6 @@ PhenixElements.prototype.animations = function (options?:{
     stagger?:number,     //====> Define the stagger for the lazyloading group
     scrollDriven?:boolean, //====> Enable Scroll Driven Animations
     drivenEnd?:number|string, //====> Define the end of the driven progress
-    groupDelay?:number,  //====> Define the group delay for nested groups
 }) {
     //====> Animations Loader <====//
     const loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {

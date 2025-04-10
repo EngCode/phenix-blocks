@@ -22,6 +22,7 @@ PhenixElements.prototype.animations = function (options?:{
     offset?:number,  //====> Decrease Target Position By [number]
     lazyloading?:boolean, //====> to Animate Element after Another
     lazygroup?:any,      //====> Define the group fo each lazyloading group
+    stagger?:number,     //====> Define the stagger for the lazyloading group
 }) {
     //====> Animations Loader <====//
     const loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {
@@ -93,22 +94,28 @@ PhenixElements.prototype.animations = function (options?:{
             element.classList.add('view-active', currentAnimation);
         };
 
-        //====> Lazyloading Group <====//
+        //====> Setup Stagger for Sequence of Animations <====//
         if (lazygroup) {
             //===> Define Delay <===//
             let currentDelay = 0;
-
             //===> Loop over the Animated Children <===//
             element.querySelectorAll('[data-animation]').forEach((item, index) => {
-                currentDelay += duration/2;
-                const staggerDelay = currentDelay/3;
+                //====> Get Duration <====//
+                const duration = parseInt(item.getAttribute('data-duration')) || options?.duration || 700;
+                //====> Get Stagger <====//
+                const stagger = parseInt(item.getAttribute('data-stagger')) || options?.stagger || null;
+                //====> Set Delay <====//
+                currentDelay += stagger ?? duration/2;
+                //====> Calculate Delay <====//
+                const staggerDelay = stagger ?? currentDelay / 3;
+                //====> Set Delay <====//
                 item.setAttribute('data-delay', String(staggerDelay));
                 item.style.setProperty('--animation-delay', `${staggerDelay}ms`);
             });
         }
 
         //====> Start Animation Process => Use inView with callback <====//
-        Phenix(element).inView({flow: flow,into: into, offset: offset,callback: animate});
+        Phenix(element).inView({flow: flow,into: into, offset: offset, callback: animate});
     });
 
     //====> Return Phenix Elements <====//

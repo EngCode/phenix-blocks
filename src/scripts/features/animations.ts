@@ -17,7 +17,6 @@ PhenixElements.prototype.animations = function (options?:{
     duration?:number,  //===> Animation Duration
     delay?:number,     //===> Animation Delay
     animateCSS?:boolean|string[]|string, //===> Animations Library
-    directionFix?:boolean, //===> Directions Resolver
     flow?:string,    //====> From Top to Bottom [start] Reverse [end] Or Any of [both]
     into?:number,    //====> Increase Target Position By [number]
     offset?:number,  //====> Decrease Target Position By [number]
@@ -33,6 +32,7 @@ PhenixElements.prototype.animations = function (options?:{
         if (element === window.document) return;
 
         //====> Get Options Data <====//
+        const pageDir = Phenix(document).direction();
         const animation = element.getAttribute('data-animation') || options?.animation || 'fadeIn';
         const duration = parseInt(element.getAttribute('data-duration')) || options?.duration || 700;
         const delay = parseInt(element.getAttribute('data-delay')) || options?.delay || 0;
@@ -40,20 +40,15 @@ PhenixElements.prototype.animations = function (options?:{
         const flow = element.getAttribute('data-flow') || options?.flow || null;
         const into = parseInt(element.getAttribute('data-into')) || options?.into || 0;
         const lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false;
-        const directionFix = options?.directionFix !== false;
 
         //====> Directions Resolve <====//
         let currentAnimation = animation;
-        if (directionFix) {
-            //====> Get Direction <====//
-            const pageDir = Phenix(document).direction();
 
-            //====> Fix Directions <====//
-            if (currentAnimation.includes('Start')) {
-                currentAnimation = currentAnimation.replace('Start', pageDir === 'ltr' ? 'Left' : 'Right');
-            } else if (currentAnimation.includes('End')) {
-                currentAnimation = currentAnimation.replace('End', pageDir === 'ltr' ? 'Right' : 'Left');
-            }
+        //====> Fix Directions <====//
+        if (currentAnimation.includes('Start')) {
+            currentAnimation = currentAnimation.replace('Start', pageDir === 'ltr' ? 'Left' : 'Right');
+        } else if (currentAnimation.includes('End')) {
+            currentAnimation = currentAnimation.replace('End', pageDir === 'ltr' ? 'Right' : 'Left');
         }
 
         //====> Hide the Element <====//
@@ -86,48 +81,8 @@ PhenixElements.prototype.animations = function (options?:{
             });
         }
 
-        //====> Create IntersectionObserver <====//
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: offset ? `${offset}px 0px 0px 0px` : '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            const entry = entries[0];
-            if (entry.isIntersecting) {
-                animate();
-                observer.unobserve(element);
-            }
-        }, observerOptions);
-
-        //====> Start Animation Process <====//
-        const startAnimations = () => {
-            observer.observe(element);
-        };
-
-        //====> Get Loading Screen <====//
-        const loadingScreen = document.querySelector(".px-page-loader");
-        
-        //====> Check for Loading Screen <====//
-        if (loadingScreen) {
-            //===> Use MutationObserver instead of interval <===//
-            const loadingObserver = new MutationObserver(() => {
-                if (Phenix(loadingScreen).getCSS('display') === 'none') {
-                    startAnimations();
-                    loadingObserver.disconnect();
-                }
-            });
-            
-            loadingObserver.observe(loadingScreen, { 
-                attributes: true, 
-                attributeFilter: ['style', 'class'] 
-            });
-            
-            //===> Fallback timeout <===//
-            setTimeout(startAnimations, 3000);
-        } else {
-            startAnimations();
-        }
+        //====> Start Animation Process => Use inView with callback <====//
+        Phenix(element).inView({flow: flow,into: into, offset: offset,callback: animate});
     });
 
     //====> Animations Loader <====//

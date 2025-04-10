@@ -131,7 +131,8 @@
 /*==== Phenix Animations ====*/
 .px-animate, [data-animation] {
     animation-fill-mode: both;
-    animation-duration: 1s;
+    animation-delay: calc(var(--animation-delay, 0));
+    animation-duration: var(--animation-duration, 1s);
 }
 
 /*==== Slider Animation Support ====*/

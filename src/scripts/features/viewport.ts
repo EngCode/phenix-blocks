@@ -34,30 +34,40 @@ PhenixElements.prototype.inView = function (options?:{
 
     //====> Create observer <====//
     const observer = new IntersectionObserver(entries => {
+        //====> Get Entry <====//
         const entry = entries[0];
         
-        //====> Apply flow-specific logic <====//
+        //====> Check if the Element is Visible <====//
         let isVisible = entry.isIntersecting;
+
+        //====> Calculate Start Flow <====//
         if (flow === 'start') {
             isVisible = entry.boundingClientRect.top < window.innerHeight;
-        } else if (flow === 'end') {
+        }
+        //====> Calculate End Flow <====//
+        else if (flow === 'end') {
             isVisible = entry.boundingClientRect.bottom > 0;
-        } else if (options?.into && isVisible) {
+        }
+        //====> Calculate Inset Flow <====//
+        else if (options?.into && isVisible) {
             isVisible = entry.boundingClientRect.bottom > options.into;
         }
         
         //====> Execute callback if visible <====//
         if (isVisible) {
+            //===> Execute Callback <====//
             if (options?.callback) options.callback(element);
+            //===> Unobserve the Element <====//
             observer.unobserve(element);
+            //===> Delete the Observer <====//
             delete element._phenixObserver;
         }
     }, observerOptions);
-    
+
     //====> Store and start observer <====//
     element._phenixObserver = observer;
     observer.observe(element);
-    
+
     //====> Allow method chaining <====//
     return this;
 }

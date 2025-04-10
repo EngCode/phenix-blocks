@@ -429,11 +429,8 @@ PhenixElements.prototype.slider = function (options?:{
 
         //====> Intersection Sliders <====//
         if (current_slider.intersection) {
-            //===> First View <===//
-            if (Phenix(slider).inView()) mount_slider();
-            //===> Hidden View <===//
-            window.addEventListener('scroll', scrolling => {
-                Phenix(slider).inView() ? mount_slider() : null
+            Phenix(slider).inView({
+                callback: mount_slider
             });
         } else {
             mount_slider();

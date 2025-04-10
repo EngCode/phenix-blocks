@@ -84,10 +84,8 @@ PhenixElements.prototype.progress = function (options?:{
             //====> Set Progress <====//
             if (lazy) {
                 //===> First View <===//
-                if (Phenix(progress).inView()) progress_handler();
-                //===> Hidden View <===//
-                window.addEventListener('scroll', scrolling => {
-                    Phenix(progress).inView() ? progress_handler() : null
+                Phenix(progress).inView({
+                    callback: progress_handler
                 });
             } else {
                 progress_handler();

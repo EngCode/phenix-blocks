@@ -88,10 +88,8 @@ PhenixElements.prototype.timer = function (options?:{
             //====> Set Timer <====//
             if (lazyloading) {
                 //===> First View <===//
-                if (Phenix(element).inView()) timer_handler();
-                //===> Hidden View <===//
-                window.addEventListener('scroll', scrolling => {
-                    Phenix(element).inView() ? timer_handler() : null
+                Phenix(element).inView({
+                    callback: timer_handler
                 });
             } else {
                 timer_handler();

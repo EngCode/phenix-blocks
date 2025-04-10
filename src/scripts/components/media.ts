@@ -235,9 +235,12 @@ PhenixElements.prototype.multimedia = function (options?:{
                 //====> Activate Lazy-Loading <====//
                 if (!splide) element.classList.add('px-is-loading');
                 //====> First View Handler <=====//
-                if (Phenix(element).inView() || element.offsetTop < Phenix(document).viewport().height) mediaHandle();
-                //====> On-Scroll Handler <====//
-                window.addEventListener('scroll', event => Phenix(element).inView({offset: 100}) ? mediaHandle() : null);
+                Phenix(element).inView({
+                    offset: 100,
+                    callback: () => {
+                        if (element.offsetTop < Phenix(document).viewport().height) mediaHandle();
+                    }
+                });
             }
 
             //====> None-Lazy <====//

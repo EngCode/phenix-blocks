@@ -90,70 +90,46 @@ PhenixElements.prototype.inView = function (options?:{
     const element = this[0];
     const flow = flowOn || options?.flow;
 
-    //====> With callback - use IntersectionObserver <====//
-    if (options?.callback && typeof options.callback === 'function') {
-        //====> Clean up any existing observer <====//
-        if (element._phenixObserver) {
-            element._phenixObserver.disconnect();
+    //====> Clean up any existing observer <====//
+    if (element._phenixObserver) {
+        element._phenixObserver.disconnect();
+        delete element._phenixObserver;
+    }
+
+    //====> Configure observer options <====//
+    const observerOptions = { 
+        threshold: 0.1,
+        rootMargin: options?.offset ? `${options.offset}px 0px 0px 0px` : '0px'
+    };
+
+    //====> Create observer <====//
+    const observer = new IntersectionObserver(entries => {
+        const entry = entries[0];
+        
+        //====> Apply flow-specific logic <====//
+        let isVisible = entry.isIntersecting;
+        if (flow === 'start') {
+            isVisible = entry.boundingClientRect.top < window.innerHeight;
+        } else if (flow === 'end') {
+            isVisible = entry.boundingClientRect.bottom > 0;
+        } else if (options?.into && isVisible) {
+            isVisible = entry.boundingClientRect.bottom > options.into;
+        }
+        
+        //====> Execute callback if visible <====//
+        if (isVisible && options?.callback) {
+            options.callback(element);
+            observer.unobserve(element);
             delete element._phenixObserver;
         }
-
-        //====> Configure observer options <====//
-        const observerOptions = { 
-            threshold: 0.1,
-            rootMargin: options?.offset ? `${options.offset}px 0px 0px 0px` : '0px'
-        };
-
-        //====> Create observer <====//
-        const observer = new IntersectionObserver(entries => {
-            const entry = entries[0];
-            
-            //====> Apply flow-specific logic <====//
-            let isVisible = entry.isIntersecting;
-            if (flow === 'start') {
-                isVisible = entry.boundingClientRect.top < window.innerHeight;
-            } else if (flow === 'end') {
-                isVisible = entry.boundingClientRect.bottom > 0;
-            } else if (options?.into && isVisible) {
-                isVisible = entry.boundingClientRect.bottom > options.into;
-            }
-            
-            //====> Execute callback if visible <====//
-            if (isVisible) {
-                options.callback(element);
-                observer.unobserve(element);
-                delete element._phenixObserver;
-            }
-        }, observerOptions);
-        
-        //====> Store and start observer <====//
-        element._phenixObserver = observer;
-        observer.observe(element);
-        
-        //====> Allow method chaining <====//
-        return this;
-    } 
-    //====> For immediate boolean check - use getBoundingClientRect <====//
-    else {
-        const rect = element.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        //====> Apply flow logic <====//
-        if (flow === 'start') return rect.top < window.innerHeight;
-        if (flow === 'end') return rect.bottom > 0;
-        
-        //====> Apply offset/into logic <====//
-        if (options?.offset && isInView) {
-            return rect.top < (window.innerHeight - options.offset);
-        }
-        
-        if (options?.into && isInView) {
-            return rect.bottom > options.into;
-        }
-        
-        //====> Default visibility check <====//
-        return isInView;
-    }
+    }, observerOptions);
+    
+    //====> Store and start observer <====//
+    element._phenixObserver = observer;
+    observer.observe(element);
+    
+    //====> Allow method chaining <====//
+    return this;
 }
 
 //=====> Get Viewport Dimensions <=====//

@@ -81,14 +81,10 @@ PhenixElements.prototype.counter = function (options?:{
 
         //====> Run Counter <====//
         if (lazyloading) {
-            //===> First View <===//
-            if (Phenix(element).inView()) {
-                counter_handler();
-            }
-            //===> Hidden View <===//
-            if(!counting) window.addEventListener('scroll', scrolling => {
-                counting = element.classList.contains('counting');
-                if(!counting && Phenix(element).inView()) counter_handler();
+            Phenix(element).inView({
+                callback: () => {
+                    if (!element.classList.contains('counting')) counter_handler();
+                }
             });
         } else {
             counter_handler();

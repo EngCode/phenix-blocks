@@ -58,14 +58,27 @@ export default class AnimationsSet extends Component {
                         <PhenixNumber name="animation-inset" label={__("Inset", "pds-blocks")} value={attributes.style?.animation?.inset || 0} onChange={mainSetter} min={0} max={3000} steps={1}></PhenixNumber>
                     </div>
                     {/*===> Column <===*/}
-                    <div className='col-12'>
+                    <div className='col-6 col mb-10'>
                         <OptionControl name={`animation-reverse`} value="end" checked={attributes.style?.animation?.reverse} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Revers Flow", "pds-blocks")}</OptionControl>
-                        <OptionControl name={`animation-scrollTrigger`} value="boolean" checked={attributes.style?.animation?.scrollTrigger} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Scroll Trigger", "pds-blocks")}</OptionControl>
+                    </div>
+                    {/*===> Scroll Driven <===*/}
+                    <div className='col-6 col mb-10'>
+                        <OptionControl name={`animation-scrollDriven`} value="boolean" checked={attributes.style?.animation?.scrollDriven} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Scroll Driven", "pds-blocks")}</OptionControl>
+                    </div>
+                    {/*===> Driven Progress <===*/}
+                    <div className='col-12 col mb-10'>
+                        <PhenixNumber name="animation-drivenEnd" label={__("Driven Progress", "pds-blocks")} value={attributes.style?.animation?.drivenEnd || 0} onChange={mainSetter} min={0} max={100} steps={1}></PhenixNumber>
                     </div>
                     {/*===> .End Columns. <===*/}
-                </>: null}
+                </>: <>
+                    {/*===> Stagger <===*/}
+                    <div className='col-12 col mb-10'>
+                        <PhenixNumber name="animation-stagger" label={__("Stagger", "pds-blocks")} value={attributes.style?.animation?.stagger || 100} onChange={mainSetter} min={0} max={15000} steps={10}></PhenixNumber>
+                    </div>
+                    {/*===> .End Stagger. <===*/}
+                </>}
                 {/*===> . Columns. <===*/}
-                <div className='col-7 col mb-10'>
+                <div className='col-6 col mb-10'>
                     <OptionControl name={`animation-group`} value="boolean" checked={attributes.style?.animation?.group} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Use as Group", "pds-blocks")}</OptionControl>
                 </div>
                 {/*===> . Columns. <===*/}

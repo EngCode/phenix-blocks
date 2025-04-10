@@ -23,6 +23,9 @@ PhenixElements.prototype.animations = function (options?:{
     lazyloading?:boolean, //====> to Animate Element after Another
     lazygroup?:any,      //====> Define the group fo each lazyloading group
     stagger?:number,     //====> Define the stagger for the lazyloading group
+    scrollDriven?:boolean, //====> Enable Scroll Driven Animations
+    drivenEnd?:number|string, //====> Define the end of the driven progress
+    groupDelay?:number,  //====> Define the group delay for nested groups
 }) {
     //====> Animations Loader <====//
     const loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {
@@ -96,26 +99,120 @@ PhenixElements.prototype.animations = function (options?:{
 
         //====> Setup Stagger for Sequence of Animations <====//
         if (lazygroup) {
-            //===> Define Delay <===//
-            let currentDelay = 0;
-            //===> Loop over the Animated Children <===//
-            element.querySelectorAll('[data-animation]').forEach((item, index) => {
-                //====> Get Duration <====//
-                const duration = parseInt(item.getAttribute('data-duration')) || options?.duration || 700;
-                //====> Get Stagger <====//
-                const stagger = parseInt(item.getAttribute('data-stagger')) || options?.stagger || null;
-                //====> Set Delay <====//
-                currentDelay += stagger ?? duration/2;
-                //====> Calculate Delay <====//
-                const staggerDelay = stagger ?? currentDelay / 3;
-                //====> Set Delay <====//
-                item.setAttribute('data-delay', String(staggerDelay));
-                item.style.setProperty('--animation-delay', `${staggerDelay}ms`);
+            //====> Get Base Stagger <====//
+            const baseStagger = parseInt(element.getAttribute('data-stagger')) || options?.stagger || 100;
+
+            //====> Process Groups First <====//
+            const processGroup = (groupElement: HTMLElement, parentDelay: number = 0) => {
+                //====> Get Direct Animation Children <====//
+                const animatedElements = Array.from(groupElement.children).filter(child => 
+                    child.hasAttribute('data-animation') || child.hasAttribute('data-lazy-group')
+                );
+
+                //====> Calculate Delays for Each Element <====//
+                let currentDelay = parentDelay;
+                animatedElements.forEach((item: HTMLElement) => {
+                    if (item.hasAttribute('data-lazy-group')) {
+                        //====> Process Nested Group <====//
+                        processGroup(item, currentDelay);
+                        //====> Update Current Delay Based on Group Size <====//
+                        const groupSize = item.querySelectorAll('[data-animation]').length;
+                        currentDelay += groupSize * baseStagger;
+                    } else {
+                        //====> Set Individual Element Delay <====//
+                        item.style.setProperty('--animation-delay', `${currentDelay}ms`);
+                        currentDelay += baseStagger;
+                    }
+                });
+            };
+
+            //====> Start Processing from Root Group <====//
+            processGroup(element);
+        }
+
+        //====> Handle Scroll Progress <====//
+        if (element.getAttribute('data-scrollDriven') || options?.scrollDriven) {
+            //====> Get Completion Point <====//
+            const completeAt = element.getAttribute('data-drivenEnd') || options?.drivenEnd || 'center';
+
+            //====> Show the Element <====//
+            Phenix(element).removeClass('visibility-hidden');
+            element.classList.add('view-active', currentAnimation);
+
+            //====> Create Scroll Progress Handler <====//
+            const handleScrollProgress = () => {
+                //====> Get Element Dimensions <====//
+                const rect = element.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+
+                //====> Define Progress and Completion Point <====//
+                let progress;
+                let completionPoint;
+
+                //====> Define Completion Point <====//
+                if (completeAt === 'center') {
+                    completionPoint = viewHeight / 2;
+                }
+                //====> Define Completion Point <====//
+                else if (completeAt === 'top') {
+                    completionPoint = 0;
+                }
+                //====> Define Completion Point <====//
+                else if (completeAt === 'bottom') {
+                    completionPoint = viewHeight;
+                }
+                //====> Define Completion Point <====//
+                else {
+                    // Convert percentage to pixels
+                    const percentage = parseInt(completeAt as string) || 50;
+                    completionPoint = (viewHeight * percentage) / 100;
+                }
+
+                //====> Start Progress when Element Enters Viewport <====//
+                if (rect.top >= viewHeight || rect.bottom <= 0) {
+                    progress = 0;
+                } else {
+                    // Calculate distance from bottom of viewport to top of element
+                    const startDistance = viewHeight - rect.top;
+                    // Calculate total distance to travel (viewport height + element height)
+                    const totalDistance = viewHeight + rect.height;
+                    // Calculate progress
+                    progress = startDistance / totalDistance;
+                    // Adjust progress to complete at completion point
+                    progress = progress * (viewHeight / completionPoint);
+                    // Clamp progress between 0 and 1
+                    progress = Math.min(Math.max(progress, 0), 1);
+                }
+
+                //====> Update CSS Custom Property for Animation Progress <====//
+                element.style.setProperty('--animation-progress', progress.toString());
+            };
+
+            //====> Initial Setup <====//
+            element.style.setProperty('--animation-progress', '0');
+            element.classList.add('scroll-progress');
+
+            //====> Add Scroll Listener <====//
+            window.addEventListener('scroll', handleScrollProgress, { passive: true });
+            
+            //====> Initial Calculation <====//
+            handleScrollProgress();
+
+            //====> Cleanup on Element Removal <====//
+            const observer = new MutationObserver((mutations, obs) => {
+                if (!document.contains(element)) {
+                    window.removeEventListener('scroll', handleScrollProgress);
+                    obs.disconnect();
+                }
             });
+
+            observer.observe(document, { childList: true, subtree: true });
         }
 
         //====> Start Animation Process => Use inView with callback <====//
-        Phenix(element).inView({flow: flow,into: into, offset: offset, callback: animate});
+        else {
+            Phenix(element).inView({flow: flow,into: into, offset: offset, callback: animate});
+        }
     });
 
     //====> Return Phenix Elements <====//

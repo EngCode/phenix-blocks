@@ -25,6 +25,7 @@ PhenixElements.prototype.animations = function (options?:{
     stagger?:number,     //====> Define the stagger for the lazyloading group
     scrollDriven?:boolean, //====> Enable Scroll Driven Animations
     drivenEnd?:number|string, //====> Define the end of the driven progress
+    exit?:string,        //====> Exit Animation
 }) {
     //====> Animations Loader <====//
     const loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {
@@ -86,16 +87,6 @@ PhenixElements.prototype.animations = function (options?:{
         element.style.setProperty('--animation-name', currentAnimation);
         element.style.setProperty('--animation-duration', `${duration}ms`);
 
-        //====> Animate Method <====//
-        const animate = () => {
-            //====> Show the Element <====//
-            Phenix(element).removeClass('visibility-hidden');
-            //====> Slider Fallback <====//
-            if (Phenix(element).ancestor('.px-slider')) return;
-            //====> Animations Classes <====//
-            element.classList.add('view-active', currentAnimation);
-        };
-
         //====> Setup Stagger for Sequence of Animations <====//
         if (lazygroup) {
             //====> Get Base Stagger <====//
@@ -127,10 +118,11 @@ PhenixElements.prototype.animations = function (options?:{
             });
         }
 
-        //====> Handle Scroll Progress <====//
+        //====> Handle Animation Setup <====//
         if (element.getAttribute('data-scrollDriven') || options?.scrollDriven) {
-            //====> Get Completion Point <====//
+            //====> Get Animation Options <====//
             const completeAt = element.getAttribute('data-drivenEnd') || options?.drivenEnd || 'center';
+            const exitAnimation = element.getAttribute('data-exit') || options?.exit;
 
             //====> Show the Element <====//
             Phenix(element).removeClass('visibility-hidden');
@@ -142,73 +134,91 @@ PhenixElements.prototype.animations = function (options?:{
                 const rect = element.getBoundingClientRect();
                 const viewHeight = window.innerHeight;
 
-                //====> Define Progress and Completion Point <====//
-                let progress;
-                let completionPoint;
+                //====> Define Progress and Points <====//
+                let progress, exitProgress;
+                const completionPoint = (() => {
+                    if (completeAt === 'center') return viewHeight / 2;
+                    if (completeAt === 'top') return 0;
+                    if (completeAt === 'bottom') return viewHeight;
+                    return (viewHeight * (parseInt(completeAt as string) || 50)) / 100;
+                })();
 
-                //====> Define Completion Point <====//
-                if (completeAt === 'center') {
-                    completionPoint = viewHeight / 2;
-                }
-                //====> Define Completion Point <====//
-                else if (completeAt === 'top') {
-                    completionPoint = 0;
-                }
-                //====> Define Completion Point <====//
-                else if (completeAt === 'bottom') {
-                    completionPoint = viewHeight;
-                }
-                //====> Define Completion Point <====//
-                else {
-                    // Convert percentage to pixels
-                    const percentage = parseInt(completeAt as string) || 50;
-                    completionPoint = (viewHeight * percentage) / 100;
-                }
-
-                //====> Start Progress when Element Enters Viewport <====//
+                //====> Calculate Progress <====//
                 if (rect.top >= viewHeight || rect.bottom <= 0) {
                     progress = 0;
+                    exitProgress = rect.top >= viewHeight ? 0 : 1;
                 } else {
-                    // Calculate distance from bottom of viewport to top of element
                     const startDistance = viewHeight - rect.top;
-                    // Calculate total distance to travel (viewport height + element height)
                     const totalDistance = viewHeight + rect.height;
-                    // Calculate progress
                     progress = startDistance / totalDistance;
-                    // Adjust progress to complete at completion point
                     progress = progress * (viewHeight / completionPoint);
-                    // Clamp progress between 0 and 1
                     progress = Math.min(Math.max(progress, 0), 1);
+
+                    //====> Calculate Exit Progress <====//
+                    if (exitAnimation) {
+                        exitProgress = rect.bottom < viewHeight 
+                            ? (viewHeight - rect.bottom) / rect.height
+                            : 0;
+                        exitProgress = Math.min(Math.max(exitProgress, 0), 1);
+                    }
                 }
 
-                //====> Update CSS Custom Property for Animation Progress <====//
+                //====> Update Progress Properties <====//
                 element.style.setProperty('--animation-progress', progress.toString());
+                if (exitAnimation) {
+                    element.style.setProperty('--exit-progress', exitProgress.toString());
+                    if (exitProgress > 0) element.classList.add(exitAnimation);
+                }
             };
 
-            //====> Initial Setup <====//
-            element.style.setProperty('--animation-progress', '0');
+            //====> Setup and Cleanup <====//
             element.classList.add('scroll-progress');
-
-            //====> Add Scroll Listener <====//
             window.addEventListener('scroll', handleScrollProgress, { passive: true });
-            
-            //====> Initial Calculation <====//
             handleScrollProgress();
 
-            //====> Cleanup on Element Removal <====//
+            //====> Cleanup Observer <====//
             const observer = new MutationObserver((mutations, obs) => {
                 if (!document.contains(element)) {
                     window.removeEventListener('scroll', handleScrollProgress);
                     obs.disconnect();
                 }
             });
-
             observer.observe(document, { childList: true, subtree: true });
-        }
-
-        //====> Start Animation Process => Use inView with callback <====//
+        } 
+        //====> Handle Regular Animations <====//
         else {
-            Phenix(element).inView({flow: flow,into: into, offset: offset, callback: animate});
+            //====> Get Exit Animation <====//
+            const exitAnimation = element.getAttribute('data-exit') || options?.exit;
+
+            //====> Create Intersection Observer <====//
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const element = entry.target as HTMLElement;
+                    
+                    if (entry.isIntersecting) {
+                        //====> Entry Animation <====//
+                        if (!element.classList.contains('view-active')) {
+                            Phenix(element).removeClass('visibility-hidden');
+                            element.classList.add('view-active', currentAnimation);
+                            //====> Remove Exit Animation if Exists <====//
+                            if (exitAnimation) element.classList.remove(exitAnimation);
+                        }
+                    } else if (exitAnimation) {
+                        //====> Exit Animation <====//
+                        const isScrollingDown = entry.boundingClientRect.top < 0;
+                        if (isScrollingDown) {
+                            element.classList.remove(currentAnimation);
+                            element.classList.add(exitAnimation);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            //====> Start Observing <====//
+            observer.observe(element);
         }
     });
 

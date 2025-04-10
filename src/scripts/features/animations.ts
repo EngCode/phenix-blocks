@@ -101,33 +101,31 @@ PhenixElements.prototype.animations = function (options?:{
         if (lazygroup) {
             //====> Get Base Stagger <====//
             const baseStagger = parseInt(element.getAttribute('data-stagger')) || options?.stagger || 100;
+            
+            //====> Track Animation Order <====//
+            let animationOrder = 0;
 
-            //====> Process Groups First <====//
-            const processGroup = (groupElement: HTMLElement, parentDelay: number = 0) => {
-                //====> Get Direct Animation Children <====//
-                const animatedElements = Array.from(groupElement.children).filter(child => 
-                    child.hasAttribute('data-animation') || child.hasAttribute('data-lazy-group')
-                );
-
-                //====> Calculate Delays for Each Element <====//
-                let currentDelay = parentDelay;
-                animatedElements.forEach((item: HTMLElement) => {
-                    if (item.hasAttribute('data-lazy-group')) {
-                        //====> Process Nested Group <====//
-                        processGroup(item, currentDelay);
-                        //====> Update Current Delay Based on Group Size <====//
-                        const groupSize = item.querySelectorAll('[data-animation]').length;
-                        currentDelay += groupSize * baseStagger;
-                    } else {
-                        //====> Set Individual Element Delay <====//
-                        item.style.setProperty('--animation-delay', `${currentDelay}ms`);
-                        currentDelay += baseStagger;
+            //====> Create Intersection Observer <====//
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target as HTMLElement;
+                        //====> Calculate Delay <====//
+                        const delay = animationOrder * baseStagger;
+                        //====> Set Delay <====//
+                        element.style.setProperty('--animation-delay', `${delay}ms`);
+                        //====> Increment Order <====//
+                        animationOrder++;
+                        //====> Stop Observing <====//
+                        observer.unobserve(element);
                     }
                 });
-            };
+            }, {threshold: 0.1});
 
-            //====> Start Processing from Root Group <====//
-            processGroup(element);
+            //====> Observe Elements <====//
+            element.querySelectorAll('[data-animation]').forEach(item => {
+                observer.observe(item);
+            });
         }
 
         //====> Handle Scroll Progress <====//

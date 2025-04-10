@@ -723,10 +723,41 @@ const Phenix = (selector?:any) => {
     }
 }
 
+//====> Export Phenix <====//
+export default Phenix;
+
+/*====> Import Features <====*/
+import './features/get-info';   //==> Get Informations about elements
+import './features/viewport';   //==> Viewport Detection
+import './features/effects';    //==> UI Effects
+import './features/counter';    //==> Animated Counter
+import './features/animations'; //==> View-port Animations
+import './features/validation'; //==> Form Validation
+import './features/collapse';   //==> Collapse Toggle
+import './features/notifications'; //==> Notifications
+
+/*====> Import Components <====*/
+import './components/menu';      //==> Menus
+import './components/media';     //==> Media Setter
+import './components/timer';     //==> Time Counter
+import './components/dropdown';  //==> Dropdown
+import './components/tabs';      //==> Tabs System
+import './components/popup';     //==> Popups
+import './components/progress';  //==> Progress
+import './components/select';    //==> Advanced Select
+import './components/uploader';  //==> File Uploader
+import './components/rating'; //==> Rating
+// import './components/datatable'; //==> Data-Tables
+
+/*====> Integration <====*/
+import './integration/slider';    //==> Splide.js Slider
+import './integration/utilities'; //==> Phenix Utilities
+import './integration/blocks';    //==> Phenix Blocks Scripts
+import './integration/wordpress'; //==> Wordpress Integration
+import './integration/woocommerce'; //==> WooCommerce Integration
+
 /*====> Custom Script <====*/
 import './custom-scripts';
 
-// Export Phenix as the default
-export default Phenix;
-// Also make it available as a named export
-export { Phenix };
+//====> Export Global Phenix <====//
+module.exports = Phenix;

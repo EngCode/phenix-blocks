@@ -13,4 +13,4 @@ import Phenix from '.';
 declare var PDS_WP_KEY: any;
 
 //======> D.O.M is Ready [for you] <=======//
-Phenix(document).ready((event:any) => {});
+Phenix(document).ready(() => {});

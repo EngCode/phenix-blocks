@@ -23,8 +23,34 @@ PhenixElements.prototype.animations = function (options?:{
     lazyloading?:boolean, //====> to Animate Element after Another
     lazygroup?:any,      //====> Define the group fo each lazyloading group
 }) {
+    //====> Animations Loader <====//
+    const loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {
+        //===> Default to 'all' if undefined <===//
+        const animationsToLoad = thirdParty === undefined ? 'all' : thirdParty;
+        
+        //====> Load Animation CSS Files <====//
+        if (animationsToLoad === 'all') {
+            Phenix(document).import('px-animations', 'css', `${Phenix(document).getURL().phenixCSS}animations/all.css`, () => {}, false);
+        } else if (Array.isArray(animationsToLoad)) {
+            //===> Ensure utilities is included <===//
+            const animationsList = animationsToLoad.includes('utilities') ? animationsToLoad : [...animationsToLoad, 'utilities'];
+            
+            //===> Load each package <===//
+            animationsList.forEach(pkg => {
+                Phenix(document).import(`px-animations-${pkg}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${pkg}.css`, () => {}, false);
+            });
+        } else if (typeof animationsToLoad === 'string' && animationsToLoad !== 'all') {
+            //===> Load the specified package and utilities <===//
+            Phenix(document).import(`px-animations-${animationsToLoad}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${animationsToLoad}.css`, () => {}, false);
+            Phenix(document).import('px-animations-utilities', 'css', `${Phenix(document).getURL().phenixCSS}animations/utilities.css`, () => {}, false);
+        }
+        
+        //====> Return Phenix Elements <====//
+        return this;
+    };
+
     //====> Load Animation CSS Files <====//
-    this.loadAnimationCSS(options?.animateCSS || 'all');
+    loadAnimationCSS(options?.animateCSS || 'all');
 
     //====> Process Elements <====//
     this.forEach((element:any) => {
@@ -84,32 +110,6 @@ PhenixElements.prototype.animations = function (options?:{
         //====> Start Animation Process => Use inView with callback <====//
         Phenix(element).inView({flow: flow,into: into, offset: offset,callback: animate});
     });
-
-    //====> Animations Loader <====//
-    this.loadAnimationCSS = (thirdParty?: boolean|string[]|string) => {
-        //===> Default to 'all' if undefined <===//
-        const animationsToLoad = thirdParty === undefined ? 'all' : thirdParty;
-        
-        //====> Load Animation CSS Files <====//
-        if (animationsToLoad === 'all') {
-            Phenix(document).import('px-animations', 'css', `${Phenix(document).getURL().phenixCSS}animations/all.css`, () => {}, false);
-        } else if (Array.isArray(animationsToLoad)) {
-            //===> Ensure utilities is included <===//
-            const animationsList = animationsToLoad.includes('utilities') ? animationsToLoad : [...animationsToLoad, 'utilities'];
-            
-            //===> Load each package <===//
-            animationsList.forEach(pkg => {
-                Phenix(document).import(`px-animations-${pkg}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${pkg}.css`, () => {}, false);
-            });
-        } else if (typeof animationsToLoad === 'string' && animationsToLoad !== 'all') {
-            //===> Load the specified package and utilities <===//
-            Phenix(document).import(`px-animations-${animationsToLoad}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${animationsToLoad}.css`, () => {}, false);
-            Phenix(document).import('px-animations-utilities', 'css', `${Phenix(document).getURL().phenixCSS}animations/utilities.css`, () => {}, false);
-        }
-        
-        //====> Return Phenix Elements <====//
-        return this;
-    };
 
     //====> Return Phenix Elements <====//
     return this;

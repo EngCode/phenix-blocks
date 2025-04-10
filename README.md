@@ -82,15 +82,100 @@ This plugin works best with a Phenix Design System compatible theme. At minimum,
 
 ## Recent Updates
 
-### Version 1.2.0 Revamped
-- Performance optimizations for asset loading
-- Fixed animation effects and interactions
-- Improved media uploader in editor and metaboxes
-- Added new tools for post management and data export/import
-- Replaced SplideJS with Swiper Slider for better performance
-- Multiple UI and UX improvements in the block editor
+### Version 1.3.0 Performance & Stability
+1. Standardized viewport-based loading patterns across components
+2. Fixed inconsistent inView usage in timer component
+3. Improved progress component loading states
+4. Enhanced slider and swiper integration with proper loading states
+5. Added proper cleanup of observers and event listeners
+6. Fixed animation timing and trigger issues
+7. Improved media loading in sliders and galleries
+8. Enhanced error handling and loading states
+9. Optimized performance for viewport detection
+10. Added consistent loading state handling
+11. Fixed media component lazy loading implementation
+12. Improved slider navigation and controls
+13. Enhanced accessibility for interactive components
+14. Fixed memory leaks from uncleaned observers
+15. Standardized loading state classes and behavior
+16. Refactored animation handling with improved viewport visibility checks
+17. Added exit animation support for smoother transitions
+18. Enhanced scroll-driven animation logic and performance
+19. Improved animation sequencing with stagger options
+20. Streamlined animation configuration and cleanup
+21. Optimized IntersectionObserver usage for better performance
+22. Enhanced animation control with refined CSS properties
+23. Added scroll-driven animations support
+24. Improved animation order tracking and delay handling
+25. Removed legacy code and unused options for better maintainability
 
-[View full changelog in release notes](#changelog)
+### Version 1.2.0 Revamped
+1. Disable Cron Jobs Scheduler
+2. Cleanup the Plugin for Public
+3. Disable Custom Login
+4. improve assets loading, and disable the JS hack
+5. Fix Icon Block Free Width
+6. Refactoring Core Counter Function
+7. Lightbox Slider Fix
+8. Fix Background not Rendering in Editor
+9. Fix Grid Flow Reverse not Wrapping
+10. Media Uploader Fix for Metaboxes
+11. Fix Metaboxes Repeater
+12. Fix Media Uploader in Editor
+13. Add New Style Font Option
+14. Disable core blocks remover
+15. Upgrade taxonomies query and support sub terms
+16. Add Support Terms as Dropdowns for Taxonomies in Dynamic Menu
+17. Fix Core Animations Effects Bouncing
+18. Fix Fading Slider in RTL
+19. Add Posts Managers Tools
+20. Remove Posts from any Type Tool
+21. Import Posts from a Json File
+22. Add Show Columns in the Admin Posts Table Functions
+23. Add Posts JSON Exporter Simple Tool
+24. Add post duplicating method
+25. Improving component builders, and view scripts
+26. Fixing Dropdown Menus in the Toolbar
+27. Fix Media Uploader in Optimization Tab
+28. Replace SplideJS with Swiper Slider
+29. Refactor Phenix Core Class Methods
+30. Fix Taxonomies ID and Link Controller Bugs
+31. SEO Useless methods removed
+32. Improving Colors Panel Performance
+33. Improving Select Elements Performance in Editor
+34. Improving Select Data Performance in Editor
+35. Refactoring icons Panel and improve Performance in Editor
+36. Remove Position, Padding, Margin Limits
+
+### Version 1.1.1
+1. Reset Form Elements when submit is complete
+2. Custom Code Font Improve
+3. Add custom loading page from theme option
+4. New workaround for Editor assets loading while switching between templates
+5. Fix Multimedia URL input
+6. Fix Multimedia not showing on insert
+7. Fix embed media from youtube short link
+8. Add Poster/Cover image for video background
+9. Add Auto Width option for sliders
+
+### Version 1.1.0
+1. Switch CF7 Form Posting to JS Fetching for custom validation
+2. Improve SEO fixers and speed up the process
+3. Remove old CF7 Success redirect method
+4. Improve Media Uploader, and add placeholder for none images
+5. Improve performance and loading process for the main JS
+6. Divide core phenix CSS into smaller parts [Core / Utilities]
+7. Add and activate Phenix Core from CDN
+8. Improve Editor assets loader
+9. Improve Audio Trigger Buttons
+10. Fix Sliders Drag Bug, Gallery Slider Support
+11. Fix icons options position, label mode
+12. Fix Background video z-index
+13. Fix Animated Number Counting
+14. Add new Animations
+15. Improve validation when controls are wrapped
+
+[View all previous versions in the complete changelog](https://github.com/EngCode/phenix-blocks/blob/main/readme.txt)
 
 ## License
 
@@ -100,6 +185,35 @@ Licensed under the terms of the [MIT License](https://opensource.org/licenses/MI
 ---
 
 ## <a name="changelog"></a>Changelog
+
+### Version 1.3.0 Performance & Stability
+1. Standardized viewport-based loading patterns across components
+2. Fixed inconsistent inView usage in timer component
+3. Improved progress component loading states
+4. Enhanced slider and swiper integration with proper loading states
+5. Added proper cleanup of observers and event listeners
+6. Fixed animation timing and trigger issues
+7. Improved media loading in sliders and galleries
+8. Enhanced error handling and loading states
+9. Optimized performance for viewport detection
+10. Added consistent loading state handling
+11. Fixed media component lazy loading implementation
+12. Improved slider navigation and controls
+13. Enhanced accessibility for interactive components
+14. Fixed memory leaks from uncleaned observers
+15. Standardized loading state classes and behavior
+
+Recent Development Updates:
+16. Refactored animation handling with improved viewport visibility checks
+17. Added exit animation support for smoother transitions
+18. Enhanced scroll-driven animation logic and performance
+19. Improved animation sequencing with stagger options
+20. Streamlined animation configuration and cleanup
+21. Optimized IntersectionObserver usage for better performance
+22. Enhanced animation control with refined CSS properties
+23. Added scroll-driven animations support
+24. Improved animation order tracking and delay handling
+25. Removed legacy code and unused options for better maintainability
 
 ### Version 1.2.0 Revamped
 1. Disable Cron Jobs Scheduler

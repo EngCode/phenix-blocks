@@ -3,7 +3,7 @@
   * Plugin Name: Phenix Design System - Blocks
   * Plugin URI: https://github.com/EngCode/phenix-blocks
   * Description: Phenix Design System - Blocks Ecosystem for WordPress v6.0+ and block based themes designed for phenix themes.
-  * Version: 1.2.0
+  * Version: 1.3.0
   * Author: Abdullah.Ramadan
   * Author URI: https://phenixthemes.com
   * License: GPL2
@@ -16,7 +16,7 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Define Constants <====//
-if (!defined('PDS_BLOCKS_VERSTION')) define('PDS_BLOCKS_VERSTION', '1.2.0');
+if (!defined('PDS_BLOCKS_VERSTION')) define('PDS_BLOCKS_VERSTION', '1.3.0');
 if (!defined('PDS_BLOCKS_URL')) define('PDS_BLOCKS_URL', plugin_dir_url(__FILE__));
 if (!defined('PDS_BLOCKS_PATH')) define('PDS_BLOCKS_PATH', plugin_dir_path(__FILE__));
 

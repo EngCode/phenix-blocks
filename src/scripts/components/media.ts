@@ -46,11 +46,11 @@ PhenixElements.prototype.multimedia = function (options?:{
         //===> Clean # for CSS Benefits <===//
         source = source.replaceAll('#','%23');
 
-        //===> De-Activate Lazy-Loading <===//
-        if (options?.lazyloading) element.classList.remove('lazyloader');
-
         //===> Set As CSS Background <===//
         element.style.backgroundImage = `url("${source}")`;
+        
+        //===> Remove Loading State <===//
+        element.classList.remove('px-is-loading');
     };
 
     //====> Loop Through Phenix Elements <====//
@@ -233,13 +233,16 @@ PhenixElements.prototype.multimedia = function (options?:{
             //====> Lazy-Loading Mode <====//
             if (lazy) {
                 //====> Activate Lazy-Loading <====//
-                if (!splide) element.classList.add('px-is-loading');
+                if (!splide) {
+                    element.classList.add('px-is-loading');
+                    // Set temporary loading background
+                    element.style.backgroundImage = 'none';
+                }
+
                 //====> First View Handler <=====//
                 Phenix(element).inView({
                     offset: 100,
-                    callback: () => {
-                        if (element.offsetTop < Phenix(document).viewport().height) mediaHandle();
-                    }
+                    callback: (element) => mediaHandle()
                 });
             }
 

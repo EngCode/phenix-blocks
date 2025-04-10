@@ -70,17 +70,20 @@ PhenixElements.prototype.slider = function (options?:{
     
             //====> Lazyloading Integration <====//
             slider.querySelectorAll('.px-media.px-loading, .px-media.px-loader').forEach(media => {
-                if (Phenix(media).inView()) {
-                    //====> Multimedia Loader <====//
-                    if (media.getAttribute('data-src')) {
-                        Phenix(media).multimedia();
-                    } else {
-                        media.setAttribute('src', media.getAttribute('data-lazyload'));
+                Phenix(media).inView({
+                    offset: 100,
+                    callback: (element) => {
+                        //====> Multimedia Loader <====//
+                        if (element.getAttribute('data-src')) {
+                            Phenix(element).multimedia();
+                        } else {
+                            element.setAttribute('src', element.getAttribute('data-lazyload'));
+                        }
+                        //====> Disable Loading Spinner <====//
+                        element.classList.remove('px-loader');
+                        element.classList.remove('px-loading');
                     }
-                    //====> Disable Loading Spinner <====//
-                    media.classList.remove('px-loader');
-                    media.classList.remove('px-loading');
-                }
+                });
             });
 
             //====> Popup Modals <====//

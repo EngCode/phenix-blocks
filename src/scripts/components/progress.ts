@@ -82,10 +82,20 @@ PhenixElements.prototype.progress = function (options?:{
             }
 
             //====> Set Progress <====//
-            if (lazy) {
-                //===> First View <===//
+            if (lazy && lazy !== 'false') {
+                //====> Add Loading State <====//
+                progress.classList.add('px-is-loading');
+                progress.style.setProperty('--progress-value', '0');
+
+                //====> First View Handler <====//
                 Phenix(progress).inView({
-                    callback: progress_handler
+                    offset: 100,
+                    callback: () => {
+                        //====> Remove Loading State <====//
+                        progress.classList.remove('px-is-loading');
+                        //====> Start Progress <====//
+                        progress_handler();
+                    }
                 });
             } else {
                 progress_handler();

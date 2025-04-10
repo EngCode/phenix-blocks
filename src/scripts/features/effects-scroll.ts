@@ -201,17 +201,15 @@ PhenixElements.prototype.scrollSpy = function (options?:{
                 });
             };
 
-            //====> First View [workout] <====//
-            if (document.querySelector(`${selector}`) && Phenix(selector).inView({
-                flow : options?.flow || 'both',
-                into : element.getAttribute('data-into') || options?.into || 0,
-                offset : element.getAttribute('data-offset') || options?.offset || 0,
-            })) activator();
-
-            //====> Check While Scroll if in view-point : Activate <====//
-            window.addEventListener('scroll', event => {
-                Phenix(selector).inView() ? activator() : null;
-            });
+            //====> if Target Exist and in View <====//
+            if (document.querySelector(`${selector}`)) {
+                Phenix(selector).inView({
+                    flow: options?.flow || 'both',
+                    into: element.getAttribute('data-into') || options?.into || 0,
+                    offset: element.getAttribute('data-offset') || options?.offset || 0,
+                    callback: activator
+                });
+            }
         });
     });
 

@@ -117,8 +117,8 @@ PhenixElements.prototype.inView = function (options?:{
         }
         
         //====> Execute callback if visible <====//
-        if (isVisible && options?.callback) {
-            options.callback(element);
+        if (isVisible) {
+            if (options?.callback) options.callback(element);
             observer.unobserve(element);
             delete element._phenixObserver;
         }

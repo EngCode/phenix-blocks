@@ -386,7 +386,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         //====> Loop Through Media Elements <====//
         Phenix('img, video, audio, iframe').forEach((element:HTMLElement) => {
             //====> Set Loading Mode <====//
-            if (!Phenix(element).inView()) {
+            if (!element.matches('.px-loaded')) {
                 //====> Get Data <====//
                 let playable = element.matches('video') || element.matches('audio') || element.matches('iframe'),
                     preloaded = element.getAttribute('preload') || element.getAttribute('loading');
@@ -398,11 +398,14 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
                 if (playable && !preloaded) element.setAttribute('preload', 'none');
                 else if(element.matches('img')) element.setAttribute('loading', 'lazy');
 
-                //====> Keep Watching Element While Scrolling <====//
-                document.addEventListener('scroll', event => {
-                    if ((element.matches('img') || element.matches('iframe')) && Phenix(element).inView({offset: 100}) && !element.matches('.px-loaded')) {
-                        element.classList.remove('px-loading');
-                        element.classList.add('px-loaded');
+                //====> Watch Element <====//
+                Phenix(element).inView({
+                    offset: 100,
+                    callback: () => {
+                        if (element.matches('img') || element.matches('iframe')) {
+                            element.classList.remove('px-loading');
+                            element.classList.add('px-loaded');
+                        }
                     }
                 });
             }

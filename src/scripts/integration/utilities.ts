@@ -165,10 +165,11 @@ PhenixElements.prototype.utilities = function (options?:{
             element.setAttribute('data-value', `${numbers}`);
             if(characters && !element.getAttribute('data-symbol')) element.setAttribute('data-symbol', `${characters}`);
 
-            //====> inView Checker <====//
-            Phenix(window).on('scroll', scroll => {
-                //===> Start Counting <====//
-                if (Phenix(element).inView() && !element.classList.contains('counting')) Phenix(element).counter();
+            //====> Start Counter when in View <====//
+            Phenix(element).inView({
+                callback: () => {
+                    if (!element.classList.contains('counting')) Phenix(element).counter();
+                }
             });
         });
 

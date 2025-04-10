@@ -66,9 +66,6 @@ PhenixElements.prototype.animations = function (options?:{
         const animation = element.getAttribute('data-animation') || options?.animation || 'fadeIn';
         const duration = parseInt(element.getAttribute('data-duration')) || options?.duration || 700;
         const delay = parseInt(element.getAttribute('data-delay')) || options?.delay || 0;
-        const offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0;
-        const flow = element.getAttribute('data-flow') || options?.flow || null;
-        const into = parseInt(element.getAttribute('data-into')) || options?.into || 0;
         const lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false;
 
         //====> Directions Resolve <====//
@@ -190,6 +187,14 @@ PhenixElements.prototype.animations = function (options?:{
             //====> Get Exit Animation <====//
             const exitAnimation = element.getAttribute('data-exit') || options?.exit;
 
+            //====> Get Position Customization Options <====//
+            const offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0;
+            const into = parseInt(element.getAttribute('data-into')) || options?.into || 0;
+
+            //====> Calculate Root Margin <====//
+            const topMargin = into - offset;
+            const rootMargin = `${topMargin}px 0px ${offset}px 0px`;
+
             //====> Create Intersection Observer <====//
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -214,7 +219,7 @@ PhenixElements.prototype.animations = function (options?:{
                 });
             }, {
                 threshold: 0.1,
-                rootMargin: '50px'
+                rootMargin
             });
 
             //====> Start Observing <====//

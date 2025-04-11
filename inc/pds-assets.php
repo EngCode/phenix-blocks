@@ -354,6 +354,7 @@ function add_gltf_mime_types($mime_types) {
     $mime_types['glb'] = 'model/gltf-binary';
     return $mime_types;
 }
+
 add_filter('upload_mimes', 'add_gltf_mime_types');
 
 //===> Fix MIME type detection for GLTF/GLB files <===//
@@ -373,4 +374,5 @@ function fix_gltf_mime_type_detection($data, $file, $filename, $mimes) {
     
     return $data;
 }
+
 add_filter('wp_check_filetype_and_ext', 'fix_gltf_mime_type_detection', 10, 4);

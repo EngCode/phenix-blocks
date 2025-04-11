@@ -12,52 +12,43 @@ let addons = {};          // To store loaded addon modules
 let isLoading = false;    // Flag to prevent concurrent loading attempts
 let loadCallbacks = [];   // Queue for callbacks waiting for loading to finish
 
-//====> 01 - Ensure Import Map <====//
-// Dynamically creates an import map if one doesn't exist for Three.js.
-function ensureImportMap(assetsBasePath) {
+//====> Dynamically creates an import map for Three.js. <====//
+function three_importing_map(assetsBasePath) {
+    //====> Validate Base Path <====//
+    if (!assetsBasePath || !assetsBasePath.startsWith('http')) return false;
+
     //====> Define Map ID <====//
     const mapId = 'pds-blocks-three-importmap';
-
     //====> Check if Map Already Exists <====//
-    if (document.getElementById(mapId)) {
-        return true;
-    }
-
-    //====> Validate Base Path <====//
-    if (!assetsBasePath || !assetsBasePath.startsWith('http')) {
-        console.error("Three.js Utils Error: Invalid assetsBasePath provided for import map.", assetsBasePath);
-        return false;
-    }
+    if (document.getElementById(mapId)) return true;
 
     //====> Define Module URLs <====//
     const threeCoreUrl = assetsBasePath + 'lib/three/three.module.min.js';
     const threeAddonsUrl = assetsBasePath + 'lib/three/addons/';
 
-    //====> Create Import Map Object <====//
+    //====> Create Import Map Object (Trailing slash is important for addons) <====//
     const importMap = {
         imports: {
             'three': threeCoreUrl,
-            'three/addons/': threeAddonsUrl, // Trailing slash is important
+            'three/addons/': threeAddonsUrl,
         }
     };
 
     //====> Create and Inject Script Tag <====//
-    try {
-        const mapScript = document.createElement('script');
-        mapScript.type = 'importmap';
-        mapScript.id = mapId;
-        mapScript.textContent = JSON.stringify(importMap);
-        document.head.appendChild(mapScript);
-        return true;
-    } catch (e) {
-        console.error("Three.js Utils Error: Failed to create or inject import map:", e);
-        return false;
-    }
+    const mapScript = document.createElement('script');
+    //====> Set Type and ID <====//
+    mapScript.type = 'importmap';   
+    mapScript.id = mapId;
+    //====> Set Content <====//
+    mapScript.textContent = JSON.stringify(importMap);
+    //====> Inject <====//
+    document.head.appendChild(mapScript);
+    //====> Return True When Successful <====//
+    return true;
 }
 
-//====> 02 - Load Three Modules <====//
-// Dynamically imports the Three.js core module and necessary addons.
-async function loadThreeModules(requiredAddonPaths = []) {
+//====> Three.js Modules Loader <====//
+async function three_modules_loader(requiredAddonPaths = []) {
     //====> Return if Already Loaded <====//
     if (THREE_Module) {
         // Note: This doesn't currently check if *new* addons are needed if called again.
@@ -66,10 +57,7 @@ async function loadThreeModules(requiredAddonPaths = []) {
     }
 
     //====> Handle Concurrent Loading <====//
-    if (isLoading) {
-        // Return a promise that resolves when the ongoing loading finishes
-        return new Promise(resolve => loadCallbacks.push(resolve));
-    }
+    if (isLoading) new Promise(resolve => loadCallbacks.push(resolve));
 
     //====> Set Loading Flag <====//
     isLoading = true;
@@ -126,7 +114,7 @@ async function loadThreeModules(requiredAddonPaths = []) {
 // Loads modules dynamically if needed.
 async function initializeViewer(container, options = {}, assetsBasePath) {
     //====> 1. Ensure Import Map Exists <====//
-    if (!ensureImportMap(assetsBasePath)) {
+    if (!three_importing_map(assetsBasePath)) {
         container.innerHTML = '<p style="color:red;">Error: Could not set up Three.js import map.</p>';
         return;
     }
@@ -146,9 +134,9 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
     //====> 3. Load THREE Modules <====//
     let loadedModules;
     try {
-        loadedModules = await loadThreeModules(requiredAddonPaths);
+        loadedModules = await three_modules_loader(requiredAddonPaths);
     } catch (error) {
-        // Error already logged by loadThreeModules
+        // Error already logged by three_modules_loader
         container.innerHTML = '<p style="color:red;">Error: Could not load Three.js components.</p>';
         return;
     }

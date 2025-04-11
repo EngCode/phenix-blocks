@@ -81,7 +81,7 @@
         background-position: center;
     }
     /*==== Media Element ====*/
-    .px-video, .px-iframe, .px-media-img, > iframe, > video {
+    .px-video, .px-iframe, .px-media-img, > iframe, > video, > canvas {
         width: 100%;
         -o-object-fit: cover;
            object-fit: cover;
@@ -90,7 +90,7 @@
 
     /*==== elements ====*/
     &:not(.ratio-none), &.ratio-none[class*="h-"] {
-        .px-video, .px-iframe, .px-media-img, > iframe, > video {
+        .px-video, .px-iframe, .px-media-img, > iframe, > video, > canvas {
             top: 0;
             left: 0;
             height: 100%;

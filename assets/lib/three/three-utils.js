@@ -125,12 +125,8 @@ async function loadThreeModules(requiredAddonPaths = []) {
 // Initializes a Three.js viewer in the given container element.
 // Loads modules dynamically if needed.
 async function initializeViewer(container, options = {}, assetsBasePath) {
-    //====> Add Loading Class <====//
-    container.classList.add('px-loading');
-
     //====> 1. Ensure Import Map Exists <====//
     if (!ensureImportMap(assetsBasePath)) {
-        container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error: Could not set up Three.js import map.</p>';
         return;
     }
@@ -153,7 +149,6 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
         loadedModules = await loadThreeModules(requiredAddonPaths);
     } catch (error) {
         // Error already logged by loadThreeModules
-        container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error: Could not load Three.js components.</p>';
         return;
     }
@@ -318,36 +313,19 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
         
         //====> Load Model if Path Provided <====//
         if (options.modelPath) {
-            loadModelInternal(() => {
-                 //==> Model Loaded Successfully <==//
-                 container.classList.remove('px-loading');
-            }, (error) => {
+            loadModelInternal(() => {}, (error) => {
                  //==> Model Loading Failed <==//
                  console.error("Three.js Utils Error: Failed to load model:", error);
-                 container.classList.remove('px-loading');
                  container.innerHTML = '<p style="color:red;">Error loading 3D model.</p>';
                  // Cleanup on failure
                  cancelAnimationFrame(animationFrameId);
                  resizeObserver.disconnect();
             });
-        } else {
-             //==> No Model to Load <==//
-             container.classList.remove('px-loading');
         }
-
-        // Optional: Add cleanup function when container is removed from DOM
-        // Example: Use MutationObserver on parent, or specific cleanup method call
-        // cleanup = () => {
-        //    cancelAnimationFrame(animationFrameId);
-        //    resizeObserver.disconnect();
-        //    renderer.dispose();
-        //    // Dispose geometry, materials, textures in scene
-        // }
 
     } catch (setupError) {
         //====> Handle Viewer Setup Error <====//
         console.error("Three.js Utils Error: Error during viewer setup:", setupError);
-        container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error setting up 3D viewer.</p>';
     }
 }

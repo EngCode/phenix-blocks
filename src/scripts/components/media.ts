@@ -274,9 +274,6 @@ PhenixElements.prototype.multimedia = function (options?:{
                             autoRotate: canvas.dataset.autoRotate === 'true',
                             controls: canvas.dataset.controls || 'orbit'
                         };
-                        
-                        //====> Add Loading Class to Canvas Wrapper ====//
-                        element.classList.add('px-loading');
 
                         //====> Load three-utils.js & Initialize ====//
                         if (window.threeUtils?.initializeViewer) {
@@ -293,10 +290,9 @@ PhenixElements.prototype.multimedia = function (options?:{
                                     window.threeUtils.initializeViewer(canvas, viewerOptions, assetsBasePath).catch(err => console.error("Error during Three.js initialization:", err, canvas));
                                     //====> Set the Initialized Attribute ====//
                                     canvas.dataset.threeInitialized = 'true';
-                                } else {
-                                    //====> Remove Loading Class from Canvas Wrapper ====//
-                                    element.classList.remove('px-loading');
                                 }
+                                //====> Remove Loading Class from Canvas Wrapper ====//
+                                element.classList.remove('px-loading');
                             }, { integrated: true, module: false });
                         }
                     }

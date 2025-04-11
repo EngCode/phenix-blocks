@@ -1,347 +1,213 @@
-/**
- * Simple Three.js Utilities
- * Helper to load Three.js core (non-module) and addons, making THREE globally available.
- */
+/**======> Reference By Comment <======
+ * === Three.js Viewer Utilities ===
+ * ===> 01 - Ensure Import Map
+ * ===> 02 - Load Three Modules
+ * ===> 03 - Initialize Viewer
+ * ===> 04 - Expose Public Functions
+*/
 
-// Simple tracking of loaded scripts to prevent duplicates
-const loadedScripts = new Set();
-let isCoreLoading = false;
-let coreLoadCallbacks = [];
+//====> Global Variables <====//
+let THREE_Module = null;  // To store the loaded THREE core module
+let addons = {};          // To store loaded addon modules
+let isLoading = false;    // Flag to prevent concurrent loading attempts
+let loadCallbacks = [];   // Queue for callbacks waiting for loading to finish
 
-/**
- * Load a script and track its loading status
- * @param {string} src - Script source path (absolute or root-relative expected)
- * @param {Function} callback - Callback when script is loaded
- * @param {Function} onError - Callback on loading error
- */
-function loadScript(src, callback, onError) {
-    // Skip if already loaded or currently loading (for core)
-    if (loadedScripts.has(src)) {
-        console.log(`Script already loaded: ${src}`);
-        if (callback) queueMicrotask(callback); // Call callback async if already loaded
-        return;
-    }
-
-    // Create script element
-    const script = document.createElement('script');
-    // script.type = 'module'; // <-- REMOVED: Load as standard scripts
-    script.src = src;
-    script.async = true; // Load async but execution order relies on dependencies
-
-    // Set loading handlers
-    script.onload = () => {
-        console.log(`Script loaded successfully: ${src}`);
-        loadedScripts.add(src); // Mark as loaded
-        if (callback) callback();
-    };
-
-    script.onerror = (event) => {
-        console.error(`Error loading script ${src}:`, event);
-        if (onError) onError(event);
-    };
-
-    // Add to document head
-    document.head.appendChild(script);
-}
-
-/**
- * Load Three.js core (non-module) and specified addons.
- * Ensures window.THREE is available and addons are attached.
- * @param {string[]} addons - Array of addon paths relative to '/assets/lib/three/' (e.g., 'addons/controls/OrbitControls.js')
- * @param {Function} callback - Callback function executed when core and all specified addons are loaded.
- */
-function loadThree(addons = [], callback) {
-    // --- 1. Load Core ('three.core.min.js') ---
-    const corePath = '/assets/lib/three/three.core.min.js'; // Using the non-module version
-
-    const onCoreReady = () => {
-         // Check if THREE global was created
-        if (typeof THREE === 'undefined' || !window.THREE) {
-            console.error("THREE core script loaded, but window.THREE was not created.");
-            // Potentially reject or signal error in callback? For now, proceed cautiously.
-        } else {
-            console.log("window.THREE is ready.");
-        }
-
-        // --- 2. Load Addons ---
-        if (!addons || addons.length === 0) {
-            console.log("No addons requested. Firing main callback.");
-            if (callback) queueMicrotask(callback); // Fire main callback if no addons
-            return;
-        }
-
-        let addonsLoadedCount = 0;
-        let addonsErrored = false;
-        const totalAddons = addons.length;
-
-        const onAddonLoad = () => {
-            addonsLoadedCount++;
-            console.log(`Addons loaded: ${addonsLoadedCount}/${totalAddons}`);
-            if (!addonsErrored && addonsLoadedCount === totalAddons) {
-                console.log("All requested addons loaded. Firing main callback.");
-                if (callback) queueMicrotask(callback); // Fire main callback once all addons are done
-            }
-        };
-        
-        const onAddonError = (addonPath, event) => {
-             console.error(`Failed to load addon: ${addonPath}`, event);
-             addonsErrored = true;
-             // Decide how to handle addon errors - maybe fire main callback with an error flag?
-             // For now, it will prevent the final callback if any addon fails.
-        };
-
-        console.log(`Loading ${totalAddons} addons...`);
-        addons.forEach(addonRelativePath => {
-            // Construct full path assuming three-utils.js is loaded relative to domain root
-            const addonFullPath = `/assets/lib/three/${addonRelativePath}`;
-            loadScript(addonFullPath, onAddonLoad, (event) => onAddonError(addonFullPath, event));
-        });
-    };
-
-    // Handle concurrent requests for the core
-    if (isCoreLoading) {
-        console.log("THREE core is already loading, adding callback to queue.");
-        coreLoadCallbacks.push(onCoreReady);
-        return;
-    }
-
-    // Load core if not already loaded
-    if (!loadedScripts.has(corePath)) {
-        console.log("Loading THREE core:", corePath);
-        isCoreLoading = true;
-        loadScript(corePath, () => {
-            isCoreLoading = false;
-            loadedScripts.add(corePath); // Ensure it's marked loaded here
-            onCoreReady(); // Process this request
-            // Process queued callbacks
-            coreLoadCallbacks.forEach(cb => queueMicrotask(cb));
-            coreLoadCallbacks = [];
-        }, (event) => {
-            console.error("Failed to load THREE core:", corePath, event);
-            isCoreLoading = false;
-            // Handle core load failure - maybe notify callbacks?
-        });
-    } else {
-        // Core already loaded, proceed directly
-        console.log("THREE core already loaded.");
-        onCoreReady();
-    }
-}
-
-// Export utilities to global scope for Phenix.import callback
-window.threeUtils = { loadThree };
-
-// REMOVED: export default { loadThree }; // Not needed as this isn't loaded as a module itself 
-
-/**
- * Three.js Viewer Utilities
- * Handles dynamic loading of Three.js modules and viewer initialization.
- */
-
-// Scope for loaded modules and status flags
-let THREE_Module = null;
-let addons = {}; // Store loaded addons like OrbitControls, GLTFLoader
-let isLoading = false;
-let loadCallbacks = [];
-const loadedScriptURLs = new Set(); // Track URLs used in import map
-
-/**
- * Dynamically creates an import map if one doesn't exist for Three.js.
- * @param {string} assetsBasePath - The absolute base URL for assets (e.g., 'http://.../pds-blocks/assets/')
- * @returns {boolean} - True if the map was created or already exists, false on error.
- */
+//====> 01 - Ensure Import Map <====//
+// Dynamically creates an import map if one doesn't exist for Three.js.
 function ensureImportMap(assetsBasePath) {
+    //====> Define Map ID <====//
     const mapId = 'pds-blocks-three-importmap';
+
+    //====> Check if Map Already Exists <====//
     if (document.getElementById(mapId)) {
-        console.log("Three.js import map already exists.");
         return true;
     }
 
+    //====> Validate Base Path <====//
     if (!assetsBasePath || !assetsBasePath.startsWith('http')) {
-        console.error("Cannot create import map: Invalid assetsBasePath provided.", assetsBasePath);
+        console.error("Three.js Utils Error: Invalid assetsBasePath provided for import map.", assetsBasePath);
         return false;
     }
 
-    // Define module URLs using the provided base path
+    //====> Define Module URLs <====//
     const threeCoreUrl = assetsBasePath + 'lib/three/three.module.min.js';
     const threeAddonsUrl = assetsBasePath + 'lib/three/addons/';
 
+    //====> Create Import Map Object <====//
     const importMap = {
         imports: {
             'three': threeCoreUrl,
-            'three/addons/': threeAddonsUrl, // Trailing slash is important for addon resolution
+            'three/addons/': threeAddonsUrl, // Trailing slash is important
         }
     };
 
-    // Track the URLs we are about to use
-    loadedScriptURLs.add(threeCoreUrl);
-    // We don't add the addons base URL itself, but individual addons will be tracked on import
-
+    //====> Create and Inject Script Tag <====//
     try {
         const mapScript = document.createElement('script');
         mapScript.type = 'importmap';
         mapScript.id = mapId;
         mapScript.textContent = JSON.stringify(importMap);
         document.head.appendChild(mapScript);
-        console.log("Three.js import map injected.");
         return true;
     } catch (e) {
-        console.error("Failed to create or inject import map:", e);
+        console.error("Three.js Utils Error: Failed to create or inject import map:", e);
         return false;
     }
 }
 
-/**
- * Dynamically imports the Three.js core module and necessary addons.
- * @param {string[]} requiredAddonPaths - Array of addon paths relative to 'three/addons/' (e.g., 'controls/OrbitControls.js')
- * @returns {Promise<{ THREE: any, loadedAddons: Record<string, any> }>} - Resolves with THREE core and loaded addon modules.
- */
+//====> 02 - Load Three Modules <====//
+// Dynamically imports the Three.js core module and necessary addons.
 async function loadThreeModules(requiredAddonPaths = []) {
+    //====> Return if Already Loaded <====//
     if (THREE_Module) {
-        console.log("Three.js modules already loaded.");
-        // Potentially check if *required* addons are already loaded here if needed
+        // Note: This doesn't currently check if *new* addons are needed if called again.
+        // Assumes all necessary addons are requested on the first call.
         return { THREE: THREE_Module, loadedAddons: addons };
     }
 
+    //====> Handle Concurrent Loading <====//
     if (isLoading) {
-        console.log("Three.js modules are currently loading, awaiting completion...");
+        // Return a promise that resolves when the ongoing loading finishes
         return new Promise(resolve => loadCallbacks.push(resolve));
     }
 
+    //====> Set Loading Flag <====//
     isLoading = true;
 
+    //====> Load Core and Addons <====//
     try {
-        console.log("Dynamically importing THREE core...");
-        // Use the 'three' alias defined in the import map
+        //===> Import THREE Core (uses import map) <===//
         const THREE = await import('three');
-        THREE_Module = THREE;
-        console.log("THREE core module imported successfully.");
+        THREE_Module = THREE; // Store the loaded module
 
-        // Import required addons
+        //===> Import Required Addons <===//
         const addonPromises = requiredAddonPaths.map(async (relativePath) => {
+            //==> Derive Addon Name and Specifier <===//
             const addonName = relativePath.split('/').pop().split('.')[0]; // e.g., OrbitControls
             const fullSpecifier = `three/addons/${relativePath}`;
+            //===> Import Addon (uses import map) <===//
             try {
-                console.log(`Importing addon: ${fullSpecifier}`);
                 const addonModule = await import(fullSpecifier);
-                // Store the primary export (heuristic: often named like the file)
-                // Or store the whole module if needed
+                // Store the most likely export (e.g., OrbitControls class from OrbitControls.js)
                 addons[addonName] = addonModule[addonName] || addonModule; 
-                console.log(`Addon ${addonName} imported successfully.`);
             } catch (err) {
-                console.error(`Failed to import addon: ${fullSpecifier}`, err);
-                // Decide how to handle: throw, return null, etc.
-                // For now, log error and potentially skip this addon
+                console.error(`Three.js Utils Error: Failed to import addon: ${fullSpecifier}`, err);
                 addons[addonName] = null; // Mark as failed/unavailable
             }
         });
 
+        //===> Wait for All Addons <===//
         await Promise.all(addonPromises);
-        console.log("All required addon imports attempted.", addons);
 
+        //===> Prepare Result <===//
         const result = { THREE: THREE_Module, loadedAddons: addons };
 
-        // Resolve pending callbacks
+        //===> Resolve Pending Callbacks <===//
         loadCallbacks.forEach(resolve => resolve(result));
         loadCallbacks = [];
         isLoading = false;
         
+        //===> Return Result <===//
         return result;
 
     } catch (error) {
-        console.error("Failed to load Three.js core module:", error);
+        //====> Handle Core Loading Failure <====//
+        console.error("Three.js Utils Error: Failed to load Three.js core module:", error);
         isLoading = false;
-        loadCallbacks = []; // Clear callbacks on failure
-        throw error; // Re-throw the error to be caught by the caller
+        loadCallbacks = []; // Clear queue on failure
+        THREE_Module = null; // Ensure it stays null
+        addons = {};
+        throw error; // Re-throw to be caught by the caller
     }
 }
 
-/**
- * Initializes a Three.js viewer in the given container element.
- * Loads modules dynamically if needed.
- * @param {HTMLElement} container - The container element (ideally a CANVAS)
- * @param {object} options - Viewer options (modelPath, modelType, background, autoRotate, controls)
- * @param {string} assetsBasePath - The absolute base URL for the plugin's assets directory.
- */
+//====> 03 - Initialize Viewer <====//
+// Initializes a Three.js viewer in the given container element.
+// Loads modules dynamically if needed.
 async function initializeViewer(container, options = {}, assetsBasePath) {
-    console.log("initializeViewer called for container:", container, "with options:", options);
+    //====> Add Loading Class <====//
     container.classList.add('px-loading');
 
-    // 1. Ensure the import map exists
+    //====> 1. Ensure Import Map Exists <====//
     if (!ensureImportMap(assetsBasePath)) {
         container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error: Could not set up Three.js import map.</p>';
         return;
     }
 
-    // 2. Determine required addons based on options
+    //====> 2. Determine Required Addons <====//
     const requiredAddonPaths = [];
     if (options.controls === 'orbit') requiredAddonPaths.push('controls/OrbitControls.js');
     else if (options.controls === 'trackball') requiredAddonPaths.push('controls/TrackballControls.js');
 
     const modelType = (options.modelType || 'gltf').toLowerCase();
-    if (options.modelPath) { // Only load loaders if a model path is provided
+    if (options.modelPath) { // Only load loaders if a model path is specified
         if (modelType === 'gltf' || modelType === 'glb') requiredAddonPaths.push('loaders/GLTFLoader.js');
         else if (modelType === 'obj') requiredAddonPaths.push('loaders/OBJLoader.js');
         else if (modelType === 'fbx') requiredAddonPaths.push('loaders/FBXLoader.js');
     }
 
-    // 3. Load THREE and Addons
+    //====> 3. Load THREE Modules <====//
     let loadedModules;
     try {
         loadedModules = await loadThreeModules(requiredAddonPaths);
     } catch (error) {
-        console.error("Failed to load Three.js modules:", error);
+        // Error already logged by loadThreeModules
         container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error: Could not load Three.js components.</p>';
         return;
     }
 
+    //===> Destructure Loaded Modules <===//
     const { THREE, loadedAddons } = loadedModules;
 
-    // 4. Proceed with Viewer Setup (using imported THREE and addons)
+    //====> 4. Setup Viewer Scene <====//
     try {
-        // Get constructors from loaded addons
+        //===> Get Addon Constructors <===//
         const OrbitControls = loadedAddons['OrbitControls'];
         const TrackballControls = loadedAddons['TrackballControls'];
         const GLTFLoader = loadedAddons['GLTFLoader'];
         const OBJLoader = loadedAddons['OBJLoader'];
         const FBXLoader = loadedAddons['FBXLoader'];
 
-        // === Start of createViewer logic (adapted) ===
+        //===> Handle Non-Canvas Container <===//
         if (!(container instanceof HTMLCanvasElement)) {
-             console.warn("Target container is not a canvas. Creating one inside.");
              const canvas = document.createElement('canvas');
              canvas.style.width = '100%';
              canvas.style.height = '100%';
              container.innerHTML = ''; // Clear container
              container.appendChild(canvas);
-             container = canvas; // Use the new canvas as the container
+             container = canvas; // Update container reference
         }
 
+        //===> Get Canvas Dimensions <===//
         const width = container.clientWidth || 300;
         const height = container.clientHeight || 300;
         if (width <= 0 || height <= 0) {
-            console.warn("Canvas dimensions invalid after module load.");
-            container.classList.remove('px-loading');
-            return;
+            console.warn("Three.js Utils Warning: Canvas dimensions invalid (<= 0). Viewer may not render correctly.");
+            // Don't return, let it try anyway, but warn.
         }
 
+        //===> Create Scene <===//
         const scene = new THREE.Scene();
-        if (options.background) scene.background = new THREE.Color(options.background);
-        else scene.background = null;
+        if (options.background && options.background !== 'transparent') {
+             scene.background = new THREE.Color(options.background);
+        } else {
+             scene.background = null; // Transparent background
+        }
 
+        //===> Create Camera <===//
         const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 2000);
-        camera.position.z = 5;
+        camera.position.z = 5; // Initial position, adjusted later by model loading
 
+        //===> Create Renderer <===//
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, canvas: container });
         renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
-        // Consider tone mapping for better visuals, especially with GLTF
-        // renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        // renderer.outputEncoding = THREE.sRGBEncoding;
+        // renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optional: Consider for better visuals
+        // renderer.outputEncoding = THREE.sRGBEncoding; // Optional: Match color space
 
-        // Lights
+        //===> Add Lights <===//
         scene.add(new THREE.AmbientLight(0xffffff, 0.7));
         const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
         dirLight1.position.set(1, 1, 1).normalize();
@@ -350,8 +216,8 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
         dirLight2.position.set(-1, -1, -0.5).normalize();
         scene.add(dirLight2);
         
-        // Controls
-        let controls;
+        //===> Setup Controls <===//
+        let controls = null;
         if (options.controls === 'orbit' && OrbitControls) {
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
@@ -359,23 +225,25 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
         } else if (options.controls === 'trackball' && TrackballControls) {
             controls = new TrackballControls(camera, renderer.domElement);
         } else if (options.controls) {
-             console.warn(`Controls type '${options.controls}' requested but not loaded or available.`);
+             console.warn(`Three.js Utils Warning: Controls type '${options.controls}' requested but addon not loaded or available.`);
         }
 
-        // Animation Loop Setup
+        //===> Animation Setup <===//
         let mixer = null;
         const clock = new THREE.Clock();
         let animationFrameId = null;
 
+        //===> Animation Loop <===//
         const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
             const delta = clock.getDelta();
-            if (controls?.update) controls.update(delta);
-            if (mixer?.update) mixer.update(delta);
+            // Update controls/mixer if they exist
+            controls?.update?.(delta); 
+            mixer?.update?.(delta);
             renderer.render(scene, camera);
         }
         
-        // Resize Observer
+        //===> Resize Handling <===//
         const resizeObserver = new ResizeObserver(() => {
              const newWidth = container.clientWidth;
              const newHeight = container.clientHeight;
@@ -387,8 +255,9 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
         });
         resizeObserver.observe(container);
 
-        // Model Loading Setup
+        //===> Model Loading Function <===//
         const loadModelInternal = (onLoadComplete, onError) => {
+            //==> Select Loader <==//
             let LoaderConstructor;
             switch (modelType) {
                 case 'gltf': case 'glb': LoaderConstructor = GLTFLoader; break;
@@ -396,33 +265,43 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
                 case 'fbx': LoaderConstructor = FBXLoader; break;
             }
 
+            //==> Check if Loader is Available <==//
             if (!LoaderConstructor) {
-                onError(new Error(`${modelType.toUpperCase()}Loader addon not loaded.`));
+                onError(new Error(`Three.js Utils Error: ${modelType.toUpperCase()}Loader addon not loaded.`));
                 return;
             }
             
+            //==> Load Model <==//
             const loader = new LoaderConstructor();
             loader.load(options.modelPath, 
                 (result) => { // Success
                     const model = (modelType === 'gltf' || modelType === 'glb') ? result.scene : result;
                     const animations = result.animations || [];
 
-                    // Configure model, camera, controls
+                    //==> Configure Model Position & Camera <==//
                     const box = new THREE.Box3().setFromObject(model);
                     const size = box.getSize(new THREE.Vector3());
                     const center = box.getCenter(new THREE.Vector3());
-                    model.position.sub(center);
+                    model.position.sub(center); // Center the model at origin
                     scene.add(model);
+                    
                     const maxDim = Math.max(size.x, size.y, size.z);
                     const fov = camera.fov * (Math.PI / 180);
-                    const cameraZ = maxDim > 0 ? Math.abs(maxDim / (2 * Math.tan(fov / 2))) * 1.5 : 5;
-                    camera.position.copy(center); camera.position.z += cameraZ;
-                    camera.lookAt(center);
+                    const cameraZ = maxDim > 0 ? Math.abs(maxDim / (2 * Math.tan(fov / 2))) * 1.5 : 5; // Calculate distance
+                    
+                    camera.position.copy(center); // Start camera at model center
+                    camera.position.z += cameraZ; // Move camera back
+                    camera.lookAt(center); // Point camera at model center
+                    
+                    // Adjust near/far planes based on distance
                     camera.near = cameraZ / 100 > 0.01 ? cameraZ / 100 : 0.01;
                     camera.far = cameraZ * 100;
                     camera.updateProjectionMatrix();
+                    
+                    // Update controls target to model center
                     if (controls?.target) { controls.target.copy(center); controls.update(); }
 
+                    //==> Handle Animations <==//
                     if (animations.length > 0) {
                         mixer = new THREE.AnimationMixer(model);
                         animations.forEach(clip => mixer.clipAction(clip).play());
@@ -434,37 +313,46 @@ async function initializeViewer(container, options = {}, assetsBasePath) {
             );
         };
 
-        // Start animation loop immediately
+        //====> Start Animation Loop <====//
         animate(); 
         
-        // Load model if path provided
+        //====> Load Model if Path Provided <====//
         if (options.modelPath) {
             loadModelInternal(() => {
-                console.log("Model loaded successfully.");
+                 //==> Model Loaded Successfully <==//
                  container.classList.remove('px-loading');
             }, (error) => {
-                 console.error("Failed to load model:", error);
+                 //==> Model Loading Failed <==//
+                 console.error("Three.js Utils Error: Failed to load model:", error);
                  container.classList.remove('px-loading');
                  container.innerHTML = '<p style="color:red;">Error loading 3D model.</p>';
-                 // Optionally stop animation/cleanup?
-                 // cancelAnimationFrame(animationFrameId);
-                 // resizeObserver.disconnect();
+                 // Cleanup on failure
+                 cancelAnimationFrame(animationFrameId);
+                 resizeObserver.disconnect();
             });
         } else {
+             //==> No Model to Load <==//
              container.classList.remove('px-loading');
         }
 
-        console.log("Three.js viewer setup complete.");
-        // === End of createViewer logic ===
+        // Optional: Add cleanup function when container is removed from DOM
+        // Example: Use MutationObserver on parent, or specific cleanup method call
+        // cleanup = () => {
+        //    cancelAnimationFrame(animationFrameId);
+        //    resizeObserver.disconnect();
+        //    renderer.dispose();
+        //    // Dispose geometry, materials, textures in scene
+        // }
 
     } catch (setupError) {
-        console.error("Error during Three.js viewer setup:", setupError);
+        //====> Handle Viewer Setup Error <====//
+        console.error("Three.js Utils Error: Error during viewer setup:", setupError);
         container.classList.remove('px-loading');
         container.innerHTML = '<p style="color:red;">Error setting up 3D viewer.</p>';
     }
 }
 
-// Expose the initializer function globally via window.threeUtils
+//====> 04 - Expose Public Functions <====//
 window.threeUtils = {
     initializeViewer
 }; 

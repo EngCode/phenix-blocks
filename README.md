@@ -83,31 +83,33 @@ This plugin works best with a Phenix Design System compatible theme. At minimum,
 ## Recent Updates
 
 ### Version 1.3.0 Performance & Stability
-1. Standardized viewport-based loading patterns across components
-2. Fixed inconsistent inView usage in timer component
-3. Improved progress component loading states
-4. Enhanced slider and swiper integration with proper loading states
-5. Added proper cleanup of observers and event listeners
-6. Fixed animation timing and trigger issues
-7. Improved media loading in sliders and galleries
-8. Enhanced error handling and loading states
-9. Optimized performance for viewport detection
-10. Added consistent loading state handling
-11. Fixed media component lazy loading implementation
-12. Improved slider navigation and controls
-13. Enhanced accessibility for interactive components
-14. Fixed memory leaks from uncleaned observers
-15. Standardized loading state classes and behavior
-16. Refactored animation handling with improved viewport visibility checks
-17. Added exit animation support for smoother transitions
-18. Enhanced scroll-driven animation logic and performance
-19. Improved animation sequencing with stagger options
-20. Streamlined animation configuration and cleanup
-21. Optimized IntersectionObserver usage for better performance
-22. Enhanced animation control with refined CSS properties
-23. Added scroll-driven animations support
-24. Improved animation order tracking and delay handling
-25. Removed legacy code and unused options for better maintainability
+1. Add 3D Viewer to the Multimedia Block
+2. Integrate Three.js Library with Phenix Blocks
+3. Add Support to Scroll Driven Animations
+4. Standardized viewport-based loading patterns across components
+5. Fixed inconsistent inView usage in timer component
+6. Improved progress component loading states
+7. Added proper cleanup of observers and event listeners
+8. Fixed animation timing and trigger issues
+9. Improved media loading in sliders and galleries
+10. Enhanced error handling and loading states
+11. Optimized performance for viewport detection
+12. Added consistent loading state handling
+13. Fixed media component lazy loading implementation
+14. Improved slider navigation and controls
+15. Enhanced accessibility for interactive components
+16. Fixed memory leaks from uncleaned observers
+17. Standardized loading state classes and behavior
+18. Refactored animation handling with improved viewport visibility checks
+19. Added exit animation support for smoother transitions
+20. Enhanced scroll-driven animation logic and performance
+21. Improved animation sequencing with stagger options
+22. Streamlined animation configuration and cleanup
+23. Optimized IntersectionObserver usage for better performance
+24. Enhanced animation control with refined CSS properties
+25. Added scroll-driven animations support
+26. Improved animation order tracking and delay handling
+27. Removed legacy code and unused options for better maintainability
 
 ### Version 1.2.0 Revamped
 1. Disable Cron Jobs Scheduler

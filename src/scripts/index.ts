@@ -591,30 +591,6 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
                 //===> If it's an ES6 Module <===//
                 if (isModule) {
                     element.setAttribute("type", "module");
-                    
-                    //===> Add Import Map if provided <===//
-                    if (moduleMap && Object.keys(moduleMap).length > 0) {
-                        //===> Check if an import map already exists <===//
-                        let importMap = document.querySelector('script[type="importmap"]');
-                        
-                        if (!importMap) {
-                            //===> Create a new import map <===//
-                            importMap = document.createElement('script');
-                            importMap.setAttribute('type', 'importmap');
-                            importMap.textContent = JSON.stringify({ imports: moduleMap });
-                            document.head.appendChild(importMap);
-                        } else {
-                            //===> Simple update for existing import map <===//
-                            const currentMap = JSON.parse(importMap.textContent || '{"imports":{}}');
-                            const imports = currentMap.imports || {};
-                            
-                            //===> Merge imports <===//
-                            Object.assign(imports, moduleMap);
-                            
-                            //===> Update import map <===//
-                            importMap.textContent = JSON.stringify({ ...currentMap, imports });
-                        }
-                    }
                 } else {
                     element.setAttribute("async", "");
                 }
@@ -807,7 +783,6 @@ import './integration/utilities'; //==> Phenix Utilities
 import './integration/blocks';    //==> Phenix Blocks Scripts
 import './integration/wordpress'; //==> Wordpress Integration
 import './integration/woocommerce'; //==> WooCommerce Integration
-import './integration/three'; //==> Three.js Integration
 
 /*====> Custom Script <====*/
 import './custom-scripts';

@@ -59,9 +59,13 @@ if (!function_exists('phenix_core')) :
                 'root' => esc_url_raw(rest_url('pds-blocks/v2/')),
                 'json' => esc_url_raw($assets_url."json"),
                 'nonce' => wp_create_nonce('wp_rest'),
+                'assetsBasePath' => trailingslashit($assets_url),
             ));
         } else {
-            wp_localize_script('phenix', 'PDS_WP_KEY', array('site' => esc_url_raw(site_url())));
+            wp_localize_script('phenix', 'PDS_WP_KEY', array(
+                'site' => esc_url_raw(site_url()),
+                'assetsBasePath' => trailingslashit($assets_url),
+            ));
         }
 
         //====> Get the Translation Files <====//

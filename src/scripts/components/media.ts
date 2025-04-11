@@ -16,6 +16,23 @@
 /*====> Phenix Object <====*/
 import Phenix, { PhenixElements } from "..";
 
+// ===> Add Type Declaration for Globals <===
+declare global {
+    interface Window {
+        // For three-utils.js script
+        threeUtils?: {
+            initializeViewer: (container: HTMLElement, options: object, assetsBasePath: string) => Promise<void>;
+        };
+        // For data localized from PHP using your existing key
+        PDS_WP_KEY?: {       // <-- Use your existing key name
+            assetsBasePath: string; // <-- Add the property we need
+            // Add other existing properties declared for PDS_WP_KEY if known
+            [key: string]: any; // Allows other existing properties
+        };
+    }
+}
+// ===> End Type Declaration <===
+
 /*====> Media Setter [un-tested] <====*/
 PhenixElements.prototype.multimedia = function (options?:{
     type?:string,   //===> background, image, video, embed, iframe, gradient, mixed-bg, audio
@@ -222,14 +239,69 @@ PhenixElements.prototype.multimedia = function (options?:{
                 }
 
                 //====> 3D Object Type <====//
-                else if (type == '3d-viewer' && !element.querySelector(':scope > canvas.px-3d')) {
-                    //====> Create Canvas First <====//
-                    Phenix(element).insert('append', `<canvas class="px-3d fluid" data-type="viewer" data-object="${src}"></canvas>`);
+                else if (type == '3d-viewer') {
+                    //====> Define the Canvas <====//
+                    let canvas = element.querySelector(':scope > canvas.px-3d') as HTMLElement;
 
-                    //====> Start Initialization <====//
-                    Phenix(element.querySelector(':scope > canvas.px-3d')).three();
+                    //====> Create the Canvas if it doesn't exist <====//
+                    if (!canvas) {
+                         //====> Default Model Type <====//
+                         let modelTypeForCanvas = 'gltf';
+                         //====> Get the Model Type from the the Extension <====//
+                         const extension = src.split('.').pop()?.toLowerCase();
+                         //====> If the Extension is Valid <====//
+                         if (extension && ['gltf', 'glb', 'obj', 'fbx'].includes(extension)) modelTypeForCanvas = extension;
+                         //====> If the Extension is Null/Undefined <====//
+                         else if (extension) modelTypeForCanvas = extension || 'gltf';
+                         //====> Create the Canvas <====//
+                         const canvasHTML = `<canvas class="px-3d fluid" data-object="${src}" data-model-type="${modelTypeForCanvas}" data-background="${element.getAttribute('data-background') || 'null'}" data-auto-rotate="${element.getAttribute('data-auto-rotate') || 'false'}" data-controls="${element.getAttribute('data-controls') || 'orbit'}"></canvas>`;
+                         //====> Append the Canvas <====//
+                         Phenix(element).insert('append', canvasHTML);
+                         //====> Redefine the Canvas <====//
+                         canvas = element.querySelector(':scope > canvas.px-3d') as HTMLElement;
+                    }
+
+                    //====> Check if already initialized ====//
+                    if (canvas && canvas.dataset.threeInitialized !== 'true') {
+                        //====> Get Asset Base Path from Localized Data (using PDS_WP_KEY) ====//
+                        const assetsBasePath = window.PDS_WP_KEY?.assetsBasePath;
+
+                        //====> Gather Options from Canvas ====//
+                        const viewerOptions = {
+                            modelPath: canvas.dataset.object,
+                            modelType: canvas.dataset.modelType || 'gltf',
+                            background: canvas.dataset.background === 'null' ? "transparent" : canvas.dataset.background,
+                            autoRotate: canvas.dataset.autoRotate === 'true',
+                            controls: canvas.dataset.controls || 'orbit'
+                        };
+                        
+                        //====> Add Loading Class to Canvas Wrapper ====//
+                        element.classList.add('px-loading');
+
+                        //====> Load three-utils.js & Initialize ====//
+                        if (window.threeUtils?.initializeViewer) {
+                            //====> Initialize the Viewer ====//
+                            window.threeUtils.initializeViewer(canvas, viewerOptions, assetsBasePath).catch(err => console.error("Error during Three.js initialization:", err, canvas));
+                            //====> Set the Initialized Attribute ====//
+                            canvas.dataset.threeInitialized = 'true';
+                        } else {
+                            //====> Import the Script ====//
+                            Phenix(document).import("three-utils", "script", "three/three-utils.js", () => {
+                                //====> Initialize the Viewer ====//
+                                if (window.threeUtils?.initializeViewer) {
+                                    //====> Initialize the Viewer ====//    
+                                    window.threeUtils.initializeViewer(canvas, viewerOptions, assetsBasePath).catch(err => console.error("Error during Three.js initialization:", err, canvas));
+                                    //====> Set the Initialized Attribute ====//
+                                    canvas.dataset.threeInitialized = 'true';
+                                } else {
+                                    //====> Remove Loading Class from Canvas Wrapper ====//
+                                    element.classList.remove('px-loading');
+                                }
+                            }, { integrated: true, module: false });
+                        }
+                    }
                     
-                    //===> Mark as Done <===//
+                    //===> Mark as Done for media handler loop ===//
                     mediaDone = true;
                 }
 

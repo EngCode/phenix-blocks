@@ -7,10 +7,10 @@
 */
 
 //====> Global Variables <====//
-let THREE_Module = null;  // To store the loaded THREE core module
-let addons = {};          // To store loaded addon modules
-let isLoading = false;    // Flag to prevent concurrent loading attempts
-let loadCallbacks = [];   // Queue for callbacks waiting for loading to finish
+let THREE_Module = null;  //====> Store the loaded THREE core module <====//
+let addons = {};          //====> Stores ALL loaded addons { addonName: module } <====//
+let isLoading = false;    //====> Flag to prevent concurrent loading attempts <====//
+let loadPromise = null;   //====> Promise for the current loading operation <====//
 
 //====> Dynamically creates an import map for Three.js. <====//
 function three_importing_map(assetsBasePath) {
@@ -48,65 +48,156 @@ function three_importing_map(assetsBasePath) {
 }
 
 //====> Three.js Modules Loader <====//
+//====> Loads the core THREE module (once) and requested addons dynamically. <====//
 async function three_modules_loader(requiredAddonPaths = []) {
-    //====> Return if Already Loaded <====//
-    if (THREE_Module) {
-        // Note: This doesn't currently check if *new* addons are needed if called again.
-        // Assumes all necessary addons are requested on the first call.
-        return { THREE: THREE_Module, loadedAddons: addons };
+    //====> 1. Handle Concurrent Loading: If a loading operation is already in progress, wait for it. <====//
+    if (isLoading && loadPromise) {
+        try {
+            await loadPromise;
+        } catch (error) {
+             //====> If the pending load failed, the current call might also fail depending on requirements. <====//
+             //====> We'll proceed and let the checks below handle it. <====//
+             console.warn("Three.js Utils Warning: Waited for a loading operation that failed.", error);
+        }
     }
 
-    //====> Handle Concurrent Loading <====//
-    if (isLoading) new Promise(resolve => loadCallbacks.push(resolve));
+    //====> 2. Identify Missing Addons <====//
+    //====> Check which of the requested addons are not already in our global 'addons' store. <====//
+    const missingAddonPaths = requiredAddonPaths.filter(relativePath => {
+        const addonName = relativePath.split('/').pop().split('.')[0];
+        //====> Check if the key exists in the addons object <====//
+        return !(addonName in addons);
+    });
 
-    //====> Set Loading Flag <====//
-    isLoading = true;
+    //====> 3. Determine if Loading is Needed <====//
+    const needsCoreLoad = !THREE_Module; //====> Need to load THREE core? <====//
+    const needsAddonLoad = missingAddonPaths.length > 0; //====> Need to load any addons? <====//
 
-    //====> Load Core and Addons <====//
-    try {
-        //===> Import THREE Core (uses import map) <===//
-        const THREE = await import('three');
-        THREE_Module = THREE; // Store the loaded module
+    if (needsCoreLoad || needsAddonLoad) {
+        //====> If we are already loading (e.g., another async task triggered this after the initial await), <====//
+        //====> wait again just in case the required modules were loaded by that other task. <====//
+        if (isLoading && loadPromise) {
+             try {
+                 await loadPromise;
+                 //====> Re-check missing addons after waiting again <====//
+                 missingAddonPaths.length = 0; //====> Clear array <====//
+                 requiredAddonPaths.forEach(relativePath => {
+                    const addonName = relativePath.split('/').pop().split('.')[0];
+                    if (!(addonName in addons)) {
+                        missingAddonPaths.push(relativePath);
+                    }
+                 });
+                 //====> If no longer missing addons and core is loaded, we can continue without new loading. <====//
+                 if (!missingAddonPaths.length && THREE_Module) {
+                     //====> Set needsAddonLoad to false if they are now loaded <====//
+                     needsAddonLoad = false;
+                 } else {
+                     //====> If core is still missing, update flag <====//
+                     needsCoreLoad = !THREE_Module;
+                 }
 
-        //===> Import Required Addons <===//
-        const addonPromises = requiredAddonPaths.map(async (relativePath) => {
-            //==> Derive Addon Name and Specifier <===//
-            const addonName = relativePath.split('/').pop().split('.')[0]; // e.g., OrbitControls
-            const fullSpecifier = `three/addons/${relativePath}`;
-            //===> Import Addon (uses import map) <===//
+             } catch (error) {
+                 console.warn("Three.js Utils Warning: Second wait for loading operation also failed.", error);
+                 //====> Proceed, likely to fail again, but let the checks run. <====//
+             }
+        }
+
+        //====> Proceed only if still necessary after potential second wait <====//
+        if (needsCoreLoad || needsAddonLoad) {
+            isLoading = true;
+            let resolveLoad, rejectLoad;
+            loadPromise = new Promise((res, rej) => { resolveLoad = res; rejectLoad = rej; });
+
             try {
-                const addonModule = await import(fullSpecifier);
-                // Store the most likely export (e.g., OrbitControls class from OrbitControls.js)
-                addons[addonName] = addonModule[addonName] || addonModule; 
-            } catch (err) {
-                console.error(`Three.js Utils Error: Failed to import addon: ${fullSpecifier}`, err);
-                addons[addonName] = null; // Mark as failed/unavailable
+                //====> 3a. Load Core THREE (if needed) <====//
+                if (needsCoreLoad) {
+                    try {
+                        console.log("Three.js Utils: Loading core module...");
+                        const THREE = await import('three');
+                        THREE_Module = THREE;
+                        console.log("Three.js Utils: Core module loaded.");
+                    } catch (error) {
+                        console.error("Three.js Utils Error: Failed to load Three.js core module:", error);
+                        isLoading = false;
+                        loadPromise = null;
+                        THREE_Module = null; //====> Ensure it's null on failure <====//
+                        addons = {}; //====> Clear potentially partially loaded addons <====//
+                        rejectLoad(error);
+                        throw error; //====> Propagate <====//
+                    }
+                }
+
+                //====> 3b. Load Missing Addons (if any) <====//
+                if (needsAddonLoad) {
+                    //====> Filter again in case the core load took time and another call loaded some addons <====//
+                     const stillMissingPaths = requiredAddonPaths.filter(relativePath => {
+                        const addonName = relativePath.split('/').pop().split('.')[0];
+                        return !(addonName in addons);
+                     });
+
+                     if (stillMissingPaths.length > 0) {
+                        console.log("Three.js Utils: Loading addons:", stillMissingPaths.map(p => p.split('/').pop().split('.')[0]));
+                        const addonPromises = stillMissingPaths.map(async (relativePath) => {
+                            const addonName = relativePath.split('/').pop().split('.')[0];
+                            const fullSpecifier = `three/addons/${relativePath}`;
+                            try {
+                                const addonModule = await import(fullSpecifier);
+                                //====> Store globally upon successful load <====//
+                                addons[addonName] = addonModule[addonName] || addonModule;
+                                console.log(`Three.js Utils: Addon ${addonName} loaded.`);
+                            } catch (err) {
+                                console.error(`Three.js Utils Error: Failed to import addon: ${fullSpecifier}`, err);
+                                //====> Store null globally to indicate failure and prevent retries <====//
+                                addons[addonName] = null;
+                            }
+                        });
+                        await Promise.all(addonPromises);
+                        console.log("Three.js Utils: Addon loading phase complete.");
+                    }
+                }
+
+                //====> 3c. Loading successful for this batch <====//
+                isLoading = false;
+                resolveLoad(); //====> Resolve the promise for any waiters <====//
+                loadPromise = null;
+
+            } catch (error) {
+                //====> This catches the core loading error if it was re-thrown <====//
+                console.error("Three.js Utils Error: Error during loading process.", error)
+                isLoading = false;
+                if (loadPromise) rejectLoad(error); //====> Reject if promise was created <====//
+                loadPromise = null;
+                //====> Ensure THREE_Module reflects the potential failure state <====//
+                if (!THREE_Module) addons = {}; //====> Clear addons if core failed definitively <====//
+                throw error; //====> Re-throw <====//
+            }
+        }
+    }
+
+    //====> 4. Prepare Result for *this specific call* <====//
+    //====> Create a new object containing only the addons requested by this specific call. <====//
+    const requestedAddonsMap = {};
+    let coreAvailable = !!THREE_Module; //====> Check if core is actually available now <====//
+
+    if (coreAvailable) {
+        requiredAddonPaths.forEach(relativePath => {
+            const addonName = relativePath.split('/').pop().split('.')[0];
+            if (addonName in addons) {
+                //====> Add to the result map, even if value is null (indicates loading failed) <====//
+                requestedAddonsMap[addonName] = addons[addonName];
+            } else {
+                //====> Should not happen if logic is correct, but indicates an issue. <====//
+                console.warn(`Three.js Utils Warning: Requested addon '${addonName}' was unexpectedly not found in global store after loading attempt.`);
+                requestedAddonsMap[addonName] = undefined;
             }
         });
-
-        //===> Wait for All Addons <===//
-        await Promise.all(addonPromises);
-
-        //===> Prepare Result <===//
-        const result = { THREE: THREE_Module, loadedAddons: addons };
-
-        //===> Resolve Pending Callbacks <===//
-        loadCallbacks.forEach(resolve => resolve(result));
-        loadCallbacks = [];
-        isLoading = false;
-        
-        //===> Return Result <===//
-        return result;
-
-    } catch (error) {
-        //====> Handle Core Loading Failure <====//
-        console.error("Three.js Utils Error: Failed to load Three.js core module:", error);
-        isLoading = false;
-        loadCallbacks = []; // Clear queue on failure
-        THREE_Module = null; // Ensure it stays null
-        addons = {};
-        throw error; // Re-throw to be caught by the caller
+    } else {
+         //====> Core module failed to load, cannot fulfill request. <====//
+         throw new Error("Three.js Utils Critical Error: THREE core module failed to load and is unavailable.");
     }
+
+    //====> 5. Return core module and the specifically requested addons map <====//
+    return { THREE: THREE_Module, loadedAddons: requestedAddonsMap };
 }
 
 //====> 03 - Initialize Viewer <====//

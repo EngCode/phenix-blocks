@@ -84,11 +84,13 @@ export default function Edit({ attributes, setAttributes }) {
                 <PxDropDown title={__("Media Source", "pds-blocks")} button={`bg-transparent fs-16 square far fa-image divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="dropdown-item" className='pd-10'>
                         {/*===> Uploader <===*/}
-                        {!attributes.setting.type || attributes.setting.type === "image" || attributes.setting['embed'] === "video" || attributes.setting.type === "embed" && !attributes.setting['embed']? 
+                        {!attributes.setting.type || attributes.setting.type === "image" || attributes.setting['embed'] === "video" || attributes.setting.type === "3d-viewer" || attributes.setting.type === "embed" && !attributes.setting['embed']? 
                             <>
                                 <MediaUploader label={__("Upload File","pds-blocks")} value={attributes.setting?.src} setValue={set_source}></MediaUploader>
                                 {/* ===> Cover File <=== */}
-                                <MediaUploader label="Cover File" key="upload-cover-file" size="small mt-15" value={attributes.setting.cover} setValue={set_cover}></MediaUploader>
+                                {attributes.setting['embed'] === "video" ? <>
+                                    <MediaUploader label="Cover File" key="upload-cover-file" size="small mt-15" value={attributes.setting.cover} setValue={set_cover}></MediaUploader>
+                                </> : null }
                             </>
                             :
                             <PhenixInput key="src" name="src" label={__("Source URL", "pds-blocks")} value={attributes.setting.src} onChange={set_setting} />

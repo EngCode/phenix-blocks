@@ -288,12 +288,12 @@ PhenixElements.prototype.slider = function (options?:{
     //====> Load Splide JS <====//
     if (!document.querySelector('#slider-phenix-script') && this.length > 0) {
         //===> Load CSS <===//
-        Phenix(document).import("slider", "link", "swiper.css", () => {}, true);
+        Phenix(document).import("slider", "link", "swiper.css", () => {}, { integrated: true });
 
         //===> Create Script Element <===//
         Phenix(document).import("slider", "script", "swiper-slider.js", () => {
             slider_handler();
-        }, true);
+        }, { integrated: true });
     //====> if Al-ready loaded run the sliders <====//
     } else {
         slider_handler();

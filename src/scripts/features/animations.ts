@@ -34,19 +34,19 @@ PhenixElements.prototype.animations = function (options?:{
         
         //====> Load Animation CSS Files <====//
         if (animationsToLoad === 'all') {
-            Phenix(document).import('px-animations', 'css', `${Phenix(document).getURL().phenixCSS}animations/all.css`, () => {}, false);
+            Phenix(document).import('px-animations', 'css', `${Phenix(document).getURL().phenixCSS}animations/all.css`, () => {}, { integrated: false });
         } else if (Array.isArray(animationsToLoad)) {
             //===> Ensure utilities is included <===//
             const animationsList = animationsToLoad.includes('utilities') ? animationsToLoad : [...animationsToLoad, 'utilities'];
             
             //===> Load each package <===//
             animationsList.forEach(pkg => {
-                Phenix(document).import(`px-animations-${pkg}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${pkg}.css`, () => {}, false);
+                Phenix(document).import(`px-animations-${pkg}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${pkg}.css`, () => {}, { integrated: false });
             });
         } else if (typeof animationsToLoad === 'string' && animationsToLoad !== 'all') {
             //===> Load the specified package and utilities <===//
-            Phenix(document).import(`px-animations-${animationsToLoad}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${animationsToLoad}.css`, () => {}, false);
-            Phenix(document).import('px-animations-utilities', 'css', `${Phenix(document).getURL().phenixCSS}animations/utilities.css`, () => {}, false);
+            Phenix(document).import(`px-animations-${animationsToLoad}`, 'css', `${Phenix(document).getURL().phenixCSS}animations/${animationsToLoad}.css`, () => {}, { integrated: false });
+            Phenix(document).import('px-animations-utilities', 'css', `${Phenix(document).getURL().phenixCSS}animations/utilities.css`, () => {}, { integrated: false });
         }
         
         //====> Return Phenix Elements <====//

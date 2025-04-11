@@ -63,8 +63,6 @@ window.PhenixBlocks.dataLists = {
         { "label": "Aside", "value": "aside"},
         { "label": "Article", "value": "article"},
         { "label": "Section", "value": "section"},
-        { "label": "List-(•)", "value": "ul"},
-        { "label": "List-(#)", "value": "ol"},
     ],
 
     container_sizes : [
@@ -81,6 +79,7 @@ window.PhenixBlocks.dataLists = {
             { "label": "Image", "value": "image"},
             { "label": "Video", "value": "embed"},
             { "label": "iFrame", "value": "iframe"},
+            { "label": "3D Viewer", "value": "3d-viewer"},
         ],
     
         embeds : [

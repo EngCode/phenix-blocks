@@ -342,3 +342,31 @@ endif;
 add_action('admin_enqueue_scripts', function () {
     wp_enqueue_media();
 });
+
+//===> Allow GLTF/GLB file upload in WordPress <===//
+function add_gltf_mime_types($mime_types) {
+    //====> Add .gltf and .glb (binary gltf) file formats <====//
+    $mime_types['gltf'] = 'model/gltf+json';
+    $mime_types['glb'] = 'model/gltf-binary';
+    return $mime_types;
+}
+add_filter('upload_mimes', 'add_gltf_mime_types');
+
+//===> Fix MIME type detection for GLTF/GLB files <===//
+function fix_gltf_mime_type_detection($data, $file, $filename, $mimes) {
+    //====> If WordPress thinks it's not a valid file, let's check manually <====//
+    if (isset($data['ext']) && $data['ext'] === false) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        
+        if ($ext === 'gltf') {
+            $data['ext'] = 'gltf';
+            $data['type'] = 'model/gltf+json';
+        } elseif ($ext === 'glb') {
+            $data['ext'] = 'glb';
+            $data['type'] = 'model/gltf-binary';    
+        }
+    }
+    
+    return $data;
+}
+add_filter('wp_check_filetype_and_ext', 'fix_gltf_mime_type_detection', 10, 4);

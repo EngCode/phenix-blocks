@@ -221,6 +221,18 @@ PhenixElements.prototype.multimedia = function (options?:{
                     mediaDone = true;
                 }
 
+                //====> 3D Object Type <====//
+                else if (type == '3d-viewer' && !element.querySelector(':scope > canvas.px-3d')) {
+                    //====> Create Canvas First <====//
+                    Phenix(element).insert('append', `<canvas class="px-3d fluid" data-type="viewer" data-object="${src}"></canvas>`);
+
+                    //====> Start Initialization <====//
+                    Phenix(element.querySelector(':scope > canvas.px-3d')).three();
+                    
+                    //===> Mark as Done <===//
+                    mediaDone = true;
+                }
+
                 //====> Something Else <====//
                 else {
                     //===> Set Background <===//

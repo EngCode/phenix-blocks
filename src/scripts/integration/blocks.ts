@@ -188,7 +188,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
     }
 
     //===> Add Support for CSS Scroll Driving Animations <===//
-    // Phenix(document).import("scroll-timeline", "script", "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js", ()=>{}, false);
+    // Phenix(document).import("scroll-timeline", "script", "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js", ()=>{}, { integrated: false });
 
     //===> Add Support Price Range Sliders <===//
     const RangeSliders = Phenix('.pds-range-slider');
@@ -201,7 +201,7 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         //====> Import Slider Plugin <====//
         Phenix(document).import("range-slider", "script", "range-slider/range-slider.js", ()=>{
             //====> Import CSS <====//
-            Phenix(document).import(`range-slider`, "link", `range-slider/range-slider${page_direction === "rtl" ? "-rtl" : ""}.css`, ()=>{}, true);
+            Phenix(document).import(`range-slider`, "link", `range-slider/range-slider${page_direction === "rtl" ? "-rtl" : ""}.css`, ()=>{}, { integrated: true });
 
             //====> Activate Sliders <====//
             RangeSliders.forEach((slider:any) => {
@@ -246,6 +246,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
                     });
                 }
             });
-        }, true);
+        }, { integrated: true });
     }
 }

@@ -150,10 +150,11 @@ window.PhenixBlocks = {
                             if (!blockProps.style) blockProps.style = {};
     
                             //===> Image Background <===//
-                            if (attributes.style.background.type === 'image') {
+                            if (attributes.style.background.type === 'image' || attributes.style.background.type === '3d-viewer') {
                                 blockProps.className += ` px-media`;
                                 blockProps["data-src"] = sub_value.value;
-                                if(!isSave) blockProps.style.backgroundImage = `url("${sub_value.value}")`;
+                                if(attributes.style.background.type === '3d-viewer') blockProps["data-type"] = attributes.style.background.type;
+                                if(!isSave && attributes.style.background.type != '3d-viewer') blockProps.style.backgroundImage = `url("${sub_value.value}")`;
                             }
                             //===> Video Background <===//
                             else if (attributes.style.background.type === 'video') {

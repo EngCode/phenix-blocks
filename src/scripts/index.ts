@@ -547,10 +547,29 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     };
 
     /*====> CSS/JS Importer <====*/
-    import = (id:string, tag:string, source:string, callback:any, isIntegrated:boolean) => {
+    import = (id:string, tag:string, source:string, callback:any, options?:boolean|{
+        integrated?: boolean;   // Whether to prepend the library path to the source
+        module?: boolean;       // Whether to load as ES6 module
+        importMap?: Record<string, string>; // Import map for ES6 modules
+    }) => {
         //===> Get Correct Tagname <===//
         if (tag === "css") tag = "link";
         else if (tag === "js") tag = "script";
+
+        //===> Handle Legacy Support for Options <===//
+        let isIntegrated = false;
+        let isModule = false;
+        let moduleMap: Record<string, string> | undefined;
+
+        if (typeof options === 'boolean') {
+            // Legacy format: options is isIntegrated boolean
+            isIntegrated = options;
+        } else if (options && typeof options === 'object') {
+            // New format: options is an object
+            isIntegrated = options.integrated ?? false;
+            isModule = options.module ?? false;
+            moduleMap = options.importMap;
+        }
 
         //===> Define Element and URL Path <===//
         let element = document.querySelector(`#${id}-phenix-${tag === "link" ? "css" : tag}`),
@@ -568,7 +587,38 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
             //===> Load JS Script <===//
             if (tag === "script" || tag === "js") {
                 element.setAttribute("src", trueUrl);
-                element.setAttribute("async", "");
+                
+                //===> If it's an ES6 Module <===//
+                if (isModule) {
+                    element.setAttribute("type", "module");
+                    
+                    //===> Add Import Map if provided <===//
+                    if (moduleMap && Object.keys(moduleMap).length > 0) {
+                        //===> Check if an import map already exists <===//
+                        let importMap = document.querySelector('script[type="importmap"]');
+                        
+                        if (!importMap) {
+                            //===> Create a new import map <===//
+                            importMap = document.createElement('script');
+                            importMap.setAttribute('type', 'importmap');
+                            importMap.textContent = JSON.stringify({ imports: moduleMap });
+                            document.head.appendChild(importMap);
+                        } else {
+                            //===> Simple update for existing import map <===//
+                            const currentMap = JSON.parse(importMap.textContent || '{"imports":{}}');
+                            const imports = currentMap.imports || {};
+                            
+                            //===> Merge imports <===//
+                            Object.assign(imports, moduleMap);
+                            
+                            //===> Update import map <===//
+                            importMap.textContent = JSON.stringify({ ...currentMap, imports });
+                        }
+                    }
+                } else {
+                    element.setAttribute("async", "");
+                }
+                
                 //===> Append Element <===//
                 document.body.appendChild(element);
             }
@@ -700,6 +750,8 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     slider; utilities; notifications; init; debounce;
     /*====> WooCommerce Methods <====*/
     pds_add_to_cart; pds_remove_from_cart; pds_toggle_wishlist;
+    /*====> Three.js Methods <====*/
+    three;
 }
 
 /*====> Phenix Selecting Method <====*/
@@ -755,6 +807,7 @@ import './integration/utilities'; //==> Phenix Utilities
 import './integration/blocks';    //==> Phenix Blocks Scripts
 import './integration/wordpress'; //==> Wordpress Integration
 import './integration/woocommerce'; //==> WooCommerce Integration
+import './integration/three'; //==> Three.js Integration
 
 /*====> Custom Script <====*/
 import './custom-scripts';

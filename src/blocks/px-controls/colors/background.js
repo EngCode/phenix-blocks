@@ -82,9 +82,9 @@ const PhenixBackground = (props) => {
         let button = clicked.target,
             value  = button?.getAttribute('data-value');
 
-        //===> Colors & Gradients <===//
-        if (type !== 'image' && type !== "video") {options.value = value;}
-        //===> Image Type <===//
+        //===> CSS Colors & Gradients <===//
+        if (type !== 'image' && type !== "video" && type !== "3d-viewer") {options.value = value;}
+        //===> File URL <===//
         else {options.value = clicked.url;}
 
         //===> Return Options <===//
@@ -177,6 +177,7 @@ const PhenixBackground = (props) => {
                         { label: 'image',   value: 'image' },
                         { label: 'gradient',   value: 'gradient' },
                         { label: 'video',   value: 'video' },
+                        { label: '3D Viewer',   value: '3d-viewer' },
                     ]}/>
                 : onlyCG ? 
                     <PhenixSelect key="bg-type" className="col-5" name="bg-type" value={type || ""} onChange={(target) => set_type(target.value)} options={[
@@ -187,9 +188,10 @@ const PhenixBackground = (props) => {
             </div>
             {/*===> Panel <===*/}
             <div className={`flexbox flow-columns options-list ${type !== "image"  && type !== "video" && type !== "embed" ? 'pdy-15 pdx-10 bg-white border-1 border-solid border-alpha-20 radius-md radius-bottom' : 'pdt-5'} hidden fluid px-scrollbar overflow-y-auto`} style={{gap:"10px", maxHeight: "calc(100vh - 350px)"}}>
-                {type === "image" || type === "video" ? <>
+                {type === "image" || type === "video" || type === "3d-viewer" ? <>
                     <MediaUploader key="upload-file" size="small" label={`${type === "video" ? "Video File" : "Image File"}`} value={!value || type === "video" ? PhenixBlocks.palette.placeholder : value} setValue={setBackground}></MediaUploader>
 
+                    {/* ===> Cover File <=== */}
                     {type === "video" ? <MediaUploader label="Cover File" key="upload-cover-file" size="small" value={!cover ? PhenixBlocks.palette.placeholder : cover} setValue={setCover}></MediaUploader> : null}
                 </> : null}
                 {/*===> Colors Set <====*/}

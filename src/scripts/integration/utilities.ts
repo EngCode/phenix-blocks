@@ -301,13 +301,28 @@ PhenixElements.prototype.utilities = function (options?:{
         const document_classes = document.body.getAttribute('class');
         //===> Check the Document Type <===//
         if (!document.body.classList.contains('wp-admin') && !document_classes?.includes('-editor')) {
+            //===> Example of ES6 Module Import with Import Map <===//
+            if(document.querySelector('.px-module-test')) {
+                Phenix(document).import("test-module", "script", "modules/test-module.js", () => {
+                    console.log("ES6 Module loaded successfully");
+                }, {
+                    integrated: true,
+                    module: true,
+                    importMap: {
+                        // Define module mappings
+                        "lodash": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js",
+                        "utils": "./modules/utils.js"
+                    }
+                });
+            }
+
             //===> Import Masonry Grid Plugin <===//
             if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
                 Phenix(".px-masonry").forEach((grid:any) => {
                     let first_child_class = grid.children[0].classList[0];
                     var masonry = new Masonry(grid, {itemSelector: `.${first_child_class}`});
                 });
-            }, true);
+            }, { integrated: true });
     
             //===> Typed List <===//
             if(document.querySelector('.typed-list')) {
@@ -345,7 +360,7 @@ PhenixElements.prototype.utilities = function (options?:{
                     //===> Run the Typewriter <===//
                     typeWriter.style.height = Phenix(document).toREM(Phenix(typeWriter).height());
                     tinyTypewriter(typeWriter, {items: items, cursor: false, startDelay: 700});
-                }), true);
+                }), { integrated: true });
             }
     
             //===> Marquee Slider <===//
@@ -394,7 +409,7 @@ PhenixElements.prototype.utilities = function (options?:{
                             stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-hover') === 'false' ? false : true,
                         });
                     });
-                }, true);
+                }, { integrated: true });
             }
         }
     }

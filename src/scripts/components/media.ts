@@ -77,6 +77,11 @@ PhenixElements.prototype.multimedia = function (options?:{
         if (mediaDone) return;
         if (element.length != undefined) return;
 
+        //====> Helper Function to Convert String to Boolean <====//
+        const toBoolean = (value: string | boolean | undefined): boolean => {
+            return value === true || value === 'true';
+        };
+
         //====> Get Options Data <====//
         let type = element.getAttribute('data-type') || options?.type || 'background',
             src  = element.getAttribute('data-src') || options?.src,
@@ -89,17 +94,13 @@ PhenixElements.prototype.multimedia = function (options?:{
             gradient_mode = element.getAttribute('data-mode') || options?.gradient?.mode || 'linear',
             gradient_repeat = element.getAttribute('data-repeat') || options?.gradient?.repeat,
             //====> Embed & Lazyloading <====//
-            lazyloading = element.getAttribute('data-lazyloading') || options?.lazyloading || false,
-            player_controls = element.getAttribute('data-controls') || options?.controls || false,
-            player_autoplay = element.getAttribute('data-autoplay') || options?.autoplay || false,
-            player_loop = element.getAttribute('data-loop') || options?.loop || false,
-            player_muted = element.getAttribute('data-muted') || options?.muted || false,
-            //====> .... <====//
-            lazy = lazyloading && lazyloading !== 'false' ? true : false,
-            controls = player_controls && player_controls !== 'false' ? true : false,
-            autoplay = player_autoplay && player_autoplay !== 'false' && player_autoplay !== 'hover' ? true : false,
-            loop = player_loop && player_loop !== 'false' ? true : false,
-            muted = player_muted && player_muted !== 'false' ? true : false;
+            lazy = toBoolean(element.getAttribute('data-lazyloading') || options?.lazyloading),
+            controls = toBoolean(element.getAttribute('data-controls') || options?.controls),
+            autoplay = toBoolean(element.getAttribute('data-autoplay') || options?.autoplay) && (element.getAttribute('data-autoplay') || options?.autoplay) !== 'hover',
+            loop = toBoolean(element.getAttribute('data-loop') || options?.loop),
+            muted = toBoolean(element.getAttribute('data-muted') || options?.muted),
+            player_autoplay = element.getAttribute('data-autoplay') || options?.autoplay || 'hover';
+
         //====> Set Media Size <====//
         if (ratio && ratio != null || undefined) {
             //====> Predefined Ratio's <====//
@@ -216,7 +217,9 @@ PhenixElements.prototype.multimedia = function (options?:{
                     let media_attributes = `${lazy ? 'loading="lazy"' : ''} ${autoplay ? 'autoplay="true" playsinline="true"' : ''} ${controls ? 'controls' : ''} ${loop ? 'loop' : ''} ${muted ? 'muted' : ''} ${cover ? `poster="${cover}"` : ''}`;
                     //===> Video Source <===//
                     if (embed == 'video' && !element.querySelector(':scope > .px-video')) {
+                        //====> Create the Video <====//
                         Phenix(element).insert('append', `<video class="px-video" src="${src}" ${media_attributes}></video>`);
+                        //====> Video Autoplay <====//
                         if (player_autoplay === 'hover') {
                             const video = element.querySelector('.px-video');
                             Phenix(element).on('mouseenter', event => video.play());

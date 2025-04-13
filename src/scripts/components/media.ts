@@ -77,11 +77,6 @@ PhenixElements.prototype.multimedia = function (options?:{
         if (mediaDone) return;
         if (element.length != undefined) return;
 
-        //====> Helper Function to Convert String to Boolean <====//
-        const toBoolean = (value: string | boolean | undefined): boolean => {
-            return value === true || value === 'true';
-        };
-
         //====> Get Options Data <====//
         let type = element.getAttribute('data-type') || options?.type || 'background',
             src  = element.getAttribute('data-src') || options?.src,
@@ -94,11 +89,11 @@ PhenixElements.prototype.multimedia = function (options?:{
             gradient_mode = element.getAttribute('data-mode') || options?.gradient?.mode || 'linear',
             gradient_repeat = element.getAttribute('data-repeat') || options?.gradient?.repeat,
             //====> Embed & Lazyloading <====//
-            lazy = toBoolean(element.getAttribute('data-lazyloading') || options?.lazyloading),
-            controls = toBoolean(element.getAttribute('data-controls') || options?.controls),
-            autoplay = toBoolean(element.getAttribute('data-autoplay') || options?.autoplay) && (element.getAttribute('data-autoplay') || options?.autoplay) !== 'hover',
-            loop = toBoolean(element.getAttribute('data-loop') || options?.loop),
-            muted = toBoolean(element.getAttribute('data-muted') || options?.muted),
+            lazy = Phenix(document).toBoolean(element.getAttribute('data-lazyloading') || options?.lazyloading),
+            controls = Phenix(document).toBoolean(element.getAttribute('data-controls') || options?.controls),
+            autoplay = Phenix(document).toBoolean(element.getAttribute('data-autoplay') || options?.autoplay) && (element.getAttribute('data-autoplay') || options?.autoplay) !== 'hover',
+            loop = Phenix(document).toBoolean(element.getAttribute('data-loop') || options?.loop),
+            muted = Phenix(document).toBoolean(element.getAttribute('data-muted') || options?.muted),
             player_autoplay = element.getAttribute('data-autoplay') || options?.autoplay || 'hover';
 
         //====> Set Media Size <====//

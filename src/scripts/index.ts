@@ -705,6 +705,11 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         };
     };
 
+    /*====> Convert String to Boolean <====*/
+    toBoolean = (value: string | boolean | undefined): boolean => {
+        return value === true || value === 'true';
+    };
+
     /*====> Define Information <====*/
     height; getCSS; direction; getURL;
     inView; viewport; copyrights;

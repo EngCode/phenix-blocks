@@ -5,8 +5,12 @@
 			"path": "."
 		},
 		{
-			"name": "themes",
+			"name": "px-themes",
 			"path": "../../themes"
+		},
+		{
+			"name": "bo-themes",
+			"path": "../../../../bitoven/wp-content/themes"
 		}
 	],
 	"settings": {

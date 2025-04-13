@@ -603,21 +603,28 @@ document.addEventListener('DOMContentLoaded', ready => {
                 let fields_row = Phenix('[data-fields-key="fields"] [data-item-key="0"]')[0];
 
                 //===> Clone the Row as much as Fields <===//
-                for (let index = 1; index < fields.length; index++) {
+                fields.forEach((field, index) => {
+                    //===> Skip the First Row <===//
+                    if (index === 0) return;
+
                     //===> Create New Row <===//
                     let newRow = fields_row.parentNode.appendChild(fields_row.cloneNode(true));
 
                     //===> Increase the Row Number <===//
                     newRow.setAttribute("data-item-key", index);
 
-                    //===> Change the Fields Name <===//
+                    //===> Set the Row Number in the Fields Name <===//
                     newRow.querySelectorAll("[name]").forEach((element) => {
-                        //====> Get the Name <====//
+                        //====> Get the Row Field Name <====//
                         let name = element.getAttribute("name");
-                        //====> Correct the Name <====//
-                        element.setAttribute("name", name.replace(`[${index-1}]`, `[${index}]`));
+                        //====> Get the Original Name <====//
+                        let originalName = element.getAttribute('data-original-name');
+                        //====> Set the Value <====//
+                        element.value = field[originalName];
+                        //====> Set the Name <====//
+                        element.setAttribute("name", `fields[${index}][${originalName}]`);
                     });
-                }
+                });
             };
 
             //===> Check for Data Item <===//

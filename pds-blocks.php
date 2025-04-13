@@ -94,11 +94,21 @@ function check_other_plugins() {
 	if (!is_plugin_active('advanced-custom-fields/acf.php') && !is_plugin_active('advanced-custom-fields-pro/acf.php')) {
 		//===> Get Field Replacement <===//
 		if(!function_exists('get_field'))  {
-			function get_field() { return 'ACF is Not Enabled.'; }
+			function get_field($field_name) { return 'ACF is Not Enabled.'; }
 		}
 		//===> The Field Replacement <===//
 		if(!function_exists('the_field'))  {
-			function the_field() { return 'ACF is Not Enabled.'; }
+			function the_field($field_name) { return 'ACF is Not Enabled.'; }
+		}
+		//===> Repeater Check Replacement <===//
+		if(!function_exists('have_rows'))  {
+			function have_rows($field_name) { return false; }
+		}
+		//===> Get Sub Field Replacement <===//
+		if(!function_exists('get_sub_field'))  {
+			function get_sub_field($field_name) { return "ACF is Not Enabled."; }
 		}
 	}
 }
+
+add_action('init', 'check_other_plugins');

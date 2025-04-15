@@ -49,7 +49,6 @@ PhenixElements.prototype.popup = function (options?:{
 
         //====> Popup CSS Classes <====//
         popup.classList.add(
-            'pdy-30',
             'w-fluid',
             'h-100vh',
             'flexbox',

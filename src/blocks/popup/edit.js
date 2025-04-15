@@ -13,8 +13,16 @@ import PhenixNumber from "../px-controls/number";
 import OptionControl from '../px-controls/switch';
 
 //====> Phenix Options Sets <=====//
+import PaddingSet from '../px-controls/sets/padding';
+import MarginSet from '../px-controls/sets/margin';
+import PositionSet from '../px-controls/sets/position';
+import SizesSet from '../px-controls/sets/sizes';
 import StylesSet from '../px-controls/sets/styles';
 import FlexboxSet from '../px-controls/sets/flexbox';
+import TypographySet from '../px-controls/sets/typography';
+import AnimationsSet from '../px-controls/sets/animations';
+import EffectsSet from '../px-controls/sets/effects';
+import BorderSet from '../px-controls/sets/border';
 
 //====> Edit Mode <====//
 export default function Edit({ attributes, setAttributes }) {
@@ -90,6 +98,104 @@ export default function Edit({ attributes, setAttributes }) {
                         </div>
                     </li>
                 </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                    <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
+                            md={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            lg={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                            xl={(screen) => <SizesSet screen={screen} attributes={attributes} mainSetter={set_style} />}
+                        />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
+                        <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
+                        <ScreensTabs
+                            sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} />}
+                            md={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size, align" />}
+                            lg={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size, align" />}
+                            xl={(screen) => <TypographySet screen={screen} attributes={attributes} mainSetter={set_typography} options="size, align" />}
+                        />
+                    </li>
+                </PxDropDown>
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-animations') ?
+                    <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-animations" className='pdt-15 pdx-15 lineheight-150'>
+                            {/*===> Animations <===*/}
+                            <AnimationsSet attributes={attributes} mainSetter={set_style} />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-padding') ?
+                    <PxDropDown title={__("Padding Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-outer divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-padding" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-margin') ?
+                    <PxDropDown title={__("Margin Options", "pds-blocks")} button={`bg-transparent fs-16 square fal fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-position') ?
+                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <ScreensTabs
+                                sm={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-border') ?
+                    <PxDropDown title={__("Border Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-all divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            {/*===> Border Size <===*/}
+                            <ScreensTabs
+                                sm={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
+                                md={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                lg={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                                xl={(screen) => <BorderSet setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} attributes={attributes} attrSetter={setAttributes} screen={`-${screen}`} mainSetter={target => set_style(target, "")} />}
+                            />
+                        </li>
+                    </PxDropDown>
+                :null}
+                {/*===> Dropdown Button <===*/}
+                {attributes.style?.support?.includes('enable-effects') ?
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                        <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
+                            <EffectsSet attributes={attributes} mainSetter={set_style} />
+                        </li>
+                    </PxDropDown>
+                :null}
             </ToolbarGroup>
         </BlockControls>
         {/*====> Controls Layout <====*/}

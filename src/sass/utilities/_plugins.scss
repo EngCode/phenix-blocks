@@ -180,10 +180,15 @@
 /*==== Phenix Modal ====*/
 .px-modal {
     overscroll-behavior: none;
-    .model-content {z-index: 2;}
     .backdrop-btn {z-index: 0;}
+    .model-content {z-index: 2;}
+    //====> Alignment Fix <====//
     &:not([class*="align-"]) {align-items: center;}
+    //====> Overlay Fix <====//
     &[class*="overlay"]::before {display: none!important;}
+    //====> Padding <====//
+    &:not([class*="pdy-"]):not([class*="pdt-"]) {padding-top: 2rem;}
+    &:not([class*="pdy-"]):not([class*="pdb-"]) {padding-bottom: 2rem;}
 }
 
 /*==== Scaling ====*/

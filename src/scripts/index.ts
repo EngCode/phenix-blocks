@@ -706,8 +706,9 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     };
 
     /*====> Convert String to Boolean <====*/
-    toBoolean = (value: string | boolean | undefined): boolean => {
-        return value === true || value === 'true';
+    toBoolean = (value: string | boolean | undefined): boolean | string => {
+        //===> Return true if the value is true, true string, or 1 and false if the value is false, false string, or 0 any other string return it self <===//
+        return value === true || value === 'true' || value === '1' ? true : value === false || value === 'false' || value === '0' ? false : typeof value === 'string' ? value : false;
     };
 
     /*====> Define Information <====*/

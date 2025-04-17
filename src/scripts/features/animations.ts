@@ -66,7 +66,7 @@ PhenixElements.prototype.animations = function (options?:{
         const animation = element.getAttribute('data-animation') || options?.animation || 'fadeIn';
         const duration = parseInt(element.getAttribute('data-duration')) || options?.duration || 700;
         const delay = parseInt(element.getAttribute('data-delay')) || options?.delay || 0;
-        const lazygroup = element.getAttribute('data-lazy-group') || options?.lazygroup || false;
+        const lazygroup = Phenix(document).toBoolean(element.getAttribute('data-lazy-group')) || options?.lazygroup || false;
 
         //====> Directions Resolve <====//
         let currentAnimation = animation;
@@ -116,7 +116,7 @@ PhenixElements.prototype.animations = function (options?:{
         }
 
         //====> Handle Animation Setup <====//
-        if (element.getAttribute('data-scrollDriven') || options?.scrollDriven) {
+        if (Phenix(document).toBoolean(element.getAttribute('data-scrollDriven')) || options?.scrollDriven) {
             //====> Get Animation Options <====//
             const completeAt = element.getAttribute('data-drivenEnd') || options?.drivenEnd || 'center';
             const exitAnimation = element.getAttribute('data-exit') || options?.exit;

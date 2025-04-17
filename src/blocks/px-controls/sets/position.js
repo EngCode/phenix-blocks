@@ -19,9 +19,9 @@ export default class PositionSet extends Component {
         //===> Properties <===//
         const {attributes, options, mainSetter, screen, attrSetter} = this.props;
         const PhenixBlocks = window.PhenixBlocks.dataLists.styles;
-        const zindex_options = PhenixBlocks.zindex_options.map(opt => { opt.value += `${screen}`; return opt; });
-        const position_options = PhenixBlocks.position_options.map(opt => { opt.value += `${screen}`; return opt; });
-        const preset_positions = PhenixBlocks.preset_positions.map(opt => { opt.value += `${screen}`; return opt; });
+        const zindex_options = PhenixBlocks.zindex_options.map(opt => ({ ...opt, value: `${opt.value}${screen}` }));
+        const position_options = PhenixBlocks.position_options.map(opt => ({ ...opt, value: `${opt.value}${screen}` }));
+        const preset_positions = PhenixBlocks.preset_positions.map(opt => ({ ...opt, value: `${opt.value}${screen}` }));
 
         //===> Reset position <===//
         const reset = () => {

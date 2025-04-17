@@ -37,7 +37,7 @@ export default class AnimationsSet extends Component {
                 </div>
                 {attributes.style?.animation?.hasExit ?
                     <div className='col-12 mb-5'>
-                        <PhenixSelect name="exit" className="mb-15" placeholder={__("None", "pds-blocks")} search={true} label={__("Exit Animation", "pds-blocks")} value={attributes.style?.animation?.exit} onChange={mainSetter} options={exit_animations} />
+                        <PhenixSelect name="animation-exit" className="mb-15" placeholder={__("None", "pds-blocks")} search={true} label={__("Exit Animation", "pds-blocks")} value={attributes.style?.animation?.exit} onChange={mainSetter} options={exit_animations} />
                     </div>
                 :null}
                 {!attributes.style?.animation?.group ? <>
@@ -67,7 +67,7 @@ export default class AnimationsSet extends Component {
                     </div>
                     {/*===> Driven Progress <===*/}
                     <div className='col-12 col mb-10'>
-                        <PhenixNumber name="animation-drivenEnd" label={__("Driven Progress", "pds-blocks")} value={attributes.style?.animation?.drivenEnd || 0} onChange={mainSetter} min={0} max={100} steps={1}></PhenixNumber>
+                        <PhenixNumber name="animation-drivenEnd" label={__("Driven Progress", "pds-blocks")} value={attributes.style?.animation?.drivenEnd || 0} onChange={mainSetter} min={0} max={200} steps={1}></PhenixNumber>
                     </div>
                     {/*===> .End Columns. <===*/}
                 </>: <>
@@ -83,7 +83,7 @@ export default class AnimationsSet extends Component {
                 </div>
                 {/*===> . Columns. <===*/}
                 <div className='col-5 col mb-10'>
-                    <OptionControl name={`hasExit`} value="boolean" checked={attributes.style?.animation?.hasExit} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Has Exit", "pds-blocks")}</OptionControl>
+                    <OptionControl name={`animation-hasExit`} value="boolean" checked={attributes.style?.animation?.hasExit} onChange={mainSetter} type='switch-checkbox' className='small'>{__("Has Exit", "pds-blocks")}</OptionControl>
                 </div>
                 {/*===> .End Columns. <===*/}
             </div>

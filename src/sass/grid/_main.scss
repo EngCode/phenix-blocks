@@ -60,8 +60,7 @@
 /*==== Flexbox Grid ====*/
 .row {
     @extend %flexbox;
-    @include grid_gap(REM(30), 'x');
-    > * {-ms-flex-negative: 0;flex-shrink: 0;}
+    > * {-ms-flex-negative: 0; flex-shrink: 0;}
 }
 
 /*==== Responsive Columns ====*/

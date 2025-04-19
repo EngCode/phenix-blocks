@@ -1,8 +1,8 @@
 /*
- * Phenix.js
- * Version  : 0.6 Beta
- * License  : MIT
- * Copyright: 2022 Abdullah.Ramadan
+ * Phenix Design System
+ * Version  : 1.3.0
+ * License  : GPL-3.0
+ * Copyright: 2025 Abdullah.Ramadan
 */
 
 /**======> Reference By Comment <======
@@ -15,20 +15,25 @@
  * ===> 07 - Get Siblings
  * ===> 08 - Get Next Siblings
  * ===> 09 - Get Previous Siblings
- * ===> 10 - CSS Styling
+ * ===> 10 - Set CSS Styls
  * ===> 11 - Set Multiple Attributes
  * ===> 12 - Insert Elements
  * ===> 13 - Event Handler
  * ===> 14 - Resources Lazy-Loader
  * ===> 15 - Media Query Method
- * ===> 16 - Service Worker
- * ===> 17 - Define information's
- * ===> 18 - Define UI Effects
- * ===> 19 - Define Other Features
- * ===> 20 - Include Features
- * ===> 21 - Integration
- * ===> 22 - Phenix Selecting Method
- * ===> 23 - Your Custom Script [JS]
+ * ===> 16 - Dynamic Position
+ * ===> 17 - CSS/JS Importer
+ * ===> 18 - Convert Pixels to REM
+ * ===> 19 - Copy to Clipboard
+ * ===> 20 - Audio Trigger
+ * ===> 21 - Convert String to Boolean
+ * ===> 22 - Define Information
+ * ===> 23 - Define UI Effects
+ * ===> 24 - Define Other Features
+ * ===> 25 - Include Features
+ * ===> 26 - Integration
+ * ===> 27 - Phenix Selecting Method
+ * ===> 28 - Your Custom Script [JS]
 */
 
 /*====> Phenix Object <====*/
@@ -277,7 +282,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         else if (childs.length === 1) return childs[0];
     }
 
-    /*====> CSS Styling <====*/
+    /*====> Set CSS Styls <====*/
     css(style:object, clearInline?) {
         //====> Check for the Elements <====//
         if (this.length === 0) return;
@@ -629,7 +634,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         await navigator.clipboard.write(data);
     };
 
-    /*====> Voice Trigger <=====*/
+    /*====> Audio Trigger <=====*/
     audioTrigger = (trigger) => {
         //===> Check if the Trigger is HTML Element <===//
         if (trigger instanceof HTMLElement) {
@@ -729,11 +734,10 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     popup; lightbox; menu; datatable;
     validation; uploader; progress; rebuildSelect
     select; repeater; rating; seo; loader;
-    slider; utilities; notifications; init; debounce;
+    slider; utilities; notifications; init;
+
     /*====> WooCommerce Methods <====*/
     pds_add_to_cart; pds_remove_from_cart; pds_toggle_wishlist;
-    /*====> Three.js Methods <====*/
-    three;
 }
 
 /*====> Phenix Selecting Method <====*/
@@ -781,13 +785,14 @@ import './components/progress';  //==> Progress
 import './components/select';    //==> Advanced Select
 import './components/uploader';  //==> File Uploader
 import './components/rating'; //==> Rating
-// import './components/datatable'; //==> Data-Tables
 
 /*====> Integration <====*/
 import './integration/slider';    //==> Splide.js Slider
 import './integration/utilities'; //==> Phenix Utilities
-import './integration/blocks';    //==> Phenix Blocks Scripts
-import './integration/wordpress'; //==> Wordpress Integration
+
+/*====> Integration WordPress <====*/
+import './integration/blocks';      //==> Front-end Blocks Scripts
+import './integration/wordpress';   //==> Wordpress Integration
 import './integration/woocommerce'; //==> WooCommerce Integration
 
 /*====> Custom Script <====*/

@@ -11,23 +11,10 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /getting-started
+      link: /frontend/
     - theme: alt
       text: View on GitHub
       link: https://github.com/EngCode/phenix-blocks
-features:
-  - title: SASS Framework
-    details: A comprehensive SASS framework with utilities, components, and a responsive grid system that makes styling modern interfaces a breeze.
-    link: /sass/
-  - title: JavaScript Utilities
-    details: Powerful TypeScript utilities for DOM manipulation, animations, and interactive components that enhance user experience.
-    link: /typescript/
-  - title: WordPress Blocks
-    details: Custom Gutenberg blocks that extend WordPress with dynamic, responsive content creation capabilities.
-    link: /blocks/
-  - title: Developer Tools
-    details: Tools for post management, data import/export, and site optimization that make developers' lives easier.
-    link: /php/
 ---
 
 <div style="padding: 2rem;"></div>
@@ -38,12 +25,12 @@ Phenix is a comprehensive design system that provides a complete foundation for 
 
 ## What is Phenix Design System?
 
-Phenix Design System is a modular, component-based design framework that helps developers and designers create consistent, beautiful interfaces. It includes:
+Phenix Design System is a modular, component-based design framework that helps developers and designers create consistent, beautiful interfaces. It includes modules covering:
 
-- **SASS Framework**: A utility-first CSS framework with responsive components
-- **TypeScript Utilities**: JavaScript helpers for DOM manipulation and animations
-- **WordPress Integration**: Gutenberg blocks and theme integration tools
-- **Developer Tools**: Utilities for faster development and optimization
+- SASS Styling & Framework
+- TypeScript Utilities & Components
+- WordPress Integration (including Gutenberg Blocks)
+- Developer Tools & Utilities
 
 ## Designed for Everyone
 
@@ -72,12 +59,5 @@ The Phenix Design System continues to evolve with plans to integrate:
 
 ## Get Started
 
-Ready to dive in? Start by exploring our documentation:
-
-- [Installation Guide](/getting-started.html)
-- [SASS Framework](/sass/)
-- [TypeScript Utilities](/typescript/)
-- [WordPress Blocks](/blocks/)
-- [PHP Integration](/php/)
-
-Or check out our [GitHub repository](https://github.com/EngCode/phenix-blocks) to view the source code.
+Ready to dive in? Start by exploring our documentation using the sidebar navigation, beginning with the [Front-End Overview](/frontend/) section.
+You can also check out our [GitHub repository](https://github.com/EngCode/phenix-blocks) to view the source code.

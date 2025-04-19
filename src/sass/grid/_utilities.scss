@@ -75,14 +75,12 @@
 
 /*==== Gutters Mixin ====*/
 @mixin make_gap($infix:'') {
-    /*==== Space Range ====*/
-    $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+    $space_range : 0, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
-    /*==== Gap ====*/
     @each $size in $space_range {
-        .gp#{$infix}-#{$size}   {gap: #{REM($size)};}
-        .gpx#{$infix}-#{$size}  {column-gap: #{REM($size)};}
-        .gpy#{$infix}-#{$size}  {row-gap: #{REM($size)};}
+        .gp#{$infix}-#{$size}  {@include grid_gap(#{REM($size)})}
+        .gpx#{$infix}-#{$size}  {@include grid_gap(#{REM($size)}, 'x')}
+        .gpy#{$infix}-#{$size}  {@include grid_gap(#{REM($size)}, 'y')}
     }
 }
 
@@ -90,6 +88,9 @@
 @include make_align();   //====> alignment
 @include make_sorting(); //====> sorting
 @include make_gap();     //====> Gutters
+
+/*==== No Gap Column ====*/
+.row > .col-no-gap {@include padding_inline(0);}
 
 /*==== Small Screen ====*/
 @include small() {
@@ -99,6 +100,8 @@
     @include make_sorting('-sm');
     /*==== gap/gutter ====*/
     @include make_gap('-sm');
+    /*==== No Gap Column ====*/
+    .row > .col-sm-no-gap {@include padding_inline(0);}
 }
 
 /*==== Medium Screen ====*/
@@ -109,6 +112,8 @@
     @include make_sorting('-md');
     /*==== gap/gutter ====*/
     @include make_gap('-md');
+    /*==== No Gap Column ====*/
+    .row > .col-md-no-gap {@include padding_inline(0);}
 }
 
 /*==== Large Screen ====*/
@@ -119,6 +124,8 @@
     @include make_sorting('-lg');
     /*==== gap/gutter ====*/
     @include make_gap('-lg');
+    /*==== No Gap Column ====*/
+    .row > .col-lg-no-gap {@include padding_inline(0);}
 }
 
 /*==== xLarge Screen ====*/
@@ -129,4 +136,6 @@
     @include make_sorting('-xl');
     /*==== gap/gutter ====*/
     @include make_gap('-xl');
+    /*==== No Gap Column ====*/
+    .row > .col-xl-no-gap {@include padding_inline(0);}
 }

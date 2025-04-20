@@ -261,36 +261,3 @@ UI helper selectors provide miscellaneous utility patterns:
     // Additional animation styles
 }
 ```
-
-## Benefits of Using Placeholders
-
-Using SASS placeholders (selectors) provides several advantages:
-
-1. **Reduced CSS Output**: Placeholders are only included in the CSS output when extended, reducing file size
-2. **Code Organization**: Common patterns are defined in one place, making maintenance easier
-3. **Semantic Classes**: Keep your HTML classes semantic while reusing style patterns
-4. **Easier Refactoring**: Update a pattern in one place instead of modifying multiple classes
-5. **Better than Mixins** for static styles: Unlike mixins, placeholders don't duplicate the CSS when used multiple times
-
-## Best Practices
-
-1. **Use for Static Patterns**: Use placeholders for styles that don't require parameters
-2. **Combine with Mixins**: For styles that need parameters, use mixins instead
-3. **Keep Placeholders Focused**: Each placeholder should serve a single, clear purpose
-4. **Group Related Placeholders**: Organize placeholders into logical groups
-5. **Document Your Placeholders**: Comment what each placeholder does for better team understanding
-6. **Avoid Nesting Too Deep**: Keep placeholders relatively flat to avoid specificity issues when extended
-
-## Usage
-
-Example usage goes here.
-
-## Properties
-
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| property1 | String | 'default' | Description of property1 |
-
-## Examples
-
-Code examples go here.

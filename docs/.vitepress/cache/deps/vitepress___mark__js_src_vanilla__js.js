@@ -801,7 +801,7 @@ var Mark = class {
    * the defined accuracy. As in the regular expression of "exactly" can be
    * a group containing a blank at the beginning, all regular expressions will
    * be created with two groups. The first group can be ignored (may contain
-   * the said blank), the second contains the actual match
+   * the said blank), the second contains  match
    * @param  {string} str - The searm term to be used
    * @return {str}
    * @access protected

@@ -37,7 +37,7 @@ The [node-sass](https://www.npmjs.com/package/node-sass) package is used to dire
 
 ### Package.json Scripts
 
-The build process is defined in the package.json scripts section. Here are the actual scripts used:
+The build process is defined in the package.json scripts section. Here are  scripts used:
 
 ```json
 "scripts": {

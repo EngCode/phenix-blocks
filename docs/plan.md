@@ -32,7 +32,7 @@ Our documentation approach follows these principles:
 - [x] Create basic navigation structure
 - [x] Define section organization
 
-### Phase 2: Frontend Framework - Getting Started (In Progress)
+### Phase 2: Frontend Framework - Getting Started (Completed)
 
 - [x] Quick Start
   - [x] Installation (with clear separation between phenix-ui and pds-blocks)
@@ -50,32 +50,32 @@ Our documentation approach follows these principles:
   - [x] SASS Selectors
   - [x] Mixins & Functions
 
-- [ ] Working with TypeScript
-  - [ ] Overview
-  - [ ] Build Tools
+- [x] Working with TypeScript
+  - [x] Overview
+  - [x] Build Tools
 
-### Phase 3: Frontend Framework - CSS Modules
+### Phase 3: Frontend Framework - CSS Modules  (In Progress)
 
-- [ ] Grid System
-  - [ ] Containers
-  - [ ] Flexbox Row
-  - [ ] Columns
-  - [ ] Gutters
-  - [ ] Group Layout
+- [x] Grid System
+  - [x] Containers
+  - [x] Flexbox Row
+  - [x] Columns
+  - [x] Gutters
+  - [x] Group Layout
 
-- [ ] Typography
-  - [ ] Default Resets
-  - [ ] Typography
-  - [ ] Tables
-  - [ ] List Components
+- [x] Typography
+  - [x] Default Resets
+  - [x] Typography
+  - [x] Tables
+  - [x] List Components
 
-- [ ] CSS Utilities
-  - [ ] Sizing
-  - [ ] Colors
-  - [ ] Spacing
-  - [ ] Visibility
-  - [ ] Borders
-  - [ ] Backgrounds
+- [x] CSS Utilities
+  - [x] Sizing
+  - [x] Colors
+  - [x] Spacing
+  - [x] Visibility
+  - [x] Borders
+  - [x] Backgrounds
   - [ ] Other Utilities
 
 ### Phase 4: Frontend Framework - JavaScript Modules

@@ -44,6 +44,8 @@ export default defineConfig({
               items: [
                 { text: 'Overview', link: '/frontend/getting-started/sass/overview' },
                 { text: 'Build Tools', link: '/frontend/getting-started/sass/build-tools' },
+                { text: 'Sass Modules', link: '/frontend/getting-started/sass/modules' },
+                { text: 'Sass Integrations', link: '/frontend/getting-started/sass/integrations' },
                 { text: 'Sass Variables', link: '/frontend/getting-started/sass/variables' },
                 { text: 'Sass Selectors', link: '/frontend/getting-started/sass/selectors' },
                 { text: 'Mixin & Functions', link: '/frontend/getting-started/sass/mixins-functions' }

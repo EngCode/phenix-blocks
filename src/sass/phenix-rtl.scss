@@ -46,5 +46,23 @@ $direction-end: left;
 @import 'assets/reset';     //===> CSS RESET
 @import 'grid/main';        //===> Layout Grid System
 
-/*==== Customizer ====*/
-@import 'customize';
+
+/*==== CSS Variables for Themeing ====*/
+@import 'theme';
+
+/*==== Integration ====*/
+@import 'integration/wordpress'; //===> WordPress
+@import 'integration/splide';    //===> Splide Slider
+
+/*==== Components Modules ====*/
+@import 'components/breadcrumb'; //===> Breadcrumb
+@import 'components/buttons';    //===> Buttons & Badges
+@import 'components/dropdown';   //===> Dropdown
+@import 'components/navbar';     //===> Phenix Navbar
+@import 'components/tables';     //===> Tables & Datatables
+@import 'components/tabs';       //===> Panels & Tabs
+@import 'components/slider';     //===> Phenix Sliders
+
+/*==== Form Components ====*/
+@import 'form/uploader';
+@import 'form/form-controls';

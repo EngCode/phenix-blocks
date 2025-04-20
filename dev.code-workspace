@@ -11,6 +11,9 @@
 		{
 			"name": "bo-themes",
 			"path": "../../../../bitoven/wp-content/themes"
+		},
+		{
+			"path": "../../../../design/px-design"
 		}
 	],
 	"settings": {

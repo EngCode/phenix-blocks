@@ -32,7 +32,7 @@ Our documentation approach follows these principles:
 - [x] Create basic navigation structure
 - [x] Define section organization
 
-### Phase 2: Frontend Framework - Getting Started (Completed)
+### Phase 2: Frontend Framework - Getting Started (In Progress)
 
 - [x] Quick Start
   - [x] Installation (with clear separation between phenix-ui and pds-blocks)
@@ -41,14 +41,14 @@ Our documentation approach follows these principles:
   - [x] Browser Compatibility
   - [x] CSS Customization
 
-- [ ] Working with SASS
-  - [ ] Overview
-  - [ ] Build Tools
-  - [ ] Modules
-  - [ ] Integrations
-  - [ ] SASS Variables
-  - [ ] SASS Selectors
-  - [ ] Mixins & Functions
+- [x] Working with SASS
+  - [x] Overview
+  - [x] Build Tools
+  - [x] Modules
+  - [x] Integrations
+  - [x] SASS Variables
+  - [x] SASS Selectors
+  - [x] Mixins & Functions
 
 - [ ] Working with TypeScript
   - [ ] Overview

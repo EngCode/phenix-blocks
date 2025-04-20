@@ -56,7 +56,9 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Overview', link: '/frontend/getting-started/typescript/overview' },
-                { text: 'Build Tools', link: '/frontend/getting-started/typescript/build-tools' }
+                { text: 'Build Tools', link: '/frontend/getting-started/typescript/build-tools' },
+                { text: 'Modules', link: '/frontend/getting-started/typescript/modules' },
+                { text: 'Integrations', link: '/frontend/getting-started/typescript/integrations' }
               ]
             }
           ]

@@ -103,6 +103,7 @@ export default defineConfig({
                 { text: 'Borders', link: '/frontend/css/utilities/borders' },
                 { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
                 { text: 'Typography', link: '/frontend/css/utilities/typography' },
+                { text: 'Shadows', link: '/frontend/css/utilities/shadows' },
                 { 
                   text: 'Interactive',
                   collapsed: true,

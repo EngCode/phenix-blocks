@@ -90,17 +90,10 @@ You can customize shadow colors using CSS variables:
 
 ## Responsive Shadow Utilities
 
-Shadow utilities can be applied conditionally at different breakpoints:
+The standard shadow utilities (`bx-shadow-*`, `tx-shadow-*`) do **not** have built-in responsive variants like `-md` or `-lg`. 
 
-```html
-<!-- Shadow visible only on medium screens and up -->
-<div class="bx-shadow-md-dp-3">Shadow on medium screens and up</div>
+If you need to apply different shadows at different screen sizes, you would typically achieve this by:
 
-<!-- Different shadows for different screen sizes -->
-<div class="bx-shadow-dp-1 bx-shadow-lg-dp-3">Small shadow on mobile, standard on large screens</div>
-```
-
-Available responsive prefixes:
-- `md-`: Medium screens and up (≥ 768px)
-- `lg-`: Large screens and up (≥ 1024px)
-- `xl-`: Extra large screens and up (≥ 1200px) 
+1.  **Using utility classes within responsive containers:** Apply different shadow classes to elements that are themselves shown or hidden at different breakpoints using display utilities (e.g., `hidden md-block`).
+2.  **Custom CSS:** Define your own CSS rules using media queries to apply different `--box-shadow` or `text-shadow` values at various breakpoints.
+3.  **JavaScript:** Dynamically add or remove shadow classes based on screen size or other conditions. 

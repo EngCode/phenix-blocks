@@ -15,34 +15,39 @@ Key benefits:
 
 ## Available Utilities
 
-### Layout Utilities
+### Layout & Positioning
 
-- [**Display & Visibility**](./display-visibility.md): Control how elements are displayed and hidden
-- [**Sizing**](./sizing.md): Control width and height of elements
-- [**Spacing**](./spacing.md): Apply margin and padding
-- [**Positioning**](./positioning.md): Control element position and coordinates
-- [**Overflow & Float**](./overflow-float.md): Manage content overflow and float layouts
-- [**Direction & Overlay**](./direction-overlay.md): Control text direction and create overlays
+- [**Display & Visibility**](./display-visibility.md): Control how elements are displayed and hidden.
+- [**Sizing**](./sizing.md): Control width, height, and aspect ratio of elements.
+- [**Spacing**](./spacing.md): Apply margin and padding.
+- [**Positioning**](./positioning.md): Control element position, coordinates, and z-index.
+- [**Overflow & Float**](./overflow-float.md): Manage content overflow and legacy float layouts.
 
 ### Visual Appearance
 
-- [**Colors**](./colors.md): Text colors and color variables
-- [**Backgrounds**](./backgrounds.md): Background colors, gradients, images
-- [**Borders**](./borders.md): Border width, style, color, and radius
-- [**Typography**](./typography.md): Font sizes, weights, line heights, and text formatting
+- [**Colors**](./colors.md): Apply text colors.
+- [**Backgrounds**](./backgrounds.md): Set background colors, gradients, and images.
+- [**Borders**](./borders.md): Control border width, style, color, and radius.
+- [**Shadows**](./shadows.md): Add box and text shadow effects.
+- [**Overlays**](./overlays.md): Add semi-transparent layers over elements.
+- [**Typography**](./typography.md): Manage font families, sizes, weights, line heights, and text formatting.
 
-### Media Utilities
+### Media & Content
 
-- [**Media Elements**](./media-utilities.md): Control aspect ratio, media containers, and media display
+- [**Media Elements**](./media-utilities.md): Handle responsive images, videos, and iframes.
+- [**Text Clipping**](./text-clipping.md): Create text effects where the background shows through.
+- [**Icon Utilities**](./icon-utilities.md): Style and position icons.
 
-### Effect Utilities
+### Interaction & Feedback
 
-- [**Effects**](./effects.md): Shadows, transitions, animations, and background effects
-- [**Interactive**](./interactive.md): Tooltips, loading indicators, and interaction helpers
-
-### Additional Utilities
-
-- [**Other Utilities**](./other-utilities.md): Special utilities for various components and behaviors
+- [**Interactive Utilities**](./interactive/): A collection of utilities for interactive feedback and effects.
+  - [**Effects**](./interactive/effects.md): Apply animations, transformations, and highlight effects.
+  - [**Transitions**](./interactive/transitions.md): Smooth state changes.
+  - [**Scroll Effects**](./interactive/scroll-snap.md): Control scrolling behavior like snapping.
+- [**Tooltips**](./tooltips.md): Add simple informational popups on hover.
+- [**Loading Indicators**](./loading-indicators.md): Show loading or processing states.
+- [**Icon Utilities**](./icon-utilities.md): Style and position icons.
+- [**Custom Scrollbar**](./custom-scrollbar.md): Apply styled scrollbars to elements.
 
 ## Naming Convention
 

@@ -104,22 +104,20 @@ export default defineConfig({
                 { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
                 { text: 'Typography', link: '/frontend/css/utilities/typography' },
                 { text: 'Shadows', link: '/frontend/css/utilities/shadows' },
-                { 
+                { text: 'Overlays', link: '/frontend/css/utilities/overlays' },
+                {
                   text: 'Interactive',
                   collapsed: true,
                   items: [
                     { text: 'Overview', link: '/frontend/css/utilities/interactive/' },
+                    { text: 'Effects', link: '/frontend/css/utilities/interactive/effects' },
                     { text: 'Transitions', link: '/frontend/css/utilities/interactive/transitions' },
-                    { text: 'Animations', link: '/frontend/css/utilities/interactive/animations' },
-                    { text: 'Transformations', link: '/frontend/css/utilities/interactive/transformations' },
-                    { text: 'Scroll Effects', link: '/frontend/css/utilities/interactive/scroll-effects' },
-                    { text: 'Highlight Effect', link: '/frontend/css/utilities/interactive/highlight-effect' },
-                    { text: 'Overlays', link: '/frontend/css/utilities/interactive/overlays' },
+                    { text: 'Scroll Snap', link: '/frontend/css/utilities/interactive/scroll-snap' },
+                    { text: 'Mouse Interaction', link: '/frontend/css/utilities/interactive/mouse-interaction' },
                   ]
                 },
                 { text: 'Tooltips', link: '/frontend/css/utilities/tooltips' },
                 { text: 'Loading Indicators', link: '/frontend/css/utilities/loading-indicators' },
-                { text: 'Mouse Interaction', link: '/frontend/css/utilities/mouse-interaction' },
                 { text: 'Icon Utilities', link: '/frontend/css/utilities/icon-utilities' },
                 { text: 'Custom Scrollbar', link: '/frontend/css/utilities/custom-scrollbar' },
                 { text: 'Text Clipping', link: '/frontend/css/utilities/text-clipping' }

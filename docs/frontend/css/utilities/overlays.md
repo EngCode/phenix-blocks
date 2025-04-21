@@ -90,6 +90,10 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
 3. **Structure HTML properly**: Place content in a child element of the overlay container
 4. **Combine with positioning**: Use positioning utilities for more complex overlay layouts
 
+## Responsive Overlays
+
+The overlay utilities (`overlay-dark`, `overlay-light`, `overlay-custom`) do not have built-in responsive variants. The overlay applied will be consistent across all screen sizes. To change overlay appearance or opacity at different breakpoints, you would typically use custom CSS with media queries to modify the `--overlay-bg` or `--opacity` variables, or toggle different classes with JavaScript.
+
 ## Browser Support
 
 These utilities are supported in all modern browsers. Older browsers may have varying support for opacity effects, but graceful fallbacks are in place. 

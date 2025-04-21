@@ -38,4 +38,8 @@ Scroll snap behavior can be further customized with standard CSS properties like
 1.  **Ensure sufficient content**: Scroll snap works best when there is clearly enough content to scroll through.
 2.  **Provide clear visual cues**: Indicate to users that the area is scrollable and uses snapping.
 3.  **Test usability**: Ensure the snapping behavior feels natural and doesn't hinder navigation.
-4.  **Consider alternatives**: For complex interactions, a JavaScript-based slider or carousel might offer more control. 
+4.  **Consider alternatives**: For complex interactions, a JavaScript-based slider or carousel might offer more control.
+
+## Responsive Scroll Effects
+
+The `.px-section-snap` utility does not have built-in responsive variants. Its behavior is consistent across all screen sizes. To enable or disable scroll snapping at different breakpoints, you would need to conditionally add or remove the class using JavaScript or apply custom CSS with media queries. 

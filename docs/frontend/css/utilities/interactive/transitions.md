@@ -72,4 +72,8 @@ Transition utilities work seamlessly with Phenix's built-in hover effects:
 1.  **Apply transitions to the base state**: Add the transition utility class to the element itself, not just the hover state.
 2.  **Choose appropriate speed**: Use `transition-fast` for quick feedback, `transition-smooth` for most standard interactions, and `transition-slow` for more deliberate effects.
 3.  **Consider performance**: While simple transitions are generally performant, complex animations on many elements can impact performance. Test on various devices.
-4.  **Be consistent**: Use consistent transition speeds for similar interactions across your application. 
+4.  **Be consistent**: Use consistent transition speeds for similar interactions across your application.
+
+## Responsive Transitions
+
+The transition speed utilities (`transition-fast`, `transition-smooth`, `transition-slow`) do not have responsive variants. The transition speed applied will be consistent across all screen sizes unless overridden with custom CSS using media queries. 

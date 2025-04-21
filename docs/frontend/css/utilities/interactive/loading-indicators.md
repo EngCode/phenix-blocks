@@ -4,98 +4,105 @@ Loading indicator utilities in the Phenix Design System provide visual feedback 
 
 ## Overview
 
-These utilities help manage user expectations during potentially time-consuming operations.
+These utilities help manage user expectations during potentially time-consuming operations. Phenix provides indicators for specific elements and a full-page loader.
 
 ## Usage
 
-Phenix offers several ways to display loading indicators:
+### Element Loading Overlay (`.px-loading`)
+
+Adds a spinner overlay on top of an element, indicating activity without hiding the element's content initially.
 
 ```html
-<!-- Add loading spinner overlay to an element -->
-<div class="px-loading">
-  <!-- Content being loaded or processed -->
-  <p>This content will be overlaid with a spinner.</p>
+<!-- Add loading spinner overlay to a button or div -->
+<div class="position-rv px-loading" style="height: 100px; border: 1px solid #ccc;">
+  <p>Content being loaded or processed.</p>
 </div>
 
-<!-- Inline loading spinner (useful next to text) -->
-<span class="px-loading-inline">Loading...</span>
-
-<!-- Alternative block-level loader -->
-<div class="px-loader">
-  <!-- Content is replaced by the loader -->
-  Loading content...
-</div>
+<button class="btn primary px-loading">Processing...</button>
 ```
 
--   `.px-loading`: Adds a semi-transparent overlay and a centered spinner animation *over* the existing content of the element.
--   `.px-loading-inline`: Displays a small spinner suitable for placing next to text, like on a button label.
--   `.px-loader`: Often used to *replace* the content with a loading message and spinner, typically requiring JavaScript to toggle visibility.
+-   `.px-loading`: Adds a semi-transparent overlay and a centered spinner animation *over* the existing content. The target element usually needs `position: relative` (or `position-rv`).
 
-## How It Works
+### Inline Loading Spinner (`.px-loading-inline`)
 
--   `.px-loading` uses a `::before` pseudo-element for the overlay and an `::after` pseudo-element for the spinner animation. The element itself needs `position: relative` (which is often added by default to components like cards or buttons, or can be added with `position-rv`).
--   `.px-loading-inline` uses an `::after` pseudo-element for the spinner.
--   `.px-loader` styles the element itself to act as a loading container.
-
-## Customization
-
-The appearance of the spinner (color, size) might be customizable via CSS variables, depending on the theme's implementation. Check the SCSS source for details.
-
-## Use Cases
-
-### Form Submission
+Displays a small spinner suitable for placing next to text, often used within buttons.
 
 ```html
-<form id="my-form">
-  <!-- Form Fields -->
-  <div id="submit-wrapper">
-    <button type="submit" class="btn primary">Submit</button>
-  </div>
-</form>
+<!-- Inline loading spinner next to text -->
+<span class="px-loading-inline">Loading Data...</span>
 
-<script>
-  document.getElementById('my-form').addEventListener('submit', (e) => {
-    // Prevent actual submission for demo
-    e.preventDefault(); 
-    const wrapper = document.getElementById('submit-wrapper');
-    // Add loading class to the button's wrapper
-    wrapper.classList.add('px-loading');
-    // Simulate network request
-    setTimeout(() => {
-      wrapper.classList.remove('px-loading');
-      // Handle form success
-    }, 2000);
-  });
-</script>
-```
-
-### Loading Button Text
-
-```html
 <button class="btn primary">
-  <span class="px-loading-inline">Processing</span>
+  <span class="px-loading-inline">Saving</span>
 </button>
 ```
 
-### Lazy-Loading Content Section
+### Content Placeholder Loader (`.px-loader`)
+
+Used primarily as a placeholder for content that is loading, especially media elements (images, videos). This class is often applied initially and then removed via JavaScript once the content is ready.
 
 ```html
-<div id="content-section" class="px-loader" style="min-height: 200px;">
-  Loading articles...
+<!-- Image placeholder loader -->
+<div class="px-media ratio-16x9">
+  <img src="placeholder.gif" data-src="real-image.jpg" class="px-loader px-media-img">
+</div>
+
+<!-- Generic content area loader -->
+<div id="content-area" class="px-loader" style="min-height: 150px;">
+  Loading content...
 </div>
 
 <script>
-  // Simulate fetching content
+  // Example: Replace loader when content is ready
   setTimeout(() => {
-    const section = document.getElementById('content-section');
-    section.classList.remove('px-loader');
-    section.innerHTML = '<p>Content loaded successfully!</p>'; // Replace with actual content
-  }, 2500);
+    const area = document.getElementById('content-area');
+    if (area) {
+      area.classList.remove('px-loader');
+      area.innerHTML = '<p>Actual content loaded!</p>';
+    }
+  }, 2000);
 </script>
 ```
 
+-   `.px-loader`: Styles the element itself as a loading container, often indicating that the content *within* is being loaded or replaced.
+
+### Full Page Loader (`.px-page-loader`)
+
+This class is used for the full-screen loading indicator that appears when the page initially loads or when navigating away. Its implementation is typically handled by `inc/loading.php` in WordPress themes using Phenix, or a similar setup in standalone projects.
+
+```html
+<!-- Structure typically generated by PHP -->
+<div class="px-page-loader" style="position: fixed; /* ... other styles ... */">
+  <div class="content-box">
+    <!-- Spinner (image or code) -->
+    <img class="spinner" src="..." alt="Loading">
+    <!-- Optional Text -->
+    <p>Loading...</p>
+  </div>
+</div>
+```
+
+-   `.px-page-loader`: Creates a full-viewport overlay with a centered spinner and optional text. It's managed by JavaScript to appear/disappear during page load cycles.
+
+## How It Works
+
+-   `.px-loading`: Uses `::before` for overlay, `::after` for spinner. Requires `position: relative` on the host element.
+-   `.px-loading-inline`: Uses `::after` for the spinner.
+-   `.px-loader`: Styles the element itself, often with a background and potentially a spinner pseudo-element depending on context.
+-   `.px-page-loader`: Styles a full-screen fixed div, typically controlled by theme-level PHP and JavaScript.
+
+## Customization
+
+The appearance (colors, spinner type/image) might be customizable via CSS variables or theme options, especially for `.px-page-loader`. Check theme settings or SCSS source (`_plugins.scss`, `_loading.scss`).
+
+## Use Cases
+
+-   **`.px-loading`**: Form submissions within a specific container, loading state for a card or button.
+-   **`.px-loading-inline`**: Indicating activity on a button after clicking.
+-   **`.px-loader`**: Placeholders for images, videos, or sections loading dynamic content via AJAX.
+-   **`.px-page-loader`**: Initial page load transition.
+
 ## Best Practices
 
-1.  **Provide Clear Feedback**: Use loading indicators for any action that might take more than a fraction of a second.
-2.  **Indicate Scope**: Use `.px-loading` for overlaying specific components (like a card or form section) and `.px-loader` when replacing content.
-3.  **Accessibility**: Ensure loading states are communicated to screen reader users, potentially using ARIA attributes (`aria-busy="true"`) managed via JavaScript. 
+1.  **Provide Clear Feedback**: Use indicators for actions taking noticeable time.
+2.  **Match Indicator to Scope**: Use element-specific loaders (`.px-loading`, `.px-loader`) for component-level activity and the page loader (`.px-page-loader`) for full page transitions.
+3.  **Accessibility**: Ensure loading states are announced to screen readers (e.g., using `aria-live` regions or `aria-busy`). 

@@ -54,7 +54,7 @@ Our documentation approach follows these principles:
   - [x] Overview
   - [x] Build Tools
 
-### Phase 3: Frontend Framework - CSS Modules  (In Progress)
+### Phase 3: Frontend Framework - CSS Modules (Completed)
 
 - [x] Grid System
   - [x] Containers
@@ -78,7 +78,7 @@ Our documentation approach follows these principles:
   - [x] Backgrounds
   - [x] Other Utilities
 
-### Phase 4: Frontend Framework - JavaScript Modules
+### Phase 4: Frontend Framework - JavaScript Modules (In Progress)
 
 - [ ] DOM Manipulation
 - [ ] DOM Traversing
@@ -91,6 +91,7 @@ Our documentation approach follows these principles:
 - [ ] Table of Content
 - [ ] Components Utilities
 - [ ] Page Loader
+- [ ] Performance
 
 ### Phase 5: Frontend Framework - UI Components & Form Controls
 
@@ -119,11 +120,7 @@ Our documentation approach follows these principles:
   - [ ] Range Slider
 
 ### Phase 6: Frontend Framework - Helpers & Tools
-
-- [ ] Hover Effects
 - [ ] Icons Libraries
-- [ ] Data Generator
-- [ ] Performance Optimization
 
 ### Phase 7: WordPress Integration
 

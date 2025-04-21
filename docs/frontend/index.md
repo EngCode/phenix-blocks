@@ -59,7 +59,7 @@ Additional utilities for performance optimization, icons, effects, and more.
   - [WordPress Installation Guide](/wordpress/getting-started/installation)
 
 ::: note
-**Important**: The WordPress plugin (pds-blocks) is not available on the WordPress.org plugin directory. It can only be downloaded from the [official Phenix website](https://phenixthemes.com) or [GitHub repository](https://github.com/EngCode/pds-blocks).
+**Important**: The WordPress plugin (pds-blocks) is not available on the WordPress.org plugin directory. It can only be downloaded from the [official Phenix website](https://phenixthemes.com) or [GitHub repository](https://github.com/EngCode/phenix-blocks).
 :::
 
 ## Documentation Structure

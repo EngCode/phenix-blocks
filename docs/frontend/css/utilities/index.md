@@ -35,8 +35,6 @@ Key benefits:
 ### Media & Content
 
 - [**Media Elements**](./media-utilities.md): Handle responsive images, videos, and iframes.
-- [**Text Clipping**](./text-clipping.md): Create text effects where the background shows through.
-- [**Icon Utilities**](./icon-utilities.md): Style and position icons.
 
 ### Interaction & Feedback
 
@@ -45,8 +43,6 @@ Key benefits:
   - [**Transitions**](./interactive/transitions.md): Smooth state changes.
   - [**Scroll Effects**](./interactive/scroll-snap.md): Control scrolling behavior like snapping.
 - [**Tooltips**](./tooltips.md): Add simple informational popups on hover.
-- [**Loading Indicators**](./loading-indicators.md): Show loading or processing states.
-- [**Icon Utilities**](./icon-utilities.md): Style and position icons.
 - [**Custom Scrollbar**](./custom-scrollbar.md): Apply styled scrollbars to elements.
 
 ## Naming Convention

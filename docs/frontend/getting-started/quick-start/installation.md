@@ -66,7 +66,7 @@ If you're using WordPress, you can install the Phenix Design System through the 
 2. Search for "Phenix Design System"
 3. Click "Install Now" and then "Activate"
 
-Alternatively, you can download the plugin from [GitHub](https://github.com/EngCode/pds-blocks/releases) and upload it manually.
+Alternatively, you can download the plugin from [GitHub](https://github.com/EngCode/phenix-blocks/releases) and upload it manually.
 
 ## Modular Framework Structure
 
@@ -143,7 +143,7 @@ The Phenix Design System provides example HTML templates to help you get started
 </head>
 <body>
   <!-- Header -->
-  <header class="bg-primary-offwhite pd-20 mg-b-40">
+  <header class="bg-primary-offwhite pd-20 mb-40">
     <div class="container">
       <div class="row align-center-y">
         <div class="col-6">
@@ -164,14 +164,14 @@ The Phenix Design System provides example HTML templates to help you get started
   <main class="container">
     <div class="row">
       <div class="col-12 col-md-8">
-        <div class="pd-25 radius-md border-1 border-solid border-alpha-10 mg-b-30">
-          <h2 class="fs-20 weight-medium color-primary mg-b-20">Welcome to Phenix Design System</h2>
+        <div class="pd-25 radius-md border-1 border-solid border-alpha-10 mb-30">
+          <h2 class="fs-20 weight-medium color-primary mb-20">Welcome to Phenix Design System</h2>
           <p>This is a basic starter template for your Phenix Design System project. You can use this as a reference for your own projects.</p>
         </div>
       </div>
       <div class="col-12 col-md-4">
-        <div class="pd-25 radius-md bg-alpha-05 mg-b-30">
-          <h3 class="fs-16 weight-medium mg-b-15">Sidebar</h3>
+        <div class="pd-25 radius-md bg-alpha-05 mb-30">
+          <h3 class="fs-16 weight-medium mb-15">Sidebar</h3>
           <p>This is a sidebar component example using Phenix Design System utilities.</p>
         </div>
       </div>
@@ -179,7 +179,7 @@ The Phenix Design System provides example HTML templates to help you get started
   </main>
 
   <!-- Footer -->
-  <footer class="bg-primary-dark pd-20 mg-t-40">
+  <footer class="bg-primary-dark pd-20 mt-40">
     <div class="container">
       <p class="color-white tx-align-center">© 2023 Your Website. All rights reserved.</p>
     </div>

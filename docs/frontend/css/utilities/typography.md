@@ -1,6 +1,6 @@
 # Typography Utilities
 
-Typography utilities in Phenix Design System provide a comprehensive set of classes to control text appearance, including font families, sizes, weights, alignment, and text transformations. These utilities help maintain consistent typography across your project.
+Typography utilities in Phenix Design System provide a comprehensive set of classes to control text appearance, including font families, sizes, weights, alignment, text transformations, and icon styling. These utilities help maintain consistent typography across your project.
 
 ## Table of Contents
 
@@ -11,6 +11,7 @@ Typography utilities in Phenix Design System provide a comprehensive set of clas
 - [Font Weight](#font-weight)
 - [Text Alignment](#text-alignment)
 - [Text Utilities](#text-utilities)
+- [Icon Utilities](#icon-utilities)
 - [Line Height](#line-height)
 - [Text Wrapping](#text-wrapping)
 - [Responsive Typography](#responsive-typography)
@@ -128,6 +129,58 @@ Additional text transformation and decoration utilities:
 <p class="tx-line-clamp">This text will be limited to 3 lines by default and will show ellipsis if too long. You can change the number of lines with the --max-lines variable.</p>
 ```
 
+## Icon Utilities
+
+Control the appearance and positioning of icons, often used with icon font libraries.
+
+### Icon Spacing
+
+Add appropriate spacing after an icon when it precedes text:
+
+```html
+<!-- Add spacing after icon -->
+<span class="tx-icon fa-home">Home Page</span>
+<button class="btn primary tx-icon fa-save">Save Changes</button>
+```
+
+- `.tx-icon`: Adds margin to the end of the element (right in LTR, left in RTL).
+
+### Icon Vertical Alignment Fix
+
+Correct potential vertical alignment issues with certain icon fonts:
+
+```html
+<!-- Fix icon alignment -->
+<i class="icon-fix fas fa-check"></i> Sometimes icons need alignment correction.
+```
+
+- `.icon-fix`: Adjusts vertical alignment to better center the icon.
+
+### Icon Color
+
+Apply color to an icon using a CSS variable:
+
+```html
+<!-- Apply red color to the icon -->
+<i class="pds-icon-color fas fa-heart" style="--icon-color: red;"></i>
+
+<!-- Apply theme primary color -->
+<i class="pds-icon-color fas fa-star" style="--icon-color: var(--primary-color);"></i>
+```
+
+- `.pds-icon-color`: Sets the icon's `color` property to the value of the `--icon-color` CSS variable.
+
+### Icon Size
+
+Increase the size of an icon relative to the surrounding text:
+
+```html
+<p>Normal text with a <i class="fas fa-star"></i> standard icon.</p>
+<p>Normal text with a <i class="icon-lg fas fa-star"></i> larger icon.</p>
+```
+
+- `.icon-lg`: Makes the icon slightly larger (typically `1.2em`).
+
 ## Line Height
 
 Control the line spacing with these utilities:
@@ -208,3 +261,7 @@ Phenix Design System uses CSS variables for typography to maintain consistency:
 ```
 
 These variables can be customized to adjust typography throughout your project. 
+
+## Related Effects
+
+For advanced text effects involving backgrounds, see the [Background Clip Text](../colors.md#background-clip-text) utility. 

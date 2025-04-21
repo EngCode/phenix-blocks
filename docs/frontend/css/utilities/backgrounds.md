@@ -341,3 +341,7 @@ Create special effects with backgrounds:
 ```
 
 These background utilities provide precise control over element appearances, allowing for consistent, visually appealing designs throughout your project.
+
+## Related Effects
+
+For text effects where the background shows through the text itself, see the [Background Clip Text](../colors.md#background-clip-text) utility.

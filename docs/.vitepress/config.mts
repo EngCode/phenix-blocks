@@ -96,17 +96,19 @@ export default defineConfig({
                 { text: 'Sizing', link: '/frontend/css/utilities/sizing' },
                 { text: 'Colors', link: '/frontend/css/utilities/colors' },
                 { text: 'Spacing', link: '/frontend/css/utilities/spacing' },
-                { text: 'Display & Visibility', link: '/frontend/css/utilities/display-visibility' },
-                { text: 'Positioning', link: '/frontend/css/utilities/positioning' },
-                { text: 'Overflow & Float', link: '/frontend/css/utilities/overflow-float' },
-                { text: 'Media Elements', link: '/frontend/css/utilities/media-utilities' },
                 { text: 'Borders', link: '/frontend/css/utilities/borders' },
-                { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
-                { text: 'Typography', link: '/frontend/css/utilities/typography' },
                 { text: 'Shadows', link: '/frontend/css/utilities/shadows' },
                 { text: 'Overlays', link: '/frontend/css/utilities/overlays' },
+                { text: 'Tooltips', link: '/frontend/css/utilities/tooltips' },
+                { text: 'Visibility', link: '/frontend/css/utilities/display-visibility' },
+                { text: 'Typography', link: '/frontend/css/utilities/typography' },
+                { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
+                { text: 'Positioning', link: '/frontend/css/utilities/positioning' },
+                { text: 'Media Elements', link: '/frontend/css/utilities/media-utilities' },
+                { text: 'Overflow & Float', link: '/frontend/css/utilities/overflow-float' },
+                { text: 'Custom Scrollbar', link: '/frontend/css/utilities/custom-scrollbar' },
                 {
-                  text: 'Interactive',
+                  text: 'Interactive Utilities',
                   collapsed: true,
                   items: [
                     { text: 'Overview', link: '/frontend/css/utilities/interactive/' },
@@ -114,13 +116,9 @@ export default defineConfig({
                     { text: 'Transitions', link: '/frontend/css/utilities/interactive/transitions' },
                     { text: 'Scroll Snap', link: '/frontend/css/utilities/interactive/scroll-snap' },
                     { text: 'Mouse Interaction', link: '/frontend/css/utilities/interactive/mouse-interaction' },
+                    { text: 'Loading Indicators', link: '/frontend/css/utilities/interactive/loading-indicators' },
                   ]
-                },
-                { text: 'Tooltips', link: '/frontend/css/utilities/tooltips' },
-                { text: 'Loading Indicators', link: '/frontend/css/utilities/loading-indicators' },
-                { text: 'Icon Utilities', link: '/frontend/css/utilities/icon-utilities' },
-                { text: 'Custom Scrollbar', link: '/frontend/css/utilities/custom-scrollbar' },
-                { text: 'Text Clipping', link: '/frontend/css/utilities/text-clipping' }
+                }
               ]
             }
           ]

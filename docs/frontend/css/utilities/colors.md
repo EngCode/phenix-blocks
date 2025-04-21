@@ -1,15 +1,16 @@
 # Colors
 
-The Colors utilities in the Phenix Design System provide a comprehensive set of classes for controlling text colors. For background and border color utilities, please refer to the [Backgrounds](/frontend/css/utilities/backgrounds.md) and [Borders](/frontend/css/utilities/borders.md) documentation.
+The Colors utilities in the Phenix Design System provide a comprehensive set of classes for controlling text colors and related effects like text clipping. For background and border color utilities, please refer to the [Backgrounds](/frontend/css/utilities/backgrounds.md) and [Borders](/frontend/css/utilities/borders.md) documentation.
 
 ## Overview
 
 The color utilities in Phenix Design System are organized into the following categories:
 
 1. **Text Colors** - Control the color of text and inline elements
-2. **Color Variables** - CSS variables that define the theme's color palette
-3. **Brand Colors** - Consistent colors for brand elements
-4. **Responsive Text Colors** - Apply different colors at different screen sizes
+2. **Background Clip Text** - Create text effects with background clipping
+3. **Color Variables** - CSS variables that define the theme's color palette
+4. **Brand Colors** - Consistent colors for brand elements
+5. **Responsive Text Colors** - Apply different colors at different screen sizes
 
 ## Color Palette
 
@@ -119,11 +120,46 @@ Every social media platform has its own text color class:
 
 ## Background Clip Text
 
-Create text with a background showing through (requires both color and background utilities):
+The Text Clipping utility allows you to create visually interesting text effects where the background of the element shows through the text itself. This effect uses CSS properties like `background-clip: text` and requires the text color to be set to transparent.
+
+### Usage
+
+Apply the `.bg-clip-text` class to the text element. You must also set the text color to transparent (e.g., using `.color-transparent`) and apply a background (color, gradient, or image) to the element.
 
 ```html
-<h1 class="color-transparent bg-grade-primary bg-clip-text">Gradient Text</h1>
+<!-- Gradient Text -->
+<h1 class="display-h1 bg-clip-text color-transparent bg-grade-primary">
+  Gradient Text Effect
+</h1>
+
+<!-- Text with Background Image -->
+<h2 class="display-h2 bg-clip-text color-transparent" 
+    style="background-image: url('path/to/texture.jpg'); background-size: cover;">
+  Textured Text
+</h2>
+
+<!-- Text with Solid Background Color Clip -->
+<p class="fs-24 bg-clip-text color-transparent bg-secondary">
+  This text has the secondary color clipped to it.
+</p>
 ```
+
+### How It Works
+
+The `.bg-clip-text` class applies `background-clip: text` (with vendor prefixes). For the effect to be visible, ensure:
+1.  Text `color` is `transparent`.
+2.  A `background` (color, gradient, or image) is set on the same element.
+
+### Use Cases
+
+-   Creating eye-catching headlines with gradients or image textures.
+-   Designing unique branding elements.
+
+### Best Practices
+
+-   **Ensure Readability**: The background must have sufficient contrast.
+-   **Use on Larger Text**: More effective on larger font sizes.
+-   **Combine with Utilities**: Use with [Background Utilities](../backgrounds.md) and [Typography Utilities](../typography.md).
 
 ## Customizing Colors
 

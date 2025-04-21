@@ -33,6 +33,32 @@ Set the basic positioning method for elements:
 <div class="position-none">Static positioning (no special positioning)</div>
 ```
 
+### Sticky Element Details
+
+The `.position-st` class makes an element sticky. Phenix also provides helpers for common sticky scenarios:
+
+- **`.is-sticky`**: This is often used in conjunction with JavaScript or specific components. It might apply `position: sticky` or toggle classes based on scroll position.
+- **`data-sticky="absolute"`**: Used with `.is-sticky`, this attribute suggests a fallback to absolute positioning if sticky isn't supported or desired.
+- **`data-sticky="inner"`**: Used with `.is-sticky`, this suggests the sticky behavior applies to an inner element within a container.
+
+Check the specific component or JavaScript module documentation for how `.is-sticky` and its data attributes are implemented.
+
+```html
+<!-- Basic sticky element (using position-st) -->
+<div class="position-st" style="top: 20px;">Basic Sticky Element</div>
+
+<!-- Component-based sticky element -->
+<div class="is-sticky" style="top: 0;">Component Sticky Element</div>
+
+<!-- Sticky with absolute fallback hint -->
+<div class="is-sticky" data-sticky="absolute" style="top: 0;">Sticky with Fallback Hint</div>
+
+<!-- Inner sticky element hint -->
+<div class="some-container">
+    <div class="is-sticky" data-sticky="inner" style="top: 10px;">Inner Sticky Part</div>
+</div>
+```
+
 ## Element Placement
 
 Control the exact placement of positioned elements:

@@ -1,36 +1,8 @@
-# Direction & Overlay Utilities
+# Overlay Utilities
 
-The Phenix Design System provides utilities for controlling text direction and creating overlay effects. These utilities enhance your layouts with proper language direction support and semi-transparent overlays for various design patterns.
+Overlay utilities allow you to add semi-transparent colored overlays to elements, which is useful for creating contrast with text placed over images or backgrounds.
 
 ## Overview
-
-This documentation covers:
-
-1. **Direction Utilities** - Control text direction (LTR/RTL)
-2. **Overlay Utilities** - Create semi-transparent overlays on elements
-
-## Direction Utilities
-
-Direction utilities allow you to control the text direction of elements, which is essential for multi-language websites that support both left-to-right (LTR) and right-to-left (RTL) languages.
-
-```html
-<!-- Force left-to-right text direction -->
-<div class="ltr">
-  This text will display left-to-right regardless of page context
-</div>
-
-<!-- Force right-to-left text direction -->
-<div class="rtl">
-  This text will display right-to-left regardless of page context
-</div>
-```
-
-These utilities are particularly useful when:
-- You need to mix LTR and RTL content on the same page
-- You want to override the direction for specific elements
-- You're working with user-generated content in multiple languages
-
-## Overlay Utilities
 
 Overlay utilities allow you to add semi-transparent colored overlays to elements, which is useful for creating contrast with text placed over images or backgrounds.
 
@@ -62,18 +34,6 @@ Each overlay type sets these CSS variables:
 The child elements automatically receive `position: relative` and `z-index: 3` to ensure they appear above the overlay.
 
 ## Use Cases
-
-### Multilingual Content 
-
-```html
-<!-- Mixing text directions in a list -->
-<ul>
-  <li class="ltr">English text (left-to-right)</li>
-  <li class="rtl">العربية (Arabic text, right-to-left)</li>
-  <li class="rtl">עברית (Hebrew text, right-to-left)</li>
-  <li class="ltr">Español (Spanish text, left-to-right)</li>
-</ul>
-```
 
 ### Hero Section with Image Overlay
 
@@ -125,15 +85,6 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
 
 ## Best Practices
 
-### Direction Utilities
-
-1. **Use HTML lang attribute**: Always set the `lang` attribute on the HTML element for the primary language of your page
-2. **Use dir attribute**: Set the `dir` attribute on the HTML element to establish the main direction (`ltr` or `rtl`)
-3. **Apply utilities selectively**: Only use `.ltr` and `.rtl` classes when you need to override the default direction
-4. **Consider text alignment**: When changing direction, also consider adjusting text alignment accordingly
-
-### Overlay Utilities
-
 1. **Maintain contrast**: Ensure sufficient contrast between overlay and text for readability
 2. **Optimize overlay opacity**: Adjust opacity to balance visibility of the background and readability of the content
 3. **Structure HTML properly**: Place content in a child element of the overlay container
@@ -141,4 +92,4 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
 
 ## Browser Support
 
-These utilities are supported in all modern browsers. Older browsers may have varying support for RTL text direction and opacity effects, but graceful fallbacks are in place. 
+These utilities are supported in all modern browsers. Older browsers may have varying support for opacity effects, but graceful fallbacks are in place. 

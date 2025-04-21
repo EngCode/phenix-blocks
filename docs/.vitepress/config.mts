@@ -99,7 +99,6 @@ export default defineConfig({
                 { text: 'Display & Visibility', link: '/frontend/css/utilities/display-visibility' },
                 { text: 'Positioning', link: '/frontend/css/utilities/positioning' },
                 { text: 'Overflow & Float', link: '/frontend/css/utilities/overflow-float' },
-                { text: 'Direction & Overlay', link: '/frontend/css/utilities/direction-overlay' },
                 { text: 'Media Elements', link: '/frontend/css/utilities/media-utilities' },
                 { text: 'Borders', link: '/frontend/css/utilities/borders' },
                 { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
@@ -109,12 +108,20 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     { text: 'Overview', link: '/frontend/css/utilities/interactive/' },
-                    { text: 'Effects', link: '/frontend/css/utilities/interactive/effects' },
-                    { text: 'Hover Effects', link: '/frontend/css/utilities/interactive/hover-effects' },
-                    { text: 'Interactive Elements', link: '/frontend/css/utilities/interactive/interactive' }
+                    { text: 'Transitions', link: '/frontend/css/utilities/interactive/transitions' },
+                    { text: 'Animations', link: '/frontend/css/utilities/interactive/animations' },
+                    { text: 'Transformations', link: '/frontend/css/utilities/interactive/transformations' },
+                    { text: 'Scroll Effects', link: '/frontend/css/utilities/interactive/scroll-effects' },
+                    { text: 'Highlight Effect', link: '/frontend/css/utilities/interactive/highlight-effect' },
+                    { text: 'Overlays', link: '/frontend/css/utilities/interactive/overlays' },
                   ]
                 },
-                { text: 'Other Utilities', link: '/frontend/css/utilities/other-utilities' }
+                { text: 'Tooltips', link: '/frontend/css/utilities/tooltips' },
+                { text: 'Loading Indicators', link: '/frontend/css/utilities/loading-indicators' },
+                { text: 'Mouse Interaction', link: '/frontend/css/utilities/mouse-interaction' },
+                { text: 'Icon Utilities', link: '/frontend/css/utilities/icon-utilities' },
+                { text: 'Custom Scrollbar', link: '/frontend/css/utilities/custom-scrollbar' },
+                { text: 'Text Clipping', link: '/frontend/css/utilities/text-clipping' }
               ]
             }
           ]

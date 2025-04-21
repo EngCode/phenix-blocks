@@ -92,12 +92,28 @@ export default defineConfig({
               text: 'CSS Utilities',
               collapsed: true,
               items: [
+                { text: 'Overview', link: '/frontend/css/utilities/' },
                 { text: 'Sizing', link: '/frontend/css/utilities/sizing' },
                 { text: 'Colors', link: '/frontend/css/utilities/colors' },
                 { text: 'Spacing', link: '/frontend/css/utilities/spacing' },
-                { text: 'Visibility', link: '/frontend/css/utilities/display-visibility' },
+                { text: 'Display & Visibility', link: '/frontend/css/utilities/display-visibility' },
+                { text: 'Positioning', link: '/frontend/css/utilities/positioning' },
+                { text: 'Overflow & Float', link: '/frontend/css/utilities/overflow-float' },
+                { text: 'Direction & Overlay', link: '/frontend/css/utilities/direction-overlay' },
+                { text: 'Media Elements', link: '/frontend/css/utilities/media-utilities' },
                 { text: 'Borders', link: '/frontend/css/utilities/borders' },
                 { text: 'Backgrounds', link: '/frontend/css/utilities/backgrounds' },
+                { text: 'Typography', link: '/frontend/css/utilities/typography' },
+                { 
+                  text: 'Interactive',
+                  collapsed: true,
+                  items: [
+                    { text: 'Overview', link: '/frontend/css/utilities/interactive/' },
+                    { text: 'Effects', link: '/frontend/css/utilities/interactive/effects' },
+                    { text: 'Hover Effects', link: '/frontend/css/utilities/interactive/hover-effects' },
+                    { text: 'Interactive Elements', link: '/frontend/css/utilities/interactive/interactive' }
+                  ]
+                },
                 { text: 'Other Utilities', link: '/frontend/css/utilities/other-utilities' }
               ]
             }
@@ -157,7 +173,6 @@ export default defineConfig({
           text: 'Helpers/Tools',
           collapsed: true,
           items: [
-            { text: 'Hover Effects', link: '/frontend/helpers/hover-effects' },
             { text: 'Icons Libraries', link: '/frontend/helpers/icons-libraries' },
             { text: 'Data Generator', link: '/frontend/helpers/data-generator' },
             { text: 'Performance Optimize', link: '/frontend/helpers/performance-optimize' }

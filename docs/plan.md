@@ -76,7 +76,7 @@ Our documentation approach follows these principles:
   - [x] Visibility
   - [x] Borders
   - [x] Backgrounds
-  - [ ] Other Utilities
+  - [x] Other Utilities
 
 ### Phase 4: Frontend Framework - JavaScript Modules
 

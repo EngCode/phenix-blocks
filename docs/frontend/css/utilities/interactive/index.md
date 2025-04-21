@@ -7,5 +7,6 @@ This section includes utilities for:
 -   [**Effects**](./effects.md): Apply animations, transformations, and highlight effects to elements, either continuously or on interaction.
 -   [**Transitions**](./transitions.md): Control the timing and smoothness of CSS property changes.
 -   [**Scroll Effects**](./scroll-effects.md): Influence scrolling behavior, such as implementing scroll snapping.
+-   [**Mouse Interaction**](./mouse-interaction.md): Control cursor appearance and pointer events.
 
 These utilities are designed to be combined with each other and with base element styles to create engaging and responsive user experiences. 

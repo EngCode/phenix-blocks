@@ -42,7 +42,9 @@
         display: block;
         position: absolute;
         pointer-events: none;
+        border-radius: inherit;
         opacity: var(--opacity, 0.5);
+        transition: all 0.3s ease-in-out;
         background: var(--overlay-bg, #000);
     }
     /*==== Overlay Sibling ====*/

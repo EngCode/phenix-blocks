@@ -21,8 +21,7 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> . Check IF WooCommerce not Enabled . <=====//
-include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-if (!is_plugin_active('woocommerce/woocommerce.php')) return;
+if (!get_option('pds_woo_status') || get_option('pds_woo_status') == "off") {return;}
 
 //====> WooCommerce Optimizer <====//
 if (!function_exists('woo_scripts_optimize')) :

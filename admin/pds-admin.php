@@ -126,7 +126,8 @@
             array('excerpt_length', 'pds-admin', true),
             array('pds_woo_css', 'pds-admin', true),
             array('pds_woo_js', 'pds-admin', true),
-    
+            array('pds_woo_status', 'pds-admin', true),
+
             //===> Phenix Blocks <===//
             array('container_block', 'pds-admin', true),
             array('logo_block', 'pds-admin', true),

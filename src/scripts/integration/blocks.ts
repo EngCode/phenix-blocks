@@ -54,10 +54,19 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //===> Move Header <===//
     const main_header = document.querySelector('.main-header'),
-          header_holder = document.querySelector('#header-holder');
+          header_holder:HTMLElement = document.querySelector('#header-holder');
 
     //====> Header Holders <====//
-    if (main_header && header_holder) header_holder.prepend(main_header);
+    if (main_header && header_holder) {
+        //===> Wrap Header <===//
+        Phenix(header_holder).insert('prepend', '<div class="header-sticky-wrapper"></div>');
+        //===> Get Sticky Wrapper <===//
+        const sticky_wrapper:HTMLElement = header_holder.querySelector('.header-sticky-wrapper');
+        //===> Prepend Header <===//
+        sticky_wrapper.prepend(main_header);
+        //===> add Dynamic Holder Height <===//
+        sticky_wrapper.style.height = `${Phenix(sticky_wrapper).height()}px`;
+    }
 
     //===> Audio Player [Testimonials] <===//
     if (document.querySelector('[data-audio]') || document.querySelector('.audio-trigger')) {

@@ -49,6 +49,10 @@
                     "title" => 'Newsletter CSS',
                 ),
                 array(
+                    "name"  => 'pds_woo_status',
+                    "title" => 'Enable WooCommerce',
+                ),
+                array(
                     "name"  => 'pds_woo_js',
                     "title" => 'WooCommerce JS',
                 ),

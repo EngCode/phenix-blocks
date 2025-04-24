@@ -25,35 +25,6 @@
 .border-dashed {border-style: dashed;}
 .border-dotted {border-style: dotted;}
 
-/*==== Custom ====*/
-.border-top-custom {
-    border-top-width: var(--border-top);
-    @include medium() { --border-top: var(--border-top-md) };
-    @include large()  { --border-top: var(--border-top-lg) };
-    @include xlarge() { --border-top: var(--border-top-xl) };
-}
-
-.border-bottom-custom {
-    border-bottom-width: var(--border-bottom);
-    @include medium() { --border-bottom: var(--border-bottom-md) };
-    @include large()  { --border-bottom: var(--border-bottom-lg) };
-    @include xlarge() { --border-bottom: var(--border-bottom-xl) };
-}
-
-.border-start-custom {
-    border-#{$direction-start}-width: var(--border-start);
-    @include medium() { --border-start: var(--border-start-md) };
-    @include large()  { --border-start: var(--border-start-lg) };
-    @include xlarge() { --border-start: var(--border-start-xl) };
-}
-
-.border-end-custom {
-    border-#{$direction-end}-width: var(--border-end);
-    @include medium() { --border-end: var(--border-end-md) };
-    @include large()  { --border-end: var(--border-end-lg) };
-    @include xlarge() { --border-end: var(--border-end-xl) };
-}
-
 /*==== Borders Size ====*/
 @mixin make-borders ($infix:'') {
     /*==== All ====*/
@@ -88,14 +59,38 @@
     .border#{$infix}-end-5 {border-#{$direction-end}-width:  #{REM(5)};}
 }
 
+/*==== Base Screen ====*/
+.border-top-custom {border-top-width: var(--border-top);}
+.border-bottom-custom {border-bottom-width: var(--border-bottom);}
+.border-start-custom {border-#{$direction-start}-width: var(--border-start);}
+.border-end-custom {border-#{$direction-end}-width: var(--border-end);}
 @include make-borders();
 
-@include medium() {
+/*==== Medium Screen ====*/
+@include medium(){
+    .border-top-custom { border-top-width: var(--border-top-md, var(--border-top)) };
+    .border-bottom-custom { border-bottom-width: var(--border-bottom-md, var(--border-bottom)) };
+    .border-start-custom { border-#{$direction-start}-width: var(--border-start-md, var(--border-start)) };
+    .border-end-custom { border-#{$direction-end}-width: var(--border-end-md, var(--border-end)) };
     @include make-borders('-md');
 };
 
-@include large() {
+/*==== Large Screen ====*/
+@include large(){
+    .border-top-custom { border-top-width: var(--border-top-lg, var(--border-top-md, var(--border-top))) };
+    .border-bottom-custom { border-bottom-width: var(--border-bottom-lg, var(--border-bottom-md, var(--border-bottom))) };
+    .border-start-custom { border-#{$direction-start}-width: var(--border-start-lg, var(--border-start-md, var(--border-start))) };
+    .border-end-custom { border-#{$direction-end}-width: var(--border-end-lg, var(--border-end-md, var(--border-end))) };
     @include make-borders('-lg');
+};
+
+/*==== xLarge Screen ====*/
+@include xlarge(){
+    .border-top-custom { border-top-width: var(--border-top-xl, var(--border-top-lg, var(--border-top-md, var(--border-top)))) };
+    .border-bottom-custom { border-bottom-width: var(--border-bottom-xl, var(--border-bottom-lg, var(--border-bottom-md, var(--border-bottom)))) };
+    .border-start-custom { border-#{$direction-start}-width: var(--border-start-xl, var(--border-start-lg, var(--border-start-md, var(--border-start)))) };
+    .border-end-custom { border-#{$direction-end}-width: var(--border-end-xl, var(--border-end-lg, var(--border-end-md, var(--border-end)))) };
+    @include make-borders('-xl');
 };
 
 /*==== Radius Utilites ====*/

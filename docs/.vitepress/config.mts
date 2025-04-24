@@ -128,7 +128,6 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: 'DOM Manipulation', link: '/frontend/js/dom-manipulation/' },
-            { text: 'Element Remover', link: '/frontend/js/element-remover' },
             { text: 'DOM Traversing', link: '/frontend/js/dom-traversing' },
             { text: 'DOM Events', link: '/frontend/js/dom-events' },
             { text: 'DOM UI Effects', link: '/frontend/js/ui-effects' },
@@ -273,7 +272,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2023-present Phenix Design System'
+      copyright: 'Copyright 2023-present Phenix Design System'
     },
 
     // Optional: Add search functionality (requires setup)

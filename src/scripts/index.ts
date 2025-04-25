@@ -622,12 +622,12 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     };
 
     /*====> Convert Pixels to REM <====*/
-    toREM(size, base = 16) {
-        return `${(parseFloat(size) / base)}rem`;
+    toREM(size: number, base: number = 16): string {
+        return `${(parseFloat(size.toString()) / base)}rem`;
     };
 
     /*====> Copy to Clipboard <====*/
-    async copyText (text) {
+    async copyText (text: string) {
         //===> Copy to Clipboard Method <===//
         const type = "text/plain";
         const blob = new Blob([text], { type });
@@ -765,7 +765,7 @@ const Phenix = (selector?:any) => {
 //====> Export Phenix <====//
 export default Phenix;
 
-/*====> Import Features <====*/
+/*====> Import Methods <====*/
 import './features/get-info';   //==> Get Informations about elements
 import './features/viewport';   //==> Viewport Detection
 import './features/counter';    //==> Animated Counter
@@ -775,10 +775,10 @@ import './features/validation'; //==> Form Validation
 import './features/collapse';   //==> Collapse Toggle
 import './features/notifications'; //==> Notifications
 
-/*====> Import Scroll Effects <====*/
-import './features/smooth-scroll'; //==> Smooth Scroll
+/*====> Import Scroll Methods <====*/
+import './features/smooth-scroll';   //==> Smooth Scroll
 import './features/sticky-elements'; //==> Sticky Elements
-import './features/scroll-spy'; //==> Scroll Spy
+import './features/scroll-spy';      //==> Scroll Spy
 
 /*====> Import Components <====*/
 import './components/menu';      //==> Menus

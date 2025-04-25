@@ -1,38 +1,19 @@
-# Phenix Design System Documentation Plan
+# Phenix Design System Documentation Master Plan
 
 ## Overview
 
-This document outlines the plan for creating comprehensive documentation for the Phenix Design System. We're building a new VitePress-based documentation system that will replace the current live documentation.
+This master plan outlines a comprehensive approach to creating and maintaining high-quality documentation for the Phenix Design System. The plan is divided into seven phases, each with actionable checklists and a focus on refactoring the documentation to align with the plan.
 
-## Documentation Structure
+## Phase 1: Planning and Setup (Completed)
 
-The documentation is divided into two main sections, reflecting the two distinct packages:
-
-1. **Frontend Documentation**: Covers the standalone front-end framework (phenix-ui)
-2. **WordPress Documentation**: Covers the WordPress integration and blocks (pds-blocks)
-
-## Methodology
-
-Our documentation approach follows these principles:
-
-1. **Section-by-Section Development**: We tackle one logical section at a time, ensuring completeness before moving to the next
-2. **Dual-Source Fact Checking**: All documentation is verified against:
-   - The existing live documentation at phenixthemes.com
-   - The actual source code in the repositories
-3. **Clear Separation**: We clearly distinguish between the standalone framework and WordPress plugin
-4. **Progressive Enhancement**: We start with basic installation and work toward more complex topics
-5. **Code Examples**: All documentation includes practical, tested code examples
-6. **Cross-Referencing**: Where appropriate, we link between related sections
-
-## Implementation Phases
-
-### Phase 1: Core Documentation Structure (Completed)
-
-- [x] Setup VitePress configuration
-- [x] Create basic navigation structure
+- [x] Define the scope and goals of the documentation project
+- [x] Identify the target audience and their needs
+- [x] Determine the documentation structure and organization
+- [x] Set up the documentation toolchain (VitePress)
+- [x] Create a basic navigation structure
 - [x] Define section organization
 
-### Phase 2: Frontend Framework - Getting Started (Completed)
+## Phase 2: Frontend Framework Documentation (In Progress)
 
 - [x] Quick Start
   - [x] Installation (with clear separation between phenix-ui and pds-blocks)
@@ -50,52 +31,53 @@ Our documentation approach follows these principles:
   - [x] SASS Selectors
   - [x] Mixins & Functions
 
-- [x] Working with TypeScript
-  - [x] Overview
-  - [x] Build Tools
+- [ ] Working with TypeScript
+  - [ ] Overview
+  - [ ] Build Tools
 
-### Phase 3: Frontend Framework - CSS Modules (Completed)
+- [ ] CSS Modules
+  - [ ] Grid System
+  - [ ] Containers
+  - [ ] Flexbox Row
+  - [ ] Columns
+  - [ ] Gutters
 
-- [x] Grid System
-  - [x] Containers
-  - [x] Flexbox Row
-  - [x] Columns
-  - [x] Gutters
-  - [x] Group Layout
+## Phase 3: Frontend Framework - Advanced Topics
 
-- [x] Typography
-  - [x] Default Resets
-  - [x] Typography
-  - [x] Tables
-  - [x] List Components
+- [ ] **SASS Variables**
+  - [ ] List and explain all variables
+  - [ ] Customization examples
 
-- [x] CSS Utilities
-  - [x] Sizing
-  - [x] Colors
-  - [x] Spacing
-  - [x] Visibility
-  - [x] Borders
-  - [x] Backgrounds
-  - [x] Other Utilities
+- [ ] **Mixins & Functions**
+  - [ ] List and usage
+  - [ ] Extending and customizing
 
-### Phase 4: Frontend Framework - JavaScript Modules (In Progress)
+- [ ] **Theming**
+  - [ ] Light/Dark modes
+  - [ ] Custom themes
 
-- [ ] DOM Manipulation
-- [ ] DOM Traversing
-- [ ] DOM Events
-- [ ] UI Effects
-- [ ] Animation System
-- [ ] Carousel Slider
-- [ ] Time Counter
-- [ ] Multimedia System
-- [ ] Table of Content
-- [ ] Components Utilities
-- [ ] Page Loader
-- [ ] Performance
+## Phase 4: JavaScript Modules
 
-### Phase 5: Frontend Framework - UI Components & Form Controls
+- [ ] **DOM Utilities**
+  - [ ] DOM Manipulation (methods, patterns)
+  - [ ] DOM Traversing
+  - [ ] DOM Events (event system, custom events)
 
-- [ ] UI Components
+- [ ] **UI Effects & Animations**
+  - [ ] Animation System (API, examples)
+  - [ ] UI Effects (fade, slide, etc.)
+
+- [ ] **Components Utilities**
+  - [ ] Carousel Slider (init, options, API)
+  - [ ] Time Counter (usage, customization)
+  - [ ] Multimedia System (audio, video)
+  - [ ] Table of Content (auto-generation, linking)
+  - [ ] Page Loader (usage, customization)
+  - [ ] Performance (profiling, optimization tips)
+
+## Phase 5: UI Components & Form Controls
+
+- [ ] **UI Components** (Each gets a page with: overview, usage, options, accessibility, customization, code samples)
   - [ ] Alerts
   - [ ] Buttons
   - [ ] Progress
@@ -110,19 +92,17 @@ Our documentation approach follows these principles:
   - [ ] Navbars & Menus
   - [ ] Tooltips & Popovers
 
-- [ ] Form Controls
-  - [ ] Form Controls
-  - [ ] Form Validation
-  - [ ] Advanced Select
-  - [ ] Files Upload
-  - [ ] Rating Controller
-  - [ ] Form Repeater
+- [ ] **Form Controls**
+  - [ ] Inputs (text, number, password, etc.)
+  - [ ] Selects, Advanced Select
+  - [ ] Checkboxes, Radios, Switches
   - [ ] Range Slider
 
-### Phase 6: Frontend Framework - Helpers & Tools
+## Phase 6: Frontend Framework - Helpers & Tools
+
 - [ ] Icons Libraries
 
-### Phase 7: WordPress Integration
+## Phase 7: WordPress Integration
 
 - [ ] Getting Started
   - [ ] Installation
@@ -151,6 +131,14 @@ Our documentation approach follows these principles:
   - [ ] Admin Pages
   - [ ] API Endpoints
   - [ ] Custom Functions
+
+## Refactoring the Docs
+
+- [ ] Review the existing documentation and identify areas for improvement
+- [ ] Refactor the documentation to align with the plan
+- [ ] Ensure consistency in terminology and style
+- [ ] Update code examples and visual aids
+- [ ] Verify accuracy and completeness of the documentation
 
 ## Fact-Checking Process
 
@@ -206,4 +194,4 @@ We'll track progress through each phase, marking completed sections and identify
 
 1. Complete the "Working with SASS" section
 2. Begin the "Working with TypeScript" section
-3. Proceed to CSS Modules documentation 
+3. Proceed to CSS Modules documentation

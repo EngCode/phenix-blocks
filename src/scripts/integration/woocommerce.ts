@@ -60,8 +60,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
         //     formData.append(key, value as any);
         // }
 
-        console.log(formData);
-
         //===> Send the request to WooCommerce via Fetch API <===//
         fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'), {
             method: 'POST',

@@ -97,15 +97,11 @@ PhenixElements.prototype.sticky = function (options?:{
     //====> Loop Through Phenix Elements <====//
     this.forEach(element => {
         //====> Get Data <====//
-        let type   = element.getAttribute('data-sticky') || options?.type || 'sticky',
-            into   = parseInt(element.getAttribute('data-into')) || options?.into || 0,
+        let into   = parseInt(element.getAttribute('data-into')) || options?.into || 0,
             active = options?.active || 'is-sticky',
             offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0,
             position = element.offsetTop,
             direction = options?.flow?.toLowerCase() || 'y';
-
-        //====> Relative to its Parent [workout] <====//
-        // if (type && type === 'sticky') element.parentNode.style.transform = "translateZ(0)";
 
         //====> Y Scroll Mode <====//
         if(!direction || direction === 'y') {

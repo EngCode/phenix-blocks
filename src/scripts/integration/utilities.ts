@@ -301,21 +301,6 @@ PhenixElements.prototype.utilities = function (options?:{
         const document_classes = document.body.getAttribute('class');
         //===> Check the Document Type <===//
         if (!document.body.classList.contains('wp-admin') && !document_classes?.includes('-editor')) {
-            //===> Example of ES6 Module Import with Import Map <===//
-            if(document.querySelector('.px-module-test')) {
-                Phenix(document).import("test-module", "script", "modules/test-module.js", () => {
-                    console.log("ES6 Module loaded successfully");
-                }, {
-                    integrated: true,
-                    module: true,
-                    importMap: {
-                        // Define module mappings
-                        "lodash": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js",
-                        "utils": "./modules/utils.js"
-                    }
-                });
-            }
-
             //===> Import Masonry Grid Plugin <===//
             if(document.querySelector('.px-masonry')) Phenix(document).import("masonry", "script", "masonry.min.js", ()=> {
                 Phenix(".px-masonry").forEach((grid:any) => {

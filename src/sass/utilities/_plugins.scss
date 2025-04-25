@@ -280,21 +280,26 @@
 };
 
 /*==== Section Snapping ====*/
-.px-section-snap {
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
+/*==== Front-End Only ====*/
+body:not([class*="editor"]) {
+    .px-section-snap {
+        max-height: 100vh;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        &.proximity {scroll-snap-type: y proximity;}
+        > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
+    }
+    
+    .px-section-snap-x {
+        max-width: 100vw;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        &.proximity {scroll-snap-type: x proximity;}
+        > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
+    }
 }
-
-.px-section-snap-x {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
-}
-
-// .px-masonry, .row.px-masonry {display: block;}
 
 /*==== Swiper Fixes ====*/
 // .px-slider[data-duration="0"] .swiper-wrapper {

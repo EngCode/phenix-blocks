@@ -88,7 +88,7 @@ PhenixElements.prototype.animations = function (options?:{
         if (lazygroup) {
             //====> Get Base Stagger <====//
             const baseStagger = parseInt(element.getAttribute('data-stagger')) || options?.stagger || 100;
-            
+
             //====> Track Animation Order <====//
             let animationOrder = 0;
 
@@ -198,29 +198,34 @@ PhenixElements.prototype.animations = function (options?:{
             //====> Create Intersection Observer <====//
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    //====> Get Element <====//
                     const element = entry.target as HTMLElement;
-                    
+
+                    //====> Check if Element is in View <====//
                     if (entry.isIntersecting) {
                         //====> Entry Animation <====//
                         if (!element.classList.contains('view-active')) {
+                            //====> Show the Element <====//
                             Phenix(element).removeClass('visibility-hidden');
+                            //====> Add View Active and Current Animation <====//
                             element.classList.add('view-active', currentAnimation);
                             //====> Remove Exit Animation if Exists <====//
                             if (exitAnimation) element.classList.remove(exitAnimation);
                         }
-                    } else if (exitAnimation) {
+                    } 
+                    //====> Check if Element is Exiting <====//
+                    else if (exitAnimation) {
                         //====> Exit Animation <====//
                         const isScrollingDown = entry.boundingClientRect.top < 0;
+                        //====> Remove Current Animation and View Active <====//
+                        element.classList.remove(currentAnimation, 'view-active');
+                        //====> Add Exit Animation <====//
                         if (isScrollingDown) {
-                            element.classList.remove(currentAnimation);
                             element.classList.add(exitAnimation);
                         }
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin
-            });
+            }, {threshold: 0.1,rootMargin});
 
             //====> Start Observing <====//
             observer.observe(element);

@@ -63,6 +63,10 @@ window.PhenixBlocks.dataLists = {
         { "label": "Aside", "value": "aside"},
         { "label": "Article", "value": "article"},
         { "label": "Section", "value": "section"},
+        { "label": "Span", "value": "span"},
+        { "label": "Headline L1", "value": "h1"},
+        { "label": "Headline L2", "value": "h2"},
+        { "label": "Headline L3", "value": "h3"},
     ],
 
     container_sizes : [
@@ -153,6 +157,7 @@ window.PhenixBlocks.dataLists = {
         types: [
             { "label": "Headline", "value": "headline"},
             { "label": "Paragraph", "value": "paragraph"},
+            { "label": "Span", "value": "span"},
             { "label": "List Bullets", "value": "list"},
             { "label": "List Numbers", "value": "list-numbers"},
             { "label": "List Custom", "value": "list-custom"},

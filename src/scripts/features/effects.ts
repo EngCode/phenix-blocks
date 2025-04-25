@@ -222,6 +222,3 @@ PhenixElements.prototype.fadeToggle = function (duration?, delay?, display?) {
     //====> Return Phenix Elements <====//
     return this;
 };
-
-/*====> Effects : (Smoth-Scroll, Sticky, Scroll-Spy) <====*/
-import './effects-scroll';

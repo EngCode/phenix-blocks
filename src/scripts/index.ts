@@ -768,12 +768,17 @@ export default Phenix;
 /*====> Import Features <====*/
 import './features/get-info';   //==> Get Informations about elements
 import './features/viewport';   //==> Viewport Detection
-import './features/effects';    //==> UI Effects
 import './features/counter';    //==> Animated Counter
+import './features/effects';    //==> UI Effects
 import './features/animations'; //==> View-port Animations
 import './features/validation'; //==> Form Validation
 import './features/collapse';   //==> Collapse Toggle
 import './features/notifications'; //==> Notifications
+
+/*====> Import Scroll Effects <====*/
+import './features/smooth-scroll'; //==> Smooth Scroll
+import './features/sticky-elements'; //==> Sticky Elements
+import './features/scroll-spy'; //==> Scroll Spy
 
 /*====> Import Components <====*/
 import './components/menu';      //==> Menus

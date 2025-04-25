@@ -195,6 +195,16 @@ PhenixElements.prototype.scrollSpy = function (options?:{
                     //====> Also remove from any active children <====//
                     sibling.querySelector(`.${className}`)?.classList.remove(className);
                 });
+
+                //===> Check if spyWrapper is Scrollable horizontally/vertically <====//
+                if (spyWrapper.scrollHeight > spyWrapper.clientHeight || spyWrapper.scrollWidth > spyWrapper.clientWidth) {
+                    //====> Scroll to parent or trigger <====//
+                    spyWrapper.scrollTo({
+                        top: (parent ? parent.offsetTop : trigger.offsetTop),
+                        left: (parent ? parent.offsetLeft : trigger.offsetLeft),
+                        behavior: 'smooth'
+                    });
+                }
             };
 
             //====> Use inView to detect when target is in viewport <====//

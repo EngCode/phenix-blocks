@@ -88,7 +88,8 @@ PhenixElements.prototype.timer = function (options?:{
                     element.classList.remove('px-is-loading');
                     //====> Start Timer <====//
                     timer_handler();
-                }
+                },
+                feature: 'timer'
             });
         } else {
             timer_handler();

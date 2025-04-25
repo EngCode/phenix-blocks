@@ -12,6 +12,8 @@ PhenixElements.prototype.inView = function (options?:{
     into?:number,    //====> Increase Target Position By [number]
     offset?:number,  //====> Decrease Target Position By [number]
     callback?:Function, //====> Callback when element is in view
+    feature?:string, //====> Feature name using this observer (scrollspy, lazyload, etc)
+    persistent?:boolean, //====> Keep observing even after callback is triggered
 }, flowOn?:string) {
     //===> Check if the Element Available ===//
     if (!this[0]) return false;
@@ -19,11 +21,18 @@ PhenixElements.prototype.inView = function (options?:{
     //====> Define Data <====//
     const element = this[0];
     const flow = flowOn || options?.flow;
+    const feature = options?.feature || 'default';
+    const persistent = options?.persistent || false;
 
-    //====> Clean up any existing observer <====//
-    if (element._phenixObserver) {
-        element._phenixObserver.disconnect();
-        delete element._phenixObserver;
+    //====> Initialize observer storage if not exists <====//
+    if (!element._phenixObservers) {
+        element._phenixObservers = {};
+    }
+
+    //====> Clean up existing observer for this feature <====//
+    if (element._phenixObservers[feature]) {
+        element._phenixObservers[feature].disconnect();
+        delete element._phenixObservers[feature];
     }
 
     //====> Configure observer options <====//
@@ -54,18 +63,19 @@ PhenixElements.prototype.inView = function (options?:{
         }
         
         //====> Execute callback if visible <====//
-        if (isVisible) {
-            //===> Execute Callback <====//
-            if (options?.callback) options.callback(element);
-            //===> Unobserve the Element <====//
-            observer.unobserve(element);
-            //===> Delete the Observer <====//
-            delete element._phenixObserver;
+        if (isVisible && options?.callback) {
+            options.callback(element);
+            
+            //===> If not persistent, unobserve <====//
+            if (!persistent) {
+                observer.unobserve(element);
+                delete element._phenixObservers[feature];
+            }
         }
     }, observerOptions);
 
     //====> Store and start observer <====//
-    element._phenixObserver = observer;
+    element._phenixObservers[feature] = observer;
     observer.observe(element);
 
     //====> Allow method chaining <====//

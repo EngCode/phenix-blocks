@@ -156,56 +156,56 @@ PhenixElements.prototype.scrollSpy = function (options?:{
 }) {
     //====> Define Options <=====//
     let className:string = options?.active || 'px-active',
+        spotFlow:string = options?.flow || 'both',
         spotInto:number = options?.into || 0,
         spotOffset:number = options?.offset || 0;
 
     //====> Loop Through Phenix Elements <====//
-    this.forEach(element => {
+    this.forEach(spyWrapper => {
         //====> Get All Links & Triggers <====//
-        let triggers:any = element.querySelectorAll('[href], [data-target]');
+        let triggers:any = spyWrapper.querySelectorAll('[href], [data-target]');
 
-        //====> Apply Smooth Scroll & Loop Through Links & Triggers <====//
+        //====> Loop Through Triggers <====//
         triggers.forEach(trigger => {
-            Phenix(trigger).smothScroll({
-                into : element.getAttribute('data-into') || spotInto,
-                offset : element.getAttribute('data-offset') || spotOffset
-            })
-        });
+            //====> Smooth Scroll <====//
+            Phenix(trigger).smothScroll();
 
-        triggers.forEach(element => {
             //====> Get Data <====//
-            let selector = element.getAttribute('href') || element.getAttribute('data-target'),
+            let selector = trigger.getAttribute('href') || trigger.getAttribute('data-target');
 
-            //====> Activator <====//
-            activator = () => {
-                //====> Define Siblings & Parent Elements <====//
-                let siblings, parent;
-            
-                //====> if Trigger not List-Item Get Ancestor List-Item <====//
-                if (!element.matches('li')) parent = Phenix(element).ancestor('li');
+            //====> Skip if not a valid selector <====//
+            if (!selector || !document.querySelector(`${selector}`)) return;
 
-                //====> Active & Get Siblings <====//
-                siblings = Phenix(parent || element).addClass(className).siblings();
-
-                //====> Loop Through Siblings <====//
-                if (siblings) siblings.forEach(sibling => {
-                    //====> De-Activate Siblings <====//
+            //====> Define Activator <====//
+            const activator = () => {
+                //====> Define parent if needed <====//
+                const parent = !trigger.matches('li') ? Phenix(trigger).ancestor('li') : null;
+                
+                //====> Add active class to parent or trigger <====//
+                if (parent) {
+                    parent.classList.add(className);
+                } else {
+                    trigger.classList.add(className);
+                }
+                
+                //====> Remove active class from siblings <====//
+                Phenix(parent || trigger).siblings()?.forEach(sibling => {
+                    //====> Remove active class <====//
                     sibling.classList.remove(className);
-
-                    //====> Get Activated child's & De-Activate them <====//
+                    //====> Also remove from any active children <====//
                     sibling.querySelector(`.${className}`)?.classList.remove(className);
                 });
             };
 
-            //====> if Target Exist and in View <====//
-            if (document.querySelector(`${selector}`)) {
-                Phenix(selector).inView({
-                    flow: options?.flow || 'both',
-                    into: element.getAttribute('data-into') || options?.into || 0,
-                    offset: element.getAttribute('data-offset') || options?.offset || 0,
-                    callback: activator
-                });
-            }
+            //====> Use inView to detect when target is in viewport <====//
+            Phenix(selector).inView({
+                flow: trigger.getAttribute('data-flow') || spotFlow,
+                into: trigger.getAttribute('data-into') || spotInto,
+                offset: trigger.getAttribute('data-offset') || spotOffset,
+                callback: activator,
+                feature: 'scrollspy',
+                persistent: true
+            });
         });
     });
 

@@ -64,9 +64,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
         });
     }
 
-    //===> .Scrollspy. <===//
-    Phenix(".scrollspy-menu").scrollSpy();
-
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
         //===> Get Data Options <====//
@@ -187,6 +184,9 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     //====> Build Timer's <====//
     Phenix('.px-timer').timer({type: "countdown"});
+
+    //===> .Scrollspy. <===//
+    Phenix(".scrollspy-menu").scrollSpy();
 
     //===> .Others. <===//
     Phenix(document).utilities();

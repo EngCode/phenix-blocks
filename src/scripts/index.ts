@@ -411,7 +411,8 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
                             element.classList.remove('px-loading');
                             element.classList.add('px-loaded');
                         }
-                    }
+                    },
+                    feature: 'lazyloading'
                 });
             }
         });

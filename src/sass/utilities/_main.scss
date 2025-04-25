@@ -10,6 +10,7 @@
  * ===> 09 - Aspect Ratio
  * ===> 10 - Lazy Loader
  * ===> 11 - Assets
+ * ===> 12 - Section Snapping
 */
 
 /*==== SASS Selectors ====*/
@@ -93,6 +94,13 @@
         width: #{REM(10)};
         box-shadow: inset #{REM(1)} 0 0 0 #{REM(1)} rgba(#000, 0.1);
     }
+}
+
+/*==== Hidden Scrollbar ====*/
+.px-scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {display: none;}
 }
 
 /*==== Icons Fix ====*/
@@ -203,4 +211,26 @@
 }
 
 .icon-lg::before {font-size: 1.5em;}
+
+/*==== Section Snapping ====*/
+body:not([class*="editor"]) {
+    .px-section-snap {
+        max-height: 100vh;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        &.proximity {scroll-snap-type: y proximity;}
+        > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
+    }
+    
+    .px-section-snap-x {
+        max-width: 100vw;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        &.proximity {scroll-snap-type: x proximity;}
+        > .px-section-snap-item, > div:not(.no-snap) {scroll-snap-align: start;}
+    }
+}
 

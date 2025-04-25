@@ -95,7 +95,8 @@ PhenixElements.prototype.progress = function (options?:{
                         progress.classList.remove('px-is-loading');
                         //====> Start Progress <====//
                         progress_handler();
-                    }
+                    },
+                    feature: 'progress'
                 });
             } else {
                 progress_handler();

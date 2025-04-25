@@ -24,7 +24,7 @@ PhenixElements.prototype.scrollSpy = function (options?:{
     //====> Loop Through Phenix Elements <====//
     this.forEach(spyWrapper => {
         //====> Get All Links & Triggers <====//
-        let triggers:any = spyWrapper.querySelectorAll('[href], [data-target]');
+        let triggers = spyWrapper.querySelectorAll('[href], [data-target]');
 
         //====> Loop Through Triggers <====//
         triggers.forEach(trigger => {
@@ -41,12 +41,17 @@ PhenixElements.prototype.scrollSpy = function (options?:{
             const activator = () => {
                 //====> Define parent if needed <====//
                 const parent = !trigger.matches('li') ? Phenix(trigger).ancestor('li') : null;
+                const hasScrollWrapper = spyWrapper.scrollHeight > spyWrapper.clientHeight || spyWrapper.scrollWidth > spyWrapper.clientWidth;
                 
                 //====> Add active class to parent or trigger <====//
                 if (parent) {
                     parent.classList.add(className);
+                    //====> Scroll to the Trigget if has Scrollable Wrapper <====//
+                    if (hasScrollWrapper) parent.scrollIntoView({behavior: 'smooth'});
                 } else {
                     trigger.classList.add(className);
+                    //====> Scroll to the Trigget if has Scrollable Wrapper <====//
+                    if (hasScrollWrapper) trigger.scrollIntoView({behavior: 'smooth'});
                 }
                 
                 //====> Remove active class from siblings <====//
@@ -56,12 +61,6 @@ PhenixElements.prototype.scrollSpy = function (options?:{
                     //====> Also remove from any active children <====//
                     sibling.querySelector(`.${className}`)?.classList.remove(className);
                 });
-
-                //===> Check if spyWrapper is Scrollable horizontally/vertically <====//
-                if (spyWrapper.scrollHeight > spyWrapper.clientHeight || spyWrapper.scrollWidth > spyWrapper.clientWidth) {
-                    //====> Scroll to parent or trigger <====//
-                    spyWrapper.scrollIntoView({behavior: 'smooth'});
-                }
             };
 
             //====> Use inView to detect when target is in viewport <====//

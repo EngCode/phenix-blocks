@@ -22,6 +22,11 @@
         <?php endif; ?>
     </div>
 </div>
+<!-- Loading Styles -->
+<style>
+    .px-page-loader {clip-path: circle(150% at 50% 50%); transition: clip-path 0.8s cubic-bezier(.77,0,.18,1), opacity 0.3s;}
+    .px-page-loader.hide {clip-path: circle(0% at 50% 50%);}
+</style>
 <!-- Loading Script -->
 <script defer>
     /*====> Unblock Phenix <====*/
@@ -41,20 +46,58 @@
         if (isFormProcessing && theForm && !theForm.classList.contains('failed')) {
             Phenix('.px-page-loader p')[0].innerHTML = "please wait your data is being processed.";
         } else {
-            //===> Hide the Loader <===//
-            Phenix(".px-page-loader").fadeOut(500, 0);
-            //===> Leaving Fallback <===//
-            window.addEventListener('pageshow', (event) => Phenix(".px-page-loader").fadeOut(500, 0));
+            //===> Hide Loader with Circular Effect <===//
+            const pxLoader = document.querySelector('.px-page-loader');
+            //===> Add Hide Effect <===//
+            pxLoader.classList.add('hide');
+            //===> Remove Loader <===//
+            pxLoader.addEventListener('transitionend', function pxHideHandler(e) {
+                //===> Remove Loader <===//
+                if (e.propertyName === 'clip-path') {
+                    //===> Hide Loader <===//
+                    pxLoader.style.display = 'none';
+                    //===> Remove Transition <===//
+                    pxLoader.removeEventListener('transitionend', pxHideHandler);
+                }
+            });
         }
     });
 
-    //===> When Leaving Page <===//
-    window.addEventListener('beforeunload', (isLeaving) => {
-        //===> WP7 Hacks <===//
-        const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
-        const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
-        //====> Cancel Loading Showup <=====//
-        if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
-        Phenix(".px-page-loader").fadeIn(100, 0);
-    });    
+    //===> Page Transition: Intercept Internal Link Clicks <===//
+    document.addEventListener('DOMContentLoaded', function() {
+        //===> Add Click Event <===//
+        document.body.addEventListener('click', function(event) {
+            //===> Only handle left-clicks on internal links (not _blank, not hashes) <===//
+            const link = event.target.closest('a[href]:not([target="_blank"])');
+            //===> Check if the link is internal <===//
+            if (link && link.origin === window.location.origin && !link.hash) {
+                //===> WP7 Hacks for Contact Form 7 <===//
+                const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
+                const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
+                //===> Cancel Loading Showup <===//
+                if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
+                event.preventDefault();
+
+                //===> Show Loader with Circular Effect <===//
+                const pxLoader = document.querySelector('.px-page-loader');
+                //===> Show Loader <===//
+                pxLoader.style.display = '';
+                
+                //===> Add Show Effect <===//
+                void pxLoader.offsetWidth;
+                //===> Remove Hide Effect <===//
+                pxLoader.classList.remove('hide');
+                //===> Add Show Effect <===//
+                pxLoader.addEventListener('transitionend', function pxShowHandler(ev) {
+                    //===> Check for Clip Path <===//
+                    if (ev.propertyName === 'clip-path') {
+                        //===> Redirect <===//
+                        window.location = link.href;
+                        //===> Remove Show Effect <===//
+                        pxLoader.removeEventListener('transitionend', pxShowHandler);
+                    }
+                });
+            }
+        });
+    });
 </script>

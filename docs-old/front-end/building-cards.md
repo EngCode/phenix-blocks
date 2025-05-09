@@ -25,7 +25,7 @@ in this example we will build a simple card that holds an `image`, `title`, `des
 <!-- Card Example -->
 <div class="card-example bg-white 10 mb-30 w-max-320 radius-md">
     <!-- Image -->
-    <img src="https://via.placeholder.com/375x275" alt="" class="radius-md radius-top">
+    <img src="https://placehold.co/375x275" alt="" class="radius-md radius-top">
     <!-- Content -->
     <div class="pdx-25 pdy-15 fs-15">
         <h4 class="fs-17 strong-weight">Card Title Goes Here</h4>
@@ -41,7 +41,7 @@ in this example we will build a simple card that holds an `image`, `title`, `des
 <!-- Card Example -->
 <div class="card-example radius-md bg-white 10 mb-30 w-max-320">
     <!-- Image -->
-    <img src="https://via.placeholder.com/375x275" alt="" class="radius-md radius-top">
+    <img src="https://placehold.co/375x275" alt="" class="radius-md radius-top">
     <!-- Content -->
     <div class="pdx-25 pdy-15 fs-15">
         <h4 class="fs-17 strong-weight">Card Title Goes Here</h4>
@@ -63,7 +63,7 @@ in this example we will build a simple card that holds an `image`, `title`, `des
         <a href="#" class="btn primary small radius-sm">Go Somewhere</a>
     </div>
     <!-- Image -->
-    <img src="https://via.placeholder.com/375x275" alt="" class="radius-md radius-bottom">
+    <img src="https://placehold.co/375x275" alt="" class="radius-md radius-bottom">
 </div>
 <!-- // Card Example -->
 ```
@@ -143,7 +143,7 @@ in this example we will build a simple card that holds a `title`, `description
     <!-- Grid -->
     <div class="flexbox">
         <!-- Image -->
-        <img src="https://via.placeholder.com/375x275" alt="" class="col-12 col-md-4 radius-md radius-start">
+        <img src="https://placehold.co/375x275" alt="" class="col-12 col-md-4 radius-md radius-start">
         <!-- Content -->
         <div class="pdx-25 pdy-15 fs-15 col-12 col-md-8">
             <h4 class="fs-17 strong-weight">Card Title Goes Here</h4>

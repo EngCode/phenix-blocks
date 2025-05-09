@@ -67,6 +67,7 @@ window.PhenixBlocks.dataLists = {
         { "label": "Headline L1", "value": "h1"},
         { "label": "Headline L2", "value": "h2"},
         { "label": "Headline L3", "value": "h3"},
+        { "label": "List Wrapper", "value": "ul"},
     ],
 
     container_sizes : [

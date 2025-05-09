@@ -127,7 +127,7 @@ the Mixed Backgrounds type lets you create multiple backgrounds for the element 
 
 ```
 <!-- Aspect Ratio Media as Mixed Backgrounds -->
-<div class="px-media" data-src="http://via.placeholder.com/720x480" data-type="mixed-bg" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
+<div class="px-media" data-src="http://placehold.co/720x480" data-type="mixed-bg" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
 ```
 
 ```

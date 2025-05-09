@@ -357,7 +357,7 @@ in the example below you can find the code to build a dropdown Mega-Menu.
                     </div>
                     <!-- Column -->
                     <div class="col-12 col-md-4 col-lg-3">
-                        <a href="#"><img src="http://via.placeholder.com/300x400" alt="" class="fluid"></a>
+                        <a href="#"><img src="http://placehold.co/300x400" alt="" class="fluid"></a>
                     </div>
                     <!-- Column -->
                     <div class="col-12 col-md-4 col-lg-3">
@@ -382,8 +382,8 @@ in the example below you can find the code to build a dropdown Mega-Menu.
                     </div>
                     <!-- Column -->
                     <div class="col-12 col-md-4 col-lg-3">
-                        <a href="#"><img src="http://via.placeholder.com/300x190" alt="" class="fluid mb-20"></a>
-                        <a href="#"><img src="http://via.placeholder.com/300x190" alt="" class="fluid mb-10"></a>
+                        <a href="#"><img src="http://placehold.co/300x190" alt="" class="fluid mb-20"></a>
+                        <a href="#"><img src="http://placehold.co/300x190" alt="" class="fluid mb-10"></a>
                     </div>
                     <!-- // Column -->
                 </div>

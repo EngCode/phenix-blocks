@@ -197,49 +197,49 @@ as you can see we did give the `#thumbnail-slider` the data options for a slider
 <!-- Gallery Slider -->
 <div class="px-slider mb-30" data-sync="#thumbnails-example" data-pagination="1" data-controls="1">
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=01" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=01" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=02" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=02" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=03" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=03" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=04" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=04" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=05" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=05" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=06" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=06" alt="" class="fluid">
     </div>
     <div class="px-item">
-        <img src="https://via.placeholder.com/900x500.webp?text=07" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=07" alt="" class="fluid">
     </div>
 </div>
 <!-- Gallery Thumbnails -->
 <div id="thumbnails-example" data-type="slide" data-items="2" data-md="3" data-lg="4" class="row gpx-15 mb-30" data-is-navigation="1" data-controls="1">
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=01" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=01" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=02" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=02" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=03" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=03" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=04" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=04" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=05" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=05" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=06" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=06" alt="" class="fluid">
     </div>
     <div class="px-item col-6 col-md-4 col-lg-3">
-        <img src="https://via.placeholder.com/900x500.webp?text=07" alt="" class="fluid">
+        <img src="https://placehold.co/900x500.webp?text=07" alt="" class="fluid">
     </div>
 </div>
 <!-- // Gallery Slider -->
@@ -315,7 +315,7 @@ in the next example we will use the same options that we used on the gallery sli
             <!-- Item -->
             <div class="px-item tx-align-center bg-alpha-05 position-rv">
                 <!-- image -->
-                <img src="https://via.placeholder.com/900x500.webp?text=01" alt="" class="radius-md">
+                <img src="https://placehold.co/900x500.webp?text=01" alt="" class="radius-md">
                 <!-- content-->                
                 <div class="radius-md radius-bottom pdy-15 pdx-30 position-ab pos-bottom-0 pos-start-0 pos-end-0 bg-alpha-50">
                     <h4 class="fs-16 color-white">....</h4>
@@ -381,7 +381,7 @@ what happens is the `.slider()` checks for any `<video>` in the slide after it h
     <!-- item -->
     <div class="px-item">
         <!-- Normal Image -->
-        <img src="http://via.placeholder.com/610x345?text=Regular Image" alt="" class="fluid">
+        <img src="http://placehold.co/610x345?text=Regular Image" alt="" class="fluid">
     </div>
     <!-- item -->
     <div class="px-item" data-media="1">
@@ -402,12 +402,12 @@ what happens is the `.slider()` checks for any `<video>` in the slide after it h
     <!-- item -->
     <div class="px-item">
         <!-- Aspect Ratio Element -->
-        <div class="px-media ratio-16x9" data-src="http://via.placeholder.com/720x480?text=Mixed Media" data-type="mixed-bg" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
+        <div class="px-media ratio-16x9" data-src="http://placehold.co/720x480?text=Mixed Media" data-type="mixed-bg" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
     </div>
     <!-- item -->
     <div class="px-item">
         <!-- Aspect Ratio Element -->
-        <div class="px-media ratio-16x9" data-src="http://via.placeholder.com/720x480?text=Media Background" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
+        <div class="px-media ratio-16x9" data-src="http://placehold.co/720x480?text=Media Background" data-gradient="rgba(0,196,255, 0.5), rgba(26,105,244, 0.5)"></div>
     </div>
     <!-- // item -->
 </div>

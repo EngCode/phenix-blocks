@@ -62,41 +62,29 @@
             });
         }
     });
+        
+    //===> Page Transition: Before Leaving the Page <===//
+    window.addEventListener('beforeunload', (isLeaving) => {
+        //===> WP7 Hacks for Contact Form 7 <===//
+        const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
+        const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
 
-    //===> Page Transition: Intercept Internal Link Clicks <===//
-    document.addEventListener('DOMContentLoaded', function() {
-        //===> Add Click Event <===//
-        document.body.addEventListener('click', function(event) {
-            //===> Only handle left-clicks on internal links (not _blank, not hashes) <===//
-            const link = event.target.closest('a[href]:not([target="_blank"])');
-            //===> Check if the link is internal <===//
-            if (link && link.origin === window.location.origin && !link.hash) {
-                //===> WP7 Hacks for Contact Form 7 <===//
-                const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
-                const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
-                //===> Cancel Loading Showup <===//
-                if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
-                event.preventDefault();
-
-                //===> Show Loader with Circular Effect <===//
-                const pxLoader = document.querySelector('.px-page-loader');
-                //===> Show Loader <===//
-                pxLoader.style.display = '';
-                
-                //===> Add Show Effect <===//
-                void pxLoader.offsetWidth;
-                //===> Remove Hide Effect <===//
-                pxLoader.classList.remove('hide');
-                //===> Add Show Effect <===//
-                pxLoader.addEventListener('transitionend', function pxShowHandler(ev) {
-                    //===> Check for Clip Path <===//
-                    if (ev.propertyName === 'clip-path') {
-                        //===> Redirect <===//
-                        window.location = link.href;
-                        //===> Remove Show Effect <===//
-                        pxLoader.removeEventListener('transitionend', pxShowHandler);
-                    }
-                });
+        //===> Cancel Loading Showup <===//
+        if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
+        //===> Show Loader with Circular Effect <===//
+        const pxLoader = document.querySelector('.px-page-loader');
+        //===> Show Loader <===//
+        pxLoader.style.display = '';
+        //===> Add Show Effect <===//
+        void pxLoader.offsetWidth;
+        //===> Remove Hide Effect <===//
+        pxLoader.classList.remove('hide');
+        //===> Add Show Effect <===//
+        pxLoader.addEventListener('transitionend', function pxShowHandler(ev) {
+            //===> Check for Clip Path <===//
+            if (ev.propertyName === 'clip-path') {
+                //===> Remove Show Effect <===//
+                pxLoader.removeEventListener('transitionend', pxShowHandler);
             }
         });
     });

@@ -91,15 +91,15 @@ in the example below we are using the CSS Utilities to create a card like list.
 ```
 <ul class="reset-list fs-14 radius-md bg-white border-1 border-solid border-gray-light w-max-260">
     <li class="pdy-10 pdx-15 divider-b">
-        <img src="https://via.placeholder.com/32x32" alt="" class="radius-circle me-10">
+        <img src="https://placehold.co/32x32" alt="" class="radius-circle me-10">
         Abdullah Ramadan
     </li>
     <li class="pdy-10 pdx-15 divider-b">
-        <img src="https://via.placeholder.com/32x32" alt="" class="radius-circle me-10">
+        <img src="https://placehold.co/32x32" alt="" class="radius-circle me-10">
         Alex Mostapha
     </li>
     <li class="pdy-10 pdx-15">
-        <img src="https://via.placeholder.com/32x32" alt="" class="radius-circle me-10">
+        <img src="https://placehold.co/32x32" alt="" class="radius-circle me-10">
         Mohammed Abdullah
     </li>
 </ul>

@@ -106,7 +106,7 @@ PhenixElements.prototype.slider = function (options?:{
                     button.classList.add('px-loading-inline');
             
                     //===> Add the Item to the Cart <===//
-                    Phenix(document).pds_add_to_cart(button, quantity, productId);
+                    // Phenix(document).pds_add_to_cart(button, quantity, productId);
             }, true);
 
             //===> Wishlist Toggle <===//

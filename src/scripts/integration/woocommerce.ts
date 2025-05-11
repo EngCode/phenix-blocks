@@ -15,57 +15,51 @@ import Phenix, { PhenixElements } from "..";
 declare var wc_add_to_cart_params: any;
 
 /*====> Add to Cart Method <====*/
-PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_ids) {
-    //===> Check if the product_ids is empty <===//
-    if (!product_ids) { return; }
+PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_id) {
+    //===> Check if the product_id is empty <===//
+    if (!product_id) { return; }
 
-    //===> Add Product to Cart <===//
-    const addProduct = (id: any) => {
-        //===> Create Form Data Request <===//
-        const formData = new URLSearchParams();
-        formData.append('quantity', quantity);
-        formData.append('action', 'woocommerce_add_to_cart');
-        formData.append('product_id', id.toString());
-    
-        //===> Send the request to WooCommerce via Fetch API <===//
-        fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'), {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            body: formData.toString()
-        })
-        //===> Return the Response as JSON data <===//
-        .then(response => response.json()).then(data => {
-            //===> Check for Data and Error <===//
-            if (data && data.error) {
-                //====> Show Notifications <====//
-                Phenix(document).notifications({
-                    duration : 5000,
-                    type     : "error",
-                    position : ["center", "center"],
-                    message  : 'Error adding to cart: ' + data.error,
-                });
-            } else {
-                //===> Disable loading mode <===//
-                button.classList.remove('px-loading-inline');
-    
-                //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
-                document.body.dispatchEvent(new CustomEvent('pds_cart_updated', {detail: {}}));
-        
-                //====> Show Notifications <====//
-                Phenix(document).notifications({
-                    duration : 5000,
-                    type     : "success",
-                    position : ["center", "center"],
-                    message  : "Product added to cart successfully.",
-                });
-            }
-        })
-        //===> Catch any errors <===//
-        .catch(error => console.error('Error:', error));
-    }
+    //===> Create Form Data Request <===//
+    const formData = new URLSearchParams();
+    formData.append('quantity', quantity.toString());
+    formData.append('action', 'woocommerce_add_to_cart');
+    formData.append('product_id', product_id.toString());
 
-    //===> Add Product to Cart <===//
-    addProduct(product_ids);
+    //===> Send the request to WooCommerce via Fetch API <===//
+    fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'), {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        body: formData.toString()
+    })
+    //===> Return the Response as JSON data <===//
+    .then(response => response.json()).then(data => {
+        //===> Check for Data and Error <===//
+        if (data && data.error) {
+            //====> Show Notifications <====//
+            Phenix(document).notifications({
+                duration : 5000,
+                type     : "error",
+                position : ["center", "center"],
+                message  : 'Error adding to cart: ' + data.error,
+            });
+        } else {
+            //===> Disable loading mode <===//
+            button.classList.remove('px-loading-inline');
+
+            //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
+            document.body.dispatchEvent(new CustomEvent('pds_cart_updated', {detail: {}}));
+    
+            //====> Show Notifications <====//
+            Phenix(document).notifications({
+                duration : 5000,
+                type     : "success",
+                position : ["center", "center"],
+                message  : "Product added to cart successfully.",
+            });
+        }
+    })
+    //===> Catch any errors <===//
+    .catch(error => console.error('Error:', error));
 };
 
 /*====> Remove Product Method <====*/
@@ -226,16 +220,16 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     Phenix(".pds-add-to-cart").on("click", (isClicked) => {
         //===> Prevent link navigation <===//
         isClicked.preventDefault();
-
+        
         //===> Define Item Data <===//
         const button = isClicked.target;
+
+        //===> Get Product ID <===//
         const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
 
         //===> Get Quantity <===//
         const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-var-item');
         const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
-
-        console.log(ancestor);
 
         //===> Activate Loading Mode <===//
         button.classList.add('px-loading-inline');
@@ -281,24 +275,24 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     }, true);
 
     //===> Add Multiple Products from Cart Page <===//
-    Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
-        //===> Prevent link navigation <===//
-        isClicked.preventDefault();
+    // Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
+    //     //===> Prevent link navigation <===//
+    //     isClicked.preventDefault();
 
-        //===> Define Item Data <===//
-        const button = isClicked.target;
-        const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
-        //===> Get Quantity <===//
-        const quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+    //     //===> Define Item Data <===//
+    //     const button = isClicked.target;
+    //     const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
+    //     //===> Get Quantity <===//
+    //     const quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
 
-        //===> Activate Loading Mode <===//
-        button.classList.add('px-loading-inline');
+    //     //===> Activate Loading Mode <===//
+    //     button.classList.add('px-loading-inline');
 
-        //===> Add the Items to the Cart <===//
-        products.forEach(product => {
-            Phenix(document).pds_add_to_cart(button, quantity, product);
-        });
-    });
+    //     //===> Add the Items to the Cart <===//
+    //     products.forEach(product => {
+    //         Phenix(document).pds_add_to_cart(button, quantity, product);
+    //     });
+    // });
 
     //===> Variation Price Change <===//
     Phenix(".variation-control").on("change", isChanged => {

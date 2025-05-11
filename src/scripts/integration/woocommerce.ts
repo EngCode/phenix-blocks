@@ -15,16 +15,9 @@ import Phenix, { PhenixElements } from "..";
 declare var wc_add_to_cart_params: any;
 
 /*====> Add to Cart Method <====*/
-PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
-    //===> Get Quantity <===//
-    let quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
-
-    //===> Get Variation ID if Existed <===//
-    let variation_id = button.getAttribute('data-variation');
-    if (variation_id) product_ids = parseInt(variation_id);
-
-    //===> Remove Empty Items from Array <===//
-    // if (Array.isArray(product_ids)) product_ids = product_ids.filter(id => id);
+PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_ids) {
+    //===> Check if the product_ids is empty <===//
+    if (!product_ids) { return; }
 
     //===> Add Product to Cart <===//
     const addProduct = (id: any) => {
@@ -42,7 +35,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, product_ids) {
         })
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
-            console.log(data);
             //===> Check for Data and Error <===//
             if (data && data.error) {
                 //====> Show Notifications <====//
@@ -237,13 +229,19 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
         //===> Define Item Data <===//
         const button = isClicked.target;
-        const productId = button.getAttribute('data-product');
- 
+        const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
+
+        //===> Get Quantity <===//
+        const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-var-item');
+        const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+
+        console.log(ancestor);
+
         //===> Activate Loading Mode <===//
         button.classList.add('px-loading-inline');
  
         //===> Add the Item to the Cart <===//
-        Phenix(document).pds_add_to_cart(button, productId);
+        Phenix(document).pds_add_to_cart(button, quantity, productId);
     }, true);
  
     //===> WooCommerce Cart Item Remover <===//
@@ -283,20 +281,24 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     }, true);
 
     //===> Add Multiple Products from Cart Page <===//
-    // Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
-    //     //===> Prevent link navigation <===//
-    //     isClicked.preventDefault();
+    Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
+        //===> Prevent link navigation <===//
+        isClicked.preventDefault();
 
-    //     //===> Define Item Data <===//
-    //     const button = isClicked.target;
-    //     const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
+        //===> Define Item Data <===//
+        const button = isClicked.target;
+        const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
+        //===> Get Quantity <===//
+        const quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
 
-    //     //===> Activate Loading Mode <===//
-    //     button.classList.add('px-loading-inline');
+        //===> Activate Loading Mode <===//
+        button.classList.add('px-loading-inline');
 
-    //     //===> Add the Items to the Cart <===//
-    //     Phenix(document).pds.xxx_add_to_cart(button, products);
-    // });
+        //===> Add the Items to the Cart <===//
+        products.forEach(product => {
+            Phenix(document).pds_add_to_cart(button, quantity, product);
+        });
+    });
 
     //===> Variation Price Change <===//
     Phenix(".variation-control").on("change", isChanged => {

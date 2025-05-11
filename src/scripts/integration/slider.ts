@@ -95,15 +95,18 @@ PhenixElements.prototype.slider = function (options?:{
             if (add_to_cart_btns.length > 0) Phenix(".pds-add-to-cart").on("click", isClicked => {
                     //===> Prevent link navigation <===//
                     isClicked.preventDefault();
+
                     //===> Define Item Data <===//
                     const button = isClicked.target;
-                    const productId = button.getAttribute('data-product');
+                    const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
+                    //===> Get Quantity <===//
+                    const quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
 
                     //===> Activate Loading Mode <===//
                     button.classList.add('px-loading-inline');
-
+            
                     //===> Add the Item to the Cart <===//
-                    Phenix(document).pds_add_to_cart(button, productId);
+                    Phenix(document).pds_add_to_cart(button, quantity, productId);
             }, true);
 
             //===> Wishlist Toggle <===//

@@ -1,10 +1,8 @@
 /**======> Reference By Comment <======
- * ===> 01 - Phenix Object
- * ===> 02 - Phenix Utilities
- * ===> 03 - Form Utilities
- * ===> 04 - Placeholder Handler
- * ===> 05 - Global Utilities
- * ===> 06 - Item Remover
+ * ===> 01 - Default Type
+ * ===> 02 - Form Utils
+ * ===> 03 - Placeholder Effect
+ * 
 */
 
 /*====> Phenix Object <====*/
@@ -171,6 +169,36 @@ PhenixElements.prototype.utilities = function (options?:{
                     if (!element.classList.contains('counting')) Phenix(element).counter();
                 }
             });
+        });
+
+        //===> Custom Number Input <===//
+        Phenix(".px-counter-input").forEach(counter => {
+            //===> Get Elements <===//
+            const input = counter.querySelector('input[type="number"]');
+            const decrease = counter.querySelector('.decrease-btn');
+            const increase = counter.querySelector('.increase-btn');
+            const minValue = parseInt(input.getAttribute('min')) || 0;
+            const maxValue = parseInt(input.getAttribute('max')) || 99999;
+            const inputSteps = parseInt(input.getAttribute('data-step')) || 1;
+
+            //===> Increase Number <===//
+            const IncreaseNum = (clicked) => {
+                //===> Get Input Element <===//
+                let newVal = parseInt(input.value) + inputSteps;
+                //===> Set Data <===//
+                input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
+            };
+        
+            //===> Decrease Number <===//
+            const DecreaseNum = (clicked) => {
+                //===> Get Input Element <===//
+                let newVal = parseFloat(input.value) - inputSteps;
+                //===> Set Data <===//
+                input.value = newVal > minValue || newVal === minValue ? newVal : minValue;
+            };
+
+            Phenix(decrease).on('click', DecreaseNum);
+            Phenix(increase).on('click', IncreaseNum);
         });
 
         //====> To Top Hook <=====//

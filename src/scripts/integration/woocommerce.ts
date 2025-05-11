@@ -147,7 +147,6 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
     });
 }
 
-
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).on("DOMContentLoaded", (loaded) => {
     //===> Mini Cart Updater <===//
@@ -276,24 +275,24 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     }, true);
 
     //===> Add Multiple Products from Cart Page <===//
-    // Phenix(".add-products .add-products-btn").on("click", (isClicked) => {
-    //     //===> Prevent link navigation <===//
-    //     isClicked.preventDefault();
+    Phenix(".pds-add-products-form .add-products-btn").on("click", (isClicked) => {
+        //===> Prevent link navigation <===//
+        isClicked.preventDefault();
 
-    //     //===> Define Item Data <===//
-    //     const button = isClicked.target;
-    //     const products = Phenix(button).ancestor('.add-products').querySelector(".px-select").getAttribute("data-value").split(",");
-    //     //===> Get Quantity <===//
-    //     const quantity = Phenix(button).ancestor('.single-product-content')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+        //===> Define Item Data <===//
+        const button = isClicked.target;
+        const products = Phenix(button).ancestor('.pds-add-products-form').querySelector(".px-select").getAttribute("data-value").split(",");
+        //===> Get Quantity <===//
+        const quantity = Phenix(button).ancestor('.pds-add-products-form')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
 
-    //     //===> Activate Loading Mode <===//
-    //     button.classList.add('px-loading-inline');
+        //===> Activate Loading Mode <===//
+        button.classList.add('px-loading-inline');
 
-    //     //===> Add the Items to the Cart <===//
-    //     products.forEach(product => {
-    //         Phenix(document).pds_add_to_cart(button, quantity, product);
-    //     });
-    // });
+        //===> Add the Items to the Cart <===//
+        products.forEach(product => {
+            Phenix(product).pds_add_to_cart(button, quantity, product);
+        });
+    });
 
     //===> Variation Price Change <===//
     Phenix(".variation-control").on("change", isChanged => {

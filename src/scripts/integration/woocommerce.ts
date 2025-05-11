@@ -147,63 +147,64 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
     });
 }
 
-//===> Mini Cart Updater <===//
-document.body.addEventListener('pds_cart_updated', function() {
-    //===> Fetch the updated cart fragments using Fetch API <===//
-    fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'get_refreshed_fragments'), {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-    })
-    //===> Return the Response as JSON data <===//
-    .then(response => response.json()).then(data => {
-        //===> Check for the Cart Fragments <===//
-        //===* data {div.widget_shopping_cart_content, .cart-table, cart_count, cart_total} <===//
-        if (data && data.fragments) {   
-            //===> Cart Content Fragment <===//
-            const newCartContent = data.fragments["div.widget_shopping_cart_content"];
-
-            //===> Temporary Container for the Content <===//
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = newCartContent;
-            tempDiv.innerHTML += data.fragments['.cart-table'];
-
-            //===> Update The Mini Cart Items <===//
-            Phenix(".pds-cart-fragment .woocommerce-mini-cart").forEach(cart => cart.innerHTML = tempDiv.querySelector('.widget_shopping_cart_content').innerHTML);
-
-            //===> Update Cart Table <===//
-            Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
-
-            //====> Update Cart Count <====//
-            Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
-
-            //===> Update Cart Item Remover <===//
-            Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
-                //===> Prevent link navigation <===//
-                isClicked.preventDefault();
-                const button = isClicked.target;
-
-                //===> Get the Item Key <===//
-                const cartItemKey = button.getAttribute('data-cart_item_key');
-
-                //===> Activate Loading Mode <===//
-                Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
-
-                //===> Create Form Data Request <===//
-                const formData = new URLSearchParams();
-                formData.append('cart_item_key', cartItemKey);
-                formData.append('action', 'woocommerce_remove_cart_item');
-
-                //===> Remove the Item from the Cart <===//
-                Phenix(document).pds_remove_from_cart(formData, cartItemKey);
-            }, true);
-        }
-    })
-    //===> Catch any errors <===//
-    .catch(error => console.error('Error:', error));
-});
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).on("DOMContentLoaded", (loaded) => {
+    //===> Mini Cart Updater <===//
+    document.body.addEventListener('pds_cart_updated', function() {
+        //===> Fetch the updated cart fragments using Fetch API <===//
+        fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'get_refreshed_fragments'), {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        })
+        //===> Return the Response as JSON data <===//
+        .then(response => response.json()).then(data => {
+            //===> Check for the Cart Fragments <===//
+            //===* data {div.widget_shopping_cart_content, .cart-table, cart_count, cart_total} <===//
+            if (data && data.fragments) {   
+                //===> Cart Content Fragment <===//
+                const newCartContent = data.fragments["div.widget_shopping_cart_content"];
+    
+                //===> Temporary Container for the Content <===//
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = newCartContent;
+                tempDiv.innerHTML += data.fragments['.cart-table'];
+    
+                //===> Update The Mini Cart Items <===//
+                Phenix(".pds-cart-fragment .woocommerce-mini-cart").forEach(cart => cart.innerHTML = tempDiv.querySelector('.widget_shopping_cart_content').innerHTML);
+    
+                //===> Update Cart Table <===//
+                Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
+    
+                //====> Update Cart Count <====//
+                Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
+    
+                //===> Update Cart Item Remover <===//
+                Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
+                    //===> Prevent link navigation <===//
+                    isClicked.preventDefault();
+                    const button = isClicked.target;
+    
+                    //===> Get the Item Key <===//
+                    const cartItemKey = button.getAttribute('data-cart_item_key');
+    
+                    //===> Activate Loading Mode <===//
+                    Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
+    
+                    //===> Create Form Data Request <===//
+                    const formData = new URLSearchParams();
+                    formData.append('cart_item_key', cartItemKey);
+                    formData.append('action', 'woocommerce_remove_cart_item');
+    
+                    //===> Remove the Item from the Cart <===//
+                    Phenix(document).pds_remove_from_cart(formData, cartItemKey);
+                }, true);
+            }
+        })
+        //===> Catch any errors <===//
+        .catch(error => console.error('Error:', error));
+    });
+
     //===> WooCommerce Sorting <===//
     Phenix('.woocommerce-ordering select').on('change', (select) => {
         //====> Get the Current Value <====//

@@ -83,6 +83,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             alt  = element.getAttribute('data-alt') || options?.alt || '',
             ratio  = element.getAttribute('data-size') || options?.size,
             splide = Phenix(element).ancestor('.splide.is-initialized'),
+            marquee = Phenix(element).ancestor('.px-marquee') || Phenix(element).ancestor('.px-marquee-reverse'),
             embed  = element.getAttribute('data-embed') || options?.embed || 'video',
             cover  = element.getAttribute('data-cover') || options?.cover,
             gradient = element.getAttribute('data-gradient') || options?.gradient?.value || false,
@@ -309,7 +310,7 @@ PhenixElements.prototype.multimedia = function (options?:{
             };
 
             //====> Lazy-Loading Mode <====//
-            if (lazy) {
+            if (lazy && !marquee) {
                 //====> Activate Lazy-Loading <====//
                 if (!splide) {
                     element.classList.add('px-is-loading');

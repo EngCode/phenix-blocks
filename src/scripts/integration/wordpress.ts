@@ -19,10 +19,11 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             form.addEventListener('submit', (event:any) => {
                 //====> Prevent the default form submission <====//
                 event.preventDefault();
+
+                //====> Get Submit Button <====//
                 const submitButton = form.querySelector('input[type="submit"]') || form.querySelector('button[type="submit"]') || form.querySelector('.btn:last-of-type');
 
-                console.log(submitButton);
-
+                //====> Check if the form is valid <====//
                 if(!form.querySelector('.px-validation') && !form.querySelector('.error')) {
                     //====> Disable Form <====//
                     submitButton.classList.add('px-loading-inline');
@@ -41,7 +42,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                         return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
                     }
 
-                    // Create a new FormData object from the form
+                    //====> Create a new FormData object from the form <====//
                     const formData = new FormData(form);
 
                     //====> Loop through each entry in the FormData object <===//

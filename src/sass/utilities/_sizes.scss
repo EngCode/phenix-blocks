@@ -13,6 +13,7 @@
     .w#{$infix}-100 {width: #{REM(100)};}
     .w#{$infix}-125 {width: #{REM(125)};}
     .w#{$infix}-150 {width: #{REM(150)};}
+    .w#{$infix}-175 {width: #{REM(175)};}
     .w#{$infix}-200 {width: #{REM(200)};}
     .w#{$infix}-225 {width: #{REM(225)};}
     .w#{$infix}-250 {width: #{REM(250)};}
@@ -26,6 +27,7 @@
     .w#{$infix}-480 {width: #{REM(480)};}
     .w#{$infix}-420 {width: #{REM(420)};}
     .w#{$infix}-auto {width: auto;}
+    .w#{$infix}-fit-content {width: fit-content;}
     .w#{$infix}-fluid, .fluid#{$infix}, .line-break#{$infix} {width: 100%;}
 
     /*==== Max Width's ====*/

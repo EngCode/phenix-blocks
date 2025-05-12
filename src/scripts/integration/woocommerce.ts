@@ -176,7 +176,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                 Phenix(".woocommerce-cart-form").forEach(table => table.innerHTML = data.fragments['.cart-table']);
     
                 //====> Update Cart Count <====//
-                Phenix(".cart-count").forEach(item => item.textContent = data.fragments['cart_count']);
+                Phenix(".cart-count").forEach(item => item.innerHTML = data.fragments['cart_count']);
     
                 //===> Update Cart Item Remover <===//
                 Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {

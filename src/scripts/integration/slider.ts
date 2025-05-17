@@ -216,13 +216,13 @@ PhenixElements.prototype.slider = function (options?:{
             if (!focus) focus = inline('data-center') || options?.autoplay || currentClasses.contains("data-center-on") ? "center" : 0;
 
             //====> Inline Responsive <====//
-            inline('data-sm') ? breakpoints[570] = { 
+            inline('data-sm') ? breakpoints[570] = {
                 //===> Small Screens <===//
                 perPage: inline('data-sm') || items,
                 height: height || verticalFix(inline('data-sm') || items, direction, slider_list),
             } : '';
             //===> Medium Screens <===//
-            inline('data-md') ? breakpoints[1100] = {
+            inline('data-md') ? breakpoints[768] = {
                 perPage: inline('data-md') || items,
                 height: height || verticalFix(inline('data-md') || items, direction, slider_list),
             } : ''; 

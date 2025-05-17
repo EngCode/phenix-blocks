@@ -133,7 +133,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                     element.classList.remove('px-is-loading');
                     if (element.style.backgroundImage) element.style.removeProperty('background-image');
                 }
-    
+
                 //====> Background Type <====//
                 if (type == 'background') {
                     //===> Set Background <===//
@@ -310,12 +310,19 @@ PhenixElements.prototype.multimedia = function (options?:{
             };
 
             //====> Lazy-Loading Mode <====//
-            if (lazy && !marquee) {
+            if (lazy) {
                 //====> Activate Lazy-Loading <====//
                 if (!splide) {
                     element.classList.add('px-is-loading');
                     // Set temporary loading background
                     element.style.backgroundImage = 'none';
+                }
+
+                if (marquee) {
+                    Phenix(marquee).inView({
+                        offset: 100,
+                        callback: (element) => mediaHandle()
+                    });
                 }
 
                 //====> First View Handler <=====//

@@ -227,7 +227,7 @@ Integration modules provide compatibility with third-party systems and libraries
 | Blocks | `integration/blocks.ts` | Gutenberg blocks front-end scripts |
 | WooCommerce | `integration/woocommerce.ts` | WooCommerce integration |
 | Slider | `integration/slider.ts` | Splide slider integration |
-| Swiper | `integration/swiper.ts` | Swiper slider integration |
+
 | Utilities | `integration/utilities.ts` | General utility integrations |
 | Loader | `integration/loader.ts` | Page loading system |
 

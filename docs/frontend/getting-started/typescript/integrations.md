@@ -12,7 +12,7 @@ The integration modules are located in the `src/scripts/integration/` directory 
 | `blocks.ts` | Gutenberg blocks front-end scripts |
 | `woocommerce.ts` | WooCommerce functionality |
 | `slider.ts` | Splide slider integration |
-| `swiper.ts` | Swiper slider integration |
+
 | `utilities.ts` | Utility integrations |
 | `loader.ts` | Page and content loading system |
 
@@ -113,17 +113,6 @@ Key features include:
 - Fade and slide effects
 - Touch and swipe support
 - Grid layouts for sliders
-
-### Swiper Slider
-
-The Swiper integration (`swiper.ts`) provides alternative slider functionality with different capabilities:
-
-```typescript
-// Initialize Swiper slider with custom options
-Phenix('.swiper-slider').each((slider) => {
-    // Configure and initialize Swiper
-});
-```
 
 ## Utilities Integration
 

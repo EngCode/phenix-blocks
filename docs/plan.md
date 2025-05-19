@@ -86,8 +86,12 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] DOM UI Effects
 - [x] Scroll Effects
 - [x] Animation System
-- [ ] Carousel Slider
-- [ ] Time Counter
+  - [x] Overview
+  - [x] Viewport Animations
+  - [x] Scroll Animations
+  - [x] Animated Counter
+- [x] Time Counter
+- [x] Carousel Slider
 - [ ] Multimedia System
 - [ ] Table of Content
 - [ ] Components Utilities

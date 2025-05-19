@@ -117,7 +117,7 @@ This master plan outlines a comprehensive approach to creating and maintaining h
   - [x] Typed Text
   - [x] Marquee Slider
   - [x] Range Slider
-- [ ] Page Loader
+- [x] Page Loader
 
 ### UI Components
 - [ ] Alerts

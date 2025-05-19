@@ -20,7 +20,7 @@ Phenix(document).utilities({
 
 ## Basic Usage
 
-Create an unordered list with the `.typed-list` class and include list items for each text string you want to display:
+Create a proper unordered list with the `.typed-list` class and include list items for each text string you want to display:
 
 ```html
 <ul class="typed-list">
@@ -33,26 +33,51 @@ Create an unordered list with the `.typed-list` class and include list items for
 ## How It Works
 
 1. The utility detects elements with the `.typed-list` class
-2. It creates a new element with the `.typed-text` class
-3. It transfers the list items' text to data attributes
+2. It creates a new paragraph element with the `.typed-text` class and inserts it before the list
+3. It transfers the list items' text to data attributes on the new element
 4. It imports the typewriter library
 5. It initializes the typing effect with the collected text items
 
-The original list remains in the DOM but is not displayed, while the new `.typed-text` element shows the typing animation.
+The original list remains in the DOM but is typically hidden with CSS, while the new `.typed-text` element shows the typing animation.
+
+## DOM Transformation
+
+When the utility runs, it transforms this:
+
+```html
+<ul class="typed-list tx-primary">
+  <li>First text</li>
+  <li>Second text</li>
+</ul>
+```
+
+Into this:
+
+```html
+<!-- Added by the utility -->
+<p class="typed-text tx-primary" data-text-0="First text" data-text-1="Second text">First text</p>
+
+<!-- Original list remains in the DOM -->
+<ul class="typed-list tx-primary">
+  <li>First text</li>
+  <li>Second text</li>
+</ul>
+```
 
 ## Styling
 
 The utility preserves the classes from the original list (except those containing "list"):
 
-```html
-<ul class="typed-list tx-primary large-text">
-  <li>First text</li>
-  <li>Second text</li>
-</ul>
+```css
+/* Style the typed text element */
+.typed-text {
+  min-height: 1.5em; /* Prevent layout shifts during animation */
+}
 
-<!-- Becomes -->
-<p class="typed-text tx-primary large-text">First text</p>
-<!-- Original list is preserved in the DOM but not displayed -->
+/* Hide the original list if desired */
+.typed-list {
+  display: none;
+}
 ```
 
 ## Examples
@@ -60,6 +85,7 @@ The utility preserves the classes from the original list (except those containin
 ### Simple Typed Text
 
 ```html
+<!-- This is the only element you need to add to your HTML -->
 <ul class="typed-list">
   <li>Welcome to our website</li>
   <li>Discover amazing products</li>
@@ -81,12 +107,14 @@ The utility preserves the classes from the original list (except those containin
 
 ```html
 <div class="hero-section">
-  <h1>We are <span class="typed-list tx-primary">
+  <h1>We are</h1>
+  <!-- The typed text will appear after this heading -->
+  <ul class="typed-list tx-primary">
     <li>Creative</li>
     <li>Innovative</li>
     <li>Professional</li>
     <li>Dedicated</li>
-  </span></h1>
+  </ul>
   <p>Let us help you build something amazing.</p>
 </div>
 ```
@@ -95,11 +123,13 @@ The utility preserves the classes from the original list (except those containin
 
 ```html
 <div class="cta-box">
-  <h3>Ready to <span class="typed-list tx-accent">
+  <h3>Ready to</h3>
+  <!-- The typed text will appear after this heading -->
+  <ul class="typed-list tx-accent">
     <li>get started?</li>
     <li>boost sales?</li>
     <li>grow your business?</li>
-  </span></h3>
+  </ul>
   <button class="btn primary">Contact Us</button>
 </div>
 ```
@@ -128,6 +158,7 @@ The Typed Text Effect:
 
 ## Best Practices
 
+- Always use proper HTML structure with a valid `<ul>` element and `<li>` items
 - Keep text strings concise for better visual impact
 - Use similar length strings for more consistent timing
 - Limit the number of text strings to 3-5 for better user experience

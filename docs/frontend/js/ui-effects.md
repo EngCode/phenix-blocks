@@ -2,112 +2,227 @@
 
 ## Overview
 
-Phenix provides UI effects for sliding and fading elements, smooth scrolling, sticky elements, and scroll‑spy interactions.
+The Phenix Design System provides a comprehensive set of JavaScript/TypeScript UI effects that enhance the user experience by adding smooth animations, transitions, and interactive behaviors to your web applications. These effects are designed to be lightweight, performant, and easy to implement.
 
-## Animation Effects
+This documentation covers the core DOM UI Effects functionality, while related features are documented in separate sections:
 
-### slideUp
+- For animations and transitions, see [Animation System](/frontend/js/animations)
+- For scroll-related effects, see [Scroll Effects](/frontend/js/scroll-effects)
+- For multimedia interactions, see [Multimedia System](/frontend/js/multimedia)
 
-`slideUp(duration?: number = 300, delay?: number = 0): this`  
-Loops through each element. If visible, sets `overflow: hidden`, captures the element's full height and initial padding values, then animates height and padding to `0` over the specified duration. Once complete, hides the element and resets inline styles.
+## Show/Hide Effects
 
-```js
-// Slide up with 400ms duration and 100ms delay
-Phenix('.panel').slideUp(400, 100);
+Phenix provides elegant show and hide effects through slide and fade animations. These effects are perfect for creating accordions, dropdowns, modals, and other interactive components.
+
+### Slide Effects
+
+Slide effects animate the height of elements to create a smooth expanding or collapsing animation.
+
+#### slideUp
+
+```typescript
+slideUp(duration?: number = 300, delay?: number = 0): this
 ```
 
-### slideDown
+Hides elements with a sliding animation that collapses their height to zero.
 
-`slideDown(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this`  
-Applies only to hidden elements. Sets `overflow: hidden`, display to the given `display` (default `'block'`), initializes height and padding to `0`, then animates them to the element's `scrollHeight` and original padding values. Clears inline styles after completion.
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
 
+**Example:**
 ```js
-// Slide down into flex container over 500ms
-Phenix('.panel').slideDown(500, 0, 'flex');
+// Basic usage with default duration and delay
+Phenix('.panel').slideUp();
+
+// Custom duration (700ms) and no delay
+Phenix('.panel').slideUp(700, 0);
 ```
 
-### slideToggle
+#### slideDown
 
-`slideToggle(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this`  
-Checks each element's computed `display`; if `'none'`, calls `slideDown(duration, delay, display)`, otherwise calls `slideUp(duration, delay)`.
-
-```js
-// Hide panels if visible, show if hidden
-Phenix('.panel').slideToggle(300, 100, 'flex');
+```typescript
+slideDown(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this
 ```
 
-### fadeOut
+Shows elements with a sliding animation that expands their height from zero.
 
-`fadeOut(duration?: number = 300, delay?: number = 0): this`  
-For visible elements, animates `opacity` from `1` to `0` over the given duration, then sets `display: none` and clears the `opacity` style.
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
+- `display`: CSS display property value after animation (default: 'block')
 
+**Example:**
 ```js
-// Fade out alerts in 200ms
-Phenix('.alert').fadeOut(200);
+// Basic usage with default values
+Phenix('.panel').slideDown();
+
+// Custom duration, no delay, and display as flex
+Phenix('.panel').slideDown(700, 0, 'flex');
 ```
 
-### fadeIn
+#### slideToggle
 
-`fadeIn(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this`  
-For hidden elements, sets `display` to the given value, initializes `opacity` to `0`, then animates `opacity` to `1`. Clears the `opacity` style after completion.
-
-```js
-// Fade in alerts as inline-block with 50ms delay
-Phenix('.alert').fadeIn(200, 50, 'inline-block');
+```typescript
+slideToggle(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this
 ```
 
-### fadeToggle
+Toggles the visibility of elements using slide animations. If an element is visible, it slides up; if hidden, it slides down.
 
-`fadeToggle(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this`  
-Checks each element's `display`: if `'none'`, invokes `fadeIn(duration, delay, display)`, else invokes `fadeOut(duration, delay)`.
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
+- `display`: CSS display property value when showing (default: 'block')
 
+**Example:**
 ```js
-// Fade alerts in or out
-Phenix('.alert').fadeToggle(200);
+// Toggle visibility with default values
+Phenix('.panel').slideToggle();
+
+// Toggle with custom duration, no delay, and display as inline-block
+Phenix('.panel').slideToggle(700, 0, 'inline-block');
 ```
 
-## Scroll & Visibility Effects
+### Fade Effects
 
-### smoothScroll
+Fade effects animate the opacity of elements to create smooth appearing or disappearing animations.
 
-`smoothScroll(options?: {`  
-  `target?: string;  // CSS selector fallback`  
-  `offset?: number;  // decrease final scroll position`  
-  `into?: number;   // increase final scroll position`  
-  `duration?: number; // animation duration in ms`  
-  `delay?: number;    // delay before starting animation`  
-` }): this`  
-Attaches a click listener to each element: prevents default, determines the scroll target from `href`, `data-target`, or `options.target`, computes position plus `into`/`offset`, then animates `window.scrollTo` using an easing function over the given duration and delay.
+#### fadeOut
 
-```js
-// Smooth-scroll anchor links with 600ms duration
-Phenix('a.scroll-link').smoothScroll({ duration: 600, offset: 50 });
+```typescript
+fadeOut(duration?: number = 300, delay?: number = 0): this
 ```
 
-### sticky
+Hides elements with a fading animation that reduces their opacity to zero.
 
-`sticky(options?: {`  
-  `type?: string;`  
-  `offset?: number;`  
-  `into?: number;`  
-  `flow?: string;`  
-  `active?: string;`  
-` }): this`  
-Keeps elements fixed or sticky when scrolling past a threshold, toggling an active class:
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
 
+**Example:**
 ```js
-Phenix('.navbar').sticky({ offset: 0, active: 'is-sticky' });
+// Basic usage with default duration and delay
+Phenix('.alert').fadeOut();
+
+// Custom duration (700ms) and no delay
+Phenix('.alert').fadeOut(700, 0);
 ```
 
-### scrollSpy
+#### fadeIn
 
-`scrollSpy(options?: {`  
-  `active: string;`  
-  `flow: string;`  
-  `offset: number;`  
-  `into: number;`  
-` }): this`  
-Highlights navigation items based on scroll position, using smooth scroll hooks and active class toggling:
+```typescript
+fadeIn(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this
+```
+
+Shows elements with a fading animation that increases their opacity from zero.
+
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
+- `display`: CSS display property value after animation (default: 'block')
+
+**Example:**
+```js
+// Basic usage with default values
+Phenix('.alert').fadeIn();
+
+// Custom duration, no delay, and display as inline-block
+Phenix('.alert').fadeIn(700, 0, 'inline-block');
+```
+
+#### fadeToggle
+
+```typescript
+fadeToggle(duration?: number = 300, delay?: number = 0, display?: string = 'block'): this
+```
+
+Toggles the visibility of elements using fade animations. If an element is visible, it fades out; if hidden, it fades in.
+
+**Parameters:**
+- `duration`: Animation speed in milliseconds (default: 300)
+- `delay`: Delay before the animation starts in milliseconds (default: 0)
+- `display`: CSS display property value when showing (default: 'block')
+
+**Example:**
+```js
+// Toggle visibility with default values
+Phenix('.alert').fadeToggle();
+
+// Toggle with custom duration, no delay, and display as inline-block
+Phenix('.alert').fadeToggle(700, 0, 'inline-block');
+```
+
+## Practical Examples
+
+### Accordion Implementation
+
+```html
+<div class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">Section 1</div>
+    <div class="accordion-content">Content for section 1...</div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">Section 2</div>
+    <div class="accordion-content">Content for section 2...</div>
+  </div>
+</div>
+```
 
 ```js
-Phenix('.toc').scrollSpy({ active: 'is-active', flow: 'start', offset: 10 });
+// Hide all accordion content initially
+Phenix('.accordion-content').slideUp(0);
+
+// Toggle content when header is clicked
+Phenix('.accordion-header').on('click', function(event) {
+  const content = Phenix(event.target).next('.accordion-content');
+  content.slideToggle(300);
+  
+  // Optional: close other open sections
+  Phenix('.accordion-content').not(content).slideUp(300);
+});
+```
+
+### Modal Implementation
+
+```html
+<button class="modal-trigger" data-target="#exampleModal">Open Modal</button>
+
+<div id="exampleModal" class="modal hidden">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Modal Title</h5>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">Modal content goes here...</div>
+    </div>
+  </div>
+</div>
+```
+
+```js
+// Show modal with fade effect
+Phenix('.modal-trigger').on('click', function(event) {
+  const targetId = event.target.getAttribute('data-target');
+  Phenix(targetId).removeClass('hidden').fadeIn(300);
+});
+
+// Hide modal with fade effect
+Phenix('.close-modal').on('click', function() {
+  Phenix(this).ancestor('.modal').fadeOut(300);
+});
+```
+
+## Integration with Other Features
+
+The DOM UI Effects in Phenix are designed to work seamlessly with other components of the framework:
+
+- **DOM Events**: Combine with event handling for interactive components
+- **DOM Traversing**: Use traversing methods to find related elements for effects
+- **Animation System**: For more complex animation sequences
+- **Scroll Effects**: For scroll-based interactions and animations
+
+## Browser Compatibility
+
+The Phenix UI Effects are built using modern JavaScript techniques and are compatible with all modern browsers. The animations use `requestAnimationFrame` for smooth performance and optimal rendering.

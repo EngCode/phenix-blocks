@@ -131,9 +131,17 @@ export default defineConfig({
             { text: 'DOM Traversing', link: '/frontend/js/dom-traversing' },
             { text: 'DOM Events', link: '/frontend/js/dom-events' },
             { text: 'DOM UI Effects', link: '/frontend/js/ui-effects' },
-            { text: 'Animation System', link: '/frontend/js/animations' },
+            { text: 'Scroll Effects', link: '/frontend/js/scroll-effects' },
+            {
+              text: 'Animation System',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/frontend/js/animations' },
+                { text: 'Animated Counter', link: '/frontend/js/animations/counter' },
+                { text: 'Time Counter', link: '/frontend/js/animations/timer' }
+              ]
+            },
             { text: 'Carousel Slider', link: '/frontend/js/carousel-slider' },
-            { text: 'Time Counter', link: '/frontend/js/time-counter' },
             { text: 'Multimedia System', link: '/frontend/js/multimedia' },
             { text: 'Table of Content', link: '/frontend/js/table-of-content' },
             { text: 'Components Utilities', link: '/frontend/js/js-utilities' },

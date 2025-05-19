@@ -176,11 +176,11 @@ if (!function_exists('phenix_assets')) :
         }
 
         //===> Load Primary Font <===//
-        wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
+        wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), $version);
 
         //===> Load Secondary Font <===//
         if (isset($assets_files['primary']) && $assets_files['primary'] !== $assets_files['secondary']) {
-            wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), $version, 'screen and (min-width: 2500px)');
+            wp_enqueue_style('pds-secondary-font', $assets_files['secondary'], array('phenix'), $version);
         }
         
         //===> Load Style Font <===//

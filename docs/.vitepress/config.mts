@@ -130,7 +130,13 @@ export default defineConfig({
             { text: 'DOM Manipulation', link: '/frontend/js/dom-manipulation/' },
             { text: 'DOM Traversing', link: '/frontend/js/dom-traversing' },
             { text: 'DOM Events', link: '/frontend/js/dom-events' },
-            { text: 'DOM UI Effects', link: '/frontend/js/ui-effects' },
+            {
+              text: 'UI Effects',
+              collapsed: true,
+              items: [
+                { text: 'ScrollSpy', link: '/frontend/js/ui-effects/scrollspy' }
+              ]
+            },
             { text: 'Scroll Effects', link: '/frontend/js/scroll-effects' },
             {
               text: 'Animation System',
@@ -144,9 +150,33 @@ export default defineConfig({
             },
             { text: 'Time Counter', link: '/frontend/js/timer' },
             { text: 'Carousel Slider', link: '/frontend/js/carousel-slider' },
-            { text: 'Multimedia System', link: '/frontend/js/multimedia' },
-            { text: 'Table of Content', link: '/frontend/js/table-of-content' },
-            { text: 'Components Utilities', link: '/frontend/js/js-utilities' },
+            {
+              text: 'Multimedia System',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/frontend/js/multimedia' },
+                { text: 'Background & Images', link: '/frontend/js/multimedia/background-images' },
+                { text: 'Embed Media', link: '/frontend/js/multimedia/embed-media' },
+                { text: 'Gradient & Mixed Backgrounds', link: '/frontend/js/multimedia/gradients' },
+                { text: '3D Objects', link: '/frontend/js/multimedia/3d-objects' }
+              ]
+            },
+            {
+              text: 'Utilities',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/frontend/js/js-utilities' },
+                { text: 'Form Utilities', link: '/frontend/js/utilities/form-utilities' },
+                { text: 'Item Remover', link: '/frontend/js/utilities/item-remover' },
+                { text: 'Counter', link: '/frontend/js/utilities/counter' },
+                { text: 'Dynamic Colors', link: '/frontend/js/utilities/dynamic-colors' },
+                { text: 'Table of Content', link: '/frontend/js/table-of-content' },
+                { text: 'Icons List', link: '/frontend/js/utilities/icons-list' },
+                { text: 'SEO Utilities', link: '/frontend/js/utilities/seo-utilities' },
+                { text: 'Copyright Protection', link: '/frontend/js/utilities/copyright-protection' },
+                { text: 'Third-Party Libraries', link: '/frontend/js/utilities/third-party-libraries' }
+              ]
+            },
             { text: 'Page Loader', link: '/frontend/js/page-loader' }
           ]
         },

@@ -83,7 +83,8 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] DOM Manipulation
 - [x] DOM Traversing
 - [x] DOM Events
-- [x] DOM UI Effects
+- [x] UI Effects
+  - [x] ScrollSpy
 - [x] Scroll Effects
 - [x] Animation System
   - [x] Overview
@@ -92,9 +93,23 @@ This master plan outlines a comprehensive approach to creating and maintaining h
   - [x] Animated Counter
 - [x] Time Counter
 - [x] Carousel Slider
-- [ ] Multimedia System
-- [ ] Table of Content
-- [ ] Components Utilities
+- [x] Multimedia System
+  - [x] Overview
+  - [x] Background & Images
+  - [x] Embed Media
+  - [x] Gradient & Mixed Backgrounds
+  - [x] 3D Objects
+- [x] Table of Content
+- [x] Components Utilities
+- [x] Utilities
+  - [x] Form Utilities
+  - [x] Item Remover
+  - [x] Counter
+  - [x] Dynamic Colors
+  - [x] Icons List
+  - [x] SEO Utilities
+  - [x] Copyright Protection
+  - [x] Third-Party Libraries
 - [ ] Page Loader
 
 ### UI Components

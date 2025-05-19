@@ -26,44 +26,6 @@ PhenixElements.prototype.init = function (scripts?:[]) {
 
     Phenix(".go-up-btn").on("click", isClicked => window.scrollTo({top: 0,left: 0,behavior: "smooth",}));
 
-    /*===> Table of contents Menu <===*/
-    let postContent = document.querySelector(".entry-content"), last_title,
-    content_menu = document.querySelector('#table-of-content-list');
-
-    /*===> Loop Through Titles <===*/
-    if (postContent && content_menu) {
-        //===> Get Headlines <===//
-        let headlines = postContent.querySelectorAll('h2, h3, h4');
-        //===> Reset List <===//
-        content_menu.innerHTML = "";
-        //===> for Each Headline <===//
-        headlines.forEach((element:HTMLElement, index) => {
-            //====> Get Data <====//
-            let title = element.textContent,
-                itemHtml = `<li class="tx-nowrap"><a href="#section-${index}" class="smoth-scroller">${title}</a></li>`;
-    
-            //====> Set ID <====//
-            element.setAttribute('id', `section-${index}`);
-
-            //====> Sub-Titles <====//
-            if (element.matches('h3') || element.matches('h4')) {
-                //===> ... <===//
-                let last_item = content_menu.querySelector('li:last-child'),
-                    last_list = last_item?.querySelector('ul') || content_menu;
-                //====> Create new Menu <====//
-                if (!last_list && last_item) last_list = Phenix(last_item).insert('append', '<ul class="table-of-content-menu pdx-15"></ul>');
-    
-                //====> Create as Menu Item <====//
-                Phenix(last_list).insert('append', itemHtml);
-            }
-            //====> Create as Main Title <====//
-            else Phenix(content_menu).insert('append', itemHtml);
-    
-            //====> Assign Last Title <====//
-            last_title = element;
-        });
-    }
-
     /*====> Add Data Options to un-reachable Elements <====*/
     Phenix(`[data-add-options]`).forEach((element:HTMLElement) => {
         //===> Get Data Options <====//

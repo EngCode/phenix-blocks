@@ -28,18 +28,17 @@
     border-width: 0;
 }
 
-.flexbox {
-    @extend %flexbox;
-}
+.flexbox {@extend %flexbox;}
 
 @mixin make-visibility ($infix:'') {
     /*==== Visibility ====*/
     .visibility#{$infix}-hidden {visibility: hidden;}
     .visibility#{$infix}-visible {visibility: visible;}
     .visibility#{$infix}-collapse {visibility: collapse;}
-    
+
     /*==== Display ====*/
     .inline-block#{$infix}  {display: inline-block;}
+    .inline-flex#{$infix}   {display: inline-flex;}
     .display#{$infix}-block {display: block;}
     .display#{$infix}-grid  {display: grid;}
     .display#{$infix}-flex  {display: flex;}

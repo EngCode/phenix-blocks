@@ -2,7 +2,7 @@
 
 ## Overview
 
-This master plan outlines a comprehensive approach to creating and maintaining high-quality documentation for the Phenix Design System. The plan is divided into seven phases, each with actionable checklists and a focus on refactoring the documentation to align with the plan.
+This master plan outlines a comprehensive approach to creating and maintaining high-quality documentation for the Phenix Design System. The plan is divided into two main sections (Front-End and WordPress), each with actionable checklists and a focus on refactoring the documentation to align with the plan.
 
 ## Phase 1: Planning and Setup (Completed)
 
@@ -15,122 +15,168 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 
 ## Phase 2: Frontend Framework Documentation (In Progress)
 
+### Front-End Overview
+- [x] Overview
+
+### Getting Started
 - [x] Quick Start
-  - [x] Installation (with clear separation between phenix-ui and pds-blocks)
-  - [x] RTL & LTR Support
-  - [x] Responsive Design
-  - [x] Browser Compatibility
-  - [x] CSS Customization
+  - [x] Installation
+  - [x] RTL & LTR
+  - [x] Responsive
+  - [x] Compatibility
+  - [x] CSS Customize
 
 - [x] Working with SASS
   - [x] Overview
   - [x] Build Tools
+  - [x] Sass Modules
+  - [x] Sass Integrations
+  - [x] Sass Variables
+  - [x] Sass Selectors
+  - [x] Mixin & Functions
+
+- [x] Working With TypeScript
+  - [x] Overview
+  - [x] Build Tools
   - [x] Modules
   - [x] Integrations
-  - [x] SASS Variables
-  - [x] SASS Selectors
-  - [x] Mixins & Functions
 
-- [ ] Working with TypeScript
-  - [ ] Overview
-  - [ ] Build Tools
+### CSS Modules
+- [x] Grid System
+  - [x] Containers
+  - [x] Flexbox Row
+  - [x] Columns
+  - [x] Gutters
+  - [x] Group Layout
 
-- [ ] CSS Modules
-  - [ ] Grid System
-  - [ ] Containers
-  - [ ] Flexbox Row
-  - [ ] Columns
-  - [ ] Gutters
+- [x] Typography
+  - [x] Default
+  - [x] Typography
+  - [x] Tables Style
+  - [x] List Components
 
-## Phase 3: Frontend Framework - Advanced Topics
+- [x] CSS Utilities
+  - [x] Overview
+  - [x] Sizing
+  - [x] Colors
+  - [x] Spacing
+  - [x] Borders
+  - [x] Shadows
+  - [x] Overlays
+  - [x] Tooltips
+  - [x] Visibility
+  - [x] Typography
+  - [x] Backgrounds
+  - [x] Positioning
+  - [x] Media Elements
+  - [x] Overflow & Float
+  - [x] Custom Scrollbar
+  - [x] Interactive Utilities
+    - [x] Overview
+    - [x] Effects
+    - [x] Transitions
+    - [x] Scroll Snap
+    - [x] Mouse Interaction
+    - [x] Loading Indicators
 
-- [ ] **SASS Variables**
-  - [ ] List and explain all variables
-  - [ ] Customization examples
+### JavaScript Modules
+- [ ] DOM Manipulation
+- [ ] DOM Traversing
+- [ ] DOM Events
+- [ ] DOM UI Effects
+- [ ] Animation System
+- [ ] Carousel Slider
+- [ ] Time Counter
+- [ ] Multimedia System
+- [ ] Table of Content
+- [ ] Components Utilities
+- [ ] Page Loader
 
-- [ ] **Mixins & Functions**
-  - [ ] List and usage
-  - [ ] Extending and customizing
+### UI Components
+- [ ] Alerts
+- [ ] Buttons
+- [ ] Progress
+- [ ] Dropdown
+- [ ] Pagination
+- [ ] Accordion
+- [ ] Breadcrumb
+- [ ] Notifications
+- [ ] Tabs & Panels
+- [ ] Building Cards
+- [ ] Popup Modals
+- [ ] Navbars & Menus
+- [ ] Tooltip & Popovers
 
-- [ ] **Theming**
-  - [ ] Light/Dark modes
-  - [ ] Custom themes
+### Form Controls
+- [ ] Form Controls
+- [ ] Form Validation
+- [ ] Advanced Select
+- [ ] Files Upload
+- [ ] Rating Controller
+- [ ] Form Repeater
+- [ ] Range Slider
 
-## Phase 4: JavaScript Modules
-
-- [ ] **DOM Utilities**
-  - [ ] DOM Manipulation (methods, patterns)
-  - [ ] DOM Traversing
-  - [ ] DOM Events (event system, custom events)
-
-- [ ] **UI Effects & Animations**
-  - [ ] Animation System (API, examples)
-  - [ ] UI Effects (fade, slide, etc.)
-
-- [ ] **Components Utilities**
-  - [ ] Carousel Slider (init, options, API)
-  - [ ] Time Counter (usage, customization)
-  - [ ] Multimedia System (audio, video)
-  - [ ] Table of Content (auto-generation, linking)
-  - [ ] Page Loader (usage, customization)
-  - [ ] Performance (profiling, optimization tips)
-
-## Phase 5: UI Components & Form Controls
-
-- [ ] **UI Components** (Each gets a page with: overview, usage, options, accessibility, customization, code samples)
-  - [ ] Alerts
-  - [ ] Buttons
-  - [ ] Progress
-  - [ ] Dropdown
-  - [ ] Pagination
-  - [ ] Accordion
-  - [ ] Breadcrumb
-  - [ ] Notifications
-  - [ ] Tabs & Panels
-  - [ ] Cards
-  - [ ] Popup Modals
-  - [ ] Navbars & Menus
-  - [ ] Tooltips & Popovers
-
-- [ ] **Form Controls**
-  - [ ] Inputs (text, number, password, etc.)
-  - [ ] Selects, Advanced Select
-  - [ ] Checkboxes, Radios, Switches
-  - [ ] Range Slider
-
-## Phase 6: Frontend Framework - Helpers & Tools
-
+### Helpers/Tools
 - [ ] Icons Libraries
+- [ ] Data Generator
+- [ ] Performance Optimize
 
-## Phase 7: WordPress Integration
+## Phase 3: WordPress Integration
 
-- [ ] Getting Started
-  - [ ] Installation
-  - [ ] General Settings
-  - [ ] Theme Customizing
+### WordPress Overview
+- [ ] Overview
 
-- [ ] Gutenberg Blocks
-  - [ ] Core Blocks
-  - [ ] Advanced Blocks
-  - [ ] Query Blocks
+### Getting Started
+- [ ] Installation
+- [ ] General Settings
+- [ ] Theme Customizing
 
-- [ ] Block Controls
-  - [ ] Layout Options
-  - [ ] Responsive Controls
-  - [ ] Typography Options
-  - [ ] Style Options
+### GB Blocks
+- [ ] Logo
+- [ ] Button
+- [ ] Group
+- [ ] Container
+- [ ] Grid Row
+- [ ] Column
+- [ ] Text Elements
+- [ ] Breadcrumb
+- [ ] Icon Element
+- [ ] Popup Modals
+- [ ] Logical Content
+- [ ] Custom Code
+- [ ] Media Element
+- [ ] Responsive Menu
+- [ ] Advanced Query
+- [ ] Taxonomies Query
+- [ ] Theme Part
+- [ ] Users Query
 
-- [ ] Development Tools
-  - [ ] Menu Locations
-  - [ ] Pattern Templates
-  - [ ] Custom Post Types
-  - [ ] Custom Taxonomies
-  - [ ] Custom Meta Fields
+### Blocks Controls
+- [ ] Intro
+- [ ] Layout
+- [ ] Margin
+- [ ] Padding
+- [ ] Visibility
+- [ ] Position
+- [ ] Typography
+- [ ] Border Radius
+- [ ] Styles Options
+- [ ] Carousel Slider
+- [ ] CSS Properties
 
-- [ ] PHP Methods
-  - [ ] Admin Pages
-  - [ ] API Endpoints
-  - [ ] Custom Functions
+### Dev Tools
+- [ ] Menu Locations
+- [ ] Patterns Templates
+- [ ] Custom Post-Types
+- [ ] Custom Taxonomies
+- [ ] Custom Meta-Fields
+
+### PHP Methods
+- [ ] Admin Pages
+- [ ] API End-Point
+- [ ] Countries API
+- [ ] Get Users Roles
+- [ ] Custom Functions
 
 ## Refactoring the Docs
 
@@ -144,7 +190,7 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 
 For each documentation section, we follow this process:
 
-1. **Review Live Documentation**: Examine the existing documentation at phenixthemes.com
+1. **Review OLD Documentation**: Examine the existing documentation at docs-old
 2. **Source Code Analysis**: Review the corresponding source code:
    - For phenix-ui: Check the GitHub repository
    - For pds-blocks: Check the repository structure and code

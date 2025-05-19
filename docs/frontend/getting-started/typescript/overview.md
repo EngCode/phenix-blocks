@@ -8,11 +8,9 @@ The Phenix JavaScript framework is built with TypeScript, providing type safety 
 
 ```typescript
 // Basic usage example
-Phenix('.element')
-  .addClass('active')
-  .on('click', function() {
+Phenix('.element').addClass('active').on('click', function() {
     // Handle click event
-  });
+});
 ```
 
 ## Core Architecture

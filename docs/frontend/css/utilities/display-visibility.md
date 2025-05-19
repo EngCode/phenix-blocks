@@ -29,23 +29,11 @@ Control how elements are rendered in the document flow:
 <!-- Inline-block display -->
 <div class="inline-block">Displays as an inline-block element</div>
 
+<!-- Inline-flex display -->
+<div class="inline-flex">Displays as an inline-flex container</div>
+
 <!-- Flexbox shorthand -->
 <div class="flexbox">Displays as a flex container (using a placeholder selector)</div>
-```
-
-## Visibility Properties
-
-Control element visibility while preserving its space in the layout:
-
-```html
-<!-- Hidden but takes up space -->
-<div class="visibility-hidden">Not visible but maintains its space in layout</div>
-
-<!-- Explicitly visible (default) -->
-<div class="visibility-visible">Visible element (default behavior)</div>
-
-<!-- Collapsed visibility (mainly for table elements) -->
-<div class="visibility-collapse">Collapsed visibility</div>
 ```
 
 ## Opacity Control

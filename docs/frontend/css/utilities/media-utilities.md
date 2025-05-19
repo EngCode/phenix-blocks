@@ -68,7 +68,7 @@ Available responsive prefixes:
 - No prefix: All screen sizes
 - `-md`: Medium screens and up (≥ 768px)
 - `-lg`: Large screens and up (≥ 1024px)
-- `-xl`: Extra large screens and up (≥ 1200px)
+- `-xl`: xLarge screens and up (≥ 1400px)
 
 ## Media Container
 
@@ -214,6 +214,10 @@ When using `data-type="image"`, the element behaves as a background image contai
   </div>
 </div>
 ```
+
+## Advanced Media Handling with JavaScript
+
+For more complex media handling, explore the [Phenix Media Elements (JavaScript)](/frontend/js/multimedia).
 
 ## Best Practices
 

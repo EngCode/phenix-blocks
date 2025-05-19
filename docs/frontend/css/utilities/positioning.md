@@ -206,7 +206,7 @@ Available responsive prefixes:
 - No prefix: All screen sizes
 - `-md`: Medium screens and up (≥ 768px)
 - `-lg`: Large screens and up (≥ 1024px)
-- `-xl`: Extra large screens and up (≥ 1200px)
+- `-xl`: Large screens and up (≥ 1400px)
 
 ## Common Use Cases
 

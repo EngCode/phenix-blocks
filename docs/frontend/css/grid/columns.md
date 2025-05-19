@@ -127,8 +127,8 @@ Available breakpoint prefixes:
 - No prefix: All screen sizes (default/mobile-first)
 - `-sm`: Small screens (≥ 576px)
 - `-md`: Medium screens (≥ 768px)
-- `-lg`: Large screens (≥ 1024px)
-- `-xl`: Extra large screens (≥ 1200px)
+- `-lg`: Large screens (≥ 1200px)
+- `-xl`: Extra large screens (≥ 1400px)
 
 ### Responsive Example - Content Layout
 

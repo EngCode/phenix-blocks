@@ -191,25 +191,6 @@ Colors in Phenix are controlled by CSS variables defined in the theme. You can c
 }
 ```
 
-## Responsive Text Colors
-
-All text color utilities can be applied conditionally at different breakpoints:
-
-```html
-<!-- Red text on small screens, blue text on large screens -->
-<div class="color-danger color-lg-info">Responsive text color</div>
-
-<!-- Primary text color on all screens, secondary on medium screens and up -->
-<p class="color-primary color-md-secondary">Responsive text color</p>
-```
-
-Available responsive prefixes:
-- No prefix: All screen sizes
-- `-sm`: Small screens (≥ 576px)
-- `-md`: Medium screens (≥ 768px)
-- `-lg`: Large screens (≥ 1024px)
-- `-xl`: Extra large screens (≥ 1200px)
-
 ## Related Utilities
 
 For more color-related utilities, check these documentation pages:

@@ -49,30 +49,30 @@ Key benefits:
 
 Phenix Design System utilities follow these patterns:
 
-1. **Property or function prefix**: Indicates the property being styled (e.g., `bg-` for background, `tx-` for text)
+1. **Property or function Prefix**: Indicates the property being styled (e.g., `bg-` for background, `tx-` for text)
 2. **Value or variant**: Specifies the value to apply (e.g., `primary`, `center`, `bold`)
 3. **Optional directional modifier**: Indicates direction (e.g., `-top`, `-start`)
-4. **Optional responsive prefix**: Indicates screen size (e.g., `md-`, `lg-`)
+4. **Optional responsive prefix**: Indicates screen size (e.g., `-md`, `-lg`)
 
 Examples:
 - `bg-primary`: Primary background color
 - `tx-center`: Center-aligned text
 - `border-bottom-2`: 2px bottom border
-- `md-hidden`: Hidden on medium screens and up
+- `hidden-md`: Hidden on medium screens and up
 
-## Responsive Prefixes
+## Responsive prefixes
 
 All utilities can be applied conditionally at different breakpoints using these prefixes:
 
 - No prefix: Applied at all screen sizes
-- `sm-`: Applied at small screens (≥ 500px) and up
-- `md-`: Applied at medium screens (≥ 768px) and up
-- `lg-`: Applied at large screens (≥ 1200px) and up
-- `xl-`: Applied at extra large screens (≥ 1400px) and up
+- `-sm`: Applied at small screens (≥ 500px) and up
+- `-md`: Applied at medium screens (≥ 768px) and up
+- `-lg`: Applied at large screens (≥ 1200px) and up
+- `-xl`: Applied at extra large screens (≥ 1400px) and up
 
 Example:
 ```html
-<div class="hidden md-block">
+<div class="hidden-md block-md">
   <!-- Hidden on mobile, visible on medium screens and up -->
 </div>
 ```
@@ -84,7 +84,7 @@ Utilities are designed to be combined to create complex styles:
 ```html
 <div class="bg-light py-20 px-30 radius-lg border-1 border-gray tx-center mb-20">
   <h2 class="fs-24 weight-bold color-primary mb-10">Card Title</h2>
-  <p class="fs-16 lh-lg mb-15">Card description goes here with larger line height.</p>
+  <p class="fs-16 h1-lg mb-15">Card description goes here with larger line height.</p>
   <a href="#" class="btn primary transition-smooth">Learn More</a>
 </div>
 ```

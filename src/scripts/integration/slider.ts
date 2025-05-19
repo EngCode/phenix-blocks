@@ -56,8 +56,9 @@ PhenixElements.prototype.slider = function (options?:{
         //===> Vertical Height Calculator <===//
         const verticalFix = (slides, direction, slider) => {
             if (direction == 'ttb') {
-                let first_item = slider.children[0],
-                    first_height = Phenix(first_item).height();
+                //====> Get First Item Height <====//
+                let first_height = Phenix(slider.children[0]).height();
+                //====> Return Height <====//
                 return first_height*parseInt(slides);
             }
         };
@@ -337,45 +338,20 @@ PhenixElements.prototype.slider = function (options?:{
         if (!current_slider) return;
         let the_slider = new Splide(slider, current_slider.options);
 
-        //====> Events Data <====//
-        let events_data = {
-            slider : slider,
-            track  : slider.querySelector('splide__track'),
-            list   : slider.querySelector('splide__list'),
-        };
-
-        //====> Create Custom Events [https://splidejs.com/guides/events/] <====//
-        const move = new CustomEvent('move', {detail: events_data}),       //===> Fired right before the carousel moves.
-            moved = new CustomEvent('moved', {detail: events_data}),       //===> Fired right after the carousel moves.
-            active = new CustomEvent('active', {detail: events_data}),     //===> Fired when the active slide is changed.
-            resize = new CustomEvent('resize', {detail: events_data}),     //===> Fired whenever the window is resized.
-            hidden = new CustomEvent('hidden', {detail: events_data}),     //===> Fired when any slide gets visible in the view port.
-            resized = new CustomEvent('resized', {detail: events_data}),   //===> Fired whenever Splide completes resizing the carousel.
-            refresh = new CustomEvent('refresh', {detail: events_data}),   //===> Fired when Splide refreshes the carousel.
-            destroy = new CustomEvent('destroy', {detail: events_data}),   //===> Fired when Splide destroys the carousel.
-            visible = new CustomEvent('visible', {detail: events_data}),   //===> Fired when any slide gets visible in the view port.
-            mounted = new CustomEvent('mounted', {detail: events_data}),   //===> Fired right after all components are mounted.
-            inactive = new CustomEvent('inactive', {detail: events_data}), //===> Fired when the active slide becomes inactive.
-            arrows_mounted = new CustomEvent('arrows:mounted', {detail: events_data}), //===> Fired right after arrows are mounted.
-            arrows_updated = new CustomEvent('arrows:updated', {detail: events_data}), //===> Fired whenever status of arrows are updated.
-            pagination_mounted = new CustomEvent('pagination:mounted', {detail: events_data}),  //===> Fired right after pagination is mounted.
-            pagination_updated = new CustomEvent('pagination:updated', {detail: events_data});  //===> Fired whenever status of pagination is updated.
-
         //====> Integration Phenix <====//
-        the_slider.on(['mounted'], function(data) {
+        the_slider.on(['mounted'], () => {
             //====> Mounted Run Integration <====//
             slider_integration();
         });
 
-        the_slider.on(['visible'], function(data) {
-            //====> Mounted Run Integration <====//
+        the_slider.on(['visible'], () => {
+            //====> Visible Run Integration <====//
             slider_integration();
-            //===> Despatch Event <====//
-            slider.dispatchEvent(visible);
         });
 
         //====> Stop Played Media <====//
-        the_slider.on(['inactive'], function(data) {
+        the_slider.on(['inactive'], (data) => {
+            //====> Get Video and iFrame <====//
             let video = data.slide.querySelector('video'),
                 iframe = data.slide.querySelector('iframe');
 
@@ -388,21 +364,6 @@ PhenixElements.prototype.slider = function (options?:{
                 iframe.setAttribute('src', source);
             };
         });
-
-        //====> Dispatch Events <====//
-        the_slider.on('move', () => slider.dispatchEvent(move));
-        the_slider.on('moved', () => slider.dispatchEvent(moved));
-        the_slider.on('resize', () => slider.dispatchEvent(resize));
-        the_slider.on('active', () => slider.dispatchEvent(active));
-        the_slider.on('refresh', () => slider.dispatchEvent(refresh));
-        the_slider.on('resized', () => slider.dispatchEvent(resized));
-        the_slider.on('destroy', () => slider.dispatchEvent(destroy));
-        the_slider.on('mounted', () => slider.dispatchEvent(mounted));
-        the_slider.on('inactive', () => slider.dispatchEvent(inactive));
-        the_slider.on('arrows:mounted', () => slider.dispatchEvent(arrows_mounted));
-        the_slider.on('arrows:updated', () => slider.dispatchEvent(arrows_updated));
-        the_slider.on('pagination:mounted', () => slider.dispatchEvent(pagination_mounted));
-        the_slider.on('pagination:updated', () => slider.dispatchEvent(pagination_updated));
 
         //====> Run Sync Sliders <====//
         let mount_slider = () => {

@@ -270,8 +270,8 @@ All spacing utilities have responsive variants that apply at specific breakpoint
 Available responsive prefixes:
 - No prefix: All screen sizes (default/mobile-first)
 - `-md`: Medium screens (≥ 768px)
-- `-lg`: Large screens (≥ 1024px)
-- `-xl`: Extra large screens (≥ 1200px)
+- `-lg`: Large screens (≥ 1200px)
+- `-xl`: Extra large screens (≥ 1400px)
 
 ## Grid Gaps
 
@@ -321,16 +321,6 @@ Gap utilities also have responsive variants:
 <div class="display-flex">
   <div class="me-20">Left column</div>
   <div>Right column</div>
-</div>
-```
-
-### Grid with Gaps
-
-```html
-<div class="display-grid gp-15">
-  <div class="pd-15">Grid item 1</div>
-  <div class="pd-15">Grid item 2</div>
-  <div class="pd-15">Grid item 3</div>
 </div>
 ```
 

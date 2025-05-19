@@ -40,7 +40,7 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
 ```html
 <div class="overlay-dark position-rv" style="--opacity: 0.7;">
   <img src="hero-image.jpg" alt="Hero background" class="position-ab position-full">
-  <div class="container py-60 text-center">
+  <div class="container pdy-60 text-center">
     <h1 class="color-white display-h1 mb-20">Welcome to Our Site</h1>
     <p class="color-white mb-30 fs-20">Discover our amazing products and services</p>
     <a href="#learn-more" class="btn primary">Learn More</a>
@@ -62,7 +62,7 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
       </div>
     </div>
   </div>
-  <div class="card-body p-20">
+  <div class="card-body pd-20">
     <h3>Card Title</h3>
   </div>
 </div>
@@ -75,7 +75,7 @@ The child elements automatically receive `position: relative` and `z-index: 3` t
   <video autoplay muted loop class="position-ab position-full object-fit">
     <source src="background-video.mp4" type="video/mp4">
   </video>
-  <div class="container py-100 text-center">
+  <div class="container pdy-100 text-center">
     <h1 class="color-white display-h1">Video Background</h1>
     <p class="color-white fs-20 mb-30">Content appears clearly above the video</p>
     <button class="btn primary">Get Started</button>

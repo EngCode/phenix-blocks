@@ -214,8 +214,8 @@ For `tx-line-clamp`, you can customize the number of lines with the `--max-lines
 All size and alignment classes support responsive variants by adding breakpoint suffixes:
 
 - `-md`: Medium screens and up (≥ 768px)
-- `-lg`: Large screens and up (≥ 992px)
-- `-xl`: Extra large screens and up (≥ 1200px)
+- `-lg`: Large screens and up (≥ 1200px)
+- `-xl`: xLarge screens and up (≥ 1400px)
 
 Examples:
 

@@ -137,10 +137,12 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Overview', link: '/frontend/js/animations' },
-                { text: 'Animated Counter', link: '/frontend/js/animations/counter' },
-                { text: 'Time Counter', link: '/frontend/js/animations/timer' }
+                { text: 'Viewport Animations', link: '/frontend/js/animations/viewport-animations' },
+                { text: 'Scroll Animations', link: '/frontend/js/animations/scroll-animations' },
+                { text: 'Animated Counter', link: '/frontend/js/animations/counter' }
               ]
             },
+            { text: 'Time Counter', link: '/frontend/js/timer' },
             { text: 'Carousel Slider', link: '/frontend/js/carousel-slider' },
             { text: 'Multimedia System', link: '/frontend/js/multimedia' },
             { text: 'Table of Content', link: '/frontend/js/table-of-content' },

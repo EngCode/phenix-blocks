@@ -10,6 +10,7 @@ import Phenix, { PhenixElements } from "..";
 declare var Masonry:any;
 declare var tinyTypewriter:any;
 declare var initMarqueeSlider:any;
+declare var noUiSlider:any;
 
 /*====> Phenix Utilities <====*/
 PhenixElements.prototype.utilities = function (options?:{
@@ -459,6 +460,63 @@ PhenixElements.prototype.utilities = function (options?:{
                             dir: marquee.classList.contains('px-marquee-reverse') ? 'left' : 'right',
                             stopOnHover: marquee.getAttribute('data-hover') && marquee.getAttribute('data-hover') === 'false' ? false : true,
                         });
+                    });
+                }, { integrated: true });
+            }
+
+            //===> Add Support Price Range Sliders <===//
+            const RangeSliders = Phenix('.pds-range-slider');        
+            if (RangeSliders.length > 0) {
+                //===> Get Page Direction <===//
+                const page_direction = Phenix(document).direction();
+        
+                //====> Import Slider Plugin <====//
+                Phenix(document).import("range-slider", "script", "range-slider/range-slider.js", ()=>{
+                    //====> Import CSS <====//
+                    Phenix(document).import(`range-slider`, "link", `range-slider/range-slider${page_direction === "rtl" ? "-rtl" : ""}.css`, ()=>{}, { integrated: true });
+        
+                    //====> Activate Sliders <====//
+                    RangeSliders.forEach((slider:any) => {
+                        //===> Get Defaults <===//
+                        const minRange = parseInt(slider.getAttribute("data-min")),
+                              maxRange = parseInt(slider.getAttribute("data-max"));
+        
+                        //===> Initial the Slider <===//
+                        noUiSlider.create(slider, {
+                            step: 5,
+                            connect: true,
+                            tooltips:true,
+                            start: [minRange || 150, maxRange || 700],
+                            direction: page_direction,
+                            range: {
+                                'min': minRange || 10,
+                                'max': maxRange || 900
+                            },
+                        });
+                
+                        //===> Update Controls Values <===//
+                        var min_range = slider.parentNode.querySelector(".range-min"),
+                            max_range = slider.parentNode.querySelector(".range-max");
+        
+                        if (min_range && max_range) {
+                            slider.noUiSlider.on('update', function (values, handle) {
+                                if (handle) {max_range.value = values[handle];} 
+                                else {min_range.value = values[handle];}
+                            });
+                    
+                            //===> Update From Controls <===//
+                            min_range.addEventListener('change', event => {
+                                var maxVal = max_range.value,
+                                    minVal = min_range.value;
+                                    slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                            });
+                    
+                            max_range.addEventListener('change', event => {
+                                var maxVal = max_range.value,
+                                    minVal = min_range.value;
+                                    slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                            });
+                        }
                     });
                 }, { integrated: true });
             }

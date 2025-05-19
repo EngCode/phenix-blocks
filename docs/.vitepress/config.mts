@@ -165,16 +165,26 @@ export default defineConfig({
               text: 'Utilities',
               collapsed: true,
               items: [
-                { text: 'Overview', link: '/frontend/js/js-utilities' },
+                { text: 'Overview', link: '/frontend/js/utilities/' },
                 { text: 'Form Utilities', link: '/frontend/js/utilities/form-utilities' },
                 { text: 'Item Remover', link: '/frontend/js/utilities/item-remover' },
                 { text: 'Counter', link: '/frontend/js/utilities/counter' },
                 { text: 'Dynamic Colors', link: '/frontend/js/utilities/dynamic-colors' },
-                { text: 'Table of Content', link: '/frontend/js/table-of-content' },
+                { text: 'Table of Content', link: '/frontend/js/utilities/table-of-content' },
                 { text: 'Icons List', link: '/frontend/js/utilities/icons-list' },
                 { text: 'SEO Utilities', link: '/frontend/js/utilities/seo-utilities' },
-                { text: 'Copyright Protection', link: '/frontend/js/utilities/copyright-protection' },
-                { text: 'Third-Party Libraries', link: '/frontend/js/utilities/third-party-libraries' }
+                { text: 'Copyright Protection', link: '/frontend/js/utilities/copyright-protection' }
+              ]
+            },
+            {
+              text: 'Third-Party Utilities',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/frontend/js/third-party/' },
+                { text: 'Masonry Grid', link: '/frontend/js/third-party/masonry-grid' },
+                { text: 'Typed Text', link: '/frontend/js/third-party/typed-text' },
+                { text: 'Marquee Slider', link: '/frontend/js/third-party/marquee-slider' },
+                { text: 'Range Slider', link: '/frontend/js/third-party/range-slider' }
               ]
             },
             { text: 'Page Loader', link: '/frontend/js/page-loader' }

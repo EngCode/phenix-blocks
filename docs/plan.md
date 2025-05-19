@@ -102,14 +102,21 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Table of Content
 - [x] Components Utilities
 - [x] Utilities
+  - [x] Overview
   - [x] Form Utilities
   - [x] Item Remover
   - [x] Counter
   - [x] Dynamic Colors
+  - [x] Table of Content
   - [x] Icons List
   - [x] SEO Utilities
   - [x] Copyright Protection
-  - [x] Third-Party Libraries
+- [x] Third-Party Utilities
+  - [x] Overview
+  - [x] Masonry Grid
+  - [x] Typed Text
+  - [x] Marquee Slider
+  - [x] Range Slider
 - [ ] Page Loader
 
 ### UI Components

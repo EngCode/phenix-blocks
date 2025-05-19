@@ -10,7 +10,7 @@ To use the Table of Content feature, you need to:
 
 1. Add a container with the ID `table-of-content-list` to your page
 2. Have content with headings (h2, h3, h4) inside an element with the class `.entry-content`
-3. Initialize the utilities with the 'toc' type
+3. Initialize the utilities with the 'seo' type
 
 ```html
 <!-- Table of Contents Container -->
@@ -32,7 +32,7 @@ To use the Table of Content feature, you need to:
 ```js
 // Initialize Table of Content
 Phenix(document).utilities({
-  type: 'toc'
+  type: 'seo'
 });
 
 // Or initialize all utilities including Table of Content

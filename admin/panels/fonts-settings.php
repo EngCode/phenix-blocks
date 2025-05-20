@@ -35,7 +35,7 @@
         //===> Convert to Array <===//
         if($json_array) {
             foreach ($json_array->items as $key => $value) {
-                array_push($fonts_list, $value->family);
+                $fonts_list[$value->family] = $value->family;
             }
         }
     }

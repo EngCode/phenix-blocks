@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "../../../../design/px-design"
+		},
+		{
+			"path": "../../../../px-plugins/pdb-assets"
 		}
 	],
 	"settings": {

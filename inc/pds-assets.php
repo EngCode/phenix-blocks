@@ -105,6 +105,10 @@ if (!function_exists('phenix_assets')) :
             "ara-hamah-al-horra",
             "tactic-sans",
             "howdy-party",
+            "dubai",
+            "ge-ss-two",
+            "palsam-arabic",
+            "palsam-arabic-cursive",
         ];
 
         //===> Style Font Fallback <===//

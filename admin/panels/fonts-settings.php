@@ -10,6 +10,10 @@
         "ara-hamah-al-horra" => "Ara Hamah AlHorra",
         "tactic-sans" => "Tactic Sans",
         "howdy-party" => "Howdy Party",
+        "dubai" => "Dubai",
+        "ge-ss-two" => "GE SS Two",
+        "palsam-arabic" => "Palsam Arabic",
+        "palsam-arabic-cursive" => "Palsam Arabic Cursive",
     ];
 
     //===> Icon Fonts <===//

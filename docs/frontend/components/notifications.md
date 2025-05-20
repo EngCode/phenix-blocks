@@ -4,195 +4,273 @@
 
 The Notifications component in the Phenix Design System provides a way to display temporary messages to users. It's useful for showing feedback about actions, errors, warnings, or success messages that automatically disappear after a specified time.
 
+The `notifications()` method allows you to create notifications with different types, positions, and durations. You can use it to provide feedback for user actions, display system messages, or alert users about important events.
+
 ## Basic Usage
 
-Create notifications using the JavaScript `notifications()` method:
+To create a notification, you need to call the `notifications()` method on the `document` object. The method accepts an options object that allows you to customize the notification.
+
+### JavaScript
 
 ```javascript
-// Show a basic notification
+//====> Basic Notification <====//
 Phenix(document).notifications({
-  type: 'normal',     // Message type: normal, error, success, warning
-  message: 'This is a notification message',  // Message content
-  duration: 3000,     // Message timeout in milliseconds
-  position: 'bottom, start'  // Message position [y, x]
+    type: 'normal',          //====> Message type: normal, error, success, warning
+    message: 'This is a notification message',  //====> Message content
+    duration: 3000,          //====> Message timeout in milliseconds
+    position: 'bottom, start'  //====> Message position [Y, X]
 });
 ```
 
 ## Notification Types
 
-The Notifications component supports four types of notifications, each with its own styling:
+The Notifications component supports four types of notifications, each with its own styling to visually communicate different message purposes.
+
+### JavaScript
 
 ```javascript
-// Normal notification (default)
+//====> Normal Notification (default) <====//
 Phenix(document).notifications({
-  type: 'normal',
-  message: 'This is a normal notification'
+    type: 'normal',
+    message: 'This is a normal notification'
 });
 
-// Success notification
+//====> Success Notification <====//
 Phenix(document).notifications({
-  type: 'success',
-  message: 'Operation completed successfully!'
+    type: 'success',
+    message: 'Operation completed successfully!'
 });
 
-// Error notification
+//====> Error Notification <====//
 Phenix(document).notifications({
-  type: 'error',
-  message: 'An error occurred. Please try again.'
+    type: 'error',
+    message: 'An error occurred. Please try again.'
 });
 
-// Warning notification
+//====> Warning Notification <====//
 Phenix(document).notifications({
-  type: 'warning',
-  message: 'Warning: This action cannot be undone.'
+    type: 'warning',
+    message: 'Warning: This action cannot be undone.'
 });
 ```
 
 ## Positioning
 
-Control the position of notifications using the `position` option with a format of "Y, X" where Y is "top", "center", or "bottom" and X is "start", "center", or "end":
+You can control where notifications appear on the screen using the `position` option. The position format is "Y, X" where:
+- Y is the vertical position: "top", "center", or "bottom"
+- X is the horizontal position: "start", "center", or "end"
+
+### JavaScript
 
 ```javascript
-// Top-right notification
+//====> Top-Right Notification <====//
 Phenix(document).notifications({
-  message: 'Top-right notification',
-  position: 'top, end'
+    message: 'Top-right notification',
+    position: 'top, end'
 });
 
-// Bottom-center notification
+//====> Bottom-Center Notification <====//
 Phenix(document).notifications({
-  message: 'Bottom-center notification',
-  position: 'bottom, center'
+    message: 'Bottom-center notification',
+    position: 'bottom, center'
 });
 
-// Center notification
+//====> Center Notification <====//
 Phenix(document).notifications({
-  message: 'Centered notification',
-  position: 'center, center'
+    message: 'Centered notification',
+    position: 'center, center'
 });
 ```
 
 ## Duration
 
-Control how long notifications are displayed using the `duration` option (in milliseconds):
+The `duration` option controls how long notifications are displayed before they automatically disappear. The value is specified in milliseconds.
+
+### JavaScript
 
 ```javascript
-// Short notification (1 second)
+//====> Short Notification (1 second) <====//
 Phenix(document).notifications({
-  message: 'Quick notification',
-  duration: 1000
+    message: 'This will disappear quickly',
+    duration: 1000
 });
 
-// Long notification (10 seconds)
+//====> Standard Notification (3 seconds) <====//
 Phenix(document).notifications({
-  message: 'This notification stays longer',
-  duration: 10000
+    message: 'This is the default duration',
+    duration: 3000
+});
+
+//====> Long Notification (5 seconds) <====//
+Phenix(document).notifications({
+    message: 'This will stay longer',
+    duration: 5000
 });
 ```
 
 ## Practical Examples
 
-### Trigger Notifications from Button Click
+### Button Click Notifications
+
+This example shows how to trigger notifications when buttons are clicked, using data attributes to configure the notification options.
+
+### HTML
 
 ```html
-<!-- Notification trigger buttons -->
+<!-- Notification Trigger Buttons -->
 <button class="btn primary notification-demo" 
-        data-type="normal" 
-        data-message="This is a normal notification" 
-        data-position="bottom, start">
-  Show Normal Notification
-</button>
-
-<button class="btn success notification-demo" 
         data-type="success" 
-        data-message="Operation completed successfully!" 
-        data-position="top, end">
-  Show Success Notification
+        data-message="Operation completed successfully!">
+    Show Success Message
 </button>
 
-<script>
-  // When a button is clicked, show the notification
-  Phenix('.notification-demo').on('click', isClicked => {
-    // Get data from button attributes
-    let type = isClicked.target.getAttribute('data-type'),
-        message = isClicked.target.getAttribute('data-message'),
-        position = isClicked.target.getAttribute('data-position');
-    
-    // Show notification
-    Phenix(document).notifications({
-      type: type,
-      message: message,
-      position: position
-    });
-  });
-</script>
+<button class="btn danger notification-demo" 
+        data-type="error" 
+        data-message="An error occurred. Please try again.">
+    Show Error Message
+</button>
 ```
 
-### Form Submission Feedback
+### JavaScript
 
 ```javascript
-// Form submission handler
-Phenix('#contact-form').on('submit', event => {
-  event.preventDefault();
-  
-  // Simulate form submission
-  setTimeout(() => {
-    // Show success notification
+//====> Button Click Handler <====//
+Phenix('.notification-demo').on('click', isClicked => {
+    // Get notification data from the clicked element
+    let type = isClicked.target.getAttribute('data-type'),
+        message = isClicked.target.getAttribute('data-message');
+    
+    // Create and show the notification
     Phenix(document).notifications({
-      type: 'success',
-      message: 'Your message has been sent!',
-      position: 'top, center',
-      duration: 5000
+        type: type,
+        message: message,
+        duration: 3000,
+        position: 'top, center'
+    });
+});
+```
+
+### Form Submission Notification
+
+This example demonstrates how to show a notification after a form is submitted, providing feedback to the user about the submission status.
+
+### HTML
+
+```html
+<!-- Contact Form -->
+<form id="contact-form" class="pdy-15">
+    <div class="form-control mb-15">
+        <input type="text" name="name" placeholder="Your Name" required>
+    </div>
+    <div class="form-control mb-15">
+        <input type="email" name="email" placeholder="Your Email" required>
+    </div>
+    <div class="form-control mb-15">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+    </div>
+    <button type="submit" class="btn primary">Send Message</button>
+</form>
+```
+
+### JavaScript
+
+```javascript
+//====> Form Submission Handler <====//
+Phenix('#contact-form').on('submit', event => {
+    // Prevent default form submission
+    event.preventDefault();
+    
+    // In a real application, you would send the form data to a server here
+    // For this example, we'll just simulate a successful submission
+    
+    // Show a success notification
+    Phenix(document).notifications({
+        type: 'success',
+        message: 'Your message has been sent successfully!',
+        duration: 4000,
+        position: 'top, center'
     });
     
-    // Reset form
+    // Reset the form
     event.target.reset();
-  }, 1000);
 });
 ```
 
 ## Options Reference
 
+<figure>
+
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `type` | String | 'normal' | Type of notification: 'normal', 'error', 'success', 'warning' |
-| `message` | String | 'No Message Defined.' | Content of the notification |
-| `duration` | Number | 3000 | Time in milliseconds before the notification disappears |
-| `position` | String/Array | 'bottom, start' | Position of the notification [Y, X] |
+| `type` | string | `normal` | Notification type: `normal`, `success`, `error`, `warning` |
+| `message` | string | `''` | Content of the notification |
+| `duration` | number | `3000` | Time in milliseconds before notification disappears |
+| `position` | string | `bottom, start` | Position format: "Y, X" (Y: top/center/bottom, X: start/center/end) |
+| `icon` | boolean | `true` | Whether to show an icon based on notification type |
+| `close` | boolean | `true` | Whether to show a close button |
 
-## Styling
+<figcaption>
+Notification Component Options
+</figcaption>
 
-The Notifications component uses the following CSS classes that you can target for custom styling:
+</figure>
+
+## Styling Customization
+
+You can customize the appearance of notifications by overriding the default CSS classes:
 
 - `.px-notifications` - The container for all notifications
 - `.px-item` - Individual notification items
 
+### CSS
+
 ```css
-/* Custom notification styling */
+/*====> Custom Notification Styling <====*/
 .px-notifications .px-item {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  border-left: 4px solid currentColor;
+    /* Customize notification box */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px 20px;
 }
 
-/* Custom styling for specific notification types */
-.px-notifications .px-item.bg-success {
-  border-left-color: var(--success-color-dark);
+/* Success notification */
+.px-notifications .px-item.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+/* Error notification */
+.px-notifications .px-item.error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Warning notification */
+.px-notifications .px-item.warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
 }
 ```
 
 ## Accessibility Considerations
 
-For better accessibility, consider the following best practices:
+For better accessibility, consider the following practices:
 
-1. Ensure notification text has sufficient contrast against its background
-2. Make notifications dismissible by clicking/tapping
-3. Consider using ARIA live regions for important notifications
-4. Avoid relying solely on notifications for critical information
+1. Use clear and concise messages in notifications
+2. Ensure sufficient color contrast for text
+3. Provide enough time for users to read notifications
+4. Consider using `role="alert"` for important notifications
+5. Ensure notifications can be dismissed by keyboard users
 
 ## Best Practices
 
-1. **Keep messages concise** - use short, clear text
-2. **Use appropriate notification types** - match the type to the message content
-3. **Position notifications consistently** - maintain the same position throughout your application
-4. **Set appropriate durations** - longer for important messages, shorter for simple confirmations
-5. **Don't overuse notifications** - too many can annoy users
+1. **Be Concise**: Keep notification messages short and to the point
+2. **Be Specific**: Clearly communicate what happened or what action is needed
+3. **Use Appropriate Types**: Use the right notification type for the message context
+4. **Position Strategically**: Place notifications where they won't interfere with important content
+5. **Reasonable Duration**: Set duration based on message length and importance
+6. **Don't Overuse**: Avoid showing too many notifications at once
+7. **Provide Actions**: When appropriate, include action buttons within notifications

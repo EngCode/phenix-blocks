@@ -5,6 +5,7 @@ export default defineConfig({
   description: "A powerful, modular design system for WordPress and beyond.",
   // base: '/phenix-docs/', // uncomment and set if deploying to a subdirectory like github pages
 
+
   themeConfig: {
     logo: '/logo.png', // Make sure you have logo.png in docs/public/
     nav: [
@@ -176,6 +177,8 @@ export default defineConfig({
                 { text: 'Copyright Protection', link: '/frontend/js/utilities/copyright-protection' }
               ]
             },
+            { text: 'Collapse', link: '/frontend/js/collapse' },
+            { text: 'Connect', link: '/frontend/js/connect' },
             {
               text: 'Third-Party Utilities',
               collapsed: true,

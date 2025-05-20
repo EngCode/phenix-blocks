@@ -1,8 +1,5 @@
 <?php
     if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
-    //====> Shared Options <====//
-    $current_dir = plugin_dir_url(__FILE__);
-    $json_dir = str_replace('admin/panels', 'assets/json', $current_dir);
 
     //===> Phenix Main Fonts <===//
     $fonts_list = [
@@ -26,9 +23,6 @@
     $current_fonts = (array) get_option("pds_fonts");
     $current_fonts['icon'] = (array) get_option("pds_icon_font");
 
-    //===> Google Fonts <===//
-    $google_fonts = [];
-    
     //===> Get Google Fonts <===//
     if (get_option("pds_gfonts") === "on") {
         //===> Get Google Fonts Json File <===//
@@ -37,7 +31,7 @@
         //===> Convert to Array <===//
         if($json_array) {
             foreach ($json_array->items as $key => $value) {
-                array_push($google_fonts, $value->family);
+                array_push($fonts_list, $value->family);
             }
         }
     }
@@ -58,14 +52,6 @@
                             if ($current_fonts["primary"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if ($current_fonts["primary"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
-                        }
                     ?>
                 </select>
             </div>
@@ -82,14 +68,6 @@
                             if ($current_fonts["secondary"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if ($current_fonts["secondary"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
-                        }
                     ?>
                 </select>
             </div>
@@ -105,14 +83,6 @@
                             $is_selected = "";
                             if (isset($current_fonts["style"]) && $current_fonts["style"] === $key || $current_fonts["primary"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
-                        }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if (isset($current_fonts["style"]) && $current_fonts["style"] === $value || $current_fonts["primary"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
                         }
                     ?>
                 </select>
@@ -134,14 +104,6 @@
                             if ($current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if ($current_fonts["primary_rtl"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
-                        }
                     ?>
                 </select>
             </div>
@@ -158,14 +120,6 @@
                             if ($current_fonts["secondary_rtl"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
                         }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if ($current_fonts["secondary_rtl"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
-                        }
                     ?>
                 </select>
             </div>
@@ -181,14 +135,6 @@
                             $is_selected = "";
                             if (isset($current_fonts["style_rtl"]) && $current_fonts["style_rtl"] === $key || $current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
                             echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
-                        }
-                        //===> for Google Fonts <===//
-                        if (get_option("pds_gfonts") === "on") {
-                            foreach ($google_fonts as $value) {
-                                $is_selected = "";
-                                if (isset($current_fonts["style_rtl"]) && $current_fonts["style_rtl"] === $value || $current_fonts["primary_rtl"] === $value) { $is_selected = "selected"; }
-                                echo '<option value="'.$value.'" '. $is_selected .'>' . $value . '</option>';
-                            }
                         }
                     ?>
                 </select>

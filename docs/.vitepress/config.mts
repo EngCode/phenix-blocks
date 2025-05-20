@@ -30,7 +30,7 @@ export default defineConfig({
           items: [
             {
               text: 'Quick Start',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Installation', link: '/frontend/getting-started/quick-start/installation' },
                 { text: 'RTL & LTR', link: '/frontend/getting-started/quick-start/rtl-ltr' },
@@ -66,11 +66,11 @@ export default defineConfig({
         },
         {
           text: 'CSS Modules',
-          collapsed: true,
+          collapsed: false,
           items: [
             {
               text: 'Grid System',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Containers', link: '/frontend/css/grid/containers' },
                 { text: 'Flexbox Row', link: '/frontend/css/grid/flexbox-grid' },
@@ -81,7 +81,7 @@ export default defineConfig({
             },
             {
               text: 'Typography',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Default', link: '/frontend/css/typography/default-reset' },
                 { text: 'Typography', link: '/frontend/css/typography/typography' },
@@ -91,7 +91,7 @@ export default defineConfig({
             },
             {
               text: 'CSS Utilities',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Overview', link: '/frontend/css/utilities/' },
                 { text: 'Sizing', link: '/frontend/css/utilities/sizing' },
@@ -110,7 +110,7 @@ export default defineConfig({
                 { text: 'Custom Scrollbar', link: '/frontend/css/utilities/custom-scrollbar' },
                 {
                   text: 'Interactive Utilities',
-                  collapsed: true,
+                  collapsed: false,
                   items: [
                     { text: 'Overview', link: '/frontend/css/utilities/interactive/' },
                     { text: 'Effects', link: '/frontend/css/utilities/interactive/effects' },
@@ -126,7 +126,7 @@ export default defineConfig({
         },
         {
           text: 'JavaScript Modules',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'DOM Manipulation', link: '/frontend/js/dom-manipulation/' },
             { text: 'DOM Traversing', link: '/frontend/js/dom-traversing' },
@@ -135,7 +135,7 @@ export default defineConfig({
             { text: 'Scroll Effects', link: '/frontend/js/scroll-effects' },
             {
               text: 'Animation System',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Overview', link: '/frontend/js/animations' },
                 { text: 'Viewport Animations', link: '/frontend/js/animations/viewport-animations' },
@@ -147,7 +147,7 @@ export default defineConfig({
             { text: 'Carousel Slider', link: '/frontend/js/carousel-slider' },
             {
               text: 'Multimedia System',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Overview', link: '/frontend/js/multimedia' },
                 { text: 'Background & Images', link: '/frontend/js/multimedia/background-images' },
@@ -158,7 +158,7 @@ export default defineConfig({
             },
             {
               text: 'Utilities',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Overview', link: '/frontend/js/utilities/' },
                 { text: 'Form Utilities', link: '/frontend/js/utilities/form-utilities' },
@@ -175,7 +175,7 @@ export default defineConfig({
             { text: 'Connect', link: '/frontend/js/connect' },
             {
               text: 'Third-Party Utilities',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: 'Overview', link: '/frontend/js/third-party/' },
                 { text: 'Masonry Grid', link: '/frontend/js/third-party/masonry-grid' },
@@ -189,7 +189,7 @@ export default defineConfig({
         },
         {
           text: 'Form Controls',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Form Controls', link: '/frontend/forms/form-controls' },
             { text: 'Option Controls', link: '/frontend/forms/option-controls' },
@@ -203,7 +203,7 @@ export default defineConfig({
         },
         {
           text: 'UI Components',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Alerts', link: '/frontend/components/alerts' },
             { text: 'Buttons', link: '/frontend/components/buttons' },
@@ -241,7 +241,7 @@ export default defineConfig({
         },
         {
           text: 'GB Blocks',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Logo', link: '/wordpress/blocks/logo-block' },
             { text: 'Button', link: '/wordpress/blocks/button-block' },
@@ -268,7 +268,7 @@ export default defineConfig({
         },
         {
           text: 'Blocks Controls',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Intro', link: '/wordpress/controls/editor-introduction' },
             { text: 'Layout', link: '/wordpress/controls/layout-options' },
@@ -285,7 +285,7 @@ export default defineConfig({
         },
         {
           text: 'Dev Tools',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Menu Locations', link: '/wordpress/dev-tools/custom-menu-locations' },
             { text: 'Patterns Templates', link: '/wordpress/dev-tools/block-patterns-templates' },
@@ -296,7 +296,7 @@ export default defineConfig({
         },
         {
           text: 'PHP Methods',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Admin Pages', link: '/wordpress/php/admin-pages' },
             { text: 'API End-Point', link: '/wordpress/php/api-end-point-creator' },

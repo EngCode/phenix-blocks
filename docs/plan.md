@@ -149,29 +149,29 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Overview
 
 ### Getting Started
-- [ ] Installation
-- [ ] General Settings
-- [ ] Theme Customizing
+- [x] Installation
+- [x] General Settings
+- [x] Theme Customizing
 
 ### GB Blocks
-- [ ] Logo
-- [ ] Button
-- [ ] Group
-- [ ] Container
-- [ ] Grid Row
-- [ ] Column
-- [ ] Text Elements
-- [ ] Breadcrumb
-- [ ] Icon Element
-- [ ] Popup Modals
-- [ ] Logical Content
-- [ ] Custom Code
-- [ ] Media Element
-- [ ] Responsive Menu
-- [ ] Advanced Query
-- [ ] Taxonomies Query
-- [ ] Theme Part
-- [ ] Users Query
+- [x] Logo
+- [x] Button
+- [x] Group
+- [x] Container
+- [x] Grid Row
+- [x] Column
+- [x] Text Elements
+- [x] Breadcrumb
+- [x] Icon Element
+- [x] Popup Modals
+- [x] Logical Content
+- [x] Custom Code
+- [x] Media Element
+- [x] Responsive Menu
+- [x] Advanced Query
+- [x] Taxonomies Query
+- [x] Theme Part
+- [x] Users Query
 
 ### Blocks Controls
 - [x] Intro
@@ -187,18 +187,18 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Carousel Slider
 
 ### Dev Tools
-- [ ] Menu Locations
-- [ ] Patterns Templates
-- [ ] Custom Post-Types
-- [ ] Custom Taxonomies
-- [ ] Custom Meta-Fields
+- [x] Menu Locations
+- [x] Patterns Templates
+- [x] Custom Post-Types
+- [x] Custom Taxonomies
+- [x] Custom Meta-Fields
+- [x] API Creator
+- [x] Admin Page Creator
 
 ### PHP Methods
-- [ ] Admin Pages
-- [ ] API End-Point
-- [ ] Countries API
-- [ ] Get Users Roles
-- [ ] Custom Functions
+- [x] Admin Pages
+- [x] API End-Point
+- [x] Custom Functions
 
 ## Refactoring the Docs
 

@@ -195,12 +195,13 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: 'Form Controls', link: '/frontend/forms/form-controls' },
+            { text: 'Option Controls', link: '/frontend/forms/option-controls' },
             { text: 'Form Validation', link: '/frontend/forms/form-validation' },
             { text: 'Advanced Select', link: '/frontend/forms/advanced-select' },
             { text: 'Files Upload', link: '/frontend/forms/files-upload' },
             { text: 'Rating Controller', link: '/frontend/forms/rating-controller' },
             { text: 'Form Repeater', link: '/frontend/forms/form-repeater' },
-            { text: 'Range Slider', link: '/frontend/forms/range-slider' }
+            { text: 'Range Slider', link: '/frontend/forms/range-slider' },
           ]
         },
         {

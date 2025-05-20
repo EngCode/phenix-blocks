@@ -93,7 +93,7 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font; $style_font;
         $final_files = array();
-        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets@latest/";
+        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
         //===> Custom Fonts <===//

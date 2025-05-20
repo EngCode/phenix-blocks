@@ -119,6 +119,15 @@ This master plan outlines a comprehensive approach to creating and maintaining h
   - [x] Range Slider
 - [x] Page Loader
 
+### Form Controls
+- [x] Form Controls
+- [x] Form Validation
+- [x] Advanced Select
+- [x] Files Upload
+- [x] Rating Controller
+- [x] Form Repeater
+- [x] Range Slider
+
 ### UI Components
 - [ ] Alerts
 - [ ] Buttons
@@ -133,15 +142,6 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [ ] Popup Modals
 - [ ] Navbars & Menus
 - [ ] Tooltip & Popovers
-
-### Form Controls
-- [ ] Form Controls
-- [ ] Form Validation
-- [ ] Advanced Select
-- [ ] Files Upload
-- [ ] Rating Controller
-- [ ] Form Repeater
-- [ ] Range Slider
 
 ### Helpers/Tools
 - [ ] Icons Libraries

@@ -191,6 +191,19 @@ export default defineConfig({
           ]
         },
         {
+          text: 'Form Controls',
+          collapsed: true,
+          items: [
+            { text: 'Form Controls', link: '/frontend/forms/form-controls' },
+            { text: 'Form Validation', link: '/frontend/forms/form-validation' },
+            { text: 'Advanced Select', link: '/frontend/forms/advanced-select' },
+            { text: 'Files Upload', link: '/frontend/forms/files-upload' },
+            { text: 'Rating Controller', link: '/frontend/forms/rating-controller' },
+            { text: 'Form Repeater', link: '/frontend/forms/form-repeater' },
+            { text: 'Range Slider', link: '/frontend/forms/range-slider' }
+          ]
+        },
+        {
           text: 'UI Components',
           collapsed: true,
           items: [
@@ -207,19 +220,6 @@ export default defineConfig({
             { text: 'Popup Modals', link: '/frontend/components/popup-modals' },
             { text: 'Navbars & Menus', link: '/frontend/components/navbars-and-menus' },
             { text: 'Tooltip & Popovers', link: '/frontend/components/tooltip-popovers' }
-          ]
-        },
-        {
-          text: 'Form Controls',
-          collapsed: true,
-          items: [
-            { text: 'Form Controls', link: '/frontend/forms/form-controls' },
-            { text: 'Form Validation', link: '/frontend/forms/form-validation' },
-            { text: 'Advanced Select', link: '/frontend/forms/advanced-select' },
-            { text: 'Files Upload', link: '/frontend/forms/files-upload' },
-            { text: 'Rating Controller', link: '/frontend/forms/rating-controller' },
-            { text: 'Form Repeater', link: '/frontend/forms/form-repeater' },
-            { text: 'Range Slider', link: '/frontend/forms/range-slider' }
           ]
         },
         {

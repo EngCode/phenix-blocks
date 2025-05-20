@@ -148,10 +148,72 @@ The circular transition effect can be customized by modifying the CSS properties
 
 ### Programmatically Controlling the Loader
 
-You can show or hide the loader programmatically for AJAX requests or other dynamic content loading:
+#### Inline Loading Status with px-loading
+
+For Ajax operations and similar dynamic content loading, it's recommended to use the `px-loading` class for inline loading indicators rather than the full-page loader. This provides a better user experience by showing loading status only in the relevant section of the page.
+
+```html
+<!-- Button with inline loading state -->
+<button class="btn primary" id="load-data-btn">
+  <span>Load Data</span>
+</button>
+
+<!-- Content area that will show loading state -->
+<div id="content-area">
+  <p>Content will appear here</p>
+</div>
+```
 
 ```javascript
-// Show the loader
+// Add loading state to a button or content area
+function showInlineLoading(element) {
+  // Add px-loading class to show loading indicator
+  element.classList.add('px-loading');
+}
+
+// Remove loading state
+function hideInlineLoading(element) {
+  // Remove px-loading class when operation completes
+  element.classList.remove('px-loading');
+}
+
+// Example: Using with fetch API and inline loading
+async function fetchDataWithInlineLoading(url, targetElement) {
+  const button = document.getElementById('load-data-btn');
+  const contentArea = document.getElementById('content-area');
+  
+  // Show loading state on button and content area
+  showInlineLoading(button);
+  showInlineLoading(contentArea);
+  
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    // Update content area with data
+    contentArea.innerHTML = data.html || JSON.stringify(data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    contentArea.innerHTML = `<p class="tx-danger">Error loading data: ${error.message}</p>`;
+  } finally {
+    // Remove loading state
+    hideInlineLoading(button);
+    hideInlineLoading(contentArea);
+  }
+}
+
+// Add event listener to button
+document.getElementById('load-data-btn').addEventListener('click', () => {
+  fetchDataWithInlineLoading('/api/data', document.getElementById('content-area'));
+});
+```
+
+#### Full-Page Loader Control
+
+For operations that require a full-page loading state, you can use the following functions to control the page loader:
+
+```javascript
+// Show the full-page loader
 function showLoader() {
   const pxLoader = document.querySelector('.px-page-loader');
   if (!pxLoader) return;
@@ -163,7 +225,7 @@ function showLoader() {
   }, 10);
 }
 
-// Hide the loader
+// Hide the full-page loader
 function hideLoader() {
   const pxLoader = document.querySelector('.px-page-loader');
   if (!pxLoader) return;
@@ -178,8 +240,8 @@ function hideLoader() {
   });
 }
 
-// Example: Using with fetch API
-async function fetchData(url) {
+// Example: Using full-page loader with fetch API
+async function fetchDataWithFullPageLoader(url) {
   showLoader();
   try {
     const response = await fetch(url);

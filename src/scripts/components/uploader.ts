@@ -17,7 +17,7 @@ PhenixElements.prototype.uploader = function (options?:{
         //====> Options <====//
         let type = uploader.getAttribute('data-uploader') || options?.type || 'standard',
             controler = uploader.querySelector('input[type="file"]'),
-            multiple  = uploader.getAttribute('multiple' || 'data-multiple'),
+            multiple  = uploader.getAttribute('multiple') || uploader.getAttribute('data-multiple'),
             placeholder = uploader.getAttribute('data-placeholder') || 'Drag and Drop your file to upload';
 
         //====> Standard Uploader <===//

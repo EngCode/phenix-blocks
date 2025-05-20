@@ -118,12 +118,15 @@ PhenixElements.prototype.utilities = function (options?:{
             });
 
             //====> Create Remove Button Whenever it is not found <====//
-            setInterval(() => {
+            const checkRemoveBtn = setInterval(() => {
                 //====> Get the Rows <====//
                 let rows = repeater_container.querySelectorAll('[data-item-key]:not([data-item-key="0"])');
 
                 //====> Create Remove Button <====//
-                if (rows) rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
+                if (rows) {
+                    rows.forEach(row => !row.querySelector('.px-repeater-remove') ? create_remove_btn(row) : '');
+                    clearInterval(checkRemoveBtn);
+                }
             }, 1000);
         });
 

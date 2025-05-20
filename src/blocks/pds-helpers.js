@@ -299,7 +299,8 @@ window.PhenixBlocks = {
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
-                                if (!blockProps.className?.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                //===> Check if the class is already added <===//
+                                if (!blockProps.className || !blockProps.className?.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Positions <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -314,7 +315,8 @@ window.PhenixBlocks = {
                                 //===> Add the ClassName <===//
                                 let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
                                     customClass = `${classOption}-custom`;
-                                if (!blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                //===> Check if the class is already added <===//
+                                if (!blockProps.className || !blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
                             }
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }

@@ -104,6 +104,7 @@ if (!function_exists('phenix_assets')) :
             "somar-rounded",
             "ara-hamah-al-horra",
             "tactic-sans",
+            "howdy-party",
         ];
 
         //===> Style Font Fallback <===//

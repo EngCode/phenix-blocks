@@ -131,13 +131,7 @@ export default defineConfig({
             { text: 'DOM Manipulation', link: '/frontend/js/dom-manipulation/' },
             { text: 'DOM Traversing', link: '/frontend/js/dom-traversing' },
             { text: 'DOM Events', link: '/frontend/js/dom-events' },
-            {
-              text: 'UI Effects',
-              collapsed: true,
-              items: [
-                { text: 'ScrollSpy', link: '/frontend/js/ui-effects/scrollspy' }
-              ]
-            },
+            { text: 'UI Effects', link: '/frontend/js/ui-effects' },
             { text: 'Scroll Effects', link: '/frontend/js/scroll-effects' },
             {
               text: 'Animation System',
@@ -224,15 +218,6 @@ export default defineConfig({
             { text: 'Popup Modals', link: '/frontend/components/popup-modals' },
             { text: 'Navbars & Menus', link: '/frontend/components/navbars-and-menus' },
             { text: 'Tooltip & Popovers', link: '/frontend/components/tooltip-popovers' }
-          ]
-        },
-        {
-          text: 'Helpers/Tools',
-          collapsed: true,
-          items: [
-            { text: 'Icons Libraries', link: '/frontend/helpers/icons-libraries' },
-            { text: 'Data Generator', link: '/frontend/helpers/data-generator' },
-            { text: 'Performance Optimize', link: '/frontend/helpers/performance-optimize' }
           ]
         }
       ],

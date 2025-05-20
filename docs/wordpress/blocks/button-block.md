@@ -1,27 +1,30 @@
 # Button Block
 
-The Button Block allows you to create customizable buttons with various styles, sizes, and behaviors in your WordPress content.
+The Button Block is an essential interactive component in the Phenix Design System. It provides a customizable button element that can be styled in various ways and linked to internal or external destinations. The Button Block supports different sizes, styles, colors, and can include icons for enhanced visual communication.
 
-## Basic Usage
+![Button Block](../../../assets/images/wordpress/button-block.png)
 
-Simply add the Button Block from the block inserter and configure its options:
+## Key Features
 
-![Button Block in the Gutenberg editor](../path/to/button-block-preview.png)
+- Multiple button styles (solid, outline, link, etc.)
+- Various size options (small, medium, large)
+- Predefined color schemes that match the theme
+- Icon support (before or after text)
+- Customizable border radius
+- Hover effects and animations
+- Full responsive control
 
-## Block Options
+## How to Use
 
-### General Settings
+1. In the WordPress editor, click the "+" button to add a new block
+2. Search for "Button" or find it in the "Phenix Blocks" category
+3. Add the Button Block to your page
+4. Set the button text, link, and style options
+5. Customize the button appearance in the block sidebar
 
-| Setting | Description |
-|---------|-------------|
-| Button Text | The text that appears on the button |
-| Button Type | Choose between default, outline, link styles |
-| Button Size | Set the size (small, medium, large) |
-| Button Color | Select from theme color options |
-| Icon | Add an optional icon before or after the text |
-| Link Settings | URL, open in new tab, nofollow options |
+## Block Settings
 
-### Advanced Options
+### Button Options
 
 | Setting | Description |
 |---------|-------------|

@@ -1,26 +1,83 @@
 # WordPress Integration Overview
 
-This section covers all the WordPress integration features of the Phenix Design System, including Gutenberg blocks, theme customization, developer tools, and PHP methods.
+The Phenix Design System provides a comprehensive WordPress integration that empowers both content creators and developers. This section covers all the WordPress features of the Phenix Design System, including Gutenberg blocks, theme customization, developer tools, and PHP methods.
+
+## What is Phenix Blocks?
+
+Phenix Blocks is a WordPress plugin that transforms the standard WordPress editor into a powerful design system. It provides:
+
+- A comprehensive collection of custom Gutenberg blocks
+- Advanced styling and layout controls
+- Performance optimization features
+- Developer tools for extending WordPress
+- Seamless integration with the Phenix Design System
+
+The plugin is designed to work with the Phenix Starter Theme but can be used with any WordPress theme that supports Gutenberg.
 
 ## Core Modules
 
 The WordPress integration in Phenix is divided into several core modules:
 
 ### Getting Started
-Installation, general settings, and theme customization for WordPress.
+
+This section covers the basics of installing and configuring the Phenix Blocks plugin and Starter Theme:
+
+- [Installation](./getting-started/installation.md) - How to install the plugin and theme
+- [General Settings](./getting-started/general-settings.md) - Configure fonts, blocks, and optimizations
+- [Theme Customizing](./getting-started/theme-customizing.md) - Learn how to customize your theme using the Site Editor and Block Editor
 
 ### Gutenberg Blocks
-A comprehensive collection of custom blocks for the WordPress block editor.
+
+Phenix provides a comprehensive collection of custom blocks for the WordPress block editor, organized into logical categories:
+
+#### Layout Blocks
+- Container, Grid Row, Grid Column, and Group blocks for creating responsive layouts
+- Logical Content blocks for conditional display
+- Dynamic Theme Part blocks for template parts
+
+#### Content Blocks
+- Text Elements, Media Elements, and Icon Element blocks
+- Button, Logo, and Breadcrumb blocks
+- Dynamic Query blocks for posts, taxonomies, and users
+
+#### Interactive Blocks
+- Popup Modals and Responsive Menu blocks
+- Custom Code blocks for advanced functionality
 
 ### Block Controls
-Controls and options available for customizing blocks in the editor.
+
+Phenix extends the WordPress editor with powerful controls for customizing blocks:
+
+- Layout Options - Control alignment, width, height, and position
+- Style Options - Apply colors, backgrounds, borders, and effects
+- Typography Options - Customize fonts, sizes, and text styles
+- Responsive Controls - Adjust display, margin, padding, and position for different screen sizes
 
 ### Developer Tools
-Tools for creating menu locations, patterns, post types, taxonomies, and meta fields.
+
+Tools for extending WordPress with custom functionality:
+
+- Block Patterns and Templates - Create reusable design patterns
+- Custom Post Types and Taxonomies - Define new content types
+- Custom Meta Boxes - Add custom fields to content
+- Custom Menu Locations - Register new menu positions
 
 ### PHP Methods
-PHP utility functions and methods for WordPress developers.
+
+Phenix provides PHP utility functions and methods for WordPress developers:
+
+- Admin Pages - Create custom admin interfaces
+- API Endpoints - Build custom REST API endpoints
+- Utility Functions - Helper functions for common tasks
+
+## For Content Creators
+
+If you're a content creator or site editor, start with the [Getting Started](./getting-started/installation.md) section to learn how to use the Phenix Blocks plugin. Then explore the various blocks available to create beautiful, responsive layouts without writing code.
+
+## For Developers
+
+If you're a developer, you'll find comprehensive documentation on extending Phenix Blocks with custom functionality in the [Developer Tools](./dev-tools/block-patterns-templates.md) and [PHP Methods](./php/custom-functions.md) sections.
 
 ## How to Use This Documentation
 
-Each section provides detailed guidance on implementing Phenix's WordPress features. Browse through the sidebar to navigate to specific features you're interested in. 
+Each section provides detailed guidance on implementing Phenix's WordPress features. Browse through the sidebar to navigate to specific features you're interested in. The documentation includes code examples, screenshots, and step-by-step instructions to help you get the most out of the Phenix Design System.

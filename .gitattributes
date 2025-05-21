@@ -1,0 +1,25 @@
+# Exclude directories from GitHub releases
+/docs export-ignore
+/docs-src export-ignore
+/.github export-ignore
+/.gitattributes export-ignore
+
+# Exclude specific files from GitHub releases
+/README.md export-ignore
+/CHANGELOG.md export-ignore
+/LICENSE export-ignore
+/fix-images.ps1 export-ignore
+
+# Set default behavior for text files
+* text=auto eol=lf
+
+# Denote all files that are binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

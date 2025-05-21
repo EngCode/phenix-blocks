@@ -3,3 +3,8 @@
 /docs-src export-ignore
 /.github export-ignore
 /.gitattributes export-ignore
+
+# Exclude specific files from GitHub releases
+/package.json export-ignore
+/package-lock.json export-ignore
+

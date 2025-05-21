@@ -2,46 +2,9 @@
 
 There are multiple ways to use the Phenix Design System, depending on your project needs:
 
-## NPM Installation (Recommended)
+## Github Installation (Recommended)
 
-For modern web applications, installing via NPM is recommended. This gives you access to all source files and provides the most flexibility.
-
-### Standalone Framework (phenix-ui)
-
-```bash
-npm install phenix-ui --save
-```
-
-### WordPress Plugin (pds-blocks)
-
-```bash
-npm install pds-blocks --save
-```
-
-## CDN Installation
-
-For quick prototyping or smaller projects, you can use the CDN links:
-
-### Standalone Framework (phenix-ui)
-
-```html
-<!-- Core Components (loads FIRST) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/css/phenix.min.css">
-
-<!-- Enhancement Utilities (loads SECOND) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/css/phenix-utils.min.css">
-
-<!-- Phenix JS Core (required) -->
-<script src="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/js/phenix.min.js"></script>
-```
-
-### WordPress Plugin (pds-blocks)
-
-For WordPress, it's better to install the plugin through the WordPress plugin directory rather than using CDN links.
-
-## Manual Installation
-
-You can also download the files directly and include them in your project:
+You can download the files directly and include them in your project or use the repository it self as the project base:
 
 1. Download the latest release from [GitHub](https://github.com/EngCode/phenix-ui/releases)
 2. Extract the files
@@ -57,6 +20,43 @@ You can also download the files directly and include them in your project:
 <!-- Phenix JS Core (required) -->
 <script src="path/to/phenix.min.js"></script>
 ```
+
+## CDN Installation
+
+For quick prototyping or smaller projects, you can use the CDN links:
+
+### Standalone Framework (phenix-ui)
+
+```html
+<!-- Core Components (loads FIRST) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/css/phenix.min.css">
+
+<!-- Enhancement Utilities (loads SECOND) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/css/phenix-utils.min.css">
+
+<!-- Phenix JS Core (required) -->
+<script src="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/js/phenix.min.js"></script>
+```
+
+## NPM Installation
+
+For modern web applications, installing via NPM is recommended. This gives you access to all source files and provides the most flexibility.
+
+### Standalone Framework (phenix-ui)
+
+```bash
+npm install phenix-ui --save
+```
+
+### WordPress Plugin (pds-blocks)
+
+```bash
+npm install pds-blocks --save
+```
+
+### WordPress Plugin (pds-blocks)
+
+For WordPress, it's better to install the plugin through the WordPress plugin directory rather than using CDN links.
 
 ## WordPress Plugin Installation
 
@@ -136,10 +136,10 @@ The Phenix Design System provides example HTML templates to help you get started
   <title>Phenix Design System - Basic Template</title>
   
   <!-- Core Components (loads FIRST) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/css/phenix.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/css/phenix.min.css">
   
   <!-- Enhancement Utilities (loads SECOND) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/css/phenix-utils.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/css/phenix-utils.min.css">
 </head>
 <body>
   <!-- Header -->
@@ -186,7 +186,7 @@ The Phenix Design System provides example HTML templates to help you get started
   </footer>
 
   <!-- Phenix JS Core (at the end of body) -->
-  <script src="https://cdn.jsdelivr.net/npm/phenix-ui@1.0.0/dist/js/phenix.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/phenix-ui@latest/dist/js/phenix.min.js"></script>
 </body>
 </html>
 ```

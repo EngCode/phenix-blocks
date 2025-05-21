@@ -56,14 +56,9 @@ If you're a developer looking to contribute to Phenix Blocks or customize it ext
    npm install
    ```
 
-3. **Build the project**:
+3. **For development with hot reloading**:
    ```bash
-   npm run build
-   ```
-
-4. **For development with hot reloading**:
-   ```bash
-   npm run start
+   npm run phenix-start
    ```
 
 ## System Requirements

@@ -4,7 +4,7 @@ The Phenix Design System provides a comprehensive WordPress integration that emp
 
 ## What is Phenix Blocks?
 
-Phenix Blocks is a WordPress plugin that transforms the standard WordPress editor into a powerful design system. It provides:
+Phenix Blocks (`pds-blocks`) is a WordPress plugin that transforms the standard WordPress editor into a powerful design system. It provides:
 
 - A comprehensive collection of custom Gutenberg blocks
 - Advanced styling and layout controls
@@ -12,7 +12,7 @@ Phenix Blocks is a WordPress plugin that transforms the standard WordPress edito
 - Developer tools for extending WordPress
 - Seamless integration with the Phenix Design System
 
-The plugin is designed to work with the Phenix Starter Theme but can be used with any WordPress theme that supports Gutenberg.
+The plugin is designed to work with the Phenix Starter Theme but can be used with any WordPress theme that supports Gutenberg (WordPress 5.9+).
 
 ## Core Modules
 
@@ -37,11 +37,11 @@ Phenix provides a comprehensive collection of custom blocks for the WordPress bl
 
 #### Content Blocks
 - Text Elements, Media Elements, and Icon Element blocks
-- Button, Logo, and Breadcrumb blocks
+- Button, Logo, and Page Head blocks
 - Dynamic Query blocks for posts, taxonomies, and users
 
 #### Interactive Blocks
-- Popup Modals and Responsive Menu blocks
+- Popup Modals and Navigation Menu blocks
 - Custom Code blocks for advanced functionality
 
 ### Block Controls
@@ -52,6 +52,7 @@ Phenix extends the WordPress editor with powerful controls for customizing block
 - Style Options - Apply colors, backgrounds, borders, and effects
 - Typography Options - Customize fonts, sizes, and text styles
 - Responsive Controls - Adjust display, margin, padding, and position for different screen sizes
+- Advanced Options - Add custom attributes, CSS classes, and more
 
 ### Developer Tools
 
@@ -61,14 +62,17 @@ Tools for extending WordPress with custom functionality:
 - Custom Post Types and Taxonomies - Define new content types
 - Custom Meta Boxes - Add custom fields to content
 - Custom Menu Locations - Register new menu positions
+- Performance Optimization - Enhance site speed with built-in tools
 
 ### PHP Methods
 
 Phenix provides PHP utility functions and methods for WordPress developers:
 
 - Admin Pages - Create custom admin interfaces
-- API Endpoints - Build custom REST API endpoints
-- Utility Functions - Helper functions for common tasks
+- Assets Management - Handle CSS and JavaScript files efficiently
+- WooCommerce Integration - Extend WooCommerce functionality
+- Optimization Functions - Improve site performance
+- Utility Functions - Helper functions for common WordPress tasks
 
 ## For Content Creators
 
@@ -76,7 +80,14 @@ If you're a content creator or site editor, start with the [Getting Started](./g
 
 ## For Developers
 
-If you're a developer, you'll find comprehensive documentation on extending Phenix Blocks with custom functionality in the [Developer Tools](./dev-tools/block-patterns-templates.md) and [PHP Methods](./php/custom-functions.md) sections.
+If you're a developer, you'll find comprehensive documentation on extending Phenix Blocks with custom functionality in the [Developer Tools](./dev-tools/block-patterns-templates.md) and [PHP Methods](./php/custom-functions.md) sections. The plugin is built with modern development practices using SASS and TypeScript.
+
+## Version Information
+
+The current version of Phenix Blocks is 1.3.0, which requires:
+- WordPress 5.9 or higher
+- PHP 7.4 or higher
+- Modern web browsers (Chrome, Firefox, Safari, Edge)
 
 ## How to Use This Documentation
 

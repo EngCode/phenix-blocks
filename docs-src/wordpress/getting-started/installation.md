@@ -2,7 +2,7 @@
 
 ## Phenix Blocks
 
-Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
+Phenix Blocks is a comprehensive WordPress plugin that transforms the standard WordPress editor into a powerful design system. It provides a variety of pre-made blocks, styling controls, and optimization features that enable users to build custom websites quickly and easily without writing code.
 
 ## Download Plugin
 
@@ -11,22 +11,26 @@ You can download Phenix directly as source code or compiled files to use it or i
 - [Starter Theme](https://github.com/EngCode/pds-starter-free)
 - [WordPress Plugin](https://github.com/EngCode/phenix-blocks)
 
+The current version is 1.3.0, which is compatible with WordPress 6.0+ and block-based themes.
+
 ## How to Install
 
-To get started with Phenix Design System in WordPress, you can simply download the plugin and its starter theme from GitHub and upload them to your WordPress installation. Begin by uploading the plugin, then the theme, and continue with the theme Setup Wizard.
+To get started with Phenix Design System in WordPress, you can download the plugin and its starter theme from GitHub and upload them to your WordPress installation. Here's the recommended installation process:
 
 1. **Login to your WordPress Dashboard** from `https://yourwebsite.com/wp-admin`
 
-2. **Make Sure your Permalinks is Set to `Post-name`** from `Settings ⇒ Permalinks`
+2. **Configure your Permalinks** - Go to `Settings → Permalinks` and set them to `Post name` for optimal SEO and functionality
    <!-- Image placeholder for Permalinks Settings -->
 
-3. **Go to Plugins ⇒ Add New ⇒ Upload Plugin** (select the plugin.zip file that you downloaded). You can also skip this step as the plugin will be installed from the Theme Setup Wizard.
+3. **Install the Plugin** - Go to `Plugins → Add New → Upload Plugin` and select the `phenix-blocks.zip` file that you downloaded
    <!-- Image placeholder for Upload Plugin -->
 
-4. **Go to Appearance ⇒ Themes ⇒ Add new Theme ⇒ Upload Theme** (select the theme.zip file).
+4. **Install the Theme** - Go to `Appearance → Themes → Add new Theme → Upload Theme` and select the Phenix starter theme zip file
    <!-- Image placeholder for Upload Theme -->
 
-5. **Follow the Theme Installation Wizard Instructions**
+5. **Activate Both** - Activate both the plugin and theme
+
+6. **Follow the Theme Setup Wizard** - If available, follow the theme setup wizard instructions to complete the installation
 
 ## Import Demo Data
 
@@ -43,7 +47,7 @@ If you have downloaded a theme from Phenix Themes or a similar platform store an
 
 ## Developer Installation
 
-If you're a developer looking to contribute to Phenix Blocks or customize it extensively, you may want to set up a development environment:
+If you're a developer looking to contribute to Phenix Blocks or customize it extensively, follow these steps to set up a development environment:
 
 1. **Clone the repository**:
    ```bash
@@ -61,12 +65,20 @@ If you're a developer looking to contribute to Phenix Blocks or customize it ext
    npm run phenix-start
    ```
 
+4. **Build for production**:
+   ```bash
+   npm run phenix-build
+   ```
+
+The plugin uses a modern development stack with SASS for styling and TypeScript for JavaScript functionality.
+
 ## System Requirements
 
-- WordPress 5.9 or higher
+- WordPress 6.0 or higher (recommended for full block editor support)
 - PHP 7.4 or higher
 - MySQL 5.6 or higher
 - Modern web browser (Chrome, Firefox, Safari, Edge)
+- Block-based theme support
 
 ## Troubleshooting
 
@@ -76,6 +88,8 @@ If you encounter any issues during installation:
 2. **Verify plugin compatibility** - Ensure there are no conflicts with other plugins
 3. **Clear cache** - Clear your browser cache and any caching plugins
 4. **Check error logs** - Review WordPress and server error logs for specific issues
+5. **Deactivate other block plugins** - Temporarily deactivate other block-related plugins to check for conflicts
+6. **Verify theme compatibility** - Ensure your theme is compatible with block-based editing
 
-For additional help, visit the [Phenix Design System GitHub repository](https://github.com/EngCode/phenix-blocks) and create an issue.
+For additional help, visit the [Phenix Design System GitHub repository](https://github.com/EngCode/phenix-blocks) and create an issue or contact support at [Phenix Themes](https://phenixthemes.com).
 

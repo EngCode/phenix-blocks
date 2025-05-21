@@ -12,7 +12,7 @@ To properly implement RTL or LTR in your project:
 
 1. **Set the HTML direction attribute**:
 ```html
-<!-- For RTL languages like Arabic, Hebrew, etc. -->
+<!-- For RTL languages like Arabic,  etc. -->
 <html dir="rtl" lang="ar">
   <!-- Your content here -->
 </html>

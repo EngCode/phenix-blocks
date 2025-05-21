@@ -1,5 +1,6 @@
 # Folders
 .vscode/
+docs-src/.vitepress/cache
 node_modules/
 node_modules.rar
 _tools/

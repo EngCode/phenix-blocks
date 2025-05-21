@@ -6,8 +6,6 @@ export default defineConfig({
   base: '/phenix-blocks/', // Root path for GitHub Pages with custom domain
   ignoreDeadLinks: true, // Ignore dead links during build
   outDir: '../docs', // Output to docs folder for GitHub Pages classic deployment
-
-
   themeConfig: {
     logo: '/logo.png', // Make sure you have logo.png in docs/public/
     nav: [

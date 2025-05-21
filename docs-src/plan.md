@@ -244,7 +244,7 @@ This master plan outlines a comprehensive approach to creating and maintaining h
   - [ ] Padding Set (sets/padding.js)
 - [ ] Interactive Sets
   - [ ] Animations Set (sets/animations.js)
-  - [ ] Slider Set (sets/slider.js, sets/slider-swiper.js)
+  - [ ] Slider Set (sets/slider.js)
 
 ### Integration Helpers
 - [ ] Options Renderer

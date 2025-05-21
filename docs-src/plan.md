@@ -200,6 +200,58 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] API End-Point
 - [x] Custom Functions
 
+## Phase 4: WordPress Blocks Shared Components
+
+### Shared Components Overview
+- [ ] Introduction to Shared Components
+- [ ] Component Architecture
+- [ ] Integration with Blocks
+- [ ] Development Workflow
+
+### Core Controls
+- [ ] Input Controls
+  - [ ] Basic Input (input.js)
+  - [ ] Number Input (number.js)
+  - [ ] Text Area (textarea.js)
+- [ ] Selection Controls
+  - [ ] Select Dropdown (select.js)
+  - [ ] Data-Driven Select (select-data.js)
+  - [ ] Custom Dropdown (dropdown.js)
+- [ ] Toggle Controls
+  - [ ] Switch/Checkbox (switch.js)
+- [ ] Media Controls
+  - [ ] Media Uploader (uploader.js)
+- [ ] Navigation Controls
+  - [ ] Tabs Interface (tabs.js)
+- [ ] Special Controls
+  - [ ] Icon Selection (icons.js)
+  - [ ] URL Controls (dynamic-url.js)
+
+### Control Sets
+- [ ] Layout Sets
+  - [ ] Flexbox Set (sets/flexbox.js)
+  - [ ] Grid Set (sets/grid.js)
+  - [ ] Position Set (sets/position.js)
+  - [ ] Sizes Set (sets/sizes.js)
+- [ ] Styling Sets
+  - [ ] Styles Set (sets/styles.js)
+  - [ ] Typography Set (sets/typography.js)
+  - [ ] Colors Set (colors/)
+  - [ ] Border Set (sets/border.js)
+  - [ ] Effects Set (sets/effects.js)
+- [ ] Spacing Sets
+  - [ ] Margin Set (sets/margin.js)
+  - [ ] Padding Set (sets/padding.js)
+- [ ] Interactive Sets
+  - [ ] Animations Set (sets/animations.js)
+  - [ ] Slider Set (sets/slider.js, sets/slider-swiper.js)
+
+### Integration Helpers
+- [ ] Options Renderer
+- [ ] Block Accessibility
+- [ ] Responsive Controls
+- [ ] Attribute Management
+
 ## Refactoring the Docs
 
 - [ ] Review the existing documentation and identify areas for improvement

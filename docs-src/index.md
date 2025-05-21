@@ -21,13 +21,16 @@ hero:
 
 # Welcome to Phenix Design System
 
-Phenix Design System is a powerful WordPress plugin (version 1.3.0) that enhances the block editor with a comprehensive set of custom blocks, advanced styling controls, and developer tools. It combines a robust front-end framework with seamless WordPress integration to provide everything needed for building modern, responsive websites without coding.
+Phenix Design System is a powerful WordPress plugin (version 1.3.0) that enhances the block editor with a comprehensive set of custom blocks, advanced styling controls, and developer tools. It combines a robust front-end framework with seamless WordPress integration to provide everything needed for building modern, responsive websites without coding. The latest version introduces an advanced animation system with scroll-driven animations and 3D interactive media embedding capabilities.
 
 ## What is Phenix Blocks?
 
 Phenix Blocks (`pds-blocks`) is a complete design ecosystem for WordPress that includes:
 
 - **Custom Gutenberg Blocks**: A collection of 20+ specialized blocks for creating complex layouts and dynamic content
+- **Advanced Animation System**: Scroll-driven animations with progress tracking and exit animations
+- **3D Interactive Media**: Embed and control interactive 3D models with Three.js integration
+- **Integrated Third-Party Controls**: Slider, typewriter, parallax effects, and more specialized components
 - **Advanced Block Controls**: Extensive styling and layout options with responsive capabilities
 - **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
 - **Developer Tools**: Built-in APIs and utilities for creating custom post types, taxonomies, meta boxes, and more
@@ -74,6 +77,56 @@ Phenix Blocks (`pds-blocks`) is a complete design ecosystem for WordPress that i
       <li><strong>Query</strong>: Display posts with advanced filtering and pagination options</li>
       <li><strong>Taxonomies</strong>: Show categories, tags, or custom taxonomies with styling options</li>
       <li><strong>Users Query</strong>: Display user information with filtering and styling controls</li>
+    </ul>
+  </div>
+</div>
+
+## Advanced Animation System
+
+The latest version introduces a powerful animation system that takes your content to the next level:
+
+<div class="features-grid">
+  <div class="feature-category">
+    <h3>Scroll-Driven Animations</h3>
+    <ul>
+      <li><strong>Progress Tracking</strong>: Control animation progress based on scroll position</li>
+      <li><strong>Viewport Detection</strong>: Trigger animations when elements enter or exit the viewport</li>
+      <li><strong>Exit Animations</strong>: Define separate animations when elements leave the viewport</li>
+      <li><strong>Animation Delay</strong>: Set staggered timing for groups of animated elements</li>
+    </ul>
+  </div>
+  <div class="feature-category">
+    <h3>3D Interactive Media</h3>
+    <ul>
+      <li><strong>Model Viewer</strong>: Display interactive 3D models with pan, zoom, and rotate controls</li>
+      <li><strong>Multiple Format Support</strong>: Support for GLTF, GLB, OBJ, and FBX formats</li>
+      <li><strong>Responsive Sizing</strong>: Automatically adapt 3D content to different screen sizes</li>
+      <li><strong>Three.js Integration</strong>: Powered by the industry-standard 3D library</li>
+    </ul>
+  </div>
+</div>
+
+## Integrated Third-Party Controls
+
+Phenix Design System seamlessly integrates powerful third-party components to enhance your website's functionality:
+
+<div class="features-grid">
+  <div class="feature-category">
+    <h3>Interactive Elements</h3>
+    <ul>
+      <li><strong>Swiper Slider</strong>: Advanced touch-enabled slider with multiple configuration options</li>
+      <li><strong>Typewriter Effect</strong>: Create dynamic typing animations with customizable speed and text</li>
+      <li><strong>Parallax Effects</strong>: Create depth with elements that move at different speeds while scrolling</li>
+      <li><strong>Lightbox Gallery</strong>: Interactive image and video galleries with zoom and navigation</li>
+    </ul>
+  </div>
+  <div class="feature-category">
+    <h3>Layout & Display</h3>
+    <ul>
+      <li><strong>Masonry Layout</strong>: Dynamic grid layouts for varied content sizes with no gaps</li>
+      <li><strong>Accordion Panels</strong>: Collapsible content sections for better space utilization</li>
+      <li><strong>Tabs Interface</strong>: Organize content into tabbed sections for better user experience</li>
+      <li><strong>Advanced Data Tables</strong>: Sortable and filterable tables for data presentation</li>
     </ul>
   </div>
 </div>

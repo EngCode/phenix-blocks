@@ -13,6 +13,9 @@ Phenix Design System (`pds-blocks`) is a complete ecosystem for WordPress that c
 ### Key Features
 
 - **Custom Gutenberg Blocks**: 20+ specialized blocks for creating complex layouts and dynamic content
+- **Advanced Animation System**: Scroll-driven animations with progress tracking and exit animations
+- **3D Interactive Media**: Embed and control interactive 3D models with Three.js integration
+- **Integrated Third-Party Controls**: Slider, typewriter, parallax effects, and more specialized components
 - **Advanced Block Controls**: Extensive styling options with responsive capabilities for all device sizes
 - **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
 - **Developer Tools**: APIs for custom post types, taxonomies, meta boxes, and more

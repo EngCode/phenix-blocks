@@ -7,4 +7,7 @@
 # Exclude specific files from GitHub releases
 /package.json export-ignore
 /package-lock.json export-ignore
-
+/dev.code-workspace export-ignore
+/typescript.webpack.js export-ignore
+/webpack.config.js export-ignore
+/README-Front-End.md export-ignore

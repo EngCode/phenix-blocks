@@ -4,7 +4,7 @@
 
 The Grid Column Block is a crucial component of the Phenix Design System's layout system. It's designed to be used inside Grid Row Blocks to create responsive column-based layouts. Grid Column Blocks can be sized, ordered, and offset differently across various screen sizes, providing complete control over your layout's responsiveness.
 
-![Grid Column Block](../../../assets/images/wordpress/grid-column.png)
+<!-- Image placeholder for Grid Column Block -->
 
 ## Key Features
 
@@ -134,3 +134,4 @@ A column using flexbox to arrange its children:
 - [Container Block](./container-block.md) - Parent container for the grid system
 - [Grid Row Block](./grid-row-block.md) - Parent container for columns
 - [Group Block](./group-block.md) - Alternative for non-grid layouts
+

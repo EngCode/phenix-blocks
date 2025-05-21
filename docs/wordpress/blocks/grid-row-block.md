@@ -4,7 +4,7 @@
 
 The Grid Row Block is a fundamental layout component in the Phenix Design System. It serves as the main block for creating grid system layouts and is designed to work inside Container Blocks. Grid Row Blocks can contain Grid Column Blocks to create responsive column layouts, and they can also be transformed into carousels or sliders for dynamic content presentation.
 
-![Grid Row Block](../../../assets/images/wordpress/grid-row.png)
+<!-- Image placeholder for Grid Row Block -->
 
 ## Key Features
 
@@ -145,3 +145,4 @@ A grid row converted to a carousel slider:
 - [Container Block](./container-block.md) - Parent container for grid rows
 - [Grid Column Block](./grid-column-block.md) - Used inside grid rows to create column layouts
 - [Group Block](./group-block.md) - Alternative for non-grid layouts
+

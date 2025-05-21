@@ -4,7 +4,7 @@
 
 The Popup Modals Block is a powerful interactive component in the Phenix Design System that allows you to create customizable modal dialogs, popups, and lightboxes. These modals can be triggered by various actions and can contain any type of content, making them versatile for displaying additional information, forms, images, or other interactive elements without navigating away from the current page.
 
-![Popup Modals Block](../../../assets/images/wordpress/popup-modals-block.png)
+<!-- Image placeholder for Popup Modals Block -->
 
 ## Key Features
 
@@ -255,3 +255,4 @@ A modal for displaying a video:
 - [Button Block](./button-block.md) - For creating custom modal triggers
 - [Media Element Block](./media-element-block.md) - For including media in modals
 - [Group Block](./group-block.md) - For organizing content within modals
+

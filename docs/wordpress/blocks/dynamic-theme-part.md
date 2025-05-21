@@ -4,7 +4,7 @@
 
 The Dynamic Theme Part block is a powerful component in the Phenix Design System that allows you to create and insert reusable template parts throughout your WordPress site. This block enables you to build modular, consistent layouts by defining template parts once and using them across multiple pages. With the Dynamic Theme Part, you can create headers, footers, sidebars, and other recurring elements that automatically update everywhere when edited in one place, significantly improving your workflow efficiency and site maintenance.
 
-![Dynamic Theme Part](../../../assets/images/wordpress/dynamic-theme-part.png)
+<!-- Image placeholder for Dynamic Theme Part -->
 
 ## Key Features
 
@@ -240,3 +240,4 @@ Create a reusable sidebar that can be placed in different layouts:
 - [Grid Row Block](./grid-row-block.md) - For creating grid layouts within template parts
 - [Logical Content Block](./logical-content-block.md) - For adding conditional content within template parts
 - [Custom Code Block](./custom-code-block.md) - For adding custom code to template parts
+

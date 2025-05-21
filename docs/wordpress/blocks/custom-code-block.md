@@ -4,7 +4,7 @@
 
 The Custom Code Block is a versatile component in the Phenix Design System that allows you to insert custom HTML, CSS, or JavaScript directly into any location on your WordPress pages. Unlike the core WordPress Code block which treats code as static content, the Custom Code Block actually executes your code, making it an essential tool for developers and advanced users who need to implement custom functionality or styling beyond what's available through standard blocks.
 
-![Custom Code Block](../../../assets/images/wordpress/custom-code-block.png)
+<!-- Image placeholder for Custom Code Block -->
 
 ## Key Features
 
@@ -349,3 +349,4 @@ Integrate third-party services or widgets:
 - [Container Block](./container-block.md) - For positioning custom code within layouts
 - [Group Block](./group-block.md) - For organizing multiple Custom Code blocks together
 - [Dynamic Theme Part](./dynamic-theme-part.md) - For creating reusable template parts with custom code
+

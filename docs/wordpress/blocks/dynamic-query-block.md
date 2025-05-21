@@ -4,7 +4,7 @@
 
 The Dynamic Query Block is a powerful component in the Phenix Design System that allows you to fetch and display dynamic content from your WordPress database. This block enables you to create custom content listings, grids, sliders, and more by querying posts, pages, custom post types, or any other content stored in your WordPress site. With extensive filtering, sorting, and display options, the Dynamic Query Block provides a flexible solution for creating dynamic content sections without writing custom code.
 
-![Dynamic Query Block](../../../assets/images/wordpress/dynamic-query-block.png)
+<!-- Image placeholder for Dynamic Query Block -->
 
 ## Key Features
 
@@ -311,3 +311,4 @@ Display related posts at the end of a single post:
 - [Grid Row Block](./grid-row-block.md) - For creating custom grid layouts with query results
 - [Taxonomies Query Block](./taxonomies-query-block.md) - For querying taxonomy terms
 - [Users Query Block](./users-query-block.md) - For querying and displaying user data
+

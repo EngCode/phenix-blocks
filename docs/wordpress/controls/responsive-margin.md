@@ -21,7 +21,7 @@ Margins create space around an element, pushing away adjacent elements. In the P
 - **Margin Bottom**: Creates space below the element
 - **Margin Left**: Creates space to the left of the element
 
-![Margin Diagram](../../../assets/images/wordpress/margin-diagram.png)
+<!-- Image placeholder for Margin Diagram -->
 
 ## Available Controls
 
@@ -129,3 +129,4 @@ To set responsive margins:
 - [Layout Options](./layout-options.md)
 - [Responsive Display](./responsive-display.md)
 - [Responsive Position](./responsive-position.md)
+

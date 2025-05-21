@@ -2,7 +2,7 @@
 
 The Button Block is an essential interactive component in the Phenix Design System. It provides a customizable button element that can be styled in various ways and linked to internal or external destinations. The Button Block supports different sizes, styles, colors, and can include icons for enhanced visual communication.
 
-![Button Block](../../../assets/images/wordpress/button-block.png)
+<!-- Image placeholder for Button Block -->
 
 ## Key Features
 
@@ -67,7 +67,7 @@ A button that appears as a link but with button padding and hover effects:
 
 You can enhance buttons with icons from the icon library:
 
-![Button with icon](../path/to/button-with-icon.png)
+<!-- Image placeholder for Button with icon -->
 
 ```html
 <!-- Block Output Example -->

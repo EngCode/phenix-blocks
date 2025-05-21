@@ -4,7 +4,7 @@
 
 The Breadcrumb Block is a navigation component in the Phenix Design System that displays a path of links showing the user's location within the website's hierarchy. It helps users understand their current position and provides easy navigation to parent and ancestor pages. The breadcrumb trail automatically updates based on the current page context and site structure.
 
-![Breadcrumb Block](../../../assets/images/wordpress/breadcrumb-block.png)
+<!-- Image placeholder for Breadcrumb Block -->
 
 ## Key Features
 
@@ -222,3 +222,4 @@ A breadcrumb for WooCommerce product pages:
 - [Container Block](./container-block.md) - For positioning breadcrumbs within layouts
 - [Group Block](./group-block.md) - For combining breadcrumbs with other header elements
 - [Text Elements Block](./text-elements-block.md) - For adding descriptive text alongside breadcrumbs
+

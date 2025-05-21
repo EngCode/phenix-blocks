@@ -32,7 +32,7 @@ To access the API Creator interface:
 1. In your WordPress admin, navigate to **Phenix Design System**
 2. Select the **API Creator** tab
 
-![API Creator Interface](../../../assets/images/wordpress/api-creator-interface.png)
+<!-- Image placeholder for API Creator Interface -->
 
 ## Creating a New API Endpoint
 
@@ -81,7 +81,7 @@ Define the parameters your endpoint accepts:
 
 4. Click **Save Endpoint**
 
-![Adding a New API Endpoint](../../../assets/images/wordpress/api-endpoint-add.png)
+<!-- Image placeholder for Adding a New API Endpoint -->
 
 ## API Endpoint Structure
 
@@ -272,3 +272,4 @@ pds_add_api([
 - [Custom Post Types](./custom-post-types.md)
 - [Custom Taxonomies](./custom-taxonomies.md)
 - [Custom Meta Fields](./custom-meta-boxes.md)
+

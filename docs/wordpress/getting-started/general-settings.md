@@ -6,7 +6,7 @@ The first thing you'll want to do after installing a new theme is to configure t
 
 To access the Phenix Blocks settings, navigate to the WordPress Dashboard and click on **Phenix Blocks** in the main menu.
 
-![Phenix Blocks Menu](../../../assets/images/wordpress/01.png)
+<!-- Image placeholder for Phenix Blocks Menu -->
 
 ## Design Fonts
 
@@ -17,13 +17,13 @@ From this tab, you can customize the typography of your website:
 - Choose Font-Awesome icons version for all font icons used across the theme elements
 - Toggle the Admin Dashboard Style if desired
 
-![Design Fonts Settings](../../../assets/images/wordpress/design-fonts.png)
+<!-- Image placeholder for Design Fonts Settings -->
 
 ## Phenix Blocks
 
 In this tab, you can enable or disable any of the Editor blocks. While most users won't need to modify these settings, developers may find it useful for testing purposes.
 
-![Blocks List Settings](../../../assets/images/wordpress/blocks-list.png)
+<!-- Image placeholder for Blocks List Settings -->
 
 ## Optimizations
 
@@ -33,7 +33,7 @@ This tab allows you to configure performance settings:
 - Customize the loading screen of your website
 - Replace the loading image or insert your own spinner code
 
-![Optimization Settings](../../../assets/images/wordpress/optimization.png)
+<!-- Image placeholder for Optimization Settings -->
 
 ## Classic Menus
 
@@ -45,7 +45,7 @@ Most themes come with pre-built content and dynamic menus. To customize your men
 4. Drag and drop to sort your menu items (or click on an item to edit it)
 5. Select where this menu should display (each Menu Location is typically described)
 
-![Menu Settings](../../../assets/images/wordpress/05-menus.png)
+<!-- Image placeholder for Menu Settings -->
 
 ## Theme Customizer
 
@@ -70,3 +70,4 @@ Depending on your theme, you may have access to additional settings panels for:
 - Page-specific settings
 
 These settings can typically be found in their respective sections within the Phenix Blocks menu or in theme-specific settings panels.
+

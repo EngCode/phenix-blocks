@@ -21,7 +21,7 @@ Padding creates space inside an element, between its content and its border. In 
 - **Padding Bottom**: Creates space below the content, inside the element
 - **Padding Left**: Creates space to the left of the content, inside the element
 
-![Padding Diagram](../../../assets/images/wordpress/padding-diagram.png)
+<!-- Image placeholder for Padding Diagram -->
 
 ## Available Controls
 
@@ -139,3 +139,4 @@ To set responsive padding:
 - [Layout Options](./layout-options.md)
 - [Border Radius](./border-radius.md)
 - [Styles Options](./styles-options.md)
+

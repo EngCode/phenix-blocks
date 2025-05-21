@@ -4,7 +4,7 @@
 
 The Slider Block is a versatile component in the Phenix Design System that allows you to create interactive, responsive slideshows and carousels. This block enables you to showcase multiple images, content sections, or products in a space-efficient, engaging format. With extensive customization options for navigation, pagination, transitions, and responsive behavior, the Slider Block provides a powerful solution for creating dynamic visual presentations on your WordPress site.
 
-![Slider Block](../../../assets/images/wordpress/slider-block.png)
+<!-- Image placeholder for Slider Block -->
 
 ## Key Features
 
@@ -360,3 +360,4 @@ Display featured products in a responsive carousel:
 - [Group Block](./group-block.md) - For organizing content within individual slides
 - [Image Block](./media-element-block.md) - For adding images to slider slides
 - [Dynamic Query Block](./dynamic-query-block.md) - For creating dynamic content sliders
+

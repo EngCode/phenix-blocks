@@ -8,7 +8,7 @@ The WordPress editing experience has evolved significantly with the introduction
 
 The Block Editor, introduced in WordPress 5.0, is the primary interface for creating and editing content. When working with the Phenix Design System, you'll find all Phenix blocks in the "Design" category of the block inserter.
 
-![Block Editor Interface](../../../assets/images/wordpress/block-editor.png)
+<!-- Image placeholder for Block Editor Interface -->
 
 ### Key Areas of the Block Editor
 
@@ -36,7 +36,7 @@ Phenix blocks follow a consistent pattern for settings and controls:
 
 The Site Editor, introduced in WordPress 5.8, extends the block paradigm to the entire site. It allows you to edit templates, template parts, and create global styles. The Phenix Design System is fully compatible with Full Site Editing, providing blocks and controls that work seamlessly in this environment.
 
-![Site Editor Interface](../../../assets/images/wordpress/site-editor.png)
+<!-- Image placeholder for Site Editor Interface -->
 
 ### Key Features of the Site Editor
 
@@ -58,7 +58,7 @@ The Site Editor, introduced in WordPress 5.8, extends the block paradigm to the 
 
 While the Phenix Design System is optimized for the Block Editor, you may occasionally encounter the Classic Editor in specific contexts, particularly with plugins that haven't fully adopted the block paradigm.
 
-![Classic Editor Interface](../../../assets/images/wordpress/classic-editor.png)
+<!-- Image placeholder for Classic Editor Interface -->
 
 The Classic Editor provides a more traditional word processor-like interface with a single editing area and a toolbar at the top. When working with the Classic Editor:
 
@@ -105,3 +105,4 @@ Now that you're familiar with the WordPress editors, explore the specific block 
 - [Responsive Padding](./responsive-padding.md)
 - [Typography Options](./typography-options.md)
 - [And more in the sidebar navigation...](./responsive-display.md)
+

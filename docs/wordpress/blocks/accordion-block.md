@@ -4,7 +4,7 @@
 
 The Accordion Block is a collapsible content component in the Phenix Design System that allows you to organize information into expandable and collapsible sections. This block is particularly useful for presenting large amounts of information in a compact, user-friendly format, making it ideal for FAQs, product details, and other content that benefits from progressive disclosure.
 
-![Accordion Block](../../../assets/images/wordpress/accordion-block.png)
+<!-- Image placeholder for Accordion Block -->
 
 ## Key Features
 

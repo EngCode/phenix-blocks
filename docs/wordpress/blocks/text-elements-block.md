@@ -4,7 +4,7 @@
 
 The Text Elements Block is a versatile content block in the Phenix Design System that allows you to create and style various text elements including headings, paragraphs, lists, and more. It provides extensive typography controls and styling options to help you create visually appealing and well-structured content.
 
-![Text Elements Block](../../../assets/images/wordpress/text-elements-block.png)
+<!-- Image placeholder for Text Elements Block -->
 
 ## Key Features
 
@@ -134,3 +134,4 @@ Text with animation effects:
 - [Group Block](./group-block.md) - For grouping multiple text elements
 - [Icon Element Block](./icon-element-block.md) - For more advanced icon usage
 - [Container Block](./container-block.md) - For positioning text within layouts
+

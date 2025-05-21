@@ -22,7 +22,7 @@ Border radius creates rounded corners by defining the radius of a circle that fo
 - **Bottom Left**: Rounds only the bottom-left corner
 - **Bottom Right**: Rounds only the bottom-right corner
 
-![Border Radius Diagram](../../../assets/images/wordpress/border-radius-diagram.png)
+<!-- Image placeholder for Border Radius Diagram -->
 
 ## Available Controls
 
@@ -160,3 +160,4 @@ To set responsive border radius:
 - [Responsive Padding](./responsive-padding.md)
 - [Responsive Margin](./responsive-margin.md)
 - [Typography Options](./typography-options.md)
+

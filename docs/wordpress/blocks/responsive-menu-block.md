@@ -4,7 +4,7 @@
 
 The Responsive Menu Block is an essential navigation component in the Phenix Design System that allows you to create flexible, mobile-friendly menus. This block automatically adapts to different screen sizes, transforming from a horizontal navigation bar on desktop to a compact mobile menu on smaller devices. It supports various menu styles, dropdown functionality, and customization options.
 
-![Responsive Menu Block](../../../assets/images/wordpress/responsive-menu-block.png)
+<!-- Image placeholder for Responsive Menu Block -->
 
 ## Key Features
 
@@ -273,3 +273,4 @@ A vertical menu for a sidebar:
 - [Container Block](./container-block.md) - For positioning the menu within layouts
 - [Grid Row Block](./grid-row-block.md) - For creating header layouts with menus
 - [Logo Block](./logo-block.md) - For adding a logo alongside the menu
+

@@ -4,7 +4,7 @@
 
 The Logo Block is a specialized component in the Phenix Design System that allows you to easily add and customize your website's logo. It provides options for different logo variants (light/dark), responsive sizing, and linking to the homepage. The Logo Block is typically used in headers, footers, and other branding areas of your website.
 
-![Logo Block](../../../assets/images/wordpress/logo-block.png)
+<!-- Image placeholder for Logo Block -->
 
 ## Key Features
 
@@ -206,3 +206,4 @@ Placing a smaller logo in the site footer:
 - [Container Block](./container-block.md) - For positioning the logo within layouts
 - [Grid Row Block](./grid-row-block.md) - For creating header layouts with logos
 - [Media Element Block](./media-element-block.md) - For more advanced image handling
+

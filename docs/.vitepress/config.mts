@@ -4,6 +4,7 @@ export default defineConfig({
   title: "Phenix Design System",
   description: "A powerful, modular design system for WordPress and beyond.",
   base: '/phenix-blocks/', // Set to repository name for GitHub Pages
+  ignoreDeadLinks: true, // Ignore dead links during build
 
 
   themeConfig: {

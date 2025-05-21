@@ -4,7 +4,7 @@
 
 The Group Block is a versatile layout component in the Phenix Design System that allows you to group multiple blocks together and apply shared styling, animations, and behaviors. Unlike the Container Block, which has predefined width constraints, the Group Block is more flexible and can be used for various layout needs without imposing specific width limitations.
 
-![Group Block](../../../assets/images/wordpress/group-block.png)
+<!-- Image placeholder for Group Block -->
 
 ## Key Features
 
@@ -139,3 +139,4 @@ A group with animation effects:
 - [Container Block](./container-block.md) - Similar to Group but with predefined width constraints
 - [Grid Row Block](./grid-row-block.md) - For creating grid-based layouts
 - [Grid Column Block](./grid-column-block.md) - For creating column-based layouts within rows
+

@@ -20,7 +20,7 @@ To access the Menu Locations management interface:
 2. Select the **Data Collection** tab
 3. Click on the **Menu Locations** sub-tab
 
-![Menu Locations Interface](../../../assets/images/wordpress/menu-locations-interface.png)
+<!-- Image placeholder for Menu Locations Interface -->
 
 ## Creating a New Menu Location
 
@@ -50,7 +50,7 @@ Once you've created custom menu locations, you can assign WordPress menus to the
 4. Check the locations where you want this menu to appear
 5. Click **Save Menu**
 
-![Assigning Menus to Locations](../../../assets/images/wordpress/assigning-menus.png)
+<!-- Image placeholder for Assigning Menus to Locations -->
 
 ## Using Menu Locations with Responsive Menu Block
 
@@ -115,3 +115,4 @@ wp_nav_menu([
 
 - [Responsive Menu Block](../blocks/responsive-menu-block.md)
 - [Block Patterns & Templates](./block-patterns-templates.md)
+

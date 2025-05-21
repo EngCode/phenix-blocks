@@ -25,7 +25,7 @@ To access the Block Patterns management interface:
 2. Select the **Data Collection** tab
 3. Click on the **Block Patterns** sub-tab
 
-![Block Patterns Interface](../../../assets/images/wordpress/block-patterns-interface.png)
+<!-- Image placeholder for Block Patterns Interface -->
 
 ## Creating a New Block Pattern
 
@@ -49,7 +49,7 @@ To get the block content for your pattern:
 3. Click the three dots menu and select **Copy**
 4. Paste this content into the Pattern Content field in the Phenix Block Patterns interface
 
-![Adding a New Pattern](../../../assets/images/wordpress/patterns-add.png)
+<!-- Image placeholder for Adding a New Pattern -->
 
 ## Managing Block Patterns
 
@@ -69,7 +69,7 @@ Once created, your custom patterns will be available in the WordPress block edit
 3. Browse or search for your pattern by name or category
 4. Click on the pattern to insert it into your content
 
-![Using Patterns in the Editor](../../../assets/images/wordpress/using-patterns.png)
+<!-- Image placeholder for Using Patterns in the Editor -->
 
 ## Pattern Categories
 
@@ -153,3 +153,4 @@ To use a block template when creating a new page or post:
 - [Custom Post Types](./custom-post-types.md)
 - [Custom Taxonomies](./custom-taxonomies.md)
 - [Responsive Menu Block](../blocks/responsive-menu-block.md)
+

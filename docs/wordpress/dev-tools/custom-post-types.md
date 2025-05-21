@@ -38,7 +38,7 @@ To access the Custom Post Types management interface:
 2. Select the **Data Collection** tab
 3. Click on the **Post Types** sub-tab
 
-![Custom Post Types Interface](../../../assets/images/wordpress/cpt-interface.png)
+<!-- Image placeholder for Custom Post Types Interface -->
 
 ## Creating a New Custom Post Type
 
@@ -88,7 +88,7 @@ Select a block pattern to use as the default starting content when creating a ne
 
 4. Click **Save Post Type**
 
-![Adding a Custom Post Type](../../../assets/images/wordpress/add-cpt.png)
+<!-- Image placeholder for Adding a Custom Post Type -->
 
 ## Managing Custom Post Types
 
@@ -202,3 +202,4 @@ This feature is particularly useful for:
 - [Custom Taxonomies](./custom-taxonomies.md)
 - [Custom Meta Fields](./custom-meta-boxes.md)
 - [Block Patterns & Templates](./block-patterns-templates.md)
+

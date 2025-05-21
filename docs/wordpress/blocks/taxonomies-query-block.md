@@ -4,7 +4,7 @@
 
 The Taxonomies Query Block is a specialized component in the Phenix Design System that allows you to fetch and display taxonomy terms from your WordPress site. This block enables you to create dynamic listings of categories, tags, or custom taxonomies with extensive filtering, sorting, and display options. The Taxonomies Query Block is particularly useful for creating category directories, tag clouds, filterable navigation, and other taxonomy-based content structures.
 
-![Taxonomies Query Block](../../../assets/images/wordpress/taxonomies-query-block.png)
+<!-- Image placeholder for Taxonomies Query Block -->
 
 ## Key Features
 
@@ -285,3 +285,4 @@ Create a filterable navigation for product categories:
 - [Container Block](./container-block.md) - For positioning taxonomy queries within layouts
 - [Grid Row Block](./grid-row-block.md) - For creating custom grid layouts with taxonomy terms
 - [Users Query Block](./users-query-block.md) - For querying and displaying user data
+

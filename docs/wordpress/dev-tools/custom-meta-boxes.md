@@ -37,7 +37,7 @@ To access the Custom Meta Fields management interface:
 2. Select the **Data Collection** tab
 3. Click on the **Meta Fields** sub-tab
 
-![Custom Meta Fields Interface](../../../assets/images/wordpress/metafields-interface.png)
+<!-- Image placeholder for Custom Meta Fields Interface -->
 
 ## Creating a New Custom Meta Field
 
@@ -97,7 +97,7 @@ Specify where this custom field should appear:
 
 4. Click **Save Meta Field**
 
-![Adding a Custom Meta Field](../../../assets/images/wordpress/metafields-add.png)
+<!-- Image placeholder for Adding a Custom Meta Field -->
 
 ## Managing Custom Meta Fields
 
@@ -220,3 +220,4 @@ Custom meta fields can be used for filtering and sorting content:
 - [Custom Post Types](./custom-post-types.md)
 - [Custom Taxonomies](./custom-taxonomies.md)
 - [Dynamic Query Block](../blocks/dynamic-query-block.md)
+

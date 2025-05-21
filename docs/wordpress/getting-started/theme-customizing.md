@@ -12,23 +12,23 @@ The Site Editor is the new interface introduced in WordPress v5.8 that allows yo
 
 The Site Editor is based on the block (or component) design system, where small components come together to build something new.
 
-![Site Editor](../../../assets/images/wordpress/site-editor.png)
+<!-- Image placeholder for Site Editor -->
 
 You can find all Phenix Blocks in the Design Category of the Blocks List from the Editor.
 
-![Blocks List in Editor](../../../assets/images/wordpress/blocks-list-editor.png)
+<!-- Image placeholder for Blocks List in Editor -->
 
 ## Color Schema
 
 The styles and colors of your website theme can be customized from the Site Editor Styles panel. When you select it, you'll access the editor with a style panel opened in the sidebar. From there, you can edit the colors of the website.
 
-![Style Colors](../../../assets/images/wordpress/04-style-colors.png)
+<!-- Image placeholder for Style Colors -->
 
 ## Site Templates
 
 Templates in the Site Editor allow you to customize dynamic pages like Archives and Single Post pages.
 
-![Site Templates](../../../assets/images/wordpress/site-template.png)
+<!-- Image placeholder for Site Templates -->
 
 ## Patterns and Template Parts
 
@@ -40,7 +40,7 @@ Block Patterns are pre-designed templates that you can add to your content and e
 
 Template Parts are components that can be used in the Templates of the Site Editor as shared content sections. Examples include the header or footer of your website that can be changed from one place - the Template Part itself.
 
-![Patterns and Template Parts](../../../assets/images/wordpress/patterns-temp-parts.png)
+<!-- Image placeholder for Patterns and Template Parts -->
 
 ## Multi-Language Support
 
@@ -56,7 +56,7 @@ The Block Editor has three main areas:
 2. **Top Bar**: Contains quick controls and options for any part of the content you're currently selecting
 3. **Sidebar**: Shows the current post/page dynamic data options and settings for the selected content element
 
-![Block Editing](../../../assets/images/wordpress/06-block-editing.png)
+<!-- Image placeholder for Block Editing -->
 
 At the bottom, you'll also find a navigation bar that shows where you're focused in the content and allows you to navigate back to parent elements.
 
@@ -90,3 +90,4 @@ You can create custom templates for specific pages or post types:
 ### Block Variations
 
 Many Phenix blocks offer variations and extensive customization options. Explore the settings panel when a block is selected to discover all available options for customizing appearance, behavior, and functionality.
+

@@ -4,7 +4,7 @@
 
 The Users Query Block is a specialized component in the Phenix Design System that allows you to fetch and display WordPress users on your site. This block enables you to create dynamic listings of authors, team members, contributors, or any registered users with extensive filtering, sorting, and display options. The Users Query Block is particularly useful for creating team directories, author showcases, member listings, and other user-based content structures.
 
-![Users Query Block](../../../assets/images/wordpress/users-query-block.png)
+<!-- Image placeholder for Users Query Block -->
 
 ## Key Features
 
@@ -314,3 +314,4 @@ Highlight the top contributors to your blog:
 - [Container Block](./container-block.md) - For positioning user queries within layouts
 - [Grid Row Block](./grid-row-block.md) - For creating custom grid layouts with user cards
 - [Taxonomies Query Block](./taxonomies-query-block.md) - For querying and displaying taxonomy terms
+

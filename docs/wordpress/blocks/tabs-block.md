@@ -4,7 +4,7 @@
 
 The Tabs Block is a versatile component in the Phenix Design System that allows you to organize content into tabbed sections, making it easier for users to navigate between related information without scrolling. This block is particularly useful for presenting multiple categories of content in a compact, user-friendly interface, saving space while improving content organization and user experience.
 
-![Tabs Block](../../../assets/images/wordpress/tabs-block.png)
+<!-- Image placeholder for Tabs Block -->
 
 ## Key Features
 
@@ -354,3 +354,4 @@ Create an FAQ section with tabs that convert to accordion on mobile:
 - [Group Block](./group-block.md) - For organizing content within individual tabs
 - [Accordion Block](./accordion-block.md) - An alternative to tabs for vertical content organization
 - [Popup Modals Block](./popup-modals-block.md) - For content that requires more screen space than tabs
+

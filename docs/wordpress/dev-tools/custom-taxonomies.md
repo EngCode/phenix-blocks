@@ -43,7 +43,7 @@ To access the Custom Taxonomies management interface:
 2. Select the **Data Collection** tab
 3. Click on the **Taxonomies** sub-tab
 
-![Custom Taxonomies Interface](../../../assets/images/wordpress/taxonomies-interface.png)
+<!-- Image placeholder for Custom Taxonomies Interface -->
 
 ## Creating a New Custom Taxonomy
 
@@ -94,7 +94,7 @@ Customize all labels used throughout the WordPress admin:
 
 4. Click **Save Taxonomy**
 
-![Adding a Custom Taxonomy](../../../assets/images/wordpress/taxonomies-add.png)
+<!-- Image placeholder for Adding a Custom Taxonomy -->
 
 ## Managing Custom Taxonomies
 
@@ -211,3 +211,4 @@ Taxonomies are powerful for filtering content. You can use them with the Dynamic
 - [Custom Meta Fields](./custom-meta-boxes.md)
 - [Dynamic Query Block](../blocks/dynamic-query-block.md)
 - [Taxonomies Query Block](../blocks/taxonomies-query-block.md)
+

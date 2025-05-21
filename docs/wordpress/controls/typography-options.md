@@ -26,7 +26,7 @@ The Typography Options are available for any block that contains text content:
 2. Look for the Typography button ("T" icon) in the block toolbar
 3. Click the Typography button to open the typography controls panel
 
-![Typography Button in Toolbar](../../../assets/images/wordpress/typography-button.png)
+<!-- Image placeholder for Typography Button in Toolbar -->
 
 ## Available Controls
 
@@ -223,3 +223,4 @@ To set responsive typography:
 - [Layout Options](./layout-options.md)
 - [Responsive Margin](./responsive-margin.md)
 - [Responsive Padding](./responsive-padding.md)
+

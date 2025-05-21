@@ -4,7 +4,7 @@
 
 The Container Block is one of the most important blocks in the Phenix Design System. It's used to create layout sections with content wrapped within pre-defined maximum boundaries that adapt to different screen sizes. The Container Block is essential for creating proper responsive layouts and is typically used in conjunction with Grid Row blocks.
 
-![Container Block](../../../assets/images/wordpress/container.png)
+<!-- Image placeholder for Container Block -->
 
 ## Key Features
 
@@ -110,3 +110,4 @@ A container using flexbox to arrange its children:
 - [Grid Row Block](./grid-row-block.md) - Used inside containers to create row layouts
 - [Grid Column Block](./grid-column-block.md) - Used inside grid rows to create column layouts
 - [Group Block](./group-block.md) - Similar to container but without the width constraints
+

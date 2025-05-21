@@ -4,7 +4,7 @@
 
 The Icon Element Block is a versatile component in the Phenix Design System that allows you to add and customize icons from various icon libraries. This block provides extensive styling options and can be used for visual enhancements, navigation elements, feature highlights, and more.
 
-![Icon Element Block](../../../assets/images/wordpress/icon-element-block.png)
+<!-- Image placeholder for Icon Element Block -->
 
 ## Key Features
 
@@ -205,3 +205,4 @@ Use icons to highlight features or services:
 - [Button Block](./button-block.md) - For combining icons with button elements
 - [Text Elements Block](./text-elements-block.md) - For combining icons with text
 - [Group Block](./group-block.md) - For grouping multiple icons together
+

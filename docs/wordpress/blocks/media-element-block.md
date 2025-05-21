@@ -4,7 +4,7 @@
 
 The Media Element Block is a versatile component in the Phenix Design System that allows you to add and customize various media elements to your WordPress content. This block supports images, videos, audio, and other media types with extensive styling and layout options.
 
-![Media Element Block](../../../assets/images/wordpress/media-element-block.png)
+<!-- Image placeholder for Media Element Block -->
 
 ## Key Features
 
@@ -147,3 +147,4 @@ An image that opens in a lightbox when clicked:
 - [Container Block](./container-block.md) - For positioning media within layouts
 - [Grid Row Block](./grid-row-block.md) - For creating media galleries with grid layouts
 - [Group Block](./group-block.md) - For combining media with other content elements
+

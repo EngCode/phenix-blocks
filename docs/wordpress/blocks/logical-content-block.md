@@ -4,7 +4,7 @@
 
 The Logical Content Block is a powerful conditional content component in the Phenix Design System that allows you to display or hide content based on specific conditions. This block enables you to create dynamic, personalized user experiences by showing different content to different users based on their login status, user roles, device type, time of day, and other criteria. Currently in its experimental phase, the Logical Content Block is being continuously improved with additional logical conditions and customization options.
 
-![Logical Content Block](../../../assets/images/wordpress/logical-content-block.png)
+<!-- Image placeholder for Logical Content Block -->
 
 ## Key Features
 
@@ -329,3 +329,4 @@ Show different navigation options based on user status:
 - [Group Block](./group-block.md) - For organizing content within logical blocks
 - [Dynamic Theme Part](./dynamic-theme-part.md) - For creating reusable template parts with conditional logic
 - [Custom Code Block](./custom-code-block.md) - For implementing custom conditional logic
+

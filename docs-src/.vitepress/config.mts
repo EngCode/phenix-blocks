@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Phenix Design System",
   description: "A powerful, modular design system for WordPress and beyond.",
-  base: '/', // Root path for GitHub Pages with custom domain
+  base: '/phenix-blocks/', // Root path for GitHub Pages with custom domain
   ignoreDeadLinks: true, // Ignore dead links during build
   outDir: '../docs', // Output to docs folder for GitHub Pages classic deployment
 

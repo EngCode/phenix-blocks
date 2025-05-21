@@ -21,6 +21,7 @@ Phenix Blocks is a comprehensive WordPress plugin that provides a complete desig
 |---|---|
 | Plugin Repository | [GitHub](https://github.com/EngCode/phenix-blocks) |
 | Starter Theme | [PDS Starter Theme](https://github.com/EngCode/pds-starter-free) |
+| **Official Documentation** | [Phenix Design System Docs](https://engcode.github.io/phenix-blocks/) |
 | Editor Handbook | [Blocks Documentation](https://phenixthemes.notion.site/Phenix-Blocks-Documentation-b7ae033ce7484e8f98209d7587a94792?pvs=74) |
 | Design System Docs | [Code Handbook](https://phenixthemes.notion.site/Phenix-Design-System-efcfa4d3839946989a4f94ee5e0480c3?pvs=74) |
 | Official Website | [Phenix Themes](https://phenixthemes.com/demo/) |

@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Phenix Design System",
   description: "A powerful, modular design system for WordPress and beyond.",
-  // base: '/phenix-docs/', // uncomment and set if deploying to a subdirectory like github pages
+  base: '/phenix-blocks/', // Set to repository name for GitHub Pages
 
 
   themeConfig: {
@@ -291,18 +291,18 @@ export default defineConfig({
             { text: 'Patterns Templates', link: '/wordpress/dev-tools/block-patterns-templates' },
             { text: 'Custom Post-Types', link: '/wordpress/dev-tools/custom-post-types' },
             { text: 'Custom Taxonomies', link: '/wordpress/dev-tools/custom-taxonomies' },
-            { text: 'Custom Meta-Fields', link: '/wordpress/dev-tools/custom-meta-boxes' }
+            { text: 'Custom Meta-Fields', link: '/wordpress/dev-tools/custom-meta-boxes' },
+            { text: 'API Creator', link: '/wordpress/dev-tools/api-creator' },
+            { text: 'Admin Page Creator', link: '/wordpress/dev-tools/admin-page-creator' }
           ]
         },
         {
           text: 'PHP Methods',
           collapsed: false,
           items: [
-            { text: 'Admin Pages', link: '/wordpress/php/admin-pages' },
-            { text: 'API End-Point', link: '/wordpress/php/api-end-point-creator' },
-            { text: 'Countries API', link: '/wordpress/php/countries-list-api' },
-            { text: 'Get Users Roles', link: '/wordpress/php/get-users-roles-list' },
-            { text: 'Custom Functions', link: '/wordpress/php/custom-functions' }
+            { text: 'Admin Pages', link: '/wordpress/php-methods/admin-pages' },
+            { text: 'API End-Point', link: '/wordpress/php-methods/api-endpoints' },
+            { text: 'Custom Functions', link: '/wordpress/php-methods/custom-functions' }
           ]
         }
       ]

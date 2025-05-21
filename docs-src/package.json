@@ -1,0 +1,24 @@
+{
+  "name": "phenix-design-system-docs",
+  "version": "1.0.0",
+  "description": "Documentation for the Phenix Design System - a comprehensive, modular UI framework designed for WordPress",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview --outDir ../docs"
+  },
+  "keywords": [
+    "phenix",
+    "design-system",
+    "documentation",
+    "wordpress",
+    "sass",
+    "typescript"
+  ],
+  "author": "Abdullah Ramadan",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.0.0-rc.42"
+  }
+}

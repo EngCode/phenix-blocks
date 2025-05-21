@@ -26,15 +26,9 @@ The most basic attribute helper, used for updating a single attribute based on a
  * @param {Function} setAttributes - The block's setAttributes function
  */
 function set_value(target, attributes, setAttributes) {
+    // Get the attribute name and value
     const name = target.name;
-    let value;
-    
-    // Handle checkbox inputs
-    if (target.type === 'checkbox') {
-        value = target.checked;
-    } else {
-        value = target.value;
-    }
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     
     // Update the attribute
     setAttributes({ [name]: value });
@@ -105,23 +99,29 @@ Updates a nested object property within block attributes, commonly used for typo
 /**
  * Updates a nested object property within block attributes
  * 
- * @param {Object} target - The input element that triggered the change
- * @param {Object} newObject - The new object value
+ * @param {Object|String} target - The input element that triggered the change or a string value
+ * @param {String} screen - Optional screen size for responsive attributes (e.g., 'sm', 'md', 'lg', 'xl')
+ * @param {String} attr - The attribute object name to update (e.g., 'typography', 'style')
+ * @param {String|Boolean} hasName - Optional property name override or false
  * @param {Object} attributes - The current block attributes
  * @param {Function} setAttributes - The block's setAttributes function
- * @param {String} property - The property name to update (default: 'typography')
  */
-function setObject(target, newObject, attributes, setAttributes, property = 'typography') {
-    // Get the current object
-    const currentObject = attributes[property] || {};
+function setObject(target, screen, attr, hasName, attributes, setAttributes) {
+    // Get the name and value
+    const name = hasName || (target instanceof HTMLElement && target.getAttribute('name')) || (attr === "typography" ? "color" : attr === "style" ? "background" : `${target}`);
+    const value = (target instanceof HTMLElement) ? valueHandler(target) : target;
     
-    // Update the object
-    setAttributes({
-        [property]: {
-            ...currentObject,
-            ...newObject
-        }
-    });
+    // Handle special case for animations
+    const newAttributes = name.includes('animation') ? {
+        ...attributes[attr],
+        animation: { ...attributes[attr].animation, [name.replace('animation-', '')]: value }
+    } : {
+        ...attributes[attr],
+        [`${name}${screen ? '-' + screen : ''}`]: value
+    };
+    
+    // Update the attributes
+    setAttributes({ ...attributes, [attr]: newAttributes });
 }
 
 // Usage in edit.js

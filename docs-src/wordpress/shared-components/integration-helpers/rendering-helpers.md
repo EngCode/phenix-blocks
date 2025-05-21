@@ -10,6 +10,101 @@ When rendering blocks in the front-end, you often need to convert attribute valu
 - Creating inline style objects
 - Handling responsive attributes
 - Processing special styling properties
+- Automating attribute-to-HTML conversion
+
+## Core Rendering Helper
+
+### `OptionsRenderer`
+
+The primary rendering helper that automatically converts block attributes into appropriate HTML classes, styles, and data attributes. This is the core function that powers the rendering of all Phenix blocks.
+
+```javascript
+/**
+ * Renders block attributes as HTML classes, styles, and data attributes
+ * 
+ * @param {Object} options - Configuration options
+ * @param {Object} options.attributes - The block attributes
+ * @param {Object} options.blockProps - The block properties object to modify
+ * @param {Boolean} options.isSave - Whether this is being called in the save function
+ * @param {Boolean} options.hasColors - Whether the block supports theme colors
+ * @param {Boolean} options.isColumn - Whether the block is a column
+ * @param {Boolean} options.isGrid - Whether the block is a grid
+ */
+function OptionsRenderer(options) {
+    // Extract options
+    const {attributes, blockProps, isSave, hasColors, isColumn, isGrid} = options;
+    
+    // Initialize containers
+    const container = {className: ""};
+    const CustomCSS = {};
+    
+    // Process each attribute
+    Object.entries(attributes).forEach(([option_name, option_value]) => {
+        // Skip excluded attributes
+        const excluded = ["tagName", "className", "align", "metadata", "content", "lightbox_type", "url", "label"];
+        if (excluded.some(opt => opt === option_name) || option_name.startsWith('name-')) return;
+        
+        // Process string/number attributes
+        if (typeof option_value === 'string' || typeof option_value === 'number') {
+            // Handle special attributes (id, size, data attributes, etc.)
+            // Add appropriate classes or attributes to blockProps
+        }
+        
+        // Process boolean attributes
+        else if (typeof option_value === 'boolean' && option_value === true) {
+            // Handle boolean attributes (isFlexbox, isLink, etc.)
+            // Add appropriate classes or attributes to blockProps
+        }
+        
+        // Process object attributes (style, typography, flexbox, etc.)
+        else if (typeof option_value === 'object' && option_value !== null) {
+            // Process nested attributes for complex properties
+            // Handle special cases for backgrounds, animations, etc.
+        }
+    });
+    
+    // Apply custom CSS
+    if (Object.keys(CustomCSS).length > 0) {
+        blockProps.style = {...blockProps.style, ...CustomCSS};
+    }
+    
+    // Merge container classes with blockProps
+    if (container.className) {
+        blockProps.className += container.className;
+    }
+    
+    // Apply other container attributes
+    Object.entries(container).forEach(([key, value]) => {
+        if (key !== 'className') {
+            blockProps[key] = value;
+        }
+    });
+}
+
+// Usage in save.js
+export default function save({ attributes }) {
+    // Initialize blockProps
+    const blockProps = {
+        className: attributes.className || ''
+    };
+    
+    // Apply options rendering
+    PhenixBlocks.OptionsRenderer({
+        attributes,
+        blockProps,
+        isSave: true,
+        hasColors: true,
+        isColumn: false,
+        isGrid: false
+    });
+    
+    return (
+        <div {...blockProps}>
+            {/* Block content */}
+        </div>
+    );
+}
+```
 
 ## Class Generators
 

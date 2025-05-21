@@ -14,6 +14,64 @@ When working with block data, you often need to transform data between different
 
 ## Data Transformers
 
+### `valueHandler`
+
+Extracts and normalizes values from different input types, handling various form controls consistently.
+
+```javascript
+/**
+ * Extracts and normalizes values from different input types
+ * 
+ * @param {HTMLElement|String} target - The input element or direct value
+ * @returns {*} - The normalized value (string, boolean, or array)
+ */
+function valueHandler(target) {
+    // Define variables
+    let single_val;
+    let array_val = [];
+    let type = target instanceof HTMLElement ? (target.getAttribute('type') || target.tagName) : null;
+    
+    // Handle boolean values (checkboxes, radios, boolean attributes)
+    if (target === "boolean" || type === "boolean" || type === 'checkbox' || type === 'radio') {
+        if (target.value === 'boolean') { 
+            single_val = target.checked; 
+        } else { 
+            single_val = target.checked ? target.value : ""; 
+        }
+    }
+    
+    // Handle multi-select dropdowns
+    else if (type === "SELECT" && target.hasAttribute('multiple')) {
+        // Get multiple values from data attribute
+        let values = target.parentNode.getAttribute('data-value').split(',');
+        // Filter empty values
+        values.forEach(val => val !== "" ? array_val.push(val) : null);
+        // Set array value
+        single_val = array_val;
+    }
+    
+    // Handle direct values (non-HTMLElement)
+    else if (type === null) { 
+        single_val = target; 
+    }
+    
+    // Handle standard input values
+    else if (target instanceof HTMLElement) { 
+        single_val = target.value; 
+    }
+    
+    // Return the normalized value
+    if(single_val !== undefined) return single_val;
+}
+
+// Usage
+const handleChange = (target) => {
+    const value = PhenixBlocks.valueHandler(target);
+    // Process the normalized value
+    setAttributes({ [target.name]: value });
+};
+```
+
 ### `objectToAttributes`
 
 Converts a nested object into a flat attributes object.

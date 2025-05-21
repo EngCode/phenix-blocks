@@ -284,6 +284,47 @@ export default defineConfig({
           ]
         },
         {
+          text: 'Shared Components',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/wordpress/shared-components/' },
+            {
+              text: 'Core Controls',
+              collapsed: false,
+              items: [
+                { text: 'Input Controls', link: '/wordpress/shared-components/core-controls/input-controls' },
+                { text: 'Selection Controls', link: '/wordpress/shared-components/core-controls/selection-controls' },
+                { text: 'Toggle Controls', link: '/wordpress/shared-components/core-controls/toggle-controls' },
+                { text: 'Media Controls', link: '/wordpress/shared-components/core-controls/media-controls' },
+                { text: 'Navigation Controls', link: '/wordpress/shared-components/core-controls/navigation-controls' },
+                { text: 'Special Controls', link: '/wordpress/shared-components/core-controls/special-controls' }
+              ]
+            },
+            {
+              text: 'Control Sets',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/wordpress/shared-components/control-sets/' },
+                { text: 'Style Controls', link: '/wordpress/shared-components/control-sets/style-controls' },
+                { text: 'Animation Controls', link: '/wordpress/shared-components/control-sets/animations-set' }
+              ]
+            },
+            {
+              text: 'Integration Helpers',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/wordpress/shared-components/integration-helpers/' },
+                { text: 'Attribute Helpers', link: '/wordpress/shared-components/integration-helpers/attribute-helpers' },
+                { text: 'Rendering Helpers', link: '/wordpress/shared-components/integration-helpers/rendering-helpers' },
+                { text: 'Data Helpers', link: '/wordpress/shared-components/integration-helpers/data-helpers' },
+                { text: 'Block Accessibility', link: '/wordpress/shared-components/integration-helpers/block-accessibility' },
+                { text: 'Responsive Controls', link: '/wordpress/shared-components/integration-helpers/responsive-controls' },
+                { text: 'Attribute Management', link: '/wordpress/shared-components/integration-helpers/attribute-management' }
+              ]
+            }
+          ]
+        },
+        {
           text: 'Dev Tools',
           collapsed: false,
           items: [

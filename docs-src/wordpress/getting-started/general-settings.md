@@ -76,29 +76,26 @@ If you're using a block theme or the Full Site Editor:
 
 ## Theme Customization
 
-Phenix Blocks provides multiple ways to customize your theme:
+Phenix Blocks is designed to work with the WordPress block editor and Full Site Editor:
 
-### Site Editor (Block Themes)
-
-If you're using a block theme or the Full Site Editor:
+### Site Editor
 
 1. Go to **Appearance → Editor**
 2. Use the Site Editor to customize your entire site's appearance
 3. Edit templates, template parts, and styles
 4. Create and modify global styles that apply across your site
 
-### Theme Customizer (Classic Themes)
+### Global Styles
 
-For classic themes or additional customization options:
+Customize site-wide design elements:
 
-1. Go to **Appearance → Customize**
-2. Navigate through the various panels to adjust settings like:
-   - Site Identity (logo, site title, favicon)
-   - Colors and background
-   - Header and footer options
-   - Layout settings
-   - Typography options
-   - Custom CSS
+1. In the Site Editor, click the **Styles** icon (paintbrush) in the top-right corner
+2. Customize global settings for:
+   - Colors (text, background, links)
+   - Typography (font family, size, line height)
+   - Layout (content width, spacing)
+   - Borders and effects
+3. Changes made here will apply across your entire site
 
 ## Data Manager
 

@@ -29,6 +29,7 @@ Phenix Blocks (`pds-blocks`) is a complete design ecosystem for WordPress that i
 
 - **Custom Gutenberg Blocks**: A collection of 20+ specialized blocks for creating complex layouts and dynamic content
 - **Advanced Block Controls**: Extensive styling and layout options with responsive capabilities
+- **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
 - **Developer Tools**: Built-in APIs and utilities for creating custom post types, taxonomies, meta boxes, and more
 - **Performance Optimization**: Comprehensive tools to enhance site speed and user experience
 - **WooCommerce Integration**: Special features and optimizations for e-commerce sites

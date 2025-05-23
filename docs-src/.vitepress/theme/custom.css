@@ -1,0 +1,16 @@
+/* Custom styles for VitePress Documentation */
+
+:root {
+  /* Font families */
+  --vp-font-family-base: 'Roboto', sans-serif;
+  --vp-font-family-mono: 'Poppins', monospace;
+  --primary-font: 'Poppins', sans-serif!important;
+  --secondary-font: 'Roboto', sans-serif!important;
+
+  /* Brand colors from Phenix */
+  --vp-c-brand: #0473fc;
+  --vp-c-brand-light: #3990fd;
+  --vp-c-brand-dark: #0362d5;
+}
+
+.VPNavBar .container {max-width: 100%!important;}

@@ -14,14 +14,13 @@ export default defineConfig({
     // Google Fonts
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap', rel: 'stylesheet' }],
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap', rel: 'stylesheet' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap', rel: 'stylesheet' }],
     
     // Phenix CSS from CDN
-    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/css/phenix.css', rel: 'stylesheet' }],
-    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/css/phenix-utils.css', rel: 'stylesheet' }],
+    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/css/phenix.css', rel: 'stylesheet' }],
+    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/css/phenix-utils.css', rel: 'stylesheet' }],
     
     // Phenix JS from CDN
-    ['script', { src: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/js/phenix.js', defer: true }]
+    ['script', { src: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/js/phenix.js', defer: true }]
   ],
   base: '/phenix-blocks/', // Root path for GitHub Pages with custom domain
   ignoreDeadLinks: true, // Ignore dead links during build

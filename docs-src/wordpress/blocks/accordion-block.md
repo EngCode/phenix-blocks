@@ -28,30 +28,43 @@ The Accordion Block is a collapsible content component in the Phenix Design Syst
 
 ## Block Settings
 
-### General Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Add Item | Add a new accordion section |
+| Move Up/Down | Reorder accordion sections |
+| Accordion Style | Quick toggle between default, boxed, bordered, or minimal styles |
+| Toggle All | Toggle button to expand/collapse all sections at once |
+| Duplicate | Duplicate an accordion section |
+| Remove | Remove an accordion section |
+
+### Sidebar Controls
+
+#### General Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Accordion Style | Choose between default, boxed, bordered, or minimal styles |
 | Allow Multiple Open | Enable/disable opening multiple sections simultaneously |
 | Default Open | Set which sections should be open by default |
 | Toggle All | Add a button to expand/collapse all sections at once |
 | Collapsible Headings | Choose which heading level to use for section titles (h2-h6) |
 
-### Icon Options
+#### Icon Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Icon Position | Set icon position (left, right) |
 | Expand Icon | Select the icon to indicate expandable sections |
 | Collapse Icon | Select the icon to indicate collapsible sections |
 | Icon Size | Adjust the size of the indicator icons |
 | Icon Color | Set the color of the indicator icons |
 
-### Style Options
+#### Style Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Title Color | Set the color of section titles |
 | Active Title Color | Set the color of active section titles |
 | Title Background | Set the background color of section titles |
@@ -63,10 +76,10 @@ The Accordion Block is a collapsible content component in the Phenix Design Syst
 | Padding | Add internal spacing within sections |
 | Margin | Add spacing between accordion sections |
 
-### Animation Options
+#### Animation Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Animation Speed | Control the speed of expand/collapse animations |
 | Animation Easing | Select the easing function for animations |
 | Scroll to Active | Automatically scroll to active sections when expanded |

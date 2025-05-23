@@ -25,29 +25,41 @@ The Breadcrumb Block is a navigation component in the Phenix Design System that 
 
 ## Block Settings
 
-### Breadcrumb Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Separator Type | Quick toggle between text, icon, or custom separator |
+| Alignment | Set the alignment of the breadcrumb trail (left, center, right) |
+| Spacing Controls | Quick access to margin and padding settings |
+| Border Options | Configure border styles, widths, and colors |
+| Effects Options | Add shadows, opacity, and other visual effects |
+
+### Sidebar Controls
+
+#### Breadcrumb Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Source | Choose between automatic or custom breadcrumb generation |
 | Show Home | Include the home page in the breadcrumb trail |
 | Home Label | Customize the label for the home page link |
 | Show Current | Include the current page in the breadcrumb trail |
 | Current as Link | Make the current page item a clickable link |
 
-### Separator Options
+#### Separator Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Separator Type | Choose between text, icon, or custom separator |
 | Separator Text | Set a text character for the separator (e.g., "/", ">") |
 | Separator Icon | Select an icon for the separator |
 | Separator Spacing | Control the space around separators |
 
-### Style Options
+#### Style Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Text Color | Set the color of breadcrumb item text |
 | Link Color | Set the color of breadcrumb links |
 | Active Color | Set the color of the current/active breadcrumb item |
@@ -57,17 +69,17 @@ The Breadcrumb Block is a navigation component in the Phenix Design System that 
 | Border | Add borders with custom color, width, and style |
 | Border Radius | Add rounded corners to the breadcrumb container |
 
-### Schema Options
+#### Schema Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Enable Schema | Add schema.org markup for improved SEO |
 | Schema Type | Select the type of schema markup to use |
 
-### Responsive Options
+#### Responsive Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Mobile Display | Control how breadcrumbs appear on mobile devices |
 | Hide on Mobile | Option to hide breadcrumbs on mobile devices |
 | Truncate on Mobile | Show only the last few items on mobile devices |

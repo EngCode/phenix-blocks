@@ -25,33 +25,34 @@ The Group Block is a versatile layout component in the Phenix Design System that
 
 ## Block Settings
 
-### Layout Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
-| Flexbox | Enable flexbox layout for direct children |
-| Direction | Set the flex direction (row, column) |
-| Wrap | Control how items wrap when they exceed the group width |
-| Horizontal Alignment | Align items horizontally (start, center, end, between, around, evenly) |
-| Vertical Alignment | Align items vertically (start, center, end, stretch) |
-| Gap | Set spacing between flex items |
+| Control | Description |
+|---------|-------------|
+| HTML Tag | Select the HTML element (div, section, article, etc.) |
+| Flexbox Toggle | Enable/disable flexbox layout for direct children |
+| Layout Controls | Access dropdown menus for flexbox settings |
+| Alignment Controls | Set horizontal and vertical alignment of content |
+| Margin & Padding | Quick access to spacing controls with responsive options |
+| Position Settings | Configure position type and coordinates |
+| Border Options | Configure border styles, widths, and colors |
+| Effects Options | Add shadows, opacity, and other visual effects |
 
-### Style Options
+### Sidebar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| HTML ID | Set a custom ID for the group (useful for anchors) |
+| Style Options | Enable/disable various styling features |
 | Background | Set background color or image |
 | Text Color | Set text color for all content in the group |
-| Border | Add borders with custom color, width, and style |
+| Typography | Configure text styling options |
 | Border Radius | Add rounded corners to the group |
-| Shadow | Add box shadow with custom settings |
-| Padding | Add internal spacing |
-| Margin | Add external spacing |
 
-### Animation Options
+### Animation Controls (Sidebar)
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Animation Type | Select from various animation effects |
 | Animation Trigger | Choose when the animation plays (on load, on scroll, etc.) |
 | Animation Duration | Set how long the animation lasts |
@@ -70,57 +71,48 @@ The Group Block includes responsive controls for:
 
 ### Basic Group
 
-A simple group containing multiple blocks:
+To create a simple group containing multiple blocks:
 
-```html
-<!-- wp:phenix/group -->
-<div class="px-group">
-  <!-- wp:heading -->
-  <h2>Group Heading</h2>
-  <!-- /wp:heading -->
-  
-  <!-- wp:paragraph -->
-  <p>This is a paragraph inside a group.</p>
-  <!-- /wp:paragraph -->
-</div>
-<!-- /wp:phenix/group -->
-```
+1. Add the Group block to your page
+2. Click the "Add block" button inside the group
+3. Add a Heading block and enter your heading text
+4. Add a Paragraph block and enter your paragraph text
+5. All blocks will be contained within the group and can be moved together
 
 ### Styled Group
 
-A group with custom styling:
+To create a group with custom styling:
 
-```html
-<!-- wp:phenix/group {"backgroundColor":"#f5f5f5","borderRadius":"md","padding":"md"} -->
-<div class="px-group bg-color radius-md pdy-15 pdx-25" style="--bg-color:#f5f5f5">
-  <!-- Block content goes here -->
-</div>
-<!-- /wp:phenix/group -->
-```
+1. Add the Group block to your page
+2. In the sidebar settings, locate the "Background Color" option
+3. Set a background color (e.g., #f5f5f5)
+4. Set the "Border Radius" to "Medium"
+5. Add padding using the spacing controls in the toolbar
+6. Add your content blocks inside the group
 
 ### Flexbox Group
 
-A group using flexbox to arrange its children:
+To create a group using flexbox to arrange its children:
 
-```html
-<!-- wp:phenix/group {"flexbox":true,"flexDirection":"row","alignItems":"center","justifyContent":"space-between"} -->
-<div class="px-group flexbox row align-items-center justify-between">
-  <!-- Block content goes here -->
-</div>
-<!-- /wp:phenix/group -->
-```
+1. Add the Group block to your page
+2. In the toolbar, enable the Flexbox toggle
+3. Open the Layout Controls dropdown
+4. Set the flex direction to "Row"
+5. Set vertical alignment to "Center"
+6. Set horizontal alignment to "Space Between"
+7. Add your content blocks inside the group
 
 ### Animated Group
 
-A group with animation effects:
+To create a group with animation effects:
 
-```html
-<!-- wp:phenix/group {"animation":"fade-in","animationDuration":"1s","animationDelay":"0.2s"} -->
-<div class="px-group" data-animation="fade-in" data-duration="1s" data-delay="0.2s">
-  <!-- Block content goes here -->
-</div>
-<!-- /wp:phenix/group -->
-```
+1. Add the Group block to your page
+2. In the sidebar settings, locate the "Animation" section
+3. Select "Fade In" as the animation type
+4. Set the animation duration to "1s"
+5. Set the animation delay to "0.2s"
+6. Add your content blocks inside the group
+7. Preview the page to see the animation effect
 
 ## Best Practices
 

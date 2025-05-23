@@ -3,6 +3,26 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Phenix Design System",
   description: "A powerful, modular design system for WordPress and beyond.",
+  head: [
+    // Favicon
+    ['link', { rel: 'icon', href: '/phenix-blocks/logo.png' }],
+    
+    // Google Fonts preconnect
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    
+    // Google Fonts
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap', rel: 'stylesheet' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap', rel: 'stylesheet' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap', rel: 'stylesheet' }],
+    
+    // Phenix CSS from CDN
+    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/css/phenix.css', rel: 'stylesheet' }],
+    ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/css/phenix-utils.css', rel: 'stylesheet' }],
+    
+    // Phenix JS from CDN
+    ['script', { src: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/js/phenix.js', defer: true }]
+  ],
   base: '/phenix-blocks/', // Root path for GitHub Pages with custom domain
   ignoreDeadLinks: true, // Ignore dead links during build
   outDir: '../docs', // Output to docs folder for GitHub Pages classic deployment
@@ -235,8 +255,19 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Installation', link: '/wordpress/getting-started/installation' },
-            { text: 'General Settings', link: '/wordpress/getting-started/general-settings' },
-            { text: 'Theme Customizing', link: '/wordpress/getting-started/theme-customizing' }
+            { text: 'General Settings', link: '/wordpress/getting-started/general-settings' }
+          ]
+        },
+        {
+          text: 'Theme Customization',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/wordpress/theme-customization/index' },
+            { text: 'Site Editor', link: '/wordpress/theme-customization/editor-customization' },
+            { text: 'Theme.json Config', link: '/wordpress/theme-customization/theme-json-configuration' },
+            { text: 'Dynamic Template Parts', link: '/wordpress/theme-customization/dynamic-template-parts' },
+            { text: 'SASS/CSS Customization', link: '/wordpress/theme-customization/sass-customization' },
+            { text: 'JavaScript Customization', link: '/wordpress/theme-customization/javascript-customization' },
           ]
         },
         {

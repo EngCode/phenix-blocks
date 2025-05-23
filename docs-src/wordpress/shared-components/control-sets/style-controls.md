@@ -4,6 +4,24 @@ The Style Controls set provides a comprehensive interface for configuring visual
 
 ## Overview
 
+### Toolbar vs. Sidebar Implementation
+
+Style controls are distributed across both the toolbar and sidebar interfaces:
+
+#### Toolbar Style Controls
+
+The toolbar contains quick-access style controls for frequently used settings:
+
+- **Color Pickers**: Quick color selection for text and background
+- **Border Controls**: Quick toggles for border styles and width
+- **Alignment Buttons**: Text and content alignment options
+- **Spacing Controls**: Visual margin and padding adjustments
+- **Effects Toggles**: Quick toggles for shadows and opacity
+
+#### Sidebar Style Controls
+
+The sidebar contains more comprehensive style panels for detailed configuration:
+
 The Style Controls set is a collection of related controls that work together to provide a cohesive editing experience for block styling. It includes:
 
 - Text color selection

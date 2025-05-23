@@ -1,308 +1,241 @@
 ---
 layout: home
 title: Phenix Design System
+description: A powerful, modular design system for WordPress and beyond.
 hero:
   name: Phenix Design System
   text: The Ultimate WordPress Block Editor Enhancement
-  tagline: A comprehensive design system that transforms WordPress into a powerful website builder with advanced blocks, styling controls, and developer tools.
+  tagline: A comprehensive design system that transforms WordPress into a powerful website builder.
+  image:
+    src: /logo.png
+    alt: Phenix Design System Logo
   actions:
     - theme: brand
-      text: Front-End Framework
-      link: /frontend/
-    - theme: brand
-      text: WordPress Integration
-      link: /wordpress/
+      text: Get Started
+      link: /wordpress/getting-started/installation
     - theme: alt
-      text: GitHub
+      text: View on GitHub
       link: https://github.com/EngCode/phenix-blocks
+features:
+  - title: Custom Gutenberg Blocks
+    details: A collection of 20+ specialized blocks for creating complex layouts and dynamic content.
+    icon: 🧩
+  - title: Advanced Animation System
+    details: Scroll-driven animations with progress tracking and exit animations.
+    icon: ✨
+  - title: 3D Interactive Media
+    details: Embed and control interactive 3D models with Three.js integration.
+    icon: 🔄
+  - title: Integrated Third-Party Controls
+    details: Slider, typewriter, parallax effects, and more specialized components.
+    icon: 🧰
+  - title: Advanced Block Controls
+    details: Extensive styling and layout options with responsive capabilities.
+    icon: 🎛️
+  - title: Developer Tools
+    details: Built-in APIs for creating custom post types, taxonomies, and more.
+    icon: 🛠️
 ---
 
-<div style="padding: 2rem;"></div>
+## What is Phenix Design System?
 
-# Welcome to Phenix Design System
+Phenix Design System is a comprehensive design and development ecosystem available in two powerful forms:
 
-Phenix Design System is a powerful WordPress plugin (version 1.3.0) that enhances the block editor with a comprehensive set of custom blocks, advanced styling controls, and developer tools. It combines a robust front-end framework with seamless WordPress integration to provide everything needed for building modern, responsive websites without coding. The latest version introduces an advanced animation system with scroll-driven animations and 3D interactive media embedding capabilities.
+1. **phenix-ui**: A standalone front-end framework for any web project
+2. **pds-blocks**: A WordPress plugin with Gutenberg blocks integration
 
-## What is Phenix Blocks?
+Both share the same core front-end technology while offering different integration paths for your specific needs. Whether you're building a custom web application or enhancing a WordPress site, Phenix provides a complete solution with lightweight, performance-focused components.
 
-Phenix Blocks (`pds-blocks`) is a complete design ecosystem for WordPress that includes:
+## Two Powerful Solutions
 
-- **Custom Gutenberg Blocks**: A collection of 20+ specialized blocks for creating complex layouts and dynamic content
-- **Advanced Animation System**: Scroll-driven animations with progress tracking and exit animations
-- **3D Interactive Media**: Embed and control interactive 3D models with Three.js integration
-- **Integrated Third-Party Controls**: Slider, typewriter, parallax effects, and more specialized components
-- **Advanced Block Controls**: Extensive styling and layout options with responsive capabilities
-- **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
-- **Developer Tools**: Built-in APIs and utilities for creating custom post types, taxonomies, meta boxes, and more
-- **Performance Optimization**: Comprehensive tools to enhance site speed and user experience
-- **WooCommerce Integration**: Special features and optimizations for e-commerce sites
-- **Multi-language Support**: Full RTL compatibility and translation readiness
+### For WordPress Users (pds-blocks)
 
-## Custom Gutenberg Blocks
+The complete WordPress plugin transforms the standard WordPress editor into a powerful design system with:
 
-<div class="blocks-grid">
-  <div class="block-category">
-    <h3>Layout Blocks</h3>
-    <ul>
-      <li><strong>Container</strong>: Create boxed or full-width content areas with advanced styling options</li>
-      <li><strong>Grid Row</strong>: Flexible row layouts with responsive controls and gap settings</li>
-      <li><strong>Grid Column</strong>: Responsive columns with width controls for all device sizes</li>
-      <li><strong>Group</strong>: Group content with advanced styling and positioning options</li>
-      <li><strong>Theme Part</strong>: Include reusable template parts within your content</li>
-    </ul>
-  </div>
-  <div class="block-category">
-    <h3>Content Blocks</h3>
-    <ul>
-      <li><strong>Text</strong>: Enhanced text elements with advanced typography controls</li>
-      <li><strong>Media Element</strong>: Advanced image and video handling with responsive controls</li>
-      <li><strong>Icon Element</strong>: Insert and customize icons from multiple icon libraries</li>
-      <li><strong>Button</strong>: Create buttons with extensive styling and interaction options</li>
-      <li><strong>Logo</strong>: Insert and customize your site logo with sizing controls</li>
-      <li><strong>Page Head</strong>: Create dynamic page headers with title and breadcrumb support</li>
-    </ul>
-  </div>
-  <div class="block-category">
-    <h3>Interactive Blocks</h3>
-    <ul>
-      <li><strong>Popup</strong>: Create modal popups with custom triggers and animations</li>
-      <li><strong>Navigation</strong>: Build responsive menus with mobile support and custom styling</li>
-      <li><strong>Custom Code</strong>: Insert custom HTML, CSS, and JavaScript</li>
-      <li><strong>Logical Content</strong>: Display conditional content based on user roles, devices, or languages</li>
-    </ul>
-  </div>
-  <div class="block-category">
-    <h3>Dynamic Blocks</h3>
-    <ul>
-      <li><strong>Query</strong>: Display posts with advanced filtering and pagination options</li>
-      <li><strong>Taxonomies</strong>: Show categories, tags, or custom taxonomies with styling options</li>
-      <li><strong>Users Query</strong>: Display user information with filtering and styling controls</li>
-    </ul>
-  </div>
-</div>
+- **Custom Gutenberg Blocks**: 20+ specialized blocks for creating complex layouts
+- **Advanced Block Controls**: Extensive styling options with responsive capabilities
+- **WordPress Integration**: Seamless integration with WordPress core features
+- **Performance Optimization**: Tools to enhance WordPress site speed
+- **WooCommerce Integration**: Special features for e-commerce websites
+- **Developer Tools**: APIs for custom post types, taxonomies, and more
+
+### For Frontend Developers (phenix-ui)
+
+The standalone framework provides a lightweight solution for:
+
+- **Vanilla HTML/CSS/JS Projects**: Use in any web project without WordPress
+- **Modern Web Applications**: Integrate with React, Vue, Angular, or other frameworks
+- **Custom CMS Development**: Add to any content management system
+- **Design System Foundation**: Build your own design system on top of Phenix
+- **Legacy Project Enhancement**: Improve existing projects with modern capabilities
+
+## WordPress Integration (pds-blocks)
+
+The WordPress plugin enhances the standard block editor with powerful features:
+
+### Custom Gutenberg Blocks
+
+A comprehensive collection of specialized blocks organized into logical categories:
+
+#### Layout Blocks
+- **Container**: Create boxed or full-width content areas with advanced styling
+- **Grid Row**: Flexible row layouts with responsive controls and gap settings
+- **Grid Column**: Responsive columns with width controls for all device sizes
+- **Group**: Group content with advanced styling and positioning options
+- **Theme Part**: Include reusable template parts within your content
+
+#### Content Blocks
+- **Text**: Enhanced text elements with advanced typography controls
+- **Media Element**: Advanced image and video handling with responsive controls
+- **Icon Element**: Insert and customize icons from multiple icon libraries
+- **Button**: Create buttons with extensive styling and interaction options
+- **Logo**: Insert and customize your site logo with sizing controls
+- **Page Head**: Create dynamic page headers with title and breadcrumb support
+
+#### Interactive Blocks
+- **Popup**: Create modal popups with custom triggers and animations
+- **Navigation**: Build responsive menus with mobile support and custom styling
+- **Custom Code**: Insert custom HTML, CSS, and JavaScript
+- **3D Viewer**: Display interactive 3D models with customizable controls
+- **Logical Content**: Display conditional content based on user roles, devices, or languages
+
+#### Dynamic Blocks
+- **Query Block**: Display posts with advanced filtering and pagination
+- **Taxonomies Block**: Display taxonomy terms with custom styling
+- **Users Query Block**: Display user information with filtering options
+
+### Block Controls
+
+Every block includes powerful controls organized in intuitive panels:
+
+- **Layout Panel**: Control alignment, width, height, and position
+- **Style Panel**: Apply colors, backgrounds, borders, and effects
+- **Typography Panel**: Customize fonts, sizes, and text styles
+- **Responsive Panel**: Adjust display for different screen sizes
+- **Advanced Panel**: Add custom attributes, CSS classes, and more
+
+### WordPress Optimization
+
+Comprehensive tools to enhance WordPress performance:
+
+- **Head Optimizer**: Remove unnecessary WordPress scripts
+- **Asset Management**: Control CSS and JavaScript loading
+- **Image Optimization**: Automatically optimize image sizes and loading
+- **WordPress Cleanup**: Remove unused WordPress features
+- **WooCommerce Enhancement**: Special optimizations for WooCommerce sites
+
+## Front-End Framework (phenix-ui)
+
+The core front-end framework that powers both solutions:
+
+### CSS Framework
+A lightweight yet powerful CSS framework (140KB/32KB gzipped):
+
+- **Flexible Grid System**: Responsive layouts with flexbox and grid
+  - Containers, rows, and columns with responsive control
+  - Automatic and custom gap settings
+  - Equal height and aligned columns
+  - Masonry layout option
+
+- **Typography System**: Comprehensive text styling
+  - Custom font management with variable fonts support
+  - Responsive text sizing and line heights
+  - RTL text support and multilingual capabilities
+  - Text alignment, decoration, and transformation controls
+
+- **Utility Classes**: Over 500 utility classes for rapid styling
+  - Spacing (margin, padding) with responsive variants
+  - Colors and backgrounds with opacity control
+  - Display, positioning, and sizing utilities
+  - Flexbox and grid helpers
+
+- **Component Library**: Ready-to-use UI components
+  - Buttons, cards, alerts, and badges
+  - Modals, tooltips, and popovers
+  - Tabs, accordions, and carousels
+  - Navigation menus and breadcrumbs
+
+### JavaScript Utilities
+Modern, lightweight JavaScript tools (80KB/30KB gzipped):
+
+- **DOM Manipulation**: Simplified working with DOM elements
+  - Element selection and traversal
+  - Class and attribute manipulation
+  - Event handling and delegation
+  - Dynamic content insertion
+
+- **UI Components**: Ready-to-use interactive elements
+  - Modals and popups with multiple triggers
+  - Tabs and accordion systems
+  - Dropdown menus and navigation
+  - Form validation and enhanced inputs
+
+- **Media Handling**: Advanced media capabilities
+  - Lazy loading for images and videos
+  - Responsive media embedding
+  - Lightbox and gallery components
+  - Video and audio players with custom controls
 
 ## Advanced Animation System
 
 The latest version introduces a powerful animation system that takes your content to the next level:
 
-<div class="features-grid">
-  <div class="feature-category">
-    <h3>Scroll-Driven Animations</h3>
-    <ul>
-      <li><strong>Progress Tracking</strong>: Control animation progress based on scroll position</li>
-      <li><strong>Viewport Detection</strong>: Trigger animations when elements enter or exit the viewport</li>
-      <li><strong>Exit Animations</strong>: Define separate animations when elements leave the viewport</li>
-      <li><strong>Animation Delay</strong>: Set staggered timing for groups of animated elements</li>
-    </ul>
-  </div>
-  <div class="feature-category">
-    <h3>3D Interactive Media</h3>
-    <ul>
-      <li><strong>Model Viewer</strong>: Display interactive 3D models with pan, zoom, and rotate controls</li>
-      <li><strong>Multiple Format Support</strong>: Support for GLTF, GLB, OBJ, and FBX formats</li>
-      <li><strong>Responsive Sizing</strong>: Automatically adapt 3D content to different screen sizes</li>
-      <li><strong>Three.js Integration</strong>: Powered by the industry-standard 3D library</li>
-    </ul>
-  </div>
-</div>
+### Scroll-Driven Animations
+- **Progress Tracking**: Control animation progress based on scroll position
+- **Viewport Detection**: Trigger animations when elements enter or exit the viewport
+- **Exit Animations**: Define separate animations when elements leave the viewport
+- **Animation Delay**: Set staggered timing for groups of animated elements
 
-## Integrated Third-Party Controls
+### 3D Interactive Media
+- **Model Viewer**: Display interactive 3D models with pan, zoom, and rotate controls
+- **Multiple Format Support**: Support for GLTF, GLB, OBJ, and FBX formats
+- **Responsive Sizing**: Automatically adapt 3D content to different screen sizes
+- **Three.js Integration**: Powered by the industry-standard 3D library
 
-Phenix Design System seamlessly integrates powerful third-party components to enhance your website's functionality:
+## Developer Tools
 
-<div class="features-grid">
-  <div class="feature-category">
-    <h3>Interactive Elements</h3>
-    <ul>
-      <li><strong>Swiper Slider</strong>: Advanced touch-enabled slider with multiple configuration options</li>
-      <li><strong>Typewriter Effect</strong>: Create dynamic typing animations with customizable speed and text</li>
-      <li><strong>Parallax Effects</strong>: Create depth with elements that move at different speeds while scrolling</li>
-      <li><strong>Lightbox Gallery</strong>: Interactive image and video galleries with zoom and navigation</li>
-    </ul>
-  </div>
-  <div class="feature-category">
-    <h3>Layout & Display</h3>
-    <ul>
-      <li><strong>Masonry Layout</strong>: Dynamic grid layouts for varied content sizes with no gaps</li>
-      <li><strong>Accordion Panels</strong>: Collapsible content sections for better space utilization</li>
-      <li><strong>Tabs Interface</strong>: Organize content into tabbed sections for better user experience</li>
-      <li><strong>Advanced Data Tables</strong>: Sortable and filterable tables for data presentation</li>
-    </ul>
-  </div>
-</div>
+Phenix Design System provides powerful tools for both WordPress and front-end developers:
 
-## Advanced Block Controls
+### For WordPress Developers
 
-<div class="controls-grid">
-  <div class="control-category">
-    <h3>Layout Controls</h3>
-    <p>Fine-tune the structure and positioning of your content:</p>
-    <ul>
-      <li><strong>Alignment</strong>: Control horizontal and vertical alignment</li>
-      <li><strong>Dimensions</strong>: Set width, height, and max-width/height</li>
-      <li><strong>Spacing</strong>: Control margin and padding with responsive options</li>
-      <li><strong>Position</strong>: Set position type and coordinates (absolute, relative, etc.)</li>
-      <li><strong>Display</strong>: Control how elements display on different devices</li>
-    </ul>
-  </div>
-  <div class="control-category">
-    <h3>Style Controls</h3>
-    <p>Customize the visual appearance of your blocks:</p>
-    <ul>
-      <li><strong>Colors</strong>: Set text, background, and border colors</li>
-      <li><strong>Typography</strong>: Control font family, size, weight, and style</li>
-      <li><strong>Borders</strong>: Add and style borders with width, style, and radius options</li>
-      <li><strong>Effects</strong>: Add shadows, overlays, and hover effects</li>
-      <li><strong>Animations</strong>: Add entrance and hover animations</li>
-    </ul>
-  </div>
-  <div class="control-category">
-    <h3>Responsive Controls</h3>
-    <p>Ensure your design looks great on all devices:</p>
-    <ul>
-      <li><strong>Device-specific Settings</strong>: Customize for desktop, tablet, and mobile</li>
-      <li><strong>Responsive Display</strong>: Show/hide elements based on screen size</li>
-      <li><strong>Responsive Typography</strong>: Adjust text size for different devices</li>
-      <li><strong>Responsive Spacing</strong>: Control margin and padding per device</li>
-    </ul>
-  </div>
-  <div class="control-category">
-    <h3>Advanced Options</h3>
-    <p>Take full control of your blocks:</p>
-    <ul>
-      <li><strong>Custom CSS</strong>: Add custom CSS classes and inline styles</li>
-      <li><strong>Custom Attributes</strong>: Add data attributes and custom HTML attributes</li>
-      <li><strong>Motion Effects</strong>: Add scroll animations and parallax effects</li>
-      <li><strong>Conditional Logic</strong>: Display content based on user roles or device types</li>
-    </ul>
-  </div>
-</div>
+- **WordPress APIs**: Built-in functions to extend WordPress
+  - Custom Post Types with full UI integration
+  - Custom Taxonomies with hierarchical support
+  - Meta Box Creator for custom fields
+  - Admin Page Builder for custom interfaces
+  - Block Patterns and Templates registration
+  - Menu Location registration and management
 
-## Developer Tools & Optimization
+- **WooCommerce Integration**
+  - Performance optimization for WooCommerce
+  - Custom cart fragments and mini-cart
+  - Enhanced product displays
+  - Optimized checkout experience
+  - Product query and filtering enhancements
 
-<div class="tools-grid">
-  <div class="tool-category">
-    <h3>WordPress Extenders</h3>
-    <p>Powerful tools to extend WordPress functionality:</p>
-    <ul>
-      <li><strong>Custom Post Types Creator</strong>: Build custom content types with full UI</li>
-      <li><strong>Custom Taxonomies Creator</strong>: Create custom categories and tags</li>
-      <li><strong>Meta Box Creator</strong>: Add custom fields to any post type</li>
-      <li><strong>Block Patterns Creator</strong>: Build and register reusable patterns</li>
-      <li><strong>Menu Locations</strong>: Register custom menu positions</li>
-      <li><strong>Admin Page Creator</strong>: Build custom admin interfaces</li>
-      <li><strong>API Endpoint Creator</strong>: Create custom REST API endpoints</li>
-    </ul>
-  </div>
-  <div class="tool-category">
-    <h3>Performance Optimization</h3>
-    <p>Comprehensive tools to enhance site speed:</p>
-    <ul>
-      <li><strong>Head Optimizer</strong>: Remove unnecessary WordPress scripts</li>
-      <li><strong>Scripts Optimizer</strong>: Control and optimize JavaScript loading</li>
-      <li><strong>Styles Optimizer</strong>: Control and optimize CSS loading</li>
-      <li><strong>Emoji Remover</strong>: Remove WordPress emoji scripts</li>
-      <li><strong>Image Optimization</strong>: Control image sizes and loading</li>
-      <li><strong>Third-party Optimization</strong>: Optimize external scripts</li>
-      <li><strong>WooCommerce Optimizer</strong>: Enhance WooCommerce performance</li>
-    </ul>
-  </div>
-  <div class="tool-category">
-    <h3>WooCommerce Integration</h3>
-    <p>Enhanced e-commerce capabilities:</p>
-    <ul>
-      <li><strong>WooCommerce Optimizer</strong>: Remove unnecessary scripts and styles</li>
-      <li><strong>Custom Cart Fragment</strong>: Optimized AJAX cart updates</li>
-      <li><strong>Custom Mini Cart</strong>: Enhanced mini cart functionality</li>
-      <li><strong>Product Display</strong>: Improved product layouts and features</li>
-      <li><strong>Custom Sorting</strong>: Enhanced product sorting options</li>
-    </ul>
-  </div>
-  <div class="tool-category">
-    <h3>User Experience</h3>
-    <p>Features to enhance the user experience:</p>
-    <ul>
-      <li><strong>Loading Screen</strong>: Customizable pre-loading animations</li>
-      <li><strong>Login Customization</strong>: Brand the WordPress login page</li>
-      <li><strong>Lightbox</strong>: Enhanced image and media viewing</li>
-      <li><strong>Admin Customization</strong>: Branded admin experience</li>
-    </ul>
-  </div>
-</div>
+### For Front-End Developers
 
-## Front-End Framework
+- **Development Workflow**
+  - Modern build tools with Webpack
+  - SASS preprocessing for styling
+  - TypeScript support for JavaScript
+  - Component-based architecture
+  - Comprehensive documentation
 
-<div class="framework-grid">
-  <div class="framework-feature">
-    <h3>CSS Framework</h3>
-    <p>A lightweight yet powerful CSS framework:</p>
-    <ul>
-      <li><strong>Flexible Grid System</strong>: Responsive layouts with flexbox</li>
-      <li><strong>Typography System</strong>: Comprehensive text styling</li>
-      <li><strong>Utility Classes</strong>: Extensive collection for rapid styling</li>
-      <li><strong>Component Library</strong>: Pre-built UI components</li>
-      <li><strong>Responsive Design</strong>: Mobile-first approach with 5 breakpoints</li>
-      <li><strong>RTL Support</strong>: Full bidirectional text support</li>
-    </ul>
-  </div>
-  <div class="framework-feature">
-    <h3>JavaScript Utilities</h3>
-    <p>Powerful JavaScript tools and components:</p>
-    <ul>
-      <li><strong>DOM Manipulation</strong>: Simplified element handling</li>
-      <li><strong>UI Effects</strong>: Animations, transitions, and interactions</li>
-      <li><strong>Form Handling</strong>: Validation and advanced inputs</li>
-      <li><strong>Component Controllers</strong>: For tabs, accordions, modals, etc.</li>
-      <li><strong>Media Handling</strong>: Image, video, and audio utilities</li>
-    </ul>
-  </div>
-</div>
+- **Code Quality & Performance**
+  - Modular, reusable components
+  - Performance-optimized output
+  - Minimal dependencies
+  - Custom build configurations
+  - Comprehensive API documentation
 
-## Core Principles & Benefits
+## Core Principles
 
-<div class="principles-grid">
-  <div class="principle">
-    <h3>No-Code Website Building</h3>
-    <p>Create complex, professional websites without writing a single line of code. The intuitive block editor and pre-designed patterns make it easy for anyone to build beautiful pages.</p>
-  </div>
-  <div class="principle">
-    <h3>Developer-Friendly Architecture</h3>
-    <p>Built with modern development practices using SASS and TypeScript. The modular structure and comprehensive APIs make it easy to extend and customize.</p>
-  </div>
-  <div class="principle">
-    <h3>Performance-Focused</h3>
-    <p>Optimized for speed with minimal file sizes (Core CSS: 140KB/32KB gzipped, JS: 80KB/30KB gzipped) and built-in performance enhancement tools to ensure fast-loading websites.</p>
-  </div>
-  <div class="principle">
-    <h3>Comprehensive Design System</h3>
-    <p>A complete design ecosystem with consistent styling, typography, spacing, and interaction patterns across all components for a cohesive user experience.</p>
-  </div>
-</div>
-
-## Who It's For
-
-<div class="audience-grid">
-  <div class="audience">
-    <h3>Content Creators & Site Editors</h3>
-    <p>Build professional websites without coding knowledge. The intuitive block editor and pre-designed patterns make it easy to create beautiful, responsive layouts.</p>
-    <a href="/wordpress/getting-started/installation" class="btn">Start Creating →</a>
-  </div>
-  <div class="audience">
-    <h3>WordPress Developers</h3>
-    <p>Extend WordPress with powerful developer tools. Create custom post types, taxonomies, meta boxes, and API endpoints with minimal code.</p>
-    <a href="/wordpress/dev-tools/block-patterns-templates" class="btn">Start Developing →</a>
-  </div>
-  <div class="audience">
-    <h3>Theme Developers</h3>
-    <p>Build powerful themes with the Phenix framework. The block editor integration and styling system provide a solid foundation for custom themes.</p>
-    <a href="/frontend/getting-started/quick-start/installation" class="btn">Explore Framework →</a>
-  </div>
-  <div class="audience">
-    <h3>Agency Owners</h3>
-    <p>Streamline your workflow and deliver client projects faster. The comprehensive block library and styling options enable rapid development of custom websites.</p>
-    <a href="/wordpress/blocks/container-block" class="btn">See Blocks →</a>
-  </div>
-</div>
+- **No-Code Website Building**: Create complex, professional websites without writing code
+- **Developer-Friendly Architecture**: Built with modern development practices (SASS, TypeScript)
+- **Performance-Focused**: Optimized for speed with minimal file sizes (Core CSS: 140KB/32KB gzipped, JS: 80KB/30KB gzipped)
+- **Comprehensive Design System**: Consistent styling, typography, spacing, and interaction patterns
+- **Extensible Platform**: Designed to be extended and customized for specific project needs
 
 ## Technical Specifications
 
@@ -311,50 +244,26 @@ Phenix Design System seamlessly integrates powerful third-party components to en
 - **Browser Support**: Chrome, Firefox, Safari, Edge (latest versions)
 - **File Size**: Core CSS (140KB/32KB gzipped), JavaScript (80KB/30KB gzipped)
 - **Languages**: Full RTL support and translation-ready
-- **License**: GPL2
+- **License**: GPL2 for WordPress plugin, MIT for standalone framework
 
-## Documentation
+## Documentation Structure
 
-<div class="docs-grid">
-  <div class="docs-section">
-    <h3>Getting Started</h3>
-    <ul>
-      <li><a href="/wordpress/getting-started/installation">Installation Guide</a></li>
-      <li><a href="/wordpress/getting-started/general-settings">General Settings</a></li>
-      <li><a href="/wordpress/getting-started/theme-customizing">Theme Customization</a></li>
-    </ul>
-  </div>
-  <div class="docs-section">
-    <h3>Blocks Library</h3>
-    <ul>
-      <li><a href="/wordpress/blocks/container-block">Layout Blocks</a></li>
-      <li><a href="/wordpress/blocks/text-elements-block">Content Blocks</a></li>
-      <li><a href="/wordpress/blocks/popup-modals-block">Interactive Blocks</a></li>
-      <li><a href="/wordpress/blocks/dynamic-query-block">Dynamic Blocks</a></li>
-    </ul>
-  </div>
-  <div class="docs-section">
-    <h3>Block Controls</h3>
-    <ul>
-      <li><a href="/wordpress/controls/layout-options">Layout Controls</a></li>
-      <li><a href="/wordpress/controls/styles-options">Style Controls</a></li>
-      <li><a href="/wordpress/controls/typography-options">Typography Controls</a></li>
-      <li><a href="/wordpress/controls/responsive-display">Responsive Controls</a></li>
-    </ul>
-  </div>
-  <div class="docs-section">
-    <h3>Developer Tools</h3>
-    <ul>
-      <li><a href="/wordpress/dev-tools/custom-post-types">Custom Post Types</a></li>
-      <li><a href="/wordpress/dev-tools/custom-taxonomies">Custom Taxonomies</a></li>
-      <li><a href="/wordpress/dev-tools/custom-meta-boxes">Meta Boxes</a></li>
-      <li><a href="/wordpress/dev-tools/api-creator">API Creator</a></li>
-    </ul>
-  </div>
-</div>
+This documentation is organized into two main sections:
 
-<div class="cta-container">
-  <a href="/wordpress/getting-started/installation" class="cta-button primary">Get Started</a>
-  <a href="/wordpress/" class="cta-button secondary">Explore Documentation</a>
-  <a href="https://github.com/EngCode/phenix-blocks" class="cta-button tertiary">View on GitHub</a>
-</div>
+### [WordPress Documentation](/wordpress/)
+
+For users of the WordPress plugin (pds-blocks):
+
+- [Getting Started](/wordpress/getting-started/installation) - Installation and configuration
+- [Block Library](/wordpress/blocks/) - Detailed guides for each custom block
+- [Developer Tools](/wordpress/tools/) - APIs for extending WordPress
+- [Theme Customizing](/wordpress/getting-started/theme-customizing) - Theme integration
+
+### [Front-End Documentation](/frontend/)
+
+For users of the standalone framework (phenix-ui) or WordPress developers needing front-end details:
+
+- [Quick Start](/frontend/getting-started/quick-start/) - Installation and setup
+- [CSS Framework](/frontend/css/) - Grid system, typography, and utilities
+- [JavaScript](/frontend/js/) - DOM manipulation, effects, and components
+- [UI Components](/frontend/components/) - Pre-built UI elements

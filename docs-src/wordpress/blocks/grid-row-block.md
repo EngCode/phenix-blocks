@@ -24,28 +24,34 @@ The Grid Row Block is a fundamental layout component in the Phenix Design System
 
 ## Block Settings
 
-### Grid Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
-| Columns Gap | Set the spacing between columns (none, small, normal, large) |
-| Reverse | Reverse the order of columns on specific devices |
-| Equal Height | Make all columns in the row the same height |
+| Control | Description |
+|---------|-------------|
+| Columns Gap | Quick selection for spacing between columns (none, small, normal, large) |
+| Equal Height Toggle | Make all columns in the row the same height |
+| Slider Toggle | Convert the row to a carousel/slider |
+| Alignment Controls | Set horizontal and vertical alignment of columns |
+| Flexbox Controls | Configure flexbox properties like wrap and direction |
+| Margin & Padding | Quick access to spacing controls with responsive options |
+| Position Settings | Configure position type and coordinates |
 
-### Layout Options
+### Sidebar Controls
 
-| Option | Description |
-|--------|-------------|
-| Horizontal Alignment | Align columns horizontally (start, center, end, between, around, evenly) |
-| Vertical Alignment | Align columns vertically (start, center, end, stretch) |
-| Wrap | Control how columns wrap when they exceed the row width |
+#### Grid Options Panel
 
-### Carousel Options
+| Control | Description |
+|---------|-------------|
+| HTML ID | Set a custom ID for the row (useful for anchors) |
+| Reverse Order | Reverse the order of columns on specific devices |
+| Style Options | Enable/disable various styling features |
+
+#### Carousel Options Panel
 
 When converted to a carousel/slider:
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Slider Type | Choose between standard or marquee slider |
 | Slides Per View | Number of slides visible at once |
 | Space Between | Gap between slides |

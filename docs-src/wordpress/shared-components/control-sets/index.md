@@ -11,38 +11,47 @@ The control sets in the Phenix Blocks system are designed to:
 - **Simplify implementation**: Make it easier to add complex functionality to blocks
 - **Maintain consistency**: Ensure blocks follow the same patterns for similar settings
 
-## Available Control Sets
+## Control Sets by Location
 
-### Style Controls
+Control sets are organized based on where they appear in the block editor interface:
 
-Controls for managing visual styling aspects of blocks:
+### Toolbar Controls
 
-- [Colors Set](./colors-set.md): Controls for managing background, text, and border colors
-- [Typography Set](./typography-set.md): Controls for font family, size, weight, and text styling
-- [Spacing Set](./spacing-set.md): Controls for margins, padding, and other spacing properties
-- [Border Set](./border-set.md): Controls for border width, style, radius, and other properties
+These control sets appear in the top toolbar when a block is selected, providing quick access to frequently used settings:
 
-### Layout Controls
+- **Quick Style Controls**: Compact color pickers and style toggles
+- **Alignment Controls**: Buttons for text and content alignment
+- **Layout Toggles**: Quick switches for layout modes (flex, grid)
+- **Spacing Controls**: Visual margin and padding adjustments
+- **HTML Tag Selection**: Dropdown for semantic HTML elements
+- **Border Quick Controls**: Border style and width toggles
 
-Controls for managing the layout and positioning of blocks:
+### Sidebar Controls
 
-- [Responsive Set](./responsive-set.md): Controls for responsive behavior across different screen sizes
-- [Position Set](./position-set.md): Controls for positioning elements (relative, absolute, etc.)
-- [Display Set](./display-set.md): Controls for display properties (flex, block, grid, etc.)
+These more detailed control sets appear in the right sidebar, organized into panels:
 
-### Animation Controls
+#### Style Panels
 
-Controls for managing animations and transitions:
+- [Colors Set](./colors-set.md): Comprehensive color management for background, text, and borders
+- [Typography Set](./typography-set.md): Detailed font controls including family, size, weight, and text styling
+- [Spacing Set](./spacing-set.md): Precise margin and padding controls with responsive options
+- [Border Set](./border-set.md): Detailed border configuration including width, style, radius, and color
 
-- [Animations Set](./animations-set.md): Controls for entry, exit, and scroll-driven animations
-- [Transitions Set](./transitions-set.md): Controls for hover and state transitions
+#### Layout Panels
 
-### Advanced Controls
+- [Responsive Set](./responsive-set.md): Screen-specific settings for different device sizes
+- [Position Set](./position-set.md): Detailed positioning controls (relative, absolute, fixed)
+- [Display Set](./display-set.md): Comprehensive display property management
 
-Controls for specialized functionality:
+#### Animation Panels
 
-- [Query Set](./query-set.md): Controls for post queries and filtering
-- [Advanced Set](./advanced-set.md): Controls for advanced block settings and configurations
+- [Animations Set](./animations-set.md): Detailed controls for entry, exit, and scroll animations
+- [Transitions Set](./transitions-set.md): Configuration for hover and state transitions
+
+#### Advanced Panels
+
+- [Query Set](./query-set.md): Complex controls for post queries and filtering
+- [Advanced Set](./advanced-set.md): Specialized block settings and configurations
 
 ## Usage Pattern
 

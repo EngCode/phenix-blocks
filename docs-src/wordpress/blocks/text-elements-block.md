@@ -25,18 +25,33 @@ The Text Elements Block is a versatile content block in the Phenix Design System
 
 ## Block Settings
 
-### Element Type Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Element Type | Quick selection of HTML element type (h1-h6, p, span, div, etc.) |
+| Text Formatting | Bold, italic, underline, and strikethrough controls |
+| Text Alignment | Set text alignment (left, center, right, justify) |
+| Text Color | Quick color picker for text color |
+| Background Color | Quick color picker for background color |
+| Link Controls | Add or edit links within the text |
+| Icon Controls | Add and position icons within the text |
+| Spacing Controls | Quick access to margin and padding settings |
+
+### Sidebar Controls
+
+#### Element Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Element Type | Choose from heading (h1-h6), paragraph, span, div, etc. |
 | HTML Tag | Select the HTML tag for semantic structure |
 | Text Content | The actual text content to display |
 
-### Typography Options
+#### Typography Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Font Family | Select from available theme fonts |
 | Font Size | Set the text size with responsive options |
 | Font Weight | Control text boldness (light, regular, medium, bold) |
@@ -45,10 +60,10 @@ The Text Elements Block is a versatile content block in the Phenix Design System
 | Text Alignment | Set text alignment (left, center, right, justify) |
 | Text Transform | Apply capitalization styles (uppercase, lowercase, capitalize) |
 
-### Style Options
+#### Style Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Text Color | Set the color of the text |
 | Background | Add a background color or gradient |
 | Border | Add borders with custom color, width, and style |
@@ -57,19 +72,19 @@ The Text Elements Block is a versatile content block in the Phenix Design System
 | Padding | Add internal spacing |
 | Margin | Add external spacing |
 
-### Icon Options
+#### Icon Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Icon | Select an icon from the icon library |
 | Icon Position | Place the icon before or after the text |
 | Icon Size | Set the size of the icon relative to the text |
 | Icon Color | Customize the icon color |
 
-### Animation Options
+#### Animation Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Animation Type | Select from various animation effects |
 | Animation Trigger | Choose when the animation plays (on load, on scroll) |
 | Animation Duration | Set how long the animation lasts |

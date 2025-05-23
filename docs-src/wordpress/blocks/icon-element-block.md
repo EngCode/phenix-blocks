@@ -25,55 +25,70 @@ The Icon Element Block is a versatile component in the Phenix Design System that
 
 ## Block Settings
 
-### Icon Selection
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Icon Library | Quick selection of icon libraries (Font Awesome, Material Icons, etc.) |
+| Icon Selection | Browse and select icons from the chosen library |
+| Icon Size | Quickly adjust the size of the icon (xs, sm, md, lg, xl) |
+| Icon Color | Set the color of the icon via color picker |
+| Alignment | Set the icon alignment (left, center, right) |
+| Link Controls | Add or edit links for the icon |
+| Spacing Controls | Quick access to margin and padding settings |
+| Border Options | Configure border styles, widths, and colors |
+
+### Sidebar Controls
+
+#### Icon Selection Panel
+
+| Control | Description |
+|---------|-------------|
 | Icon Library | Choose from available icon libraries (Font Awesome, Material Icons, etc.) |
 | Icon | Select a specific icon from the chosen library |
 | Icon Style | Choose between solid, regular, light, or duotone styles (when available) |
 
-### Size and Appearance
+#### Size and Appearance Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Icon Size | Set the size of the icon (xs, sm, md, lg, xl, or custom) |
 | Icon Color | Set the color of the icon |
 | Opacity | Control the transparency of the icon |
 | Rotation | Rotate the icon by specific degrees |
 | Flip | Flip the icon horizontally or vertically |
 
-### Layout Options
+#### Layout Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Alignment | Set the icon alignment (left, center, right) |
 | Padding | Add internal spacing around the icon |
 | Margin | Add external spacing around the icon |
 | Display | Control how the icon is displayed (inline, block, etc.) |
 
-### Style Options
+#### Style Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Background | Add a background color or gradient |
 | Border | Add borders with custom color, width, and style |
 | Border Radius | Add rounded corners to the icon container |
 | Shadow | Add shadow effects to the icon |
 
-### Animation Options
+#### Animation Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Animation Type | Select from various animation effects (spin, pulse, beat, etc.) |
 | Animation Duration | Set how long the animation lasts |
 | Animation Timing | Control the timing function of the animation |
 | Hover Effects | Apply effects that activate on hover |
 
-### Link Options
+#### Link Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | URL | Set a destination URL for the icon |
 | Open in New Tab | Whether the link opens in a new browser tab |
 | Rel Attributes | Add rel attributes for SEO and security |

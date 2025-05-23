@@ -28,10 +28,23 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 
 ## Block Settings
 
-### Query Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Display Type | Quick toggle between grid, list, carousel, or masonry layouts |
+| Columns | Adjust the number of columns for grid and masonry layouts |
+| Item Spacing | Control the gap between items |
+| Refresh Query | Manually refresh the query results |
+| Layout Controls | Access dropdown menus for layout settings |
+| Alignment Controls | Set alignment of query items and content |
+
+### Sidebar Controls
+
+#### Query Panel
+
+| Control | Description |
+|---------|-------------|
 | Content Type | Select the type of content to query (posts, pages, custom post types) |
 | Number of Items | Set how many items to display per page |
 | Offset | Skip a specific number of items from the beginning of the results |
@@ -39,10 +52,10 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 | Order By | Sort results by various criteria (date, title, menu order, etc.) |
 | Order | Set ascending or descending order |
 
-### Filter Options
+#### Filter Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Categories | Filter by specific categories |
 | Tags | Filter by specific tags |
 | Taxonomies | Filter by custom taxonomies |
@@ -51,10 +64,10 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 | Search Term | Filter by keyword search |
 | Meta Query | Filter by custom field values |
 
-### Layout Options
+#### Layout Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Display Type | Choose between grid, list, carousel, or masonry layout |
 | Columns | Set the number of columns for grid and masonry layouts |
 | Gap | Control the spacing between items |
@@ -62,10 +75,10 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 | Item Height | Control the height of items (auto, fixed, or dynamic) |
 | Responsive Columns | Adjust column count for different screen sizes |
 
-### Item Template Options
+#### Template Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Template | Select from predefined item templates or create a custom one |
 | Show Thumbnail | Display the featured image for each item |
 | Thumbnail Size | Select the image size to use |
@@ -75,22 +88,22 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 | Show Meta | Display item metadata (author, date, categories, etc.) |
 | Show Button | Add a "Read More" or custom action button |
 
-### Pagination Options
+#### Pagination Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Pagination Type | Choose between numbered pagination, load more button, or infinite scroll |
 | Items Per Page | Set how many items to show before pagination |
 | Show Page Numbers | Display numbered page links |
 | Previous/Next | Show previous and next page navigation |
 | Load More Text | Customize the text for the load more button |
 
-### Carousel Options
+#### Carousel Panel
 
 When using carousel layout:
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Slides Per View | Number of slides visible at once |
 | Space Between | Gap between slides |
 | Loop | Enable/disable infinite loop |

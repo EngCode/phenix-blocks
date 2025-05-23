@@ -25,19 +25,35 @@ The Grid Column Block is a crucial component of the Phenix Design System's layou
 
 ## Block Settings
 
-### Column Size Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
-| Size | Set the column width (1-12 in a 12-column grid) |
+| Control | Description |
+|---------|-------------|
+| Column Size | Quick selection for column width (1-12 in a 12-column grid) |
+| Responsive Size | Set different column widths for each screen size via dropdown menus |
+| Flexbox Toggle | Enable/disable flexbox layout for direct children |
+| Alignment Controls | Set horizontal and vertical alignment of content |
+| Margin & Padding | Quick access to spacing controls with responsive options |
+| Position Settings | Configure position type and coordinates |
+| Border Options | Configure border styles, widths, and colors |
+| Effects Options | Add shadows, opacity, and other visual effects |
+
+### Sidebar Controls
+
+#### Column Options Panel
+
+| Control | Description |
+|---------|-------------|
+| HTML ID | Set a custom ID for the column (useful for anchors) |
+| Column Size | Set the column width (1-12 in a 12-column grid) |
 | Size MD | Column width on medium screens (tablets) |
 | Size LG | Column width on large screens (desktops) |
 | Size XL | Column width on extra-large screens |
 
-### Column Position Options
+#### Position Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Order | Control the visual order of the column |
 | Order MD | Column order on medium screens |
 | Order LG | Column order on large screens |
@@ -47,14 +63,13 @@ The Grid Column Block is a crucial component of the Phenix Design System's layou
 | Offset LG | Column offset on large screens |
 | Offset XL | Column offset on extra-large screens |
 
-### Layout Options
+#### Style Options Panel
 
-| Option | Description |
-|--------|-------------|
-| Flexbox | Enable flexbox layout for direct children |
-| Direction | Set the flex direction (row, column) |
-| Alignment | Control horizontal and vertical alignment |
-| Gap | Set spacing between flex items |
+| Control | Description |
+|---------|-------------|
+| Style Options | Enable/disable various styling features |
+| Typography | Configure text styling options |
+| Animation | Add entrance, hover, or scroll animations |
 
 ### Responsive Options
 

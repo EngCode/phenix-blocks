@@ -26,11 +26,26 @@ The Block Editor, introduced in WordPress 5.0, is the primary interface for crea
 
 ### Working with Phenix Blocks
 
-Phenix blocks follow a consistent pattern for settings and controls:
+Phenix blocks follow a consistent pattern for settings and controls that are divided between two main areas:
 
-1. **Basic Settings**: Available in the top toolbar for quick adjustments
-2. **Advanced Settings**: Available in the sidebar panel, organized into collapsible sections
-3. **Common Controls**: Consistent controls across blocks for layout, spacing, typography, and more
+1. **Toolbar Controls** (BlockControls):
+   - HTML tag selection (div, section, article, etc.)
+   - Container size options
+   - Section/container toggle
+   - Layout controls (via dropdown menus)
+   - Flexbox alignment options
+   - Margin and padding controls
+   - Position settings
+   - Border options
+   - Effects options
+
+2. **Sidebar Controls** (InspectorControls):
+   - HTML ID and anchor settings
+   - General style options and support toggles
+   - Typography settings
+   - Animation controls
+   - Block-specific special settings
+   - Advanced configuration options
 
 ## Site Editor (Full Site Editing)
 
@@ -68,7 +83,7 @@ The Classic Editor provides a more traditional word processor-like interface wit
 
 ## Block Controls Overview
 
-The Phenix Design System extends WordPress's native block controls with a comprehensive set of additional options that provide fine-grained control over your content's appearance and behavior. These controls are organized into several categories:
+The Phenix Design System extends WordPress's native block controls with a comprehensive set of additional options that provide fine-grained control over your content's appearance and behavior. These controls are organized into several categories and distributed between the toolbar and sidebar:
 
 1. **Layout Controls**: Options for controlling the structure and arrangement of content
 2. **Spacing Controls**: Margin and padding settings with responsive options

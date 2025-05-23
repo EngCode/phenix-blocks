@@ -1,6 +1,94 @@
 # Theme Customizing
 
-This guide explains the structure of the Phenix Starter Theme and how to customize it effectively. The theme is designed to work seamlessly with the Phenix Blocks plugin and the WordPress block editor, providing a solid foundation for creating custom websites.
+This guide explains how to customize the Phenix Starter Theme through both the WordPress editor interface and code modifications. The theme is designed to work seamlessly with the Phenix Blocks plugin and the WordPress block editor, providing a solid foundation for creating custom websites.
+
+## Customizing Through the Editor
+
+The Phenix Starter Theme fully supports the WordPress Full Site Editor, allowing you to customize your site's appearance without writing code.
+
+### Accessing the Site Editor
+
+1. In your WordPress admin, go to **Appearance → Editor**
+2. This opens the Full Site Editor where you can customize your entire site
+
+### Editing Templates
+
+1. In the Site Editor, click on the **WordPress logo** in the top left corner
+2. Select **Templates** to see a list of all available templates (Home, Single Post, Archive, etc.)
+3. Click on any template to edit its layout and content
+4. Use the block inserter (+ button) to add new blocks to your templates
+5. Save your changes when finished
+
+### Customizing Template Parts
+
+1. From the Site Editor, click the **WordPress logo** and select **Template Parts**
+2. Choose a template part to edit (Header, Footer, Sidebar, etc.)
+3. Modify the existing blocks or add new ones
+4. Template parts are reused across multiple templates for consistent design
+
+### Using Global Styles
+
+1. In the Site Editor, click the **Styles icon** (paintbrush) in the top-right corner
+2. This opens the Global Styles panel with limited options:
+   - **Colors**: Customize text, background, and link colors
+
+**Important Note**: In Phenix theme, several global settings are controlled differently:
+   - **Typography**: Font settings are managed through the **Design System → General Settings → Design Fonts** panel, not in the Global Styles
+   - **Layout**: Layout settings are controlled on a per-block basis through the Phenix Controls panel
+   - **Blocks**: WordPress core blocks can be enabled/disabled in the **Design System → General Settings → Phenix Blocks** panel
+
+### Customizing Individual Blocks
+
+1. Select any block in the editor
+2. Block controls are available in two locations:
+   - **Block Toolbar** (appears above the selected block):
+     - HTML tag selection (div, section, article, etc.)
+     - Container size options
+     - Section/container toggle
+     - Layout controls (via dropdown menus)
+     - Flexbox alignment options
+     - Margin and padding controls
+     - Position settings
+     - Border options
+     - Effects options
+   - **Block Settings Sidebar** (right side of the screen):
+     - HTML ID and anchor settings
+     - General style options and support toggles
+     - Typography settings
+     - Animation controls
+     - Block-specific special settings
+     - Advanced configuration options
+3. Toggle between **Settings** and **Styles** tabs in the sidebar for different customization options
+
+### Using Phenix Design System Controls
+
+Phenix Blocks adds powerful design controls to the editor:
+
+1. Select any block to access Phenix controls in two locations:
+   - **Extended Toolbar Controls** (BlockControls): 
+     - HTML tag selection dropdowns
+     - Container size options
+     - Section/container toggles
+     - Dropdown menus for layout settings
+     - Flexbox alignment buttons
+     - Margin and padding controls with responsive options
+     - Position settings with responsive options
+     - Border controls with responsive options
+     - Effects options
+   - **Phenix Controls Panel** in the sidebar (InspectorControls):
+     - HTML ID and anchor settings
+     - General style options and support toggles
+     - Typography settings with responsive options
+     - Animation controls (entrance, hover, scroll)
+     - Block-specific special settings
+     - Advanced configuration options
+
+### Creating and Using Block Patterns
+
+1. Create a block arrangement you want to reuse
+2. Select all the blocks and click the **three dots** menu
+3. Choose **Create pattern** and give it a name and category
+4. Your pattern will now be available in the block inserter under the Patterns tab
 
 ## Theme Structure
 
@@ -93,15 +181,21 @@ The `style.js` file allows you to add custom JavaScript functionality to your th
 1. **Edit the `style.js` file**: Add your custom JavaScript code to this file.
 
    ```javascript
-   document.addEventListener('DOMContentLoaded', ready => {
+   document.addEventListener('DOMContentLoaded', () => {
        // Your custom JavaScript here
        
        // Example: Add a scroll animation
-       Phenix('.animate-on-scroll').forEach(element => {
-           Phenix(element).scrollSpy({
-               animation: 'fade-in',
-               duration: 800
-           });
+       Phenix('[data-animation]').animations({
+           animation: 'fadeIn',
+           duration: 800,
+           delay: 200
+       });
+       
+       // For scroll-driven animations
+       Phenix('.scroll-driven-element').animations({
+           animation: 'fadeIn',
+           scrollDriven: true,
+           drivenEnd: 'center'
        });
    });
    ```
@@ -330,33 +424,7 @@ You can modify the `theme.json` file to change how your theme integrates with th
    }
    ```
 
-2. **Typography Settings**: Define font families, sizes, and other typography settings.
-
-   ```json
-   "typography": {
-     "fontFamilies": [
-       {
-         "fontFamily": "'Poppins', sans-serif",
-         "name": "Poppins",
-         "slug": "primary"
-       }
-     ],
-     "fontSizes": [
-       {
-         "name": "Small",
-         "size": "14px",
-         "slug": "small"
-       },
-       {
-         "name": "Medium",
-         "size": "16px",
-         "slug": "medium"
-       }
-     ]
-   }
-   ```
-
-3. **Custom Templates**: Define custom page templates that will be available in the block editor.
+2. **Custom Templates**: Define custom page templates that will be available in the block editor.
 
    ```json
    "customTemplates": [
@@ -368,7 +436,7 @@ You can modify the `theme.json` file to change how your theme integrates with th
    ]
    ```
 
-4. **Template Parts**: Define reusable template parts for your theme.
+3. **Template Parts**: Define reusable template parts for your theme.
 
    ```json
    "templateParts": [

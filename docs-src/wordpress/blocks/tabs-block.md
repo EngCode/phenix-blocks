@@ -27,10 +27,23 @@ The Tabs Block is a versatile component in the Phenix Design System that allows 
 
 ## Block Settings
 
-### General Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Add Tab | Add a new tab section |
+| Move Up/Down | Reorder tab sections |
+| Tab Style | Quick toggle between horizontal, vertical, pills, or button styles |
+| Tab Alignment | Quickly set the alignment of tab titles (left, center, right) |
+| Duplicate | Duplicate a tab section |
+| Remove | Remove a tab section |
+
+### Sidebar Controls
+
+#### General Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Tab Style | Choose between horizontal, vertical, pills, or button tabs |
 | Default Active | Set which tab should be active by default |
 | Allow All Closed | Enable/disable the option to close all tabs |
@@ -38,10 +51,10 @@ The Tabs Block is a versatile component in the Phenix Design System that allows 
 | Enable Animation | Add transition animations when switching tabs |
 | Animation Type | Select the type of animation (fade, slide, etc.) |
 
-### Style Options
+#### Style Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Tab Color | Set the color of inactive tab titles |
 | Active Tab Color | Set the color of the active tab title |
 | Tab Background | Set the background color of inactive tabs |
@@ -53,10 +66,10 @@ The Tabs Block is a versatile component in the Phenix Design System that allows 
 | Padding | Add internal spacing within tabs and content |
 | Margin | Add external spacing around the tabs block |
 
-### Responsive Options
+#### Responsive Options Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Mobile Layout | Control how tabs display on mobile devices |
 | Stack on Mobile | Convert horizontal tabs to vertical on small screens |
 | Accordion on Mobile | Convert tabs to accordion style on small screens |

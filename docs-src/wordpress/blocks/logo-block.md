@@ -47,7 +47,6 @@ The Logo Block is a specialized component in the Phenix Design System that allow
 
 | Option | Description |
 |--------|-------------|
-| Alignment | Set the logo alignment (left, center, right) |
 | Padding | Add internal spacing around the logo |
 | Margin | Add external spacing around the logo |
 | Border | Add borders with custom color, width, and style |
@@ -66,126 +65,65 @@ The Logo Block is a specialized component in the Phenix Design System that allow
 
 ### Basic Logo
 
-A simple logo with default settings:
+To add a basic logo with default settings:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png","logoAlt":"Company Name"} -->
-<div class="wp-block-phenix-logo">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo.png" alt="Company Name" class="img-fluid">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-```
+1. Add the Logo block to your page or template
+2. Select your logo image from the Media Library
+3. The logo will automatically link to your homepage
 
 ### Logo with Custom Width
 
-A logo with a specific width setting:
+To set a specific width for your logo:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png","logoWidth":"200px"} -->
-<div class="wp-block-phenix-logo">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo.png" alt="" class="img-fluid" style="width:200px">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-```
+1. Add the Logo block and select your image
+2. In the block settings sidebar, find the "Logo Width" option
+3. Enter a specific width (e.g., "200px")
 
 ### Centered Logo with Padding
 
-A centered logo with custom padding:
+To create a centered logo with padding:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png","alignment":"center","padding":"md"} -->
-<div class="wp-block-phenix-logo tx-align-center pdy-15 pdx-15">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo.png" alt="" class="img-fluid">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-```
+1. Add the Logo block and select your image
+2. Under the "Spacing" section, add padding as needed
 
 ### Logo with Dark Variant
 
-A logo with both light and dark variants:
+To add a logo with both light and dark variants:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo-light.png","darkLogoID":124,"darkLogoURL":"https://example.com/logo-dark.png"} -->
-<div class="wp-block-phenix-logo">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo-light.png" alt="" class="img-fluid light-logo">
-    <img src="https://example.com/logo-dark.png" alt="" class="img-fluid dark-logo">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-```
+1. Add the Logo block and select your light mode logo
+2. In the block settings sidebar, find the "Dark Mode Logo" option
+3. Enable it and select your dark mode logo from the Media Library
+4. The appropriate logo will display based on the user's theme preference
 
 ### Responsive Logo
 
-A logo with different sizes for different screen sizes:
+To create a logo with different sizes for different screen sizes:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png","mobileWidth":"120px","tabletWidth":"160px","desktopWidth":"200px"} -->
-<div class="wp-block-phenix-logo">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo.png" alt="" class="img-fluid" style="width:120px;--tablet-width:160px;--desktop-width:200px">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-```
+1. Add the Logo block and select your image
+2. In the block settings sidebar, find the "Responsive Settings" section
+3. Set different widths for Mobile, Tablet, and Desktop viewports
 
 ## Common Use Cases
 
 ### Header Logo
 
-Placing a logo in the site header:
+To place a logo in your site header:
 
-```html
-<!-- wp:phenix/container -->
-<div class="px-container">
-  <!-- wp:phenix/grid-row {"alignV":"center"} -->
-  <div class="px-row align-items-center">
-    <!-- wp:phenix/grid-column {"size":3} -->
-    <div class="px-col col-3">
-      <!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png"} -->
-      <div class="wp-block-phenix-logo">
-        <a href="/" class="site-logo">
-          <img src="https://example.com/logo.png" alt="" class="img-fluid">
-        </a>
-      </div>
-      <!-- /wp:phenix/logo -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-    
-    <!-- wp:phenix/grid-column {"size":9} -->
-    <div class="px-col col-9">
-      <!-- Navigation menu goes here -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-  </div>
-  <!-- /wp:phenix/grid-row -->
-</div>
-<!-- /wp:phenix/container -->
-```
+1. Edit your header template part in the Site Editor
+2. Add a Container block
+3. Add a Grid Column block (e.g., with size "3")
+4. Inside this column, add your Logo block
+5. Add another Grid Column block (e.g., with size "9") for navigation
 
 ### Footer Logo
 
-Placing a smaller logo in the site footer:
+To place a smaller logo in your site footer:
 
-```html
-<!-- wp:phenix/logo {"logoID":123,"logoURL":"https://example.com/logo.png","logoWidth":"120px","alignment":"center","margin":"bottom-md"} -->
-<div class="wp-block-phenix-logo tx-align-center mb-15">
-  <a href="/" class="site-logo">
-    <img src="https://example.com/logo.png" alt="" class="img-fluid" style="width:120px">
-  </a>
-</div>
-<!-- /wp:phenix/logo -->
-
-<!-- wp:paragraph {"align":"center"} -->
-<p class="has-text-align-center">© 2025 Company Name. All rights reserved.</p>
-<!-- /wp:paragraph -->
-```
+1. Edit your footer template part in the Site Editor
+2. Add the Logo block
+3. Set a smaller width (e.g., "120px")
+4. Add bottom margin for spacing
+5. Add a Paragraph block below for copyright information
 
 ## Best Practices
 

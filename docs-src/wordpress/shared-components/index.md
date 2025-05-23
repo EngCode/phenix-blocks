@@ -47,14 +47,53 @@ Utility functions and components that help integrate the controls with the WordP
 
 ## Integration with Blocks
 
-Blocks use the shared components in their `edit.js` files to create their editing interfaces. The typical pattern is:
+Blocks use the shared components in their `edit.js` files to create their editing interfaces. The components are distributed between two main areas of the block editor:
+
+### Toolbar Controls (BlockControls)
+
+Components that appear in the top toolbar when a block is selected. These controls provide quick access to frequently used settings and are designed for efficiency and immediate visual feedback.
+
+#### Common Toolbar Controls
+
+| Control Type | Description | Example Usage |
+|--------------|-------------|---------------|
+| HTML Tag Selection | Dropdown for selecting semantic HTML elements | Changing a container from `div` to `section` |
+| Container Type | Toggle between fixed-width and fluid containers | Switching a container to full-width |
+| Section Toggle | Convert between regular container and section | Making a container into a full section |
+| Layout Controls | Dropdown menus for layout configuration | Accessing flexbox, margin, padding settings |
+| Alignment Controls | Buttons for content alignment | Setting horizontal/vertical alignment |
+| Spacing Controls | Quick access to margin and padding | Adjusting spacing with visual feedback |
+| Position Settings | Controls for element positioning | Setting relative/absolute positioning |
+| Border Options | Controls for border styling | Adding borders with custom styles |
+| Effects Options | Controls for visual effects | Adding shadows, opacity effects |
+
+### Sidebar Controls (InspectorControls)
+
+Components that appear in the right sidebar when a block is selected. These controls provide more detailed configuration options organized into panels for comprehensive block customization.
+
+#### Common Sidebar Panels
+
+| Panel Type | Description | Example Controls |
+|------------|-------------|------------------|
+| General Options | Basic block configuration | HTML ID, anchor settings, block-specific toggles |
+| Style Options | Visual styling properties | Background, color, border, effects settings |
+| Typography | Text styling controls | Font family, size, weight, line height, spacing |
+| Layout | Structural arrangement | Flexbox, grid, positioning, sizing options |
+| Spacing | Margin and padding | Detailed spacing controls with responsive options |
+| Animation | Motion and transition | Animation type, duration, delay, trigger settings |
+| Advanced | Special functionality | Block-specific advanced features |
+
+### Integration Pattern
+
+The typical integration pattern is:
 
 1. Import required components from the `px-controls` directory
 2. Set up attribute management methods
-3. Use the components in the block controls and inspector panels
-4. Connect the components to the block's attributes
+3. Add toolbar components to the `BlockControls` component
+4. Add sidebar components to the `InspectorControls` component
+5. Connect all components to the block's attributes
 
-For example, a button block might use the `StylesSet`, `TypographySet`, and `PhenixInput` components to manage its appearance and content.
+For example, a button block might use the `StylesSet` in the sidebar and alignment controls in the toolbar to manage its appearance.
 
 ## Development Workflow
 

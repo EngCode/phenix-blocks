@@ -25,22 +25,27 @@ The Container Block is one of the most important blocks in the Phenix Design Sys
 
 ## Block Settings
 
-### Container Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| HTML Tag | Select the HTML element (div, section, article, etc.) |
 | Container Type | Choose between fixed-width or fluid (full-width) container |
+| Section Toggle | Toggle between regular container and section mode |
+| Layout Controls | Access dropdown menus for flexbox, margin, padding, and position settings |
+| Flexbox Alignment | Control horizontal and vertical alignment of content |
+| Border Options | Configure border styles, widths, and colors |
+| Effects Options | Add shadows, opacity, and other visual effects |
+
+### Sidebar Controls
+
+| Control | Description |
+|---------|-------------|
+| HTML ID | Set a custom ID for the container (useful for anchors) |
+| Style Options | Enable/disable various styling features |
 | Custom Width | Set a custom maximum width for the container |
-| Alignment | Center the container or align it to the left/right |
-
-### Layout Options
-
-| Option | Description |
-|--------|-------------|
-| Flexbox | Enable flexbox layout for direct children |
-| Direction | Set the flex direction (row, column) |
-| Alignment | Control horizontal and vertical alignment |
-| Gap | Set spacing between flex items |
+| Typography | Configure text styling options |
+| Animation | Add entrance, hover, or scroll animations |
 
 ### Responsive Options
 
@@ -55,43 +60,41 @@ The Container Block includes responsive controls for:
 
 ### Basic Container
 
-A standard centered container with default maximum width:
+To create a standard centered container with default maximum width:
 
-```html
-<!-- wp:phenix/container -->
-<div class="px-container">Content goes here</div>
-<!-- /wp:phenix/container -->
-```
+1. Add the Container block to your page
+2. Add your content blocks inside the container
+3. The container will automatically center your content with appropriate maximum width
 
 ### Fluid Container
 
-A full-width container that spans the entire width of the viewport:
+To create a full-width container that spans the entire width of the viewport:
 
-```html
-<!-- wp:phenix/container {"isFluid":true} -->
-<div class="px-container fluid">Full-width content</div>
-<!-- /wp:phenix/container -->
-```
+1. Add the Container block to your page
+2. In the toolbar, click the container type toggle to switch to "Fluid"
+3. Add your content blocks inside the container
+4. The container will span the full width of the screen
 
 ### Custom Width Container
 
-A container with a custom maximum width:
+To create a container with a custom maximum width:
 
-```html
-<!-- wp:phenix/container {"customWidth":"800px"} -->
-<div class="px-container" style="max-width:800px">Custom width content</div>
-<!-- /wp:phenix/container -->
-```
+1. Add the Container block to your page
+2. In the sidebar settings, locate the "Custom Width" option
+3. Enter your desired width (e.g., "800px")
+4. Add your content blocks inside the container
 
 ### Container with Flexbox Layout
 
-A container using flexbox to arrange its children:
+To create a container using flexbox to arrange its children:
 
-```html
-<!-- wp:phenix/container {"flexbox":true,"flexDirection":"row","alignItems":"center","justifyContent":"space-between"} -->
-<div class="px-container flexbox row align-items-center justify-between">Flex content</div>
-<!-- /wp:phenix/container -->
-```
+1. Add the Container block to your page
+2. In the toolbar, open the Layout Controls dropdown
+3. Enable the Flexbox option
+4. Set the flex direction to "Row"
+5. Set vertical alignment to "Center"
+6. Set horizontal alignment to "Space Between"
+7. Add your content blocks inside the container
 
 ## Best Practices
 

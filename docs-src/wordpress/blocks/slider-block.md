@@ -30,10 +30,25 @@ The Slider Block is a versatile component in the Phenix Design System that allow
 
 ## Block Settings
 
-### General Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Add Slide | Add a new slide to the slider |
+| Move Up/Down | Reorder slides in the slider |
+| Slider Type | Quick toggle between standard, carousel, or fade slider types |
+| Navigation Toggle | Quickly enable/disable navigation arrows |
+| Pagination Toggle | Quickly enable/disable pagination indicators |
+| Autoplay Toggle | Quickly enable/disable automatic sliding |
+| Duplicate | Duplicate a slide |
+| Remove | Remove a slide |
+
+### Sidebar Controls
+
+#### General Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Slider Type | Choose between standard slider, carousel, or fade slider |
 | Slides Per View | Set how many slides to show at once (for carousel type) |
 | Space Between | Control the gap between slides |
@@ -42,10 +57,10 @@ The Slider Block is a versatile component in the Phenix Design System that allow
 | Direction | Set the slider direction (horizontal or vertical) |
 | Effect | Choose transition effect (slide, fade, cube, etc.) |
 
-### Navigation Options
+#### Navigation Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Navigation | Show/hide navigation arrows |
 | Navigation Position | Set the position of navigation arrows |
 | Navigation Style | Choose from different navigation arrow styles |
@@ -54,10 +69,10 @@ The Slider Block is a versatile component in the Phenix Design System that allow
 | Navigation Background | Add background to navigation arrows |
 | Navigation Border Radius | Add rounded corners to navigation arrows |
 
-### Pagination Options
+#### Pagination Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Pagination | Show/hide pagination indicators |
 | Pagination Type | Choose between bullets, fraction, or progress bar |
 | Pagination Position | Set the position of pagination indicators |
@@ -66,20 +81,20 @@ The Slider Block is a versatile component in the Phenix Design System that allow
 | Dynamic Bullets | Enable/disable dynamic bullets pagination |
 | Clickable | Make pagination indicators clickable |
 
-### Autoplay Options
+#### Autoplay Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Autoplay | Enable/disable automatic sliding |
 | Autoplay Delay | Set the delay between slides (in milliseconds) |
 | Autoplay Pause on Hover | Pause autoplay when hovering over the slider |
 | Autoplay Disable on Interaction | Disable autoplay after user interaction |
 | Autoplay Reverse | Reverse the autoplay direction |
 
-### Responsive Options
+#### Responsive Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Breakpoints | Define custom behavior at different screen sizes |
 | Mobile Slides Per View | Set the number of slides visible on mobile devices |
 | Tablet Slides Per View | Set the number of slides visible on tablet devices |
@@ -88,10 +103,10 @@ The Slider Block is a versatile component in the Phenix Design System that allow
 | Mobile Navigation | Show/hide navigation on mobile devices |
 | Mobile Pagination | Show/hide pagination on mobile devices |
 
-### Style Options
+#### Style Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Height | Set the height of the slider (auto, fixed, or aspect ratio) |
 | Width | Control the width of the slider |
 | Background | Add a background color or gradient to the slider |

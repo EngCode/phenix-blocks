@@ -27,29 +27,44 @@ The Media Element Block is a versatile component in the Phenix Design System tha
 
 ## Block Settings
 
-### Media Type Options
+### Toolbar Controls
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
+| Media Selection | Upload or select media from the library |
+| Media Type | Quick toggle between image, video, audio, or other media types |
+| Alignment | Set the media alignment (left, center, right, wide, full) |
+| Link Controls | Add or edit links for the media element |
+| Edit Media | Access the media editing tools (crop, rotate, etc.) |
+| Replace | Replace the current media with another file |
+| Spacing Controls | Quick access to margin and padding settings |
+| Border Options | Configure border styles, widths, and colors |
+
+### Sidebar Controls
+
+#### Media Options Panel
+
+| Control | Description |
+|---------|-------------|
 | Media Type | Choose between image, video, audio, or other media types |
 | Media Source | Select from media library, external URL, or embed code |
 | Media Size | Select the image size for responsive display |
 | Alt Text | Add alternative text for accessibility (images) |
 
-### Layout Options
+#### Layout Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Alignment | Set the media alignment (left, center, right) |
 | Width | Control the width of the media element |
 | Height | Set a specific height or maintain aspect ratio |
 | Object Fit | Control how the media fits its container (cover, contain, fill) |
 | Object Position | Set the focus point for cropped media |
 
-### Style Options
+#### Style Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Border | Add borders with custom color, width, and style |
 | Border Radius | Add rounded corners or create circular images |
 | Shadow | Add shadow effects to the media element |
@@ -57,19 +72,19 @@ The Media Element Block is a versatile component in the Phenix Design System tha
 | Filters | Apply CSS filters (grayscale, blur, contrast, etc.) |
 | Mask | Apply shape masks to images |
 
-### Link Options
+#### Link Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Link To | Set where the media links to (none, media file, custom URL) |
 | Open in New Tab | Whether the link opens in a new browser tab |
 | Lightbox | Enable lightbox view for images |
 | Download | Allow users to download the media |
 
-### Video/Audio Options
+#### Video/Audio Panel
 
-| Option | Description |
-|--------|-------------|
+| Control | Description |
+|---------|-------------|
 | Autoplay | Automatically start playback when page loads |
 | Loop | Continuously repeat the media |
 | Controls | Show or hide player controls |

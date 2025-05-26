@@ -20,13 +20,14 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     if (!product_id) { return; }
 
     //===> Create Form Data Request <===//
+    const formURL = decodeURIComponent(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'));
     const formData = new URLSearchParams();
     formData.append('quantity', quantity.toString());
     formData.append('action', 'woocommerce_add_to_cart');
     formData.append('product_id', product_id.toString());
 
     //===> Send the request to WooCommerce via Fetch API <===//
-    fetch(wc_add_to_cart_params.wc_ajax_url.replace('%%endpoint%%', 'add_to_cart'), {
+    fetch(formURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
         body: formData.toString()

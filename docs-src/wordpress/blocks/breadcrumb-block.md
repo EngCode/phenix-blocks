@@ -2,6 +2,80 @@
 
 ## Overview
 
+The Breadcrumb Block provides navigation hierarchy visualization in the Phenix Design System. It uses the `px-breadcrumb` component class and supports RTL layouts and custom separators.
+
+## Editor Interface
+
+### Quick Settings Toolbar
+
+1. **Separator Options**:
+   - Default separator (/)
+   - RTL separator (\\)
+   - Font icon separator
+   - Custom separator
+
+2. **Style Controls**:
+   - Typography settings
+   - Color options
+   - Spacing controls
+   - Alignment settings
+
+3. **Layout Options**:
+   - RTL support
+   - Spacing configuration
+   - Separator alignment
+   - Item positioning
+
+## Features
+
+### Navigation Structure
+
+1. **Item Management**:
+   - Dynamic item generation
+   - Custom link support
+   - Current page indication
+   - Path visualization
+
+2. **Style Options**:
+   - Custom separators
+   - Font icon integration
+   - Color customization
+   - Typography controls
+
+3. **Layout Features**:
+   - RTL layout support
+   - Responsive design
+   - Flexible spacing
+   - Alignment options
+
+## Best Practices
+
+1. **Structure Usage**:
+   - Keep paths logical
+   - Use clear labels
+   - Maintain hierarchy
+   - Consider context
+
+2. **Accessibility**:
+   - Use semantic markup
+   - Provide clear navigation
+   - Maintain contrast
+   - Test screen readers
+
+3. **Responsive Design**:
+   - Test on mobile
+   - Check wrapping
+   - Verify spacing
+   - Validate layouts
+
+4. **Performance**:
+   - Keep paths short
+   - Use built-in options
+   - Minimize customization
+   - Test interactions
+
+## Overview
+
 The Breadcrumb Block is a navigation component in the Phenix Design System that displays a path of links showing the user's location within the website's hierarchy. It helps users understand their current position and provides easy navigation to parent and ancestor pages. The breadcrumb trail automatically updates based on the current page context and site structure.
 
 <!-- Image placeholder for Breadcrumb Block -->

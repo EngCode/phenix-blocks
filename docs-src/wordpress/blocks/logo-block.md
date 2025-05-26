@@ -2,17 +2,18 @@
 
 ## Overview
 
-The Logo Block is a specialized component in the Phenix Design System that allows you to easily add and customize your website's logo. It provides options for different logo variants (light/dark), responsive sizing, and linking to the homepage. The Logo Block is typically used in headers, footers, and other branding areas of your website.
+The Logo Block is a specialized component in the Phenix Design System that allows you to easily add and customize your website's logo. It provides options for responsive sizing, favicon management, and automatic homepage linking. The Logo Block is typically used in headers, footers, and other branding areas of your website.
 
 <!-- Image placeholder for Logo Block -->
 
 ## Key Features
 
-- Display your site logo with customizable options
-- Support for light and dark logo variants
-- Responsive sizing for different screen sizes
+- Display your site logo with customizable size options
+- Responsive logo with mobile variant options
+- Integrated favicon management
 - Automatic linking to the homepage
-- Custom alt text for accessibility
+- Automatic alt text using site title
+- Option to use favicon as mobile logo
 - Advanced styling options including size, padding, and margins
 
 ## How to Use
@@ -30,10 +31,12 @@ The Logo Block is a specialized component in the Phenix Design System that allow
 | Option | Description |
 |--------|-------------|
 | Logo Image | Select the main logo image from the media library |
-| Dark Logo | Optional alternative logo for dark backgrounds or dark mode |
-| Logo Width | Set the width of the logo (auto, custom, or responsive) |
-| Logo Height | Set the height of the logo (auto or custom) |
-| Alt Text | Alternative text for the logo image for accessibility |
+| Logo Size (Height) | Set the height of the logo |
+| Logo Width | Optional custom width for the logo |
+| Favicon | Upload and set the site favicon |
+| Responsive Logo | Enable responsive logo options |
+| Mobile Logo | Upload a separate logo for mobile devices (when responsive is enabled) |
+| Use Favicon for Mobile | Option to use the favicon as mobile logo (when responsive is enabled) |
 
 ### Link Options
 
@@ -43,41 +46,23 @@ The Logo Block is a specialized component in the Phenix Design System that allow
 | Custom URL | Set a custom URL for the logo to link to (if not linking to homepage) |
 | Open in New Tab | Whether the link opens in a new browser tab |
 
-### Style Options
-
-| Option | Description |
-|--------|-------------|
-| Padding | Add internal spacing around the logo |
-| Margin | Add external spacing around the logo |
-| Border | Add borders with custom color, width, and style |
-| Border Radius | Add rounded corners to the logo container |
-
-### Responsive Options
-
-| Option | Description |
-|--------|-------------|
-| Mobile Width | Set a specific width for the logo on mobile devices |
-| Tablet Width | Set a specific width for the logo on tablet devices |
-| Desktop Width | Set a specific width for the logo on desktop devices |
-| Hide on Mobile | Option to hide the logo on mobile devices |
-
 ## Examples
 
-### Basic Logo
-
-To add a basic logo with default settings:
+### Basic Logo Setup
 
 1. Add the Logo block to your page or template
-2. Select your logo image from the Media Library
-3. The logo will automatically link to your homepage
+2. Click 'Upload Logo' to select your logo from the Media Library
+3. Set the desired logo height in the 'Size (Height)' field
+4. Optionally set a custom width
+5. Click 'Update Site Logo' to save it as your site's official logo
 
-### Logo with Custom Width
+### Setting up Favicon
 
-To set a specific width for your logo:
-
-1. Add the Logo block and select your image
-2. In the block settings sidebar, find the "Logo Width" option
-3. Enter a specific width (e.g., "200px")
+1. In the Logo block settings
+2. Click 'Upload Favicon' to select an image
+3. The image should be square and at least 512x512 pixels
+4. Click 'Update Site Logo' to save changes
+5. The favicon will be used in browser tabs and bookmarks
 
 ### Centered Logo with Padding
 
@@ -86,22 +71,14 @@ To create a centered logo with padding:
 1. Add the Logo block and select your image
 2. Under the "Spacing" section, add padding as needed
 
-### Logo with Dark Variant
+### Responsive Logo Setup
 
-To add a logo with both light and dark variants:
-
-1. Add the Logo block and select your light mode logo
-2. In the block settings sidebar, find the "Dark Mode Logo" option
-3. Enable it and select your dark mode logo from the Media Library
-4. The appropriate logo will display based on the user's theme preference
-
-### Responsive Logo
-
-To create a logo with different sizes for different screen sizes:
-
-1. Add the Logo block and select your image
-2. In the block settings sidebar, find the "Responsive Settings" section
-3. Set different widths for Mobile, Tablet, and Desktop viewports
+1. Enable 'Responsive Logo' in the block settings
+2. Choose one of two options:
+   - Upload a separate mobile logo
+   - Enable 'Use Favicon for Mobile' to use the favicon as mobile logo
+3. The mobile variant will automatically show on smaller screens
+4. The main logo will display on desktop and tablet views
 
 ## Common Use Cases
 
@@ -127,17 +104,17 @@ To place a smaller logo in your site footer:
 
 ## Best Practices
 
-1. **Optimize Logo Files**: Use properly sized and compressed logo images for faster loading
+1. **Image Quality**: Use high-quality logo images that remain crisp at different sizes
 
-2. **SVG Format**: When possible, use SVG format for logos to ensure crisp display at any size
+2. **File Format**: Use SVG or PNG formats for logos to maintain quality
 
-3. **Alt Text**: Always include descriptive alt text for your logo for accessibility
+3. **Favicon Size**: Use a square image (512x512px recommended) for the favicon
 
-4. **Responsive Sizing**: Set appropriate logo sizes for different screen sizes
+4. **Mobile Optimization**: Consider using a simpler version of your logo for mobile devices
 
-5. **Dark Mode Support**: Provide a dark variant of your logo if your site supports dark mode
+5. **Responsive Testing**: Test the logo display across different device sizes
 
-6. **Consistent Placement**: Maintain consistent logo placement across your site for brand recognition
+6. **Height Control**: Use the Size (Height) setting to maintain consistent logo height across the site
 
 ## Related Blocks
 

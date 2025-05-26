@@ -246,10 +246,11 @@ if (!function_exists("pds_woo_attributes_select")):
         foreach ($attributes as $attribute_name => $options) {
             //===> Correct the Name for Languages like Arabic <===//
             $option_name = strtolower(urlencode($attribute_name));
+            $selected_attr = isset($selected_attributes[$option_name]) ? $selected_attributes[$option_name] : '';
 
             //===> Create Select Field <===//
             echo '<div class="w-150 me-15">';
-                echo '<select name="attribute_'.$option_name.'" value="'.$selected_attributes[$option_name].'" id="'.$option_name.'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
+                echo '<select name="attribute_'.$option_name.'" value="'.$selected_attr.'" id="'.$option_name.'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
                 //===> Create Options <===//
                 foreach ($options as $option) {
                     //===> Create Variation ID Holder <===//
@@ -272,6 +273,11 @@ if (!function_exists("pds_woo_attributes_select")):
 
                     //===> Check if the Option is Selected <===//
                     $selected = selected($selected_attributes[$option_name] ?? '', $option, false);
+
+                    //===> Default Select the First Option if not selected <===//
+                    if (!$selected) {
+                        $selected = $available_variations[0]['attributes']['attribute_' . $option_name] == $option ? 'selected' : '';
+                    }
 
                     //===> Create the Option <===//
                     echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'"'.$selected.'>'.esc_html($option).'</option>';

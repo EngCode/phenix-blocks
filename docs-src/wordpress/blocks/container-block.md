@@ -2,13 +2,61 @@
 
 ## Overview
 
-The Container Block is one of the most important blocks in the Phenix Design System. It's used to create layout sections with content wrapped within pre-defined maximum boundaries that adapt to different screen sizes. The Container Block is essential for creating proper responsive layouts and is typically used in conjunction with Grid Row blocks.
+The Container Block provides a flexible wrapper component with extensive layout and styling controls. Through its toolbar and sidebar panels, users can configure semantic structure, responsive behavior, and advanced styling options.
 
-<!-- Image placeholder for Container Block -->
+## Editor Interface
 
-## Key Features
+### Quick Settings Toolbar
 
-- Creates a responsive container with appropriate padding and margins
+1. **HTML Tag Selector**:
+   - Semantic elements dropdown:
+     - div (default)
+     - main
+     - aside
+     - header
+     - footer
+     - article
+     - section
+
+2. **Container Size**:
+   - Size presets selection
+   - Default/custom size options
+
+3. **Section Mode Toggle**:
+   - Enables inner wrapper container
+   - Visual indicator when active
+   - Affects class placement
+
+4. **Flexbox Layout**:
+   - Toggle flexbox mode
+   - When enabled, expands to show:
+     - Direction controls
+     - Alignment settings
+     - Responsive options per breakpoint
+     - Disable flexbox option
+
+5. **Size Controls**:
+   - Width/height settings
+   - Min/max dimensions
+   - Responsive size adjustments
+
+6. **Style Options**:
+   - Text colors
+   - Background settings
+   - Visual style controls
+
+7. **Typography Settings**:
+   - Font properties
+   - Text alignment
+   - Responsive typography
+
+8. **Additional Controls**:
+   - Animations (when enabled)
+   - Padding controls
+   - Margin settings
+   - Border customization
+   - Position adjustments
+   - Effects configuration
 - Automatically adjusts width based on screen size
 - Can be set to fluid (full-width) or fixed width
 - Supports custom width settings
@@ -24,6 +72,27 @@ The Container Block is one of the most important blocks in the Phenix Design Sys
 5. Customize the container settings in the block sidebar
 
 ## Block Settings
+
+### Toolbar Controls
+
+| Control | Description |
+|---------|-------------|
+| HTML Tag | Select semantic element (div, main, aside, etc.) |
+| Container Size | - Standard (1200px max)<br>- Fluid (100% width)<br>- XS (360px - 480px)<br>- SM (567px - 640px)<br>- MD (768px - 1024px)<br>- LG/XL (1200px responsive) |
+| Section Mode | Toggle inner wrapper mode |
+| Typography | Text styling options |
+| Border | Edge and radius controls |
+| Effects | Visual enhancements |
+| Position | Layout positioning |
+
+### Sidebar Controls
+
+| Panel | Options |
+|---------|-------------|
+| General Settings | - HTML ID for anchoring<br>- Container type<br>- Size selection<br>- Feature toggles |
+| Typography | - Font family selection<br>- Text size and weight<br>- Line height controls<br>- Text alignment |
+| Style Options | - Background settings<br>- Border controls<br>- Position options<br>- Effects configuration |
+| Responsive | - Device visibility<br>- Screen-specific styles<br>- Breakpoint adjustments |
 
 ### Toolbar Controls
 
@@ -50,53 +119,40 @@ The Container Block is one of the most important blocks in the Phenix Design Sys
 ### Responsive Options
 
 The Container Block includes responsive controls for:
-
-- Display (show/hide on different devices)
-- Margin (spacing outside the container)
-- Padding (spacing inside the container)
-- Position (relative, absolute, fixed)
-
-## Examples
-
-### Basic Container
-
-To create a standard centered container with default maximum width:
-
-1. Add the Container block to your page
-2. Add your content blocks inside the container
-3. The container will automatically center your content with appropriate maximum width
-
-### Fluid Container
-
-To create a full-width container that spans the entire width of the viewport:
-
-1. Add the Container block to your page
-2. In the toolbar, click the container type toggle to switch to "Fluid"
-3. Add your content blocks inside the container
-4. The container will span the full width of the screen
-
-### Custom Width Container
-
-To create a container with a custom maximum width:
-
-1. Add the Container block to your page
-2. In the sidebar settings, locate the "Custom Width" option
-3. Enter your desired width (e.g., "800px")
-4. Add your content blocks inside the container
-
-### Container with Flexbox Layout
-
-To create a container using flexbox to arrange its children:
-
-1. Add the Container block to your page
-2. In the toolbar, open the Layout Controls dropdown
-3. Enable the Flexbox option
-4. Set the flex direction to "Row"
-5. Set vertical alignment to "Center"
 6. Set horizontal alignment to "Space Between"
 7. Add your content blocks inside the container
 
 ## Best Practices
+
+1. **Structure Selection**:
+   - Use semantic HTML tags appropriately
+   - Enable section mode for major layout segments
+   - Maintain ARIA labels for accessibility
+   - Consider content hierarchy
+
+2. **Layout Controls**:
+   - Start with container size selection
+   - Enable flexbox only when needed for layout
+   - Configure responsive behavior early
+   - Use built-in spacing controls
+
+3. **Responsive Strategy**:
+   - Set base styles in SM breakpoint
+   - Adjust for tablets in MD settings
+   - Fine-tune desktop view in LG/XL
+   - Test all screen transitions
+
+4. **Style Management**:
+   - Use the style panel for visual settings
+   - Apply typography consistently
+   - Configure animations thoughtfully
+   - Maintain spacing hierarchy
+
+5. **Performance Tips**:
+   - Minimize nested containers
+   - Use section mode efficiently
+   - Enable only needed features
+   - Keep styles consolidated
 
 1. **Start with a Container**: Begin most page layouts with a Container Block to ensure proper content width and spacing
 

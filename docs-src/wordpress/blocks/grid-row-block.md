@@ -2,6 +2,109 @@
 
 ## Overview
 
+The Grid Row Block implements the Phenix Design System's flexbox grid system in the WordPress editor. It provides a flexible container for organizing columns with responsive controls and advanced layout options.
+
+## Editor Interface
+
+### Quick Settings Toolbar
+
+1. **Column Controls**:
+   - Appears when equal columns or slider mode is active
+   - Per-breakpoint column count settings
+   - Mobile, Tablet, Laptop, and Desktop options
+
+2. **Size Options**:
+   - Width/height controls
+   - Min/max dimensions
+   - Responsive size settings
+
+3. **Style Controls** (when enabled):
+   - Text and background colors
+   - Typography settings with breakpoints
+   - Visual style configuration
+
+4. **Additional Controls** (conditional):
+   - Animations panel
+   - Padding settings
+   - Margin controls
+   - Position options
+   - Border customization
+   - Effects configuration
+
+### Sidebar Panels
+
+1. **Slider Options** (when enabled):
+   - Slider type configuration
+   - Navigation controls
+   - Autoplay settings
+   - Transition effects
+
+2. **Layout Options**:
+   - Flexbox properties
+   - Grid settings
+   - Enable/disable slider mode
+   - Toggle style support
+   - Responsive controls
+
+3. **General Options**:
+   - HTML ID for anchors
+   - Additional settings
+
+## Overview
+
+The Grid Row Block implements the Phenix Design System's flexbox grid system in the WordPress editor. It provides a flexible container for organizing columns with responsive controls and advanced layout options.
+
+## Editor Interface
+
+### Quick Settings Toolbar
+
+1. **Column Controls**:
+   - Appears when equal columns or slider mode is active
+   - Per-breakpoint column count settings:
+     - Mobile (0-13 columns)
+     - Tablet (0-13 columns)
+     - Laptop (0-13 columns)
+     - Desktop (0-13 columns)
+
+2. **Size Options**:
+   - Width/height controls
+   - Min/max dimensions
+   - Responsive size settings
+
+3. **Style Controls** (when enabled):
+   - Text and background colors
+   - Typography settings with breakpoints
+   - Visual style configuration
+
+4. **Additional Controls** (conditional):
+   - Animations panel
+   - Padding settings
+   - Margin controls
+   - Position options
+   - Border customization
+   - Effects configuration
+
+### Sidebar Panels
+
+1. **Slider Options** (when enabled):
+   - Slider type configuration
+   - Navigation controls
+   - Autoplay settings
+   - Transition effects
+
+2. **Layout Options**:
+   - Flexbox properties
+   - Grid settings
+   - Enable/disable slider mode
+   - Toggle style support
+   - Responsive controls for all breakpoints
+
+3. **General Options**:
+   - HTML ID for anchors
+   - Additional settings
+
+## Overview
+
 The Grid Row Block is a fundamental layout component in the Phenix Design System. It serves as the main block for creating grid system layouts and is designed to work inside Container Blocks. Grid Row Blocks can contain Grid Column Blocks to create responsive column layouts, and they can also be transformed into carousels or sliders for dynamic content presentation.
 
 <!-- Image placeholder for Grid Row Block -->
@@ -135,6 +238,66 @@ A grid row converted to a carousel slider:
 ```
 
 ## Best Practices
+
+1. **Layout Structure**:
+   - Plan column organization
+   - Use appropriate breakpoints
+   - Consider content flow
+   - Maintain consistency
+
+2. **Responsive Strategy**:
+   - Start with mobile layout
+   - Configure tablet views
+   - Adjust for larger screens
+   - Test all breakpoints
+
+3. **Style Management**:
+   - Apply styles purposefully
+   - Use consistent spacing
+   - Maintain visual hierarchy
+   - Consider accessibility
+
+4. **Performance**:
+   - Enable needed features only
+   - Optimize slider usage
+   - Minimize style overrides
+   - Test interactions
+
+5. **Content Organization**:
+   - Group related content
+   - Balance column widths
+   - Consider readability
+   - Maintain structure
+
+1. **Layout Structure**:
+   - Use appropriate column counts for content
+   - Configure responsive behavior early
+   - Enable slider mode only when needed
+   - Keep row structure simple
+
+2. **Style Management**:
+   - Enable style support purposefully
+   - Use consistent spacing patterns
+   - Configure breakpoint-specific styles
+   - Maintain visual hierarchy
+
+3. **Responsive Strategy**:
+   - Start with mobile column count
+   - Adjust for larger breakpoints
+   - Test all screen transitions
+   - Verify content alignment
+
+4. **Performance Tips**:
+   - Use slider mode efficiently
+   - Keep style overrides minimal
+   - Enable only needed features
+   - Test interactive elements
+
+5. **Content Organization**:
+   - Group related columns
+   - Maintain consistent spacing
+   - Use semantic structure
+   - Consider content flow
 
 1. **Always Use with Container**: Place Grid Row Blocks inside Container Blocks for proper alignment and spacing
 

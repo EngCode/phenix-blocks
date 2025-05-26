@@ -318,12 +318,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                     element.style.backgroundImage = 'none';
                 }
 
-                if (marquee) {
-                    Phenix(marquee).inView({
-                        offset: 100,
-                        callback: (element) => mediaHandle()
-                    });
-                }
+                if (marquee) mediaHandle();
 
                 //====> First View Handler <=====//
                 Phenix(element).inView({

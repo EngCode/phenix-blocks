@@ -63,7 +63,7 @@ const SelectFromData = (props) => {
                 break;
             //====> for taxonomies Terms <====//
             case "taxonomies-terms":
-                fetchOptions(`wp/v2/${termType === "category" ? "categories" : termType}`, (data, newOptionsList) => {
+                fetchOptions(`wp/v2/${termType === "category" ? "categories" : termType}?per_page=-1`, (data, newOptionsList) => {
                     Object.entries(data).forEach(([key, value]) => {
                         newOptionsList.push({ value: value.id, label: value.name });
                     });

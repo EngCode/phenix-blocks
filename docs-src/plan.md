@@ -173,15 +173,30 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Theme Part
 - [x] Users Query
 
-## Phase 4: WordPress Blocks Shared Components
+## Phase 4: WordPress Blocks Components
 
-### Shared Components Overview
-- [x] Introduction to Shared Components
+### Blocks Components Overview
+- [x] Introduction to Blocks Components
 - [x] Component Architecture
 - [x] Integration with Blocks
 - [x] Development Workflow
 
-### Core Controls
+### Control Sets
+- [x] Overview
+- [x] Style Controls
+- [x] Animation Controls
+- [x] Layout
+- [x] Margin
+- [x] Padding
+- [x] Visibility
+- [x] Position
+- [x] Typography
+- [x] Border Radius
+- [x] Styles Options
+- [x] Carousel Slider
+- [x] CSS Properties
+
+### Row Controls
 - [x] Input Controls
   - [x] Basic Input (input.js)
   - [x] Number Input (number.js)
@@ -200,37 +215,8 @@ This master plan outlines a comprehensive approach to creating and maintaining h
   - [x] Icon Selection (icons.js)
   - [x] URL Controls (dynamic-url.js)
 
-### Row Components
-- [x] Intro
-- [x] Layout
-- [x] Margin
-- [x] Padding
-- [x] Visibility
-- [x] Position
-- [x] Typography
-- [x] Border Radius
-- [x] Styles Options
-- [x] CSS Properties
-- [x] Carousel Slider
-
-### Control Sets
-- [x] Style Controls
-  - [x] Colors Set
-  - [x] Typography Set
-  - [x] Spacing Set
-  - [x] Border Set
-- [x] Layout Controls
-  - [x] Responsive Set
-  - [x] Position Set
-  - [x] Display Set
-- [x] Animation Controls
-  - [x] Animations Set
-  - [x] Transitions Set
-- [x] Advanced Controls
-  - [x] Query Set
-  - [x] Advanced Set
-
 ### Integration Helpers
+- [x] Overview
 - [x] Attribute Helpers
   - [x] Attribute Setters
   - [x] Object Handlers
@@ -243,6 +229,8 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Block Accessibility
 - [x] Responsive Controls
 - [x] Attribute Management
+
+## Phase 5: WordPress Development Tools
 
 ### Dev Tools
 - [x] Menu Locations
@@ -257,62 +245,6 @@ This master plan outlines a comprehensive approach to creating and maintaining h
 - [x] Admin Pages
 - [x] API End-Point
 - [x] Custom Functions
-
-### Shared Components Overview
-- [x] Introduction to Shared Components
-- [x] Component Architecture
-- [x] Integration with Blocks
-- [x] Development Workflow
-
-### Core Controls
-- [x] Input Controls
-  - [x] Basic Input (input.js)
-  - [x] Number Input (number.js)
-  - [x] Text Area (textarea.js)
-- [x] Selection Controls
-  - [x] Select Dropdown (select.js)
-  - [x] Data-Driven Select (select-data.js)
-  - [x] Custom Dropdown (dropdown.js)
-- [x] Toggle Controls
-  - [x] Switch/Checkbox (switch.js)
-- [x] Media Controls
-  - [x] Media Uploader (uploader.js)
-- [x] Navigation Controls
-  - [x] Tabs Interface (tabs.js)
-- [x] Special Controls
-  - [x] Icon Selection (icons.js)
-  - [x] URL Controls (dynamic-url.js)
-
-### Control Sets
-- [x] Style Controls
-  - [x] Colors Set
-  - [x] Typography Set
-  - [x] Spacing Set
-  - [x] Border Set
-- [x] Layout Controls
-  - [x] Responsive Set
-  - [x] Position Set
-  - [x] Display Set
-- [x] Animation Controls
-  - [x] Animations Set
-  - [x] Transitions Set
-- [x] Advanced Controls
-  - [x] Query Set
-  - [x] Advanced Set
-
-### Integration Helpers
-- [x] Attribute Helpers
-  - [x] Attribute Setters
-  - [x] Object Handlers
-- [x] Rendering Helpers
-  - [x] Class Generators
-  - [x] Style Generators
-- [x] Data Helpers
-  - [x] Data Transformers
-  - [x] Data Validators
-- [x] Block Accessibility
-- [x] Responsive Controls
-- [x] Attribute Management
 
 ## Refactoring the Docs
 

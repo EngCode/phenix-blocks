@@ -296,59 +296,52 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Blocks Controls',
+          text: 'Blocks Components',
           collapsed: false,
           items: [
-            { text: 'Intro', link: '/wordpress/controls/editor-introduction' },
-            { text: 'Layout', link: '/wordpress/controls/layout-options' },
-            { text: 'Margin', link: '/wordpress/controls/responsive-margin' },
-            { text: 'Padding', link: '/wordpress/controls/responsive-padding' },
-            { text: 'Visibility', link: '/wordpress/controls/responsive-display' },
-            { text: 'Position', link: '/wordpress/controls/responsive-position' },
-            { text: 'Typography', link: '/wordpress/controls/typography-options' },
-            { text: 'Border Radius', link: '/wordpress/controls/border-radius' },
-            { text: 'Styles Options', link: '/wordpress/controls/styles-options' },
-            { text: 'Carousel Slider', link: '/wordpress/controls/slider-options' },
-            { text: 'CSS Properties', link: '/wordpress/controls/styles-support' }
-          ]
-        },
-        {
-          text: 'Shared Components',
-          collapsed: false,
-          items: [
-            { text: 'Overview', link: '/wordpress/shared-components/' },
-            {
-              text: 'Core Controls',
-              collapsed: false,
-              items: [
-                { text: 'Input Controls', link: '/wordpress/shared-components/core-controls/input-controls' },
-                { text: 'Selection Controls', link: '/wordpress/shared-components/core-controls/selection-controls' },
-                { text: 'Toggle Controls', link: '/wordpress/shared-components/core-controls/toggle-controls' },
-                { text: 'Media Controls', link: '/wordpress/shared-components/core-controls/media-controls' },
-                { text: 'Navigation Controls', link: '/wordpress/shared-components/core-controls/navigation-controls' },
-                { text: 'Special Controls', link: '/wordpress/shared-components/core-controls/special-controls' }
-              ]
-            },
+            { text: 'Overview', link: '/wordpress/blocks-components/' },
             {
               text: 'Control Sets',
               collapsed: false,
               items: [
-                { text: 'Overview', link: '/wordpress/shared-components/control-sets/' },
-                { text: 'Style Controls', link: '/wordpress/shared-components/control-sets/style-controls' },
-                { text: 'Animation Controls', link: '/wordpress/shared-components/control-sets/animations-set' }
+                { text: 'Overview', link: '/wordpress/blocks-components/control-sets/' },
+                { text: 'Style Controls', link: '/wordpress/blocks-components/control-sets/style-controls' },
+                { text: 'Animation Controls', link: '/wordpress/blocks-components/control-sets/animations-set' },
+                { text: 'Layout', link: '/wordpress/blocks-components/layout-options' },
+                { text: 'Margin', link: '/wordpress/blocks-components/responsive-margin' },
+                { text: 'Padding', link: '/wordpress/blocks-components/responsive-padding' },
+                { text: 'Visibility', link: '/wordpress/blocks-components/responsive-display' },
+                { text: 'Position', link: '/wordpress/blocks-components/responsive-position' },
+                { text: 'Typography', link: '/wordpress/blocks-components/typography-options' },
+                { text: 'Border Radius', link: '/wordpress/blocks-components/border-radius' },
+                { text: 'Styles Options', link: '/wordpress/blocks-components/styles-options' },
+                { text: 'Carousel Slider', link: '/wordpress/blocks-components/slider-options' },
+                { text: 'CSS Properties', link: '/wordpress/blocks-components/styles-support' }
+              ]
+            },
+            {
+              text: 'Row Controls',
+              collapsed: false,
+              items: [
+                { text: 'Input Controls', link: '/wordpress/blocks-components/core-controls/input-controls' },
+                { text: 'Selection Controls', link: '/wordpress/blocks-components/core-controls/selection-controls' },
+                { text: 'Toggle Controls', link: '/wordpress/blocks-components/core-controls/toggle-controls' },
+                { text: 'Media Controls', link: '/wordpress/blocks-components/core-controls/media-controls' },
+                { text: 'Navigation Controls', link: '/wordpress/blocks-components/core-controls/navigation-controls' },
+                { text: 'Special Controls', link: '/wordpress/blocks-components/core-controls/special-controls' }
               ]
             },
             {
               text: 'Integration Helpers',
               collapsed: false,
               items: [
-                { text: 'Overview', link: '/wordpress/shared-components/integration-helpers/' },
-                { text: 'Attribute Helpers', link: '/wordpress/shared-components/integration-helpers/attribute-helpers' },
-                { text: 'Rendering Helpers', link: '/wordpress/shared-components/integration-helpers/rendering-helpers' },
-                { text: 'Data Helpers', link: '/wordpress/shared-components/integration-helpers/data-helpers' },
-                { text: 'Block Accessibility', link: '/wordpress/shared-components/integration-helpers/block-accessibility' },
-                { text: 'Responsive Controls', link: '/wordpress/shared-components/integration-helpers/responsive-controls' },
-                { text: 'Attribute Management', link: '/wordpress/shared-components/integration-helpers/attribute-management' }
+                { text: 'Overview', link: '/wordpress/blocks-components/integration-helpers/' },
+                { text: 'Attribute Helpers', link: '/wordpress/blocks-components/integration-helpers/attribute-helpers' },
+                { text: 'Rendering Helpers', link: '/wordpress/blocks-components/integration-helpers/rendering-helpers' },
+                { text: 'Data Helpers', link: '/wordpress/blocks-components/integration-helpers/data-helpers' },
+                { text: 'Block Accessibility', link: '/wordpress/blocks-components/integration-helpers/block-accessibility' },
+                { text: 'Responsive Controls', link: '/wordpress/blocks-components/integration-helpers/responsive-controls' },
+                { text: 'Attribute Management', link: '/wordpress/blocks-components/integration-helpers/attribute-management' }
               ]
             }
           ]

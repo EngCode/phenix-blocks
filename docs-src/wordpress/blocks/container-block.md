@@ -2,171 +2,191 @@
 
 ## Overview
 
-The Container Block provides a flexible wrapper component with extensive layout and styling controls. Through its toolbar and sidebar panels, users can configure semantic structure, responsive behavior, and advanced styling options.
+The Container Block is a fundamental layout component in the Phenix Design System that provides a structured wrapper for content. It offers flexible width options, semantic HTML tag selection, and comprehensive styling capabilities. The block can function in standard mode or section mode, with the latter creating an inner wrapper for content.
 
-## Editor Interface
+## Key Features
 
-### Quick Settings Toolbar
+### Structure Options
 
-1. **HTML Tag Selector**:
-   - Semantic elements dropdown:
-     - div (default)
-     - main
-     - aside
-     - header
-     - footer
-     - article
-     - section
+- **HTML Tag Selection**: Choose from semantic HTML elements including div (default), main, aside, header, footer, article, and section
+- **Container Size**: Multiple preset width options including standard (1200px), fluid (100%), SM (576px), MD (768px), LG (1200px), and XL (1400px)
+- **Section Mode**: Optional inner wrapper container that maintains content width while allowing full-width backgrounds
+- **HTML ID**: Custom identifier for anchoring and navigation targeting
 
-2. **Container Size**:
-   - Size presets selection
-   - Default/custom size options
+### Layout Capabilities
 
-3. **Section Mode Toggle**:
-   - Enables inner wrapper container
-   - Visual indicator when active
-   - Affects class placement
+- **Flexbox Mode**: Toggle to enable flexbox layout for direct children with comprehensive controls:
+  - Direction (row, column, reverse options)
+  - Alignment (horizontal and vertical positioning)
+  - Distribution (space-between, space-around, etc.)
+  - Wrap behavior (wrap, nowrap, reverse)
+  - Gap controls for spacing between items
 
-4. **Flexbox Layout**:
-   - Toggle flexbox mode
-   - When enabled, expands to show:
-     - Direction controls
-     - Alignment settings
-     - Responsive options per breakpoint
-     - Disable flexbox option
+### Style Features
 
-5. **Size Controls**:
-   - Width/height settings
-   - Min/max dimensions
-   - Responsive size adjustments
+- **Typography**: Complete text styling with font family, weight, size, line height, and alignment options
+- **Background Options**: Colors, gradients, images with positioning and overlay capabilities
+- **Spacing Controls**: Comprehensive padding and margin settings with per-side control
+- **Border Settings**: Style, width, color, and radius with per-side customization
+- **Effects**: Shadows, opacity, and other visual enhancements
+- **Position Controls**: Relative, absolute, and fixed positioning with coordinates
 
-6. **Style Options**:
-   - Text colors
-   - Background settings
-   - Visual style controls
+### Responsive Design
 
-7. **Typography Settings**:
-   - Font properties
-   - Text alignment
-   - Responsive typography
-
-8. **Additional Controls**:
-   - Animations (when enabled)
-   - Padding controls
-   - Margin settings
-   - Border customization
-   - Position adjustments
-   - Effects configuration
-- Automatically adjusts width based on screen size
-- Can be set to fluid (full-width) or fixed width
-- Supports custom width settings
-- Can be centered or aligned to edges
-- Supports all standard Phenix block styling options
+- **Breakpoint-Specific Settings**: Configure different layouts for mobile, tablet, laptop, and desktop
+- **Responsive Typography**: Adjust text properties per screen size
+- **Adaptive Spacing**: Control margins and padding across breakpoints
+- **Visibility Options**: Show or hide the container at specific screen sizes
 
 ## How to Use
 
 1. In the WordPress editor, click the "+" button to add a new block
 2. Search for "Container" or find it in the "Phenix Blocks" category
 3. Add the Container Block to your page
-4. Add content inside the container (typically Grid Row blocks)
-5. Customize the container settings in the block sidebar
+4. Use the toolbar to select the HTML tag and container size
+5. Toggle section mode if you need an inner wrapper
+6. Enable flexbox mode if you need layout control for direct children
+7. Add content blocks inside the container
+8. Configure additional styling options in the sidebar as needed
 
 ## Block Settings
 
 ### Toolbar Controls
 
-| Control | Description |
-|---------|-------------|
-| HTML Tag | Select semantic element (div, main, aside, etc.) |
-| Container Size | - Standard (1200px max)<br>- Fluid (100% width)<br>- XS (360px - 480px)<br>- SM (567px - 640px)<br>- MD (768px - 1024px)<br>- LG/XL (1200px responsive) |
-| Section Mode | Toggle inner wrapper mode |
-| Typography | Text styling options |
-| Border | Edge and radius controls |
-| Effects | Visual enhancements |
-| Position | Layout positioning |
-
-### Sidebar Controls
-
-| Panel | Options |
-|---------|-------------|
-| General Settings | - HTML ID for anchoring<br>- Container type<br>- Size selection<br>- Feature toggles |
-| Typography | - Font family selection<br>- Text size and weight<br>- Line height controls<br>- Text alignment |
-| Style Options | - Background settings<br>- Border controls<br>- Position options<br>- Effects configuration |
-| Responsive | - Device visibility<br>- Screen-specific styles<br>- Breakpoint adjustments |
-
-### Toolbar Controls
+The Container Block provides the following controls in the top toolbar:
 
 | Control | Description |
 |---------|-------------|
-| HTML Tag | Select the HTML element (div, section, article, etc.) |
-| Container Type | Choose between fixed-width or fluid (full-width) container |
-| Section Toggle | Toggle between regular container and section mode |
-| Layout Controls | Access dropdown menus for flexbox, margin, padding, and position settings |
-| Flexbox Alignment | Control horizontal and vertical alignment of content |
-| Border Options | Configure border styles, widths, and colors |
-| Effects Options | Add shadows, opacity, and other visual effects |
+| HTML Tag | Dropdown to select the semantic HTML element (div, main, aside, header, footer, article, section) |
+| Container Size | Dropdown with preset width options: None (default), SM (container-sm), MD (container-md), LG (container), XL (container-xl), Full (container-fluid) |
+| Section Mode | Toggle button that enables an inner wrapper container while allowing the outer container to extend full-width |
+| Flexbox Toggle | Button to enable/disable flexbox layout for direct children |
+| Flexbox Controls | When flexbox is enabled, provides dropdown access to direction, alignment, and distribution settings |
+| Size Controls | Dropdown for width/height settings with responsive options |
+| Margin Controls | Dropdown for setting outer spacing with responsive options |
+| Padding Controls | Dropdown for setting inner spacing with responsive options |
+| Position Controls | Dropdown for setting position type and coordinates |
+| Border Controls | Dropdown for configuring border styles, widths, and colors |
+| Effects Controls | Dropdown for adding shadows, opacity, and other visual effects |
 
-### Sidebar Controls
+### Sidebar Panels
+
+#### General Options Panel
 
 | Control | Description |
 |---------|-------------|
-| HTML ID | Set a custom ID for the container (useful for anchors) |
-| Style Options | Enable/disable various styling features |
-| Custom Width | Set a custom maximum width for the container |
-| Typography | Configure text styling options |
-| Animation | Add entrance, hover, or scroll animations |
+| HTML ID | Text input for setting a custom ID (useful for anchors and JavaScript targeting) |
+| Style Support | Toggle switches to enable/disable various styling features including animations, padding, margin, border, and effects |
 
-### Responsive Options
+#### Style Options
 
-The Container Block includes responsive controls for:
-6. Set horizontal alignment to "Space Between"
-7. Add your content blocks inside the container
+When style support is enabled, the following options become available:
+
+| Feature | Available Controls |
+|---------|-------------------|
+| Typography | Font family, weight, size, line height, alignment, and text color with responsive options |
+| Background | Colors, gradients, images with position, size, and overlay controls |
+| Spacing | Margin and padding with per-side control and responsive options |
+| Border | Style, width, color, and radius with per-side customization |
+| Position | Type (relative, absolute, fixed) with coordinates and z-index |
+| Effects | Opacity, shadows, and other visual enhancements |
+
+### Technical Implementation
+
+The Container Block is implemented with the following key attributes:
+
+```js
+// Core attributes
+id: { type: "string", default: "" },
+tagName: { type: "string", default: "div" },
+size: { type: "string", default: "" },
+isSection: { type: "boolean", default: false },
+isFlexbox: { type: "boolean", default: false },
+
+// Style-related objects
+flexbox: { type: "object", default: {} },
+typography: { type: "object", default: {} },
+style: { type: "object", default: {} },
+responsive: { type: "object", default: {} }
+```
+
+The block renders differently based on the `isSection` attribute:
+
+```jsx
+// When isSection is false
+<TagName {...blockProps}>
+  <InnerBlocks.Content />
+</TagName>
+
+// When isSection is true
+<TagName {...blockProps}>
+  <div className={renderProps.container.className}>
+    <InnerBlocks.Content />
+  </div>
+</TagName>
+```
+## Common Use Cases
+
+### Standard Content Container
+
+The most common use of the Container Block is to create a centered content area with controlled width:
+
+1. Add a Container Block to your page
+2. Select the appropriate container size (typically LG for standard 1200px width)
+3. Add your content blocks inside the container
+
+### Full-Width Section with Contained Content
+
+To create a full-width section with background while keeping content at a controlled width:
+
+1. Add a Container Block to your page
+2. Enable the Section Mode toggle in the toolbar
+3. Apply background styling to the outer container
+4. Add your content blocks inside the inner container
+
+### Flexbox Layout Container
+
+To create a flexible layout with controlled alignment and distribution:
+
+1. Add a Container Block to your page
+2. Enable the Flexbox toggle in the toolbar
+3. Configure direction, alignment, and distribution options
+4. Add child blocks that will be arranged according to the flexbox settings
 
 ## Best Practices
 
-1. **Structure Selection**:
-   - Use semantic HTML tags appropriately
-   - Enable section mode for major layout segments
-   - Maintain ARIA labels for accessibility
-   - Consider content hierarchy
+### Structure and Semantics
 
-2. **Layout Controls**:
-   - Start with container size selection
-   - Enable flexbox only when needed for layout
-   - Configure responsive behavior early
-   - Use built-in spacing controls
+- Use appropriate HTML tags based on content purpose (e.g., `section` for thematic grouping, `article` for self-contained content)
+- Enable Section Mode when you need full-width backgrounds with contained content
+- Use the HTML ID field to create anchor points for navigation and deep linking
+- Maintain a logical hierarchy of containers in your layout
 
-3. **Responsive Strategy**:
-   - Set base styles in SM breakpoint
-   - Adjust for tablets in MD settings
-   - Fine-tune desktop view in LG/XL
-   - Test all screen transitions
+### Layout Strategy
 
-4. **Style Management**:
-   - Use the style panel for visual settings
-   - Apply typography consistently
-   - Configure animations thoughtfully
-   - Maintain spacing hierarchy
+- Start with the appropriate container size based on your design requirements
+- Enable flexbox only when you need to control the arrangement of direct children
+- Use the built-in responsive controls to adjust layout across different screen sizes
+- Combine Container Blocks with Grid Row and Grid Column blocks for complex layouts
 
-5. **Performance Tips**:
-   - Minimize nested containers
-   - Use section mode efficiently
-   - Enable only needed features
-   - Keep styles consolidated
+### Styling Approach
 
-1. **Start with a Container**: Begin most page layouts with a Container Block to ensure proper content width and spacing
+- Enable only the style features you need to keep the editor interface focused
+- Apply consistent spacing using the padding and margin controls
+- Use the typography controls to maintain text styling consistency
+- Configure responsive settings starting from mobile and working up to larger screens
 
-2. **Nesting**: You can nest containers for complex layouts, but avoid excessive nesting which can complicate the structure
+### Performance Considerations
 
-3. **Combine with Grid**: Use Container Blocks with Grid Row and Grid Column blocks for responsive grid layouts
-
-4. **Responsive Testing**: Always test your container layouts across different screen sizes
-
-5. **Custom Widths**: Use custom widths sparingly and prefer the built-in responsive widths when possible
+- Avoid excessive nesting of Container Blocks
+- Use Section Mode efficiently to minimize DOM complexity
+- Enable only the styling features you need
+- Test your layouts across different screen sizes to ensure proper rendering
 
 ## Related Blocks
 
-- [Grid Row Block](./grid-row-block.md) - Used inside containers to create row layouts
-- [Grid Column Block](./grid-column-block.md) - Used inside grid rows to create column layouts
-- [Group Block](./group-block.md) - Similar to container but without the width constraints
+- [Grid Row Block](./grid-row-block.md) - Used inside containers to create responsive row layouts
+- [Grid Column Block](./grid-column-block.md) - Used inside grid rows to create column-based layouts
+- [Group Block](./group-block.md) - Similar to container but focused on grouping elements without width constraints
+- [Dynamic Query Block](./dynamic-query-block.md) - Can be used inside containers to display dynamic content
 

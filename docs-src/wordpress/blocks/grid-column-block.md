@@ -1,362 +1,209 @@
 # Grid Column Block
 
-
 ## Overview
 
-The Grid Column Block is a crucial component of the Phenix Design System's layout system. It's designed to be used inside Grid Row Blocks to create responsive column-based layouts. Grid Column Blocks can be sized, ordered, and offset differently across various screen sizes, providing complete control over your layout's responsiveness.
+The Grid Column Block is an essential layout component in the Phenix Design System that creates flexible columns within Grid Row Blocks. It implements a responsive 12-column grid system that allows precise control over column width, ordering, and alignment across different screen sizes. The Grid Column Block can contain any other blocks, enabling complex nested layouts while maintaining responsive behavior.
 
 ## Key Features
 
-- Creates responsive columns within Grid Row Blocks
-- Supports different column sizes for each screen size (mobile, tablet, desktop)
-- Allows column ordering and offsetting
-- Includes options for alignment and distribution
-- Can be styled with all standard Phenix block styling options
-- Supports nesting of other blocks within columns
+### Responsive Layout
+
+- **12-Column Grid System**: Size columns from 1 to 12 units or auto-width
+- **Breakpoint Control**: Set different column widths for mobile, tablet, laptop, and desktop
+- **Self-Alignment**: Position columns vertically within their parent row (start, center, end)
+- **Flexbox Container**: Optionally function as a flexbox container for direct children
+- **HTML Tag Selection**: Choose appropriate semantic HTML element (div, section, article, etc.)
+
+### Advanced Positioning
+
+- **Column Ordering**: Control the visual order of columns independent of their DOM position
+- **Offset Options**: Add space before columns to create precise layouts
+- **Responsive Visibility**: Show or hide columns at specific screen sizes
+- **Nested Layouts**: Create complex layouts by nesting rows within columns
 
 ## How to Use
 
 1. Add a Container Block to your page
 2. Inside the Container, add a Grid Row Block
 3. Within the Grid Row, add Grid Column Blocks
-4. Set the size and responsive behavior of each column
-5. Add content inside the columns
+4. Configure each column's size using the toolbar:
+   - Set the base size for mobile devices
+   - Configure sizes for tablet (MD), laptop (LG), and desktop (XL) if needed
+5. Adjust additional settings like self-alignment if necessary
+6. Add your content blocks inside each column
 
 ## Block Settings
 
 ### Toolbar Controls
 
-| Control | Description |
-|---------|-------------|
-| Column Size | Quick selection for column width (1-12 in a 12-column grid) |
-| Responsive Size | Set different column widths for each screen size via dropdown menus |
-| Flexbox Toggle | Enable/disable flexbox layout for direct children |
-| Alignment Controls | Set horizontal and vertical alignment of content |
-| Margin & Padding | Quick access to spacing controls with responsive options |
-| Position Settings | Configure position type and coordinates |
-| Border Options | Configure border styles, widths, and colors |
-| Effects Options | Add shadows, opacity, and other visual effects |
-
-### Sidebar Controls
-
-#### Column Options Panel
+The Grid Column Block provides the following controls in the top toolbar:
 
 | Control | Description |
 |---------|-------------|
-| HTML ID | Set a custom ID for the column (useful for anchors) |
-| Column Size | Set the column width (1-12 in a 12-column grid) |
-| Size MD | Column width on medium screens (tablets) |
-| Size LG | Column width on large screens (desktops) |
-| Size XL | Column width on extra-large screens |
+| Column Size | Dropdown with number inputs to set column width for different screen sizes (0-13, where 0 is auto-width) |
+| Flexbox Toggle | Button to enable/disable flexbox layout for direct children |
+| Flexbox Controls | When enabled, provides dropdown access to direction, alignment, and distribution settings |
+| Margin Controls | Dropdown for setting outer spacing with responsive options |
+| Padding Controls | Dropdown for setting inner spacing with responsive options |
+| Position Controls | Dropdown for setting position type and coordinates |
+| Border Controls | Dropdown for configuring border styles, widths, and colors |
+| Effects Controls | Dropdown for adding shadows, opacity, and other visual effects |
 
-#### Position Options Panel
+### Sidebar Panels
 
-| Control | Description |
-|---------|-------------|
-| Order | Control the visual order of the column |
-| Order MD | Column order on medium screens |
-| Order LG | Column order on large screens |
-| Order XL | Column order on extra-large screens |
-| Offset | Add space before the column (1-11 in a 12-column grid) |
-| Offset MD | Column offset on medium screens |
-| Offset LG | Column offset on large screens |
-| Offset XL | Column offset on extra-large screens |
-
-#### Style Options Panel
+#### General Options Panel
 
 | Control | Description |
 |---------|-------------|
-| Style Options | Enable/disable various styling features |
-| Typography | Configure text styling options |
-| Animation | Add entrance, hover, or scroll animations |
+| HTML ID | Text input for setting a custom ID (useful for anchors and JavaScript targeting) |
+| Style Options | Toggle switches to enable/disable various styling features |
+| Self Align | Dropdown selectors for vertical alignment within parent row (start, center, end) with responsive options |
 
-### Responsive Options
+### Technical Implementation
 
-The Grid Column Block includes responsive controls for:
+The Grid Column Block is implemented with the following key attributes:
 
-- Display (show/hide on different devices)
-- Margin (spacing outside the column)
-- Padding (spacing inside the column)
-- Position (relative, absolute, fixed)
+```js
+// Core attributes
+id: { type: "string", default: "" },
+tagName: { type: "string", default: "div" },
+size: { type: "string", default: "0" },
+isFlexbox: { type: "boolean", default: false },
 
-## Features
-
-### Layout System
-
-1. **Column Sizing**:
-   - Responsive width controls
-   - Automatic size calculation
-   - Breakpoint-specific widths
-   - Flexible sizing options
-
-2. **Flexbox Integration**:
-   - Optional flexbox mode
-   - Alignment controls
-   - Distribution settings
-   - Order management
-
-### Style Features
-
-1. **Visual Controls**:
-   - Background options
-   - Border settings
-   - Typography controls
-   - Effects and animations
-
-2. **Spacing System**:
-   - Margin controls
-   - Padding settings
-   - Position options
-   - Gap management
-
-3. **Responsive Design**:
-   - Mobile-first approach
-   - Breakpoint controls
-   - Visibility options
-   - Layout adaptation
-
-### Column Attributes
-
-```json
-{
-    "size": {
-        "type": "string",
-        "default": "0"
-    },
-    "isFlexbox": {
-        "type": "boolean",
-        "default": false
-    },
-    "flexbox": {
-        "type": "object",
-        "default": {}
-    },
-    "typography": {
-        "type": "object",
-        "default": {}
-    },
-    "style": {
-        "type": "object",
-        "default": {}
-    },
-    "responsive": {
-        "type": "object",
-        "default": {}
-    }
-}
+// Style-related objects
+flexbox: { type: "object", default: {} },
+typography: { type: "object", default: {} },
+style: { type: "object", default: {} },
+responsive: { type: "object", default: {} }
 ```
 
-### Size Configuration
-
 The column size is controlled through:
-- Base size: `attributes.size`
+- Base size: `attributes.size` (mobile devices)
 - Responsive sizes: 
   - Tablet: `attributes.responsive['size-md']`
   - Laptop: `attributes.responsive['size-lg']`
   - Desktop: `attributes.responsive['size-xl']`
 
-Each size value ranges from 0 to 13.
+The block renders as a div with the appropriate column classes:
 
-### Flexbox Mode
-
-Flexbox mode is toggled via `attributes.isFlexbox`. When enabled:
-- Layout options appear in toolbar
-- Flexbox properties are controlled through `attributes.flexbox`
-- Available options include:
-  - flex-props
-  - align (for MD/LG/XL breakpoints)
-
-### Style Controls
-
-Style options are managed through:
-- `attributes.style` for general styles
-- `attributes.typography` for text styling
-
-Conditional controls (enabled via style.support):
-- enable-animations
-- enable-padding
-- enable-margin
-- enable-border
-- enable-effects
-
-### Column Sizing
-
-```html
-<!-- Basic column with responsive sizes -->
-<div class="col-{size} col-md-{size} col-lg-{size} col-xl-{size}">
-    <!-- Column content -->
-</div>
+```jsx
+<TagName {...blockProps}>
+  <div {...innerBlocksProps}></div>
+</TagName>
 ```
 
-1. **Size Configuration**:
-   - Click Column Size in toolbar
-   - Set width for each breakpoint:
-     - Base size for mobile
-     - MD size for tablets
-     - LG size for laptops
-     - XL size for desktops
+When flexbox mode is enabled, the inner div receives flexbox-related classes.
 
-2. **Flexbox Mode**:
-   ```html
-   <!-- Column with flexbox enabled -->
-   <div class="col-{size} flex-container">
-     <!-- Flexbox content -->
-   </div>
-   ```
-   - Enable flexbox mode
-   - Configure layout properties:
-     - Direction (row/column)
-     - Alignment (start/center/end)
-     - Distribution
-     - Wrap behavior
+## Common Use Cases
 
-3. **Style Configuration**:
-   - Enable required style features
-   - Set visual properties:
-     - Colors and backgrounds
-     - Typography settings
-     - Border styles
-     - Effects and animations
+### Basic Column Layout
 
-### Basic Column
+To create a simple column layout with equal widths:
 
-The block renders as a div by default, configurable through the `tagName` attribute. Available HTML tags are provided by `PhenixBlocks.dataLists.html_tags`.
+1. Add a Grid Row Block to your page
+2. Add multiple Grid Column Blocks inside the row
+3. Leave the column size at 0 (auto) for equal width distribution
 
-Column size is set through the toolbar using:
-```js
-<PhenixNumber name="size" min={0} max={13} value={attributes.size} />
-```
+### Responsive Column Widths
 
-Responsive sizes use:
-```js
-<PhenixNumber name="size-md" value={attributes.responsive['size-md']} />
-<PhenixNumber name="size-lg" value={attributes.responsive['size-lg']} />
-<PhenixNumber name="size-xl" value={attributes.responsive['size-xl']} />
-```
+To create columns that change width based on screen size:
 
-A standard column that takes up 4 out of 12 grid units:
+1. Add a Grid Row Block to your page
+2. Add Grid Column Blocks inside the row
+3. Configure each column's size for different breakpoints:
+   - Set full width (12) for mobile devices
+   - Set half width (6) for tablets (MD)
+   - Set one-third width (4) for desktops (LG/XL)
 
-```html
-<!-- wp:phenix/grid-column {"size":4} -->
-<div class="px-col col-4">Column content goes here</div>
-<!-- /wp:phenix/grid-column -->
-```
+### Asymmetric Layout
 
-### Responsive Column
+To create a layout with columns of different widths:
 
-A column that adapts its size across different screen sizes:
+1. Add a Grid Row Block to your page
+2. Add Grid Column Blocks inside the row
+3. Set different sizes for each column (e.g., 8 and 4 for a two-thirds/one-third split)
 
-```html
-<!-- wp:phenix/grid-column {"size":12,"sizeMD":6,"sizeLG":4} -->
-<div class="px-col col-12 col-md-6 col-lg-4">Responsive column content</div>
-<!-- /wp:phenix/grid-column -->
-```
+### Column with Flexbox Content
 
-### Column with Offset
+To create a column that arranges its content using flexbox:
 
-A column with space added before it:
+1. Add a Grid Column Block to your layout
+2. Enable the Flexbox toggle in the toolbar
+3. Configure flexbox properties (direction, alignment, etc.)
+4. Add content blocks that will be arranged according to the flexbox settings
 
-```html
-<!-- wp:phenix/grid-column {"size":6,"offset":3} -->
-<div class="px-col col-6 offset-3">Centered column content</div>
-<!-- /wp:phenix/grid-column -->
-```
+## Style Features
 
-### Ordered Column
+The Grid Column Block includes comprehensive styling options when style support is enabled:
 
-A column with custom ordering:
+### Typography Options
 
-```html
-<!-- wp:phenix/grid-column {"size":4,"order":2} -->
-<div class="px-col col-4 order-2">This appears second</div>
-<!-- /wp:phenix/grid-column -->
-```
+When typography styling is enabled:
 
-### Column with Flexbox Layout
+- **Font Family**: Choose from primary, secondary, or style fonts
+- **Font Weight**: Select from thin (100) to black (900)
+- **Line Height**: Adjust from 100% to 180%
+- **Text Alignment**: Control text alignment with responsive options
+- **Text Color**: Apply color from the Phenix Design System palette
 
-A column using flexbox to arrange its children:
+### Background Options
 
-```html
-<!-- wp:phenix/grid-column {"size":6,"flexbox":true,"flexDirection":"column","alignItems":"center","justifyContent":"center"} -->
-<div class="px-col col-6 flexbox column align-items-center justify-center">Centered flex content</div>
-<!-- /wp:phenix/grid-column -->
-```
+When background styling is enabled:
+
+- **Colors**: Select from the design system color palette
+- **Gradients**: Apply preset gradients with rotation options
+- **Custom Colors**: Set custom background colors with opacity
+
+### Spacing Controls
+
+When spacing controls are enabled:
+
+- **Padding**: Set inner spacing with per-side control and responsive options
+- **Margin**: Set outer spacing with per-side control and responsive options
+
+### Border Options
+
+When border styling is enabled:
+
+- **Border Style**: Choose from solid, dashed, or dotted
+- **Border Width**: Set width per side (top, right, bottom, left)
+- **Border Color**: Select from the design system color palette
+- **Border Radius**: Apply rounded corners with per-corner control
 
 ## Best Practices
 
-1. **Column Structure**:
-   - Use appropriate sizes
-   - Configure all breakpoints
-   - Keep content organized
-   - Enable flexbox when needed
+### Column Structure
 
-2. **Responsive Design**:
-   - Start with mobile size
-   - Set tablet breakpoints
-   - Configure desktop views
-   - Test all transitions
+- Use the appropriate column size based on your content needs
+- Remember that the grid is based on a 12-column system
+- For equal-width columns, use size 0 (auto)
+- For specific width ratios, use sizes that add up to 12 (e.g., 8+4, 6+6, 4+4+4)
 
-3. **Layout Efficiency**:
-   - Use semantic HTML
-   - Keep nesting minimal
-   - Enable needed features
-   - Maintain structure
+### Responsive Design
 
-4. **Style Management**:
-   - Apply consistent styling
-   - Configure per breakpoint
-   - Use spacing system
-   - Keep overrides minimal
+- Start with the mobile layout first (default size)
+- Configure tablet (MD), laptop (LG), and desktop (XL) sizes as needed
+- Consider how content will reflow at different screen sizes
+- Test your layouts on actual devices or using browser device emulation
 
-5. **Performance Tips**:
-   - Minimize style layers
-   - Use built-in controls
-   - Optimize content flow
-   - Test interactions
+### Layout Efficiency
 
-1. **Column Structure**:
-   - Use appropriate column sizes
-   - Configure all breakpoints
-   - Keep content hierarchy logical
-   - Enable flexbox when needed
+- Keep your column structure as simple as possible
+- Use flexbox mode only when you need to control the arrangement of direct children
+- Enable only the styling features you actually need
+- Avoid excessive nesting of rows and columns
 
-2. **Responsive Design**:
-   - Start with mobile size
-   - Set tablet breakpoint (MD)
-   - Configure desktop views (LG/XL)
-   - Test all transitions
+### Style Consistency
 
-3. **Layout Efficiency**:
-   - Use semantic HTML tags
-   - Keep nesting minimal
-   - Enable only needed features
-   - Maintain clean structure
-
-4. **Style Management**:
-   - Use consistent styling
-   - Configure per-breakpoint
-   - Apply spacing systematically
-   - Keep overrides minimal
-
-5. **Performance Tips**:
-   - Minimize style layers
-   - Use built-in controls
-   - Optimize content flow
-   - Test interactive elements
-
-1. **12-Column System**: Remember that the grid is based on a 12-column system, so columns in a row should add up to 12 for a full-width layout
-
-2. **Mobile-First Approach**: Start by setting the base size for mobile, then adjust for larger screens as needed
-
-3. **Nesting**: You can nest Grid Row Blocks inside Grid Column Blocks to create complex layouts
-
-4. **Responsive Testing**: Always test your column layouts across different screen sizes
-
-5. **Consistent Spacing**: Use the padding and margin controls to maintain consistent spacing
+- Apply consistent spacing using the padding and margin controls
+- Maintain a consistent visual hierarchy across columns
+- Use the self-alignment options to create precise layouts
+- Apply the same styling approach across similar columns
 
 ## Related Blocks
 
-- [Container Block](./container-block.md) - Parent container for the grid system
-- [Grid Row Block](./grid-row-block.md) - Parent container for columns
-- [Group Block](./group-block.md) - Alternative for non-grid layouts
+- [Container Block](./container-block.md) - Recommended parent container for the grid system
+- [Grid Row Block](./grid-row-block.md) - Required parent container for columns
+- [Group Block](./group-block.md) - Alternative for flexible content grouping without grid structure
+- [Dynamic Query Block](./dynamic-query-block.md) - Can be placed inside columns for dynamic content
 

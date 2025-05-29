@@ -2,295 +2,272 @@
 
 ## Overview
 
-The Button Block is an essential interactive component in the Phenix Design System. It provides a customizable button that can be configured as a text-only button, text with icon, or icon-only button. The button can optionally function as a link, lightbox trigger, or modal trigger.
+The Button Block is a versatile interactive component in the Phenix Design System that provides multiple configuration options for creating call-to-action elements. It can be implemented as a standard button, a button with icon, or an icon-only button with tooltip. The Button Block supports various interactive functionalities including URL linking, lightbox media viewing, and modal/menu triggering, making it a fundamental element for user interaction within your WordPress site.
 
 ## Key Features
 
-- Button Types:
-  - Default button
-  - Text with icon (btn-icon)
-  - Icon-only with tooltip
+### Button Types
 
-- Size Options:
-  - Extra Small (tiny)
-  - Small (small)
-  - Medium (medium)
-  - Large (large)
-  - Extra Large (xlarge)
+- **Default Button**: Standard text-based button for primary actions
+- **Text with Icon**: Combined text and icon button for enhanced visual cues
+- **Icon Only**: Square button with tooltip for compact UI elements
 
-- Link Features:
-  - URL linking
-  - New tab option
-  - Lightbox integration:
-    - Image lightbox
-    - Video lightbox
-    - Embed lightbox
-  - Modal triggers
-  - Menu toggles
+### Interactive Options
 
-- Typography Features:
-  - Font family selection
-  - Font weight options
-  - Line height control
-  - Text shadows
-  - Text alignment
+- **URL Linking**: Convert the button to a link with customizable URL and new tab option
+- **Lightbox Integration**: Trigger media viewing in a lightbox overlay with support for:
+  - Image galleries
+  - Video playback
+  - Embedded content
+- **Trigger Functionality**: Activate interactive elements with:
+  - Modal window triggers (via data-modal attribute)
+  - Menu toggles (via data-id attribute)
 
-- Style Options:
-  - Colors and backgrounds
-  - Gradient options
-  - Border customization
-  - Hover effects
-  - Padding controls
-  - Margin settings
+### Style Capabilities
 
-- Advanced Features:
-  - Position controls
-  - Animation effects
-  - Responsive visibility
-  - Custom effects
-- Utilities:
-  - Margin controls
-  - Padding settings
-  - Position options
-  - Border customization
+- **Size Options**: Five predefined sizes from tiny to extra-large with responsive control
+- **Outline Style**: Toggle between filled and outline button styles
+- **Custom Hover**: Define separate styling for hover state
+- **Icon Controls**: When using icons:
+  - Icon size adjustment
+  - Position control (start/end)
+  - Responsive icon behavior
+  - Icon-only mode with tooltip
+
+### Typography Features
+
+- **Font Control**: Complete typography settings including font family, weight, and size
+- **Responsive Text**: Adjust text properties across different screen sizes
+- **Text Styling**: Apply color, alignment, and decorative elements
+
+### Advanced Styling
+
+- **Color System**: Access to the complete Phenix Design System color palette
+- **Border Options**: Customizable border style, width, color, and radius
+- **Spacing Control**: Precise padding and margin settings with responsive options
+- **Position Settings**: Control button placement with position type and coordinates
+- **Visual Effects**: Apply shadows, opacity changes, and other visual enhancements
 
 ## How to Use
 
-1. In the WordPress editor, click the "+" button to add a new block
-2. Search for "Button" or find it in the "Phenix Blocks" category
-3. Add the Button Block to your page
-4. Set the button text, link, and style options
-5. Customize the button appearance in the block sidebar
+1. Add the Button Block to your page:
+   - In the WordPress editor, click the "+" button to add a new block
+   - Search for "Button" or find it in the "Phenix Blocks" category
 
-## Best Practices
+2. Configure the button type:
+   - In the sidebar panel, select from Default, Text/Icon, or Icon-only
+   - For icon buttons, click the icon button in the toolbar to select an icon
 
-1. **Button Types**:
-   - Use default for primary actions
-   - Use icon buttons for common actions
-   - Keep icon-only for familiar functions
-   - Match type to user expectations
+3. Set the button text:
+   - Click on the button to edit the text directly in the editor
+   - For icon-only buttons, set a label for accessibility and tooltip display
 
-2. **Size Selection**:
-   - XS/SM for secondary actions
-   - MD for standard actions
-   - LG/XL for primary CTAs
-   - Maintain consistent hierarchy
+4. Style the button:
+   - Use the Style Options dropdown in the toolbar to set colors and backgrounds
+   - Toggle the outline style with the outline button in the toolbar
+   - Configure typography settings using the Typography dropdown
 
-3. **Typography**:
-   - Use primary font for clarity
-   - Maintain readable font sizes
-   - Keep consistent line heights
-   - Consider text-shadow for contrast
+5. Add interactivity (optional):
+   - Click the link icon to convert the button to a link
+   - Click the lightbox icon to enable lightbox functionality
+   - Use the Trigger Options panel in the sidebar to set up modal or menu triggers
 
-4. **Color Usage**:
-   - Follow brand color guidelines
-   - Ensure sufficient contrast
-   - Use gradients purposefully
-   - Consider color meaning
-
-5. **Responsive Design**:
-   - Test all breakpoints
-   - Adjust sizes per screen
-   - Consider touch targets
-   - Maintain visibility hierarchy
-
-6. **Accessibility**:
-   - Provide clear hover states
-   - Maintain color contrast
-   - Use semantic HTML
-   - Consider animation effects
-
-7. **Interactive Features**:
-   - Use lightbox for media
-   - Configure modals properly
-   - Test menu triggers
-   - Verify link behavior
+6. Configure responsive behavior:
+   - Use the Size dropdown in the sidebar to set different sizes for each breakpoint
+   - Configure responsive typography and spacing as needed
 
 ## Block Settings
 
 ### Toolbar Controls
 
-| Control | Description |
-|---------|-------------|
-| Button Type | Default, Text/Icon, or Icon-only |
-| Icon Selection | Browse and select from icon library |
-| Size Options | XS to XL size presets |
-| Style Options | Colors, gradients, and effects |
-| Typography | Font and text controls |
-| Link Settings | URL configuration and behavior |
-| Animations | Motion and transition effects |
-| Padding | Space inside button |
-| Margin | Space around button |
-| Position | Layout positioning |
-| Border | Edge and radius controls |
-| Effects | Visual enhancements |
-| Typography | Font size, weight, and other text controls |
-| Size Options | Button size controls with responsive options |
-| URL Options | Link settings and new tab option |
-| Outline Toggle | Switch between filled and outline styles |
-| Lightbox Toggle | Enable/configure lightbox functionality |
-| Animation Options | When animations are enabled
-
-### Sidebar Controls
+The Button Block provides the following controls in the top toolbar:
 
 | Control | Description |
 |---------|-------------|
-| HTML ID | Set a custom ID for the button |
-| Content Type | Configure button content (text/icon/both) |
-| Icon Settings | Icon selection and position when enabled |
-| Size Controls | Responsive size settings for each breakpoint |
-| Style Options | Colors, backgrounds, and visual effects |
-| Typography | Text styling and formatting |
-| Effects | Borders, shadows, and animations |
-| Trigger Options | Menu and Modal trigger settings |
+| Button Icon | When using Text/Icon or Icon-only buttons, provides icon selection, size options, and position control |
+| Style Options | Dropdown for colors, backgrounds, and gradients with access to the Phenix Design System color palette |
+| Typography Options | Dropdown for font family, weight, size, and other text styling options with responsive controls |
+| Size Options | Dropdown for width/height settings with responsive options |
+| URL Options | When link is enabled, provides URL input, page selection, and new tab toggle |
+| Custom Hover Style | Toggle button to enable separate styling for hover state |
+| Outline Style | Toggle button to switch between filled and outline button styles |
+| Lightbox Options | When enabled, provides settings for media type, source URL, and upload options |
+| Animation Options | When animations are enabled, provides settings for motion effects |
+| Padding Options | When padding is enabled, provides controls for inner spacing with responsive options |
+| Margin Options | When margin is enabled, provides controls for outer spacing with responsive options |
+| Position Options | When position is enabled, provides controls for layout positioning with responsive options |
+| Border Options | When border is enabled, provides controls for border style, width, color, and radius |
+| Effects Options | When effects are enabled, provides controls for shadows, opacity, and other visual enhancements |
 
-## Style Variations
+### Sidebar Panels
+
+#### General Options Panel
+
+| Control | Description |
+|---------|-------------|
+| Button Type | Dropdown to select between Default, Text/Icon, or Icon-only button types |
+| Size | Dropdown for button size with responsive options (tiny, small, medium, large, xlarge) |
+| HTML ID | Text input for setting a custom ID (useful for targeting with JavaScript) |
+| Button Label | For icon-only buttons, text input for the tooltip and accessibility label |
+| Style Support | Toggle switches to enable/disable various styling features including animations, padding, margin, border, and effects |
+
+#### Trigger Options Panel
+
+| Control | Description |
+|---------|-------------|
+| Menu ID | Dropdown to select a menu to toggle when the button is clicked |
+| Modal ID | Text input to specify a modal element ID to trigger when the button is clicked |
+
+## Common Use Cases
 
 ### Standard Button
 
-Create a basic button:
+To create a basic button for primary actions:
 
-1. Add the Button block
-2. Enter button text
-3. Select size (XS to XL)
-4. Choose colors from palette
-5. Configure URL if needed
+1. Add the Button Block to your page
+2. Enter your button text
+3. Use the Style Options dropdown to set colors
+4. Select an appropriate size from the Size dropdown
+5. Configure URL if needed by clicking the link icon
 
 ### Icon Button
 
-Create a button with icon:
+To create a button with both text and icon:
 
-1. Add the Button block
-2. Select "Text/Icon" type
-3. Choose icon from library
-4. Set icon position
-5. Configure hover effects
-
-### Advanced Button
-
-Create a feature-rich button:
-
-1. Add the Button block
-2. Enable needed features:
-   - Typography options
-   - Border settings
-   - Position controls
-   - Effects/animations
-3. Configure per-screen styles
-4. Set up lightbox/modal
-5. Add responsive controls
-
-### Responsive Button
-
-Create a screen-adaptive button:
-
-1. Add the Button block
-2. Configure base styles
-3. Adjust per breakpoint:
-   - Typography
-   - Spacing
-   - Visibility
-   - Position
-
-### Text Button
-
-To create a text button that appears as a link but with button padding and hover effects:
-
-1. Add the Button block to your page
-2. In the sidebar, set the Button Type to "Link"
-3. Enter your button text and set the link URL
+1. Add the Button Block to your page
+2. In the sidebar, set the Button Type to "Text/Icon"
+3. Click the Button Icon dropdown in the toolbar
+4. Select your icon from the icon library
+5. Configure icon options (size, position)
+6. Enter your button text
 
 ### Icon-Only Button
 
-To create an icon-only button:
+To create a compact icon button with tooltip:
 
-1. Add the Button block to your page
-2. Click the icon button in the toolbar
-3. Select your icon
-4. Enable 'Square' option
-5. Add a label for accessibility
+1. Add the Button Block to your page
+2. In the sidebar, set the Button Type to "Icon Only"
+3. Click the Button Icon dropdown in the toolbar
+4. Select your icon from the icon library
+5. Enter a label text (will appear as tooltip)
 6. Configure size and styling as needed
 
-## URL Configuration
+### Lightbox Trigger Button
 
-To make your button a link:
+To create a button that opens media in a lightbox:
 
-1. Click the link icon in the toolbar
-2. Use the URL picker to select a page/post
-3. Enable 'Open in New Tab' if needed
-4. The button will now function as a link
-5. Click 'Disable URL Link' to remove link
-
-## Advanced Features
-
-### Lightbox Integration
-1. Click the lightbox icon in the toolbar
-2. Select the source type
-3. Enter URL or upload media
-4. Configure lightbox options
-
-### Modal/Menu Triggers
-1. Open Trigger Options in sidebar
-2. Enter Modal ID or select Menu ID
-3. Style button as needed
-
-## Examples
-
-### Link Button
-
-To create a button that links to a URL:
-
-1. Add the Button block to your page
-2. Enable the 'Is Link' option
-3. Enter your button text
-4. Set the URL using the URL picker
-5. Enable 'Open in New Tab' if needed
-6. Add an icon if desired
+1. Add the Button Block to your page
+2. Click the lightbox icon in the toolbar
+3. Select the source type (image, video, embed)
+4. Either upload media or enter a URL
+5. Configure button styling as needed
 
 ### Modal Trigger Button
 
-To create a button that triggers a modal:
+To create a button that triggers a modal dialog:
 
-1. Add the Button block to your page
-2. Go to Trigger Options in the sidebar
-3. Enter the target Modal ID
+1. Add the Button Block to your page
+2. Open the Trigger Options panel in the sidebar
+3. Enter the target Modal ID in the Modal ID field
 4. Style your button as needed
-5. The button will now trigger the modal with the matching ID
 
-### Lightbox Button
+### Responsive Button
 
-To create a lightbox trigger button:
+To create a button that adapts to different screen sizes:
 
-1. Add the Button block to your page
-2. Enable the Lightbox option in the sidebar
-3. Set the URL to your media content
-4. Select the lightbox type (image)
-5. Configure button styling as needed
+1. Add the Button Block to your page
+2. Configure the base size for mobile devices
+3. Use the responsive tabs in the Size dropdown
+4. Set different sizes for tablet (MD), laptop (LG), and desktop (XL)
+5. Optionally adjust typography and spacing for each breakpoint
 
-## Style Customization
+## Technical Implementation
 
-### Basic Styling
-- Use Style Options for colors and backgrounds
-- Toggle outline style in the toolbar
-- Enable custom hover styles if needed
+The Button Block is implemented with the following key attributes:
 
-### Typography
-- Control font size and weight
-- Adjust text alignment
-- Set text decorations
+```js
+// Core attributes
+id: { type: "string", default: "" },
+label: { type: "html", default: "Button" },
+type: { type: "string", default: "btn" },
+size: { type: "string", default: "normal" },
 
-### Utilities
-- Set margins for spacing
-- Configure padding
-- Adjust position
-- Customize borders
+// Interactive attributes
+isLink: { type: "boolean", default: false },
+inNewTab: { type: "boolean", default: false },
+url: { type: "string", default: "#none" },
+
+// Icon attributes
+iconLabel: { type: "boolean", default: false },
+iconEnd: { type: "boolean", default: false },
+icon: { type: "string", default: "far fa-icons" },
+
+// Lightbox attributes
+isLightBox: { type: "boolean", default: false },
+lightbox_type: { type: "string", default: "image" },
+
+// Trigger attributes
+data_id: { type: "string", default: "" },
+data_modal: { type: "string", default: "" },
+
+// Style-related objects
+typography: { type: "object", default: {} },
+style: { type: "object", default: {} },
+responsive: { type: "object", default: {} }
+```
+
+The block renders as either a button or anchor element based on the `isLink` attribute:
+
+```jsx
+// In save function
+const TagName = attributes.isLink ? "a" : "button";
+return (
+  <TagName {...blockProps}>
+    {!attributes.type.includes("square") ? attributes.label : ""}
+  </TagName>
+);
+```
+
+## Best Practices
+
+### Button Types
+
+- Use default buttons for primary actions that require emphasis
+- Use text/icon buttons when a visual cue helps clarify the action
+- Reserve icon-only buttons for common actions with universally recognized icons
+- Ensure icon-only buttons always have descriptive tooltip labels
+
+### Size Selection
+
+- Use tiny or small sizes for secondary or utility actions
+- Use medium (default) size for standard actions
+- Use large or extra-large sizes for primary calls-to-action
+- Maintain consistent sizing hierarchy across your site
+
+### Color Strategy
+
+- Use the primary color for main actions
+- Use secondary colors for alternative actions
+- Use success/danger/warning colors for their semantic meanings
+- Ensure sufficient contrast between text and background
+- Apply the outline style for less prominent actions
 
 ### Responsive Design
-- Set different sizes per breakpoint
-- Enable responsive icon behavior
-- Adjust typography per screen size
 
-## Related
-- [Group Block](/wordpress/blocks/group-block)
-- [Container Block](/wordpress/blocks/container-block)
-- [Icon Element Block](/wordpress/blocks/icon-element-block) 
+- Start with the mobile layout first (default size)
+- Configure tablet (MD), laptop (LG), and desktop (XL) sizes as needed
+- Consider touch target sizes on mobile devices (minimum 44×44px)
+- Test your buttons across different screen sizes
+
+### Accessibility
+
+- Provide meaningful text for screen readers
+- Ensure icon-only buttons have descriptive labels
+- Maintain sufficient color contrast (minimum 4.5:1 for text)
+- Test keyboard navigation and focus states
+
+## Related Blocks
+
+- [Group Block](./group-block.md) - Can be used to create button groups
+- [Container Block](./container-block.md) - Useful for creating button containers
+- [Icon Element Block](./icon-element-block.md) - Alternative for standalone icons

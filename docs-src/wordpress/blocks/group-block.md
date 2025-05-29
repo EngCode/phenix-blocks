@@ -2,203 +2,209 @@
 
 ## Overview
 
-The Group Block is a flexible container component in the Phenix Design System that allows you to group multiple blocks together. It can function as a standard container or a flexbox container, with support for custom HTML tags and extensive styling options.
-
-<!-- Image placeholder for Group Block -->
+The Group Block is a versatile layout component in the Phenix Design System that provides a flexible wrapper for grouping content elements. Unlike the Container Block, which focuses on width constraints and page structure, the Group Block is designed for content organization and styling flexibility. It can function as a standard wrapper or as a flexbox container, making it ideal for creating content sections, cards, panels, and other grouped elements.
 
 ## Key Features
 
-- Container Options:
-  - HTML tag selection (div, section, article, aside, header, footer)
-  - Optional flexbox container mode
-  - URL linking capability with new tab option
-  - HTML ID for anchoring and navigation
+### Structure Options
 
-- Layout Features:
-  - Flexbox layout system
-  - Responsive flexbox properties
-  - Self-alignment options (start, center, end)
-  - Breakpoint-specific alignments (sm, md, lg, xl)
+- **HTML Tag Selection**: Choose from semantic HTML elements including div (default), section, article, aside, header, and footer
+- **Flexbox Container**: Toggle to enable flexbox layout for direct children with comprehensive layout controls
+- **HTML ID**: Custom identifier for anchoring and navigation targeting
+- **Semantic Structure**: Create meaningful content groupings with appropriate HTML elements
 
-- Typography Features:
-  - Font family (primary, secondary, style)
-  - Font weights (thin to black)
-  - Line height (100% to 180%)
-  - Text shadows (standard and TailWind)
-  - Text alignment per breakpoint
+### Layout Capabilities
 
-- Style Features:
-  - Colors and backgrounds:
-    - Solid colors (primary, secondary, success, etc.)
-    - Gradient options with rotation
-    - Brand colors support
-    - Component level colors
-  - Border controls:
-    - Border styles (solid, dashed, dotted)
-    - Border width per side
-    - Border radius options
-  - Background options:
-    - Position control
-    - Animation effects
-    - Overlay options
+- **Flexbox Controls**: When flexbox is enabled, gain access to:
+  - Direction settings (row, column, reverse options)
+  - Alignment controls (horizontal and vertical positioning)
+  - Distribution options (start, center, end, space-between, space-around)
+  - Wrap behavior (wrap, nowrap, reverse)
+  - Gap settings for spacing between items
 
-- Advanced Features:
-  - Screen-specific controls
-  - Support toggles for features
-  - Position settings
-  - Effects and animations
-  - Margin and padding with responsive options
+### Style Features
+
+- **Typography**: Complete text styling with font family, weight, size, line height, and alignment options
+- **Background Options**: Colors, gradients, images with positioning and overlay capabilities
+- **Spacing Controls**: Comprehensive padding and margin settings with per-side control
+- **Border Settings**: Style, width, color, and radius with per-side customization
+- **Effects**: Shadows, opacity, and other visual enhancements
+- **Position Controls**: Relative, absolute, and fixed positioning with coordinates
+
+### Responsive Design
+
+- **Breakpoint-Specific Settings**: Configure different layouts for mobile, tablet, laptop, and desktop
+- **Responsive Typography**: Adjust text properties per screen size
+- **Adaptive Spacing**: Control margins and padding across breakpoints
+- **Visibility Options**: Show or hide the group at specific screen sizes
 
 ## How to Use
 
 1. Add the Group Block to your page
-2. Select the desired HTML tag from the toolbar
-3. Enable flexbox mode if needed for layout control
-4. Add blocks inside the group container
-5. Configure styling and alignment options
+2. Select the appropriate HTML tag from the toolbar dropdown (div, section, article, etc.)
+3. Enable flexbox mode if you need layout control for direct children
+4. Configure additional styling options as needed:
+   - Set background colors or gradients
+   - Add padding and margin
+   - Configure borders and effects
+5. Add content blocks inside the group
+6. Adjust responsive settings for different screen sizes if necessary
 
 ## Block Settings
 
 ### Toolbar Controls
 
-| Control | Description |
-|---------|-------------|
-| HTML Tag | Select from div, section, article, aside, header, footer |
-| Flexbox Toggle | Enable/disable flexbox with responsive controls |
-| Style Options | Colors, backgrounds, gradients, and overlays |
-| Typography | Font family, size, weight, line height, shadows |
-| URL Options | Link settings with new tab option |
-| Animations | Background and element animations |
-| Padding | Per-side padding with breakpoint controls |
-| Margin | Per-side margins with breakpoint controls |
-| Position | Type and coordinates with z-index |
-| Border | Style, width, color, and radius per side |
-| Effects | Opacity, shadows, and visual effects |
-
-### Sidebar Controls
+The Group Block provides the following controls in the top toolbar:
 
 | Control | Description |
 |---------|-------------|
-| HTML ID | Set a custom ID for anchoring |
-| Style Options | Enable/disable styling features |
-| Self Align | Control alignment in flexbox parents |
-| Responsive | Device-specific style controls |
+| HTML Tag | Dropdown to select the semantic HTML element (div, section, article, aside, header, footer) |
+| Flexbox Toggle | Button to enable/disable flexbox layout for direct children |
+| Flexbox Controls | When flexbox is enabled, provides dropdown access to direction, alignment, and distribution settings |
+| Size Controls | Dropdown for width/height settings with responsive options |
+| Margin Controls | Dropdown for setting outer spacing with responsive options |
+| Padding Controls | Dropdown for setting inner spacing with responsive options |
+| Position Controls | Dropdown for setting position type and coordinates |
+| Border Controls | Dropdown for configuring border styles, widths, and colors |
+| Effects Controls | Dropdown for adding shadows, opacity, and other visual effects |
 
-### Flexbox Features
+### Sidebar Panels
 
-When flexbox is enabled:
+#### General Options Panel
 
-- Layout Properties:
-  - Flow Options:
-    - Reverse flow direction
-    - Stacked (column) layout
-    - Nowrap option
-    - Equal columns
-    - Masonry layout
-  - Gap Controls:
-    - X-axis spacing (0-50px)
-    - Y-axis spacing (0-50px)
-    - Y-axis gap fix option
+| Control | Description |
+|---------|-------------|
+| HTML ID | Text input for setting a custom ID (useful for anchors and JavaScript targeting) |
+| Style Support | Toggle switches to enable/disable various styling features including animations, padding, margin, border, and effects |
+| Self Align | Dropdown selectors for vertical alignment within parent flexbox containers (start, center, end) with responsive options |
 
-- Alignment Controls:
-  - Main Alignment:
-    - Start/Center/End
-    - Space Between/Around
-    - Stretch options
-  - Self Alignment:
-    - Start positioning
-    - Center positioning
-    - End positioning
+### Technical Implementation
 
-- Responsive Controls:
-  - Mobile (default) settings
-  - Tablet (md) specific:
-    - Flow direction
-    - Alignment options
-    - Gap controls
-  - Desktop (lg) specific:
-    - Independent flow
-    - Custom alignment
-    - Spacing options
-  - Large screen (xl):
-    - Unique layout rules
-    - Custom positioning
-    - Gap adjustments
+The Group Block is implemented with the following key attributes:
 
-### Style Features
+```js
+// Core attributes
+id: { type: "string", default: "" },
+tagName: { type: "string", default: "div" },
+isFlexbox: { type: "boolean", default: false },
 
-When style support is enabled:
+// Style-related objects
+flexbox: { type: "object", default: {} },
+typography: { type: "object", default: {} },
+style: { type: "object", default: {} },
+responsive: { type: "object", default: {} }
+```
 
-- Typography:
-  - Font Families:
-    - Primary font
-    - Secondary font
-    - Style font
-  - Font Weights:
-    - Thin (100)
-    - Light (300)
-    - Extra Light
-    - Normal (400)
-    - Medium (500)
-    - Semi-Bold
-    - Bold (700)
-    - Heavy
-    - Black (900)
-  - Line Heights:
-    - 100% to 180%
-    - Inherit option
-  - Text Shadows:
-    - Standard (DP-1 to DP-5)
-    - TailWind (sm to 2xl)
+The block renders as the selected HTML tag with appropriate classes:
 
-- Colors:
-  - Standard:
-    - Primary/Secondary
-    - Success/Danger/Warning/Info
-    - Dark/Light variations
-  - Special:
-    - Brand colors
-    - Component levels
-    - Inherit/Transparent
-  - Gradients:
-    - Multiple color combinations
-    - Rotation options (0° to 180°)
+```jsx
+<TagName {...blockProps}>
+  <div {...innerBlocksProps}></div>
+</TagName>
+```
 
-- Background:
-  - Positions:
-    - 9-point positioning
-    - Custom coordinates
-  - Animations:
-    - X/Y movement
-    - Zooming
-    - Gradient rotation
-  - Overlay:
-    - Dark/Light
-    - Custom overlay
+When flexbox mode is enabled, the inner div receives flexbox-related classes to control the layout of child elements.
 
-- Border:
-  - Styles:
-    - Solid
-    - Dashed
-    - Dotted
-  - Controls:
-    - Per-side width
-    - Color options
-    - Radius settings
+## Common Use Cases
 
-- Effects:
-  - Opacity control
-  - Box shadows
-  - Custom effects
+### Content Section
 
-### Responsive Features
+To create a styled content section with background and spacing:
 
-The following can be configured per breakpoint:
+1. Add a Group Block to your page
+2. Select "section" as the HTML tag
+3. Configure background color or gradient
+4. Add appropriate padding
+5. Add your content blocks inside the group
 
-- Typography settings
-- Size controls
-- Self-alignment (in flexbox)
-- Margin and padding
+### Card Component
+
+To create a card-like component with border and shadow:
+
+1. Add a Group Block to your page
+2. Enable style support and border options
+3. Configure border, border radius, and shadow effects
+4. Add padding for internal spacing
+5. Add heading, text, and other content inside the group
+
+### Flexbox Layout Container
+
+To create a flexible layout for arranging content:
+
+1. Add a Group Block to your page
+2. Enable the Flexbox toggle
+3. Configure direction (row or column) and alignment options
+4. Add content blocks that will be arranged according to the flexbox settings
+
+### Responsive Content Group
+
+To create content that changes layout across different screen sizes:
+
+1. Add a Group Block to your page
+2. Configure the base layout for mobile devices
+3. Use the responsive tabs to adjust layout for tablet, laptop, and desktop
+4. Add content that will adapt to the responsive settings
+
+## Style Features
+
+The Group Block includes comprehensive styling options when style support is enabled:
+
+### Typography Options
+
+- **Font Family**: Choose from primary (Poppins), secondary (Roboto), or style fonts
+- **Font Weight**: Select from thin (100) to black (900)
+- **Line Height**: Adjust from 100% to 180%
+- **Text Alignment**: Control text alignment with responsive options
+- **Text Color**: Apply color from the Phenix Design System palette
+
+### Background Options
+
+- **Colors**: Select from the design system color palette including primary, secondary, success, danger, warning, info, and neutral colors
+- **Gradients**: Apply preset gradients with rotation options (0° to 180°)
+- **Position**: Control background position with 9-point positioning
+- **Animations**: Add movement effects including X/Y movement, zooming, and gradient rotation
+- **Overlay**: Apply dark, light, or custom overlay effects
+
+### Border Options
+
+- **Border Style**: Choose from solid, dashed, or dotted
+- **Border Width**: Set width per side (top, right, bottom, left)
+- **Border Color**: Select from the design system color palette
+- **Border Radius**: Apply rounded corners with per-corner control
+
+### Effects Options
+
+- **Opacity**: Control element transparency
+- **Box Shadows**: Apply shadow effects with various presets
+- **Custom Effects**: Apply additional visual enhancements
+
+## Best Practices
+
+### Semantic Structure
+
+- Choose the appropriate HTML tag based on content purpose (div for general grouping, section for thematic content, article for self-contained content)
+- Use the HTML ID field to create anchor points for navigation
+- Maintain a logical hierarchy in your document structure
+
+### Layout Strategy
+
+- Use the Group Block for content organization rather than page structure (use Container Block for page structure)
+- Enable flexbox only when you need to control the arrangement of direct children
+- Use the built-in responsive controls to adjust layout across different screen sizes
+
+### Styling Approach
+
+- Enable only the style features you need to keep the editor interface focused
+- Apply consistent spacing using the padding and margin controls
+- Use the typography controls to maintain text styling consistency
+- Configure responsive settings starting from mobile and working up to larger screens
+
+## Related Blocks
+
+- [Container Block](./container-block.md) - For page structure and width constraints
+- [Grid Row Block](./grid-row-block.md) - For creating grid-based layouts
+- [Grid Column Block](./grid-column-block.md) - For column-based content within grid rows
+- [Dynamic Query Block](./dynamic-query-block.md) - Can be wrapped in groups for styled dynamic content
 - Other style options
 
 ## Examples
@@ -239,11 +245,11 @@ To create a flexbox layout:
 
 To add custom styling:
 
-1. Enable style support in sidebar
-2. Use the Style Options dropdown
-3. Configure colors and backgrounds
-4. Add margins and padding as needed
-5. Configure any other style options
+1. Enable style support in the sidebar panel
+2. Configure background colors or gradients
+3. Add padding and margin as needed
+4. Set border styles and effects if required
+5. Adjust typography settings for consistent text appearance
 
 ## Best Practices
 
@@ -283,7 +289,9 @@ To add custom styling:
    - Use appropriate font sizes
    - Consider animation effects carefully
 
-## Related
-- [Container Block](/wordpress/blocks/container-block)
-- [Section Block](/wordpress/blocks/section-block)
+## Related Blocks
 
+- [Container Block](./container-block.md) - For page structure and width constraints
+- [Grid Row Block](./grid-row-block.md) - For creating grid-based layouts
+- [Grid Column Block](./grid-column-block.md) - For column-based content within grid rows
+- [Dynamic Query Block](./dynamic-query-block.md) - Can be wrapped in groups for styled dynamic content

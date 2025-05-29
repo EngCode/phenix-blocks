@@ -2,257 +2,164 @@
 
 ## Overview
 
-The Popup Modals Block is a powerful interactive component in the Phenix Design System that allows you to create customizable modal dialogs, popups, and lightboxes. These modals can be triggered by various actions and can contain any type of content, making them versatile for displaying additional information, forms, images, or other interactive elements without navigating away from the current page.
+The Popup Modals Block is a versatile component in the Phenix Design System that allows you to create customizable modal dialogs. These modals can be triggered by various elements and can contain any type of content, making them ideal for displaying additional information, forms, images, or other interactive elements without navigating away from the current page.
 
-<!-- Image placeholder for Popup Modals Block -->
+The block creates a full-screen overlay with a customizable content area that can be styled to match your design requirements. Each modal requires a unique ID for proper triggering and functionality.
 
 ## Key Features
 
-- Create responsive modal dialogs with customizable sizes
-- Multiple trigger options (button, link, image, or automatic)
-- Various animation effects for modal appearance
-- Backdrop customization (color, opacity, blur)
-- Header, body, and footer sections with styling options
-- Close button and ESC key functionality
-- Accessibility features for keyboard navigation and screen readers
+- Create responsive modal dialogs with customizable content
+- Flexible positioning and alignment options
+- Customizable backdrop for the modal overlay
+- Support for any content type within the modal (text, images, forms, etc.)
+- Automatic close button integration
+- Accessibility features for keyboard navigation
+- Responsive design that works across all device sizes
 
-## How to Use
+## Block Structure
 
-1. In the WordPress editor, click the "+" button to add a new block
-2. Search for "Popup Modals" or find it in the "Phenix Blocks" category
-3. Add the Popup Modals Block to your page
-4. Configure the trigger element and modal content
-5. Customize the modal settings in the block sidebar
+The Popup Modals Block consists of two main components:
+
+1. **Modal Container**: A full-screen overlay that serves as the backdrop and container for the modal
+2. **Modal Content**: A customizable content area that contains your information and a close button
+
+When added to a page, the block automatically includes a close button in the top-right corner of the content area for easy dismissal.
 
 ## Block Settings
 
-### Trigger Options
+### General Settings
 
 | Option | Description |
 |--------|-------------|
-| Trigger Type | Choose the type of element that will open the modal (button, link, image, auto) |
-| Trigger Text | Text to display on the trigger button or link |
-| Trigger Icon | Optional icon to display with the trigger text |
-| Trigger Style | Style options for the trigger button (primary, secondary, outline, etc.) |
-| Auto Trigger | Settings for automatic triggering (on page load, after delay, on exit intent) |
+| Modal ID | Sets a unique identifier for the modal, which is used for triggering the modal from buttons or links |
 
-### Modal Size and Position
+### Style Options
 
-| Option | Description |
-|--------|-------------|
-| Modal Size | Set the size of the modal (small, medium, large, extra large, or custom) |
-| Modal Position | Position the modal on the screen (center, top, bottom, fullscreen) |
-| Max Width | Set a maximum width for the modal |
-| Max Height | Set a maximum height for the modal |
-| Fullscreen on Mobile | Option to make the modal fullscreen on mobile devices |
+The Popup Modals Block includes comprehensive styling options through the Phenix Design System:
 
-### Modal Style Options
+| Category | Available Options |
+|----------|-------------------|
+| Layout | Flexbox properties, alignment, positioning |
+| Spacing | Padding, margins |
+| Typography | Text size, weight, alignment, color |
+| Background | Colors, gradients |
+| Border | Width, style, color, radius |
+| Effects | Shadows, opacity |
 
-| Option | Description |
-|--------|-------------|
-| Background Color | Set the background color of the modal |
-| Text Color | Set the text color within the modal |
-| Border | Add borders with custom color, width, and style |
-| Border Radius | Add rounded corners to the modal |
-| Shadow | Add shadow effects to the modal |
-| Padding | Add internal spacing within the modal |
+### Responsive Controls
 
-### Animation Options
+All style options can be customized for different screen sizes:
 
-| Option | Description |
-|--------|-------------|
-| Animation Type | Select the animation effect for the modal (fade, slide, zoom, etc.) |
-| Animation Duration | Set how long the animation lasts |
-| Animation Timing | Control the timing function of the animation |
+- Default (all screens)
+- Medium devices (tablets)
+- Large devices (desktops)
+- Extra large devices (large screens)
 
-### Backdrop Options
+## How to Use
 
-| Option | Description |
-|--------|-------------|
-| Backdrop Color | Set the color of the backdrop behind the modal |
-| Backdrop Opacity | Control the transparency of the backdrop |
-| Backdrop Blur | Add a blur effect to the content behind the modal |
-| Close on Backdrop Click | Enable/disable closing the modal when clicking outside it |
+### Adding a Popup Modal
 
-### Advanced Options
+1. In the WordPress editor, click the "+" button to add a new block
+2. Search for "Popup/Modal" or find it in the "Phenix Blocks" category
+3. Add the block to your page
+4. Set a unique Modal ID in the block settings panel
+5. Customize the content and appearance using the block tools
 
-| Option | Description |
-|--------|-------------|
-| Modal ID | Set a unique identifier for the modal (for custom triggering) |
-| Close Button | Show/hide the close button |
-| Close on ESC | Enable/disable closing the modal with the ESC key |
-| Prevent Scrolling | Lock the background page scrolling when modal is open |
-| Z-Index | Set the stacking order for the modal |
+### Creating a Trigger
 
-## Examples
+To open the modal, you need to create a trigger element (typically a button) with the following attributes:
 
-### Basic Modal with Button Trigger
+- `data-modal="your-modal-id"` - Points to the Modal ID you set
+- `href="#your-modal-id"` - Alternative method using anchor links
 
-A simple modal triggered by a button:
+Example using a Button Block:
 
 ```html
-<!-- wp:phenix/popup-modals {"triggerType":"button","triggerText":"Open Modal","modalSize":"medium"} -->
-<div class="wp-block-phenix-popup-modals">
-  <button class="btn primary modal-trigger" data-modal-id="modal-1">Open Modal</button>
-  <div id="modal-1" class="px-modal size-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Modal Title</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p>This is the modal content. You can add any blocks here.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn outline modal-close">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/popup-modals -->
+<!-- wp:phenix/button {
+  "label":"Open Modal",
+  "attributes":{"data-modal":"my-popup-1"}
+} /-->
 ```
 
-### Image Lightbox Modal
+## Implementation Details
 
-A modal that displays an image in a lightbox style:
+### HTML Structure
+
+When implemented, the Popup Modals Block generates the following HTML structure:
 
 ```html
-<!-- wp:phenix/popup-modals {"triggerType":"image","triggerImage":"https://example.com/thumbnail.jpg","modalSize":"large","animation":"zoom"} -->
-<div class="wp-block-phenix-popup-modals">
-  <img src="https://example.com/thumbnail.jpg" alt="Click to enlarge" class="modal-trigger" data-modal-id="lightbox-1">
-  <div id="lightbox-1" class="px-modal size-lg" data-animation="zoom">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <div class="modal-body pd-0">
-        <img src="https://example.com/large-image.jpg" alt="Large image" class="img-fluid">
-      </div>
-    </div>
+<div id="my-popup-1" class="px-modal hidden w-fluid h-100vh flexbox px-popup pos-top-0 position-fx pos-start-0 px-scrollbar z-index-modal overflow-y-auto">
+  <div class="model-content mgx-auto col position-rv z-index-10 bg-white">
+    <button class="modal-close btn square tooltip-bottom far fa-times fs-18 bg-danger radius-circle position-ab z-index-modal" style="top:15px;right:15px;"></button>
+    <!-- Your content here -->
   </div>
 </div>
-<!-- /wp:phenix/popup-modals -->
 ```
 
-### Auto-Triggered Modal
+### JavaScript Integration
 
-A modal that automatically opens after a delay:
+The Popup Modals Block integrates with the Phenix JavaScript framework through the `.popup()` method, which provides the following functionality:
 
-```html
-<!-- wp:phenix/popup-modals {"triggerType":"auto","autoDelay":"3000","modalSize":"medium","backdropColor":"#000000","backdropOpacity":"0.8"} -->
-<div class="wp-block-phenix-popup-modals">
-  <div id="auto-modal-1" class="px-modal size-md" data-auto-open="true" data-auto-delay="3000" data-backdrop-color="#000000" data-backdrop-opacity="0.8">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Special Offer!</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p>Subscribe to our newsletter and get 10% off your first purchase!</p>
-        <!-- Form content goes here -->
-      </div>
-      <div class="modal-footer">
-        <button class="btn primary">Subscribe</button>
-        <button class="btn outline modal-close">No Thanks</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/popup-modals -->
-```
+- Modal triggering through buttons, links, or programmatic calls
+- Opening/closing animations
+- Backdrop click handling
+- Keyboard accessibility (ESC key support)
+- Scroll locking when modal is open
+- Support for lightbox functionality for images and media
 
-### Fullscreen Modal
+## Trigger Options
 
-A fullscreen modal with a custom background:
+The Popup Modals Block supports several triggering methods through the Phenix JavaScript framework:
 
-```html
-<!-- wp:phenix/popup-modals {"triggerType":"button","triggerText":"Open Fullscreen","modalPosition":"fullscreen","backgroundColor":"#f5f5f5"} -->
-<div class="wp-block-phenix-popup-modals">
-  <button class="btn primary modal-trigger" data-modal-id="fullscreen-1">Open Fullscreen</button>
-  <div id="fullscreen-1" class="px-modal fullscreen" style="--bg-color:#f5f5f5">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Fullscreen Modal</h2>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <!-- Fullscreen content goes here -->
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/popup-modals -->
-```
+| Trigger Attribute | Description |
+|------------------|-------------|
+| `data-modal="modal-id"` | Standard trigger that opens the modal with the specified ID |
+| `href="#modal-id"` | Link-based trigger (except for links with `target="_blank"`) |
+| `data-type="lightbox"` | Configures the modal for lightbox functionality |
+| `data-onload="true"` | Opens the modal automatically when the page loads |
+| `data-timeout="2000"` | Sets a delay (in milliseconds) before showing the modal |
+| `data-showon="#element-id"` | Shows the modal when a specific element comes into view |
+| `data-hash="true"` | Opens the modal if the URL hash matches the modal ID |
 
-## Common Use Cases
+## Styling Options
 
-### Contact Form Modal
+### Modal Container
 
-A modal containing a contact form:
+The modal container supports all standard Phenix Design System styling options, including:
 
-```html
-<!-- wp:phenix/popup-modals {"triggerType":"button","triggerText":"Contact Us","triggerIcon":"fas fa-envelope","modalSize":"medium"} -->
-<div class="wp-block-phenix-popup-modals">
-  <button class="btn primary modal-trigger" data-modal-id="contact-modal">
-    <i class="fas fa-envelope me-10"></i>Contact Us
-  </button>
-  <div id="contact-modal" class="px-modal size-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Get in Touch</h3>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <!-- Contact form shortcode or blocks go here -->
-        [contact-form-7 id="123" title="Contact Form"]
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/popup-modals -->
-```
+- **Flexbox Properties**: Control the alignment and distribution of content
+- **Background**: Set background colors or gradients for the modal overlay
+- **Spacing**: Add padding and margins to create proper spacing
+- **Typography**: Control text appearance within the modal
 
-### Video Modal
+### Modal Content
 
-A modal for displaying a video:
+The content area is implemented as a Group Block with default styling that can be customized:
 
-```html
-<!-- wp:phenix/popup-modals {"triggerType":"button","triggerText":"Watch Video","triggerIcon":"fas fa-play","modalSize":"large"} -->
-<div class="wp-block-phenix-popup-modals">
-  <button class="btn primary modal-trigger" data-modal-id="video-modal">
-    <i class="fas fa-play me-10"></i>Watch Video
-  </button>
-  <div id="video-modal" class="px-modal size-lg">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <div class="modal-body pd-0">
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/popup-modals -->
-```
+- Default maximum width of 640px
+- White background
+- 30px padding on all sides
+- Relative positioning with z-index for proper stacking
 
 ## Best Practices
 
-1. **Clear Purpose**: Ensure each modal has a clear purpose and communicates it effectively
+1. **Unique IDs**: Always use unique IDs for each modal to prevent conflicts
 
-2. **Appropriate Sizing**: Choose modal sizes appropriate for the content they contain
+2. **Appropriate Content**: Use modals for supplementary content that doesn't disrupt the main user flow
 
-3. **Accessible Design**: Include proper headings, focus management, and keyboard navigation
+3. **Accessible Design**: Ensure modals are keyboard accessible and screen reader friendly
 
-4. **Mobile Consideration**: Test modals on mobile devices and consider using fullscreen mode
+4. **Mobile Optimization**: Test modal appearance and usability on mobile devices
 
-5. **Performance**: Be mindful of loading large content in modals, especially for auto-triggered ones
+5. **Clear Close Options**: Always include a visible close button and maintain backdrop click functionality
 
-6. **User Control**: Always provide clear ways to close the modal (close button, ESC key, backdrop click)
+6. **Performance**: Be mindful of loading large content in modals to maintain performance
 
-7. **Judicious Use**: Don't overuse modals as they can interrupt the user experience
+7. **Consistent Design**: Maintain design consistency with your site's overall aesthetic
 
 ## Related Blocks
 
 - [Button Block](./button-block.md) - For creating custom modal triggers
-- [Media Element Block](./media-element-block.md) - For including media in modals
 - [Group Block](./group-block.md) - For organizing content within modals
+- [Icon Element Block](./icon-element-block.md) - For adding icons to modal content or triggers
 

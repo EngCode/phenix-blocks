@@ -2,26 +2,27 @@
 
 ## Overview
 
-The Icon Element Block is a versatile component in the Phenix Design System that allows you to add and customize icons from various icon libraries. This block provides extensive styling options and can be used for visual enhancements, navigation elements, feature highlights, and more.
-
-<!-- Image placeholder for Icon Element Block -->
+The Icon Element Block is a versatile component in the Phenix Design System that allows you to add and customize icons on your WordPress site. The block supports both FontAwesome icons and custom image icons, with extensive styling options for size, color, positioning, and effects. It's designed to be fully responsive and integrates seamlessly with the Phenix Design System's styling framework.
 
 ## Key Features
 
-- Access to multiple icon libraries (Font Awesome, Material Icons, etc.)
-- Extensive styling options for size, color, and appearance
-- Support for icon animations and effects
-- Ability to add links to icons
-- Background and border customization
+- Two icon types: FontAwesome icons and custom image icons
+- Flexible sizing with fixed or free-width options
+- Comprehensive styling options including colors, backgrounds, and borders
+- Support for animations and visual effects
+- Link functionality to make icons clickable
 - Responsive control for different screen sizes
+- Integration with the Phenix Design System's styling framework
 
 ## How to Use
 
 1. In the WordPress editor, click the "+" button to add a new block
 2. Search for "Icon Element" or find it in the "Phenix Blocks" category
 3. Add the Icon Element Block to your page
-4. Select an icon from the available libraries
-5. Customize the icon settings in the block sidebar
+4. Choose between FontAwesome or custom image icon type
+5. For FontAwesome, select an icon using the icon picker
+6. For custom images, upload or select an image from the media library
+7. Customize the icon's appearance using the toolbar and sidebar options
 
 ## Block Settings
 
@@ -29,177 +30,166 @@ The Icon Element Block is a versatile component in the Phenix Design System that
 
 | Control | Description |
 |---------|-------------|
-| Icon Library | Quick selection of icon libraries (Font Awesome, Material Icons, etc.) |
-| Icon Selection | Browse and select icons from the chosen library |
-| Icon Size | Quickly adjust the size of the icon (xs, sm, md, lg, xl) |
-| Icon Color | Set the color of the icon via color picker |
-| Alignment | Set the icon alignment (left, center, right) |
-| Link Controls | Add or edit links for the icon |
-| Spacing Controls | Quick access to margin and padding settings |
-| Border Options | Configure border styles, widths, and colors |
+| Icon Type | Choose between FontAwesome or custom image icon |
+| Style Options | Configure colors, backgrounds, and other visual styles |
+| Typography Options | Set text size, alignment, and other typography settings |
+| Margin Controls | Adjust spacing around the icon (when enabled) |
+| Padding Controls | Adjust internal spacing (when enabled) |
+| Position Controls | Set positioning options (when enabled) |
+| Border Options | Configure border styles, widths, and colors (when enabled) |
+| Effects Options | Add shadows, opacity, and other visual effects (when enabled) |
 
 ### Sidebar Controls
 
-#### Icon Selection Panel
+The Icon Element block includes a General Settings panel where you can enable additional features:
 
-| Control | Description |
+| Setting | Description |
 |---------|-------------|
-| Icon Library | Choose from available icon libraries (Font Awesome, Material Icons, etc.) |
-| Icon | Select a specific icon from the chosen library |
-| Icon Style | Choose between solid, regular, light, or duotone styles (when available) |
+| Enable Animations | Adds animation options to the toolbar |
+| Enable Effects | Adds effects options to the toolbar |
+| Enable Border | Adds border options to the toolbar |
+| Enable Margin | Adds margin controls to the toolbar |
+| Enable Padding | Adds padding controls to the toolbar |
+| Enable Position | Adds position controls to the toolbar |
 
-#### Size and Appearance Panel
+### Icon Type Options
 
-| Control | Description |
-|---------|-------------|
-| Icon Size | Set the size of the icon (xs, sm, md, lg, xl, or custom) |
-| Icon Color | Set the color of the icon |
-| Opacity | Control the transparency of the icon |
-| Rotation | Rotate the icon by specific degrees |
-| Flip | Flip the icon horizontally or vertically |
+The Icon Element block supports two types of icons:
 
-#### Layout Panel
+#### FontAwesome Icons
 
-| Control | Description |
-|---------|-------------|
-| Alignment | Set the icon alignment (left, center, right) |
-| Padding | Add internal spacing around the icon |
-| Margin | Add external spacing around the icon |
-| Display | Control how the icon is displayed (inline, block, etc.) |
+When "FontAwesome" is selected as the icon type:
 
-#### Style Panel
+1. Use the icon picker in the toolbar to select a FontAwesome icon
+2. The selected icon is applied as a class to the icon element
+3. Default icon is `far fa-icons` if no icon is selected
 
-| Control | Description |
-|---------|-------------|
-| Background | Add a background color or gradient |
-| Border | Add borders with custom color, width, and style |
-| Border Radius | Add rounded corners to the icon container |
-| Shadow | Add shadow effects to the icon |
+#### Custom Image Icons
 
-#### Animation Panel
+When "Icon Image" is selected as the icon type:
 
-| Control | Description |
-|---------|-------------|
-| Animation Type | Select from various animation effects (spin, pulse, beat, etc.) |
-| Animation Duration | Set how long the animation lasts |
-| Animation Timing | Control the timing function of the animation |
-| Hover Effects | Apply effects that activate on hover |
+1. Use the media uploader to select or upload an image
+2. The image is displayed within the icon container
+3. Default placeholder is used if no image is selected
 
-#### Link Panel
+### Icon Styling Options
 
-| Control | Description |
-|---------|-------------|
-| URL | Set a destination URL for the icon |
-| Open in New Tab | Whether the link opens in a new browser tab |
-| Rel Attributes | Add rel attributes for SEO and security |
+#### Dimensions
 
-## Examples
+The icon dimensions can be controlled using the following settings:
 
-### Basic Icon
+- **Icon Size**: Set the height and width of the icon (in pixels, converted to REM)
+- **Free Width**: When enabled, only the height is fixed while the width adjusts automatically
 
-A simple Font Awesome icon:
+#### Link Options
+
+Icons can be made clickable by enabling the link option:
+
+- **Make Link**: Convert the icon to a clickable link
+- **URL**: Set the destination URL for the icon link
+
+## Technical Implementation
+
+### Block Structure
+
+The Icon Element block is rendered as an `<i>` element for FontAwesome icons or as an `<a>` element when configured as a link. For custom image icons, an `<img>` element is nested inside the container.
+
+#### FontAwesome Icon Structure
 
 ```html
-<!-- wp:phenix/icon-element {"iconSet":"fas","iconName":"fa-star"} -->
-<div class="wp-block-phenix-icon-element">
-  <i class="fas fa-star"></i>
-</div>
-<!-- /wp:phenix/icon-element -->
+<i class="wp-block-phenix-icon-element tx-align-center inline-block [additional-classes] [icon-classes]" style="height: 2.625rem; line-height: 2.625rem; width: 2.625rem;"></i>
 ```
 
-### Styled Icon
-
-An icon with custom styling:
+#### Custom Image Icon Structure
 
 ```html
-<!-- wp:phenix/icon-element {"iconSet":"fas","iconName":"fa-heart","iconSize":"xl","iconColor":"#e74c3c","backgroundColor":"#f9f9f9","padding":"md","borderRadius":"circle"} -->
-<div class="wp-block-phenix-icon-element bg-color pdy-15 pdx-15 radius-circle" style="--bg-color:#f9f9f9">
-  <i class="fas fa-heart tx-xl" style="color:#e74c3c"></i>
-</div>
-<!-- /wp:phenix/icon-element -->
+<i class="wp-block-phenix-icon-element tx-align-center inline-block [additional-classes]" style="height: 2.625rem; line-height: 2.625rem; width: 2.625rem;">
+  <img alt="icon" class="fluid" src="[icon-url]">
+</i>
 ```
 
-### Animated Icon
-
-An icon with animation effects:
+#### Link Icon Structure
 
 ```html
-<!-- wp:phenix/icon-element {"iconSet":"fas","iconName":"fa-cog","animation":"spin","animationDuration":"2s"} -->
-<div class="wp-block-phenix-icon-element">
-  <i class="fas fa-cog animation-spin" style="--animation-duration:2s"></i>
-</div>
-<!-- /wp:phenix/icon-element -->
+<a href="[url]" class="wp-block-phenix-icon-element tx-align-center inline-block [additional-classes] [icon-classes]" style="height: 2.625rem; line-height: 2.625rem; width: 2.625rem;">
+  <!-- For custom image icons -->
+  <img alt="icon" class="fluid" src="[icon-url]">
+</a>
 ```
 
-### Linked Icon
+### Default Styling
 
-An icon that links to a URL:
+The Icon Element block includes these default styles:
 
-```html
-<!-- wp:phenix/icon-element {"iconSet":"fab","iconName":"fa-twitter","iconSize":"lg","iconColor":"#1da1f2","url":"https://twitter.com","openNewTab":true} -->
-<div class="wp-block-phenix-icon-element">
-  <a href="https://twitter.com" target="_blank" rel="noopener">
-    <i class="fab fa-twitter tx-lg" style="color:#1da1f2"></i>
-  </a>
-</div>
-<!-- /wp:phenix/icon-element -->
-```
+- Center text alignment (`tx-align-center`)
+- Inline block display (`inline-block`)
+- Default dimensions of 42px (converted to REM)
+- For custom image icons, the image has `border-radius: inherit` to match the container's border radius
+
+### Responsive Behavior
+
+The Icon Element block inherits responsive behavior from the Phenix Design System's responsive utilities. This includes:
+
+- Responsive alignment classes (e.g., `tx-align-md-center`)
+- Responsive margin and padding
+- Responsive positioning
+- Responsive display properties
 
 ## Common Use Cases
 
-### Social Media Icons
+### Decorative Icons
 
-Create a set of social media icons for your website:
+Use the Icon Element block to add decorative icons to your content:
 
-```html
-<!-- wp:group {"className":"flexbox gap-15"} -->
-<div class="wp-block-group flexbox gap-15">
-  <!-- wp:phenix/icon-element {"iconSet":"fab","iconName":"fa-facebook","iconColor":"#3b5998","url":"https://facebook.com"} -->
-  <div class="wp-block-phenix-icon-element">
-    <a href="https://facebook.com">
-      <i class="fab fa-facebook" style="color:#3b5998"></i>
-    </a>
-  </div>
-  <!-- /wp:phenix/icon-element -->
-  
-  <!-- wp:phenix/icon-element {"iconSet":"fab","iconName":"fa-twitter","iconColor":"#1da1f2","url":"https://twitter.com"} -->
-  <div class="wp-block-phenix-icon-element">
-    <a href="https://twitter.com">
-      <i class="fab fa-twitter" style="color:#1da1f2"></i>
-    </a>
-  </div>
-  <!-- /wp:phenix/icon-element -->
-  
-  <!-- wp:phenix/icon-element {"iconSet":"fab","iconName":"fa-instagram","iconColor":"#e1306c","url":"https://instagram.com"} -->
-  <div class="wp-block-phenix-icon-element">
-    <a href="https://instagram.com">
-      <i class="fab fa-instagram" style="color:#e1306c"></i>
-    </a>
-  </div>
-  <!-- /wp:phenix/icon-element -->
-</div>
-<!-- /wp:group -->
-```
+- Section dividers or separators
+- Visual indicators for lists or bullet points
+- Decorative elements in headers or footers
+- Background design elements
 
-### Feature Icons
+### Interactive Icons
+
+Create interactive icons by enabling the link functionality:
+
+- Social media profile links
+- Navigation menu icons
+- Call-to-action buttons
+- Download links
+
+### Feature Highlights
 
 Use icons to highlight features or services:
 
-```html
-<!-- wp:phenix/icon-element {"iconSet":"fas","iconName":"fa-shield-alt","iconSize":"xl","iconColor":"#3498db","backgroundColor":"#eaf2fa","padding":"lg","borderRadius":"md","textAlign":"center"} -->
-<div class="wp-block-phenix-icon-element tx-align-center bg-color pdy-25 pdx-25 radius-md" style="--bg-color:#eaf2fa">
-  <i class="fas fa-shield-alt tx-xl" style="color:#3498db"></i>
-</div>
-<!-- /wp:phenix/icon-element -->
+- Service category indicators
+- Feature benefit icons
+- Process step indicators
+- Status indicators
 
-<!-- wp:heading {"textAlign":"center","level":3} -->
-<h3 class="has-text-align-center">Security First</h3>
-<!-- /wp:heading -->
+### Custom Icon Systems
 
-<!-- wp:paragraph {"align":"center"} -->
-<p class="has-text-align-center">Our platform prioritizes your data security with advanced encryption.</p>
-<!-- /wp:paragraph -->
-```
+Combine multiple Icon Element blocks to create custom icon systems:
+
+- Rating systems (stars, hearts, etc.)
+- Progress indicators
+- Custom navigation menus
+- Social proof indicators
+
+## Best Practices
+
+1. **Consistent Sizing**: Maintain consistent icon sizes throughout your site for a polished look
+
+2. **Appropriate Spacing**: Use margin controls to ensure proper spacing between icons and surrounding elements
+
+3. **Color Harmony**: Choose icon colors that complement your site's color scheme
+
+4. **Accessibility**: Ensure sufficient contrast between icon colors and backgrounds
+
+5. **Performance**: Use FontAwesome icons when possible instead of custom images for better performance
+
+6. **Responsive Design**: Test how icons appear on different screen sizes and adjust responsive settings as needed
+
+7. **Purposeful Animation**: Use animations sparingly and only when they enhance the user experience
+
+8. **Semantic Usage**: Choose icons that clearly represent their intended meaning or function
 
 ## Best Practices
 

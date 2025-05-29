@@ -2,29 +2,29 @@
 
 ## Overview
 
-The Dynamic Query Block is a powerful component in the Phenix Design System that allows you to fetch and display dynamic content from your WordPress database. This block enables you to create custom content listings, grids, sliders, and more by querying posts, pages, custom post types, or any other content stored in your WordPress site. With extensive filtering, sorting, and display options, the Dynamic Query Block provides a flexible solution for creating dynamic content sections without writing custom code.
-
-<!-- Image placeholder for Dynamic Query Block -->
+The Dynamic Query Block (registered as "Posts Query" in the block inserter) is a powerful component in the Phenix Design System that allows you to fetch and display dynamic content from your WordPress database. This server-side rendered block enables you to create custom content listings with flexible grid layouts and slider functionality. The block works by querying posts based on taxonomies and displaying them using template parts from your theme.
 
 ## Key Features
 
-- Query any WordPress content type (posts, pages, custom post types)
-- Advanced filtering options (categories, tags, taxonomies, custom fields)
-- Flexible sorting and ordering capabilities
-- Multiple display layouts (grid, list, carousel, masonry)
-- Customizable item templates with dynamic data fields
-- Pagination and load more functionality
-- Responsive design controls for different screen sizes
-- AJAX loading for improved performance
+- **Taxonomy-Based Filtering**: Query posts by selecting specific taxonomies and terms
+- **Template Part Integration**: Display query results using theme template parts
+- **Flexible Grid Layout**: Configure responsive grid layouts with customizable columns
+- **Slider Functionality**: Convert grid layouts into interactive sliders
+- **Server-Side Rendering**: Content is rendered on the server for optimal performance and SEO
+- **Pagination Support**: Optional pagination for query results
+- **Search Integration**: Support for search queries with proper nonce verification
 
 ## How to Use
 
 1. In the WordPress editor, click the "+" button to add a new block
-2. Search for "Dynamic Query" or find it in the "Phenix Blocks" category
-3. Add the Dynamic Query Block to your page
-4. Configure the query settings to fetch your desired content
-5. Customize the display layout and item templates
-6. Adjust styling options as needed
+2. Search for "Posts Query" or find it in the "Phenix Blocks" category
+3. Add the Posts Query block to your page
+4. Select a template part from your theme to use for displaying each post
+5. In the Query by Taxonomies panel, select the taxonomies you want to filter by
+6. For each selected taxonomy, choose specific terms to include in the query
+7. Enable Grid Mode if you want to display results in a grid layout
+8. Configure columns and responsive behavior as needed
+9. Enable the Slider option if you want the grid to function as a slider
 
 ## Block Settings
 
@@ -32,37 +32,43 @@ The Dynamic Query Block is a powerful component in the Phenix Design System that
 
 | Control | Description |
 |---------|-------------|
-| Display Type | Quick toggle between grid, list, carousel, or masonry layouts |
-| Columns | Adjust the number of columns for grid and masonry layouts |
-| Item Spacing | Control the gap between items |
-| Refresh Query | Manually refresh the query results |
-| Layout Controls | Access dropdown menus for layout settings |
-| Alignment Controls | Set alignment of query items and content |
+| HTML Tag | Select the HTML element to use for the wrapper (div, nav, main, aside) |
+| Template Part | Select a template part from your theme to use for displaying each post |
+| Grid Mode | Toggle to enable grid layout for query results |
+| Slider Mode | Toggle to enable slider functionality for grid layouts |
+| Columns | Set the number of columns for different screen sizes (mobile, tablet, laptop, desktop) |
 
 ### Sidebar Controls
 
-#### Query Panel
+#### Query by Taxonomies Panel
 
 | Control | Description |
 |---------|-------------|
-| Content Type | Select the type of content to query (posts, pages, custom post types) |
-| Number of Items | Set how many items to display per page |
-| Offset | Skip a specific number of items from the beginning of the results |
-| Include/Exclude | Specify specific items to include or exclude by ID |
-| Order By | Sort results by various criteria (date, title, menu order, etc.) |
-| Order | Set ascending or descending order |
+| Taxonomies Types | Select which taxonomies to use for filtering (categories, tags, custom taxonomies) |
+| Terms Selection | For each selected taxonomy, choose specific terms to include in the query |
 
-#### Filter Panel
+#### Grid Layout Panel
 
 | Control | Description |
 |---------|-------------|
-| Categories | Filter by specific categories |
-| Tags | Filter by specific tags |
-| Taxonomies | Filter by custom taxonomies |
-| Author | Filter by content author |
-| Date | Filter by publication date range |
-| Search Term | Filter by keyword search |
-| Meta Query | Filter by custom field values |
+| Grid Properties | Configure responsive grid layout settings |
+| Alignment | Set alignment options for grid items |
+| Responsive Columns | Configure different column counts for various screen sizes |
+| Gap Controls | Set horizontal and vertical spacing between grid items |
+
+#### Slider Options Panel
+
+Only visible when Slider Mode is enabled:
+
+| Control | Description |
+|---------|-------------|
+| Slides Per View | Set the number of slides visible at once |
+| Slides Per Group | Set how many slides to move at once when navigating |
+| Space Between | Control the gap between slider items |
+| Navigation | Enable/disable navigation arrows |
+| Pagination | Enable/disable pagination dots |
+| Loop | Enable/disable infinite loop |
+| Autoplay | Enable/disable automatic sliding |
 
 #### Layout Panel
 
@@ -111,212 +117,142 @@ When using carousel layout:
 | Navigation | Show/hide navigation arrows |
 | Pagination | Show/hide pagination dots |
 
-## Examples
+## Technical Implementation
 
-### Basic Post Grid
+The Dynamic Query block is implemented with server-side rendering for optimal performance and SEO. The PHP rendering function handles the query and display of posts:
 
-A simple grid of recent blog posts:
+### Query Construction
 
-```html
-<!-- wp:phenix/dynamic-query {"contentType":"post","numberOfItems":6,"displayType":"grid","columns":3,"showThumbnail":true,"showTitle":true,"showExcerpt":true,"showButton":true} -->
-<div class="wp-block-phenix-dynamic-query px-query-block">
-  <div class="px-row row-md">
-    <!-- Query items will be rendered here dynamically -->
-    <div class="px-col col-12 col-md-6 col-lg-4 mb-30">
-      <article class="query-item">
-        <figure class="item-thumbnail mb-10">
-          <img src="https://example.com/image1.jpg" alt="Post Title" class="img-fluid">
-        </figure>
-        <h3 class="item-title mb-10">Post Title 1</h3>
-        <div class="item-excerpt mb-15">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <a href="/post-url" class="btn primary">Read More</a>
-      </article>
-    </div>
-    <!-- Additional items would be rendered here -->
-  </div>
-  
-  <!-- Pagination -->
-  <div class="pagination-wrapper tx-align-center mt-30">
-    <div class="pagination">
-      <span class="page-numbers current">1</span>
-      <a class="page-numbers" href="#">2</a>
-      <a class="page-numbers" href="#">3</a>
-      <a class="next page-numbers" href="#">Next</a>
-    </div>
-  </div>
-</div>
-<!-- /wp:phenix/dynamic-query -->
+The block builds WordPress queries based on taxonomy selections:
+
+1. **Taxonomy Filtering**: When taxonomies are selected, the block creates a `tax_query` parameter with the selected terms for each taxonomy.
+
+2. **Pagination Support**: The block supports standard WordPress pagination with the `paged` parameter.
+
+3. **Search Integration**: When search functionality is enabled, the block can accept search parameters with proper nonce verification.
+
+### Template Part Integration
+
+The block uses WordPress template parts for displaying query results:
+
+```php
+get_template_part("template-parts/".$block_attributes["template_part"], null, $the_query->the_post());
 ```
 
-### Featured Products Carousel
+This approach allows for flexible and reusable templates that can be customized in your theme.
 
-A carousel of WooCommerce products:
+### Grid and Slider Functionality
 
-```html
-<!-- wp:phenix/dynamic-query {"contentType":"product","numberOfItems":8,"displayType":"carousel","slidesPerView":4,"spaceBetween":20,"loop":true,"autoplay":true,"navigation":true,"taxonomies":{"product_cat":["featured"]}} -->
-<div class="wp-block-phenix-dynamic-query px-query-block">
-  <div class="px-slider" data-slides-view="4" data-space-between="20" data-loop="true" data-autoplay="true" data-navigation="true">
-    <!-- Query items will be rendered here dynamically -->
-    <div class="swiper-slide">
-      <article class="query-item product">
-        <figure class="item-thumbnail mb-10">
-          <img src="https://example.com/product1.jpg" alt="Product Name" class="img-fluid">
-        </figure>
-        <h3 class="item-title mb-5">Product Name 1</h3>
-        <div class="item-price mb-10">$29.99</div>
-        <a href="/product-url" class="btn primary sm">View Product</a>
-      </article>
-    </div>
-    <!-- Additional items would be rendered here -->
-  </div>
-</div>
-<!-- /wp:phenix/dynamic-query -->
-```
+The block supports both grid layouts and slider functionality:
 
-### Filtered Category Posts
+1. **Grid Layout**: When `isFlexbox` is enabled, the block renders posts in a responsive grid with configurable columns.
 
-A list of posts from a specific category with custom filtering:
+2. **Slider Mode**: When both `isFlexbox` and `slider` are enabled, the grid becomes an interactive slider with navigation controls.
 
-```html
-<!-- wp:phenix/dynamic-query {"contentType":"post","numberOfItems":5,"displayType":"list","categories":[7],"orderBy":"date","order":"desc","showThumbnail":true,"thumbnailSize":"medium","showTitle":true,"showExcerpt":true,"excerptLength":120,"showMeta":true,"metaItems":["author","date","comments"]} -->
-<div class="wp-block-phenix-dynamic-query px-query-block">
-  <div class="query-list">
-    <!-- Query items will be rendered here dynamically -->
-    <article class="query-item flexbox gap-20 mb-30">
-      <figure class="item-thumbnail" style="flex:0 0 200px">
-        <img src="https://example.com/image1.jpg" alt="Post Title" class="img-fluid">
-      </figure>
-      <div class="item-content">
-        <h3 class="item-title mb-10">Post Title 1</h3>
-        <div class="item-meta mb-10">
-          <span class="meta-author">By John Doe</span>
-          <span class="meta-date">January 15, 2025</span>
-          <span class="meta-comments">5 Comments</span>
-        </div>
-        <div class="item-excerpt mb-15">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <a href="/post-url" class="btn link">Continue Reading →</a>
-      </div>
-    </article>
-    <!-- Additional items would be rendered here -->
-  </div>
-  
-  <!-- Load More Button -->
-  <div class="load-more-wrapper tx-align-center mt-30">
-    <button class="btn primary load-more-button">Load More Posts</button>
-  </div>
-</div>
-<!-- /wp:phenix/dynamic-query -->
-```
+### Pagination Implementation
 
-### Custom Post Type Masonry Grid
+The block supports standard WordPress pagination through the `pagination()` function, which can be configured to display:
 
-A masonry layout for a custom post type with advanced filtering:
+- Numbered page links
+- Previous/Next navigation
+- Custom styling for active and inactive pagination items
 
-```html
-<!-- wp:phenix/dynamic-query {"contentType":"portfolio","numberOfItems":12,"displayType":"masonry","columns":3,"taxonomies":{"portfolio_category":["web-design","branding"]},"metaQuery":{"relation":"AND","queries":[{"key":"featured","value":"yes","compare":"="}]}} -->
-<div class="wp-block-phenix-dynamic-query px-query-block">
-  <div class="masonry-grid" data-columns="3">
-    <!-- Query items will be rendered here dynamically -->
-    <div class="masonry-item">
-      <article class="query-item portfolio-item">
-        <figure class="item-thumbnail">
-          <img src="https://example.com/portfolio1.jpg" alt="Project Title" class="img-fluid">
-          <div class="overlay flexbox align-items-center justify-center">
-            <h3 class="item-title color-white">Project Title 1</h3>
-          </div>
-        </figure>
-      </article>
-    </div>
-    <!-- Additional items would be rendered here -->
-  </div>
-  
-  <!-- Infinite Scroll Indicator -->
-  <div class="infinite-scroll-loader tx-align-center mt-30">
-    <div class="loading-spinner"></div>
-  </div>
-</div>
-<!-- /wp:phenix/dynamic-query -->
-```
+## Implementation Examples
+
+The Dynamic Query block can be used in various ways based on the configuration options available. Below are descriptions of common implementations based on the actual block functionality.
+
+### Basic Posts Grid
+
+A grid layout displaying posts from a specific category:
+
+- **Configuration**:
+  - Template Part: Select a post card template from your theme
+  - Grid Mode: Enabled
+  - Columns: 3 columns on desktop, 2 on tablet, 1 on mobile
+  - Taxonomies: Category selected with specific terms chosen
+
+### Posts Slider
+
+A slider showcasing featured posts:
+
+- **Configuration**:
+  - Template Part: Select a post slide template from your theme
+  - Grid Mode: Enabled
+  - Slider Mode: Enabled
+  - Slides Per View: 1
+  - Navigation: Enabled
+  - Pagination: Enabled
+  - Taxonomies: Tag selected with "featured" term chosen
+
+### Blog Archive with Pagination
+
+A standard blog layout with pagination:
+
+- **Configuration**:
+  - Template Part: Select a blog post template from your theme
+  - Grid Mode: Enabled for multi-column layout
+  - Columns: Configure based on desired layout
+  - Query: Set pagination to true
+  - Taxonomies: Configure based on desired filtering
+
+### Custom Post Type Display
+
+A grid of custom post types filtered by taxonomy:
+
+- **Configuration**:
+  - Template Part: Select a custom template for your post type
+  - Grid Mode: Enabled
+  - Columns: Configure based on desired layout
+  - Query: Set post_type to your custom post type
+  - Taxonomies: Select custom taxonomies associated with your post type
 
 ## Common Use Cases
 
 ### Blog Archive
 
-Create a customized blog archive page with filtering options:
+Create a customized blog archive page with taxonomy-based filtering:
 
-```html
-<!-- wp:phenix/container -->
-<div class="px-container">
-  <!-- wp:phenix/group {"padding":"md","backgroundColor":"#f9f9f9","marginBottom":"md"} -->
-  <div class="px-group pdy-15 pdx-25 bg-color mb-15" style="--bg-color:#f9f9f9">
-    <!-- wp:heading -->
-    <h2>Latest Articles</h2>
-    <!-- /wp:heading -->
-    
-    <!-- wp:paragraph -->
-    <p>Explore our latest insights and updates.</p>
-    <!-- /wp:paragraph -->
-  </div>
-  <!-- /wp:phenix/group -->
-  
-  <!-- wp:phenix/grid-row -->
-  <div class="px-row">
-    <!-- wp:phenix/grid-column {"size":8} -->
-    <div class="px-col col-8">
-      <!-- wp:phenix/dynamic-query {"contentType":"post","numberOfItems":6,"displayType":"list","showThumbnail":true,"showTitle":true,"showExcerpt":true,"showMeta":true,"paginationType":"numbered"} -->
-      <!-- Dynamic query content would be rendered here -->
-      <!-- /wp:phenix/dynamic-query -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-    
-    <!-- wp:phenix/grid-column {"size":4} -->
-    <div class="px-col col-4">
-      <!-- Sidebar content (categories, recent posts, etc.) -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-  </div>
-  <!-- /wp:phenix/grid-row -->
-</div>
-<!-- /wp:phenix/container -->
-```
+1. Add the Posts Query block to your page
+2. Select an appropriate template part for blog posts
+3. Configure taxonomy filters to show posts from specific categories
+4. Enable grid mode with responsive columns (3 on desktop, 2 on tablet, 1 on mobile)
+5. Enable pagination for better user experience
 
-### Related Posts Section
+### Featured Content Slider
 
-Display related posts at the end of a single post:
+Create a slider showcasing featured content on your homepage:
 
-```html
-<!-- wp:phenix/group {"padding":"md","marginTop":"lg","borderTop":true,"borderColor":"#eeeeee"} -->
-<div class="px-group pdy-15 pdx-15 mt-30 border-t-solid" style="--border-color:#eeeeee">
-  <!-- wp:heading {"level":3} -->
-  <h3>Related Articles</h3>
-  <!-- /wp:heading -->
-  
-  <!-- wp:phenix/dynamic-query {"contentType":"post","numberOfItems":3,"displayType":"grid","columns":3,"relatedTo":"current","relationType":"category","showThumbnail":true,"showTitle":true,"showExcerpt":false} -->
-  <!-- Dynamic query content would be rendered here -->
-  <!-- /wp:phenix/dynamic-query -->
-</div>
-<!-- /wp:phenix/group -->
-```
+1. Add the Posts Query block to your page
+2. Select a template part designed for featured content
+3. Configure taxonomy filters to show only posts with a specific tag (e.g., "featured")
+4. Enable grid mode and slider mode
+5. Configure slider options (navigation, pagination, autoplay)
+
+### Category-Specific Content Grid
+
+Display posts from specific categories in a responsive grid layout:
+
+1. Add the Posts Query block to your page
+2. Select an appropriate template part for the content type
+3. In the Query by Taxonomies panel, select the category taxonomy
+4. Choose specific category terms to include in your query
+5. Enable grid mode and configure responsive columns
 
 ## Best Practices
 
-1. **Performance Optimization**: Limit the number of items queried to improve page load times
+1. **Template Part Selection**: Choose or create template parts that are specifically designed for the content you're displaying. This ensures consistent styling and proper data display.
 
-2. **Mobile Responsiveness**: Configure appropriate column counts for different screen sizes
+2. **Taxonomy Organization**: Plan your taxonomy structure carefully to make filtering more effective. Well-organized taxonomies make it easier to create meaningful content queries.
 
-3. **Meaningful Filtering**: Use specific filtering criteria to display the most relevant content
+3. **Responsive Configuration**: Always configure responsive column settings appropriate for your content. What looks good on desktop may not work well on mobile devices.
 
-4. **Template Consistency**: Maintain consistent item templates across similar query blocks
+4. **Grid vs. Slider Usage**: Use grid layouts for standard content displays and enable slider functionality only when a carousel presentation enhances the user experience.
 
-5. **Pagination Consideration**: Choose appropriate pagination for the content type and user experience
+5. **Server-Side Performance**: Remember that this block uses server-side rendering, so complex queries with many taxonomy filters may impact page load times. Keep queries focused and specific.
 
-6. **Caching**: Enable caching for query results when possible to improve performance
+6. **Template Part Reusability**: Create reusable template parts that can work across multiple query blocks for consistency and easier maintenance.
 
-7. **Fallback Content**: Provide meaningful fallback content when no items match the query
+7. **Testing with Real Content**: Always test your query configurations with actual content to ensure the display works as expected across different screen sizes.
 
 ## Related Blocks
 

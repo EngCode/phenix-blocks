@@ -283,7 +283,6 @@ export default defineConfig({
             { text: 'Page Head', link: '/wordpress/blocks/page-head-block' },
             { text: 'Icon Element', link: '/wordpress/blocks/icon-element-block' },
             { text: 'Popup Modals', link: '/wordpress/blocks/popup-modals-block' },
-            { text: 'Slider / Carousels', link: '/wordpress/blocks/slider-block' },
             { text: 'Tabs and Panels', link: '/wordpress/blocks/tabs-block' },
             { text: 'Accordion', link: '/wordpress/blocks/accordion-block' },
             { text: 'Logical Content', link: '/wordpress/blocks/logical-content-block' },
@@ -309,7 +308,7 @@ export default defineConfig({
             { text: 'Typography', link: '/wordpress/controls/typography-options' },
             { text: 'Border Radius', link: '/wordpress/controls/border-radius' },
             { text: 'Styles Options', link: '/wordpress/controls/styles-options' },
-            { text: 'Carousel Slider', link: '/wordpress/controls/swiper-slider' },
+            { text: 'Carousel Slider', link: '/wordpress/controls/slider-options' },
             { text: 'CSS Properties', link: '/wordpress/controls/styles-support' }
           ]
         },

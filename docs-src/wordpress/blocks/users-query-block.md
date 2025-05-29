@@ -2,311 +2,150 @@
 
 ## Overview
 
-The Users Query Block is a specialized component in the Phenix Design System that allows you to fetch and display WordPress users on your site. This block enables you to create dynamic listings of authors, team members, contributors, or any registered users with extensive filtering, sorting, and display options. The Users Query Block is particularly useful for creating team directories, author showcases, member listings, and other user-based content structures.
-
-<!-- Image placeholder for Users Query Block -->
+The Users Query Block is a server-side rendered component in the Phenix Design System that allows you to fetch and display WordPress users on your site. This block enables you to create dynamic listings of authors, team members, contributors, or any registered users with flexible grid layouts and slider functionality. The block works by querying WordPress users based on roles and other criteria, then displaying them using template parts from your theme.
 
 ## Key Features
 
-- Query WordPress users with advanced filtering options
-- Flexible sorting and ordering capabilities
-- Multiple display layouts (grid, list, table, cards)
-- Customizable user templates with dynamic data fields
-- Display user metadata, roles, and custom fields
-- Link generation to author archives or custom profile pages
-- Avatar and social media integration
-- Role-based filtering and display
+- **Role-Based Filtering**: Query users by specific WordPress user roles
+- **Template Part Integration**: Display users using theme template parts
+- **Flexible Grid Layout**: Configure responsive grid layouts with customizable columns
+- **Slider Functionality**: Convert grid layouts into interactive sliders
+- **Server-Side Rendering**: Content is rendered on the server for optimal performance and SEO
+- **Published Content Filter**: Option to show only users who have published content
+- **Sorting Options**: Order users by registration date, name, or other criteria
 
 ## How to Use
 
 1. In the WordPress editor, click the "+" button to add a new block
 2. Search for "Users Query" or find it in the "Phenix Blocks" category
-3. Add the Users Query Block to your page
-4. Configure the query settings to fetch your desired users
-5. Customize the display layout and user templates
-6. Adjust styling options as needed
+3. Add the Users Query block to your page
+4. In the General Setting panel, select the user roles you want to display
+5. Choose a template part from your theme to use for displaying each user
+6. Configure additional query options like order, maximum items, and whether to show only users with published content
+7. Enable Grid Mode if you want to display results in a grid layout
+8. Configure columns and responsive behavior as needed
+9. Enable the Slider Mode if you want the grid to function as a slider
 
 ## Block Settings
 
-### Query Options
+### Toolbar Controls
+
+| Control | Description |
+|---------|-------------|
+| Columns Number | Set the number of columns for different screen sizes (mobile, tablet, laptop, desktop) |
+| Grid Options | Configure grid layout settings including alignment and spacing |
+| Sizes Options | Configure padding, margin, and other size-related properties |
+
+### Sidebar Controls
+
+#### General Setting Panel
 
 | Option | Description |
 |--------|-------------|
-| Number of Users | Set how many users to display |
-| Offset | Skip a specific number of users from the beginning of the results |
-| Include/Exclude | Specify specific users to include or exclude by ID |
-| Order By | Sort results by various criteria (name, registered date, post count, etc.) |
-| Order | Set ascending or descending order |
+| User Roles | Select which user roles to include in the query (multiple selection supported) |
+| Card Template | Select a template part from your theme to use for displaying each user |
+| Order | Set ascending (Oldest) or descending (Newest) order |
+| OrderBy | Sort results by display name, registration date, or other criteria |
+| Max Items | Set how many users to display |
+| Has Posts | Option to show only users who have published content |
+| Grid Mode | Enable grid layout for user display |
+| Slider Mode | Convert the grid layout into an interactive slider |
 
-### Filter Options
+#### Slider Options Panel
 
-| Option | Description |
-|--------|-------------|
-| Roles | Filter users by specific roles (Administrator, Editor, Author, etc.) |
-| Search | Filter users by keyword search |
-| Meta Query | Filter users by custom user meta values |
-| Has Published | Filter users who have published content |
-
-### Layout Options
+Only visible when Slider Mode is enabled:
 
 | Option | Description |
 |--------|-------------|
-| Display Type | Choose between grid, list, table, or cards layout |
-| Columns | Set the number of columns for grid layouts |
-| Gap | Control the spacing between users |
-| Show Avatar | Display the user's avatar/profile picture |
-| Avatar Size | Control the size of user avatars |
-| Show Name | Display the user's display name |
-| Show Bio | Display the user's biographical info |
-| Show Role | Display the user's role |
-| Show Post Count | Display the number of posts published by the user |
+| Slides Per View | Set the number of slides visible at once |
+| Slides Per Group | Set how many slides to move at once when navigating |
+| Space Between | Control the gap between slider items |
+| Navigation | Enable/disable navigation arrows |
+| Pagination | Enable/disable pagination dots |
+| Loop | Enable/disable infinite loop |
+| Autoplay | Enable/disable automatic sliding |
 
-### Social Media Options
+### Technical Implementation
 
-| Option | Description |
-|--------|-------------|
-| Show Social Links | Display the user's social media links |
-| Social Networks | Select which social networks to display |
-| Social Icons Style | Choose the style of social media icons |
+The Users Query block is implemented with server-side rendering for optimal performance and SEO. The PHP rendering function handles the query and display of WordPress users:
 
-### Style Options
+#### Query Construction
 
-| Option | Description |
-|--------|-------------|
-| User Card Color | Set the color of user card text |
-| User Card Background | Set the background color of user cards |
-| Avatar Border | Add borders around user avatars |
-| Avatar Border Radius | Control the shape of user avatars (square, rounded, circle) |
-| Card Padding | Add internal spacing within user cards |
-| Card Margin | Add spacing between user cards |
-| Card Border | Add borders with custom color, width, and style |
-| Card Border Radius | Add rounded corners to user cards |
+The block builds WordPress user queries based on the selected roles and configuration options:
 
-## Examples
+1. **Role Selection**: The block queries users based on the selected user roles.
 
-### Basic Team Grid
+2. **Published Content Filter**: When the "Has Posts" option is enabled, only users who have published content are displayed.
 
-A simple grid of team members:
+3. **Sorting Options**: Users can be sorted by display name, registration date, or other criteria in ascending or descending order.
 
-```html
-<!-- wp:phenix/users-query {"numberOfUsers":6,"roles":["author","editor","administrator"],"displayType":"grid","columns":3,"showAvatar":true,"avatarSize":"large","showName":true,"showBio":true,"showRole":true} -->
-<div class="wp-block-phenix-users-query px-users-query-block">
-  <div class="px-row row-md">
-    <!-- Query users will be rendered here dynamically -->
-    <div class="px-col col-12 col-md-6 col-lg-4 mb-30">
-      <div class="user-card tx-align-center">
-        <div class="user-avatar mb-15">
-          <img src="https://example.com/avatar1.jpg" alt="John Doe" class="avatar avatar-150">
-        </div>
-        <h3 class="user-name mb-5">John Doe</h3>
-        <div class="user-role mb-10">Editor</div>
-        <div class="user-bio">
-          <p>John is an experienced editor with over 10 years in digital publishing.</p>
-        </div>
-      </div>
-    </div>
-    <div class="px-col col-12 col-md-6 col-lg-4 mb-30">
-      <div class="user-card tx-align-center">
-        <div class="user-avatar mb-15">
-          <img src="https://example.com/avatar2.jpg" alt="Jane Smith" class="avatar avatar-150">
-        </div>
-        <h3 class="user-name mb-5">Jane Smith</h3>
-        <div class="user-role mb-10">Administrator</div>
-        <div class="user-bio">
-          <p>Jane leads our technical team and oversees all website operations.</p>
-        </div>
-      </div>
-    </div>
-    <!-- Additional users would be rendered here -->
-  </div>
-</div>
-<!-- /wp:phenix/users-query -->
+#### Template Part Integration
+
+The block uses WordPress template parts for displaying users:
+
+```php
+get_template_part("template-parts/".$block_attributes["template_part"], null, $user);
 ```
 
-### Authors List with Stats
+This approach allows for flexible and reusable templates that can be customized in your theme.
 
-A list of authors with post counts and social links:
+## Implementation Examples
 
-```html
-<!-- wp:phenix/users-query {"numberOfUsers":5,"roles":["author"],"orderBy":"post_count","order":"desc","displayType":"list","showAvatar":true,"avatarSize":"medium","showName":true,"showBio":true,"showPostCount":true,"showSocialLinks":true} -->
-<div class="wp-block-phenix-users-query px-users-query-block">
-  <div class="users-list">
-    <!-- Query users will be rendered here dynamically -->
-    <div class="user-item flexbox gap-20 mb-30">
-      <div class="user-avatar" style="flex:0 0 100px">
-        <img src="https://example.com/avatar1.jpg" alt="Michael Johnson" class="avatar avatar-100">
-      </div>
-      <div class="user-content">
-        <h3 class="user-name mb-5">Michael Johnson</h3>
-        <div class="user-meta mb-10">
-          <span class="user-role">Author</span>
-          <span class="post-count">42 Articles</span>
-        </div>
-        <div class="user-bio mb-15">
-          <p>Michael writes about technology and digital marketing trends.</p>
-        </div>
-        <div class="social-links">
-          <a href="https://twitter.com/michaeljohnson" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://linkedin.com/in/michaeljohnson" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-    <!-- Additional users would be rendered here -->
-  </div>
-</div>
-<!-- /wp:phenix/users-query -->
-```
+The Users Query block can be used in various ways based on the configuration options available. Below are descriptions of common implementations based on the actual block functionality.
 
-### Styled Team Cards
+### Team Members Grid
 
-Team member cards with custom styling:
+A grid layout displaying team members:
 
-```html
-<!-- wp:phenix/users-query {"numberOfUsers":4,"roles":["team_member"],"displayType":"grid","columns":2,"showAvatar":true,"avatarSize":"large","showName":true,"showRole":true,"showBio":true,"showSocialLinks":true,"userCardBackground":"#f9f9f9","userCardColor":"#333333","cardBorderRadius":"md","cardPadding":"md","avatarBorderRadius":"circle"} -->
-<div class="wp-block-phenix-users-query px-users-query-block">
-  <div class="px-row row-md">
-    <!-- Query users will be rendered here dynamically -->
-    <div class="px-col col-12 col-md-6 mb-30">
-      <div class="user-card pdy-15 pdx-15 bg-color radius-md" style="--bg-color:#f9f9f9;--text-color:#333333">
-        <div class="user-header flexbox align-items-center mb-15">
-          <div class="user-avatar mr-15">
-            <img src="https://example.com/avatar1.jpg" alt="Sarah Williams" class="avatar avatar-100 radius-circle">
-          </div>
-          <div class="user-title">
-            <h3 class="user-name mb-5">Sarah Williams</h3>
-            <div class="user-role">Marketing Director</div>
-          </div>
-        </div>
-        <div class="user-bio mb-15">
-          <p>Sarah leads our marketing team with over 15 years of experience in digital marketing and brand strategy.</p>
-        </div>
-        <div class="social-links">
-          <a href="https://twitter.com/sarahwilliams" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://linkedin.com/in/sarahwilliams" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:sarah@example.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-    </div>
-    <!-- Additional users would be rendered here -->
-  </div>
-</div>
-<!-- /wp:phenix/users-query -->
-```
+- **Configuration**:
+  - User Roles: Select "Author" and "Editor" roles
+  - Template Part: Select a team member card template from your theme
+  - Grid Mode: Enabled
+  - Columns: 3 columns on desktop, 2 on tablet, 1 on mobile
+  - OrderBy: Set to "display_name" for alphabetical listing
 
-### User Table
+### Authors Slider
 
-A table of users with sortable columns:
+A slider showcasing blog authors:
 
-```html
-<!-- wp:phenix/users-query {"numberOfUsers":10,"displayType":"table","showAvatar":true,"avatarSize":"small","showName":true,"showRole":true,"showPostCount":true,"showRegistered":true} -->
-<div class="wp-block-phenix-users-query px-users-query-block">
-  <table class="users-table">
-    <thead>
-      <tr>
-        <th class="avatar-column">Avatar</th>
-        <th class="name-column sortable" data-sort="name">Name</th>
-        <th class="role-column sortable" data-sort="role">Role</th>
-        <th class="posts-column sortable" data-sort="posts">Posts</th>
-        <th class="registered-column sortable" data-sort="registered">Registered</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Query users will be rendered here dynamically -->
-      <tr class="user-row">
-        <td class="avatar-column">
-          <img src="https://example.com/avatar1.jpg" alt="User Name" class="avatar avatar-40">
-        </td>
-        <td class="name-column">John Doe</td>
-        <td class="role-column">Editor</td>
-        <td class="posts-column">24</td>
-        <td class="registered-column">Jan 15, 2023</td>
-      </tr>
-      <!-- Additional users would be rendered here -->
-    </tbody>
-  </table>
-</div>
-<!-- /wp:phenix/users-query -->
-```
+- **Configuration**:
+  - User Roles: Select "Author" role
+  - Template Part: Select an author profile template
+  - Grid Mode: Enabled
+  - Slider Mode: Enabled
+  - Navigation: Enabled
+  - Pagination: Enabled
+  - Has Posts: Enabled to show only authors with published content
+  - OrderBy: Set to "post_count" to prioritize most active authors
 
-## Common Use Cases
+### Contributors Listing
 
-### Team Page
+A simple listing of site contributors:
 
-Create a comprehensive team or staff directory:
-
-```html
-<!-- wp:phenix/container -->
-<div class="px-container">
-  <!-- wp:heading {"level":2} -->
-  <h2>Our Team</h2>
-  <!-- /wp:heading -->
-  
-  <!-- wp:paragraph -->
-  <p>Meet the talented individuals who make our company great.</p>
-  <!-- /wp:paragraph -->
-  
-  <!-- wp:phenix/users-query {"roles":["team_member","administrator"],"meta_query":{"relation":"AND","queries":[{"key":"department","value":"leadership","compare":"="}]},"displayType":"grid","columns":3,"showAvatar":true,"avatarSize":"large","showName":true,"showRole":true,"showBio":true,"showSocialLinks":true} -->
-  <div class="wp-block-phenix-users-query px-users-query-block">
-    <!-- Leadership team members would be rendered here -->
-  </div>
-  <!-- /wp:phenix/users-query -->
-  
-  <!-- wp:heading {"level":3} -->
-  <h3>Department Heads</h3>
-  <!-- /wp:heading -->
-  
-  <!-- wp:phenix/users-query {"roles":["team_member"],"meta_query":{"relation":"AND","queries":[{"key":"department","value":"department_head","compare":"="}]},"displayType":"grid","columns":4,"showAvatar":true,"showName":true,"showRole":true} -->
-  <div class="wp-block-phenix-users-query px-users-query-block">
-    <!-- Department heads would be rendered here -->
-  </div>
-  <!-- /wp:phenix/users-query -->
-</div>
-<!-- /wp:phenix/container -->
-```
-
-### Author Showcase
-
-Highlight the top contributors to your blog:
-
-```html
-<!-- wp:phenix/group {"padding":"md","backgroundColor":"#f9f9f9","marginBottom":"lg"} -->
-<div class="px-group pdy-15 pdx-15 bg-color mb-30" style="--bg-color:#f9f9f9">
-  <!-- wp:heading {"level":2} -->
-  <h2>Meet Our Writers</h2>
-  <!-- /wp:heading -->
-  
-  <!-- wp:phenix/users-query {"roles":["author","editor"],"orderBy":"post_count","order":"desc","numberOfUsers":3,"displayType":"list","showAvatar":true,"avatarSize":"medium","showName":true,"showBio":true,"showPostCount":true} -->
-  <div class="wp-block-phenix-users-query px-users-query-block">
-    <!-- Top authors would be rendered here -->
-  </div>
-  <!-- /wp:phenix/users-query -->
-</div>
-<!-- /wp:phenix/group -->
-
-<!-- wp:phenix/dynamic-query {"contentType":"post"} -->
-<div class="wp-block-phenix-dynamic-query px-query-block">
-  <!-- Recent posts would be rendered here -->
-</div>
-<!-- /wp:phenix/dynamic-query -->
-```
+- **Configuration**:
+  - User Roles: Select "Contributor" role
+  - Template Part: Select a simple user template
+  - Grid Mode: Enabled for multi-column layout
+  - Max Items: Limit to a specific number of contributors
+  - Has Posts: Disabled to show all contributors regardless of publishing status
 
 ## Best Practices
 
-1. **Privacy Consideration**: Be mindful of user privacy when displaying user information, especially for non-public-facing roles
+1. **Template Part Design**: Create specialized template parts for different types of user displays (team members, authors, contributors)
 
-2. **Performance Optimization**: Limit the number of users queried, especially on sites with many registered users
+2. **Role Selection**: Choose appropriate user roles based on the purpose of your display (authors for blog contributors, editors for team members)
 
-3. **Relevant Information**: Only display information that is relevant to the context and purpose of the user listing
+3. **Privacy Consideration**: Be mindful of user privacy when designing template parts - only include information users have explicitly made public
 
-4. **Consistent Styling**: Maintain consistent styling for user cards or listings across your site
+4. **Performance Optimization**: Use the Max Items setting to limit the number of users displayed, especially for sites with many users
 
-5. **Responsive Design**: Ensure your user displays adapt well to different screen sizes
+5. **Grid Responsiveness**: Configure responsive column settings appropriate for your content and layout - more columns on desktop, fewer on mobile
 
-6. **Role-Based Display**: Consider showing different information based on user roles (more details for authors, less for subscribers)
+6. **Slider Implementation**: Only enable the slider functionality when it enhances the user experience, such as for featured team member showcases
 
-7. **Fallback Images**: Provide fallback images for users without custom avatars
+7. **Template Part Reusability**: Create reusable template parts that can work across multiple user query blocks for consistency
 
-8. **Sorting Options**: Offer meaningful sorting options that help visitors find the right users
+8. **Published Content Filter**: Use the Has Posts option strategically - enable it when you want to show only active content creators, disable it for comprehensive team listings
 
 ## Related Blocks
 

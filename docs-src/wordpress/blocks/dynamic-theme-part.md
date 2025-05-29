@@ -1,243 +1,166 @@
-# Dynamic Theme Part
+# Theme Part Block
 
 ## Overview
 
-The Dynamic Theme Part block is a powerful component in the Phenix Design System that allows you to create and insert reusable template parts throughout your WordPress site. This block enables you to build modular, consistent layouts by defining template parts once and using them across multiple pages. With the Dynamic Theme Part, you can create headers, footers, sidebars, and other recurring elements that automatically update everywhere when edited in one place, significantly improving your workflow efficiency and site maintenance.
-
-<!-- Image placeholder for Dynamic Theme Part -->
+The Theme Part block is a server-side rendered component in the Phenix Design System that allows you to include template parts from your WordPress theme directly in your content. This block enables you to build modular, consistent layouts by inserting pre-defined template parts from your theme into any page or post. The Theme Part block is particularly useful for including reusable components like feature sections, testimonials, or custom content layouts that are defined in your theme's template-parts directory.
 
 ## Key Features
 
-- Create reusable template parts that can be inserted anywhere on your site
-- Edit once, update everywhere functionality for consistent site elements
-- Support for dynamic content with shortcodes and template tags
-- Conditional display options based on page context
-- Ability to pass custom parameters to template parts
-- Full block editor support for creating complex template parts
-- Integration with WordPress theme templates system
-- Performance optimization with caching options
+- **Template Part Integration**: Insert any template part from your theme directly into your content
+- **Server-Side Rendering**: Content is rendered on the server for optimal performance and SEO
+- **Simple Selection Interface**: Easy dropdown selection of available template parts
+- **Seamless Theme Integration**: Works with your theme's existing template parts structure
+- **Block Editor Support**: Full integration with the WordPress block editor
+- **Consistent Design**: Maintain design consistency across your site by reusing template parts
 
 ## How to Use
 
 1. In the WordPress editor, click the "+" button to add a new block
-2. Search for "Dynamic Theme Part" or find it in the "Phenix Blocks" category
-3. Add the Dynamic Theme Part block to your page
-4. Either select an existing template part or create a new one
-5. Customize the template part settings in the block sidebar
-6. Save your page to display the template part
+2. Search for "Theme Part" or find it in the "Phenix Blocks" category
+3. Add the Theme Part block to your page
+4. Select a template part from the dropdown in the toolbar or sidebar
+5. Save your page to display the selected template part
 
 ## Block Settings
 
-### General Options
+### Toolbar Controls
+
+| Control | Description |
+|---------|-------------|
+| Template Name | Dropdown to select the template part to display |
+
+### Sidebar Controls
+
+#### General Setting Panel
 
 | Option | Description |
 |--------|-------------|
-| Template Part | Select an existing template part or create a new one |
-| Theme Area | Assign the template part to a specific theme area (header, footer, sidebar, etc.) |
-| Template Part Title | Set a descriptive title for the template part |
-| Template Part Slug | Define a unique slug for the template part |
+| Template Name | Dropdown to select the template part to display |
 
-### Display Options
+### Technical Implementation
 
-| Option | Description |
-|--------|-------------|
-| Visibility | Control when and where the template part is displayed |
-| Container | Wrap the template part in a container element |
-| Background | Add a background color or image to the template part |
-| Padding | Add internal spacing within the template part |
-| Margin | Add external spacing around the template part |
-| Border | Add borders with custom color, width, and style |
-| Border Radius | Add rounded corners to the template part |
+The Theme Part block is implemented with server-side rendering for optimal performance and SEO. The PHP rendering function handles the inclusion of template parts from your theme:
 
-### Advanced Options
-
-| Option | Description |
-|--------|-------------|
-| Custom CSS Class | Add custom CSS classes to the template part |
-| Custom ID | Assign a unique ID to the template part |
-| Cache Duration | Set how long the template part should be cached |
-| Parameters | Pass custom parameters to the template part |
-| Fallback Content | Define content to display if the template part is not found |
-
-## Examples
-
-### Basic Template Part
-
-A simple template part for a site header:
-
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"header","themeArea":"header"} -->
-<div class="wp-block-phenix-dynamic-theme-part" data-template-part="header" data-theme-area="header">
-  <!-- Template part content will be loaded here -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
+```php
+get_template_part('template-parts/'.$block_attributes['part_name'], null, $block_attributes);
 ```
 
-### Styled Template Part
+This approach allows you to include any template part from your theme's template-parts directory directly in your content. The block passes its attributes to the template part, making them available within the template part file.
 
-A template part with custom styling:
+## Implementation Examples
 
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"featured-content","backgroundColor":"#f9f9f9","padding":"md","borderRadius":"md","customClass":"featured-section"} -->
-<div class="wp-block-phenix-dynamic-theme-part featured-section pdy-15 pdx-15 bg-color radius-md" data-template-part="featured-content" style="--bg-color:#f9f9f9">
-  <!-- Template part content will be loaded here -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
-```
+The Theme Part block can be used in various ways based on the template parts available in your theme. Below are descriptions of common implementations based on the actual block functionality.
 
-### Template Part with Parameters
+### Header Template Part
 
-A template part that accepts custom parameters:
+Including a header template part from your theme:
 
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"product-showcase","parameters":{"category":"electronics","count":3,"featured":true}} -->
-<div class="wp-block-phenix-dynamic-theme-part" data-template-part="product-showcase" data-parameters='{"category":"electronics","count":3,"featured":true}'>
-  <!-- Template part content will be loaded here with the specified parameters -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
-```
+- **Configuration**:
+  - Template Name: Select "header" from the dropdown
 
-### Conditional Template Part
+This will include the header.php file from your theme's template-parts directory, providing a consistent header across your site.
 
-A template part that displays conditionally based on page context:
+### Feature Section Template Part
 
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"related-posts","visibility":{"showOn":["single"],"hideOn":["page","archive"]}} -->
-<div class="wp-block-phenix-dynamic-theme-part" data-template-part="related-posts" data-visibility='{"showOn":["single"],"hideOn":["page","archive"]}'>
-  <!-- Template part content will be loaded here only on single post pages -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
-```
+Including a feature section template part in your content:
+
+- **Configuration**:
+  - Template Name: Select "feature-section" from the dropdown
+
+This will include the feature-section.php file from your theme's template-parts directory, allowing you to reuse complex feature layouts across multiple pages.
+
+### Testimonials Template Part
+
+Including a testimonials section in your content:
+
+- **Configuration**:
+  - Template Name: Select "testimonials" from the dropdown
+
+This will include the testimonials.php file from your theme's template-parts directory, providing a consistent testimonials display across your site.
 
 ## Creating Template Parts
 
-Template parts can be created in two ways:
+To create template parts that can be used with the Theme Part block:
 
-### 1. Using the Template Parts Editor
+1. Create a new PHP file in your theme's `template-parts` directory
+2. Name the file according to the component it represents (e.g., `feature-box.php`, `team-member.php`)
+3. Add your HTML and PHP code to the file
+4. Access block attributes using the `$args` parameter that's passed to the template part
 
-1. Navigate to **Appearance > Template Parts** in your WordPress admin
-2. Click **Add New** to create a new template part
-3. Give your template part a name and select its theme area
-4. Build your template part using the block editor
-5. Save the template part
+Example template part file (`template-parts/feature-box.php`):
 
-### 2. Creating On-the-Fly
+```php
+<?php
+/**
+ * Feature Box Template Part
+ */
+?>
+<div class="feature-box">
+    <div class="feature-icon">
+        <i class="fas fa-star"></i>
+    </div>
+    <h3 class="feature-title">Feature Title</h3>
+    <div class="feature-description">
+        <p>This is a feature description that can be included anywhere using the Theme Part block.</p>
+    </div>
+</div>
+```
 
-1. Add a Dynamic Theme Part block to a page
-2. Click **Create New Template Part**
-3. Enter a name for your template part
-4. Select the theme area it belongs to
-5. Build your template part in the editor that appears
-6. Save your changes
+Once created, this template part will automatically appear in the Template Name dropdown in the Theme Part block.
 
 ## Common Use Cases
 
-### Site Header
+### Reusable Page Components
 
-Create a consistent header across your entire site:
+Include standardized page components across multiple pages:
 
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"site-header","themeArea":"header"} -->
-<div class="wp-block-phenix-dynamic-theme-part" data-template-part="site-header" data-theme-area="header">
-  <!-- The site header template part will be loaded here -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
-```
+1. Create a template part file in your theme's template-parts directory (e.g., `feature-grid.php`)
+2. Add the Theme Part block to any page where you want to include this component
+3. Select the template part from the dropdown
 
-The actual template part might contain:
+This approach ensures consistency across your site and makes updates easier - change the template part file once, and it updates everywhere it's used.
 
-```html
-<!-- wp:phenix/container -->
-<div class="px-container">
-  <!-- wp:phenix/grid-row {"alignItems":"center"} -->
-  <div class="px-row align-items-center">
-    <!-- wp:phenix/grid-column {"size":3} -->
-    <div class="px-col col-3">
-      <!-- wp:phenix/logo -->
-      <div class="wp-block-phenix-logo px-logo">
-        <a href="/" class="logo-link">
-          <img src="/wp-content/uploads/logo.png" alt="Site Logo" class="logo-image">
-        </a>
-      </div>
-      <!-- /wp:phenix/logo -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-    
-    <!-- wp:phenix/grid-column {"size":9} -->
-    <div class="px-col col-9">
-      <!-- wp:phenix/responsive-menu -->
-      <div class="wp-block-phenix-responsive-menu px-responsive-menu">
-        <!-- Navigation menu content -->
-      </div>
-      <!-- /wp:phenix/responsive-menu -->
-    </div>
-    <!-- /wp:phenix/grid-column -->
-  </div>
-  <!-- /wp:phenix/grid-row -->
-</div>
-<!-- /wp:phenix/container -->
-```
+### Layout Building Blocks
 
-### Call-to-Action Section
+Use template parts as building blocks for creating complex layouts:
 
-Create a reusable call-to-action section that can be placed on multiple pages:
+1. Create multiple template part files for different sections (e.g., `hero.php`, `features.php`, `testimonials.php`)
+2. Add multiple Theme Part blocks to your page, selecting the appropriate template part for each section
+3. Arrange the blocks in the desired order to create your complete page layout
 
-```html
-<!-- wp:phenix/dynamic-theme-part {"templatePart":"cta-section","parameters":{"title":"Get Started Today","buttonText":"Sign Up Now"}} -->
-<div class="wp-block-phenix-dynamic-theme-part" data-template-part="cta-section" data-parameters='{"title":"Get Started Today","buttonText":"Sign Up Now"}'>
-  <!-- The CTA section template part will be loaded here with custom parameters -->
-</div>
-<!-- /wp:phenix/dynamic-theme-part -->
-```
+This modular approach makes it easy to create consistent layouts across your site.
 
-### Sidebar Widgets
+### Content Templates
 
-Create a reusable sidebar that can be placed in different layouts:
+Create standardized content templates for specific types of content:
 
-```html
-<!-- wp:phenix/grid-row -->
-<div class="px-row">
-  <!-- wp:phenix/grid-column {"size":8} -->
-  <div class="px-col col-8">
-    <!-- Main content blocks -->
-  </div>
-  <!-- /wp:phenix/grid-column -->
-  
-  <!-- wp:phenix/grid-column {"size":4} -->
-  <div class="px-col col-4">
-    <!-- wp:phenix/dynamic-theme-part {"templatePart":"sidebar-widgets","themeArea":"sidebar"} -->
-    <div class="wp-block-phenix-dynamic-theme-part" data-template-part="sidebar-widgets" data-theme-area="sidebar">
-      <!-- The sidebar widgets template part will be loaded here -->
-    </div>
-    <!-- /wp:phenix/dynamic-theme-part -->
-  </div>
-  <!-- /wp:phenix/grid-column -->
-</div>
-<!-- /wp:phenix/grid-row -->
-```
+1. Create a template part file for a specific content type (e.g., `team-member.php`, `product-feature.php`)
+2. Add the Theme Part block to include this standardized content template wherever needed
+
+This ensures consistent presentation of similar content throughout your site.
 
 ## Best Practices
 
-1. **Modular Design**: Break your site into logical, reusable components that make sense as template parts
+1. **Organized Template Parts**: Keep your template parts organized in your theme's template-parts directory, potentially using subdirectories for different types of components
 
-2. **Naming Convention**: Use clear, descriptive names for template parts to make them easy to identify and manage
+2. **Descriptive Naming**: Use clear, descriptive names for your template part files to make them easy to identify in the dropdown
 
-3. **Theme Areas**: Assign template parts to appropriate theme areas for better organization and compatibility with themes
+3. **Modular Design**: Create small, focused template parts that serve a single purpose rather than large, complex ones
 
-4. **Performance**: Use caching for template parts that don't change frequently to improve site performance
+4. **Responsive Design**: Ensure your template parts are responsive and work well across different screen sizes
 
-5. **Responsive Design**: Ensure template parts are responsive and work well across different screen sizes
+5. **Documentation**: Add comments at the top of each template part file explaining its purpose and any expected parameters
 
-6. **Parameters**: Use parameters to make template parts flexible and reusable in different contexts
+6. **Block Attributes**: Access block attributes in your template part using the `$args` parameter to make your template parts more flexible
 
-7. **Documentation**: Document the purpose and parameters of each template part for other content editors
+7. **Consistent Styling**: Maintain consistent styling between your template parts and the rest of your site
 
-8. **Fallback Content**: Provide meaningful fallback content in case a template part fails to load
+8. **Avoid Duplication**: Use template parts to eliminate code duplication across your site
 
 ## Related Blocks
 
-- [Container Block](./container-block.md) - For creating layout containers within template parts
-- [Grid Row Block](./grid-row-block.md) - For creating grid layouts within template parts
-- [Logical Content Block](./logical-content-block.md) - For adding conditional content within template parts
-- [Custom Code Block](./custom-code-block.md) - For adding custom code to template parts
+- [Dynamic Query Block](./dynamic-query-block.md) - For displaying dynamic content from posts
+- [Taxonomies Query Block](./taxonomies-query-block.md) - For displaying taxonomy terms
+- [Users Query Block](./users-query-block.md) - For displaying user data
+- [Container Block](./container-block.md) - For creating layout containers
 

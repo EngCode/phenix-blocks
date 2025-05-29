@@ -2,28 +2,42 @@
 
 ## Overview
 
-The Media Element Block is a versatile component in the Phenix Design System that allows you to add and customize various media elements to your WordPress content. This block supports images, videos, audio, and other media types with extensive styling and layout options.
-
-<!-- Image placeholder for Media Element Block -->
+The Media Element Block (registered as "Multimedia" in the block inserter) provides a versatile way to add and customize various media types in your content. Based on the Phenix Design System, this block supports images, videos, embeds, and iframes with extensive styling options and responsive behavior.
 
 ## Key Features
 
-- Support for multiple media types (images, videos, audio)
-- Responsive image handling with various size options
-- Advanced styling controls including masks, filters, and effects
-- Lightbox integration for image galleries
-- Video embedding from various sources (YouTube, Vimeo, etc.)
-- Lazy loading for performance optimization
-- Custom link options for media elements
+- **Multiple Media Types**: Support for images (default), video embeds (YouTube, Vimeo), iframes, and 3D viewers
+- **Responsive Design**: Comprehensive aspect ratio options (1:1, 16:9, 4:3, etc.) that adapt to different screen sizes
+- **Lightbox Integration**: Optional lightbox functionality for images and videos when clicked
+- **Link Capabilities**: Media elements can function as links to other pages or resources
+- **Styling Options**: Extensive border, shadow, and effect controls through the Phenix Design System
+- **Inner Block Support**: Ability to nest other blocks within the media container for complex layouts
+- **Fallback Display**: Automatic placeholder if no media source is provided
 
 ## How to Use
 
-1. In the WordPress editor, click the "+" button to add a new block
-2. Search for "Media Element" or find it in the "Phenix Blocks" category
-3. Add the Media Element Block to your page
-4. Select the media type you want to add
-5. Upload or select media from the library
-6. Customize the media settings in the block sidebar
+1. **Add the Block**: Insert the Media Element block (labeled as "Multimedia") from the Phenix Blocks category in the block inserter
+
+2. **Select Media Type**: From the toolbar dropdown, choose the media type:
+   - Image (default)
+   - Video/Embed
+   - iFrame
+   - 3D Viewer
+
+3. **Set Media Source**: 
+   - For images: Upload or select from the media library
+   - For videos: Enter the video URL or embed code
+   - For iFrames: Provide the source URL
+
+4. **Configure Aspect Ratio**: Select from the predefined aspect ratios in the toolbar to control how the media is displayed
+
+5. **Enable Lightbox/Link**: If desired, enable the lightbox feature or set the media as a link to another page
+
+6. **Apply Styling**: Use the sidebar panels to customize:
+   - Border properties (style, width, color, radius)
+   - Shadow effects
+   - Position and size
+   - Responsive behavior
 
 ## Block Settings
 
@@ -91,57 +105,66 @@ The Media Element Block is a versatile component in the Phenix Design System tha
 | Muted | Start with sound muted |
 | Poster | Set a thumbnail image for video (before play) |
 
-## Examples
+## Implementation Details
 
-### Basic Image
+The Media Element block is implemented with a combination of JavaScript for the editor interface and client-side rendering for the frontend display.
 
-A standard responsive image:
+### Media Types
 
-```html
-<!-- wp:phenix/media-elements {"mediaType":"image","mediaId":123,"mediaUrl":"https://example.com/image.jpg","altText":"Example image"} -->
-<figure class="wp-block-phenix-media-elements">
-  <img src="https://example.com/image.jpg" alt="Example image" class="img-fluid">
-</figure>
-<!-- /wp:phenix/media-elements -->
-```
+The block supports the following media types, each with specific rendering behavior:
 
-### Styled Image with Border and Radius
+1. **Image** (default)
+   - Renders as an `<img>` element with responsive classes
+   - Supports alt text, border styling, and lightbox functionality
+   - Default fallback to placeholder if no source is provided
 
-An image with custom styling:
+2. **Video/Embed**
+   - Supports multiple embed types: direct video, YouTube, Vimeo, and others
+   - Rendered with appropriate aspect ratio container
+   - Can include player controls, autoplay, and mute options
 
-```html
-<!-- wp:phenix/media-elements {"mediaType":"image","mediaUrl":"https://example.com/image.jpg","border":true,"borderWidth":"2px","borderColor":"#3498db","borderRadius":"lg"} -->
-<figure class="wp-block-phenix-media-elements">
-  <img src="https://example.com/image.jpg" alt="" class="img-fluid border-solid radius-lg" style="--border-width:2px;--border-color:#3498db">
-</figure>
-<!-- /wp:phenix/media-elements -->
-```
+3. **iFrame**
+   - Allows embedding external content in a responsive container
+   - Supports custom sizing and aspect ratios
 
-### Video Embed
+4. **3D Viewer**
+   - Specialized container for 3D model viewing
 
-A responsive video embed from YouTube:
+### Aspect Ratios
 
-```html
-<!-- wp:phenix/media-elements {"mediaType":"video","embedUrl":"https://www.youtube.com/embed/VIDEO_ID","aspectRatio":"16/9","showControls":true} -->
-<figure class="wp-block-phenix-media-elements ratio ratio-16x9">
-  <iframe src="https://www.youtube.com/embed/VIDEO_ID?controls=1" allowfullscreen></iframe>
-</figure>
-<!-- /wp:phenix/media-elements -->
-```
+The block provides numerous predefined aspect ratios that can be applied to media elements:
 
-### Image with Lightbox
+- None (natural dimensions)
+- 1:1 (square)
+- 16:9 (widescreen video)
+- 4:3 (standard video)
+- 3:4 (portrait)
+- 16:10 (widescreen monitor)
+- 21:9 (ultrawide)
+- And many other options
 
-An image that opens in a lightbox when clicked:
+### Interactive Features
 
-```html
-<!-- wp:phenix/media-elements {"mediaType":"image","mediaUrl":"https://example.com/image.jpg","enableLightbox":true} -->
-<figure class="wp-block-phenix-media-elements">
-  <a href="https://example.com/image.jpg" data-lightbox="true">
-    <img src="https://example.com/image.jpg" alt="" class="img-fluid">
-  </a>
-</figure>
-<!-- /wp:phenix/media-elements -->
-```
+- **Lightbox Support**: When enabled, clicking on the media opens it in a lightbox overlay
+- **Link Functionality**: Media can be wrapped in links to navigate to other pages or resources
+- **Inner Blocks**: Supports nesting other blocks within the media container for complex layouts
+
+## Technical Implementation
+
+The Media Element block is built using the following components:
+
+1. **Block Registration**: Registered with the WordPress block API with specific attributes for media type, source, and styling options
+
+2. **Editor Interface**: Implemented with React components for the block editor, providing toolbar controls and sidebar panels
+
+3. **Rendering Logic**: 
+   - Client-side rendering using the `save` method for static content
+   - Dynamic class generation based on selected attributes
+   - Conditional rendering based on media type
+
+4. **Style System**:
+   - Utilizes the Phenix Design System's utility classes for styling
+   - Supports responsive design through breakpoint-specific classes
 
 ## Best Practices
 

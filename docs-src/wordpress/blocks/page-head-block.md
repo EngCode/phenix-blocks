@@ -112,36 +112,6 @@ The Page Head block provides several styling options that affect the breadcrumb:
 - Border styles and radius
 - Box shadow effects
 
-### Responsive Behavior
-
-The breadcrumb alignment can be customized for different screen sizes:
-
-```scss
-// Default alignment
-.pds-page-head {
-  &.tx-align-end .px-breadcrumb { justify-content: end; }
-  &.tx-align-center .px-breadcrumb { justify-content: center; }
-  
-  // Medium screens
-  @media (min-width: $screen-md) {
-    &.tx-align-md-end .px-breadcrumb { justify-content: end; }
-    &.tx-align-md-center .px-breadcrumb { justify-content: center; }
-  }
-  
-  // Large screens
-  @media (min-width: $screen-lg) {
-    &.tx-align-lg-end .px-breadcrumb { justify-content: end; }
-    &.tx-align-lg-center .px-breadcrumb { justify-content: center; }
-  }
-  
-  // Extra large screens
-  @media (min-width: $screen-xl) {
-    &.tx-align-xl-end .px-breadcrumb { justify-content: end; }
-    &.tx-align-xl-center .px-breadcrumb { justify-content: center; }
-  }
-}
-```
-
 ## Breadcrumb Styling
 
 The breadcrumb uses a separator between items, which is implemented through CSS:
@@ -206,4 +176,3 @@ The breadcrumb includes the following accessibility features:
 - [Container Block](./container-block.md) - For positioning the Page Head block within layouts
 - [Group Block](./group-block.md) - For combining the Page Head block with other elements
 - [Text Elements Block](./text-elements-block.md) - For adding additional descriptive text
-

@@ -1,91 +1,9 @@
 # Grid Column Block
 
-## Overview
-
-The Grid Column Block is a core layout component designed to work within Grid Row blocks. It provides responsive column sizing, flexbox capabilities, and extensive styling options through an intuitive editor interface.
-
-## Editor Interface
-
-### Quick Settings Toolbar
-
-1. **Column Size Controls**:
-   - Mobile base size
-   - Tablet (MD) breakpoint
-   - Laptop (LG) breakpoint
-   - Desktop (XL) breakpoint
-
-2. **Size Options**:
-   - Width/height settings
-   - Min/max dimensions
-   - Responsive size controls
-
-3. **HTML Tag Selection**:
-   - Default: div
-   - Semantic elements
-   - Text elements
-   - Structural options
-
-4. **Flexbox Layout** (when enabled):
-   - Layout direction
-   - Alignment options
-   - Distribution controls
-   - Per-breakpoint settings
-   - Toggle flexbox mode
-
-5. **Style Controls**:
-   - Background settings
-   - Typography options
-   - Border controls
-   - Effects configuration
-   - Spacing management
-
-## Overview
-
-The Grid Column Block is a core layout component designed to work within Grid Row blocks. It provides responsive column sizing, flexbox capabilities, and extensive styling options through an intuitive editor interface.
-
-## Editor Interface
-
-### Quick Settings Toolbar
-
-1. **Column Size Controls**:
-   - Per-breakpoint column width settings:
-     - Mobile: Base column size (0-13)
-     - Tablet: MD breakpoint size (0-13)
-     - Laptop: LG breakpoint size (0-13)
-     - Desktop: XL breakpoint size (0-13)
-
-2. **Size Options**:
-   - Width/height settings
-   - Min/max dimensions
-   - Responsive size controls
-
-3. **HTML Tag Selection**:
-   - Default: div
-   - Available options:
-     - Semantic elements (article, section)
-     - Text elements (h1-h3)
-     - List wrapper (ul)
-     - Structural (div, span)
-
-4. **Flexbox Layout** (when enabled):
-   - Layout direction
-   - Alignment options
-   - Distribution controls
-   - Per-breakpoint settings
-   - Toggle flexbox mode
-
-5. **Style Controls**:
-   - Background settings
-   - Typography options
-   - Border controls
-   - Effects configuration
-   - Spacing management
 
 ## Overview
 
 The Grid Column Block is a crucial component of the Phenix Design System's layout system. It's designed to be used inside Grid Row Blocks to create responsive column-based layouts. Grid Column Blocks can be sized, ordered, and offset differently across various screen sizes, providing complete control over your layout's responsiveness.
-
-<!-- Image placeholder for Grid Column Block -->
 
 ## Key Features
 

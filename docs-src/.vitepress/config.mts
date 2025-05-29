@@ -20,7 +20,7 @@ export default defineConfig({
     ['link', { href: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/css/phenix-utils.css', rel: 'stylesheet' }],
     
     // Phenix JS from CDN
-    ['script', { src: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/js/phenix.js', defer: true }]
+    ['script', { src: 'https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks/assets/js/phenix.js'}]
   ],
   base: '/phenix-blocks/', // Root path for GitHub Pages with custom domain
   ignoreDeadLinks: true, // Ignore dead links during build
@@ -280,7 +280,7 @@ export default defineConfig({
             { text: 'Grid Row', link: '/wordpress/blocks/grid-row-block' },
             { text: 'Column', link: '/wordpress/blocks/grid-column-block' },
             { text: 'Text Elements', link: '/wordpress/blocks/text-elements-block' },
-            { text: 'Breadcrumb', link: '/wordpress/blocks/breadcrumb-block' },
+            { text: 'Page Head', link: '/wordpress/blocks/page-head-block' },
             { text: 'Icon Element', link: '/wordpress/blocks/icon-element-block' },
             { text: 'Popup Modals', link: '/wordpress/blocks/popup-modals-block' },
             { text: 'Slider / Carousels', link: '/wordpress/blocks/slider-block' },

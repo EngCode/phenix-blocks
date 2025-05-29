@@ -20,7 +20,7 @@ function px_query_render($block_attributes, $content) {
     //===> Generate Taxonomies Query <===//
     if (isset($query['taxonomies-types']) && count($query['taxonomies-types']) > 0) {
         //===> Create Taxonomies in Query <===//
-        $query['tax_query'] = array('relation' => 'OR');
+        $query['tax_query'] = array('relation' => 'AND');
 
         //===> for Each Taxonomy Type <===//
         foreach ($query['taxonomies-types'] as $taxonomy) {

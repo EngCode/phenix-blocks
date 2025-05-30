@@ -9,10 +9,6 @@
 			"path": "../../themes"
 		},
 		{
-			"name": "bo-themes",
-			"path": "../../../../bitoven/wp-content/themes"
-		},
-		{
 			"path": "../../../../px-plugins/pdb-assets"
 		}
 	],

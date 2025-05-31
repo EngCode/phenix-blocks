@@ -264,7 +264,7 @@ export default defineConfig({
             { text: 'Overview', link: '/wordpress/theme-customization/index' },
             { text: 'Site Editor', link: '/wordpress/theme-customization/editor-customization' },
             { text: 'Theme.json Config', link: '/wordpress/theme-customization/theme-json-configuration' },
-            { text: 'Dynamic Template Parts', link: '/wordpress/theme-customization/dynamic-template-parts' },
+            { text: 'Dynamic Template Parts', link: '/wordpress/blocks/dynamic-theme-part' },
             { text: 'SASS/CSS Customization', link: '/wordpress/theme-customization/sass-customization' },
             { text: 'JavaScript Customization', link: '/wordpress/theme-customization/javascript-customization' },
           ]

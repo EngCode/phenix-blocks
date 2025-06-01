@@ -481,19 +481,19 @@ PhenixElements.prototype.utilities = function (options?:{
                     //====> Activate Sliders <====//
                     RangeSliders.forEach((slider:any) => {
                         //===> Get Defaults <===//
-                        const minRange = parseInt(slider.getAttribute("data-min")),
-                              maxRange = parseInt(slider.getAttribute("data-max"));
+                        const minRange = parseFloat(slider.getAttribute("data-min")),
+                              maxRange = parseFloat(slider.getAttribute("data-max"));
         
                         //===> Initial the Slider <===//
                         noUiSlider.create(slider, {
-                            step: 5,
+                            step: 1,
                             connect: true,
                             tooltips:true,
-                            start: [minRange || 150, maxRange || 700],
+                            start: [minRange || 0, maxRange || 999999],
                             direction: page_direction,
                             range: {
-                                'min': minRange || 10,
-                                'max': maxRange || 900
+                                'min': minRange || 0,
+                                'max': maxRange || 999999
                             },
                         });
                 
@@ -511,13 +511,13 @@ PhenixElements.prototype.utilities = function (options?:{
                             min_range.addEventListener('change', event => {
                                 var maxVal = max_range.value,
                                     minVal = min_range.value;
-                                    slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                                    slider.noUiSlider.set([parseFloat(minVal),parseFloat(maxVal)]);
                             });
                     
                             max_range.addEventListener('change', event => {
                                 var maxVal = max_range.value,
                                     minVal = min_range.value;
-                                    slider.noUiSlider.set([parseInt(minVal),parseInt(maxVal)]);
+                                    slider.noUiSlider.set([parseFloat(minVal),parseFloat(maxVal)]);
                             });
                         }
                     });

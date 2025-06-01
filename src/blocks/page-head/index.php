@@ -67,6 +67,7 @@ function px_head_render($block_attributes, $content) {
             }
             //===> Get Single Title <===//
             elseif (is_single() || is_page()) {
+                //===> Get Single Title <===//
                 echo get_the_title();
             } else {
                 echo wp_get_document_title();
@@ -89,9 +90,29 @@ function px_head_render($block_attributes, $content) {
                 endif;
                 //===> Get Category Title <===//
                 if (is_category() || is_archive() || is_single()) {
+                    //===> Get the post type Link <===//
+                    echo '<li><a href="'.get_post_type_archive_link(get_post_type()).'">'.get_post_type_object(get_post_type())->labels->name.'</a></li>';
+                    
+                    //===> If its Single Post or Product <===//
                     if (is_single()) {
-                        echo '<li><a href="'.get_post_type_archive_link(get_post_type()).'">'.get_post_type_object(get_post_type())->labels->name.'</a></li>';
-                    } else {
+                        //===> if the post is product get product category <===//
+                        if (get_post_type(get_the_ID()) === 'product') {
+                            $categories = get_the_terms(get_the_ID(), 'product_cat');
+                            if (!empty($categories)) {
+                                echo '<li><a href="'.get_category_link($categories[0]->term_id).'">'.$categories[0]->name.'</a></li>';
+                            }
+                        }
+                        //===> or if the post type is not product get post category <===//
+                        else {
+                            $categories = get_the_category();
+                            if (!empty($categories)) {
+                                echo '<li><a href="'.get_category_link($categories[0]->term_id).'">'.$categories[0]->name.'</a></li>';
+                            }
+                        }
+                    } 
+                    //===> If Archive/Taxonomy Page <===//
+                    else {
+                        //===> Get the archive title <===//
                         echo '<li>'.get_the_archive_title('', false ).'</li>';
                     }
                 }

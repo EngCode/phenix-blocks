@@ -97,6 +97,25 @@ function px_head_render($block_attributes, $content) {
                 }
                 //===> Get Single Title <===//
                 if (is_single() || is_page()) {
+                    //===> is Single with Heirachy <===//
+                    if (is_single()) {
+                        //===> if the post is product get product category <===//
+                        if (get_post_type(get_the_ID()) === 'product') {
+                            $categories = get_the_terms(get_the_ID(), 'product_cat');
+                            if (!empty($categories)) {
+                                echo '<li><a href="'.get_category_link($categories[0]->term_id).'">'.$categories[0]->name.'</a></li>';
+                            }
+                        }
+                        //===> or if the post type is not product get post category <===//
+                        else {
+                            $categories = get_the_category();
+                            if (!empty($categories)) {
+                                echo '<li><a href="'.get_category_link($categories[0]->term_id).'">'.$categories[0]->name.'</a></li>';
+                            }
+                        }
+                    }
+
+                    //====> Current Title <====//
                     echo '<li>'.get_the_title().'</li>';
                 }
             ?>

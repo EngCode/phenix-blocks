@@ -176,7 +176,7 @@ PhenixElements.prototype.utilities = function (options?:{
         });
 
         //===> Custom Number Input <===//
-        Phenix(".px-counter-input").forEach(counter => {
+        Phenix("body:not([class*='editor']) .px-counter-input").forEach(counter => {
             //===> Get Elements <===//
             const input = counter.querySelector('input[type="number"]');
             const decrease = counter.querySelector('.decrease-btn');

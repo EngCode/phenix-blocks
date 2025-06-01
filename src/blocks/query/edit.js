@@ -93,24 +93,24 @@ export default function Edit(props) {
                         <SelectFromData label={__("Card Template", "pds-blocks")} key="template_part" name="template_part" options="template-parts" value={attributes.template_part} valueSetter={set_value} />
                     </div>
                     {/*===> Column <===*/}
-                    {!attributes.query?.post_type?.includes("default") ? <div className='col-6 mb-10'>
+                    <div className='col-6 mb-10'>
                         <PhenixSelect label={__("Order", "pds-blocks")} key="order" name="order" value={attributes.query?.order} onChange={set_query} options={[
                             { label: __('Oldest', "pds-blocks"), value: 'ASC' },
                             { label: __('Newest', "pds-blocks"),  value: 'DESC' },
                         ]} />
-                    </div> : null}
+                    </div>
                     {/*===> Column <===*/}
-                    {!attributes.query?.post_type?.includes("default") ? <div className='col-6 mb-10'>
+                    <div className='col-6 mb-10'>
                         <PhenixSelect label={__("OrderBy", "pds-blocks")} key="orderby" name="orderby" value={attributes.query?.orderby} onChange={set_query} options={PhenixBlocks.dataLists.queries.orderBy} />
-                    </div> : null}
+                    </div>
                     {/*===> Column <===*/}
-                    {!attributes.query?.post_type?.includes("default") ? <div className='col-12 mb-10'>
+                    <div className='col-12 mb-10'>
                         <PhenixNumber name="per_page" label={__("Per Page", "pds-blocks")} value={ attributes.query?.per_page || 5 } onChange={set_query} />
-                    </div> : null}
+                    </div>
                     {/*===> Column <===*/}
-                    {!attributes.query?.post_type?.includes("default") ? <div className='col-6'>
+                    <div className='col-6'>
                         <OptionControl name={`pagination`} value="boolean" checked={attributes.query?.pagination} onChange={set_query} type='switch-checkbox' className='small'>{__("Pagination", "pds-blocks")}</OptionControl>
-                    </div> : null}
+                    </div>
                     {/*===> Column <===*/}
                     <div className='col-6'>
                         <OptionControl name={`s`} value="boolean" checked={attributes.query?.s} onChange={set_query} type='switch-checkbox' className='small'>{__("IS Search", "pds-blocks")}</OptionControl>

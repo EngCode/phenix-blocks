@@ -61,22 +61,13 @@ function px_query_render($block_attributes, $content) {
     global $wp_query;
 
     /*===> Query Items <===*/
-    if(!isset($query['per_page'])) {
-        $query['per_page'] = 12;
-        $query['posts_per_page'] = 12;
-    } else {
-        $query['per_page'] = (int) $query['per_page'];
-        $query['posts_per_page'] = (int) $query['per_page'];
-    }
+    $query['per_page'] = isset($query['per_page']) ? (int) $query['per_page'] : 12;
+    $query['posts_per_page'] = isset($query['per_page']) ? (int) $query['per_page'] : 12;
+    
+    /*===> Set Pagination Page <===*/
+    $query['paged'] = isset($query['pagination']) ? (get_query_var('paged')) ? get_query_var('paged') : 1 : 1;
 
-    /*===> Check Pagination <===*/
-    if (isset($query['pagination']) && $query['pagination'] === true) {
-        $query['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    } else {
-        $query['paged'] = 1;
-    }
-
-    //===> Check for Search Query <===//
+    /*===> Check for Search Query <===*/
     if (isset($query['s'])) {
         //===> if Search is Enable <===//
         if ($query['s'] === true && wp_verify_nonce($_GET['s'], "posts-query")) {
@@ -121,6 +112,7 @@ function px_query_render($block_attributes, $content) {
         } 
         //===> Native Loop <===//
         else {
+            //===> Start Loop <===//
             while (have_posts()):
                 //=== Template Part ===//
                 get_template_part("template-parts/".$block_attributes["template_part"], null, the_post());

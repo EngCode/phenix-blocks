@@ -295,14 +295,15 @@ if (!function_exists('pds_woo_main_query_filter')):
      * Apply posts_per_page to main query on WooCommerce pages
      * 
      * @param WP_Query $q The query object
-     */
+    */
+
     function pds_woo_main_query_filter($q) {
         //===> Check if the query is for WooCommerce pages <====//
         if (!is_admin() && $q->is_main_query() && function_exists('is_woocommerce') && (is_shop() || is_product_category() || is_product_tag())) {
             $q->set('posts_per_page', get_option('posts_per_page'));
         }
     }
-    
+
     // Apply to pre_get_posts with high priority
     add_action('pre_get_posts', 'pds_woo_main_query_filter', 999);
 endif;

@@ -70,7 +70,7 @@ const PhenixNumber = (props) => {
         {/*===> Label <===*/}
         <label className='components-input-control__label tx-uppercase weight-bold'>{label}</label>
         {/*===> Counter Control <===*/}
-        <div className={"px-counter-input position-rv fluid " + (icon ? icon : "")}>
+        <div className={"px-counter-input-editor position-rv fluid " + (icon ? icon : "")}>
             {/*===> Button <===*/}
             {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 

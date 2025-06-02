@@ -190,27 +190,33 @@ if (!function_exists('phenix_assets')) :
         
         //===> Load Style Font <===//
         if (isset($assets_files['style']) && $assets_files['style'] !== $assets_files['primary']) {
-            wp_enqueue_style('pds-style-font', $assets_files['style'], array('phenix'), $version, 'screen and (min-width: 2500px)');
+            wp_enqueue_style('pds-style-font', $assets_files['style'], array('phenix'), $version);
         }
 
         //===> Load Icons Font <===//
         wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
 
         //===> Set Font Css Settings <===//
-        if ($assets_files['primary_name'] !== $assets_files['secondary_name']) {
-            wp_add_inline_style('pds-primary-font', 'body, :root {
-                --primary-font: '.$assets_files['primary_name'].', '.$assets_files['secondary_name'].';
-                --secondary-font: '.$assets_files['secondary_name'].', '.$assets_files['primary_name'].';
-                --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
-                --icons-font: "'.$assets_files['icons_name'].'";
-            }');
-        } else {
-            wp_add_inline_style('pds-primary-font', 'body, :root {
-                --primary-font: '.$assets_files['primary_name'].';
-                --secondary-font: '.$assets_files['secondary_name'].';
-                --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
-                --icons-font: "'.$assets_files['icons_name'].'";
-            }');
+        if (!wp_style_is('pds-fonts-variables', 'enqueued')) {
+            //=====> Set Font Css Settings <====//
+            if ($assets_files['primary_name'] !== $assets_files['secondary_name']) {
+                wp_add_inline_style('pds-primary-font', 'body, :root {
+                    --primary-font: '.$assets_files['primary_name'].', '.$assets_files['secondary_name'].';
+                    --secondary-font: '.$assets_files['secondary_name'].', '.$assets_files['primary_name'].';
+                    --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
+                    --icons-font: "'.$assets_files['icons_name'].'";
+                }');
+            } else {
+                wp_add_inline_style('pds-primary-font', 'body, :root {
+                    --primary-font: '.$assets_files['primary_name'].';
+                    --secondary-font: '.$assets_files['secondary_name'].';
+                    --style-font: '.$assets_files['style_name'].', '.$assets_files['primary_name'].';
+                    --icons-font: "'.$assets_files['icons_name'].'";
+                }');
+            }
+            
+            //=====> Set Font Css Settings <====//
+            wp_style_add_data('pds-fonts-variables', 'enqueued', true);
         }
     };
 

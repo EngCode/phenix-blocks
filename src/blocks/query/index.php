@@ -125,16 +125,14 @@ function px_query_render($block_attributes, $content) {
         }
 
         //=== Pagination ===//
-        if (isset($query['pagination']) && $query['pagination'] === true) {
-            //===> Custom Query <===//
-            if (isset($query['post_type']) && $the_query->have_posts()) {
-                pagination($the_query); 
-            } 
-            //===> Native Query <===//
-            else {
-                pagination($wp_query);
-            };
-        }
+        //===> Custom Query <===//
+        if (isset($query['post_type']) && $the_query->have_posts() && !empty($query['post_type'])) {
+            pagination($the_query); 
+        } 
+        //===> Native Query <===//
+        else {
+            pagination($wp_query);
+        };
 
         //=== Reset Query Data ===//
         wp_reset_postdata();

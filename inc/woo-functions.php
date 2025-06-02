@@ -297,10 +297,10 @@ if (!function_exists('pds_woo_main_query_filter')):
      * @param WP_Query $q The query object
     */
 
-    function pds_woo_main_query_filter($q) {
+    function pds_woo_main_query_filter($query) {
         //===> Check if the query is for WooCommerce pages <====//
-        if (!is_admin() && $q->is_main_query() && function_exists('is_woocommerce') && (is_shop() || is_product_category() || is_product_tag())) {
-            $q->set('posts_per_page', get_option('posts_per_page'));
+        if (!is_admin() && $query->is_main_query() && function_exists('is_woocommerce') && (is_shop() || is_product_category() || is_product_tag())) {
+            $query->set('posts_per_page', get_option('posts_per_page'));
         }
     }
 

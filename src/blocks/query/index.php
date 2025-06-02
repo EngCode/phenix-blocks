@@ -61,11 +61,16 @@ function px_query_render($block_attributes, $content) {
     global $wp_query;
 
     /*===> Query Items <===*/
-    $query['per_page'] = isset($query['per_page']) ? (int) $query['per_page'] : 12;
-    $query['posts_per_page'] = isset($query['per_page']) ? (int) $query['per_page'] : 12;
+    $posts_per_page = isset($query['per_page']) ? (int) $query['per_page'] : get_option('posts_per_page', 12);
+    $query['posts_per_page'] = $posts_per_page;
     
     /*===> Set Pagination Page <===*/
-    $query['paged'] = isset($query['pagination']) ? (get_query_var('paged')) ? get_query_var('paged') : 1 : 1;
+    $paged = get_query_var('paged') ? get_query_var('paged') : (get_query_var('page') ? get_query_var('page') : 1);
+    $query['paged'] = $paged;
+    
+    /*===> Ensure proper post counting <===*/
+    $query['no_found_rows'] = false;
+    $query['fields'] = '';
 
     /*===> Check for Search Query <===*/
     if (isset($query['s'])) {
@@ -125,14 +130,16 @@ function px_query_render($block_attributes, $content) {
         }
 
         //=== Pagination ===//
-        //===> Custom Query <===//
-        if (isset($query['post_type']) && $the_query->have_posts() && !empty($query['post_type'])) {
-            pagination($the_query); 
-        } 
-        //===> Native Query <===//
-        else {
-            pagination($wp_query);
-        };
+        if (isset($query['pagination']) && $query['pagination'] === true) {
+            //===> Custom Query <===//
+            if (isset($query['post_type']) && $the_query->have_posts() && !empty($query['post_type'])) {
+                pagination($the_query); 
+            } 
+            //===> Native Query <===//
+            else {
+                pagination($wp_query);
+            };
+        }
 
         //=== Reset Query Data ===//
         wp_reset_postdata();

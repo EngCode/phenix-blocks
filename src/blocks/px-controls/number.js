@@ -31,7 +31,7 @@ const PhenixNumber = (props) => {
     const IncreaseNum = useCallback((clicked) => {
         //===> Get Elements <===//
         let button = clicked.target,
-            wrapper = button.closest(".px-counter-input"),
+            wrapper = button.closest(".px-counter-input-editor"),
             maxNum = parseFloat(max) || Number.MAX_SAFE_INTEGER,
             step = steps ? parseFloat(steps) : 1;
 
@@ -50,7 +50,7 @@ const PhenixNumber = (props) => {
     const DecreaseNum = useCallback((clicked) => {
         //===> Get Elements <===//
         let button = clicked.target,
-            wrapper = button.closest(".px-counter-input"),
+            wrapper = button.closest(".px-counter-input-editor"),
             minNum = parseFloat(min) || Number.MIN_SAFE_INTEGER,
             step = steps ? parseFloat(steps) : 1;
 

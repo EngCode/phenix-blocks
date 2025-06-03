@@ -293,24 +293,24 @@ PhenixElements.prototype.utilities = function (options?:{
         if(!headline) Phenix('body').insert('prepend', `<h1 class="hidden">${document.title}</h1>`);
 
         //====> Images SEO/Performance <====//
-        setTimeout(() => {
-            Phenix('img').forEach((img:any) => {
-                //===> Get Image Data <===//
-                let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
-                    img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
-                    parent_width = img.parentNode.clientWidth,
-                    parent_height = Phenix(img.parentNode).height();
-    
-                //===> Set Width and Height <===//
+        Phenix('img').forEach((img:any) => {
+            //===> Get Image Data <===//
+            let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
+                img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
+                parent_width = img.parentNode.clientWidth,
+                parent_height = Phenix(img.parentNode).height();
+
+            //===> Set Width and Height <===//
+            setTimeout(() => {
                 if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
                 if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
-    
-                //===> Alternative Text <===//
-                if (!img.getAttribute('alt') || img.getAttribute('alt') === "") {
-                    img.setAttribute('alt', img.src.substring(img.src.lastIndexOf('/')+1));
-                }
-            });
-        }, 500);
+            }, 500);
+
+            //===> Alternative Text <===//
+            if (!img.getAttribute('alt') || img.getAttribute('alt') === "") {
+                img.setAttribute('alt', img.src.substring(img.src.lastIndexOf('/')+1));
+            }
+        });
     
         //====> Links SEO <====//
         Phenix('a:not([title]):empty, button:not([title]):empty, a:not([title]), button:not([title])').forEach((link:any) => {

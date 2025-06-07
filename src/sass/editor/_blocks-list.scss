@@ -35,7 +35,7 @@
 	.container {max-width: 1200px;}
 	.container-xl, .container-lg {max-width: 1400px;}
 	.wp-block-phenix-row > .row {margin-left: 0; margin-right: 0;}
-	.wp-block-phenix-container > .block-editor-block-list__layout, .wp-block-phenix-container > div[class*="container"] > .block-editor-block-list__layout {all: inherit;}
+	.wp-block-phenix-container > .block-editor-block-list__layout, .wp-block-phenix-container > div[class*="container"] > .block-editor-block-list__layout {all: inherit; padding: 0;}
 
 	/*==== Links ====*/
 	a, button {text-decoration: none;}

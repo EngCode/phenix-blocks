@@ -289,14 +289,9 @@ if (!function_exists("pds_woo_attributes_select")):
     }
 endif;
 
-//===> Apply per_page to main query <====//
+//===> Apply per_page to main query on WooCommerce pages <====//
 if (!function_exists('pds_woo_main_query_filter')):
-    /**
-     * Apply posts_per_page to main query on WooCommerce pages
-     * 
-     * @param WP_Query $q The query object
-    */
-
+    //====> Apply per_page to main query on WooCommerce pages <====//
     function pds_woo_main_query_filter($query) {
         //===> Check if the query is for WooCommerce pages <====//
         if (!is_admin() && $query->is_main_query() && function_exists('is_woocommerce') && (is_shop() || is_product_category() || is_product_tag())) {
@@ -304,6 +299,6 @@ if (!function_exists('pds_woo_main_query_filter')):
         }
     }
 
-    // Apply to pre_get_posts with high priority
+    //====> Apply to pre_get_posts with high priority <====//
     add_action('pre_get_posts', 'pds_woo_main_query_filter', 999);
 endif;

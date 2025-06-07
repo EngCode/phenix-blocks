@@ -365,6 +365,9 @@ PhenixElements.prototype.slider = function (options?:{
             };
         });
 
+        //====> Run Integration <====//
+        slider_integration();
+
         //====> Run Sync Sliders <====//
         let mount_slider = () => {
             if (!current_slider.track?.classList.contains('mounted')) {

@@ -45,7 +45,19 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     const blockProps = renderProps.blockProps;
     const innerBlocksProps = useInnerBlocksProps(blockProps, {allowedBlocks: ['phenix/text-list-item']});
     const uniqueKey = blockProps.id;
-    const TagName = attributes.type === 'headline' && !attributes.tagName.includes('h') ? 'h2' : attributes.type === "span" ? "span" : attributes.tagName === "" ? "p" : attributes.tagName;
+    const getTagName = () => {
+        //===> Headline <===//
+        if (attributes.type === 'headline') return attributes.tagName.includes('h') ? attributes.tagName : 'h2';
+        //===> Span <===//
+        else if (attributes.type === 'span') return 'span'; 
+        //===> Paragraph <===//
+        else if (attributes.tagName === '' || attributes.type === 'paragraph') return 'p'; 
+        //===> Default <===//
+        else return attributes.tagName;
+    }
+
+    //===> Tag Name <===//
+    const TagName = getTagName();
 
     //===> Layout Options <===//
     if (attributes.type === "list-custom") {

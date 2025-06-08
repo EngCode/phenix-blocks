@@ -141,6 +141,12 @@
                             <span class="switch"></span>
                             <span class="me-5"><?php echo esc_html__("Custom Loading", "pds-blocks"); ?></span>
                         </label>
+                        <!-- Switch Button -->
+                        <label class="mb-0 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
+                            <input id="pds_loading_progressBar" type="checkbox" name="pds_loading[progressBar]" <?php if (isset($loadingOptions["progressBar"]) && $loadingOptions["progressBar"] == "on") {echo 'checked';} ?> />
+                            <span class="switch"></span>
+                            <span class="me-5"><?php echo esc_html__("Show Progress Bar", "pds-blocks"); ?></span>
+                        </label>
                     </div>
                     <!-- // Group -->
 

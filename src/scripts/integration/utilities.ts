@@ -378,7 +378,7 @@ PhenixElements.prototype.utilities = function (options?:{
                     var masonry = new Masonry(grid, {itemSelector: `.${first_child_class}`});
                 });
             }, { integrated: true });
-    
+
             //===> Typed List <===//
             if(document.querySelector('.typed-list')) {
                 //====> Create the List Structure <====//
@@ -417,7 +417,7 @@ PhenixElements.prototype.utilities = function (options?:{
                     tinyTypewriter(typeWriter, {items: items, cursor: false, startDelay: 700});
                 }), { integrated: true });
             }
-    
+
             //===> Marquee Slider <===//
             if(document.querySelector('.px-marquee') || document.querySelector('.px-marquee-reverse')) {
                 //====> Import Marquee Library <====//

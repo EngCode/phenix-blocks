@@ -44,9 +44,11 @@
     if(phenixJsScript) phenixJsScript.removeAttribute('async');
 
     //===> Progress Bar Percentage <===//
+    <?php if (isset($loading_opts["showProgressBar"]) && $loading_opts["showProgressBar"] == "on") : ?>
     const progressBar = document.querySelector('.px-page-loader .progress');
     const progressPercentage = document.querySelector('.px-page-loader .progress::after');
     let progressWidth = 0;
+    <?php endif; ?>
 
     //===> Defer Images <===//
     document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
@@ -60,10 +62,12 @@
         //===> Keep Loading for Forms Submit <====//
         if (isFormProcessing && theForm && !theForm.classList.contains('failed')) {
             Phenix('.px-page-loader p')[0].innerHTML = "please wait your data is being processed.";
-        } else {
+        } else {    
             //===> Add the Last 10% of progress before hiding the loader <===//
+            <?php if (isset($loading_opts["showProgressBar"]) && $loading_opts["showProgressBar"] == "on") : ?>
             progressBar.style.setProperty('--width', `100%`);
             progressBar.setAttribute('data-value', `100%`);
+            <?php endif; ?>
 
             //===> Hide Loader with Circular Effect <===//
             const pxLoader = document.querySelector('.px-page-loader');
@@ -110,6 +114,7 @@
     });
 
     //===> Progress Bar Timeloop <===//
+    <?php if (isset($loading_opts["showProgressBar"]) && $loading_opts["showProgressBar"] == "on") : ?>
     const interval = setInterval(() => {
         //===> Increase Progress Width <===//
         progressWidth += 1;
@@ -119,4 +124,5 @@
         //===> Stop Timeloop After 90% <===//
         if (progressWidth >= 90) clearInterval(interval);
     }, 10);
+    <?php endif; ?>
 </script>

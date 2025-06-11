@@ -340,6 +340,7 @@ window.PhenixBlocks = {
 
                         //===> Padding Values <===//
                         else if (isPadding.some(css => sub_option.startsWith(css))) {
+                            //===> Invalid Values Check <===//
                             if (parseInt(sub_value) < -1) return;
                             //===> Custom Value <===//
                             else if (!utilities_sizes.includes(parseInt(sub_value))) {
@@ -394,6 +395,9 @@ window.PhenixBlocks = {
                             //====> Check URL Classes Fix <====//
                             const urlPattern = new RegExp(/(www|http:|https:)+[^\s]+[\w]/);
                             if (urlPattern.test(sub_value)) return;
+
+                            //====> Check if icon is activate <====//
+                            if (option_name === "style" && sub_option === "icon" && !attributes.style?.hasIcon) return;
 
                             //====> Grid Layouts <===//
                             if (isColumn && attributes.isFlexbox || isGrid) {

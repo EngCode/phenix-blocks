@@ -100,7 +100,7 @@ if (!function_exists("pds_blocks_options_render")) :
                     if (!isset($block_attributes[$option_name][$sub_option])) { continue; }
 
                     //===> Add Slider Name <===//
-                    if (isset($block_attributes['flexbox']['slider'])) {
+                    if (isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider'] === true) {
                         $grid_classes .= " px-slider ";
                     }
 
@@ -117,7 +117,7 @@ if (!function_exists("pds_blocks_options_render")) :
                     //===> Flexbox Options <===//
                     elseif ($option_name === "flexbox" && strpos($sub_option, "cols") !== false) {
                         //===> Slider Mode <===//
-                        if (isset($block_attributes['flexbox']['slider'])) {
+                        if (isset($block_attributes['flexbox']['slider']) && $block_attributes['flexbox']['slider'] === true) {
                             $dataAttr = 'data-' . ($sub_option === "cols" ? "items" : str_replace('cols-', '', $sub_option));
                             $slider_attrs .= ' '.$dataAttr.'="'.$sub_value.'"';
                             //===> if is Slider and is Fade or one Slide per view disable flexbox <===//

@@ -17,8 +17,8 @@ window.PhenixBlocks = {
         //===> Rendering Checkers <===//
         const container = {className: ""}, 
               CustomCSS = {},
-              isPadding = ['pdt', 'pds', 'pde', 'pdb'],
               isMargin  = ['mt', 'mb', 'ms', 'me'],
+              isPadding = ['pdt', 'pds', 'pde', 'pdb'],
               isObjectVal = (option_value) => {return typeof option_value === 'object'},
               isBooleanVal = (option_value) => {return typeof option_value === 'boolean'},
               isNormalValue = (option_value) => {return typeof option_value === 'string' || typeof option_value === 'number' || typeof option_value === 'array'},
@@ -58,6 +58,7 @@ window.PhenixBlocks = {
     
                 //===> for Icons <===//
                 else if (option_name === "icon" && attributes[option_name]) {
+                    //===> Check if the type is an icon or square <===//
                     if (attributes.type.includes('icon') || attributes.type.includes('square')) {
                         blockProps.className += ` ${attributes[option_name].toString().replace(',', ' ').trim()}`;
                     }
@@ -82,7 +83,9 @@ window.PhenixBlocks = {
                 }
                 //===> for Link Options <===//
                 else if (option_name === "isLink" || option_name === "inNewTab") {
+                    //===> New Tab Link <===//
                     if (option_name === "inNewTab") {blockProps['target'] = "_blank";} 
+                    //===> Noopener Link <===//
                     else {blockProps['rel'] = "noopener";}
                 }
                 //===> for icon End <===//
@@ -95,11 +98,13 @@ window.PhenixBlocks = {
                 }
                 //===> for Lightbox Options <===//
                 else if (option_name === "isLightBox" && option_value) {
+                    //===> Lightbox Class <===//
                     blockProps.className += ' px-lightbox';
+                    //===> Lightbox Media Type <===//
                     if (attributes.lightbox_type) blockProps['data-media'] = attributes.lightbox_type;
                 };
             }
-    
+
             //===> if its {options-set} => [style, typography, responsive, flexbox/slider] <===//
             else if (isObjectVal(option_value) && attributes[option_name]) {
                 //===> Flexbox Props <===//
@@ -111,7 +116,7 @@ window.PhenixBlocks = {
                     if (!attributes[option_name][sub_option]) return;
 
                     //===> Slider Mode Checker <===//
-                    if (attributes.flexbox?.slider) {
+                    if (attributes.flexbox?.slider === true) {
                         //===> if not-related option return void <===//
                         if (["align", "nowrap", "masonry"].some(option => sub_option.includes(option))) return;
                     };
@@ -122,7 +127,9 @@ window.PhenixBlocks = {
                         if(attributes.flexbox.slider) {
                             let dataAttr = `data-${sub_option === "cols" ? "items" : sub_option.replace('cols-', '')}`;
                             container[dataAttr] = sub_value;
-                        } else if (attributes.flexbox.equals) {
+                        }
+                        //===> Equals Mode <===//
+                        else if (attributes.flexbox.equals) {
                             //===> add Classes <===//
                             container.className += ` ${sub_option.replace('cols', 'row-cols') + colSizeHandler(sub_value)}`;
                         }
@@ -140,20 +147,23 @@ window.PhenixBlocks = {
                     else if (!isNormalValue(sub_value)) {
                         //===> Background Specials <===//
                         if (sub_option === "background" && sub_value.value) {
-                            //===> Adjust Primary Colors <===//
+                            //===> Adjust Primary Colors for Buttons <===//
                             let isPrimary = false,
                                 colorsList = ["bg-primary", "bg-secondary", "bg-gray", "bg-dark", "bg-white", "bg-success", "bg-danger", "bg-warning", "bg-info"];
-    
+
                             //===> Clear Props <===//
                             blockProps['data-src'] = null;
                             blockProps.style?.backgroundImage ? blockProps.style.backgroundImage = null : null;
                             if (!blockProps.style) blockProps.style = {};
-    
+
                             //===> Image Background <===//
                             if (attributes.style.background.type === 'image' || attributes.style.background.type === '3d-viewer') {
+                                //===> Set Props <===//
                                 blockProps.className += ` px-media`;
                                 blockProps["data-src"] = sub_value.value;
+                                //===> Set 3D Type for Background <===//
                                 if(attributes.style.background.type === '3d-viewer') blockProps["data-type"] = attributes.style.background.type;
+                                //===> Set Background in Editor only <===//
                                 if(!isSave && attributes.style.background.type != '3d-viewer') blockProps.style.backgroundImage = `url("${sub_value.value}")`;
                             }
                             //===> Video Background <===//
@@ -169,13 +179,15 @@ window.PhenixBlocks = {
                             }
                             //===> Name Background <===//
                             else {
-                                //===> Correct Colors <===//
+                                //===> Check Correct Colors for Buttons <===//
                                 colorsList.forEach(color => sub_value.value === color ? isPrimary = true : null);
-    
-                                //===> Set the Background <===//
+
+                                //===> Set the Background for Buttons <===//
                                 if (hasColors && isPrimary) {
                                     blockProps.className += sub_value.value.includes('bg-white') ? ` light` : ` ${sub_value.value.replace('bg-', '')}`;
-                                }  else {
+                                }  
+                                //===> Set the Background for Other Elements <===//
+                                else {
                                     //===> Custom Colors <===//
                                     if (sub_value.value.includes('var(') && !sub_value.value.includes('--gradient')) {CustomCSS.backgroundColor = sub_value.value;}
 
@@ -232,8 +244,10 @@ window.PhenixBlocks = {
                         //===> Styles Support <===//
                         else if (sub_option === "support") {
                             sub_value.forEach(property => {
+                                //===> Enable Border <===//
                                 if (property === "enable-border") blockProps.className += ` border-reset`;
-                                !property.includes('enable-') ? blockProps.className += ` ${property}` : null
+                                //===> Enable Other Options <===//
+                                !property.includes('enable-') ? blockProps.className += ` ${property}` : null;
                             });
                         }
 
@@ -252,7 +266,9 @@ window.PhenixBlocks = {
                         else if (sub_option === "display") { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
                         
                         //===> for Array Values <===//
-                        else if (Array.isArray(sub_value)) { blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; }
+                        else if (Array.isArray(sub_value)) { 
+                            blockProps.className += ` ${sub_value.toString().replace(',', ' ').trim()}`; 
+                        }
                     }
 
                     //===> for Normal strings and Arrays <===//
@@ -265,7 +281,7 @@ window.PhenixBlocks = {
                         if (findAndExcluded.some(opt => opt.includes(sub_option))) return;
 
                         //====> Invalid Values Check <====//
-                        if (sub_value === "null" || sub_value === "on" || sub_value === "undefined") return;
+                        if (sub_value === "null" || sub_value === "on" || sub_value === "undefined" || sub_value === "true" || sub_value === "false") return;
 
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }

@@ -12,13 +12,14 @@ import React, { useState } from '@wordpress/element';
 //===> Phenix Background <===//
 const ScreensTabs = (props) => {
     //===> States <===//
-    const [screen, setScreen] = props.sm ? useState("sm") : useState("md");
+    const [screen, setScreen] = props.xs ? useState("xs") : props.sm ? useState("sm") : useState("md");
 
     //===> Tab Buttons <====//
     const buttons = {
-        opts: ["sm", "md", "lg", "xl"],
+        opts: ["xs", "sm", "md", "lg", "xl"],
         classes: "btn square tiny col far",
-        sm: {key:"mobile", title: __("Mobile Screens", "pds-blocks")},
+        xs: {key:"mobile-alt", title: __("Mobile Screens", "pds-blocks")},
+        sm: {key:"mobile", title: __("Mobile Medium", "pds-blocks")},
         md: {key:"tablet", title: __("Tablet Screens", "pds-blocks")},
         lg: {key:"laptop", title: __("Desktop Screens", "pds-blocks")},
         xl: {key:"desktop", title: __("xLarge Screens", "pds-blocks")},

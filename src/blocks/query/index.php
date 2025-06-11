@@ -54,6 +54,7 @@ function px_query_render($block_attributes, $content) {
     //===> Get Rendered Attributes <===//
     $slider_attrs = $renderedProps["slider_attrs"];
     $grid_classes = $renderedProps["grid_classes"];
+
     //===> Create Nonce Verification <===//
     $pds_nonce = wp_create_nonce("posts-query");
 
@@ -63,11 +64,11 @@ function px_query_render($block_attributes, $content) {
     /*===> Query Items <===*/
     $posts_per_page = isset($query['per_page']) ? (int) $query['per_page'] : get_option('posts_per_page', 12);
     $query['posts_per_page'] = $posts_per_page;
-    
+
     /*===> Set Pagination Page <===*/
     $paged = get_query_var('paged') ? get_query_var('paged') : (get_query_var('page') ? get_query_var('page') : 1);
     $query['paged'] = $paged;
-    
+
     /*===> Ensure proper post counting <===*/
     $query['no_found_rows'] = false;
     $query['fields'] = '';
@@ -96,6 +97,19 @@ function px_query_render($block_attributes, $content) {
     //===> Create New Query <===//
     if (isset($query['post_type'])) {
         $the_query = new WP_Query($query);
+    }
+
+    //===> Apply Custom Options to Main Query <====//
+    elseif (!is_admin() && $wp_query->is_main_query()) {
+        //===> Get Current Query <====//
+        $current_query = $wp_query->query;
+
+        //===> Merge New Parameters <====//
+        $current_query['posts_per_page'] = $posts_per_page;
+        $current_query['paged'] = $paged;
+
+        //===> Reset Query with New Parameters <====//
+        query_posts($current_query);
     }
 
     //===> Convert Query Informations into JSON String <===//

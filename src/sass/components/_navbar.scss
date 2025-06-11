@@ -66,7 +66,7 @@
         transition: background-color 0.3s, border-color 0.3s, color 0.3s, padding 0.3s;
         @include padding_inline(var(--space-in));
         /*==== Hover & Active ====*/
-        &:hover, &.px-item-active, &.px-submenu-active {
+        &:hover, &.px-item-active, &.px-submenu-active, &:has(> .mixitup-control-active) {
             color: var(--color-hvr);
             > a {color: var(--color-hvr);}
             background-color: var(--background-hvr);

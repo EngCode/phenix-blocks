@@ -288,6 +288,7 @@ window.PhenixBlocks = {
 
                         //===> Media Settings <===//
                         else if (option_name === "setting") {
+                            //===> Ratio Size <===//
                             if (sub_option.includes('size') && sub_value !== "custom") {
                                 blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
                             } else {
@@ -409,6 +410,17 @@ window.PhenixBlocks = {
                             }
                         }
                     };
+
+                    // //===> Data Settings <===//
+                    // if (option_name === "setting") {
+                    //     //===> Ratio Size <===//
+                    //     if (sub_option.includes('size') && sub_value !== "custom") {
+                    //         blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
+                    //     } else {
+                    //         blockProps[`data-${sub_option}`] = sub_value;
+                    //     }
+                    // }
+
                 });
             };
         });

@@ -87,14 +87,12 @@ export default function Edit({ attributes, setAttributes }) {
                                 <PhenixInput name="showon" label={__("Trigger ID", "pds-blocks")} value={attributes.setting.showon} onChange={set_setting} />
                             </div>
                             {/*===> Form Control <===*/}
-                            {attributes.setting.onload || attributes.setting.hash_url ? <div className='col col-6'>
-                                <PhenixNumber name="timeout" label={__("Duration", "pds-blocks")} value={attributes.setting.timeout || 6000} onChange={set_setting} min={0} max={20000} steps={100}></PhenixNumber>
-                            </div> : null }
+                            <PhenixNumber name="timeout" label={__("Duration", "pds-blocks")} value={attributes.setting.timeout || 500} onChange={set_setting} min={0} max={20000} steps={100}></PhenixNumber>
                         </div>
                         {/*===> Option Controller <===*/}
                         <div className='flexbox'>
-                            <OptionControl name={`hash_url`} value="true" checked={attributes.setting.hash_url} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open by Hash URL", "pds-blocks")}</OptionControl>
-                            <OptionControl name={`onload`} value="true" checked={attributes.setting.onload} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open When Page Loads", "pds-blocks")}</OptionControl>
+                            <OptionControl name={`hash_url`} value={attributes.setting.hash_url} checked={attributes.setting.hash_url} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open by Hash URL", "pds-blocks")}</OptionControl>
+                            <OptionControl name={`onload`} value={attributes.setting.onload} checked={attributes.setting.onload} onChange={set_setting} type='switch-checkbox' className='small me-10 mb-10'>{__("Open When Page Loads", "pds-blocks")}</OptionControl>
                         </div>
                     </li>
                 </PxDropDown>

@@ -445,18 +445,18 @@
         function pds_countries_register() {
             //===> CDN URL <===//
             $px_cdn_assets = WP_PLUGIN_DIR.'/pds-blocks/assets';
-            if (get_option("pds_cdn") === "on") { $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets"; }
+            if (get_option("pds_cdn") === "on") { $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/"; }
 
             if (!get_option("countries_list")) {
                 //====> Get Countries JSON <====//
                 $countries_data = wp_remote_get($px_cdn_assets."/json/countries.json");
                 $countries_phone = wp_remote_get($px_cdn_assets."/json/countries-phones.json");
-    
+
                 //====> Convert the JSON data into a PHP object (Check if the data is valid json string before decoding) <====//
-                if (is_wp_error($countries_data) || is_wp_error($countries_phone)) {
+                if (!is_wp_error($countries_data) && !is_wp_error($countries_phone)) {
                     $phones_json = json_decode($countries_phone);
                     $countries_json = json_decode($countries_data);
-        
+
                     //====> Create new List <====//
                     $countries = array();
         

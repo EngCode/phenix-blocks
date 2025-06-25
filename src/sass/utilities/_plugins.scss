@@ -1,10 +1,16 @@
 /**======> Reference By Comment <======
- * ===> 01 - Progress
- * ===> 02 - Sticky
+ * ===> 01 - Progress Bars
+ * ===> 02 - Sticky Elements
  * ===> 03 - Multi-Media
+ * ===> 04 - Video Background 
  * ===> 04 - Aspect Ratio
  * ===> 05 - Lazy Loader
- * ===> 06 - Background X
+ * ===> 06 - Phenix Animations
+ * ===> 07 - Slider Animation Support
+ * ===> 08 - Row Fix
+ * ===> 09 - Phenix Modal
+ * ===> 10 - Scaling
+ * ===> 11 - Multi-Media Aspect Ratio 
 */
 
 /*==== Progress Bars ====*/
@@ -49,7 +55,7 @@
     }
 }
 
-/*==== Sticky ====*/
+/*==== Sticky Elements ====*/
 [data-sticky*="absolute"]:not(.is-sticky) {
     position: relative;
     z-index: var(--header-index);
@@ -116,6 +122,13 @@
             pointer-events: none;
         }
     }
+}
+
+/*==== Video Background ====*/
+.pds-video-bg {
+    > video {z-index: 0;}
+    > *:not(video):not(.position) {z-index: 1;}
+    > .header-sticky-wrapper {z-index: var(--header-index);}
 }
 
 .object-fit {-o-object-fit: cover;object-fit: cover;}
@@ -278,9 +291,3 @@
 @include xlarge(){
     @include make_ratio('-xl');
 };
-
-/*==== Swiper Fixes ====*/
-// .px-slider[data-duration="0"] .swiper-wrapper {
-//     -webkit-transition-timing-function:linear !important;
-//     transition-timing-function:linear !important;
-// }

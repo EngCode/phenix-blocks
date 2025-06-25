@@ -92,12 +92,6 @@ a.wp-block-phenix-text {
     >h1,>h2,>h3,>h4,>h5,>h6 {font-size: inherit; font-weight: inherit;}
 }
 
-/*==== Video Background ====*/
-.pds-video-bg {
-    > video {z-index: 0;}
-    > *:not(video):not(.position) {z-index: 1;}
-}
-
 /*==== Container Height Fix ====*/
 .wp-block-phenix-container > [class*="container"]:not(.wp-block-phenix-container) {
     height: inherit;

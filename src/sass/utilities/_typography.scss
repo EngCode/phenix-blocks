@@ -82,6 +82,7 @@ h6 {font-size: REM(17);}
 .tx-line-clamp {
     --max-lines: 3;
     display: -webkit-box;
+    line-clamp: var(--max-lines);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--max-lines);
         overflow: hidden;

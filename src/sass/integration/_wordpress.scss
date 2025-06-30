@@ -144,9 +144,8 @@ body:not(.wp-admin):not([class*="-editor"]) {
     textarea {resize: none;}
     /*==== Sticky Header Transition ====*/
     .main-header, [data-sticky="sticky-absolute"] {
-        transition: all 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out;
         z-index: var(--header-index)!important;
-        > div {transition: all 0.3s ease-in-out;}
     }
     /*==== Google Captcha Badge Hide ====*/
     .grecaptcha-badge {display: none!important;}

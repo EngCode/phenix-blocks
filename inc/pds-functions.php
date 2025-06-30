@@ -655,7 +655,8 @@ function pds_duplicate_post() {
         'post_content'  => $original_post->post_content,
         'post_status'   => 'publish', // New duplicated posts are published
         'post_type'     => $original_post->post_type,
-        'post_author'   => get_current_user_id()
+        'post_author'   => get_current_user_id(),
+        'post_excerpt' => $original_post->post_excerpt,
     );
 
 	//===> Insert the new post <===//
@@ -699,4 +700,3 @@ function pds_duplicate_post() {
 	//===> Exit <===//
     exit;
 }
-

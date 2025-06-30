@@ -10,6 +10,9 @@
 		},
 		{
 			"path": "../../../../px-plugins/pdb-assets"
+		},
+		{
+			"path": "../../../../wordpress/wp-content/themes/dooplay"
 		}
 	],
 	"settings": {

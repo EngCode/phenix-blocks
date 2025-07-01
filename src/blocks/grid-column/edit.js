@@ -57,7 +57,8 @@ export default function Edit({ attributes, setAttributes }) {
                 {/*===> Dropdown Button <===*/}
                 <PxDropDown title={__("Column Size", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt-h divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        <PhenixNumber name={"size"} icon="far fa-mobile" min={0} max={13} value={attributes.size || 0} onChange={set_value} />
+                        <PhenixNumber name={"size"} icon="far fa-mobile-alt" min={0} max={13} value={attributes.size || 0} onChange={set_value} />
+                        <PhenixNumber name={`size-sm`} icon="far fa-mobile" min={0} max={13} value={attributes.responsive[`size-sm`] || 0} onChange={(target) => set_responsive(target)} />
                         <PhenixNumber name={`size-md`} icon="far fa-tablet" min={0} max={13} value={attributes.responsive[`size-md`] || 0} onChange={(target) => set_responsive(target)} />
                         <PhenixNumber name={`size-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.responsive[`size-lg`] || 0} onChange={(target) => set_responsive(target)} />
                         <PhenixNumber name={`size-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.responsive[`size-xl`] || 0} onChange={(target) => set_responsive(target)} />

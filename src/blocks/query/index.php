@@ -25,7 +25,7 @@ function px_query_render($block_attributes, $content) {
         //===> for Each Taxonomy Type <===//
         foreach ($query['taxonomies-types'] as $taxonomy) {
             //===> Push the Taxonomy and its Terms <===//
-            if (isset($query[$taxonomy.'-terms'])) {
+            if (isset($query[$taxonomy.'-terms']) && count($query[$taxonomy.'-terms']) > 0) {
                 //===> Get Terms <===//
                 $terms = array();
                 foreach ($query[$taxonomy.'-terms'] as $term) {

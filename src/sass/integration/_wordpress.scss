@@ -86,6 +86,7 @@ body:not(.wp-admin):not([class*="login"]), body.block-editor-page, .phenix-wp-de
 .wp-block-phenix-popup .modal-content > * {pointer-events: all;}
 .main-header.position-st.is-sticky {position: fixed; width: 100%;}
 .pos-overlap[data-sticky]:not(.is-sticky) {background-color: transparent;}
+.hidden-fields-container {display: none!important;}
 
 /*==== Text to Link Headlines Fix ====*/
 a.wp-block-phenix-text {

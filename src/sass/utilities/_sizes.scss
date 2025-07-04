@@ -9,7 +9,10 @@
 /*==== Width's ====*/
 @mixin make_width_sizes($infix:'') {
     .w#{$infix}-50 {width: #{REM(50)};}
+    .w#{$infix}-60 {width: #{REM(60)};}
     .w#{$infix}-75 {width: #{REM(75)};}
+    .w#{$infix}-80 {width: #{REM(80)};}
+    .w#{$infix}-90 {width: #{REM(90)};}
     .w#{$infix}-100 {width: #{REM(100)};}
     .w#{$infix}-125 {width: #{REM(125)};}
     .w#{$infix}-150 {width: #{REM(150)};}

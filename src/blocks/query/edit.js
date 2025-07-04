@@ -156,14 +156,16 @@ export default function Edit(props) {
                 }) : null}
             </PanelBody>
             {/*===> Widget Panel <===*/}
-            <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>
-                <ScreensTabs
-                    sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
-                    md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                    lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                    xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
-                />
-            </PanelBody>
+            {attributes.isFlexbox ? 
+                <PanelBody title={__("Grid Layout", "pds-blocks")} initialOpen={true}>
+                    <ScreensTabs
+                        sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
+                        md={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                        lg={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                        xl={(screen) => <FlexboxSet screen={screen} attributes={attributes} mainSetter={set_flexbox} options={"grid-props, align"}></FlexboxSet>}
+                    />
+                </PanelBody>
+            : null}
             {/*===> Widget Panel <===*/}
             {attributes.flexbox.slider ? <PanelBody title={__("Slider Options", "pds-blocks")} initialOpen={true}>
                 <SliderSet attributes={attributes} mainSetter={set_slider} flexSetter={set_flexbox} />

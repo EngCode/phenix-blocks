@@ -302,3 +302,40 @@ if (!function_exists('pds_woo_main_query_filter')):
     //====> Apply to pre_get_posts with high priority <====//
     add_action('pre_get_posts', 'pds_woo_main_query_filter', 999);
 endif;
+
+//====> Wishlist Checker <====//
+if (!function_exists('pds_is_in_wishlist')) :
+    /**
+     * Check if the Product is in the Wishlist
+     * @since Phenix WP 1.0
+     * @return bool
+     */
+    function pds_is_in_wishlist($product_id) {
+        //===> Check if it is in Wishlist <===//
+        $is_in_wishlist = false;
+        $wishlist_items = YITH_WCWL_Wishlist_Factory::get_current_wishlist();
+        
+        //===> If the Wishlist is not Empty <===//
+        if ($wishlist_items && $wishlist_items->has_items()) {
+            //===> for Each Product in Wishlist <===//
+            foreach ($wishlist_items["items"] as $item) {
+                //===> For Each Product in the List <===//
+                foreach ($item['data'] as $item_product) {
+                    //===> If the Product Exist Mark it and Exit <===//
+                    if ($item['product_id'] == $product_id) {
+                        //===> Mark the Product <===//
+                        $is_in_wishlist = true;
+                        //===> Correct the Wishlist URL <===//
+                        $wishlist_url = $item->get_remove_url();
+                        $post->wishlist_rm_url = $item->get_remove_url();
+                        //===> Break Loop <===//
+                        break; 
+                    }
+                }
+            }
+        }
+
+        //===> Return the Result <===//
+        return $is_in_wishlist;
+    }
+endif;

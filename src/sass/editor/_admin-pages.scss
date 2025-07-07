@@ -27,31 +27,29 @@ body[class*="phenix-blocks_page"], body.toplevel_page_pds-admin {
 body.wp-admin[class*="taxonomy-"] {
 	/*==== Taxonomies Fields ====*/
 	.col-wrap .form-wrap:not(.edit-term-notes) {
-		margin-top: 30px;
-		padding-top: 15px;
-		background: #f1f1f1;
-		padding-#{$direction-end}: 20px;
-		padding-#{$direction-start}: 20px;
-		border: 1px solid rgba(0,0,0,0.15);
 		border-radius: 8px;
+		margin-top: #{REM(10)};
+		padding-top: REM(15);
+		background: #f8f8f8;
+		padding-#{$direction-end}: #{REM(30)};
+		padding-#{$direction-start}: #{REM(30)};
 		margin-#{$direction-end}: 10px;
 
+		/*==== Form ====*/
 		#addtag {
 			display: -webkit-box;
 			display: -ms-flexbox;
 			display: flex;
-			-ms-flex-wrap: wrap;
-			    flex-wrap: wrap;
-				gap: 15px;
+			flex-wrap: wrap;
+			gap: 15px;
 			> div:not(.fluid):not(.term-description-wrap) {
-				-webkit-box-flex: 1;
-				    -ms-flex-positive: 1;
-				        flex-grow: 1;
+				flex-grow: 1;
 				width: calc(50% - 10px);
 			}
 			.term-description-wrap {width: 100%;}
 		}
 
+		/*==== Form Title ====*/
 		h2 {
 			font-size: 1rem;
 			line-height: 100%;
@@ -59,12 +57,13 @@ body.wp-admin[class*="taxonomy-"] {
 			border-bottom: 1px solid rgba(#000, 0.15);
 		}
 
+		/*==== Form Fields ====*/
 		.form-field {
 			margin-top: 0!important;
 			margin-bottom: 0!important;
 			label {font-size: 13px; font-weight: var(--strong-weight);}
 			/*==== Fields ====*/
-			select, input, textarea, .form-control, .px-select {width: 100%; max-width: 100%;}
+			select, input, textarea, .form-control, .px-select {width: 100%; max-width: 100%; border-radius: REM(6);}
 			input, select, textarea, .form-control, .px-select {
 				&:not([class*="mb-"]) {margin-bottom: 0!important;}
 			}

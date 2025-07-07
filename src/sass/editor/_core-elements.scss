@@ -32,16 +32,25 @@
 
 	.media-frame-title h1 {font-size: 1rem;}
 
-	/*==== Other Elements ====*/
+	/*==== Dashboard Wrapper ====*/
 	#wpwrap {
-		--links-color: #2354c6;
-		background-color: #e5eff7!important;
+		--links-color: #1c3a9b;
+		background-color: #171D31!important;
 		strong, b {font-weight: var(--medium-weight);}
+		/*====  Dashboard Content  ====*/
+		#wpcontent {
+			background-color: #e5eff7;
+			@if ($direction == 'rtl') {
+				border-radius: 0 12px 12px 0;
+			} @else {
+				border-radius: 12px 0 0 12px;
+			}
+		}
 	}
 	
 	.community-events, .core-updates {padding: 0;}
 	
-	/*==== Dashboard ====*/
+	/*==== Dashboard Widgets ====*/
 	#dashboard-widgets {
 		.meta-box-sortables {margin: 0;}
 		.postbox-container  {padding: 0 10px;}
@@ -272,7 +281,7 @@
 	/*===> Post Box <===*/
 	.postbox {
 		border: 0 none;
-		border-radius: 4px;
+		border-radius: 8px;
 		box-shadow: 5px 5px 10px rgba(0,0,0,0.05);
 		/*==== Form Reset ====*/
 		form {
@@ -771,81 +780,6 @@
 	/*==== Demo Importer ====*/
 	.ai1wm-row {margin: 0!important;}
 	.ai1wm-button-group.ai1wm-button-import.ai1wm-open > .ai1wm-dropdown-menu {height: 42px;}
-	// .ai-body {
-	// 	ul, ol {margin: 0;padding: 0;}
-
-	// 	/*==== Badges ====*/
-	// 	.ai-count {
-	// 		width: 20px;
-	// 		height: 20px;
-	// 		padding: 0px;
-	// 		font-size: 11px;
-	// 		line-height: 21px;
-	// 		text-align: center;
-	// 		margin-#{$direction-end}: 0;
-	// 		margin-#{$direction-start}: 5px;
-	// 		background-color: var(--danger-color);
-	// 	}
-
-	// 	.ai-import-available-categories ul li span {float: $direction-end;}
-
-	// 	/*==== Filters ====*/
-	// 	input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="number"]), .wp-core-ui:not(.block-editor-page):not([class*="pds-admin"]):not([class*="data-collection"]) select:not([type="checkbox"]):not([type="radio"]):not([type="number"]) {margin-bottom: 0!important;}
-
-	// 	/*==== Sidebar ====*/
-	// 	.ai-sidebar {
-	// 		padding-top: 0;
-	// 		box-shadow: unset;
-	// 		border-#{$direction-end}: 1px solid rgba(#000, 0.1);
-	// 		h3 {font-size: 18px;display: none;}
-	// 	}
-
-	// 	/*==== Preview Card ====*/
-	// 	.ai-item {
-	// 		img {width: 100%;}
-	// 		box-shadow: unset;
-	// 		text-align: center;
-	// 		width: calc(100% / 3 - 40px);
-	// 		border: 1px solid rgba(#000, 0.1);
-	// 		/*==== Overlay ====*/
-	// 		.ai-author-info {font-size: 12px;}
-
-	// 		/*==== Card Title ====*/
-	// 		.theme-name {font-size: 14px;}
-	// 		.ai-item-footer {
-	// 			padding: 18px 20px;
-	// 			.ai-item-footer-actions {width: 100%;height: 100%;}
-	// 			.button {
-	// 				margin: 0 10px;
-	// 				font-size: 12px;
-	// 				.dashicons {
-	// 					font-size: 15px;
-	// 					margin-top: -10px;
-	// 					margin-#{$direction-start}: 0;
-	// 					margin-#{$direction-end}: 8px;
-	// 				}
-	// 			}
-	// 		}
-
-	// 		/*==== Premium Label ====*/
-	// 		.ai-premium-label {
-	// 			right: 0;
-	// 			left: auto;
-	// 			width: auto;
-	// 			height: auto;
-	// 			font-size: 12px;
-	// 			padding: 5px 15px;
-	// 			font-weight: normal;
-	// 			letter-spacing: 1px;
-	// 			text-transform: uppercase;
-	// 			border-radius: 15px 0 0 15px;
-	// 			background-color: var(--wp-admin-theme-color);
-	// 			&::before, &::after {display: none;}
-	// 		}
-	// 	}
-	// }
-
-	// .px-navigation > ul > li .submenu {display: none!important;}
 }
 
 /*==== Editor Fixes ====*/
@@ -877,15 +811,7 @@
 .filter-drawer .buttons {margin-bottom: 0!important;}
 .show-filters .wp-filter .button.drawer-toggle {margin-bottom: 5px;}
 
-/*==== PDS Icon ====*/
-// #wpadminbar #wp-admin-bar-wp-logo > .ab-item {
-//     background-image: url('../img/ap-icon.svg');
-//     background-size: 100% auto;
-//     background-position: center;
-// }
-
 /*==== Admin : Custom Font Family ====*/
-// body, #wpadminbar *:not([class="ab-icon"]), body.rtl, body.rtl .press-this a.wp-switch-editor, .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl h5,.rtl h6,.wp-core-ui, .media-menu, .media-frame *, .media-modal * 
 body.rtl, body.rtl .press-this a.wp-switch-editor{font-family: var(--secondary-font)!important;}
 
 .rtl #dashboard-widgets-wrap, .rtl #nav-menus-frame, .rtl .media-frame, .wrap > {

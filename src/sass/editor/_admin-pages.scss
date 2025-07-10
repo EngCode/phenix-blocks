@@ -1,22 +1,27 @@
-/*==== Admin Pages ====*/
+/*==== Phenix Admin Pages ====*/
 body[class*="phenix-blocks_page"], body.toplevel_page_pds-admin {
-	.form-control {border: 1px solid rgba(#000, 0.15)!important;}
+	/*==== Form Fields ====*/
+	.form-control {border: 1px solid rgba(#000, 0.2)!important;}
 
+	/*==== Button Icon Fix ====*/
 	.btn.square::before {
 		top: -2px;
 		position: relative;
 	}
 	
+	/*==== Error State ====*/
 	.control-icon.error, .form-control.error, .option-control.error {
 		color : var(--danger-color)!important;
 		border-color : var(--danger-color)!important;
 	}
 	
+	/*==== Success State ====*/
 	.control-icon.success, .form-control.success, .option-control.success {
 		color: var(--success-color)!important;
 		border-color: var(--success-color)!important;
 	}
 	
+	/*==== Tabs Navigation ====*/
 	.pds-form .tabs-navigation .btn:not(.active) {background-color: transparent;}
 }
 

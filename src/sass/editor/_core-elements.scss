@@ -783,22 +783,21 @@
 	.ai1wm-button-group.ai1wm-button-import.ai1wm-open > .ai1wm-dropdown-menu {height: 42px;}
 }
 
-/*==== Editor Fixes ====*/
-.block-editor-page {
-	.postbox {
-		input[type="radio"], input[type="checkbox"], input[type="range"], input[type="color"] {
-			width: 1rem;
-			height: 1rem;
-			margin: -.25rem .25rem 0 0;
-			border: 1px solid rgba(#000, 0.20);
-		}
+/*==== Editor Checkboxes Fixes ====*/
+.block-editor-page .postbox {
+	input[type="radio"], input[type="checkbox"], input[type="range"], input[type="color"] {
+		width: 1rem;
+		height: 1rem;
+		margin: -.25rem .25rem 0 0;
+		border: 1px solid rgba(#000, 0.20);
 	}
 }
 
-/*==== Core Fixes ====*/
+/*==== Filters Bar Fixes ====*/
 .filter-group .filter-group-feature {
+	/*====  ====*/
 	input {margin-bottom: 10px!important;}
-
+	/*====  ====*/
 	label {
 		margin: 0 0 10px 0!important;
 		display: inline-block!important;
@@ -821,37 +820,37 @@ body.rtl, body.rtl .press-this a.wp-switch-editor{font-family: var(--secondary-f
 
 body, .welcome-panel, .welcome-panel h2, .wp-die-message, p:not([class*="lineheight"]) {line-height: var(--line-height) !important;}
 
-// #wpadminbar #wp-admin-bar-wp-logo>.ab-item .ab-icon::before {content: "" !important;}
-.php-error #adminmenuback {margin: 0!important;}
-.php-error #adminmenuback + #adminmenuwrap {margin-top: 0!important;}
-
-/*==== Fixes on the Flay ====*/
-#wpfooter {display: none;}
-
+/*==== Admin Menu Dividers ====*/
 #adminmenu {
+	/*==== Colorize Dividers ====*/
 	.wp-menu-separator {
 		height: 2px!important;
 		margin: 5px 0!important;
 		div.separator {	background-color: #232a44;}
 	}
 	
+	/*==== Hide First Home Divider ====*/
 	.toplevel_page_pds-dashboard + .wp-menu-separator {display: none;}
 }
 
-#wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus, #wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus, #wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item, #wpadminbar .ab-top-menu > li.hover > .ab-item,
-#wpadminbar .quicklinks .menupop ul.ab-sub-secondary, #wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu,
-#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input {background-color: var(--primary-dark);}
+/*==== Adminbar Hover BG ====*/
+#wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus, 
+#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus,
+#wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item,
+#wpadminbar .ab-top-menu > li.hover > .ab-item,
+#wpadminbar .quicklinks .menupop ul.ab-sub-secondary, 
+#wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu,
+#wpadminbar .menupop .ab-sub-wrapper, 
+#wpadminbar .shortlink-input {background-color: var(--primary-dark);}
 
 /*==== Dark Mode ====*/
 .pds-force-dark {-webkit-filter: invert(85%);filter: invert(85%);}
 .pds-force-black {-webkit-filter: invert(85%);filter: invert(85%);}
-/*====  ====*/
-.toplevel_page_meowapps-main-menu img[alt="Meow Apps"] {display: none!important;}
 
 /*==== 6.2.1 Fixes ====*/
-$space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+$space_range : 0, 5, 10, 15, 20, 25, 30, 40, 50;
 
-/*==== Margin All ====*/
+/*==== Margin Auto ====*/
 @mixin make_margin($infix:'') {
     /*==== Auto Margins ====*/
     .mgx#{$infix}-auto {

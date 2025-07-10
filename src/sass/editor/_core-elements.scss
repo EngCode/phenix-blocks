@@ -118,10 +118,11 @@
 	}
 
 	#wpadminbar {z-index: var(--header-index);}
-	
+
 
 	/*==== Form Controls ====*/
 	input:not([type="submit"]):not([type="button"]):not(.components-form-toggle__input), select, textarea  {border-color: #dbdde0;}
+	input[type="number"] {min-width: 75px;}
 
 	&:not([class*="pds-admin"]):not([class*="data-collection"]) {
 		#wpbody div:not(#jp-plugin-container) {

@@ -42,6 +42,7 @@ if (!function_exists('pds_metabox_create')) :
                     "isRadio"    => $metabox["type"] === "option-radio",
                     "isSwitch"   => $metabox["type"] === "option-switch",
                     "isCheckbox" => $metabox["type"] === "option-checkbox",
+                    "isRepeater" => $metabox["type"] === "repeater",
                 );
 
                 //===> Create Field Label <===//
@@ -73,6 +74,148 @@ if (!function_exists('pds_metabox_create')) :
                     $field_html .= '</div>';
                 }
 
+                //===> for Repeater Type <===//
+                else if ($type_checkpoints["isRepeater"]) {
+                    $field_html = $label_html;
+                    $field_html .= '<div class="px-form-repeater" data-fields-key="'.$metabox["name"].'">';
+                    $field_html .= '<div class="px-repeater-items">';
+
+                    //===> Get existing repeater data <===//
+                    $repeater_data = maybe_unserialize($current_value);
+                    if (!is_array($repeater_data)) $repeater_data = array();
+
+                    //===> Create the first row (template row) <===//
+                    $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10 p-10 border-1 border-solid border-alpha-10 radius-sm" data-item-key="0">';
+                    
+                    //===> Create sub-fields <===//
+                    if (isset($metabox["sub_fields"]) && is_array($metabox["sub_fields"])) {
+                        foreach ($metabox["sub_fields"] as $sub_field) {
+                            $sub_field = (array) $sub_field;
+                            $sub_value = isset($repeater_data[0][$sub_field["name"]]) ? esc_attr($repeater_data[0][$sub_field["name"]]) : '';
+                            
+                            $field_html .= '<div class="px-repeater-sub-field flex-1 mx-5">';
+                            $field_html .= '<label class="fs-12 mb-5 weight-bold">'.$sub_field["label"].'</label>';
+                            
+                            //===> Handle different sub-field types <===//
+                            if ($sub_field["type"] === "select" && isset($sub_field["options"])) {
+                                $field_html .= '<select name="'.$sub_field["name"].'" class="form-control radius-sm fs-12">';
+                                foreach ($sub_field["options"] as $option_value => $option_label) {
+                                    $selected = ($sub_value === $option_value) ? 'selected="selected"' : '';
+                                    $field_html .= '<option value="'.$option_value.'" '.$selected.'>'.$option_label.'</option>';
+                                }
+                                $field_html .= '</select>';
+                            } else if ($sub_field["type"] === "textarea") {
+                                $field_html .= '<textarea name="'.$sub_field["name"].'" class="form-control radius-sm fs-12" rows="2">'.$sub_value.'</textarea>';
+                            } else {
+                                $field_html .= '<input type="'.$sub_field["type"].'" name="'.$sub_field["name"].'" value="'.$sub_value.'" class="form-control radius-sm fs-12" />';
+                            }
+                            $field_html .= '</div>';
+                        }
+                    }
+                    
+                    $field_html .= '</div>'; // End first row
+
+                    //===> Create additional existing rows <===//
+                    if (!empty($repeater_data)) {
+                        for ($i = 1; $i < count($repeater_data); $i++) {
+                            $row_data = $repeater_data[$i];
+                            
+                            $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10 p-10 border-1 border-solid border-alpha-10 radius-sm" data-item-key="'.$i.'">';
+                            
+                            //===> Create sub-fields for this row <===//
+                            if (isset($metabox["sub_fields"]) && is_array($metabox["sub_fields"])) {
+                                foreach ($metabox["sub_fields"] as $sub_field) {
+                                    $sub_field = (array) $sub_field;
+                                    $sub_value = isset($row_data[$sub_field["name"]]) ? esc_attr($row_data[$sub_field["name"]]) : '';
+                                    $sub_field_name = $metabox["name"].'['.$i.']['.$sub_field["name"].']';
+                                    
+                                    $field_html .= '<div class="px-repeater-sub-field flex-1 mx-5">';
+                                    $field_html .= '<label class="fs-12 mb-5 weight-bold">'.$sub_field["label"].'</label>';
+                                    
+                                    //===> Handle different sub-field types <===//
+                                    if ($sub_field["type"] === "select" && isset($sub_field["options"])) {
+                                        $field_html .= '<select name="'.$sub_field_name.'" class="form-control radius-sm fs-12">';
+                                        foreach ($sub_field["options"] as $option_value => $option_label) {
+                                            $selected = ($sub_value === $option_value) ? 'selected="selected"' : '';
+                                            $field_html .= '<option value="'.$option_value.'" '.$selected.'>'.$option_label.'</option>';
+                                        }
+                                        $field_html .= '</select>';
+                                    } else if ($sub_field["type"] === "textarea") {
+                                        $field_html .= '<textarea name="'.$sub_field_name.'" class="form-control radius-sm fs-12" rows="2">'.$sub_value.'</textarea>';
+                                    } else {
+                                        $field_html .= '<input type="'.$sub_field["type"].'" name="'.$sub_field_name.'" value="'.$sub_value.'" class="form-control radius-sm fs-12" />';
+                                    }
+                                    $field_html .= '</div>';
+                                }
+                            }
+                            
+                            //===> Add remove button for existing rows <===//
+                            $field_html .= '<div class="px-repeater-actions align-self-end mx-5">';
+                            $field_html .= '<button type="button" class="btn red small radius-sm px-repeater-remove fa fa-minus" title="'.__("Remove", "pds-blocks").'"></button>';
+                            $field_html .= '</div>';
+                            $field_html .= '</div>';
+                        }
+                    }
+
+                    $field_html .= '</div>'; // End px-repeater-items
+
+                    //===> Add new row button <===//
+                    $field_html .= '<button type="button" class="btn blue small radius-sm mt-10 px-repeater-add fa fa-plus">';
+                    $field_html .= ' '.__("Add New", "pds-blocks");
+                    $field_html .= '</button>';
+
+                    $field_html .= '</div>'; // End px-form-repeater
+                }
+
+                //===> for Select Type <===//
+                else if ($type_checkpoints["isSelect"]) {
+                    $field_html = $label_html;
+                    $field_html .= '<select name="'.$metabox["name"].'" class="'.$input_classes.'">';
+                    
+                    //===> Handle dynamic options <===//
+                    $options = array();
+                    if (isset($metabox["options"])) {
+                        if (is_array($metabox["options"])) {
+                            //===> Static options array <===//
+                            $options = $metabox["options"];
+                        } else if (is_string($metabox["options"])) {
+                            //===> Dynamic options from post type <===//
+                            if (strpos($metabox["options"], 'post_type:') === 0) {
+                                $post_type = str_replace('post_type:', '', $metabox["options"]);
+                                $posts = get_posts(array(
+                                    'post_type' => $post_type,
+                                    'posts_per_page' => -1,
+                                    'post_status' => 'publish',
+                                    'orderby' => 'title',
+                                    'order' => 'ASC'
+                                ));
+                                
+                                $options[''] = '-- Select ' . ucfirst($post_type) . ' --';
+                                foreach ($posts as $post) {
+                                    $options[$post->ID] = $post->post_title;
+                                }
+                            }
+                        }
+                    }
+                    
+                    //===> Generate select options <===//
+                    foreach ($options as $option_value => $option_label) {
+                        $selected = ($current_value == $option_value) ? 'selected="selected"' : '';
+                        $field_html .= '<option value="'.$option_value.'" '.$selected.'>'.$option_label.'</option>';
+                    }
+                    
+                    $field_html .= '</select>';
+                }
+
+                //===> For Swutch Toggles <===//
+                else if ($type_checkpoints["isSwitch"]) {
+                    $checked = ($current_value === 'yes' || $current_value === true) ? 'checked' : '';
+                    $field_html .= '<label class="small option-control flexbox flow-reverse align-center-y align-between fs-14 weight-medium" data-type="switch">';
+                    $field_html .= '<input type="checkbox" name="'.$metabox["name"].'" value="yes" '.$checked.' class="'.$input_classes.'" /><span class="switch"></span>';
+                    $field_html .= '<span>'.$metabox["label"].'</span>';
+                    $field_html .= '</label>';
+                }
+
                 //===> for Input Field Type <===//
                 else {
                     $field_html = $label_html;
@@ -99,14 +242,16 @@ if (!function_exists('pds_metabox_create')) :
                 //===> Register the Metaboxes Group <===//
                 add_action('add_meta_boxes', function() use ($metabox_group) {
                     foreach ($metabox_group["post_types"] as $post_type) {
+                        //===> Get Position <===//
+                        $position = isset($metabox_group["position"]) ? $metabox_group["position"] : 'side';
+
                         //====> Display Metaboxes <=====//
                         add_meta_box($metabox_group["name"], $metabox_group["label"], function() use ($metabox_group) {
                             //===> Create Nonce Field <===//
                             wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
-                            
                             //===> Create Fields <===//
                             echo pds_metabox_fields_create($metabox_group, false);
-                        }, $post_type, 'side', 'high', 0);
+                        }, $post_type, $position, 'high', 0);
                     }
                 });
 
@@ -120,7 +265,46 @@ if (!function_exists('pds_metabox_create')) :
 
                     //===> Save Fields <===//
                     foreach($metabox_group["fields"] as $metabox) {
-                        update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
+                        $metabox = (array) $metabox;
+                        
+                        //===> Handle repeater fields differently <===//
+                        if ($metabox["type"] === "repeater") {
+                            $repeater_data = array();
+                            
+                            if (isset($_POST[$metabox["name"]]) && is_array($_POST[$metabox["name"]])) {
+                                foreach ($_POST[$metabox["name"]] as $index => $row_data) {
+                                    if (is_array($row_data)) {
+                                        $clean_row = array();
+                                        foreach ($row_data as $field_key => $field_value) {
+                                            $clean_row[$field_key] = sanitize_text_field($field_value);
+                                        }
+                                        
+                                        //===> Only save non-empty rows <===//
+                                        $has_content = false;
+                                        foreach ($clean_row as $value) {
+                                            if (!empty(trim($value))) {
+                                                $has_content = true;
+                                                break;
+                                            }
+                                        }
+                                        
+                                        if ($has_content) {
+                                            $repeater_data[] = $clean_row;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            //===> Save or delete meta <===//
+                            if (!empty($repeater_data)) {
+                                update_post_meta($post_id, $metabox["name"], $repeater_data);
+                            } else {
+                                delete_post_meta($post_id, $metabox["name"]);
+                            }
+                        } else {
+                            //===> Handle regular fields <===//
+                            update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
+                        }
                     }
                 });
             } 
@@ -156,7 +340,46 @@ if (!function_exists('pds_metabox_create')) :
         
                         //===> Save Fields <===//
                         foreach($metabox_group["fields"] as $metabox) {
-                            update_term_meta($term_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            $metabox = (array) $metabox;
+                            
+                            //===> Handle repeater fields differently <===//
+                            if ($metabox["type"] === "repeater") {
+                                $repeater_data = array();
+                                
+                                if (isset($_POST[$metabox["name"]]) && is_array($_POST[$metabox["name"]])) {
+                                    foreach ($_POST[$metabox["name"]] as $index => $row_data) {
+                                        if (is_array($row_data)) {
+                                            $clean_row = array();
+                                            foreach ($row_data as $field_key => $field_value) {
+                                                $clean_row[$field_key] = sanitize_text_field($field_value);
+                                            }
+                                            
+                                            //===> Only save non-empty rows <===//
+                                            $has_content = false;
+                                            foreach ($clean_row as $value) {
+                                                if (!empty(trim($value))) {
+                                                    $has_content = true;
+                                                    break;
+                                                }
+                                            }
+                                            
+                                            if ($has_content) {
+                                                $repeater_data[] = $clean_row;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                //===> Save or delete meta <===//
+                                if (!empty($repeater_data)) {
+                                    update_term_meta($term_id, $metabox["name"], $repeater_data);
+                                } else {
+                                    delete_term_meta($term_id, $metabox["name"]);
+                                }
+                            } else {
+                                //===> Handle regular fields <===//
+                                update_term_meta($term_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            }
                         }
                     });
 
@@ -169,7 +392,46 @@ if (!function_exists('pds_metabox_create')) :
         
                         //===> Save Fields <===//
                         foreach($metabox_group["fields"] as $metabox) {
-                            update_term_meta($term_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            $metabox = (array) $metabox;
+                            
+                            //===> Handle repeater fields differently <===//
+                            if ($metabox["type"] === "repeater") {
+                                $repeater_data = array();
+                                
+                                if (isset($_POST[$metabox["name"]]) && is_array($_POST[$metabox["name"]])) {
+                                    foreach ($_POST[$metabox["name"]] as $index => $row_data) {
+                                        if (is_array($row_data)) {
+                                            $clean_row = array();
+                                            foreach ($row_data as $field_key => $field_value) {
+                                                $clean_row[$field_key] = sanitize_text_field($field_value);
+                                            }
+                                            
+                                            //===> Only save non-empty rows <===//
+                                            $has_content = false;
+                                            foreach ($clean_row as $value) {
+                                                if (!empty(trim($value))) {
+                                                    $has_content = true;
+                                                    break;
+                                                }
+                                            }
+                                            
+                                            if ($has_content) {
+                                                $repeater_data[] = $clean_row;
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                //===> Save or delete meta <===//
+                                if (!empty($repeater_data)) {
+                                    update_term_meta($term_id, $metabox["name"], $repeater_data);
+                                } else {
+                                    delete_term_meta($term_id, $metabox["name"]);
+                                }
+                            } else {
+                                //===> Handle regular fields <===//
+                                update_term_meta($term_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            }
                         }
                     });
                 }

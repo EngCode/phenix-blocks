@@ -781,6 +781,12 @@
 	/*==== Demo Importer ====*/
 	.ai1wm-row {margin: 0!important;}
 	.ai1wm-button-group.ai1wm-button-import.ai1wm-open > .ai1wm-dropdown-menu {height: 42px;}
+
+
+	/*==== Phenix Custom Fields ====*/
+	#postbox-container-2 .inside {display: flex; flex-wrap: wrap;}
+	#postbox-container-2 .inside > .col-12 {padding: 0 1rem;}
+	#postbox-container-2 .inside > .col-12:not(:has(textarea)):not(.repeater-field) {width: 50%;}
 }
 
 /*==== Editor Checkboxes Fixes ====*/

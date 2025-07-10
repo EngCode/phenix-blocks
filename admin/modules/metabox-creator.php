@@ -78,14 +78,14 @@ if (!function_exists('pds_metabox_create')) :
                 else if ($type_checkpoints["isRepeater"]) {
                     $field_html = $label_html;
                     $field_html .= '<div class="px-form-repeater" data-fields-key="'.$metabox["name"].'">';
-                    $field_html .= '<div class="px-repeater-items">';
+                    $field_html .= '<div class="px-repeater-items pdx-15 pdt-15 border-1 border-solid border-alpha-10 radius-sm">';
 
                     //===> Get existing repeater data <===//
                     $repeater_data = maybe_unserialize($current_value);
                     if (!is_array($repeater_data)) $repeater_data = array();
 
                     //===> Create the first row (template row) <===//
-                    $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10 p-10 border-1 border-solid border-alpha-10 radius-sm" data-item-key="0">';
+                    $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10" data-item-key="0">';
                     
                     //===> Create sub-fields <===//
                     if (isset($metabox["sub_fields"]) && is_array($metabox["sub_fields"])) {
@@ -160,7 +160,7 @@ if (!function_exists('pds_metabox_create')) :
                     $field_html .= '</div>'; // End px-repeater-items
 
                     //===> Add new row button <===//
-                    $field_html .= '<button type="button" class="btn blue small radius-sm mt-10 px-repeater-add fa fa-plus">';
+                    $field_html .= '<button type="button" class="btn btn-icon primary small radius-sm mt-10 px-repeater-add fa fa-plus">';
                     $field_html .= ' '.__("Add New", "pds-blocks");
                     $field_html .= '</button>';
 
@@ -223,7 +223,7 @@ if (!function_exists('pds_metabox_create')) :
                 }
 
                 //===> Return Final HTML <===//
-                $output .= '<div class="col-12">'.$field_html.'</div>';
+                $output .= '<div class="col col-12 '.$metabox["type"].'-field">'.$field_html.'</div>';
             }
 
             return $output;
@@ -303,7 +303,14 @@ if (!function_exists('pds_metabox_create')) :
                             }
                         } else {
                             //===> Handle regular fields <===//
-                            update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            if (isset($_POST[$metabox["name"]])) {
+                                update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            } else {
+                                // For checkbox/switch fields that aren't checked, delete the meta
+                                if ($metabox["type"] === "option-switch" || $metabox["type"] === "option-checkbox") {
+                                    delete_post_meta($post_id, $metabox["name"]);
+                                }
+                            }
                         }
                     }
                 });

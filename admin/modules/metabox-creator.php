@@ -299,11 +299,10 @@ if (!function_exists('pds_metabox_create')) :
                             if (!empty($repeater_data)) {
                                 update_post_meta($post_id, $metabox["name"], $repeater_data);
                             }
-                        } else {
-                            //===> Handle regular fields <===//
-                            if (isset($_POST[$metabox["name"]])) {
-                                update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
-                            }
+                        } 
+                        //===> Handle regular fields <===//
+                        elseif (isset($_POST[$metabox["name"]])) {
+                            update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
                         }
                     }
                 });
@@ -373,18 +372,11 @@ if (!function_exists('pds_metabox_create')) :
                                 //===> Save or delete meta <===//
                                 if (!empty($repeater_data)) {
                                     update_term_meta($term_id, $metabox["name"], $repeater_data);
-                                } else {
-                                    delete_term_meta($term_id, $metabox["name"]);
                                 }
                             } else {
                                 //===> Handle regular fields <===//
                                 if (isset($_POST[$metabox["name"]])) {
                                     update_term_meta($term_id, $metabox["name"], $_POST[$metabox["name"]]);
-                                } else {
-                                    // For checkbox/switch fields that aren't checked, delete the meta
-                                    if ($metabox["type"] === "option-switch" || $metabox["type"] === "option-checkbox") {
-                                        delete_term_meta($term_id, $metabox["name"]);
-                                    }
                                 }
                             }
                         }

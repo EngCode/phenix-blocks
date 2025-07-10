@@ -298,26 +298,11 @@ if (!function_exists('pds_metabox_create')) :
                             //===> Save or delete meta <===//
                             if (!empty($repeater_data)) {
                                 update_post_meta($post_id, $metabox["name"], $repeater_data);
-                            } else {
-                                delete_post_meta($post_id, $metabox["name"]);
                             }
                         } else {
                             //===> Handle regular fields <===//
                             if (isset($_POST[$metabox["name"]])) {
-                                // Debug: Log what we're trying to save
-                                if ($metabox["name"] === 'runtime') {
-                                    error_log("RUNTIME DEBUG: Saving runtime = " . $_POST[$metabox["name"]] . " for post " . $post_id);
-                                }
                                 update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
-                            } else {
-                                // Debug: Log when field is missing
-                                if ($metabox["name"] === 'runtime') {
-                                    error_log("RUNTIME DEBUG: Runtime field missing from POST data for post " . $post_id);
-                                }
-                                // For checkbox/switch fields that aren't checked, delete the meta
-                                if ($metabox["type"] === "option-switch" || $metabox["type"] === "option-checkbox") {
-                                    delete_post_meta($post_id, $metabox["name"]);
-                                }
                             }
                         }
                     }

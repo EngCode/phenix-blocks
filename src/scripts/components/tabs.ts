@@ -32,7 +32,7 @@ PhenixElements.prototype.tabs = function (options?:{
               hidden = new Event('tab-hidden');
 
         //====> Check if the Panels and Buttons are Available <====//
-        if(panels.length === 0 || buttons.length === 0) return console.error('Phenix Tabs: No panels or buttons found');
+        if(panels.length === 0 || buttons.length === 0) return console.log('Phenix Tabs: No panels or buttons found');
 
         //====> Hide All Tabs <====//
         panels.forEach((panel, index) => {

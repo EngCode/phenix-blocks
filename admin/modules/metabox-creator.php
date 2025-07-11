@@ -120,7 +120,7 @@ if (!function_exists('pds_metabox_create')) :
                         for ($i = 1; $i < count($repeater_data); $i++) {
                             $row_data = $repeater_data[$i];
                             
-                            $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10 p-10 border-1 border-solid border-alpha-10 radius-sm" data-item-key="'.$i.'">';
+                            $field_html .= '<div class="px-form-repeater-fields flexbox flow-nowrap align-stretch mb-10 pd-10 border-1 border-solid border-alpha-10 radius-sm" data-item-key="'.$i.'">';
                             
                             //===> Create sub-fields for this row <===//
                             if (isset($metabox["sub_fields"]) && is_array($metabox["sub_fields"])) {
@@ -151,7 +151,7 @@ if (!function_exists('pds_metabox_create')) :
                             
                             //===> Add remove button for existing rows <===//
                             $field_html .= '<div class="px-repeater-actions align-self-end mx-5">';
-                            $field_html .= '<button type="button" class="btn red small radius-sm px-repeater-remove fa fa-minus" title="'.__("Remove", "pds-blocks").'"></button>';
+                            $field_html .= '<button type="button" class="btn danger square mb-15 tiny radius-sm px-repeater-remove fa fa-minus" title="'.__("Remove", "pds-blocks").'"></button>';
                             $field_html .= '</div>';
                             $field_html .= '</div>';
                         }

@@ -12,16 +12,17 @@ function px_logical_block_render($block_attributes, $content) {
     //===> Start Collecting Data <===//
     $markup = '';ob_start();
 
+    //===> Check if Block Attributes are Set <===//
+    if (!isset($block_attributes['logic']) || !isset($block_attributes['logic']['visibility'])) {
+        return $content; // Return content if no logic is set
+    }
+
     //===> Users Only Logic <===//
     if ($block_attributes['logic']['visibility'] === "users-only" && is_user_logged_in()) {
         echo $content;
     }
     //===> Visitors Only Logic <===//
     elseif ($block_attributes['logic']['visibility'] === "visitors-only" && !is_user_logged_in()) {
-        echo $content;
-    }
-    //===> for All <===//
-    elseif ($block_attributes['logic']['visibility'] === "" || $block_attributes['logic']['visibility'] === "all") {
         echo $content;
     }
 

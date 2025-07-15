@@ -43,7 +43,14 @@ if (!function_exists('pds_textdomain')) {
 
 	add_action('plugins_loaded', 'pds_textdomain');
 }
-
+//====> Include Tools Modules <====//
+include(PDS_BLOCKS_PATH . 'admin/modules/api-creator.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/cpt-creator.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/tax-creator.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/page-creator.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/metabox-creator.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/toggle-controls.php');
+include(PDS_BLOCKS_PATH . 'admin/modules/pattern-creator.php');
 //=====> Admin Pages <=====//
 include(PDS_BLOCKS_PATH . 'admin/pds-admin.php');
 include(PDS_BLOCKS_PATH . 'admin/pds-default.php');

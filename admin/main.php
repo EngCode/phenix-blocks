@@ -45,21 +45,6 @@
         }
     }
 
-    //===> General Blocks Panel <===//
-    // if (!function_exists('pds_core_blocks_panel')) {
-        // function pds_core_blocks_panel() {
-        //     //===> Start Data <===//
-        //     $template_markup = '';
-        //     ob_start();
-        //     //===> Get Panel Template <===//
-        //     include(dirname(__FILE__) . '/panels/core-blocks.php');
-        //     //===> Stop Data <===//
-        //     $template_output = ob_get_clean();
-        //     $template_markup .= $template_output;
-        //     return "{$template_markup}";
-        // }
-    // }
-
     //====> Create the Page <====//
     if (function_exists('pds_add_admin_page')) :
         //===> Create New Page <===//

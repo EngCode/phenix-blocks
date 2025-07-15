@@ -181,18 +181,22 @@ if (!function_exists('pds_metabox_create')) :
                         } else if (is_string($metabox["options"])) {
                             //===> Dynamic options from post type <===//
                             if (strpos($metabox["options"], 'post_type:') === 0) {
-                                $post_type = str_replace('post_type:', '', $metabox["options"]);
+                                $post_types_string = str_replace('post_type:', '', $metabox["options"]);
+                                $post_types = explode(',', $post_types_string);
+                                $post_types = array_map('trim', $post_types);
+
                                 $posts = get_posts(array(
-                                    'post_type' => $post_type,
+                                    'post_type' => $post_types,
                                     'posts_per_page' => -1,
                                     'post_status' => 'publish',
                                     'orderby' => 'title',
                                     'order' => 'ASC'
                                 ));
-                                
-                                $options[''] = '-- Select ' . ucfirst($post_type) . ' --';
+
+                                $options[''] = '-- Select Item --';
                                 foreach ($posts as $post) {
-                                    $options[$post->ID] = $post->post_title;
+                                    $post_type_label = get_post_type_object($post->post_type)->labels->singular_name;
+                                    $options[$post->ID] = $post->post_title . ' (' . $post_type_label . ')';
                                 }
                             }
                         }

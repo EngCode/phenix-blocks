@@ -181,10 +181,13 @@ if (!function_exists('pds_metabox_create')) :
                         } else if (is_string($metabox["options"])) {
                             //===> Dynamic options from post type <===//
                             if (strpos($metabox["options"], 'post_type:') === 0) {
+                                //===> Extract post types from the string <===//
                                 $post_types_string = str_replace('post_type:', '', $metabox["options"]);
+                                //===> Split by comma and trim whitespace <===//
                                 $post_types = explode(',', $post_types_string);
+                                //===> Ensure post types are valid <===//
                                 $post_types = array_map('trim', $post_types);
-
+                                //===> Get posts of the specified post types <===//
                                 $posts = get_posts(array(
                                     'post_type' => $post_types,
                                     'posts_per_page' => -1,
@@ -192,8 +195,9 @@ if (!function_exists('pds_metabox_create')) :
                                     'orderby' => 'title',
                                     'order' => 'ASC'
                                 ));
-
+                                //===> Prepare options array <===//
                                 $options[''] = '-- Select Item --';
+                                //===> Loop through posts and create options <===//
                                 foreach ($posts as $post) {
                                     $post_type_label = get_post_type_object($post->post_type)->labels->singular_name;
                                     $options[$post->ID] = $post->post_title . ' (' . $post_type_label . ')';

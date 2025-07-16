@@ -38,13 +38,16 @@
 		background-color: #171D31!important;
 		strong, b {font-weight: var(--medium-weight);}
 		/*====  Dashboard Content  ====*/
-		#wpbody-content {
+		#wpcontent {
 			background-color: #e5eff7;
 			@if ($direction == 'rtl') {
 				border-radius: 0 12px 12px 0;
 			} @else {
 				border-radius: 12px 0 0 12px;
 			}
+		}
+		#wpbody-content {
+			background-color: #e5eff7;
 		}
 	}
 	

@@ -71,6 +71,16 @@
         add_action('admin_menu', 'pds_admin_menu', 99);
     endif;
 
+    //====> Include Admin Components <====//
+    include(dirname(__FILE__) . '/modules/toggle-controls.php');
+    //====> Include Tools Modules <====//
+    include(dirname(__FILE__) . '/modules/api-creator.php');
+    include(dirname(__FILE__) . '/modules/cpt-creator.php');
+    include(dirname(__FILE__) . '/modules/tax-creator.php');
+    include(dirname(__FILE__) . '/modules/page-creator.php');
+    include(dirname(__FILE__) . '/modules/metabox-creator.php');
+    include(dirname(__FILE__) . '/modules/pattern-creator.php');
+
     /**===> Options List { properties by order }
      *** option_name,
      *** option_page,

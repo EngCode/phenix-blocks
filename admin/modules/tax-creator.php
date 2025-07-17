@@ -23,6 +23,7 @@ if (!function_exists('pds_tax_create')) :
             $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
             $label_singular = isset($options['label_singular']) ? $options["label_singular"] : $options["label"];
             $post_types = isset($options['post_types']) ? $options["post_types"] : array();
+            $hierarchical = isset($options['hierarchical']) ? $options["hierarchical"] : true;
 
             //==== CPT Labels ====//
             $labels = array(
@@ -35,7 +36,7 @@ if (!function_exists('pds_tax_create')) :
             $args = array(
                 'labels'             => $labels,
                 'public'             => true,
-                'hierarchical'       => true,
+                'hierarchical'       => $hierarchical,
                 'show_admin_column'  => true,
                 'show_in_rest'       => true,
                 'query_var'          => true,

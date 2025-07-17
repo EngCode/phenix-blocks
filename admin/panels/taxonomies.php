@@ -104,8 +104,13 @@
                     <div class="flexbox align-between align-center-y">
                         <!-- Form Control -->
                         <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
+                            <input type="checkbox" name="hierarchical" checked />
+                            <span class="fas fa-check radius-circle tx-icon"><?php echo esc_html__("Is Hierarchical ?", "pds-blocks"); ?></span>
+                        </label>
+                        <!-- Form Control -->
+                        <label class="small option-control align-center-y align-between fs-15 weight-medium" data-type="checkbox">
                             <input type="checkbox" name="enable" checked />
-                            <span class="fas fa-check radius-circle tx-icon"><?php echo esc_html__("Enable this Taxonomy once added ?", "pds-blocks"); ?></span>
+                            <span class="fas fa-check radius-circle tx-icon"><?php echo esc_html__("Enable once added ?", "pds-blocks"); ?></span>
                         </label>
                     </div>
                     <!-- // Elements Group -->

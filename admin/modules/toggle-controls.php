@@ -22,7 +22,7 @@ if (!function_exists('pds_toggle_controls')) :
             $has_icon  = '';
 
             //===> Get Options <===//
-            if (get_option($control_item["name"])) { $isChecked = 'checked'; }
+            if (isset($control_item["value"]) && $control_item["value"] || get_option($control_item["name"])) { $isChecked = 'checked'; }
             if (isset($control_item["icon"])) $has_icon = '<img src="'.esc_attr($control_item["icon"]).'" class="icon x2"> ';
 
             //===> Print the Data <===//

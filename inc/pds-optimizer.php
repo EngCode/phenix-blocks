@@ -254,3 +254,21 @@ function pds_cdn_cookies_style($tag, $handle, $src) {
 add_filter('style_loader_tag', 'pds_cdn_cookies_style', 10, 3);
 add_filter('script_loader_tag', 'pds_cdn_cookies_style', 10, 3);
 
+
+//====> Filter all <img> tags without Alt and add Alt Text from thier post/page/website title <====//
+add_filter('the_content', function ($content) {
+    //====> Find all <img> tags without Alt attribute <====//
+    preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches);
+    if (!empty($matches[0])) {
+        foreach ($matches[0] as $img_tag) {
+            if (strpos($img_tag, 'alt=') === false) {
+                //===> Get the post/page title <===//
+                $post_title = get_the_title();
+                //===> Add Alt attribute with the post/page title <===//
+                $new_img_tag = str_replace('>', ' alt="' . esc_attr($post_title) . '">', $img_tag);
+                $content = str_replace($img_tag, $new_img_tag, $content);
+            }
+        }
+    }
+    return $content;
+});

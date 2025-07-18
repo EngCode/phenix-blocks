@@ -43,6 +43,7 @@ if (!function_exists('pds_textdomain')) {
 
 	add_action('plugins_loaded', 'pds_textdomain');
 }
+
 //=====> Admin Pages <=====//
 include(PDS_BLOCKS_PATH . 'admin/pds-admin.php');
 include(PDS_BLOCKS_PATH . 'admin/pds-default.php');

@@ -10,6 +10,9 @@
 		},
 		{
 			"path": "../../../../px-plugins/pdb-assets"
+		},
+		{
+			"path": "../../../../temp-wordpress/wp-content/themes/plasticjo"
 		}
 	],
 	"settings": {

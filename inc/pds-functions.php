@@ -339,7 +339,7 @@ if (!function_exists('pds_import_posts')) :
                 'post_type'     => $post_data['post_type'],
                 'post_title'    => wp_strip_all_tags($post_data['post_title']),
 				//===> Content Template Pattern <===//
-                'post_content'  => generate_post_content($post_data),
+                'post_content'  => $post_data['post_content'] ?? '',
             ];
 
             //====> Insert the post into WordPress and get the post ID <====//
@@ -363,54 +363,6 @@ if (!function_exists('pds_import_posts')) :
     }
 
     add_action('wp_ajax_pds_import_posts', 'pds_import_posts');
-endif;
-
-//====> Generate Post Content with Tabs <====//
-if (!function_exists('generate_post_content')) :
-    function generate_post_content($post_data) {
-        // Retrieve the template content
-        $pattern_content = get_option('block_patterns')[6]["content"];
-
-        // Replace placeholders for the main post title and description with HTML-encoded content
-        $pattern_content = str_replace(
-            [
-                "post_title",        // Placeholder for the post title
-                "post_description"   // Placeholder for the post description
-            ],
-            [
-                esc_html($post_data['post_title']),            // Replaces with title
-                wp_kses_post($post_data['description'])        // Replaces with description as HTML
-            ],
-            $pattern_content
-        );
-
-        // Replace placeholders for each tab title and content
-        $tabs = [
-            "project_rationale" => ["title" => "project_rationale_title", "content" => "project_rationale_content"],
-            "demand_analysis" => ["title" => "demand_analysis_title", "content" => "demand_analysis_content"],
-            "financial_indicators" => ["title" => "financial_indicators_title", "content" => "financial_indicators_content"],
-            "study_services" => ["title" => "study_services_title", "content" => "study_services_content"],
-            "features" => ["title" => "features_title", "content" => "features_content"]
-        ];
-
-        foreach ($post_data['tabs'] as $key => $tab_info) {
-            if (isset($tabs[$key])) {
-                $pattern_content = str_replace(
-                    [
-                        $tabs[$key]['title'],
-                        $tabs[$key]['content']
-                    ],
-                    [
-                        esc_html($tab_info['title']),         // Tab title as plain text
-                        wp_kses_post($tab_info['content'])    // Tab content as HTML
-                    ],
-                    $pattern_content
-                );
-            }
-        }
-
-        return $pattern_content;
-    }
 endif;
 
 //====> Create Posts from a Json File <====//

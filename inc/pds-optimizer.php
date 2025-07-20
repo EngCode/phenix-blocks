@@ -18,6 +18,11 @@
  ** 09 - Cleanup Navigation Menus
  ** 10 - Disable Thumbnails Generating
  ** 11 - Optimize Third-Party CDN Cookies
+ ** 12 - Filter all <img> tags without Alt and add Alt Text from thier post/page/website title
+ ** 13 - Delete "Archive" Prefix
+ ** 14 - Excerpt Striper
+ ** 15 - Limited Excerpt
+ ** 16 - Excerpt More
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
@@ -254,7 +259,6 @@ function pds_cdn_cookies_style($tag, $handle, $src) {
 add_filter('style_loader_tag', 'pds_cdn_cookies_style', 10, 3);
 add_filter('script_loader_tag', 'pds_cdn_cookies_style', 10, 3);
 
-
 //====> Filter all <img> tags without Alt and add Alt Text from thier post/page/website title <====//
 add_filter('the_content', function ($content) {
     //====> Find all <img> tags without Alt attribute <====//
@@ -272,3 +276,41 @@ add_filter('the_content', function ($content) {
     }
     return $content;
 });
+
+//====> Delete "Archive" Prefix <====//
+if (!function_exists('refactor_archive_title')) :
+	/**
+	 * WP Filters.
+	 * @since Phenix WP 1.0
+	 * @return void
+	 * 
+	 ** 01 - Excerpt Strip
+	 ** 02 - CF7 Customize
+	*/
+	function refactor_archive_title( $title ) {
+		if (is_category()) {
+			$title = single_cat_title('', false);
+			
+		} elseif ( is_tag() ) {
+			$title = single_tag_title('', false);
+		} elseif ( is_post_type_archive() ) {
+			$title = post_type_archive_title('', false);
+		} elseif ( is_tax() ) {
+			$title = single_term_title('', false);
+		}
+		return $title;
+	}
+
+	add_filter( 'get_the_archive_title', 'refactor_archive_title' );
+endif;
+
+//====> Excerpt Striper <====//
+remove_filter('the_excerpt', 'wpautop');
+
+//====> Limited Excerpt <====//
+function px_excerpt_length($length) {return $length;}
+add_filter('excerpt_length', 'px_excerpt_length', get_option("excerpt_length") ? get_option("excerpt_length") : 175);
+
+//====> Excerpt More <====//
+function wpdocs_excerpt_more($more) {return '...';}
+add_filter('excerpt_more', 'wpdocs_excerpt_more');

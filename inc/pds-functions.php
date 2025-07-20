@@ -9,15 +9,10 @@
  * @since Phenix WP 1.0
  * 
  * ========> Reference by Comments <=======
- ** - Delete "Archive" Prefix
- ** - Pagination Creator
- ** - Excerpt Striper
- ** - Limited Excerpt 
- ** - Excerpt More
- ** - Get Patterns
+ ** - Query Pagination
+ ** - Get Design Patterns
  ** - Get Templates Part
  ** - Get Templates Parts Select
- ** - Debug Variables
  ** - Get Post Views
  ** - Add Dynamic Options to CF7 Dropdowns
  ** - Add a Duplicate link
@@ -25,33 +20,6 @@
 */
 
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
-
-//====> Delete "Archive" Prefix <====//
-if (!function_exists('refactor_archive_title')) :
-	/**
-	 * WP Filters.
-	 * @since Phenix WP 1.0
-	 * @return void
-	 * 
-	 ** 01 - Excerpt Strip
-	 ** 02 - CF7 Customize
-	*/
-	function refactor_archive_title( $title ) {
-		if (is_category()) {
-			$title = single_cat_title('', false);
-			
-		} elseif ( is_tag() ) {
-			$title = single_tag_title('', false);
-		} elseif ( is_post_type_archive() ) {
-			$title = post_type_archive_title('', false);
-		} elseif ( is_tax() ) {
-			$title = single_term_title('', false);
-		}
-		return $title;
-	}
-
-	add_filter( 'get_the_archive_title', 'refactor_archive_title' );
-endif;
 
 /*====> Pagination <====*/
 if (!function_exists('pagination')) :
@@ -126,17 +94,6 @@ if (!function_exists('pagination')) :
 		}
 	}
 endif;
-
-//====> Excerpt Striper <====//
-remove_filter('the_excerpt', 'wpautop');
-
-//====> Limited Excerpt <====//
-function px_excerpt_length($length) {return $length;}
-add_filter('excerpt_length', 'px_excerpt_length', get_option("excerpt_length") ? get_option("excerpt_length") : 175);
-
-//====> Excerpt More <====//
-function wpdocs_excerpt_more($more) {return '...';}
-add_filter('excerpt_more', 'wpdocs_excerpt_more');
 
 //===> Get Patterns <===//
 if (!function_exists('pds_get_patterns')) :
@@ -268,15 +225,6 @@ if (!function_exists('pds_get_theme_parts_select')) :
 	}
 endif;
 
-//===> Debug Variables <===//
-if (!function_exists('pds_var_dump')) :
-	function pds_var_dump($variable) {
-		echo '<pre>';
-			highlight_string("<?php\n" . var_export($variable, true));
-		echo '</pre>';
-	}
-endif;
-
 //===> Get Post Views <===//
 if (!function_exists('get_post_views')) :
 	function get_post_views($post_id) {
@@ -295,178 +243,6 @@ if (!function_exists('get_post_views')) :
 		//===> Return counting <===//
 		return $count;
 	}
-endif;
-
-//====> Create Posts from a Json File <====//
-if (!function_exists('pds_import_posts')) :
-    function pds_import_posts() {
-        //====> Clear output buffer to prevent unexpected output <====//
-        ob_clean();
-
-        //====> Verify nonce <====//
-        check_ajax_referer('wp_rest', '_ajax_nonce');
-
-        //====> Check if data exists <====//
-        if (!isset($_POST['posts_data'])) {
-            wp_send_json_error(['message' => 'No data provided.']);
-            return;
-        }
-
-        //====> Decode JSON data <====//
-        $posts_data = json_decode(stripslashes($_POST['posts_data']), true);
-
-        //====> Check if JSON decoding was successful <====//
-        if (!$posts_data) {
-            wp_send_json_error(['message' => 'Invalid JSON data.']);
-            return;
-        }
-
-        //====> Initialize counter for imported posts <====//
-        $imported_posts = 0;
-
-		//====> Check the Post Data Schema <====//
-		if (empty($posts_data) || !is_array($posts_data)) {
-			error_log("posts_data is unexpectedly empty or not an array before foreach.");
-			wp_send_json_error(['message' => 'posts_data is unexpectedly empty or invalid.']);
-			return;
-		}
-
-        //====> Import posts into WordPress <====//
-        foreach ($posts_data as $post_data) {
-            //====> Create Post Data Schema <====//
-            $post_args = [
-                'post_status'   => 'publish',
-                'post_type'     => $post_data['post_type'],
-                'post_title'    => wp_strip_all_tags($post_data['post_title']),
-				//===> Content Template Pattern <===//
-                'post_content'  => $post_data['post_content'] ?? '',
-            ];
-
-            //====> Insert the post into WordPress and get the post ID <====//
-			$post_id = wp_insert_post($post_args);
-			
-            //====> Add custom meta fields <====//
-            if (!is_wp_error($post_id)) {
-                $imported_posts++;
-
-                if (is_array($post_data['meta'])) {
-					//===> Add Meta Data <====//
-                    foreach ($post_data['meta'] as $key => $value) {
-                        update_post_meta($post_id, $key, $value);
-                    }
-                }
-            }
-        }
-
-        //====> Send success response with imported count <====//
-        wp_send_json_success(['message' => 'Posts imported successfully.', 'imported' => $imported_posts]);
-    }
-
-    add_action('wp_ajax_pds_import_posts', 'pds_import_posts');
-endif;
-
-//====> Create Posts from a Json File <====//
-if (!function_exists('pds_posts_remover')) :
-    //====> Remove Posts <====//
-	function pds_posts_remover($post_type) {
-		//====> Clear output buffer to prevent unexpected output <====//
-        ob_clean();
-
-        //====> Verify nonce <====//
-        check_ajax_referer('wp_rest', '_ajax_nonce');
-
-        //====> Check if data exists <====//
-        if (!isset($_POST['data'])) {
-            wp_send_json_error(['message' => 'No data provided.']);
-            return;
-        }
-
-        //====> Decode JSON data <====//
-        $response_data = json_decode(stripslashes($_POST['data']), true);
-
-        //====> Check if JSON decoding was successful <====//
-        if (!$response_data) {
-            wp_send_json_error(['message' => 'Invalid JSON data.']);
-            return;
-        }
-
-		//===> Get All Posts <===//
-		$query = new WP_Query([
-			'post_type'      => $response_data["post_type"],
-			'posts_per_page' => -1, // Retrieve all posts
-			'fields'         => 'ids' // Only get post IDs
-		]);
-
-		//===> Loop through each post and delete it <===//
-		if ($query->have_posts()) {
-			foreach ($query->posts as $post_id) {
-				wp_delete_post($post_id, true);
-			}
-			
-			//===> Success Message <===//
-			wp_send_json_success(['message' => "All posts of type '{$response_data["post_type"]}' have been deleted."]);
-		}
-	}
-
-    add_action('wp_ajax_pds_posts_remover', 'pds_posts_remover');
-endif;
-
-//====> Extract Post Titles/ID's into wp-content <====//
-if (!function_exists('pds_posts_exporter')) :
-    function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
-        //====> Clear output buffer to prevent unexpected output <====//
-        ob_clean();
-
-        //====> Verify nonce <====//
-        check_ajax_referer('wp_rest', '_ajax_nonce');
-
-        //====> Check if data exists <====//
-        if (!isset($_POST['data'])) {
-            wp_send_json_error(['message' => 'No data provided.']);
-            return;
-        }
-
-        //====> Decode JSON data <====//
-        $response_data = json_decode(stripslashes($_POST['data']), true);
-
-        //====> Check if JSON decoding was successful <====//
-        if (!$response_data) {
-            wp_send_json_error(['message' => 'Invalid JSON data.']);
-            return;
-        }
-
-        //===> Get Options <===//
-        $options = array(
-            'posts_per_page' => -1,
-            'post_type' => $response_data["post_type"], 
-        );
-
-        //===> Get Posts <===//
-        $posts = get_posts($options);
-
-        //===> Create Data Array <===//
-        $export_data = array();
-
-        //===> Loop through Posts <===//
-        foreach ($posts as $post) {
-            //===> Set up Post Data <===//
-            $post_data = $post;
-
-            //===> Add Featured Image URL <===//
-            $post_data->post_thumbnail = get_the_post_thumbnail_url($post->ID, 'full');
-            $post_data->post_excerpt = strip_tags(get_the_excerpt($post->ID));
-            $post_data->post_meta = get_post_meta($post->ID);
-
-            //===> Add Post the Extractor <===//
-            $export_data[] = $post_data;
-        }
-
-        //===> Success Message <===//
-        wp_send_json_success($export_data);
-    }
-
-    //===> Export Posts <===//
-    add_action('wp_ajax_pds_posts_exporter', 'pds_posts_exporter');
 endif;
 
 //===> Add Dynamic Options to CF7 Dropdowns <===//
@@ -545,104 +321,3 @@ if (!function_exists('pds_cf7_dd_options')):
 
     add_filter('wpcf7_form_tag', 'pds_cf7_dd_options', 10, 2);
 endif;
-
-//===> Add a Duplicate link to the posts table <===//
-add_filter('post_row_actions', 'pds_add_duplicate_button', 10, 2);
-
-function pds_add_duplicate_button($actions, $post) {
-	//===> Check if user has permission to duplicate posts <===//
-    if (current_user_can('edit_posts')) {
-        $actions['duplicate'] = '<a href="' . wp_nonce_url(admin_url('admin.php?action=duplicate_post&post_id=' . $post->ID), 'duplicate_post_' . $post->ID) . '">Duplicate</a>';
-    }
-	//===> Return Actions <===//
-    return $actions;
-}
-
-//===> Handle the duplication logic <===//
-add_action('admin_action_duplicate_post', 'pds_duplicate_post');
-
-function pds_duplicate_post() {	
-    //===> Verify nonce and check if the user has permission to duplicate posts <===//
-    if (!isset($_GET['post_id']) || !current_user_can('edit_posts') || !wp_verify_nonce($_GET['_wpnonce'], 'duplicate_post_' . $_GET['post_id'])) {
-        wp_die('No permissions or invalid nonce.');
-    }
-
-	//===> Define Data <===//
-	$post_title_prefix = '#';
-    $post_id = intval($_GET['post_id']);
-    $original_post = get_post($post_id);
-
-	//===> Check if the original post exists <===//
-    if (!$original_post) { 
-        wp_die('Original post not found.'); 
-    }
-
-	//===> Check for existing duplicates <===//
-    $existing_posts = get_posts(array(
-        'post_type' => $original_post->post_type,
-        'posts_per_page' => -1,
-        'fields' => 'ids',
-        'meta_query' => array(
-            array(
-                'key' => '_original_post_id',
-                'value' => $post_id,
-                'compare' => '='
-            )
-        )
-    ));
-
-	//===> Count existing duplicates and calculate new prefix <===//
-    $duplicate_count = count($existing_posts) + 1;
-    $prefix_number = str_pad($duplicate_count, 2, '0', STR_PAD_LEFT); // e.g., 01, 02, etc.
-
-	//===> Create the new post data <===//
-    $new_post_data = array(
-        'post_title'    => $original_post->post_title . ' ' . $post_title_prefix . $prefix_number, // Add the prefix to the end of the title
-        'post_content'  => $original_post->post_content,
-        'post_status'   => 'publish', // New duplicated posts are published
-        'post_type'     => $original_post->post_type,
-        'post_author'   => get_current_user_id(),
-        'post_excerpt' => $original_post->post_excerpt,
-    );
-
-	//===> Insert the new post <===//
-    $new_post_id = wp_insert_post($new_post_data);
-
-	//===> Check if the new post was created successfully <===//
-    if (is_wp_error($new_post_id)) {
-        wp_die('Failed to duplicate the post.');
-    }
-
-    //===> Copy metadata to the new post <===//
-    $meta_keys = get_post_custom_keys($post_id);
-    if (!empty($meta_keys)) {
-        foreach ($meta_keys as $meta_key) {
-            $meta_values = get_post_meta($post_id, $meta_key);
-            foreach ($meta_values as $meta_value) {
-                update_post_meta($new_post_id, $meta_key, $meta_value);
-            }
-        }
-    }
-
-    //===> Copy taxonomies to the new post <===//
-    $taxonomies = get_object_taxonomies($original_post->post_type);
-    foreach ($taxonomies as $taxonomy) {
-        $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
-        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
-    }
-
-    //===> Copy the featured image (thumbnail) to the new post <===//
-    $thumbnail_id = get_post_thumbnail_id($post_id);
-    if ($thumbnail_id) {
-        set_post_thumbnail($new_post_id, $thumbnail_id);
-    }
-
-    //===> Save original post ID as metadata for tracking <===//
-    update_post_meta($new_post_id, '_original_post_id', $post_id);
-
-    //===> Redirect to the posts list page (edit.php) to refresh <===//
-    wp_redirect(admin_url('edit.php?post_type=' . $original_post->post_type));
-
-	//===> Exit <===//
-    exit;
-}

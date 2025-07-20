@@ -54,6 +54,9 @@ include(PDS_BLOCKS_PATH . 'inc/pds-optimizer.php');
 //====> Assets and Blocks <====//
 include(PDS_BLOCKS_PATH . 'inc/pds-assets.php');
 include(PDS_BLOCKS_PATH . 'src/blocks/blocks.php');
+//====> Other Features <====//
+include(PDS_BLOCKS_PATH . 'inc/import-export.php');
+include(PDS_BLOCKS_PATH . 'inc/posts-duplicator.php');
 
 //===> Implement selective block loading <===//
 add_filter('pds_blocks_registered_blocks', function($blocks) {

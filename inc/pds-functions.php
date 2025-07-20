@@ -437,9 +437,8 @@ if (!function_exists('pds_posts_exporter')) :
 
         //===> Get Options <===//
         $options = array(
+            'posts_per_page' => -1,
             'post_type' => $response_data["post_type"], 
-            'posts_per_page' => -1, 
-            'fields' => 'ids'
         );
 
         //===> Get Posts <===//
@@ -449,22 +448,17 @@ if (!function_exists('pds_posts_exporter')) :
         $export_data = array();
 
         //===> Loop through Posts <===//
-        foreach ($posts as $post_id) {
-            //===> Add Post ID and Title <===//
-            $export_data[] = array(
-                'id' => $post_id,
-                'title' => html_entity_decode(get_the_title($post_id), ENT_QUOTES | ENT_XML1, 'UTF-8'),
-                'post_type' => $response_data["post_type"],
-            );
+        foreach ($posts as $post) {
+            //===> Set up Post Data <===//
+            $post_data = $post;
 
-            //===> Add Meta Data <===//
-            if (!empty($response_data["metaboxes"])) {
-                $meta_data = array();
-                foreach ($response_data["metaboxes"] as $metabox) {
-                    $meta_data[$metabox] = get_post_meta($post_id, $metabox, true);
-                }
-                $export_data[count($export_data) - 1]['meta'] = $meta_data;
-            }
+            //===> Add Featured Image URL <===//
+            $post_data->post_thumbnail = get_the_post_thumbnail_url($post->ID, 'full');
+            $post_data->post_excerpt = strip_tags(get_the_excerpt($post->ID));
+            $post_data->post_meta = get_post_meta($post->ID);
+
+            //===> Add Post the Extractor <===//
+            $export_data[] = $post_data;
         }
 
         //===> Success Message <===//

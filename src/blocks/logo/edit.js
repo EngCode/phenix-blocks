@@ -26,13 +26,11 @@ export default function Edit({ attributes, setAttributes }) {
     const set_width = width => setAttributes({ width });
     const set_responsive = responsive => setAttributes({ responsive });
     const set_use_fevicon = use_fevicon => setAttributes({ use_fevicon });
-    const set_mobile_logo = mobile_logo => setAttributes({ mobile_logo: mobile_logo.url, mobile_logo_id: mobile_logo.id });
-
-    //===> Set Logo <===//
+    
+    //===> Set Images <===//
     const set_logo = value => setAttributes({ logo: value.url, logo_id: value.id });
-
-    //===> Set Fevicon <===//
     const set_fevicon = value => setAttributes({ fevicon: value.url, favicon_id: value.id });
+    const set_mobile_logo = value => setAttributes({ mobile_logo: value.url, mobile_logo_id: value.id });
 
     //===> Set Site Logo <===//
     const set_site_logo = clicked => {
@@ -57,12 +55,6 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Block Properties <===//
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
-
-    //===> List View Naming <===//
-    if (attributes.metadata?.name) {
-        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
-        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
-    }
 
     //===> Accessibility Fallback <===//
     useEffect(() => {

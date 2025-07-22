@@ -20,17 +20,12 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
+    //===> Visibility Options <===//
     const visibility_opts = [
         { label: __("All", "pds-blocks"), value: '' },
         { label: __("Users Only", "pds-blocks"), value: 'users-only' },
         { label: __("Visitors Only", "pds-blocks"), value: 'visitors-only' }
     ];
-
-    //===> List View Naming <===//
-    if (attributes.metadata?.name) {
-        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
-        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
-    }
 
     //===> Render <===//
     return (<>

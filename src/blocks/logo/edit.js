@@ -26,7 +26,7 @@ export default function Edit({ attributes, setAttributes }) {
     const set_width = width => setAttributes({ width });
     const set_responsive = responsive => setAttributes({ responsive });
     const set_use_fevicon = use_fevicon => setAttributes({ use_fevicon });
-    const set_mobile_logo = mobile_logo => setAttributes({ mobile_logo: mobile_logo.url });
+    const set_mobile_logo = mobile_logo => setAttributes({ mobile_logo: mobile_logo.url, mobile_logo_id: mobile_logo.id });
 
     //===> Set Logo <===//
     const set_logo = value => setAttributes({ logo: value.url, logo_id: value.id });

@@ -66,6 +66,10 @@
     "mobile_logo": {
       "type": "boolean",
       "default": "https://placehold.co/512x512.webp?text=Logo"
+    },
+    "mobile_logo_id": {
+      "type": "number",
+      "default": 0
     }
   },
   "example": {

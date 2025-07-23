@@ -217,9 +217,9 @@ if (!function_exists('pds_metabox_create')) :
 
                 //===> For Swutch Toggles <===//
                 else if ($type_checkpoints["isSwitch"]) {
-                    $checked = ($current_value === 'on' || $current_value === true) ? 'checked' : '';
+                    $checked = ($current_value === 'yes' || $current_value === true) ? 'checked' : '';
                     $field_html .= '<label class="small option-control flexbox flow-reverse align-center-y align-between fs-14 weight-medium" data-type="switch">';
-                    $field_html .= '<input type="checkbox" name="'.$metabox["name"].'" value="on" '.$checked.' class="'.$input_classes.'" /><span class="switch"></span>';
+                    $field_html .= '<input type="checkbox" name="'.$metabox["name"].'" value="yes" '.$checked.' class="'.$input_classes.'" /><span class="switch"></span>';
                     $field_html .= '<span>'.$metabox["label"].'</span>';
                     $field_html .= '</label>';
                 }

@@ -111,6 +111,7 @@ window.PhenixBlocks.dataLists = {
             { "label": "R-16x14", "value": "16x14"},
             { "label": "R-14x16", "value": "14x16"},
             { "label": "R-21x9", "value": "21x9"},
+            { "label": "R-21x8", "value": "21x8"},
             { "label": "R-9x21", "value": "9x21"},
             { "label": "Other", "value": "custom"},
         ],

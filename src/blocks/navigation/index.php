@@ -102,7 +102,7 @@ function px_navigation_render($block_attributes, $content) {
                             } 
                             //===> Normal Mode <===//
                             else {
-                                $nav_style .= "--space-in:".PxToREM($sub_value);
+                                $nav_style .= "--space-in:".PxToREM($sub_value).';';
                             }
                         }
                     }

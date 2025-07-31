@@ -492,7 +492,7 @@
 
     //====> Set Custom Metaboxes <====//
     $metaboxes = get_option('pds_metabox');
-    if ($metaboxes): 
+    if ($metaboxes && is_array($metaboxes) && count($metaboxes) > 0): 
         pds_metabox_create($metaboxes); 
     endif;
 ?>

@@ -180,6 +180,10 @@ if (!function_exists('phenix_assets')) :
             echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
         }
 
+        //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
+        echo '<link rel="preconnect" href="https://cdn.jsdelivr.net">';
+        echo '<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">';
+
         //===> Load Primary Font <===//
         wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), $version);
 

@@ -787,7 +787,7 @@
 
 
 	/*==== Phenix Custom Fields ====*/
-	#postbox-container-2 .inside {display: flex; flex-wrap: wrap;}
+	#postbox-container-2 .postbox:not(.closed) .inside {display: flex; flex-wrap: wrap;}
 	#postbox-container-2 .inside > .col-12 {padding: 0 1rem;}
 	#postbox-container-2 .inside > .col-12:not(:has(textarea)):not(.repeater-field) {width: 50%;}
 }

@@ -174,16 +174,6 @@ if (!function_exists('phenix_assets')) :
         $version = PDS_BLOCKS_VERSTION;
         $assets_files = phenix_assets();
 
-        //====> Google Fonts <====//
-        if (get_option('pds_gfonts') == "on") {
-            echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
-            echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
-        }
-
-        //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
-        echo '<link rel="preconnect" href="https://cdn.jsdelivr.net">';
-        echo '<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">';
-
         //===> Load Primary Font <===//
         wp_enqueue_style('pds-primary-font', $assets_files['primary'], array('phenix'), $version);
 
@@ -231,6 +221,30 @@ if (!function_exists('phenix_assets')) :
         add_action('admin_enqueue_scripts', 'pds_optimized_asset');
     }
 endif;
+
+//====> Optimized Assets Resources <====//
+add_filter( 'wp_resource_hints', function( $hints, $relation_type ) {
+    //====> Pre-Connect Hints <====//
+    if ('preconnect' === $relation_type ) {
+        //====> Google Fonts <====//
+        if (get_option('pds_gfonts') == "on") {
+            $hints[] = 'https://fonts.googleapis.com';
+            $hints[] = 'https://fonts.gstatic.com';
+        }
+        
+        //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
+        $hints[] = 'https://cdn.jsdelivr.net';
+        $hints[] = 'https://cdn.jsdelivr.net';
+    }
+    //====> DNS Prefetch Hints <====//
+    if ('dns-prefetch' === $relation_type ) {
+        //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
+        $hints[] = 'https://cdn.jsdelivr.net';
+        $hints[] = 'https://cdn.jsdelivr.net';
+    }
+    //====> Return the Hints <====//
+    return $hints;
+}, 10, 2);
 
 //=====> Phenix Admin CSS <=====//
 if (!function_exists('pds_admin_style') && is_admin()) :

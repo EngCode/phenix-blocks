@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
             //====> Check if the Template part has the correct current template part name meta <====//
             if (templates_meta_list[`${attributes.part_name}`]) {
                 //===> Ensure Meta Data and the Current Data are Different <===//
-                // Compare using JSON.stringify for deep equality check
+                //=====> By Compare them using JSON.stringify for deep equality check
                 if (JSON.stringify(templates_meta_list[`${attributes.part_name}`]) === JSON.stringify(attributes.template_meta)) return;
 
                 //===> Define Template Meta <===//

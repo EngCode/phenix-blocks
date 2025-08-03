@@ -79,7 +79,7 @@
             if (function_exists('phenix_support')) {
                 //===> Set Templates Parts <===//
                 $template_parts_dir = get_template_directory()."/template-parts";
-                $current_theme_parts = pds_get_theme_parts($template_parts_dir);
+                $current_theme_parts = pds_get_theme_parts($template_parts_dir, 'php');
                 update_option('theme_parts', $current_theme_parts);
             }
         }

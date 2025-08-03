@@ -39,6 +39,10 @@
       "type": "string",
       "default": "_placeholder"
     },
+    "part_options": {
+      "type": "object",
+      "default": {}
+    },
     "isFlexbox": {
       "type": "boolean",
       "default": false

@@ -22,16 +22,13 @@ export default class TemplateMeta extends Component {
         //===> Properties <===//
         const {className, attributes, mainSetter} = this.props;
 
-        //====> Attributes Renderers <====//
-        const PhenixBlocks = window.PhenixBlocks;
-
         //===> Get the Meta Options and Features <===//
         const metaOptions = attributes['template_meta']['options'];
         const metaFeatures = attributes['template_meta']['features'];
-        const Output = [];
+        const TemplateOptionsSet = [];
 
         //===> Loop throgh the Options <===//
-        const options = Object.keys(metaOptions).map((key) => {
+        Object.keys(metaOptions).map((key) => {
             //===> Get the Option Type <===//
             const optionType = metaOptions[key]['type'];
             //===> Get Default Value <===//
@@ -39,13 +36,13 @@ export default class TemplateMeta extends Component {
             
             //===> for Input Type <===//
             if (optionType === "text") {
-                Output.push(
+                TemplateOptionsSet.push(
                     <PhenixInput key={key} name={key} label={key.replace('-', ' ')} value={attributes['part_options'][key] || defaultValue} onChange={mainSetter} className="mb-15" />
                 );
             }
         });
 
         //====> Return Options <====//
-        return Output;
+        return TemplateOptionsSet;
     }
 }

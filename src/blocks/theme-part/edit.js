@@ -39,16 +39,29 @@ export default function Edit({ attributes, setAttributes }) {
             //===> Get Templates Meta List <===//
             let templates_meta_list = Response['templates_meta'];
 
-            //====> Get the Meta Data <====//
+            //====> Check if the Template part has the correct current template part name meta <====//
             if (templates_meta_list[`${attributes.part_name}`]) {
                 //===> Ensure Meta Data and the Current Data are Different <===//
-                if (templates_meta_list[`${attributes.part_name}`] === attributes.template_meta) return;
+                // Compare using JSON.stringify for deep equality check
+                if (JSON.stringify(templates_meta_list[`${attributes.part_name}`]) === JSON.stringify(attributes.template_meta)) return;
+
+                //===> Define Template Meta <===//
+                const part_options = {};
+
+                //===> Loop through the Meta Options <===//
+                Object.keys(templates_meta_list[`${attributes.part_name}`]['options']).forEach((key) => {
+                    //===> Get Default Value <===//
+                    const defaultValue = templates_meta_list[`${attributes.part_name}`]['options'][key]['value'] || '';
+
+                    //===> Set the Default Value <===//
+                    part_options[key] = attributes.part_options[key] || defaultValue;
+                });
 
                 //===> Set the Attributes <===//
-                setAttributes({template_meta: templates_meta_list[`${attributes.part_name}`]});
+                setAttributes({template_meta: templates_meta_list[`${attributes.part_name}`], part_options: part_options});
             }
         });
-    }, []);
+    }, [attributes.part_name, attributes.template_meta, attributes.part_options, setAttributes]);
 
     //===> Render <===//
     return (<>

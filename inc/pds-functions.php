@@ -169,7 +169,6 @@ if (!function_exists('pds_get_theme_parts')) :
 					try {
 						//===> Get its Files List <===//
 						$sub_directory = new DirectoryIterator($child->getPathname());
-		
 						//===> add the Files List to the Result <===//
 						$result[$name] = pds_get_theme_parts($sub_directory);
 					} catch (UnexpectedValueException $e) {
@@ -180,8 +179,10 @@ if (!function_exists('pds_get_theme_parts')) :
 				}
 				//===> if its Normal File <===//
 				else {
-					//===> Add the File to the Result <===//
-					$result[] = $name;
+					//===> Add the File to the Result if its php file <===//
+					if (pathinfo($name, PATHINFO_EXTENSION) === 'php') {
+						$result[] = $name;
+					}
 				}
 			}
 		} catch (Exception $e) {

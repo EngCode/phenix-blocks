@@ -130,7 +130,7 @@ if (!function_exists('pds_get_theme_parts')) :
 	 * @return array List of files and directories
 	*/
 
-	function pds_get_theme_parts($path) {
+	function pds_get_theme_parts($path, $extenstion = 'php') {
 		//===> Define Files List <===//
 		$result = array();
 
@@ -170,7 +170,7 @@ if (!function_exists('pds_get_theme_parts')) :
 						//===> Get its Files List <===//
 						$sub_directory = new DirectoryIterator($child->getPathname());
 						//===> add the Files List to the Result <===//
-						$result[$name] = pds_get_theme_parts($sub_directory);
+						$result[$name] = pds_get_theme_parts($sub_directory, $extenstion);
 					} catch (UnexpectedValueException $e) {
 						// Log error but continue execution
 						error_log("Error accessing subdirectory {$name}: " . $e->getMessage());
@@ -180,7 +180,7 @@ if (!function_exists('pds_get_theme_parts')) :
 				//===> if its Normal File <===//
 				else {
 					//===> Add the File to the Result if its php file <===//
-					if (pathinfo($name, PATHINFO_EXTENSION) === 'php') {
+					if (pathinfo($name, PATHINFO_EXTENSION) === $extenstion) {
 						$result[] = $name;
 					}
 				}

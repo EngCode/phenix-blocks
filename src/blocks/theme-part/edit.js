@@ -17,6 +17,9 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
+    //===> Define Template Meta <===//
+    let templates_meta;
+
     //===> Value Handler <===//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
 
@@ -25,6 +28,15 @@ export default function Edit({ attributes, setAttributes }) {
         let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
         if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
     }
+
+    //===> Get Template Part Meta Option <===//
+    useEffect(() => {
+        //===> Fetch Template Part Meta <===//
+        apiFetch({path: 'wp/v2/settings'}).then(Response => {
+            //===> Set Options <===//
+            console.log(Response);
+        });
+    }, []);
 
     //===> Render <===//
     return (<>

@@ -411,15 +411,15 @@ window.PhenixBlocks = {
                         }
                     };
 
-                    // //===> Data Settings <===//
-                    // if (option_name === "setting") {
-                    //     //===> Ratio Size <===//
-                    //     if (sub_option.includes('size') && sub_value !== "custom") {
-                    //         blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
-                    //     } else {
-                    //         blockProps[`data-${sub_option}`] = sub_value;
-                    //     }
-                    // }
+                    //===> Data Settings <===//
+                    if (option_name === "setting") {
+                        //===> Ratio Size <===//
+                        if (sub_option.includes('size') && sub_value !== "custom") {
+                            blockProps.className += ` ${sub_option.replaceAll('size', 'ratio')}-${sub_value}`;
+                        } else {
+                            blockProps[`data-${sub_option}`] = sub_value;
+                        }
+                    }
 
                 });
             };

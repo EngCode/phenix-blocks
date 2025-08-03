@@ -1,11 +1,16 @@
 //====> WP Modules <====//
 import {__} from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
+import { useEffect } from '@wordpress/element';
 import ServerSideRender from '@wordpress/server-side-render';
 import {PanelBody, ToolbarGroup} from '@wordpress/components';
 import {BlockControls, InspectorControls, useBlockProps} from '@wordpress/block-editor';
 
-//====> Phenix Modules <====//
+//====> Preview Image <====//
 import PreviewImage from './preview.jpg';
+
+//====> Phenix Components <====//
+import TemplateMeta from '../px-controls/sets/template-meta';
 import SelectFromData from '../px-controls/select-data';
 
 //====> Edit Mode <====//
@@ -17,11 +22,9 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
-    //===> Define Template Meta <===//
-    let templates_meta;
-
     //===> Value Handler <===//
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
+    const set_meta_options = (target, screen) => PhenixBlocks.setObject(target, screen, "part_options", false, attributes, setAttributes);
 
     //===> List View Naming <===//
     if (attributes.metadata?.name) {
@@ -32,9 +35,18 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Get Template Part Meta Option <===//
     useEffect(() => {
         //===> Fetch Template Part Meta <===//
-        apiFetch({path: 'wp/v2/settings'}).then(Response => {
-            //===> Set Options <===//
-            console.log(Response);
+        apiFetch({path: 'pds-blocks/v2/options'}).then(Response => {
+            //===> Get Templates Meta List <===//
+            let templates_meta_list = Response['templates_meta'];
+
+            //====> Get the Meta Data <====//
+            if (templates_meta_list[`${attributes.part_name}`]) {
+                //===> Ensure Meta Data and the Current Data are Different <===//
+                if (templates_meta_list[`${attributes.part_name}`] === attributes.template_meta) return;
+
+                //===> Set the Attributes <===//
+                setAttributes({template_meta: templates_meta_list[`${attributes.part_name}`]});
+            }
         });
     }, []);
 
@@ -54,7 +66,9 @@ export default function Edit({ attributes, setAttributes }) {
             {/*===> Widget Panel <===*/}
             <PanelBody title={__("General Setting", "pds-blocks")} initialOpen={true}>
                 {/*=== Template Name ===*/}
-                <SelectFromData key={`${uniqueKey}-part_name`} label={__("Template Name", "pds-blocks")} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} />
+                <SelectFromData key={`${uniqueKey}-part_name`} label={__("Template Name", "pds-blocks")} placeholder={__("Template Name", "pds-blocks")} name="part_name" options="template-parts" value={attributes.part_name} valueSetter={set_value} className="mb-15" />
+                {/*=== Template Custom Options ===*/}
+                <TemplateMeta key={`${uniqueKey}-template_meta`} attributes={attributes} mainSetter={set_meta_options} />
             </PanelBody>
             {/*===> End Widgets Panels <===*/}
         </InspectorControls>

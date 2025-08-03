@@ -20,6 +20,7 @@
             "type": "object",
             "default": {}
         },
+
         "preview" : {
             "type": "boolean",
             "default": false
@@ -33,7 +34,12 @@
 		"part_options" : {
 			"type": "object",
 			"default": {}
-		}
+		},
+
+        "template_meta" : {
+            "type": "object",
+            "default": {}
+        }
     },
 
 	"example": {

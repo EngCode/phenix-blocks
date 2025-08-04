@@ -28,7 +28,7 @@ export default class TemplateMeta extends Component {
         const TemplateOptionsSet = [];
 
         //===> Loop throgh the Options <===//
-        Object.keys(metaOptions).map((key) => {
+        if(metaOptions) Object.keys(metaOptions).map((key) => {
             //===> Get the Option Type <===//
             const optionType = metaOptions[key]['type'];
             //===> Get Default Value <===//

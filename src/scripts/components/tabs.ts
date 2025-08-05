@@ -117,7 +117,7 @@ PhenixElements.prototype.tabs = function (options?:{
                 //====> Active the Panel and Get its Siblings <====//
                 if(tab_id && document.querySelector(`#${tab_id}`)) {
                     //====> Active the Panel <====//
-                    Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel').forEach(panel => {
+                    Phenix(`#${tab_id}`).fadeIn().addClass('active').removeClass('hidden').siblings('.tab-panel')?.forEach(panel => {
                         //====> Check if it is active <====//
                         if (!panel.classList.contains('active')) return;
                         //====> Deactivate the Panel <====//

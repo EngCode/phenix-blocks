@@ -47,6 +47,7 @@
 			}
 		}
 		#wpbody-content {
+			min-height: calc(100vh - 2rem);
 			background-color: #e5eff7;
 		}
 	}

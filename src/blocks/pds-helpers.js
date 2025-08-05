@@ -9,7 +9,7 @@
 window.PhenixBlocks = {
     //====> Options Renderer <====//
     OptionsRenderer : (options) => {
-        //===> Options <===//
+        //===> Define Options <===//
         const {attributes, blockProps, isSave, hasColors, isColumn, isGrid} = options;
         const utilities_sizes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
         const positions_sizes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
@@ -113,7 +113,7 @@ window.PhenixBlocks = {
                 //===> loop on the Object Options <===//
                 Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                     //===> Check if the attribute is Set <===//
-                    if (!(sub_option in attributes[option_name]) || attributes[option_name][sub_option] == null) return;
+                    if (!(sub_option in attributes[option_name]) || attributes[option_name][sub_option] == null || attributes[option_name][sub_option] === '') return;
 
                     //===> Slider Mode Checker <===//
                     if (attributes.flexbox?.slider === true) {

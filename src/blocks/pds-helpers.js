@@ -113,7 +113,7 @@ window.PhenixBlocks = {
                 //===> loop on the Object Options <===//
                 Object.entries(option_value).forEach(([sub_option, sub_value]) => {
                     //===> Check if the attribute is Set <===//
-                    if (!attributes[option_name][sub_option]) return;
+                    if (!(sub_option in attributes[option_name]) || attributes[option_name][sub_option] == null) return;
 
                     //===> Slider Mode Checker <===//
                     if (attributes.flexbox?.slider === true) {
@@ -137,8 +137,14 @@ window.PhenixBlocks = {
 
                     //===> Slider Options <===//
                     else if (option_name === "slider") {
+                        //===> Check if its save mode <===//
+                        if (!isSave || !attributes.flexbox.slider) return;
+                        //===> Autoplay <===//
+                        if (sub_option === "autoplay" && sub_value) {
+                            console.log(sub_value);
+                        }
                         //===> Set Options <===//
-                        if (attributes.flexbox.slider && isSave) {
+                        else if (attributes.flexbox.slider) {
                             container[`data-${sub_option}`] = `${sub_value}`;
                         }
                     }
@@ -280,9 +286,6 @@ window.PhenixBlocks = {
                         if (excluded.some(opt => opt === sub_option)) return;
                         if (findAndExcluded.some(opt => opt.includes(sub_option))) return;
 
-                        //====> Invalid Values Check <====//
-                        if (sub_value === "null" || sub_value === "on" || sub_value === "undefined" || sub_value === "true" || sub_value === "false") return;
-
                         //===> Postion Sticky <===//
                         if (sub_option === "position" && sub_value === "sticky-absolute") { blockProps["data-sticky"] = `${sub_value}`; }
 
@@ -393,6 +396,9 @@ window.PhenixBlocks = {
 
                         //===> Other Values <===//
                         else {
+                            //====> Invalid Values Check <====//
+                            if (sub_value === "null" || sub_value === "on" || sub_value === "undefined" || sub_value === "true" || sub_value === "false") return;
+
                             //====> Check URL Classes Fix <====//
                             const urlPattern = new RegExp(/(www|http:|https:)+[^\s]+[\w]/);
                             if (urlPattern.test(sub_value)) return;
@@ -420,7 +426,6 @@ window.PhenixBlocks = {
                             blockProps[`data-${sub_option}`] = sub_value;
                         }
                     }
-
                 });
             };
         });

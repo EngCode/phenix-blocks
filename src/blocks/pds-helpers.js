@@ -432,6 +432,7 @@ window.PhenixBlocks = {
 
         //===> Activate Slider in Editor <===//
         if (isSave && attributes.flexbox?.slider || attributes.slider?.preview) container.className += ' px-slider';
+        else { container.className.replace('px-slider', ''); }
     
         //===> Check the Style Props <===//
         if (!blockProps.style) blockProps.style = {};

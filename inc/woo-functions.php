@@ -322,7 +322,7 @@ if (!function_exists('pds_is_in_wishlist')) :
                 //===> For Each Product in the List <===//
                 foreach ($item['data'] as $item_product) {
                     //===> If the Product Exist Mark it and Exit <===//
-                    if ($item['product_id'] == $product_id) {
+                    if ($item['product_id'] == $product_id && isset($post)) {
                         //===> Mark the Product <===//
                         $is_in_wishlist = true;
                         //===> Correct the Wishlist URL <===//

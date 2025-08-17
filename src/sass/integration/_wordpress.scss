@@ -148,6 +148,8 @@ body:not(.wp-admin):not([class*="-editor"]) {
         transition: box-shadow 0.3s ease-in-out;
         z-index: var(--header-index)!important;
     }
+    /*====> Header Fix <=====*/
+    .header-sticky-wrapper {position: relative; z-index: var(--header-index)!important;}
     /*==== Google Captcha Badge Hide ====*/
     .grecaptcha-badge {display: none!important;}
 }

@@ -54,7 +54,7 @@
     document.querySelectorAll('img:not([loading])').forEach(image => image.setAttribute('loading', 'lazy'));
 
     //===> When Loading is Complete <===//
-    window.addEventListener('load', (loaded) => {
+    window.addEventListener('DOMContentLoaded', (loaded) => {
         //===> WP7 Hacks <===//
         const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
         const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);

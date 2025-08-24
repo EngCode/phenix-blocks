@@ -77,18 +77,17 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     }).then(data => {
                         //====> Enable Form <====//
                         submitButton.classList.add('px-loading-inline');
-                        //===> Reset Forms on Loading <===//
-                        Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => {input.value = '';});
+                        // //===> Reset Forms on Loading <===//
+                        // Phenix('.wpcf7 input:not([type="hidden"]):not(.btn):not([type="submit"]), .wpcf7 select, .wpcf7 textarea').forEach((input:any) => {input.value = '';});
 
-                        //===> Reset PX Select Component <===//
-                        form.querySelectorAll('div.px-select').forEach((element: any) => {
-                            let firstOption = element.querySelector('.px-select-option:first-child');
-                            const toggleButton = element.querySelector('.px-select-toggle');
-                            if (!firstOption) firstOption = element.querySelector('.px-select-option:nth-child(2)');
+                        // //===> Reset PX Select Component <===//
+                        // form.querySelectorAll('div.px-select').forEach((element: any) => {
+                        //     let firstOption = element.querySelector('.px-select-option:first-child');
+                        //     const toggleButton = element.querySelector('.px-select-toggle');
+                        //     if (!firstOption) firstOption = element.querySelector('.px-select-option:nth-child(2)');
                             
-                            toggleButton.textContent = firstOption.textContent;
-                        });
-
+                        //     toggleButton.textContent = firstOption.textContent;
+                        // });
                         //====> Disable Form <====//
                         submitButton.classList.remove('px-loading-inline');
                         //===> Redirect to Success <===//

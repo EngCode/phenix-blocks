@@ -93,7 +93,8 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                         submitButton.classList.remove('px-loading-inline');
                         //===> Redirect to Success <===//
                         const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
-                        window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/success/?source=${sourceParameter}` : `/success/?source=${sourceParameter}`}`;
+                        const successSlug = form.querySelector('[name="success_slug"]')?.value || 'success';
+                        window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/${successSlug}/?source=${sourceParameter}` : `/${successSlug}/?source=${sourceParameter}`}`;
                     }).catch(error => {
                         //===> Show Error Message <===//
                         Phenix(document).notifications({

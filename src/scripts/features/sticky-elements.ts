@@ -42,6 +42,17 @@ PhenixElements.prototype.sticky = function (options?:{
 
                 //====> Otherwise De-Activate <====//
                 if (window.scrollY <= position) element.classList.remove(active);
+
+                //====> If Scroll To Top Add Class <====//
+                if (window.scrollY === 0) {
+                    element.classList.remove('is-sticky-bottom');
+                    element.classList.add('is-sticky-top');
+                }
+                //====> If Scroll Down Remove Class <====//
+                else if (window.scrollY > 0) {
+                    element.classList.remove('is-sticky-top');
+                     element.classList.add('is-sticky-bottom');
+                }
             });
         }
 

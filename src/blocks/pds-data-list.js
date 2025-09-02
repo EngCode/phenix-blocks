@@ -437,7 +437,9 @@ window.PhenixBlocks.dataLists = {
             "Fading Entrances" : [
                 { "label": "None", "value": ""},
                 { "label": "fadeIn", "value": "fadeIn"},
+                { "label": "fadeInBlur", "value": "fadeInBlur"},
                 { "label": "fadeInUp", "value": "fadeInUp"},
+                { "label": "fadeInUpBlur", "value": "fadeInUpBlur"},
                 { "label": "fadeInDown", "value": "fadeInDown"},
                 { "label": "fadeInStart", "value": "fadeInStart"},
                 { "label": "fadeInEnd", "value": "fadeInEnd"},

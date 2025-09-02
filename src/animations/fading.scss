@@ -316,3 +316,32 @@
         transform: translate3d(0, 2rem, 0);
     }
 }
+
+/*==== Animation Keyframes (FadeIn Up Blur) ====*/
+.fadeInUpBlur {animation-name: fadeInUpBlur;}
+
+@keyframes fadeInUpBlur {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(100%) rotate(-25deg);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes fadeInBlur {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}

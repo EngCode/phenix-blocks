@@ -24,7 +24,8 @@ PhenixElements.prototype.sticky = function (options?:{
             active = options?.active || 'is-sticky',
             offset = parseInt(element.getAttribute('data-offset')) || options?.offset || 0,
             position = element.offsetTop,
-            direction = options?.flow?.toLowerCase() || 'y';
+            direction = options?.flow?.toLowerCase() || 'y',
+            currentScroll = window.scrollY;
 
         //====> Y Scroll Mode <====//
         if(!direction || direction === 'y') {
@@ -43,15 +44,17 @@ PhenixElements.prototype.sticky = function (options?:{
                 //====> Otherwise De-Activate <====//
                 if (window.scrollY <= position) element.classList.remove(active);
 
-                //====> If Scroll To Top Add Class <====//
-                if (window.scrollY === 0) {
+                //====> While scrolling to the top <====//
+                if (window.scrollY < currentScroll) {
                     element.classList.remove('is-sticky-bottom');
                     element.classList.add('is-sticky-top');
+                    currentScroll = window.scrollY;
                 }
-                //====> If Scroll Down Remove Class <====//
-                else if (window.scrollY > 0) {
+                //====> If Scroll Down Toggle Classes <====//
+                else if (window.scrollY > currentScroll) {
                     element.classList.remove('is-sticky-top');
-                     element.classList.add('is-sticky-bottom');
+                    element.classList.add('is-sticky-bottom');
+                    currentScroll = window.scrollY;
                 }
             });
         }

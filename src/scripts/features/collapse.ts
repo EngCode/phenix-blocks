@@ -16,6 +16,7 @@ PhenixElements.prototype.collapse = function (options?:{
     target?:string;   //===> Panel Target Selector
     related?:boolean; //===> Panel Target is related to the button in the DOM Tree
     parent?:string;   //===> Accordion Group Selector
+    hover?:boolean;  //===> Trigger on Hover instead of Click
 }) {
     //====> Loop Through Phenix Query <====//
     this.forEach(button => {
@@ -62,7 +63,7 @@ PhenixElements.prototype.collapse = function (options?:{
         }
 
         //====> Collapse Handler <====//
-        let collapse_handler = () => {
+        let collapse_handler = (toggle) => {
             //====> Show if its Hidden <====//
             if (Phenix(target).getCSS('display') === 'none') {
                 //====> Hide Other Panels <====//
@@ -96,6 +97,9 @@ PhenixElements.prototype.collapse = function (options?:{
             }
             //====> Hide if its Shown <====//
             else {
+                //====> If Toggle is True <====//
+                // if (toggle) return;
+
                 //====> Active Button <====//
                 button.classList.add(normal_icon);
                 button.classList.remove(active_class, active_icon);
@@ -109,8 +113,12 @@ PhenixElements.prototype.collapse = function (options?:{
             }
         };
 
-        //====> ... <====//
+        //====> Trigger on Click <====//
         button.addEventListener('click', collapse_handler);
+
+        //====> Trigger on Hover <====//
+        let parentNode = Phenix(button).ancestor(parent);
+        // if (options?.hover || parentNode.classList.contains('px-accordion-hover')) button.addEventListener('mouseover', collapse_handler);
 
         //====> Set Accessibility Options <====//
         button.setAttribute('role', 'button');

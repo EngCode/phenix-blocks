@@ -29,6 +29,7 @@ PhenixElements.prototype.collapse = function (options?:{
             related = button.getAttribute('data-related') || options?.related,
             active_class = 'px-collapse-active',
             target = button.getAttribute('data-target') || options?.target;
+        let parentNode = Phenix(button).ancestor(parent);
 
         //===> Add Icon Class Name <====//
         classes.forEach((className:string) => {
@@ -63,7 +64,10 @@ PhenixElements.prototype.collapse = function (options?:{
         }
 
         //====> Collapse Handler <====//
-        let collapse_handler = (toggle) => {
+        let collapse_handler = (event) => {
+            //====> Check if the Target is being Processed <====//
+            if (parentNode?.classList.contains('pxjs-processing')) return;
+
             //====> Show if its Hidden <====//
             if (Phenix(target).getCSS('display') === 'none') {
                 //====> Hide Other Panels <====//
@@ -88,8 +92,12 @@ PhenixElements.prototype.collapse = function (options?:{
                 button.classList.remove(normal_icon);
                 button.classList.add(active_class, active_icon);
 
+                //====> Mark the Target as Processing <====//
+                parentNode?.classList.add('pxjs-processing');
+
                 //====> Show Target <====//
                 Phenix(target).slideDown().addClass(active_class);
+                parentNode?.classList.remove('pxjs-processing');
 
                 //====> Fire Event <====//
                 button.dispatchEvent(showed);
@@ -97,8 +105,8 @@ PhenixElements.prototype.collapse = function (options?:{
             }
             //====> Hide if its Shown <====//
             else {
-                //====> If Toggle is True <====//
-                // if (toggle) return;
+                //====> Exclude Hiding for Hover Triggers <====//
+                if (parentNode.classList.contains('px-accordion-hover')) return;
 
                 //====> Active Button <====//
                 button.classList.add(normal_icon);
@@ -117,8 +125,7 @@ PhenixElements.prototype.collapse = function (options?:{
         button.addEventListener('click', collapse_handler);
 
         //====> Trigger on Hover <====//
-        let parentNode = Phenix(button).ancestor(parent);
-        // if (options?.hover || parentNode.classList.contains('px-accordion-hover')) button.addEventListener('mouseover', collapse_handler);
+        if (options?.hover || parentNode.classList.contains('px-accordion-hover')) button.addEventListener('mouseenter', collapse_handler);
 
         //====> Set Accessibility Options <====//
         button.setAttribute('role', 'button');

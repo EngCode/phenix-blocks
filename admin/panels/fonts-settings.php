@@ -14,6 +14,7 @@
         "ge-ss-two" => "GE SS Two",
         "palsam-arabic" => "Palsam Arabic",
         "palsam-arabic-cursive" => "Palsam Arabic Cursive",
+        "ping-ar" => "Ping AR + LT",
     ];
 
     //===> Icon Fonts <===//

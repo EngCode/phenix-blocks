@@ -109,6 +109,7 @@ if (!function_exists('phenix_assets')) :
             "ge-ss-two",
             "palsam-arabic",
             "palsam-arabic-cursive",
+            "ping-ar"
         ];
 
         //===> Style Font Fallback <===//
@@ -189,6 +190,15 @@ if (!function_exists('phenix_assets')) :
 
         //===> Load Icons Font <===//
         wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
+
+        //===> Weird Fonts Names Fix <===//
+        if ($assets_files['primary_name'] === "Ping Ar") {
+            $assets_files['primary_name'] = "PingAR";
+        }
+
+        if ($assets_files['secondary_name'] === "Ping Ar") {
+            $assets_files['secondary_name'] = "PingAR";
+        }
 
         //===> Set Font Css Settings <===//
         if (!wp_style_is('pds-fonts-variables', 'enqueued')) {

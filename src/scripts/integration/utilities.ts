@@ -297,14 +297,14 @@ PhenixElements.prototype.utilities = function (options?:{
             //===> Get Image Data <===//
             let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
                 img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
-                parent_width = img.parentNode.clientWidth,
-                parent_height = Phenix(img.parentNode).height();
+                parent_width = img.parentNode.clientWidth;
+                // parent_height = Phenix(img.parentNode).height();
 
             //===> Set Width and Height <===//
             setTimeout(() => {
                 if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
-                if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
-            }, 500);
+                // if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
+            }, 1500);
 
             //===> Alternative Text <===//
             if (!img.getAttribute('alt') || img.getAttribute('alt') === "") {

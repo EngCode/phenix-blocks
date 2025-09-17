@@ -21,14 +21,14 @@
     .w#{$infix}-225 {width: #{REM(225)};}
     .w#{$infix}-250 {width: #{REM(250)};}
     .w#{$infix}-275 {width: #{REM(275)};}
-    .w#{$infix}-300 {width: #{REM(10)};}
+    .w#{$infix}-300 {width: #{REM(300)};}
     .w#{$infix}-320 {width: #{REM(320)};}
     .w#{$infix}-360 {width: #{REM(360)};}
     .w#{$infix}-390 {width: #{REM(390)};}
-    .w#{$infix}-768 {width: #{REM(760)};}
-    .w#{$infix}-570 {width: #{REM(570)};}
-    .w#{$infix}-480 {width: #{REM(480)};}
     .w#{$infix}-420 {width: #{REM(420)};}
+    .w#{$infix}-480 {width: #{REM(480)};}
+    .w#{$infix}-570 {width: #{REM(570)};}
+    .w#{$infix}-768 {width: #{REM(760)};}
     .w#{$infix}-auto {width: auto;}
     .w#{$infix}-fit-content {width: fit-content;}
     .w#{$infix}-fluid, .fluid#{$infix}, .line-break#{$infix} {width: 100%;}
@@ -79,7 +79,7 @@
     .w#{$infix}-min-200  {min-width: #{REM(200)};}
     .w#{$infix}-min-180  {min-width: #{REM(180)};}
     .w#{$infix}-min-150  {min-width: #{REM(150)};}
-    .w#{$infix}-min-120  {min-width: #{REM(150)};}
+    .w#{$infix}-min-120  {min-width: #{REM(120)};}
     .w#{$infix}-min-90   {min-width: 90px;}
 }
 

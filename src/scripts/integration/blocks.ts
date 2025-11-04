@@ -57,11 +57,23 @@ PhenixElements.prototype.init = function (scripts?:[]) {
           header_holder:HTMLElement = document.querySelector('#header-holder');
 
     //====> Header Holders <====//
-    if (main_header && header_holder) {
-        //===> Wrap Header <===//
-        Phenix(header_holder).insert('prepend', '<div class="header-sticky-wrapper"></div>');
-        //===> Get Sticky Wrapper <===//
-        const sticky_wrapper:HTMLElement = header_holder.querySelector('.header-sticky-wrapper');
+    if (main_header) {
+        //===> Define Sticky Wrapper <===//
+        let sticky_wrapper:HTMLElement;
+        //===> Check for Header Holder <===//
+        if (header_holder) {
+            //===> Wrap Header <===//
+            Phenix(header_holder).insert('prepend', '<div class="header-sticky-wrapper"></div>');
+            //===> Get Sticky Wrapper <===//
+            sticky_wrapper = header_holder.querySelector('.header-sticky-wrapper');
+        }
+        //===> Wrap the Header <===//
+        else {
+            Phenix(main_header).insert('before', '<div class="header-sticky-wrapper"></div>');
+            //===> Get Sticky Wrapper <===//
+            sticky_wrapper = main_header.parentElement.querySelector('.header-sticky-wrapper');
+        }
+
         //===> Prepend Header <===//
         sticky_wrapper.prepend(main_header);
         //===> add Dynamic Holder Height <===//

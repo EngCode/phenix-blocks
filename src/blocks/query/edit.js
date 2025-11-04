@@ -79,6 +79,11 @@ export default function Edit(props) {
         });
     }, [attributes.part_name, attributes.template_meta, attributes.part_options, setAttributes]);
 
+    //====> Add Slider Class for Editor View <====//
+    if (attributes.flexbox.slider && attributes.flexbox.slider === true) {
+        blockProps.className += ' is-slider-view';
+    }
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}

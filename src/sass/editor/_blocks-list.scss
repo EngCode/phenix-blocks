@@ -161,6 +161,8 @@
 		&:not([data-items]), &:not([data-md]), &:not([data-lg]), &:not([data-xl]) {margin-left: 0; margin-right: 0;}
 	}
 
+	.is-slider-view > div > div {display: flex; overflow: hidden;}
+
 	/*==== Template Part ====*/
 	.block-library-block__reusable-block-container > * {width: 100%;}
 

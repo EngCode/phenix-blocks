@@ -13,6 +13,7 @@ import Phenix, { PhenixElements } from "..";
 
 /*====> Custom Variables <====*/
 declare var wc_add_to_cart_params: any;
+declare var PDS_WP_KEY: any;
 
 /*====> Add to Cart Method <====*/
 PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_id) {
@@ -145,6 +146,57 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
                 message  : "Failed to update wishlist",
             });
         }
+    });
+}
+
+/*====> Fetch Product by ID and Render Template <====*/
+PhenixElements.prototype.pds_get_product = function (productId, containerSelector) {
+    //===> Check Product ID <===//
+    if (!productId) return;
+
+    //===> Create Form Data Request <===//
+    const formData = new URLSearchParams();
+    formData.append('action', 'pds_get_product');
+    formData.append('product_id', productId.toString());
+
+    console.log("Form data:", formData.toString());
+
+    //===> Send the request to WooCommerce via Fetch API <===//
+    fetch(PDS_WP_KEY.site + '/wp-admin/admin-ajax.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        body: formData.toString()
+    })
+    //===> Return the Response as HTML <===//
+    .then(response => {
+        console.log("Response data:", response);
+        return response.text();
+    })
+    //===> Insert HTML into target container <===//
+    .then(html => {
+        console.log("HTML data:", html);
+        //===> Get target container <===//
+        const container = document.querySelector(containerSelector);
+        //===> Insert HTML into target container <===//
+        if (container) container.innerHTML = html;
+    })
+    .catch(err => console.error('Error fetching product:', err));
+};
+
+/*====> WooCommerce Quick View Product in Popup Modal <====*/
+PhenixElements.prototype.pds_quick_view = function () {
+    //===> Loop through Quick View Buttons <===//
+    this.forEach((button:HTMLElement) => {
+        //===> Capture Click Event <===//
+        button.addEventListener("click", (isClicked) => {
+            console.log(isClicked);
+            //===> Prevent Default <===//
+            isClicked.preventDefault();
+            //===> Get Product ID <===//
+            const productId = button.getAttribute('data-id') || button.getAttribute('data-product');
+            //===> Fetch Product Data and Render into Modal Body <===//
+            Phenix(document).pds_get_product(productId, "#quick-view-modal .product-template-wrapper");
+        });
     });
 }
 
@@ -314,4 +366,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Set Variation ID to Add to Cart Button <===//
         if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
     });
+
+    //===> Quick View Popup <===//
+    Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
 });

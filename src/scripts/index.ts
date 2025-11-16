@@ -738,7 +738,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     slider; utilities; notifications; init;
 
     /*====> WooCommerce Methods <====*/
-    pds_add_to_cart; pds_remove_from_cart; pds_toggle_wishlist;
+    pds_add_to_cart; pds_remove_from_cart; pds_toggle_wishlist; pds_quick_view; pds_get_product;
 }
 
 /*====> Phenix Selecting Method <====*/

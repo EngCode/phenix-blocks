@@ -339,3 +339,34 @@ if (!function_exists('pds_is_in_wishlist')) :
         return $is_in_wishlist;
     }
 endif;
+
+//===> Get Product Data for Quick View <====//
+if (!function_exists('pds_get_product_callback')) :
+    function pds_get_product_callback() {
+        //===> Check for Product ID <===//
+        if ( empty($_POST['product_id']) ) {
+            wp_send_json_error('No product ID');
+            wp_die();
+        }
+
+        //===> Get the Product Object <===//
+        // $product = wc_get_product($_POST['product_id']);
+        $product = get_post ($_POST['product_id']);
+
+        //===> Check for Product <===//
+        if (!$product) { wp_send_json_error('Invalid product ID'); }
+
+        //====> Load the Template Part with Product Data <===//
+        ob_start(); get_template_part('template-parts/woo/quick-view', null, $product);
+
+        //===> Get the HTML <===//
+        $html = ob_get_clean();
+
+        //===> Return the HTML <===//
+        echo $html;
+        wp_die();
+    }
+
+    add_action('wp_ajax_pds_get_product', 'pds_get_product_callback');
+    add_action('wp_ajax_nopriv_pds_get_product', 'pds_get_product_callback');
+endif;

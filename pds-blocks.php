@@ -90,3 +90,32 @@ if (!function_exists('pds_patterns_cats')) :
 
 	add_action('init', 'pds_patterns_cats');
 endif;
+
+//===> Is Editor Context <===//
+if (!function_exists('pds_is_editor_context')) :
+	function pds_is_editor_context() {
+		//====> Inside REST request (covers Gutenberg and Site Editor) <====//
+		if (defined('REST_REQUEST') && REST_REQUEST) {
+			//===> Get Route <====//
+			$route = $_SERVER['REQUEST_URI'] ?? '';
+
+			//===> Block editor rendering (Gutenberg) <===//
+			if (strpos($route, '/wp/v2/block-renderer/') !== false) { return true; }
+
+			//===> Site editor (FSE) <===//
+			if (strpos($route, '/wp/v2/templates/') !== false || strpos($route, '/wp/v2/template-parts/') !== false) { return true; }
+
+			//===> Other REST calls — possibly preview or autosave <===//
+			return false;
+		}
+
+		//===> Iframe preview (used inside block editors) <===//
+		if (function_exists('wp_is_serving_iframe_request') && wp_is_serving_iframe_request()) { return true; }
+
+		//====> Admin dashboard (not REST-based, classic editor or block settings pages) <====//
+		// if (is_admin()) { return true; }
+
+		//====> Normal frontend context <====//
+		return false;
+	}
+endif;

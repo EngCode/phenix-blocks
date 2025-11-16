@@ -125,6 +125,9 @@ PhenixElements.prototype.slider = function (options?:{
 
                 Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
             }, true);
+
+            //===> Quick View Popup <===//
+            Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
         };
 
         //====> Slider Creator <=====//

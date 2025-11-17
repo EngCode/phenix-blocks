@@ -159,7 +159,9 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
     formData.append('action', 'pds_get_product');
     formData.append('product_id', productId.toString());
 
-    console.log("Form data:", formData.toString());
+    //===> Create Loading Mode in Target Container <===//
+    const container = document.querySelector(containerSelector);
+    if (container) container.innerHTML = '<div class="px-loading" style="min-height: 200px;"></div>';
 
     //===> Send the request to WooCommerce via Fetch API <===//
     fetch(PDS_WP_KEY.site + '/wp-admin/admin-ajax.php', {

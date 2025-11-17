@@ -238,7 +238,7 @@ endif;
 
 //===> Products Variation Attributes Select Creator <====//
 if (!function_exists("pds_woo_attributes_select")):
-    function pds_woo_attributes_select($attributes, $selected_attributes, $available_variations, $style = "radius-sm") {
+    function pds_woo_attributes_select($attributes, $selected_attributes, $available_variations, $style = "radius-sm", $wrapper_style= "w-150 me-15", $label = false, $exeptions = array()) {
         //===> Check the Selected Attribute <===//
         if (!$selected_attributes || !isset($selected_attributes)) { $selected_attributes = array(); }
 
@@ -248,8 +248,13 @@ if (!function_exists("pds_woo_attributes_select")):
             $option_name = strtolower(urlencode($attribute_name));
             $selected_attr = isset($selected_attributes[$option_name]) ? $selected_attributes[$option_name] : '';
 
+            //===> Skip Exeptions <===//
+            if (in_array($option_name, $exeptions)) { continue; }
+
             //===> Create Select Field <===//
-            echo '<div class="w-150 me-15">';
+            echo '<div class="'.$wrapper_style.'">';
+                //===> Label <===//
+                if ($label && !empty($label)) { echo '<label for="'.$option_name.'" class="'.$label.'">'.str_replace("pa_", " ", $attribute_name).'</label>'; }
                 echo '<select name="attribute_'.$option_name.'" value="'.$selected_attr.'" id="'.$option_name.'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
                 //===> Create Options <===//
                 foreach ($options as $option) {

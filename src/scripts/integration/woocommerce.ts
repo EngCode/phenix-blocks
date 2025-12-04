@@ -170,17 +170,91 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
         body: formData.toString()
     })
     //===> Return the Response as HTML <===//
-    .then(response => {
-        console.log("Response data:", response);
-        return response.text();
-    })
+    .then(response => response.text())
     //===> Insert HTML into target container <===//
-    .then(html => {
-        console.log("HTML data:", html);
+    .then((html:string) => {
         //===> Get target container <===//
         const container = document.querySelector(containerSelector);
         //===> Insert HTML into target container <===//
         if (container) container.innerHTML = html;
+        //===> WooCommerce Add to Cart <===//
+        Phenix(...container.querySelectorAll(".pds-add-to-cart")).on("click", (isClicked) => {
+            //===> Prevent link navigation <===//
+            isClicked.preventDefault();
+            //===> Define Item Data <===//
+            const button = isClicked.target;
+            //===> Get Product ID <===//
+            const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
+            //===> Get Quantity <===//
+            const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-var-item');
+            const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+            //===> Activate Loading Mode <===//
+            button.classList.add('px-loading-inline');
+            //===> Add the Item to the Cart <===//
+            Phenix(document).pds_add_to_cart(button, quantity, productId);
+        });
+        //===> Wishlist Toggle <===//
+        Phenix(...container.querySelectorAll(".pds-wishlist-btn")).on("click", (isClicked) => {
+            //===> Prevent Default <===//
+            isClicked.preventDefault();
+            //===> Define Data <===//
+            let action_url = isClicked.target.getAttribute('href'),
+                add_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-rm-url")),
+                remove_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-add-url"));
+
+            //====> Add Loading Mode <====//
+            isClicked.target.classList.add("px-loading-inline");
+
+            Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
+        });
+        //===> Variation Price Change <===//
+        Phenix(...container.querySelectorAll(".variation-control")).on("change", isChanged => {
+            //===> Make sure it is a valid controller <===//
+            if (!isChanged.target.value) return;
+
+            //===> Capture Select Element <===//
+            let element = isChanged.target;
+            let option = element.querySelector(`option[value="${element.value}"]`);
+
+            //===> Get Data <===//
+            let variation = element.value;
+            let price = option?.getAttribute('data-price');
+
+            //===> Update the Prices <===//
+            Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);
+
+            //===> Set Variation ID to Add to Cart Button <===//
+            if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
+        });
+        //===> Custom Number Input <===//
+        Phenix(...container.querySelectorAll(".px-counter-input")).forEach(counter => {
+            //===> Get Elements <===//
+            const input = counter.querySelector('input[type="number"]');
+            const decrease = counter.querySelector('.decrease-btn');
+            const increase = counter.querySelector('.increase-btn');
+            const minValue = parseInt(input.getAttribute('min')) || 0;
+            const maxValue = parseInt(input.getAttribute('max')) || 99999;
+            const inputSteps = parseInt(input.getAttribute('data-step')) || 1;
+
+            //===> Increase Number <===//
+            const IncreaseNum = (clicked) => {
+                //===> Get Input Element <===//
+                let newVal = parseInt(input.value) + inputSteps;
+                //===> Set Data <===//
+                input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
+            };
+        
+            //===> Decrease Number <===//
+            const DecreaseNum = (clicked) => {
+                //===> Get Input Element <===//
+                let newVal = parseFloat(input.value) - inputSteps;
+                //===> Set Data <===//
+                input.value = newVal > minValue || newVal === minValue ? newVal : minValue;
+            };
+
+            Phenix(decrease).on('click', DecreaseNum);
+            Phenix(increase).on('click', IncreaseNum);
+        });
     })
     .catch(err => console.error('Error fetching product:', err));
 };
@@ -191,7 +265,6 @@ PhenixElements.prototype.pds_quick_view = function () {
     this.forEach((button:HTMLElement) => {
         //===> Capture Click Event <===//
         button.addEventListener("click", (isClicked) => {
-            console.log(isClicked);
             //===> Prevent Default <===//
             isClicked.preventDefault();
             //===> Get Product ID <===//

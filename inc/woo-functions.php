@@ -285,7 +285,7 @@ if (!function_exists("pds_woo_attributes_select")):
                     }
 
                     //===> Create the Option <===//
-                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'"'.$selected.'>'.esc_html($option).'</option>';
+                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'"'.$selected.'>'.esc_html(str_replace("-", ".", $option)).'</option>';
                 }
                 //====> End Select Field <====//
                 echo '</select>';

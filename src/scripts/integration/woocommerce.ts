@@ -176,7 +176,7 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
         //===> Get target container <===//
         const container = document.querySelector(containerSelector);
         //===> Insert HTML into target container <===//
-        if (container) container.innerHTML = html;
+        if (container) container.append(html);
         //===> WooCommerce Add to Cart <===//
         Phenix(...container.querySelectorAll(".pds-add-to-cart")).on("click", (isClicked) => {
             //===> Prevent link navigation <===//
@@ -218,7 +218,7 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
 
             //===> Get Data <===//
             let variation = element.value;
-            let price = option?.getAttribute('data-price');
+            let price = option?.getAttribute('data-price') || element.getAttribute('data-price');
 
             //===> Update the Prices <===//
             Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);
@@ -255,6 +255,8 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
             Phenix(decrease).on('click', DecreaseNum);
             Phenix(increase).on('click', IncreaseNum);
         });
+        //===> Remove Loading <===//
+        containerSelector.querySelector('.px-loading').remove();
     })
     .catch(err => console.error('Error fetching product:', err));
 };
@@ -433,7 +435,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
         //===> Get Data <===//
         let variation = element.value;
-        let price = option?.getAttribute('data-price');
+        let price = option?.getAttribute('data-price') || element.getAttribute('data-price');
 
         //===> Update the Prices <===//
         Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);

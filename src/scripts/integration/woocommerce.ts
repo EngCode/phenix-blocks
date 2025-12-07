@@ -54,9 +54,12 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
             //====> Show Notifications <====//
             Phenix(document).notifications({
                 duration : 5000,
-                type     : "success",
+                type     : "custom",
                 position : ["center", "center"],
-                message  : "Product added to cart successfully.",
+                message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
+                        <i class="fas fa-check-circle color-success h1"></i>
+                        <p>Product added to cart successfully.</p>
+                </div>`,
             });
         }
     })
@@ -161,7 +164,10 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
 
     //===> Create Loading Mode in Target Container <===//
     const container = document.querySelector(containerSelector);
-    if (container) container.innerHTML = '<div class="px-loading" style="min-height: 200px;"></div>';
+    if (container) {
+        container.classList.add('px-loading');
+        container.innerHTML = '<div style="min-height: 200px;"></div>';
+    }
 
     //===> Send the request to WooCommerce via Fetch API <===//
     fetch(PDS_WP_KEY.site + '/wp-admin/admin-ajax.php', {
@@ -176,7 +182,7 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
         //===> Get target container <===//
         const container = document.querySelector(containerSelector);
         //===> Insert HTML into target container <===//
-        if (container) container.append(html);
+        if (container) container.innerHTML = html;
         //===> WooCommerce Add to Cart <===//
         Phenix(...container.querySelectorAll(".pds-add-to-cart")).on("click", (isClicked) => {
             //===> Prevent link navigation <===//
@@ -256,7 +262,7 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
             Phenix(increase).on('click', IncreaseNum);
         });
         //===> Remove Loading <===//
-        containerSelector.querySelector('.px-loading').remove();
+        container.classList.remove('px-loading');
     })
     .catch(err => console.error('Error fetching product:', err));
 };

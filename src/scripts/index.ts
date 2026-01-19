@@ -376,7 +376,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
         //====> Live Event <====//
         } else if (live && this.length > 0) {
             //====> Create Time Loop & Attach Event <====//
-            let timerLoop = setInterval(() => this.forEach((element:HTMLElement) => element.addEventListener(event, callback)), timer | 1000);
+            let timerLoop = setInterval(() => this.forEach((element:HTMLElement) => element.addEventListener(event, callback)), timer | 300);
 
             //====> Return the Elements & Time Loop <====//
             return {
@@ -637,78 +637,75 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
 
     /*====> Audio Trigger <=====*/
     audioTrigger = (trigger) => {
-        //===> Check if the Trigger is HTML Element <===//
-        if (trigger instanceof HTMLElement) {
-            //===> Define Objects <===//
-            let audio_player:any = document.querySelector('#px-audio-player');
-    
-            //===> Create Audio Player <===//
-            if (!audio_player) {
-                //===> Create Player <===//
-                audio_player = document.createElement("audio");
-                //=== Set Player ID ===//
-                audio_player.setAttribute('id', 'px-audio-player');
-                //=== Insert Player to the Document ===//
-                document.body.appendChild(audio_player);
-            }
-    
-            //====> Audio Buttons <====//
-            Phenix(trigger).on('click', event => {
-                event.preventDefault();
-                //=== Get Data ===//
-                let button = event.target,
-                    audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
-    
-                //=== Check if the Audio is Already Playing ===//
-                if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
-                    //=== Pause the Audio ===//
-                    audio_player.pause();
-    
-                    //=== Switch Play Status icon ===//
-                    if(button.classList.contains('fa-pause')) {
-                        button.classList.remove('fa-pause');
-                        button.classList.add('fa-play');
-                    }
-    
-                    //=== Switch Play Status icon ===//
-                    else if(button.classList.contains('fa-music-note')) {
-                        button.classList.remove('fa-music-note');
-                        button.classList.add('fa-music-note-slash');
-                    }
-                } else {
-                    //=== Set Audio and Play ===//
-                    audio_player.setAttribute('src', audio_file);
-                    audio_player.play();
-    
+        //===> Define Objects <===//
+        let audio_player:any = document.querySelector('#px-audio-player');
+
+        //===> Create Audio Player <===//
+        if (!audio_player) {
+            //===> Create Player <===//
+            audio_player = document.createElement("audio");
+            //=== Set Player ID ===//
+            audio_player.setAttribute('id', 'px-audio-player');
+            //=== Insert Player to the Document ===//
+            document.body.appendChild(audio_player);
+        }
+
+        //====> Audio Buttons <====//
+        Phenix(trigger).on('click', event => {
+            event.preventDefault();
+            //=== Get Data ===//
+            let button = event.target,
+                audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
+
+            //=== Check if the Audio is Already Playing ===//
+            if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {
+                //=== Pause the Audio ===//
+                audio_player.pause();
+
+                //=== Switch Play Status icon ===//
+                if(button.classList.contains('fa-pause')) {
+                    button.classList.remove('fa-pause');
+                    button.classList.add('fa-play');
+                }
+
+                //=== Switch Play Status icon ===//
+                else if(button.classList.contains('fa-music-note')) {
+                    button.classList.remove('fa-music-note');
+                    button.classList.add('fa-music-note-slash');
+                }
+            } else {
+                //=== Set Audio and Play ===//
+                audio_player.setAttribute('src', audio_file);
+                audio_player.play();
+
+                //=== Switch Play Status icon ===//
+                if (button.classList.contains('fa-play')) {
+                    button.classList.add('fa-pause');
+                    button.classList.remove('fa-play');
+                }
+
+                //=== Switch Play Status icon ===//
+                else if(button.classList.contains('fa-music-note-slash')) {
+                    button.classList.add('fa-music-note');
+                    button.classList.remove('fa-music-note-slash');
+                }
+
+                //=== When Audio is Finished Switch the Status icon ===//
+                audio_player.addEventListener('ended', (isEnded) => {
                     //=== Switch Play Status icon ===//
                     if (button.classList.contains('fa-play')) {
                         button.classList.add('fa-pause');
                         button.classList.remove('fa-play');
                     }
-    
+
                     //=== Switch Play Status icon ===//
                     else if(button.classList.contains('fa-music-note-slash')) {
                         button.classList.add('fa-music-note');
                         button.classList.remove('fa-music-note-slash');
                     }
-    
-                    //=== When Audio is Finished Switch the Status icon ===//
-                    audio_player.addEventListener('ended', (isEnded) => {
-                        //=== Switch Play Status icon ===//
-                        if (button.classList.contains('fa-play')) {
-                            button.classList.add('fa-pause');
-                            button.classList.remove('fa-play');
-                        }
-    
-                        //=== Switch Play Status icon ===//
-                        else if(button.classList.contains('fa-music-note-slash')) {
-                            button.classList.add('fa-music-note');
-                            button.classList.remove('fa-music-note-slash');
-                        }
-                    });
-                }
-            }, true);
-        };
+                });
+            }
+        }, true);
     };
 
     /*====> Convert String to Boolean <====*/

@@ -317,29 +317,7 @@ if (!function_exists('pds_is_in_wishlist')) :
      */
     function pds_is_in_wishlist($product_id) {
         //===> Check if it is in Wishlist <===//
-        $is_in_wishlist = false;
-        $wishlist_items = YITH_WCWL_Wishlist_Factory::get_current_wishlist();
-        
-        //===> If the Wishlist is not Empty <===//
-        if ($wishlist_items && $wishlist_items->has_items()) {
-            //===> for Each Product in Wishlist <===//
-            foreach ($wishlist_items["items"] as $item) {
-                //===> For Each Product in the List <===//
-                foreach ($item['data'] as $item_product) {
-                    //===> If the Product Exist Mark it and Exit <===//
-                    if ($item['product_id'] == $product_id && isset($post)) {
-                        //===> Mark the Product <===//
-                        $is_in_wishlist = true;
-                        //===> Correct the Wishlist URL <===//
-                        $wishlist_url = $item->get_remove_url();
-                        $post->wishlist_rm_url = $item->get_remove_url();
-                        //===> Break Loop <===//
-                        break; 
-                    }
-                }
-            }
-        }
-
+        $is_in_wishlist = YITH_WCWL_Wishlists()->is_product_in_wishlist($product_id);
         //===> Return the Result <===//
         return $is_in_wishlist;
     }

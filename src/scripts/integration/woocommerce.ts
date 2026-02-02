@@ -27,6 +27,7 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     formData.append('action', 'woocommerce_add_to_cart');
     formData.append('product_id', product_id.toString());
 
+    console.log(formData);
     //===> Send the request to WooCommerce via Fetch API <===//
     fetch(formURL, {
         method: 'POST',
@@ -35,6 +36,7 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     })
     //===> Return the Response as JSON data <===//
     .then(response => response.json()).then(data => {
+        console.log(data);
         //===> Check for Data and Error <===//
         if (data && data.error) {
             //====> Show Notifications <====//
@@ -112,6 +114,9 @@ PhenixElements.prototype.pds_remove_from_cart = function (formData, cartItemKey)
 
 /*====> Toggle Wishlist Method <====*/
 PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, add_url, remove_url) {
+    //===> Define Button <===//
+    const button = isClicked.currentTarget || isClicked.target;
+
     //====> Send the Data to the Server <====//
     fetch(action_url, {
         method: "GET",
@@ -128,16 +133,14 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
             });
             //====> Replace Icon Style <====//
             if (action_url.includes('add_to_wishlist')) {
-                isClicked.target.classList.add("fas");
-                isClicked.target.classList.remove("far");
-                isClicked.target.setAttribute("href", remove_url);
+                button.classList.add("fas");
+                button.classList.remove("far");
+                button.setAttribute("href", remove_url);
             } else {
-                isClicked.target.classList.add("far");
-                isClicked.target.classList.remove("fas");
-                isClicked.target.setAttribute("href", add_url);
+                button.classList.add("far");
+                button.classList.remove("fas");
+                button.setAttribute("href", add_url);
             }
-            //====> Remove Loading Mode <====//
-            isClicked.target.classList.remove("px-loading-inline");
         }
         //====> Error Status <====//
         else {
@@ -149,6 +152,9 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
                 message  : "Failed to update wishlist",
             });
         }
+
+        //====> Remove Loading Mode <====//
+        button.classList.remove("px-loading-inline");
     });
 }
 
@@ -183,84 +189,12 @@ PhenixElements.prototype.pds_get_product = function (productId, containerSelecto
         const container = document.querySelector(containerSelector);
         //===> Insert HTML into target container <===//
         if (container) container.innerHTML = html;
-        //===> WooCommerce Add to Cart <===//
-        Phenix(...container.querySelectorAll(".pds-add-to-cart")).on("click", (isClicked) => {
-            //===> Prevent link navigation <===//
-            isClicked.preventDefault();
-            //===> Define Item Data <===//
-            const button = isClicked.target;
-            //===> Get Product ID <===//
-            const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
-            //===> Get Quantity <===//
-            const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-var-item');
-            const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
-            //===> Activate Loading Mode <===//
-            button.classList.add('px-loading-inline');
-            //===> Add the Item to the Cart <===//
-            Phenix(document).pds_add_to_cart(button, quantity, productId);
-        });
-        //===> Wishlist Toggle <===//
-        Phenix(...container.querySelectorAll(".pds-wishlist-btn")).on("click", (isClicked) => {
-            //===> Prevent Default <===//
-            isClicked.preventDefault();
-            //===> Define Data <===//
-            let action_url = isClicked.target.getAttribute('href'),
-                add_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-rm-url")),
-                remove_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-add-url"));
-
-            //====> Add Loading Mode <====//
-            isClicked.target.classList.add("px-loading-inline");
-
-            Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
-        });
-        //===> Variation Price Change <===//
-        Phenix(...container.querySelectorAll(".variation-control")).on("change", isChanged => {
-            //===> Make sure it is a valid controller <===//
-            if (!isChanged.target.value) return;
-
-            //===> Capture Select Element <===//
-            let element = isChanged.target;
-            let option = element.querySelector(`option[value="${element.value}"]`);
-
-            //===> Get Data <===//
-            let variation = element.value;
-            let price = option?.getAttribute('data-price') || element.getAttribute('data-price');
-
-            //===> Update the Prices <===//
-            Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);
-
-            //===> Set Variation ID to Add to Cart Button <===//
-            if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
-        });
-        //===> Custom Number Input <===//
-        Phenix(...container.querySelectorAll(".px-counter-input")).forEach(counter => {
-            //===> Get Elements <===//
-            const input = counter.querySelector('input[type="number"]');
-            const decrease = counter.querySelector('.decrease-btn');
-            const increase = counter.querySelector('.increase-btn');
-            const minValue = parseInt(input.getAttribute('min')) || 0;
-            const maxValue = parseInt(input.getAttribute('max')) || 99999;
-            const inputSteps = parseInt(input.getAttribute('data-step')) || 1;
-
-            //===> Increase Number <===//
-            const IncreaseNum = (clicked) => {
-                //===> Get Input Element <===//
-                let newVal = parseInt(input.value) + inputSteps;
-                //===> Set Data <===//
-                input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
-            };
         
-            //===> Decrease Number <===//
-            const DecreaseNum = (clicked) => {
-                //===> Get Input Element <===//
-                let newVal = parseFloat(input.value) - inputSteps;
-                //===> Set Data <===//
-                input.value = newVal > minValue || newVal === minValue ? newVal : minValue;
-            };
-
-            Phenix(decrease).on('click', DecreaseNum);
-            Phenix(increase).on('click', IncreaseNum);
+        //===> Variation Price Change Initial Trigger <===//
+        container.querySelectorAll(".variation-control").forEach(control => {
+            control.dispatchEvent(new Event('change'));
         });
+
         //===> Remove Loading <===//
         container.classList.remove('px-loading');
     })
@@ -285,6 +219,109 @@ PhenixElements.prototype.pds_quick_view = function () {
 
 /*====> D.O.M is Ready ? <====*/
 Phenix(document).on("DOMContentLoaded", (loaded) => {
+    //===> Global Event Delegation <===//
+    Phenix(document).on("click", (isClicked) => {
+        //===> Define Target <===//
+        const target = isClicked.target;
+
+        //====> Case 1: Wishlist Toggle <====//
+        if (target.closest(".pds-wishlist-btn")) {
+            //===> Prevent Default <===//
+            isClicked.preventDefault();
+            //===> Define Button <===//
+            const button = target.closest(".pds-wishlist-btn");
+            //===> Define Data <===//
+            let action_url = button.getAttribute('href'),
+                add_url = button.getAttribute("data-add-url"),
+                remove_url = button.getAttribute("data-rm-url");
+
+            //====> Add Loading Mode <====//
+            button.classList.add("px-loading-inline");
+
+            Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
+        }
+
+        //====> Case 2: Add to Cart <====//
+        if (target.closest(".pds-add-to-cart")) {
+            //===> Prevent link navigation <===//
+            isClicked.preventDefault();
+            //===> Define Button <===//
+            const button = target.closest(".pds-add-to-cart");
+            //===> Get Product ID <===//
+            const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
+            //===> Get Quantity <===//
+            const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-card') || Phenix(button).ancestor('.product-card-v2') || Phenix(button).ancestor('.product-var-item');
+            const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+
+            //===> Activate Loading Mode <===//
+            button.classList.add('px-loading-inline');
+    
+            //===> Add the Item to the Cart <===//
+            Phenix(document).pds_add_to_cart(button, quantity, productId);
+        }
+
+        //====> Case 3: Remove from Cart <====//
+        if (target.closest(".cart-item-remover")) {
+            //===> Prevent link navigation <===//
+            isClicked.preventDefault();
+            //===> Define Button <===//
+            const button = target.closest(".cart-item-remover");
+            //===> Get the Item Key <===//
+            const cartItemKey = button.getAttribute('data-cart_item_key');
+            //===> Activate Loading Mode <===//
+            Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
+            //===> Create Form Data Request <===//
+            const formData = new URLSearchParams();
+            formData.append('cart_item_key', cartItemKey);
+            formData.append('action', 'woocommerce_remove_cart_item');
+            //===> Remove the Item from the Cart <===//
+            Phenix(document).pds_remove_from_cart(formData, cartItemKey);
+        }
+
+        //====> Case 4: Add Multiple Products <====//
+        if (target.closest(".pds-add-products-form .add-products-btn")) {
+            //===> Prevent Default <===//
+            isClicked.preventDefault();
+            //===> Define Button <===//
+            const button = target.closest(".add-products-btn");
+            const products = Phenix(button).ancestor('.pds-add-products-form').querySelector(".px-select")?.getAttribute("data-value")?.split(",");
+            //===> Get Quantity <===//
+            const quantity = Phenix(button).ancestor('.pds-add-products-form')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
+
+            if (products) {
+                //===> Activate Loading Mode <===//
+                button.classList.add('px-loading-inline');
+                //===> Add the Items to the Cart <===//
+                products.forEach(product => {
+                    Phenix(product).pds_add_to_cart(button, quantity, product);
+                });
+            }
+        }
+    });
+
+    //===> Variation Price Change (Using Delegation) <===//
+    Phenix(document).on("change", (isChanged) => {
+        //===> Capture Select Element <===//
+        const element = isChanged.target;
+        
+        if (element.classList.contains("variation-control")) {
+            //===> Make sure it is a valid controller <===//
+            if (!element.value) return;
+
+            const option = element.querySelector(`option[value="${element.value}"]`);
+
+            //===> Get Data <===//
+            const variation = element.value;
+            const price = option?.getAttribute('data-price') || element.getAttribute('data-price');
+
+            //===> Update the Prices <===//
+            Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
+
+            //===> Set Variation ID to Add to Cart Button <===//
+            if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
+        }
+    });
+
     //===> Mini Cart Updater <===//
     document.body.addEventListener('pds_cart_updated', function() {
         //===> Fetch the updated cart fragments using Fetch API <===//
@@ -295,7 +332,6 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         //===> Return the Response as JSON data <===//
         .then(response => response.json()).then(data => {
             //===> Check for the Cart Fragments <===//
-            //===* data {div.widget_shopping_cart_content, .cart-table, cart_count, cart_total} <===//
             if (data && data.fragments) {   
                 //===> Cart Content Fragment <===//
                 const newCartContent = data.fragments["div.widget_shopping_cart_content"];
@@ -313,143 +349,38 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
     
                 //====> Update Cart Count <====//
                 Phenix(".cart-count").forEach(item => item.innerHTML = data.fragments['cart_count']);
-    
-                //===> Update Cart Item Remover <===//
-                Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
-                    //===> Prevent link navigation <===//
-                    isClicked.preventDefault();
-                    const button = isClicked.target;
-    
-                    //===> Get the Item Key <===//
-                    const cartItemKey = button.getAttribute('data-cart_item_key');
-    
-                    //===> Activate Loading Mode <===//
-                    Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
-    
-                    //===> Create Form Data Request <===//
-                    const formData = new URLSearchParams();
-                    formData.append('cart_item_key', cartItemKey);
-                    formData.append('action', 'woocommerce_remove_cart_item');
-    
-                    //===> Remove the Item from the Cart <===//
-                    Phenix(document).pds_remove_from_cart(formData, cartItemKey);
-                }, true);
             }
         })
-        //===> Catch any errors <===//
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error refreshing cart:', error));
     });
 
     //===> WooCommerce Sorting <===//
     Phenix('.woocommerce-ordering select').on('change', (select) => {
-        //====> Get the Current Value <====//
         const sortValue = select.target.value;
-        //====> Create new URL Params <====//
         const urlParams = new URLSearchParams(window.location.search);
-        //====> Set URL Params <====//
         urlParams.set('orderby', sortValue);
-        //====> Reload page with selected sorting <====//
         window.location.search = urlParams.toString();
     });
- 
-    //===> WooCommerce Add to Cart <===//
-    Phenix(".pds-add-to-cart").on("click", (isClicked) => {
-        //===> Prevent link navigation <===//
-        isClicked.preventDefault();
-        
-        //===> Define Item Data <===//
-        const button = isClicked.target;
 
-        //===> Get Product ID <===//
-        const productId = button.getAttribute('data-variation') || button.getAttribute('data-product');
-
-        //===> Get Quantity <===//
-        const ancestor = Phenix(button).ancestor('.single-product-content') || Phenix(button).ancestor('.product-var-item');
-        const quantity = ancestor?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
-
-        //===> Activate Loading Mode <===//
-        button.classList.add('px-loading-inline');
- 
-        //===> Add the Item to the Cart <===//
-        Phenix(document).pds_add_to_cart(button, quantity, productId);
-    }, true);
- 
-    //===> WooCommerce Cart Item Remover <===//
-    Phenix(".cart-item .cart-item-remover").on("click", (isClicked) => {
-         //===> Prevent link navigation <===//
-         isClicked.preventDefault();
-         const button = isClicked.target;
- 
-         //===> Get the Item Key <===//
-         const cartItemKey = button.getAttribute('data-cart_item_key');
- 
-         //===> Activate Loading Mode <===//
-         Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
- 
-         //===> Create Form Data Request <===//
-         const formData = new URLSearchParams();
-         formData.append('cart_item_key', cartItemKey);
-         formData.append('action', 'woocommerce_remove_cart_item');
-         
-         //===> Remove the Item from the Cart <===//
-         Phenix(document).pds_remove_from_cart(formData, cartItemKey);
-    }, true);
-
-    //===> Wishlist Toggle <===//
-    Phenix(".pds-wishlist-btn").on("click", (isClicked) => {
-        //===> Prevent Default <===//
-        isClicked.preventDefault();
-        //===> Define Data <===//
-        let action_url = isClicked.target.getAttribute('href'),
-            add_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-rm-url")),
-            remove_url = isClicked.target.setAttribute("href", isClicked.target.getAttribute("data-add-url"));
-
-        //====> Add Loading Mode <====//
-        isClicked.target.classList.add("px-loading-inline");
-
-        Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
-    }, true);
-
-    //===> Add Multiple Products from Cart Page <===//
-    Phenix(".pds-add-products-form .add-products-btn").on("click", (isClicked) => {
-        //===> Prevent link navigation <===//
-        isClicked.preventDefault();
-
-        //===> Define Item Data <===//
-        const button = isClicked.target;
-        const products = Phenix(button).ancestor('.pds-add-products-form').querySelector(".px-select").getAttribute("data-value").split(",");
-        //===> Get Quantity <===//
-        const quantity = Phenix(button).ancestor('.pds-add-products-form')?.querySelector('.quantity-input')?.value || parseInt(button.getAttribute('data-quantity')) || 1;
-
-        //===> Activate Loading Mode <===//
-        button.classList.add('px-loading-inline');
-
-        //===> Add the Items to the Cart <===//
-        products.forEach(product => {
-            Phenix(product).pds_add_to_cart(button, quantity, product);
-        });
-    });
-
-    //===> Variation Price Change <===//
-    Phenix(".variation-control").on("change", isChanged => {
-        //===> Make sure it is a valid controller <===//
-        if (!isChanged.target.value) return;
-
-        //===> Capture Select Element <===//
-        let element = isChanged.target;
-        let option = element.querySelector(`option[value="${element.value}"]`);
-
-        //===> Get Data <===//
-        let variation = element.value;
-        let price = option?.getAttribute('data-price') || element.getAttribute('data-price');
-
-        //===> Update the Prices <===//
-        Phenix(".single-product-content .price .price-num").forEach(element => element.textContent = price);
-
-        //===> Set Variation ID to Add to Cart Button <===//
-        if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
-    });
-
-    //===> Quick View Popup <===//
+    //===> Quick View Popup Initializer <===//
     Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
+
+    //===> Number Input Counters <===//
+    Phenix(document).on('click', (isClicked) => {
+        const target = isClicked.target;
+        if (target.classList.contains('decrease-btn') || target.classList.contains('increase-btn')) {
+            const counter = Phenix(target).ancestor('.px-counter-input');
+            const input = counter.querySelector('input[type="number"]');
+            const minValue = parseInt(input.getAttribute('min')) || 0;
+            const maxValue = parseInt(input.getAttribute('max')) || 99999;
+            const step = parseInt(input.getAttribute('data-step')) || 1;
+            let currentVal = parseInt(input.value);
+
+            if (target.classList.contains('increase-btn')) {
+                input.value = (currentVal + step) <= maxValue ? (currentVal + step) : maxValue;
+            } else {
+                input.value = (currentVal - step) >= minValue ? (currentVal - step) : minValue;
+            }
+        }
+    });
 });

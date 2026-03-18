@@ -299,7 +299,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
         }
     });
 
-    //===> Variation Price Change (Using Delegation) <===//
+    //===> Variation Price/Image Change (Using Delegation) <===//
     Phenix(document).on("change", (isChanged) => {
         //===> Capture Select Element <===//
         const element = isChanged.target;
@@ -313,9 +313,15 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             //===> Get Data <===//
             const variation = element.value;
             const price = option?.getAttribute('data-price') || element.getAttribute('data-price');
+            const image = option?.getAttribute('data-product-image') || element.getAttribute('data-product-image');
 
             //===> Update the Prices <===//
             Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
+
+            //===> Update the Image <===//
+            if (image) {
+                Phenix(".single-product-image").setAttributes({ "src": image });
+            }
 
             //===> Set Variation ID to Add to Cart Button <===//
             if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });

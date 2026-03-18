@@ -93,9 +93,15 @@ if (!function_exists('phenix_assets')) :
         //====> define props <====//
         $prim_font; $sec_font; $style_font;
         $final_files = array();
-        $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/";
+        $assets_url = plugin_dir_url(__DIR__)."assets/";
         $icons_font  = get_option("pds_icon_font");
         $fonts_list  = (array) get_option("pds_fonts");
+
+        //====> Check for CDN Option for the Core JS/CSS <====//
+        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+            $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
+        }
+
         //===> Custom Fonts <===//
         $custom_fonts = [
             "bio-sans",
@@ -109,7 +115,8 @@ if (!function_exists('phenix_assets')) :
             "ge-ss-two",
             "palsam-arabic",
             "palsam-arabic-cursive",
-            "ping-ar"
+            "ping-ar",
+            "Bahij-TheSansArabic-Bold"
         ];
 
         //===> Style Font Fallback <===//
@@ -234,8 +241,8 @@ endif;
 
 //====> Optimized Assets Resources <====//
 add_filter( 'wp_resource_hints', function( $hints, $relation_type ) {
-    //====> Pre-Connect Hints <====//
-    if ('preconnect' === $relation_type ) {
+    //====> Pre-Connect Hints and DNS Prefetch Hints <====//
+    if ('preconnect' === $relation_type || 'dns-prefetch' === $relation_type) {
         //====> Google Fonts <====//
         if (get_option('pds_gfonts') == "on") {
             $hints[] = 'https://fonts.googleapis.com';
@@ -243,14 +250,10 @@ add_filter( 'wp_resource_hints', function( $hints, $relation_type ) {
         }
         
         //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
-        $hints[] = 'https://cdn.jsdelivr.net';
-        $hints[] = 'https://cdn.jsdelivr.net';
-    }
-    //====> DNS Prefetch Hints <====//
-    if ('dns-prefetch' === $relation_type ) {
-        //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
-        $hints[] = 'https://cdn.jsdelivr.net';
-        $hints[] = 'https://cdn.jsdelivr.net';
+        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+            $hints[] = 'https://cdn.jsdelivr.net';
+            $hints[] = 'https://cdn.jsdelivr.net';
+        }
     }
     //====> Return the Hints <====//
     return $hints;

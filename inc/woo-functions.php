@@ -261,6 +261,7 @@ if (!function_exists("pds_woo_attributes_select")):
                     //===> Create Variation ID Holder <===//
                     $variation_id = 0;
                     $variation_price = null;
+                    $variation_image = null;
 
                     //===> Loop on Variations <===//
                     foreach ($available_variations as $variation) {
@@ -270,6 +271,10 @@ if (!function_exists("pds_woo_attributes_select")):
                             $variation_id = $variation['variation_id'];
                             //===> Assign Price <===//
                             $variation_price = $variation['display_price'];
+                            //===> Assign Image <===//
+                            if (isset($variation['image']) && !empty($variation['image'])) {
+                                $variation_image = $variation['image']['url'];
+                            }
                         }
                     }
 
@@ -285,7 +290,7 @@ if (!function_exists("pds_woo_attributes_select")):
                     }
 
                     //===> Create the Option <===//
-                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'"'.$selected.'>'.esc_html(str_replace("-", ".", $option)).'</option>';
+                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'" data-product-image="'.$variation_image.'"'  .$selected.'>'.esc_html(str_replace("-", ".", $option)).'</option>';
                 }
                 //====> End Select Field <====//
                 echo '</select>';

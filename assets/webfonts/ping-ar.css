@@ -1,0 +1,27 @@
+﻿/*====> Phenix Custom Fonts <====*/
+@font-face {
+    font-family: 'Ping AR + LT';
+    src: url('ping-ar/medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ping AR + LT';
+    src: url('ping-ar/medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+    
+@font-face {
+    font-family: 'Ping AR + LT';
+    src: url('ping-ar/bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {--primary-font: 'Ping AR + LT', sans-serif; --secondary-font: 'Ping AR + LT', sans-serif;}

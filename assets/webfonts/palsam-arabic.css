@@ -1,0 +1,40 @@
+﻿/*====> Phenix Custom Fonts <====*/
+@font-face {
+    font-family: 'PalsamArabic-Regular';
+    src: url('palsam-arabic/regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PalsamArabic-Light';
+    src: url('palsam-arabic/light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PalsamArabic-Medium';
+    src: url('palsam-arabic/medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PalsamArabic-Bold';
+    src: url('palsam-arabic/bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PalsamArabic-ExtraBold';
+    src: url('palsam-arabic/extra-bold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}

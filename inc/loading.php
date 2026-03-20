@@ -39,7 +39,7 @@
     <!-- Loading Script -->
     <script data-cfasync="false">
         /*====> Unblock Phenix <====*/
-        const phenixJsScript = document.querySelector('#phenix-js') || document.querySelector("script[src*='p`henix.js']");
+        const phenixJsScript = document.querySelector('#phenix-js') || document.querySelector("script[src*='phenix.js']");
         if(phenixJsScript && phenixJsScript.hasAttribute("async")) phenixJsScript.removeAttribute('async');
     
         //===> Progress Bar Percentage <===//
@@ -94,6 +94,7 @@
     
             //===> Cancel Loading Showup <===//
             if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
+
             //===> Show Loader with Circular Effect <===//
             const pxLoader = document.querySelector('.px-page-loader');
             //===> Show Loader <===//

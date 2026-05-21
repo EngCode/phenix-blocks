@@ -175,34 +175,23 @@ PhenixElements.prototype.utilities = function (options?:{
             });
         });
 
-        //===> Custom Number Input <===//
-        Phenix("body:not([class*='editor']) .px-counter-input").forEach(counter => {
-            //===> Get Elements <===//
-            const input = counter.querySelector('input[type="number"]');
-            const decrease = counter.querySelector('.decrease-btn');
-            const increase = counter.querySelector('.increase-btn');
-            const minValue = parseInt(input.getAttribute('min')) || 0;
-            const maxValue = parseInt(input.getAttribute('max')) || 99999;
-            const inputSteps = parseInt(input.getAttribute('data-step')) || 1;
+        //===> Number Input Counters <===//
+        Phenix(document).on('click', (isClicked) => {
+            const target = isClicked.target;
+            if (target.classList.contains('decrease-btn') || target.classList.contains('increase-btn')) {
+                const counter = Phenix(target).ancestor('.px-counter-input');
+                const input = counter.querySelector('input[type="number"]');
+                const minValue = parseInt(input.getAttribute('min')) || 0;
+                const maxValue = parseInt(input.getAttribute('max')) || 99999;
+                const step = parseInt(input.getAttribute('data-step')) || 1;
+                let currentVal = parseInt(input.value);
 
-            //===> Increase Number <===//
-            const IncreaseNum = (clicked) => {
-                //===> Get Input Element <===//
-                let newVal = parseInt(input.value) + inputSteps;
-                //===> Set Data <===//
-                input.value = newVal < maxValue || newVal === maxValue ? newVal : maxValue;
-            };
-        
-            //===> Decrease Number <===//
-            const DecreaseNum = (clicked) => {
-                //===> Get Input Element <===//
-                let newVal = parseFloat(input.value) - inputSteps;
-                //===> Set Data <===//
-                input.value = newVal > minValue || newVal === minValue ? newVal : minValue;
-            };
-
-            Phenix(decrease).on('click', DecreaseNum);
-            Phenix(increase).on('click', IncreaseNum);
+                if (target.classList.contains('increase-btn')) {
+                    input.value = (currentVal + step) <= maxValue ? (currentVal + step) : maxValue;
+                } else {
+                    input.value = (currentVal - step) >= minValue ? (currentVal - step) : minValue;
+                }
+            }
         });
 
         //====> To Top Hook <=====//

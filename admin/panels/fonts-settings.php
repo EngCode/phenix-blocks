@@ -47,7 +47,7 @@
     <div class="col-12 col-md-4 border-reset divider-s">
         <div class="pd-20 border-1 border-alpha-15 border-dashed bg-offwhite-primary radius-sm">
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font", "phenix"); ?> (LTR)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font","pds-blocks"); ?> (LTR)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-text mb-5">
                 <select name="pds_fonts[primary]" value="<?php echo esc_attr($current_fonts["primary"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Primary Font' ,'phenix'); ?>">
@@ -60,10 +60,10 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint mb-20 color-gray fs-12"><?php echo esc_html__("Select a Primary Font for all Headlines and Titles.","phenix");?></p>
+            <p class="control-hint mb-20 color-gray fs-12"><?php echo esc_html__("Select a Primary Font for all Headlines and Titles.","pds-blocks");?></p>
     
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Secondary Font", "phenix"); ?> (LTR)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Secondary Font","pds-blocks"); ?> (LTR)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
                 <select name="pds_fonts[secondary]" value="<?php echo esc_attr($current_fonts["secondary"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Secondary Font' ,'phenix'); ?>">
@@ -76,10 +76,10 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Secondary Font for all other text on the website.","phenix");?></p>
+            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Secondary Font for all other text on the website.","pds-blocks");?></p>
     
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font", "phenix"); ?> (LTR)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font","pds-blocks"); ?> (LTR)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
                 <select name="pds_fonts[style]" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
@@ -92,14 +92,14 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Style Font for special cases.","phenix");?></p>
+            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Style Font for special cases.","pds-blocks");?></p>
         </div>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset divider-s">
         <div class="pd-20 border-1 border-alpha-15 border-dashed bg-offwhite-primary radius-sm">
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font", "phenix"); ?> (RTL)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font","pds-blocks"); ?> (RTL)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-text mb-5">
                 <select name="pds_fonts[primary_rtl]" value="<?php echo esc_attr($current_fonts["primary_rtl"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Primary Font' ,'phenix'); ?>">
@@ -112,10 +112,10 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint mb-20 color-gray fs-12"><?php echo esc_html__("Select a Primary Font for all Headlines and Titles.","phenix");?></p>
+            <p class="control-hint mb-20 color-gray fs-12"><?php echo esc_html__("Select a Primary Font for all Headlines and Titles.","pds-blocks");?></p>
     
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Secondary Font", "phenix"); ?> (RTL)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Secondary Font","pds-blocks"); ?> (RTL)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
                 <select name="pds_fonts[secondary_rtl]" value="<?php echo esc_attr($current_fonts["secondary_rtl"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Secondary Font' ,'phenix'); ?>">
@@ -128,10 +128,10 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Secondary Font for all other text on the website.","phenix");?></p>
+            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Secondary Font for all other text on the website.","pds-blocks");?></p>
             
             <!-- Control Label -->
-            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font", "phenix"); ?> (RTL)</label>
+            <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Style Font","pds-blocks"); ?> (RTL)</label>
             <!-- Form Control -->
             <div class="control-icon far fa-font mb-5">
                 <select name="pds_fonts[style_rtl]" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Style Font' ,'phenix'); ?>">
@@ -144,13 +144,13 @@
                     ?>
                 </select>
             </div>
-            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Style Font for special cases.","phenix");?></p>
+            <p class="control-hint color-gray fs-12"><?php echo esc_html__("Select a Style Font for special cases.","pds-blocks");?></p>
         </div>
     </div>
     <!-- Column -->
     <div class="col-12 col-md-4 border-reset divider-s">
         <!-- Control Label -->
-        <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Icons Font", "phenix"); ?></label>
+        <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Icons Font","pds-blocks"); ?></label>
         <!-- Form Control -->
         <div class="control-icon far fa-star-half-alt mb-15">
             <select name="pds_icon_font" value="<?php echo esc_attr(get_option("pds_icon_font"));?>" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Icons Font' ,'phenix'); ?>">

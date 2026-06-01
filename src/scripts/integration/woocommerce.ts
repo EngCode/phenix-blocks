@@ -370,23 +370,4 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
 
     //===> Quick View Popup Initializer <===//
     Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
-
-    //===> Number Input Counters <===//
-    Phenix(document).on('click', (isClicked) => {
-        const target = isClicked.target;
-        if (target.classList.contains('decrease-btn') || target.classList.contains('increase-btn')) {
-            const counter = Phenix(target).ancestor('.px-counter-input');
-            const input = counter.querySelector('input[type="number"]');
-            const minValue = parseInt(input.getAttribute('min')) || 0;
-            const maxValue = parseInt(input.getAttribute('max')) || 99999;
-            const step = parseInt(input.getAttribute('data-step')) || 1;
-            let currentVal = parseInt(input.value);
-
-            if (target.classList.contains('increase-btn')) {
-                input.value = (currentVal + step) <= maxValue ? (currentVal + step) : maxValue;
-            } else {
-                input.value = (currentVal - step) >= minValue ? (currentVal - step) : minValue;
-            }
-        }
-    });
 });

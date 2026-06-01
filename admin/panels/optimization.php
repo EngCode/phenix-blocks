@@ -171,7 +171,7 @@
                 <!-- Column -->
                 <div class="col-4">
                     <!-- Control Label -->
-                    <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Post Excerpt Length", "phenix"); ?></label>
+                    <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Post Excerpt Length","pds-blocks"); ?></label>
                     <!-- Form Control -->
                     <input type="number" class="form-control radius-sm fs-13" name="excerpt_length" value="<?php echo get_option("excerpt_length") ? esc_attr(get_option("excerpt_length")) : 175; ?>" />
                 </div>

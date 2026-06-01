@@ -56,7 +56,6 @@ if (!function_exists('woo_scripts_optimize')) :
             "wc-product-gallery-lightbox",
         );
 
-        
         //===> Remove Scripts <===//
         if (get_option('pds_woo_js') == "on") {
             foreach ($woo_scripts as $script) {
@@ -92,8 +91,9 @@ if (!function_exists('get_product_price_data')):
         //===> Get Price from Variable Products <===//
         if ($product->is_type('variable')) {
             $prices = $product->get_variation_prices();
-            $regular_price = !empty($prices['regular_price']) ? min($prices['regular_price']) : 0;
-            $sale_price = !empty($prices['sale_price']) ? min($prices['sale_price']) : 0;
+            $available_variations = $product->get_available_variations();
+            $regular_price = is_numeric($available_variations[0]['display_regular_price']) ? $available_variations[0]['display_regular_price'] : 0;
+            $sale_price = is_numeric($available_variations[0]['display_price']) ? $available_variations[0]['display_price'] : 0;
         } 
         //===> Get Price from Simple Products <===//
         else {
@@ -102,13 +102,13 @@ if (!function_exists('get_product_price_data')):
         }
 
         //====> Ensure Prices are Numeric Before Formatting <====//
-        if (is_numeric($regular_price)) {
-            $regular_price = wc_format_decimal($regular_price, 2); // Format to 2 decimal places
-        }
+        // if (is_numeric($regular_price)) {
+        //     $regular_price = wc_format_decimal($regular_price, 2); // Format to 2 decimal places
+        // }
 
-        if (is_numeric($sale_price)) {
-            $sale_price = wc_format_decimal($sale_price, 2); // Format to 2 decimal places
-        }
+        // if (is_numeric($sale_price)) {
+        //     $sale_price = wc_format_decimal($sale_price, 2); // Format to 2 decimal places
+        // }
 
         //====> Get Discount Percentage <====//
         $discount_percentage = 0;
@@ -143,6 +143,16 @@ if (!function_exists('pds_woo_products_sorting')):
 
             //===> Adjust the Query Based on the Value <===//
             switch ($orderby) {
+                //===> Name A-Z <===//
+                case 'title-asc':
+                    $query->set('orderby', 'title');
+                    $query->set('order', 'ASC');
+                    break;
+                //===> Name Z-A <===//
+                case 'title-desc':
+                    $query->set('orderby', 'title');
+                    $query->set('order', 'DESC');
+                    break;
                 //===> Poplar First <===//
                 case 'popularity':
                     $query->set('meta_key', 'total_sales');
@@ -157,13 +167,13 @@ if (!function_exists('pds_woo_products_sorting')):
                 case 'date':
                     $query->set('orderby', 'date');
                     break;
-                //===> Highest Price First <===//
+                //===> Price Low to High <===//
                 case 'price':
                     $query->set('meta_key', '_price');
                     $query->set('orderby', 'meta_value_num');
                     $query->set('order', 'ASC');
                     break;
-                //===> Lowest Price First <===//
+                //===> Price High to Low <===//
                 case 'price-desc':
                     $query->set('meta_key', '_price');
                     $query->set('orderby', 'meta_value_num');
@@ -311,6 +321,76 @@ if (!function_exists('pds_woo_main_query_filter')):
 
     //====> Apply to pre_get_posts with high priority <====//
     add_action('pre_get_posts', 'pds_woo_main_query_filter', 999);
+endif;
+
+//===> Advanced Attribute Filters (Color, Weight, Pieces) <====//
+if (!function_exists('pds_woo_advanced_filters')):
+    function pds_woo_advanced_filters($query) {
+        //===> Only on frontend main query for WooCommerce pages <===//
+        if (is_admin() || !$query->is_main_query()) return;
+        if (!function_exists('is_woocommerce')) return;
+        if (!is_shop() && !is_product_category() && !is_product_tag() && !is_product_taxonomy()) return;
+
+        //===> Build tax_query from filter params <===//
+        $tax_query = $query->get('tax_query') ?: array();
+        $has_filters = false;
+
+        //===> Occasion Filter <===//
+        if (!empty($_GET['filter_occasion'])) {
+            $occasions = array_map('sanitize_text_field', (array) $_GET['filter_occasion']);
+            $tax_query[] = array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => $occasions,
+                'operator' => 'IN',
+            );
+            $has_filters = true;
+        }
+
+        //===> Color Filter <===//
+        if (!empty($_GET['filter_color'])) {
+            $colors = array_map('sanitize_text_field', (array) $_GET['filter_color']);
+            $tax_query[] = array(
+                'taxonomy' => 'pa_color',
+                'field'    => 'slug',
+                'terms'    => $colors,
+                'operator' => 'IN',
+            );
+            $has_filters = true;
+        }
+
+        //===> Weight Filter <===//
+        if (!empty($_GET['filter_weight'])) {
+            $weights = array_map('sanitize_text_field', (array) $_GET['filter_weight']);
+            $tax_query[] = array(
+                'taxonomy' => 'pa_weight',
+                'field'    => 'slug',
+                'terms'    => $weights,
+                'operator' => 'IN',
+            );
+            $has_filters = true;
+        }
+
+        //===> Pieces Filter <===//
+        if (!empty($_GET['filter_piece'])) {
+            $pieces = array_map('sanitize_text_field', (array) $_GET['filter_piece']);
+            $tax_query[] = array(
+                'taxonomy' => 'pa_piece',
+                'field'    => 'slug',
+                'terms'    => $pieces,
+                'operator' => 'IN',
+            );
+            $has_filters = true;
+        }
+
+        //===> Apply combined tax_query with AND relation <===//
+        if ($has_filters) {
+            $tax_query['relation'] = 'AND';
+            $query->set('tax_query', $tax_query);
+        }
+    }
+
+    add_action('pre_get_posts', 'pds_woo_advanced_filters', 998);
 endif;
 
 //====> Wishlist Checker <====//

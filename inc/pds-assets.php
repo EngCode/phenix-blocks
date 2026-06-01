@@ -289,7 +289,7 @@ if (!function_exists('pds_admin_style') && is_admin()) :
     }
 
     //===> Include Phenix Core in the Plugin Page <===//
-    if (get_option('pds_admin_style') && is_admin()) {
+    if (get_option('pds_admin_style') && is_admin() && isset($_GET['page']) && strpos($_GET['page'], 'pds-') !== false) {
         add_action('admin_enqueue_scripts', 'pds_admin_style');
     }
 endif;

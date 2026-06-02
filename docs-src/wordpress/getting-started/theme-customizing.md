@@ -293,7 +293,7 @@ The Query Block can use custom templates from the `template-parts/cards/` direct
                
                <!-- Read More -->
                <a href="<?php echo $post_link; ?>" class="btn btn-sm btn-primary">
-                   <?php echo __('Read More', 'phenix'); ?>
+                   <?php echo __('Read More',"pds-blocks"); ?>
                </a>
            </div>
        </div>

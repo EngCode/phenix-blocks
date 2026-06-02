@@ -68,7 +68,7 @@ The Query Block can use custom templates from the `template-parts/cards/` direct
                
                <!-- Read More -->
                <a href="<?php echo $post_link; ?>" class="btn btn-sm btn-primary">
-                   <?php echo __('Read More', 'phenix'); ?>
+                   <?php echo __('Read More',"pds-blocks"); ?>
                </a>
            </div>
        </div>
@@ -120,7 +120,7 @@ The Taxonomies Block can use custom templates from the `template-parts/taxonomie
                
                <!-- Count -->
                <span class="fs-14 color-primary">
-                   <?php echo sprintf(_n('%s Post', '%s Posts', $tax_count, 'phenix'), $tax_count); ?>
+                   <?php echo sprintf(_n('%s Post', '%s Posts', $tax_count,"pds-blocks"), $tax_count); ?>
                </span>
            </div>
        </div>

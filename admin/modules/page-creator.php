@@ -64,7 +64,7 @@ if (!function_exists('pds_add_admin_page')) :
 
             <!-- // Panels Group -->
             <?php if (isset($submit_button) && $submit_button) : ?>
-                <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase" value="<?php echo esc_attr(__('Save Changes', 'phenix')); ?>">
+                <input type="submit" name="submit" id="submit" class="btn primary w-min-120 radius-sm fs-13 weight-medium tx-uppercase" value="<?php echo esc_attr(__('Save Changes',"pds-blocks")); ?>">
             <?php endif; ?>
         </div>
         <!-- // Panels Group -->

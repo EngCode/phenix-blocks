@@ -7,7 +7,7 @@
     "pds",
     "pds-blocks",
     "block",
-    "phenix"
+    "pds-blocks"
   ],
   "category": "design",
   "description": "newBlock.",

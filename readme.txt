@@ -1,13 +1,13 @@
 === Phenix Blocks ===
 Contributors: abdullah.ramadan, abdullahramadan, EngCode
 Tags: phenix, phenix themes, phenix blocks, block, blocks, gutenberg blocks, gutenberg, block editor, metaboxes, post-types, taxonomies, optimizing, admin style, design system
-Version: 1.2.0
+Version: 1.5.0
 Author: Abdullah.Ramadan
 Author URI:https://phenixthemes.com/en/abdullah-ramadan
 Requires at least: 6.0
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 
 Unleash Creativity with Ease and Transform Your Web Design Experience
@@ -15,163 +15,214 @@ Unleash Creativity with Ease and Transform Your Web Design Experience
 == Description ==
 Phenix Blocks is a WordPress plugin that allows users to easily build custom websites. This plugin represents a comprehensive design system that includes a variety of pre-made blocks and different settings that can be used to quickly and easily create web pages.
 
-### **Source Files**
- - Blocks Source => src/blocks/
- - Front-End (UI) CSS Source => src/sass/
- - Front-End (UI) Source => src/scripts/
- - Animations Source CSS => src/animations/
+# Phenix
 
-### **References & Documentations**
+A UI framework for building WordPress sites with a unified design language.
 
- Plugin | Theme | Blocks | Design | Website
---- | --- | --- | --- | ---
-🧩 [Phenix Blocks](https://github.com/EngCode/phenix-blocks) |🎨 [Starter Theme](https://github.com/EngCode/pds-starter-free) | 📕 [Editor Handbook](https://phenixthemes.notion.site/Phenix-Blocks-Documentation-b7ae033ce7484e8f98209d7587a94792?pvs=74) | 📘 [Code Handbook](https://phenixthemes.notion.site/Phenix-Design-System-efcfa4d3839946989a4f94ee5e0480c3?pvs=74) | 🌎 [Official Website](https://phenixthemes.com/demo/)
+## What it does
 
-### **Features List**
+- **Front-end framework:** Utility-based CSS (padding, margin, grid, flexbox) with built-in RTL support. JavaScript components for animations, popups, sliders, and 3D viewers.
+- **Block system:** Custom Gutenberg blocks that share a single rendering engine. One vocabulary (`pd-15`, `flexbox`, `col-6`) across all blocks.
+- **Backend tools:** CPT creator, taxonomy creator, meta boxes, import/export, admin columns. Reduces the need for multiple plugins.
+- **Design system:** Consistent class naming and spacing scale that works across themes.
 
-![enter image description here](https://phenixthemes.com/px-plugins/block-list.png)
-![enter image description here](https://phenixthemes.com/px-plugins/features-1.png)
-![enter image description here](https://phenixthemes.com/px-plugins/features-2.png)
+## Requirements
 
-= Contact us =
-* [Plugin Website](https://phenixthemes.com/demo/)
-* [Get free help from us here](https://phenixthemes.com/en/contact)
-* [Report a bug or request a feature](https://phenixthemes.com/en/contact)
-* [Find out more about us](https://phenixthemes.com/en/abdullah-ramadan)
+- WordPress 6.0+
+- PHP 7.4+
+- Node 20+ (for building from source)
 
-== Installation ==
-1. Phenix Blocks can be installed directly through your WordPress Plugins dashboard.
-1. Click "Add New" and Search for "Phenix Blocks"
-1. Install and Activate
+## Install from source
 
-Alternatively, you can download the plugin using the download button on this page and then upload the pds-blocks folder to the /wp-content/plugins/ directory then activate thought the Plugins dashboard in WordPress
+```bash
+git clone https://gitlab.com/EngCode/pds-blocks-pro.git
+cd pds-blocks-pro
+npm install
+npm run phenix-start
+```
 
-### **Screenshots**
+## Build commands
 
-![screenshot-1](https://phenixthemes.com/px-plugins/pdb-08.png)
-![screenshot-2](https://phenixthemes.com/px-plugins/pdb-02.png)
-![screenshot-3](https://phenixthemes.com/px-plugins/pdb-03.png)
-![screenshot-4](https://phenixthemes.com/px-plugins/pdb-04.png)
-![screenshot-5](https://phenixthemes.com/px-plugins/pdb-05.png)
-![screenshot-6](https://phenixthemes.com/px-plugins/pdb-06.png)
-![screenshot-7](https://phenixthemes.com/px-plugins/pdb-07.png)
-![screenshot-8](https://phenixthemes.com/px-plugins/toolbar.png)
+| Command | What it does |
+|---------|-------------|
+| `npm run phenix-start` | Runs SASS, TypeScript, and blocks watcher in parallel |
+| `npm run phenix-ts` | Compiles the front-end JavaScript (`assets/js/phenix.js`) |
+| `npm run phenix-sass` | Compiles the CSS framework (`assets/css/phenix.css`) |
+| `npm run phenix-blocks` | Compiles the Gutenberg blocks |
+| `npm run animate-sass` | Compiles the animation CSS separately |
 
-### Developer and Data Tools
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-09.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-10.jpeg)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-11.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-12.jpeg)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-13.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-15.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-16.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-17.png)
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-18.png)
+### Plugin Installation
 
-### Warning Read Carefully
+1. Download the plugin from [GitHub](https://github.com/EngCode/phenix-blocks)
+2. Upload the plugin files to the `/wp-content/plugins/pds-blocks` directory
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
-![enter image description here](https://phenixthemes.com/px-plugins/pdb-07.jpeg)
+### Theme Installation
 
-this plugin needs its starter theme to makes you control the plugin colors, and use its blocks to develop the theme more further, make sure you at least using the **"theme.json"** from the starter theme.
+1. Download the [PDS Starter Theme](https://github.com/EngCode/pds-starter-free)
+2. Upload the theme to the `/wp-content/themes/` directory
+3. Activate the theme through the 'Appearance' menu in WordPress
 
-### Change Log v1.2.0 Revamped
-1. Disable Cron Jobs Scheduler
-2. Cleanup the Plugin for Public
-3. Disable Custom Login
-4. improve assets loading, and disable the JS hack.
-5. Fix Icon Block Free Width.
-6. Refactoring Core Counter Function.
-7. Lightbox Slider Fix.
-8. Fix Background not Rendering in Editor.
-9. Fix Grid Flow Reverse not Wrapping.
-10. Media Uploader Fix for Metaboxes.
-11. Fix Metaboxes Repeater.
-12. Fix Media Uploader in Editor.
-13. Add New Style Font Option.
-14. Disable core blocks remover
-15. Upgrade taxonomies query and support sub terms.
-16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
-17. Fix Core Animations Effects Bouncing.
-18. Fix Fading Slider in RTL.
-19. Add Posts Managers Tools
-20. Remove Posts from any Type Tool
-21. Import Posts from a Json File
-22. Add Show Columns in the Admin Posts Table Functions
-23. Add Posts JSON Exporter Simple Tool
-24. Add post duplicating method.
-25. Improving component builders, and view scripts.
-26. Fixing Dropdown Menus in the Toolbar.
-27. Fix Media Uploader in Optimization Tab.
-28. Replace SplideJS with Swiper Slider.
-29. Refactor Phenix Core Class Methods
-30. Fix Taxonomies ID and Link Controller Bugs.
-31. SEO Useless methods removed.
-32. Improving Colors Panel Performance.
-33. Improving Select Elements Performance in Editor.
-34. Improving Select Data Performance in Editor.
-35. Refactoring icons Panel and improve Performance in Editor.
+## Architecture
 
-### Minor-fixes v1.0.9:
-1. Add Support for iPhone autoplay videos
-2. Add new Ratio Sizes for Multi-Media
-3. Fixing Multimedia inner block position editor mode.
-4. Fix None-Ratio hidden images.
-5. Fix Logical-block already exist.
-6. Add navbar icons style support
-7. Add Transition for Sticky Header.
-8. Fix Sticky Offset in PDS Core.
-9. Fix custom overlay rendering.
-10. Add loading logo size option.
-11. fix empty option in advanced select.
-12. upgrade wordpress breadcrumb flow.
-13. improve auto-generated thumbnails remover.
-14. fixing editor dark styles inhihretes.
+The plugin contains all blocks, CSS, JavaScript, and backend tools. The theme provides `theme.json` colors and optional template parts. Switching themes does not break the blocks because the design system lives in the plugin.
+
+Blocks use a shared renderer (`OptionsRenderer`) that reads block attributes and outputs CSS classes. This keeps the logic centralized rather than duplicated across 20+ block files.
+
+### Key Features
+
+- **Custom Gutenberg Blocks**: 20+ specialized blocks for creating complex layouts and dynamic content
+- **Advanced Animation System**: Scroll-driven animations with progress tracking and exit animations
+- **3D Interactive Media**: Embed and control interactive 3D models with Three.js integration
+- **Integrated Third-Party Controls**: Slider, typewriter, parallax effects, and more specialized components
+- **Advanced Block Controls**: Extensive styling options with responsive capabilities for all device sizes
+- **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
+- **Developer Tools**: APIs for custom post types, taxonomies, meta boxes, and more
+- **Performance Optimization**: Tools to enhance site speed and user experience
+- **WooCommerce Integration**: Special features for e-commerce websites
+- **Multi-language Support**: Full RTL compatibility and translation readiness
 
 
-### Hot-fixes v1.0.7 and v1.0.8:
+## Documentation
 
-1. Improve Responsive UHD Scaler.
-4. Add New Effects and Animations.
-2. Gradient Text Coloring Editing Style Fix.
-3. Media Uploader Control Multiple Popups Fix.
-4. Fix Select Re-render Options unexpectedly.
-5. Media Type Image Cover Size Fix
-6. Disable Scaled Thumbnail Generation.
-7. Defer Any Images with Lazyloading Attribute.
-8. Add new copyText() method for Phenix Core.
-9. Admin Style Fixes.
-10. Fix loading duplicates when custom template are present.
+Comprehensive documentation is available on our [GitHub Pages site](https://engcode.github.io/phenix-blocks/), organized into the following sections:
 
-### Hot-fixes v1.0.6:
+- **[Getting Started](https://engcode.github.io/phenix-blocks/wordpress/getting-started/)**: Installation, setup, and basic configuration
+- **[Block Library](https://engcode.github.io/phenix-blocks/wordpress/blocks/)**: Detailed guides for each custom block
+- **[Theme Customizing](https://engcode.github.io/phenix-blocks/wordpress/getting-started/theme-customizing.html)**: SASS customization, JavaScript integration, and template parts
+- **[Front-End Framework](https://engcode.github.io/phenix-blocks/frontend/)**: CSS utilities, components, and JavaScript helpers
+- **[Developer Tools](https://engcode.github.io/phenix-blocks/wordpress/tools/)**: APIs and utilities for extending the system
 
-1. Template Parts Block Listing Fix.
-2. Logo REM Function fix.
-3. Taxonomies Creator Labels translation remove.
-4. Remove Pro Fonts for Official Release.
-5. Fix Loading Media Uploader opens multiple times.
-6. RM... deprecated emoji style remover
-7. Convert to CDN Assets and WebFonts.
-8. Upgrade Query Block to get posts by taxonomies.
-9. adding FHD to the scaling responsive 2k/4k.
-11. Update CPT Creator, and Query Block to get posts by taxonomies.
-12. WP 6.5 Update Fixes.
-13. fix loading spinner size.
-14. icons sizes to rem.
+## Developer Tools
 
+Phenix Design System includes powerful tools for developers to extend and customize WordPress:
 
-### License
-Copyright (c) 2016-present, [Abdullah Ramadan](https://phenixthemes.com/abdullah-ramadan). Licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+### Post Management
+- **Bulk Operations**: Manage multiple posts at once
+- **Post Duplication**: Clone existing posts with a single click
+- **Import/Export**: Transfer posts between sites using JSON format
 
-### Privacy Policy
-Phenix Blocks is designed to fully respect and protect the personal information of its users.
-Phenix Blocks is in full compliance with General Data Protection Regulation (GDPR).
-See our [GDPR Compliant Privacy Policy here](https://www.iubenda.com/privacy-policy/946881).
+### Custom Post Types & Taxonomies
+- **CPT Creator**: Create custom post types with advanced options
+- **Taxonomy Creator**: Build custom taxonomies with hierarchical support
+- **Meta Boxes**: Add custom fields to any post type
 
+### Performance Optimization
+- **Asset Management**: Optimize CSS and JavaScript loading
+- **Image Optimization**: Automatic image optimization and lazy loading
+- **Caching Controls**: Fine-tune caching for better performance
 
-----
+### Admin Enhancements
+- **Custom Admin Columns**: Add useful information to admin list views
+- **Admin UI Improvements**: Enhanced interface for better usability
+- **Developer Utilities**: Helper functions for common development tasks
 
-<a href="https://phenixthemes.com" target="_blank" rel="external">Phenix Themes - فينكس ثيمز</a>
-<a href="https://phenixthemes.com/portfolio" target="_blank" rel="external">Portfolio - اعمال ابداعية</a>
-<a href="https://phenixthemes.com/services" target="_blank" rel="external">تصميم وتطوير المواقع وقوالب وتطبيقات الويب  - Web Design and Development Services</a>
-<a href="https://phenixthemes.com/demo" target="_blank" rel="external">Phenix Design System - نظام تصميم فينكس</a>
+## Block Library
 
+Phenix Design System includes a comprehensive set of custom blocks organized into logical categories:
+
+### Layout Blocks
+- **Container**: Create boxed or full-width content areas with advanced styling options
+- **Grid Row**: Flexible row layouts with responsive controls and gap settings
+- **Grid Column**: Responsive columns with width controls for all device sizes
+- **Group**: Group content with advanced styling and positioning options
+- **Theme Part**: Include reusable template parts within your content
+
+### Content Blocks
+- **Text**: Enhanced text elements with advanced typography controls
+- **Media Element**: Advanced image and video handling with responsive controls
+- **Icon Element**: Insert and customize icons from multiple icon libraries
+- **Button**: Create buttons with extensive styling and interaction options
+- **Logo**: Insert and customize your site logo with sizing controls
+- **Page Head**: Create dynamic page headers with title and breadcrumb support
+
+### Interactive Blocks
+- **Popup**: Create modal popups with custom triggers and animations
+- **Navigation**: Build responsive menus with mobile support and custom styling
+- **Custom Code**: Insert custom HTML, CSS, and JavaScript
+- **3D Viewer**: Display interactive 3D models with customizable controls
+
+### Dynamic Blocks
+- **Query**: Display posts with advanced filtering and pagination options
+- **Taxonomies**: Show categories, tags, or custom taxonomies with styling options
+- **Users Query**: Display user information with filtering and styling controls
+
+### Utility Blocks
+- **Logical Content**: Display conditional content based on user roles, devices, or languages
+- **PX Controls**: Advanced control elements for forms and interactive components
+
+## Advanced Block Controls
+
+Every block includes a comprehensive set of styling and layout controls:
+
+### Layout Controls
+- **Alignment**: Control horizontal and vertical alignment
+- **Dimensions**: Set width, height, and max-width/height
+- **Spacing**: Control margin and padding with responsive options
+- **Position**: Set position type and coordinates (absolute, relative, etc.)
+- **Display**: Control how elements display on different devices
+
+### Style Controls
+- **Colors**: Set text, background, and border colors
+- **Typography**: Control font family, size, weight, and style
+- **Borders**: Add and style borders with width, style, and radius options
+- **Effects**: Add shadows, opacity, and other visual effects
+- **Animations**: Add entrance animations and hover effects
+
+### Responsive Controls
+- **Device-specific settings**: Customize layouts for mobile, tablet, and desktop
+- **Visibility controls**: Show or hide elements on different devices
+- **Adaptive layouts**: Change column widths and spacing based on screen size
+
+## Theme Customization
+
+The Phenix Starter Theme provides a solid foundation for building custom websites:
+
+### SASS Customization
+The theme uses a modular SASS structure that makes it easy to customize:
+
+```
+sass/
+├── _theme-info.scss     # Theme information
+├── _theme-style.scss    # Main theme styles
+├── assets/              # Additional assets
+├── elements/            # Element-specific styles
+└── patches/             # Style overrides and fixes
+```
+
+### JavaScript Integration
+The `style.js` file allows you to add custom JavaScript functionality to your theme, with access to the Phenix JavaScript library for DOM manipulation, animations, and more.
+
+### Template Parts for Dynamic Blocks
+Customize how content is displayed in dynamic blocks by creating custom template parts:
+
+```
+template-parts/
+├── cards/             # Post card templates for Query Block
+├── cards-taxonomies/  # Templates for Taxonomies Block
+└── dynamic/           # Custom templates for dynamic content
+```
+
+## Version history
+
+### v1.5.0 — Build system cleanup
+- Replaced deprecated `node-sass` with Dart `sass`
+- Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
+- Removed babel packages that `@wordpress/scripts` already bundles
+- Removed `@wordpress/server-side-render` and `@wordpress/blocks` from explicit dependencies (WordPress provides them at runtime)
+- Added `.npmrc` so `npm install` works without flags on modern Node versions
+- Block build auto-discovers blocks from `src/blocks/` instead of using a manual entry list
+
+### v2.0.0 — Core fixes
+- **CSS variable trap removed:** Replaced nested CSS variable fallbacks (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
+- **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source. Added `.init()` and `.destroy()` lifecycle hooks for SPA framework integration.
+- **SASS cleanup:** Removed `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents. Custom spacing values are handled by the collector, not CSS variables.
+- **Extension build support:** Multiple webpack entry points for compiling add-on files (e.g., `woocommerce.js`, `select.js`) as separate files that share the core global without duplicating it.
+
+## License
+
+GPL-2.0-or-later
+
+## Author
+
+Abdullah Ramadan — https://phenixthemes.com

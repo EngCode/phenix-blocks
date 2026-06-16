@@ -37,14 +37,14 @@ npm run phenix-start
 ### Plugin Installation
 
 1. Download the plugin from [GitHub](https://github.com/EngCode/phenix-blocks)
-2. Upload the plugin files to the `/wp-content/plugins/pds-blocks` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
+2. Upload to `/wp-content/plugins/pds-blocks`
+3. Activate through the WordPress Plugins menu
 
 ### Theme Installation
 
 1. Download the [PDS Starter Theme](https://github.com/EngCode/pds-starter-free)
-2. Upload the theme to the `/wp-content/themes/` directory
-3. Activate the theme through the 'Appearance' menu in WordPress
+2. Upload to `/wp-content/themes/`
+3. Activate through the WordPress Appearance menu
 
 ## Architecture
 
@@ -52,143 +52,126 @@ The plugin contains all blocks, CSS, JavaScript, and backend tools. The theme pr
 
 Blocks use a shared renderer (`OptionsRenderer`) that reads block attributes and outputs CSS classes. This keeps the logic centralized rather than duplicated across 20+ block files.
 
-### Key Features
+## Key Features
 
-- **Custom Gutenberg Blocks**: 20+ specialized blocks for creating complex layouts and dynamic content
-- **Advanced Animation System**: Scroll-driven animations with progress tracking and exit animations
-- **3D Interactive Media**: Embed and control interactive 3D models with Three.js integration
-- **Integrated Third-Party Controls**: Slider, typewriter, parallax effects, and more specialized components
-- **Advanced Block Controls**: Extensive styling options with responsive capabilities for all device sizes
-- **Theme Customization**: Modular SASS structure, JavaScript integration, and dynamic template parts
-- **Developer Tools**: APIs for custom post types, taxonomies, meta boxes, and more
-- **Performance Optimization**: Tools to enhance site speed and user experience
-- **WooCommerce Integration**: Special features for e-commerce websites
-- **Multi-language Support**: Full RTL compatibility and translation readiness
-
+- **Custom Gutenberg Blocks:** 20+ blocks for layout, content, dynamic queries, and interactive components
+- **Animation System:** Scroll-driven animations with progress tracking and exit animations
+- **3D Media Viewer:** Three.js integration for embedding interactive 3D models
+- **Third-Party Controls:** Slider, typewriter, parallax, and other JavaScript components
+- **Block Controls:** Per-device styling, spacing, colors, typography, borders, and positioning
+- **Theme Customization:** Modular SASS, JavaScript hooks, and dynamic template parts
+- **Developer Tools:** APIs for custom post types, taxonomies, meta boxes, and admin columns
+- **WooCommerce Integration:** Blocks and controls for e-commerce sites
+- **RTL Support:** Right-to-left layouts built into the framework, not added as an afterthought
+- **Translation Ready:** WordPress standard `.pot` file for localization
 
 ## Documentation
 
-Comprehensive documentation is available on our [GitHub Pages site](https://engcode.github.io/phenix-blocks/), organized into the following sections:
-
-- **[Getting Started](https://engcode.github.io/phenix-blocks/wordpress/getting-started/)**: Installation, setup, and basic configuration
-- **[Block Library](https://engcode.github.io/phenix-blocks/wordpress/blocks/)**: Detailed guides for each custom block
-- **[Theme Customizing](https://engcode.github.io/phenix-blocks/wordpress/getting-started/theme-customizing.html)**: SASS customization, JavaScript integration, and template parts
-- **[Front-End Framework](https://engcode.github.io/phenix-blocks/frontend/)**: CSS utilities, components, and JavaScript helpers
-- **[Developer Tools](https://engcode.github.io/phenix-blocks/wordpress/tools/)**: APIs and utilities for extending the system
+- [Getting Started](https://engcode.github.io/phenix-blocks/wordpress/getting-started/)
+- [Block Library](https://engcode.github.io/phenix-blocks/wordpress/blocks/)
+- [Theme Customizing](https://engcode.github.io/phenix-blocks/wordpress/getting-started/theme-customizing.html)
+- [Front-End Framework](https://engcode.github.io/phenix-blocks/frontend/)
+- [Developer Tools](https://engcode.github.io/phenix-blocks/wordpress/tools/)
 
 ## Developer Tools
 
-Phenix Design System includes powerful tools for developers to extend and customize WordPress:
-
 ### Post Management
-- **Bulk Operations**: Manage multiple posts at once
-- **Post Duplication**: Clone existing posts with a single click
-- **Import/Export**: Transfer posts between sites using JSON format
+- **Bulk Operations:** Edit or delete multiple posts at once
+- **Post Duplication:** Clone a post with one click
+- **Import/Export:** Transfer posts between sites as JSON
 
 ### Custom Post Types & Taxonomies
-- **CPT Creator**: Create custom post types with advanced options
-- **Taxonomy Creator**: Build custom taxonomies with hierarchical support
-- **Meta Boxes**: Add custom fields to any post type
-
-### Performance Optimization
-- **Asset Management**: Optimize CSS and JavaScript loading
-- **Image Optimization**: Automatic image optimization and lazy loading
-- **Caching Controls**: Fine-tune caching for better performance
+- **CPT Creator:** Build custom post types with UI, no code required
+- **Taxonomy Creator:** Build custom taxonomies, including hierarchical types
+- **Meta Boxes:** Add custom fields to any post type
 
 ### Admin Enhancements
-- **Custom Admin Columns**: Add useful information to admin list views
-- **Admin UI Improvements**: Enhanced interface for better usability
-- **Developer Utilities**: Helper functions for common development tasks
+- **Custom Admin Columns:** Add columns to the post list in the WordPress admin
+- **Asset Management:** Control which CSS and JavaScript files load on each page
+- **Developer Utilities:** Helper functions for common WordPress tasks
 
 ## Block Library
 
-Phenix Design System includes a comprehensive set of custom blocks organized into logical categories:
+### Layout
+- **Container:** Boxed or full-width content areas
+- **Grid Row:** Rows with responsive gap and alignment controls
+- **Grid Column:** Columns with per-device width controls
+- **Group:** Content grouping with background, border, and spacing options
+- **Theme Part:** Reusable template parts inside the block editor
 
-### Layout Blocks
-- **Container**: Create boxed or full-width content areas with advanced styling options
-- **Grid Row**: Flexible row layouts with responsive controls and gap settings
-- **Grid Column**: Responsive columns with width controls for all device sizes
-- **Group**: Group content with advanced styling and positioning options
-- **Theme Part**: Include reusable template parts within your content
+### Content
+- **Text:** Typography controls (font, size, weight, color, line height)
+- **Media Element:** Images and video with responsive sizing and lazy loading
+- **Icon Element:** SVG icons from multiple libraries with color and size controls
+- **Button:** Styled links with hover states, icons, and sizing
+- **Logo:** Site logo with responsive width controls
+- **Page Head:** Page title and breadcrumb display
 
-### Content Blocks
-- **Text**: Enhanced text elements with advanced typography controls
-- **Media Element**: Advanced image and video handling with responsive controls
-- **Icon Element**: Insert and customize icons from multiple icon libraries
-- **Button**: Create buttons with extensive styling and interaction options
-- **Logo**: Insert and customize your site logo with sizing controls
-- **Page Head**: Create dynamic page headers with title and breadcrumb support
+### Interactive
+- **Popup:** Modal overlays with custom triggers, animations, and positioning
+- **Navigation:** Responsive menus with mobile toggle and dropdown support
+- **Custom Code:** HTML, CSS, and JavaScript injection inside the editor
+- **3D Viewer:** Interactive 3D models with camera controls and lighting
 
-### Interactive Blocks
-- **Popup**: Create modal popups with custom triggers and animations
-- **Navigation**: Build responsive menus with mobile support and custom styling
-- **Custom Code**: Insert custom HTML, CSS, and JavaScript
-- **3D Viewer**: Display interactive 3D models with customizable controls
+### Dynamic
+- **Query:** Post lists with filtering, sorting, and pagination
+- **Taxonomies:** Category and tag lists with custom styling
+- **Users Query:** User lists with filtering and avatar display
 
-### Dynamic Blocks
-- **Query**: Display posts with advanced filtering and pagination options
-- **Taxonomies**: Show categories, tags, or custom taxonomies with styling options
-- **Users Query**: Display user information with filtering and styling controls
+### Utility
+- **Logical Content:** Conditional display based on user role, device, or language
+- **PX Controls:** Form elements and interactive components for custom layouts
 
-### Utility Blocks
-- **Logical Content**: Display conditional content based on user roles, devices, or languages
-- **PX Controls**: Advanced control elements for forms and interactive components
+## Block Controls
 
-## Advanced Block Controls
+Every block includes the same set of controls, organized by category:
 
-Every block includes a comprehensive set of styling and layout controls:
+### Layout
+- Alignment (horizontal and vertical)
+- Dimensions (width, height, max-width, max-height)
+- Spacing (margin and padding with per-device values)
+- Position (static, relative, absolute, fixed)
+- Display (block, flex, grid, inline, none)
 
-### Layout Controls
-- **Alignment**: Control horizontal and vertical alignment
-- **Dimensions**: Set width, height, and max-width/height
-- **Spacing**: Control margin and padding with responsive options
-- **Position**: Set position type and coordinates (absolute, relative, etc.)
-- **Display**: Control how elements display on different devices
+### Style
+- Colors (text, background, border, overlay)
+- Typography (font family, size, weight, style, line height, letter spacing)
+- Borders (width, style, color, radius)
+- Effects (shadows, opacity, blur, transform)
+- Animations (entrance, hover, scroll-driven)
 
-### Style Controls
-- **Colors**: Set text, background, and border colors
-- **Typography**: Control font family, size, weight, and style
-- **Borders**: Add and style borders with width, style, and radius options
-- **Effects**: Add shadows, opacity, and other visual effects
-- **Animations**: Add entrance animations and hover effects
-
-### Responsive Controls
-- **Device-specific settings**: Customize layouts for mobile, tablet, and desktop
-- **Visibility controls**: Show or hide elements on different devices
-- **Adaptive layouts**: Change column widths and spacing based on screen size
+### Responsive
+- Per-device settings (mobile, tablet, desktop)
+- Visibility toggles (hide on specific screen sizes)
+- Adaptive spacing and sizing per breakpoint
 
 ## Theme Customization
 
-The Phenix Starter Theme provides a solid foundation for building custom websites:
-
-### SASS Customization
-The theme uses a modular SASS structure that makes it easy to customize:
+The PDS Starter Theme uses a modular SASS structure:
 
 ```
 sass/
-├── _theme-info.scss     # Theme information
-├── _theme-style.scss    # Main theme styles
-├── assets/              # Additional assets
-├── elements/            # Element-specific styles
-└── patches/             # Style overrides and fixes
+├── _theme-info.scss     # Theme metadata
+├── _theme-style.scss    # Main styles
+├── assets/              # Fonts, icons
+├── elements/            # Component overrides
+└── patches/             # Fixes and overrides
 ```
 
-### JavaScript Integration
-The `style.js` file allows you to add custom JavaScript functionality to your theme, with access to the Phenix JavaScript library for DOM manipulation, animations, and more.
-
-### Template Parts for Dynamic Blocks
-Customize how content is displayed in dynamic blocks by creating custom template parts:
+Template parts for dynamic blocks are stored in `template-parts/`:
 
 ```
 template-parts/
-├── cards/             # Post card templates for Query Block
-├── cards-taxonomies/  # Templates for Taxonomies Block
-└── dynamic/           # Custom templates for dynamic content
+├── cards/             # Post card layouts for Query Block
+├── cards-taxonomies/  # Layouts for Taxonomies Block
+└── dynamic/           # Custom layouts for dynamic content
 ```
 
-## Version history
+JavaScript customizations go in `style.js`, which runs alongside the Phenix front-end library.
 
-### v1.5.0 — Build system cleanup
+## Version History
+
+### v1.5.0 — Build System Cleanup
 - Replaced deprecated `node-sass` with Dart `sass`
 - Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
 - Removed babel packages that `@wordpress/scripts` already bundles
@@ -196,7 +179,7 @@ template-parts/
 - Added `.npmrc` so `npm install` works without flags on modern Node versions
 - Block build auto-discovers blocks from `src/blocks/` instead of using a manual entry list
 
-### v2.0.0 — Core fixes
+### v2.0.0 — Core Fixes
 - **CSS variable trap removed:** Replaced nested CSS variable fallbacks (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
 - **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source. Added `.init()` and `.destroy()` lifecycle hooks for SPA framework integration.
 - **SASS cleanup:** Removed `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents. Custom spacing values are handled by the collector, not CSS variables.

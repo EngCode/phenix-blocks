@@ -36,36 +36,20 @@ $space_range : 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
 }
 
 /*==== Base Screen ====*/
-.mt-custom {margin-top: var(--mt);}
-.mb-custom {margin-bottom: var(--mb);}
-.ms-custom {margin-#{$direction-start}: var(--ms);}
-.me-custom {margin-#{$direction-end}: var(--me);}
 @include make_margin();
 
 /*==== Medium Screen ====*/
 @include medium(){
-    .mt-custom { margin-top: var(--mt-md, var(--mt)) };
-    .mb-custom { margin-bottom: var(--mb-md, var(--mb)) };
-    .ms-custom { margin-#{$direction-start}: var(--ms-md, var(--ms)) };
-    .me-custom { margin-#{$direction-end}: var(--me-md, var(--me)) };
     @include make_margin('-md');
 };
 
 /*==== Large Screen ====*/
 @include large(){
-    .mt-custom { margin-top: var(--mt-lg, var(--mt-md, var(--mt))) };
-    .mb-custom { margin-bottom: var(--mb-lg, var(--mb-md, var(--mb))) };
-    .ms-custom { margin-#{$direction-start}: var(--ms-lg, var(--ms-md, var(--ms))) };
-    .me-custom { margin-#{$direction-end}: var(--me-lg, var(--me-md, var(--me))) };
     @include make_margin('-lg');
 };
 
 /*==== xLarge Screen ====*/
 @include xlarge(){
-    .mt-custom { margin-top: var(--mt-xl, var(--mt-lg, var(--mt-md, var(--mt)))) };
-    .mb-custom { margin-bottom: var(--mb-xl, var(--mb-lg, var(--mb-md, var(--mb)))) };
-    .ms-custom { margin-#{$direction-start}: var(--ms-xl, var(--ms-lg, var(--ms-md, var(--ms)))) };
-    .me-custom { margin-#{$direction-end}: var(--me-xl, var(--me-lg, var(--me-md, var(--me)))) };
     @include make_margin('-xl');
 };
 

@@ -314,13 +314,8 @@ window.PhenixBlocks = {
                         else if (sub_option.startsWith("pos-")) {
                             //===> Custom Positions <===//
                             if (!positions_sizes.includes(parseInt(sub_value))) {
-                                //===> Set Custom Positions <===//
-                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
-                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom`;
-                                //===> Check if the class is already added <===//
-                                if (!blockProps.className || !blockProps.className?.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                blockProps.className += ` ${sub_option}-${sub_value}`;
                             }
                             //===> Name Positions <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -330,13 +325,8 @@ window.PhenixBlocks = {
                         else if (isMargin.some(css => sub_option.startsWith(css))) {
                             //===> Custom Value <===//
                             if (!utilities_sizes.includes(parseInt(sub_value))) {
-                                //===> Set Custom Margin <===//
-                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
-                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom`;
-                                //===> Check if the class is already added <===//
-                                if (!blockProps.className || !blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                blockProps.className += ` ${sub_option}-${sub_value}`;
                             }
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }
@@ -348,12 +338,8 @@ window.PhenixBlocks = {
                             if (parseInt(sub_value) < -1) return;
                             //===> Custom Value <===//
                             else if (!utilities_sizes.includes(parseInt(sub_value))) {
-                                //===> Set Custom Padding <===//
-                                CustomCSS[`--${sub_option}`] = `${Phenix(document).toREM(sub_value)}`;
                                 //===> Add the ClassName <===//
-                                let classOption = sub_option.replace('-md', '').replace('-lg', '').replace('-xl', ''),
-                                    customClass = `${classOption}-custom`;
-                                if (!blockProps.className || !blockProps.className.includes(customClass)) blockProps.className += ` ${customClass}`;
+                                blockProps.className += ` ${sub_option}-${sub_value}`;
                             }
                             //===> Name Value <===//
                             else { blockProps.className += ` ${sub_option}-${sub_value}`; }

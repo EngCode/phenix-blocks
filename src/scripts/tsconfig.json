@@ -2,9 +2,10 @@
     "compilerOptions": {
         "strict": false,
         "forceConsistentCasingInFileNames": true,
-        "module": "esnext",
+        "module": "commonjs",
         "target": "es2017",
         "sourceMap": true,
+        "esModuleInterop": true,
         "moduleResolution": "node"
     }
 }

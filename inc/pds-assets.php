@@ -321,6 +321,12 @@ if (!function_exists('pds_defer_scripts')) :
         // Array of script handles to defer
         $async_scripts = array('phenix');
         
+        //===> Auto-defer any script that depends on phenix <===//
+        global $wp_scripts;
+        if (isset($wp_scripts->registered[$handle]) && in_array('phenix', (array) $wp_scripts->registered[$handle]->deps)) {
+            $async_scripts[] = $handle;
+        }
+        
         // Check if the script is enqueued and should be deferred
         if (in_array($handle, $async_scripts) && wp_script_is($handle, 'enqueued')) {
             return str_replace('<script ', '<script defer ', $tag);

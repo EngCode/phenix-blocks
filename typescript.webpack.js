@@ -1,16 +1,17 @@
 const path = require('path');
 
 module.exports = {
-    mode: "production",
+    mode: 'production',
     entry: './src/scripts/index.ts',
-    devtool: "source-map",
+    devtool: 'source-map',
     output: {
         filename: 'js/phenix.js',
         path: path.join(__dirname, '/assets/'),
         globalObject: 'window',
         library: {
-            type: 'window',
+            type: 'umd',
             name: 'Phenix',
+            export: 'default',
         },
         chunkLoadingGlobal: 'phenixWebpackJsonp',
     },
@@ -24,6 +25,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: ['.ts', '.js']
     },
 };

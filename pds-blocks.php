@@ -51,6 +51,7 @@ include(PDS_BLOCKS_PATH . 'admin/pds-default.php');
 include(PDS_BLOCKS_PATH . 'inc/pds-functions.php');
 include(PDS_BLOCKS_PATH . 'inc/woo-functions.php');
 include(PDS_BLOCKS_PATH . 'inc/pds-optimizer.php');
+include(PDS_BLOCKS_PATH . 'inc/pds-spacing-collector.php');
 //====> Assets and Blocks <====//
 include(PDS_BLOCKS_PATH . 'inc/pds-assets.php');
 include(PDS_BLOCKS_PATH . 'src/blocks/blocks.php');

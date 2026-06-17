@@ -764,6 +764,8 @@ const Phenix = (selector?:any) => {
 
 //====> Export Phenix <====//
 export default Phenix;
+(Phenix as any).PhenixElements = PhenixElements;
+(Phenix as any).px = Phenix;
 
 /*====> Import Methods <====*/
 import './features/get-info';   //==> Get Informations about elements
@@ -799,10 +801,25 @@ import './integration/utilities'; //==> Phenix Utilities
 /*====> Integration WordPress <====*/
 import './integration/blocks';      //==> Front-end Blocks Scripts
 import './integration/wordpress';   //==> Wordpress Integration
-import './integration/woocommerce'; //==> WooCommerce Integration
+// import './integration/woocommerce'; //==> WooCommerce Integration
 
-/*====> Custom Script <====*/
+/*====> Custom Scripts <====*/
 import './custom-scripts';
 
-//====> Export Global Phenix <====//
-module.exports = Phenix;
+/*====> Plugin Registry <====*/
+(Phenix as any).plugins = new Map<string, Function>();
+
+//====> Register Plugin Method <====//
+(Phenix as any).register = (name: string, plugin: (Elements: typeof PhenixElements, px: typeof Phenix) => void) => {
+    //====> Check if the Plugin is Already Registered <====//
+    if ((Phenix as any).plugins.has(name)) return console.warn(`Phenix: plugin "${name}" already registered`);
+    //====> Register the Plugin <====//
+    plugin(PhenixElements, Phenix);
+    //====> Add the Plugin to the Registry <====//
+    (Phenix as any).plugins.set(name, plugin);
+};
+
+//===> Allow Extending Phenix Elements <====//
+(Phenix as any).extend = (method: string, fn: Function) => {
+  PhenixElements.prototype[method] = fn;
+};

@@ -91,10 +91,8 @@ PhenixElements.prototype.slider = function (options?:{
             const audioTriggers = slider.querySelectorAll("button[data-audio]");
             if (audioTriggers.length > 0) Phenix(document).audioTrigger(audioTriggers);
 
-
-
             //===> Quick View Popup <===//
-            Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
+            // Phenix(".px-product-quick-view[data-modal='quick-view-modal']").pds_quick_view();
         };
 
         //====> Slider Creator <=====//

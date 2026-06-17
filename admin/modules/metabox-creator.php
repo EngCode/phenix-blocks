@@ -324,7 +324,7 @@ if (!function_exists('pds_metabox_create')) :
                         //===> Create Nonce Field <===//
                         wp_nonce_field(basename(__FILE__), $metabox_group["name"] . '_nonce');
                         //===> Create Fields <===//
-                        echo '<tr class="form-field term-group-wrap"><th scope="row"><label for="custom_field">'.$metabox_group["label"].'</label></th>';
+                        echo '<tr class="form-field term-group-wrap"><th scope="row"><label for="custom_field">' . esc_html($metabox_group["label"]) . '</label></th>';
                         echo '<td>'. pds_metabox_fields_create($metabox_group, $term) . '</td></tr>';
                     });
         

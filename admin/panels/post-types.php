@@ -104,7 +104,7 @@
                                 $block_patterns = pds_get_patterns();
                                 if (isset($block_patterns) && count($block_patterns) > 0) {
                                     foreach ($block_patterns as $pattern) {
-                                        echo '<option value="'.$pattern['name'].'">' . $pattern['title'] . '</option>';
+                                        echo '<option value="' . esc_attr($pattern['name']) . '">' . esc_html($pattern['title']) . '</option>';
                                     }
                                 }
                             ?>
@@ -120,7 +120,7 @@
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
                                     if ($taxonomy->name !== "post_format") {
-                                        echo '<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>';
+                                        echo '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->labels->name) . '</option>';
                                     }
                                 };
                             ?>

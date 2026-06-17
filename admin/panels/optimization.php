@@ -76,10 +76,10 @@
                         <img class="loading-image <?php if ($loadingOptions["type"] == "code") { echo esc_attr("hidden"); } ?>" width="50" src="<?php echo esc_attr($loadingOptions["image"]); ?>" alt="<?php echo esc_html__('Loading', "pds-blocks");?>" />
                         <!-- Code -->
                         <div class="loading-code <?php if ($loadingOptions["type"] == "image") { echo esc_attr("hidden"); } ?>">
-                            <?php echo $loadingOptions["code"]; ?>
+                            <?php echo wp_kses_post($loadingOptions["code"]); ?>
                         </div>
                         <!-- Paragraph -->
-                        <p class="loading-text <?php if(isset($loadingOptions["showText"]) && $loadingOptions["showText"] !== "on") { echo esc_attr("hidden"); } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo $loadingOptions["text"]; ?></p>
+                        <p class="loading-text <?php if(isset($loadingOptions["showText"]) && $loadingOptions["showText"] !== "on") { echo esc_attr("hidden"); } ?>" style="margin-bottom: 0; font-size: 13px; padding: 10px 5px;"><?php echo esc_html($loadingOptions["text"]); ?></p>
                     </div>
                 </div>
                 <!-- Note -->
@@ -131,19 +131,19 @@
                     <div class="flexbox align-between">
                         <!-- Switch Button -->
                         <label class="mb-0 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
-                            <input id="pds_loading_showText" type="checkbox" name="pds_loading[showText]" <?php if (isset($loadingOptions["showText"]) && $loadingOptions["showText"] == "on") {echo 'checked';} ?> />
+                            <input id="pds_loading_showText" type="checkbox" name="pds_loading[showText]" <?php if (isset($loadingOptions["showText"]) && $loadingOptions["showText"] === "on") {echo 'checked';} ?> />
                             <span class="switch"></span>
                             <span class="me-5"><?php echo esc_html__("Show Loading Text", "pds-blocks"); ?></span>
                         </label>
                         <!-- Switch Button -->
                         <label class="mb-0 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
-                            <input id="pds_loading_theme" type="checkbox" name="pds_loading[theme]" <?php if (isset($loadingOptions["theme"]) && $loadingOptions["theme"] == "on") {echo 'checked';} ?> />
+                            <input id="pds_loading_theme" type="checkbox" name="pds_loading[theme]" <?php if (isset($loadingOptions["theme"]) && $loadingOptions["theme"] === "on") {echo 'checked';} ?> />
                             <span class="switch"></span>
                             <span class="me-5"><?php echo esc_html__("Custom Loading", "pds-blocks"); ?></span>
                         </label>
                         <!-- Switch Button -->
                         <label class="mb-0 small fs-14 option-control flexbox align-center-y weight-medium pds-5" data-type="switch">
-                            <input id="pds_loading_progressBar" type="checkbox" name="pds_loading[progressBar]" <?php if (isset($loadingOptions["progressBar"]) && $loadingOptions["progressBar"] == "on") {echo 'checked';} ?> />
+                            <input id="pds_loading_progressBar" type="checkbox" name="pds_loading[progressBar]" <?php if (isset($loadingOptions["progressBar"]) && $loadingOptions["progressBar"] === "on") {echo 'checked';} ?> />
                             <span class="switch"></span>
                             <span class="me-5"><?php echo esc_html__("Show Progress Bar", "pds-blocks"); ?></span>
                         </label>
@@ -154,7 +154,7 @@
                     <div id="pds_loading_code" class="<?php if ($loadingOptions["type"] == "image") : ?>hidden<?php endif; ?>">
                         <label class="fs-14 weight-strong mb-5"><?php echo esc_html__("Custom Code", "pds-blocks"); ?></label>
                         <textarea name="pds_loading[code]" class="form-control radius-sm">
-                            <?php echo $loadingOptions["code"]; ?>
+                            <?php echo wp_kses_post($loadingOptions["code"]); ?>
                         </textarea>
                     </div>
                     <!-- Loading Code -->

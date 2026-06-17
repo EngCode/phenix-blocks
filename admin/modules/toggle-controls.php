@@ -27,8 +27,8 @@ if (!function_exists('pds_toggle_controls')) :
 
             //===> Print the Data <===//
             echo '<label class="small option-control flexbox flow-reverse align-center-y align-between fs-14 weight-medium" data-type="switch">';
-                echo '<input type="checkbox" name="'.$control_item["name"].'" '.$isChecked.'><span class="switch"></span>';
-                echo '<span>'.$has_icon.$control_item["title"].'</span>';
+                echo '<input type="checkbox" name="' . esc_attr($control_item["name"]) . '" ' . $isChecked . '><span class="switch"></span>';
+                echo '<span>' . $has_icon . esc_html($control_item["title"]) . '</span>';
             echo '</label>';
         }
     }

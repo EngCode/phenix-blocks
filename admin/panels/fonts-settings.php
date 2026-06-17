@@ -55,7 +55,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["primary"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -71,7 +71,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["secondary"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -87,7 +87,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if (isset($current_fonts["style"]) && $current_fonts["style"] === $key || $current_fonts["primary"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -107,7 +107,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -123,7 +123,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if ($current_fonts["secondary_rtl"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -139,7 +139,7 @@
                         foreach ($fonts_list as $key => $value) {
                             $is_selected = "";
                             if (isset($current_fonts["style_rtl"]) && $current_fonts["style_rtl"] === $key || $current_fonts["primary_rtl"] === $key) { $is_selected = "selected"; }
-                            echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                            echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                         }
                     ?>
                 </select>
@@ -158,7 +158,7 @@
                     foreach ($fonts_list_icon as $key => $value) {
                         $is_selected = "";
                         if ($key == "fontawesome-6") { $is_selected = "selected"; }
-                        echo '<option value="'.$key.'" '. $is_selected .'>' . $value . '</option>';
+                        echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                     }
                 ?>
             </select>

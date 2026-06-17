@@ -210,16 +210,16 @@ if (!function_exists('pds_get_theme_parts_select')) :
         echo '<select class="form-control tx-capitalize" name="theme-part" title="Template Part" style="max-width:unset;">';
             foreach (array_reverse($Files_List) as $key => $value) {
                 if (is_array($value)) {
-                    echo '<optgroup label="'.$key.'">';
+                    echo '<optgroup label="' . esc_attr($key) . '">';
                         foreach ($value as $key2 => $value2) {
                             $value2 = str_replace(".php", "",$value2);
-                            echo '<option value="'.$key.'/'.$value2.'">'.str_replace("-", " ",$value2).'</option>';
+                            echo '<option value="' . esc_attr($key.'/'.$value2) . '">' . esc_html(str_replace("-", " ",$value2)) . '</option>';
                         }
                     echo '</optgroup>';
                 } else {
                     $value = str_replace(".php", "",$value);
                     $value = str_replace("_", "", $value);
-                    echo '<option value="'.$value.'">'.str_replace("-", " ",$value).'</option>';
+                    echo '<option value="' . esc_attr($value) . '">' . esc_html(str_replace("-", " ",$value)) . '</option>';
                 }
             }
         echo '</select>';

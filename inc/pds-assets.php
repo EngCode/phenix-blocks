@@ -27,7 +27,7 @@ if (!function_exists('phenix_core')) :
     //=====> Phenix Assets [Head] <=====//
     function phenix_core () {
         //====> define props <====//
-        $version = PDS_BLOCKS_VERSTION;
+        $version = PDS_BLOCKS_VERSION;
         $assets_url = plugin_dir_url(__DIR__)."assets/";
 
         //====> Check for CDN Option for the Core JS/CSS <====//
@@ -179,7 +179,7 @@ if (!function_exists('phenix_assets')) :
 
     function pds_optimized_asset () {
         //====> Get the Assets Files <====//
-        $version = PDS_BLOCKS_VERSTION;
+        $version = PDS_BLOCKS_VERSION;
         $assets_files = phenix_assets();
 
         //===> Load Primary Font <===//
@@ -268,7 +268,7 @@ if (!function_exists('pds_admin_style') && is_admin()) :
     */
 
     function pds_admin_style($hook) {
-        $version = PDS_BLOCKS_VERSTION;
+        $version = PDS_BLOCKS_VERSION;
         //===> Global for Admin <===//
         if (is_rtl()) {
             wp_enqueue_style('pds-admin', plugin_dir_url(__DIR__).'assets/css/admin-rtl.css', array(), $version);
@@ -303,7 +303,7 @@ if (!function_exists('pds_login_admin')) :
 	*/
     function pds_login_admin () {
         //===> Script <===//
-        include(dirname(__FILE__) . '/login-overwrite.php');
+        require_once(dirname(__FILE__) . '/login-overwrite.php');
     }
 
     // add_action('login_enqueue_scripts', 'pds_login_admin');
@@ -366,7 +366,7 @@ if (!function_exists('pds_loader_template')) :
         if(isset($theme_loading['theme']) && $theme_loading['theme'] == "on") {
             get_template_part('template-parts/loading');
         } else {
-            include(dirname(__FILE__) . '/loading.php');
+            require_once(dirname(__FILE__) . '/loading.php');
         }
 	}
 
@@ -376,7 +376,7 @@ endif;
 //===> Phenix Backlinks <===//
 if (!function_exists('pds_copyrights_backlinks')) :
     function pds_copyrights_backlinks() {
-        include(dirname(__FILE__) . '/backlinks.php');
+        require_once(dirname(__FILE__) . '/backlinks.php');
     }
     // add_action('wp_footer', 'pds_copyrights_backlinks');
 endif;
@@ -384,7 +384,7 @@ endif;
 //===> Lightbox Template <===//
 if (!function_exists('pds_lightbox_template')) :
 	function pds_lightbox_template() {
-		include(dirname(__FILE__) . '/lightbox.php');
+		require_once(dirname(__FILE__) . '/lightbox.php');
 	}
 
 	add_action('wp_footer', 'pds_lightbox_template');

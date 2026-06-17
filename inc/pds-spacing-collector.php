@@ -79,7 +79,7 @@ class PDS_Spacing_Collector {
 
         //===> Print if Exists <===//
         if (!empty($css)) {
-            echo '<style id="pds-custom-spacing">' . $css . '</style>';
+            echo '<style id="pds-custom-spacing">' . wp_strip_all_tags($css) . '</style>';
         }
     }
 

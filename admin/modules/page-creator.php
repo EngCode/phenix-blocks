@@ -51,10 +51,10 @@ if (!function_exists('pds_add_admin_page')) :
                 foreach ($tabs_list as $tab) {
                     $content = $tab['content'];
                     //===> Panel Start <===//
-                    echo '<div class="tab-panel mb-15" id="'.$tab['slug'].'">';
+                    echo '<div class="tab-panel mb-15" id="' . esc_attr($tab['slug']) . '">';
                     //===> Panel Description <===//
                     if (isset($tab['description'])) {
-                        echo '<p class="mb-10 fs-15">'.$tab['description'].'</p>';
+                        echo '<p class="mb-10 fs-15">' . esc_html($tab['description']) . '</p>';
                     }
                     //===> Panel End <===//
                     echo $content().'</div>';

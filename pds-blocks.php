@@ -16,7 +16,7 @@
 if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'); endif;
 
 //====> Define Constants <====//
-if (!defined('PDS_BLOCKS_VERSTION')) define('PDS_BLOCKS_VERSTION', '1.3.0');
+if (!defined('PDS_BLOCKS_VERSION')) define('PDS_BLOCKS_VERSION', '1.3.0');
 if (!defined('PDS_BLOCKS_URL')) define('PDS_BLOCKS_URL', plugin_dir_url(__FILE__));
 if (!defined('PDS_BLOCKS_PATH')) define('PDS_BLOCKS_PATH', plugin_dir_path(__FILE__));
 
@@ -45,20 +45,20 @@ if (!function_exists('pds_textdomain')) {
 }
 
 //=====> Admin Pages <=====//
-include(PDS_BLOCKS_PATH . 'admin/pds-admin.php');
-include(PDS_BLOCKS_PATH . 'admin/pds-default.php');
+require_once(PDS_BLOCKS_PATH . 'admin/pds-admin.php');
+require_once(PDS_BLOCKS_PATH . 'admin/pds-default.php');
 //=====> Phenix Functions <=====//
-include(PDS_BLOCKS_PATH . 'inc/pds-functions.php');
-include(PDS_BLOCKS_PATH . 'inc/woo-functions.php');
-include(PDS_BLOCKS_PATH . 'inc/pds-optimizer.php');
-include(PDS_BLOCKS_PATH . 'inc/pds-spacing-collector.php');
+require_once(PDS_BLOCKS_PATH . 'inc/pds-functions.php');
+require_once(PDS_BLOCKS_PATH . 'inc/woo-functions.php');
+require_once(PDS_BLOCKS_PATH . 'inc/pds-optimizer.php');
+require_once(PDS_BLOCKS_PATH . 'inc/pds-spacing-collector.php');
 //====> Assets and Blocks <====//
-include(PDS_BLOCKS_PATH . 'inc/pds-assets.php');
-include(PDS_BLOCKS_PATH . 'inc/pds-woocommerce.php');
-include(PDS_BLOCKS_PATH . 'src/blocks/blocks.php');
+require_once(PDS_BLOCKS_PATH . 'inc/pds-assets.php');
+require_once(PDS_BLOCKS_PATH . 'inc/pds-woocommerce.php');
+require_once(PDS_BLOCKS_PATH . 'src/blocks/blocks.php');
 //====> Other Features <====//
-include(PDS_BLOCKS_PATH . 'inc/import-export.php');
-include(PDS_BLOCKS_PATH . 'inc/posts-duplicator.php');
+require_once(PDS_BLOCKS_PATH . 'inc/import-export.php');
+require_once(PDS_BLOCKS_PATH . 'inc/posts-duplicator.php');
 
 //===> Implement selective block loading <===//
 add_filter('pds_blocks_registered_blocks', function($blocks) {

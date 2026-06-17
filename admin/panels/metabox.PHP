@@ -89,7 +89,7 @@
                                 $post_types = get_post_types(array('public'=> true), 'objects');
                                 foreach ($post_types as $post_type) {
                                     if ($post_type->name !== "attachment") {
-                                        echo '<option value="'.$post_type->name.'">' . $post_type->labels->name . '</option>';
+                                        echo '<option value="' . esc_attr($post_type->name) . '">' . esc_html($post_type->labels->name) . '</option>';
                                     }
                                 };
                             ?>
@@ -105,7 +105,7 @@
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');
                                 foreach ($taxonomies as $taxonomy) {
                                     if ($taxonomy->name !== "post_format") {
-                                        echo '<option value="'.$taxonomy->name.'">' . $taxonomy->labels->name . '</option>';
+                                        echo '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->labels->name) . '</option>';
                                     }
                                 };
                             ?>

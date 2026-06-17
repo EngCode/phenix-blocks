@@ -26,11 +26,11 @@ if (!function_exists('pds_woocommerce_support')) :
         if (!class_exists('WooCommerce')) return;
 
         //====> define props <====//
-        $version = PDS_BLOCKS_VERSTION;
+        $version = PDS_BLOCKS_VERSION;
         $assets_url = plugin_dir_url(__DIR__)."assets/";
 
         //====> Check for CDN Option for the Core JS/CSS <====//
-        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+        if (get_option('pds_cdn') && get_option('pds_cdn') === "on") {
             $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
         }
 

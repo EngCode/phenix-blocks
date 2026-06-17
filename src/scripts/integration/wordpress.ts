@@ -162,6 +162,10 @@ if (PhenixElements) PhenixElements.prototype.init = function (scripts?:[]) {
 
 /*====> D.O.M is Ready ? <====*/
 if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
+    //====> Edit/Admin Define <====//
+    const isAdmin  = document.body?.classList?.contains('wp-admin');
+    const isEditor = document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]');
+
     //===> Contact Form 7 Fixes <===//
     const fixCF7 = () => {
         //====> Forms Validation <====//
@@ -328,9 +332,6 @@ if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
         });
     };
 
-    const isEditor = document.querySelector("#site-editor") || document.querySelector('body[class*="editor"]');
-    const isAdmin  = document.body?.classList?.contains('wp-admin');
-
     /*====> Unblock Fonts <====*/
     Phenix('#fontawesome-css, #pds-icons-css, #pds-cfont-css, #theme-style-css, #phenix-css, #pds-primary-font-css, #pds-secondary-font-css, #pds-style-font-css').forEach((style:HTMLElement) => style.setAttribute('media', 'all'));
 
@@ -358,17 +359,12 @@ if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
 
     /*====> for Admin Panel <====*/
     else if (isAdmin && !isEditor) {
-        //===> Fix Tables Style <===//
-        Phenix('.wp-list-table .column-date, .wp-list-table .column-author').forEach((dateColumn:HTMLElement) => {
-            dateColumn.classList.add('tx-nowrap');
-            dateColumn.innerHTML = dateColumn.innerHTML.replace('<br>', ' ');
-        });
-
-        //===> Fix Tables Style <===//
-        Phenix('.wp-list-table .row-actions span').forEach((spanLink:HTMLElement) => spanLink.innerHTML = spanLink.innerHTML.replace('|', ''));
-        
-        //===> Run Scripts <===//
-        Phenix(document).init();
+        //====> Tabs <====//
+        Phenix('.px-tabs').tabs();
+        //====> Dropdown Buttons <====//
+        Phenix('.px-dropdown').dropdown();
+        //===> .Others. <===//
+        Phenix(document).utilities('form, other');
     }
 
     /*====> for Block Editor <====*/
@@ -376,9 +372,6 @@ if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
         //====> Disable Links <====//
         Phenix('.editor-styles-wrapper a[href]').on('click', clicked => clicked.preventDefault(), true);
     }
-
-    /*====> for Block Editor and Admin <====*/
-    else if (isEditor || isAdmin) {}
 });
 
 //===> Create WP Uploader <===//

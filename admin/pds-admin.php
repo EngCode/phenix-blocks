@@ -267,7 +267,7 @@
             },
             //===> Editing Permission <===//
             "write_prem" => function () {
-                return current_user_can('manage_options');
+                return current_user_can('manage_options') && wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'] ?? '', 'wp_rest');
             },
             //===> Get Option Method <===//
             "get_method" => function($request) {

@@ -75,17 +75,17 @@ if (!function_exists('pagination')) :
 		//===> Generate <===//
 		if(is_array($pages)) {
 			//===> List <===//
-			echo '<ul class="reset-list pagination '.$list_style.'">';
+			echo '<ul class="reset-list pagination ' . esc_attr($list_style) . '">';
 			//===> Pages Start <===//
 			foreach ($pages as $page) {
 				//===> if its the Current Page <===//
 				if (strpos($page, 'current') !== false) {
 					$page = str_replace("span", "a", $page);
-					echo "<li class='".$main_style." ".$active_btn."'>$page</li>";
+					echo "<li class='" . esc_attr($main_style) . " " . esc_attr($active_btn) . "'>" . wp_kses_post($page) . "</li>";
 				}
 				//===> else other pages <===//
 				else {
-					echo "<li class='".$main_style." ".$normal_btn."'>$page</li>";
+					echo "<li class='" . esc_attr($main_style) . " " . esc_attr($normal_btn) . "'>" . wp_kses_post($page) . "</li>";
 				}
 			}
 			//===> Pages End <===//

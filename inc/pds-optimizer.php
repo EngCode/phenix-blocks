@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) : die('You are not allowed to call this page directly.'
 //====> Optimize for Front-End Only <====//
 if (!is_admin()) {
     //=====> Head Optimizer <=====//
-    if (!function_exists('head_optimize') && get_option('head_cleaner') == "on") :
+    if (!function_exists('head_optimize') && get_option('head_cleaner') === "on") :
         /**
          * Optimizing the Default Unnecessary Scripts and Styles
          * @since Phenix WP 1.0
@@ -80,14 +80,14 @@ if (!is_admin()) {
     if (!function_exists('scripts_optimize')) :
         function scripts_optimize() {
             //===> Remove jQuery <===//
-            if (get_option('jquery_remove') == "on") {
+            if (get_option('jquery_remove') === "on") {
                 wp_deregister_script('jquery');
                 wp_deregister_script('jquery-core');
                 wp_deregister_script('jquery-migrate');
             }
 
             //===== Contact Form 7 =====//
-            if (get_option('wpc7_cleaner') == "on") {
+            if (get_option('wpc7_cleaner') === "on") {
                 wp_deregister_script('contact-form-7');
             }
         }
@@ -99,12 +99,12 @@ if (!is_admin()) {
     if (!function_exists('styles_optimize')) :
         function styles_optimize() {
             //===> Newsletter Plugin <===//
-            if (get_option('newsletter_css') && get_option('newsletter_css') == "on") {
+            if (get_option('newsletter_css') && get_option('newsletter_css') === "on") {
                 wp_dequeue_style('newsletter');
             }
 
             //===== Contact Form 7 =====//
-            if (get_option('wpc7_cleaner') == "on") {
+            if (get_option('wpc7_cleaner') === "on") {
                 wp_deregister_style('contact-form-7');
             }
             
@@ -117,7 +117,7 @@ if (!is_admin()) {
     endif;
 
     //===> Remove Comments Default CSS <===//
-    if (!function_exists('comments_styles') && get_option('comments_css') == "on") :
+    if (!function_exists('comments_styles') && get_option('comments_css') === "on") :
         function comments_styles() {
             global $wp_widget_factory;
             remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
@@ -168,7 +168,7 @@ if (!is_admin()) {
 }
 
 //=====> Gutenberg Optimizer <=====//
-if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer') == "on") :
+if (!function_exists('blocks_optimizer') && get_option('blocks_optimizer') === "on") :
     function blocks_optimizer() {
         wp_dequeue_style('wp-block-list');
         wp_dequeue_style('wp-block-image');

@@ -31,7 +31,7 @@ if (!function_exists('phenix_core')) :
         $assets_url = plugin_dir_url(__DIR__)."assets/";
 
         //====> Check for CDN Option for the Core JS/CSS <====//
-        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+        if (get_option('pds_cdn') && get_option('pds_cdn') === "on") {
             $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
         }
 
@@ -98,7 +98,7 @@ if (!function_exists('phenix_assets')) :
         $fonts_list  = (array) get_option("pds_fonts");
 
         //====> Check for CDN Option for the Core JS/CSS <====//
-        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+        if (get_option('pds_cdn') && get_option('pds_cdn') === "on") {
             $assets_url = "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/";
         }
 
@@ -141,7 +141,7 @@ if (!function_exists('phenix_assets')) :
             //===> Define the Font File <===//
             if (is_array($fonts_list) && in_array($value, $custom_fonts, true)) {
                 $final_files[$key] = $assets_url. 'webfonts/'.$value.'.css';
-            } else if (get_option('pds_gfonts') == "on") {
+            } else if (get_option('pds_gfonts') === "on") {
                 $final_files[$key] = 'https://fonts.googleapis.com/css2?family='.str_replace(" ", "+", $value).':wght@100;200;300;400;500;600;700;800;900&display=swap';
             }
 
@@ -244,13 +244,13 @@ add_filter( 'wp_resource_hints', function( $hints, $relation_type ) {
     //====> Pre-Connect Hints and DNS Prefetch Hints <====//
     if ('preconnect' === $relation_type || 'dns-prefetch' === $relation_type) {
         //====> Google Fonts <====//
-        if (get_option('pds_gfonts') == "on") {
+        if (get_option('pds_gfonts') === "on") {
             $hints[] = 'https://fonts.googleapis.com';
             $hints[] = 'https://fonts.gstatic.com';
         }
         
         //====> Pre-Connect to the cdn.jsdelivr.net URL <====//
-        if (get_option('pds_cdn') && get_option('pds_cdn') == "on") {
+        if (get_option('pds_cdn') && get_option('pds_cdn') === "on") {
             $hints[] = 'https://cdn.jsdelivr.net';
             $hints[] = 'https://cdn.jsdelivr.net';
         }

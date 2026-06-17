@@ -4,10 +4,21 @@
  * from the window global. The core must be loaded first.
  */
 
-//===> Get Phenix from the Global <===//
-const Phenix = (window as any).Phenix;
-const PhenixElements = (window as any).Phenix.PhenixElements;
+declare global {
+    interface Window {
+        Phenix?: any;
+    }
+}
 
-//====> Export for TypeScript Compatibility <====//
+//===> Get Phenix from the Global <===//
+const Phenix = window?.Phenix;
+const PhenixElements = window?.Phenix?.PhenixElements || null;
+
+//===> Fail-Safe if Core Not Loaded <===//
+if (!Phenix || !PhenixElements) {
+    console.error('[Phenix Extension] Core library not loaded. Extension aborted.');
+}
+
+//===> Export for TypeScript Compatibility <===//
 export default Phenix;
 export { PhenixElements };

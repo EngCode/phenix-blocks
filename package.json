@@ -10,17 +10,14 @@
   },
   "main": "/assets/css/phenix.css",
   "scripts": {
-    "phenix-start": "concurrently --kill-others \"npm run phenix-sass-watch\" \"npm run phenix-ts-watch\" \"npm run phenix-blocks\"",
-    "phenix-ts": "webpack --config typescript.webpack.js",
-    "phenix-ts-watch": "webpack --config typescript.webpack.js --watch",
-    "phenix-sass": "sass src/sass:assets/css --style=compressed --source-map",
-    "phenix-sass-watch": "sass --watch src/sass:assets/css --style=compressed --source-map --poll",
-    "phenix-sass-debug": "sass --watch src/sass:assets/css --style=compressed --source-map --verbose",
-    "phenix-blocks": "wp-scripts start",
-    "phenix-ext": "webpack --config typescript.webpack.ext.js",
-    "phenix-ext-watch": "webpack --config typescript.webpack.ext.js --watch",
-    "animate-sass": "sass src/animations:assets/css/animations --style=compressed",
-    "animate-sass-watch": "sass --watch src/animations:assets/css/animations --style=compressed"
+    "watch": "concurrently --kill-others \"npm run sass\" \"npm run ts\" \"npm run ext\" \"npm run blocks\"",
+    "sass": "sass --watch src/sass:assets/css --style=compressed --source-map --poll",
+    "sass-debug": "sass --watch src/sass:assets/css --style=compressed --source-map --verbose",
+    "ts": "webpack --config typescript.webpack.js --watch",
+    "ext": "webpack --config typescript.webpack.ext.js --watch",
+    "blocks": "wp-scripts start",
+    "animate": "sass --watch src/animations:assets/css/animations --style=compressed",
+    "build": "webpack --config typescript.webpack.js && webpack --config typescript.webpack.ext.js && sass src/sass:assets/css --style=compressed --source-map && sass src/animations:assets/css/animations --style=compressed"
   },
   "devDependencies": {
     "@wordpress/scripts": "^30.0.0",

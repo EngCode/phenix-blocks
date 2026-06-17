@@ -1,99 +1,78 @@
-## Version history
+# Changelog
 
-### v1.5.0 — Build system cleanup
-- Replaced deprecated `node-sass` with Dart `sass`
-- Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
-- Removed babel packages that `@wordpress/scripts` already bundles
-- Removed `@wordpress/server-side-render` and `@wordpress/blocks` from explicit dependencies (WordPress provides them at runtime)
-- Added `.npmrc` so `npm install` works without flags on modern Node versions
-- Block build auto-discovers blocks from `src/blocks/` instead of using a manual entry list
+All notable changes to Phenix Blocks will be documented in this file.
 
-### v2.0.0 — Core fixes
-- **CSS variable trap removed:** Replaced nested CSS variable fallbacks (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
-- **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source. Added `.init()` and `.destroy()` lifecycle hooks for SPA framework integration.
-- **SASS cleanup:** Removed `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents. Custom spacing values are handled by the collector, not CSS variables.
-- **Extension build support:** Multiple webpack entry points for compiling add-on files (e.g., `woocommerce.js`, `select.js`) as separate files that share the core global without duplicating it.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Change Log v1.2.0 Revamped
-1. Disable Cron Jobs Scheduler
-2. Cleanup the Plugin for Public
-3. Disable Custom Login
-4. improve assets loading, and disable the JS hack.
-5. Fix Icon Block Free Width.
-6. Refactoring Core Counter Function.
-7. Lightbox Slider Fix.
-8. Fix Background not Rendering in Editor.
-9. Fix Grid Flow Reverse not Wrapping.
-10. Media Uploader Fix for Metaboxes.
-11. Fix Metaboxes Repeater.
-12. Fix Media Uploader in Editor.
-13. Add New Style Font Option.
-14. Disable core blocks remover
-15. Upgrade taxonomies query and support sub terms.
-16. Add Support  Terms as Dropdowns for Taxonomies in Dynamic Menu.
-17. Fix Core Animations Effects Bouncing.
-18. Fix Fading Slider in RTL.
-19. Add Posts Managers Tools
-20. Remove Posts from any Type Tool
-21. Import Posts from a Json File
-22. Add Show Columns in the Admin Posts Table Functions
-23. Add Posts JSON Exporter Simple Tool
-24. Add post duplicating method.
-25. Improving component builders, and view scripts.
-26. Fixing Dropdown Menus in the Toolbar.
-27. Fix Media Uploader in Optimization Tab.
-28. Replace SplideJS with Swiper Slider.
-29. Refactor Phenix Core Class Methods
-30. Fix Taxonomies ID and Link Controller Bugs.
-31. SEO Useless methods removed.
-32. Improving Colors Panel Performance.
-33. Improving Select Elements Performance in Editor.
-34. Improving Select Data Performance in Editor.
-35. Refactoring icons Panel and improve Performance in Editor.
+## [2.0.0] — 2025-06-17
 
-### Minor-fixes v1.0.9:
-1. Add Support for iPhone autoplay videos
-2. Add new Ratio Sizes for Multi-Media
-3. Fixing Multimedia inner block position editor mode.
-4. Fix None-Ratio hidden images.
-5. Fix Logical-block already exist.
-6. Add navbar icons style support
-7. Add Transition for Sticky Header.
-8. Fix Sticky Offset in PDS Core.
-9. Fix custom overlay rendering.
-10. Add loading logo size option.
-11. fix empty option in advanced select.
-12. upgrade wordpress breadcrumb flow.
-13. improve auto-generated thumbnails remover.
-14. fixing editor dark styles inhihretes.
+### Added
+- Extension build system: `typescript.webpack.ext.js` for compiling add-on JS (WooCommerce, etc.) as separate files
+- WooCommerce integration as an extension: `assets/js/woocommerce.js` auto-enqueued when WooCommerce is active
+- `phenix-stub.ts` for extensions to read `Phenix` and `PhenixElements` from `window` instead of bundling the core
+- Script defer auto-propagation: any script that declares `phenix` as a dependency is automatically deferred
+- `npm run build` one-shot production build command
+- `npm run sass-debug` verbose SASS watch for debugging
+- `PDS_Spacing_Collector` PHP class for generating flat CSS classes on `save_post` instead of nested CSS variables
+- `wp_strip_all_tags()` sanitization on CSS collector output in `wp_head`
 
+### Changed
+- **Build scripts cleaned up:**
+  - `npm run watch` replaces `npm run phenix-start` (runs all 4 watchers)
+  - `npm run sass` replaces `npm run phenix-sass` (watch mode, `--poll` on Windows)
+  - `npm run ts` replaces `npm run phenix-ts` (watch mode)
+  - `npm run ext` replaces `npm run phenix-ext` (watch mode)
+  - `npm run blocks` replaces `npm run phenix-blocks`
+  - `npm run animate` replaces `npm run animate-sass`
+- `typescript.webpack.js`: `library.type` changed to `umd` with `export: 'default'` to fix internal module resolution and make `window.Phenix` available to extensions
+- `src/scripts/tsconfig.json`: `"module": "commonjs"` to remove ES module helper pollution from compiled output
+- `src/scripts/index.ts`: `PhenixElements` now attached to `window.Phenix.PhenixElements` for external access
+- All `get_option() == "on"` changed to strict `=== "on"` across all PHP files (`pds-assets.php`, `pds-optimizer.php`, `pds-woocommerce.php`, `woo-functions.php`, `admin/panels/optimization.php`)
+- All critical `include()` calls changed to `require_once()` in `pds-blocks.php` and `inc/pds-assets.php`
 
-### Hot-fixes v1.0.7 and v1.0.8:
+### Security
+- REST API write endpoint (`/options`) now verifies `X-WP-Nonce` with `wp_verify_nonce()` before allowing `update_option()` calls
+- `pagination()` in `inc/pds-functions.php` now escapes class names with `esc_attr()` and link output with `wp_kses_post()`
+- Admin panel rendering now escapes all dynamic output:
+  - `page-creator.php`, `page-layout.php`: `esc_attr()` on tab slugs, `esc_html()` on descriptions
+  - `toggle-controls.php`: `esc_attr()` on checkbox names, `esc_html()` on titles
+  - `metabox-creator.php`: `esc_html()` on labels
+  - `loading.php`: `esc_attr()` on background, `esc_url()` on image, `wp_kses_post()` on custom code, `esc_html()` on text
+  - `pds-functions.php` template select: `esc_attr()` on option values, `esc_html()` on labels
+  - `woo-functions.php`: `esc_attr()` on all form attributes, `esc_url()` on variation images, `esc_html()` on labels
+  - All panels (`fonts-settings`, `post-types`, `metabox`, `taxonomies`, `import-export`): `esc_attr()` on option values, `esc_html()` on labels
+- Constant typo fixed: `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all 4 files
 
-1. Improve Responsive UHD Scaler.
-4. Add New Effects and Animations.
-2. Gradient Text Coloring Editing Style Fix.
-3. Media Uploader Control Multiple Popups Fix.
-4. Fix Select Re-render Options unexpectedly.
-5. Media Type Image Cover Size Fix
-6. Disable Scaled Thumbnail Generation.
-7. Defer Any Images with Lazyloading Attribute.
-8. Add new copyText() method for Phenix Core.
-9. Admin Style Fixes.
-10. Fix loading duplicates when custom template are present.
+### Removed
+- `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents from SASS source
+- Nested CSS variable fallback cascade (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) from SASS utilities
+- Inline style bloat from custom padding/margin values — now handled by the PHP collector
+- `node-sass`, babel packages, `webpack-dev-server`, `eslint-plugin-react` from dev dependencies
 
-### Hot-fixes v1.0.6:
+## [1.5.0] — 2025-06-15
 
-1. Template Parts Block Listing Fix.
-2. Logo REM Function fix.
-3. Taxonomies Creator Labels translation remove.
-4. Remove Pro Fonts for Official Release.
-5. Fix Loading Media Uploader opens multiple times.
-6. RM... deprecated emoji style remover
-7. Convert to CDN Assets and WebFonts.
-8. Upgrade Query Block to get posts by taxonomies.
-9. adding FHD to the scaling responsive 2k/4k.
-11. Update CPT Creator, and Query Block to get posts by taxonomies.
-12. WP 6.5 Update Fixes.
-13. fix loading spinner size.
-14. icons sizes to rem.
+### Added
+- `.npmrc` with `engine-strict=false` for Node 20+ compatibility
+- Block auto-discovery via `glob` in `webpack.config.js`
+
+### Changed
+- Replaced `node-sass` with Dart `sass` (v1.80)
+- Upgraded `webpack` to 5.95, `ts-loader` to 9.5.1, `typescript` to 5.6
+- Upgraded `@wordpress/scripts` to v30
+- Removed explicit babel packages (bundled by `@wordpress/scripts`)
+- Removed `@wordpress/server-side-render` and `@wordpress/blocks` from explicit dependencies
+- Removed `webpack-dev-server` and `eslint-plugin-react`
+
+## [1.3.0] — 2025-06-10
+
+### Added
+- Initial release of Phenix 2.0 architecture
+- CSS variable-based spacing system (now replaced in 2.0.0)
+- JavaScript core with `Phenix` selector and `PhenixElements` class
+- 20+ custom Gutenberg blocks
+- WooCommerce integration (now split to extension in 2.0.0)
+- Three.js 3D Viewer block
+- Animation system with scroll-driven progress
+- Admin tools: CPT creator, taxonomy creator, meta boxes, import/export
+- RTL-first design system

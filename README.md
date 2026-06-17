@@ -21,18 +21,21 @@ A UI framework for building WordPress sites with a unified design language.
 git clone https://gitlab.com/EngCode/pds-blocks-pro.git
 cd pds-blocks-pro
 npm install
-npm run phenix-start
+npm run watch
 ```
 
 ## Build commands
 
 | Command | What it does |
 |---------|-------------|
-| `npm run phenix-start` | Runs SASS, TypeScript, and blocks watcher in parallel |
-| `npm run phenix-ts` | Compiles the front-end JavaScript (`assets/js/phenix.js`) |
-| `npm run phenix-sass` | Compiles the CSS framework (`assets/css/phenix.css`) |
-| `npm run phenix-blocks` | Compiles the Gutenberg blocks |
-| `npm run animate-sass` | Compiles the animation CSS separately |
+| `npm run watch` | Runs SASS, TypeScript, extension, and blocks watcher in parallel |
+| `npm run sass` | Compiles the CSS framework (`assets/css/phenix.css`) — watch mode |
+| `npm run sass-debug` | Same as above with verbose output for debugging |
+| `npm run ts` | Compiles the front-end JavaScript (`assets/js/phenix.js`) — watch mode |
+| `npm run ext` | Compiles the WooCommerce extension (`assets/js/woocommerce.js`) — watch mode |
+| `npm run blocks` | Compiles the Gutenberg blocks |
+| `npm run animate` | Compiles the animation CSS separately |
+| `npm run build` | One-shot production build for all assets (no watch) |
 
 ### Plugin Installation
 
@@ -171,6 +174,15 @@ JavaScript customizations go in `style.js`, which runs alongside the Phenix fron
 
 ## Version History
 
+### v2.0.0 — Core Fixes & Security
+- **CSS variable trap removed:** Replaced nested CSS variable fallbacks with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
+- **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source.
+- **Extension build support:** Multiple webpack entry points for compiling add-on files (e.g., `woocommerce.js`) as separate files that share the core global without duplicating it.
+- **Build system modernized:** Replaced `node-sass` with Dart `sass`, upgraded `ts-loader`, `webpack`, `typescript`. Removed babel bloat. Added `.npmrc` for Node 20+ compatibility. Block build auto-discovers blocks from `src/blocks/` instead of a manual entry list.
+- **PHP security fixes:** Added `wp_verify_nonce()` to REST write endpoints, `esc_attr()`/`wp_kses_post()` to pagination output, `esc_html()`/`esc_attr()` to admin panel rendering, `wp_strip_all_tags()` to CSS collector output. Changed all `get_option() == "on"` to strict `=== "on"`. Changed critical `include()` calls to `require_once()`.
+- **Constant typo:** Fixed `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all files.
+- **Clean scripts:** Reduced to `npm run watch`, `npm run sass`, `npm run ts`, `npm run ext`, `npm run blocks`, `npm run build`.
+
 ### v1.5.0 — Build System Cleanup
 - Replaced deprecated `node-sass` with Dart `sass`
 - Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
@@ -178,12 +190,6 @@ JavaScript customizations go in `style.js`, which runs alongside the Phenix fron
 - Removed `@wordpress/server-side-render` and `@wordpress/blocks` from explicit dependencies (WordPress provides them at runtime)
 - Added `.npmrc` so `npm install` works without flags on modern Node versions
 - Block build auto-discovers blocks from `src/blocks/` instead of using a manual entry list
-
-### v2.0.0 — Core Fixes
-- **CSS variable trap removed:** Replaced nested CSS variable fallbacks (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
-- **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source. Added `.init()` and `.destroy()` lifecycle hooks for SPA framework integration.
-- **SASS cleanup:** Removed `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents. Custom spacing values are handled by the collector, not CSS variables.
-- **Extension build support:** Multiple webpack entry points for compiling add-on files (e.g., `woocommerce.js`, `select.js`) as separate files that share the core global without duplicating it.
 
 ## License
 

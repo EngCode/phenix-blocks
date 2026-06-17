@@ -767,6 +767,24 @@ export default Phenix;
 (Phenix as any).PhenixElements = PhenixElements;
 (Phenix as any).px = Phenix;
 
+/*====> Plugin Registry <====*/
+(Phenix as any).plugins = new Map<string, Function>();
+
+//====> Register Plugin Method <====//
+(Phenix as any).register = (name: string, plugin: (Elements: typeof PhenixElements, px: typeof Phenix) => void) => {
+    //====> Check if the Plugin is Already Registered <====//
+    if ((Phenix as any).plugins.has(name)) return console.warn(`Phenix: plugin "${name}" already registered`);
+    //====> Register the Plugin <====//
+    plugin(PhenixElements, Phenix);
+    //====> Add the Plugin to the Registry <====//
+    (Phenix as any).plugins.set(name, plugin);
+};
+
+//===> Allow Extending Phenix Elements <====//
+(Phenix as any).extend = (method: string, fn: Function) => {
+  PhenixElements.prototype[method] = fn;
+};
+
 /*====> Import Methods <====*/
 import './features/get-info';   //==> Get Informations about elements
 import './features/viewport';   //==> Viewport Detection
@@ -799,27 +817,7 @@ import './integration/slider';    //==> Splide.js Slider
 import './integration/utilities'; //==> Phenix Utilities
 
 /*====> Integration WordPress <====*/
-import './integration/blocks';      //==> Front-end Blocks Scripts
 import './integration/wordpress';   //==> Wordpress Integration
-// import './integration/woocommerce'; //==> WooCommerce Integration
 
 /*====> Custom Scripts <====*/
 import './custom-scripts';
-
-/*====> Plugin Registry <====*/
-(Phenix as any).plugins = new Map<string, Function>();
-
-//====> Register Plugin Method <====//
-(Phenix as any).register = (name: string, plugin: (Elements: typeof PhenixElements, px: typeof Phenix) => void) => {
-    //====> Check if the Plugin is Already Registered <====//
-    if ((Phenix as any).plugins.has(name)) return console.warn(`Phenix: plugin "${name}" already registered`);
-    //====> Register the Plugin <====//
-    plugin(PhenixElements, Phenix);
-    //====> Add the Plugin to the Registry <====//
-    (Phenix as any).plugins.set(name, plugin);
-};
-
-//===> Allow Extending Phenix Elements <====//
-(Phenix as any).extend = (method: string, fn: Function) => {
-  PhenixElements.prototype[method] = fn;
-};

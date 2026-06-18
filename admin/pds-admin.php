@@ -491,11 +491,8 @@
                     //===> Clear Fetching Lock on Error <===//
                     delete_transient('pds_countries_fetching');
                 }
-            } else {
-                //===> Clear Fetching Lock on Error <===//
-                delete_transient('pds_countries_fetching');
             }
-
+        }
         add_action('pds_blocks_active', 'pds_countries_register');
     endif;
 

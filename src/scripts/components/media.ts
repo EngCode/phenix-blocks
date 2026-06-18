@@ -144,11 +144,15 @@ PhenixElements.prototype.multimedia = function (options?:{
     
                 //====> Image Type <====//
                 else if (type == 'image') {
-                    //===> Set Background <===//
-                    // background(element, src);
+                    //===> Get Wrapper Width <===//
+                    let image_width = element.clientWidth;
                     //===> Create Image <===//
-                    if(!element.querySelector(':scope > img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" class="px-media-img" loading="lazy" />`);
-                    else element.querySelector(':scope > img').setAttribute('loading', 'lazy');
+                    if(!element.querySelector(':scope > img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" width="${image_width}" class="px-media-img" loading="lazy" />`);
+                    //===> Perpare the Exisiting image <===//
+                    else {
+                        element.querySelector(':scope > img').setAttribute('loading', 'lazy');
+                        element.querySelector(':scope > img').setAttribute('width', image_width);
+                    }
                     //===> Mark as Done <===//
                     mediaDone = true;
                 }

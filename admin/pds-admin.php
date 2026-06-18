@@ -128,6 +128,11 @@
             array('pds_woo_css', 'pds-admin', true),
             array('pds_woo_js', 'pds-admin', true),
             array('pds_woo_status', 'pds-admin', true),
+            array('pds_gfonts_api_key', 'pds-admin', true),
+            array('pds_enable_thumbnails_sizes', 'pds-admin', true),
+            array('pds_seo_image_dimensions', 'pds-admin', true),
+            array('pds_seo_image_alt', 'pds-admin', true),
+            array('pds_seo_link_titles', 'pds-admin', true),
 
             //===> Phenix Blocks <===//
             array('container_block', 'pds-admin', true),

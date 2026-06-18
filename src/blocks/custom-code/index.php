@@ -13,7 +13,7 @@ function px_custom_code_render($block_attributes, $content) {
 
     //===> Render [HTML] Code <===//
     if ($block_attributes['type'] === "html") {
-        $markup .= wp_kses_post($block_attributes['code']);
+        $markup .= $block_attributes['code'];
     }
     //===> Render [CSS] Code <===//
     elseif ($block_attributes['type'] === "css") {
@@ -21,7 +21,7 @@ function px_custom_code_render($block_attributes, $content) {
     }
     //===> Render [Javascript] Code <===//
     elseif ($block_attributes['type'] === "javascript") {
-        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.$block_attributes['code'].'});</script>';
+        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.wp_strip_all_tags($block_attributes['code']).'});</script>';
     }
     //===> Render [Shortcode] Code <===//
     elseif ($block_attributes['type'] === "shortcode") {

@@ -101,8 +101,8 @@ console.info(`🔥🔥🔥🔥🔥 %cPhenix Design System 🔥🔥🔥💥🐦
 //====> Get Current Path <====//
 PhenixElements.prototype.getURL = function (location?) {
     //====> Current Script File <====//
-    let url = document.querySelector('script[src*="phenix.js"]')?.getAttribute('src'),
-        phenix_js = url.substring(0, url.lastIndexOf('/')+1);
+    let url = document.querySelector('script[src*="phenix.js"]')?.getAttribute('src') || window.location.origin + '/wp-content/plugins/pds-blocks/assets/js/',
+        phenix_js = url?.substring(0, url.lastIndexOf('/')+1);
     //====> Return information's <====//
     return {
         script : url,

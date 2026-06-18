@@ -21,7 +21,7 @@ function px_custom_code_render($block_attributes, $content) {
     }
     //===> Render [Javascript] Code <===//
     elseif ($block_attributes['type'] === "javascript") {
-        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.wp_strip_all_tags($block_attributes['code']).'});</script>';
+        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.$block_attributes['code'].'});</script>';
     }
     //===> Render [Shortcode] Code <===//
     elseif ($block_attributes['type'] === "shortcode") {

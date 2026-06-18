@@ -290,7 +290,9 @@ PhenixElements.prototype.utilities = function (options?:{
                 // parent_height = Phenix(img.parentNode).height();
 
             //===> Set Width and Height <===//
-            if (!img_width && parent_width > 0) img.setAttribute('width', `${parent_width}`);
+            setTimeout(() => {
+                if (!img_width && parent_width > 0) img.setAttribute('width', `${parent_width}`);
+            }, 1000);
             // if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
 
             //===> Alternative Text <===//

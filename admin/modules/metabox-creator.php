@@ -310,7 +310,34 @@ if (!function_exists('pds_metabox_create')) :
                         } 
                         //===> Handle regular fields <===//
                         elseif (isset($_POST[$metabox["name"]])) {
-                            update_post_meta($post_id, $metabox["name"], $_POST[$metabox["name"]]);
+                            $raw_value = $_POST[$metabox["name"]];
+                            //===> Sanitize by field type <===//
+                            switch ($metabox["type"] ?? "text") {
+                                case "textarea":
+                                case "editor":
+                                    $clean_value = sanitize_textarea_field($raw_value);
+                                    break;
+                                case "number":
+                                    $clean_value = is_numeric($raw_value) ? $raw_value : 0;
+                                    break;
+                                case "url":
+                                    $clean_value = esc_url_raw($raw_value);
+                                    break;
+                                case "email":
+                                    $clean_value = sanitize_email($raw_value);
+                                    break;
+                                case "color":
+                                    $clean_value = sanitize_hex_color($raw_value);
+                                    break;
+                                case "checkbox":
+                                case "switch":
+                                    $clean_value = $raw_value === "on" ? "on" : "";
+                                    break;
+                                default:
+                                    $clean_value = sanitize_text_field($raw_value);
+                                    break;
+                            }
+                            update_post_meta($post_id, $metabox["name"], $clean_value);
                         }
                     }
                 });

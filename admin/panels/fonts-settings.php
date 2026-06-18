@@ -30,13 +30,31 @@
 
     //===> Get Google Fonts <===//
     if (get_option("pds_gfonts") === "on") {
-        //===> Get Google Fonts Json File <===//
-        $json_data = wp_remote_get("https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC3GNi2OCpFOJnJfeJZvzHjISPg__fqlUI");
-        $json_array = json_decode(wp_remote_retrieve_body($json_data));
-        //===> Convert to Array <===//
-        if($json_array) {
-            foreach ($json_array->items as $key => $value) {
-                $fonts_list[$value->family] = $value->family;
+        //===> Check Cache <===//
+        $cached_fonts = get_transient('pds_google_fonts_list');
+        
+        if (false !== $cached_fonts && is_array($cached_fonts)) {
+            //===> Use Cached Fonts <===//
+            $fonts_list = array_merge($fonts_list, $cached_fonts);
+        } else {
+            //===> Get Google Fonts API Key <===//
+            $api_key = get_option('pds_gfonts_api_key') ?: 'AIzaSyC3GNi2OCpFOJnJfeJZvzHjISPg__fqlUI';
+            //===> Fetch from Google Fonts API <===//
+            $json_data = wp_remote_get("https://www.googleapis.com/webfonts/v1/webfonts?key=" . urlencode($api_key));
+            
+            if (!is_wp_error($json_data)) {
+                $json_array = json_decode(wp_remote_retrieve_body($json_data));
+                //===> Convert to Array and Cache <===//
+                if ($json_array && isset($json_array->items)) {
+                    $google_fonts = array();
+                    foreach ($json_array->items as $key => $value) {
+                        $google_fonts[$value->family] = $value->family;
+                    }
+                    //===> Cache for 7 Days <===//
+                    set_transient('pds_google_fonts_list', $google_fonts, 7 * DAY_IN_SECONDS);
+                    //===> Merge with Local Fonts <===//
+                    $fonts_list = array_merge($fonts_list, $google_fonts);
+                }
             }
         }
     }

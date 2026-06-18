@@ -15,6 +15,10 @@
         */
         
         function pds_get_default_options($json_url = NULL) {
+            //====> Check Transient Cache <====//
+            $cached = get_transient('pds_default_options');
+            if (false !== $cached) return $cached;
+
             //====> Default Json File <====//
             if (!$json_url) { $json_url =  "https://cdn.jsdelivr.net/gh/EngCode/phenix-blocks@latest/assets/json/default-options.json"; }
 
@@ -30,7 +34,8 @@
                 $default_options["pds_core"]->pds_core_woo = "on";
             }
 
-            //====> Return Options <====//
+            //====> Cache and Return <====//
+            set_transient('pds_default_options', $default_options, DAY_IN_SECONDS);
             return $default_options;
         }
     endif;

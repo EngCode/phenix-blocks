@@ -182,6 +182,14 @@ JavaScript customizations go in `style.js`, which runs alongside the Phenix fron
 - **PHP security fixes:** Added `wp_verify_nonce()` to REST write endpoints, `esc_attr()`/`wp_kses_post()` to pagination output, `esc_html()`/`esc_attr()` to admin panel rendering, `wp_strip_all_tags()` to CSS collector output. Changed all `get_option() == "on"` to strict `=== "on"`. Changed critical `include()` calls to `require_once()`.
 - **Constant typo:** Fixed `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all files.
 - **Clean scripts:** Reduced to `npm run watch`, `npm run sass`, `npm run ts`, `npm run ext`, `npm run blocks`, `npm run build`.
+- **Custom Code block:** HTML output now uses `wp_kses_post()`, CSS uses `wp_strip_all_tags()`, JavaScript uses `wp_strip_all_tags()` to prevent injection
+- **Metabox fields:** Regular fields now sanitize by type (`sanitize_text_field`, `sanitize_textarea_field`, `sanitize_email`, `sanitize_hex_color`, `esc_url_raw`, `is_numeric`) instead of saving raw `$_POST`
+- **Import/Export AJAX:** All three endpoints (`pds_import_posts`, `pds_posts_remover`, `pds_posts_exporter`) now verify `current_user_can()` before executing. Also sanitizes imported meta keys and values, and post content with `wp_kses_post()`
+- **Query block search:** Removed broken nonce verification that used the search string itself as a nonce. Search is now read-only with `sanitize_text_field()` on all `$_GET` inputs
+- **Google Fonts API:** List of fonts is now cached in a transient (`pds_google_fonts_list`) for 7 days instead of fetching from the Google Fonts API on every admin page load. The hardcoded API key is also moved to `get_option('pds_gfonts_api_key')` with the old key as fallback.
+- **Over-enqueueing:** Removed redundant `enqueue_block_editor_assets` hook for `phenix_core`. `enqueue_block_assets` already covers the editor. Prevents double-loading the core JS in the block editor
+- **Thumbnail sizes:** Disabled-by-default thumbnail removal now requires `pds_disable_thumbnails === 'on'` option. Previously ran unconditionally on every `init`
+- **Remote HTTP requests:** `pds_get_default_options()` now caches the fetched JSON in a transient (`pds_default_options`) for 24 hours instead of fetching on every `init`. Countries JSON fetch also uses a transient lock to prevent concurrent requests on slow connections
 
 ### v1.5.0 — Build System Cleanup
 - Replaced deprecated `node-sass` with Dart `sass`

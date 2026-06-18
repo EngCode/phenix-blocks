@@ -74,7 +74,6 @@ if (!function_exists('phenix_core')) :
 
     add_action('wp_enqueue_scripts', 'phenix_core');
     add_action('enqueue_block_assets', 'phenix_core');
-    add_action('enqueue_block_editor_assets', 'phenix_core');
     //===> Include Phenix Core in the Plugin Page <===//
     if (get_option('pds_admin_style') && is_admin() && isset($_GET['page']) && strpos($_GET['page'], 'pds-') !== false) {
         add_action('admin_enqueue_scripts', 'phenix_core');

@@ -76,13 +76,13 @@ function px_query_render($block_attributes, $content) {
     /*===> Check for Search Query <===*/
     if (isset($query['s'])) {
         //===> if Search is Enable <===//
-        if ($query['s'] === true && wp_verify_nonce($_GET['s'], "posts-query")) {
+        if ($query['s'] === true) {
             //===> Get Search Keywords <===//
-            $query['s'] = $_GET["s"];
+            $query['s'] = sanitize_text_field($_GET["s"] ?? '');
 
             //===> Get the Post Type <===//
             if (isset($_GET["post_type"])) {
-                $query['post_type'] = $_GET["post_type"];
+                $query['post_type'] = sanitize_text_field($_GET["post_type"]);
             }
 
             //===> Set Default Type <===//

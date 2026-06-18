@@ -448,7 +448,9 @@
             $px_cdn_assets = WP_PLUGIN_DIR.'/pds-blocks/assets';
             if (get_option("pds_cdn") === "on") { $px_cdn_assets = "https://cdn.jsdelivr.net/gh/EngCode/pdb-assets/"; }
 
-            if (!get_option("countries_list")) {
+            if (!get_option("countries_list") && !get_transient('pds_countries_fetching')) {
+                //====> Set Transient to Prevent Concurrent Requests <====//
+                set_transient('pds_countries_fetching', true, 30);
                 //====> Get Countries JSON <====//
                 $countries_data = wp_remote_get($px_cdn_assets."/json/countries.json");
                 $countries_phone = wp_remote_get($px_cdn_assets."/json/countries-phones.json");
@@ -483,9 +485,16 @@
         
                     //===> Set Countries <===//
                     update_option("countries_list", $countries);
+                    //===> Clear Fetching Lock <===//
+                    delete_transient('pds_countries_fetching');
+                } else {
+                    //===> Clear Fetching Lock on Error <===//
+                    delete_transient('pds_countries_fetching');
                 }
+            } else {
+                //===> Clear Fetching Lock on Error <===//
+                delete_transient('pds_countries_fetching');
             }
-        };
 
         add_action('pds_blocks_active', 'pds_countries_register');
     endif;

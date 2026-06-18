@@ -13,15 +13,15 @@ function px_custom_code_render($block_attributes, $content) {
 
     //===> Render [HTML] Code <===//
     if ($block_attributes['type'] === "html") {
-        $markup .= $block_attributes['code'];
+        $markup .= wp_kses_post($block_attributes['code']);
     }
     //===> Render [CSS] Code <===//
     elseif ($block_attributes['type'] === "css") {
-        $markup .= '<style>'.$block_attributes['code'].'</style>';
+        $markup .= '<style>'.wp_strip_all_tags($block_attributes['code']).'</style>';
     }
     //===> Render [Javascript] Code <===//
     elseif ($block_attributes['type'] === "javascript") {
-        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.$block_attributes['code'].'});</script>';
+        $markup .= '<script defer>document.addEventListener("DOMContentLoaded", () => {'.wp_strip_all_tags($block_attributes['code']).'});</script>';
     }
     //===> Render [Shortcode] Code <===//
     elseif ($block_attributes['type'] === "shortcode") {

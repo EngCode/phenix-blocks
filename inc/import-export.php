@@ -20,6 +20,12 @@ if (!function_exists('pds_import_posts')) :
         //====> Clear output buffer to prevent unexpected output <====//
         ob_clean();
 
+        //====> Verify capability <====//
+        if (!current_user_can('import')) {
+            wp_send_json_error(['message' => 'Insufficient permissions.']);
+            return;
+        }
+
         //====> Verify nonce <====//
         check_ajax_referer('wp_rest', '_ajax_nonce');
 
@@ -89,6 +95,12 @@ if (!function_exists('pds_posts_remover')) :
 		//====> Clear output buffer to prevent unexpected output <====//
         ob_clean();
 
+        //====> Verify capability <====//
+        if (!current_user_can('delete_posts')) {
+            wp_send_json_error(['message' => 'Insufficient permissions.']);
+            return;
+        }
+
         //====> Verify nonce <====//
         check_ajax_referer('wp_rest', '_ajax_nonce');
 
@@ -133,6 +145,12 @@ if (!function_exists('pds_posts_exporter')) :
     function pds_posts_exporter($post_type = "post", $metaboxes = array(), $content = false) {
         //====> Clear output buffer to prevent unexpected output <====//
         ob_clean();
+
+        //====> Verify capability <====//
+        if (!current_user_can('export')) {
+            wp_send_json_error(['message' => 'Insufficient permissions.']);
+            return;
+        }
 
         //====> Verify nonce <====//
         check_ajax_referer('wp_rest', '_ajax_nonce');

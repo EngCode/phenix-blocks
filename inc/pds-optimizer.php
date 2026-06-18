@@ -217,6 +217,9 @@ add_action('add_attachment', function ($post_ID) {
 
 //===> Disable Thumbnails Generating <===//
 add_action('init', function() {
+    //====> Only run if the option is enabled <====//
+    if (get_option('pds_enable_thumbnails_sizes') === 'on') return;
+    
     //====> Define Sizes <====//
     $media_sizes = array('thumbnail', 'small', 'medium', 'medium_large', 'large', 'scaled', 'medium_large', 'medium-large');
 

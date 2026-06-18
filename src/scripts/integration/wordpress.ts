@@ -291,9 +291,6 @@ if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
         //====> Create Placeholder Keywords <=====//
         let pds_meta_description = document.querySelector('.entry-content p:first-of-type')?.textContent.substring(0, 160);
 
-        //====> Check for Headline Level 1 <====//
-        if(!document.querySelector('h1')) Phenix('.main-header').insert('append', `<h1 class="hidden">${document.title}</h1>`);
-
         //====> S.E.O : Missing Meta <====//
         if (!document.head.querySelector('meta[name="description"]')) Phenix(document.head).insert('append', `<meta name="description" content="${pds_meta_description}">`);
 
@@ -409,3 +406,7 @@ window.PxWpUploader = isClicked => {
     //===> Open the Popup <===//
     isClicked.target.mediaPopup.open();
 };
+
+
+//====> Fixing [Document does not have a main landmark.] <====//
+document.querySelector(".entry-content")?.setAttribute("role", "main");

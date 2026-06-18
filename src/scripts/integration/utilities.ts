@@ -199,7 +199,7 @@ PhenixElements.prototype.utilities = function (options?:{
         if (!toTopHook) toTopHook = document.querySelector('.main-header + *');
         if (toTopHook && !toTopHook.id) toTopHook.id = 'to-top-hook';
     }
-    
+
     //====> Dynamic Word Coloring <====//
     if (type.includes("text") || type === "all") {
         //===> Dynamic Colors Variants for Elements Shadow <===//
@@ -290,10 +290,8 @@ PhenixElements.prototype.utilities = function (options?:{
                 // parent_height = Phenix(img.parentNode).height();
 
             //===> Set Width and Height <===//
-            setTimeout(() => {
-                if (!img_width && parent_width > 0)  img.setAttribute('width', `${parent_width}`);
-                // if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
-            }, 1500);
+            if (!img_width && parent_width > 0) img.setAttribute('width', `${parent_width}`);
+            // if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
 
             //===> Alternative Text <===//
             if (!img.getAttribute('alt') || img.getAttribute('alt') === "") {

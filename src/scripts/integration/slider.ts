@@ -261,9 +261,9 @@ PhenixElements.prototype.slider = function (options?:{
                 heightRatio: heightRatio,
 
                 //====> Accessibility <====//
-                role: 'slider',
-                label: 'Slider',
-                labelledby: 'slider-label',
+                // role: 'group',
+                // label: 'Slider Carousel',
+                // labelledby: 'slider-label',
 
                 //====> Classes <====//
                 classes: {

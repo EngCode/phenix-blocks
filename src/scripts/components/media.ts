@@ -80,7 +80,7 @@ PhenixElements.prototype.multimedia = function (options?:{
         //====> Get Options Data <====//
         let type = element.getAttribute('data-type') || options?.type || 'background',
             src  = element.getAttribute('data-src') || options?.src,
-            alt  = element.getAttribute('data-alt') || options?.alt || '',
+            alt  = element.getAttribute('data-alt') || options?.alt || document.title,
             ratio  = element.getAttribute('data-size') || options?.size,
             splide = Phenix(element).ancestor('.splide.is-initialized'),
             marquee = Phenix(element).ancestor('.px-marquee') || Phenix(element).ancestor('.px-marquee-reverse'),

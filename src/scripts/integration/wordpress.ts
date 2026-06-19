@@ -71,7 +71,7 @@ if (PhenixElements) PhenixElements.prototype.init = function (scripts?:[]) {
         //===> Prepend Header <===//
         sticky_wrapper.prepend(main_header);
         //===> add Dynamic Holder Height <===//
-        sticky_wrapper.style.height = `${Phenix(sticky_wrapper).height()}px`;
+        sticky_wrapper.style.height = `${sticky_wrapper.clientHeight}px`;
     }
 
     //===> Audio Player [Testimonials] <===//

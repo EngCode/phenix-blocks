@@ -109,8 +109,6 @@ if (!class_exists('PDS_Optimizer')) :
 
         //=====> Comments CSS Optimizer <=====//
         private static function comments_optimizer() {
-            if (get_option('comments_css') !== "on") return;
-
             add_action('widgets_init', function() {
                 global $wp_widget_factory;
                 remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
@@ -228,8 +226,6 @@ if (!class_exists('PDS_Optimizer')) :
         //=====> Image Alt Optimizer <=====//
         private static function image_alt_optimizer() {
             add_filter('the_content', function($content) {
-                if (get_option('pds_seo_image_alt') !== 'on') return $content;
-
                 preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches);
                 if (empty($matches[0])) return $content;
 
@@ -246,8 +242,6 @@ if (!class_exists('PDS_Optimizer')) :
 
         //=====> Image Dimension Optimizer (SEO) <=====//
         public static function image_dimensions_optimizer($attr, $attachment, $size) {
-            if (get_option('pds_seo_image_dimensions') !== 'on') return $attr;
-
             if (empty($attr['width']) || empty($attr['height'])) {
                 $metadata = wp_get_attachment_metadata($attachment->ID);
                 if (!empty($metadata['width']) && !empty($metadata['height'])) {

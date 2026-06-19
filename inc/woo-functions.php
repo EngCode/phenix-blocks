@@ -57,7 +57,7 @@ if (!function_exists('woo_scripts_optimize')) :
         );
 
         //===> Remove Scripts <===//
-        if (get_option('pds_woo_js') === "on") {
+        if (get_option('pds_woo_js') == "on") {
             foreach ($woo_scripts as $script) {
                 wp_deregister_script($script);
             };
@@ -67,7 +67,7 @@ if (!function_exists('woo_scripts_optimize')) :
         }
 
         //===> Remove Styles <===//
-        if (get_option('pds_woo_css') === "on") {
+        if (get_option('pds_woo_css') == "on") {
             foreach ($woo_style as $style) {
                 wp_dequeue_style($style);
             };
@@ -90,25 +90,36 @@ if (!function_exists('get_product_price_data')):
 
         //===> Get Price from Variable Products <===//
         if ($product->is_type('variable')) {
-            $prices = $product->get_variation_prices();
             $available_variations = $product->get_available_variations();
-            $regular_price = is_numeric($available_variations[0]['display_regular_price']) ? $available_variations[0]['display_regular_price'] : 0;
-            $sale_price = is_numeric($available_variations[0]['display_price']) ? $available_variations[0]['display_price'] : 0;
+            $default_attributes = $product->get_default_attributes();
+            $target_variation = $available_variations[0]; // fallback
+
+            if (!empty($default_attributes)) {
+                foreach ($available_variations as $variation) {
+                    $match = true;
+                    foreach ($default_attributes as $attr_key => $attr_value) {
+                        $variation_attr_val = $variation['attributes']['attribute_' . $attr_key] ?? '';
+                        // An empty variation attribute means "any", so it always matches
+                        if ($variation_attr_val !== '' && $variation_attr_val !== $attr_value) {
+                            $match = false;
+                            break;
+                        }
+                    }
+                    if ($match) {
+                        $target_variation = $variation;
+                        break;
+                    }
+                }
+            }
+
+            $regular_price = is_numeric($target_variation['display_regular_price']) ? $target_variation['display_regular_price'] : 0;
+            $sale_price = is_numeric($target_variation['display_price']) ? $target_variation['display_price'] : 0;
         } 
         //===> Get Price from Simple Products <===//
         else {
             $regular_price = $product->get_regular_price(); // Ensure correct price retrieval
             $sale_price = $product->get_sale_price(); // Get sale price
         }
-
-        //====> Ensure Prices are Numeric Before Formatting <====//
-        // if (is_numeric($regular_price)) {
-        //     $regular_price = wc_format_decimal($regular_price, 2); // Format to 2 decimal places
-        // }
-
-        // if (is_numeric($sale_price)) {
-        //     $sale_price = wc_format_decimal($sale_price, 2); // Format to 2 decimal places
-        // }
 
         //====> Get Discount Percentage <====//
         $discount_percentage = 0;
@@ -262,10 +273,10 @@ if (!function_exists("pds_woo_attributes_select")):
             if (in_array($option_name, $exeptions)) { continue; }
 
             //===> Create Select Field <===//
-            echo '<div class="' . esc_attr($wrapper_style) . '">';
+            echo '<div class="'.$wrapper_style.'">';
                 //===> Label <===//
-                if ($label && !empty($label)) { echo '<label for="' . esc_attr($option_name) . '" class="' . esc_attr($label) . '">' . esc_html(str_replace("pa_", " ", $attribute_name)) . '</label>'; }
-                echo '<select name="attribute_' . esc_attr($option_name) . '" value="' . esc_attr($selected_attr) . '" id="' . esc_attr($option_name) . '" class="variation-control px-select form-control ' . esc_attr($style) . '"  data-placeholder="' . esc_attr(__($attribute_name, 'woocommerce')) . '">';
+                if ($label && !empty($label)) { echo '<label for="'.$option_name.'" class="'.$label.'">'.str_replace("pa_", " ", $attribute_name).'</label>'; }
+                echo '<select name="attribute_'.$option_name.'" value="'.$selected_attr.'" id="'.$option_name.'" class="variation-control px-select form-control '.$style.'"  data-placeholder="'.__($attribute_name, 'woocommerce').'">';
                 //===> Create Options <===//
                 foreach ($options as $option) {
                     //===> Create Variation ID Holder <===//
@@ -300,7 +311,7 @@ if (!function_exists("pds_woo_attributes_select")):
                     }
 
                     //===> Create the Option <===//
-                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'" data-product-image="'.esc_url($variation_image).'"'  .$selected.'>'.esc_html(str_replace("-", ".", $option)).'</option>';
+                    echo '<option data-price="'.esc_attr(number_format($variation_price, 2, '.', '')).'" value="'.esc_attr($variation_id).'" data-product-image="'.$variation_image.'"'  .$selected.'>'.esc_html(str_replace("-", ".", $option)).'</option>';
                 }
                 //====> End Select Field <====//
                 echo '</select>';

@@ -145,7 +145,7 @@ PhenixElements.prototype.multimedia = function (options?:{
                 //====> Image Type <====//
                 else if (type == 'image') {
                     //===> Get Wrapper Width <===//
-                    let image_width = element.clientWidth;
+                    let image_width = element.clientWidth || element.parentNode.clientWidth;
                     //===> Create Image <===//
                     if(!element.querySelector(':scope > img')) Phenix(element).insert('prepend',`<img src="${src}" alt="${alt}" width="${image_width}" class="px-media-img" loading="lazy" />`);
                     //===> Perpare the Exisiting image <===//
@@ -153,6 +153,9 @@ PhenixElements.prototype.multimedia = function (options?:{
                         element.querySelector(':scope > img').setAttribute('loading', 'lazy');
                         element.querySelector(':scope > img').setAttribute('width', image_width);
                     }
+                    //===> Set Height for SEO <===//
+                    // let image_height = element.querySelector(':scope > img').clientHeight;
+                    // element.querySelector(':scope > img').setAttribute("height", image_height);
                     //===> Mark as Done <===//
                     mediaDone = true;
                 }

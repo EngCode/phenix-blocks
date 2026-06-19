@@ -284,15 +284,11 @@ PhenixElements.prototype.utilities = function (options?:{
         //====> Images SEO/Performance <====//
         Phenix('img').forEach((img:any) => {
             //===> Get Image Data <===//
-            let img_width = img.getAttribute('width') || img.style.width || img.clientWidth,
-                img_height = img.getAttribute('height') || img.style.height || img.clientHeight,
+            let img_width = img.getAttribute('width'),
                 parent_width = img.parentNode.clientWidth;
-                // parent_height = Phenix(img.parentNode).height();
 
             //===> Set Width and Height <===//
-            setTimeout(() => {
-                if (!img_width && parent_width > 0) img.setAttribute('width', `${parent_width}`);
-            }, 1000);
+            if (!img_width && parent_width > 0) img.setAttribute('width', `${parent_width}`);
             // if (!img_height && parent_height > 0) img.setAttribute('height', `${parent_height}`);
 
             //===> Alternative Text <===//

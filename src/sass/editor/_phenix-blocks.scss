@@ -184,6 +184,7 @@
 .flex-gap-fix {gap: calc(7px);}
 
 /*==== Align Icons ====*/
+.pxi::before {content: '';}
 .pxi-align-x-start::before   {background-image: url('../img/blocks/align-x-#{$direction-start}.svg');}
 .pxi-align-x-center::before  {background-image: url('../img/blocks/align-x-center.svg');}
 .pxi-align-x-between::before {background-image: url('../img/blocks/align-x-between.svg');}

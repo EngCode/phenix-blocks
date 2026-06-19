@@ -12,7 +12,6 @@
   "scripts": {
     "watch": "concurrently --kill-others \"npm run sass\" \"npm run ts\" \"npm run ext\" \"npm run blocks\"",
     "sass": "sass --watch src/sass:assets/css --style=compressed --source-map --poll",
-    "sass-debug": "sass --watch src/sass:assets/css --style=compressed --source-map --verbose",
     "ts": "webpack --config typescript.webpack.js --watch",
     "ext": "webpack --config typescript.webpack.ext.js --watch",
     "blocks": "wp-scripts start",

@@ -61,14 +61,14 @@
                 array(
                     "title" => "Design Fonts",
                     "slug"  => "pds-settings",
-                    "icon"  => "far fa-font",
+                    "icon"  => "fas fa-font",
                     "content" => 'pds_fonts_panel',
                 ),
                 //==> Tabs Panel <==//
                 array(
                     "title" => "Phenix Blocks",
                     "slug"  => "pds-blocks",
-                    "icon"  => "far fa-layer-group",
+                    "icon"  => "fas fa-layer-group",
                     "content" => 'pds_blocks_panel',
                     "description" => 'by default phenix blocks are enabled to replace the core blocks within gutenberg, and in the options below you can choose which "phenix blocks" to enable, be sure to select only the blocks that you need and will use.',
                 ),
@@ -84,7 +84,7 @@
                 array(
                     "title" => "Optimization",
                     "slug"  => "pds-optimization",
-                    "icon"  => "far fa-rocket",
+                    "icon"  => "fas fa-rocket",
                     "content" => 'pds_optimization_panel',
                 ),
             ),

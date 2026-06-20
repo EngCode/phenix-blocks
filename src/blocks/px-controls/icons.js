@@ -14,63 +14,121 @@ import PhenixSelect from './select';
 
 //===> Phenix Icons <===//
 const PhenixIcons = (props) => {
+    //===> Icon Sets Config <===//
+    const faTypes = [
+        { value: 'fab', label: 'Brands' },
+        { value: 'far', label: 'Regular' },
+        { value: 'fas', label: 'Solid' },
+    ];
+
+    const uiTypes = [
+        { value: 'fi-rs', label: 'Regular Straight' },
+        { value: 'fi-ss', label: 'Solid Straight' },
+        { value: 'fi-bs', label: 'Bold Straight' },
+        { value: 'fi-rr', label: 'Regular Rounded' },
+        { value: 'fi-sr', label: 'Solid Rounded' },
+        { value: 'fi-br', label: 'Bold Rounded' },
+    ];
+
     //===> States <===//
     const [state, setState] = useState({
         iconsPage: 1,
         iconType: "far",
         iconName: "fa-icons",
-        iconsFile: "fa6-pro.json",
+        iconsFile: "fa7-free.json",
         iconsList: [],
         iconsPages: {},
-        iconsVersion: "fa6",
+        iconsVersion: "fa7",
+        iconsFamily: "fontawesome",
         returnType: null,
-        iconsTypes: [
-            { value: 'fab', label: 'Brands' },
-            { value: 'fat', label: 'Thin' },
-            { value: 'fal', label: 'Light' },
-            { value: 'far', label: 'Regular' },
-            { value: 'fas', label: 'Solid' },
-            { value: 'fad', label: 'Duotone' },
-            { value: 'fast', label: 'Sharp Thin' },
-            { value: 'fasl', label: 'Sharp Light' },
-            { value: 'fass', label: 'Sharp Solid' },
-            { value: 'fasr', label: 'Sharp Regular' },
-        ]
+        iconsTypes: faTypes,
+        isUIIcons: false,
     });
 
     //===> Fetch Data When Render <===//
     useEffect(() => {
         apiFetch({ path: "pds-blocks/v2/options" }).then((options) => {
-            //===> Get Icons Version <===//
-            let version = state.iconsVersion;
-            if (options.pds_icon_font) {
-                version = options.pds_icon_font.replace("fontawesome-", "fa").replace("-free", "").replace("-pro", "");
+            //===> Get Icon Font Config <===//
+            let iconFont = options.pds_icon_font || "fontawesome-7-free";
+            let version = "fa7";
+            let family = "fontawesome";
+            let isUI = false;
+            let types = faTypes;
+            let defaultType = "far";
+            let defaultIcon = "fa-icons";
+            let file = "fa7-free.json";
+
+            if (iconFont === "none") {
+                // Disabled - no icons
+                setState(prevState => ({
+                    ...prevState,
+                    iconsList: [],
+                    iconsPages: {},
+                    iconsTypes: [],
+                }));
+                return;
             }
 
-             //===> Define FontAwesome Icons File <===//
-            let file = props.value.includes("fab") ? `${version}-brands.json` : `${version}-pro.json`;
-            //===> FontAwesome Version Correct <===//
-            if (version.includes("6")) file = file.replace("5", "6");
-    
+            if (iconFont.startsWith("fontawesome")) {
+                // Font Awesome
+                family = "fontawesome";
+                version = iconFont.replace("fontawesome-", "fa").replace("-free", "").replace("-pro", "");
+                // Default to latest if version is not recognized
+                if (!version.match(/^fa[567]$/)) version = "fa7";
+                
+                types = faTypes;
+                defaultType = "far";
+                defaultIcon = "fa-icons";
+                
+                // Brands use separate file
+                if (props.value && props.value.includes("fab")) {
+                    file = `${version}-brands.json`;
+                } else {
+                    file = `${version}-free.json`;
+                }
+            } else if (iconFont === "ui-icons") {
+                // UI Icons (flaticons)
+                family = "ui-icons";
+                isUI = true;
+                types = uiTypes;
+                defaultType = "fi-rs";
+                defaultIcon = "fi-rs-add";
+                
+                // Determine which UI JSON to load based on current type
+                let currentType = props.value ? props.value.split(" ")[0] : "fi-rs";
+                let uiStyle = currentType.replace("fi-", "");
+                file = `ui-icons-${uiStyle}.json`;
+            }
+
             //===> Start Fetching <===//
-            if (state.iconsList.length < 1) {
+            if (state.iconsList.length < 1 || state.iconsFamily !== family) {
                 fetch(`${PDS_WP_KEY.json}/${file}`).then((res) => res.json()).then((json) => {
                     //===> Assign Icons List <===//
-                    const newIconsList = json.icons;
+                    const newIconsList = json.icons || [];
 
                     //===> Divide List into Pages <===//
                     const pages = {};
                     for (let item = 0; item < newIconsList.length; item += 200) {
-                        //===> Define Page Number <===//
                         let pageNumber = Math.floor(item / 200) + 1;
-                        //===> Add item to Pages Object <===//
                         pages[pageNumber] = newIconsList.slice(item, item + 200);
                     }
                     //===> Update State <===//
                     setState(prevState => ({
                         ...prevState,
                         iconsList: newIconsList,
-                        iconsPages: pages
+                        iconsPages: pages,
+                        iconsVersion: version,
+                        iconsFamily: family,
+                        iconsTypes: types,
+                        isUIIcons: isUI,
+                        iconType: defaultType,
+                        iconName: defaultIcon,
+                    }));
+                }).catch(() => {
+                    setState(prevState => ({
+                        ...prevState,
+                        iconsList: [],
+                        iconsPages: {},
                     }));
                 });
             } else {
@@ -82,7 +140,7 @@ const PhenixIcons = (props) => {
                 }
 
                 //===> Update State <===//
-                setState(prevState => ({...prevState,iconsPages: pages}));
+                setState(prevState => ({...prevState, iconsPages: pages}));
             }
         });
     }, [props.value]);
@@ -93,7 +151,7 @@ const PhenixIcons = (props) => {
     //===> Returned Value <===//
     let options = {
         type: value.split(" ")[0],
-        value: value.split(" ")[1],
+        value: value.split(" ")[1] || value.split(" ")[0],
     };
 
     //===> Set Value <===//
@@ -103,21 +161,51 @@ const PhenixIcons = (props) => {
             theValue = button?.getAttribute('data-value');
 
         //===> Set Value <===//
-        options.value = theValue;
+        if (state.isUIIcons) {
+            // For UI icons, store the full class name
+            options.value = theValue;
+            options.type = theValue; // Same as value for UI icons
+        } else {
+            options.value = theValue;
+        }
 
         //===> Return Options <===//
         return onChange(options);
-    }, [onChange, options]);
+    }, [onChange, options, state.isUIIcons]);
 
     //===> Set Type <===//
     const set_type = useCallback((value) => {
         //===> Get Value <===//
         options.type = value;
 
-        //===> Switched to Brand <===//
-        if (value === "fab" && !props.value.includes('fab')) options.value = "fa-wordpress";
+        //===> For UI Icons, reload JSON when type changes <===//
+        if (state.isUIIcons) {
+            let uiStyle = value.replace("fi-", "");
+            let file = `ui-icons-${uiStyle}.json`;
+            
+            fetch(`${PDS_WP_KEY.json}/${file}`).then((res) => res.json()).then((json) => {
+                const newIconsList = json.icons || [];
+                const pages = {};
+                for (let item = 0; item < newIconsList.length; item += 200) {
+                    let pageNumber = Math.floor(item / 200) + 1;
+                    pages[pageNumber] = newIconsList.slice(item, item + 200);
+                }
+                setState(prevState => ({
+                    ...prevState,
+                    iconsList: newIconsList,
+                    iconsPages: pages,
+                    iconsPage: 1,
+                    iconType: value,
+                    iconName: newIconsList[0] || value,
+                }));
+            });
+            
+            options.value = newIconsList && newIconsList[0] ? newIconsList[0] : value;
+            return onChange(options);
+        }
 
-        //===> Switched from Brand <===//
+        //===> Font Awesome Brand Switching <===//
+        if (value === "fab" && !props.value.includes('fab')) options.value = "fa-wordpress";
         if (props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
 
         //===> If Different Set of Icons Reset the List <===//
@@ -130,17 +218,12 @@ const PhenixIcons = (props) => {
                 iconType: value,
                 iconName: options.value
             }));
-        }
-        //===> Set Icon Type <===//
-        else {
-            setState(prevState => ({
-                ...prevState,
-                iconType: value
-            }));
+        } else {
+            setState(prevState => ({...prevState, iconType: value}));
         }
 
         return onChange(options);
-    }, [props.value, onChange, options]);
+    }, [props.value, onChange, options, state.isUIIcons]);
 
     //===> Traveling Buttons <===//
     const travelingButton = useCallback((event) => {
@@ -179,7 +262,13 @@ const PhenixIcons = (props) => {
         let buttonsList = [],
             buttonsStyle = {"fontSize": "20px", "lineHeight": "32px", "width":"32px", "height":"32px", "borderRadius": "3px", "padding": 0},
             buttonItem = (item) => {
-                return <button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`reset-button icon-btn-item ${type} ${item} ${state.iconName === item ? 'px-active bg-offwhite-primary' : ""}`} style={buttonsStyle}></button>;
+                // For UI icons, the full class is the item itself
+                // For Font Awesome, combine type + item
+                let buttonClass = state.isUIIcons ? item : `${type} ${item}`;
+                let isActive = state.isUIIcons 
+                    ? (props.value === item) 
+                    : (state.iconName === item);
+                return <button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`reset-button icon-btn-item ${buttonClass} ${isActive ? 'px-active bg-offwhite-primary' : ""}`} style={buttonsStyle}></button>;
             };
 
         //===> Create Buttons <===//
@@ -187,7 +276,7 @@ const PhenixIcons = (props) => {
 
         //===> Return Buttons <===//
         return buttonsList;
-    }, [set_value, state.iconName]);
+    }, [set_value, state.iconName, props.value, state.isUIIcons]);
 
     //===> Colors Panel <===//
     const showPanel = useCallback((clicked) => {

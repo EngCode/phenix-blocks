@@ -94,6 +94,18 @@ if (!function_exists('phenix_assets')) :
         $final_files = array();
         $assets_url = plugin_dir_url(__DIR__)."assets/";
         $icons_font  = get_option("pds_icon_font");
+        
+        // Default to Font Awesome v7 Free if not set
+        if (empty($icons_font)) {
+            $icons_font = "fontawesome-7-free";
+        }
+        
+        // Migrate old icon font values to new naming
+        if ($icons_font === 'fontawesome-5') {
+            $icons_font = 'fontawesome-5-free';
+        } else if ($icons_font === 'fontawesome-6') {
+            $icons_font = 'fontawesome-6-free';
+        }
         $fonts_list  = (array) get_option("pds_fonts");
 
         //====> Check for CDN Option for the Core JS/CSS <====//
@@ -151,26 +163,29 @@ if (!function_exists('phenix_assets')) :
         }
 
         //===> Validate and Clean-up Files Names from Spaces and replace it with dash (-) <===//
-        $final_files['icons_name'] = str_replace("-", " ", $icons_font);
         $final_files['primary_name'] = ucwords(str_replace("-", " ", $prim_font));
         $final_files['secondary_name'] = ucwords(str_replace("-", " ", $sec_font));
         $final_files['style_name'] = ucwords(str_replace("-", " ", $style_font));
 
-        //===> Fix Fontawesome Family Name <===//
-        if (strpos($current_fonts['icon'], "fontawesome") !== false) {
-            //====> Filter Icons-Font Name <====//
-            $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
-
-            //===> Check if the Font is Pro Family and fix it <===//
-            if (strpos($current_fonts['icon'], "pro") === false) {
-                $final_files['icons_name'] = $final_files['icons_name']." Pro";
-                $final_files['icons_name'] = ucwords(str_replace("free", "pro", $final_files['icons_name']));
+        //===> Icon Font Name & Path <===//
+        if ($icons_font === "none") {
+            $final_files['icons_name'] = "none";
+            $final_files['icons_font'] = false;
+        } else {
+            // Build display name
+            $final_files['icons_name'] = str_replace("-", " ", $icons_font);
+            
+            // Fix Font Awesome display name
+            if (strpos($icons_font, "fontawesome") !== false) {
+                $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
+                $final_files['icons_name'] = ucwords($final_files['icons_name']);
+            } else {
+                $final_files['icons_name'] = ucwords($final_files['icons_name']);
             }
+            
+            // Build CSS file path (new naming keeps -free/-pro suffix)
+            $final_files['icons_font'] = $assets_url . 'webfonts/' . $icons_font . '.css';
         }
-
-        //===> Load Icon Font <===//
-        $icons_font = trim(preg_replace("/(-free|-pro)/i", "", $icons_font));
-        $final_files['icons_font'] = $assets_url. 'webfonts/'.$icons_font.'.css';
 
         //===> Return List of the Files <===//
         return $final_files;
@@ -195,7 +210,9 @@ if (!function_exists('phenix_assets')) :
         }
 
         //===> Load Icons Font <===//
-        wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
+        if (!empty($assets_files['icons_font']) && $assets_files['icons_font'] !== false) {
+            wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
+        }
 
         //===> Weird Fonts Names Fix <===//
         if ($assets_files['primary_name'] === "Ping Ar") {

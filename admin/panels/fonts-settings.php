@@ -19,9 +19,14 @@
 
     //===> Icon Fonts <===//
     $fonts_list_icon = [
-        "ui-icons" => "UI Icons",
-        "fontawesome-5" => "Font Awesome v5",
-        "fontawesome-6" => "Font Awesome v6",
+        "none" => "None (Disable Icon Font)",
+        "ui-icons" => "UI Icons (Phenix Default)",
+        "fontawesome-5-free" => "Font Awesome v5 Free",
+        "fontawesome-5-pro" => "Font Awesome v5 Pro",
+        "fontawesome-6-free" => "Font Awesome v6 Free",
+        "fontawesome-6-pro" => "Font Awesome v6 Pro",
+        "fontawesome-7-free" => "Font Awesome v7 Free",
+        "fontawesome-7-pro" => "Font Awesome v7 Pro",
     ];
 
     //===> Get Current Fonts <===//
@@ -175,7 +180,7 @@
                 <?php 
                     foreach ($fonts_list_icon as $key => $value) {
                         $is_selected = "";
-                        if ($key == "fontawesome-6") { $is_selected = "selected"; }
+                        if ($key == "fontawesome-7-free") { $is_selected = "selected"; }
                         echo '<option value="' . esc_attr($key) . '" ' . $is_selected . '>' . esc_html($value) . '</option>';
                     }
                 ?>

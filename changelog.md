@@ -44,6 +44,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All panels (`fonts-settings`, `post-types`, `metabox`, `taxonomies`, `import-export`): `esc_attr()` on option values, `esc_html()` on labels
 - Constant typo fixed: `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all 4 files
 
+### Font Awesome
+- Restructured icon font assets into `assets/webfonts/font-awesome-{5,6,7}-{free,pro}/` directories
+- Added dedicated CSS entry files: `fontawesome-5-free.css`, `fontawesome-5-pro.css`, `fontawesome-6-free.css`, `fontawesome-6-pro.css`, `fontawesome-7-free.css`, `fontawesome-7-pro.css`
+- Admin panel (`fonts-settings.php`) now offers 8 icon font options: None, UI Icons, Font Awesome v5/v6/v7 Free/Pro
+- Default icon font changed from `fontawesome-6` to `fontawesome-7-free`
+- Added **Disable** option (`none`) — when selected, no icon font CSS is enqueued
+- `inc/pds-assets.php` now defaults to `fontawesome-7-free` if no option is set
+- Backward compatibility: old values `fontawesome-5` and `fontawesome-6` are automatically migrated to their `-free` equivalents
+- New naming convention: CSS file path uses the full option value (e.g., `fontawesome-7-free.css`) instead of stripping the suffix
+- Icon font enqueue is skipped when `icons_font` is `false` (disabled)
+
 ### Removed
 - `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents from SASS source
 - Nested CSS variable fallback cascade (`var(--pdt-md, var(--pdt-lg, var(--pdt)))`) from SASS utilities

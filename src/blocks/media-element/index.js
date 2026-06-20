@@ -42,11 +42,15 @@ registerBlockType(metadata, {
             blockProps.style.backgroundImage = "https://placehold.co/1024x768.webp";
         }
         if(!attributes.setting.size) blockProps.className += " ratio-none";
+        
+        let filename = new URL(attributes.setting.src);
+        filename = filename.pathname
+        filename = filename.substring(filename.lastIndexOf('/') + 1);
 
         //===> Render <===//
         return (<TagName {...blockProps}>
             {/*===> Image Type <===*/}
-            {attributes.setting.type === "image" || blockProps['data-type'] === "image" ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
+            {attributes.setting.type === "image" || blockProps['data-type'] === "image" ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" alt={decodeURIComponent(filename)} /> : null}
             {/*===> Inner Content <===*/}
             {attributes.style['inner-blocks'] === true ? <InnerBlocks.Content /> : null}
         </TagName>);

@@ -88,3 +88,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Over-enqueueing:** Removed redundant `enqueue_block_editor_assets` hook for `phenix_core`. `enqueue_block_assets` already covers the editor. Prevents double-loading the core JS in the block editor
 - **Thumbnail sizes:** Disabled-by-default thumbnail removal now requires `pds_disable_thumbnails === 'on'` option. Previously ran unconditionally on every `init`
 - **Remote HTTP requests:** `pds_get_default_options()` now caches the fetched JSON in a transient (`pds_default_options`) for 24 hours instead of fetching on every `init`. Countries JSON fetch also uses a transient lock to prevent concurrent requests on slow connections
+
+## Block API v3 Migration — 2025-06-18
+
+### Breaking Change: WordPress 6.9+ / 7.0+ iframe enforcement
+WordPress is moving the block editor inside an iframe. Blocks that rely on the shared-DOM model (API v2) will break. All Phenix blocks have been migrated to `apiVersion: 3` for iframe compatibility.
+
+### Changes
+- **All 20+ `block.json` files:** Changed `"apiVersion": 2` to `"apiVersion": 3`
+- **6 `edit.js` files:** Removed the "List View Naming" pattern that used `document.querySelector('.block-editor-list-view-tree')` to update the sidebar list view. This pattern breaks in the iframe because the iframe has a different `document` than the admin page. WordPress 6.5+ handles block naming natively via `metadata.name` and `supports.renaming`.
+  - `page-head/edit.js`
+  - `navigation/edit.js`
+  - `taxonomies/edit.js`
+  - `users-query/edit.js`
+  - `theme-part/edit.js`
+  - `query/edit.js`
+- **`pds-helpers.js` `viewScript`:** Removed the old iframe detection logic (`document.querySelector('iframe[name="editor-canvas"]')`) which returned `null` in the iframe context. Replaced with direct `document` usage, since in the iframe editor `document` is already the iframe's document.
+
+### What was NOT changed (already iframe-safe)
+- Utility CSS classes (`pdt-15`, `flexbox`, `col-6`) — no admin-specific selectors
+- `useBlockProps()` — WordPress handles this in iframe context
+- `apiFetch()` — WordPress API works in iframe
+- `window.PhenixBlocks` — loaded via block assets, available in iframe context
+
+### Verification
+- Blocks tested in Site Editor (already uses iframe)
+- Blocks tested in Post Editor with `apiVersion: 3` (renders in iframe when all blocks are v3)
+- No console errors about `document` or `window` in iframe context
+
+### Documentation
+- `docs/block-api-v3-migration.md` — full migration guide with audit results, file-by-file changes, and verification checklist

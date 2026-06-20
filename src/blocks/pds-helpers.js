@@ -535,8 +535,8 @@ window.PhenixBlocks = {
     },
 
     viewScript : () => {
-        //===> Get View iFrame <===//
-        const viewScript = (the_document) => {
+        //===> Run the View Script <===//
+        const runViewScript = (the_document) => {
             //===> Run Multimedia <===//
             the_document.querySelectorAll(`.px-media:not([style*="background-image"]), .px-media.is-selected`).forEach(element => {
                 element.style.backgroundImage = null;
@@ -598,27 +598,10 @@ window.PhenixBlocks = {
             });
         };
 
-        //====> Get the Editor iFrame <====//
-        let canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-            canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
-
-        //===> Check for Canvas Frames <===//
-        if (canvasIframeDoc) {
-            //===> Timer to Check for Assets Existing <===//
-            let canvasTimer = setInterval(() => {
-                //===> Re-Catch the Canvas <===//
-                canvasIframe = document.querySelector('iframe[name="editor-canvas"]'),
-                canvasIframeDoc = canvasIframe?.contentDocument || canvasIframe?.contentWindow.document;
-                //===> if the Assets are no there Loaded <===//
-                if (canvasIframe && canvasIframeDoc) {
-                    viewScript(canvasIframeDoc);
-                    clearInterval(canvasTimer);
-                }
-            }, 500);
-        }
-
         //===> Run the Scripts Directly <===//
-        else if (window.Phenix && window.document) viewScript(window.document);
+        // In iframe editor, document is already the iframe's document
+        // In non-iframe editor, document is the admin document
+        if (document) runViewScript(document);
     },
 
     //===> Block Inserter Accessibility <===//

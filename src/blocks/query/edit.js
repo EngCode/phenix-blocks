@@ -42,12 +42,6 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
-    //===> List View Naming <===//
-    if (attributes.metadata?.name) {
-        let ListViewItem = document.querySelector(`.block-editor-list-view-tree a[href="#block-${blockProps['data-block']}"] .components-truncate`);
-        if(ListViewItem) ListViewItem.textContent = attributes.metadata.name;
-    }
-
     //===> Get Template Part Meta Option <===//
     useEffect(() => {
         //===> Fetch Template Part Meta <===//

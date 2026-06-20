@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "phenix/text",
   "version": "1.0.0",
   "title": "Text Element",

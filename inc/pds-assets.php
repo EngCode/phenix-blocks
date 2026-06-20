@@ -100,11 +100,19 @@ if (!function_exists('phenix_assets')) :
             $icons_font = "fontawesome-7-free";
         }
         
-        // Migrate old icon font values to new naming
+        // Migrate old icon font values to new naming (remove pro, default to free)
         if ($icons_font === 'fontawesome-5') {
             $icons_font = 'fontawesome-5-free';
         } else if ($icons_font === 'fontawesome-6') {
             $icons_font = 'fontawesome-6-free';
+        } else if ($icons_font === 'fontawesome-5-pro') {
+            $icons_font = 'fontawesome-5-free';
+        } else if ($icons_font === 'fontawesome-6-pro') {
+            $icons_font = 'fontawesome-6-free';
+        } else if ($icons_font === 'fontawesome-7-pro') {
+            $icons_font = 'fontawesome-7-free';
+        } else if ($icons_font === 'ui-icons') {
+            $icons_font = 'ui-icons-straight';
         }
         $fonts_list  = (array) get_option("pds_fonts");
 
@@ -175,10 +183,14 @@ if (!function_exists('phenix_assets')) :
             // Build display name
             $final_files['icons_name'] = str_replace("-", " ", $icons_font);
             
-            // Fix Font Awesome display name
+            // Fix display name based on font family
             if (strpos($icons_font, "fontawesome") !== false) {
                 $final_files['icons_name'] = str_replace("fontawesome", "Font Awesome", $final_files['icons_name']);
                 $final_files['icons_name'] = ucwords($final_files['icons_name']);
+            } else if ($icons_font === "ui-icons-straight") {
+                $final_files['icons_name'] = "UI Icons Straight";
+            } else if ($icons_font === "ui-icons-rounded") {
+                $final_files['icons_name'] = "UI Icons Rounded";
             } else {
                 $final_files['icons_name'] = ucwords($final_files['icons_name']);
             }

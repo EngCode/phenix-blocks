@@ -21,14 +21,23 @@ const PhenixIcons = (props) => {
         { value: 'fas', label: 'Solid' },
     ];
 
+    // UI Icons: combined style + weight classes
     const uiTypes = [
-        { value: 'fi-rs', label: 'Regular Straight' },
-        { value: 'fi-ss', label: 'Solid Straight' },
-        { value: 'fi-bs', label: 'Bold Straight' },
-        { value: 'fi-rr', label: 'Regular Rounded' },
-        { value: 'fi-sr', label: 'Solid Rounded' },
-        { value: 'fi-br', label: 'Bold Rounded' },
+        { value: 'fi-straight fi-regular', label: 'Regular Straight' },
+        { value: 'fi-straight fi-bold', label: 'Bold Straight' },
+        { value: 'fi-straight fi-solid', label: 'Solid Straight' },
+        { value: 'fi-rounded fi-regular', label: 'Regular Rounded' },
+        { value: 'fi-rounded fi-bold', label: 'Bold Rounded' },
+        { value: 'fi-rounded fi-solid', label: 'Solid Rounded' },
     ];
+
+    //===> Value Parser <===//
+    const parseValue = (fullValue) => {
+        let parts = (fullValue || "").trim().split(/\s+/).filter(Boolean);
+        let icon = parts.pop() || "";
+        let type = parts.join(" ");
+        return { type, icon };
+    };
 
     //===> States <===//
     const [state, setState] = useState({
@@ -59,7 +68,6 @@ const PhenixIcons = (props) => {
             let file = "fa7-free.json";
 
             if (iconFont === "none") {
-                // Disabled - no icons
                 setState(prevState => ({
                     ...prevState,
                     iconsList: [],
@@ -70,49 +78,49 @@ const PhenixIcons = (props) => {
             }
 
             if (iconFont.startsWith("fontawesome")) {
-                // Font Awesome
                 family = "fontawesome";
                 version = iconFont.replace("fontawesome-", "fa").replace("-free", "").replace("-pro", "");
-                // Default to latest if version is not recognized
                 if (!version.match(/^fa[567]$/)) version = "fa7";
                 
                 types = faTypes;
                 defaultType = "far";
                 defaultIcon = "fa-icons";
                 
-                // Brands use separate file
                 if (props.value && props.value.includes("fab")) {
-                    file = `${version}-brands.json`;
+                    if (version === "fa7") {
+                        file = `${version}-free.json`;
+                    } else {
+                        file = `${version}-brands.json`;
+                    }
                 } else {
                     file = `${version}-free.json`;
                 }
-            } else if (iconFont === "ui-icons") {
-                // UI Icons (flaticons)
+            } else if (iconFont.startsWith("ui-icons")) {
                 family = "ui-icons";
                 isUI = true;
                 types = uiTypes;
-                defaultType = "fi-rs";
-                defaultIcon = "fi-rs-add";
                 
-                // Determine which UI JSON to load based on current type
-                let currentType = props.value ? props.value.split(" ")[0] : "fi-rs";
-                let uiStyle = currentType.replace("fi-", "");
-                file = `ui-icons-${uiStyle}.json`;
+                // Default type based on selected style
+                if (iconFont === "ui-icons-rounded") {
+                    defaultType = "fi-rounded fi-regular";
+                } else {
+                    defaultType = "fi-straight fi-regular";
+                }
+                defaultIcon = "fi-add";
+                file = "ui-icons.json";
             }
 
             //===> Start Fetching <===//
             if (state.iconsList.length < 1 || state.iconsFamily !== family) {
                 fetch(`${PDS_WP_KEY.json}/${file}`).then((res) => res.json()).then((json) => {
-                    //===> Assign Icons List <===//
                     const newIconsList = json.icons || [];
 
-                    //===> Divide List into Pages <===//
                     const pages = {};
                     for (let item = 0; item < newIconsList.length; item += 200) {
                         let pageNumber = Math.floor(item / 200) + 1;
                         pages[pageNumber] = newIconsList.slice(item, item + 200);
                     }
-                    //===> Update State <===//
+                    
                     setState(prevState => ({
                         ...prevState,
                         iconsList: newIconsList,
@@ -132,14 +140,11 @@ const PhenixIcons = (props) => {
                     }));
                 });
             } else {
-                //===> Divide List into Pages <===//
                 const pages = {};
                 for (let item = 0; item < state.iconsList.length; item += 200) {
                     let pageNumber = Math.floor(item / 200) + 1;
                     pages[pageNumber] = state.iconsList.slice(item, item + 200);
                 }
-
-                //===> Update State <===//
                 setState(prevState => ({...prevState, iconsPages: pages}));
             }
         });
@@ -148,104 +153,75 @@ const PhenixIcons = (props) => {
     //===> Properties <===//
     const { label, value, version, onChange } = props;
 
-    //===> Returned Value <===//
+    //===> Parse Current Value <===//
+    const parsed = parseValue(value);
     let options = {
-        type: value.split(" ")[0],
-        value: value.split(" ")[1] || value.split(" ")[0],
+        type: parsed.type,
+        value: parsed.icon,
     };
 
     //===> Set Value <===//
     const set_value = useCallback((clicked) => {
-        //===> Get Value <===//
         let button = clicked.target,
             theValue = button?.getAttribute('data-value');
 
-        //===> Set Value <===//
-        if (state.isUIIcons) {
-            // For UI icons, store the full class name
-            options.value = theValue;
-            options.type = theValue; // Same as value for UI icons
-        } else {
-            options.value = theValue;
-        }
-
-        //===> Return Options <===//
+        options.value = theValue;
         return onChange(options);
-    }, [onChange, options, state.isUIIcons]);
+    }, [onChange, options]);
 
     //===> Set Type <===//
-    const set_type = useCallback((value) => {
-        //===> Get Value <===//
-        options.type = value;
+    const set_type = useCallback((newType) => {
+        options.type = newType;
 
-        //===> For UI Icons, reload JSON when type changes <===//
+        //===> For UI Icons, just update type (same JSON file) <===//
         if (state.isUIIcons) {
-            let uiStyle = value.replace("fi-", "");
-            let file = `ui-icons-${uiStyle}.json`;
+            // Keep current icon or default to first
+            let currentIcon = parsed.icon || state.iconsList[0] || "fi-add";
+            options.value = currentIcon;
             
-            fetch(`${PDS_WP_KEY.json}/${file}`).then((res) => res.json()).then((json) => {
-                const newIconsList = json.icons || [];
-                const pages = {};
-                for (let item = 0; item < newIconsList.length; item += 200) {
-                    let pageNumber = Math.floor(item / 200) + 1;
-                    pages[pageNumber] = newIconsList.slice(item, item + 200);
-                }
-                setState(prevState => ({
-                    ...prevState,
-                    iconsList: newIconsList,
-                    iconsPages: pages,
-                    iconsPage: 1,
-                    iconType: value,
-                    iconName: newIconsList[0] || value,
-                }));
-            });
+            setState(prevState => ({
+                ...prevState,
+                iconType: newType,
+                iconsPage: 1,
+            }));
             
-            options.value = newIconsList && newIconsList[0] ? newIconsList[0] : value;
             return onChange(options);
         }
 
         //===> Font Awesome Brand Switching <===//
-        if (value === "fab" && !props.value.includes('fab')) options.value = "fa-wordpress";
-        if (props.value.includes('fab') && value !== "fab") options.value = "fa-icons";
+        if (newType === "fab" && !props.value.includes('fab')) options.value = "fa-wordpress";
+        if (props.value.includes('fab') && newType !== "fab") options.value = "fa-icons";
 
         //===> If Different Set of Icons Reset the List <===//
-        if (props.value.includes('fab') && value !== "fab" || !props.value.includes('fab') && value === "fab") {
+        if (props.value.includes('fab') && newType !== "fab" || !props.value.includes('fab') && newType === "fab") {
             setState(prevState => ({
                 ...prevState,
                 iconsPage: 1,
                 iconsList: [],
                 iconsPages: {},
-                iconType: value,
+                iconType: newType,
                 iconName: options.value
             }));
         } else {
-            setState(prevState => ({...prevState, iconType: value}));
+            setState(prevState => ({...prevState, iconType: newType}));
         }
 
         return onChange(options);
-    }, [props.value, onChange, options, state.isUIIcons]);
+    }, [props.value, onChange, options, state.isUIIcons, parsed.icon, state.iconsList]);
 
     //===> Traveling Buttons <===//
     const travelingButton = useCallback((event) => {
-        //===> Get the icons List Wrapper <====//
         let element = event.target,
             travelType = element.getAttribute('data-travel');
 
-        //===> Get Next Page <===//
         if (travelType === 'next') {
-            //===> Exit if Last Page <===//
             if (state.iconsPage === Object.keys(state.iconsPages).length) return;
-            //===> Go to Next Page <===//
             setState(prevState => ({
                 ...prevState,
                 iconsPage: prevState.iconsPage + 1
             }));
-        }
-        //===> Get Previous Page <===//
-        else if (travelType === 'previous') {
-            //===> Exit if First Page <===//
+        } else if (travelType === 'previous') {
             if (state.iconsPage === 1) return;
-            //===> Go to Previous Page <===//
             setState(prevState => ({
                 ...prevState,
                 iconsPage: prevState.iconsPage - 1
@@ -255,28 +231,20 @@ const PhenixIcons = (props) => {
 
     //===> Buttons Creator <===//
     const makeButtons = useCallback((list, type) => {
-        //===> Exit if has no items <===//
         if (!list || list.length < 1) return;
 
-        //===> Define Data <===//
         let buttonsList = [],
             buttonsStyle = {"fontSize": "20px", "lineHeight": "32px", "width":"32px", "height":"32px", "borderRadius": "3px", "padding": 0},
             buttonItem = (item) => {
-                // For UI icons, the full class is the item itself
-                // For Font Awesome, combine type + item
-                let buttonClass = state.isUIIcons ? item : `${type} ${item}`;
-                let isActive = state.isUIIcons 
-                    ? (props.value === item) 
-                    : (state.iconName === item);
+                // Combine type + icon for the class
+                let buttonClass = `${type} ${item}`;
+                let isActive = parsed.icon === item;
                 return <button key={`${item}`} onClick={set_value} title={item} data-value={item} className={`reset-button icon-btn-item ${buttonClass} ${isActive ? 'px-active bg-offwhite-primary' : ""}`} style={buttonsStyle}></button>;
             };
 
-        //===> Create Buttons <===//
         list.forEach((item) => buttonsList.push(buttonItem(item)));
-
-        //===> Return Buttons <===//
         return buttonsList;
-    }, [set_value, state.iconName, props.value, state.isUIIcons]);
+    }, [set_value, parsed.icon]);
 
     //===> Colors Panel <===//
     const showPanel = useCallback((clicked) => {
@@ -284,7 +252,6 @@ const PhenixIcons = (props) => {
             wrapper = Phenix(button).ancestor('.px-gb-component'),
             panel = wrapper.querySelector(".options-list");
 
-        //=== Show/Hide Panel ===//
         if (panel) {
             Phenix(button).toggleClass("px-active");
             Phenix(panel).toggleClass("px-active").fadeToggle(300, 0, "flex");
@@ -293,30 +260,24 @@ const PhenixIcons = (props) => {
 
     //===> Search in icons <===//
     const iconsFilter = useCallback((changed) => {
-        //===> Define Data <===//
         let pages = {},
             input = changed.target,
-            value = input.value,
+            searchValue = input.value,
             searchedList;
 
-        //===> Find the searched icon and remove the reset <===//
-        if (value && value !== "") {
-            searchedList = state.iconsList.filter(icon => icon.includes(value));
+        if (searchValue && searchValue !== "") {
+            searchedList = state.iconsList.filter(icon => icon.includes(searchValue));
         } else {
             searchedList = state.iconsList;
         }
 
-        //===> Divide List into Pages <===//
         for (let item = 0; item < searchedList.length; item += 200) {
-            //===> Define Page Number <===//
             let pageNumber = Math.floor(item / 200) + 1;
-            //===> Add item to Pages Object <===//
             pages[pageNumber] = searchedList.slice(item, item + 200);
         }
         
-        //===> Set the New List <===//
         setState(prevState => ({...prevState, iconsPage: 1, iconsPages: pages}));
-    }, [state.iconsPages]);
+    }, [state.iconsList]);
 
     //===> Component Design <===//
     return (
@@ -335,7 +296,7 @@ const PhenixIcons = (props) => {
                     <i className='fas fa-pencil fs-12 color-gray'></i>
                 </button>
                 {/*===> Type Select <===*/}
-                <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={value.split(" ")[0]} onChange={(target) => set_type(target.value)} options={state.iconsTypes} />
+                <PhenixSelect key={`icons-type`} name="icons-type" className="col-6" value={parsed.type} onChange={(target) => set_type(target.value)} options={state.iconsTypes} />
             </div>
 
             {/*===> Panel <===*/}

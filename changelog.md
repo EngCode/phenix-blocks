@@ -44,16 +44,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All panels (`fonts-settings`, `post-types`, `metabox`, `taxonomies`, `import-export`): `esc_attr()` on option values, `esc_html()` on labels
 - Constant typo fixed: `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all 4 files
 
-### Font Awesome
-- Restructured icon font assets into `assets/webfonts/font-awesome-{5,6,7}-{free,pro}/` directories
-- Added dedicated CSS entry files: `fontawesome-5-free.css`, `fontawesome-5-pro.css`, `fontawesome-6-free.css`, `fontawesome-6-pro.css`, `fontawesome-7-free.css`, `fontawesome-7-pro.css`
-- Admin panel (`fonts-settings.php`) now offers 8 icon font options: None, UI Icons, Font Awesome v5/v6/v7 Free/Pro
-- Default icon font changed from `fontawesome-6` to `fontawesome-7-free`
-- Added **Disable** option (`none`) — when selected, no icon font CSS is enqueued
-- `inc/pds-assets.php` now defaults to `fontawesome-7-free` if no option is set
-- Backward compatibility: old values `fontawesome-5` and `fontawesome-6` are automatically migrated to their `-free` equivalents
-- New naming convention: CSS file path uses the full option value (e.g., `fontawesome-7-free.css`) instead of stripping the suffix
-- Icon font enqueue is skipped when `icons_font` is `false` (disabled)
+### Font Awesome & Icon Fonts
+- **REMOVED Font Awesome Pro** — all pro font files (duotone, light, thin, sharp variants) removed from `assets/webfonts/` for WordPress.org compliance
+- **ADDED Font Awesome Free** — legitimate free versions v5, v6, v7 with `all.min.css` and `woff2`-only webfonts
+- **ADDED UI Icons (Flaticons)** — flaticons.com UI font with 2 styles (straight/rounded) and 3 weights (regular/bold/solid)
+- **Restructured Font Awesome assets:**
+  - `assets/webfonts/fontawesome-{5,6,7}-free.css` — minified CSS entry files
+  - `assets/webfonts/font-awesome-{5,6,7}-free/` — `woff2`-only font directories
+- **Restructured UI Icons assets (Font Awesome-style):**
+  - `assets/webfonts/ui-icons-straight.css` — common font-family `uicons-straight`, 3 `@font-face` with font-weight mapping (400/700/900), weight classes (`.fi-regular`, `.fi-bold`, `.fi-solid`), style class (`.fi-straight`), unprefixed icon content classes (`.fi-add:before`)
+  - `assets/webfonts/ui-icons-rounded.css` — same structure for `uicons-rounded`
+  - `assets/webfonts/ui-icons/` — flat directory with 6 `woff2` files only (no `.woff`, `.eot`, `.ttf`)
+- **Admin panel (`fonts-settings.php`)** — now offers 6 options: None, UI Icons Straight, UI Icons Rounded, Font Awesome v5/v6/v7 Free
+- **Default icon font** changed from `fontawesome-6` to `fontawesome-7-free`
+- **Added Disable option** (`none`) — when selected, no icon font CSS is enqueued
+- **Backward compatibility:**
+  - Old values `fontawesome-5`, `fontawesome-6`, `fontawesome-*-pro` automatically migrated to free equivalents
+  - Old value `ui-icons` automatically migrated to `ui-icons-straight`
+- **PHP (`pds-assets.php`)** — handles `ui-icons-straight`/`ui-icons-rounded` display names and paths, supports disable option, migrates old pro values
+- **Icon Picker (`icons.js`)** — fully refactored:
+  - Removed pro icon types (fat, fal, fad, fast, fasl, fass, fasr)
+  - Added UI Icons support with 6 combined style+weight options (e.g., `fi-straight fi-regular`)
+  - Dynamic type switching, single JSON file for all UI icons
+  - FA7 brands included in free JSON (no separate brands file needed)
+- **Generated JSON from CSS** — new `assets/json/` files:
+  - `fa5-free.json` (1458 icons), `fa6-free.json` (1895 icons), `fa7-free.json` (1970 icons)
+  - `ui-icons.json` (355 icons) — single file for all UI icon names
+  - Removed old `fa5-pro.json`, `fa6-pro.json`, `ui-icons-{style}-{weight}.json` (6 files)
+- **Old pro directories removed** — `font-awesome-5/` (pro), `font-awesome-6/` (pro), old CSS files `fontawesome-5.css`, `fontawesome-6.css`, combined `ui-icons.css`
 
 ### Removed
 - `.pdt-custom`, `.pdb-custom`, `.pds-custom`, `.pde-custom` and margin equivalents from SASS source

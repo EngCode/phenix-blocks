@@ -20,13 +20,11 @@
     //===> Icon Fonts <===//
     $fonts_list_icon = [
         "none" => "None (Disable Icon Font)",
-        "ui-icons" => "UI Icons (Phenix Default)",
+        "ui-icons-straight" => "UI Icons Straight",
+        "ui-icons-rounded" => "UI Icons Rounded",
         "fontawesome-5-free" => "Font Awesome v5 Free",
-        "fontawesome-5-pro" => "Font Awesome v5 Pro",
         "fontawesome-6-free" => "Font Awesome v6 Free",
-        "fontawesome-6-pro" => "Font Awesome v6 Pro",
         "fontawesome-7-free" => "Font Awesome v7 Free",
-        "fontawesome-7-pro" => "Font Awesome v7 Pro",
     ];
 
     //===> Get Current Fonts <===//
@@ -72,7 +70,7 @@
             <!-- Control Label -->
             <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font","pds-blocks"); ?> (LTR)</label>
             <!-- Form Control -->
-            <div class="control-icon fas fa-text mb-5">
+            <div class="control-icon fas fa-font mb-5">
                 <select name="pds_fonts[primary]" value="<?php echo esc_attr($current_fonts["primary"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Primary Font' ,'phenix'); ?>">
                     <?php 
                         foreach ($fonts_list as $key => $value) {
@@ -124,7 +122,7 @@
             <!-- Control Label -->
             <label class="mb-10 weight-medium fs-14"><?php echo esc_html__("Primary Font","pds-blocks"); ?> (RTL)</label>
             <!-- Form Control -->
-            <div class="control-icon fas fa-text mb-5">
+            <div class="control-icon fas fa-font mb-5">
                 <select name="pds_fonts[primary_rtl]" value="<?php echo esc_attr($current_fonts["primary_rtl"]);?>" class="px-select form-control radius-sm fs-13" data-search="1" data-placeholder="<?php echo esc_html__('Primary Font' ,'phenix'); ?>">
                     <?php 
                         foreach ($fonts_list as $key => $value) {

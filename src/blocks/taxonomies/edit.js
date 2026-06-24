@@ -80,17 +80,17 @@ export default function Edit(props) {
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
             <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
-                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                {attributes.flexbox?.equals || attributes.flexbox?.slider ? <PxDropDown title={__("Columns Number", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-columns divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        <PhenixNumber name={"cols"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={(target) => set_flexbox(target, '')} />
-                        <PhenixNumber name={"cols-sm"} icon="far fa-mobile" min={0} max={13} value={attributes.flexbox['cols-sm'] || 0} onChange={(target) => set_flexbox(target)} />
-                        <PhenixNumber name={`cols-md`} icon="far fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={(target) => set_flexbox(target, '')} />
-                        <PhenixNumber name={`cols-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={(target) => set_flexbox(target, '')} />
-                        <PhenixNumber name={`cols-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={(target) => set_flexbox(target, '')} />
+                        <PhenixNumber name={"cols"} icon="fas fa-mobile" min={0} max={13} value={attributes.flexbox?.cols || 0} onChange={(target) => set_flexbox(target, '')} />
+                        <PhenixNumber name={"cols-sm"} icon="fas fa-mobile" min={0} max={13} value={attributes.flexbox['cols-sm'] || 0} onChange={(target) => set_flexbox(target)} />
+                        <PhenixNumber name={`cols-md`} icon="fas fa-tablet" min={0} max={13} value={attributes.flexbox[`cols-md`] || 0} onChange={(target) => set_flexbox(target, '')} />
+                        <PhenixNumber name={`cols-lg`} icon="fas fa-laptop" min={0} max={13} value={attributes.flexbox[`cols-lg`] || 0} onChange={(target) => set_flexbox(target, '')} />
+                        <PhenixNumber name={`cols-xl`} icon="fas fa-desktop" min={0} max={13} value={attributes.flexbox[`cols-xl`] || 0} onChange={(target) => set_flexbox(target, '')} />
                     </li>
                 </PxDropDown>: null}
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}

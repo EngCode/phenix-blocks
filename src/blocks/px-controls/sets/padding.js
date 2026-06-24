@@ -68,11 +68,11 @@ export default class PaddingSet extends Component {
         return <div className={`padding-controller mgx-auto position-rv`}>
             {/*===> Bound X <===*/}
             <OptionControl key={`bound-padding-x${screen}`} name={`bound-padding-x${screen}`} checked={attributes.style[`bound-padding-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-end-0">
-                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
+                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square fas fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
             </OptionControl>
             {/*===> Bound Y <===*/}
             <OptionControl key={`bound-padding-y${screen}`} name={`bound-padding-y${screen}`} checked={attributes.style[`bound-padding-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-start-0">
-                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
+                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square fas fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
             </OptionControl>
 
             {/*===> Top Controller <===*/}
@@ -86,7 +86,7 @@ export default class PaddingSet extends Component {
                     <PhenixNumber key={`pds${screen}`} name={`pds${screen}`} onChange={setValue} value={attributes.style[`pds${screen}`] || 0} min={0} max={2500} steps={1} />
                 </div>
                 {/*===> Reset Button <===*/}
-                <button key={`reset-padding${screen}`} name={`reset-padding${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
+                <button key={`reset-padding${screen}`} name={`reset-padding${screen}`} onClick={reset} className='btn square fas fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
                     <PhenixNumber key={`pde${screen}`} name={`pde${screen}`} onChange={setValue} value={attributes.style[`pde${screen}`] || 0} min={0} max={2500} steps={1} />

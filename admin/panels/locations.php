@@ -12,11 +12,11 @@
         <h3 class="fs-16 mb-0 weight-medium"><?php echo esc_html__('Add New Location', "pds-blocks"); ?></h3>
         <p class="mb-20 fs-14"><?php echo esc_html__('you can add new menu locations from below form.', "pds-blocks"); ?></p>
         <!-- Form Control -->
-        <div class="control-icon far fa-list mb-15">
+        <div class="control-icon fas fa-list mb-15">
             <input type="text" name="title" class="form-control radius-md border-alpha-10" placeholder="<?php echo esc_html__('Location Title', "pds-blocks");?>">
         </div>
         <!-- Form Control -->
-        <div class="control-icon far fa-location mb-15">
+        <div class="control-icon fas fa-location mb-15">
             <input type="text" name="name" class="form-control radius-md border-alpha-10" placeholder="<?php echo esc_html__('location-name', "pds-blocks");?>">
         </div>
         <!-- Form Control -->

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', ready => {
 
             <!-- Action Buttons -->
             ${item.name !== "main-menu" ? `<div class="col-auto ms-auto flexbox">
-                <button type="button" class="remove-item btn light tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                <button type="button" class="remove-item btn light tiny square color-danger fas fa-times-circle fs-18" data-target="li"></button>
             </div>` : ""}
         </li>`)
     },
@@ -58,13 +58,13 @@ document.addEventListener('DOMContentLoaded', ready => {
             <span class="col w-max-260 tx-icon dashicons-before dashicons-${type.menu_icon ? type.menu_icon : "category"} col-4 item-label">${type.label}</span>
 
             <!-- Name -->
-            <span class="col w-max-200 tx-icon far fa-link col-3 item-name">${type.name}</span>
+            <span class="col w-max-200 tx-icon fas fa-link col-3 item-name">${type.name}</span>
 
             <!-- Singular -->
-            <span class="col w-max-200 tx-icon far fa-link col-2 item-singular">${type.singular ? type.singular : type.name}</span>
+            <span class="col w-max-200 tx-icon fas fa-link col-2 item-singular">${type.singular ? type.singular : type.name}</span>
 
             <!-- Taxonomies -->
-            <span class="col tx-icon far fa-link col-2 item-taxonomies">${type.taxonomies?.length > 0 ? type.taxonomies : 'None'}</span>
+            <span class="col tx-icon fas fa-link col-2 item-taxonomies">${type.taxonomies?.length > 0 ? type.taxonomies : 'None'}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">
@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                     <input type="checkbox" name="item-status" ${type.enable ? 'checked' : null}><span class="switch"></span>
                 </label>
                 <!-- Edit -->
-                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary fas fa-pencil fs-18" data-target="li"></button>
                 <!-- Remove -->
-                <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                <button type="button" class="remove-item btn bg-transparent tiny square color-danger fas fa-times-circle fs-18" data-target="li"></button>
             </div>
         </li>`);
     },
@@ -84,13 +84,13 @@ document.addEventListener('DOMContentLoaded', ready => {
     taxonomy_template = (taxonomy) => {
         return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
             <!-- Label -->
-            <span class="tx-icon far fa-boxes col-4 item-label">${taxonomy.label}</span>
+            <span class="tx-icon fas fa-boxes col-4 item-label">${taxonomy.label}</span>
 
             <!-- Name -->
-            <span class="tx-icon far fa-link col-3 item-name">${taxonomy.name}</span>
+            <span class="tx-icon fas fa-link col-3 item-name">${taxonomy.name}</span>
 
             <!-- Types -->
-            <span class="tx-icon far fa-link col-2 item-types tx-nowrap">${taxonomy.post_types?.length > 0 ? taxonomy.post_types : 'None'}</span>
+            <span class="tx-icon fas fa-link col-2 item-types tx-nowrap">${taxonomy.post_types?.length > 0 ? taxonomy.post_types : 'None'}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">
@@ -99,9 +99,9 @@ document.addEventListener('DOMContentLoaded', ready => {
                     <input type="checkbox" name="item-status" ${taxonomy.enable ? 'checked' : null}><span class="switch"></span>
                 </label>
                 <!-- Edit -->
-                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary fas fa-pencil fs-18" data-target="li"></button>
                 <!-- Remove -->
-                <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                <button type="button" class="remove-item btn bg-transparent tiny square color-danger fas fa-times-circle fs-18" data-target="li"></button>
             </div>
         </li>`);
     },
@@ -110,20 +110,20 @@ document.addEventListener('DOMContentLoaded', ready => {
     pattern_template = (pattern) => {
         return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0">
             <!-- Label -->
-            <span class="tx-icon far fa-boxes col w-max-260 item-label">${pattern.title}</span>
+            <span class="tx-icon fas fa-boxes col w-max-260 item-label">${pattern.title}</span>
 
             <!-- Name -->
-            <span class="tx-icon far fa-link col w-max-260 item-name">${pattern.name}</span>
+            <span class="tx-icon fas fa-link col w-max-260 item-name">${pattern.name}</span>
 
             <!-- Categories -->
-            <span class="tx-icon far fa-link col w-max-260 item-name">${pattern.category}</span>
+            <span class="tx-icon fas fa-link col w-max-260 item-name">${pattern.category}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">
                 <!-- Edit -->
-                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary fas fa-pencil fs-18" data-target="li"></button>
                 <!-- Remove -->
-                <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                <button type="button" class="remove-item btn bg-transparent tiny square color-danger fas fa-times-circle fs-18" data-target="li"></button>
             </div>
         </li>`);
     },
@@ -132,26 +132,26 @@ document.addEventListener('DOMContentLoaded', ready => {
     metabox_template = (metabox) => {
         return (`<li class="flexbox divider-b align-center-y pdy-5 pds-15 pde-10 mb-0 flow-nowrap">
             <!-- Label -->
-            <span class="tx-icon far fa-boxes col-3 tx-nowrap item-label">${metabox.label}</span>
+            <span class="tx-icon fas fa-boxes col-3 tx-nowrap item-label">${metabox.label}</span>
 
             <!-- Name -->
-            <span class="tx-icon far fa-link col-3 w-max-200 tx-nowrap item-name">${metabox.name}</span>
+            <span class="tx-icon fas fa-link col-3 w-max-200 tx-nowrap item-name">${metabox.name}</span>
             
             <!-- Fields -->
-            <span class="tx-icon far fa-link w-100 item-name pds-15">${metabox.fields.length}</span>
+            <span class="tx-icon fas fa-link w-100 item-name pds-15">${metabox.fields.length}</span>
 
             <!-- Data Type -->
-            <span class="tx-icon far fa-link w-150 item-name">${metabox.datatype}</span>
+            <span class="tx-icon fas fa-link w-150 item-name">${metabox.datatype}</span>
 
             <!-- Data Locations -->
-            <span class="col tx-icon far fa-link col-3 item-name">${metabox.post_types.length > 0 ? metabox.post_types : metabox.taxonomies}</span>
+            <span class="col tx-icon fas fa-link col-3 item-name">${metabox.post_types.length > 0 ? metabox.post_types : metabox.taxonomies}</span>
 
             <!-- Buttons -->
             <div class="col-auto ms-auto flexbox align-center-y">
                 <!-- Edit -->
-                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary far fa-pencil fs-18" data-target="li"></button>
+                <button type="button" class="edit-item me-5 btn bg-transparent tiny square color-primary fas fa-pencil fs-18" data-target="li"></button>
                 <!-- Remove -->
-                <button type="button" class="remove-item btn bg-transparent tiny square color-danger far fa-times-circle fs-18" data-target="li"></button>
+                <button type="button" class="remove-item btn bg-transparent tiny square color-danger fas fa-times-circle fs-18" data-target="li"></button>
             </div>
         </li>`);
     };

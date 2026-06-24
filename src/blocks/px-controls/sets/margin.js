@@ -68,11 +68,11 @@ export default class MarginSet extends Component {
         return <div className={`margin-controller mgx-auto position-rv`}>
             {/*===> Bound X <===*/}
             <OptionControl key={`bound-margin-x${screen}`} name={`bound-margin-x${screen}`} checked={attributes.style[`bound-margin-x${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-end-0">
-                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
+                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square fas fa-arrows-left-right tooltip-bottom' data-title={__("Bound Start/End", "pds-blocks")}></span>
             </OptionControl>
             {/*===> Bound Y <===*/}
             <OptionControl key={`bound-margin-y${screen}`} name={`bound-margin-y${screen}`} checked={attributes.style[`bound-margin-y${screen}`]} value={"true"} onChange={(target) => mainSetter(target, screen?screen:"")} type='button-checkbox' className="tiny position-ab pos-top-0 pos-start-0">
-                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square far fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
+                <span className='btn bg-transparent tiny fs-15 border-1 border-dashed radius-sm border-alpha-10 square fas fa-arrows-up-down tooltip-bottom' data-title={__("Bound Top/Bottom", "pds-blocks")}></span>
             </OptionControl>
 
             {/*===> Top Controller <===*/}
@@ -86,7 +86,7 @@ export default class MarginSet extends Component {
                     <PhenixNumber key={`ms${screen}`} name={`ms${screen}`} onChange={setValue} value={attributes.style[`ms${screen}`] || 0} min={-2500} max={2500}  steps={1} />
                 </div>
                 {/*===> Reset Button <===*/}
-                <button key={`reset-margin${screen}`} name={`reset-margin${screen}`} onClick={reset} className='btn square far fa-redo bg-transparent tiny'></button>
+                <button key={`reset-margin${screen}`} name={`reset-margin${screen}`} onClick={reset} className='btn square fas fa-redo bg-transparent tiny'></button>
                 {/*===> End Button <===*/}
                 <div style={{width: 100}}>
                     <PhenixNumber key={`me${screen}`} name={`me${screen}`} onChange={setValue} value={attributes.style[`me${screen}`] || 0} min={-2500} max={2500}  steps={1} />

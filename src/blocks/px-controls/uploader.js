@@ -32,7 +32,7 @@ const MediaUploader = ({ label, value, size, type, setValue, className }) => {
                             :
                             <div className='flexbox align-center-y align-between'>
                                 {!type || type === 'image' ? largeImage(value || largePlaceholder) : largeImage(largePlaceholder)}
-                                <span key="change-media" className="btn fluid primary small radius-sm radius-bottom fs-13 far fa-camera btn-icon">Select File</span>
+                                <span key="change-media" className="btn fluid primary small radius-sm radius-bottom fs-13 fas fa-camera btn-icon">Select File</span>
                             </div>
                         }
                     </div>

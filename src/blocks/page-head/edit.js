@@ -48,14 +48,14 @@ export default function Edit(props) {
                     ]} />
                 </div>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         {/*===> Styles <===*/}
                         <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} options="size, align, other" />}
@@ -67,7 +67,7 @@ export default function Edit(props) {
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-animations') ?
-                    <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-animations" className='pdt-15 pdx-15 lineheight-150'>
                             {/*===> Animations <===*/}
                             <AnimationsSet attributes={attributes} mainSetter={set_style} />
@@ -76,7 +76,7 @@ export default function Edit(props) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-effects') ?
-                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <EffectsSet attributes={attributes} mainSetter={set_style} />
                         </li>

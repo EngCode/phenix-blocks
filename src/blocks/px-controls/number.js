@@ -72,15 +72,15 @@ const PhenixNumber = (props) => {
         {/*===> Counter Control <===*/}
         <div className={"px-counter-input-editor position-rv fluid " + (icon ? icon : "")}>
             {/*===> Button <===*/}
-            {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
+            {!icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn fas fa-minus position-ab pos-start-0 pos-top-0 divider-e icon-fix'></button> : ""}
 
             {/*===> Number Input <===*/}
             <input name={name} type="number" min={min} max={max} value={parseFloat(value) ? parseFloat(value) : 0} className={"form-control small radius-sm reset-appearance tx-align-center"} onChange={setNumber} />
 
             {/*===> Button <===*/}
             <div className='position-ab pos-end-0 pos-bottom-0 flexbox'>
-                {icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn far fa-minus divider-s icon-fix'></button> : ""}
-                <button onClick={IncreaseNum} className='btn square small fs-13 increase-btn far fa-plus divider-s icon-fix'></button>
+                {icon ? <button onClick={DecreaseNum} className='btn square small fs-13 increase-btn fas fa-minus divider-s icon-fix'></button> : ""}
+                <button onClick={IncreaseNum} className='btn square small fs-13 increase-btn fas fa-plus divider-s icon-fix'></button>
             </div>
         </div>
         {/*===> Counter Control <===*/}

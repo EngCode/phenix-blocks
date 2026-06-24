@@ -110,42 +110,42 @@
                 array(
                     "title" => "Menu Locations",
                     "slug"  => "pds-locations",
-                    "icon"  => "far fa-list",
+                    "icon"  => "fas fa-list",
                     "content" => 'pds_menus_locations_panel',
                 ),
                 //==> Types Panel <==//
                 array(
                     "title" => "Post Types",
                     "slug"  => "pds-types",
-                    "icon"  => "far fa-cube",
+                    "icon"  => "fas fa-cube",
                     "content" => 'pds_types_panel',
                 ),
                 //==> Taxonomies Panel <==//
                 array(
                     "title" => "Taxonomies",
                     "slug"  => "pds-taxonomy",
-                    "icon"  => "far fa-boxes",
+                    "icon"  => "fas fa-boxes",
                     "content" => 'pds_taxonomies_panel',
                 ),
                 //==> Patterns Panel <==//
                 array(
                     "title" => "Block Patterns",
                     "slug"  => "pds-patterns",
-                    "icon"  => "far fa-file-alt",
+                    "icon"  => "fas fa-file-alt",
                     "content" => 'pds_patterns_panel',
                 ),
                 //==> Meta Boxes Panel <==//
                 array(
                     "title" => "Metaboxes",
                     "slug"  => "pds-metabox",
-                    "icon"  => "far fa-pen-field",
+                    "icon"  => "fas fa-pen-field",
                     "content" => 'pds_metabox_panel',
                 ),
                 //==> Import/Export Panel <==//
                 array(
                     "title" => "Import/Export",
                     "slug"  => "pds-import-export",
-                    "icon"  => "far fa-floppy-disk",
+                    "icon"  => "fas fa-floppy-disk",
                     "content" => 'pds_import_export_panel',
                 ),
             ),

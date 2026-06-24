@@ -89,7 +89,7 @@ PhenixElements.prototype.datatable = function (options?:{
         //====> Search Template <====//
         var searchHTML = '';
         if (search) searchHTML = `
-            <div class="control-icon small floating-end far fa-search">
+            <div class="control-icon small floating-end fas fa-search">
                 <input type="search" class="table-search form-control small" placeholder="${Label_Translate('Search in Table', 'البحث فى الجدول')}">
             </div>
         `;
@@ -211,8 +211,8 @@ PhenixElements.prototype.datatable = function (options?:{
 
             //====> Create Next / Prev Buttons <====//
             if (pagesNumber > 1) {
-                Phenix(paginationList.querySelector('li:first-child')).insert('before', `<li class="prev-page far fa-angle-${Phenix(document).direction('start')}"></li>`);
-                Phenix(paginationList).insert('append', `<li class="next-page far fa-angle-${Phenix(document).direction('end')}"></li>`);
+                Phenix(paginationList.querySelector('li:first-child')).insert('before', `<li class="prev-page fas fa-angle-${Phenix(document).direction('start')}"></li>`);
+                Phenix(paginationList).insert('append', `<li class="next-page fas fa-angle-${Phenix(document).direction('end')}"></li>`);
             }
 
             //====> Set First Page <====//

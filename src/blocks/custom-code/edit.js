@@ -44,11 +44,11 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
                 {/*===> Option Control <===*/}
                 <OptionControl key={`code_preview-${uniqueKey}`} name={`code_preview`} value={`boolean`} checked={attributes.code_preview} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
-                    <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-eye h-min-100' style={{paddingTop: 2}} data-title={__("Preview", "pds-blocks")}></span>
+                    <span className='btn bg-transparent fs-16 square tooltip-bottom fas fa-eye h-min-100' style={{paddingTop: 2}} data-title={__("Preview", "pds-blocks")}></span>
                 </OptionControl>
                 {/*===> Option Control <===*/}
                 <OptionControl key={`dev_preview-${uniqueKey}`} name={`dev_preview`} value={`boolean`} checked={attributes.dev_preview} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
-                    <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-code h-min-100' style={{paddingTop: 2}} data-title={__("Developer Mode", "pds-blocks")}></span>
+                    <span className='btn bg-transparent fs-16 square tooltip-bottom fas fa-code h-min-100' style={{paddingTop: 2}} data-title={__("Developer Mode", "pds-blocks")}></span>
                 </OptionControl>
             </ToolbarGroup>
         </BlockControls>

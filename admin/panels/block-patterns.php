@@ -56,7 +56,7 @@
         <!-- Headline -->
         <h4 class="fs-15 pdx-20 pdy-10 divider-b"><?php echo esc_html__('Add New Pattern', "pds-blocks"); ?></h4>
         <!-- Close Button -->
-        <button class="modal-close far fa-times btn square ms-15 bg-transparent color-danger position-ab pos-top-0 pos-end-0"></button>
+        <button class="modal-close fas fa-times btn square ms-15 bg-transparent color-danger position-ab pos-top-0 pos-end-0"></button>
         <!-- Modal Body -->
         <div class="pdx-20 pdt-10">
             <!-- Description -->
@@ -66,25 +66,25 @@
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-text">
+                    <div class="control-icon fas fa-text">
                         <input type="text" name="title" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-link">
+                    <div class="control-icon fas fa-link">
                         <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Name', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-arrows-alt-h mb-15">
+                    <div class="control-icon fas fa-arrows-alt-h mb-15">
                         <input type="number" name="width" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Width', "pds-blocks");?>">
                     </div>
                     <!-- Form Control -->
-                    <div class="control-icon far fa-folder mb-15">
+                    <div class="control-icon fas fa-folder mb-15">
                         <select name="category" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Categories' ,'phenix'); ?>" multiple>
                             <option value="phenix"><?php echo esc_html__("Phenix", "pds-blocks"); ?></option>
                             <option value="elements"><?php echo esc_html__("Elements", "pds-blocks"); ?></option>
@@ -97,7 +97,7 @@
                         </select>
                     </div>
                     <!-- Form Control -->
-                    <div class="control-icon far fa-file large">
+                    <div class="control-icon fas fa-file large">
                         <textarea name="content" class="form-control large radius-sm fs-13 mb-15" placeholder="<?php echo esc_html__('Content', "pds-blocks");?>"></textarea>
                     </div>
                 </div>

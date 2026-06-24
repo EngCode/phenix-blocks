@@ -95,7 +95,7 @@ export default function Edit(props) {
                     ]} />
                 </div>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         <PhenixSelect name="direction" key="direction" label={__("Direction", "pds-blocks")} value={attributes.direction} onChange={set_value} options={[
                             { label: 'Vertical',  value: 'px-vertical' },
@@ -132,7 +132,7 @@ export default function Edit(props) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
                         <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography}>
                             {/*===> Column <===*/}

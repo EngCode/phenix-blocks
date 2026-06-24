@@ -314,12 +314,22 @@ if (!function_exists('pds_admin_style') && is_admin()) :
 
         //===> Include Admin Script <===//
         wp_enqueue_script('phenix-admin-pages-script', plugin_dir_url(__DIR__).'admin/scripts.js', false, $version , true);
+
+        //===> Load Font Awesome Solid for Admin UI Icons <===//
+        wp_enqueue_style('font-awesome-solid', plugin_dir_url(__DIR__).'assets/webfonts/fontawesome-6-free.css', array(), $version);
     }
 
     //===> Include Phenix Core in the Plugin Page <===//
     if (get_option('pds_admin_style') && is_admin() && isset($_GET['page']) && strpos($_GET['page'], 'pds-') !== false) {
         add_action('admin_enqueue_scripts', 'pds_admin_style');
     }
+
+    //===> Load Font Awesome Solid for Block Editor UI Icons <===//
+    function pds_block_editor_icons() {
+        $version = PDS_BLOCKS_VERSION;
+        wp_enqueue_style('font-awesome-solid', plugin_dir_url(__DIR__) . 'assets/webfonts/fontawesome-6-free.css', array(), $version);
+    }
+    add_action('enqueue_block_editor_assets', 'pds_block_editor_icons');
 endif;
 
 //====> Login Page Script <====//

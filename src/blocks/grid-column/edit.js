@@ -55,17 +55,17 @@ export default function Edit({ attributes, setAttributes }) {
         <BlockControls>
             <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Column Size", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-alt-h divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
+                <PxDropDown title={__("Column Size", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-alt-h divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-180">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
-                        <PhenixNumber name={"size"} icon="far fa-mobile-alt" min={0} max={13} value={attributes.size || 0} onChange={set_value} />
-                        <PhenixNumber name={`size-sm`} icon="far fa-mobile" min={0} max={13} value={attributes.responsive[`size-sm`] || 0} onChange={(target) => set_responsive(target)} />
-                        <PhenixNumber name={`size-md`} icon="far fa-tablet" min={0} max={13} value={attributes.responsive[`size-md`] || 0} onChange={(target) => set_responsive(target)} />
-                        <PhenixNumber name={`size-lg`} icon="far fa-laptop" min={0} max={13} value={attributes.responsive[`size-lg`] || 0} onChange={(target) => set_responsive(target)} />
-                        <PhenixNumber name={`size-xl`} icon="far fa-desktop" min={0} max={13} value={attributes.responsive[`size-xl`] || 0} onChange={(target) => set_responsive(target)} />
+                        <PhenixNumber name={"size"} icon="fas fa-mobile-alt" min={0} max={13} value={attributes.size || 0} onChange={set_value} />
+                        <PhenixNumber name={`size-sm`} icon="fas fa-mobile" min={0} max={13} value={attributes.responsive[`size-sm`] || 0} onChange={(target) => set_responsive(target)} />
+                        <PhenixNumber name={`size-md`} icon="fas fa-tablet" min={0} max={13} value={attributes.responsive[`size-md`] || 0} onChange={(target) => set_responsive(target)} />
+                        <PhenixNumber name={`size-lg`} icon="fas fa-laptop" min={0} max={13} value={attributes.responsive[`size-lg`] || 0} onChange={(target) => set_responsive(target)} />
+                        <PhenixNumber name={`size-xl`} icon="fas fa-desktop" min={0} max={13} value={attributes.responsive[`size-xl`] || 0} onChange={(target) => set_responsive(target)} />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
@@ -80,7 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
                     <PhenixSelect name="tagName" placeholder={__("div", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.tagName} onChange={set_value} options={PhenixBlocks.dataLists.html_tags} />
                 </div>
                 {/*===> Dropdown Button <===*/}
-                {attributes.isFlexbox? <PxDropDown title={__("Layout Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-columns color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                {attributes.isFlexbox? <PxDropDown title={__("Layout Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-columns color-success divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="layouts" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <FlexboxSet attributes={attributes} mainSetter={set_flexbox}></FlexboxSet>}
@@ -98,16 +98,16 @@ export default function Edit({ attributes, setAttributes }) {
                 </PxDropDown>:
                 /*===> Option Control <===*/
                 <OptionControl key={`isFlexbox-${uniqueKey}`} name={`isFlexbox`} value={`boolean`} checked={attributes.isFlexbox} onChange={set_value} type='button-checkbox' className='inline-block divider-e border-alpha-25'>
-                    <span className='btn bg-transparent fs-16 square tooltip-bottom far fa-columns h-min-100' style={{paddingTop: 2}} data-title={__("Flexbox Layouts", "pds-blocks")}></span>
+                    <span className='btn bg-transparent fs-16 square tooltip-bottom fas fa-columns h-min-100' style={{paddingTop: 2}} data-title={__("Flexbox Layouts", "pds-blocks")}></span>
                 </OptionControl>}
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Style Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-adjust divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-styles" className='pdt-15 pdb-5 pdx-15 lineheight-150'>
                         <StylesSet key={`styles-${uniqueKey}`} attributes={attributes} setAttributes={setAttributes} objectSetter={PhenixBlocks.setObject} mainSetter={set_style} colorSetter={set_typography} options="text-colors, background" />
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                <PxDropDown title={__("Typography Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-font divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                     <li key="pds-typography" className='pdt-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <TypographySet key={`typography-${uniqueKey}`} attributes={attributes} mainSetter={set_typography} />}
@@ -119,7 +119,7 @@ export default function Edit({ attributes, setAttributes }) {
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-animations') ?
-                    <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Animation Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-atom-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-animations" className='pdt-15 pdx-15 lineheight-150'>
                             {/*===> Animations <===*/}
                             <AnimationsSet attributes={attributes} mainSetter={set_style} />
@@ -128,7 +128,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-padding') ?
-                    <PxDropDown title={__("Padding Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-outer divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Padding Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-border-outer divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-padding" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs
                                 sm={(screen) => <PaddingSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
@@ -141,7 +141,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-margin') ?
-                    <PxDropDown title={__("Margin Options", "pds-blocks")} button={`bg-transparent fs-16 square fal fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Margin Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-alt divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs
                                 sm={(screen) => <MarginSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
@@ -154,7 +154,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-position') ?
-                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Position Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-to-dot divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <ScreensTabs
                                 sm={(screen) => <PositionSet attributes={attributes} attrSetter={setAttributes} screen="" mainSetter={target => set_style(target, "")} />}
@@ -167,7 +167,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-border') ?
-                    <PxDropDown title={__("Border Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-border-all divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Border Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-border-all divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             {/*===> Border Size <===*/}
                             <ScreensTabs
@@ -181,7 +181,7 @@ export default function Edit({ attributes, setAttributes }) {
                 :null}
                 {/*===> Dropdown Button <===*/}
                 {attributes.style?.support?.includes('enable-effects') ?
-                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square far fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
+                    <PxDropDown title={__("Effects Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-backpack divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-280">
                         <li key="pds-margin" className='pdy-15 pdx-15 lineheight-150'>
                             <EffectsSet attributes={attributes} mainSetter={set_style} />
                         </li>

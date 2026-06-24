@@ -66,7 +66,7 @@ const FlexAlignment = (props) => {
         {/*===> Label <===*/}
         <div className={"flexbox align-between mb-5 align-center-y"}>
             <label className='fs-13 weight-bold'>{label}</label>
-            <button type="button" key={`reset-btn${screenPoint}`} data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square far fa-redo' onClick={reset_align}></button>
+            <button type="button" key={`reset-btn${screenPoint}`} data-value="" title="Reset" className='btn tiny bg-transparent fs-12 square fas fa-redo' onClick={reset_align}></button>
         </div>
         {/*===> Counter Control <===*/}
         <div className={"flexbox align-between mb-15"}>

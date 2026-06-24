@@ -45,7 +45,7 @@
         <!-- Headline -->
         <h4 class="fs-15 pdx-20 pdy-10 divider-b"><?php echo esc_html__('Add New Post Type', "pds-blocks"); ?></h4>
         <!-- Close Button -->
-        <button class="modal-close far fa-times btn square ms-15 bg-transparent color-danger position-ab pos-top-0 pos-end-0"></button>
+        <button class="modal-close fas fa-times btn square ms-15 bg-transparent color-danger position-ab pos-top-0 pos-end-0"></button>
         <!-- Modal Body -->
         <div class="pdx-20 pdt-10">
             <!-- Description -->
@@ -55,49 +55,49 @@
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-text">
+                    <div class="control-icon fas fa-text">
                         <input type="text" name="label" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-link">
+                    <div class="control-icon fas fa-link">
                         <input type="text" name="name" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Name', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-text">
+                    <div class="control-icon fas fa-text">
                         <input type="text" name="label-singular" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('singular Label', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-link">
+                    <div class="control-icon fas fa-link">
                         <input type="text" name="singular" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Singular', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-link">
+                    <div class="control-icon fas fa-link">
                         <input type="text" name="rewrite" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Rewrite Slug', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12 col-md-6">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-image">
+                    <div class="control-icon fas fa-image">
                         <input type="text" name="menu_icon" class="form-control radius-sm fs-13" placeholder="<?php echo esc_html__('Icon', "pds-blocks");?>">
                     </div>
                 </div>
                 <!-- Column -->
                 <div class="col-12">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-file-alt">
+                    <div class="control-icon fas fa-file-alt">
                         <select name="template" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Pattern Template' ,'phenix'); ?>">
                             <option value=""><?php echo esc_html__("Default", "pds-blocks"); ?></option>
                             <?php 
@@ -114,7 +114,7 @@
                 <!-- Column -->
                 <div class="col-12">
                     <!-- Form Control -->
-                    <div class="control-icon far fa-boxes mb-15">
+                    <div class="control-icon fas fa-boxes mb-15">
                         <select name="taxonomies" class="px-select form-control radius-sm fs-13" data-placeholder="<?php echo esc_html__('Taxonomies', "pds-blocks");?>" multiple>
                             <?php
                                 $taxonomies = get_taxonomies(array('public'=> true), 'objects');

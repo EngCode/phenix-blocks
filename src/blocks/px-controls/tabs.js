@@ -17,7 +17,7 @@ const ScreensTabs = (props) => {
     //===> Tab Buttons <====//
     const buttons = {
         opts: ["xs", "sm", "md", "lg", "xl"],
-        classes: "btn square tiny col far",
+        classes: "btn square tiny col fas",
         xs: {key:"mobile-alt", title: __("Mobile Screens", "pds-blocks")},
         sm: {key:"mobile", title: __("Mobile Medium", "pds-blocks")},
         md: {key:"tablet", title: __("Tablet Screens", "pds-blocks")},

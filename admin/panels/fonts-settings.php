@@ -15,6 +15,7 @@
         "palsam-arabic" => "Palsam Arabic",
         "palsam-arabic-cursive" => "Palsam Arabic Cursive",
         "ping-ar" => "Ping AR + LT",
+        "SpaceColony" => "SpaceColony"
     ];
 
     //===> Icon Fonts <===//

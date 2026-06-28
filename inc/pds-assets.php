@@ -135,7 +135,8 @@ if (!function_exists('phenix_assets')) :
             "palsam-arabic",
             "palsam-arabic-cursive",
             "ping-ar",
-            "Bahij-TheSansArabic-Bold"
+            "Bahij-TheSansArabic-Bold",
+            "SpaceColony"
         ];
 
         //===> Style Font Fallback <===//

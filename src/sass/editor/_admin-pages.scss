@@ -78,23 +78,4 @@ body.wp-admin[class*="taxonomy-"] {
 	}
 }
 
-/*==== Data Collection ====*/
-.pds-admin-page {
-	margin-#{$direction-start}: -19px;
-	
-	i {pointer-events: none;}
-	
-	.tabs-navigation {
-		li:hover, li.px-active {
-			color: var(--primary-color);
-		}
-	}
 
-	.btn[name="submit"] {
-		top: 0;
-		position: absolute;
-		-webkit-transform: translateY(-150%);
-		        transform: translateY(-150%);
-		#{$direction-end}: 30px;
-	}
-}

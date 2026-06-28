@@ -134,7 +134,7 @@ if (!function_exists('phenix_assets')) :
             "ge-ss-two",
             "palsam-arabic",
             "palsam-arabic-cursive",
-            "ping-ar",
+            "PingAR",
             "Bahij-TheSansArabic-Bold",
             "SpaceColony"
         ];
@@ -225,15 +225,6 @@ if (!function_exists('phenix_assets')) :
         //===> Load Icons Font <===//
         if (!empty($assets_files['icons_font']) && $assets_files['icons_font'] !== false) {
             wp_enqueue_style('fontawesome', $assets_files['icons_font'], false, $version, 'screen and (min-width: 2500px)');
-        }
-
-        //===> Weird Fonts Names Fix <===//
-        if ($assets_files['primary_name'] === "Ping Ar") {
-            $assets_files['primary_name'] = "PingAR";
-        }
-
-        if ($assets_files['secondary_name'] === "Ping Ar") {
-            $assets_files['secondary_name'] = "PingAR";
         }
 
         //===> Set Font Css Settings <===//

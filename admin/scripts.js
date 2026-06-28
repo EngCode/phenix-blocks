@@ -10,4 +10,7 @@ document.addEventListener('DOMContentLoaded', ready => {
 
     //====> Phenix Uploader <====//
     Phenix('.px-uploader').uploader();
+
+    //====> Phenix Uploader <====//
+    Phenix('.px-modal').popup();
 });

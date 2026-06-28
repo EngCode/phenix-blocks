@@ -138,7 +138,7 @@
                 array(
                     "title" => "Metaboxes",
                     "slug"  => "pds-metabox",
-                    "icon"  => "fas fa-pen-field",
+                    "icon"  => "fas fa-pen",
                     "content" => 'pds_metabox_panel',
                 ),
                 //==> Import/Export Panel <==//

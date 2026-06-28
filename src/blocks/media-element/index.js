@@ -43,9 +43,13 @@ registerBlockType(metadata, {
         }
         if(!attributes.setting.size) blockProps.className += " ratio-none";
         
-        let filename = new URL(attributes.setting.src);
-        filename = filename.pathname
-        filename = filename.substring(filename.lastIndexOf('/') + 1);
+
+        let filename = "";
+        if (attributes.setting.src) {
+            filename = new URL(attributes.setting.src);
+            filename = filename.pathname
+            filename = filename.substring(filename.lastIndexOf('/') + 1);
+        }
 
         //===> Render <===//
         return (<TagName {...blockProps}>

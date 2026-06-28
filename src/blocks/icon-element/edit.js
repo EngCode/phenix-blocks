@@ -63,6 +63,9 @@ export default function Edit({ attributes, setAttributes }) {
         iconStyle.width = attributes.style.dimensions ? Phenix(document).toREM(attributes.style.dimensions) : Phenix(document).toREM(42);
     }
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -217,7 +220,7 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
         {/*===> Modal Component <===*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
-            <i {...blockProps} key={`${uniqueKey}`} style={iconStyle}>
+            <i {...cleanProps} key={`${uniqueKey}`} style={iconStyle}>
                 {attributes.type === "custom" ? <img alt="icon" className='fluid' src={attributes.style.icon?.includes("http") ? attributes.style.icon : iconURl} />
             : null}</i>
         }

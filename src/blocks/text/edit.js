@@ -69,6 +69,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     //===> Block Accessibility <===//
     const blockAccessibility = (event, editor) => PhenixBlocks.blockAccessibility(event, clientId, {content: ''}, attributes.content, attributes);
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -102,7 +105,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
@@ -239,15 +242,15 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         {/*====> Edit Layout <====*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :
             <>{attributes.type === "list" ?
-                <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ul"} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+                <RichText {...cleanProps} key={`${uniqueKey}`} multiline="li" tagName={"ul"} value={attributes.content} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             : attributes.type === "list-numbers" ?
-                <RichText {...blockProps} key={`${uniqueKey}`} multiline="li" tagName={"ol"} value={attributes.content} />
+                <RichText {...cleanProps} key={`${uniqueKey}`} multiline="li" tagName={"ol"} value={attributes.content} />
             : attributes.type === "list-custom" ?
                 <div key={`${uniqueKey}`} {...blockProps}>
                     <ul {...innerBlocksProps}></ul>
                 </div>
             : 
-                <RichText {...blockProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onReplace={() => {}} splitting={""} onKeyDown={blockAccessibility} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
+                <RichText {...cleanProps} key={`${uniqueKey}`} tagName={TagName} value={attributes.content} onReplace={() => {}} splitting={""} onKeyDown={blockAccessibility} onChange={set_content} placeholder={__("Enter Content", "pds-blocks")} />
             }</>
         }
     </>);

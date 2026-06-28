@@ -311,7 +311,8 @@ if (!function_exists('pds_admin_style') && is_admin()) :
         wp_enqueue_style('font-awesome-solid', plugin_dir_url(__DIR__).'assets/webfonts/fontawesome-6-free.css', array(), $version);
     }
 
-    //===> Include Phenix Core in the Plugin Page <===//
+    //===> Include Phenix Core in the Plugin Pages / Editor <===//
+    add_action('enqueue_block_editor_assets', 'pds_admin_style');
     if (get_option('pds_admin_style') && is_admin() && isset($_GET['page']) && strpos($_GET['page'], 'pds-') !== false) {
         add_action('admin_enqueue_scripts', 'pds_admin_style');
     }

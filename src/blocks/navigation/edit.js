@@ -77,6 +77,9 @@ export default function Edit(props) {
     const blockProps = useBlockProps();
     const uniqueKey = blockProps.id;
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -226,7 +229,7 @@ export default function Edit(props) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        {attributes.preview ? <img src={PreviewImage} alt="" className="fluid" /> : <div {...blockProps}  key={`${uniqueKey}`}>
+        {attributes.preview ? <img src={PreviewImage} alt="" className="fluid" /> : <div {...cleanProps} key={`${uniqueKey}`}>
             <ServerSideRender block="phenix/navigation" attributes={attributes} />
         </div>}
     </>);

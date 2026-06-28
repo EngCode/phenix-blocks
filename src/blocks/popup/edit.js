@@ -51,6 +51,9 @@ export default function Edit({ attributes, setAttributes }) {
     //===> Layout Options <===//
     blockProps.className += ` px-modal ${renderProps.container.className}`;
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Render <===//
     return (<>
         {/*====> Settings Toolbar <====*/}
@@ -97,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
@@ -207,7 +210,7 @@ export default function Edit({ attributes, setAttributes }) {
             </PanelBody>
         </InspectorControls>
         {/*===> Modal Component <===*/}
-        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<div {...blockProps} key={`${uniqueKey}`}>
+        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<div {...cleanProps} key={`${uniqueKey}`}>
             <InnerBlocks template={[
                 ['phenix/group', {
                     "className": "model-content mgx-auto col",

@@ -67,7 +67,7 @@ export default function Edit({ attributes, setAttributes }) {
     return (<>
         {/*====> Settings Toolbar <====*/}
         <BlockControls>
-            <ToolbarGroup key={`${uniqueKey}-toolbar`} label={__("Quick Settings", "pds-blocks")}>
+            <ToolbarGroup label={__("Quick Settings", "pds-blocks")}>
                 {/*===> Select Control <===*/}
                 <div className='inline-block inline-select tooltip-bottom w-100' data-title={__("Type", "pds-blocks")}>
                     <PhenixSelect name="type" placeholder={__("Image", "pds-blocks")} className={`tx-align-center weight-medium`} value={attributes.setting.type} onChange={set_setting} options={PhenixBlocks.dataLists.media_options.types} />
@@ -119,7 +119,7 @@ export default function Edit({ attributes, setAttributes }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
@@ -273,7 +273,7 @@ export default function Edit({ attributes, setAttributes }) {
             </ToolbarGroup>
         </BlockControls>
         {/*====> Controls Layout <====*/}
-        <InspectorControls key={`${uniqueKey}-inspector`}>
+        <InspectorControls>
             {/*===> Widget Panel <===*/}
             <PanelBody title="General Settings" initialOpen={true}>
                 {/*===> Styles Options <===*/}
@@ -282,7 +282,8 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
         {/*===> Modal Component <===*/}
         {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : 
-        <div {...blockProps}  key={`${uniqueKey}`}>
+
+        <div {...blockProps}>
             {/*===> Image Type <===*/}
             {attributes.setting.type === "image" || !attributes.setting.type ? <img src={attributes.setting.src || blockProps['data-src']} className="px-media-img" /> : null}
             {/*===> Inner Content <===*/}

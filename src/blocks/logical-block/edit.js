@@ -27,6 +27,9 @@ export default function Edit({ attributes, setAttributes }) {
         { label: __("Visitors Only", "pds-blocks"), value: 'visitors-only' }
     ];
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Render <===//
     return (<>
         {/*====> Controls Layout <====*/}
@@ -39,7 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/*====> Edit Layout <====*/}
-        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<div {...blockProps} key={`${uniqueKey}`}>
+        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> :<div {...cleanProps} key={`${uniqueKey}`}>
             <InnerBlocks />
         </div>}
     </>);

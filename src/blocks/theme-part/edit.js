@@ -26,6 +26,9 @@ export default function Edit({ attributes, setAttributes }) {
     const set_value = (target) => PhenixBlocks.set_value(target, attributes, setAttributes);
     const set_meta_options = (target, screen) => PhenixBlocks.setObject(target, screen, "part_options", false, attributes, setAttributes);
 
+    //====> Clean Props <===//
+    const { key, ...cleanProps } = blockProps;
+
     //===> Get Template Part Meta Option <===//
     useEffect(() => {
         //===> Fetch Template Part Meta <===//
@@ -81,7 +84,7 @@ export default function Edit({ attributes, setAttributes }) {
         </InspectorControls>
 
         {/* //====> Edit Layout <====// */}
-        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : <div {...blockProps} key={`${uniqueKey}`}>
+        {attributes.preview ?  <img src={PreviewImage} alt="" className='fluid' /> : <div {...cleanProps} key={`${uniqueKey}`}>
             <ServerSideRender block="phenix/theme-part" attributes={attributes}  />
         </div>}
     </>);

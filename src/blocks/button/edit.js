@@ -274,17 +274,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     //===> Small Screen <===//
                     sm={(screen) => <>
                         {/*===> Layouts <===*/}
-                        <div class="row">
+                        <div className="row">
                             {/*===> Button Type <===*/}
-                            <div class="col col-12">
+                            <div className="col col-12">
                                 <PhenixSelect key={`btn-type-${uniqueKey}`} className={`mb-15 arrow-gray`} name="type" label={"Type"} placeholder={__("Default", "pds-blocks")} value={attributes.type} onChange={set_value} options={PhenixBlocks.dataLists.button.types} />
                             </div>
                             {/*===> Column <===*/}
-                            <div class="col col-6">
+                            <div className="col col-6">
                                 <PhenixSelect key={`size`} name={`size`} placeholder={__("Default", "pds-blocks")} label={__("Size", "pds-blocks")} value={attributes.responsive[`size`]} onChange={(target) => set_responsive(target, "")} options={getSizes(screen)} />
                             </div>
                             {/*===> Column <===*/}
-                            <div class="col col-6">
+                            <div className="col col-6">
                                 {/*=== Form Control  ===*/}
                                 <PhenixInput className="mb-15" name="id" label={__("HTML ID", "pds-blocks")} value={attributes.id} onChange={set_value} />
                             </div>

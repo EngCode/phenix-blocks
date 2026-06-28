@@ -129,7 +129,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                     </li>
                 </PxDropDown>
                 {/*===> Dropdown Button <===*/}
-                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-arrows-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
+                <PxDropDown title={__("Sizes Options", "pds-blocks")} button={`bg-transparent fs-16 square fas fa-maximize divider-e border-alpha-25 h-100`} dropList="fs-14 w-min-320" >
                     <li key="sizes" className='pdy-15 pdx-15 lineheight-150'>
                         <ScreensTabs
                             sm={(screen) => <SizesSet attributes={attributes} mainSetter={set_style} />}
@@ -161,7 +161,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
                 </OptionControl>}
                 {/*===> Option Control <===*/}
                 <OptionControl key={`hover-style-${uniqueKey}`} name={`hover-style`} value={`boolean`} checked={attributes.style['hover-style'] || false} onChange={set_style} type='button-checkbox' className='inline-block'>
-                    <span className='btn bg-transparent fs-16 square tooltip-bottom fas fa-bullseye-pointer' data-title={__("Custom Hover Style", "pds-blocks")}></span>
+                    <span className='btn bg-transparent fs-16 square tooltip-bottom fas fa-hand-pointer' data-title={__("Custom Hover Style", "pds-blocks")}></span>
                 </OptionControl>
                 {/*===> Option Control <===*/}
                 <OptionControl key={`outline-${uniqueKey}`} name={`outline`} value={`outline`} checked={attributes.outline || false} onChange={set_value} type='button-checkbox' className='inline-block'>

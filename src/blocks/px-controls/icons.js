@@ -57,16 +57,16 @@ const PhenixIcons = (props) => {
     //===> States <===//
     const [state, setState] = useState({
         iconsPage: 1,
-        iconType: "fi-rounded fi-regular",
-        iconName: "fi-add",
-        iconsFile: "ui-icons.json",
+        iconType: "fas",
+        iconName: "fa-add",
+        iconsFile: "fa7-solid.json",
         iconsList: [],
         iconsPages: {},
-        iconsVersion: "ui-rounded",
-        iconsFamily: "ui-icons",
+        iconsVersion: "fa7",
+        iconsFamily: "fontawesome",
         returnType: null,
         iconsTypes: faTypes,
-        isUIIcons: true,
+        isUIIcons: false,
     });
 
     //===> Load Icons JSON <===//
@@ -102,14 +102,14 @@ const PhenixIcons = (props) => {
     //===> Fetch Data When Render <===//
     useEffect(() => {
         apiFetch({ path: "pds-blocks/v2/options" }).then((options) => {
-            let iconFont = options.pds_icon_font || "ui-icons-rounded";
+            let iconFont = options.pds_icon_font || "fontawesome-7-free";
             let version = "ui-rounded";
             let family = "ui-icons";
             let isUI = true;
-            let types = faTypes;
-            let defaultType = "fi-rounded fi-regular";
-            let defaultIcon = "fi-add";
-            let file = "ui-icons.json";
+            let types = uiTypes;
+            let defaultType = "fas";
+            let defaultIcon = "fa-add";
+            let file = "fa7-solid.json";
 
             if (iconFont === "none") {
                 setState(prevState => ({
@@ -133,7 +133,6 @@ const PhenixIcons = (props) => {
             } else if (iconFont === "ui-icons-straight") {
                 defaultType = "fi-straight fi-regular";
             }
-            // ui-icons-rounded is the default
 
             if (state.iconsList.length < 1 || state.iconsFamily !== family) {
                 loadIcons(file, defaultType, defaultIcon, version, family, types, isUI);
@@ -177,7 +176,7 @@ const PhenixIcons = (props) => {
 
         //===> Font Awesome: reload JSON for new weight <===//
         apiFetch({ path: "pds-blocks/v2/options" }).then((opts) => {
-            let iconFont = opts.pds_icon_font || "ui-icons-rounded";
+            let iconFont = opts.pds_icon_font || "fontawesome-7-free";
             let newFile = getJSONFile(iconFont, newType);
             
             // Default icon for each weight

@@ -65,7 +65,7 @@ const PhenixIcons = (props) => {
         iconsVersion: "ui-rounded",
         iconsFamily: "ui-icons",
         returnType: null,
-        iconsTypes: uiTypes,
+        iconsTypes: faTypes,
         isUIIcons: true,
     });
 
@@ -106,7 +106,7 @@ const PhenixIcons = (props) => {
             let version = "ui-rounded";
             let family = "ui-icons";
             let isUI = true;
-            let types = uiTypes;
+            let types = faTypes;
             let defaultType = "fi-rounded fi-regular";
             let defaultIcon = "fi-add";
             let file = "ui-icons.json";

@@ -25,7 +25,7 @@
 }
 
 /* Style class — font-family on ::before */
-.fi-rounded::before {
+[class*="fi-"]::before, .fi-rounded::before {
     font-family: "uicons-rounded";
 }
 

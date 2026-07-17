@@ -25,7 +25,7 @@
 }
 
 /* Style class — font-family on ::before */
-.fi-straight::before {
+[class*="fi-"]::before, .fi-straight::before {
     font-family: "uicons-straight";
 }
 

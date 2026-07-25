@@ -638,7 +638,7 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
     /*====> Audio Trigger <=====*/
     audioTrigger = (trigger) => {
         //===> Check if the Trigger is HTML Element <===//
-        if (trigger instanceof HTMLElement) {
+        if (trigger) {
             //===> Define Objects <===//
             let audio_player:any = document.querySelector('#px-audio-player');
     
@@ -651,13 +651,15 @@ export class PhenixElements extends Array<HTMLElement | Record <string, any>> {
                 //=== Insert Player to the Document ===//
                 document.body.appendChild(audio_player);
             }
-    
-            //====> Audio Buttons <====//
-            Phenix(trigger).on('click', event => {
+
+            //===> Global Event Delegation <===//
+            Phenix(document).on("click", (event) => {
+                let button = event.target.closest("button[data-audio]");
+                if (!button) return;
+                
                 event.preventDefault();
                 //=== Get Data ===//
-                let button = event.target,
-                    audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
+                let audio_file = button.getAttribute('href') || button.getAttribute('data-audio');
     
                 //=== Check if the Audio is Already Playing ===//
                 if (audio_player.getAttribute('src') === audio_file && !audio_player.paused) {

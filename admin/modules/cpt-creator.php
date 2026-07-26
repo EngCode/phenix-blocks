@@ -20,14 +20,14 @@ if (!function_exists('pds_cpt_create')) :
             //==== Get Options ====//
             $name = $options["name"];
             $label = $options["label"];
-            $rewrite = isset($options['rewrite']) ? $options["rewrite"] : $name;
-            $singular = isset($options['singular']) ? $options["singular"] : $options["name"];
-            $label_singular = isset($options['label-singular']) ? $options["label-singular"] : $options["label"];
-            $template = isset($options['template']) ? $options["template"] : "";
-            $menu_icon = isset($options['menu_icon']) ? $options["menu_icon"] : "category";
-            $menu_position = isset($options['menu_position']) ? $options["menu_position"] : 17;
-            $taxonomies = isset($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
-            $hierarchical = isset($options['hierarchical']) ? $options["hierarchical"] : false;
+            $rewrite = isset($options['rewrite']) && !empty($options['rewrite']) ? $options["rewrite"] : $name;
+            $singular = isset($options['singular']) && !empty($options['singular']) ? $options["singular"] : $options["name"];
+            $label_singular = isset($options['label-singular']) && !empty($options['label-singular']) ? $options["label-singular"] : $options["label"];
+            $template = isset($options['template']) && !empty($options['template']) ? $options["template"] : "";
+            $menu_icon = isset($options['menu_icon']) && !empty($options['menu_icon']) ? $options["menu_icon"] : "category";
+            $menu_position = isset($options['menu_position']) && !empty($options['menu_position']) ? $options["menu_position"] : 17;
+            $taxonomies = isset($options['taxonomies']) && !empty($options['taxonomies']) ? $options["taxonomies"] : array("post_tag");
+            $hierarchical = isset($options['hierarchical']) && !empty($options['hierarchical']) ? $options["hierarchical"] : false;
 
             //==== Template Correct ====//
             if($template && getType($template) !== 'array') {
@@ -56,15 +56,19 @@ if (!function_exists('pds_cpt_create')) :
                 'singular_name' => $singular,
                 'menu_position' => $menu_position,
                 'menu_icon'     => 'dashicons-'.$menu_icon,
-                'rewrite'       => array('slug' => $rewrite),
                 'public'        => true,
                 'has_archive'   => true,
                 'show_in_rest'  => true,
                 'hierarchical'  => $hierarchical,
-                'template'      => $template,
                 'taxonomies'    => $taxonomies,
+                'rewrite'       => array('slug' => $rewrite),
                 'supports'      => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'comments', 'page-attributes'),
             );
+
+            //==== Add Template If Exists ====//
+            if (!empty($template) && $template == "") {
+                $args['template'] = $template;
+            }
 
             register_post_type($name, $args);
         });

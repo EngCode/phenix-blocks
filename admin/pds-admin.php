@@ -51,9 +51,7 @@
 
             //===> Remove Sub Menu Items <===//
             $removable_sub = [
-                ['blocks-product-editor-for-woocommerce', 'pricing'],
-                ['blocks-product-editor-for-woocommerce', 'contact'],
-                ['blocks-product-editor-for-woocommerce', 'wp-support-forum'],
+                ['blocks-product-editor-for-woocommerce', 'wp-support-forum']
             ];
 
             foreach ($removable_sub as $item) { remove_submenu_page(...$item); }

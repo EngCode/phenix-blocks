@@ -61,14 +61,10 @@ if (!function_exists('pds_cpt_create')) :
                 'show_in_rest'  => true,
                 'hierarchical'  => $hierarchical,
                 'taxonomies'    => $taxonomies,
+                'template'      => $template,
                 'rewrite'       => array('slug' => $rewrite),
                 'supports'      => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'comments', 'page-attributes'),
             );
-
-            //==== Add Template If Exists ====//
-            if (!empty($template) && $template == "") {
-                $args['template'] = $template;
-            }
 
             register_post_type($name, $args);
         });

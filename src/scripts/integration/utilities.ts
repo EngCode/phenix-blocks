@@ -240,10 +240,11 @@ PhenixElements.prototype.utilities = function (options?:{
         Phenix('a:not([title]):empty, button:not([title]):empty, a:not([title]), button:not([title])').forEach((link:any) => {
             //===> Text Checker <===//
             let text = link.getAttribute('data-title') || "";
+            let child = link.querySelectorAll('*')?.[0];
 
             //===> Get Text <===//
-            if (!link.querySelector('*') && link.textContent) text = link.textContent.trim();
-            else text = link.querySelector('h2')?.textContent || link.querySelector('h3')?.textContent || link.querySelector('h4')?.textContent || '';
+            if (link.textContent) text = link.textContent.trim();
+            else text = child?.textContent || child?.getAttribute('title') || "";
 
             //===> Alternative Text <===//
             if (!link.getAttribute('title') || link.getAttribute('title') === "") link.setAttribute('title', text);

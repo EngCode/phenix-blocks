@@ -54,47 +54,31 @@
     
         //===> When Loading is Complete <===//
         window.addEventListener('DOMContentLoaded', (loaded) => {
-            //===> WP7 Hacks <===//
-            const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
-            const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
-    
-            //===> Keep Loading for Forms Submit <====//
-            if (isFormProcessing && theForm && !theForm.classList.contains('failed')) {
-                Phenix('.px-page-loader p')[0].innerHTML = "please wait your data is being processed.";
-            } else {
-                //===> Add the Last 10% of progress before hiding the loader <===//
-                <?php if (isset($loading_opts["progressBar"]) && $loading_opts["progressBar"] == "on") : ?>
-                progressBar.style.setProperty('--width', `100%`);
-                progressBar.setAttribute('data-value', `100%`);
-                <?php endif; ?>
-    
-                //===> Hide Loader with Circular Effect <===//
-                const pxLoader = document.querySelector('.px-page-loader');
-                //===> Add Hide Effect <===//
-                pxLoader.classList.add('hide');
-    
+            //===> Add the Last 10% of progress before hiding the loader <===//
+            <?php if (isset($loading_opts["progressBar"]) && $loading_opts["progressBar"] == "on") : ?>
+            progressBar.style.setProperty('--width', `100%`);
+            progressBar.setAttribute('data-value', `100%`);
+            <?php endif; ?>
+
+            //===> Hide Loader with Circular Effect <===//
+            const pxLoader = document.querySelector('.px-page-loader');
+            //===> Add Hide Effect <===//
+            pxLoader.classList.add('hide');
+
+            //===> Remove Loader <===//
+            pxLoader.addEventListener('transitionend', function pxHideHandler(e) {
                 //===> Remove Loader <===//
-                pxLoader.addEventListener('transitionend', function pxHideHandler(e) {
-                    //===> Remove Loader <===//
-                    if (e.propertyName === 'clip-path') {
-                        //===> Hide Loader <===//
-                        pxLoader.style.display = 'none';
-                        //===> Remove Transition <===//
-                        pxLoader.removeEventListener('transitionend', pxHideHandler);
-                    }
-                });
-            }
+                if (e.propertyName === 'clip-path') {
+                    //===> Hide Loader <===//
+                    pxLoader.style.display = 'none';
+                    //===> Remove Transition <===//
+                    pxLoader.removeEventListener('transitionend', pxHideHandler);
+                }
+            });
         });
             
         //===> Page Transition: Before Leaving the Page <===//
         window.addEventListener('beforeunload', (isLeaving) => {
-            //===> WP7 Hacks for Contact Form 7 <===//
-            const isFormProcessing = window.location.hash.substr(1).includes('wpcf7-');
-            const theForm = document.querySelector(`#${window.location.hash.substr(1) || 'xx'}`);
-    
-            //===> Cancel Loading Showup <===//
-            if (isFormProcessing && theForm && !theForm.classList.contains('failed')) return;
-
             //===> Show Loader with Circular Effect <===//
             const pxLoader = document.querySelector('.px-page-loader');
             //===> Show Loader <===//

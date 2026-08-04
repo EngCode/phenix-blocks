@@ -89,6 +89,32 @@ function px_query_render($block_attributes, $content) {
             else if (!isset($query['post_type']) || empty($query['post_type'])) {
                 $query['post_type'] = "post";
             };
+
+            //===> Generate Taxonomies from the URL <===//
+            if (!isset($query['tax_query'])) {
+                $query['tax_query'] = array('relation' => 'AND');
+            }
+
+            //===> for Each Taxonomy of the Post Type <===//
+            foreach (get_object_taxonomies($query['post_type']) as $taxonomy) {
+                //===> Skip Taxonomies Not Present in the URL <===//
+                if (!isset($_GET[$taxonomy]) || $_GET[$taxonomy] === '') continue;
+
+                //===> Support Comma Separated & Array Params <===//
+                $url_terms = is_array($_GET[$taxonomy]) ? $_GET[$taxonomy] : array_map('trim', explode(',', $_GET[$taxonomy]));
+                $url_terms = array_values(array_filter($url_terms, function($term) { return $term !== ''; }));
+
+                //===> Add the Taxonomy to the Query <===//
+                if (count($url_terms) > 0) {
+                    $query['tax_query'][] = array(
+                        'terms' => $url_terms,
+                        'operator' => 'IN',
+                        'field' => 'slug',
+                        'taxonomy' => $taxonomy,
+                        'include_children' => true,
+                    );
+                }
+            }
         }
         //===> if its Disable Delete the Prop <===//
         else { unset($query['s']); }

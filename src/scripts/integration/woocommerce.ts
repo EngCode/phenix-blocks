@@ -14,6 +14,7 @@ import Phenix, { PhenixElements } from "..";
 /*====> Custom Variables <====*/
 declare var wc_add_to_cart_params: any;
 declare var PDS_WP_KEY: any;
+declare var window: any;
 
 /*====> Add to Cart Method <====*/
 PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_id) {
@@ -36,15 +37,17 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     })
     //===> Return the Response as JSON data <===//
     .then(response => response.json()).then(data => {
-        console.log(data);
         //===> Check for Data and Error <===//
         if (data && data.error) {
             //====> Show Notifications <====//
             Phenix(document).notifications({
                 duration : 5000,
-                type     : "error",
+                type     : "custom",
                 position : ["center", "center"],
-                message  : 'Error adding to cart: ' + data.error,
+                message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
+                        <i class="fas fa-x-mark color-gray h1"></i>
+                        <p>${data.error}</p>
+                </div>`,
             });
         } else {
             //===> Disable loading mode <===//
@@ -52,22 +55,33 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
 
             //===> Trigger WooCommerce's AJAX event to update the cart fragments <===//
             document.body.dispatchEvent(new CustomEvent('pds_cart_updated', {detail: {}}));
+
+            //===> Force Update Cart Quantity <===//
+            Phenix(".cart-count").forEach(item => item.innerHTML = data.cart_count);
     
             //====> Show Notifications <====//
-            Phenix(document).notifications({
-                duration : 5000,
-                type     : "custom",
-                position : ["center", "center"],
-                message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
-                        <i class="fas fa-check-circle color-success h1"></i>
-                        <p>Product added to cart successfully.</p>
-                </div>`,
-            });
+            // Phenix(document).notifications({
+            //     duration : 5000,
+            //     type     : "custom",
+            //     position : ["center", "center"],
+            //     message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
+            //             <i class="fas fa-check-circle color-success h1"></i>
+            //             <p>Product added to cart successfully.</p>
+            //     </div>`,
+            // });
+
+            //===> Show Cart Popup <===//
+            const cartPopup:any = document.querySelector('#cart-popup');
+            if (cartPopup) {
+                cartPopup.classList.add('active');
+                cartPopup.style.display = 'flex';
+            }
         }
     })
     //===> Catch any errors <===//
     .catch(error => console.error('Error:', error));
 };
+
 
 /*====> Remove Product Method <====*/
 PhenixElements.prototype.pds_remove_from_cart = function (formData, cartItemKey) {
@@ -113,9 +127,20 @@ PhenixElements.prototype.pds_remove_from_cart = function (formData, cartItemKey)
 };
 
 /*====> Toggle Wishlist Method <====*/
-PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, add_url, remove_url) {
+PhenixElements.prototype.pds_toggle_wishlist = function (button, action_url, add_url, remove_url) {
     //===> Define Button <===//
-    const button = isClicked.currentTarget || isClicked.target;
+    const ButtonProcess = (action_url) => {
+        //====> Replace Icon Style <====//
+        if (action_url.includes('add_to_wishlist')) {
+            button.classList.add("fas");
+            button.classList.remove("far");
+            button.setAttribute("href", remove_url);
+        } else {
+            button.classList.add("far");
+            button.classList.remove("fas");
+            button.setAttribute("href", add_url);
+        }
+    }
 
     //====> Send the Data to the Server <====//
     fetch(action_url, {
@@ -127,29 +152,27 @@ PhenixElements.prototype.pds_toggle_wishlist = function (isClicked, action_url, 
             //====> Show Notifications <====//
             Phenix(document).notifications({
                 duration : 5000,
-                type     : "success",
-                position : ["bottom", "end"],
-                message  : "Wishlist Updated successfully.",
+                type     : "custom",
+                position : ["center", "center"],
+                message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
+                        <i class="fas fa-check-circle color-success h1"></i>
+                        <p>Wishlist Updated successfully.</p>
+                </div>`,
             });
-            //====> Replace Icon Style <====//
-            if (action_url.includes('add_to_wishlist')) {
-                button.classList.add("fas");
-                button.classList.remove("far");
-                button.setAttribute("href", remove_url);
-            } else {
-                button.classList.add("far");
-                button.classList.remove("fas");
-                button.setAttribute("href", add_url);
-            }
+
+            ButtonProcess(action_url);
         }
         //====> Error Status <====//
         else {
             //====> Show Notifications <====//
             Phenix(document).notifications({
                 duration : 5000,
-                type     : "error",
-                position : ["bottom", "end"],
-                message  : "Failed to update wishlist",
+                type     : "custom",
+                position : ["center", "center"],
+                message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
+                        <i class="fas fa-x-mark color-gray h1"></i>
+                        <p>Something Went Wrong, Please Try Again.</p>
+                </div>`,
             });
         }
 
@@ -238,7 +261,7 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             //====> Add Loading Mode <====//
             button.classList.add("px-loading-inline");
 
-            Phenix(document).pds_toggle_wishlist(isClicked, action_url, add_url, remove_url);
+            Phenix(document).pds_toggle_wishlist(button, action_url, add_url, remove_url);
         }
 
         //====> Case 2: Add to Cart <====//
@@ -269,7 +292,13 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             //===> Get the Item Key <===//
             const cartItemKey = button.getAttribute('data-cart_item_key');
             //===> Activate Loading Mode <===//
-            Phenix(button).ancestor('.cart-item').classList.add('px-loading-inline');
+            let cartItem = Phenix(button).ancestor('.cart-item');
+            if (!cartItem) {
+                cartItem = Phenix(button).ancestor('.item-info-bar');
+                cartItem = Phenix(cartItem).prev('.cart-item');
+            }
+            
+            cartItem.classList.add('px-loading-inline');
             //===> Create Form Data Request <===//
             const formData = new URLSearchParams();
             formData.append('cart_item_key', cartItemKey);
@@ -316,11 +345,21 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             const image = option?.getAttribute('data-product-image') || element.getAttribute('data-product-image');
 
             //===> Update the Prices <===//
-            Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
+            if (price) {
+                Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
+                Phenix(".single-product-content .price .woocommerce-Price-amount").forEach(el => el.innerHTML = price);
+            }
 
             //===> Update the Image <===//
             if (image) {
                 Phenix(".single-product-image").setAttributes({ "src": image });
+                //===> Update the Slider if Exists <===//
+                const imageIndex = option?.getAttribute('data-slide-index') || element.getAttribute('data-slide-index');
+                window.sliders?.forEach((sliderInstance:any) => {
+                    if (sliderInstance?.root?.id === "gallery-slider" && imageIndex) {
+                        sliderInstance.Components.Controller.go(parseInt(imageIndex));
+                    }
+                });
             }
 
             //===> Set Variation ID to Add to Cart Button <===//

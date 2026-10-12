@@ -55,32 +55,43 @@
         //===> When Loading is Complete <===//
         window.addEventListener('DOMContentLoaded', (loaded) => {
             //===> Add the Last 10% of progress before hiding the loader <===//
+            let delayLoader = 0;
+
             <?php if (isset($loading_opts["progressBar"]) && $loading_opts["progressBar"] == "on") : ?>
             progressBar.style.setProperty('--width', `100%`);
             progressBar.setAttribute('data-value', `100%`);
+            delayLoader = 500;
             <?php endif; ?>
 
-            //===> Hide Loader with Circular Effect <===//
-            const pxLoader = document.querySelector('.px-page-loader');
-            //===> Add Hide Effect <===//
-            pxLoader.classList.add('hide');
-
-            //===> Remove Loader <===//
-            pxLoader.addEventListener('transitionend', function pxHideHandler(e) {
+            setTimeout(() => {
+                //===> Hide Loader with Circular Effect <===//
+                const pxLoader = document.querySelector('.px-page-loader');
+                //===> Add Hide Effect <===//
+                pxLoader.classList.add('hide');
+    
                 //===> Remove Loader <===//
-                if (e.propertyName === 'clip-path') {
-                    //===> Hide Loader <===//
-                    pxLoader.style.display = 'none';
-                    //===> Remove Transition <===//
-                    pxLoader.removeEventListener('transitionend', pxHideHandler);
-                }
-            });
+                pxLoader.addEventListener('transitionend', function pxHideHandler(e) {
+                    //===> Remove Loader <===//
+                    if (e.propertyName === 'clip-path') {
+                        //===> Hide Loader <===//
+                        pxLoader.style.display = 'none';
+                        //===> Remove Transition <===//
+                        pxLoader.removeEventListener('transitionend', pxHideHandler);
+                    }
+                });
+            }, delayLoader);
         });
             
         //===> Page Transition: Before Leaving the Page <===//
         window.addEventListener('beforeunload', (isLeaving) => {
             //===> Show Loader with Circular Effect <===//
             const pxLoader = document.querySelector('.px-page-loader');
+            const progressBar = document.querySelector('.px-page-loader .progress');
+            //===> Reset Progress Bar <===//
+            <?php if (isset($loading_opts["progressBar"]) && $loading_opts["progressBar"] == "on") : ?>
+            progressBar.style.setProperty('--width', `0%`);
+            progressBar.setAttribute('data-value', `0%`);
+            <?php endif; ?>
             //===> Show Loader <===//
             pxLoader.style.display = '';
             //===> Add Show Effect <===//
@@ -106,7 +117,7 @@
             progressBar.style.setProperty('--width', `${progressWidth}%`);
             progressBar.setAttribute('data-value', `${progressWidth}%`);
             //===> Stop Timeloop After 90% <===//
-            if (progressWidth >= 90) clearInterval(interval);
+            if (progressWidth >= 99) clearInterval(interval);
         }, 10);
         <?php endif; ?>
     </script>

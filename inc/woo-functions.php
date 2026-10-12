@@ -90,36 +90,25 @@ if (!function_exists('get_product_price_data')):
 
         //===> Get Price from Variable Products <===//
         if ($product->is_type('variable')) {
+            $prices = $product->get_variation_prices();
             $available_variations = $product->get_available_variations();
-            $default_attributes = $product->get_default_attributes();
-            $target_variation = $available_variations[0]; // fallback
-
-            if (!empty($default_attributes)) {
-                foreach ($available_variations as $variation) {
-                    $match = true;
-                    foreach ($default_attributes as $attr_key => $attr_value) {
-                        $variation_attr_val = $variation['attributes']['attribute_' . $attr_key] ?? '';
-                        // An empty variation attribute means "any", so it always matches
-                        if ($variation_attr_val !== '' && $variation_attr_val !== $attr_value) {
-                            $match = false;
-                            break;
-                        }
-                    }
-                    if ($match) {
-                        $target_variation = $variation;
-                        break;
-                    }
-                }
-            }
-
-            $regular_price = is_numeric($target_variation['display_regular_price']) ? $target_variation['display_regular_price'] : 0;
-            $sale_price = is_numeric($target_variation['display_price']) ? $target_variation['display_price'] : 0;
+            $regular_price = is_numeric($available_variations[0]['display_regular_price']) ? $available_variations[0]['display_regular_price'] : 0;
+            $sale_price = is_numeric($available_variations[0]['display_price']) ? $available_variations[0]['display_price'] : 0;
         } 
         //===> Get Price from Simple Products <===//
         else {
             $regular_price = $product->get_regular_price(); // Ensure correct price retrieval
             $sale_price = $product->get_sale_price(); // Get sale price
         }
+
+        //====> Ensure Prices are Numeric Before Formatting <====//
+        // if (is_numeric($regular_price)) {
+        //     $regular_price = wc_format_decimal($regular_price, 2); // Format to 2 decimal places
+        // }
+
+        // if (is_numeric($sale_price)) {
+        //     $sale_price = wc_format_decimal($sale_price, 2); // Format to 2 decimal places
+        // }
 
         //====> Get Discount Percentage <====//
         $discount_percentage = 0;

@@ -11,6 +11,7 @@
 import Phenix, { PhenixElements } from "..";
 /*====> Splide JS for The Slider Core <====*/
 declare var Splide: any;
+declare var window: any;
 
 /*====> Phenix Slider <====*/
 PhenixElements.prototype.slider = function (options?:{
@@ -364,6 +365,10 @@ PhenixElements.prototype.slider = function (options?:{
                 current_slider.track?.classList.add('mounted');
             }
         };
+
+        //====> Add to Global Sliders <====//
+        window.sliders = window.sliders || [];
+        window.sliders.push(the_slider);
 
         //====> Intersection Sliders <====//
         if (current_slider.intersection) {

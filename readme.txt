@@ -183,7 +183,7 @@ JavaScript customizations go in `style.js`, which runs alongside the Phenix fron
 
 ## Version History
 
-### v1.5.0 — Build System Cleanup
+### v1.5.5 — Build System Cleanup
 - Replaced deprecated `node-sass` with Dart `sass`
 - Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
 - Removed babel packages that `@wordpress/scripts` already bundles

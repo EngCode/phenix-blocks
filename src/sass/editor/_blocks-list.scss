@@ -346,7 +346,7 @@ body.block-editor-page {
 /*==== Toolbar Position Fix ====*/
 .components-popover.block-editor-block-popover:has(.block-editor-block-contextual-toolbar) {
 	width: 100%;
-	top: 0px!important;
+	top: 30px!important;
 	position: fixed!important;
 	#{$direction-start}: 0!important;
 	-webkit-transform: translateX(0%) translateY(calc(100% - 4px)) translateZ(0px) !important;

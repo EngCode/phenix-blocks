@@ -195,7 +195,6 @@ PhenixElements.prototype.slider = function (options?:{
             } : ''; 
             //===> Large Screens <===//
             inline('data-lg') ? breakpoints[1170] = {
-                // drag: drag && drag === 'true' || drag && drag === '1' ? true : false,
                 perPage: inline('data-lg') || items,
                 height: height || verticalFix(inline('data-lg') || items, direction, slider_list),
             } : '';
@@ -218,7 +217,7 @@ PhenixElements.prototype.slider = function (options?:{
             if (typeof(pagination) === "string") {
                 pagination !== "1" ? pagination_class = pagination : null;
             }
-
+            console.log("Checking new opsx");
             //====> Slider to Splide <====//
             let slider_options:any = {
                 type : type,
@@ -241,10 +240,17 @@ PhenixElements.prototype.slider = function (options?:{
                 waitForTransition: waitForTransition && waitForTransition === 'false' || waitForTransition && waitForTransition === '0' ? false : true,
                 
                 //====> Static Options <====//
-                snap: true,
-                rewindSpeed: 1000,
-                rewindByDrag: true,
+                // snap: true,
+                // rewindSpeed: 1000,
+                // rewindByDrag: true,
                 
+                drag: true,
+                noDrag: 'a, button, .clickable, .btn',
+                dragMinThreshold: {
+                    mouse: 4,
+                    touch: 10,
+                },
+
                 //====> .Sniping Sliding. <====//
                 wheel: wheel, //===> Enable Wheel Sliding
                 wheelSleep: wheelSleep, //===> Time to Disable the Scroll before next slide

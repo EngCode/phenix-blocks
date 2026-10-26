@@ -28,7 +28,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     formData.append('action', 'woocommerce_add_to_cart');
     formData.append('product_id', product_id.toString());
 
-    console.log(formData);
     //===> Send the request to WooCommerce via Fetch API <===//
     fetch(formURL, {
         method: 'POST',
@@ -58,17 +57,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
 
             //===> Force Update Cart Quantity <===//
             Phenix(".cart-count").forEach(item => item.innerHTML = data.cart_count);
-    
-            //====> Show Notifications <====//
-            // Phenix(document).notifications({
-            //     duration : 5000,
-            //     type     : "custom",
-            //     position : ["center", "center"],
-            //     message  : `<div class="w-max-320 z-index-modal position-rv bg-white color-dark hidden radius-xxl pd-20 tx-align-center bx-shadow-dp-3" style="pointer-events: all">
-            //             <i class="fas fa-check-circle color-success h1"></i>
-            //             <p>Product added to cart successfully.</p>
-            //     </div>`,
-            // });
 
             //===> Show Cart Popup <===//
             const cartPopup:any = document.querySelector('#cart-popup');
@@ -81,7 +69,6 @@ PhenixElements.prototype.pds_add_to_cart = function (button, quantity, product_i
     //===> Catch any errors <===//
     .catch(error => console.error('Error:', error));
 };
-
 
 /*====> Remove Product Method <====*/
 PhenixElements.prototype.pds_remove_from_cart = function (formData, cartItemKey) {
@@ -340,15 +327,10 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
             const option = element.querySelector(`option[value="${element.value}"]`);
 
             //===> Get Data <===//
-            const variation = element.value;
+            let variation = element.getAttribute('data-variation');
+            let option_name = element.name;
             const price = option?.getAttribute('data-price') || element.getAttribute('data-price');
             const image = option?.getAttribute('data-product-image') || element.getAttribute('data-product-image');
-
-            //===> Update the Prices <===//
-            if (price) {
-                Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
-                Phenix(".single-product-content .price .woocommerce-Price-amount").forEach(el => el.innerHTML = price);
-            }
 
             //===> Update the Image <===//
             if (image) {
@@ -361,9 +343,62 @@ Phenix(document).on("DOMContentLoaded", (loaded) => {
                     }
                 });
             }
+ 
+            //===> Update the Prices <===//
+            if (price) {
+                Phenix(".single-product-content .price .price-num").forEach(el => el.textContent = price);
+                Phenix(".single-product-content .price .woocommerce-Price-amount").forEach(el => el.innerHTML = price);
+            }
 
-            //===> Set Variation ID to Add to Cart Button <===//
-            if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": element.value });
+            //===> Get the Actualt Variation that matches all selected options <===//
+            if (option_name === "attribute_pa_color") {
+                //===> Get the selected variation option <===//
+                let currentVar:any = document.querySelector(".single-product-content .variation-control[data-variation][checked]");
+                let selectedColor = element.value;
+                let selectedVarValue = currentVar.value;
+                let selectedName = currentVar.name;
+                //===> Get the item and value if/when changed <===//
+                document.querySelectorAll(`.variation-control[name="${currentVar.name}"]`).forEach((item:any) => {
+                    if (item.checked) {
+                        currentVar = item;
+                        selectedVarValue = item.value;
+                    }
+                });
+                //=== Get the variation that matches both the option and color ===//
+                Object.keys(window.variations).forEach(item => {
+                    //===> if the selected one skip it <===//
+                        if (variation !== item) {
+                            //===> Get the variation that matches the selected color <===//
+                            if (selectedColor === window.variations[item]["attribute_pa_color"]) {
+                                if (window.variations[item][selectedName] === selectedVarValue) variation = item;
+                            }
+                        };
+                });
+            } else {
+                //===> Get Variation Data for Aligning and Compare <====//
+                let selected_color;
+                let selectedVar = window.variations[variation];
+                let option_value = window.variations[variation][option_name];
+                //===> If has Colors <===//
+                if (selectedVar["attribute_pa_color"]) {
+                    Object.keys(window.variations).forEach(item => {
+                        //===> Get the Selected Color <===//
+                        document.querySelectorAll(`.single-product-content .variation-control[name="attribute_pa_color"]`).forEach((color:any) => {
+                            if (color.checked) selected_color = color.value;
+                        });
+                        //===> if the selected one skip it <===//
+                        if (variation !== item) {
+                            //===> Get the variation that matches the selected color <===//
+                            if (option_value === window.variations[item][option_name]) {
+                                if (window.variations[item]["attribute_pa_color"] === selected_color) variation = item;
+                            }
+                        };
+                    });
+                }
+            }
+
+            //===> Set the Currect Variation <===//
+            if (variation) Phenix(".single-product-content .pds-add-to-cart").setAttributes({ "data-variation": variation });
         }
     });
 

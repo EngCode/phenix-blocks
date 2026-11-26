@@ -1,72 +1,188 @@
-# Phenix
+# Phenix Blocks
 
-A UI framework for building WordPress sites with a unified design language.
+The WordPress plugin half of the **Phenix Design System**: a utility-first CSS framework, a Gutenberg block library, a TypeScript front-end runtime, and backend tools for building WordPress and WooCommerce sites with one consistent design language.
 
-## What it does
+> **Mental model:** the plugin is the engine, the theme is the paint. All logic, CSS, JavaScript and backend tools live in the plugin. A theme only supplies `theme.json`, template parts and colour mappings, so blocks keep working when you switch themes.
 
-- **Front-end framework:** Utility-based CSS (padding, margin, grid, flexbox) with built-in RTL support. JavaScript components for animations, popups, sliders, and 3D viewers.
-- **Block system:** Custom Gutenberg blocks that share a single rendering engine. One vocabulary (`pd-15`, `flexbox`, `col-6`) across all blocks.
-- **Backend tools:** CPT creator, taxonomy creator, meta boxes, import/export, admin columns. Reduces the need for multiple plugins.
-- **Design system:** Consistent class naming and spacing scale that works across themes.
+- **Plugin file:** `pds-blocks.php` | **Text domain:** `pds-blocks`
+- **License:** GPL-2.0-or-later
+- **Author:** Abdullah Ramadan, [phenixthemes.com](https://phenixthemes.com)
+- **Companion theme:** [PDS Starter Theme](https://github.com/EngCode/pds-starter-free)
+
+---
+
+## What it includes
+
+| Part | What it is |
+| --- | --- |
+| **CSS framework** | Utility classes (`pd-15`, `pdt-md-30`, `col-6`, `flexbox`) on a 0-100 spacing scale (steps of 5), per-breakpoint infixes (`-sm`, `-md`, `-lg`, `-xl`), and RTL support built in. |
+| **Block library** | 19 Gutenberg blocks that share one attribute-to-CSS-class renderer. |
+| **Editor controls** | Reusable controls (`src/blocks/px-controls/`): spacing, colours, typography, responsive, animations, effects, flexbox, grid, position, sizes, borders and more. |
+| **Front-end runtime** | A TypeScript library exposed as `window.Phenix` with chainable DOM helpers, components, features and integrations. |
+| **Backend tools** | Creators for custom post types, taxonomies, meta boxes, block patterns, REST endpoints and admin pages, available as PHP helpers and through the Data Manager screen. Also import/export (JSON), post duplication and custom admin columns. |
+| **Optimisation** | `PDS_Optimizer` groups head, script, style, SEO, image and other optimisations behind options. `PDS_Spacing_Collector` turns custom spacing values into flat CSS on `save_post`. |
+| **WooCommerce** | Theme support, query/cart/attribute helpers and a separate `woocommerce.js` extension. |
+
+Bundled libraries live in `assets/lib/` (three.js, GSAP, range-slider).
+
+---
 
 ## Requirements
 
-- WordPress 6.0+
-- PHP 7.4+
-- Node 20+ (for building from source)
+| | Declared | Notes |
+| --- | --- | --- |
+| WordPress | 6.0+ | Blocks use `apiVersion: 3` (iframe editor), which needs a more recent WordPress than 6.0. Use a current release. See [Known issues](#known-issues). |
+| PHP | 7.4+ | The code uses `str_contains()`, which is PHP 8.0+. Use PHP 8.0 or newer until this is resolved. |
+| Node | 20+ | Only needed to build from source. |
 
-## Install from source
+---
+
+## Installation
+
+### Plugin (from a release ZIP)
+
+Built CSS and JS are committed, so the plugin works straight from a ZIP.
+
+1. Download the plugin from [GitHub](https://github.com/EngCode/phenix-blocks).
+2. Upload it to `/wp-content/plugins/pds-blocks`.
+3. Activate it from the WordPress Plugins screen.
+
+### Theme
+
+1. Download the [PDS Starter Theme](https://github.com/EngCode/pds-starter-free).
+2. Upload it to `/wp-content/themes/` and activate it.
+
+### From source (development)
 
 ```bash
-git clone https://gitlab.com/EngCode/pds-blocks-pro.git
-cd pds-blocks-pro
+git clone https://github.com/EngCode/phenix-blocks.git pds-blocks
+cd pds-blocks
 npm install
 npm run watch
 ```
 
+---
+
 ## Build commands
 
-| Command | What it does |
-|---------|-------------|
-| `npm run watch` | Runs SASS, TypeScript, extension, and blocks watcher in parallel |
-| `npm run sass` | Compiles the CSS framework (`assets/css/phenix.css`) — watch mode |
-| `npm run sass-debug` | Same as above with verbose output for debugging |
-| `npm run ts` | Compiles the front-end JavaScript (`assets/js/phenix.js`) — watch mode |
-| `npm run ext` | Compiles the WooCommerce extension (`assets/js/woocommerce.js`) — watch mode |
-| `npm run blocks` | Compiles the Gutenberg blocks |
-| `npm run animate` | Compiles the animation CSS separately |
-| `npm run build` | One-shot production build for all assets (no watch) |
+| Command | What it does | Output |
+| --- | --- | --- |
+| `npm run watch` | Runs the SASS, TypeScript, extension and block watchers in parallel | all of the below |
+| `npm run sass` | Watches `src/sass` | `assets/css/phenix.css`, `phenix-utils.css`, `admin.css`, RTL variants and maps |
+| `npm run ts` | Watches `src/scripts/index.ts` | `assets/js/phenix.js` |
+| `npm run ext` | Watches the WooCommerce extension | `assets/js/woocommerce.js` |
+| `npm run blocks` | Runs `wp-scripts start` for the blocks | `assets/js/blocks/<slug>/` |
+| `npm run animate` | Watches `src/animations` | `assets/css/animations/*.css` |
+| `npm run build` | One-shot TS, extension, SASS and animations build | same as above, **but no blocks** |
 
-### Plugin Installation
+**Heads up:** `npm run build` does not compile blocks yet. For a one-shot block build, run `npx wp-scripts build`.
 
-1. Download the plugin from [GitHub](https://github.com/EngCode/phenix-blocks)
-2. Upload to `/wp-content/plugins/pds-blocks`
-3. Activate through the WordPress Plugins menu
+Never hand-edit `assets/css/` or `assets/js/`. They are generated. Edit `src/` and rebuild.
 
-### Theme Installation
-
-1. Download the [PDS Starter Theme](https://github.com/EngCode/pds-starter-free)
-2. Upload to `/wp-content/themes/`
-3. Activate through the WordPress Appearance menu
+---
 
 ## Architecture
 
-The plugin contains all blocks, CSS, JavaScript, and backend tools. The theme provides `theme.json` colors and optional template parts. Switching themes does not break the blocks because the design system lives in the plugin.
+```
+pds-blocks/
+├── pds-blocks.php        # Bootstrap: constants, textdomain, require_once list
+├── admin/                # Settings screens, Data Manager, REST options, public helper APIs
+├── inc/                  # Assets, optimizer, spacing collector, WooCommerce, import/export
+├── src/
+│   ├── blocks/           # One folder per block, plus px-controls and the renderers
+│   ├── scripts/          # TypeScript runtime (window.Phenix)
+│   ├── sass/             # CSS framework source
+│   └── animations/       # Standalone animation CSS
+├── assets/               # Committed build output, fonts, icons, libs, JSON data
+└── languages/            # Arabic and English translations
+```
 
-Blocks use a shared renderer (`OptionsRenderer`) that reads block attributes and outputs CSS classes. This keeps the logic centralized rather than duplicated across 20+ block files.
+### Blocks and the shared renderer
 
-## Key Features
+Block attributes are grouped into objects (`typography`, `style`, `responsive`, `flexbox`, `slider`). A generic renderer walks them and outputs utility classes and `data-*` attributes, so every block speaks the same vocabulary.
 
-- **Custom Gutenberg Blocks:** 20+ blocks for layout, content, dynamic queries, and interactive components
-- **Animation System:** Scroll-driven animations with progress tracking and exit animations
-- **3D Media Viewer:** Three.js integration for embedding interactive 3D models
-- **Third-Party Controls:** Slider, typewriter, parallax, and other JavaScript components
-- **Block Controls:** Per-device styling, spacing, colors, typography, borders, and positioning
-- **Theme Customization:** Modular SASS, JavaScript hooks, and dynamic template parts
-- **Developer Tools:** APIs for custom post types, taxonomies, meta boxes, and admin columns
-- **WooCommerce Integration:** Blocks and controls for e-commerce sites
-- **RTL Support:** Right-to-left layouts built into the framework, not added as an afterthought
-- **Translation Ready:** WordPress standard `.pot` file for localization
+| Context | Renderer |
+| --- | --- |
+| Editor and static save | `window.PhenixBlocks.OptionsRenderer()` in `src/blocks/pds-helpers.js` |
+| Server-rendered (dynamic) blocks | `pds_blocks_options_render()` in `src/blocks/blocks.php` |
+
+These are two separate implementations of the same idea. A change to one must be mirrored in the other, or editor and front-end output will differ.
+
+### Block library
+
+**Static blocks** (markup saved in the post): Container, Grid Row, Grid Column, Group, Button, Text, Text List Item, Icon Element, Media Element, Logo, Popup.
+
+**Dynamic blocks** (rendered on the server): Page Head, Navigation, Query, Taxonomies, Users Query, Theme Part, Logical Block, Custom Code.
+
+Every block shares the same control groups: layout (alignment, dimensions, spacing, position, display), style (colours, typography, borders, effects, animations) and responsive (per-device values and visibility).
+
+### Front-end runtime (`window.Phenix`)
+
+- **Components:** datatable, dropdown, media, menu, popup, progress, rating, select, tabs, timer, uploader
+- **Features:** animations, collapse, connect, counter, effects, notifications, scroll-spy, sticky, validation, viewport
+- **Integrations:** slider, utilities, WooCommerce, WordPress
+
+`Phenix(selector)` returns a chainable array-like (`addClass`, `on`, `style`, `attr`, `insert` and more). Extension builds reuse the core global instead of bundling a second copy.
+
+### Theme customisation
+
+The starter theme uses a modular SASS structure and stores template parts for dynamic blocks (`cards/`, `cards-taxonomies/`, `dynamic/`) under `template-parts/`. JavaScript customisations go in `style.js` and run alongside the Phenix library.
+
+---
+
+## Developer APIs
+
+| Function | Purpose |
+| --- | --- |
+| `pds_add_api()` | Register a REST endpoint (writes need a capability check and a nonce) |
+| `pds_add_admin_page()` | Add an admin page |
+| `pds_cpt_create()` / `pds_tax_create()` | Create custom post types / taxonomies |
+| `pds_metabox_create()` | Add meta boxes |
+| `pds_add_pattern()` | Register a block pattern |
+| `pds_toggle_controls()` | Toggle block controls |
+
+Plugin options are read with `get_option()` and compared strictly (`=== 'on'`).
+
+---
+
+## Known issues
+
+This project is under active maintenance. These are the known gaps, so you don't have to discover them yourself.
+
+- **Versions disagree:** the plugin header, the version constant and `package.json` don't match yet, and the license headers are inconsistent.
+- **Icon fonts:** the default font in code and the planned default differ, and the icon stylesheet currently loads only on very wide screens (`min-width: 2500px`), which looks like a bug.
+- **Block registration:** dynamic blocks use `api_version => 2` while `block.json` uses `apiVersion: 3`, and some editor script handles are declared in more than one place.
+- **Renderer drift risk:** the JS and PHP renderers must be kept in step by hand.
+- **Build:** `npm run build` does not compile blocks.
+- **PHP compatibility:** PHP 7.4 is advertised, but `str_contains()` requires PHP 8.0+.
+- **Spacing CSS on archives:** custom spacing CSS is only printed on singular views.
+- **Not yet shipped:** Tabs/Accordion/Dropdown blocks, Form Builder, Progress/Timer/Languages/Maps blocks, and a Search Query block.
+
+---
+
+## Contributing
+
+Read [`AGENTS.md`](AGENTS.md) before changing anything. It is the project handbook: repository map, conventions, security rules, verification checklist and current debt. When code and docs disagree, the code is the source of truth, so fix the docs.
+
+Please open an issue before changing:
+
+- the SASS spacing scale or breakpoint names
+- existing class, method, option or block names
+- the `OptionsRenderer` pattern-matching logic
+- backward compatibility or the PHP/WordPress support floor
+- any security measure (nonces, escaping, capability checks)
+- the icon-font default or how icon fonts load
+
+Before sending a change:
+
+- run `php -l` on every changed PHP file
+- build what you touched (`npm run ts`, `npm run sass`, `npm run blocks`)
+- test in the block editor iframe, in RTL, and with WooCommerce active if relevant
+- don't hand-edit generated files
+
+Security rules (non-negotiable): escape all output, verify nonces on every write, check `current_user_can()` before privileged actions, and sanitise all input.
+
+---
 
 ## Documentation
 
@@ -76,133 +192,10 @@ Blocks use a shared renderer (`OptionsRenderer`) that reads block attributes and
 - [Front-End Framework](https://engcode.github.io/phenix-blocks/frontend/)
 - [Developer Tools](https://engcode.github.io/phenix-blocks/wordpress/tools/)
 
-## Developer Tools
+See [`changelog.md`](changelog.md) for release history.
 
-### Post Management
-- **Bulk Operations:** Edit or delete multiple posts at once
-- **Post Duplication:** Clone a post with one click
-- **Import/Export:** Transfer posts between sites as JSON
-
-### Custom Post Types & Taxonomies
-- **CPT Creator:** Build custom post types with UI, no code required
-- **Taxonomy Creator:** Build custom taxonomies, including hierarchical types
-- **Meta Boxes:** Add custom fields to any post type
-
-### Admin Enhancements
-- **Custom Admin Columns:** Add columns to the post list in the WordPress admin
-- **Asset Management:** Control which CSS and JavaScript files load on each page
-- **Developer Utilities:** Helper functions for common WordPress tasks
-
-## Block Library
-
-### Layout
-- **Container:** Boxed or full-width content areas
-- **Grid Row:** Rows with responsive gap and alignment controls
-- **Grid Column:** Columns with per-device width controls
-- **Group:** Content grouping with background, border, and spacing options
-- **Theme Part:** Reusable template parts inside the block editor
-
-### Content
-- **Text:** Typography controls (font, size, weight, color, line height)
-- **Media Element:** Images and video with responsive sizing and lazy loading
-- **Icon Element:** SVG icons from multiple libraries with color and size controls
-- **Button:** Styled links with hover states, icons, and sizing
-- **Logo:** Site logo with responsive width controls
-- **Page Head:** Page title and breadcrumb display
-
-### Interactive
-- **Popup:** Modal overlays with custom triggers, animations, and positioning
-- **Navigation:** Responsive menus with mobile toggle and dropdown support
-- **Custom Code:** HTML, CSS, and JavaScript injection inside the editor
-- **3D Viewer:** Interactive 3D models with camera controls and lighting
-
-### Dynamic
-- **Query:** Post lists with filtering, sorting, and pagination
-- **Taxonomies:** Category and tag lists with custom styling
-- **Users Query:** User lists with filtering and avatar display
-
-### Utility
-- **Logical Content:** Conditional display based on user role, device, or language
-- **PX Controls:** Form elements and interactive components for custom layouts
-
-## Block Controls
-
-Every block includes the same set of controls, organized by category:
-
-### Layout
-- Alignment (horizontal and vertical)
-- Dimensions (width, height, max-width, max-height)
-- Spacing (margin and padding with per-device values)
-- Position (static, relative, absolute, fixed)
-- Display (block, flex, grid, inline, none)
-
-### Style
-- Colors (text, background, border, overlay)
-- Typography (font family, size, weight, style, line height, letter spacing)
-- Borders (width, style, color, radius)
-- Effects (shadows, opacity, blur, transform)
-- Animations (entrance, hover, scroll-driven)
-
-### Responsive
-- Per-device settings (mobile, tablet, desktop)
-- Visibility toggles (hide on specific screen sizes)
-- Adaptive spacing and sizing per breakpoint
-
-## Theme Customization
-
-The PDS Starter Theme uses a modular SASS structure:
-
-```
-sass/
-├── _theme-info.scss     # Theme metadata
-├── _theme-style.scss    # Main styles
-├── assets/              # Fonts, icons
-├── elements/            # Component overrides
-└── patches/             # Fixes and overrides
-```
-
-Template parts for dynamic blocks are stored in `template-parts/`:
-
-```
-template-parts/
-├── cards/             # Post card layouts for Query Block
-├── cards-taxonomies/  # Layouts for Taxonomies Block
-└── dynamic/           # Custom layouts for dynamic content
-```
-
-JavaScript customizations go in `style.js`, which runs alongside the Phenix front-end library.
-
-## Version History
-
-### v2.0.0 — Core Fixes & Security
-- **CSS variable trap removed:** Replaced nested CSS variable fallbacks with flat generated classes. A PHP collector generates the exact CSS needed on `save_post` and outputs it in `wp_head`. No inline style bloat. Better browser performance on complex pages.
-- **JavaScript core opened:** Added `Phenix.register()`, `Phenix.extend()`, and `Phenix.PhenixElements` access so external code can add methods without modifying the source.
-- **Extension build support:** Multiple webpack entry points for compiling add-on files (e.g., `woocommerce.js`) as separate files that share the core global without duplicating it.
-- **Build system modernized:** Replaced `node-sass` with Dart `sass`, upgraded `ts-loader`, `webpack`, `typescript`. Removed babel bloat. Added `.npmrc` for Node 20+ compatibility. Block build auto-discovers blocks from `src/blocks/` instead of a manual entry list.
-- **PHP security fixes:** Added `wp_verify_nonce()` to REST write endpoints, `esc_attr()`/`wp_kses_post()` to pagination output, `esc_html()`/`esc_attr()` to admin panel rendering, `wp_strip_all_tags()` to CSS collector output. Changed all `get_option() == "on"` to strict `=== "on"`. Changed critical `include()` calls to `require_once()`.
-- **Constant typo:** Fixed `PDS_BLOCKS_VERSTION` → `PDS_BLOCKS_VERSION` across all files.
-- **Clean scripts:** Reduced to `npm run watch`, `npm run sass`, `npm run ts`, `npm run ext`, `npm run blocks`, `npm run build`.
-- **Custom Code block:** HTML output now uses `wp_kses_post()`, CSS uses `wp_strip_all_tags()`, JavaScript uses `wp_strip_all_tags()` to prevent injection
-- **Metabox fields:** Regular fields now sanitize by type (`sanitize_text_field`, `sanitize_textarea_field`, `sanitize_email`, `sanitize_hex_color`, `esc_url_raw`, `is_numeric`) instead of saving raw `$_POST`
-- **Import/Export AJAX:** All three endpoints (`pds_import_posts`, `pds_posts_remover`, `pds_posts_exporter`) now verify `current_user_can()` before executing. Also sanitizes imported meta keys and values, and post content with `wp_kses_post()`
-- **Query block search:** Removed broken nonce verification that used the search string itself as a nonce. Search is now read-only with `sanitize_text_field()` on all `$_GET` inputs
-- **Google Fonts API:** List of fonts is now cached in a transient (`pds_google_fonts_list`) for 7 days instead of fetching from the Google Fonts API on every admin page load. The hardcoded API key is also moved to `get_option('pds_gfonts_api_key')` with the old key as fallback.
-- **Over-enqueueing:** Removed redundant `enqueue_block_editor_assets` hook for `phenix_core`. `enqueue_block_assets` already covers the editor. Prevents double-loading the core JS in the block editor
-- **Thumbnail sizes:** Disabled-by-default thumbnail removal now requires `pds_disable_thumbnails === 'on'` option. Previously ran unconditionally on every `init`
-- **Remote HTTP requests:** `pds_get_default_options()` now caches the fetched JSON in a transient (`pds_default_options`) for 24 hours instead of fetching on every `init`. Countries JSON fetch also uses a transient lock to prevent concurrent requests on slow connections
-
-### v1.5.0 — Build System Cleanup
-- Replaced deprecated `node-sass` with Dart `sass`
-- Upgraded `ts-loader`, `webpack`, `typescript` for Node 20+ compatibility
-- Removed babel packages that `@wordpress/scripts` already bundles
-- Removed `@wordpress/server-side-render` and `@wordpress/blocks` from explicit dependencies (WordPress provides them at runtime)
-- Added `.npmrc` so `npm install` works without flags on modern Node versions
-- Block build auto-discovers blocks from `src/blocks/` instead of using a manual entry list
+---
 
 ## License
 
 GPL-2.0-or-later
-
-## Author
-
-Abdullah Ramadan — https://phenixthemes.com

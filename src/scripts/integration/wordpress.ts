@@ -251,7 +251,7 @@ if (Phenix) Phenix(document).on("DOMContentLoaded", (loaded) => {
                         //===> Redirect to Success <===//
                         const sourceParameter = window.location.href.replace(PDS_WP_KEY.site, '');
                         const successSlug = form.querySelector('[name="success_slug"]')?.value || 'success';
-                        window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/${successSlug}/?source=${sourceParameter}` : `/${successSlug}/?source=${sourceParameter}`}`;
+                        window.location.href = `${PDS_WP_KEY.site ? PDS_WP_KEY.site + `/${successSlug}}` : `/${successSlug}`}`;
                     }).catch(error => {
                         //===> Show Error Message <===//
                         Phenix(document).notifications({

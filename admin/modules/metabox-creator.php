@@ -47,13 +47,14 @@ if (!function_exists('pds_metabox_create')) :
 
                 //===> Create Field Label <===//
                 $label_html = '<label class="fs-14 mb-5">' . $metabox["label"] . '</label>';
-                $input_classes = "form-control radius-sm fs-13 mb-20 tx-nowrap flow-nowrap";
+                $input_classes = "form-control radius-sm fs-13 mb-20 tx-nowrap";
+                $textarea_classes = "form-control radius-sm fs-13 mb-20";
                 $field_html = '';
 
                 //===> for Textarea Type <===//
                 if ($type_checkpoints["isTextarea"]) {
                     $field_html = $label_html;
-                    $field_html .= '<textarea name="'.$metabox["name"].'" class="'.$input_classes.'">'.$current_value.'</textarea>';
+                    $field_html .= '<textarea name="'.$metabox["name"].'" class="'.$textarea_classes.'">'.$current_value.'</textarea>';
                 }
 
                 //===> for Media Uploader Type <===//

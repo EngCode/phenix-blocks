@@ -404,14 +404,6 @@ if (!function_exists('pds_loader_template')) :
 	add_action('wp_body_open', 'pds_loader_template');
 endif;
 
-//===> Phenix Backlinks <===//
-if (!function_exists('pds_copyrights_backlinks')) :
-    function pds_copyrights_backlinks() {
-        require_once(dirname(__FILE__) . '/backlinks.php');
-    }
-    // add_action('wp_footer', 'pds_copyrights_backlinks');
-endif;
-
 //===> Lightbox Template <===//
 if (!function_exists('pds_lightbox_template')) :
 	function pds_lightbox_template() {

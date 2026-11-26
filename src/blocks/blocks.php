@@ -274,50 +274,6 @@ if (!function_exists('phenix_blocks')) :
             wp_enqueue_script('users-query', $blocksPath.'users-query/index.js', $blocksDependencies, $version , true);
         }
 
-        //====> Tabs <====//
-        if (get_option('tabs_block')) {
-            wp_enqueue_script('pds-tabs', $blocksPath.'pds-tabs/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Dropdowns <====//
-        if (get_option('dropdowns_block')) {
-            wp_enqueue_script('pds-dropdowns', $blocksPath.'pds-dropdowns/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Accordions <====//
-        if (get_option('accordion_block')) {
-            wp_enqueue_script('pds-accordion', $blocksPath.'pds-accordion/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Progress Bars <====//
-        if (get_option('pds_progress_block')) {
-            wp_enqueue_script('pds-tabs', $blocksPath.'pds-progress/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Google Maps <====//
-        if (get_option('pds_gmaps_block')) {
-            wp_enqueue_script('pds-google-maps', $blocksPath.'pds-google-maps/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Timer <====//
-        if (get_option('pds_timer_block')) {
-            wp_enqueue_script('pds-timer', $blocksPath.'pds-timer/index.js', $blocksDependencies, $version , true);
-        }
-        
-        //====> PDS Forms <====//
-        if (get_option('pds_form_block')) {
-            wp_enqueue_script('pds-form', $blocksPath.'pds-form/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> PDS Languages <====//
-        if (get_option('pds_languages_block')) {
-            wp_enqueue_script('pds-languages', $blocksPath.'pds-languages/index.js', $blocksDependencies, $version , true);
-        }
-
-        //====> Search Query <====//
-        if (get_option('search_query_block')) {
-            wp_enqueue_script('pds-search-query', $blocksPath.'pds-search-query/index.js', $blocksDependencies, $version , true);
-        }
     }
 
     add_action('enqueue_block_editor_assets', 'phenix_blocks');
@@ -361,9 +317,4 @@ if (get_option('pds_users_query_block')) {
 //====> Custom Code <====//
 if (get_option('custom_code_block')) {
     include(dirname(__FILE__) . '/custom-code/index.php');
-}
-
-//====> Search Query <====//
-if (get_option('search_query_block')) {
-    include(dirname(__FILE__) . '/pds-search-query/index.php');
 }

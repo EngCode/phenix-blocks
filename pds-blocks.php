@@ -60,14 +60,6 @@ require_once(PDS_BLOCKS_PATH . 'src/blocks/blocks.php');
 require_once(PDS_BLOCKS_PATH . 'inc/import-export.php');
 require_once(PDS_BLOCKS_PATH . 'inc/posts-duplicator.php');
 
-//===> Implement selective block loading <===//
-add_filter('pds_blocks_registered_blocks', function($blocks) {
-    // Allow theme/user to disable unused blocks
-    return array_filter($blocks, function($block) {
-        return apply_filters("pds_block_{$block}_enabled", true);
-    });
-});
-
 //===> Blocks Patterns Categories <===//
 if (!function_exists('pds_patterns_cats')) :
 	function pds_patterns_cats () {
